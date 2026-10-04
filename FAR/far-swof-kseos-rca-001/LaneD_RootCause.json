@@ -1,0 +1,204 @@
+{
+  "lane": "D_ROOT_CAUSE",
+  "files_opened": [
+    "C:/Projects/Agent_Workspace/HG-KSEOS/var/far-swof-kseos-rca-001/IntegratedFindings.yaml",
+    "C:/Projects/Agent_Workspace/HG-KSEOS/var/far-swof-kseos-rca-001/ResearchRequest.yaml",
+    "C:/Projects/Agent_Workspace/HG-KSEOS/var/far-swof-kseos-rca-001/ResearchPlan.yaml",
+    "C:/Projects/Agent_Workspace/知識庫/實作相關DOC/SWOF/驗收報告/SWOF_W2R3_POST_REPAIR_EXTERNAL_CHALLENGE_REPORT_2026-10-04-A.md",
+    "C:/Projects/Agent_Workspace/知識庫/實作相關DOC/SWOF/驗收報告/SWOF_W2R3_POST_REPAIR_EXTERNAL_CHALLENGE_REPORT_2026-10-04-B.md",
+    "C:/Projects/Agent_Workspace/知識庫/實作相關DOC/SWOF/PROMPT/SWOF_W2_Closure_R4_Executor_Thin_Prompt_v1.md"
+  ],
+  "root_causes": [
+    {
+      "root_cause": "Checker oracle authority is drawn from the candidate's own tree — implementation constants, maker test helpers, or the compiled WorkOrder law — instead of the frozen canonical contract, so a local PASS re-confirms the implementation's assumption rather than the canonical requirement.",
+      "chain_stage": "ORACLE_CALIBRATION",
+      "mechanism": "HG-KSEOS asserts checker IDENTITY separation (receipt field checker_is_not_maker / checker_read_only) but never asserts checker ORACLE-BASIS separation. The receipt records verdicts, not the provenance of each expected value, so an implementation-local constant can silently become the expected value and the correlated maker/checker model passes together.",
+      "existing_control_state": "present-but-unenforced",
+      "minimal_control": "Require each checker assertion to name a canonical authority locator, and reject any expected value whose deterministic derivation touches the candidate source tree or a maker helper blob.",
+      "predicate_sketch": "FOR EACH a IN checker_receipt.assertions: a.oracle_basis IN frozen_authority_locator_set AND a.expected_value_provenance_path NOT IN candidate_source_sha_tree. FAIL if any expected value's derivation hash IN hashes(src/security/tests/*) or equals a literal that appears only in implementation code.",
+      "blast_radius": "SMALL",
+      "would_have_caught": [
+        "SELF_AUTHORED_POLICY_TEST_ORACLE_SELF_CONFIRMING (lane_a, cites W1-EXT-004, W1-EXT-001)",
+        "lane_b checker_gaps: W2R2 'expected basis value built with the SAME helper as the implementation (correlated oracle)'",
+        "lane_b checker_gaps: W2R2 'signature treated as a proxy for authority/decision lineage'",
+        "lane_b_conclusion: 'the gap is checker ORACLE AUTHORITY'"
+      ],
+      "citations": [
+        "IntegratedFindings.yaml: lane_a_W1_era.classes_recurring[SELF_AUTHORED_POLICY_TEST_ORACLE_SELF_CONFIRMING] (line 22)",
+        "IntegratedFindings.yaml: lane_b_W2_era.checker_gaps (lines 48-54) and lane_b_conclusion (lines 56-61)",
+        "IntegratedFindings.yaml: cross_lane_agreement (line 85)",
+        "SWOF_W2R3_POST_REPAIR_EXTERNAL_CHALLENGE_REPORT_2026-10-04-A.md: §13.5 'the implementation-local default became the test oracle'"
+      ]
+    },
+    {
+      "root_cause": "A repair discharges the demonstrated counterexample (a single failing tuple) instead of the frozen invariant over its full declared domain, so the next round surfaces a sibling cell of the same frozen contract.",
+      "chain_stage": "FIRST_FAILING_INVARIANT",
+      "mechanism": "The loop accepts 'a first-failing invariant' and never requires the invariant's declared input lattice to be enumerated. The acceptance edge is exercised on the exact failing tuple only, so uncovered cells of the declared domain stay invisible to both maker and local checker; closing one counterexample reveals the next dimension of the same contract.",
+      "existing_control_state": "weak",
+      "minimal_control": "For every acceptance subject, require a coverage matrix over the frozen contract's declared domain axes and reject if any cartesian cell lacks an asserted case.",
+      "predicate_sketch": "axes = declared_domain(frozen_contract.locator); REQUIRED = |cartesian_product(axes)|; COVERED = distinct tuples carrying an assertion in checker_receipt; FAIL if COVERED is a proper subset of REQUIRED. Worked axis: authn_assurance in {AAC1,AAC2,AAC3} x decision in {AAC1,AAC2,AAC3}.",
+      "blast_radius": "SMALL",
+      "would_have_caught": [
+        "lane_b checker_gaps: W2R2 'set-normalization + section 16.4 golden vectors never tested (no permutation slice)'",
+        "lane_b_conclusion: 'each bounded repair closed one counterexample while a sibling dimension of the same frozen contract surfaced the next round'",
+        "lane_b W2 PRODUCT class: canonical token serialization under-implementation recurs"
+      ],
+      "citations": [
+        "IntegratedFindings.yaml: lane_b_W2_era.checker_gaps (line 52) and lane_b_conclusion (lines 56-61)",
+        "ResearchPlan.yaml: Q3 'which of these classes were PREVENTABLE by a machine check' (lines 10-11)",
+        "SWOF_W2_Closure_R4_Executor_Thin_Prompt_v1.md: Gate 2 minimum matrix (lines 376-391)"
+      ]
+    },
+    {
+      "root_cause": "Round/repair identity is copied forward from a predecessor round instead of being recomputed for the current subject, so artifacts carry a frozen schema literal, a frozen order_id, a filename that contradicts their own content, or a byte-identical copy of a prior-round receipt.",
+      "chain_stage": "CROSS_ROUND_IDENTITY",
+      "mechanism": "No cross-round identity predicate exists on the control plane: schema, order_id and repair_id are treated as free text rather than bound to the artifact's own round, and carried files are never diffed against their prior-round namesake.",
+      "existing_control_state": "absent",
+      "minimal_control": "For every evidence artifact in round R assert (a) its schema-literal round token == R, (b) order_id == the round-R order id, (c) filename round token == content round token, and (d) it is not byte-identical to a same-named artifact in round R-1.",
+      "predicate_sketch": "R = round(dir). FOR f IN evidence_commit_artifacts: schema_round(f) == R AND order_id(f) == order_id(round_R_order) AND round(filename(f)) == round(f.content_round_token) AND sha256(f) NOT IN { sha256(same_name_artifact in round R-1) }. FAIL and report the mismatch count; require count == 0.",
+      "blast_radius": "SMALL",
+      "would_have_caught": [
+        "lane_c key_findings: 'W2R2/W2R3/W2R4 all carry the literal schema SWOF-W2R1-EVIDENCE-RETURN-PACK/1'",
+        "lane_c order_id_frozen_at_REPAIR_001 (W2R1/R3_LOCAL_CLOSURE_RECEIPT.json, W2R1/R4_LOCAL_CLOSURE_RECEIPT.json, W2R3/R3_LOCAL_CLOSURE_RECEIPT.json, W2R4/R4_LOCAL_CLOSURE_RECEIPT.json)",
+        "lane_c filename_vs_content_self_contradictions: 7 (list at lines 67-69)",
+        "lane_c carried_copy_defects: W2R4 5 byte-identical prior-round receipts"
+      ],
+      "citations": [
+        "IntegratedFindings.yaml: lane_c_evidence_corpus.cross_round_identity_mismatches_by_round, filename_vs_content_self_contradictions, order_id_frozen_at_REPAIR_001, carried_copy_defects, key_findings (lines 63-82)",
+        "IntegratedFindings.yaml: cross_lane_agreement (line 85)"
+      ]
+    },
+    {
+      "root_cause": "A handoff manifest's top-level exact tuple is current while its nested publication_state is carried forward from a predecessor subject, so one manifest simultaneously asserts two different 'current' publication subjects.",
+      "chain_stage": "HANDOFF_READSET",
+      "mechanism": "The readset/Return-Pack schema permits a nested publication object to be authored independently of the manifest subject; no equality constraint binds the top-level subject, the nested subject, and the publication receipt together, so stale carry-forward hides under a correct top-level SHA pair.",
+      "existing_control_state": "weak",
+      "minimal_control": "Assert that the top-level subject equals the nested publication_state subject equals the publication-receipt subject on the exact source SHA, evidence SHA, and readset_location.",
+      "predicate_sketch": "assert readset.source_candidate_sha == readset.publication_state.pr.head_sha == pub_receipt.source_candidate_sha AND evidence_commit_sha equal across all three AND readset_location equal across receipt/final_verification/readset. FAIL otherwise.",
+      "blast_radius": "SMALL",
+      "would_have_caught": [
+        "HANDOFF_SUBJECT_MISMATCH (lane_a, cites R4EC-EG-001)",
+        "STALE_SUBJECT_METADATA_TRANSPORT (lane_a, cites W1-EXT-001, W1-EXT-002, E-003, W1-R3-OBS-001, R4-EXT-002)",
+        "lane_b W2 EVIDENCE class: 'External evidence/readset metadata inconsistent with committed bytes (recurs)'",
+        "Report B F-W2R3-EXT-002 §8.4: nested publication_state still points at predecessor b8e62b... while the top-level tuple is current"
+      ],
+      "citations": [
+        "IntegratedFindings.yaml: lane_a classes [STALE_SUBJECT_METADATA_TRANSPORT, HANDOFF_SUBJECT_MISMATCH] (lines 16, 26)",
+        "IntegratedFindings.yaml: lane_b_W2_era.EVIDENCE_classes (line 40)",
+        "SWOF_W2R3_POST_REPAIR_EXTERNAL_CHALLENGE_REPORT_2026-10-04-B.md: F-W2R3-EXT-002 §8.4 (lines 606-627) and §15 E6/E7",
+        "SWOF_W2_Closure_R4_Executor_Thin_Prompt_v1.md: Gate 9C (lines 546-570)"
+      ]
+    },
+    {
+      "root_cause": "Evidence descriptors declare hashes that do not resolve to committed bytes — an empty-file SHA used for non-empty descriptors, or declared hashes that resolve to nothing — so a byte-hash check over the pack passes while the declaration itself is false.",
+      "chain_stage": "EVIDENCE_REGENERATION",
+      "mechanism": "Descriptor validation checks that claimed hashes match committed blobs, but never checks that every declared hash is non-trivial and resolves to a present, non-empty artifact. The canonical empty-blob SHA (e3b0c442...) is a legal 64-hex value, so it satisfies format checks and the defect survives hash verification.",
+      "existing_control_state": "weak",
+      "minimal_control": "Assert every declared descriptor hash is (a) not the canonical empty-blob SHA when the declared size is non-zero, and (b) resolvable to exactly one committed blob whose recomputed SHA-256 and byte count match the declaration; reject any unresolvable declaration.",
+      "predicate_sketch": "E = e3b0c442... (canonical empty-blob sha256). FOR d IN descriptors: assert (d.size_bytes == 0) IFF (d.sha256 == E); assert count(blobs WHERE sha256(blob) == d.sha256) == 1 AND len(blob) == d.size_bytes. FAIL on any unresolvable hash or empty-SHA-for-nonempty descriptor.",
+      "blast_radius": "SMALL",
+      "would_have_caught": [
+        "lane_c empty_file_sha declaration_sites: 5 (W2R1/SWOF-W2-EXTERNAL-ACCEPTANCE-READSET.json)",
+        "lane_c unresolvable_declared_hashes: 13",
+        "EVIDENCE_SET_INCOMPLETE (lane_a, cites W1-EXT-006, W1-EXT-007, W1-EXT-008, W1-R3-EG-001, R4-EXT-001)",
+        "lane_c caveat: '0 physically empty files exist, so every empty-file SHA is a DECLARATION defect'"
+      ],
+      "citations": [
+        "IntegratedFindings.yaml: lane_c empty_file_sha, unresolvable_declared_hashes, key_findings (lines 72-73, 81)",
+        "IntegratedFindings.yaml: lane_a class [EVIDENCE_SET_INCOMPLETE] (line 20)",
+        "IntegratedFindings.yaml: cross_lane_agreement (line 86)"
+      ]
+    },
+    {
+      "root_cause": "A prepublication artifact's claim_ceiling asserts postpublication state (NEW_EVIDENCE_COMMIT_PUBLISHED / READY_FOR_W2_EXTERNAL_RECHALLENGE) that its own machine state contradicts (null evidence SHA), and candidates advance toward publication without an enforced IndependentReceipt PASS.",
+      "chain_stage": "PUBLICATON_PREFLIGHT",
+      "mechanism": "The control plane stores claim_ceiling as prose but does not evaluate it as a predicate against the artifact's own machine state (the G15 'claim <= raw evidence' check is human, not mechanical), and the publication gate depends on a later external reviewer rather than a deterministic preflight predicate.",
+      "existing_control_state": "present-but-unenforced",
+      "minimal_control": "Preflight predicate: a prepublication-typed artifact must not carry postpublication claim tokens, every claim token must be entailed by a present evidence field, and publication_state=PUBLISHED requires a present IndependentReceipt with PASS.",
+      "predicate_sketch": "POST = {NEW_EVIDENCE_COMMIT_PUBLISHED, READY_FOR_W2_EXTERNAL_RECHALLENGE}. FOR a IN prepublication_artifacts: FAIL IF (a.claim_ceiling intersects POST AND a.evidence_commit_sha == null). AND FAIL IF (a.publication_state == PUBLISHED AND NOT exists independent_receipt WHERE independent_receipt.PASS == true).",
+      "blast_radius": "SMALL",
+      "would_have_caught": [
+        "lane_b W2 PROCESS class: 'Candidate published without IndependentReceipt PASS (publication gate not enforced)'",
+        "lane_b W2 EVIDENCE class: 'Return Pack claims NEW_EVIDENCE_COMMIT_PUBLISHED beside a null evidence SHA'",
+        "LINKAGE_MODE_OVERCLAIM (lane_a, cites W1-R3-EXT-003, R4-EXT-003)",
+        "Report B F-W2R3-EXT-002 §8.2: in-tree Return Pack claim ceiling includes NEW_EVIDENCE_COMMIT_PUBLISHED while w2_evidence_commit_sha is null"
+      ],
+      "citations": [
+        "IntegratedFindings.yaml: lane_b_W2_era.PROCESS_classes and EVIDENCE_classes (lines 40-42)",
+        "IntegratedFindings.yaml: lane_a class [LINKAGE_MODE_OVERCLAIM] (line 21)",
+        "SWOF_W2R3_POST_REPAIR_EXTERNAL_CHALLENGE_REPORT_2026-10-04-B.md: F-W2R3-EXT-002 §8.2-8.3 (lines 553-597)",
+        "SWOF_W2_Closure_R4_Executor_Thin_Prompt_v1.md: Gate 9A prepublication rules (lines 530-536)"
+      ]
+    },
+    {
+      "root_cause": "Mutation can precede its provably-gating admission event: repair commits exist while the governing PD04/ExecutionBinding is PLANNED_NOT_DISPATCHED with a null execution_binding, so lineage is retroactive and ordering is argued from host wall-clock rather than a monotonic sequence.",
+      "chain_stage": "ADMISSION",
+      "mechanism": "HG-KSEOS holds admission records (PD04, ExecutionBinding) but enforces no monotonic ordering predicate that a candidate-mutating commit is sequentially after its admitted, materialized binding; a candidate-local alias can be substituted for a materialized binding object.",
+      "existing_control_state": "present-but-unenforced",
+      "minimal_control": "Every commit touching the candidate cone must carry a binding_ref to a materialized ExecutionBinding whose admission sequence precedes the commit; reject null or aliased bindings and any commit whose sequence is not strictly after its binding.",
+      "predicate_sketch": "FOR c IN candidate_cone_commits: EXISTS eb WHERE c.binding_ref == eb.id AND eb.execution_binding IS NOT null AND seq(eb.admission) < seq(c). FAIL if any commit has a null, aliased, or later binding. Use a monotonic admission sequence number; do not accept host wall-clock as the ordering oracle.",
+      "blast_radius": "MEDIUM",
+      "would_have_caught": [
+        "ADMISSION_AFTER_MUTATION_RETROACTIVE_LINEAGE (lane_a, cites W1-EXT-007, W1-R3-EXT-001)",
+        "EXECUTION_BINDING_NOT_MATERIALIZED_CONVENTION_SUBSTITUTION (lane_a, cites W1-R3-EXT-001)",
+        "ORDERING_ORACLE_WALL_CLOCK_ONLY (lane_a, cites W1-R3-EXT-001, W1-R3-EXT-002)"
+      ],
+      "citations": [
+        "IntegratedFindings.yaml: lane_a classes [ADMISSION_AFTER_MUTATION_RETROACTIVE_LINEAGE, EXECUTION_BINDING_NOT_MATERIALIZED_CONVENTION_SUBSTITUTION, ORDERING_ORACLE_WALL_CLOCK_ONLY] (lines 17-19)",
+        "IntegratedFindings.yaml: cross_lane_agreement (line 88)",
+        "SWOF_W2_Closure_R4_Executor_Thin_Prompt_v1.md: Gate 1 fresh PD04/ExecutionBinding requirement (lines 357-370)"
+      ]
+    },
+    {
+      "root_cause": "The compiled acceptance edge is narrower than the canonical source contract and its provenance can drift (the compiled authority map ranks a predecessor prompt, compiler-skill identity mismatched), so the maker is graded against a contracted-down version of the requirement.",
+      "chain_stage": "PD04_TASKSPEC_COMPILE",
+      "mechanism": "No predicate binds the compiled TaskSpec acceptance set to the closure of the canonical PI06-derived obligation set, and compiler provenance is not asserted against the canonical compiler identity, so a narrower edge or a drifted authority ranking compiles clean.",
+      "existing_control_state": "weak",
+      "minimal_control": "Assert (a) every canonical obligation reachable from the active PI06 locators has a corresponding TaskSpec/WorkOrder acceptance edge, and (b) the compile receipt's compiler-skill identity equals the canonical compiler identity and its authority map does not rank a predecessor order above the current order.",
+      "predicate_sketch": "REQUIRED = obligations(PI06 active locators); COMPILED = acceptance_edges(task_spec); FAIL IF REQUIRED is not a subset of COMPILED. AND assert compile_receipt.compiler_skill_id == canonical_compiler_id AND max_rank(authority_map) resolves to current_order. UNKNOWN: exact compiler-skill-identity field name requires inventory.",
+      "blast_radius": "MEDIUM",
+      "would_have_caught": [
+        "COMPILER_PROVENANCE_DRIFT (lane_a, cites R4-EXT-004, R4EC-OD-001)",
+        "lane_b W2 PROCESS class: 'Acceptance edge compiled narrower than the canonical source contract (recurs)'"
+      ],
+      "citations": [
+        "IntegratedFindings.yaml: lane_a class [COMPILER_PROVENANCE_DRIFT] (line 25)",
+        "IntegratedFindings.yaml: lane_b_W2_era.PROCESS_classes (line 44)",
+        "SWOF_W2_Closure_R4_Executor_Thin_Prompt_v1.md: Gate 0 canonical compiler requirement (lines 341-355)"
+      ]
+    }
+  ],
+  "dedupe_notes": "ROW1 (oracle-basis separation) and ROW2 (domain-lattice coverage) share one goal — an independent, complete oracle — and can be implemented as one extension of the checker-receipt schema, but they catch different classes (provenance vs coverage) and stay separate rows. ROW4 (handoff subject equality) and ROW6 (preflight claim-ceiling entailment) are both 'manifest coherence' predicates and could collapse into one handoff-coherence validator, but ROW6 is a pre-publication gate and ROW4 is a post-publication gate at different chain stages; keep separate. ROW5 (descriptor resolvability) is a prerequisite for ROW6 (claim entailment over resolves-to-nothing hashes): ROW6 cannot be sound unless ROW5 passes first. ROW7 (ADMISSION sequence) and lane_a ORDERING_ORACLE_WALL_CLOCK_ONLY share the same predicate surface — one monotonic-sequence assertion covers both the retroactive-admission and the wall-clock-ordering classes.",
+  "rejected_proposals": [
+    {
+      "proposal": "Add a second authority/authn subsystem or a standalone oracle service to independently derive expectations.",
+      "reason_rejected": "Violates the MINIMAL constraint and the R4 order's explicit non-goals (no new authority/authn/crypto subsystem); the existing checker and owner-injected authority seams suffice — only the oracle-basis binding is missing."
+    },
+    {
+      "proposal": "Add reviewer guidance (e.g. 'be more careful', 'strengthen human review', 'review evidence more thoroughly').",
+      "reason_rejected": "Not machine-checkable; produces no deterministic predicate and no reproducible pass/fail. Every row here is expressed as a predicate over artifacts the control plane already owns."
+    },
+    {
+      "proposal": "Make remote CI the universal acceptance gate.",
+      "reason_rejected": "Both W2R3 reports and the R4 order record remote CI as N/A_WITH_REASON (no workflows / no mandatory CI predicate shown); a portable local predicate is sufficient and does not re-open W2."
+    },
+    {
+      "proposal": "Globally hard-code the AAC3 authn floor.",
+      "reason_rejected": "Explicitly forbidden by the R4 order and Report A §21.3; the correct behavior is the exact request-specific floor (AAC1 stays AAC1, AAC2 stays AAC2, AAC3 stays AAC3)."
+    },
+    {
+      "proposal": "Broad W2 refactor / architecture reset to re-establish coherence.",
+      "reason_rejected": "Forbidden non-goal; RBWI SWOF-RUN-R026 requires the smallest affected repair. All eight controls are additive predicates on the existing control plane."
+    },
+    {
+      "proposal": "Hand-edit historical receipts so they appear current.",
+      "reason_rejected": "Order §8/§4 forbids it; historical R1/R2/R3 tuples must remain immutable and be labeled superseded, not rewritten."
+    }
+  ],
+  "open_questions": [
+    "UNKNOWN field name for a checker-assertion oracle-basis/provenance pointer — ROW1 assumes such a field can be added to the checker receipt; requires a fresh inventory of the current checker-receipt schema before implementation.",
+    "UNKNOWN whether HG-KSEOS admission records (PD04/ExecutionBinding) carry a monotonic sequence number or only wall-clock timestamps — ROW7 assumes a monotonic sequence; if only wall-clock exists, that absence is itself the ORDERING_ORACLE_WALL_CLOCK_ONLY defect and needs an inventory of the admission record schema.",
+    "UNKNOWN exact canonical compiler-skill-identity field name in the compile receipt — ROW8(b) depends on it; read from task-time compile receipt, else mark UNKNOWN pending inventory.",
+    "Whether W2R1's self-labelled R1-R4 cumulative sub-rounds make its 11 folder-mapping mismatches benign (lane_c caveat) — directly changes ROW3 blast radius and the expected mismatch count for that round."
+  ]
+}

@@ -1,0 +1,30 @@
+schema: FAR-INVENTORY-RECORD/1
+run_id: FAR-SWOF-KSEOS-RCA-001
+method: read-only inspection of the live HG-KSEOS source + schema + real receipts (no mutation)
+
+U1_checker_receipt_oracle_pointer:
+  question: can the checker receipt carry a per-assertion oracle-basis / provenance pointer?
+  answer: NO
+  evidence: "R4_FRESH_CHECKER_RECEIPT.json keys inspected - verdicts and summary booleans only; no oracle/provenance/assertion key present (probe returned False). No checker-receipt contract found in src/hg_kseos/*.py that would carry one."
+  consequence: C1 requires a checker-receipt SHAPE EXTENSION -> shared-core ChangeSet, not implementable as a pure predicate.
+
+U2_admission_ordering_oracle:
+  question: do admission records carry a monotonic sequence, or only wall-clock?
+  answer: WALL-CLOCK ONLY - and there is no ExecutionBinding table at all
+  evidence: "schema.sql: canonical_events has created_at TEXT and an opaque event_id TEXT PK (no sequence column); project_transitions has created_at + attempt (no sequence); leases expires_at/created_at; workorders created_at/updated_at. No execution_binding table exists in the 26-table schema."
+  consequence: >
+    THE NAMED DEFECT IS CONFIRMED IN THE CONTROL PLANE ITSELF. C7 must be expressed as EVENT ORDER
+    (implicit rowid / insertion order) or must add a monotonic sequence column. Adding a column is a
+    shared-core ChangeSet; expressing event order is implementable without schema change.
+
+U3_compiler_identity_field:
+  question: exact canonical compiler-skill-identity field name in the compile receipt?
+  answer: NO IDENTITY DIGEST EXISTS - only a PATH
+  evidence: "R4_COMPILER_RECEIPT.json carries compiler_root (a filesystem path) + compiler_selftest; there is no compiler identity/digest field. A path cannot prove which compiler bytes ran, which is exactly lane A's 48a3-vs-214c mismatch."
+  consequence: C8(b) requires adding a compiler-identity digest field -> shared-core ChangeSet.
+
+U4_w2r1_cumulative_by_design:
+  question: is the W2R1 multi-round bundle intentional?
+  answer: YES - cumulative is by design
+  evidence: "the W2R1 dossier carries 'Cumulative W2 surface (all repair rounds)'."
+  consequence: C3 must scope identity rules to an artifact's OWN filename round vs its content round (NOT the containing directory), and exempt declared historical/superseded/immutable artifacts.

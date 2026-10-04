@@ -1,0 +1,113 @@
+{
+ "delivery_id": "FAR-PE-HGK-SWOF-ACCEPTANCE-INTEGRITY-001-DELIVERY",
+ "schema": "FAR-EVOLUTION-DELIVERY/1",
+ "gate1": {
+  "receipt": "Gate1_Receipt.json",
+  "verdict": "CONFIRMS_USEFUL",
+  "gate2_allowed": true
+ },
+ "gate2": {
+  "authority": "user: adopt FAR results and execute the full recommended plan",
+  "status": "PASS"
+ },
+ "repository": {
+  "path": "C:/Projects/Agent_Workspace/HG-KSEOS",
+  "branch": "codex/hgk-final-closure-002",
+  "remote": "NONE (local-only delivery; no push possible)",
+  "head": "c12412e74db70037eeff8ef56fd33e80bc6b448d"
+ },
+ "commits": [
+  {
+   "sha": "c0cb5cb5fa3dda6639cae21eb84b86e6f1416b71",
+   "changeset": "HGK-EBC-ACCEPTANCE-RESOLUTION-001",
+   "subject": "canonical acceptance resolver (+145/-0); independent checker 4 rounds -> PASS"
+  },
+  {
+   "sha": "c12412e74db70037eeff8ef56fd33e80bc6b448d",
+   "changeset": "HGK-EBC-ORDERING-ORACLE-001",
+   "subject": "ordering oracle: 4 wall-clock sites -> rowid; independent checker PASS (7/7)"
+  }
+ ],
+ "inventories": {
+  "U1": "checker receipt has no per-assertion oracle_basis field",
+  "U2": "NO monotonic sequence column and NO execution_binding table - ordering was wall-clock (DEFECT CONFIRMED IN THE CONTROL PLANE)",
+  "U3": "compile receipt has compiler_root (a path) but no compiler_identity_digest",
+  "U4": "cumulative multi-round bundle is by-design -> C3 exemption justified"
+ },
+ "controls": {
+  "implemented": [
+   "C1",
+   "C2",
+   "C3",
+   "C4",
+   "C5",
+   "C6",
+   "C7",
+   "C8"
+  ],
+  "schema_change_required": "NONE (rowid precedent in evidence_graph.py; C1/C8 are receipt-contract fields)",
+  "unit_tests": "tests/test_acceptance_integrity_checks.py 22/22 (8 classes, positive+negative each)",
+  "hardening": "T8 encodes the independent checker's 4 over-breadth counterexamples + the vacuity gap as permanent regression tests"
+ },
+ "live_defect_found_and_fixed": {
+  "artifact": "R4_LOCAL_CLOSURE_RECEIPT.json",
+  "defect": "order_id frozen at the R1-era REPAIR-001 value",
+  "found_by": "control C3",
+  "note": "9 prior rounds of independent verification had missed it",
+  "evidence": {
+   "before_fix": "d3e311c2 -> C3 findings=1",
+   "after_fix": "291c1772 -> C3 findings=0"
+  }
+ },
+ "independent_checks": [
+  {
+   "id": "deleg_1a9ae20d",
+   "target": "predicate module",
+   "verdict": "PARTIAL",
+   "refuted": [
+    "vacuity: only C7 emitted NOT_APPLICABLE",
+    "over-breadth: C6 negation, C3 carried, C4 nested, C6 alias"
+   ],
+   "disposition": "ALL FIXED + encoded as regression tests -> 22/22"
+  },
+  {
+   "id": "deleg_443f795b",
+   "target": "HGK-EBC-ORDERING-ORACLE-001",
+   "verdict": "PASS",
+   "non_blocking": [
+    "guard alias-blind -> 4th site MISSED by rev 1",
+    "behavioural test tautological"
+   ],
+   "disposition": "4th site fixed, guard widened, divergence proof replaces the tautology -> 5/5"
+  }
+ ],
+ "verification": {
+  "focused": "34 tests OK (ordering + acceptance-resolution + evidence-graph)",
+  "full_suite": "303 tests = 298 pristine + 5 new; IDENTICAL 4 pre-existing failures; 0 newly-failing",
+  "attribution": "pristine-equivalent, independently reproduced on a scratch tree rebuilt from git HEAD",
+  "final_scan": "0 qualified+unqualified wall-clock ordering sites remain in src/hg_kseos"
+ },
+ "deliverables": {
+  "predicates": "var/far-swof-kseos-rca-001/impl/acceptance_integrity_checks.py",
+  "tests": "var/far-swof-kseos-rca-001/impl/test_acceptance_integrity_checks.py",
+  "fixtures": [
+   "var/far-swof-kseos-rca-001/impl/fx.json",
+   "var/far-swof-kseos-rca-001/impl/fixture_result.json"
+  ],
+  "inventory": "var/far-swof-kseos-rca-001/InventoryRecord.yaml",
+  "changeset_receipts": [
+   ".../impl/HGK-EBC-ORDERING-ORACLE-001.json"
+  ],
+  "lessons": "skill hgk-governed-execution references/validator-authoring-lessons.md (L12-L15)"
+ },
+ "non_claims": [
+  "NOT_EXTERNALLY_ACCEPTED (COV-11-06 human policy owner has not ruled)",
+  "NOT_MERGED (no remote; branch local)",
+  "NOT_RELEASED",
+  "NOT_PRODUCTION",
+  "NO_LIVE_WORLD_EFFECT",
+  "W3_NOT_STARTED",
+  "SWOF_W2_EXTERNAL_PASS_CHALLENGE_STILL_ABSENT"
+ ],
+ "claim_ceiling": "FAR_PLAN_EXECUTED_LOCALLY_WITH_INDEPENDENT_CHECKER_PASS_READY_FOR_EXTERNAL_ACCEPTANCE_ONLY"
+}

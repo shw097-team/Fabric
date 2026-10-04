@@ -1,0 +1,20 @@
+schema: FAR-RESEARCH-HANDOFF/1
+run_id: FAR-SWOF-KSEOS-RCA-001
+gate1_status: FAR_RESEARCH_DONE
+gate2_status: AWAITING_USER_DECISION
+verdict: RESEARCH_PASS_CANDIDATE
+artifacts:
+  request: ResearchRequest.yaml
+  plan: ResearchPlan.yaml
+  integrated_findings: IntegratedFindings.yaml
+  root_cause_table: LaneD_RootCause.json
+  challenge: LaneE_Challenge.json
+  synthesis: ResearchSynthesis.md
+  candidate_research: CandidateResearch.yaml
+  proposed_evolution: ProposedEvolution.yaml
+next_authority_edge: >
+  Gate 2 - the user decides whether to act on ProposedEvolution.yaml. Nothing in this run authorizes
+  HG-KSEOS source mutation; that requires a separate, proven, authorized ChangeSet.
+routed_residuals:
+  - C9/C10/C11 optional controls - Gate 2 election only
+  - four UNKNOWN inventories (U1-U4) - must resolve before their dependent controls are implemented

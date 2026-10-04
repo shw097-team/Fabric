@@ -1,0 +1,207 @@
+schema: FAR-PROPOSED-EVOLUTION/2
+proposal_id: PE-HGK-SWOF-ACCEPTANCE-INTEGRITY-001
+run_id: FAR-SWOF-KSEOS-RCA-001
+version: v2_challenge_conditions_closed
+status: PROPOSAL_ONLY / AWAITING_GATE2_USER_DECISION
+gate1: FAR_RESEARCH_DONE lanes A-E; challenge v1 returned PASS_CHALLENGE_CONDITIONAL and ALL conditions are closed in this v2
+
+objective: >
+  Stop HG-KSEOS-governed construction programmes from repeating two failure families that blocked SWOF
+  across many rounds: (1) ORACLE mis-calibration - the local acceptance oracle is the candidate's own
+  tests / compiled WorkOrder law rather than the frozen canonical contract; and (2) DRIFTED or CARRIED
+  IDENTITY plus DECLARED-BUT-UNTRUE evidence metadata that survive byte-hash checks. Deliver as
+  additive predicates on the existing control plane. NO new subsystem.
+
+claim_ceiling: >
+  FAR local research plus proposal only. NOT an approved change. NO production, release, live effect,
+  W3 dispatch, or external acceptance is claimed. HG-KSEOS source mutation remains FORBIDDEN until
+  separately proven and authorized.
+
+inventory_prerequisites:
+  note: BLOCKING - resolve before implementing the control that depends on it
+  U1: checker-receipt schema - can it carry a per-assertion oracle-basis / provenance pointer? UNKNOWN. Fresh inventory required.
+  U2: admission records PD04 / ExecutionBinding - is there a monotonic sequence number, or only wall-clock? UNKNOWN. If only wall-clock, that absence IS the ORDERING_ORACLE_WALL_CLOCK_ONLY defect.
+  U3: compile receipt - exact canonical compiler-skill-identity field name. UNKNOWN.
+  U4: is the W2R1 cumulative multi-round bundle by design? Determines the CROSS_ROUND exemption set.
+
+controls:
+  - id: C1
+    stage: ORACLE_CALIBRATION
+    control: >
+      Every checker assertion must be attributable to a frozen canonical authority locator.
+      NARROWED per challenge: FAIL only when an expected value's provenance is UNATTRIBUTABLE to any
+      frozen_authority_locator. Expected values that legitimately repeat a canonical constant (canonical
+      AAC enum, RFC8785/JCS constants, section 16.4 golden vectors) must NOT fail merely because the same
+      literal also appears in candidate tests.
+    predicate: |
+      FOR a IN checker_receipt.assertions:
+        attributed = exists L IN frozen_authority_locators such that a derives from L
+        FAIL IF NOT attributed
+    closes_challenge_condition: ROW1 overreach
+    gated_on: U1
+    blast_radius: SMALL
+    catches: [SELF_AUTHORED_POLICY_TEST_ORACLE_SELF_CONFIRMING, W2R2 correlated-oracle basis-helper case]
+
+  - id: C2
+    stage: FIRST_FAILING_INVARIANT
+    control: >
+      RESCOPED per challenge to the frozen contract's DECLARED MINIMUM matrix, NOT a full cartesian
+      product. Every case in the contract's declared minimum matrix must carry an asserted case.
+      Full-cartesian auto-derivation of domain axes is explicitly NOT required and is marked UNKNOWN.
+    predicate: |
+      REQUIRED = declared_minimum_cases(frozen_contract.locator)
+      COVERED  = cases with an assertion in checker_receipt
+      FAIL IF REQUIRED \ COVERED is non-empty
+    closes_challenge_condition: ROW2 overreach and axis mismatch
+    gated_on: null
+    blast_radius: SMALL
+    catches: [W2R2 no-permutation-slice, sibling-dimension recurrence]
+
+  - id: C3
+    stage: CROSS_ROUND_IDENTITY
+    control: >
+      RESCOPED per challenge - this was the BLOCKING over-reach. Applies ONLY to newly-authored artifacts
+      of round R. Explicitly EXEMPT: anything under a declared historical/ or superseded/ path, any
+      artifact declared as an immutable predecessor, and any cumulative multi-round bundle whose own
+      declared order id is the bundle's. The former not-byte-identical-to-R-1 clause is REPLACED by:
+      an unchanged carried file must be DECLARED as carried, not silently re-published.
+    predicate: |
+      R = round(order_id_current)
+      FOR f IN newly_authored_artifacts(R):
+        if f under historical/ or superseded/ or declared immutable: SKIP
+        assert schema_round_token(f) == R
+        assert order_id(f) == order_id_of_round(R)
+        assert round_token(filename(f)) == round_token(f.content_round_token)
+        assert (sha256(f) != sha256(same_name(f, R-1))) OR f declared carried == true
+    closes_challenge_condition: ROW3 blocking overreach and claimed-catch mismatch
+    gated_on: U4
+    blast_radius: SMALL
+    catches: [schema frozen at SWOF-W2R1-EVIDENCE-RETURN-PACK/1, order_id frozen at REPAIR-001, filename-vs-content contradictions]
+
+  - id: C4
+    stage: HANDOFF_READSET
+    control: >
+      NARROWED per challenge: top-level subject must equal the receipt subject on source and evidence SHA.
+      readset_location is EXCLUDED from the equality, and publication_state MAY reference the declared
+      out-of-tree publication commit when the accompanying status is
+      SELF_REFERENTIAL_SEE_OUT_OF_TREE_POST_PUBLICATION_READSET - a sanctioned design, not a defect.
+    predicate: |
+      assert readset.subject.source_candidate_sha == pub_receipt.source_candidate_sha
+      assert readset.subject.evidence_commit_sha  == pub_receipt.evidence_commit_sha
+      if readset.publication_state.status != SELF_REFERENTIAL_SEE_OUT_OF_TREE_POST_PUBLICATION_READSET:
+        assert readset.publication_state.pushed.source == readset.subject.source_candidate_sha
+    closes_challenge_condition: ROW4 sanctioned self-referential pattern
+    gated_on: null
+    blast_radius: SMALL
+    catches: [W2R3 F-W2R3-EXT-002 section 8.4 nested predecessor subject, W1 STALE_SUBJECT_METADATA_TRANSPORT]
+
+  - id: C5
+    stage: EVIDENCE_REGENERATION
+    control: >
+      FIXED per challenge: key on descriptor PATH plus recomputed bytes, not on SHA alone. The non-firing
+      empty-SHA-with-non-zero-size branch is REPLACED by: declared bytes must equal the resolved blob's
+      byte count and its recomputed SHA must equal the declaration.
+    predicate: |
+      E = e3b0c442... canonical empty-blob sha256
+      FOR d IN descriptors:
+        blob = the single committed blob at d.path
+        assert exists blob
+        assert sha256(blob) == d.sha256
+        assert len(blob) == d.size_bytes
+        assert (d.sha256 == E) implies (d.size_bytes == 0)
+    closes_challenge_condition: ROW5 prose/predicate mismatch
+    gated_on: null
+    blast_radius: SMALL
+    catches: [W2R1 empty-SHA declarations with bytes zero on non-empty files]
+
+  - id: C6
+    stage: PUBLICATION_PREFLIGHT
+    control: >
+      REWRITTEN per challenge as a CONCRETE ENUMERABLE mapping - the phrase entailed-by is removed.
+    predicate: |
+      POST_TOKENS = {NEW_EVIDENCE_COMMIT_PUBLISHED, READY_FOR_W2_EXTERNAL_RECHALLENGE}
+      FOR a IN prepublication_typed_artifacts:
+        for t in POST_TOKENS:
+          FAIL IF (t IN a.claim_ceiling) AND (a.w2_evidence_commit_sha is null)
+        FAIL IF a.publication_state == PUBLISHED AND NOT exists independent_receipt with verdict == PASS
+    closes_challenge_condition: ROW6 undefined entailment
+    gated_on: null
+    blast_radius: SMALL
+    catches: [W2R1/W2R2/W2R3 Return Pack NEW_EVIDENCE_COMMIT_PUBLISHED beside null SHA, F-W2-EXT-004]
+
+  - id: C7
+    stage: ADMISSION
+    control: >
+      GATED on U2 per challenge. If a monotonic sequence exists: assert a materialized ExecutionBinding
+      whose admission precedes the commit. If ONLY wall-clock exists: express the control as EVENT ORDER
+      and treat the wall-clock-only oracle as the defect to fix - do NOT invent a numeric sequence.
+      This row no longer restates Gate 1; it names the assertion.
+    predicate: |
+      FOR c IN candidate_cone_commits:
+        eb = binding referenced by c
+        FAIL IF eb is null OR eb is a non-materialized or aliased convention string
+        if monotonic_seq_available:
+          FAIL IF NOT (seq(eb.admission) < seq(c))
+        else:
+          FAIL IF NOT (eb.admission event precedes c in the event stream)
+    closes_challenge_condition: ROW7 new obligation plus UNKNOWN key plus Gate-1 restatement
+    gated_on: U2
+    blast_radius: MEDIUM
+    catches: [W1-EXT-007, W1-R3-EXT-001, W1-R3-EXT-002]
+
+  - id: C8
+    stage: PD04_TASKSPEC_COMPILE
+    control: >
+      Assert the compiled acceptance edge set covers the canonical obligation set reachable from the
+      active locators, and assert compiler identity and provenance, gated on U3 for the exact field name.
+    predicate: |
+      FAIL IF obligations(active_canonical_locators) \ acceptance_edges(compiled_task_spec) is non-empty
+      assert compile_receipt.compiler_skill_id == canonical_compiler_id
+      FAIL IF max_rank(authority_map) resolves to a predecessor order
+    closes_challenge_condition: compiler drift controls kept but gated on inventory
+    gated_on: U3
+    blast_radius: MEDIUM
+    catches: [R4-EXT-004, R4EC-OD-001, W2 acceptance-edge-compiled-narrower]
+
+accepted_residual_risk:
+  condition: challenge condition 3 - named findings with no minimal machine control
+  rationale: >
+    These are either product-conformance requirements already carried by the canonical source (a
+    predicate would restate PI06, not add a control), or they are human or judgement gates. Per the
+    minimal-control constraint they are recorded as ACCEPTED RESIDUAL RISK or routed, not forced into
+    new controls.
+  items:
+    - NAMED_CAPABILITY_CARRYFORWARD_FIDELITY - residual; a vocabulary-conformance predicate IS feasible and is offered as OPTIONAL C9.
+    - EVIDENCE_TRANSPORT_CONTRACT_NOT_SATISFIED - folded into C3 by requiring the current canonical pack schema id.
+    - risk-tier gating not independent of operation name plus missing RUIN veto - PRODUCT; already PI06 TOK-INV-001, carried by the R4 order.
+    - rights and credential currentness fail-open - PRODUCT; canonical requirement.
+    - authority and HumanGateDecision lineage under-binding - PRODUCT; canonical requirement.
+    - support-bundle not mounted - process preflight; offered as OPTIONAL C10.
+    - duplicate or conflicting challenge reports per round - adjudication protocol; the R1 order repro gate is the de-facto answer.
+    - deferred carried debt without a closure trigger - offered as OPTIONAL C11.
+
+optional_controls:
+  C9: source_disposition vocabulary conformance against the canonical PI-PKG-05 vocabulary, rejecting source-to-execution label coercion.
+  C10: block a round with a typed state when the challenge-review support bundle is absent.
+  C11: TT/CR register entry must carry an activation condition plus auto-reopen detection.
+
+corrections_applied_from_challenge:
+  - byte-identical W2R4 carried copies - stated 5 CORRECTED to 8, independently counted by the challenger.
+  - lane_b exact-commit-lookup-404 sub-claim - UNVERIFIABLE in corpus, WITHDRAWN as a hard fact.
+  - order_id frozen set - stated 4 CORRECTED to at least 6, including W2R1/R2 and W2R2/R2 local-closure receipts.
+  - lane_c counts 13 / 19 / 7 - method not published, CARRIED AS PROVISIONAL.
+  - W2R4 characterised as an identity collision point - QUALIFIED, its newest Return Pack has already dropped the postpublication token.
+
+non_claims:
+  - lane_c's 13 unresolvable declared hashes, 19 cross-round mismatches and 7 filename/content contradictions are PROVISIONAL - the scan method was not published with the counts, so they are not independently reproducible from the corpus alone.
+  - lane_b's 404 evidence-commit-readback claim is WITHDRAWN.
+  - This proposal does NOT assert that product defects never occurred. Product-conformance defects did occur; the claim is narrower - product defects were not the recurring BLOCKER pattern in the W1 era.
+  - No claim that these controls would have produced an external PASS; the claim is that they are machine-checkable predicates that would have caught NAMED historical findings.
+  - NO production, release, W3, live-effect, or external-acceptance claim.
+
+proposed_sequencing:
+  step1: Run the four UNKNOWN inventories U1-U4. No control is implemented before its prerequisite resolves.
+  step2: Implement the four inventory-independent SMALL controls - C2, C4, C5, C6.
+  step3: Then C1 needs U1, C3 needs U4, C7 needs U2, C8 needs U3.
+  step4: Re-run the SWOF corpus as a FIXTURE against each implemented predicate and publish catch and no-catch counts, so each control carries its own evidence.
+  step5: Optional controls C9-C11 only if Gate 2 elects them.

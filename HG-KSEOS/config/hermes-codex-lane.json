@@ -1,0 +1,48 @@
+{
+  "schema": "HGK-HERMES-CODEX-LANE/1",
+  "task_id": "HGK_CODEX_DESKTOP_HERMES_CLI_PROVIDER_LANE_ISOLATION_ONLY",
+  "status": "ACTIVE_FAIL_CLOSED",
+  "human_codex_home": "C:\\Users\\user\\.codex",
+  "human_codex_config": "C:\\Users\\user\\.codex\\config.toml",
+  "hermes_codex_home": "%LOCALAPPDATA%\\HG-KSEOS\\codex-hermes",
+  "hermes_opencodex_home": "%LOCALAPPDATA%\\HG-KSEOS\\opencodex-hermes",
+  "codex_executable": "%LOCALAPPDATA%\\HG-KSEOS\\runtime\\codex-0.147.0-alpha.6.5\\codex.exe",
+  "codex_version": "0.147.0-alpha.6.5",
+  "codex_sha256": "FB5C760E14CF8FE86E12E49E8A3E7F237AF06082D6B9FE1E411E463B7229C916",
+  "opencodex_root": "%LOCALAPPDATA%\\HG-KSEOS\\runtime\\opencodex-2.11.0",
+  "opencodex_version": "2.11.0",
+  "opencodex_port": 10101,
+  "hermes_executable": "C:\\Users\\user\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\hermes.exe",
+  "hermes_python": "C:\\Users\\user\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+  "hermes_source": "C:\\Users\\user\\AppData\\Local\\hermes\\hermes-agent",
+  "hermes_home": "C:\\Users\\user\\AppData\\Local\\hermes",
+  "provider": "opencode-go",
+  "model": "deepseek-v4.1-flash",
+  "model_fallbacks": [
+    "gpt-5.6-luna",
+    "glm-5.2"
+  ],
+  "credential_env": "OPENCODE_GO_API_KEY",
+  "credential_source_file": "%LOCALAPPDATA%\\hermes\\.env",
+  "credential_resolution": "existing-process-env-then-canonical-hermes-root-env",
+  "openai_fallback": false,
+  "scope": "launcher-process-tree-only",
+  "model_routing_change": {
+    "changed_by": "user instruction (2026-10-02)",
+    "previous_model": "deepseek-v4-flash",
+    "new_model": "deepseek-v4.1-flash",
+    "provider": "opencode-go",
+    "permanence": "PERMANENT",
+    "note": "Primary Codex-lane route is now opencode-go/deepseek-v4.1-flash. Fallbacks are retained as fail-closed safety only; they never override the primary."
+  },
+  "opencode_go_session_header": {
+    "required_header": "x-opencode-session",
+    "why": "opencode-go rejects any request without it (HTTP 400 MissingSessionID) on both /chat/completions and /responses. Verified: identical request without the header -> 400; with a stable session id -> 200.",
+    "injected_via": "ocx provider edit opencode-go --headers {\"x-opencode-session\":..., \"user-agent\":...}",
+    "stable_session_id": "188634c0-27ac-4af2-b9ab-d8544f65c710",
+    "session_id_file": "C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\opencodex-hermes\\opencode-session-id.txt",
+    "upstream_doc": "https://opencode.ai/docs/go/ - 'Codex ... Some versions and proxy setups still omit it; preserve the session header when forwarding requests.'",
+    "discovered_by": "this run (direct provider probe: 400 without header, 200 with header, real deepseek-v4.1-flash completion)"
+  },
+  "relay_service_note": "The isolated opencodex relay must be running for the Codex lane to work: `ocx start --port 10101` (or install it as a service with `ocx service install`). Relay state lives in %LOCALAPPDATA%\\HG-KSEOS\\opencodex-hermes; the human C:\\Users\\user\\.codex home is not used by this lane."
+}

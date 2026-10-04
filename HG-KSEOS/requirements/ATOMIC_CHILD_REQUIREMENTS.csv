@@ -1,0 +1,1041 @@
+parent_requirement,atomic_requirement,wording,source,source_locator
+REQ-001,REQ-001-C1,建立 one-liner、產品憲章、in-scope/out-of-scope、target users、替代方案、差異化、why-now 與術語排除表，並用 regression probes 阻止後續工具或 runtime 重新定義產品。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-01/COV-01-PLAN
+REQ-002,REQ-002-C1,一個平台、單一 Shared Spine、多工廠、Human Authority、Knowledge-to-Software、可證據化演進。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-01/COV-01-INTENT
+REQ-003,REQ-003-C1,其他 AI、產品負責人與工程師在不回查 60 份來源的情況下，能立即理解產品做什麼、不做什麼、由誰裁決。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-01/COV-01-NEED
+REQ-004,REQ-004-C1,來源龐大且名詞密集，容易被誤讀為 Hermes Agent OS、RAG/KG 系統、多智能體聊天群或文件生成器。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-01/COV-01-PAIN
+REQ-005,REQ-005-C1,形成唯一、穩定、可引用且不受 Provider 變動影響的產品 identity baseline。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-01/COV-01-TARGET
+REQ-006,REQ-006-C1,對任何新需求先判斷是否屬知識編譯、工程定義、受限執行、證據發布或受控演進；不屬者 route-out 或拒絕擴使命。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-01/COV-01-FUNCTION
+REQ-007,REQ-007-C1,提供全包最高語義錨點，使後續架構、流程、工具、角色與 Gate 都能回到產品理由。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-01/COV-01-PURPOSE
+REQ-008,REQ-008-C1,HG-KSEOS 是產品級工程 OS；Hermes、DocETL、Codex、OpenSpec、GStack、Skills 與 RAG/KG 是可替換能力層。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-01/COV-01-POSITION
+REQ-009,REQ-009-C1,建立 Original Intent Pack、Upgrade Intent Delta、Rejected Interpretations、Assumption Ledger、Intent Freeze、semantic hash 與 CR 流程；要求 A01 先於 A02/A03/A04。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-02/COV-02-PLAN
+REQ-010,REQ-010-C1,先保存「為何建立」與「不可失去什麼」，再討論工具、架構與升級；升級只能擴展，不能靜默改寫 founding intent。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-02/COV-02-INTENT
+REQ-011,REQ-011-C1,使用者可追查每個新功能是原始需求、升級需求、推論、工具建議或待確認事項。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-02/COV-02-NEED
+REQ-012,REQ-012-C1,口語需求被工程術語壓平；舊案例被誤升格為核心使命；新工具便利性反向覆蓋原意。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-02/COV-02-PAIN
+REQ-013,REQ-013-C1,任何 requirement、TaskSpec、ChangeSet 與 ReleaseDecision 都能雙向回指原始語句與 intent state。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-02/COV-02-TARGET
+REQ-014,REQ-014-C1,提供 quote-preserving intake、ambiguity ledger、delta classification、freeze/supersede/reject states 與 negative interpretation tests。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-02/COV-02-FUNCTION
+REQ-015,REQ-015-C1,防止 Spec Translation Drift，建立從 Raw Voice 到可施工規格的合法轉換鏈。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-02/COV-02-PURPOSE
+REQ-016,REQ-016-C1,Intent 是最高層產品工件，不是 prompt 片段，也不是可由 Agent 自動修正的記憶。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-02/COV-02-POSITION
+REQ-017,REQ-017-C1,建立 User Segment Card、JUNRESOLVED、authority/needs matrix、RACI、consumer read order 與同一人多帽但同一變更 producer/final verifier 分離規則。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-03/COV-03-PLAN
+REQ-018,REQ-018-C1,產品不是服務「抽象 Agent」；它服務需要把大量知識與需求可靠轉成工程成果的人類與受治理執行者。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-03/COV-03-INTENT
+REQ-019,REQ-019-C1,每類使用者獲得符合其工作階段的可讀入口、決策資訊、工件與操作邊界。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-03/COV-03-NEED
+REQ-020,REQ-020-C1,文件只按技術主題組織，沒有回答誰使用；角色名稱多但權責重疊；其他 AI 不知從何讀起。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-03/COV-03-PAIN
+REQ-021,REQ-021-C1,讓不同 consumer 以最少上下文取得足夠工件，且不越權、不重複解讀產品原意。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-03/COV-03-TARGET
+REQ-022,REQ-022-C1,提供 role-based reader routes、owner/checker/approver/publisher 欄位、handoff packet 與拒絕碼。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-03/COV-03-FUNCTION
+REQ-023,REQ-023-C1,把「可讀文檔包」轉成可被人類與 AI 真正使用的操作介面。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-03/COV-03-PURPOSE
+REQ-024,REQ-024-C1,HG-KSEOS 是多人/多 Agent 的協作控制面；角色是法位與責任，不是 persona 裝飾。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-03/COV-03-POSITION
+REQ-025,REQ-025-C1,建立 Problem Statement、Pain→Root Cause→Impact→Requirement→Gate 矩陣，區分產品痛點、工程痛點、運維痛點與治理痛點。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-04/COV-04-PLAN
+REQ-026,REQ-026-C1,HG-KSEOS 的價值來自解決知識到軟體全鏈斷裂，而不是增加更多 Agent 或工具。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-04/COV-04-INTENT
+REQ-027,REQ-027-C1,使用者能知道每個模組、工具與 Gate 解決哪個具體問題，以及不用它時的成本與降級方式。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-04/COV-04-NEED
+REQ-028,REQ-028-C1,方案容易變成 feature/tool catalog，無法證明需求貼合；治理先行可能壓掉核心 Job；局部最佳化造成整體複雜度。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-04/COV-04-PAIN
+REQ-029,REQ-029-C1,每個重大設計選擇都有明確 problem owner、blast radius、baseline 與 stop condition。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-04/COV-04-TARGET
+REQ-030,REQ-030-C1,提供 pain taxonomy、failure mode cards、risk/reward、counter-metric、degrade/rollback 與 incident learning。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-04/COV-04-FUNCTION
+REQ-031,REQ-031-C1,防止過度工程化與「為了治理而治理」，確保所有工程成本服務產品問題。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-04/COV-04-PURPOSE
+REQ-032,REQ-032-C1,痛點是產品需求的因果基線；工具只能作針對性解法候選。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-04/COV-04-POSITION
+REQ-033,REQ-033-C1,建立 Value Hypothesis、baseline/target、measurement method、owner、counter-metric、sampling risk 與 stop condition。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-05/COV-05-PLAN
+REQ-034,REQ-034-C1,成功不是文件數或 Agent 數，而是原意到 release 的閉環品質、速度、可恢復性與錯誤成本下降。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-05/COV-05-INTENT
+REQ-035,REQ-035-C1,使用者能判斷 HG-KSEOS 是否真正降低需求遺漏、手動整合、返工、誤發布與 Provider lock-in。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-05/COV-05-NEED
+REQ-036,REQ-036-C1,狀態與工件很多但沒有 outcome；局部指標容易被優化而犧牲真實品質；無 baseline 無法驗收。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-05/COV-05-PAIN
+REQ-037,REQ-037-C1,建立產品、流程、品質、安全、運維與採用六類 success metrics，並保持人工可解釋。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-05/COV-05-TARGET
+REQ-038,REQ-038-C1,輸出 trace coverage、time-to-frozen-packet、first-pass acceptance、rollback/recovery、NRTV、provider replacement cost 等指標。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-05/COV-05-FUNCTION
+REQ-039,REQ-039-C1,把產品願景轉成可決策 roadmap、pilot 與 release gate。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-05/COV-05-PURPOSE
+REQ-040,REQ-040-C1,HG-KSEOS 的競爭力是可證明的工程槓桿，而不是「自主 Agent」敘事。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-05/COV-05-POSITION
+REQ-041,REQ-041-C1,建立 Mission/Non-goal Registry、scope fence、forbidden claims、route-out decision tree 與 phase-specific defer list。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-06/COV-06-PLAN
+REQ-042,REQ-042-C1,最小充分、Human Authority、Provider 可替換、Fail-Closed、先可證閉環後自動化。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-06/COV-06-INTENT
+REQ-043,REQ-043-C1,使用者能防止專案被工具能力、熱門框架或「全自動」期待拖離核心價值。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-06/COV-06-NEED
+REQ-044,REQ-044-C1,複雜工程容易持續加功能，導致 P0 不可落地、權限過寬、維護成本失控。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-06/COV-06-PAIN
+REQ-045,REQ-045-C1,任何新增能力都能判斷 adopt/defer/reject；P0 能在單機上形成可重跑的最小閉環。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-06/COV-06-TARGET
+REQ-046,REQ-046-C1,提供 scope gate、phase gate、capability state、defer trigger、reversal trigger 與 route-out。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-06/COV-06-FUNCTION
+REQ-047,REQ-047-C1,維持產品清晰度、成本可控與演進安全。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-06/COV-06-PURPOSE
+REQ-048,REQ-048-C1,HG-KSEOS 是可漸進擴展的工程 OS，不是所有 Agent/知識/開發技術的全集成展示。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-06/COV-06-POSITION
+REQ-049,REQ-049-C1,建立 RACI、approval token、delegation scope、waiver、separation-of-duties、human override、expiry 與 audit trail。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-07/COV-07-PLAN
+REQ-050,REQ-050-C1,Agent 只能在明確法位與 frozen contract 下執行；任何能力都不取得 constitution 或 release authority。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-07/COV-07-INTENT
+REQ-051,REQ-051-C1,使用者可控制高風險變更，知道誰提出、誰執行、誰驗證、誰批准與如何撤銷。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-07/COV-07-NEED
+REQ-052,REQ-052-C1,producer 自評、Reviewer 與 writer 同 session、Agent 自擴 scope、工具結果直接發布。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-07/COV-07-PAIN
+REQ-053,REQ-053-C1,形成可審計、可撤回、可委派但不可混淆的決策權鏈。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-07/COV-07-TARGET
+REQ-054,REQ-054-C1,提供 approval store、role identity、lease、decision record、waiver constraints、signed release verdict。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-07/COV-07-FUNCTION
+REQ-055,REQ-055-C1,把自主能力變成可治理的工程生產力，而非不可控代理權。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-07/COV-07-PURPOSE
+REQ-056,REQ-056-C1,Human Authority 是根法位；其他角色是 delegated capability holders。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-07/COV-07-POSITION
+REQ-057,REQ-057-C1,定義 ProductConstitution、SourceRecord、Intent、Requirement、Task、ChangeSet、Evidence、ReleaseDecision 的 canonical store、writer 與 derived views。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-08/COV-08-PLAN
+REQ-058,REQ-058-C1,一個平台可有多 Branch/Provider/View，但只能有一條 authoritative write path。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-08/COV-08-INTENT
+REQ-059,REQ-059-C1,使用者可安全替換 UI、RAG、KG、Memory、Provider 與 Agent，而不失去產品/工程真相。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-08/COV-08-NEED
+REQ-060,REQ-060-C1,多套記憶、向量、圖譜、Obsidian、Hermes state 或 plugin state 形成平行 SSOT、刪除與重建不一致。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-08/COV-08-PAIN
+REQ-061,REQ-061-C1,所有 derived store 可重建、可 tombstone、可 supersede；canonical ID 與 trace 不因工具替換改變。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-08/COV-08-TARGET
+REQ-062,REQ-062-C1,提供 canonical ownership table、write transaction、event transitions、projection rebuild、conflict/tombstone/supersession。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-08/COV-08-FUNCTION
+REQ-063,REQ-063-C1,支撐全系統一致性、替換性、rollback 與 cross-branch trace。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-08/COV-08-PURPOSE
+REQ-064,REQ-064-C1,Shared Spine 是工程 kernel；Hermes 是 coordination plane；RAG/KG/Memory 是 derived/advisory planes。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-08/COV-08-POSITION
+REQ-065,REQ-065-C1,建立 Artifact Contract Catalog、ProjectGraph、forward/reverse trace、state machine、schema version、positive/negative/edge fixtures。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-09/COV-09-PLAN
+REQ-066,REQ-066-C1,自然語言是來源，不是完成狀態；每一階段都要產生可機器驗證又可人工審查的 typed artifact。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-09/COV-09-INTENT
+REQ-067,REQ-067-C1,其他 AI 能從包中直接生成正確 TaskSpec/ImplementationPacket，而不猜欄位與依賴。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-09/COV-09-NEED
+REQ-068,REQ-068-C1,文件存在即 PASS、ID/parent/owner 缺失、不同文件相同語句卻語義漂移、下游無法回找原意。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-09/COV-09-PAIN
+REQ-069,REQ-069-C1,達成 requirement-to-release 100% trace、schema-valid、state-valid、version-compatible 與可重放。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-09/COV-09-TARGET
+REQ-070,REQ-070-C1,輸出 stable IDs、semantic hash、derives_from/satisfies/implements/verifies/supersedes/blocks edges、validators。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-09/COV-09-FUNCTION
+REQ-071,REQ-071-C1,把文件包從閱讀材料提升為施工與驗收的工程控制載體。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-09/COV-09-PURPOSE
+REQ-072,REQ-072-C1,ProjectGraph 是 canonical artifacts 的關係投影，不是獨立真相圖譜。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-09/COV-09-POSITION
+REQ-073,REQ-073-C1,為五 Branch 分別定義 input、stages、typed outputs、roles、providers、gates、handoff、degrade 與 cross-branch edges；禁止用單一通用 pipeline 壓平。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-10/COV-10-PLAN
+REQ-074,REQ-074-C1,一個平台不是一條線；多工廠共用 identity/trace/evidence，但每個工廠解決不同 Job。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-10/COV-10-INTENT
+REQ-075,REQ-075-C1,使用者可從 corpus、需求、repo、failure 或 domain intent 進入正確 Branch，並獲得可預測輸出。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-10/COV-10-NEED
+REQ-076,REQ-076-C1,三工廠/五 Branch 被工具或 board card 混成同一路徑；Branch 之間 artifact/type/state 混位。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-10/COV-10-PAIN
+REQ-077,REQ-077-C1,形成四個可重跑閉環：knowledge compilation、engineering definition、execution assurance、evolution promotion。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-10/COV-10-TARGET
+REQ-078,REQ-078-C1,每 Branch 有專屬 state machine、queue/board projection、artifact contracts、gate/oracle 與 handoff。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-10/COV-10-FUNCTION
+REQ-079,REQ-079-C1,維持產品完整度又避免重複實作相同治理、trace、evidence 基礎。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-10/COV-10-PURPOSE
+REQ-080,REQ-080-C1,Branch 是產品工作流；Profile/Agent 是執行身份；Provider 是能力綁定，三者不可互換。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-10/COV-10-POSITION
+REQ-081,REQ-081-C1,定義 K00～K16、source inventory/hash/sanitize/unitize/capsule/conflict/compile/verify/promotion，DocETL 只作受控 ETL，AIKD/LLM Wiki 只產 candidate。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-11/COV-11-PLAN
+REQ-082,REQ-082-C1,知識必須保留來源、脈絡、衝突、變更與可讀正文；不是把所有來源塞進 RAG。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-11/COV-11-INTENT
+REQ-083,REQ-083-C1,使用者與其他 AI 可直接讀新包/知識頁，不必回到 raw volumes，且每個 claim 可回源。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-11/COV-11-NEED
+REQ-084,REQ-084-C1,raw stuffing、chunk-only retrieval、模型合併矛盾來源、candidate 直接 publish、No-Return-to-Vol 失敗。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-11/COV-11-PAIN
+REQ-085,REQ-085-C1,建立 SourceCapsule→Candidate Wiki/Skill/Graph/TT→independent verification→Human promotion 的可證流水線。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-11/COV-11-TARGET
+REQ-086,REQ-086-C1,提供 provenance、citation、coverage/conflict、supersession/tombstone、rebuild、NRTV 與 abstention。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-11/COV-11-FUNCTION
+REQ-087,REQ-087-C1,支撐 HG-KSEOS 的知識分支與全部下游 engineering context。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-11/COV-11-PURPOSE
+REQ-088,REQ-088-C1,Git Markdown/Source Ledger 是 canonical knowledge；DocETL/LLM Wiki/RAG/KG 是編譯、檢索或 derived views。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-11/COV-11-POSITION
+REQ-089,REQ-089-C1,採 Intent→ontology→PRD/SRS→SDD/ADR→TaskSpec/Test/Security→ImplementationPacket freeze；OpenSpec XOR Spec Kit 依 profile 綁定，輸出映射 first-party schema。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-12/COV-12-PLAN
+REQ-090,REQ-090-C1,先定義問題、邊界、契約與驗收，再允許 coding；方法論可借用但 canonical artifact 必須 HG-KSEOS-native。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-12/COV-12-INTENT
+REQ-091,REQ-091-C1,其他 AI/工程師收到 frozen packet 即可施工，不需重新解讀產品文件或自行補需求。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-12/COV-12-NEED
+REQ-092,REQ-092-C1,feature list 當 PRD、ADR 無 alternatives/reversal、TaskSpec 無 test/rollback、repo context 假設、spec adapter 平行 SSOT。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-12/COV-12-PAIN
+REQ-093,REQ-093-C1,產出完整、可驗收、可版本化且可 route-out 的 ImplementationPacket。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-12/COV-12-TARGET
+REQ-094,REQ-094-C1,提供 Grill Me/Grill-with-docs、Product Ontology、requirement graph、spec compiler、freeze gate 與 repo-context request。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-12/COV-12-FUNCTION
+REQ-095,REQ-095-C1,作為知識與程式之間的工程定義橋樑。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-12/COV-12-PURPOSE
+REQ-096,REQ-096-C1,HLPE 是 Engineering Definition Branch/工廠，不是第二 Shared Spine 或 runtime owner。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-12/COV-12-POSITION
+REQ-097,REQ-097-C1,Codex primary/OpenCode fallback 或 reviewer；每任務綁 base commit、branch/worktree、permission、tests、PR review、evidence return、human merge/release。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-13/COV-13-PLAN
+REQ-098,REQ-098-C1,Coding Agent 是受限 writer，不是需求、架構、驗收或發布權威。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-13/COV-13-INTENT
+REQ-099,REQ-099-C1,使用者能將文檔包直接交給執行者，得到可審查 patch 而非不可追蹤聊天輸出。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-13/COV-13-NEED
+REQ-100,REQ-100-C1,共享可寫工作區、Agent 自改 scope、base drift、未測試 commit、producer 自評、GPT A 假稱已修改 repo。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-13/COV-13-PAIN
+REQ-101,REQ-101-C1,建立 issue/task-to-ChangeSet-to-PR-to-evidence 的可重放交付閉環。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-13/COV-13-TARGET
+REQ-102,REQ-102-C1,提供 repo inventory、worktree lease、pre/dry/post validation、test/repair loop、review gate、merge/release token。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-13/COV-13-FUNCTION
+REQ-103,REQ-103-C1,把工程定義轉成真實程式變更，同時保留人類控制與 rollback。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-13/COV-13-PURPOSE
+REQ-104,REQ-104-C1,Codex/OpenCode 是 Provider/Writer；SRU_OROCHI 是外部 execution/evidence plane；不屬 GPT A runtime。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-13/COV-13-POSITION
+REQ-105,REQ-105-C1,建立 Candidate Registry、experiment plan、frozen evaluator、holdout/counter-metric、security/budget、promotion/rejection/rollback；Domain Pack 含 manifest/ontology/workflow/skill/template/eval/security。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-14/COV-14-PLAN
+REQ-106,REQ-106-C1,系統可學習但不能自動改寫 constitution、evaluator 或 release policy；演進是受治理 promotion。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-14/COV-14-INTENT
+REQ-107,REQ-107-C1,使用者能把成功模式複用、把失敗轉成改進，同時防止自我強化錯誤。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-14/COV-14-NEED
+REQ-108,REQ-108-C1,RSI 無治理、用同一資料自評、evaluator 被改、技能/記憶直接進 production、domain 專案分叉 Shared Spine。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-14/COV-14-PAIN
+REQ-109,REQ-109-C1,形成可逆、可比較、可拒絕的演進機制與可生成領域工廠胚胎。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-14/COV-14-TARGET
+REQ-110,REQ-110-C1,提供 experiment isolation、versioned candidate、holdout/replay、promotion token、sunset/rollback、No-Return-to-Vol。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-14/COV-14-FUNCTION
+REQ-111,REQ-111-C1,建立持續改進與領域擴展能力而不破壞核心權威。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-14/COV-14-PURPOSE
+REQ-112,REQ-112-C1,Evolution Lab 是候選評估平面；Domain Factory 是 Shared Spine extension，均非自主 policy owner。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-14/COV-14-POSITION
+REQ-113,REQ-113-C1,定義 topology admission、TaskDAG、agent identity/capability/permission、workspace lease、evented A2A、aggregation/adjudication、cancel/timeout/duplicate suppression。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-15/COV-15-PLAN
+REQ-114,REQ-114-C1,多智能體是受限執行拓撲，不是產品主體；複雜度必須由收益與風險證明。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-15/COV-15-INTENT
+REQ-115,REQ-115-C1,使用者能在需要時取得並行/專業化收益，但不承擔無界 swarm 與責任不清。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-15/COV-15-NEED
+REQ-116,REQ-116-C1,Agent 數量先行、共享狀態/工作區、消息重複、delegation scope 漂移、無最終 owner。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-15/COV-15-PAIN
+REQ-117,REQ-117-C1,建立可預測、可取消、可降級為 single-agent/manual 的協作。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-15/COV-15-TARGET
+REQ-118,REQ-118-C1,提供 admission score、TaskDAG states、A2A envelopes、lease/heartbeat、join barrier、adjudicator、evidence aggregation。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-15/COV-15-FUNCTION
+REQ-119,REQ-119-C1,支援多 Branch 的受限執行，同時保持 Shared Spine/Authority 不被拓撲取代。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-15/COV-15-PURPOSE
+REQ-120,REQ-120-C1,Agent topology 是 runtime capability package；Human/Product Authority 與 canonical writers 保持外部。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-15/COV-15-POSITION
+REQ-121,REQ-121-C1,建立 Hermes Rebase Matrix：每 DOC 的 capability、input/output artifact、owner、canonical boundary、provider state、pilot gate、fallback、degrade、rollback。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-16/COV-16-PLAN
+REQ-122,REQ-122-C1,Hermes 是 cognitive coordination plane 與受治理 workspace host，不能成為產品 Root、Shared Spine 或 release authority。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-16/COV-16-INTENT
+REQ-123,REQ-123-C1,使用者可快速取得成熟 Agent OS 元件而不重造 runtime，同時保持產品專屬治理與可替換性。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-16/COV-16-NEED
+REQ-124,REQ-124-C1,直接整本移植 Hermes 導致名稱/權威/狀態漂移；文件中「NOT_EXECUTED」被誤當可用能力；Hermes local state 變 canonical。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-16/COV-16-PAIN
+REQ-125,REQ-125-C1,以低磨合方式導入可 pilot 的能力槽，每項都有 declared→active 狀態與 native fallback。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-16/COV-16-TARGET
+REQ-126,REQ-126-C1,提供 WorkspaceProfile、Provider Registry、Task/Agent/Workspace states、coordination/A2A、harness/loop、context/memory/skills、ops/release interfaces。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-16/COV-16-FUNCTION
+REQ-127,REQ-127-C1,把現成外部 Agent OS 轉成 HG-KSEOS 的可替換執行基座。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-16/COV-16-PURPOSE
+REQ-128,REQ-128-C1,Hermes 是 Primary/Preferred Provider 之一，不是不可替換 kernel；HG-KSEOS contract 永遠先於 Hermes implementation。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-16/COV-16-POSITION
+REQ-129,REQ-129-C1,建立 HarnessPack、tool allowlist、sandbox/egress、idempotency、attempt/budget policy、checkpoint integrity、watchdog、terminal states、escalation、kill/rollback。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-17/COV-17-PLAN
+REQ-130,REQ-130-C1,可靠性不是 prompt 技巧；必須由外部控制結構限制 Agent、工具與長任務。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-17/COV-17-INTENT
+REQ-131,REQ-131-C1,使用者能安全執行較長或有副作用的任務，失敗可恢復、可解釋、不重複破壞。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-17/COV-17-NEED
+REQ-132,REQ-132-C1,無界 loop、retry storm、checkpoint 污染、重播造成重複副作用、工具權限過寬、失敗後持續運行。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-17/COV-17-PAIN
+REQ-133,REQ-133-C1,達成 bounded execution、可恢復、可取消、可重放與明確 terminal verdict。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-17/COV-17-TARGET
+REQ-134,REQ-134-C1,提供 state machine、retry taxonomy、budget/timeout、checkpoint hash、replay guard、watchdog、degrade matrix、incident artifact。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-17/COV-17-FUNCTION
+REQ-135,REQ-135-C1,把 Agent 能力轉成可運維的工程執行單元。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-17/COV-17-PURPOSE
+REQ-136,REQ-136-C1,Harness 控制副作用；Loop 控制時間與恢復；二者不替代 TaskSpec、Security 或 Release Authority。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-17/COV-17-POSITION
+REQ-137,REQ-137-C1,定義 context budget/packing、memory types/scope/TTL/conflict/forget、retrieval pipeline/citations/abstention、Typed KG edge provenance、CodeGraph staleness/impact；Git canonical、SQLite FTS baseline、vector/KG conditional。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-18/COV-18-PLAN
+REQ-138,REQ-138-C1,記憶與檢索服務當前任務與知識可用性，但不成為 canonical truth 或自動 policy。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-18/COV-18-INTENT
+REQ-139,REQ-139-C1,使用者/Agent 能取得足夠且可靠上下文，跨 session/長任務可恢復，且錯誤記憶可撤回。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-18/COV-18-NEED
+REQ-140,REQ-140-C1,全量上下文爆炸、長期記憶污染、RAG 幻覺、KG/Vector/Obsidian 多套 truth、CodeGraph 過期。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-18/COV-18-PAIN
+REQ-141,REQ-141-C1,建立最小 P0 lexical/source-backed 能力，按實測缺口漸進加入 persistent memory、semantic retrieval、Typed KG/CodeGraph。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-18/COV-18-TARGET
+REQ-142,REQ-142-C1,提供 provenance/freshness/revocation/conflict、citation/abstention、rebuild/delete propagation、staleness/impact warnings。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-18/COV-18-FUNCTION
+REQ-143,REQ-143-C1,支撐知識、工程定義、coding 與演進，但保持可替換與低運維。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-18/COV-18-PURPOSE
+REQ-144,REQ-144-C1,Git Markdown/Source Ledger 為 canonical；SQLite FTS/BM25 為 P0 baseline；Vector/KG/Obsidian/CodeGraph 為 optional derived/advisory provider。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-18/COV-18-POSITION
+REQ-145,REQ-145-C1,建立 Capability Slot、Provider Contract、Adapter Contract、QuerySet≥6/Top12/rubric、FIT/GAP、license/security/maintenance/docs/integration、XOR/primary/fallback、certification/degrade/retire。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-19/COV-19-PLAN
+REQ-146,REQ-146-C1,不重造輪子但也不盲目追熱門；產品需求與 contract 先於工具。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-19/COV-19-INTENT
+REQ-147,REQ-147-C1,使用者可重用成熟工具、降低開發時間，又能在工具退化/停更/不適配時替換。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-19/COV-19-NEED
+REQ-148,REQ-148-C1,工具品牌變成規範、宣告即啟用、同類 Provider 疊裝、負評/Stars 偏誤、整合成本高於收益。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-19/COV-19-PAIN
+REQ-149,REQ-149-C1,形成可重跑的 tool scout 與採用決策，明確 rejected reasons 與 reversal trigger。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-19/COV-19-TARGET
+REQ-150,REQ-150-C1,提供 registry、state machine、scorecard、pilot evidence、compatibility matrix、fallback/degrade/retire。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-19/COV-19-FUNCTION
+REQ-151,REQ-151-C1,最大化現成能力並維持低磨合、可控成本與長期替換性。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-19/COV-19-PURPOSE
+REQ-152,REQ-152-C1,Tool/Provider 是 capability implementation；Adapter 是邊界轉換；都不取得產品/資料/release authority。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-19/COV-19-POSITION
+REQ-153,REQ-153-C1,定義 capability_package_id、trigger/negative trigger、input/output schema、allowed tools、permissions、provider binding、eval、version/supersession/revocation、owner/checker。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-20/COV-20-PLAN
+REQ-154,REQ-154-C1,方法論與 prompt 可重用，但必須翻譯成 HG-KSEOS-native artifacts/roles/gates；不能直接取得控制權。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-20/COV-20-INTENT
+REQ-155,REQ-155-C1,其他 AI 可依明確 package 契約選用正確 Prompt/Skill/Agent Component，而不需要猜使用時機。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-20/COV-20-NEED
+REQ-156,REQ-156-C1,Prompt 漂移、Skills 僅名稱存在、AGENTS.md 與主規格衝突、MCP 工具投毒、外部 workflow 形成第二 lifecycle。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-20/COV-20-PAIN
+REQ-157,REQ-157-C1,建立可發現、可評測、可撤回、可替換且安全的 Agent Engineering Stack。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-20/COV-20-TARGET
+REQ-158,REQ-158-C1,提供 core/expanded instructions split、skill trigger、tool scopes、MCP auth/audit/HITL、prompt fixture/eval、component compiler。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-20/COV-20-FUNCTION
+REQ-159,REQ-159-C1,將外部方法與智能體能力轉成可治理的 first-party 資產。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-20/COV-20-PURPOSE
+REQ-160,REQ-160-C1,Prompt/Skill/AGENTS.md 是 projection/capability surface；canonical requirement/artifact contract 在 Shared Spine。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-20/COV-20-POSITION
+REQ-161,REQ-161-C1,P0-Quick 啟用 orchestrator+codex-worker+verifier、手動分解、人類 publish、受控 worktree；P0-Knowledge 加 Source Registry/DocETL/Git/FTS；P0-Automation 經 gates 加 checkpoint/MCP/observability/publisher wrapper。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-21/COV-21-PLAN
+REQ-162,REQ-162-C1,單機、本地、低磨合、快速可用、可重建、可搬移；先驗證流程與契約，再擴基礎設施。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-21/COV-21-INTENT
+REQ-163,REQ-163-C1,非專業運維使用者能在可理解步驟中安裝、設定、操作、更新、備份、恢復與排錯。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-21/COV-21-NEED
+REQ-164,REQ-164-C1,安裝/auth/workspace/version/permission/recovery 不清；過早引入多服務；文件描述與實際可用性不一致。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-21/COV-21-PAIN
+REQ-165,REQ-165-C1,在最小硬體與運維下完成一次 source→packet→change→evidence→human release vertical slice。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-21/COV-21-TARGET
+REQ-166,REQ-166-C1,提供 setup/doctor/readback、versions.lock、workspace manifest、ACL/network、backup/restore、resource/cost calibration、operator runbook。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-21/COV-21-FUNCTION
+REQ-167,REQ-167-C1,把宏大 Agent OS 架構轉成可立即驗證的本地產品體驗。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-21/COV-21-PURPOSE
+REQ-168,REQ-168-C1,Windows Native P0 是 deployment profile，不改產品/Branch/Shared Spine 身份；Obsidian/Vector/KG/Browser 可延後。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-21/COV-21-POSITION
+REQ-169,REQ-169-C1,建立 threat model、data classification、identity/entitlement、least privilege、approval token、sandbox/egress、secret handling、MCP/auth/schema/logging、red-team runbooks、incident/rollback。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-22/COV-22-PLAN
+REQ-170,REQ-170-C1,安全是產品與執行契約的一部分，但不得以抽象治理壓掉核心需求；高風險 action fail-closed。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-22/COV-22-INTENT
+REQ-171,REQ-171-C1,使用者能安全使用外部來源、工具、Agent 與本地資料，知道何時需要人類批准與如何復原。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-22/COV-22-NEED
+REQ-172,REQ-172-C1,來源注入、工具投毒、過寬權限、secret 回顯、外部輸出被信任、RAG 間接注入、Agent 代理越權。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-22/COV-22-PAIN
+REQ-173,REQ-173-C1,形成 end-to-end security gate 與可證 least-privilege execution。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-22/COV-22-TARGET
+REQ-174,REQ-174-C1,提供 SecurityReview/Envelope、ApprovalToken、PermissionPolicy、quarantine、redaction、negative/adversarial tests、supply-chain pin/SBOM/provenance。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-22/COV-22-FUNCTION
+REQ-175,REQ-175-C1,保護資料、權威、工具與發布鏈，維持可信工程協作。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-22/COV-22-PURPOSE
+REQ-176,REQ-176-C1,Security owner 有 veto；工具/Agent/來源皆是不受信任輸入，只有經 gate 的 artifact 可推進。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-22/COV-22-POSITION
+REQ-177,REQ-177-C1,建立 golden/negative/edge/adversarial/legacy/mutation sets、expected anchor/oracle、baseline/counter-metric、judge calibration、blind NRTV、independent reviewer 與 per-gate status。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-23/COV-23-PLAN
+REQ-178,REQ-178-C1,「看起來合理」不是通過；驗收必須能捕捉遺漏、原意偏離、語義模糊、路徑缺失與 false pass。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-23/COV-23-INTENT
+REQ-179,REQ-179-C1,使用者能客觀判斷文檔、RAG、Agent、工具與 release 是否符合需求，而非信任自評。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-23/COV-23-NEED
+REQ-180,REQ-180-C1,文件存在即 PASS、只測 happy path、LLM 自評、expected anchor 缺失、legacy migration 未回歸、指標過擬合。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-23/COV-23-PAIN
+REQ-181,REQ-181-C1,建立可重跑、可校準、可獨立複核的多層 Gate 系統。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-23/COV-23-TARGET
+REQ-182,REQ-182-C1,提供 TestMatrix、CheckRun、GoldenSet、MutationReport、NRTV blind queries、RAG grounding/abstention、security eval、gate summary。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-23/COV-23-FUNCTION
+REQ-183,REQ-183-C1,把產品與工程承諾轉為可證 acceptance，控制 release 與 replacement。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-23/COV-23-PURPOSE
+REQ-184,REQ-184-C1,Eval 是 independent assurance plane，不是 producer 自證或單一總分。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-23/COV-23-POSITION
+REQ-185,REQ-185-C1,定義 evidence schema、claim/evidence mapping、environment/command/actual/expected/hash/reviewer/expiry/limitations、release reducer、SBOM/provenance、canary/rollback、manifest/checksum/readback。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-24/COV-24-PLAN
+REQ-186,REQ-186-C1,任何狀態提升都需同維度證據；工具輸出與模型敘述不能替代獨立裁決。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-24/COV-24-INTENT
+REQ-187,REQ-187-C1,使用者能信任「完成」的範圍，知道未完成/限制/rollback，並可重現發布決策。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-24/COV-24-NEED
+REQ-188,REQ-188-C1,local file 或綠色 CI 被誤寫 production；evidence 缺環境/命令/reviewer；release 無 rollback；package hash/readback 不一致。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-24/COV-24-PAIN
+REQ-189,REQ-189-C1,形成誠實、可重放、可撤銷、可審計的發布供應鏈。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-24/COV-24-TARGET
+REQ-190,REQ-190-C1,提供 EvidenceEnvelope、ReleaseChecklist/Decision、waiver、manifest/checksums、readback、SBOM/attestation/provenance、rollback receipt。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-24/COV-24-FUNCTION
+REQ-191,REQ-191-C1,保護產品可信度與 operational safety，防止 false PASS。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-24/COV-24-PURPOSE
+REQ-192,REQ-192-C1,ReleaseReducer 不執行驗證或取代 Human Authority；只將 evidence 依政策降維成可批准決策。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-24/COV-24-POSITION
+REQ-193,REQ-193-C1,建立 trace/log/metric/event schema、SLI/SLO、budget/cost attribution、capacity calibration、incident runbook、backup/restore/DR drills、safe remediation。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-25/COV-25-PLAN
+REQ-194,REQ-194-C1,自主/長任務系統必須可見、可診斷、可限額、可恢復；未量測前不設硬門檻。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-25/COV-25-INTENT
+REQ-195,REQ-195-C1,使用者能知道系統做了什麼、花多少、為何失敗、是否可恢復，以及何時應降級。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-25/COV-25-NEED
+REQ-196,REQ-196-C1,黑盒 Agent、成本失控、log 爆量、無 incident owner、恢復未演練、resource target 憑空設定。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-25/COV-25-PAIN
+REQ-197,REQ-197-C1,建立可操作的 reliability/cost/capacity baseline，支撐 P0 到 automation 演進。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-25/COV-25-TARGET
+REQ-198,REQ-198-C1,提供 OpenTelemetry-style traces、structured logs、budget/latency/failure dashboards、incident/evidence、backup/restore drill、degrade policy。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-25/COV-25-FUNCTION
+REQ-199,REQ-199-C1,讓工程閉環具備 production-like 可運維設計，即使尚未 production。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-25/COV-25-PURPOSE
+REQ-200,REQ-200-C1,Observability 提供 evidence/advisory；不自動授予 remediation/release 權限。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-25/COV-25-POSITION
+REQ-201,REQ-201-C1,逐基座建立 preserve/rebase/translate/merge/split/deprecate/reject matrix、canonical target、schema/version mapping、legacy behavior regression、dual-run/readback、supersession/rollback。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-26/COV-26-PLAN
+REQ-202,REQ-202-C1,舊版能力有價值但不能保留平行 SSOT、runtime conflation、模板 clone、宣告即啟用或過期狀態。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-26/COV-26-INTENT
+REQ-203,REQ-203-C1,使用者可最大化既有投資與成熟工件，避免重新造輪子，同時得到一致的新包。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-26/COV-26-NEED
+REQ-204,REQ-204-C1,能力遺失、舊命名/權威滲透、相同 contract 多份、版本 alias 混亂、migration 無回歸。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-26/COV-26-PAIN
+REQ-205,REQ-205-C1,完成「保留能力、統一法位、消除重複、修補缺陷、建立 replacement evidence」的受控遷移。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-26/COV-26-TARGET
+REQ-206,REQ-206-C1,提供 crosswalk、diff/coverage、compatibility/alias、regression set、dual-run、supersession/tombstone、readback。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-26/COV-26-FUNCTION
+REQ-207,REQ-207-C1,把歷史工程資產轉成 HG-KSEOS-native 可施工基座。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-26/COV-26-PURPOSE
+REQ-208,REQ-208-C1,Root=HG-KSEOS；Carrier=P0-CIP/製程；Projection=32冊/Builder/Skills；Runtime=Hermes/SRU/工具；不可倒置。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-26/COV-26-POSITION
+REQ-209,REQ-209-C1,建立 Route-out Decision Tree、Implementation Command Pack、repo-context request、artifact inventory、task graph、acceptance/security/release/evidence/rollback/approval、evidence return/readback。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-27/COV-27-PLAN
+REQ-210,REQ-210-C1,設計、指揮、執行、獨立驗收與發布必須分工；GPT A 不假裝 repo/runtime 已讀/已做。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-27/COV-27-INTENT
+REQ-211,REQ-211-C1,其他 AI 可直接接手施工，使用者能追蹤輸入/輸出/責任/證據而不重新口頭交代。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-27/COV-27-NEED
+REQ-212,REQ-212-C1,只寫「交給 OROCHI」、無欄位/owner/gate；執行者自行解讀；GPT A 自稱完成外部動作；evidence 回程斷裂。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-27/COV-27-PAIN
+REQ-213,REQ-213-C1,形成可機器消費、可拒絕、可回填的跨 Agent/工程鏈 contract。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-27/COV-27-TARGET
+REQ-214,REQ-214-C1,提供 actor boundary matrix、handoff schema、approval token、forbidden claims、REQUEST_CHANGE/EVIDENCE_INSUFFICIENT/AUTHORITY_CONFLICT/SECURITY_BLOCK。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-27/COV-27-FUNCTION
+REQ-215,REQ-215-C1,將文檔包實際連到開發與驗收，不混淆 GPTs-only 與 runtime。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-27/COV-27-PURPOSE
+REQ-216,REQ-216-C1,Handoff packet 是唯一合法跨法位載體；execution evidence 只能由 executor/pilot 產生。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-27/COV-27-POSITION
+REQ-217,REQ-217-C1,每冊含 Reader Contract、authority/source locators、schemas、workflow/state machine、cases、cross-doc interfaces、TaskSpec extraction、No-Return-to-Vol probes、TT/CR/status reducer。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-28/COV-28-PLAN
+REQ-218,REQ-218-C1,文件包是 AI-readable engineering interface，不是人類摘要或來源長文拼接。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-28/COV-28-INTENT
+REQ-219,REQ-219-C1,其他模型不需了解對話歷史與 raw volumes，就能定位正確 anchor、拒絕缺證、產出可施工內容。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-28/COV-28-NEED
+REQ-220,REQ-220-C1,文件太長但不可導航、只有概念、跨冊接口缺失、需回 source volumes 才能回答、模型自行補空白。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-28/COV-28-PAIN
+REQ-221,REQ-221-C1,達到 NRTV replacement candidate：常見/負面/邊界問題只靠新包可答，並有 abstention/TT。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-28/COV-28-TARGET
+REQ-222,REQ-222-C1,提供 anchor-first router、glossary、stable IDs、typed schemas、extraction guides、probe bank、consumer-specific read order。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-28/COV-28-FUNCTION
+REQ-223,REQ-223-C1,將 60 份來源知識轉成可持續維護的工程知識產品。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-28/COV-28-PURPOSE
+REQ-224,REQ-224-C1,新包是 canonical pre-implementation projection；來源群是 donor/evidence，兩者不得混淆。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-28/COV-28-POSITION
+REQ-225,REQ-225-C1,每 capability 先 reuse scout/FIT-GAP，再決定 ADOPT/REBASE/TRANSLATE/PATTERN_DONOR/DEFER/REJECT；P0 Core 只留 Git Markdown、SQLite/FTS、必要 Agent/worktree/evidence，其他按觸發條件。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-29/COV-29-PLAN
+REQ-226,REQ-226-C1,最大化成熟技術，但拒絕全家桶；最小充分、可替換、可重建優先於熱門度與自動化程度。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-29/COV-29-INTENT
+REQ-227,REQ-227-C1,使用者可快速啟動、低運維、低學習成本，後續需求出現時再加 provider，而非預先承擔複雜度。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-29/COV-29-NEED
+REQ-228,REQ-228-C1,自製已有成熟方案、過早安裝 Vector/KG/Browser/Memory/Swarm、同類工具重疊、框架 lock-in。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-29/COV-29-PAIN
+REQ-229,REQ-229-C1,P0 在單機形成可證閉環；新增能力有明確 pain/metric/pilot/reversal，總整合成本可控。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-29/COV-29-TARGET
+REQ-230,REQ-230-C1,提供 minimal profile、native fallback、tool scorecard、integration budget、operator UX、defer triggers、replaceability tests。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-29/COV-29-FUNCTION
+REQ-231,REQ-231-C1,實現「不自己重複造輪子、低磨合、快速可用、高落地可行性」。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-29/COV-29-PURPOSE
+REQ-232,REQ-232-C1,工程選型策略，不是特定工具清單；contract 與 outcome 不因工具替換改變。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-29/COV-29-POSITION
+REQ-233,REQ-233-C1,建立 StatusReducer、allowed transitions、claim grammar、TT severity/blocking/owner/close evidence、CR affected artifacts/regression/approval、fail-closed/degrade/rollback。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-30/COV-30-PLAN
+REQ-234,REQ-234-C1,誠實狀態是工程能力；未做不等於失敗，但絕不能寫成 PASS。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-30/COV-30-INTENT
+REQ-235,REQ-235-C1,使用者能精確知道已完成什麼、未完成什麼、何者阻斷下一步、如何關閉。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-30/COV-30-NEED
+REQ-236,REQ-236-C1,檔案存在/readback/LLM 自評替代正文或 runtime；TT 只有「stub-only」無 owner/close；局部 PASS 被合併總 PASS。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-30/COV-30-PAIN
+REQ-237,REQ-237-C1,形成可審計狀態提升與可管理的不確定性，避免 false production/replacement。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-30/COV-30-TARGET
+REQ-238,REQ-238-C1,提供 state lattice、gate rows、TT/CR ledger、claim ceiling、evidence requirements、status readback、release candidate semantics。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-30/COV-30-FUNCTION
+REQ-239,REQ-239-C1,維持整個 HG-KSEOS 工程鏈的可信度與安全演進。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-30/COV-30-PURPOSE
+REQ-240,REQ-240-C1,狀態是多維證據結論，不是行銷標籤；TT/CR 是正式工程工件。,PREDEV,HG-KSEOS_實作前開發文檔包_必須涵蓋的設計規劃_設計原意_用戶需求_預期解決痛點_預期目標_功能表現_目的_定位_v2026.08.06-r1.md#COV-30/COV-30-POSITION
+COV-01-01,COV-01-01-C1,保存並定位原始語義：「HG-KSEOS 必須被描述為一個平台級、受治理的 Knowledge-to-Software Control & Delivery OS」,P0,`SRC-00009～00012#5.1 Product Identity`
+COV-01-01,COV-01-01-C2,物化可由接收者驗證的輸出與失敗行為,P0,`SRC-00009～00012#5.1 Product Identity`
+COV-01-01,COV-01-01-C3,建立正向、負向、邊界與對抗 oracle,P0,`SRC-00009～00012#5.1 Product Identity`
+COV-01-02,COV-01-02-C1,產品主流程必須涵蓋 Corpus／Raw Voice／Repo／Evidence 到規格,P0,`SRC-00009～00012#5.1；SRC-00025#3.1`
+COV-01-02,COV-01-02-C2,證據與發布的轉換,P0,`SRC-00009～00012#5.1；SRC-00025#3.1`
+COV-01-03,COV-01-03-C1,產品必須同時承載 Knowledge,P0,`SRC-00009～00012#5.1/5.6`
+COV-01-03,COV-01-03-C2,Engineering Definition,P0,`SRC-00009～00012#5.1/5.6`
+COV-01-03,COV-01-03-C3,Coding & Delivery,P0,`SRC-00009～00012#5.1/5.6`
+COV-01-03,COV-01-03-C4,Evolution、Domain Factory 等能力支線,P0,`SRC-00009～00012#5.1/5.6`
+COV-01-04,COV-01-04-C1,保存並定位原始語義：「HG-KSEOS_P0-CIP-PACK 必須被定位為 programme-to-implementation 的設計／製造 Carrier，而不是 runtime 本體」,P0,`SRC-00034#3.1；SRC-00036#1.2；主軸稿#1.2`
+COV-01-04,COV-01-04-C2,物化可由接收者驗證的輸出與失敗行為,P0,`SRC-00034#3.1；SRC-00036#1.2；主軸稿#1.2`
+COV-01-04,COV-01-04-C3,建立正向、負向、邊界與對抗 oracle,P0,`SRC-00034#3.1；SRC-00036#1.2；主軸稿#1.2`
+COV-01-05,COV-01-05-C1,保存並定位原始語義：「Local-first 是部署策略，不得把產品身份縮成 Windows-only application」,P0,`SRC-00040#2.1；SRC-00005～00008#4`
+COV-01-05,COV-01-05-C2,物化可由接收者驗證的輸出與失敗行為,P0,`SRC-00040#2.1；SRC-00005～00008#4`
+COV-01-05,COV-01-05-C3,建立正向、負向、邊界與對抗 oracle,P0,`SRC-00040#2.1；SRC-00005～00008#4`
+COV-01-06,COV-01-06-C1,產品不得被降格為通用 RAG App,P0,`SRC-00001～00004#2.1/2.3；SRC-00009～00012#5.1`
+COV-01-06,COV-01-06-C2,文件摘要 Prompt,P0,`SRC-00001～00004#2.1/2.3；SRC-00009～00012#5.1`
+COV-01-06,COV-01-06-C3,Obsidian Vault、單一 Wiki 或單一程式碼 Agent,P0,`SRC-00001～00004#2.1/2.3；SRC-00009～00012#5.1`
+COV-01-07,COV-01-07-C1,最終 PACK 必須讓其他 AI／LLM 能直接辨識產品身份,P0,`使用者本輪明示需求；GPTA-KP03-R01～R08`
+COV-01-07,COV-01-07-C2,工廠分工與施工入口,P0,`使用者本輪明示需求；GPTA-KP03-R01～R08`
+COV-02-01,COV-02-01-C1,Human／Product Authority 必須是產品身份,P0,`SRC-00009～00012#5.3；SRC-00005～00008#4.4`
+COV-02-01,COV-02-01-C2,ontology,P0,`SRC-00009～00012#5.3；SRC-00005～00008#4.4`
+COV-02-01,COV-02-01-C3,A04 freeze 與 release 的最高裁決者,P0,`SRC-00009～00012#5.3；SRC-00005～00008#4.4`
+COV-02-02,COV-02-02-C1,SDLC_PRW／SRU Shared Spine 必須是 authoritative state,P0,`SRC-00009～00012#5.2；SRC-00033#1.2`
+COV-02-02,COV-02-02-C2,evidence 與 release reducer 的唯一控制基座,P0,`SRC-00009～00012#5.2；SRC-00033#1.2`
+COV-02-03,COV-02-03-C1,Hermes 必須是認知理解,P0,`SRC-00033#裁決A；SRC-00034#S1-01；SRC-00009～00012#5.3`
+COV-02-03,COV-02-03-C2,受限監督與恢復提案者，不得成為唯一 state/release authority,P0,`SRC-00033#裁決A；SRC-00034#S1-01；SRC-00009～00012#5.3`
+COV-02-04,COV-02-04-C1,保存並定位原始語義：「Codex／OpenCode／其他 Coding Agent 必須是 bounded executor，不得反向改寫產品權威或自行合併發布」,P0,`SRC-00009～00012#5.1/5.4；SRC-00023～00025`
+COV-02-04,COV-02-04-C2,物化可由接收者驗證的輸出與失敗行為,P0,`SRC-00009～00012#5.1/5.4；SRC-00023～00025`
+COV-02-04,COV-02-04-C3,建立正向、負向、邊界與對抗 oracle,P0,`SRC-00009～00012#5.1/5.4；SRC-00023～00025`
+COV-02-05,COV-02-05-C1,Producer,P0,`SRC-00001～00004#3.4；SRC-00005～00008#4.4`
+COV-02-05,COV-02-05-C2,Independent Verifier,P0,`SRC-00001～00004#3.4；SRC-00005～00008#4.4`
+COV-02-05,COV-02-05-C3,Release Approver 必須分離,P0,`SRC-00001～00004#3.4；SRC-00005～00008#4.4`
+COV-02-05,COV-02-05-C4,同一 execution session 不得同時完成生產與最終驗證,P0,`SRC-00001～00004#3.4；SRC-00005～00008#4.4`
+COV-02-06,COV-02-06-C1,保存並定位原始語義：「任何高風險採用、權限提升、發布、政策／評估器變更必須綁定可撤銷的人類 approval token」,P0,`SRC-00009～00012#5.2 Permission/Release invariants；DOC-07/08/14`
+COV-02-06,COV-02-06-C2,物化可由接收者驗證的輸出與失敗行為,P0,`SRC-00009～00012#5.2 Permission/Release invariants；DOC-07/08/14`
+COV-02-06,COV-02-06-C3,建立正向、負向、邊界與對抗 oracle,P0,`SRC-00009～00012#5.2 Permission/Release invariants；DOC-07/08/14`
+COV-02-07,COV-02-07-C1,保存並定位原始語義：「來源或規範衝突不得沉默合併，必須進 Conflict Ledger、TT／CR 並由正確 authority 裁決」,P0,`KP01；主軸稿#1.1；SRC-00033～00036`
+COV-02-07,COV-02-07-C2,物化可由接收者驗證的輸出與失敗行為,P0,`KP01；主軸稿#1.1；SRC-00033～00036`
+COV-02-07,COV-02-07-C3,建立正向、負向、邊界與對抗 oracle,P0,`KP01；主軸稿#1.1；SRC-00033～00036`
+COV-03-01,COV-03-01-C1,Product Owner 的工作必須包含原始目標確認,P0,`SRC-00005～00008#4.4；角色總表F01`
+COV-03-01,COV-03-01-C2,ontology,P0,`SRC-00005～00008#4.4；角色總表F01`
+COV-03-01,COV-03-01-C3,non-goal,P0,`SRC-00005～00008#4.4；角色總表F01`
+COV-03-01,COV-03-01-C4,A04 freeze 與 release acceptance,P0,`SRC-00005～00008#4.4；角色總表F01`
+COV-03-02,COV-03-02-C1,Local Operator 的工作必須包含安裝,P0,`SRC-00037～00041`
+COV-03-02,COV-03-02-C2,workspace 管理,P0,`SRC-00037～00041`
+COV-03-02,COV-03-02-C3,card admission,P0,`SRC-00037～00041`
+COV-03-02,COV-03-02-C4,readback 與回滾,P0,`SRC-00037～00041`
+COV-03-03,COV-03-03-C1,Knowledge Owner／Curator 的工作必須包含 corpus denominator,P0,`SRC-00001～00004#3/4；SRC-00017～00021`
+COV-03-03,COV-03-03-C2,source disposition,P0,`SRC-00001～00004#3/4；SRC-00017～00021`
+COV-03-03,COV-03-03-C3,candidate/published promotion 與 coverage closure,P0,`SRC-00001～00004#3/4；SRC-00017～00021`
+COV-03-04,COV-03-04-C1,Engineering Definition Owner 的工作必須把 Raw Voice 轉成 IPC,P0,`SRC-00013～00016；SRC-00023～00025`
+COV-03-04,COV-03-04-C2,TaskSpec 與 frozen handoff,P0,`SRC-00013～00016；SRC-00023～00025`
+COV-03-05,COV-03-05-C1,Coding Executor 的工作必須限定在指定 card,P0,`SRC-00005～00008；SRC-00041`
+COV-03-05,COV-03-05-C2,worktree,P0,`SRC-00005～00008；SRC-00041`
+COV-03-05,COV-03-05-C3,permission scope 與 frozen packet,P0,`SRC-00005～00008；SRC-00041`
+COV-03-06,COV-03-06-C1,Verifier／Security／Release 角色必須各自擁有獨立測試,P0,`SRC-00001～00012；DOC-07/09/10/14`
+COV-03-06,COV-03-06-C2,evidence reducer 與 release token 檢查,P0,`SRC-00001～00012；DOC-07/09/10/14`
+COV-03-07,COV-03-07-C1,下游 AI／LLM／GPT B／OROCHI 必須被視為具明確 entry contract,P0,`SRC-00033～00036；SRU_OROCHI G0～G7；DOC-11～13`
+COV-03-07,COV-03-07-C2,輸入 digest,P0,`SRC-00033～00036；SRU_OROCHI G0～G7；DOC-11～13`
+COV-03-07,COV-03-07-C3,禁止事項與 evidence-return 義務的 consumer,P0,`SRC-00033～00036；SRU_OROCHI G0～G7；DOC-11～13`
+COV-04-01,COV-04-01-C1,保存並定位原始語義：「解決大型 TXT／MD／Repo／討論來源分散且無可驗證分母，導致遺漏無法被證明的問題」,P0,`SRC-00014#Source Inventory/Coverage；SRC-00018#Stage1-5`
+COV-04-01,COV-04-01-C2,物化可由接收者驗證的輸出與失敗行為,P0,`SRC-00014#Source Inventory/Coverage；SRC-00018#Stage1-5`
+COV-04-01,COV-04-01-C3,建立正向、負向、邊界與對抗 oracle,P0,`SRC-00014#Source Inventory/Coverage；SRC-00018#Stage1-5`
+COV-04-02,COV-04-02-C1,解決使用者 Raw Voice 在 PRD,P0,`SRC-00033～00036；KP02`
+COV-04-02,COV-04-02-C2,架構、TaskSpec 轉譯中被工具或模型改寫的 Intent Loss,P0,`SRC-00033～00036；KP02`
+COV-04-03,COV-04-03-C1,保存並定位原始語義：「解決複合需求被壓平成單句、子要求遺失或不同對象未分別驗證的 Requirement Coverage Loss」,P0,`SRC-00026～00036；KP13`
+COV-04-03,COV-04-03-C2,物化可由接收者驗證的輸出與失敗行為,P0,`SRC-00026～00036；KP13`
+COV-04-03,COV-04-03-C3,建立正向、負向、邊界與對抗 oracle,P0,`SRC-00026～00036；KP13`
+COV-04-04,COV-04-04-C1,解決 Hermes,P0,`SRC-00033#2.2；SRC-00034#S1-02；SRC-00038#2.2`
+COV-04-04,COV-04-04-C2,Memory、Board 各自建立平行 SSOT 的控制面分裂,P0,`SRC-00033#2.2；SRC-00034#S1-02；SRC-00038#2.2`
+COV-04-05,COV-04-05-C1,解決 Wiki／RAG／KG／Index 被誤認為 canonical truth，導致不可重建,P0,`SRC-00014#2-10；SRC-00001～00004#4`
+COV-04-05,COV-04-05-C2,不可撤回與來源漂移,P0,`SRC-00014#2-10；SRC-00001～00004#4`
+COV-04-06,COV-04-06-C1,解決熱門工具先行,P0,`SRC-00015～00025；SRC-00038#2.2`
+COV-04-06,COV-04-06-C2,同類 provider 疊裝,P0,`SRC-00015～00025；SRC-00038#2.2`
+COV-04-06,COV-04-06-C3,功能重疊與不必要整合成本,P0,`SRC-00015～00025；SRC-00038#2.2`
+COV-04-07,COV-04-07-C1,解決多 Agent 共用可寫工作區,P0,`SRC-00005～00008；SRC-00041`
+COV-04-07,COV-04-07-C2,writer collision 與 reviewer 自評的風險,P0,`SRC-00005～00008；SRC-00041`
+COV-04-08,COV-04-08-C1,解決 Windows 單機安裝,P0,`SRC-00037～00041`
+COV-04-08,COV-04-08-C2,workspace,P0,`SRC-00037～00041`
+COV-04-08,COV-04-08-C3,恢復與操作流程未形成可施工契約的摩擦,P0,`SRC-00037～00041`
+COV-04-09,COV-04-09-C1,保存並定位原始語義：「解決 local file/readback、文件存在或 LLM 自評被誤宣告為 runtime／production PASS」,P0,`SRC-00009～00012；DOC-09/10/14；KP10/KP14`
+COV-04-09,COV-04-09-C2,物化可由接收者驗證的輸出與失敗行為,P0,`SRC-00009～00012；DOC-09/10/14；KP10/KP14`
+COV-04-09,COV-04-09-C3,建立正向、負向、邊界與對抗 oracle,P0,`SRC-00009～00012；DOC-09/10/14；KP10/KP14`
+COV-04-10,COV-04-10-C1,保存並定位原始語義：「解決 P0-CIP 設計包到 GPT B／OROCHI／repo/CI/runtime 的責任與 evidence-return 斷點」,P0,`SRC-00033～00036；DOC-11～13`
+COV-04-10,COV-04-10-C2,物化可由接收者驗證的輸出與失敗行為,P0,`SRC-00033～00036；DOC-11～13`
+COV-04-10,COV-04-10-C3,建立正向、負向、邊界與對抗 oracle,P0,`SRC-00033～00036；DOC-11～13`
+COV-05-01,COV-05-01-C1,保存並定位原始語義：「來源到需求、規格、任務、程式、測試、證據與發布必須形成雙向 traceability」,P0,`SRC-00014#5-10；SRC-00009～00012#5.2`
+COV-05-01,COV-05-01-C2,物化可由接收者驗證的輸出與失敗行為,P0,`SRC-00014#5-10；SRC-00009～00012#5.2`
+COV-05-01,COV-05-01-C3,建立正向、負向、邊界與對抗 oracle,P0,`SRC-00014#5-10；SRC-00009～00012#5.2`
+COV-05-02,COV-05-02-C1,任何 artifact 的完成狀態必須可由 schema,P0,`SRC-00009～00012#5.2 Artifact/Evidence invariant`
+COV-05-02,COV-05-02-C2,evidence 與 reviewer 重現，而不是靠自然語言宣告,P0,`SRC-00009～00012#5.2 Artifact/Evidence invariant`
+COV-05-03,COV-05-03-C1,P0 必須在單機,P0,`SRC-00038～00041；SRC-00005～00008#4.1`
+COV-05-03,COV-05-03-C2,低摩擦、有限 provider 下形成最短可用閉環，而不是先建完整企業平台,P0,`SRC-00038～00041；SRC-00005～00008#4.1`
+COV-05-04,COV-05-04-C1,知識工廠必須把封閉 Corpus 產出可追溯 Wiki,P0,`SRC-00001～00004#2.1`
+COV-05-04,COV-05-04-C2,Skill candidate,P0,`SRC-00001～00004#2.1`
+COV-05-04,COV-05-04-C3,Typed Graph candidate 與 unresolved ledger,P0,`SRC-00001～00004#2.1`
+COV-05-05,COV-05-05-C1,保存並定位原始語義：「工程定義工廠必須產出其他 AI／工程師可直接施工與驗收的 frozen pre-implementation packet」,P0,`SRC-00013～00016；SRC-00023`
+COV-05-05,COV-05-05-C2,物化可由接收者驗證的輸出與失敗行為,P0,`SRC-00013～00016；SRC-00023`
+COV-05-05,COV-05-05-C3,建立正向、負向、邊界與對抗 oracle,P0,`SRC-00013～00016；SRC-00023`
+COV-05-06,COV-05-06-C1,Coding & Delivery 必須產出隔離 patch,P0,`SRC-00009～00012#5.6；SRC-00041`
+COV-05-06,COV-05-06-C2,build/test 結果,P0,`SRC-00009～00012#5.6；SRC-00041`
+COV-05-06,COV-05-06-C3,獨立 verdict,P0,`SRC-00009～00012#5.6；SRC-00041`
+COV-05-06,COV-05-06-C4,rollback 與 release candidate evidence,P0,`SRC-00009～00012#5.6；SRC-00041`
+COV-05-07,COV-05-07-C1,Provider／adapter 必須可替換而不改變 canonical artifacts,P0,`SRC-00009～00012#5.2 Replaceability invariant`
+COV-05-07,COV-05-07-C2,gates 與 product semantics,P0,`SRC-00009～00012#5.2 Replaceability invariant`
+COV-05-08,COV-05-08-C1,系統必須能在中斷,P0,`SRC-00001～00004#2.2；SRC-00005～00008`
+COV-05-08,COV-05-08-C2,索引刪除或 provider 退場後，依 Git／Ledger／Raw source 重建與恢復,P0,`SRC-00001～00004#2.2；SRC-00005～00008`
+COV-06-01,COV-06-01-C1,Identity invariant：Project,P0,`SRC-00009～00012#5.2-1`
+COV-06-01,COV-06-01-C2,Artifact,P0,`SRC-00009～00012#5.2-1`
+COV-06-01,COV-06-01-C3,Provider,P0,`SRC-00009～00012#5.2-1`
+COV-06-01,COV-06-01-C4,Event、Evidence 必須有 canonical ID,P0,`SRC-00009～00012#5.2-1`
+COV-06-02,COV-06-02-C1,Trace invariant：每個 artifact 必須有 trace_id,P0,`SRC-00009～00012#5.2-2`
+COV-06-02,COV-06-02-C2,source locator 與 upstream/downstream links,P0,`SRC-00009～00012#5.2-2`
+COV-06-03,COV-06-03-C1,保存並定位原始語義：「State invariant：只有 Shared Spine transition contract 可改 authoritative state」,P0,`SRC-00009～00012#5.2-3`
+COV-06-03,COV-06-03-C2,物化可由接收者驗證的輸出與失敗行為,P0,`SRC-00009～00012#5.2-3`
+COV-06-03,COV-06-03-C3,建立正向、負向、邊界與對抗 oracle,P0,`SRC-00009～00012#5.2-3`
+COV-06-04,COV-06-04-C1,保存並定位原始語義：「Provider invariant：capability ID 與 provider/adapter ID 必須分離」,P0,`SRC-00009～00012#5.2-4`
+COV-06-04,COV-06-04-C2,物化可由接收者驗證的輸出與失敗行為,P0,`SRC-00009～00012#5.2-4`
+COV-06-04,COV-06-04-C3,建立正向、負向、邊界與對抗 oracle,P0,`SRC-00009～00012#5.2-4`
+COV-06-05,COV-06-05-C1,保存並定位原始語義：「Artifact invariant：自然語言『完成』、檔案存在或 tool output 不得等於 schema/pass」,P0,`SRC-00009～00012#5.2-5`
+COV-06-05,COV-06-05-C2,物化可由接收者驗證的輸出與失敗行為,P0,`SRC-00009～00012#5.2-5`
+COV-06-05,COV-06-05-C3,建立正向、負向、邊界與對抗 oracle,P0,`SRC-00009～00012#5.2-5`
+COV-06-06,COV-06-06-C1,Evidence invariant：每個 required check 必須有 producer,P0,`SRC-00009～00012#5.2-6`
+COV-06-06,COV-06-06-C2,degrade 與 validator,P0,`SRC-00009～00012#5.2-6`
+COV-06-07,COV-06-07-C1,Permission invariant：child token 不得超過 parent,P0,`SRC-00009～00012#5.2-7`
+COV-06-07,COV-06-07-C2,權限必須可撤銷、可稽核,P0,`SRC-00009～00012#5.2-7`
+COV-06-08,COV-06-08-C1,Release invariant：缺 human token,P0,`SRC-00009～00012#5.2-8`
+COV-06-08,COV-06-08-C2,required checks、readback 或 blocking TT 時必須 RELEASE_BLOCKED,P0,`SRC-00009～00012#5.2-8`
+COV-06-09,COV-06-09-C1,Replaceability invariant：adapter 可換，但 canonical semantics,P0,`SRC-00009～00012#5.2-9`
+COV-06-09,COV-06-09-C2,artifact contracts 與 gates 不得改,P0,`SRC-00009～00012#5.2-9`
+COV-06-10,COV-06-10-C1,Upgrade invariant：原意,P0,`SRC-00009～00012#5.2-10；主軸稿#1.5`
+COV-06-10,COV-06-10-C2,artifact,P0,`SRC-00009～00012#5.2-10；主軸稿#1.5`
+COV-06-10,COV-06-10-C3,role、tool disposition 或安全語義消失必須被 regression gate 阻斷,P0,`SRC-00009～00012#5.2-10；主軸稿#1.5`
+COV-07-01,COV-07-01-C1,Shared Spine 必須擁有 Canonical ID Registry,P0,`SRC-00026～00032#5.2`
+COV-07-01,COV-07-01-C2,Product Ontology、State/Gate/Evidence/Approval/Release contracts,P0,`SRC-00026～00032#5.2`
+COV-07-02,COV-07-02-C1,保存並定位原始語義：「Project Graph 必須是一級 artifact，不得等同任何 RAG/KG/Graph provider 的私有資料庫」,P0,`SRC-00026～00032#5.2`
+COV-07-02,COV-07-02-C2,物化可由接收者驗證的輸出與失敗行為,P0,`SRC-00026～00032#5.2`
+COV-07-02,COV-07-02-C3,建立正向、負向、邊界與對抗 oracle,P0,`SRC-00026～00032#5.2`
+COV-07-03,COV-07-03-C1,最低 node set 必須含 Source,P0,`SRC-00026～00032#5.2`
+COV-07-03,COV-07-03-C2,Requirement,P0,`SRC-00026～00032#5.2`
+COV-07-03,COV-07-03-C3,Decision,P0,`SRC-00026～00032#5.2`
+COV-07-03,COV-07-03-C4,Artifact,P0,`SRC-00026～00032#5.2`
+COV-07-03,COV-07-03-C5,CodeSymbol,P0,`SRC-00026～00032#5.2`
+COV-07-04,COV-07-04-C1,最低 edge set 必須含 DERIVED_FROM,P0,`SRC-00026～00032#5.2`
+COV-07-04,COV-07-04-C2,IMPLEMENTS,P0,`SRC-00026～00032#5.2`
+COV-07-04,COV-07-04-C3,DEPENDS_ON,P0,`SRC-00026～00032#5.2`
+COV-07-04,COV-07-04-C4,VALIDATED_BY,P0,`SRC-00026～00032#5.2`
+COV-07-04,COV-07-04-C5,PRODUCES,P0,`SRC-00026～00032#5.2`
+COV-07-05,COV-07-05-C1,Artifact Contract Catalog 必須定義 schema,P0,`SRC-00009～00012#5.5`
+COV-07-05,COV-07-05-C2,source locator,P0,`SRC-00009～00012#5.5`
+COV-07-05,COV-07-05-C3,acceptance,P0,`SRC-00009～00012#5.5`
+COV-07-05,COV-07-05-C4,rollback 與 consumer,P0,`SRC-00009～00012#5.5`
+COV-07-06,COV-07-06-C1,保存並定位原始語義：「Authoritative state 變更必須經 typed transition API／contract，禁止 LLM 直接改 final status」,P0,`SRC-00009～00012#5.2/5.3`
+COV-07-06,COV-07-06-C2,物化可由接收者驗證的輸出與失敗行為,P0,`SRC-00009～00012#5.2/5.3`
+COV-07-06,COV-07-06-C3,建立正向、負向、邊界與對抗 oracle,P0,`SRC-00009～00012#5.2/5.3`
+COV-07-07,COV-07-07-C1,Git Markdown,P0,`SRC-00001～00004#4；SRC-00038～00039`
+COV-07-07,COV-07-07-C2,Ledger 與 Raw Corpus 必須維持 canonical／rebuildable,P0,`SRC-00001～00004#4；SRC-00038～00039`
+COV-07-07,COV-07-07-C3,KG、CodeGraph 為 derived projection,P0,`SRC-00001～00004#4；SRC-00038～00039`
+COV-07-08,COV-07-08-C1,每個 projection 必須有來源 digest,P0,`SRC-00001～00004；DOC-08/10`
+COV-07-08,COV-07-08-C2,schema version,P0,`SRC-00001～00004；DOC-08/10`
+COV-07-08,COV-07-08-C3,rebuild procedure,P0,`SRC-00001～00004；DOC-08/10`
+COV-07-08,COV-07-08-C4,staleness 狀態與撤回路徑,P0,`SRC-00001～00004；DOC-08/10`
+COV-07-09,COV-07-09-C1,保存並定位原始語義：「Backwrite 必須由 evidence／accepted decision 觸發，不得由 provider 私有狀態自動覆寫 Root」,P0,`SRC-00033～00036；主軸稿#1.2`
+COV-07-09,COV-07-09-C2,物化可由接收者驗證的輸出與失敗行為,P0,`SRC-00033～00036；主軸稿#1.2`
+COV-07-09,COV-07-09-C3,建立正向、負向、邊界與對抗 oracle,P0,`SRC-00033～00036；主軸稿#1.2`
+COV-07-10,COV-07-10-C1,保存並定位原始語義：「共享基座必須支援多 Branch 共用語義而不形成多份平行 SSOT」,P0,`SRC-00024#3.1；SRC-00034#S1-02/S2-02`
+COV-07-10,COV-07-10-C2,物化可由接收者驗證的輸出與失敗行為,P0,`SRC-00024#3.1；SRC-00034#S1-02/S2-02`
+COV-07-10,COV-07-10-C3,建立正向、負向、邊界與對抗 oracle,P0,`SRC-00024#3.1；SRC-00034#S1-02/S2-02`
+COV-08-01,COV-08-01-C1,所有 Corpus 必須先建立來源分母,P0,`SRC-00001～00004#2.2/4；SRC-00014#Source Inventory`
+COV-08-01,COV-08-01-C2,authority,P0,`SRC-00001～00004#2.2/4；SRC-00014#Source Inventory`
+COV-08-01,COV-08-01-C3,withdrawal 與 immutable raw registry,P0,`SRC-00001～00004#2.2/4；SRC-00014#Source Inventory`
+COV-08-02,COV-08-02-C1,保存並定位原始語義：「每個 SourceUnit 必須有 terminal status，不得有未分類消失的片段」,P0,`SRC-00001～00004#2.2`
+COV-08-02,COV-08-02-C2,物化可由接收者驗證的輸出與失敗行為,P0,`SRC-00001～00004#2.2`
+COV-08-02,COV-08-02-C3,建立正向、負向、邊界與對抗 oracle,P0,`SRC-00001～00004#2.2`
+COV-08-03,COV-08-03-C1,確定性 intake 必須負責切分,P0,`SRC-00018#Stage1-2；SRC-00020#8`
+COV-08-03,COV-08-03-C2,schema 與 locator，不應交給自由生成模型,P0,`SRC-00018#Stage1-2；SRC-00020#8`
+COV-08-04,COV-08-04-C1,保存並定位原始語義：「DocETL 必須被定位為受 WorkOrder 限制的 semantic ETL／batch executor，非全域 authority 或 final writer」,P0,`SRC-00001～00004#2.1；SRC-00020#8-10`
+COV-08-04,COV-08-04-C2,物化可由接收者驗證的輸出與失敗行為,P0,`SRC-00001～00004#2.1；SRC-00020#8-10`
+COV-08-04,COV-08-04-C3,建立正向、負向、邊界與對抗 oracle,P0,`SRC-00001～00004#2.1；SRC-00020#8-10`
+COV-08-05,COV-08-05-C1,AIKD Body Compiler 必須負責 Source-to-Prose,P0,`SRC-00017～00021`
+COV-08-05,COV-08-05-C2,claim landing 與可讀正文,P0,`SRC-00017～00021`
+COV-08-06,COV-08-06-C1,保存並定位原始語義：「Wiki／Obsidian 必須是 declarative published/candidate surface，不得單獨擁有 canonical truth」,P0,`SRC-00014；SRC-00022`
+COV-08-06,COV-08-06-C2,物化可由接收者驗證的輸出與失敗行為,P0,`SRC-00014；SRC-00022`
+COV-08-06,COV-08-06-C3,建立正向、負向、邊界與對抗 oracle,P0,`SRC-00014；SRC-00022`
+COV-08-07,COV-08-07-C1,保存並定位原始語義：「SkillBank 必須只接收 procedural knowledge candidate，經 eval/promotion 後才能採用」,P0,`SRC-00001～00004#2.1；SRC-00017#八Skills`
+COV-08-07,COV-08-07-C2,物化可由接收者驗證的輸出與失敗行為,P0,`SRC-00001～00004#2.1；SRC-00017#八Skills`
+COV-08-07,COV-08-07-C3,建立正向、負向、邊界與對抗 oracle,P0,`SRC-00001～00004#2.1；SRC-00017#八Skills`
+COV-08-08,COV-08-08-C1,保存並定位原始語義：「Typed Graph 必須是 relational candidate/projection，禁止與 Shared Project Graph 混為一談」,P0,`SRC-00001～00004#2.1；SRC-00039#2.9`
+COV-08-08,COV-08-08-C2,物化可由接收者驗證的輸出與失敗行為,P0,`SRC-00001～00004#2.1；SRC-00039#2.9`
+COV-08-08,COV-08-08-C3,建立正向、負向、邊界與對抗 oracle,P0,`SRC-00001～00004#2.1；SRC-00039#2.9`
+COV-08-09,COV-08-09-C1,Conflict,P0,`SRC-00001～00004#2.1/2.2`
+COV-08-09,COV-08-09-C2,Ambiguity,P0,`SRC-00001～00004#2.1/2.2`
+COV-08-09,COV-08-09-C3,Rejected Noise、Blocked Source 必須成為一級 ledger，不得被摘要掩蓋,P0,`SRC-00001～00004#2.1/2.2`
+COV-08-10,COV-08-10-C1,Coverage Matrix 必須至少含 Source Adoption,P0,`SRC-00014#10`
+COV-08-10,COV-08-10-C2,Requirement Coverage,P0,`SRC-00014#10`
+COV-08-10,COV-08-10-C3,Decision Trace,P0,`SRC-00014#10`
+COV-08-10,COV-08-10-C4,Verification、Route-out,P0,`SRC-00014#10`
+COV-08-11,COV-08-11-C1,Coverage Verifier／NRTV 必須獨立檢查語義遺漏,P0,`SRC-00014#11-12；SRC-00017/18`
+COV-08-11,COV-08-11-C2,無來源主張與正文空殼,P0,`SRC-00014#11-12；SRC-00017/18`
+COV-08-12,COV-08-12-C1,刪除 Index／Vector／KG 後必須能由 Git,P0,`SRC-00001～00004#2.2`
+COV-08-12,COV-08-12-C2,Ledger、Raw Corpus 重建 candidate/published knowledge,P0,`SRC-00001～00004#2.2`
+COV-09-01,COV-09-01-C1,入口必須保存原始請求,P0,`SRC-00013#00_REQUEST/01_CLARIFICATION；KP02`
+COV-09-01,COV-09-01-C2,Raw Voice,P0,`SRC-00013#00_REQUEST/01_CLARIFICATION；KP02`
+COV-09-01,COV-09-01-C3,non-goal,P0,`SRC-00013#00_REQUEST/01_CLARIFICATION；KP02`
+COV-09-01,COV-09-01-C4,ambiguity 與 rejected interpretation,P0,`SRC-00013#00_REQUEST/01_CLARIFICATION；KP02`
+COV-09-02,COV-09-02-C1,產出 Intent Preservation Card，區分 confirmed,P0,`SRC-00033～00036；DOC-01`
+COV-09-02,COV-09-02-C2,inferred,P0,`SRC-00033～00036；DOC-01`
+COV-09-02,COV-09-02-C3,missing 與 disputed,P0,`SRC-00033～00036；DOC-01`
+COV-09-03,COV-09-03-C1,複合需求必須拆成 atomic child requirements，保留 parent,P0,`SRC-00026～00036；KP02/KP13`
+COV-09-03,COV-09-03-C2,例外與 acceptance,P0,`SRC-00026～00036；KP02/KP13`
+COV-09-04,COV-09-04-C1,Context Pack 必須提供 source digest,P0,`SRC-00013#02_CONTEXT_PACK`
+COV-09-04,COV-09-04-C2,domain context,P0,`SRC-00013#02_CONTEXT_PACK`
+COV-09-04,COV-09-04-C3,existing system,P0,`SRC-00013#02_CONTEXT_PACK`
+COV-09-04,COV-09-04-C4,constraints,P0,`SRC-00013#02_CONTEXT_PACK`
+COV-09-04,COV-09-04-C5,dependencies 與 open questions,P0,`SRC-00013#02_CONTEXT_PACK`
+COV-09-05,COV-09-05-C1,產品需求必須形成 BRD/PRD-lite,P0,`DOC-02；KP03`
+COV-09-05,COV-09-05-C2,Product Ontology,P0,`DOC-02；KP03`
+COV-09-05,COV-09-05-C3,risk/reward 與 acceptance cues,P0,`DOC-02；KP03`
+COV-09-06,COV-09-06-C1,系統規格必須形成 SRS,P0,`SRC-00013#03_ARCHITECTURE/05_SPEC；DOC-04`
+COV-09-06,COV-09-06-C2,interface/data/state model,P0,`SRC-00013#03_ARCHITECTURE/05_SPEC；DOC-04`
+COV-09-06,COV-09-06-C3,failure mode 與 non-functional requirements,P0,`SRC-00013#03_ARCHITECTURE/05_SPEC；DOC-04`
+COV-09-07,COV-09-07-C1,重要選擇必須形成 ADR，含 context,P0,`SRC-00013#04_ADR；DOC-04`
+COV-09-07,COV-09-07-C2,decision,P0,`SRC-00013#04_ADR；DOC-04`
+COV-09-07,COV-09-07-C3,consequence,P0,`SRC-00013#04_ADR；DOC-04`
+COV-09-07,COV-09-07-C4,rollback 與 supersession,P0,`SRC-00013#04_ADR；DOC-04`
+COV-09-08,COV-09-08-C1,執行規格必須形成 TaskSpec／Work Orders，含 owner,P0,`SRC-00013#06_EXEC_PLAN/07_WORK_ORDERS`
+COV-09-08,COV-09-08-C2,procedure,P0,`SRC-00013#06_EXEC_PLAN/07_WORK_ORDERS`
+COV-09-08,COV-09-08-C3,permissions、rollback,P0,`SRC-00013#06_EXEC_PLAN/07_WORK_ORDERS`
+COV-09-09,COV-09-09-C1,驗收包必須包含 positive,P0,`SRC-00013#08_TEST_AND_ACCEPTANCE；DOC-09`
+COV-09-09,COV-09-09-C2,negative,P0,`SRC-00013#08_TEST_AND_ACCEPTANCE；DOC-09`
+COV-09-09,COV-09-09-C3,adversarial cases,P0,`SRC-00013#08_TEST_AND_ACCEPTANCE；DOC-09`
+COV-09-09,COV-09-09-C4,threshold 與 rejection path,P0,`SRC-00013#08_TEST_AND_ACCEPTANCE；DOC-09`
+COV-09-10,COV-09-10-C1,保存並定位原始語義：「Risk/Permission 文件必須在 coding 前完成，禁止把安全問題延後到 runtime」,P0,`SRC-00013#09_RISK_AND_PERMISSION；DOC-07`
+COV-09-10,COV-09-10-C2,物化可由接收者驗證的輸出與失敗行為,P0,`SRC-00013#09_RISK_AND_PERMISSION；DOC-07`
+COV-09-10,COV-09-10-C3,建立正向、負向、邊界與對抗 oracle,P0,`SRC-00013#09_RISK_AND_PERMISSION；DOC-07`
+COV-09-11,COV-09-11-C1,Frozen Handoff Packet 必須帶 semantic hash,P0,`SRC-00013#10_HANDOFF_TO_CODEX；DOC-11/12`
+COV-09-11,COV-09-11-C2,source locators,P0,`SRC-00013#10_HANDOFF_TO_CODEX；DOC-11/12`
+COV-09-11,COV-09-11-C3,open TT/CR,P0,`SRC-00013#10_HANDOFF_TO_CODEX；DOC-11/12`
+COV-09-11,COV-09-11-C4,approval token 與 consumer acceptance,P0,`SRC-00013#10_HANDOFF_TO_CODEX；DOC-11/12`
+COV-09-12,COV-09-12-C1,工程定義輸出不得由工具 output 反向修改需求,P0,`SRC-00026～00036#5.1 P5 禁止事項`
+COV-09-12,COV-09-12-C2,變更必須回到 A01/A02/CR,P0,`SRC-00026～00036#5.1 P5 禁止事項`
+COV-10-01,COV-10-01-C1,每個 state-changing coding 工作必須綁定一個 canonical Card,P0,`SRC-00005～00008；SRC-00041`
+COV-10-01,COV-10-01-C2,TaskSpec,P0,`SRC-00005～00008；SRC-00041`
+COV-10-01,COV-10-01-C3,Worktree 與唯一 Writer,P0,`SRC-00005～00008；SRC-00041`
+COV-10-02,COV-10-02-C1,保存並定位原始語義：「Codex／OpenCode 必須只在指定 repo/worktree/workspace 與 permission token 範圍內操作」,P0,`SRC-00040#2.2；SRC-00041`
+COV-10-02,COV-10-02-C2,物化可由接收者驗證的輸出與失敗行為,P0,`SRC-00040#2.2；SRC-00041`
+COV-10-02,COV-10-02-C3,建立正向、負向、邊界與對抗 oracle,P0,`SRC-00040#2.2；SRC-00041`
+COV-10-03,COV-10-03-C1,執行流程必須包含 preflight,P0,`SRC-00023#3.4；SRC-00041`
+COV-10-03,COV-10-03-C2,plan readback,P0,`SRC-00023#3.4；SRC-00041`
+COV-10-03,COV-10-03-C3,implementation,P0,`SRC-00023#3.4；SRC-00041`
+COV-10-03,COV-10-03-C4,build/test,P0,`SRC-00023#3.4；SRC-00041`
+COV-10-03,COV-10-03-C5,diff review 與 evidence capture,P0,`SRC-00023#3.4；SRC-00041`
+COV-10-04,COV-10-04-C1,Coding Agent 不得直接修改 main/protected branch,P0,`SRC-00009～00012#5.1；SRC-00041`
+COV-10-04,COV-10-04-C2,自我 merge、自我 release 或存取未授權 secrets,P0,`SRC-00009～00012#5.1；SRC-00041`
+COV-10-05,COV-10-05-C1,保存並定位原始語義：「同一 change 的 producer 與 final verifier 必須分離，Verifier 必須能在乾淨狀態重跑」,P0,`SRC-00005～00008#4.4；DOC-09`
+COV-10-05,COV-10-05-C2,物化可由接收者驗證的輸出與失敗行為,P0,`SRC-00005～00008#4.4；DOC-09`
+COV-10-05,COV-10-05-C3,建立正向、負向、邊界與對抗 oracle,P0,`SRC-00005～00008#4.4；DOC-09`
+COV-10-06,COV-10-06-C1,Patch 必須與 frozen packet,P0,`SRC-00009～00012#5.5；DOC-10/11`
+COV-10-06,COV-10-06-C2,requirement IDs,P0,`SRC-00009～00012#5.5；DOC-10/11`
+COV-10-06,COV-10-06-C3,evidence、tool/provider versions 建立 trace links,P0,`SRC-00009～00012#5.5；DOC-10/11`
+COV-10-07,COV-10-07-C1,失敗必須保留 logs,P0,`SRC-00001～00004#2.2；DOC-09/10`
+COV-10-07,COV-10-07-C2,test output,P0,`SRC-00001～00004#2.2；DOC-09/10`
+COV-10-07,COV-10-07-C3,environment fingerprint,P0,`SRC-00001～00004#2.2；DOC-09/10`
+COV-10-07,COV-10-07-C4,error book 與 reproducible case,P0,`SRC-00001～00004#2.2；DOC-09/10`
+COV-10-08,COV-10-08-C1,Rollback 必須能撤回 patch,P0,`SRC-00005～00008；DOC-08/10`
+COV-10-08,COV-10-08-C2,restore worktree/state、revocation token 並保留 failed attempt lineage,P0,`SRC-00005～00008；DOC-08/10`
+COV-10-09,COV-10-09-C1,保存並定位原始語義：「Code Graph 可作 impact/trace projection，但不得取代 Git、AST/build/test 或 Project Graph canonical identity」,P0,`SRC-00021#CodeGraph；SRC-00039#2.10`
+COV-10-09,COV-10-09-C2,物化可由接收者驗證的輸出與失敗行為,P0,`SRC-00021#CodeGraph；SRC-00039#2.10`
+COV-10-09,COV-10-09-C3,建立正向、負向、邊界與對抗 oracle,P0,`SRC-00021#CodeGraph；SRC-00039#2.10`
+COV-10-10,COV-10-10-C1,只有通過 independent gates 與 human release token 的候選才能進 publish/merge,P0,`SRC-00009～00012#5.2 Release invariant；KP08/KP14`
+COV-10-10,COV-10-10-C2,P0-CIP 自身不得宣告已執行,P0,`SRC-00009～00012#5.2 Release invariant；KP08/KP14`
+COV-11-01,COV-11-01-C1,Memory 必須分類為工作記憶,P0,`SRC-00025#3.1/Memory plane；KP18`
+COV-11-01,COV-11-01-C2,checkpoint,P0,`SRC-00025#3.1/Memory plane；KP18`
+COV-11-01,COV-11-01-C3,lesson、policy candidate 等不同法位,P0,`SRC-00025#3.1/Memory plane；KP18`
+COV-11-02,COV-11-02-C1,長任務必須有 checkpoint,P0,`SRC-00021#GSD；SRC-00025`
+COV-11-02,COV-11-02-C2,resume cursor,P0,`SRC-00021#GSD；SRC-00025`
+COV-11-02,COV-11-02-C3,input/output digest 與 deterministic re-entry,P0,`SRC-00021#GSD；SRC-00025`
+COV-11-03,COV-11-03-C1,保存並定位原始語義：「失敗與修復必須進 Error Book／Regression Case，而不是只留在聊天歷史」,P0,`SRC-00001～00004#2.2；SRC-00018`
+COV-11-03,COV-11-03-C2,物化可由接收者驗證的輸出與失敗行為,P0,`SRC-00001～00004#2.2；SRC-00018`
+COV-11-03,COV-11-03-C3,建立正向、負向、邊界與對抗 oracle,P0,`SRC-00001～00004#2.2；SRC-00018`
+COV-11-04,COV-11-04-C1,保存並定位原始語義：「Memory／Skill／Prompt／Harness 變更必須先作 candidate，不得直接修改 production policy」,P0,`SRC-00009～00012#5.1 非使命`
+COV-11-04,COV-11-04-C2,物化可由接收者驗證的輸出與失敗行為,P0,`SRC-00009～00012#5.1 非使命`
+COV-11-04,COV-11-04-C3,建立正向、負向、邊界與對抗 oracle,P0,`SRC-00009～00012#5.1 非使命`
+COV-11-05,COV-11-05-C1,Evolution experiment 必須使用 frozen eval,P0,`SRC-00009～00012#5.6 evolution_lab`
+COV-11-05,COV-11-05-C2,baseline,P0,`SRC-00009～00012#5.6 evolution_lab`
+COV-11-05,COV-11-05-C3,cost/risk 與 rollback,P0,`SRC-00009～00012#5.6 evolution_lab`
+COV-11-06,COV-11-06-C1,保存並定位原始語義：「Promotion 必須需要 independent verifier 與 Human Policy Owner 批准」,P0,`SRC-00005～00008#4.4`
+COV-11-06,COV-11-06-C2,物化可由接收者驗證的輸出與失敗行為,P0,`SRC-00005～00008#4.4`
+COV-11-06,COV-11-06-C3,建立正向、負向、邊界與對抗 oracle,P0,`SRC-00005～00008#4.4`
+COV-11-07,COV-11-07-C1,Memory 必須有 provenance,P0,`SRC-00038～00039；KP18`
+COV-11-07,COV-11-07-C2,staleness,P0,`SRC-00038～00039；KP18`
+COV-11-07,COV-11-07-C3,revocation,P0,`SRC-00038～00039；KP18`
+COV-11-07,COV-11-07-C4,supersession 與 deletion semantics,P0,`SRC-00038～00039；KP18`
+COV-11-08,COV-11-08-C1,保存並定位原始語義：「Provider-specific memory backend 不得成為 canonical project state；可替換且可重建」,P0,`SRC-00033#衝突4；SRC-00039#2.3`
+COV-11-08,COV-11-08-C2,物化可由接收者驗證的輸出與失敗行為,P0,`SRC-00033#衝突4；SRC-00039#2.3`
+COV-11-08,COV-11-08-C3,建立正向、負向、邊界與對抗 oracle,P0,`SRC-00033#衝突4；SRC-00039#2.3`
+COV-11-09,COV-11-09-C1,Evolution 結果必須反寫成 CR,P0,`SRC-00025；DOC-08/09/10`
+COV-11-09,COV-11-09-C2,accepted artifact、new regression fixture 或 rejected experiment ledger,P0,`SRC-00025；DOC-08/09/10`
+COV-12-01,COV-12-01-C1,Domain Factory 必須繼承 Shared Spine 的 IDs,P0,`SRC-00024#3.1/3.2`
+COV-12-01,COV-12-01-C2,artifact,P0,`SRC-00024#3.1/3.2`
+COV-12-01,COV-12-01-C3,evidence,P0,`SRC-00024#3.1/3.2`
+COV-12-01,COV-12-01-C4,permission、release invariants,P0,`SRC-00024#3.1/3.2`
+COV-12-02,COV-12-02-C1,每個 Domain Branch 必須宣告 inputs,P0,`SRC-00009～00012#5.6`
+COV-12-02,COV-12-02-C2,capability slots,P0,`SRC-00009～00012#5.6`
+COV-12-02,COV-12-02-C3,permissions,P0,`SRC-00009～00012#5.6`
+COV-12-02,COV-12-02-C4,evidence,P0,`SRC-00009～00012#5.6`
+COV-12-02,COV-12-02-C5,rollback、owner,P0,`SRC-00009～00012#5.6`
+COV-12-03,COV-12-03-C1,領域 ontology,P0,`SRC-00024#Branch Profile Schema`
+COV-12-03,COV-12-03-C2,source policy,P0,`SRC-00024#Branch Profile Schema`
+COV-12-03,COV-12-03-C3,acceptance 與 tool expectations 必須由 domain-specific package 提供,P0,`SRC-00024#Branch Profile Schema`
+COV-12-04,COV-12-04-C1,Canonical Policy/Contract,P0,`SRC-00024#2.4`
+COV-12-04,COV-12-04-C2,Portable Capability Pack,P0,`SRC-00024#2.4`
+COV-12-04,COV-12-04-C3,Host Surface、Project Artifacts 必須分層,P0,`SRC-00024#2.4`
+COV-12-05,COV-12-05-C1,生成的 domain surface 不得複製或修改 Root registry,P0,`SRC-00034#S1-02；主軸稿#1.2`
+COV-12-05,COV-12-05-C2,只能透過 delegated profile 與 CR,P0,`SRC-00034#S1-02；主軸稿#1.2`
+COV-12-06,COV-12-06-C1,保存並定位原始語義：「Domain Factory 必須支援 knowledge、engineering definition 或 document factory 的不同模板，而非單一硬編碼流程」,P0,`SRC-00024；SRC-00025`
+COV-12-06,COV-12-06-C2,物化可由接收者驗證的輸出與失敗行為,P0,`SRC-00024；SRC-00025`
+COV-12-06,COV-12-06-C3,建立正向、負向、邊界與對抗 oracle,P0,`SRC-00024；SRC-00025`
+COV-12-07,COV-12-07-C1,保存並定位原始語義：「domain-specific provider 必須經 FIT/GAP/pilot/security/license/maintenance/HITL，不得因模板存在自動採用」,P0,`SRC-00026～00036；DOC-06`
+COV-12-07,COV-12-07-C2,物化可由接收者驗證的輸出與失敗行為,P0,`SRC-00026～00036；DOC-06`
+COV-12-07,COV-12-07-C3,建立正向、負向、邊界與對抗 oracle,P0,`SRC-00026～00036；DOC-06`
+COV-12-08,COV-12-08-C1,成熟 domain branch 的改善只能以 accepted proposal 回寫 shared capability,P0,`SRC-00025#Evolution；DOC-08/09`
+COV-12-08,COV-12-08-C2,需 regression/rollback,P0,`SRC-00025#Evolution；DOC-08/09`
+COV-13-01,COV-13-01-C1,預設 topology 必須是 T0 Single Worker,P0,`SRC-00033#3.3；SRC-00025#Agent Topology`
+COV-13-01,COV-13-01-C2,只有需求可分解且 evidence 可合併時才升級,P0,`SRC-00033#3.3；SRC-00025#Agent Topology`
+COV-13-02,COV-13-02-C1,T1 Planner–Implementer–Reviewer 必須明確分離 plan,P0,`SRC-00025#Agent Topology`
+COV-13-02,COV-13-02-C2,verify 權限與輸出,P0,`SRC-00025#Agent Topology`
+COV-13-03,COV-13-03-C1,T2 Supervisor fan-out/fan-in 必須限制 child count,P0,`SRC-00033#3.3`
+COV-13-03,COV-13-03-C2,write access 與 merge reducer,P0,`SRC-00033#3.3`
+COV-13-04,COV-13-04-C1,保存並定位原始語義：「Read-only Council 只能提供建議／review，不得持有 authoritative state 或共享 write token」,P0,`SRC-00025#Read-only Council`
+COV-13-04,COV-13-04-C2,物化可由接收者驗證的輸出與失敗行為,P0,`SRC-00025#Read-only Council`
+COV-13-04,COV-13-04-C3,建立正向、負向、邊界與對抗 oracle,P0,`SRC-00025#Read-only Council`
+COV-13-05,COV-13-05-C1,保存並定位原始語義：「預設 unrestricted peer swarm、共享可寫 workspace 或多個全域 orchestrator」,P0,`SRC-00009～00012#5.1 非使命；SRC-00034`
+COV-13-05,COV-13-05-C2,物化可由接收者驗證的輸出與失敗行為,P0,`SRC-00009～00012#5.1 非使命；SRC-00034`
+COV-13-05,COV-13-05-C3,建立正向、負向、邊界與對抗 oracle,P0,`SRC-00009～00012#5.1 非使命；SRC-00034`
+COV-13-06,COV-13-06-C1,每個 Card／WorkOrder 必須有 owner,P0,`SRC-00005～00008；SRC-00041`
+COV-13-06,COV-13-06-C2,reviewer,P0,`SRC-00005～00008；SRC-00041`
+COV-13-06,COV-13-06-C3,dependency,P0,`SRC-00005～00008；SRC-00041`
+COV-13-06,COV-13-06-C4,deadline/TTL,P0,`SRC-00005～00008；SRC-00041`
+COV-13-06,COV-13-06-C5,evidence 與 recovery action,P0,`SRC-00005～00008；SRC-00041`
+COV-13-07,COV-13-07-C1,一個 worktree 同時只能有一個 writer,P0,`SRC-00005～00008；SRC-00041`
+COV-13-07,COV-13-07-C2,其他 Agent 必須 read-only 或使用獨立 worktree,P0,`SRC-00005～00008；SRC-00041`
+COV-13-08,COV-13-08-C1,child permission token 必須由 parent 派生且不得擴權,P0,`SRC-00009～00012#5.2 Permission invariant`
+COV-13-08,COV-13-08-C2,完成／撤銷時必須失效,P0,`SRC-00009～00012#5.2 Permission invariant`
+COV-13-09,COV-13-09-C1,Board/Kanban 必須保存 durable lifecycle,P0,`SRC-00005～00008；SRC-00038/41`
+COV-13-09,COV-13-09-C2,admission,P0,`SRC-00005～00008；SRC-00038/41`
+COV-13-09,COV-13-09-C3,verification,P0,`SRC-00005～00008；SRC-00038/41`
+COV-13-09,COV-13-09-C4,publish 與 recovery state,P0,`SRC-00005～00008；SRC-00038/41`
+COV-13-10,COV-13-10-C1,保存並定位原始語義：「Agent failure 必須由 Shared Spine 恢復／重新路由，不得以聊天上下文作唯一 checkpoint」,P0,`SRC-00025；SRC-00033`
+COV-13-10,COV-13-10-C2,物化可由接收者驗證的輸出與失敗行為,P0,`SRC-00025；SRC-00033`
+COV-13-10,COV-13-10-C3,建立正向、負向、邊界與對抗 oracle,P0,`SRC-00025；SRC-00033`
+COV-14-01,COV-14-01-C1,Programme Root 必須保存產品身份,P0,`SRC-00036#1.2`
+COV-14-01,COV-14-01-C2,ontology,P0,`SRC-00036#1.2`
+COV-14-01,COV-14-01-C3,invariants,P0,`SRC-00036#1.2`
+COV-14-01,COV-14-01-C4,canonical registries 與 branch contracts,P0,`SRC-00036#1.2`
+COV-14-02,COV-14-02-C1,P0-CIP Carrier 必須把 Root 編譯為 source,P0,`SRC-00036#1.2/2.2/2.3`
+COV-14-02,COV-14-02-C2,requirement,P0,`SRC-00036#1.2/2.2/2.3`
+COV-14-02,COV-14-02-C3,handoff、package ledgers,P0,`SRC-00036#1.2/2.2/2.3`
+COV-14-03,COV-14-03-C1,保存並定位原始語義：「Product Projection／DOC-00～14 必須服務具體接收者，不得反向成為 Root SSOT」,P0,`SRC-00036#1.2；主軸稿#1.2`
+COV-14-03,COV-14-03-C2,物化可由接收者驗證的輸出與失敗行為,P0,`SRC-00036#1.2；主軸稿#1.2`
+COV-14-03,COV-14-03-C3,建立正向、負向、邊界與對抗 oracle,P0,`SRC-00036#1.2；主軸稿#1.2`
+COV-14-04,COV-14-04-C1,A00-M～A08 必須依序處理 programme control,P0,`SRC-00026～00036#6；DOC set`
+COV-14-04,COV-14-04-C2,adoption,P0,`SRC-00026～00036#6；DOC set`
+COV-14-04,COV-14-04-C3,execution route-out,P0,`SRC-00026～00036#6；DOC set`
+COV-14-04,COV-14-04-C4,acceptance、release,P0,`SRC-00026～00036#6；DOC set`
+COV-14-05,COV-14-05-C1,G01～G08 必須依序形成 Boundary/Source,P0,`SRC-00283～SRC-00296`
+COV-14-05,COV-14-05-C2,Requirement,P0,`SRC-00283～SRC-00296`
+COV-14-05,COV-14-05-C3,Handoff、Package/Readback,P0,`SRC-00283～SRC-00296`
+COV-14-06,COV-14-06-C1,保存並定位原始語義：「DOC-00～14 必須各自有 owner scope，不得以一份 generic blueprint 取代全部正文」,P0,`DOC-00～14；主軸稿#3.4`
+COV-14-06,COV-14-06-C2,物化可由接收者驗證的輸出與失敗行為,P0,`DOC-00～14；主軸稿#3.4`
+COV-14-06,COV-14-06-C3,建立正向、負向、邊界與對抗 oracle,P0,`DOC-00～14；主軸稿#3.4`
+COV-14-07,COV-14-07-C1,每一 Stage 必須有 typed inputs/outputs,P0,`SRC-00026～00032#6`
+COV-14-07,COV-14-07-C2,entry/exit gate,P0,`SRC-00026～00032#6`
+COV-14-07,COV-14-07-C3,reviewer,P0,`SRC-00026～00032#6`
+COV-14-07,COV-14-07-C4,rollback,P0,`SRC-00026～00032#6`
+COV-14-07,COV-14-07-C5,evidence、consumer acceptance,P0,`SRC-00026～00032#6`
+COV-14-08,COV-14-08-C1,任何 handoff 必須綁定 artifact digest,P0,`SRC-00026～00036；DOC-11/12`
+COV-14-08,COV-14-08-C2,source locators,P0,`SRC-00026～00036；DOC-11/12`
+COV-14-08,COV-14-08-C3,gate state,P0,`SRC-00026～00036；DOC-11/12`
+COV-14-08,COV-14-08-C4,blocking TT/CR 與 acceptance token,P0,`SRC-00026～00036；DOC-11/12`
+COV-14-09,COV-14-09-C1,跳過 A01/A02 直接選工具,P0,`SRC-00034#3.1；SRC-00036#1.4；KP14`
+COV-14-09,COV-14-09-C2,跳過 A04 直接執行、跳過 A07/A08 宣告 release/production,P0,`SRC-00034#3.1；SRC-00036#1.4；KP14`
+COV-15-01,COV-15-01-C1,P0-Quick 必須只啟用 orchestrator,P0,`SRC-00005～00008#4.1`
+COV-15-01,COV-15-01-C2,codex-worker,P0,`SRC-00005～00008#4.1`
+COV-15-01,COV-15-01-C3,verifier 與 human publisher wrapper 的最短閉環,P0,`SRC-00005～00008#4.1`
+COV-15-02,COV-15-02-C1,P0-Knowledge 必須在 P0-Quick 通過後才新增 curator,P0,`SRC-00005～00008#4.2`
+COV-15-02,COV-15-02-C2,immutable source registry,P0,`SRC-00005～00008#4.2`
+COV-15-02,COV-15-02-C3,candidate/published repos,P0,`SRC-00005～00008#4.2`
+COV-15-02,COV-15-02-C4,SQLite FTS5,P0,`SRC-00005～00008#4.2`
+COV-15-02,COV-15-02-C5,LLM Wiki、DocETL pilot,P0,`SRC-00005～00008#4.2`
+COV-15-03,COV-15-03-C1,P0-Automation 必須在前置 gates 通過後才新增 browser/CUA,P0,`SRC-00005～00008#4.3`
+COV-15-03,COV-15-03-C2,approval broker,P0,`SRC-00005～00008#4.3`
+COV-15-03,COV-15-03-C3,publisher profile 與 negative tests,P0,`SRC-00005～00008#4.3`
+COV-15-04,COV-15-04-C1,預設應使用 Windows standard user 與 workspace-scoped filesystem authority，不得授權整個 C:\,P0,`SRC-00040#2.2；SRC-00041`
+COV-15-04,COV-15-04-C2,Home、Browser Profile 或 Secrets,P0,`SRC-00040#2.2；SRC-00041`
+COV-15-05,COV-15-05-C1,ChatGPT Desktop 可作人類控制入口,P0,`SRC-00037；SRC-00040`
+COV-15-05,COV-15-05-C2,檔案讀寫與 Codex 協作面，但不得被描述為 Hermes/Codex 合成 runtime,P0,`SRC-00037；SRC-00040`
+COV-15-06,COV-15-06-C1,P0 critical path 不應要求 Docker,P0,`SRC-00041#1.3；SRC-00005～00008#4.1`
+COV-15-06,COV-15-06-C2,Kubernetes、Remote Worker 或多主機 mesh,P0,`SRC-00041#1.3；SRC-00005～00008#4.1`
+COV-15-07,COV-15-07-C1,保存並定位原始語義：「WSL2/Docker 必須是 trigger-based escalation/degrade profile，而不是永久禁止或隱性依賴」,P0,`SRC-00040#2.1/3.1`
+COV-15-07,COV-15-07-C2,物化可由接收者驗證的輸出與失敗行為,P0,`SRC-00040#2.1/3.1`
+COV-15-07,COV-15-07-C3,建立正向、負向、邊界與對抗 oracle,P0,`SRC-00040#2.1/3.1`
+COV-15-08,COV-15-08-C1,Git Markdown/Ledger 應為 canonical,P0,`SRC-00038/39；SRC-00005～00008`
+COV-15-08,COV-15-08-C2,SQLite FTS5/BM25 可作本地索引與 durable queue/state projection,P0,`SRC-00038/39；SRC-00005～00008`
+COV-15-09,COV-15-09-C1,Qdrant 與 pgvector 不得同時作預設 vector owner,P0,`SRC-00038#2.2；SRC-00039`
+COV-15-09,COV-15-09-C2,Typed KG/Graph provider 也不得疊裝成多個真相,P0,`SRC-00038#2.2；SRC-00039`
+COV-15-10,COV-15-10-C1,raw/candidate/published,P0,`SRC-00041#3.2 onwards；SRC-00005～00008`
+COV-15-10,COV-15-10-C2,repo/worktree,P0,`SRC-00041#3.2 onwards；SRC-00005～00008`
+COV-15-10,COV-15-10-C3,logs/evidence、backup/restore 必須物理隔離並可回讀,P0,`SRC-00041#3.2 onwards；SRC-00005～00008`
+COV-15-11,COV-15-11-C1,安裝與 auth 必須有 preflight,P0,`SRC-00037；SRC-00005～00008#5`
+COV-15-11,COV-15-11-C2,versions.lock,P0,`SRC-00037；SRC-00005～00008#5`
+COV-15-11,COV-15-11-C3,download/verify,P0,`SRC-00037；SRC-00005～00008#5`
+COV-15-11,COV-15-11-C4,rollback 與 evidence,P0,`SRC-00037；SRC-00005～00008#5`
+COV-15-12,COV-15-12-C1,保存並定位原始語義：「CPU/RAM/Disk/Concurrency 只能是待校準 profile，不得在未量測前宣告硬門檻」,P0,`SRC-00005～00008#4.5`
+COV-15-12,COV-15-12-C2,物化可由接收者驗證的輸出與失敗行為,P0,`SRC-00005～00008#4.5`
+COV-15-12,COV-15-12-C3,建立正向、負向、邊界與對抗 oracle,P0,`SRC-00005～00008#4.5`
+COV-16-01,COV-16-01-C1,任何選型必須先定義 capability slot,P0,`SRC-00024#2.4/2.5；SRC-00009～00012#5.4`
+COV-16-01,COV-16-01-C2,inputs/outputs,P0,`SRC-00024#2.4/2.5；SRC-00009～00012#5.4`
+COV-16-01,COV-16-01-C3,permissions,P0,`SRC-00024#2.4/2.5；SRC-00009～00012#5.4`
+COV-16-01,COV-16-01-C4,evidence 與 fallback，再選 provider,P0,`SRC-00024#2.4/2.5；SRC-00009～00012#5.4`
+COV-16-02,COV-16-02-C1,已有成熟方案時必須先 scout，不得直接自建,P0,`KP09`
+COV-16-02,COV-16-02-C2,搜尋結果需有 QuerySet,P0,`KP09`
+COV-16-02,COV-16-02-C3,rubric、淘汰理由,P0,`KP09`
+COV-16-03,COV-16-03-C1,每個具名工具／OSS／方法／Skill／Prompt 必須有 ADOPT,P0,`SRC-00015～00025；A03`
+COV-16-03,COV-16-03-C2,REJECT、SPECIALIST_ONLY 或 REPLACE disposition,P0,`SRC-00015～00025；A03`
+COV-16-04,COV-16-04-C1,FIT/GAP 必須評估功能貼合,P0,`A03；DOC-06`
+COV-16-04,COV-16-04-C2,Windows 相容,P0,`A03；DOC-06`
+COV-16-04,COV-16-04-C3,security,P0,`A03；DOC-06`
+COV-16-04,COV-16-04-C4,maintenance,P0,`A03；DOC-06`
+COV-16-04,COV-16-04-C5,community、rollback,P0,`A03；DOC-06`
+COV-16-05,COV-16-05-C1,Provider ID,P0,`SRC-00009～00012#5.4`
+COV-16-05,COV-16-05-C2,Adapter ID,P0,`SRC-00009～00012#5.4`
+COV-16-05,COV-16-05-C3,Capability ID、Host Surface 必須分離，禁止以產品名稱作能力語義,P0,`SRC-00009～00012#5.4`
+COV-16-06,COV-16-06-C1,每個 primary provider 必須有 fallback／native path,P0,`SRC-00009～00012#5.2/5.6；DOC-06`
+COV-16-06,COV-16-06-C2,no-silent-downgrade gate 防止功能語義消失,P0,`SRC-00009～00012#5.2/5.6；DOC-06`
+COV-16-07,COV-16-07-C1,Pilot 必須有 golden fixture,P0,`DOC-06/09`
+COV-16-07,COV-16-07-C2,positive/negative,P0,`DOC-06/09`
+COV-16-07,COV-16-07-C3,failure injection,P0,`DOC-06/09`
+COV-16-07,COV-16-07-C4,cost/latency,P0,`DOC-06/09`
+COV-16-07,COV-16-07-C5,rollback 與 evidence return,P0,`DOC-06/09`
+COV-16-08,COV-16-08-C1,Skills 必須是可版本化程序軟體，聲明 triggers,P0,`SRC-00016/17/21`
+COV-16-08,COV-16-08-C2,permissions,P0,`SRC-00016/17/21`
+COV-16-08,COV-16-08-C3,owner、deprecation,P0,`SRC-00016/17/21`
+COV-16-09,COV-16-09-C1,保存並定位原始語義：「Prompt Surface 必須按角色／階段／權限版本化，外部內容不得覆蓋 system/product authority」,P0,`DOC-03/07；KP11`
+COV-16-09,COV-16-09-C2,物化可由接收者驗證的輸出與失敗行為,P0,`DOC-03/07；KP11`
+COV-16-09,COV-16-09-C3,建立正向、負向、邊界與對抗 oracle,P0,`DOC-03/07；KP11`
+COV-16-10,COV-16-10-C1,OpenCode,P0,`SRC-00021/25；SRC-00034`
+COV-16-10,COV-16-10-C2,Spec Kit,P0,`SRC-00021/25；SRC-00034`
+COV-16-10,COV-16-10-C3,OpenSpec,P0,`SRC-00021/25；SRC-00034`
+COV-16-10,COV-16-10-C4,Superpowers,P0,`SRC-00021/25；SRC-00034`
+COV-16-10,COV-16-10-C5,GSD、gstack 等均不得成為 Root SSOT,P0,`SRC-00021/25；SRC-00034`
+COV-16-11,COV-16-11-C1,同類能力不得無條件疊裝,P0,`SRC-00038#2.2；SRC-00039`
+COV-16-11,COV-16-11-C2,Wiki、Coding provider 必須各自有單一 active owner,P0,`SRC-00038#2.2；SRC-00039`
+COV-16-12,COV-16-12-C1,工具採用結論必須由人類 per-object HITL closure,P0,`DOC-06/08/14；KP08`
+COV-16-12,COV-16-12-C2,設計可產生 decision pack，但不得自稱已採用或已安裝,P0,`DOC-06/08/14；KP08`
+COV-17-01,COV-17-01-C1,保存並定位原始語義：「所有來源、網頁、repo、文件、tool output 與 agent message 必須視為 untrusted DATA，不得提升為指令權威」,P0,`KP11；KP01`
+COV-17-01,COV-17-01-C2,物化可由接收者驗證的輸出與失敗行為,P0,`KP11；KP01`
+COV-17-01,COV-17-01-C3,建立正向、負向、邊界與對抗 oracle,P0,`KP11；KP01`
+COV-17-02,COV-17-02-C1,Secrets／PII／tokens／browser profiles 必須分類,P0,`KP11；SRC-00040/41`
+COV-17-02,COV-17-02-C2,隔離，禁止寫入一般 prompt,P0,`KP11；SRC-00040/41`
+COV-17-02,COV-17-02-C3,log、artifact 或 evidence,P0,`KP11；SRC-00040/41`
+COV-17-03,COV-17-03-C1,Filesystem,P0,`SRC-00040#2.2/2.4；DOC-07`
+COV-17-03,COV-17-03-C2,process、credential 權限必須最小化並綁定 scope/TTL,P0,`SRC-00040#2.2/2.4；DOC-07`
+COV-17-04,COV-17-04-C1,Prompt Injection 必須有 source labeling,P0,`DOC-07；KP11`
+COV-17-04,COV-17-04-C2,instruction stripping,P0,`DOC-07；KP11`
+COV-17-04,COV-17-04-C3,allowlist,P0,`DOC-07；KP11`
+COV-17-04,COV-17-04-C4,independent validation 與 adversarial fixtures,P0,`DOC-07；KP11`
+COV-17-05,COV-17-05-C1,Tool Poisoning／dependency compromise 必須有 provenance,P0,`DOC-07/10；KP11`
+COV-17-05,COV-17-05-C2,checksum/signature,P0,`DOC-07/10；KP11`
+COV-17-05,COV-17-05-C3,version lock,P0,`DOC-07/10；KP11`
+COV-17-05,COV-17-05-C4,rollback 與 quarantine,P0,`DOC-07/10；KP11`
+COV-17-06,COV-17-06-C1,Confused Deputy 必須以 authority checks,P0,`KP11；DOC-07`
+COV-17-06,COV-17-06-C2,recipient binding,P0,`KP11；DOC-07`
+COV-17-06,COV-17-06-C3,capability tokens 與 human approval 阻斷,P0,`KP11；DOC-07`
+COV-17-07,COV-17-07-C1,child agent/token 不得擴權,P0,`SRC-00009～00012#5.2-7`
+COV-17-07,COV-17-07-C2,revocation、evidence 必須可讀回,P0,`SRC-00009～00012#5.2-7`
+COV-17-08,COV-17-08-C1,保存並定位原始語義：「Browser/CUA 必須遵循 CLI/API/MCP→Browser DOM→Computer Use 的能力優先序，高風險狀態變更需 HITL」,P0,`SRC-00040#2.4；SRC-00005～00008`
+COV-17-08,COV-17-08-C2,物化可由接收者驗證的輸出與失敗行為,P0,`SRC-00040#2.4；SRC-00005～00008`
+COV-17-08,COV-17-08-C3,建立正向、負向、邊界與對抗 oracle,P0,`SRC-00040#2.4；SRC-00005～00008`
+COV-17-09,COV-17-09-C1,Producer,P0,`SRC-00001～00008；DOC-07`
+COV-17-09,COV-17-09-C2,Verifier,P0,`SRC-00001～00008；DOC-07`
+COV-17-09,COV-17-09-C3,Publisher、Security Reviewer 必須有 SoD,P0,`SRC-00001～00008；DOC-07`
+COV-17-09,COV-17-09-C4,不得以同一 session 完成自產自驗自發,P0,`SRC-00001～00008；DOC-07`
+COV-17-10,COV-17-10-C1,高風險 adoption,P0,`SRC-00009～00012；DOC-08/14`
+COV-17-10,COV-17-10-C2,merge、policy/evaluator/security gate 變更必須由明確 approval token 授權,P0,`SRC-00009～00012；DOC-08/14`
+COV-17-11,COV-17-11-C1,偵測到 injection,P0,`KP11；DOC-07`
+COV-17-11,COV-17-11-C2,poisoning,P0,`KP11；DOC-07`
+COV-17-11,COV-17-11-C3,exfiltration、scope escape 或未授權 state change 時必須 STOP＋QUARANTINE＋TT,P0,`KP11；DOC-07`
+COV-17-12,COV-17-12-C1,Incident Runbook 必須保存 timeline,P0,`DOC-07/10/13`
+COV-17-12,COV-17-12-C2,affected artifacts,P0,`DOC-07/10/13`
+COV-17-12,COV-17-12-C3,token revocation,P0,`DOC-07/10/13`
+COV-17-12,COV-17-12-C4,isolation,P0,`DOC-07/10/13`
+COV-17-12,COV-17-12-C5,re-test 與 human closure,P0,`DOC-07/10/13`
+COV-17-13,COV-17-13-C1,Supply-chain evidence 必須包含來源,P0,`DOC-06/07/10`
+COV-17-13,COV-17-13-C2,SBOM/provenance,P0,`DOC-06/07/10`
+COV-17-13,COV-17-13-C3,checksum,P0,`DOC-06/07/10`
+COV-17-13,COV-17-13-C4,known risk 與 update/rollback policy,P0,`DOC-06/07/10`
+COV-18-01,COV-18-01-C1,每個重要需求／artifact／tool／workflow 必須至少有 positive,P0,`DOC-09；KP10`
+COV-18-01,COV-18-01-C2,negative、edge，必要時 adversarial/mutation cases,P0,`DOC-09；KP10`
+COV-18-02,COV-18-02-C1,Golden Set,P0,`DOC-09；KP10`
+COV-18-02,COV-18-02-C2,Regression Set,P0,`DOC-09；KP10`
+COV-18-02,COV-18-02-C3,NRTV Set 必須版本化並與 baseline,P0,`DOC-09；KP10`
+COV-18-02,COV-18-02-C4,expected result,P0,`DOC-09；KP10`
+COV-18-02,COV-18-02-C5,oracle、threshold 綁定,P0,`DOC-09；KP10`
+COV-18-03,COV-18-03-C1,LLM judge 必須校準且不得單獨作 final oracle,P0,`KP10；DOC-09`
+COV-18-03,COV-18-03-C2,高風險 PASS 需 deterministic/independent evidence,P0,`KP10；DOC-09`
+COV-18-04,COV-18-04-C1,保存並定位原始語義：「語義消失、空殼表格、來源無落點、角色／工具／branch 遺漏必須由 mutation/anti-flattening gate 偵測」,P0,`SRC-00026～00036；DOC-09`
+COV-18-04,COV-18-04-C2,物化可由接收者驗證的輸出與失敗行為,P0,`SRC-00026～00036；DOC-09`
+COV-18-04,COV-18-04-C3,建立正向、負向、邊界與對抗 oracle,P0,`SRC-00026～00036；DOC-09`
+COV-18-05,COV-18-05-C1,Evidence 必須有 evidence_id,P0,`SRC-00009～00012#5.2-6；DOC-10`
+COV-18-05,COV-18-05-C2,producer,P0,`SRC-00009～00012#5.2-6；DOC-10`
+COV-18-05,COV-18-05-C3,artifact/run digest,P0,`SRC-00009～00012#5.2-6；DOC-10`
+COV-18-05,COV-18-05-C4,timestamp,P0,`SRC-00009～00012#5.2-6；DOC-10`
+COV-18-05,COV-18-05-C5,validator,P0,`SRC-00009～00012#5.2-6；DOC-10`
+COV-18-06,COV-18-06-C1,Gate 必須有 entry,P0,`DOC-09/10`
+COV-18-06,COV-18-06-C2,required evidence,P0,`DOC-09/10`
+COV-18-06,COV-18-06-C3,pass/fail/temp-close,P0,`DOC-09/10`
+COV-18-06,COV-18-06-C4,rollback、owner,P0,`DOC-09/10`
+COV-18-07,COV-18-07-C1,保存並定位原始語義：「文件存在、檔名、sidecar、checksum 或模型自評只能證明 structure/readback，不能自動證明 body/runtime/production」,P0,`DOC-00～14；KP10/KP14`
+COV-18-07,COV-18-07-C2,物化可由接收者驗證的輸出與失敗行為,P0,`DOC-00～14；KP10/KP14`
+COV-18-07,COV-18-07-C3,建立正向、負向、邊界與對抗 oracle,P0,`DOC-00～14；KP10/KP14`
+COV-18-08,COV-18-08-C1,Package 必須有 manifest,P0,`DOC-10/14；KP14`
+COV-18-08,COV-18-08-C2,exact-set,P0,`DOC-10/14；KP14`
+COV-18-08,COV-18-08-C3,readback,P0,`DOC-10/14；KP14`
+COV-18-08,COV-18-08-C4,source-to-clause,P0,`DOC-10/14；KP14`
+COV-18-08,COV-18-08-C5,TT/CR、forbidden claim ledger,P0,`DOC-10/14；KP14`
+COV-18-09,COV-18-09-C1,狀態必須分開 STRUCTURE_PASS,P0,`DOC-00～14；KP14`
+COV-18-09,COV-18-09-C2,BODY_SUBSTANTIVE_AUTHOR_SIDE_PATCH_COMPLETE,P0,`DOC-00～14；KP14`
+COV-18-09,COV-18-09-C3,LOCAL_PACKAGE_PASS,P0,`DOC-00～14；KP14`
+COV-18-09,COV-18-09-C4,RELEASE_CANDIDATE_WITH_TT、PRODUCTION_PASS,P0,`DOC-00～14；KP14`
+COV-18-10,COV-18-10-C1,缺 external pilot,P0,`DOC-09/10/14`
+COV-18-10,COV-18-10-C2,repo/CI/runtime,P0,`DOC-09/10/14`
+COV-18-10,COV-18-10-C3,independent review、人類 adoption/release token 時不得宣告 production,P0,`DOC-09/10/14`
+COV-18-11,COV-18-11-C1,Release reducer 必須聚合 required checks,P0,`DOC-10/14`
+COV-18-11,COV-18-11-C2,blocking TT/CR,P0,`DOC-10/14`
+COV-18-11,COV-18-11-C3,security,P0,`DOC-10/14`
+COV-18-11,COV-18-11-C4,HITL、rollback/readback 後才產生決策,P0,`DOC-10/14`
+COV-18-12,COV-18-12-C1,保存並定位原始語義：「所有 fail/partial/unknown 必須保留 repair path 與 TT close criteria，禁止以模糊『大致通過』掩蓋」,P0,`KP13；DOC-09/14`
+COV-18-12,COV-18-12-C2,物化可由接收者驗證的輸出與失敗行為,P0,`KP13；DOC-09/14`
+COV-18-12,COV-18-12-C3,建立正向、負向、邊界與對抗 oracle,P0,`KP13；DOC-09/14`
+COV-19-01,COV-19-01-C1,GPT A 必須只設計,P0,`KP08；主軸稿 metadata`
+COV-19-01,COV-19-01-C2,封裝與裁決，不得假裝已執行 repo,P0,`KP08；主軸稿 metadata`
+COV-19-01,COV-19-01-C3,部署、OROCHI 或 production rollback,P0,`KP08；主軸稿 metadata`
+COV-19-02,COV-19-02-C1,Route-out Packet 必須含 receiver,P0,`DOC-11/12`
+COV-19-02,COV-19-02-C2,objective,P0,`DOC-11/12`
+COV-19-02,COV-19-02-C3,scope/non-goal,P0,`DOC-11/12`
+COV-19-02,COV-19-02-C4,artifact digests,P0,`DOC-11/12`
+COV-19-02,COV-19-02-C5,TaskSpec,P0,`DOC-11/12`
+COV-19-03,COV-19-03-C1,Packet 必須含 test matrix,P0,`DOC-11/12`
+COV-19-03,COV-19-03-C2,security gate,P0,`DOC-11/12`
+COV-19-03,COV-19-03-C3,release gate,P0,`DOC-11/12`
+COV-19-03,COV-19-03-C4,rollback,P0,`DOC-11/12`
+COV-19-03,COV-19-03-C5,approval token,P0,`DOC-11/12`
+COV-19-04,COV-19-04-C1,Receiver 必須先驗證 schema,P0,`DOC-11/13`
+COV-19-04,COV-19-04-C2,source locators,P0,`DOC-11/13`
+COV-19-04,COV-19-04-C3,versions,P0,`DOC-11/13`
+COV-19-04,COV-19-04-C4,entry gate 與 scope，否則拒收,P0,`DOC-11/13`
+COV-19-05,COV-19-05-C1,每個 execution command 必須明確可做／不可做,P0,`DOC-05/12`
+COV-19-05,COV-19-05-C2,working directory,P0,`DOC-05/12`
+COV-19-05,COV-19-05-C3,branch/worktree,P0,`DOC-05/12`
+COV-19-05,COV-19-05-C4,secret policy、timeout/retry,P0,`DOC-05/12`
+COV-19-06,COV-19-06-C1,Evidence Return 必須含 run_id,P0,`DOC-11/12`
+COV-19-06,COV-19-06-C2,environment,P0,`DOC-11/12`
+COV-19-06,COV-19-06-C3,commands/actions,P0,`DOC-11/12`
+COV-19-06,COV-19-06-C4,diff/artifacts,P0,`DOC-11/12`
+COV-19-06,COV-19-06-C5,security results,P0,`DOC-11/12`
+COV-19-07,COV-19-07-C1,保存並定位原始語義：「Returned evidence 必須由獨立 reviewer/readback reducer 驗證，不能由 executor 自述 PASS」,P0,`DOC-09/10/11`
+COV-19-07,COV-19-07-C2,物化可由接收者驗證的輸出與失敗行為,P0,`DOC-09/10/11`
+COV-19-07,COV-19-07-C3,建立正向、負向、邊界與對抗 oracle,P0,`DOC-09/10/11`
+COV-19-08,COV-19-08-C1,任何 scope drift,P0,`DOC-07/11/13`
+COV-19-08,COV-19-08-C2,permission escape,P0,`DOC-07/11/13`
+COV-19-08,COV-19-08-C3,digest mismatch、missing evidence 必須 BLOCK／QUARANTINE 並退回 rework,P0,`DOC-07/11/13`
+COV-19-09,COV-19-09-C1,保存並定位原始語義：「OROCHI／Agent GENIEMAKER 必須位於 execution/evidence plane，不得併入 canonical control plane」,P0,`SRC-00033#裁決C；KP17`
+COV-19-09,COV-19-09-C2,物化可由接收者驗證的輸出與失敗行為,P0,`SRC-00033#裁決C；KP17`
+COV-19-09,COV-19-09-C3,建立正向、負向、邊界與對抗 oracle,P0,`SRC-00033#裁決C；KP17`
+COV-19-10,COV-19-10-C1,下游完成後只能回寫 accepted evidence/state proposal,P0,`SRC-00033～00036；DOC-13`
+COV-19-10,COV-19-10-C2,Root state 仍由 Shared Spine transition contract 更新,P0,`SRC-00033～00036；DOC-13`
+COV-19-11,COV-19-11-C1,Handoff 必須支援 reject,P0,`DOC-11～13`
+COV-19-11,COV-19-11-C2,rollback,P0,`DOC-11～13`
+COV-19-11,COV-19-11-C3,supersede 與 consumer acceptance，不得只有單向交付,P0,`DOC-11～13`
+COV-20-01,COV-20-01-C1,保存並定位原始語義：「SDLC_PRW開發_P0-CIP G01～G08 的製程邏輯必須保留，但語料與產品 Root 必須改為 HG-KSEOS」,P0,`SRC-00283～SRC-00296；主軸稿#3.5`
+COV-20-01,COV-20-01-C2,物化可由接收者驗證的輸出與失敗行為,P0,`SRC-00283～SRC-00296；主軸稿#3.5`
+COV-20-01,COV-20-01-C3,建立正向、負向、邊界與對抗 oracle,P0,`SRC-00283～SRC-00296；主軸稿#3.5`
+COV-20-02,COV-20-02-C1,保存並定位原始語義：「HLPE P0-CIP／Plan Compiler／Bootstrap Controller／Artifact Factory 必須吸收進 Engineering Definition Branch 的 provider/capability 層」,P0,`SRC-00042～SRC-00282；主軸稿#3.5`
+COV-20-02,COV-20-02-C2,物化可由接收者驗證的輸出與失敗行為,P0,`SRC-00042～SRC-00282；主軸稿#3.5`
+COV-20-02,COV-20-02-C3,建立正向、負向、邊界與對抗 oracle,P0,`SRC-00042～SRC-00282；主軸稿#3.5`
+COV-20-03,COV-20-03-C1,HLPE 不得保有獨立 programme authority,P0,`SRC-00034#S1-02；主軸稿#3.5`
+COV-20-03,COV-20-03-C2,parallel artifact IDs、parallel state/release reducer,P0,`SRC-00034#S1-02；主軸稿#3.5`
+COV-20-04,COV-20-04-C1,保存並定位原始語義：「SRU_OROCHI G0～G7 的 execution/handoff/evidence assets 必須保留並升級為 route-out lane」,P0,`SRC-00515～SRC-00522；KP17`
+COV-20-04,COV-20-04-C2,物化可由接收者驗證的輸出與失敗行為,P0,`SRC-00515～SRC-00522；KP17`
+COV-20-04,COV-20-04-C3,建立正向、負向、邊界與對抗 oracle,P0,`SRC-00515～SRC-00522；KP17`
+COV-20-05,COV-20-05-C1,保存並定位原始語義：「SRU_OROCHI 不得併入 Canonical Control Plane 或成為 Shared Spine authority」,P0,`SRC-00033#裁決C`
+COV-20-05,COV-20-05-C2,物化可由接收者驗證的輸出與失敗行為,P0,`SRC-00033#裁決C`
+COV-20-05,COV-20-05-C3,建立正向、負向、邊界與對抗 oracle,P0,`SRC-00033#裁決C`
+COV-20-06,COV-20-06-C1,所有舊包必須標記 REUSE_AS_IS,P0,`主軸稿#1.4`
+COV-20-06,COV-20-06-C2,REUSE_WITH_ADAPTER,P0,`主軸稿#1.4`
+COV-20-06,COV-20-06-C3,REFACTOR_AND_ABSORB,P0,`主軸稿#1.4`
+COV-20-06,COV-20-06-C4,REGRESSION_ONLY、REJECT 或 PILOT_REQUIRED,P0,`主軸稿#1.4`
+COV-20-07,COV-20-07-C1,舊版 generic requirement,P0,`SRC-00026～00036`
+COV-20-07,COV-20-07-C2,gate 必須重新綁定 HG-KSEOS Product Identity,P0,`SRC-00026～00036`
+COV-20-07,COV-20-07-C3,Project Graph 與 acceptance,P0,`SRC-00026～00036`
+COV-20-08,COV-20-08-C1,registry,P0,`DOC-00/08/10；主軸稿 TT`
+COV-20-08,COV-20-08-C2,status grammar,P0,`DOC-00/08/10；主軸稿 TT`
+COV-20-08,COV-20-08-C3,gate、artifact name 必須 normalize，禁止 alias 未處理即直接合併,P0,`DOC-00/08/10；主軸稿 TT`
+COV-20-09,COV-20-09-C1,保存並定位原始語義：「舊版工具採用結論必須回到 A03 重新做 FIT/GAP/pilot/HITL，不能因歷史包存在自動沿用」,P0,`SRC-00034#S2-05；DOC-06`
+COV-20-09,COV-20-09-C2,物化可由接收者驗證的輸出與失敗行為,P0,`SRC-00034#S2-05；DOC-06`
+COV-20-09,COV-20-09-C3,建立正向、負向、邊界與對抗 oracle,P0,`SRC-00034#S2-05；DOC-06`
+COV-20-10,COV-20-10-C1,升級必須保存 parent baseline,P0,`SRC-00035#2.1/3.3；KP13`
+COV-20-10,COV-20-10-C2,blast radius,P0,`SRC-00035#2.1/3.3；KP13`
+COV-20-10,COV-20-10-C3,rollback,P0,`SRC-00035#2.1/3.3；KP13`
+COV-20-10,COV-20-10-C4,regression cases 與 supersession,P0,`SRC-00035#2.1/3.3；KP13`
+COV-20-11,COV-20-11-C1,保存並定位原始語義：「任何 legacy 能力被移除、壓平或改法位時必須有 anti-regression evidence，而不是只宣告『已整合』」,P0,`SRC-00034；DOC-09/14`
+COV-20-11,COV-20-11-C2,物化可由接收者驗證的輸出與失敗行為,P0,`SRC-00034；DOC-09/14`
+COV-20-11,COV-20-11-C3,建立正向、負向、邊界與對抗 oracle,P0,`SRC-00034；DOC-09/14`
+COV-21-01,COV-21-01-C1,把 HG-KSEOS 解讀為通用聊天機器人,P0,`SRC-00001～00004#2.1；SRC-00009～00012#5.1`
+COV-21-01,COV-21-01-C2,單純知識庫、RAG 平台或單一模型應用,P0,`SRC-00001～00004#2.1；SRC-00009～00012#5.1`
+COV-21-02,COV-21-02-C1,保存並定位原始語義：「把多智能體解讀為 unrestricted swarm、所有 Agent 同時全域調度或共享可寫 workspace」,P0,`SRC-00009～00012#5.1；SRC-00034`
+COV-21-02,COV-21-02-C2,物化可由接收者驗證的輸出與失敗行為,P0,`SRC-00009～00012#5.1；SRC-00034`
+COV-21-02,COV-21-02-C3,建立正向、負向、邊界與對抗 oracle,P0,`SRC-00009～00012#5.1；SRC-00034`
+COV-21-03,COV-21-03-C1,保存並定位原始語義：「把本地檔案修改能力解讀為整個 C:\／Home／Secrets／Browser Profile 的授權」,P0,`SRC-00040#2.2`
+COV-21-03,COV-21-03-C2,物化可由接收者驗證的輸出與失敗行為,P0,`SRC-00040#2.2`
+COV-21-03,COV-21-03-C3,建立正向、負向、邊界與對抗 oracle,P0,`SRC-00040#2.2`
+COV-21-04,COV-21-04-C1,把 ChatGPT Desktop,P0,`SRC-00037/40`
+COV-21-04,COV-21-04-C2,Hermes、Codex 描述為已合併成單一 binary/runtime,P0,`SRC-00037/40`
+COV-21-05,COV-21-05-C1,在 P0 同時啟用完整 Vector,P0,`SRC-00001～00004#2.3；SRC-00038/39`
+COV-21-05,COV-21-05-C2,GraphRAG,P0,`SRC-00001～00004#2.3；SRC-00038/39`
+COV-21-05,COV-21-05-C3,Browser/CUA,P0,`SRC-00001～00004#2.3；SRC-00038/39`
+COV-21-05,COV-21-05-C4,Multi-host、Enterprise tenancy,P0,`SRC-00001～00004#2.3；SRC-00038/39`
+COV-21-06,COV-21-06-C1,讓 Obsidian,P0,`SRC-00009～00012#5.1；SRC-00038`
+COV-21-06,COV-21-06-C2,RAG index,P0,`SRC-00009～00012#5.1；SRC-00038`
+COV-21-06,COV-21-06-C3,Vector DB,P0,`SRC-00009～00012#5.1；SRC-00038`
+COV-21-06,COV-21-06-C4,KG、CodeGraph 或 Memory backend 成為 canonical truth,P0,`SRC-00009～00012#5.1；SRC-00038`
+COV-21-07,COV-21-07-C1,依工具熱度或 web 單一來源直接採用,P0,`KP09/KP12`
+COV-21-07,COV-21-07-C2,driftable facts 只能 support-only,P0,`KP09/KP12`
+COV-21-08,COV-21-08-C1,保存並定位原始語義：「以檔案存在、目錄完整、hash、readback 或 LLM 自評宣告 body/runtime/production pass」,P0,`DOC-00～14；KP10/KP14`
+COV-21-08,COV-21-08-C2,物化可由接收者驗證的輸出與失敗行為,P0,`DOC-00～14；KP10/KP14`
+COV-21-08,COV-21-08-C3,建立正向、負向、邊界與對抗 oracle,P0,`DOC-00～14；KP10/KP14`
+COV-21-09,COV-21-09-C1,只能在明確 corpus denominator,P0,`SRC-00001～00004#2.3；SRC-00018`
+COV-21-09,COV-21-09-C2,coverage/NRTV 與獨立 verifier 下給出受限 verdict,P0,`SRC-00001～00004#2.3；SRC-00018`
+COV-21-10,COV-21-10-C1,讓 Memory／Skill／Prompt／Policy／Evaluator 自主升級 production,P0,`SRC-00009～00012#5.1`
+COV-21-10,COV-21-10-C2,必須經 experiment,P0,`SRC-00009～00012#5.1`
+COV-21-10,COV-21-10-C3,HITL、rollback,P0,`SRC-00009～00012#5.1`
+COV-21-11,COV-21-11-C1,保存並定位原始語義：「資料、工具、版本、實測或人類決策不足時必須 TEMP_CLOSED_WITH_TT／BLOCKED，而不是臆測補完」,P0,`KP01/KP13；主軸稿#4.4`
+COV-21-11,COV-21-11-C2,物化可由接收者驗證的輸出與失敗行為,P0,`KP01/KP13；主軸稿#4.4`
+COV-21-11,COV-21-11-C3,建立正向、負向、邊界與對抗 oracle,P0,`KP01/KP13；主軸稿#4.4`
+COV-22-01,COV-22-01-C1,PACK 必須在開頭提供產品 one-liner,P0,`使用者本輪需求；DOC-00/02`
+COV-22-01,COV-22-01-C2,mission/non-goal,P0,`使用者本輪需求；DOC-00/02`
+COV-22-01,COV-22-01-C3,authority,P0,`使用者本輪需求；DOC-00/02`
+COV-22-01,COV-22-01-C4,architecture,P0,`使用者本輪需求；DOC-00/02`
+COV-22-01,COV-22-01-C5,workflow,P0,`使用者本輪需求；DOC-00/02`
+COV-22-02,COV-22-02-C1,每個來源族必須有 disposition，每個 atomic requirement 必須有 owner,P0,`SRC-00014；DOC-01/02/09`
+COV-22-02,COV-22-02-C2,artifact,P0,`SRC-00014；DOC-01/02/09`
+COV-22-02,COV-22-02-C3,locator 與 status,P0,`SRC-00014；DOC-01/02/09`
+COV-22-03,COV-22-03-C1,有 orphan requirement,P0,`DOC-09/14；KP13`
+COV-22-03,COV-22-03-C2,unmapped branch,P0,`DOC-09/14；KP13`
+COV-22-03,COV-22-03-C3,unowned artifact,P0,`DOC-09/14；KP13`
+COV-22-03,COV-22-03-C4,ungated tool、unreturned handoff 或 hidden TT,P0,`DOC-09/14；KP13`
+COV-22-04,COV-22-04-C1,五 Branch,P0,`SRC-00009～00012；SRC-00026～00041`
+COV-22-04,COV-22-04-C2,Shared Spine,P0,`SRC-00009～00012；SRC-00026～00041`
+COV-22-04,COV-22-04-C3,Project Graph 與 Windows P0 必須在正文有實質條文，不得只在附錄宣告,P0,`SRC-00009～00012；SRC-00026～00041`
+COV-22-05,COV-22-05-C1,Knowledge,P0,`SRC-00009～00012#5.6`
+COV-22-05,COV-22-05-C2,Engineering,P0,`SRC-00009～00012#5.6`
+COV-22-05,COV-22-05-C3,Memory/Evolution,P0,`SRC-00009～00012#5.6`
+COV-22-05,COV-22-05-C4,Domain Factory 必須各有 inputs,P0,`SRC-00009～00012#5.6`
+COV-22-05,COV-22-05-C5,evidence、rollback,P0,`SRC-00009～00012#5.6`
+COV-22-06,COV-22-06-C1,DOC-00～14,P0,`SRC-00026～00036；DOC set`
+COV-22-06,COV-22-06-C2,A00-M～A08,P0,`SRC-00026～00036；DOC set`
+COV-22-06,COV-22-06-C3,G01～G08 必須有完整 crosswalk 與 producer→consumer acceptance,P0,`SRC-00026～00036；DOC set`
+COV-22-07,COV-22-07-C1,保存並定位原始語義：「所有具名工具／方法／Skills／Prompt／Role 必須有明確法位與 disposition，不能因篇幅被靜默刪除」,P0,`DOC-03/06；A03`
+COV-22-07,COV-22-07-C2,物化可由接收者驗證的輸出與失敗行為,P0,`DOC-03/06；A03`
+COV-22-07,COV-22-07-C3,建立正向、負向、邊界與對抗 oracle,P0,`DOC-03/06；A03`
+COV-22-08,COV-22-08-C1,Security,P0,`DOC-07/09`
+COV-22-08,COV-22-08-C2,Prompt Injection,P0,`DOC-07/09`
+COV-22-08,COV-22-08-C3,Tool Poisoning,P0,`DOC-07/09`
+COV-22-08,COV-22-08-C4,Permission,P0,`DOC-07/09`
+COV-22-08,COV-22-08-C5,Quarantine 必須有正反例與阻斷行為,P0,`DOC-07/09`
+COV-22-09,COV-22-09-C1,Local P0 必須可依 runbook 完成 preflight,P0,`SRC-00005～00008；SRC-00037～00041`
+COV-22-09,COV-22-09-C2,workspace,P0,`SRC-00005～00008；SRC-00037～00041`
+COV-22-09,COV-22-09-C3,version/auth,P0,`SRC-00005～00008；SRC-00037～00041`
+COV-22-09,COV-22-09-C4,card/worktree,P0,`SRC-00005～00008；SRC-00037～00041`
+COV-22-09,COV-22-09-C5,test/review、backup/restore 的設計 readback,P0,`SRC-00005～00008；SRC-00037～00041`
+COV-22-10,COV-22-10-C1,Release 必須有 manifest/hash/readback,P0,`DOC-10/14`
+COV-22-10,COV-22-10-C2,evidence expiry,P0,`DOC-10/14`
+COV-22-10,COV-22-10-C3,independent verdict,P0,`DOC-10/14`
+COV-22-10,COV-22-10-C4,human token,P0,`DOC-10/14`
+COV-22-10,COV-22-10-C5,rollback 與 forbidden claim check,P0,`DOC-10/14`
+COV-22-11,COV-22-11-C1,其他 AI／LLM 必須能從 PACK 直接產生 TaskSpec,P0,`使用者本輪需求；DOC-11/12`
+COV-22-11,COV-22-11-C2,test/security/release gates 與 route-out packet,P0,`使用者本輪需求；DOC-11/12`
+COV-22-11,COV-22-11-C3,不需回猜產品原意,P0,`使用者本輪需求；DOC-11/12`
+COV-22-12,COV-22-12-C1,本文件與未實跑 PACK 的最高誠實狀態只能是 LOCAL_SINGLE_MD_PACKAGE_READY_WITH_TT,P0,`KP14；主軸稿 metadata`
+COV-22-12,COV-22-12-C2,PRODUCTION_PASS 不得宣告,P0,`KP14；主軸稿 metadata`
+SQS-REQ-001,SQS-REQ-001-C1,SQS 必須被標示為使用者本輪指定的 HG-KSEOS Domain Projection 名稱,P0,`USER_DEFINED＋本輪 exact-term scan=0`
+SQS-REQ-001,SQS-REQ-001-C2,不得假稱來源或公開框架原已有同名定義,P0,`USER_DEFINED＋本輪 exact-term scan=0`
+SQS-REQ-002,SQS-REQ-002-C1,定義 target users,P0,`HG-KSEOS Domain Factory embryo`
+SQS-REQ-002,SQS-REQ-002-C2,market/instrument scope,P0,`HG-KSEOS Domain Factory embryo`
+SQS-REQ-002,SQS-REQ-002-C3,business purpose,P0,`HG-KSEOS Domain Factory embryo`
+SQS-REQ-002,SQS-REQ-002-C4,accepted/forbidden sources,P0,`HG-KSEOS Domain Factory embryo`
+SQS-REQ-002,SQS-REQ-002-C5,risk class,P0,`HG-KSEOS Domain Factory embryo`
+SQS-REQ-003,SQS-REQ-003-C1,保存並定位原始語義：「包含 Domain/Source/Ontology/Workflow/Skill-Prompt/Artifact Template/Eval-Gate/Security-Compliance Pack」,P0,`HG-KSEOS Domain Factory embryo`
+SQS-REQ-003,SQS-REQ-003-C2,物化可由接收者驗證的輸出與失敗行為,P0,`HG-KSEOS Domain Factory embryo`
+SQS-REQ-003,SQS-REQ-003-C3,建立正向、負向、邊界與對抗 oracle,P0,`HG-KSEOS Domain Factory embryo`
+SQS-REQ-004,SQS-REQ-004-C1,保存並定位原始語義：「SQS 所有 data/research/agent/backtest/risk/execution artifacts 必須回投 HG-KSEOS Shared Spine，不另建平行 SSOT」,P0,`COV-05/06/12；主軸稿`
+SQS-REQ-004,SQS-REQ-004-C2,物化可由接收者驗證的輸出與失敗行為,P0,`COV-05/06/12；主軸稿`
+SQS-REQ-004,SQS-REQ-004-C3,建立正向、負向、邊界與對抗 oracle,P0,`COV-05/06/12；主軸稿`
+SQS-REQ-005,SQS-REQ-005-C1,市場資料透過具名 Adapter,P0,`SQS direct source example`
+SQS-REQ-005,SQS-REQ-005-C2,typed schema,P0,`SQS direct source example`
+SQS-REQ-005,SQS-REQ-005-C3,source identity,P0,`SQS direct source example`
+SQS-REQ-005,SQS-REQ-005-C4,timestamp,P0,`SQS direct source example`
+SQS-REQ-005,SQS-REQ-005-C5,freshness、lineage 輸入,P0,`SQS direct source example`
+SQS-REQ-006,SQS-REQ-006-C1,market calendar,P0,`SQS direct source example`
+SQS-REQ-006,SQS-REQ-006-C2,timezone,P0,`SQS direct source example`
+SQS-REQ-006,SQS-REQ-006-C3,休市/跨日規則必須進資料與測試契約,P0,`SQS direct source example`
+SQS-REQ-007,SQS-REQ-007-C1,保存並定位原始語義：「若處理證券價格歷史，corporate action adjustment/revision policy 必須顯式」,P0,`台股技術分析 source example`
+SQS-REQ-007,SQS-REQ-007-C2,物化可由接收者驗證的輸出與失敗行為,P0,`台股技術分析 source example`
+SQS-REQ-007,SQS-REQ-007-C3,建立正向、負向、邊界與對抗 oracle,P0,`台股技術分析 source example`
+SQS-REQ-008,SQS-REQ-008-C1,新聞／公告／filing 必須有 source pack,P0,`台股技術分析 source example`
+SQS-REQ-008,SQS-REQ-008-C2,citation/timestamp gate，不能與價格資料無痕混合,P0,`台股技術分析 source example`
+SQS-REQ-009,SQS-REQ-009-C1,單位與精度必須檢測,P0,`工程合成；STD-15/17`
+SQS-REQ-009,SQS-REQ-009-C2,quarantine,P0,`工程合成；STD-15/17`
+SQS-REQ-009,SQS-REQ-009-C3,repair、readback,P0,`工程合成；STD-15/17`
+SQS-REQ-010,SQS-REQ-010-C1,保存並定位原始語義：「每次研究／回測必須引用可重現的資料快照與版本」,P0,`Backtest Evidence＋Evidence contract`
+SQS-REQ-010,SQS-REQ-010-C2,物化可由接收者驗證的輸出與失敗行為,P0,`Backtest Evidence＋Evidence contract`
+SQS-REQ-010,SQS-REQ-010-C3,建立正向、負向、邊界與對抗 oracle,P0,`Backtest Evidence＋Evidence contract`
+SQS-REQ-011,SQS-REQ-011-C1,ICT/策略/市場/工具/風險概念與語義,P0,`SQS direct source example`
+SQS-REQ-011,SQS-REQ-011-C2,formula、source 必須具名,P0,`SQS direct source example`
+SQS-REQ-012,SQS-REQ-012-C1,liquidity,P0,`SQS direct source example`
+SQS-REQ-012,SQS-REQ-012-C2,成交／流動性假設必須進 SPEC 與 Backtest Evidence,P0,`SQS direct source example`
+SQS-REQ-013,SQS-REQ-013-C1,K線／圖表／指標計算必須 deterministic,P0,`SQS direct source example`
+SQS-REQ-013,SQS-REQ-013-C2,versioned、tested，不能只靠 LLM 文字推理,P0,`SQS direct source example`
+SQS-REQ-014,SQS-REQ-014-C1,baseline,P0,`KP03/KP15 experiment rules`
+SQS-REQ-014,SQS-REQ-014-C2,counter-metric、stop rule 必須在運算前凍結,P0,`KP03/KP15 experiment rules`
+SQS-REQ-015,SQS-REQ-015-C1,每個 feature/indicator 保存公式,P0,`工程合成＋Artifact Contract`
+SQS-REQ-015,SQS-REQ-015-C2,tests、known limitations,P0,`工程合成＋Artifact Contract`
+SQS-REQ-016,SQS-REQ-016-C1,研究 Agent,P0,`COV-03/07/17/18`
+SQS-REQ-016,SQS-REQ-016-C2,資料 Agent,P0,`COV-03/07/17/18`
+SQS-REQ-016,SQS-REQ-016-C3,風險 Agent,P0,`COV-03/07/17/18`
+SQS-REQ-016,SQS-REQ-016-C4,驗證 Agent,P0,`COV-03/07/17/18`
+SQS-REQ-016,SQS-REQ-016-C5,執行 Adapter 必須 bounded,P0,`COV-03/07/17/18`
+SQS-REQ-017,SQS-REQ-017-C1,保存並定位原始語義：「模型、Prompt、Skill、工具、資料與策略版本必須共同進實驗與 evidence digest」,P0,`COV-15/16/18`
+SQS-REQ-017,SQS-REQ-017-C2,物化可由接收者驗證的輸出與失敗行為,P0,`COV-15/16/18`
+SQS-REQ-017,SQS-REQ-017-C3,建立正向、負向、邊界與對抗 oracle,P0,`COV-15/16/18`
+SQS-REQ-018,SQS-REQ-018-C1,每次回測必須輸出 inputs,P0,`SQS direct source example`
+SQS-REQ-018,SQS-REQ-018-C2,snapshot,P0,`SQS direct source example`
+SQS-REQ-018,SQS-REQ-018-C3,assumptions,P0,`SQS direct source example`
+SQS-REQ-018,SQS-REQ-018-C4,cost/liquidity,P0,`SQS direct source example`
+SQS-REQ-018,SQS-REQ-018-C5,limitations,P0,`SQS direct source example`
+SQS-REQ-019,SQS-REQ-019-C1,look-ahead,P0,`工程合成；Gate Calibration risk`
+SQS-REQ-019,SQS-REQ-019-C2,survivorship,P0,`工程合成；Gate Calibration risk`
+SQS-REQ-019,SQS-REQ-019-C3,revision,P0,`工程合成；Gate Calibration risk`
+SQS-REQ-019,SQS-REQ-019-C4,selection,P0,`工程合成；Gate Calibration risk`
+SQS-REQ-019,SQS-REQ-019-C5,overfit 等偏差必須有 negative tests 與 disclosure,P0,`工程合成；Gate Calibration risk`
+SQS-REQ-020,SQS-REQ-020-C1,流動性與敏感度必須顯式,P0,`Session/Liquidity＋risk/eval synthesis`
+SQS-REQ-020,SQS-REQ-020-C2,零成本結果不得作唯一結論,P0,`Session/Liquidity＋risk/eval synthesis`
+SQS-REQ-021,SQS-REQ-021-C1,exposure,P0,`Risk Disclosure＋KP03-R05`
+SQS-REQ-021,SQS-REQ-021-C2,position,P0,`Risk Disclosure＋KP03-R05`
+SQS-REQ-021,SQS-REQ-021-C3,drawdown,P0,`Risk Disclosure＋KP03-R05`
+SQS-REQ-021,SQS-REQ-021-C4,concentration,P0,`Risk Disclosure＋KP03-R05`
+SQS-REQ-021,SQS-REQ-021-C5,frequency 等限制必須 typed,P0,`Risk Disclosure＋KP03-R05`
+SQS-REQ-022,SQS-REQ-022-C1,保存並定位原始語義：「輸出必須揭露資料、模型、回測、假設、風險、限制與適用範圍」,P0,`SQS direct source example`
+SQS-REQ-022,SQS-REQ-022-C2,物化可由接收者驗證的輸出與失敗行為,P0,`SQS direct source example`
+SQS-REQ-022,SQS-REQ-022-C3,建立正向、負向、邊界與對抗 oracle,P0,`SQS direct source example`
+SQS-REQ-023,SQS-REQ-023-C1,保存並定位原始語義：「把模型輸出直接宣告為交易事實、投資建議保證或保證收益」,P0,`SQS direct source example`
+SQS-REQ-023,SQS-REQ-023-C2,物化可由接收者驗證的輸出與失敗行為,P0,`SQS direct source example`
+SQS-REQ-023,SQS-REQ-023-C3,建立正向、負向、邊界與對抗 oracle,P0,`SQS direct source example`
+SQS-REQ-024,SQS-REQ-024-C1,research/backtest/simulation/paper/live 必須採不同狀態,P0,`COV-17/19/21 engineering synthesis`
+SQS-REQ-024,SQS-REQ-024-C2,token、release gate,P0,`COV-17/19/21 engineering synthesis`
+SQS-REQ-025,SQS-REQ-025-C1,broker/exchange/order Adapter 必須 schema/auth/scope/idempotency/logging/HITL/kill/rollback,P0,`KP08/KP11＋SQS execution need`
+SQS-REQ-025,SQS-REQ-025-C2,GPT A 不執行,P0,`KP08/KP11＋SQS execution need`
+SQS-REQ-026,SQS-REQ-026-C1,保存並定位原始語義：「intent→validated→approved→submitted→acknowledged→filled/partial/rejected/cancelled/rolled_back 狀態必須明確」,P0,`State machine engineering synthesis`
+SQS-REQ-026,SQS-REQ-026-C2,物化可由接收者驗證的輸出與失敗行為,P0,`State machine engineering synthesis`
+SQS-REQ-026,SQS-REQ-026-C3,建立正向、負向、邊界與對抗 oracle,P0,`State machine engineering synthesis`
+SQS-REQ-027,SQS-REQ-027-C1,risk breach,P0,`KP11/KP13＋risk synthesis`
+SQS-REQ-027,SQS-REQ-027-C2,data stale,P0,`KP11/KP13＋risk synthesis`
+SQS-REQ-027,SQS-REQ-027-C3,adapter mismatch,P0,`KP11/KP13＋risk synthesis`
+SQS-REQ-027,SQS-REQ-027-C4,evidence failure、token expiry 必須 fail-closed,P0,`KP11/KP13＋risk synthesis`
+SQS-REQ-028,SQS-REQ-028-C1,maker/strategy/agent 不得自行 final accept,P0,`KP10-R04；COV-18`
+SQS-REQ-028,SQS-REQ-028-C2,安全、release 獨立 reviewer,P0,`KP10-R04；COV-18`
+SQS-REQ-029,SQS-REQ-029-C1,每次 data→feature→agent→backtest→risk→execution decision 可由 trace_id,P0,`COV-18；MOD-21`
+SQS-REQ-029,SQS-REQ-029-C2,metrics、cost 還原,P0,`COV-18；MOD-21`
+SQS-REQ-030,SQS-REQ-030-C1,同 snapshot,P0,`Backtest Evidence＋Evidence Standard`
+SQS-REQ-030,SQS-REQ-030-C2,version、seed/config 下結果可重跑,P0,`Backtest Evidence＋Evidence Standard`
+SQS-REQ-030,SQS-REQ-030-C3,差異須有可解釋 evidence,P0,`Backtest Evidence＋Evidence Standard`
+SQS-REQ-031,SQS-REQ-031-C1,provider failure 有 quarantine,P0,`KP11；Harness/Recovery`
+SQS-REQ-031,SQS-REQ-031-C2,restore、retest,P0,`KP11；Harness/Recovery`
+SQS-REQ-032,SQS-REQ-032-C1,保存並定位原始語義：「市場、司法管轄、資料授權與合規責任未指定時必須開 TT，不得宣告合規」,P0,`KP01/KP12/KP13`
+SQS-REQ-032,SQS-REQ-032-C2,物化可由接收者驗證的輸出與失敗行為,P0,`KP01/KP12/KP13`
+SQS-REQ-032,SQS-REQ-032-C3,建立正向、負向、邊界與對抗 oracle,P0,`KP01/KP12/KP13`
+SQS-REQ-033,SQS-REQ-033-C1,保存並定位原始語義：「P0 可採 Python/uv/Pydantic-JSON Schema/SQLite/Hermes/DocETL/Codex/OpenCode/Git/Agent Skills/MCP/pytest/OpenTelemetry-compatible events」,P0,`HG-KSEOS Domain Factory source example`
+SQS-REQ-033,SQS-REQ-033-C2,物化可由接收者驗證的輸出與失敗行為,P0,`HG-KSEOS Domain Factory source example`
+SQS-REQ-033,SQS-REQ-033-C3,建立正向、負向、邊界與對抗 oracle,P0,`HG-KSEOS Domain Factory source example`
+SQS-REQ-034,SQS-REQ-034-C1,保存並定位原始語義：「PostgreSQL/Temporal/object storage/queue-worker/vector/typed graph/policy/observability-eval 只作需求觸發 candidate，需 Tool Scout/Pilot」,P0,`HG-KSEOS Domain Factory source example＋KP09`
+SQS-REQ-034,SQS-REQ-034-C2,物化可由接收者驗證的輸出與失敗行為,P0,`HG-KSEOS Domain Factory source example＋KP09`
+SQS-REQ-034,SQS-REQ-034-C3,建立正向、負向、邊界與對抗 oracle,P0,`HG-KSEOS Domain Factory source example＋KP09`
+SQS-REQ-035,SQS-REQ-035-C1,來源未指定 exact backtest engine,P0,`本輪 source scan`
+SQS-REQ-035,SQS-REQ-035-C2,market data vendor、broker adapter 或 jurisdiction,P0,`本輪 source scan`
+SQS-REQ-035,SQS-REQ-035-C3,完整採用前必須 SEARCH_ONLY/DRIFT_PROBE＋HITL,P0,`本輪 source scan`
+SQS-REQ-036,SQS-REQ-036-C1,保存並定位原始語義：「沒有 data/provider/backtest/risk/security/pilot/independent/HITL evidence 時，SQS 最高只能 DESIGN/LOCAL_PACKAGE，不得 production/live-ready」,P0,`KP13/KP14`
+SQS-REQ-036,SQS-REQ-036-C2,物化可由接收者驗證的輸出與失敗行為,P0,`KP13/KP14`
+SQS-REQ-036,SQS-REQ-036-C3,建立正向、負向、邊界與對抗 oracle,P0,`KP13/KP14`

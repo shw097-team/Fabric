@@ -1,0 +1,151 @@
+{
+ "controls": {
+  "C3_cross_round_identity": {
+   "files_checked": 77,
+   "findings_total": 10,
+   "by_type": {
+    "C3.repair_id_round_mismatch": 5,
+    "C3.order_id_frozen": 5
+   },
+   "examples": {
+    "C3.repair_id_round_mismatch": [
+     {
+      "artifact": "W2R1/R2_LOCAL_CLOSURE_RECEIPT.json",
+      "detail": "content repair_id=SWOF-W2-CLOSURE-R1 but artifact round=R2"
+     },
+     {
+      "artifact": "W2R1/R3_APPLY_RECEIPT.json",
+      "detail": "content repair_id=SWOF-W2-CLOSURE-R1 but artifact round=R3"
+     },
+     {
+      "artifact": "W2R2/R2_LOCAL_CLOSURE_RECEIPT.json",
+      "detail": "content repair_id=SWOF-W2-CLOSURE-R1 but artifact round=R2"
+     }
+    ],
+    "C3.order_id_frozen": [
+     {
+      "artifact": "W2R1/R2_LOCAL_CLOSURE_RECEIPT.json",
+      "detail": "order_id=SWOF-CONSTRUCTION-002-W2-REPAIR-001 frozen at REPAIR-001 but artifact round=R2"
+     },
+     {
+      "artifact": "W2R1/R3_LOCAL_CLOSURE_RECEIPT.json",
+      "detail": "order_id=SWOF-CONSTRUCTION-002-W2-REPAIR-001 frozen at REPAIR-001 but artifact round=R3"
+     },
+     {
+      "artifact": "W2R2/R2_LOCAL_CLOSURE_RECEIPT.json",
+      "detail": "order_id=SWOF-CONSTRUCTION-002-W2-REPAIR-001 frozen at REPAIR-001 but artifact round=R2"
+     }
+    ]
+   },
+   "exempt_files_skipped": 0,
+   "exempt_examples": []
+  },
+  "C5_descriptor_resolvability": {
+   "descriptors_examined": 30,
+   "readsets_found": 8,
+   "findings_total": 30,
+   "by_type": {
+    "C5.descriptor_unresolvable": 30
+   },
+   "examples": {
+    "C5.descriptor_unresolvable": [
+     {
+      "artifact": "SWOF_EVIDENCE_RETURN_PACK.json",
+      "detail": "declared descriptor resolves to no committed blob"
+     },
+     {
+      "artifact": "SECRET_SCAN_RECEIPT.json",
+      "detail": "declared descriptor resolves to no committed blob"
+     },
+     {
+      "artifact": "REDACTION_RECEIPT.json",
+      "detail": "declared descriptor resolves to no committed blob"
+     },
+     {
+      "artifact": "EVIDENCE_READBACK.json",
+      "detail": "declared descriptor resolves to no committed blob"
+     }
+    ]
+   }
+  },
+  "C6_publication_preflight": {
+   "packs_examined": 6,
+   "findings_total": 6,
+   "findings": [
+    {
+     "artifact": "W2R1/SWOF_EVIDENCE_RETURN_PACK.json",
+     "detail": "claim_ceiling contains NEW_EVIDENCE_COMMIT_PUBLISHED while evidence SHA is null"
+    },
+    {
+     "artifact": "W2R1/SWOF_EVIDENCE_RETURN_PACK.json",
+     "detail": "claim_ceiling contains READY_FOR_W2_EXTERNAL_RECHALLENGE while evidence SHA is null"
+    },
+    {
+     "artifact": "W2R2/SWOF_EVIDENCE_RETURN_PACK.json",
+     "detail": "claim_ceiling contains NEW_EVIDENCE_COMMIT_PUBLISHED while evidence SHA is null"
+    },
+    {
+     "artifact": "W2R2/SWOF_EVIDENCE_RETURN_PACK.json",
+     "detail": "claim_ceiling contains READY_FOR_W2_EXTERNAL_RECHALLENGE while evidence SHA is null"
+    },
+    {
+     "artifact": "W2R3/SWOF_EVIDENCE_RETURN_PACK.json",
+     "detail": "claim_ceiling contains NEW_EVIDENCE_COMMIT_PUBLISHED while evidence SHA is null"
+    },
+    {
+     "artifact": "W2R3/SWOF_EVIDENCE_RETURN_PACK.json",
+     "detail": "claim_ceiling contains READY_FOR_W2_EXTERNAL_RECHALLENGE while evidence SHA is null"
+    }
+   ]
+  },
+  "C4_handoff_subject_equality": {
+   "findings_total": 3,
+   "findings": [
+    {
+     "round": "W2R3",
+     "detail": "nested source b8e62b96463273e3475ff52a7a4a87831816927a != top-level 0b8ecb0888fbd53b5698f603c90b580ac83dd69d"
+    },
+    {
+     "round": "W2R4",
+     "detail": "w2_source_candidate_sha: 6f332c3cedc52bafc98949f4ce9226b1d1696bc3 != b8e62b96463273e3475ff52a7a4a87831816927a"
+    },
+    {
+     "round": "W2R4",
+     "detail": "w2_evidence_commit_sha: d3e311c2c26b48f4cc0b4b60d02390628f1365b6 != c8d2c56b57700db3a0f469a56db261f84d5bb6fd"
+    }
+   ]
+  },
+  "C2_minimum_matrix_coverage": {
+   "required_cases": 7,
+   "missing": [
+    "checker_receipt"
+   ],
+   "findings_total": 1,
+   "note": "keys are matched case-insensitively against the receipt JSON; this receipt's own fields are used as the coverage surface"
+  }
+ },
+ "false_positive_probe": {
+  "exempt_tree_exists": false,
+  "C3_findings_inside_exempt_paths": 0,
+  "C3_findings_in_W2R1_bundle": 4,
+  "W2R1_examples": [
+   {
+    "artifact": "W2R1/R2_LOCAL_CLOSURE_RECEIPT.json",
+    "detail": "content repair_id=SWOF-W2-CLOSURE-R1 but artifact round=R2"
+   },
+   {
+    "artifact": "W2R1/R2_LOCAL_CLOSURE_RECEIPT.json",
+    "detail": "order_id=SWOF-CONSTRUCTION-002-W2-REPAIR-001 frozen at REPAIR-001 but artifact round=R2"
+   },
+   {
+    "artifact": "W2R1/R3_APPLY_RECEIPT.json",
+    "detail": "content repair_id=SWOF-W2-CLOSURE-R1 but artifact round=R3"
+   },
+   {
+    "artifact": "W2R1/R3_LOCAL_CLOSURE_RECEIPT.json",
+    "detail": "order_id=SWOF-CONSTRUCTION-002-W2-REPAIR-001 frozen at REPAIR-001 but artifact round=R3"
+   }
+  ]
+ },
+ "notes": []
+}

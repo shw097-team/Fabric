@@ -1,0 +1,33 @@
+schema: FAR-RESEARCH-PLAN/1
+plan_id: FAR-SWOF-KSEOS-RCA-001-P1
+request_id: FAR-SWOF-KSEOS-RCA-001
+
+subquestions:
+  Q1: What defect CLASSES appear across the 16 external challenge reports, and how do their
+      frequencies differ between W1 (evidence-only era) and W2 (closure-repair era)?
+  Q2: Which artifact FIELDS/TYPES recurrently carry the contradictions (claim ceilings,
+      provenance labels, nested publication state, denominators, checkpoint bindings)?
+  Q3: Which of these classes were PREVENTABLE by a machine check that HG-KSEOS already
+      could have run (vs requiring human judgement)?
+
+claim_classes: [FACT, DEFECT_PATTERN, ROOT_CAUSE, CONTRADICTION, RECOMMENDATION]
+
+sources:
+  - knowledge-base corpus (the three corpora above; deterministic bounded scan)
+  - HG-KSEOS SharedSpine (knowledge_fts / memory_records)
+  - governed read-only web (only if a claim needs external grounding)
+
+stop_criteria:
+  - every reported pattern cites >=1 concrete file in the corpus
+  - no recommendation without a mapped root cause
+  - abstain per-question if the corpus is silent
+
+lanes:
+  batch1:
+    - lane_a: W1 era (PROMPT W1* + W1 驗收報告*) -> defect taxonomy with citations
+    - lane_b: W2 era (PROMPT W2* + W2/W2R1/W2R2 驗收報告*) -> defect taxonomy with citations
+    - lane_c: evidence corpus (驗收證據/{W2,W2R1,W2R2,W2R3,W2R4}) -> which fields/types recur
+  batch2:
+    - lane_d: newest reports (W2R3 A/B) + the ordering/provenance failure modes -> root cause
+  challenge:
+    - lane_e: fresh-context VERIFY_ONLY challenge of the integrated synthesis

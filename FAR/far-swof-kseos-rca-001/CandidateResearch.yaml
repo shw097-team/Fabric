@@ -1,0 +1,21 @@
+schema: FAR-CANDIDATE-RESEARCH/1
+run_id: FAR-SWOF-KSEOS-RCA-001
+decision_question: why does SWOF repeatedly reach external acceptance with the same defect classes, and what minimal HG-KSEOS upgrade stops it
+conclusion: >
+  Two mechanically-checkable mechanisms account for the recurring blockers - oracle mis-calibration
+  (the local acceptance oracle is the candidate's own artifact, not the frozen canonical contract) and
+  carried/declared identity (metadata copied forward rather than recomputed, so declaration defects
+  survive hash checks). Product code was not the recurring blocker.
+confidence: MEDIUM_HIGH
+confidence_basis: >
+  three independent lanes (A/B/C) converged without a shared prompt; a fresh-context challenger
+  independently reproduced the headline counts and falsified two of them, which were then corrected.
+  Not HIGH because three lane-C counts remain provisional (scan method unpublished) and four control
+  prerequisites remain UNKNOWN inventories.
+counterevidence:
+  - product-conformance defects DID occur (lanes A and B both name product classes); the claim is narrower than "product was always fine"
+  - the newest W2R4 artifacts have already repaired some counted defects, so corpus counts describe history, not the current head
+  - lane B's 404 sub-claim was withdrawn after failing verification
+nonclaims:
+  - no production/release/W3/live-effect/external-acceptance claim
+  - provisional counts carried as provisional

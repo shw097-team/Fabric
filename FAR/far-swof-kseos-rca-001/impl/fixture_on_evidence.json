@@ -1,0 +1,47 @@
+[
+ {
+  "evidence_commit": "d3e311c2c26b48f4cc0b4b60d02390628f1365b6",
+  "files_in_root": 103,
+  "C3": {
+   "files_with_round_token_checked": 17,
+   "findings": 1,
+   "by_type": {
+    "C3.order_id_frozen": 1
+   },
+   "examples": [
+    {
+     "artifact": "R4_LOCAL_CLOSURE_RECEIPT.json",
+     "detail": "order_id=SWOF-CONSTRUCTION-002-W2-REPAIR-001 frozen at REPAIR-001 but artifact round=R4"
+    }
+   ],
+   "exempt_present_in_commit": 67,
+   "predicate_source": "SHIPPED acceptance_integrity_checks.c3_cross_round_identity"
+  },
+  "C5": {
+   "readsets": []
+  },
+  "C6": {
+   "findings": 0,
+   "details": []
+  }
+ },
+ {
+  "evidence_commit": "291c17725f190dbeb09c1d63183b847223a67c56",
+  "files_in_root": 103,
+  "C3": {
+   "files_with_round_token_checked": 17,
+   "findings": 0,
+   "by_type": {},
+   "examples": [],
+   "exempt_present_in_commit": 67,
+   "predicate_source": "SHIPPED acceptance_integrity_checks.c3_cross_round_identity"
+  },
+  "C5": {
+   "readsets": []
+  },
+  "C6": {
+   "findings": 0,
+   "details": []
+  }
+ }
+]

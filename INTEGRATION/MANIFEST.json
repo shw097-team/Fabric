@@ -1,0 +1,17 @@
+{
+ "schema": "FABRIC-INTEGRATION-MIRROR/1",
+ "subjects": ["Fabric", "FAR", "Desktop-effect plane", "HG-KSEOS"],
+ "binding": "Under the current Fabric governance contract, HG-KSEOS is the sole control plane; current canonical Hermes is bound as its governed Runtime/Orchestration Plane.",
+ "purpose": "single-surface external acceptance of all subjects at once",
+ "claim_ceiling": "MIRROR_OF_GOVERNED_ARTIFACTS_FOR_EXTERNAL_ACCEPTANCE_ONLY",
+ "excluded": ["var/", "worktrees/", "evidence/ raw stores", ".venv/", "API KEY/"],
+ "included_subject_state": {
+   "hgk_commits": ["c0cb5cb canonical acceptance resolver", "c12412e ordering oracle"],
+   "far_gate1": "CONFIRMS_USEFUL",
+   "far_gate2": "authorized",
+   "controls_implemented": ["C1","C2","C3","C4","C5","C6","C7","C8"],
+   "independent_checker": "PASS"
+ },
+ "pending": ["desktop-effect plane slice: authorization-token refresh required; gate not bypassed"],
+ "non_claims": ["NOT_EXTERNALLY_ACCEPTED","NOT_MERGED","NOT_RELEASED","NOT_PRODUCTION","NO_LIVE_WORLD_EFFECT"]
+}

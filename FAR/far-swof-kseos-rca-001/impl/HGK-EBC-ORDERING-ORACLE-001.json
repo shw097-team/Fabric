@@ -1,0 +1,77 @@
+{
+ "changeset_id": "HGK-EBC-ORDERING-ORACLE-001",
+ "schema": "HGK-ENGINEERING-BASE-CHANGESET/1",
+ "authority": "user authorization: adopt FAR results and execute the full recommended plan (2026-10-04)",
+ "control": "C7 ADMISSION / ordering oracle (FAR PE-HGK-SWOF-ACCEPTANCE-INTEGRITY-001)",
+ "defect_class": "ORDERING_ORACLE_WALL_CLOCK_ONLY",
+ "inventory_basis": "U2: canonical_events and project_transitions carry no monotonic sequence; ordering was wall-clock created_at",
+ "resolution": "use SQLite implicit rowid (monotonic INSERTION order); no DB schema change required",
+ "sites_changed": [
+  {
+   "file": "src/hg_kseos/lifecycle.py",
+   "before": "ORDER BY created_at LIMIT 1 (current workorder selection = admission order)",
+   "after": "ORDER BY rowid LIMIT 1",
+   "why": "admission-order choice must not depend on second-granularity timestamps"
+  },
+  {
+   "file": "src/hg_kseos/lifecycle.py",
+   "before": "ORDER BY created_at DESC LIMIT 5",
+   "after": "ORDER BY rowid DESC LIMIT 5",
+   "why": "recent-transitions list must be deterministic"
+  },
+  {
+   "file": "src/hg_kseos/knowledge.py",
+   "before": "ORDER BY created_at",
+   "after": "ORDER BY rowid",
+   "why": "memory-record recency must be deterministic on timestamp collisions"
+  },
+  {
+   "file": "src/hg_kseos/evidence_graph.py",
+   "before": "ORDER BY v.created_at (QUALIFIED form)",
+   "after": "ORDER BY v.rowid",
+   "why": "same defect class, alias-qualified; MISSED by revision 1 and found by the independent checker"
+  }
+ ],
+ "precedent": "src/hg_kseos/evidence_graph.py already uses ORDER BY rowid (lines 146, 253)",
+ "file_sha256_after": {
+  "src/hg_kseos/lifecycle.py": "a172e16ccca5924e35fdbaa132802a6b0cbb0f389b2db3aecda14b150f609e86",
+  "src/hg_kseos/knowledge.py": "bba951ebedfd7a759f58fd5b2cb4b34ed327830cfc841229f2cbf46b9138fe8a",
+  "src/hg_kseos/evidence_graph.py": "53ffe344a828ae2a5a163495f81148f37832d070c2ca5996ed31b26aebc3a247",
+  "tests/test_ordering_oracle.py": "22d1578d20cbe10981682f506596048bc5d70c909a6dcbb5c553adc855faad35"
+ },
+ "tests": {
+  "new_class": "tests/test_ordering_oracle.py (5 tests, 5 PASS)",
+  "source_guard": "regex widened to (\\w+\\.)?created_at so a QUALIFIED site cannot hide again",
+  "behavioural": "distinct-timestamp divergence: rowid picks the first-INSERTED, created_at picks the earliest-CLOCKED, and they DISAGREE (proves the fix is not inert)"
+ },
+ "regression_proof": {
+  "suite": "303 tests (298 pristine + 5 new)",
+  "result": "3 failures + 1 error",
+  "attribution": "PRISTINE-EQUIVALENT (independently reproduced by the checker on a scratch tree rebuilt from git HEAD): the IDENTICAL 4 failures; 0 newly-failing tests",
+  "incident": "revision-2 4th-site edit briefly broke test_join_queries (a trailing comma was swallowed by an inline comment); fixed and re-verified before finalising"
+ },
+ "rollback_path": {
+  "ref": "revert src/hg_kseos/lifecycle.py and src/hg_kseos/knowledge.py to the ORDER BY created_at form; receipt carries the post-change sha256 of each file",
+  "procedure": "git checkout -- src/hg_kseos/lifecycle.py src/hg_kseos/knowledge.py src/hg_kseos/evidence_graph.py && rm tests/test_ordering_oracle.py",
+  "verified": "rollback executed and restored during the attribution test above"
+ },
+ "blast_radius": "SMALL (3 ordering clauses; no schema change; no API signature change)",
+ "non_claims": [
+  "NOT_EXTERNALLY_ACCEPTED",
+  "NOT_MERGED",
+  "NOT_RELEASED",
+  "NOT_PRODUCTION",
+  "NO_LIVE_WORLD_EFFECT"
+ ],
+ "revision": 2,
+ "independent_check": {
+  "checker": "CHECKER-EBC-ORD-20261004-7f3a2b",
+  "verdict": "PASS",
+  "claims_reproduced": "7/7",
+  "findings_addressed": [
+   "F1 guard alias-blind -> 4th site fixed AND guard regex widened + regression test added",
+   "F2 tautological behavioural half -> replaced with a distinct-timestamp divergence proof where rowid and created_at select DIFFERENT admissions",
+   "F3 test_r4 content shift -> pre-existing red, no pass/fail change"
+  ]
+ }
+}

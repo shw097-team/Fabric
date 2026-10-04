@@ -1,0 +1,88 @@
+schema: FAR-INTEGRATED-FINDINGS/1
+run_id: FAR-SWOF-KSEOS-RCA-001
+stage: BATCH1_INTEGRATED (lanes A/B/C, derived from their cited outputs)
+
+headline_convergence: >
+  Across three independent lanes the same conclusion emerged: the SWOF programme's PRODUCT code
+  passed in essentially every round, while the blockers were consistently EVIDENCE/coherence and
+  PROCESS/ordering classes. The programme repaired COUNTEREXAMPLES rather than PROVING THE CONTRACT,
+  and the local oracle was calibrated to the candidate's own tests / compiled WorkOrder law rather
+  than to canonical PI06/RBWI source.
+
+lane_a_W1_era:
+  files: 7 W1-era external challenge reports
+  verdict_arc: "FAIL(0ddf00be) -> FAIL(be036588) -> FAIL(8689e583) -> FAIL(ed28b784) -> FAIL(7e1f912d) -> PARTIAL -> PASS_CHALLENGE(final closure)"
+  classes_recurring:
+    - STALE_SUBJECT_METADATA_TRANSPORT (EVIDENCE; recurs) bytes hash correctly but carry a stale/foreign subject; intermediate packaging receipts contradict the current frozen subject. cites W1-EXT-001/002, E-003, W1-R3-OBS-001, R4-EXT-002
+    - ADMISSION_AFTER_MUTATION_RETROACTIVE_LINEAGE (PROCESS; recurs) mutation precedes/not provably gated by HGK admission; PD04 PLANNED_NOT_DISPATCHED with execution_binding null while repair commits exist. cites W1-EXT-007, W1-R3-EXT-001
+    - EXECUTION_BINDING_NOT_MATERIALIZED_CONVENTION_SUBSTITUTION (PROCESS) candidate-local alias substituted for a materialized binding object. cites W1-R3-EXT-001
+    - ORDERING_ORACLE_WALL_CLOCK_ONLY (PROCESS; recurs) ordering argued from host clock not a monotonic sequence; receipt/verdict self-contradiction. cites W1-R3-EXT-001/002
+    - EVIDENCE_SET_INCOMPLETE (EVIDENCE; recurs) required raw artifacts present only as summary booleans. cites W1-EXT-006/007/008, W1-R3-EG-001, R4-EXT-001
+    - LINKAGE_MODE_OVERCLAIM (EVIDENCE; recurs) items labelled DIRECT_FINAL_SUBJECT without containing/deriving the final SHA. cites W1-R3-EXT-003, R4-EXT-003
+    - SELF_AUTHORED_POLICY_TEST_ORACLE_SELF_CONFIRMING (PROCESS; recurs) a derived test encodes an upper-layer acceptance policy as its own normative assertion; closure receipt lacks checker identity. cites W1-EXT-004, W1-EXT-001
+    - NAMED_CAPABILITY_CARRYFORWARD_FIDELITY (PRODUCT) ledgers referenced not exercised; source_disposition collapsed into an execution label. cites W1-EXT-005, Blocking B
+    - EVIDENCE_TRANSPORT_CONTRACT_NOT_SATISFIED (EVIDENCE) wrong schema (SWOF-EVIDENCE-MANIFEST/1 vs RETURN-PACK/1). cites W1-EXT-003
+    - COMPILER_PROVENANCE_DRIFT (PROCESS) compiled authority map ranks an R(n-1) predecessor prompt #1; compiler-skill identity mismatch (48a3 vs 214c). cites R4-EXT-004, R4EC-OD-001
+    - HANDOFF_SUBJECT_MISMATCH (EVIDENCE) authoritative out-of-tree contract not supplied; only a stale in-tree orphan. cites R4EC-EG-001
+    - PROVIDER_OFF_RUNTIME_DEPTH_REDUCED_SUBCLAIM (EVIDENCE; not machine-provable)
+
+lane_b_W2_era:
+  files: 5 W2-era challenge reports + 3 W2 orders
+  PRODUCT_classes:
+    - HumanGate approval binding under-implemented vs canonical PI06 ApprovalToken (recurs: syntactic string -> shape-correct-but-not-canonical -> wrong basis bytes + unnormalized sets + unconsumed required_authority)
+    - Risk-tier gating not independent of operation name (P3/P4/P5 bypass) + missing RUIN veto (recurs)
+    - Rights/entitlement/credential currentness fail-open
+    - Canonical token serialization under-implementation (JCS / domain frame / set semantics) (recurs)
+    - Approval-basis byte recipe divergent from frozen formula, hidden by a correlated maker/test helper
+    - Authority / HumanGateDecision lineage under-binding (signature used as an authority proxy)
+  EVIDENCE_classes:
+    - Canonical HGK closure not exact-subject-bound / vacuous denominator (recurs) repo_head "" , denominator 0/0, digest not independently recomputable
+    - External evidence/readset metadata inconsistent with committed bytes (recurs) empty-file SHA e3b0c442 for non-empty descriptors; Return Pack claims NEW_EVIDENCE_COMMIT_PUBLISHED beside a null evidence SHA; publication receipt claims readset-in-commit while the exact-commit lookup 404s
+  PROCESS_classes:
+    - Candidate published without IndependentReceipt PASS (publication gate not enforced)
+    - Local checker oracle miscalibration (repo tests / compiled law used as authority over canonical PI06) (recurs)
+    - Acceptance edge compiled narrower than the canonical source contract (recurs)
+    - Review-package support bundle not mounted (recurs)
+    - Duplicate / conflicting challenge reports per round left unresolved (recurs)
+    - Non-blocking carried debt repeatedly deferred without a closure trigger (recurs)
+  checker_gaps:
+    - W2: rights currentness fail-open untested
+    - W2R1: closure asserted from prose without reading the raw checkpoint row
+    - W2R1: descriptor hashes/sizes never validated against committed bytes
+    - W2R2: set-normalization + section 16.4 golden vectors never tested (no permutation slice)
+    - W2R2: expected basis value built with the SAME helper as the implementation (correlated oracle)
+    - W2R2: signature treated as a proxy for authority/decision lineage
+    - W2R2: asserted artifact presence in the exact commit never verified (tree readback)
+  lane_b_conclusion: >
+    Checker identity/separation held throughout; the gap is checker ORACLE AUTHORITY. Local gates were
+    calibrated to the candidate's own tests and the compiled WorkOrder law rather than canonical source.
+    Under-implementation clustered in two seams (HumanGate/ApprovalToken canonical integrity;
+    HGK closure/evidence transport), and each bounded repair closed one counterexample while a sibling
+    dimension of the same frozen contract surfaced the next round.
+
+lane_c_evidence_corpus:
+  inventoried: {W2: 68, W2R1: 32, W2R2: 18, W2R3: 14, W2R4: 28, total: 160}
+  cross_round_identity_mismatches_by_round: {W2: 0, W2R1: 11, W2R2: 3, W2R3: 2, W2R4: 3, total: 19}
+  filename_vs_content_self_contradictions: 7
+  self_contradiction_files: [W2R1/R2_LOCAL_CLOSURE_RECEIPT.json, W2R1/R3_APPLY_RECEIPT.json,
+    W2R1/R3_POST_REPAIR_PROBES.json, W2R1/R3_R2_VERIFICATION.json, W2R2/R2_LOCAL_CLOSURE_RECEIPT.json,
+    W2R2/R2_TEST_DENOMINATOR.json, W2R3/R3_TEST_DENOMINATOR.json]
+  order_id_frozen_at_REPAIR_001: [W2R1/R3_LOCAL_CLOSURE_RECEIPT.json, W2R1/R4_LOCAL_CLOSURE_RECEIPT.json,
+    W2R3/R3_LOCAL_CLOSURE_RECEIPT.json, W2R4/R4_LOCAL_CLOSURE_RECEIPT.json]
+  empty_file_sha: {occurrences: [W2R1/SWOF-W2-EXTERNAL-ACCEPTANCE-READSET.json], declaration_sites: 5}
+  unresolvable_declared_hashes: 13
+  carried_copy_defects: {W2R4_byte_identical_prior_round_receipts: 5}
+  key_findings:
+    - "Round-identity drift is the core defect class: W2R2/W2R3/W2R4 all carry the literal schema SWOF-W2R1-EVIDENCE-RETURN-PACK/1; order_id frozen at REPAIR-001 on R3/R4 receipts; 7 files whose filename round contradicts their own schema/repair_id"
+    - "W2R4 is an identity collision point: 5 byte-identical prior-round receipts; its R2 vs R3/R4 receipts make OPPOSITE claims about readset-in-commit"
+    - recurring_contradiction_fields: [schema, order_id, claim_ceiling, publication_state,
+      readset_location/evidence_commit_is_the_one_containing_the_readset, empty_file_sha_present_in_pack,
+      readset_in_commit, subject sha pair vs frozen schema id, supersedes/prior_evidence_commit]
+    - "0 physically empty files exist, so every empty-file SHA is a DECLARATION defect, not a missing-file defect"
+  caveat: "W2R1 bundles self-labelled R1-R4 sub-rounds; if that cumulative re-audit is by design then its 11 folder-mapping mismatches are benign and the hard defects reduce to the 7 self-contradictions + schema-frozen return packs."
+
+cross_lane_agreement:
+  - All three lanes independently name STALE/DRIFTED ROUND IDENTITY as a recurring, machine-detectable class.
+  - Lanes A and B independently name ORACLE AUTHORITY (candidate tests / compiled law used as the acceptance oracle) as the mechanism behind repeated external rejections.
+  - Lanes A and C independently report EVIDENCE-SET/SHA declaration defects that survive hash checks (declaration defects, not missing bytes).
+  - Lanes A and B both name the missing PUBLICATION/ADMISSION ORDERING predicate.

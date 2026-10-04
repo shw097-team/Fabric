@@ -1,0 +1,41 @@
+{
+ "gate": "UD-FAR-RESEARCH-GATE-2026-08-14-001",
+ "proposal": "PE-HGK-SWOF-ACCEPTANCE-INTEGRITY-001: add 8 additive machine-checkable controls to HG-KSEOS (oracle-basis attribution, declared-minimum-matrix coverage, cross-round identity, handoff subject equality, descriptor resolvability, publication preflight, admission event-order binding, compile obligation-closure) so the SWOF programme stops repeating oracle-miscalibration and carried-identity acceptance defects",
+ "proposal_hash": "860df68454ed82bb",
+ "timestamp_utc": "2026-10-04T12:30:40.523417+00:00",
+ "three_source_check": {
+  "source1_on_disk_assets": {
+   "status": "INVESTIGATED",
+   "detail": "full physical inventory of 知識庫/實作相關DOC/SWOF - 14 PROMPT, 16 external challenge reports, 160 evidence artifacts; three research lanes read them directly (7 reports, 5 reports+3 orders, 160 artifacts)"
+  },
+  "source2_callable_skills": {
+   "status": "INVESTIGATED",
+   "detail": "loaded hgk-governed-execution SKILL.md + references/oss-landscape-research.md (FAR execution mechanics) + ran scripts/far_gate_check.py; routing map consulted for the FAR-first route"
+  },
+  "source3_fresh_context": {
+   "status": "INVESTIGATED",
+   "detail": "fresh-context challenge lane E (read-only, not an author) adversarially reviewed the integrated findings and the root-cause table against the corpus on 5 dimensions"
+  }
+ },
+ "challenge_lane": {
+  "present": true,
+  "verdict": "PASS_CHALLENGE_CONDITIONAL",
+  "conditions_raised": 7,
+  "conditions_closed": 7,
+  "record": "LaneE_Challenge.json",
+  "note": "all seven conditions closed in ProposedEvolution.yaml v2; counts corrected, one sub-claim withdrawn, three counts carried as provisional"
+ },
+ "research_verdict": "CONFIRMS_USEFUL",
+ "evidence_refs": [
+  "ResearchRequest.yaml",
+  "ResearchPlan.yaml",
+  "IntegratedFindings.yaml",
+  "LaneD_RootCause.json",
+  "LaneE_Challenge.json",
+  "ResearchSynthesis.md",
+  "CandidateResearch.yaml",
+  "ProposedEvolution.yaml"
+ ],
+ "gate2_user_submission_allowed": true,
+ "scope_note": "Gate 1 CONFIRMS_USEFUL for the PROPOSAL AS RESEARCHED. It does not authorize any HG-KSEOS source mutation, and it is not an external acceptance verdict."
+}
