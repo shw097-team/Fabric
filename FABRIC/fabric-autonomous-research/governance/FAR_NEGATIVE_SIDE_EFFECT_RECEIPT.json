@@ -1,0 +1,37 @@
+{
+  "schema": "FAR-NEGATIVE-SIDE-EFFECT-RECEIPT/1",
+  "subject_bound": {
+    "subject_root_digest": "5720337bce9ef09402c8f22a2fecff39bffe881a5e46a187a78aabd10519ec6a",
+    "subject_manifest": "FAR_SUBJECT_ROOT_MANIFEST.json (95-file implementation surface; external-reviewed recomputation PASS)",
+    "binding_semantics": "this receipt is an acceptance/evidence artifact; it does NOT alter the frozen subject root (5720337b stays valid)"
+  },
+  "negative_edges": {
+    "unauthorized_side_effects": {
+      "value": 0,
+      "denominator": "WO-FAR-001..008 + WO-FAR-USE-001 (9 WorkOrders, all VERIFIED) + 23/23 tests + 2 canary runs (FAR-20260813-001 19 artifacts, FAR-20260813-002 20 artifacts) + LH detach/reattach canary",
+      "check": "evidence manifest entries (FAR_EVIDENCE_MANIFEST.json) all locate under Fabric/fabric-autonomous-research/ (FAR-root/* or evidence-bundle/*); SQS/docs/risk/SSOT/kernel: 0 files modified after 2026-08-13 19:00 +08 (find -newermt); HGK writes confined to var/far/ + evidence/review mirrors",
+      "evidence_locator": "FAR_EVIDENCE_MANIFEST.json + evidence-bundle/raw-spine/far_spine_readback_final_r2.json"
+    },
+    "sqs_financial_truth_mutation": {
+      "value": 0,
+      "check": "SQS-THC/SQS/TWICT_RUNTIME_PACK_MANIFEST.yaml mtime 2026-08-13 01:07:22 +08 (BEFORE FAR round); SQS product paths (SQS/docs/risk/SSOT/kernel) show zero files modified in the FAR window; no FAR evidence artifact locates into SQS product paths; FAR consumes SQS ONLY as consumer boundary (FAR_CAPABILITY_MATRIX.yaml RESEARCH_FINANCIAL_METHOD mutation_authority: NONE)",
+      "evidence_locator": "FAR_CAPABILITY_MATRIX.yaml + SQS-THC/SQS/TWICT_RUNTIME_PACK_MANIFEST.yaml (mtime readback)"
+    },
+    "live_broker_write": {
+      "value": 0,
+      "check": "broker/order-path adapter files in SQS-THC = 0 (find -iname '*broker*' over SQS-THC excluding .git/.venv = empty); FAR product code (far_router.py ade07192…/far_watchdog/far_source_security, subject tree current) contains no broker/order-path references; SQS handoff pack invariant no_broker_write: true (per SQS docs); FAR never routes to a live order path (router decision classes are research/evolution only)",
+      "evidence_locator": "SQS-THC broker scan (empty result) + far_router.py sha 7b01df26-bound subject tree + FAR_CAPABILITY_MATRIX.yaml"
+    }
+  },
+  "checker_identity": "acceptance-officer (independent; maker-separated; AO lanes deleg_bab33aae/deleg_e4a09db4 PASS)",
+  "run_denominator": {
+    "workorders": 9,
+    "workorder_ids": ["WO-FAR-001", "WO-FAR-002", "WO-FAR-003", "WO-FAR-004", "WO-FAR-005", "WO-FAR-006", "WO-FAR-007", "WO-FAR-008", "WO-FAR-USE-001"],
+    "wo_states": "ALL VERIFIED",
+    "tests": "23/23 PASS, exit 0",
+    "canary_runs": ["FAR-20260813-001 (19 artifacts)", "FAR-20260813-002 (20 artifacts)"],
+    "long_horizon_canary": "LH-CANARY-001 (detach pid 24420 -> reattach pid 12604 -> RESEARCH_PASS_CANDIDATE)"
+  },
+  "raw_locator": "C:\\Projects\\Agent_Workspace\\Fabric\\fabric-autonomous-research\\ (evidence-bundle/ + FAR-root receipts; mirrored to HGK/Fabric/SQS evidence\\review\\)",
+  "generated_at_utc": "2026-08-13T13:50:00Z"
+}

@@ -1,0 +1,13 @@
+{
+  "schema": "FAR-HARDENING-COMPILE-RECEIPT/1",
+  "changeset": "FAR_TRI_SOURCE_FOCUSED_HARDENING_20260814",
+  "equivalent_note": "Prompt Compiler current equivalent: WO admission (typed SharedSpine) + python compile gate + lint + full test entry (per REUSE-FIRST; no new compile system)",
+  "gates": {
+    "workorder_admission": "REQ-FAR-HARDENING-001 FROZEN v1 -> WO-FAR-HARDENING-001 CREATED (writer=codex; RB-WO-FAR-HARDENING-001)",
+    "python_compile": "far_retrieval.py / far_trisource.py / tests/test_far_hardening.py py_compile PASS",
+    "lint": "patch-tool syntax checks PASS (0 new errors)",
+    "test_entry": "unittest discover -s tests -t . -> 103 tests (see TEST_DENOMINATOR.json)",
+    "yaml_validate": "FAR_LONG_HORIZON_CONTRACT.yaml / FAR_ROUTE_CHECK.yaml parse PASS"
+  },
+  "generated_at_utc": "2026-08-13T17:10:00Z"
+}

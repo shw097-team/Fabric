@@ -1,0 +1,34 @@
+# RP002_CHANGE_CLASS_ROUTER.yaml — bounded change routing (r3 §6.3)
+schema: RP002-CHANGE-CLASS-ROUTER/1
+consumer:
+  default: CURRENT_HGK_APL_OR_OWNING_STACK_ORCHESTRATOR_WRAPPER
+  policy_source: FABRIC_GOVERNANCE_CONTRACTS
+  fabric_daemon: false
+classes:
+  RUNTIME_TRANSIENT:
+    route: HERMES_NATIVE
+    examples: [session_state, heartbeat, retry_counter, scratch]
+  CONFIG_PREAPPROVED:
+    route: OWNING_STACK_ORCHESTRATOR_APPLY_SMOKE_READBACK
+    precondition: EXISTING_ADMITTED_PROFILE_AND_POLICY
+  PROFILE_CHANGE:
+    route: ORACLE_TO_HGK
+    pack: profile
+  SKILL_CHANGE:
+    route: ORACLE_TO_HGK
+    pack: skill
+  PIPELINE_CHANGE:
+    route: ORACLE_TO_HGK
+    pack: multi-profile-pipeline
+  STACK_CHANGE:
+    route: ORACLE_TO_HGK
+    pack: stack
+  PROVIDER_UPGRADE:
+    route: ORACLE_TO_HGK_QUALIFICATION_ONLY
+    pack: shared-service
+  DOMAIN_CHANGE:
+    route: DOMAIN_AUTHORITY_TO_ORACLE_TO_HGK
+    requires_domain_checker: true
+  CONSTITUTIONAL_CHANGE:
+    route: HUMAN_META_ORACLE
+    auto_promotion: false

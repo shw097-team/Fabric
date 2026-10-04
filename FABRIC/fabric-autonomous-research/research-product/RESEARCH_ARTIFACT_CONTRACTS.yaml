@@ -1,0 +1,125 @@
+# FAR Research Artifact Contracts — R0-R8 product data (blueprint §10 materialization)
+schema: FAR-ARTIFACT-CONTRACTS/1
+subject: fabric-autonomous-research (WO-FAR-002)
+lifecycle: R0_R8
+note: LOGICAL_* = logical contract; Q0 mapped to current Fabric/HGK contracts (no parallel normative schema)
+
+run_directory:
+  layout: far-run/<run_id>/
+  artifacts:
+    - ResearchRequest.yaml            # R0 intake
+    - ResearchPlan.yaml               # R1 plan
+    - ResearchSourceDenominator.tsv   # R2 denominator
+    - QueryLedger.tsv                 # R2 queries
+    - SourceSnapshotLedger.tsv        # R2 snapshots
+    - SourceDispositionLedger.tsv     # R2 dispositions
+    - ExtractionLedger.jsonl          # R3 extraction
+    - HypothesisLedger.tsv            # R4 hypotheses
+    - FitGapLedger.tsv                # R4 fit-gap
+    - ContradictionLedger.tsv         # R4 contradictions
+    - ClaimLedger.tsv                 # R4 claims
+    - DisagreementLedger.tsv          # R5 conditional (challenge)
+    - ExperimentPlan.yaml             # R5 conditional (experiment)
+    - ExperimentResult.yaml           # R5 conditional, only if actually run
+    - RejectedAlternativeLedger.tsv   # R4 rejected alternatives
+    - OpenQuestionLedger.tsv          # R6 open questions
+    - ResearchSynthesis.md            # R6 synthesis
+    - CandidateResearch.yaml          # R7 candidate research
+    - CandidateKnowledge.yaml         # R7 conditional candidate knowledge
+    - ProposedEvolution.yaml          # R7 conditional proposed evolution
+    - ResearchHandoff.yaml            # R8 handoff
+    - ResearchRunReceipt.json         # R8 compact receipt
+
+artifacts:
+  ResearchRequest:
+    schema: LOGICAL_FAR_RESEARCH_REQUEST_V1
+    fields:
+      workorder_ref: {id: required, digest: required}
+      decision_question: required
+      owner: required
+      task_class: required
+      source_requirements: []
+      freshness_requirement: required
+      budget_ref: required
+      security_boundary_ref: required
+      expected_decision_output: required
+  ResearchPlan:
+    schema: LOGICAL_FAR_RESEARCH_PLAN_V1
+    fields:
+      subquestions: []
+      claim_classes: []
+      source_classes: []
+      query_strategy: []
+      candidate_methods_providers: []
+      challenge_trigger: []
+      experiment_trigger: []
+      stop_criteria: []
+      abstain_criteria: []
+      budget_allocation: {}
+  ResearchSourceDenominator:
+    row_fields: [source_id, source_class, required|optional, authority_role, identity_locator, expected_freshness, access_status, snapshot_digest_or_locator, disposition, reason]
+    source_classes: [LOCAL_GOVERNED_CORPUS, GIT_REPOSITORY, OFFICIAL_DOC, WEB_PAGE, PAPER, ISSUE_DISCUSSION, DATASET, EXPERIMENT_INPUT]
+    access_status: [RESOLVED, SNAPSHOTTED, MISSING, UNAVAILABLE, AUTH_BLOCKED]
+  QueryLedger:
+    row_fields: [query_id, subquestion_id, route, query_or_lookup, timestamp, result_count, selected_source_ids, failure_code, cost]
+  SourceSnapshotLedger:
+    row_fields: [source_id, snapshot_digest_or_locator, fetched_at, freshness_class, authority_role, byte_count]
+  SourceDispositionLedger:
+    row_fields: [source_id, disposition, reason, authority_role, security_findings]
+  ExtractionLedger:
+    row_fields: [extraction_id, source_id, kind, content_fingerprint, text_fragment]
+    kinds: [fact_candidate, claim, constraint, method, version, benchmark_result, known_failure, unknown, source_instruction_text, executable_example]
+    security: source_instruction = DATA (not command/policy/permission)
+  HypothesisLedger:
+    row_fields: [hypothesis_id, text, basis_source_ids, status, testability]
+  FitGapLedger:
+    row_fields: [fitgap_id, subject, gap_class, fit_assessment, integration_cost_estimate, reuse_adapter_option]
+  ContradictionLedger:
+    row_fields: [contradiction_id, claim_a, claim_b, resolution_status]
+  ClaimLedger:
+    row_fields: [claim_id, claim_text, claim_class, support_source_ids, counter_source_ids, status, confidence, freshness, owner]
+    statuses: [SUPPORTED, SUPPORTED_WITH_LIMIT, DISPUTED, UNVERIFIED, MISSING, REFUTED, NOT_APPLICABLE]
+  DisagreementLedger:
+    row_fields: [disagreement_id, primary_claim_ref, challenger, challenger_evidence, resolution]
+  ExperimentPlan:
+    schema: LOGICAL_FAR_EXPERIMENT_PLAN_V1
+    fields: [hypothesis_ref, method, environment, commands, bounded_write_set, expected_metrics, abort_criteria]
+  ExperimentResult:
+    schema: LOGICAL_FAR_EXPERIMENT_RESULT_V1
+    fields: [experiment_ref, environment_digest, command_digest, result_digest, status, partial_note]
+    rule: no real run => no ExperimentResult=PASS
+  RejectedAlternativeLedger:
+    row_fields: [alternative_id, alternative, rejection_reason, evidence_refs]
+  OpenQuestionLedger:
+    row_fields: [question_id, question, owner, required_for_decision]
+  ResearchSynthesis:
+    required_sections: [decision_summary, claim_source_map, confidence_by_claim, supporting_evidence, counterevidence, unresolved_disagreement, missing_unverified, cost_operational_tradeoff, recommended_disposition, nonclaims]
+  CandidateResearch:
+    schema: LOGICAL_FAR_CANDIDATE_RESEARCH_V1
+    fields: [run_ref, decision_question, disposition, evidence_digests, confidence, limits, owner_action_required]
+    status: CANDIDATE_ONLY
+  CandidateKnowledge:
+    schema: LOGICAL_FAR_CANDIDATE_KNOWLEDGE_V1
+    fields: [run_ref, knowledge_class, content_ref, provenance, promotion_candidate_namespace]
+    status: CANDIDATE_ONLY (owner promotion required)
+  ProposedEvolution:
+    schema: LOGICAL_FAR_CANDIDATE_HARNESS_DELTA_V1
+    fields: [gap_ref, producer, delta_classes, full_before_digest, full_after_candidate_digest, acceptance_predicate_modified]
+    status: CANDIDATE_ONLY (HGK Governed Evolution intake)
+  ResearchHandoff:
+    schema: LOGICAL_FAR_RESEARCH_HANDOFF_V1
+    fields: [run_ref, terminal, owner, next_actions, durable_change_route, open_questions, nonclaims]
+  ResearchRunReceipt:
+    schema: LOGICAL_FAR_RESEARCH_RUN_RECEIPT_V1
+    fields: [workorder_id, run_id, task_class, primary, challenger, provider_identity_digest, source_denominator_digest, claim_ledger_digest, candidate_digest, terminal, open_questions, usage, nonclaims]
+    terminal_states: [RESEARCH_PASS_CANDIDATE, RESEARCH_PARTIAL, RESEARCH_ABSTAIN, RESEARCH_FAILED, RESEARCH_BLOCKED_HITL, RESEARCH_BLOCKED_SOURCE, RESEARCH_BLOCKED_SECURITY, RESEARCH_ABORTED_BUDGET]
+    nonclaims: [NOT_ACCEPTANCE_PASS, NOT_PRODUCTION_AUTHORIZATION]
+
+progress_semantics:
+  verified_progress: [new_required_source_resolved, new_source_snapshot_admitted, new_claim_status_changed_with_evidence, new_contradiction_resolved, new_experiment_result_bound, new_open_question_closed, new_rejected_alternative_with_evidence, new_candidate_artifact_digest]
+  not_progress: [same_search_repeated, same_tool_call_repeated, same_paragraph_rewritten, same_source_reread_no_new_extraction, agent_says_making_progress, heartbeat_alone, new_tokens_consumed, more_subagents_spawned]
+
+completion_semantics:
+  PASS_CANDIDATE_requires: [required_denominator_complete_or_accepted_NA, load_bearing_claims_status_not_unverified_missing, required_challenge_closed_or_explicit_partial, required_experiment_executed_and_bound, source_security_blocking_0, candidate_handoff_emitted]
+  PARTIAL: useful_evidence_with_unresolved_required_sources_claims_presentable_with_limits
+  ABSTAIN: available_evidence_cannot_support_reliable_recommendation

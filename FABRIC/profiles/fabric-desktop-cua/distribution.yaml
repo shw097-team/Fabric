@@ -1,0 +1,18 @@
+name: fabric-desktop-cua
+version: 0.1.0
+description: "FDA provider profile: Cua Driver (P0 primary fast path) for Fabric Shared Infrastructure Profile Team fabric-desktop-automation / WINDOWS_DESKTOP_AUTOMATION"
+hermes_requires: ">=0.12.0"
+author: "FDA (WO-FDA-001)"
+license: "MIT"
+provider:
+  name: CUA_DRIVER
+  identity_ref: "RP002_TOOL_AND_INHERITED_CAPABILITY_MATRIX.yaml -> cua_driver row"
+  lifecycle: ON_DEMAND
+  initial_mode: PRIMARY_FAST_PATH
+  transport: LOCAL_ONLY
+  mcp: stdio_or_inprocess_preferred
+  permission_mode: BOUNDED_MANIFEST (upstream bounded capability; exact schema fresh-read at qualification)
+env_requires:
+  - name: OPENCODE_GO_API_KEY
+    description: "OpenCode Go API key (provider route; required for agent inference)"
+    required: true

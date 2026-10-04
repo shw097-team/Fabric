@@ -1,0 +1,13 @@
+# FAR artifact template: ExperimentResult
+# run_id: <FAR-run-id>
+# generated from RESEARCH_ARTIFACT_CONTRACTS.yaml (WO-FAR-002)
+
+schema: LOGICAL_FAR_EXPERIMENT_RESULT_V1
+fields:
+- experiment_ref
+- environment_digest
+- command_digest
+- result_digest
+- status
+- partial_note
+rule: no real run => no ExperimentResult=PASS

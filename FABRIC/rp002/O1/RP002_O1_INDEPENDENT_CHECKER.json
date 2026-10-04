@@ -1,0 +1,88 @@
+{
+  "artifact_id": "RP002_O1_INDEPENDENT_CHECKER",
+  "oracle": "EXTERNAL_FROZEN_META_ORACLE",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "id": "O1I_FILE_distribution_yaml",
+      "pass": true,
+      "detail": "distribution.yaml"
+    },
+    {
+      "id": "O1I_FILE_SOUL_md",
+      "pass": true,
+      "detail": "SOUL.md"
+    },
+    {
+      "id": "O1I_FILE_config_yaml",
+      "pass": true,
+      "detail": "config.yaml"
+    },
+    {
+      "id": "O1I_FILE_CHECKER_ISOLATION_RECIPE_md",
+      "pass": true,
+      "detail": "CHECKER_ISOLATION_RECIPE.md"
+    },
+    {
+      "id": "O1I_RECEIPT_SCHEMA",
+      "pass": true,
+      "detail": "RP002-ORACLE-RECEIPT/1"
+    },
+    {
+      "id": "O1I_PACK_SCHEMA",
+      "pass": true,
+      "detail": "RP002-ACCEPTANCE-PACK/1"
+    },
+    {
+      "id": "O1I_PACKS_10",
+      "pass": true,
+      "detail": "['hermes-runtime', 'kanban', 'knowledge', 'multi-profile-pipeline', 'oracle-meta', 'profile', 'shared-service', 'skill', 'sqs-financial-bridge', 'stack']"
+    },
+    {
+      "id": "O1I_VALIDATOR_oracle_preflight",
+      "pass": true,
+      "detail": "G:acceptance_oracle_digest\", \"BAD_VERDICT:SELF_APPROVED\"]}}\n"
+    },
+    {
+      "id": "O1I_VALIDATOR_evidence_readback",
+      "pass": true,
+      "detail": "6d7923b8ba946b31af74ea9bf7021ebb490a1a8db0fff82edacbe3d39'}\n"
+    },
+    {
+      "id": "O1I_VALIDATOR_subject_binding",
+      "pass": true,
+      "detail": " [\"SUBJECT_MISMATCH\", \"MISSING_PACKS:['hermes-runtime']\"]}}\n"
+    },
+    {
+      "id": "O1I_TESTS_golden",
+      "pass": true,
+      "detail": "TESTS_OK\n"
+    },
+    {
+      "id": "O1I_TESTS_negative",
+      "pass": true,
+      "detail": "TESTS_OK\n"
+    },
+    {
+      "id": "O1I_TESTS_adversarial",
+      "pass": true,
+      "detail": "TESTS_OK\n"
+    },
+    {
+      "id": "O1I_TESTS_holdout",
+      "pass": true,
+      "detail": "TESTS_OK\n"
+    },
+    {
+      "id": "O1I_NO_SELF_PROMOTION",
+      "pass": true,
+      "detail": "PENDING_EXTERNAL_CONFIRMATION_VIA_SINGLE_REVIEW_MD"
+    },
+    {
+      "id": "O1I_KPACK_BINDING",
+      "pass": true,
+      "detail": "binding doc"
+    }
+  ],
+  "note": "Deterministic materialization verified. Oracle promotion receipt remains with the external Meta-Oracle."
+}

@@ -1,0 +1,23 @@
+# Fabric RISK_CLASSES — RP-002 governance contract (r3 §8.2)
+schema: RP002-RISK-CLASSES/1
+classes:
+  R0:
+    label: read-only
+    example: source inventory / search / evidence read
+    default: auto
+  R1:
+    label: bounded local write
+    example: docs/tests/code in admitted worktree
+    default: authorized WorkOrder
+  R2:
+    label: platform/runtime change
+    example: profile/config/provider binding
+    default: independent check + rollback
+  R3:
+    label: authority/security mutation
+    example: ACL/Oracle/promotion rule
+    default: HITL or current owner rule
+  R4:
+    label: financial/external side effect
+    example: live broker/order/external destructive action
+    default: BLOCKED in RP-002

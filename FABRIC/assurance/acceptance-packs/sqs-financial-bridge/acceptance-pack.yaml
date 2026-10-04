@@ -1,0 +1,11 @@
+{
+  "schema": "RP002-ACCEPTANCE-PACK/1",
+  "pack": "sqs-financial-bridge",
+  "subject": "SQS interface fixtures",
+  "checks": [
+    "read-only stage2",
+    "no live broker write",
+    "source-authorized fixture only"
+  ],
+  "materialized_at": "2026-08-12T22:50:00+08:00"
+}

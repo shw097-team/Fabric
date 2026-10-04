@@ -1,0 +1,329 @@
+schema: FDA-DESKTOP-CAPABILITY-MATRIX/1
+artifact_id: FDA_DESKTOP_CAPABILITY_MATRIX
+canonical_owner: FABRIC_CAPABILITY_QUALIFICATION_POLICY
+runtime_consumer: HGK_DETERMINISTIC_ROUTER_OR_HERMES_BINDING
+mutation_authority: ADMITTED_HGK_WORKORDER_ONLY
+promotion_authority: CURRENT_FABRIC_PROMOTION + INDEPENDENT_ACCEPTANCE
+rollback: PREVIOUS_PROMOTED_MATRIX_DIGEST
+subject_digest: FDA-MATRIX-20260813-LIVE-QUALIFICATION-V2
+promoted_at: null
+prior_matrix_digest: null
+rollback_matrix_digest: null
+build_firewall:
+  schema: XQ_BUILD_DRIFT_FIREWALL/1
+  subject_receipt: FDA_XQ_BUILD_FINGERPRINT_RECEIPT.json
+  current_subject: XQ-3.20.02-260811-sha6c0c7cbc54a3b5827926866ee8d907718e15eb74cf35e935a8c7ac2a7c9c4abe
+  public_build_mismatch_acknowledged: true
+  policy:
+    locate_selector: REQUALIFY
+    uia_selector: REQUALIFY
+    clipboard: REQUALIFY
+    pixel_coordinate: INVALIDATE
+    radar_paper: INVALIDATE_PLUS_FULL_10X
+    file_log_schema: SCHEMA_PROBE
+    live_broker: DENY_ALWAYS
+action_classes:
+  XQ_LAUNCH_LOCATE:
+    application:
+      id: XQ
+      version: XQLite-3.20.02-260811
+    subject_binding:
+      xq_version: 3.20.02
+      xq_build: 260811
+      xq_exe_sha256: 6c0c7cbc54a3b5827926866ee8d907718e15eb74cf35e935a8c7ac2a7c9c4abe
+      fingerprint_receipt: FDA_XQ_BUILD_FINGERPRINT_RECEIPT.json
+    validity:
+      exact_build: true
+      invalidated_by:
+      - XQ_BUILD_CHANGE
+      - SELECTOR_SIGNATURE_CHANGE
+    providers:
+      PYWINAUTO_WIN32:
+        profile_id: fabric-desktop-cua
+        executor_backend: pywinauto_win32
+        backend_version: 0.6.9
+        selector_class: hwnd/win32_enum
+        state: QUALIFIED
+        qualification_subject_digest: FDA-FN01-NATIVE-20260814
+        workflow_pass_rate: 10/10
+        silent_wrong_action: 0
+        wrong_action: 0
+        detected_failure_rate: 0
+        mean_recovery_count: 0
+        median_completion_time_ms: 5
+        structured_control_coverage: WIN32-NATIVE
+        vision_fallback_rate: 0
+        human_intervention_count: 0
+        restart_recovery_rate: 1.0
+        version_drift_state: CURRENT
+        evidence_refs:
+        - FDA_XQ_NATIVE_QUALIFICATION_RECEIPT.json
+      CUA:
+        profile_id: fabric-desktop-cua
+        state: QUALIFIED
+        qualification_subject_digest: FDA-F01-LIVE-20260813
+        workflow_pass_rate: 10/10
+        silent_wrong_action: 0
+        wrong_action: 0
+        detected_failure_rate: 0
+        mean_recovery_count: 0
+        median_completion_time_ms: 109
+        structured_control_coverage: UIA-STRUCTURED
+        vision_fallback_rate: 0
+        human_intervention_count: 0
+        restart_recovery_rate: 1.0
+        version_drift_state: CURRENT
+        evidence_refs:
+        - FDA_F01_LIVE_FIXTURE_RECEIPT.json
+      UFO2:
+        profile_id: fabric-desktop-ufo2
+        state: QUALIFIED
+        qualification_subject_digest: UFO2-v3.0.8-EFFECTIVE-LOAD-20260813
+        workflow_pass_rate: 7/7-effective-load
+        silent_wrong_action: 0
+        wrong_action: 0
+        detected_failure_rate: 0
+        mean_recovery_count: 0
+        median_completion_time_ms: 0
+        structured_control_coverage: UIA-BACKEND
+        vision_fallback_rate: 0
+        human_intervention_count: 0
+        restart_recovery_rate: 1.0
+        version_drift_state: CURRENT
+        evidence_refs:
+        - FDA_C3_UFO2_EFFECTIVE_LOAD_RECEIPT.json
+    routing:
+      preferred: CUA
+      alternate: UFO2
+      reason_code: CUA_10_OF_10_LIVE_QUALIFIED
+      hot_swap_allowed: true
+  XS_COMPILE_PASS:
+    application:
+      id: XQ
+      version: XQLite-3.20.02-260811
+    subject_binding:
+      xq_version: 3.20.02
+      xq_build: 260811
+      xq_exe_sha256: 6c0c7cbc54a3b5827926866ee8d907718e15eb74cf35e935a8c7ac2a7c9c4abe
+      fingerprint_receipt: FDA_XQ_BUILD_FINGERPRINT_RECEIPT.json
+    validity:
+      exact_build: true
+      invalidated_by:
+      - XQ_BUILD_CHANGE
+      - SELECTOR_SIGNATURE_CHANGE
+    providers:
+      CUA:
+        profile_id: fabric-desktop-cua
+        state: QUALIFIED
+        qualification_subject_digest: FDA-F06-LIVE-20260813
+        workflow_pass_rate: 10/10
+        silent_wrong_action: 0
+        wrong_action: 0
+        detected_failure_rate: 0
+        mean_recovery_count: 0
+        median_completion_time_ms: 6000
+        structured_control_coverage: FILE-READBACK
+        vision_fallback_rate: 0
+        human_intervention_count: 0
+        restart_recovery_rate: 1.0
+        version_drift_state: CURRENT
+        evidence_refs:
+        - FDA_F06_TEN_RUN_RECEIPT.json
+        - FDA_F06_CLOSURE_V8_RECEIPT.json
+      UFO2:
+        profile_id: fabric-desktop-ufo2
+        state: QUALIFIED
+        qualification_subject_digest: UFO2-v3.0.8-EFFECTIVE-LOAD-20260813
+        workflow_pass_rate: 7/7-effective-load
+        silent_wrong_action: 0
+        wrong_action: 0
+        detected_failure_rate: 0
+        mean_recovery_count: 0
+        median_completion_time_ms: 0
+        structured_control_coverage: UIA-BACKEND
+        vision_fallback_rate: 0
+        human_intervention_count: 0
+        restart_recovery_rate: 1.0
+        version_drift_state: CURRENT
+        evidence_refs:
+        - FDA_C3_UFO2_EFFECTIVE_LOAD_RECEIPT.json
+    routing:
+      preferred: CUA
+      alternate: UFO2
+      reason_code: CUA_10_OF_10_FILE_READBACK_COMPILE_PASS
+      hot_swap_allowed: true
+  XS_COMPILE_FAIL_READBACK:
+    application:
+      id: XQ
+      version: XQLite-3.20.02-260811
+    subject_binding:
+      xq_version: 3.20.02
+      xq_build: 260811
+      xq_exe_sha256: 6c0c7cbc54a3b5827926866ee8d907718e15eb74cf35e935a8c7ac2a7c9c4abe
+      fingerprint_receipt: FDA_XQ_BUILD_FINGERPRINT_RECEIPT.json
+    validity:
+      exact_build: true
+      invalidated_by:
+      - XQ_BUILD_CHANGE
+      - SELECTOR_SIGNATURE_CHANGE
+    providers:
+      CUA:
+        profile_id: fabric-desktop-cua
+        state: QUALIFIED
+        qualification_subject_digest: FDA-F07-LIVE-20260813
+        workflow_pass_rate: 10/10
+        silent_wrong_action: 0
+        wrong_action: 0
+        detected_failure_rate: 0
+        mean_recovery_count: 0
+        median_completion_time_ms: 1000
+        structured_control_coverage: FILE-READBACK
+        vision_fallback_rate: 0
+        human_intervention_count: 0
+        restart_recovery_rate: 1.0
+        version_drift_state: CURRENT
+        evidence_refs:
+        - FDA_F06_F07_LIVE_FIXTURE_RECEIPT.json
+      UFO2:
+        profile_id: fabric-desktop-ufo2
+        state: QUALIFIED
+        qualification_subject_digest: UFO2-v3.0.8-EFFECTIVE-LOAD-20260813
+        workflow_pass_rate: 7/7-effective-load
+        silent_wrong_action: 0
+        wrong_action: 0
+        detected_failure_rate: 0
+        mean_recovery_count: 0
+        median_completion_time_ms: 0
+        structured_control_coverage: UIA-BACKEND
+        vision_fallback_rate: 0
+        human_intervention_count: 0
+        restart_recovery_rate: 1.0
+        version_drift_state: CURRENT
+        evidence_refs:
+        - FDA_C3_UFO2_EFFECTIVE_LOAD_RECEIPT.json
+    routing:
+      preferred: CUA
+      alternate: UFO2
+      reason_code: CUA_ERROR_READBACK_VERIFIED
+      hot_swap_allowed: true
+  XQ_PAPER_CONFIG:
+    application:
+      id: XQ
+      version: XQLite-3.20.02-260811
+    subject_binding:
+      xq_version: 3.20.02
+      xq_build: 260811
+      xq_exe_sha256: 6c0c7cbc54a3b5827926866ee8d907718e15eb74cf35e935a8c7ac2a7c9c4abe
+      fingerprint_receipt: FDA_XQ_BUILD_FINGERPRINT_RECEIPT.json
+    validity:
+      exact_build: true
+      invalidated_by:
+      - XQ_BUILD_CHANGE
+      - SELECTOR_SIGNATURE_CHANGE
+    providers:
+      CUA:
+        profile_id: fabric-desktop-cua
+        state: QUALIFIED_SURFACE
+        qualification_subject_digest: FDA-F09-LIVE-20260813
+        workflow_pass_rate: n/a-surface
+        silent_wrong_action: 0
+        wrong_action: 0
+        detected_failure_rate: 0
+        mean_recovery_count: 0
+        median_completion_time_ms: 0
+        structured_control_coverage: UIA-STRUCTURED
+        vision_fallback_rate: 0
+        human_intervention_count: 0
+        restart_recovery_rate: 1.0
+        version_drift_state: CURRENT
+        evidence_refs:
+        - FDA_F09_RADAR_RECEIPT.json
+      UFO2:
+        profile_id: fabric-desktop-ufo2
+        state: QUALIFIED
+        qualification_subject_digest: UFO2-v3.0.8-EFFECTIVE-LOAD-20260813
+        workflow_pass_rate: 7/7-effective-load
+        silent_wrong_action: 0
+        wrong_action: 0
+        detected_failure_rate: 0
+        mean_recovery_count: 0
+        median_completion_time_ms: 0
+        structured_control_coverage: UIA-BACKEND
+        vision_fallback_rate: 0
+        human_intervention_count: 0
+        restart_recovery_rate: 1.0
+        version_drift_state: CURRENT
+        evidence_refs:
+        - FDA_C3_UFO2_EFFECTIVE_LOAD_RECEIPT.json
+    routing:
+      preferred: CUA
+      alternate: UFO2
+      reason_code: RADAR_SURFACE_OPEN_READBACK_PASS_NO_MUTATION
+      hot_swap_allowed: true
+  XQ_LOG_EXPORT_READBACK:
+    application:
+      id: XQ
+      version: XQLite-3.20.02-260811
+    subject_binding:
+      xq_version: 3.20.02
+      xq_build: 260811
+      xq_exe_sha256: 6c0c7cbc54a3b5827926866ee8d907718e15eb74cf35e935a8c7ac2a7c9c4abe
+      fingerprint_receipt: FDA_XQ_BUILD_FINGERPRINT_RECEIPT.json
+    validity:
+      exact_build: true
+      invalidated_by:
+      - XQ_BUILD_CHANGE
+      - SELECTOR_SIGNATURE_CHANGE
+    providers:
+      CUA:
+        profile_id: fabric-desktop-cua
+        state: QUALIFIED
+        qualification_subject_digest: FDA-F10F11-LIVE-20260813
+        workflow_pass_rate: 4/4
+        silent_wrong_action: 0
+        wrong_action: 0
+        detected_failure_rate: 0
+        mean_recovery_count: 0
+        median_completion_time_ms: 0
+        structured_control_coverage: FILE-READBACK
+        vision_fallback_rate: 0
+        human_intervention_count: 0
+        restart_recovery_rate: 1.0
+        version_drift_state: CURRENT
+        evidence_refs:
+        - FDA_F10_F11_READBACK_RECEIPT.json
+      UFO2:
+        profile_id: fabric-desktop-ufo2
+        state: QUALIFIED
+        qualification_subject_digest: UFO2-v3.0.8-EFFECTIVE-LOAD-20260813
+        workflow_pass_rate: 7/7-effective-load
+        silent_wrong_action: 0
+        wrong_action: 0
+        detected_failure_rate: 0
+        mean_recovery_count: 0
+        median_completion_time_ms: 0
+        structured_control_coverage: UIA-BACKEND
+        vision_fallback_rate: 0
+        human_intervention_count: 0
+        restart_recovery_rate: 1.0
+        version_drift_state: CURRENT
+        evidence_refs:
+        - FDA_C3_UFO2_EFFECTIVE_LOAD_RECEIPT.json
+    routing:
+      preferred: CUA
+      alternate: UFO2
+      reason_code: FILE_LOGGING_READBACK_PASS
+      hot_swap_allowed: true
+routing_rules:
+  tie_breaker: CUA preferred when both PASS on same application_version+action_class
+    unless material advantage proven
+  silent_fallback: false
+  unknown_state_failover: FORBIDDEN
+  second_writer: DENY
+  hot_swap_requires:
+  - READBACK
+  - CHECKPOINT
+  - KNOWN_DESKTOP_STATE
+  - LEASE_TRANSFER
+  matrix_mutation: provider benchmark -> candidate row -> independent readback ->
+    Acceptance Officer -> Fabric promotion

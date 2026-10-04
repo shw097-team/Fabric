@@ -1,0 +1,28 @@
+# fabric-autoresearch-native distribution — FAR P0 default research provider
+schema: PROFILE-DISTRIBUTION/1
+profile_id: fabric-autoresearch-native
+team_id: fabric-autonomous-research
+distribution_id: DIST-FAR-NATIVE-001
+version: 0.1.0
+status: ACTIVE_DEFAULT (local; NOT production)
+runtime: HERMES (v0.20.0 / v2026.8.3)
+methods:
+  - ARIS_SELECTED_PINNED_METHOD_PACK (exact pin in FAR_ARIS_METHOD_DISPOSITION.yaml)
+  - HGK_MEMORY / SQLITE_FTS5 / SOURCE_DIRECT_READ
+knowledge:
+  - HGK_Memory
+  - SQLite_FTS5
+  - current_KG (default off)
+  - Obsidian_derived (projection only)
+authority: NONE
+promotion: FORBIDDEN
+mutation_writer_when_admitted: codex
+capability_classes:
+  - RESEARCH_GENERAL
+  - RESEARCH_LITERATURE_REPO
+  - RESEARCH_ADVERSARIAL_CHALLENGE (method only)
+  - RESEARCH_LONG_HORIZON (native)
+  - RESEARCH_TRAJECTORY_MINING (fallback)
+  - RESEARCH_WORKFLOW_OPTIMIZATION (candidate producer)
+  - RESEARCH_FINANCIAL_METHOD (candidate only, SQS owner boundary)
+claim_ceiling: LOCAL

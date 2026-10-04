@@ -1,0 +1,13 @@
+# hgk-coding-factory — RP-002 profile config (inherits certified HGK route; no silent downgrade)
+model:
+  provider: opencode-go
+  default: deepseek-v4-flash
+  base_url: https://opencode.ai/zen/go/v1
+  api_mode: chat_completions
+approvals:
+  mode: manual
+agent:
+  max_turns: 300
+  verify_on_stop: false
+skills:
+  external_dirs: []

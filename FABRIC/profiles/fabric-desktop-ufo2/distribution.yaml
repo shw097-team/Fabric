@@ -1,0 +1,18 @@
+name: fabric-desktop-ufo2
+version: 0.1.0
+description: "FDA provider profile: Microsoft UFO2 (P0 specialist standby) for Fabric Shared Infrastructure Profile Team fabric-desktop-automation / WINDOWS_DESKTOP_AUTOMATION"
+hermes_requires: ">=0.12.0"
+author: "FDA (WO-FDA-001)"
+license: "MIT"
+provider:
+  name: MICROSOFT_UFO2
+  identity_ref: "RP002_TOOL_AND_INHERITED_CAPABILITY_MATRIX.yaml -> ufo2 row"
+  lifecycle: ON_DEMAND
+  initial_mode: SPECIALIST_STANDBY
+  transport: LOCAL_ONLY
+  mcp: local_or_current_admitted_transport
+  scope: WORKORDER_LOCAL_APPAGENT_HOSTAGENT (micro-orchestration only; no macro authority)
+env_requires:
+  - name: OPENCODE_GO_API_KEY
+    description: "OpenCode Go API key (provider route; required for agent inference)"
+    required: true

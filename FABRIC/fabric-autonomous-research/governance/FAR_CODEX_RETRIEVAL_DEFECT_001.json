@@ -1,0 +1,10 @@
+{
+  "defect_id": "FAR-CODEX-RETRIEVAL-001",
+  "classification": "CODE_QUALITY_DEFECT (unbounded KB scan)",
+  "detail": "codex-written retrieve_knowledge_base walked all 9 KB roots unbounded (os.walk over large roots incl. 資料庫 dirs) -> run_retrieval_stage/test hung (minutes+). Also os.walk order unsorted -> early-stop would be non-deterministic.",
+  "smallest_repair": "bounded scan: MAX_SCAN_FILES=2000 + max_files param + sorted dirnames/filenames (deterministic early stop) + run_retrieval_stage roots/max_files pass-through + stage test bounded roots",
+  "repair_executed_by": "hermes (CODEX_EXECUTOR_FALLBACK=SPAWN_HANG_ON_PWSH_TEST_STEP; codex completed file writes, hung on pwsh test invocation; killed after 590s+; repair is English-only bounded code, reviewed by challenge lane)",
+  "verification": "33/33 tests OK in 0.112s",
+  "bound_into": ["far_retrieval.py", "tests/test_far_retrieval.py", "FAR-20260813-003 canary"],
+  "generated_at_utc": "2026-08-13T14:45:00Z"
+}

@@ -1,0 +1,172 @@
+{
+  "artifact_id": "RP002_F0_EVIDENCE",
+  "project_id": "HGK-REFERENCE-PROJECT-002",
+  "generated_at_utc": "2026-08-11T16:21:21.204096+00:00",
+  "oracle": "EXTERNAL_FROZEN_BOOTSTRAP_ORACLE",
+  "gate": "F0",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "id": "F0_CONTRACT_AUTHORITY_MATRIX",
+      "pass": true,
+      "detail": "C:\\Projects\\Agent_Workspace\\Fabric\\fabric\\AUTHORITY_MATRIX.yaml"
+    },
+    {
+      "id": "F0_CONTRACT_RISK_CLASSES",
+      "pass": true,
+      "detail": "C:\\Projects\\Agent_Workspace\\Fabric\\fabric\\RISK_CLASSES.yaml"
+    },
+    {
+      "id": "F0_CONTRACT_PROMOTION_POLICY",
+      "pass": true,
+      "detail": "C:\\Projects\\Agent_Workspace\\Fabric\\fabric\\PROMOTION_POLICY.yaml"
+    },
+    {
+      "id": "F0_CONSUMER_SELFCHECK",
+      "pass": true,
+      "detail": "N_META_ORACLE\", \"consumer\": \"human/meta-oracle\", \"auto_promotion\": false}, \"UNKNOWN_X\": {\"verdict\": \"FAIL_CLOSED\", \"reason\": \"UNKNOWN_CHANGE_CLASS:UNKNOWN_X\"}}\n"
+    },
+    {
+      "id": "F0_TRACE_RUNTIME_TRANSIENT",
+      "pass": true,
+      "detail": "{\"verdict\": \"ROUTE_OK\", \"route\": \"HERMES_NATIVE\", \"consumer\": \"hermes-native\", \"oracle_required\": fa"
+    },
+    {
+      "id": "F0_TRACE_CONFIG_PREAPPROVED",
+      "pass": true,
+      "detail": "{\"verdict\": \"ROUTE_OK\", \"route\": \"OWNING_STACK_ORCHESTRATOR_APPLY_SMOKE_READBACK\", \"consumer\": \"owni"
+    },
+    {
+      "id": "F0_TRACE_PROFILE_CHANGE",
+      "pass": true,
+      "detail": "{\"verdict\": \"ROUTE_OK\", \"route\": \"ORACLE_TO_HGK\", \"consumer\": \"oracle-commander->hgk\", \"oracle_requi"
+    },
+    {
+      "id": "F0_TRACE_SKILL_CHANGE",
+      "pass": true,
+      "detail": "{\"verdict\": \"ROUTE_OK\", \"route\": \"ORACLE_TO_HGK\", \"consumer\": \"oracle-commander->hgk\", \"oracle_requi"
+    },
+    {
+      "id": "F0_TRACE_PIPELINE_CHANGE",
+      "pass": true,
+      "detail": "{\"verdict\": \"ROUTE_OK\", \"route\": \"ORACLE_TO_HGK\", \"consumer\": \"oracle-commander->hgk\", \"oracle_requi"
+    },
+    {
+      "id": "F0_TRACE_STACK_CHANGE",
+      "pass": true,
+      "detail": "{\"verdict\": \"ROUTE_OK\", \"route\": \"ORACLE_TO_HGK\", \"consumer\": \"oracle-commander->hgk\", \"oracle_requi"
+    },
+    {
+      "id": "F0_TRACE_PROVIDER_UPGRADE",
+      "pass": true,
+      "detail": "{\"verdict\": \"ROUTE_OK\", \"route\": \"ORACLE_TO_HGK_QUALIFICATION_ONLY\", \"consumer\": \"oracle-commander->"
+    },
+    {
+      "id": "F0_TRACE_DOMAIN_CHANGE",
+      "pass": true,
+      "detail": "{\"verdict\": \"ROUTE_OK\", \"route\": \"DOMAIN_AUTHORITY_TO_ORACLE_TO_HGK\", \"consumer\": \"domain-owner->ora"
+    },
+    {
+      "id": "F0_TRACE_CONSTITUTIONAL_CHANGE",
+      "pass": true,
+      "detail": "{\"verdict\": \"ROUTE_OK\", \"route\": \"HUMAN_META_ORACLE\", \"consumer\": \"human/meta-oracle\", \"auto_promoti"
+    },
+    {
+      "id": "F0_RUNTIME_TRANSIENT_NATIVE",
+      "pass": true,
+      "detail": "HERMES_NATIVE"
+    },
+    {
+      "id": "F0_CONFIG_PREAPPROVED_ORCH",
+      "pass": true,
+      "detail": "OWNING_STACK_ORCHESTRATOR_APPLY_SMOKE_READBACK"
+    },
+    {
+      "id": "F0_PROFILE_ORACLE_HGK",
+      "pass": true,
+      "detail": "ORACLE_TO_HGK"
+    },
+    {
+      "id": "F0_DOMAIN_DOMAIN_CHECKER",
+      "pass": true,
+      "detail": "domain checker required"
+    },
+    {
+      "id": "F0_CONSTITUTIONAL_HUMAN",
+      "pass": true,
+      "detail": "human/meta-oracle"
+    },
+    {
+      "id": "F0_PREAPPROVED_APPLY",
+      "pass": true,
+      "detail": "{\"applied\": \"C:\\\\Projects\\\\Agent_Workspace\\\\Fabric\\\\profiles\\\\hgk-orchestrator\\\\config.yaml\", \"bytes"
+    },
+    {
+      "id": "F0_NO_DECORATIVE_YAML",
+      "pass": true,
+      "detail": "all 3 contracts + router consumed by hgk_policy_consumer subprocess traces"
+    }
+  ],
+  "binding_traces": {
+    "RUNTIME_TRANSIENT": {
+      "verdict": "ROUTE_OK",
+      "route": "HERMES_NATIVE",
+      "consumer": "hermes-native",
+      "oracle_required": false
+    },
+    "CONFIG_PREAPPROVED": {
+      "verdict": "ROUTE_OK",
+      "route": "OWNING_STACK_ORCHESTRATOR_APPLY_SMOKE_READBACK",
+      "consumer": "owning-stack-orchestrator",
+      "precondition": "EXISTING_ADMITTED_PROFILE_AND_POLICY"
+    },
+    "PROFILE_CHANGE": {
+      "verdict": "ROUTE_OK",
+      "route": "ORACLE_TO_HGK",
+      "consumer": "oracle-commander->hgk",
+      "oracle_required": true,
+      "pack": "profile"
+    },
+    "SKILL_CHANGE": {
+      "verdict": "ROUTE_OK",
+      "route": "ORACLE_TO_HGK",
+      "consumer": "oracle-commander->hgk",
+      "oracle_required": true,
+      "pack": "skill"
+    },
+    "PIPELINE_CHANGE": {
+      "verdict": "ROUTE_OK",
+      "route": "ORACLE_TO_HGK",
+      "consumer": "oracle-commander->hgk",
+      "oracle_required": true,
+      "pack": "multi-profile-pipeline"
+    },
+    "STACK_CHANGE": {
+      "verdict": "ROUTE_OK",
+      "route": "ORACLE_TO_HGK",
+      "consumer": "oracle-commander->hgk",
+      "oracle_required": true,
+      "pack": "stack"
+    },
+    "PROVIDER_UPGRADE": {
+      "verdict": "ROUTE_OK",
+      "route": "ORACLE_TO_HGK_QUALIFICATION_ONLY",
+      "consumer": "oracle-commander->hgk",
+      "oracle_required": true,
+      "pack": "shared-service"
+    },
+    "DOMAIN_CHANGE": {
+      "verdict": "ROUTE_OK",
+      "route": "DOMAIN_AUTHORITY_TO_ORACLE_TO_HGK",
+      "consumer": "domain-owner->oracle->hgk",
+      "domain_checker_required": true
+    },
+    "CONSTITUTIONAL_CHANGE": {
+      "verdict": "ROUTE_OK",
+      "route": "HUMAN_META_ORACLE",
+      "consumer": "human/meta-oracle",
+      "auto_promotion": false
+    }
+  },
+  "note": "Fabric = governance contracts + bindings, not an actor; policy is consumed by the owning-stack wrapper (hgk_policy_consumer) bound to existing HGK APL semantics."
+}

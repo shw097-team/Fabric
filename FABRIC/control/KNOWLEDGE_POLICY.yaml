@@ -1,0 +1,28 @@
+# Fabric Knowledge Governance — namespace contract (Stage-1 freeze; KG1 runtime downstream)
+schema: FABRIC-KNOWLEDGE-POLICY/1
+stage_id: RP002-STAGE-FABRIC
+master_sha256: "3bc4ad6c4bfe028e3686484f452d5fd015536e5e18b19c10ac978b2203c2087a"
+norm_source_keys: [DISCUSSION-5, TW-ICT-DOC23, MASTER-S11]
+source_locators: ["RP-002_v2.0_Master_Blueprint_2026-08-12_r2.md + RP-002_v2.0_STAGE-1_FABRIC-FOUNDATION_子藍圖_2026-08-12_r2.md"]
+semantic_delta: POST_R3_SUPERSEDE_PHYSICAL_OWNERSHIP_ONLY
+principle: CENTRAL_GOVERNANCE_SHARED_SUBSTRATE_DISTRIBUTED_DOMAIN_PRODUCTION
+namespaces:
+  hgk:
+    owner: HGK
+    candidate: "hgk.candidate.*"
+    approved: "hgk.approved.*"
+  sqs:
+    owner: SQS_DOMAIN_AUTHORITY
+    candidate: "sqs.candidate.*"
+    approved: "sqs.approved.*"
+  fabric:
+    owner: FABRIC_GOVERNANCE
+  assurance:
+    owner: ACCEPTANCE_AUTHORITY
+  shared:
+    approved_only: true
+    candidate_namespace_default: false
+cross_namespace_write_default: DENY
+candidate_is_truth: false
+domain_owner_retains_truth_authority: true
+provider_runtime_validation_gate: KG1

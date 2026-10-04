@@ -1,0 +1,83 @@
+# FAR Long-Horizon Native Contract — ResearchCompletionContract + budget/watchdog (blueprint 13/23)
+schema: FAR-LONG-HORIZON-CONTRACT/1
+subject: fabric-autonomous-research (WO-FAR-005)
+runtime: HERMES_NATIVE (long-horizon default; LongHorizon provider = METHOD_DONOR_ONLY)
+
+ResearchCompletionContract:
+  outcome:
+    - required research terminal (RESEARCH_PASS_CANDIDATE|PARTIAL|ABSTAIN|FAILED|BLOCKED_*|ABORTED_BUDGET)
+  verification:
+    - source denominator complete
+    - claim ledger load-bearing grounded
+    - security checks blocking=0
+  constraints:
+    - budget (wall_clock/token/cost/retry/subagent)
+    - roots (WorkOrder write-set)
+    - network (WorkOrder-declared only)
+  boundaries:
+    - no authority escalation
+    - no production/live mutation
+  stop_when:
+    - completion predicates met
+    - budget exhausted
+    - blocking security/source condition
+
+goal_mapping:
+  hgk_workorder: NORMATIVE_TASK_TRUTH (WorkOrder/ExecutionBinding remain truth)
+  hermes_goal: PROVIDER_LOCAL_PROJECTION_ONLY (runtime stop helper; not authority, not AcceptanceReceipt)
+  kanban: COORDINATION_ONLY (claim/heartbeat/complete; not authority)
+
+background_lifecycle:
+  sequence: [START, worker_session_bind, kanban_claim, pid_identity, heartbeat, lease_renewal, progress_event, checkpoint, optional_detach, reattach_status, stale_detection, reclaim_if_lease_expired, resume_from_normative_pointer, terminal]
+  runtime_checkpoint: [session, goal, worker, kanban_runtime, context_state]
+  normative_checkpoint: [workorder, authority_refs, research_artifact_digests, provider_session_pointers, claim_state, rollback_pointer]
+  rule: runtime checkpoint != normative checkpoint; neither may impersonate the other
+
+context_management:
+  compression_allowed: true
+  must_preserve: [HGK source/evidence identity, WorkOrder contract]
+  fresh_session: MUST retain WorkOrder contract
+
+interruption_semantics:
+  human_operator_interrupt: [stop_new_work, freeze_last_verified_checkpoint, emit_reason, preserve_partial_artifacts, state=BLOCKED_HITL or ABORTED]
+
+budget:
+  classes:
+    wall_clock_seconds: required
+    token_budget: required_if_metered
+    cost_budget: required_if_metered
+    retry_budget: required (default 2)
+    subagent_budget: required (fanout cap)
+    experiment_compute_budget: required_if_experiment
+  exhaustion_semantics:
+    token_cost_threshold_warning: checkpoint + continue only if remaining budget permits
+    hard_cost_token_limit: stop provider, preserve partial
+    wall_clock_limit: cancel/stop + checkpoint
+    experiment_compute_budget: kill/stop per admitted policy; partial result clearly marked
+    subagent_budget: no new child; current lanes finish/cancel per dependency
+    retry_exhausted: FAILED/STOP_ESCALATE
+    mandatory_challenge_budget_unavailable: block, not skip
+  terminal_codes: [RESEARCH_ABORTED_BUDGET, RESEARCH_PARTIAL, RESEARCH_FAILED]
+
+watchdog_candidate_defaults:
+  max_identical_action_repeat: 3
+  max_no_progress_cycles: 3
+  max_same_failure_signature: 2
+  max_retry_per_provider: 1
+  action_signature_window: 8
+  note: initial qualification parameters, not permanent constants; adjustments require policy/qualification receipt
+
+no_progress_semantics:
+  verified_progress: [new_required_source_resolved, new_source_snapshot_admitted, new_claim_status_changed_with_evidence, new_contradiction_resolved, new_experiment_result_bound, new_open_question_closed, new_rejected_alternative_with_evidence, new_candidate_artifact_digest]
+  not_progress: [same_search_repeated, same_tool_call_repeated, same_paragraph_rewritten, same_source_reread_no_new_extraction, agent_says_making_progress, heartbeat_alone, new_tokens_consumed, more_subagents_spawned]
+
+fanout:
+  allowed_shapes: [SOURCE_FAMILY_SPLIT, HYPOTHESIS_SPLIT, INDEPENDENT_EXPERIMENT_SPLIT]
+  authority: HGK_ROUTE (max_lanes = WorkOrder budget)
+  runtime_choices: [HERMES_SWARM, PROVIDER_LOCAL_SUBAGENT_IF_PROFILE_QUALIFIED]
+  merge_keys: [source_id, hypothesis_id, experiment_id]
+  cancel_on: [BUDGET_EXHAUSTED, DUPLICATED_SCOPE, DEPENDENCY_INVALIDATED, SECURITY_BLOCK, NO_PROGRESS]
+  mutation_rule: canonical_parallel_writers=0; tracked_mutation_writer=codex
+  merge_collision: RESEARCH_DISPUTE_OPEN (no majority vote)
+
+degrade_matrix_ref: FAR_CAPABILITY_MATRIX.yaml reason codes (FAR_DEGRADE_*/FAR_BLOCK_*/FAR_ABORT_*)

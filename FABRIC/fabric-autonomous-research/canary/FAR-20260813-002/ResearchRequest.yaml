@@ -1,0 +1,19 @@
+schema: LOGICAL_FAR_RESEARCH_REQUEST_V1
+workorder_ref:
+  id: WO-FAR-USE-001
+  digest: BOUND_AT_ADMISSION
+run_id: FAR-20260813-002
+decision_question: 將本次 FAR 落地流程（WO 分批准入→CAPC→R0-R8 canary→雙 lane swarm→凍結順序）補進 hgk-governed-execution
+  skill 的 references，對同類 Shared Infrastructure Team 落地是否有幫助？若有，照流程補進並記為自升級慣例。
+owner: user (Hermes profile owner) / HGK-REFERENCE-PROJECT-002
+task_class: RESEARCH_WORKFLOW_OPTIMIZATION
+source_requirements:
+- 本次 FAR 落地證據
+- hgk-governed-execution skill 現況
+- FDA 先例
+- 藍圖
+freshness_requirement: 2026-08-13 current
+budget_ref: BIND-FAR-001 budget
+security_boundary_ref: FAR_SOURCE_SECURITY.yaml
+expected_decision_output: helpfulness verdict + CandidateHarnessDelta + patch-if-helpful
+generated_at_utc: '2026-08-13T11:08:19Z'

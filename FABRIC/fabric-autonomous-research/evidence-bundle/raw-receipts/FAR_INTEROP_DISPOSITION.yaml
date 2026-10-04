@@ -1,0 +1,69 @@
+# FAR Interop Disposition — OASF / ContextForge / MCP / A2A / OpenTelemetry / Qdrant / Neo4j / Obsidian
+schema: FAR-INTEROP-DISPOSITION/1
+subject: fabric-autonomous-research (WO-FAR-002)
+interop_promotion_lineage_ref: CURRENT_RP002_INTEROP_PROMOTION_TRANSACTION (schema RP002-INTEROP-PROMOTION-TRANSACTION/1)
+
+## Same-subject promotion lineage (required when current CF1/F1 route active)
+lineage:
+  - Profile Distribution digest(s)   # fabric-autoresearch-native / fabric-autoresearch-prime distributions
+  - FAR Team artifact digest         # Fabric/fabric-autonomous-research/TEAM.md
+  - FAR Capability Matrix digest
+  - OASF Record digest               # oasf-record/1 (current active schema)
+  - ContextForge registration target digest  # current CF1 route
+  - ContextForge auth-policy digest
+  - explicit MCP disposition         # below
+  - explicit A2A disposition         # below
+  - SubjectAttestation digest
+  - EvidenceManifest digest
+  - current PromotionTransaction
+status: SAME_SUBJECT_LINEAGE_DEFINED (values BOUND_AT_PROMOTION when promotion executes)
+
+## OASF
+role: interoperability description/schema (authority = NONE)
+current_route: ACTIVE (F1 OASF-REC-RP2-S2-001, schema oasf-record/1)
+far_action: EXTEND current route with FAR capability record at promotion time
+must_describe: capability, profile/distribution identity, endpoint/locator, permission/transport metadata, lifecycle/version
+constraint: OASF record cannot replace FAR Capability Matrix / WorkOrder / Fabric authority
+
+## ContextForge
+role: registry/gateway/discovery where current route selects it
+current_route: CF1 active (ContextForge 1.0.7, registration CF-REG-RP2-S2-001)
+runtime_every_run_required: false
+far_action: register exact promoted FAR profile/capability; discover from allowed consumer; deny disallowed; bounded canary; disable/unregister/rollback
+constraint: no per-run data-path dependency on gateway
+
+## MCP
+research_provider_transport: stdio_or_inprocess_preferred (current qualified route)
+unbound_mcp: EXPLICIT_N_A
+rule: no silent network enablement; LOCAL_ONLY default; 0.0.0.0/LAN-exposed research tool = DENY without separate admitted security change
+aris_reviewer_mcp: REUSE_WHEN_PROVIDER_OR_METHOD_USES (actual discovery/invocation required; discovery != capability PASS)
+
+## A2A
+same_host_far_coordination: HERMES_KANBAN_CURRENT_LOCAL_ROUTE (preferred)
+a2a: REQUIRED_WHEN_ROUTED; NOT mandatory for every research run
+explicit_n_a: "if no actual FAR route uses A2A (current: none active)"
+qualification_when_used: exact identity, auth-negative, invoke/readback, disable/rollback
+
+## OpenTelemetry
+disposition: CURRENT_MACHINE_STATE_REQUIRED / NO_FORCED_ADOPTION
+q0_fresh_read: no active telemetry discovered (doctor + config); FAR must not auto-enable a collector
+if_active: correlate workorder_id, execution_binding_id, run_id, profile_id, provider, task_class, result; no secret payload
+if_absent: "OTEL = EXPLICIT_N_A_OR_DEFER; trace != acceptance"
+
+## Qdrant / Neo4j
+qdrant: PRESERVE_DEFAULT_OFF (current ADMITTED_DISABLED; FAR must not auto-enable; separate fit-gap required)
+neo4j: PRESERVE_DEFAULT_OFF (current INSTALL_PROFILE_READY; FAR must not auto-enable)
+p0_retrieval: SQLite/FTS5 (doctor fts5=true) + source-direct admitted reads; retrieval output != authority
+
+## Obsidian
+role: DERIVED human workbench projection (authority = NONE)
+route: 知識庫\Obsidian投影\FAR\<workorder_id>\FAR_RESEARCH_MAP.md (current vault mapping)
+gate: DERIVED_ONLY legend + links resolve + human-visible/openable (filesystem existence alone != human-visible PASS)
+
+## Runtime path (remains thin)
+path: HGK WorkOrder -> Hermes -> FAR native profile -> sources/methods -> artifacts
+constraint: ContextForge/OASF/A2A/OTel are identity/governance/trace surfaces, NOT a second scheduler or research gateway
+
+## Anti-downgrade
+parent_rows_preserved: [hermes_runtime, hermes_profiles, profile_distribution, hermes_kanban, hermes_a2a, mcp, contextforge, oasf, opentelemetry, codex_cli, opencodex_opencode_provider_route, openspec, gstack, qdrant, neo4j, obsidian]
+interop_subject_drift: 0 (same-subject closure enforced at promotion)

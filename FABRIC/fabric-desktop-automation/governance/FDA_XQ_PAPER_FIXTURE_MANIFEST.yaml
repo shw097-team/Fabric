@@ -1,0 +1,48 @@
+# FDA XQ PAPER Fixture Manifest — FDA-XQ-PAPER-V1
+fixture_set: FDA-XQ-PAPER-V1
+mode: PAPER_NO_LIVE_WRITE
+target_app: XQ
+version_resolved_at_runtime: "XQLite-1.10.0.0-INSTALLED (C:\\SysJust\\XQLite, daqxqlite.exe)"
+version_drift_state: "INSTALLED_IS_XQLITE_PERSONAL_V1_10 vs blueprint web-readback 7.20.02/3.20.02 -> REQUALIFY_REQUIRED"
+forbidden:
+  - credentials
+  - live_entry
+  - broker_write
+  - account_permission_change
+
+fixtures:
+  - id: XQ-LAUNCH
+    action_class: XQ_LAUNCH_LOCATE
+    expected: TARGET_WINDOW_IDENTIFIED
+    provider_eligible: [CUA, UFO2]
+  - id: XS-COMPILE-PASS
+    action_class: XS_COMPILE_PASS
+    artifact: known_good_fixture.xs
+    expected: COMPILE_PASS
+    provider_eligible: [CUA, UFO2]
+  - id: XS-COMPILE-FAIL
+    action_class: XS_COMPILE_FAIL_READBACK
+    artifact: known_bad_fixture.xs
+    expected: KNOWN_ERROR_CLASS
+    provider_eligible: [CUA, UFO2]
+  - id: XQ-PAPER-CONFIG
+    action_class: XQ_PAPER_CONFIG
+    expected: PAPER_PROFILE_CONFIGURED
+    provider_eligible: [CUA, UFO2]
+  - id: XQ-READBACK
+    action_class: XQ_LOG_EXPORT_READBACK
+    expected: LOG_OR_EXPORT_READBACK_MATCH
+    provider_eligible: [CUA, UFO2]
+
+# Mandatory action classes: >=1 provider must pass 10/10 fresh runs with full readback
+# and zero wrong action for the class to be team-certified (blueprint FDA-C4).
+# NOTE: XScript fixture contents MUST come from current XQ/XS authoritative corpus,
+# NOT invented by FDA. Qualification run is BLOCKED until provider runtimes installed.
+
+qualification_gate: FDA-C4
+state: MATERIALIZED_PENDING_RUNTIME
+qualification_blocker:
+  - "cua-driver NOT installed (hermes computer-use status: not installed)"
+  - "UFO2 runtime NOT installed"
+  - "XQ XS editor / PAPER capability on XQLite personal edition UNVERIFIED"
+  - "XScript authoritative fixture corpus NOT yet sourced (SQS/XQ authority)"

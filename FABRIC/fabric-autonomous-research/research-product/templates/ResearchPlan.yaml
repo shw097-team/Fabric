@@ -1,0 +1,22 @@
+# FAR artifact template: ResearchPlan
+# run_id: <FAR-run-id>
+# generated from RESEARCH_ARTIFACT_CONTRACTS.yaml (WO-FAR-002)
+
+schema: LOGICAL_FAR_RESEARCH_PLAN_V1
+fields:
+  subquestions: []
+  claim_classes: []
+  source_classes: []
+  query_strategy: []
+  candidate_methods_providers: []
+  challenge_trigger: []
+  experiment_trigger: []
+  stop_criteria: []
+  abstain_criteria: []
+  budget_allocation: {}
+  source_assurance:
+    mode: TRI_SOURCE_MANDATORY
+    required_source_classes: [HGK_MEMORY, FABRIC_HGK_KNOWLEDGE, EXTERNAL_WEB]
+    minimum_probe: {HGK_MEMORY: 1, FABRIC_HGK_KNOWLEDGE: 1, EXTERNAL_WEB: 1}
+    required_counterevidence_probe: true
+    freshness: {requirement: WORKORDER_RESOLVED}

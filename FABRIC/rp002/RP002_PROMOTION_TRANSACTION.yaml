@@ -1,0 +1,38 @@
+schema: RP002-PROMOTION-TRANSACTION/1
+transaction_id: TX-RP2-S3-PROMO-001
+project_id: HGK-REFERENCE-PROJECT-002
+stage_id: RP002-STAGE-SQS
+issued_by: hermes-runtime (orchestrator) on behalf of accepted gate candidates
+authority: "Fabric/control/PROMOTION_POLICY.yaml (93208664310a9891a57699f760bf0d40f5a49d093c49e4fbf5313bce277a83ae) - promotion after independent L2 acceptance"
+issued_at: 2026-08-13T02:25:00+08:00
+
+candidates:
+  - candidate_id: E1-KD-001-REPAIR
+    gate: E1
+    subject: "SQS README.md + docs/SQS-THC_TW-ICT_FSDT-Stack使用說明文檔.md (knowledge-governance state projection)"
+    candidate_digest: "README L66 ACTIVE claim + UserGuide L168 ACTIVE claim (post-repair bytes)"
+    l2_acceptance: acceptance-officer-L2-e1 (6/6 PASS)
+    evidence_refs:
+      - evidence/rp002/stage3/gates/E1_DEFECT_REPRODUCTION.yaml
+      - evidence/rp002/stage3/gates/E1_ACCEPTANCE_RECEIPT.yaml
+      - tests/test_rp002_stage3_e1.py
+    rollback: var/rp002-stage3/e1-before/
+  - candidate_id: E2-BS-001-EVOLUTION
+    gate: E2
+    subject: "SQS_STACK_MANIFEST.yaml knowledge_namespace (sqs.revoked.* exclusion + lifecycle)"
+    candidate_digest: "manifest 1713B; knowledge_namespace block incl. revoked_exclusion + lifecycle"
+    l2_acceptance: acceptance-officer-L2-e2 (PENDING - filled at closure)
+    evidence_refs:
+      - E2_BEHAVIOR_SUBJECT_SELECTION.yaml
+      - evidence/rp002/stage3/gates/E2_ACCEPTANCE_RECEIPT.yaml
+      - tests/test_rp002_stage3_e2.py
+    rollback: var/rp002-stage3/e2-before/
+
+promotion_rules_applied:
+  - "maker does not self-accept (L2 = acceptance-officer fresh context)"
+  - "promotion binds same candidate lineage (subject -> repair -> tests -> L2 -> promotion)"
+  - "no authority/evaluator weakening (E3 = N/A_WITH_SOURCE_LOCATOR)"
+  - "Financial Truth / Risk authority untouched"
+  - "interop projection sync (OASF/ContextForge) handled by separate RP002_INTEROP_PROMOTION_TRANSACTION if required by convention - not a promotion substitute"
+
+claim_ceiling_after_promotion: "STAGE3_SQS_PASS_ELIGIBLE_FOR_MASTER_R1_REDUCTION (pending child reducer)"

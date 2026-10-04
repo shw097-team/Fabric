@@ -1,0 +1,56 @@
+# RP002_TOOL_AND_INHERITED_CAPABILITY_MATRIX.yaml — selection + anti-downgrade truth (r3 §14.3/§20.5)
+schema: RP002-TOOL-AND-INHERITED-CAPABILITY-MATRIX/1
+items:
+  hermes_runtime: {state: REQUIRED_P0, role: "runtime/session/Kanban/Profile/A2A", rule: "EXACT_CURRENT_CERTIFIED_OR_REQUALIFIED"}
+  hermes_profiles: {state: REQUIRED_P0, role: "active roles", rule: "8 instance contracts; Profile!=sandbox"}
+  profile_distribution: {state: REQUIRED_P0, role: "versioned runtime package", rule: "full commit binding + rollback"}
+  hermes_kanban: {state: REQUIRED_P0, role: "project execution lifecycle", rule: "WorkOrder remains normative contract"}
+  hermes_a2a: {state: REQUIRED_WHEN_ROUTED, role: "cross-process agent interop", rule: "qualify exact route; same-host can use Kanban"}
+  mcp: {state: REQUIRED_WHERE_BOUND, role: "tools/resources/prompts connectivity", rule: "CF1 functional canary, not string-only"}
+  contextforge: {state: ADOPT_CANDIDATE_P0, role: "MCP/A2A registry/gateway", rule: "CF1 before admission; never authority"}
+  oasf: {state: ADOPT_SCHEMA_P0, role: "capability record", rule: "exact schema/private extension validate; Directory deferred"}
+  opentelemetry: {state: CONDITIONAL_EMBEDDED, role: "tracing correlation", rule: "activate only if current route qualified; no new observability stack"}
+  hgk_sqlite_fts5_memory: {state: REUSE_P0, role: "knowledge baseline", rule: "preserve canonical/projection separation"}
+  cognee: {state: P1_SHADOW, role: "semantic memory/KG projection candidate", rule: "no auto canonical promotion"}
+  qdrant: {state: PRESERVE_CURRENT_STATE, role: "inherited vector provider readiness", rule: "no forced activation/downgrade"}
+  neo4j: {state: PRESERVE_CURRENT_STATE, role: "inherited KG provider readiness", rule: "no forced activation/downgrade"}
+  pgvector: {state: CONDITIONAL, role: "only if current PostgreSQL architecture activates it", rule: "no install merely for completeness"}
+  codex_cli: {state: INHERITED_REQUIRED, role: "bounded code writer for hgk-coding-factory", rule: "preserve current route or requalify"}
+  opencodex_opencode_provider_route: {state: INHERITED_REQUIRED, role: "code model transport/provider path", rule: "no silent provider/model switch"}
+  openspec: {state: INHERITED_CERTIFIED_ACTIVE_BROWNFIELD, role: "spec/change carrier", rule: "preserve effective-load; no Root SSOT/release ownership"}
+  gstack: {state: INHERITED_CERTIFIED_SELECTED_SLICES, role: "advisory review/QA/security/ship", rule: "selected slices only; advisory not reducer"}
+  spec_kit: {state: INHERITED_STANDBY_XOR, role: "greenfield alternate spec route", rule: "no dual active spec owner"}
+  agentteams: {state: NO_ADOPT_P0, role: "alternative orchestrator/runtime", rule: "no second control plane"}
+  crewai: {state: NO_ADOPT_P0, role: "alternative orchestrator", rule: "no second control plane"}
+  langgraph: {state: NO_ADOPT_P0, role: "alternative orchestrator", rule: "no second control plane"}
+  opa: {state: DEFER, role: "external policy engine", rule: "add only if rule complexity materially requires it"}
+  spicedb: {state: DEFER, role: "ReBAC/authorization datastore", rule: "add only when multi-user/stack permission graph justifies it"}
+  kubernetes: {state: DEFER_NO_P0, role: "scale-out infra", rule: "local-first RP-002 does not require it"}
+  service_mesh: {state: DEFER_NO_P0, role: "network infra", rule: "no measured need"}
+  github_actions_openssf_slsa: {state: CONDITIONAL, role: "remote CI/supply chain", rule: "only if current repo workflow activates it"}
+  docker_process_isolation: {state: CONDITIONAL, role: "real security boundary", rule: "use when privileged profile isolation requires it"}
+  # FDA (WO-FDA-001, 2026-08-13): additive provider rows + FDA exact-set dispositions.
+  # Parent rows above are preserved; anti-downgrade rule: parent row missing = FAIL_CLOSED.
+  cua_driver: {state: P0_PRIMARY_FAST_PATH, role: "FDA desktop fast-path provider (fabric-desktop-cua)", rule: "exact pin + qualification + rollback; UFO2 alternate"}
+  ufo2: {state: P0_SPECIALIST_STANDBY, role: "FDA Windows-specialist provider (fabric-desktop-ufo2)", rule: "exact pin + security disposition + rollback; Cua alternate"}
+  hermes_computer_use: {state: INHERIT_ACTIVE_BASE, role: "agent-facing desktop abstraction (Hermes computer_use toolset, cua-driver backend)", rule: "current HGK/Hermes binding wins; requalify exact local"}
+  openadapt: {state: DEFERRED_PATTERN_COMPILER_CANDIDATE, role: "future deterministic replay (FDA)", rule: "no P0 install; separate future ChangeSet"}
+  agent_s3: {state: NO_ADOPT_P0, role: "research/benchmark reference only (FDA)", rule: "cannot become FDA orchestrator"}
+  appium_windows_driver: {state: SUPPORT_BENCHMARK_DONOR, role: "structured Windows test/reference donor (FDA)", rule: "no production route without separate qualification"}
+  winappdriver: {state: SUPPORT_DEPENDENCY_ONLY, role: "Appium Windows dependency/reference (FDA)", rule: "no direct P0; no remote exposure by default"}
+  flaui: {state: SUPPORT_LOW_LEVEL_DONOR, role: "Windows UIA library donor (FDA)", rule: "no parallel runtime/control plane"}
+  pywinauto: {state: NO_ADOPT, role: "legacy/simple reference only (FDA)", rule: "no fallback-by-convenience"}
+  ufo3_galaxy: {state: NO_ADOPT_P0_AUTHORITY_OVERLAP, role: "cross-device orchestration reference (FDA)", rule: "forbidden as second macro orchestrator"}
+  fda_desktop_capability_matrix: {state: CANONICAL_ACTIVE, role: "FDA action-class qualification/routing truth", rule: "canonical owner/schema/subject/version/rollback; router consumes promoted digest"}
+  fda_team_artifact: {state: MATERIALIZED, role: "FDA shared-infra team artifact (Fabric/fabric-desktop-automation/TEAM.md)", rule: "one canonical team artifact; != authority matrix/scheduler/task DB"}
+named_method_preservation_route:
+  brownfield: "OpenSpec active; Spec Kit inactive"
+  implementation: "Codex bounded writer"
+  advisory: "selected gstack slices or explicit CERTIFIED_NATIVE_SUBSTITUTION"
+  final_acceptance_release: "HGK independent checker + reducers"
+forbidden:
+  - fake_named_method_invocation
+  - silent_fallback
+  - spec_kit_plus_openspec_dual_spec_owner
+  - gstack_ship_as_release_authority
+  - gstack_review_as_independent_checker

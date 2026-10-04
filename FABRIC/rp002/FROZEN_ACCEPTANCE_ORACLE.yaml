@@ -1,0 +1,25 @@
+# FROZEN_ACCEPTANCE_ORACLE.yaml — non-circular bootstrap (r3 §20.3)
+schema: RP002-FROZEN-ACCEPTANCE-ORACLE/2
+project_id: HGK-REFERENCE-PROJECT-002
+frozen_at: "2026-08-11T22:30:00+08:00"
+bootstrap_oracle:
+  type: EXTERNAL_FROZEN_ORACLE
+  contract_digest: c3f34ca28a6bc8c8b7255c721173ff00e694366eb3b15891d15b3b97f5453c70
+  knowledge_pack_digest: 24aa0390a0d27ea3049db0e6499f2e1cd3e4b5bd4cfdf5b24016fe4c82f1d4c7
+  prompt_compiler_digest: 214c7f048f7361fe0bc4a324a0c99aaaf0df4191a430b645b8a97d24620064b6
+  sources:
+    - "PROMPT_R1 (user attachment, 19834 bytes)"
+    - "BLUEPRINT_R3 (Fabric/RP-002_DOC, 131172 bytes, sha256 6900e451e578bdcbb9b6e4fa5792277ef11a8389ae9b7fced94254d89d00f147)"
+    - "HGK current controls (AGENTS.md, config/hermes.json, User Guide)"
+internal_oracle_candidate:
+  profile_id: construction-acceptance-oracle
+  distribution_commit: null
+  subject_digest: null
+  promotion_gate: O1
+hard_gates_from: RP002_GATE_CATALOG.yaml
+execution_graph_from: RP002_EXECUTION_GRAPH.yaml
+claim_ceiling:
+  local_acceptance: allowed_if_all_applicable_gates_pass
+  production_autonomy: NOT_CLAIMED
+  live_trading: NOT_AUTHORIZED
+  remote_deployment: NOT_CLAIMED

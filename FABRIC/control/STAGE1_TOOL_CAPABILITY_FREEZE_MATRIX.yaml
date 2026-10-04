@@ -1,0 +1,746 @@
+# Fabric Stage-1 Tool Capability Freeze Matrix — 35/35 protected rows
+schema: STAGE1-TOOL-CAPABILITY-FREEZE-MATRIX/1
+stage_id: RP002-STAGE-FABRIC
+master_sha256: "3bc4ad6c4bfe028e3686484f452d5fd015536e5e18b19c10ac978b2203c2087a"
+norm_source_keys: [TW-ICT-DOC29, MASTER-R2-S9.2]
+semantic_delta: PRESERVE_EXTEND
+required_rows: 35
+missing_row: FAIL_CLOSED
+stage1_install_count: 0
+tool_row_preservation_is_qualification: false
+rows:
+  - # 1
+    capability_id: TOOL-01
+    name: 'Hermes Runtime'
+    master_disposition: 'REQUIRED_P0 / REQUALIFY_EXACT'
+    stage1_action: 'G1_PROBE exact launcher/process'
+    current_state_source: 'current HGK registry/Manifest + local readback'
+    owning_downstream_gate: 'G1'
+    fallback_or_rollback: 'prior accepted runtime binding'
+    anti_downgrade_rule: 'row cannot disappear; no memory-only pin'
+    source_state: PRESERVE_OR_READBACK
+    current_state: READBACK_OR_DEFER
+    target_state: PRESERVE
+    qualification_action: QUALIFY_AT_OWNING_GATE
+    binding_route: HGK_REGISTRY_FIRST
+    actual_use_acceptance_edge: OWNING_GATE
+    security_rights: LEAST_PRIVILEGE
+    license: SOURCE_BACKED
+    sbom: SOURCE_BACKED
+    pin: EXACT_WHEN_ACTIVATED
+    rollback_or_disable: PRESERVED
+    exit: PRESERVED
+  - # 2
+    capability_id: TOOL-02
+    name: 'Hermes Profiles'
+    master_disposition: 'REQUIRED_P0'
+    stage1_action: 'G1 prerequisite probe; no materialization'
+    current_state_source: 'exact selected Hermes help/canary'
+    owning_downstream_gate: 'H1/O1/SQP1'
+    fallback_or_rollback: 'defer Stage-2 materialization'
+    anti_downgrade_rule: 'no missing row'
+    source_state: PRESERVE_OR_READBACK
+    current_state: READBACK_OR_DEFER
+    target_state: PRESERVE
+    qualification_action: QUALIFY_AT_OWNING_GATE
+    binding_route: HGK_REGISTRY_FIRST
+    actual_use_acceptance_edge: OWNING_GATE
+    security_rights: LEAST_PRIVILEGE
+    license: SOURCE_BACKED
+    sbom: SOURCE_BACKED
+    pin: EXACT_WHEN_ACTIVATED
+    rollback_or_disable: PRESERVED
+    exit: PRESERVED
+  - # 3
+    capability_id: TOOL-03
+    name: 'Hermes Profile Distribution'
+    master_disposition: 'REQUIRED_P0'
+    stage1_action: 'G1 prerequisite probe'
+    current_state_source: 'exact selected runtime'
+    owning_downstream_gate: 'H1/O1/SQP1'
+    fallback_or_rollback: 'defer'
+    anti_downgrade_rule: 'no generic Profile substitution'
+    source_state: PRESERVE_OR_READBACK
+    current_state: READBACK_OR_DEFER
+    target_state: PRESERVE
+    qualification_action: QUALIFY_AT_OWNING_GATE
+    binding_route: HGK_REGISTRY_FIRST
+    actual_use_acceptance_edge: OWNING_GATE
+    security_rights: LEAST_PRIVILEGE
+    license: SOURCE_BACKED
+    sbom: SOURCE_BACKED
+    pin: EXACT_WHEN_ACTIVATED
+    rollback_or_disable: PRESERVED
+    exit: PRESERVED
+  - # 4
+    capability_id: TOOL-04
+    name: 'Hermes Kanban'
+    master_disposition: 'REQUIRED_P0'
+    stage1_action: 'G1 prerequisite probe only'
+    current_state_source: 'exact runtime scratch canary'
+    owning_downstream_gate: 'B1'
+    fallback_or_rollback: 'DIRECT/bootstrap diagnostics only'
+    anti_downgrade_rule: 'no B1 claim in Stage-1'
+    source_state: PRESERVE_OR_READBACK
+    current_state: READBACK_OR_DEFER
+    target_state: PRESERVE
+    qualification_action: QUALIFY_AT_OWNING_GATE
+    binding_route: HGK_REGISTRY_FIRST
+    actual_use_acceptance_edge: OWNING_GATE
+    security_rights: LEAST_PRIVILEGE
+    license: SOURCE_BACKED
+    sbom: SOURCE_BACKED
+    pin: EXACT_WHEN_ACTIVATED
+    rollback_or_disable: PRESERVED
+    exit: PRESERVED
+  - # 5
+    capability_id: TOOL-05
+    name: 'Hermes A2A'
+    master_disposition: 'REQUIRED_WHEN_ROUTED'
+    stage1_action: 'G1_PROBE_OR_EXPLICIT_NA'
+    current_state_source: 'exact runtime + authority route'
+    owning_downstream_gate: 'CF1/B1 if selected'
+    fallback_or_rollback: 'same-host Kanban/direct local'
+    anti_downgrade_rule: 'explicit N/A required'
+    source_state: PRESERVE_OR_READBACK
+    current_state: READBACK_OR_DEFER
+    target_state: PRESERVE
+    qualification_action: QUALIFY_AT_OWNING_GATE
+    binding_route: HGK_REGISTRY_FIRST
+    actual_use_acceptance_edge: OWNING_GATE
+    security_rights: LEAST_PRIVILEGE
+    license: SOURCE_BACKED
+    sbom: SOURCE_BACKED
+    pin: EXACT_WHEN_ACTIVATED
+    rollback_or_disable: PRESERVED
+    exit: PRESERVED
+  - # 6
+    capability_id: TOOL-06
+    name: 'MCP'
+    master_disposition: 'REQUIRED_WHERE_BOUND'
+    stage1_action: 'PRESERVE_ROW_ONLY / surface locator'
+    current_state_source: 'current route/config'
+    owning_downstream_gate: 'CF1'
+    fallback_or_rollback: 'unbound explicit N/A'
+    anti_downgrade_rule: 'no silent enabling'
+    source_state: PRESERVE_OR_READBACK
+    current_state: READBACK_OR_DEFER
+    target_state: PRESERVE
+    qualification_action: QUALIFY_AT_OWNING_GATE
+    binding_route: HGK_REGISTRY_FIRST
+    actual_use_acceptance_edge: OWNING_GATE
+    security_rights: LEAST_PRIVILEGE
+    license: SOURCE_BACKED
+    sbom: SOURCE_BACKED
+    pin: EXACT_WHEN_ACTIVATED
+    rollback_or_disable: PRESERVED
+    exit: PRESERVED
+  - # 7
+    capability_id: TOOL-07
+    name: 'ContextForge'
+    master_disposition: 'ADOPT_CANDIDATE_P0'
+    stage1_action: 'DEFER_TO_GATE'
+    current_state_source: 'current tool matrix/upstream support'
+    owning_downstream_gate: 'CF1'
+    fallback_or_rollback: 'qualified direct local route'
+    anti_downgrade_rule: 'no Stage-1 activation'
+    source_state: PRESERVE_OR_READBACK
+    current_state: READBACK_OR_DEFER
+    target_state: PRESERVE
+    qualification_action: QUALIFY_AT_OWNING_GATE
+    binding_route: HGK_REGISTRY_FIRST
+    actual_use_acceptance_edge: OWNING_GATE
+    security_rights: LEAST_PRIVILEGE
+    license: SOURCE_BACKED
+    sbom: SOURCE_BACKED
+    pin: EXACT_WHEN_ACTIVATED
+    rollback_or_disable: PRESERVED
+    exit: PRESERVED
+  - # 8
+    capability_id: TOOL-08
+    name: 'OASF'
+    master_disposition: 'ADOPT_SCHEMA_P0'
+    stage1_action: 'PRESERVE_ROW_ONLY'
+    current_state_source: 'current schema candidate'
+    owning_downstream_gate: 'CF1'
+    fallback_or_rollback: 'internal manifest + explicit deferred schema'
+    anti_downgrade_rule: 'no authority transfer'
+    source_state: PRESERVE_OR_READBACK
+    current_state: READBACK_OR_DEFER
+    target_state: PRESERVE
+    qualification_action: QUALIFY_AT_OWNING_GATE
+    binding_route: HGK_REGISTRY_FIRST
+    actual_use_acceptance_edge: OWNING_GATE
+    security_rights: LEAST_PRIVILEGE
+    license: SOURCE_BACKED
+    sbom: SOURCE_BACKED
+    pin: EXACT_WHEN_ACTIVATED
+    rollback_or_disable: PRESERVED
+    exit: PRESERVED
+  - # 9
+    capability_id: TOOL-09
+    name: 'OpenTelemetry'
+    master_disposition: 'CONDITIONAL_EMBEDDED'
+    stage1_action: 'PRESERVE_CONDITIONAL'
+    current_state_source: 'current qualified route if any'
+    owning_downstream_gate: 'CF1'
+    fallback_or_rollback: 'no telemetry platform'
+    anti_downgrade_rule: 'no forced install'
+    source_state: PRESERVE_OR_READBACK
+    current_state: READBACK_OR_DEFER
+    target_state: PRESERVE
+    qualification_action: QUALIFY_AT_OWNING_GATE
+    binding_route: HGK_REGISTRY_FIRST
+    actual_use_acceptance_edge: OWNING_GATE
+    security_rights: LEAST_PRIVILEGE
+    license: SOURCE_BACKED
+    sbom: SOURCE_BACKED
+    pin: EXACT_WHEN_ACTIVATED
+    rollback_or_disable: PRESERVED
+    exit: PRESERVED
+  - # 10
+    capability_id: TOOL-10
+    name: 'SQLite'
+    master_disposition: 'REUSE_P0'
+    stage1_action: 'READBACK/PRESERVE'
+    current_state_source: 'current HGK knowledge substrate'
+    owning_downstream_gate: 'KG1'
+    fallback_or_rollback: 'exact/local file baseline'
+    anti_downgrade_rule: 'no migration for aesthetics'
+    source_state: PRESERVE_OR_READBACK
+    current_state: READBACK_OR_DEFER
+    target_state: PRESERVE
+    qualification_action: QUALIFY_AT_OWNING_GATE
+    binding_route: HGK_REGISTRY_FIRST
+    actual_use_acceptance_edge: OWNING_GATE
+    security_rights: LEAST_PRIVILEGE
+    license: SOURCE_BACKED
+    sbom: SOURCE_BACKED
+    pin: EXACT_WHEN_ACTIVATED
+    rollback_or_disable: PRESERVED
+    exit: PRESERVED
+  - # 11
+    capability_id: TOOL-11
+    name: 'FTS5'
+    master_disposition: 'REUSE_P0'
+    stage1_action: 'READBACK/PRESERVE'
+    current_state_source: 'current HGK retrieval baseline'
+    owning_downstream_gate: 'KG1'
+    fallback_or_rollback: 'exact lookup/SQLite'
+    anti_downgrade_rule: 'no advanced provider required'
+    source_state: PRESERVE_OR_READBACK
+    current_state: READBACK_OR_DEFER
+    target_state: PRESERVE
+    qualification_action: QUALIFY_AT_OWNING_GATE
+    binding_route: HGK_REGISTRY_FIRST
+    actual_use_acceptance_edge: OWNING_GATE
+    security_rights: LEAST_PRIVILEGE
+    license: SOURCE_BACKED
+    sbom: SOURCE_BACKED
+    pin: EXACT_WHEN_ACTIVATED
+    rollback_or_disable: PRESERVED
+    exit: PRESERVED
+  - # 12
+    capability_id: TOOL-12
+    name: 'HGK Memory'
+    master_disposition: 'REUSE_P0'
+    stage1_action: 'READBACK/PRESERVE'
+    current_state_source: 'current HGK Memory state'
+    owning_downstream_gate: 'KG1'
+    fallback_or_rollback: 'stateless/exact retrieval'
+    anti_downgrade_rule: 'memory != truth'
+    source_state: PRESERVE_OR_READBACK
+    current_state: READBACK_OR_DEFER
+    target_state: PRESERVE
+    qualification_action: QUALIFY_AT_OWNING_GATE
+    binding_route: HGK_REGISTRY_FIRST
+    actual_use_acceptance_edge: OWNING_GATE
+    security_rights: LEAST_PRIVILEGE
+    license: SOURCE_BACKED
+    sbom: SOURCE_BACKED
+    pin: EXACT_WHEN_ACTIVATED
+    rollback_or_disable: PRESERVED
+    exit: PRESERVED
+  - # 13
+    capability_id: TOOL-13
+    name: 'Cognee'
+    master_disposition: 'P1_SHADOW'
+    stage1_action: 'PRESERVE_ROW_ONLY'
+    current_state_source: 'current matrix/readback'
+    owning_downstream_gate: 'KG1/P1'
+    fallback_or_rollback: 'disabled'
+    anti_downgrade_rule: 'no auto canonical promotion'
+    source_state: PRESERVE_OR_READBACK
+    current_state: READBACK_OR_DEFER
+    target_state: PRESERVE
+    qualification_action: QUALIFY_AT_OWNING_GATE
+    binding_route: HGK_REGISTRY_FIRST
+    actual_use_acceptance_edge: OWNING_GATE
+    security_rights: LEAST_PRIVILEGE
+    license: SOURCE_BACKED
+    sbom: SOURCE_BACKED
+    pin: EXACT_WHEN_ACTIVATED
+    rollback_or_disable: PRESERVED
+    exit: PRESERVED
+  - # 14
+    capability_id: TOOL-14
+    name: 'Qdrant'
+    master_disposition: 'PRESERVE_CURRENT_STATE'
+    stage1_action: 'READBACK_STATE'
+    current_state_source: 'current local/provider state'
+    owning_downstream_gate: 'KG1'
+    fallback_or_rollback: 'FTS5 baseline'
+    anti_downgrade_rule: 'absence != removal'
+    source_state: PRESERVE_OR_READBACK
+    current_state: READBACK_OR_DEFER
+    target_state: PRESERVE
+    qualification_action: QUALIFY_AT_OWNING_GATE
+    binding_route: HGK_REGISTRY_FIRST
+    actual_use_acceptance_edge: OWNING_GATE
+    security_rights: LEAST_PRIVILEGE
+    license: SOURCE_BACKED
+    sbom: SOURCE_BACKED
+    pin: EXACT_WHEN_ACTIVATED
+    rollback_or_disable: PRESERVED
+    exit: PRESERVED
+  - # 15
+    capability_id: TOOL-15
+    name: 'Neo4j'
+    master_disposition: 'PRESERVE_CURRENT_STATE'
+    stage1_action: 'READBACK_STATE'
+    current_state_source: 'current local/provider state'
+    owning_downstream_gate: 'KG1'
+    fallback_or_rollback: 'no graph provider'
+    anti_downgrade_rule: 'absence != removal'
+    source_state: PRESERVE_OR_READBACK
+    current_state: READBACK_OR_DEFER
+    target_state: PRESERVE
+    qualification_action: QUALIFY_AT_OWNING_GATE
+    binding_route: HGK_REGISTRY_FIRST
+    actual_use_acceptance_edge: OWNING_GATE
+    security_rights: LEAST_PRIVILEGE
+    license: SOURCE_BACKED
+    sbom: SOURCE_BACKED
+    pin: EXACT_WHEN_ACTIVATED
+    rollback_or_disable: PRESERVED
+    exit: PRESERVED
+  - # 16
+    capability_id: TOOL-16
+    name: 'pgvector'
+    master_disposition: 'CONDITIONAL'
+    stage1_action: 'PRESERVE_ROW_ONLY'
+    current_state_source: 'current state'
+    owning_downstream_gate: 'KG1'
+    fallback_or_rollback: 'FTS5 baseline'
+    anti_downgrade_rule: 'explicit DEFER/N/A required'
+    source_state: PRESERVE_OR_READBACK
+    current_state: READBACK_OR_DEFER
+    target_state: PRESERVE
+    qualification_action: QUALIFY_AT_OWNING_GATE
+    binding_route: HGK_REGISTRY_FIRST
+    actual_use_acceptance_edge: OWNING_GATE
+    security_rights: LEAST_PRIVILEGE
+    license: SOURCE_BACKED
+    sbom: SOURCE_BACKED
+    pin: EXACT_WHEN_ACTIVATED
+    rollback_or_disable: PRESERVED
+    exit: PRESERVED
+  - # 17
+    capability_id: TOOL-17
+    name: 'Codex CLI'
+    master_disposition: 'INHERITED_REQUIRED'
+    stage1_action: 'PRESERVE_ROW_ONLY'
+    current_state_source: 'current HGK tool route'
+    owning_downstream_gate: 'C1'
+    fallback_or_rollback: 'current bounded coding fallback per authority'
+    anti_downgrade_rule: 'no Stage-1 authority'
+    source_state: PRESERVE_OR_READBACK
+    current_state: READBACK_OR_DEFER
+    target_state: PRESERVE
+    qualification_action: QUALIFY_AT_OWNING_GATE
+    binding_route: HGK_REGISTRY_FIRST
+    actual_use_acceptance_edge: OWNING_GATE
+    security_rights: LEAST_PRIVILEGE
+    license: SOURCE_BACKED
+    sbom: SOURCE_BACKED
+    pin: EXACT_WHEN_ACTIVATED
+    rollback_or_disable: PRESERVED
+    exit: PRESERVED
+  - # 18
+    capability_id: TOOL-18
+    name: 'OpenCodex/OpenCode / provider route'
+    master_disposition: 'INHERITED_REQUIRED_OR_EXPLICIT_CURRENT_DISPOSITION'
+    stage1_action: 'READBACK/PRESERVE'
+    current_state_source: 'current HGK provider ledger'
+    owning_downstream_gate: 'C1/H1'
+    fallback_or_rollback: 'exact inherited fallback only'
+    anti_downgrade_rule: 'silent provider removal/switch forbidden'
+    source_state: PRESERVE_OR_READBACK
+    current_state: READBACK_OR_DEFER
+    target_state: PRESERVE
+    qualification_action: QUALIFY_AT_OWNING_GATE
+    binding_route: HGK_REGISTRY_FIRST
+    actual_use_acceptance_edge: OWNING_GATE
+    security_rights: LEAST_PRIVILEGE
+    license: SOURCE_BACKED
+    sbom: SOURCE_BACKED
+    pin: EXACT_WHEN_ACTIVATED
+    rollback_or_disable: PRESERVED
+    exit: PRESERVED
+  - # 19
+    capability_id: TOOL-19
+    name: 'OpenSpec'
+    master_disposition: 'CERTIFIED_ACTIVE_BROWNFIELD / PRESERVE_OR_REQUALIFY'
+    stage1_action: 'PRESERVE_ROW_ONLY'
+    current_state_source: 'current HGK named-method registry'
+    owning_downstream_gate: 'C1/H1'
+    fallback_or_rollback: 'current spec adapter rollback'
+    anti_downgrade_rule: 'no Stage-1 invocation claim'
+    source_state: PRESERVE_OR_READBACK
+    current_state: READBACK_OR_DEFER
+    target_state: PRESERVE
+    qualification_action: QUALIFY_AT_OWNING_GATE
+    binding_route: HGK_REGISTRY_FIRST
+    actual_use_acceptance_edge: OWNING_GATE
+    security_rights: LEAST_PRIVILEGE
+    license: SOURCE_BACKED
+    sbom: SOURCE_BACKED
+    pin: EXACT_WHEN_ACTIVATED
+    rollback_or_disable: PRESERVED
+    exit: PRESERVED
+  - # 20
+    capability_id: TOOL-20
+    name: 'gstack'
+    master_disposition: 'CERTIFIED_SELECTED + FULL_METHODOLOGY_REPERTOIRE'
+    stage1_action: 'PRESERVE_ROW_ONLY'
+    current_state_source: 'current HGK named-method registry'
+    owning_downstream_gate: 'H1'
+    fallback_or_rollback: 'selected qualified slices'
+    anti_downgrade_rule: 'no scheduler/spec/release authority'
+    source_state: PRESERVE_OR_READBACK
+    current_state: READBACK_OR_DEFER
+    target_state: PRESERVE
+    qualification_action: QUALIFY_AT_OWNING_GATE
+    binding_route: HGK_REGISTRY_FIRST
+    actual_use_acceptance_edge: OWNING_GATE
+    security_rights: LEAST_PRIVILEGE
+    license: SOURCE_BACKED
+    sbom: SOURCE_BACKED
+    pin: EXACT_WHEN_ACTIVATED
+    rollback_or_disable: PRESERVED
+    exit: PRESERVED
+  - # 21
+    capability_id: TOOL-21
+    name: 'Spec Kit'
+    master_disposition: 'STANDBY_XOR'
+    stage1_action: 'PRESERVE_ROW_ONLY'
+    current_state_source: 'current spec-owner ledger'
+    owning_downstream_gate: 'H1/C1'
+    fallback_or_rollback: 'OpenSpec brownfield route'
+    anti_downgrade_rule: 'dual canonical spec owner forbidden'
+    source_state: PRESERVE_OR_READBACK
+    current_state: READBACK_OR_DEFER
+    target_state: PRESERVE
+    qualification_action: QUALIFY_AT_OWNING_GATE
+    binding_route: HGK_REGISTRY_FIRST
+    actual_use_acceptance_edge: OWNING_GATE
+    security_rights: LEAST_PRIVILEGE
+    license: SOURCE_BACKED
+    sbom: SOURCE_BACKED
+    pin: EXACT_WHEN_ACTIVATED
+    rollback_or_disable: PRESERVED
+    exit: PRESERVED
+  - # 22
+    capability_id: TOOL-22
+    name: 'AgentTeams'
+    master_disposition: 'NO_ADOPT_P0'
+    stage1_action: 'NO_ADOPT'
+    current_state_source: 'Master disposition'
+    owning_downstream_gate: 'none P0'
+    fallback_or_rollback: 'Hermes native runtime'
+    anti_downgrade_rule: 'no second runtime/control plane'
+    source_state: PRESERVE_OR_READBACK
+    current_state: READBACK_OR_DEFER
+    target_state: PRESERVE
+    qualification_action: QUALIFY_AT_OWNING_GATE
+    binding_route: HGK_REGISTRY_FIRST
+    actual_use_acceptance_edge: OWNING_GATE
+    security_rights: LEAST_PRIVILEGE
+    license: SOURCE_BACKED
+    sbom: SOURCE_BACKED
+    pin: EXACT_WHEN_ACTIVATED
+    rollback_or_disable: PRESERVED
+    exit: PRESERVED
+  - # 23
+    capability_id: TOOL-23
+    name: 'CrewAI'
+    master_disposition: 'NO_ADOPT_P0'
+    stage1_action: 'NO_ADOPT'
+    current_state_source: 'Master disposition'
+    owning_downstream_gate: 'none P0'
+    fallback_or_rollback: 'Hermes native runtime'
+    anti_downgrade_rule: 'no second orchestrator'
+    source_state: PRESERVE_OR_READBACK
+    current_state: READBACK_OR_DEFER
+    target_state: PRESERVE
+    qualification_action: QUALIFY_AT_OWNING_GATE
+    binding_route: HGK_REGISTRY_FIRST
+    actual_use_acceptance_edge: OWNING_GATE
+    security_rights: LEAST_PRIVILEGE
+    license: SOURCE_BACKED
+    sbom: SOURCE_BACKED
+    pin: EXACT_WHEN_ACTIVATED
+    rollback_or_disable: PRESERVED
+    exit: PRESERVED
+  - # 24
+    capability_id: TOOL-24
+    name: 'LangGraph'
+    master_disposition: 'NO_ADOPT_P0_AS_SECOND_ORCHESTRATOR'
+    stage1_action: 'NO_ADOPT'
+    current_state_source: 'Master disposition'
+    owning_downstream_gate: 'future bounded adapter only'
+    fallback_or_rollback: 'Hermes native runtime'
+    anti_downgrade_rule: 'no scheduler takeover'
+    source_state: PRESERVE_OR_READBACK
+    current_state: READBACK_OR_DEFER
+    target_state: PRESERVE
+    qualification_action: QUALIFY_AT_OWNING_GATE
+    binding_route: HGK_REGISTRY_FIRST
+    actual_use_acceptance_edge: OWNING_GATE
+    security_rights: LEAST_PRIVILEGE
+    license: SOURCE_BACKED
+    sbom: SOURCE_BACKED
+    pin: EXACT_WHEN_ACTIVATED
+    rollback_or_disable: PRESERVED
+    exit: PRESERVED
+  - # 25
+    capability_id: TOOL-25
+    name: 'OPA'
+    master_disposition: 'DEFER'
+    stage1_action: 'PRESERVE_DEFER'
+    current_state_source: 'Master disposition/current gap evidence'
+    owning_downstream_gate: 'future only'
+    fallback_or_rollback: 'Fabric policy contracts'
+    anti_downgrade_rule: 'no policy engine without reproduced gap'
+    source_state: PRESERVE_OR_READBACK
+    current_state: READBACK_OR_DEFER
+    target_state: PRESERVE
+    qualification_action: QUALIFY_AT_OWNING_GATE
+    binding_route: HGK_REGISTRY_FIRST
+    actual_use_acceptance_edge: OWNING_GATE
+    security_rights: LEAST_PRIVILEGE
+    license: SOURCE_BACKED
+    sbom: SOURCE_BACKED
+    pin: EXACT_WHEN_ACTIVATED
+    rollback_or_disable: PRESERVED
+    exit: PRESERVED
+  - # 26
+    capability_id: TOOL-26
+    name: 'SpiceDB'
+    master_disposition: 'DEFER'
+    stage1_action: 'PRESERVE_DEFER'
+    current_state_source: 'Master disposition/current ACL evidence'
+    owning_downstream_gate: 'future only'
+    fallback_or_rollback: 'Fabric ACL semantics'
+    anti_downgrade_rule: 'no authz DB without reproduced gap'
+    source_state: PRESERVE_OR_READBACK
+    current_state: READBACK_OR_DEFER
+    target_state: PRESERVE
+    qualification_action: QUALIFY_AT_OWNING_GATE
+    binding_route: HGK_REGISTRY_FIRST
+    actual_use_acceptance_edge: OWNING_GATE
+    security_rights: LEAST_PRIVILEGE
+    license: SOURCE_BACKED
+    sbom: SOURCE_BACKED
+    pin: EXACT_WHEN_ACTIVATED
+    rollback_or_disable: PRESERVED
+    exit: PRESERVED
+  - # 27
+    capability_id: TOOL-27
+    name: 'Kubernetes'
+    master_disposition: 'DEFER_NO_P0'
+    stage1_action: 'NO_ADOPT_P0'
+    current_state_source: 'Master local-first scope'
+    owning_downstream_gate: 'future'
+    fallback_or_rollback: 'Windows/local process runtime'
+    anti_downgrade_rule: 'no cluster for completeness'
+    source_state: PRESERVE_OR_READBACK
+    current_state: READBACK_OR_DEFER
+    target_state: PRESERVE
+    qualification_action: QUALIFY_AT_OWNING_GATE
+    binding_route: HGK_REGISTRY_FIRST
+    actual_use_acceptance_edge: OWNING_GATE
+    security_rights: LEAST_PRIVILEGE
+    license: SOURCE_BACKED
+    sbom: SOURCE_BACKED
+    pin: EXACT_WHEN_ACTIVATED
+    rollback_or_disable: PRESERVED
+    exit: PRESERVED
+  - # 28
+    capability_id: TOOL-28
+    name: 'service mesh'
+    master_disposition: 'DEFER_NO_P0'
+    stage1_action: 'NO_ADOPT_P0'
+    current_state_source: 'Master local-first scope'
+    owning_downstream_gate: 'future'
+    fallback_or_rollback: 'direct local binding'
+    anti_downgrade_rule: 'no mesh for completeness'
+    source_state: PRESERVE_OR_READBACK
+    current_state: READBACK_OR_DEFER
+    target_state: PRESERVE
+    qualification_action: QUALIFY_AT_OWNING_GATE
+    binding_route: HGK_REGISTRY_FIRST
+    actual_use_acceptance_edge: OWNING_GATE
+    security_rights: LEAST_PRIVILEGE
+    license: SOURCE_BACKED
+    sbom: SOURCE_BACKED
+    pin: EXACT_WHEN_ACTIVATED
+    rollback_or_disable: PRESERVED
+    exit: PRESERVED
+  - # 29
+    capability_id: TOOL-29
+    name: 'GitHub Actions'
+    master_disposition: 'CONDITIONAL'
+    stage1_action: 'PRESERVE_CONDITIONAL'
+    current_state_source: 'current remote CI readback'
+    owning_downstream_gate: 'conditional CI'
+    fallback_or_rollback: 'local checks'
+    anti_downgrade_rule: 'no remote CI claim if inactive'
+    source_state: PRESERVE_OR_READBACK
+    current_state: READBACK_OR_DEFER
+    target_state: PRESERVE
+    qualification_action: QUALIFY_AT_OWNING_GATE
+    binding_route: HGK_REGISTRY_FIRST
+    actual_use_acceptance_edge: OWNING_GATE
+    security_rights: LEAST_PRIVILEGE
+    license: SOURCE_BACKED
+    sbom: SOURCE_BACKED
+    pin: EXACT_WHEN_ACTIVATED
+    rollback_or_disable: PRESERVED
+    exit: PRESERVED
+  - # 30
+    capability_id: TOOL-30
+    name: 'OpenSSF Scorecard/hardening'
+    master_disposition: 'CONDITIONAL'
+    stage1_action: 'PRESERVE_CONDITIONAL'
+    current_state_source: 'CI applicability + SUPPORT'
+    owning_downstream_gate: 'conditional CI'
+    fallback_or_rollback: 'local hardening checks'
+    anti_downgrade_rule: 'full-SHA/least privilege if CI used'
+    source_state: PRESERVE_OR_READBACK
+    current_state: READBACK_OR_DEFER
+    target_state: PRESERVE
+    qualification_action: QUALIFY_AT_OWNING_GATE
+    binding_route: HGK_REGISTRY_FIRST
+    actual_use_acceptance_edge: OWNING_GATE
+    security_rights: LEAST_PRIVILEGE
+    license: SOURCE_BACKED
+    sbom: SOURCE_BACKED
+    pin: EXACT_WHEN_ACTIVATED
+    rollback_or_disable: PRESERVED
+    exit: PRESERVED
+  - # 31
+    capability_id: TOOL-31
+    name: 'SLSA provenance'
+    master_disposition: 'CONDITIONAL'
+    stage1_action: 'PRESERVE_CONDITIONAL'
+    current_state_source: 'packaging/remote build applicability'
+    owning_downstream_gate: 'packaging/CI'
+    fallback_or_rollback: 'local hashes/manifests'
+    anti_downgrade_rule: 'provenance != runtime acceptance'
+    source_state: PRESERVE_OR_READBACK
+    current_state: READBACK_OR_DEFER
+    target_state: PRESERVE
+    qualification_action: QUALIFY_AT_OWNING_GATE
+    binding_route: HGK_REGISTRY_FIRST
+    actual_use_acceptance_edge: OWNING_GATE
+    security_rights: LEAST_PRIVILEGE
+    license: SOURCE_BACKED
+    sbom: SOURCE_BACKED
+    pin: EXACT_WHEN_ACTIVATED
+    rollback_or_disable: PRESERVED
+    exit: PRESERVED
+  - # 32
+    capability_id: TOOL-32
+    name: 'Docker / process isolation'
+    master_disposition: 'CONDITIONAL'
+    stage1_action: 'PRESERVE_CONDITIONAL'
+    current_state_source: 'actual isolation requirement'
+    owning_downstream_gate: 'H1/B1 if needed'
+    fallback_or_rollback: 'OS process/worktree boundaries'
+    anti_downgrade_rule: 'Profile != sandbox'
+    source_state: PRESERVE_OR_READBACK
+    current_state: READBACK_OR_DEFER
+    target_state: PRESERVE
+    qualification_action: QUALIFY_AT_OWNING_GATE
+    binding_route: HGK_REGISTRY_FIRST
+    actual_use_acceptance_edge: OWNING_GATE
+    security_rights: LEAST_PRIVILEGE
+    license: SOURCE_BACKED
+    sbom: SOURCE_BACKED
+    pin: EXACT_WHEN_ACTIVATED
+    rollback_or_disable: PRESERVED
+    exit: PRESERVED
+  - # 33
+    capability_id: TOOL-33
+    name: 'Matt / Agent Skills'
+    master_disposition: 'SELECTIVE_POST_R3_DONOR'
+    stage1_action: 'PRESERVE_SELECTED_ONLY'
+    current_state_source: 'current selected-skill registry'
+    owning_downstream_gate: 'H1/E2'
+    fallback_or_rollback: 'no skill / prior promoted skill'
+    anti_downgrade_rule: 'no bulk `latest` install'
+    source_state: PRESERVE_OR_READBACK
+    current_state: READBACK_OR_DEFER
+    target_state: PRESERVE
+    qualification_action: QUALIFY_AT_OWNING_GATE
+    binding_route: HGK_REGISTRY_FIRST
+    actual_use_acceptance_edge: OWNING_GATE
+    security_rights: LEAST_PRIVILEGE
+    license: SOURCE_BACKED
+    sbom: SOURCE_BACKED
+    pin: EXACT_WHEN_ACTIVATED
+    rollback_or_disable: PRESERVED
+    exit: PRESERVED
+  - # 34
+    capability_id: TOOL-34
+    name: 'Codex Desktop'
+    master_disposition: 'OPTIONAL_L3'
+    stage1_action: 'PRESERVE_OPTIONAL'
+    current_state_source: 'external challenge policy'
+    owning_downstream_gate: 'selected L3 checkpoints'
+    fallback_or_rollback: 'GPT-5.6 Sol / other source-authorized reviewer'
+    anti_downgrade_rule: 'read-only; no promotion'
+    source_state: PRESERVE_OR_READBACK
+    current_state: READBACK_OR_DEFER
+    target_state: PRESERVE
+    qualification_action: QUALIFY_AT_OWNING_GATE
+    binding_route: HGK_REGISTRY_FIRST
+    actual_use_acceptance_edge: OWNING_GATE
+    security_rights: LEAST_PRIVILEGE
+    license: SOURCE_BACKED
+    sbom: SOURCE_BACKED
+    pin: EXACT_WHEN_ACTIVATED
+    rollback_or_disable: PRESERVED
+    exit: PRESERVED
+  - # 35
+    capability_id: TOOL-35
+    name: 'DeepEval / optional eval library'
+    master_disposition: 'DEFER_UNLESS_ACCEPTANCE_PACK_REQUIRES'
+    stage1_action: 'PRESERVE_DEFER'
+    current_state_source: 'Acceptance Pack requirement'
+    owning_downstream_gate: 'O1/E3 if selected'
+    fallback_or_rollback: 'deterministic validators'
+    anti_downgrade_rule: 'do not install by default'
+    source_state: PRESERVE_OR_READBACK
+    current_state: READBACK_OR_DEFER
+    target_state: PRESERVE
+    qualification_action: QUALIFY_AT_OWNING_GATE
+    binding_route: HGK_REGISTRY_FIRST
+    actual_use_acceptance_edge: OWNING_GATE
+    security_rights: LEAST_PRIVILEGE
+    license: SOURCE_BACKED
+    sbom: SOURCE_BACKED
+    pin: EXACT_WHEN_ACTIVATED
+    rollback_or_disable: PRESERVED
+    exit: PRESERVED

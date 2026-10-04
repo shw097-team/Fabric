@@ -1,0 +1,10 @@
+{
+  "schema": "FAR-HARDENING-ROLLBACK-RECEIPT/1",
+  "changeset": "FAR_TRI_SOURCE_FOCUSED_HARDENING_20260814",
+  "workorder": "WO-FAR-HARDENING-001",
+  "rollback_pointer": "RB-WO-FAR-HARDENING-001",
+  "rollback_scope": "focused hardening ChangeSet only (far_retrieval.py SSRF/redirect/truncation/lineage, far_trisource.py independence/budget/corroboration, tests/test_far_hardening.py, templates, configs, evidence)",
+  "restore_target": "pre-hardening state per HARDENING_CHANGE_INPUT_MANIFEST_2026-08-14.json (15 frozen files with sha256)",
+  "preserved": "historical r8 baseline (58de0815 immutable); WO-FAR-TRISOURCE-001 historical state; failed runs not deleted (append-only receipts)",
+  "verified_at_utc": "2026-08-13T17:08:10Z"
+}

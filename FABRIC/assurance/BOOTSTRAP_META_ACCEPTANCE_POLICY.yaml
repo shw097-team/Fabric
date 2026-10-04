@@ -1,0 +1,39 @@
+# Fabric Bootstrap Meta-Acceptance Policy — Stage-1 root of trust
+schema: RP002-BOOTSTRAP-META-ACCEPTANCE/2
+stage_id: RP002-STAGE-FABRIC
+master_sha256: "3bc4ad6c4bfe028e3686484f452d5fd015536e5e18b19c10ac978b2203c2087a"
+norm_source_keys: [ULTRATHIN-EXTERNAL-BOOTSTRAP, DISCUSSION-15]
+source_locators: ["RP-002_HGK_HERMES_UltraThin_Master_Construction_Acceptance_Prompt_r1_2026-08-11.md"]
+semantic_delta: PRESERVE_BOOTSTRAP_ROOT_OF_TRUST
+applies_to: [G0, G1, STAGE-1-SEAL]
+bootstrap_meta_checker:
+  default_identity: EXTERNAL_GPT_5_6_SOL_CURRENT_CONVERSATION
+  authority_mode: HUMAN_MEDIATED_EXTERNAL_REVIEW_AUTHORITY
+  substitution: SOURCE_AUTHORIZED_ONLY
+  substitution_requires: AuthorityReceipt
+  maker_context_preload: DENY
+  candidate_write: DENY
+  repair: DENY
+  workorder_create: DENY
+  evaluator_mutation: DENY
+  promotion: DENY
+  release: DENY
+  receipt_required: true
+  handoff_mode: USER_UPLOAD_SINGLE_EXTERNAL_REVIEW_MD
+alternate_checker_minimum:
+  distinct_identity_or_clean_room_context: REQUIRED
+  no_maker_mutable_session_state: REQUIRED
+  candidate_read_only: REQUIRED
+  raw_evidence_access: REQUIRED
+  authority_receipt: REQUIRED
+inputs:
+  - frozen_stage_contract
+  - raw_G0_G1_evidence
+  - current_subject
+  - current_failure_register
+  - prompt_compile_receipt
+  - tool_capability_freeze_matrix
+  - kp_applicability_map
+output:
+  schema: RP002-BOOTSTRAP-ACCEPTANCE-RECEIPT/1
+  verdicts: [PASS, FAIL, PARTIAL, UNVERIFIED, BLOCKED]

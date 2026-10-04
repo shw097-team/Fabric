@@ -1,0 +1,35 @@
+# FAR Prime Qualification Record — N/A_NOT_SELECTED_WITH_REASON (blueprint 17.3/32 FAR-WO-006)
+schema: FAR-PRIME-QUALIFICATION-RECORD/1
+subject: fabric-autonomous-research (WO-FAR-006)
+verdict: N/A_NOT_SELECTED_WITH_REASON
+date: 2026-08-13
+
+## Upstream identity (SUPPORT-level pin, fresh 2026-08-13)
+upstream:
+  repository: https://github.com/PrimeIntellect-ai/prime-agent
+  latest_stable_tag: v0.7.2
+  tag_commit: 83a0f9f9566219551fcb6ffaf7f519a815749a58
+  head_commit: 7787f07415d843b9a800f6a4720e0c739bd608e5
+  released: 2026-08-11 (matches blueprint 42 register)
+  acp_docs: packages/coding-agent/docs/acp.md
+  known_issues: ["#1288 long-RLM OOM", "#1326 no-progress repeat", "#1313 goal inactive", "#1290 refine truncation"]
+
+## Reason codes (why N/A this round)
+reasons:
+  CR-FAR-002: no host-installed Prime runtime; full commit/artifact/tree digest on this host not established -> Prime OFF
+  CR-FAR-003: target sandbox substrate not ready (no Docker/WSL qualification evidence) -> Prime/ARC native-only
+  CR-FAR-005: Prime ACP integration on current Windows environment unproven (no runtime to exercise initialize/new/prompt/cancel/close)
+  runtime_risk: upstream long-running issues remain open at 2026-08-13 -> requires containment first
+
+## Hard cases NOT exercised (honest)
+not_exercised: "Q-PRIME-01..Q-PRIME-14 (identity pin on host, ACP session lifecycle, sandbox containment, denied canonical write, bounded RLM child, large-corpus real task, no-progress watchdog, crash/recovery, refine integrity, memory candidate-only, telemetry, _meta non-authority, native fallback)"
+
+## Eligibility state (router-consistent)
+matrix_state: CANDIDATE_DISABLED_UNTIL_QUALIFIED
+router_reason: FAR_BLOCK_PROVIDER_UNQUALIFIED (prime) / FAR_DEGRADE_NATIVE (native fallback when minimum met)
+future_activation_requires: "exact identity + artifact/tree SHA, ACP-first integration on target Windows, sandbox substrate, watchdog/budget containment, Q-PRIME-01..14 PASS"
+
+## Consequence
+consequence:
+  - P0 FAR operates fully without Prime (blueprint 32: FAR-Q7 = N/A_NOT_SELECTED_WITH_REASON is an accepted conditional-gate outcome)
+  - No provider self-promotion; no qualification claim; upstream SUPPORT only (cannot override A0-A4)

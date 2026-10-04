@@ -1,0 +1,12 @@
+schema: FABRIC-AUTHORITY-RECEIPT/1
+stage_id: RP002-STAGE-FABRIC
+master_sha256: "3bc4ad6c4bfe028e3686484f452d5fd015536e5e18b19c10ac978b2203c2087a"
+fields:
+  - receipt_id
+  - authority_identity
+  - authority_ref
+  - granted_scope
+  - expires_at
+  - revocation_path
+  - signature_ref
+substitution_requires: [explicit_source_authorized_receipt, distinct_identity_or_clean_room]

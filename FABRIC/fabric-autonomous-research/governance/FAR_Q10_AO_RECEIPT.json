@@ -1,0 +1,41 @@
+{
+  "schema": "FAR-Q10-AO-RECEIPT/1",
+  "gate": "FAR-Q10",
+  "finding_ref": "EXT-FAR-007",
+  "subject_bound": "FAR_SUBJECT_ROOT_MANIFEST.json subject_root_digest 5720337bce9ef09402c8f22a2fecff39bffe881a5e46a187a78aabd10519ec6a",
+  "lane_1_fresh_ao": {
+    "delegation_id": "deleg_bab33aae",
+    "role": "acceptance-officer (FRESH CONTEXT, VERIFY_ONLY, read-only)",
+    "duration_s": 66.55,
+    "checks_total": 10,
+    "checks_passed": 9,
+    "checks_failed": 1,
+    "failed_item": "item 3 raw-tests stdout 0 bytes (unittest writes to stderr; packaging capture defect)",
+    "verdict": "FAIL_on_packaging_only (product/evidence otherwise 9/10 clean; 0 blocking product findings)"
+  },
+  "finding": {
+    "id": "AO-FINDING-FAR-002",
+    "classification": "PACKAGING_ANOMALY",
+    "smallest_repair": "re-run suite with merged capture (2>&1) into stdout evidence file",
+    "repair_executed": "far_tests_suite.stdout.txt regenerated 2026-08-13 20:10 UTC (134 bytes: dots / Ran 23 tests in 0.001s / OK / EXIT=0)",
+    "status": "CLOSED"
+  },
+  "lane_2_focused_retest": {
+    "delegation_id": "deleg_e4a09db4",
+    "duration_s": 55.11,
+    "checks_total": 4,
+    "checks_passed": 4,
+    "checks_failed": 0,
+    "verdict": "PASS",
+    "verdict_line": "ACCEPTANCE_OFFICER_VERDICT=PASS",
+    "items": "1a-1d stdout exists/non-empty/OK/EXIT=0 PASS; stdout independent of stderr PASS; subject digest 5720337b + crosswalk 92 + EVD 22 spot checks PASS; read-only no-write PASS"
+  },
+  "final": {
+    "internal_acceptance": "PASS",
+    "blockers": 0,
+    "maker_separated": true,
+    "no_candidate_writes": true,
+    "raw_receipt": "FAR_Q10_AO_RECEIPT.json"
+  },
+  "generated_at_utc": "2026-08-13T20:13:00Z"
+}

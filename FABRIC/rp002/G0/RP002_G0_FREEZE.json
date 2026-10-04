@@ -1,0 +1,258 @@
+{
+  "artifact_id": "RP002_G0_INPUT_BASELINE_FREEZE",
+  "project_id": "HGK-REFERENCE-PROJECT-002",
+  "frozen_at": "2026-08-11T15:31:19.632346+00:00",
+  "executor": "CURRENT_CERTIFIED_HGK_RUNTIME",
+  "oracle": {
+    "type": "EXTERNAL_FROZEN_ORACLE",
+    "contract_digest": "c3f34ca28a6bc8c8b7255c721173ff00e694366eb3b15891d15b3b97f5453c70",
+    "blueprint_r3_digest": "6900e451e578bdcbb9b6e4fa5792277ef11a8389ae9b7fced94254d89d00f147",
+    "knowledge_pack_digest": "24aa0390a0d27ea3049db0e6499f2e1cd3e4b5bd4cfdf5b24016fe4c82f1d4c7",
+    "prompt_compiler_digest": "214c7f048f7361fe0bc4a324a0c99aaaf0df4191a430b645b8a97d24620064b6",
+    "hgk_agents_digest": "ebb401ee08ebe10417b5ee1ebc80ebc2ab1ecd086fb330ba3ed9bab63b44fd62",
+    "hgk_config_hermes_digest": "ebdcf084dfadeaa02ad48f38ec88be23a2c248cb9f6ed507a66808dbe09855cb",
+    "hgk_user_guide_digest": "a8540246bc8680676557239536d8c79f8b9283eb7b68f1b2c4c2a1a5af9e925e"
+  },
+  "denominator": {
+    "jsonl": "C:\\Projects\\Agent_Workspace\\Fabric\\rp002\\G0\\RP002_INPUT_DENOMINATOR.jsonl",
+    "jsonl_sha256": "9ac92e9f05a2509d95f26c989ea1bf2ffd893e8865f72652fb9fafcca470149a",
+    "included_file_count": 30372,
+    "included_bytes_total": 4708142359,
+    "classification_tsv": "C:\\Projects\\Agent_Workspace\\Fabric\\rp002\\G0\\RP002_SOURCE_CLASSIFICATION.tsv",
+    "excluded_families": [
+      {
+        "family_reason": "DERIVED_sqlite_backups",
+        "file_count": 4,
+        "bytes_total": 1434291,
+        "tree_identity": "3b131d030432d0d74111881d29cf6ff6006e58280b2793a87625291bf1c80f7b",
+        "sample_paths": [
+          "var/backups/hg-kseos-20260808T115711.216854Z.db",
+          "var/backups/hg-kseos-20260808T115711.216854Z.manifest.json",
+          "var/backups/hg-kseos-20260808T115720.920805Z.db"
+        ]
+      },
+      {
+        "family_reason": "VENDOR_runtime_relay",
+        "file_count": 1,
+        "bytes_total": 293478192,
+        "tree_identity": "960584c9cfb3aa1a0520ee21b2496378e4c51b86773cfeb13f8d2d8e0a9ad92c",
+        "sample_paths": [
+          "var/codex-relay/codex.exe"
+        ]
+      },
+      {
+        "family_reason": "VENDOR_disposable_qual_home",
+        "file_count": 15579,
+        "bytes_total": 337434317,
+        "tree_identity": "d3d1fefa82ac585036af922f207b924e30e84ffa6bbb236cf38ba25acbdf2b19",
+        "sample_paths": [
+          "var/hermes-disposable/TST-054-001/build-venv/.gitignore",
+          "var/hermes-disposable/TST-054-001/build-venv/.lock",
+          "var/hermes-disposable/TST-054-001/build-venv/CACHEDIR.TAG"
+        ]
+      },
+      {
+        "family_reason": "VENDOR_tool_install_backup",
+        "file_count": 3252,
+        "bytes_total": 555457007,
+        "tree_identity": "b701c68978391249dca530909d5d8ee2b8071522be1e523e3207a40f2e7e04b7",
+        "sample_paths": [
+          "var/opencodex-backup/pre-install/.codex/..codex-global-state.json.tmp-1785494645734-5357eab1-9e89-4c13-b71d-a75e0aeab4bc",
+          "var/opencodex-backup/pre-install/.codex/..codex-global-state.json.tmp-1786103511699-8efc9ceb-e369-4a36-bab4-c5446d739ee8",
+          "var/opencodex-backup/pre-install/.codex/.chatgpt-projects/.metadata/g-p-6a5986ae56b48191bfa3f1c78ad311c5.json"
+        ]
+      },
+      {
+        "family_reason": "DERIVED_rollback_drill_output",
+        "file_count": 2,
+        "bytes_total": 1433600,
+        "tree_identity": "15d2ae5f0114f8c643f6929dcd36312389f8886a97253f032bded4309164c1e7",
+        "sample_paths": [
+          "var/rollback-proof/restored-1786190241056835100",
+          "var/rollback-proof/restored-1786190250104676200"
+        ]
+      },
+      {
+        "family_reason": "DERIVED_llm_wiki_compiler_output",
+        "file_count": 5,
+        "bytes_total": 326989428,
+        "tree_identity": "146ce9a0eb06ac596f0e87c5364b7af8200bcee7f2fa4f7dd44c10d6a88bb883",
+        "sample_paths": [
+          "var/workbench/installers/Obsidian-1.13.4.exe",
+          "var/workbench/llm-wiki/package-lock.json",
+          "var/workbench/llm-wiki/package.json"
+        ]
+      },
+      {
+        "family_reason": "VENDOR_hermes_source_pinned_by_config_commit",
+        "file_count": 8443,
+        "bytes_total": 142282600,
+        "tree_identity": "9b8d7f6e298fae6b5ea01dce738c984103f0a1fb2655f40fe62c76e2ee845b7e",
+        "sample_paths": [
+          "var/hermes-v020/repo/.bytecode-fingerprint",
+          "var/hermes-v020/repo/.dockerignore",
+          "var/hermes-v020/repo/.env.example"
+        ]
+      },
+      {
+        "family_reason": "RAW_DATA_market_price_history",
+        "file_count": 150873,
+        "bytes_total": 6813622784,
+        "tree_identity": "600162f3309828432334587bc5d53e6b312cf84e952ccdf714f9364dbe541007",
+        "sample_paths": [
+          "技術資料庫/台股價格歷史資料/Taiwan STOCK/1101_history.csv",
+          "技術資料庫/台股價格歷史資料/Taiwan STOCK/1102_history.csv",
+          "技術資料庫/台股價格歷史資料/Taiwan STOCK/1104_history.csv"
+        ]
+      },
+      {
+        "family_reason": "OUTPUT_rp002_tree",
+        "file_count": 13,
+        "bytes_total": 16846088,
+        "tree_identity": "d426699da0d49f2e26e4b54d493643ae02346484eeebadf3f3b14886c0daebc1",
+        "sample_paths": [
+          "rp002/FROZEN_ACCEPTANCE_ORACLE.yaml",
+          "rp002/G0/RP002_INPUT_DENOMINATOR.jsonl",
+          "rp002/G0/RP002_INPUT_DENOMINATOR.sha256"
+        ]
+      }
+    ],
+    "policy": "INCLUDE all material source under 4 roots except .git/__pycache__/.venv/node_modules/*.pyc, vendored toolchains (pinned by config commit), derived wiki/backup dirs, raw market data, and Fabric rp002/**+evidence/** output trees (recorded as aggregate identities)."
+  },
+  "current_identities": {
+    "hgk_head": "22e21f0340501caf4ff0dbd67663faf49f521b03",
+    "hgk_branch": "codex/hgk-final-closure-002",
+    "hgk_working_tree": "clean",
+    "sqs_head": "9a70501ad4bbf315c675894a7a58c0f98bf18f47",
+    "sqs_branch": "main",
+    "sqs_working_tree": "D \"\\345\\257\\246\\344\\275\\234\\345\\237\\267\\350\\241\\214/\\345\\257\\246\\344\\275\\234\\346\\226\\271\\346\\241\\210\\343\\200\\201\\350\\251\\225\\344\\274\\260/HG-KSEOS \\346\\207\\211\\347\\224\\250 deterministic admission policy.md\"\n D \"\\345\\257\\246\\344\\275\\234\\345\\237\\267\\350\\241\\214/\\345\\257\\246\\344\\275\\234\\346\\226\\271\\346\\241\\210\\343\\200\\201\\350\\251\\225\\344\\274\\260/HG-KSEOS \\350\\234\\202\\347\\276\\244\\357\\274\\217Kanban\\357\\",
+    "hermes_version": "0.20.0",
+    "hermes_tag": "v2026.8.3",
+    "hermes_commit": "3c27eb6234bf91b8ceee9e9071591b31e9b148cb",
+    "hermes_executable": "var\\hermes-v020\\venv\\Scripts\\hermes.exe",
+    "hermes_home": "var\\hermes-v020\\home",
+    "provider": "opencode-go",
+    "model": "deepseek-v4-flash",
+    "provider_base_url": "https://opencode.ai/zen/go/v1",
+    "openai_fallback": false,
+    "codex_route": "Codex CLI -> OpenCodex -> OpenCode Go -> deepseek-v4-flash",
+    "openspec": "CERTIFIED_ACTIVE_BROWNFIELD (v1.8.0)",
+    "gstack": "CERTIFIED_ACTIVE_SELECTED_SLICES (1.61.0.0)",
+    "spec_kit": "INHERITED_STANDBY_XOR",
+    "baseline_suite": "274 tests OK (unittest discover, PYTHONPATH=src)",
+    "spine_db": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\shared-spine\\hg-kseos.db",
+    "rp001_status": "MILESTONE_CLOSED (not reopened)"
+  },
+  "gate_requirements": {
+    "admitted": [],
+    "already_existed": [
+      "REQ-RP2-G0",
+      "REQ-RP2-G1",
+      "REQ-RP2-K1",
+      "REQ-RP2-D1",
+      "REQ-RP2-C1",
+      "REQ-RP2-H1",
+      "REQ-RP2-O1",
+      "REQ-RP2-B1",
+      "REQ-RP2-F0",
+      "REQ-RP2-CF1",
+      "REQ-RP2-F1",
+      "REQ-RP2-KG1",
+      "REQ-RP2-SQP1",
+      "REQ-RP2-S1",
+      "REQ-RP2-E1",
+      "REQ-RP2-E2",
+      "REQ-RP2-E3",
+      "REQ-RP2-R1"
+    ]
+  },
+  "claim_ceiling": {
+    "local_acceptance": "RP002_LOCAL_ACCEPTANCE_PASS only after R1",
+    "production_autonomy": "NOT_CLAIMED",
+    "sqs_live_trading": "NOT_AUTHORIZED",
+    "remote_deployment": "NOT_CLAIMED"
+  },
+  "internal_oracle_candidate": {
+    "profile_id": "construction-acceptance-oracle",
+    "distribution_commit": null,
+    "subject_digest": null,
+    "promotion_gate": "O1"
+  },
+  "acceptance_ids": [
+    "RP2-T001",
+    "RP2-T002",
+    "RP2-T003",
+    "RP2-T004",
+    "RP2-T005",
+    "RP2-T006",
+    "RP2-T010",
+    "RP2-T011",
+    "RP2-T012",
+    "RP2-T013",
+    "RP2-T014",
+    "RP2-T015",
+    "RP2-T016",
+    "RP2-T017",
+    "RP2-T018",
+    "RP2-T019",
+    "RP2-T020",
+    "RP2-T021",
+    "RP2-T022",
+    "RP2-T023",
+    "RP2-T024",
+    "RP2-T025",
+    "RP2-T026",
+    "RP2-T027",
+    "RP2-T030",
+    "RP2-T031",
+    "RP2-T032",
+    "RP2-T033",
+    "RP2-T034",
+    "RP2-T035",
+    "RP2-T036",
+    "RP2-T037",
+    "RP2-T050",
+    "RP2-T051",
+    "RP2-T052",
+    "RP2-T060",
+    "RP2-T061",
+    "RP2-T070",
+    "RP2-T071",
+    "RP2-T072",
+    "RP2-T080",
+    "RP2-T081",
+    "RP2-T082",
+    "RP2-T083",
+    "RP2-T084",
+    "RP2-T085",
+    "RP2-T090",
+    "RP2-T091",
+    "RP2-T092",
+    "RP2-T093",
+    "RP2-T094",
+    "RP2-T100",
+    "RP2-T101",
+    "RP2-T102",
+    "RP2-T103",
+    "RP2-T104",
+    "RP2-T105",
+    "RP2-T110",
+    "RP2-T111",
+    "RP2-T112",
+    "RP2-T113",
+    "RP2-T120",
+    "RP2-T121",
+    "RP2-T122",
+    "RP2-T123",
+    "RP2-T130",
+    "RP2-T140",
+    "RP2-T141",
+    "RP2-T142",
+    "RP2-T143",
+    "RP2-T144"
+  ],
+  "holdout_ids": [
+    "E3_HOLDOUT_N/A_WITH_SOURCE_LOCATOR",
+    "NEG-ADVERSARIAL-FIXTURES"
+  ]
+}

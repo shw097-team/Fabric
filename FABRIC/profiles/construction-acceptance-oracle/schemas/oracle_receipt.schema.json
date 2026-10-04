@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "RP002-ORACLE-RECEIPT/1",
+  "type": "object",
+  "required": [
+    "oracle_id",
+    "oracle_package_digest",
+    "subject_digest",
+    "acceptance_oracle_digest",
+    "verdict"
+  ],
+  "properties": {
+    "oracle_id": {
+      "type": "string"
+    },
+    "oracle_version": {
+      "type": "string"
+    },
+    "oracle_package_digest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "subject_digest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "acceptance_oracle_digest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "acceptance_pack_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "requirement_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "evidence_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "missing_evidence": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "conflicts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "repair_scope": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "verdict": {
+      "enum": [
+        "PASS",
+        "PARTIAL",
+        "FAIL",
+        "TEMP_CLOSED"
+      ]
+    }
+  }
+}

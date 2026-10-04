@@ -1,0 +1,461 @@
+{
+ "workorders": [
+  {
+   "workorder_id": "WO-FAR-001",
+   "writer": "codex",
+   "state": "VERIFIED",
+   "rollback_pointer": "RB-WO-FAR-001"
+  },
+  {
+   "workorder_id": "WO-FAR-002",
+   "writer": "codex",
+   "state": "VERIFIED",
+   "rollback_pointer": "RB-WO-FAR-002"
+  },
+  {
+   "workorder_id": "WO-FAR-003",
+   "writer": "codex",
+   "state": "VERIFIED",
+   "rollback_pointer": "RB-WO-FAR-003"
+  },
+  {
+   "workorder_id": "WO-FAR-004",
+   "writer": "codex",
+   "state": "VERIFIED",
+   "rollback_pointer": "RB-WO-FAR-004"
+  },
+  {
+   "workorder_id": "WO-FAR-005",
+   "writer": "codex",
+   "state": "VERIFIED",
+   "rollback_pointer": "RB-WO-FAR-005"
+  },
+  {
+   "workorder_id": "WO-FAR-006",
+   "writer": "codex",
+   "state": "VERIFIED",
+   "rollback_pointer": "RB-WO-FAR-006"
+  },
+  {
+   "workorder_id": "WO-FAR-007",
+   "writer": "codex",
+   "state": "VERIFIED",
+   "rollback_pointer": "RB-WO-FAR-007"
+  },
+  {
+   "workorder_id": "WO-FAR-008",
+   "writer": "codex",
+   "state": "VERIFIED",
+   "rollback_pointer": "RB-WO-FAR-008"
+  },
+  {
+   "workorder_id": "WO-FAR-USE-001",
+   "writer": "codex",
+   "state": "VERIFIED",
+   "rollback_pointer": "RB-WO-FAR-USE-001"
+  }
+ ],
+ "requirements": [
+  {
+   "requirement_id": "REQ-FAR-001",
+   "state": "FROZEN",
+   "version": 1,
+   "priority": "P0"
+  },
+  {
+   "requirement_id": "REQ-FAR-002",
+   "state": "FROZEN",
+   "version": 1,
+   "priority": "P0"
+  },
+  {
+   "requirement_id": "REQ-FAR-003",
+   "state": "FROZEN",
+   "version": 1,
+   "priority": "P0"
+  },
+  {
+   "requirement_id": "REQ-FAR-004",
+   "state": "FROZEN",
+   "version": 1,
+   "priority": "P0"
+  },
+  {
+   "requirement_id": "REQ-FAR-005",
+   "state": "FROZEN",
+   "version": 1,
+   "priority": "P0"
+  },
+  {
+   "requirement_id": "REQ-FAR-006",
+   "state": "FROZEN",
+   "version": 1,
+   "priority": "P0"
+  },
+  {
+   "requirement_id": "REQ-FAR-007",
+   "state": "FROZEN",
+   "version": 1,
+   "priority": "P0"
+  },
+  {
+   "requirement_id": "REQ-FAR-008",
+   "state": "FROZEN",
+   "version": 1,
+   "priority": "P0"
+  },
+  {
+   "requirement_id": "REQ-FAR-USE-001",
+   "state": "FROZEN",
+   "version": 1,
+   "priority": "P0"
+  }
+ ],
+ "taskspecs": [
+  {
+   "taskspec_id": "TS-FAR-001",
+   "requirement_id": "REQ-FAR-001",
+   "owner": "far-orchestrator"
+  },
+  {
+   "taskspec_id": "TS-FAR-002",
+   "requirement_id": "REQ-FAR-002",
+   "owner": "far-orchestrator"
+  },
+  {
+   "taskspec_id": "TS-FAR-003",
+   "requirement_id": "REQ-FAR-003",
+   "owner": "far-orchestrator"
+  },
+  {
+   "taskspec_id": "TS-FAR-004",
+   "requirement_id": "REQ-FAR-004",
+   "owner": "far-orchestrator"
+  },
+  {
+   "taskspec_id": "TS-FAR-005",
+   "requirement_id": "REQ-FAR-005",
+   "owner": "far-orchestrator"
+  },
+  {
+   "taskspec_id": "TS-FAR-006",
+   "requirement_id": "REQ-FAR-006",
+   "owner": "far-orchestrator"
+  },
+  {
+   "taskspec_id": "TS-FAR-007",
+   "requirement_id": "REQ-FAR-007",
+   "owner": "far-orchestrator"
+  },
+  {
+   "taskspec_id": "TS-FAR-008",
+   "requirement_id": "REQ-FAR-008",
+   "owner": "far-orchestrator"
+  },
+  {
+   "taskspec_id": "TS-FAR-USE-001",
+   "requirement_id": "REQ-FAR-USE-001",
+   "owner": "far-orchestrator"
+  }
+ ],
+ "frozen_events": [
+  {
+   "event_id": "EVT-1a409c338c6b7f5e",
+   "entity_id": "REQ-FAR-002",
+   "to_state": "FROZEN",
+   "idempotency_key": "FRZ-REQ-FAR-002",
+   "actor": "far-orchestrator"
+  },
+  {
+   "event_id": "EVT-2a453502d88204a5",
+   "entity_id": "REQ-FAR-005",
+   "to_state": "FROZEN",
+   "idempotency_key": "FRZ-REQ-FAR-005",
+   "actor": "far-orchestrator"
+  },
+  {
+   "event_id": "EVT-505bc84fb5e45450",
+   "entity_id": "REQ-FAR-003",
+   "to_state": "FROZEN",
+   "idempotency_key": "FRZ-REQ-FAR-003",
+   "actor": "far-orchestrator"
+  },
+  {
+   "event_id": "EVT-7bd668ff59115d44",
+   "entity_id": "REQ-FAR-001",
+   "to_state": "FROZEN",
+   "idempotency_key": "FRZ-REQ-FAR-001",
+   "actor": "far-orchestrator"
+  },
+  {
+   "event_id": "EVT-8e558736a114254d",
+   "entity_id": "REQ-FAR-USE-001",
+   "to_state": "FROZEN",
+   "idempotency_key": "FRZ-REQ-FAR-USE-001",
+   "actor": "far-orchestrator"
+  },
+  {
+   "event_id": "EVT-a1b71c13647651cc",
+   "entity_id": "REQ-FAR-004",
+   "to_state": "FROZEN",
+   "idempotency_key": "FRZ-REQ-FAR-004",
+   "actor": "far-orchestrator"
+  },
+  {
+   "event_id": "EVT-aaeb753dbfd0ea4c",
+   "entity_id": "REQ-FAR-007",
+   "to_state": "FROZEN",
+   "idempotency_key": "FRZ-REQ-FAR-007",
+   "actor": "far-orchestrator"
+  },
+  {
+   "event_id": "EVT-ba91a82b0d7d6dc2",
+   "entity_id": "REQ-FAR-006",
+   "to_state": "FROZEN",
+   "idempotency_key": "FRZ-REQ-FAR-006",
+   "actor": "far-orchestrator"
+  },
+  {
+   "event_id": "EVT-faf965657ea25a13",
+   "entity_id": "REQ-FAR-008",
+   "to_state": "FROZEN",
+   "idempotency_key": "FRZ-REQ-FAR-008",
+   "actor": "far-orchestrator"
+  }
+ ],
+ "evidence_refs": [
+  {
+   "evidence_id": "EVD-FAR-ARIS-DISPO",
+   "kind": "YAML",
+   "locator": "C:\\Projects\\Agent_Workspace\\Fabric\\fabric-autonomous-research\\FAR_ARIS_METHOD_DISPOSITION.yaml",
+   "sha256": "d54db220bce5406c596e6a00e8d2e356daf1fb5541e8d562d716c061f8f3bfd4",
+   "producer": "far-orchestrator",
+   "checker": "acceptance-officer"
+  },
+  {
+   "evidence_id": "EVD-FAR-ARIS-LOAD",
+   "kind": "JSON",
+   "locator": "C:\\Projects\\Agent_Workspace\\Fabric\\fabric-autonomous-research\\FAR_ARIS_EFFECTIVE_LOAD_RECEIPT.json",
+   "sha256": "a8b3456e8f91bf222961de74d40e77b9f69635807d58481b45e390003de53283",
+   "producer": "far-orchestrator",
+   "checker": "acceptance-officer"
+  },
+  {
+   "evidence_id": "EVD-FAR-BINDING",
+   "kind": "JSON",
+   "locator": "C:\\Projects\\Agent_Workspace\\Fabric\\fabric-autonomous-research\\FAR_EXECUTION_BINDING.json",
+   "sha256": "87ae3bd2a7f07b875e7247bb3d34f3b843e90054d83aa802b24dcfc5985cd218",
+   "producer": "far-orchestrator",
+   "checker": "acceptance-officer"
+  },
+  {
+   "evidence_id": "EVD-FAR-CANARY",
+   "kind": "JSON",
+   "locator": "C:\\Projects\\Agent_Workspace\\Fabric\\fabric-autonomous-research\\canary\\FAR-20260813-001\\ResearchRunReceipt.json",
+   "sha256": "28f4751b04c0f120f4f0311b5cbdbc066be1214b85e6ae00670d0bdc55a74264",
+   "producer": "far-orchestrator",
+   "checker": "acceptance-officer"
+  },
+  {
+   "evidence_id": "EVD-FAR-CAPC",
+   "kind": "JSON",
+   "locator": "C:\\Projects\\Agent_Workspace\\Fabric\\fabric-autonomous-research\\FAR_C0_CAPC_RECEIPT.json",
+   "sha256": "d659d9f0656f7e57518a1df9d1c0f4f96d10a3fe2d826b1f675ae194d2c8e0a8",
+   "producer": "far-orchestrator",
+   "checker": "acceptance-officer"
+  },
+  {
+   "evidence_id": "EVD-FAR-EVIDENCE-MD",
+   "kind": "MARKDOWN",
+   "locator": "C:\\Projects\\Agent_Workspace\\Fabric\\fabric-autonomous-research\\FAR_IMPLEMENTATION_EVIDENCE.md",
+   "sha256": "8c708e5cffd41516f4dd1f5735c9d374e8fca8dd95ff69be0af1e381f43687f8",
+   "producer": "far-orchestrator",
+   "checker": "acceptance-officer"
+  },
+  {
+   "evidence_id": "EVD-FAR-EVO",
+   "kind": "JSON",
+   "locator": "C:\\Projects\\Agent_Workspace\\Fabric\\fabric-autonomous-research\\FAR_EVOLUTION_CANARY_RECEIPT.json",
+   "sha256": "ea3b22e3dff092e38879ab9f3127b213419b41c3a358f7cd479d3a7219169f8d",
+   "producer": "far-orchestrator",
+   "checker": "acceptance-officer"
+  },
+  {
+   "evidence_id": "EVD-FAR-GATES",
+   "kind": "JSON",
+   "locator": "C:\\Projects\\Agent_Workspace\\Fabric\\fabric-autonomous-research\\FAR_GATES_RECEIPT.json",
+   "sha256": "81685b531d8add2dcef22db121214b523ef6f82cc39ef823c9f52394ddd6f865",
+   "producer": "far-orchestrator",
+   "checker": "acceptance-officer"
+  },
+  {
+   "evidence_id": "EVD-FAR-GATES-R2",
+   "kind": "JSON",
+   "locator": "C:\\Projects\\Agent_Workspace\\Fabric\\fabric-autonomous-research\\FAR_GATES_RECEIPT.json",
+   "sha256": "bc55f4bc0e0a75ca3484df80421da383e7ccad83c0e0973fccecd182a91c9662",
+   "producer": "far-orchestrator",
+   "checker": "acceptance-officer"
+  },
+  {
+   "evidence_id": "EVD-FAR-INDEX",
+   "kind": "JSON",
+   "locator": "C:\\Projects\\Agent_Workspace\\Fabric\\fabric-autonomous-research\\FAR_ARTIFACT_INDEX.json",
+   "sha256": "27a357ac698d8527927dc9eaecd13e4e0a4d4920857c7bb46c7c42d134b0e56b",
+   "producer": "far-orchestrator",
+   "checker": "acceptance-officer"
+  },
+  {
+   "evidence_id": "EVD-FAR-INDEX-R2",
+   "kind": "JSON",
+   "locator": "C:\\Projects\\Agent_Workspace\\Fabric\\fabric-autonomous-research\\FAR_ARTIFACT_INDEX.json",
+   "sha256": "83ab2f4aabded1c91d7ba788cb409cf32055a465a723a9b5f6e115321533e53a",
+   "producer": "far-orchestrator",
+   "checker": "acceptance-officer"
+  },
+  {
+   "evidence_id": "EVD-FAR-INTEROP",
+   "kind": "YAML",
+   "locator": "C:\\Projects\\Agent_Workspace\\Fabric\\fabric-autonomous-research\\FAR_INTEROP_DISPOSITION.yaml",
+   "sha256": "bf6a9b00e548de21dc6b897c460eb057c3c96b0105cf131e9c639504b15d948f",
+   "producer": "far-orchestrator",
+   "checker": "acceptance-officer"
+  },
+  {
+   "evidence_id": "EVD-FAR-LH",
+   "kind": "YAML",
+   "locator": "C:\\Projects\\Agent_Workspace\\Fabric\\fabric-autonomous-research\\FAR_LONG_HORIZON_CONTRACT.yaml",
+   "sha256": "0dccec95cfaa2d46a93c4e18ad0f18b9639c45e89ac00fe494e01eb6712b16a6",
+   "producer": "far-orchestrator",
+   "checker": "acceptance-officer"
+  },
+  {
+   "evidence_id": "EVD-FAR-MATRIX",
+   "kind": "YAML",
+   "locator": "C:\\Projects\\Agent_Workspace\\Fabric\\fabric-autonomous-research\\FAR_CAPABILITY_MATRIX.yaml",
+   "sha256": "2469d85bf94f16886eb71b169b799fb243c8b5c6bdf3f627178140e9e1f6df6f",
+   "producer": "far-orchestrator",
+   "checker": "acceptance-officer"
+  },
+  {
+   "evidence_id": "EVD-FAR-PRIME",
+   "kind": "YAML",
+   "locator": "C:\\Projects\\Agent_Workspace\\Fabric\\fabric-autonomous-research\\FAR_PRIME_QUALIFICATION_RECORD.yaml",
+   "sha256": "d2a9c67c147caf459b9ede9c4f64afd854c0c232f7f0c7567455c3017136663d",
+   "producer": "far-orchestrator",
+   "checker": "acceptance-officer"
+  },
+  {
+   "evidence_id": "EVD-FAR-Q0-CROSSWALK",
+   "kind": "MARKDOWN",
+   "locator": "C:\\Projects\\Agent_Workspace\\Fabric\\fabric-autonomous-research\\FAR_Q0_CROSSWALK.md",
+   "sha256": "f73e276cf1264708a1e0ef1b73d07192b03948fc3c2ce8b22453448c41e8d088",
+   "producer": "far-orchestrator",
+   "checker": "acceptance-officer"
+  },
+  {
+   "evidence_id": "EVD-FAR-ROUTE",
+   "kind": "YAML",
+   "locator": "C:\\Projects\\Agent_Workspace\\Fabric\\fabric-autonomous-research\\FAR_ROUTE_CHECK.yaml",
+   "sha256": "bd6f5c113410065131e73f4a406d2e18f28ff82de50dc446a85314ba11b9de93",
+   "producer": "far-orchestrator",
+   "checker": "acceptance-officer"
+  },
+  {
+   "evidence_id": "EVD-FAR-SECURITY",
+   "kind": "YAML",
+   "locator": "C:\\Projects\\Agent_Workspace\\Fabric\\fabric-autonomous-research\\FAR_SOURCE_SECURITY.yaml",
+   "sha256": "c7afbff30c6caa3c7ff7c40d7915f271bfef8dca6314aabf1ba82ce5f3a2aba0",
+   "producer": "far-orchestrator",
+   "checker": "acceptance-officer"
+  },
+  {
+   "evidence_id": "EVD-FAR-SWARM",
+   "kind": "JSON",
+   "locator": "C:\\Projects\\Agent_Workspace\\Fabric\\fabric-autonomous-research\\FAR_SWARM_Q10_RECEIPT.json",
+   "sha256": "764b4f2945acc381d8576e329b4eef00433f39eed1d11401281e2029e560f2c8",
+   "producer": "far-orchestrator",
+   "checker": "acceptance-officer"
+  },
+  {
+   "evidence_id": "EVD-FAR-TEAM",
+   "kind": "MARKDOWN",
+   "locator": "C:\\Projects\\Agent_Workspace\\Fabric\\fabric-autonomous-research\\TEAM.md",
+   "sha256": "ae67143a2928b27ef4916a78b9e8f2bb46759cd9edb031c60c688c83926e8ae5",
+   "producer": "far-orchestrator",
+   "checker": "acceptance-officer"
+  },
+  {
+   "evidence_id": "EVD-FAR-USE-001",
+   "kind": "JSON",
+   "locator": "C:\\Projects\\Agent_Workspace\\Fabric\\fabric-autonomous-research\\canary\\FAR-20260813-002\\ResearchRunReceipt.json",
+   "sha256": "16ab001000f4b346cebbec43b1541f9b0f00ebd96371ea2479e66044becab9f3",
+   "producer": "far-orchestrator",
+   "checker": "acceptance-officer"
+  },
+  {
+   "evidence_id": "EVD-FAR-USE-EVIDENCE-MD",
+   "kind": "MARKDOWN",
+   "locator": "C:\\Projects\\Agent_Workspace\\Fabric\\fabric-autonomous-research\\FAR_FIRST_USE_EVIDENCE.md",
+   "sha256": "5d210253ebcdaee45566c58626dfdacf50a8a600bc66759273895ca867270fc1",
+   "producer": "far-orchestrator",
+   "checker": "acceptance-officer"
+  }
+ ],
+ "workorder_results": [
+  {
+   "workorder_id": "WO-FAR-001",
+   "state": "VERIFIED",
+   "result_json": "{\"checker\":\"acceptance-officer\",\"evidence_refs\":[\"EVD-FAR-Q0-CROSSWALK\",\"EVD-FAR-CAPC\",\"EVD-FAR-TEAM\",\"EVD-FAR-MATRIX\",\"EVD-FAR-BINDING\",\"EVD-FAR-INTEROP\",\"EVD-FAR-SECURITY\",\"EVD-FAR-ARIS-DISPO\",\"EVD-FAR-ARIS-LOAD\",\"EVD-FAR-LH\",\"EVD-FAR-PRIME\",\"EVD-FAR-ROUTE\",\"EVD-FAR-EVO\",\"EVD-FAR-GATES\",\"EVD-FAR-CANARY\",\"EVD-FAR-INDEX\"],\"verdict\":\"PASS\"}",
+   "rollback_pointer": "RB-WO-FAR-001"
+  },
+  {
+   "workorder_id": "WO-FAR-002",
+   "state": "VERIFIED",
+   "result_json": "{\"checker\":\"acceptance-officer\",\"evidence_refs\":[\"EVD-FAR-Q0-CROSSWALK\",\"EVD-FAR-CAPC\",\"EVD-FAR-TEAM\",\"EVD-FAR-MATRIX\",\"EVD-FAR-BINDING\",\"EVD-FAR-INTEROP\",\"EVD-FAR-SECURITY\",\"EVD-FAR-ARIS-DISPO\",\"EVD-FAR-ARIS-LOAD\",\"EVD-FAR-LH\",\"EVD-FAR-PRIME\",\"EVD-FAR-ROUTE\",\"EVD-FAR-EVO\",\"EVD-FAR-GATES\",\"EVD-FAR-CANARY\",\"EVD-FAR-INDEX\"],\"verdict\":\"PASS\"}",
+   "rollback_pointer": "RB-WO-FAR-002"
+  },
+  {
+   "workorder_id": "WO-FAR-003",
+   "state": "VERIFIED",
+   "result_json": "{\"checker\":\"acceptance-officer\",\"evidence_refs\":[\"EVD-FAR-Q0-CROSSWALK\",\"EVD-FAR-CAPC\",\"EVD-FAR-TEAM\",\"EVD-FAR-MATRIX\",\"EVD-FAR-BINDING\",\"EVD-FAR-INTEROP\",\"EVD-FAR-SECURITY\",\"EVD-FAR-ARIS-DISPO\",\"EVD-FAR-ARIS-LOAD\",\"EVD-FAR-LH\",\"EVD-FAR-PRIME\",\"EVD-FAR-ROUTE\",\"EVD-FAR-EVO\",\"EVD-FAR-GATES\",\"EVD-FAR-CANARY\",\"EVD-FAR-INDEX\"],\"verdict\":\"PASS\"}",
+   "rollback_pointer": "RB-WO-FAR-003"
+  },
+  {
+   "workorder_id": "WO-FAR-004",
+   "state": "VERIFIED",
+   "result_json": "{\"checker\":\"acceptance-officer\",\"evidence_refs\":[\"EVD-FAR-Q0-CROSSWALK\",\"EVD-FAR-CAPC\",\"EVD-FAR-TEAM\",\"EVD-FAR-MATRIX\",\"EVD-FAR-BINDING\",\"EVD-FAR-INTEROP\",\"EVD-FAR-SECURITY\",\"EVD-FAR-ARIS-DISPO\",\"EVD-FAR-ARIS-LOAD\",\"EVD-FAR-LH\",\"EVD-FAR-PRIME\",\"EVD-FAR-ROUTE\",\"EVD-FAR-EVO\",\"EVD-FAR-GATES\",\"EVD-FAR-CANARY\",\"EVD-FAR-INDEX\"],\"verdict\":\"PASS\"}",
+   "rollback_pointer": "RB-WO-FAR-004"
+  },
+  {
+   "workorder_id": "WO-FAR-005",
+   "state": "VERIFIED",
+   "result_json": "{\"checker\":\"acceptance-officer\",\"evidence_refs\":[\"EVD-FAR-Q0-CROSSWALK\",\"EVD-FAR-CAPC\",\"EVD-FAR-TEAM\",\"EVD-FAR-MATRIX\",\"EVD-FAR-BINDING\",\"EVD-FAR-INTEROP\",\"EVD-FAR-SECURITY\",\"EVD-FAR-ARIS-DISPO\",\"EVD-FAR-ARIS-LOAD\",\"EVD-FAR-LH\",\"EVD-FAR-PRIME\",\"EVD-FAR-ROUTE\",\"EVD-FAR-EVO\",\"EVD-FAR-GATES\",\"EVD-FAR-CANARY\",\"EVD-FAR-INDEX\"],\"verdict\":\"PASS\"}",
+   "rollback_pointer": "RB-WO-FAR-005"
+  },
+  {
+   "workorder_id": "WO-FAR-006",
+   "state": "VERIFIED",
+   "result_json": "{\"checker\":\"acceptance-officer\",\"evidence_refs\":[\"EVD-FAR-Q0-CROSSWALK\",\"EVD-FAR-CAPC\",\"EVD-FAR-TEAM\",\"EVD-FAR-MATRIX\",\"EVD-FAR-BINDING\",\"EVD-FAR-INTEROP\",\"EVD-FAR-SECURITY\",\"EVD-FAR-ARIS-DISPO\",\"EVD-FAR-ARIS-LOAD\",\"EVD-FAR-LH\",\"EVD-FAR-PRIME\",\"EVD-FAR-ROUTE\",\"EVD-FAR-EVO\",\"EVD-FAR-GATES\",\"EVD-FAR-CANARY\",\"EVD-FAR-INDEX\"],\"verdict\":\"PASS\"}",
+   "rollback_pointer": "RB-WO-FAR-006"
+  },
+  {
+   "workorder_id": "WO-FAR-007",
+   "state": "VERIFIED",
+   "result_json": "{\"checker\":\"acceptance-officer\",\"evidence_refs\":[\"EVD-FAR-Q0-CROSSWALK\",\"EVD-FAR-CAPC\",\"EVD-FAR-TEAM\",\"EVD-FAR-MATRIX\",\"EVD-FAR-BINDING\",\"EVD-FAR-INTEROP\",\"EVD-FAR-SECURITY\",\"EVD-FAR-ARIS-DISPO\",\"EVD-FAR-ARIS-LOAD\",\"EVD-FAR-LH\",\"EVD-FAR-PRIME\",\"EVD-FAR-ROUTE\",\"EVD-FAR-EVO\",\"EVD-FAR-GATES\",\"EVD-FAR-CANARY\",\"EVD-FAR-INDEX\"],\"verdict\":\"PASS\"}",
+   "rollback_pointer": "RB-WO-FAR-007"
+  },
+  {
+   "workorder_id": "WO-FAR-008",
+   "state": "VERIFIED",
+   "result_json": "{\"checker\":\"acceptance-officer\",\"evidence_refs\":[\"EVD-FAR-Q0-CROSSWALK\",\"EVD-FAR-CAPC\",\"EVD-FAR-TEAM\",\"EVD-FAR-MATRIX\",\"EVD-FAR-BINDING\",\"EVD-FAR-INTEROP\",\"EVD-FAR-SECURITY\",\"EVD-FAR-ARIS-DISPO\",\"EVD-FAR-ARIS-LOAD\",\"EVD-FAR-LH\",\"EVD-FAR-PRIME\",\"EVD-FAR-ROUTE\",\"EVD-FAR-EVO\",\"EVD-FAR-GATES\",\"EVD-FAR-CANARY\",\"EVD-FAR-INDEX\"],\"verdict\":\"PASS\"}",
+   "rollback_pointer": "RB-WO-FAR-008"
+  },
+  {
+   "workorder_id": "WO-FAR-USE-001",
+   "state": "VERIFIED",
+   "result_json": "{\"checker\":\"acceptance-officer\",\"evidence_refs\":[\"EVD-FAR-USE-001\"],\"verdict\":\"PASS\"}",
+   "rollback_pointer": "RB-WO-FAR-USE-001"
+  }
+ ],
+ "captured_at_utc": "2026-08-13T12:05:07Z"
+}

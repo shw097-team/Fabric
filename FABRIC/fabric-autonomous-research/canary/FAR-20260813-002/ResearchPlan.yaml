@@ -1,0 +1,35 @@
+schema: LOGICAL_FAR_RESEARCH_PLAN_V1
+subquestions:
+- SQ1 FAR 落地程序是否可萃取為可重複步驟？
+- SQ2 現有 skill references 是否已覆蓋此程序（重複 vs 缺口）？
+- SQ3 新增 thin reference + 交叉連結是否比改寫既有 reference 更佳？
+- SQ4 補進後對同類落地（例：下一個 Shared Infrastructure Team）的幫助與風險？
+claim_classes:
+- PROCEDURE_REUSABILITY
+- REFERENCE_COVERAGE
+- PATCH_VALUE
+- RISK
+source_classes:
+- LOCAL_GOVERNED_CORPUS
+- OFFICIAL_DOC
+query_strategy:
+- 讀取 FAR 落地證據（evidence MD/Q0/gates/swarm）
+- 讀取 skill 現況（SKILL.md + references 清單）
+- 對照 FDA 先例
+- far_router 真實路由
+candidate_methods_providers:
+- fabric-autoresearch-native
+- ARIS selected (research-review advisory)
+challenge_trigger:
+- high impact
+- redundancy suspicion
+experiment_trigger: []
+stop_criteria:
+- claim grounded
+- synthesis + candidate emitted
+abstain_criteria:
+- evidence insufficient
+budget_allocation:
+  wall_clock_seconds: 3600
+  retry_budget: 2
+generated_at_utc: '2026-08-13T11:08:19Z'

@@ -1,0 +1,29 @@
+{
+ "finding": "EXT-FAR-002",
+ "classification": "EVIDENCE_GAP",
+ "status": "CLOSED",
+ "smallest_repair": "PROVIDE_RAW_REVIEW_BUNDLE",
+ "focused_retest": {
+  "bundle_files": 49,
+  "raw_tests_stdout": "evidence-bundle/raw-tests/far_tests_suite.stdout.txt (regenerated merged capture; ends OK + EXIT=0; AO-FINDING-FAR-002 closed)",
+  "raw_spine_readback": "evidence-bundle/raw-spine/far_spine_readback.json",
+  "raw_kanban_snapshots": [
+   "far-implementation",
+   "far-first-use"
+  ],
+  "raw_receipts_dir": "evidence-bundle/raw-receipts/",
+  "raw_canary": "evidence-bundle/raw-canary/FAR-20260813-001 (19 files)",
+  "gates_receipt": "FAR_GATES_RECEIPT.json",
+  "swarm_receipt": "FAR_SWARM_Q10_RECEIPT.json",
+  "capc_receipt": "FAR_C0_CAPC_RECEIPT.json",
+  "q4_receipt": "FAR_Q4_REAL_INVOCATION_RECEIPT.json",
+  "rollback_pointers": "RB-WO-FAR-001..008 + RB-WO-FAR-USE-001 (spine)"
+ },
+ "bound_into": [
+  "evidence-bundle/",
+  "FAR_EVIDENCE_MANIFEST.json"
+ ],
+ "verdict": "CLOSED",
+ "generated_at_utc": "2026-08-13T12:09:13Z",
+ "ao_finding": "AO-FINDING-FAR-002 (packaging capture defect) repaired; focused retest lane deleg_e4a09db4 pending"
+}

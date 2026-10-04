@@ -1,0 +1,16 @@
+{
+  "schema": "FAR-TRI-SOURCE-FITGAP/1",
+  "changeset": "FAR_TRI_SOURCE_MANDATORY_RESEARCH_ASSURANCE",
+  "questions": [
+    {"q": "Can current ResearchPlan express required source classes?", "answer": "NO -> patched additively: source_assurance section (mode/minimum_probe/counterevidence/freshness)", "gap": "CLOSED_ADDITIVE"},
+    {"q": "Can QueryLedger record source class?", "answer": "YES (query rows record source route; counterevidence queries appended)", "gap": "NONE"},
+    {"q": "Can ClaimLedger express provenance/freshness/cross-source?", "answer": "NO -> patched additively: memory/knowledge/web_evidence_ids + authority + freshness + provenance + cross_source_status columns", "gap": "CLOSED_ADDITIVE"},
+    {"q": "Can ResearchRunReceipt carry tri-source coverage?", "answer": "NO -> patched additively: tri_source_coverage field (embed TriSourceCoverageReceipt, not new system)", "gap": "CLOSED_ADDITIVE"},
+    {"q": "Does Memory API return state/provenance?", "answer": "PARTIAL -> classify_memory_rows grades APPROVED/CANDIDATE/REVOKED/PROVENANCE_WEAK from row fields", "gap": "CLOSED_ADAPTER"},
+    {"q": "Does Knowledge route link derived result to source?", "answer": "PARTIAL -> provenance_complete_count tracks sha256/source_id; derived without locator = lead only", "gap": "CLOSED_ADAPTER"},
+    {"q": "Does Web route perform real online retrieval + locator?", "answer": "YES (far_retrieval.retrieve_web GET-only, https, exact-host, snapshot/locator) + GitHub research used real Search API", "gap": "NONE"}
+  ],
+  "reuse_first": "far_retrieval.py probes reused as-is; only new logical module far_trisource.py (coordinator/receipt/arbitration/reducer) + template additive patches",
+  "no_new_platforms": "no new service/DB/scheduler/crawler; Qdrant/Neo4j default-off preserved",
+  "generated_at_utc": "2026-08-13T16:30:00Z"
+}

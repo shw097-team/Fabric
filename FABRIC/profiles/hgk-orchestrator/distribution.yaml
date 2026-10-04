@@ -1,0 +1,10 @@
+name: hgk-orchestrator
+version: 0.1.0
+description: "HGK lifecycle/orchestration; consumes Fabric policy; WorkOrder admission; Hermes/Kanban pointer ABI"
+hermes_requires: ">=0.12.0"
+author: "RP-002 HGK"
+license: "MIT"
+env_requires:
+  - name: OPENCODE_GO_API_KEY
+    description: "OpenCode Go API key (provider route for this profile)"
+    required: true

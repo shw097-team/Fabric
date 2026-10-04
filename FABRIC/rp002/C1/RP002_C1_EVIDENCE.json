@@ -1,0 +1,129 @@
+{
+  "artifact_id": "RP002_C1_EVIDENCE",
+  "project_id": "HGK-REFERENCE-PROJECT-002",
+  "generated_at_utc": "2026-08-11T16:09:50.197256+00:00",
+  "oracle": "EXTERNAL_FROZEN_BOOTSTRAP_ORACLE",
+  "gate": "C1",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "id": "C1_DIST_hgk-orchestrator",
+      "pass": true,
+      "detail": "distribution.yaml fields ok"
+    },
+    {
+      "id": "C1_SOUL_hgk-orchestrator",
+      "pass": true,
+      "detail": "SOUL.md present"
+    },
+    {
+      "id": "C1_CONFIG_hgk-orchestrator",
+      "pass": true,
+      "detail": "config route preserved (no silent downgrade)"
+    },
+    {
+      "id": "C1_DIST_hgk-knowledge-factory",
+      "pass": true,
+      "detail": "distribution.yaml fields ok"
+    },
+    {
+      "id": "C1_SOUL_hgk-knowledge-factory",
+      "pass": true,
+      "detail": "SOUL.md present"
+    },
+    {
+      "id": "C1_CONFIG_hgk-knowledge-factory",
+      "pass": true,
+      "detail": "config route preserved (no silent downgrade)"
+    },
+    {
+      "id": "C1_DIST_hgk-document-factory",
+      "pass": true,
+      "detail": "distribution.yaml fields ok"
+    },
+    {
+      "id": "C1_SOUL_hgk-document-factory",
+      "pass": true,
+      "detail": "SOUL.md present"
+    },
+    {
+      "id": "C1_CONFIG_hgk-document-factory",
+      "pass": true,
+      "detail": "config route preserved (no silent downgrade)"
+    },
+    {
+      "id": "C1_DIST_hgk-coding-factory",
+      "pass": true,
+      "detail": "distribution.yaml fields ok"
+    },
+    {
+      "id": "C1_SOUL_hgk-coding-factory",
+      "pass": true,
+      "detail": "SOUL.md present"
+    },
+    {
+      "id": "C1_CONFIG_hgk-coding-factory",
+      "pass": true,
+      "detail": "config route preserved (no silent downgrade)"
+    },
+    {
+      "id": "C1_NO_DUPLICATE_OSS",
+      "pass": true,
+      "detail": "reused Hermes profile install; no new scheduler/A2A/MCP gateway/package manager/agent registry"
+    },
+    {
+      "id": "C1_INSTALL_hgk-orchestrator",
+      "pass": true,
+      "detail": "ta\\Local\\Temp\\rp002-c1-lw8090al\\profiles\\hgk-orchestrator/.env.EXAMPLE\n\n  Use with:      hermes -p hgk-orchestrator chat"
+    },
+    {
+      "id": "C1_INSTALL_hgk-knowledge-factory",
+      "pass": true,
+      "detail": "emp\\rp002-c1-lw8090al\\profiles\\hgk-knowledge-factory/.env.EXAMPLE\n\n  Use with:      hermes -p hgk-knowledge-factory chat"
+    },
+    {
+      "id": "C1_INSTALL_hgk-document-factory",
+      "pass": true,
+      "detail": "\\Temp\\rp002-c1-lw8090al\\profiles\\hgk-document-factory/.env.EXAMPLE\n\n  Use with:      hermes -p hgk-document-factory chat"
+    },
+    {
+      "id": "C1_INSTALL_hgk-coding-factory",
+      "pass": true,
+      "detail": "ocal\\Temp\\rp002-c1-lw8090al\\profiles\\hgk-coding-factory/.env.EXAMPLE\n\n  Use with:      hermes -p hgk-coding-factory chat"
+    },
+    {
+      "id": "C1_PROFILE_LIST_RC",
+      "pass": true,
+      "detail": "rc=0"
+    },
+    {
+      "id": "C1_EFFECTIVE_hgk-orchestrator",
+      "pass": true,
+      "detail": "hgk-orchestrator visible in fresh profile list"
+    },
+    {
+      "id": "C1_EFFECTIVE_hgk-knowledge-factory",
+      "pass": true,
+      "detail": "hgk-knowledge-factory visible in fresh profile list"
+    },
+    {
+      "id": "C1_EFFECTIVE_hgk-document-factory",
+      "pass": true,
+      "detail": "hgk-document-factory visible in fresh profile list"
+    },
+    {
+      "id": "C1_EFFECTIVE_hgk-coding-factory",
+      "pass": true,
+      "detail": "hgk-coding-factory visible in fresh profile list"
+    },
+    {
+      "id": "C1_ROLLBACK_UNINSTALL",
+      "pass": true,
+      "detail": "uninstall removes profile (rollback to baseline)"
+    }
+  ],
+  "notes": [
+    "C1 answers: can the coding factory execute reuse-first engineering? Runtime profile readiness is H1.",
+    "Codex bounded writer route preserved (hgk-coding-factory); named-method router preserved (OpenSpec brownfield, gstack advisory)."
+  ]
+}

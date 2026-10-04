@@ -1,0 +1,26 @@
+{
+  "schema": "FAR-CHALLENGE-CLOSURE/1",
+  "run_ref": "FAR-20260813-002",
+  "challenge_lane": "deleg_f82657d3 (adversarial, read-only, 116.66s)",
+  "verdict_on_draft": "REJECT (as standalone reference) - redundancy with shared-infra-team-implementation.md",
+  "dg01_confirmed": true,
+  "findings_disposition": {
+    "F1_MAJOR": "whole-class duplication -> RESOLVED: duplicate draft deleted; unique delta merged",
+    "F2_MAJOR": "missing cross-reference -> RESOLVED_BY_DESIGN: merged content lives inside the canonical reference (no parallel file)",
+    "F3_MAJOR": "pitfalls recap duplication -> RESOLVED: draft pitfalls section deleted with draft; SKILL.md checklist remains canonical",
+    "F4_INFO": "codex/canary detail duplication -> RESOLVED: draft deleted",
+    "F5_INFO": "WO id format (WO-FAR vs FAR-WO) -> NOTED: spine uses WO-FAR-xxx (canonical), blueprint narrative FAR-WO-xxx; no merge conflict in landed sections",
+    "F6_INFO": "hash 4 locations -> CONSISTENT: evidence MD hashed at source + 3 roots",
+    "F7_INFO": "correctness positive -> CONFIRMED: all cross-references valid, no sequence contradictions"
+  },
+  "landed_patch": {
+    "reference": "hgk-governed-execution/references/shared-infra-team-implementation.md",
+    "sections_added": ["10. First-use dogfood / self-upgrade convention", "11. Q0 crosswalk + team-artifact materialization checklist", "12. Specialists honesty rule (N/A_NOT_SELECTED_WITH_REASON)"],
+    "lines_before": 114,
+    "lines_after": 161,
+    "duplicate_draft_deleted": "references/far-shared-infrastructure-landing.md (REMOVED)",
+    "skill_md_note": "added (additive line after Step 9A reference)"
+  },
+  "self_iteration_loop": "candidate (add new reference) -> challenge (redundancy found) -> DisagreementLedger DG01 -> revised disposition (merge+delete) -> challenge verdict REJECT confirms -> fold-in of lane-flagged unique value (S10/11/12) -> verified load",
+  "generated_at_utc": "2026-08-13T11:25:00Z"
+}

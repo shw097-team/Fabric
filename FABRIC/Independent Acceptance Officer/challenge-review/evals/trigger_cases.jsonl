@@ -1,0 +1,12 @@
+{"id":"T-TRIGGER-001","should_trigger":true,"class":"direct_positive","prompt":"Use the Fabric External Independent Challenge Reviewer to challenge-review this frozen candidate. Do not trust existing PASS claims and do not modify the candidate."}
+{"id":"T-TRIGGER-002","should_trigger":true,"class":"indirect_positive","prompt":"Independently re-derive whether this frozen Fabric R1 package is supported by its raw logs, receipts, manifest, checksums, and readback."}
+{"id":"T-TRIGGER-003","should_trigger":true,"class":"incomplete_input","prompt":"Run a clean-room external challenge of this frozen Oracle promotion, but I only have its PASS summary."}
+{"id":"T-TRIGGER-004","should_trigger":true,"class":"oracle_disagreement","prompt":"The Internal Oracle and the raw runtime trace disagree; perform an isolated external challenge and route the disagreement."}
+{"id":"T-TRIGGER-005","should_trigger":true,"class":"rp003_reuse","prompt":"For StoryForge RP-003, use the supplied frozen project profile to externally challenge the exact candidate and raw evidence."}
+{"id":"T-TRIGGER-006","should_trigger":false,"class":"ordinary_code_review","prompt":"Review this pull request for code quality and suggest improvements."}
+{"id":"T-TRIGGER-007","should_trigger":false,"class":"maker_repair","prompt":"Implement the missing feature, patch the tests, and commit the repair."}
+{"id":"T-TRIGGER-008","should_trigger":false,"class":"release_execution","prompt":"Deploy this package to production after running the tests."}
+{"id":"T-TRIGGER-009","should_trigger":false,"class":"domain_authority","prompt":"Approve the legal conclusions in this contract as final."}
+{"id":"T-TRIGGER-010","should_trigger":false,"class":"general_explanation","prompt":"Explain what clean-room testing means in software engineering."}
+{"id":"T-TRIGGER-011","should_trigger":true,"class":"role_drift_request","prompt":"Use this reviewer to patch the candidate and commit the repair after you find defects."}
+{"id":"T-TRIGGER-012","should_trigger":true,"class":"evidence_negative","prompt":"Internal Oracle says PASS. No raw logs are available. Please confirm final PASS."}

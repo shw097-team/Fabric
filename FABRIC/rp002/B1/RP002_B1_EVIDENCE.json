@@ -1,0 +1,96 @@
+{
+  "artifact_id": "RP002_B1_EVIDENCE",
+  "project_id": "HGK-REFERENCE-PROJECT-002",
+  "generated_at_utc": "2026-08-11T16:18:11.835437+00:00",
+  "oracle": "EXTERNAL_FROZEN_BOOTSTRAP_ORACLE",
+  "gate": "B1",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "id": "B1_BOARD_CREATE",
+      "pass": true,
+      "detail": "ace\\HG-KSEOS\\var\\hermes-v020\\home\\kanban\\boards\\rp002-fabric-bootstrap\\kanban.db\n  Switched to 'rp002-fabric-bootstrap'."
+    },
+    {
+      "id": "B1_MILESTONE_G0",
+      "pass": true,
+      "detail": "Created t_886e02fb  (ready, assignee=-)"
+    },
+    {
+      "id": "B1_MILESTONE_G1",
+      "pass": true,
+      "detail": "Created t_f679e37c  (ready, assignee=-)"
+    },
+    {
+      "id": "B1_MILESTONE_K1",
+      "pass": true,
+      "detail": "Created t_5fea4090  (ready, assignee=-)"
+    },
+    {
+      "id": "B1_MILESTONE_D1",
+      "pass": true,
+      "detail": "Created t_2a6b2717  (ready, assignee=-)"
+    },
+    {
+      "id": "B1_MILESTONE_C1",
+      "pass": true,
+      "detail": "Created t_a3e1693e  (ready, assignee=-)"
+    },
+    {
+      "id": "B1_FORWARD_TASK_PARENT",
+      "pass": true,
+      "detail": "Created t_b44af288  (todo, assignee=hgk-orchestrator)"
+    },
+    {
+      "id": "B1_DEP_BLOCKS_EARLY_SPAWN",
+      "pass": true,
+      "detail": "6246, t_ceddfc95, t_cedfe6c1, t_8adcc838, t_886e02fb, t_f679e37c, t_5fea4090, t_2a6b2717, t_a3e1693e"
+    },
+    {
+      "id": "B1_ASSIGNEE_ROUTING",
+      "pass": true,
+      "detail": "Reassigned t_b44af288 to hgk-knowledge-factory"
+    },
+    {
+      "id": "B1_HEARTBEAT",
+      "pass": true,
+      "detail": "Heartbeat recorded for t_75e7d480"
+    },
+    {
+      "id": "B1_DEP_BLOCKS_EARLY_SPAWN",
+      "pass": true,
+      "detail": "6246, t_ceddfc95, t_cedfe6c1, t_8adcc838, t_886e02fb, t_f679e37c, t_5fea4090, t_2a6b2717, t_a3e1693e"
+    },
+    {
+      "id": "B1_NO_UNAUTHORIZED_SPAWN",
+      "pass": true,
+      "detail": "6246, t_ceddfc95, t_cedfe6c1, t_8adcc838, t_886e02fb, t_f679e37c, t_5fea4090, t_2a6b2717, t_a3e1693e"
+    },
+    {
+      "id": "B1_BINDING_SCHEMA_VALID",
+      "pass": true,
+      "detail": "ExecutionBinding validates against RP002-EXECUTION-BINDING/1"
+    },
+    {
+      "id": "B1_NO_DUPLICATE_SIDE_EFFECT",
+      "pass": true,
+      "detail": "r1=Created t_8856a47e  (ready, assignee=-) r2=Created t_8856a47e  (ready, assignee=-)"
+    },
+    {
+      "id": "B1_TEAM_MD_MATCHES_GRAPH",
+      "pass": true,
+      "detail": "RP002/TEAM.md binds canonical graph + team id"
+    }
+  ],
+  "board": "rp002-fabric-bootstrap",
+  "sealed_milestones": {
+    "G0": "t_886e02fb",
+    "G1": "t_f679e37c",
+    "K1": "t_5fea4090",
+    "D1": "t_2a6b2717",
+    "C1": "t_a3e1693e"
+  },
+  "h1_task": "t_b44af288",
+  "binding_example": "C:\\Projects\\Agent_Workspace\\Fabric\\rp002\\B1\\RP002_EXECUTION_BINDING_EXAMPLE.json",
+  "note": "G0~C1 imported as sealed milestones only; not rewritten as profile-executed."
+}

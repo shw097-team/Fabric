@@ -1,0 +1,18 @@
+# Fabric PROMOTION_POLICY — RP-002 governance contract (r3 §6.9 / §20.6)
+schema: RP002-PROMOTION-POLICY/1
+atomic_transaction_steps:
+  - accepted_distribution_commit
+  - stack_manifest_update
+  - oasf_record_update_and_validate
+  - contextforge_registration_update_if_admitted
+  - subject_attestation_recompute
+  - evidence_manifest_append
+  - consumer_switch
+  - original_task_or_behavior_replay
+rollback_on_any_failure: true
+guards:
+  - maker_not_final_checker
+  - candidate_cannot_modify_frozen_oracle
+  - oracle_vN_plus_1_cannot_self_approve
+  - no_silent_provider_or_model_switch
+  - no_auto_promotion_from_session_end

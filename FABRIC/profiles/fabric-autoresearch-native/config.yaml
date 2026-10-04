@@ -1,0 +1,21 @@
+# fabric-autoresearch-native — FAR P0 default research profile (HGK-compatible)
+model:
+  provider: opencode-go
+  default: deepseek-v4-flash
+  base_url: https://opencode.ai/zen/go/v1
+  api_mode: chat_completions
+approvals:
+  mode: manual
+agent:
+  max_turns: 300
+  verify_on_stop: false
+skills:
+  external_dirs:
+    - C:\Projects\Agent_Workspace\Fabric\fabric-autonomous-research\methods\aris-selected
+research:
+  lifecycle: R0_R8
+  default_task_class: RESEARCH_GENERAL
+  source_security_ref: FAR_SOURCE_SECURITY.yaml
+  mutation_writer_when_admitted: codex
+  authority: NONE
+  promotion: FORBIDDEN

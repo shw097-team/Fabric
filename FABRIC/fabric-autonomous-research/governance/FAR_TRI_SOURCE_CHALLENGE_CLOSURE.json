@@ -1,0 +1,21 @@
+{
+  "schema": "FAR-TRI-SOURCE-CHALLENGE-CLOSURE/1",
+  "lane": "deleg_1fdf4a41 (challenge + acceptance, read-only, 381.45s)",
+  "verdict": "CHALLENGED / AO FAIL -> repaired -> re-verified (deleg_c0193bda) -> closed",
+  "findings": {
+    "F1": "CLOSED — r8 immutability re-freeze: canonical 58de0815->historical (FAR_R8_HISTORICAL_BASELINE.md); canonical current b0b21ced… (x4 mirrors); all hash refs updated",
+    "F2": "CLOSED — run_full_assurance real production call site + CANARY-6 (memory=HIT knowledge=HIT web=ZERO_RELEVANT_HIT -> RESEARCH_PASS_CANDIDATE); RB-WO-FAR-TRISOURCE-001 verified in spine",
+    "F3": "CLOSED — res=None bound before try (no NameError on first-channel probe raise); regression test_f3_probe_raise_first_channel_no_crash",
+    "F4": "CLOSED — per-iteration res reset (no cross-channel leak); regression test_f4_probe_raise_later_channel_no_leak",
+    "F5": "CLOSED — stub adapter replaced by run_full_assurance (real dispatch)",
+    "F6": "CLOSED — counterevidence_probe returns ERROR on query exception -> COUNTEREVIDENCE_MISSING reachable; regression test_f6_counterevidence_error_incomplete",
+    "F7": "CLOSED — ClaimLedger.tsv legacy 9-col header commented; only 15-col tri-source header active",
+    "F8": "CLOSED — GitHub research evidence copied to evidence-bundle/raw-github/ (2 files)",
+    "F9": "CLOSED — terminal_reducer checks SOURCE_BLOCKED before SOURCE_UNAVAILABLE; regression test_f9_blocked_precedes_unavailable",
+    "F10": "NOTED — allowed_web_roots delegation documented (probe enforces; run_full_assurance passes roots to retrieve_web)",
+    "F11": "CLOSED — CHANGE_INPUT_MANIFEST_TRI_SOURCE now lists 19 files incl. new subject artifacts with sha256",
+    "F12": "CLOSED — classify_memory_rows PROVENANCE_WEAK precedes APPROVED when provenance fields missing; regression test_f12_provenance_weak_precedes_approved"
+  },
+  "verification": "68/68 tests OK (63 + 5 regression); CANARY-4/5/6 ALL_PASS; AO re-verify (deleg_c0193bda) A1/A11/A12 PASS + A14 closed",
+  "generated_at_utc": "2026-08-13T17:10:00Z"
+}

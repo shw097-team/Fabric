@@ -1,0 +1,29 @@
+{
+  "schema": "RP002-INTEROP-PROMOTION-TRANSACTION/1",
+  "transaction_id": "TBD_AT_F1",
+  "subject_digest": "946de0d736d8886b69f2cfc42c8f8514d3ac895da522706f0574546664147b28",
+  "candidate_digest": "TBD_AT_F1",
+  "promotion_gate": "F1",
+  "projections": {
+    "profile_distributions": [],
+    "stack_manifests": [],
+    "oasf_records": [],
+    "contextforge": {
+      "registrations": []
+    },
+    "subject_attestation_digest": "TBD_AT_F1",
+    "evidence_manifest_digest": "TBD_AT_F1"
+  },
+  "preconditions": {
+    "all_projection_subjects_equal": "VERIFY_AT_F1",
+    "stale_registry_metadata": "VERIFY_AT_F1",
+    "required_acceptance_receipt": "TBD_AT_F1",
+    "domain_receipt_if_required": null
+  },
+  "rollback": {
+    "previous_transaction_ref": "TBD_AT_F1",
+    "disable_or_restore_actions": []
+  },
+  "note": "Materialized per Master r2 §10.2 canonical schema (no child fork). Values TBD_AT_F1 are bound at F1 gate; schema and subject binding frozen now.",
+  "materialized_at": "2026-08-12T21:40:00+08:00"
+}

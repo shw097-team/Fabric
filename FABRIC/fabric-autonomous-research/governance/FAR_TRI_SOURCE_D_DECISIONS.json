@@ -1,0 +1,60 @@
+{
+ "schema": "FAR-TRI-SOURCE-D-DECISIONS/1",
+ "decided_at_utc": "2026-08-13T16:00:00Z",
+ "research_basis": {
+  "method": "FAR external web channel: real GitHub Search API (read-only, no auth), 2 rounds, 8 queries",
+  "evidence_files": [
+   "var/far/github_d_research.json",
+   "var/far/github_d_research_r2.json"
+  ],
+  "grounding_target": "engineering professional practice / mature engineering SoD / COMMUNITY_SUPPORT + DESIGN CALIBRATION (GitHub small repos = SUPPORT/EXAMPLE/COMMUNITY SIGNAL, not normative consensus; authoritative calibration: OWASP SSRF/XXE, WHATWG HTML, arXiv MAP-Graph/When Agents Talk/Agent Memory/ProvenanceGuard per EV-02)"
+ },
+ "decisions": {
+  "D1_scope_of_mandate": {
+   "question": "TRI_SOURCE_MANDATORY 適用範圍（formal WO vs canary）",
+   "github_evidence": [
+    "Ddibirov/hybrid-deep-research ⭐13: multi-round deep research pipeline, prompt-only, structured stages",
+    "carlosrodera/deep-research-protocol ⭐13: 'stop asking one AI to do deep research, ask five then consolidate' — mature SoD: research lanes separated from consolidation",
+    "Nimo1987/harness-research ⭐11: MCP-based professional research harness"
+   ],
+   "consensus": "成熟工程 SoD 共識: 正式研究流程 = 分離角色 + 強制結構化階段（probe/consolidate 分離）; 測試/canary 屬 fixture 階層, 不與正式交付同一 gate [EV-02: GitHub small repos are SUPPORT/EXAMPLE only; authoritative support for load-bearing rationale: OWASP SSRF/XXE, WHATWG HTML, arXiv MAP-Graph 2608.10509 / When Agents Talk 2608.11436 / Agent Memory 2608.11654 / ProvenanceGuard 2606.18037]",
+   "decision": "MANDATORY_FOR_ALL_FORMAL_WORKORDERS: 每個 formal admitted FAR Research WorkOrder 三通道強制（FailClosed SILENT_SOURCE_SKIP）; canary/dogfood runs 執行時亦跑完整三通道（真實執行, 不作假）, 但 terminal 語義標記 canary scope（不宣稱 full PASS gate）",
+   "soD_rationale": "maker(研究)與 consolidation(仲裁/reducer)分離 = deep-research-protocol 共識; canary 標記避免 fixture 結果誤升格"
+  },
+  "D2_web_quota": {
+   "question": "Web/各通道配額上限",
+   "github_evidence": [
+    "yaswanthme007/tokenscope ⭐9: open-source token profiler for AI coding agents (observability)",
+    "eatakishiyev/context-forge ⭐6: context compiler — scores, compresses, reorders, budgets context",
+    "nuffin/hermes-budget-ledger ⭐1: per-task token budget ledger for Hermes Agent",
+    "neuronaline/ai-memory-context-management ⭐8: cache-optimized context management for long-running agents"
+   ],
+   "consensus": "COMMUNITY_SUPPORT/DESIGN CALIBRATION: budget-aware context 管理 + per-query observability 是成熟實務（非 cost-bypass）; 過濾/排名/組裝是研究品質手段 [EV-02: GitHub small repos are SUPPORT/EXAMPLE only; authoritative support for load-bearing rationale: OWASP SSRF/XXE, WHATWG HTML, arXiv MAP-Graph 2608.10509 / When Agents Talk 2608.11436 / Agent Memory 2608.11654 / ProvenanceGuard 2606.18037]",
+   "decision": "PER_CHANNEL_QUOTA: 初查 MEMORY≤4 / KNOWLEDGE≤4 / WEB≤4 queries; iterative gap 追加總計≤4; 每 query 記錄 latency+近似 tokens; 超限 → QUOTA_EXCEEDED 記錄 + 需 WO 擴額（不靜默截斷、不 fake）; WEB roots 預設 arxiv.org（WorkOrder 可宣告擴充）",
+   "rationale": "tokenscope/context-forge 共識: 觀察 + 預算 + 過濾; 配額是研究品質控制（prevent context dilution, prompt §17 同義）"
+  },
+  "D3_counterevidence_depth": {
+   "question": "Counterevidence 深度（哪些 claims 強制）",
+   "github_evidence": [
+    "dCaples/AutoDidact ⭐688: autonomously train research-agent LLMs with RL + self-verification",
+    "NineAbyss/S2R ⭐77: S2R paper impl — self-verify and self-correct",
+    "xiaogeli/claude-prove-done ⭐1: stop-hook that BLOCKS completion claims ('fixed','done') without evidence"
+   ],
+   "consensus": "COMMUNITY_SUPPORT/DESIGN CALIBRATION: self-verification/counterevidence 是主流實務; claude-prove-done 證明「無證據不得宣告完成」是工程 gate 模式 [EV-02: GitHub small repos are SUPPORT/EXAMPLE only; authoritative support for load-bearing rationale: OWASP SSRF/XXE, WHATWG HTML, arXiv MAP-Graph 2608.10509 / When Agents Talk 2608.11436 / Agent Memory 2608.11654 / ProvenanceGuard 2606.18037]",
+   "decision": "LOAD_BEARING_MANDATORY: 僅 load-bearing claims（其 falsity 會逆轉 recommendation 者）強制 ≥1 counterevidence query（QueryLedger 記錄; 0 命中 → ZERO_RELEVANT_COUNTEREVIDENCE_HIT 顯式）; 非 load-bearing claims 可選但記錄; 完成主張未過 counterevidence gate → 不得 RESEARCH_PASS_CANDIDATE",
+   "rationale": "AutoDidact/S2R 共識: 驗證是研究品質核心; claude-prove-done: PASS 需證據閘門"
+  },
+  "D4_stale_memory_handling": {
+   "question": "發現 stale approved memory 的處置",
+   "github_evidence": [
+    "kresnapandu/memwatch ⭐32: memory staleness detection + AUTO-EXPIRY for LLM agents",
+    "awrshift/claude-memory-kit ⭐28: date-tagged memory across sessions",
+    "Jrosenbizzle/agent-memory-bench ⭐1: benchmark — stale-context detection"
+   ],
+   "consensus": "COMMUNITY_SUPPORT/DESIGN CALIBRATION: date-tag + staleness 偵測 + 過期機制為標準; 但 auto-expiry 在治理系統需 authority 同意（memwatch 是 agent 自管記憶, 非 Fabric approved namespace） [EV-02: GitHub small repos are SUPPORT/EXAMPLE only; authoritative support for load-bearing rationale: OWASP SSRF/XXE, WHATWG HTML, arXiv MAP-Graph 2608.10509 / When Agents Talk 2608.11436 / Agent Memory 2608.11654 / ProvenanceGuard 2606.18037]",
+   "decision": "NO_SILENT_REWRITE + NO_SILENT_AUTO_EXPIRE: 偵測 stale approved memory → ① emit StalenessFinding（run 內記錄）② 產生 CandidateKnowledge correction（candidate namespace only）③ 若屬 harness/policy 層 → ProposedEvolution（受治理流程, COV-11-06）; approved namespace 不自動 rewrite; expiry 需 owner authority",
+   "rationale": "memwatch 偵測+expiry 共識採納偵測半部; 治理側採保守半部（Fabric approved namespace 需 authority, 對齊 prompt §20/§21）"
+  }
+ },
+ "terminal": "D1-D4 DECIDED (GitHub-grounded)"
+}

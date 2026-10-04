@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "RP002-EXECUTION-BINDING/1",
+  "title": "RP002 WorkOrder->Kanban->Profile ExecutionBinding ABI",
+  "type": "object",
+  "required": ["workorder_id", "workorder_subject_digest", "board_id", "kanban_task_id", "assignee_profile_id", "profile_distribution_commit", "allowed_write_set_digest", "authorization_receipt_id", "runtime_status_pointer"],
+  "properties": {
+    "workorder_id": {"type": "string", "description": "HGK WorkOrder normative executor contract id"},
+    "workorder_subject_digest": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "board_id": {"const": "RP002-FABRIC-BOOTSTRAP"},
+    "kanban_task_id": {"type": "string"},
+    "assignee_profile_id": {"type": "string"},
+    "profile_distribution_commit": {"type": "string", "description": "full git sha of the assigned Profile Distribution"},
+    "allowed_write_set_digest": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "authorization_receipt_id": {"type": "string"},
+    "runtime_status_pointer": {"type": "string", "description": "kanban runtime ref only; never normative truth"}
+  }
+}

@@ -1,0 +1,63 @@
+{
+ "schema": "FAR-HARDENING-FINAL-FOCUSED-REVIEW-INTAKE/1",
+ "changeset": "FAR_TRI_SOURCE_FOCUSED_HARDENING_20260814",
+ "workorder": "WO-FAR-HARDENING-001",
+ "frozen_at_utc": "2026-08-13T17:55:24Z",
+ "mutual_binding": {
+  "candidate_subject_digest": "5bc5af7031756872f1ee6ae3c5e18f620bde6d6be2989586a9117b8ae0c2b221",
+  "candidate_subject_manifest": {
+   "sha256": "70e05d6491067cfa2c2d33e6431bfd08108f85628cf5d03540ef4b1ac082566c",
+   "bytes": 1975
+  },
+  "evidence_manifest_digest": "d47076f4fb8ca6782c0e21337e1f2f74ced5a79786115cf75af425a64f278e3b",
+  "evidence_manifest": {
+   "sha256": "b1c7733a07f810aba41f8e79edd4c9330324e6b037d7d677e45e4bcde90fe99c",
+   "bytes": 2059
+  },
+  "final_evidence_md": {
+   "sha256": "1e74bbca65638866133ebb7a57b11b302444e3173400d2e14b7a9de2a7623cc0",
+   "bytes": 52182,
+   "file": "FAR_FINAL_HARDENING_ACCEPTANCE_EVIDENCE.md (single master)"
+  },
+  "security_closure": {
+   "sha256": "67fed6184efbf92a934b1cbb78a418cf7d1194fa8b8940d21e13cdb9a6d19870",
+   "bytes": 1400
+  },
+  "ao_receipt": {
+   "sha256": "fe7196e4566675312192585ef41a4f75e9bc31723b54811ab17d4b6dbcb62009",
+   "bytes": 1835
+  },
+  "rollback_receipt": {
+   "sha256": "28a4ae6c63b1ad4ed35f051e1f982d112b3f9a50f97f81923bcffaad1ffc655a",
+   "bytes": 737
+  },
+  "compile_receipt": {
+   "sha256": "511868d87228ea8641816f48bb4e1f54ba762ce1c309ffd665e6ab1be90d0587",
+   "bytes": 838
+  },
+  "test_denominator": {
+   "collected": 103,
+   "nodeids_digest": "626d647284c1f755baf83d2e942964485937abb4051755fe092f5b46a701e805",
+   "sha256": "4cc8c6938ea366262bb88248a9898ba34a544dd8f201b82f5691b02736d83cca"
+  },
+  "canary_h1_h5": {
+   "sha256": "60984082e84ca599c630585eba136ad00d22d94c2dc74d58b2a6dfa55f3961b3",
+   "bytes": 1811
+  },
+  "canary_7_swarm": {
+   "sha256": "324730842cc620fb9e592c6ad090571045243b5878c83460a38edb2910ce1054",
+   "bytes": 4104
+  }
+ },
+ "r8_baseline": "58de0815... immutable (FAR_R8_HISTORICAL_BASELINE.md)",
+ "side_effects": {
+  "sqs_financial_truth_mutation": 0,
+  "live_broker_write": 0
+ },
+ "code_config_drift_vs_subject": 0,
+ "note": "single final focused review intake (EXT-FAR-TS-RE-001 preferred repair); generated LAST after all evidence bytes final; evidence MD not self-bound (single-direction: intake binds MD)",
+ "test_denominator": {
+  "collected": 103,
+  "nodeids_digest": "626d647284c1f755baf83d2e942964485937abb4051755fe092f5b46a701e805"
+ }
+}

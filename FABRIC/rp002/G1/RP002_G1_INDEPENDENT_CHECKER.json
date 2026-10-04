@@ -1,0 +1,79 @@
+{
+  "artifact_id": "RP002_G1_INDEPENDENT_CHECKER",
+  "oracle": "EXTERNAL_FROZEN_BOOTSTRAP_ORACLE",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "id": "G1I_VERSION",
+      "pass": true,
+      "detail": "Hermes Agent v0.20.0 (2026.8.3)\nInstall directory: C:\\Users\\"
+    },
+    {
+      "id": "G1I_CONFIG_COMMIT",
+      "pass": true,
+      "detail": "3c27eb6234bf91b8ceee9e9071591b31e9b148cb"
+    },
+    {
+      "id": "G1I_MAKER_VERDICT",
+      "pass": true,
+      "detail": "PASS"
+    },
+    {
+      "id": "G1I_ALL_MAKER_CHECKS",
+      "pass": true,
+      "detail": "28 checks"
+    },
+    {
+      "id": "G1I_EVENT_CHAIN",
+      "pass": true,
+      "detail": "['created', 'claimed', 'spawned', 'heartbeat', 'completed']"
+    },
+    {
+      "id": "G1I_SPAWNED_PID",
+      "pass": true,
+      "detail": "{\"pid\": 14512}"
+    },
+    {
+      "id": "G1I_RUN_OUTCOME",
+      "pass": true,
+      "detail": {
+        "id": 6,
+        "task_id": "t_409aa255",
+        "profile": "default",
+        "step_key": null,
+        "status": "done",
+        "claim_lock": null,
+        "claim_expires": null,
+        "worker_pid": null,
+        "max_runtime_seconds": null,
+        "last_heartbeat_at": 1786463826,
+        "started_at": 1786463822,
+        "ended_at": 1786463845,
+        "outcome": "completed",
+        "summary": "OK",
+        "metadata": "{\"worker_session_id\": \"20260811_235703_dfff95\"}",
+        "error": null
+      }
+    },
+    {
+      "id": "G1I_WORKER_PID_EVIDENCE",
+      "pass": true,
+      "detail": "verified from task_events spawned payload (PID live at spawn)"
+    },
+    {
+      "id": "G1I_SENTINEL_DETECTED",
+      "pass": true,
+      "detail": "sentinel present in raw bytes"
+    },
+    {
+      "id": "G1I_CLEAN_SHA",
+      "pass": true,
+      "detail": "f223fdeaaa3df5b0"
+    },
+    {
+      "id": "G1I_BLOCKING_TT_ZERO",
+      "pass": true,
+      "detail": "blocking_tt=0"
+    }
+  ]
+}

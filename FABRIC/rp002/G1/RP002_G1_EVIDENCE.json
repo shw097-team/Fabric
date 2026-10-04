@@ -1,0 +1,160 @@
+{
+  "artifact_id": "RP002_G1_EVIDENCE",
+  "project_id": "HGK-REFERENCE-PROJECT-002",
+  "generated_at_utc": "2026-08-11T15:56:58.186326+00:00",
+  "oracle": "EXTERNAL_FROZEN_BOOTSTRAP_ORACLE",
+  "gate": "G1",
+  "candidate": {
+    "executable": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\hermes-v020\\venv\\Scripts\\hermes.exe",
+    "version": "0.20.0",
+    "tag": "v2026.8.3",
+    "commit": "3c27eb6234bf91b8ceee9e9071591b31e9b148cb",
+    "home": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\hermes-v020\\home",
+    "provider": "opencode-go",
+    "model": "deepseek-v4-flash"
+  },
+  "verdict": "PASS",
+  "checks": [
+    {
+      "id": "G1_EXECUTABLE_EXISTS",
+      "pass": true,
+      "detail": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\hermes-v020\\venv\\Scripts\\hermes.exe"
+    },
+    {
+      "id": "G1_VERSION_RC_ZERO",
+      "pass": true,
+      "detail": "rc=0"
+    },
+    {
+      "id": "G1_VERSION_EXACT",
+      "pass": true,
+      "detail": "Hermes Agent v0.20.0 (2026.8.3)\nInstall directory: C:\\Projects\\Agent_Workspace\\H"
+    },
+    {
+      "id": "G1_CONFIG_BINDING",
+      "pass": true,
+      "detail": "status=ACTIVE_SELECTED_CERTIFIED commit=3c27eb6234bf91b8ceee9e9071591b31e9b148cb"
+    },
+    {
+      "id": "G1_ROLLBACK_BASELINE_SEALED",
+      "pass": true,
+      "detail": "9de9c25f620ff7f1ce0fd5457d596052d5159596"
+    },
+    {
+      "id": "G1_WIN_PROCESS_SPAWN_PID",
+      "pass": true,
+      "detail": "pid=2608"
+    },
+    {
+      "id": "G1_WIN_PROCESS_CLEANUP",
+      "pass": true,
+      "detail": "exit=0"
+    },
+    {
+      "id": "G1_PROFILE_LIST_RC",
+      "pass": true,
+      "detail": "rc=0"
+    },
+    {
+      "id": "G1_DEFAULT_PROFILE_PRESENT",
+      "pass": true,
+      "detail": "default profile visible"
+    },
+    {
+      "id": "G1_PROFILE_MODEL_ROUTE",
+      "pass": true,
+      "detail": "model visible in profile list (provider verified via config.yaml)"
+    },
+    {
+      "id": "G1_HOME_CONFIG_MODEL",
+      "pass": true,
+      "detail": "home config.yaml provider/model"
+    },
+    {
+      "id": "G1_APPROVALS_MANUAL",
+      "pass": true,
+      "detail": "approvals.mode=manual (fail-closed)"
+    },
+    {
+      "id": "G1_KANBAN_BOARDS_RC",
+      "pass": true,
+      "detail": "rc=0 boards=SLUG                      NAME                          COUN"
+    },
+    {
+      "id": "G1_KANBAN_DB_EXISTS",
+      "pass": true,
+      "detail": "118784 bytes"
+    },
+    {
+      "id": "G1_KANBAN_CREATE_RC",
+      "pass": true,
+      "detail": "Created t_409aa255  (ready, assignee=default)\n\n⚠  No gateway is running — the task will sit in 'ready' until you start i"
+    },
+    {
+      "id": "G1_KANBAN_TASK_CREATED",
+      "pass": true,
+      "detail": "task=t_409aa255"
+    },
+    {
+      "id": "G1_DISPATCH_RC",
+      "pass": true,
+      "detail": "rc=0 Reclaimed:    0\nCrashed:      0\nTimed out:    0\nStale:        0\nAuto-blocked: 0\nPromoted:     0\nSpawned:      1\n  - t_40"
+    },
+    {
+      "id": "G1_DISPATCH_SPAWNED",
+      "pass": true,
+      "detail": "blocked: 0\nPromoted:     0\nSpawned:      1\n  - t_409aa255  ->  default  @ C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\hermes-v020\\home\\kanban\\workspaces\\t_409aa255"
+    },
+    {
+      "id": "G1_RUN_ROW_HAS_PID",
+      "pass": true,
+      "detail": "[\n  {\n    \"id\": 6,\n    \"profile\": \"default\",\n    \"status\": \"done\",\n    \"outcome\": \"completed\",\n    \"started_at\": 1786463822,\n    \"ended_at\": 1786463845,\n    \"summary\": \"OK\",\n    \"error\": null,\n    \"me"
+    },
+    {
+      "id": "G1_WORKER_TERMINATED",
+      "pass": true,
+      "detail": "final status from runs: [\n  {\n    \"id\": 6,\n    \"profile\": \"default\",\n    \"status\": \"done\",\n    \"outcome\": \"completed\",\n    \"started_at\": 1786463822,\n    \"ended_at\": 1786463845,\n    \"summary\": \"OK\",\n    \"error\": null,\n    \"me"
+    },
+    {
+      "id": "G1_EVENTS_CLAIMED",
+      "pass": true,
+      "detail": "claim event present"
+    },
+    {
+      "id": "G1_EVENTS_SPAWNED",
+      "pass": true,
+      "detail": "spawn event present"
+    },
+    {
+      "id": "G1_NO_UNAUTHORIZED_SPAWN",
+      "pass": true,
+      "detail": "Reclaimed:    0\nCrashed:      0\nTimed out:    0\nStale:        0\nAuto-blocked: 0\nPromoted:     0\nSpawned:      0"
+    },
+    {
+      "id": "G1_SPINE_READABLE",
+      "pass": true,
+      "detail": "SPINE_OK 518 1\n"
+    },
+    {
+      "id": "G1_SYNTH_SECRET_ISOLATED",
+      "pass": true,
+      "detail": "synthetic secret not visible to default-profile process"
+    },
+    {
+      "id": "G1_SECOND_PROFILE_RUNTIME",
+      "pass": true,
+      "detail": "rc=0 second home lists canary profile"
+    },
+    {
+      "id": "G1_WRITE_READBACK_SHA",
+      "pass": true,
+      "detail": "bytes=100 sha=28da9123d1fa4cfc…"
+    },
+    {
+      "id": "G1_TRUNCATION_SENTINEL_DETECTED",
+      "pass": true,
+      "detail": "ERR_LITERAL_TRUNCATION_SENTINEL:C:\\Projects\\Agent_Workspace\\Fabric\\rp002\\G1\\critical_write_poisoned.txt"
+    }
+  ],
+  "note": "A2A native subcommand absent in pinned candidate -> same-host Kanban remains the qualified interop route (CF1 qualifies ContextForge A2A). Provider credential is process-scoped env-ref (never stored/printed)."
+}

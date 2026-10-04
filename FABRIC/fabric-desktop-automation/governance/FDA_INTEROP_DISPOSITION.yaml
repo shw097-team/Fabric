@@ -1,0 +1,59 @@
+# FDA Interop Disposition — OASF / ContextForge / MCP / A2A / OpenTelemetry
+schema: FDA-INTEROP-DISPOSITION/1
+subject: fabric-desktop-automation (WO-FDA-001)
+interop_promotion_lineage_ref: CURRENT_RP002_INTEROP_PROMOTION_TRANSACTION (F1 TX-RP2-S2-F1-001 schema RP002-INTEROP-PROMOTION-TRANSACTION/1)
+
+## Same-subject promotion lineage (required when current CF1/F1 route active)
+lineage:
+  - Profile Distribution digest(s)   # fabric-desktop-cua / fabric-desktop-ufo2 distributions
+  - FDA Team artifact digest         # Fabric/fabric-desktop-automation/TEAM.md
+  - FDA Desktop Capability Matrix digest
+  - OASF Record digest               # oasf-record/1 (current active schema)
+  - ContextForge registration target digest  # current CF1 route (CF-REG-RP2-S2-001)
+  - ContextForge auth-policy digest
+  - explicit MCP disposition         # below
+  - explicit A2A disposition         # below
+  - SubjectAttestation digest
+  - EvidenceManifest digest
+  - current PromotionTransaction
+status: SAME_SUBJECT_LINEAGE_DEFINED (values BOUND_AT_PROMOTION when promotion executes)
+
+## OASF
+role: interoperability description/schema (authority = NONE)
+current_route: ACTIVE (F1 OASF-REC-RP2-S2-001, schema oasf-record/1)
+fda_action: EXTEND current route with FDA capability record at promotion time
+must_describe: capability, profile/distribution identity, endpoint/locator, permission/transport metadata, lifecycle/version
+constraint: OASF record cannot replace FDA Capability Matrix / WorkOrder / Fabric authority
+
+## ContextForge
+role: registry/gateway/discovery where current route selects it
+current_route: CF1 active (ContextForge 1.0.7, registration CF-REG-RP2-S2-001)
+runtime_every_click_required: false
+fda_action: register exact promoted FDA profile/capability; discover from allowed consumer; deny disallowed; invoke bounded canary; disable/unregister/rollback
+constraint: no per-click data-path dependency on gateway
+
+## MCP
+cua_local_provider: stdio_or_inprocess_preferred (current qualified route)
+ufo2: local_or_current_admitted_transport
+unbound_mcp: EXPLICIT_N_A
+rule: no silent network enablement; LOCAL_ONLY default; 0.0.0.0/LAN-exposed desktop control = DENY without separate admitted security change
+
+## A2A
+same_host_fda_profile_coordination: HERMES_KANBAN_CURRENT_LOCAL_ROUTE (preferred)
+a2a: REQUIRED_WHEN_ROUTED; NOT mandatory for every local desktop action
+explicit_n_a: if no actual FDA route uses A2A
+qualification_when_used: exact identity, auth-negative, invoke/readback, disable/rollback
+
+## OpenTelemetry
+disposition: INHERIT_CURRENT_PARENT_CONDITIONAL_EMBEDDED
+current_qualified_exporter: EXPLICIT_CURRENT_NA_OR_ACTIVE_READBACK_REQUIRED (parent tool matrix row opentelemetry = CONDITIONAL_EMBEDDED)
+if_active: correlate workorder_id, execution_binding_id, run_id, profile_id, provider, application, action_class, result; no secret/screenshot payload
+if_absent: OTEL = EXPLICIT_N_A_OR_DEFER; standalone FDA telemetry platform = NO_ADOPT_P0
+
+## Runtime path (remains thin)
+path: HGK WorkOrder -> Hermes -> local FDA Profile/provider -> desktop
+constraint: ContextForge/OASF/A2A/OTel are identity/governance/trace surfaces, NOT a new desktop scheduler or click proxy
+
+## Anti-downgrade
+parent_rows_preserved: [hermes_runtime, hermes_profiles, profile_distribution, hermes_kanban, hermes_a2a, mcp, contextforge, oasf, opentelemetry, codex_cli, opencodex_opencode_provider_route, openspec, gstack]
+interop_subject_drift: 0 (same-subject closure enforced at promotion)

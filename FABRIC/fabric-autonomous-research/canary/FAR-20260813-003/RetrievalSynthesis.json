@@ -1,0 +1,85 @@
+{
+ "schema": "FAR-RETRIEVAL-CANARY-SYNTHESIS/1",
+ "run": "FAR-20260813-003",
+ "workorder_ref": "WO-FAR-RETRIEVAL-001",
+ "question": "FAR 每次研究是否自動調閱記憶+知識庫+網路資訊並交叉比對研究分析",
+ "channel_counts": {
+  "knowledge_base": 6,
+  "memory": 6,
+  "web": 6
+ },
+ "web_status": "OK",
+ "kb_top": [
+  {
+   "title": "USER_DECISION_FAR_RETRIEVAL_2026-08-13_001.md",
+   "score": 17,
+   "sha256": "e3a4be2ce3dd4523"
+  },
+  {
+   "title": "三個問題總體工程裁決.md",
+   "score": 10,
+   "sha256": "4a6ce2054884231d"
+  },
+  {
+   "title": "FDA討論-5_UFO² 放在 Fabric 層更合理.md",
+   "score": 10,
+   "sha256": "5c263854573d6e15"
+  },
+  {
+   "title": "RP-002_討論-4_多 Profile 生產流水線.md",
+   "score": 9,
+   "sha256": "c1b627cfbf0edfed"
+  }
+ ],
+ "mem_top": [
+  {
+   "title": "技術資料庫\\TW-ICT_FSDT-Stack設計開發\\【1】TW-ICT_FSDT-Stack\\【2】(舊版)Spartoi_FSDT-Stack\\開發討論&設計原意\\STSS_討論-4_Spartoi 多層內外架構整合鑑定與修正版總體設計.md",
+   "score": 9
+  },
+  {
+   "title": "技術資料庫\\SQS-THC設計開發\\【4】(舊版)Spartoi-AgentOS\\【2】Spartoi-AgentOS _總系統級&7-child-PRW\\討論&設計原意\\Spartoi_總系統級&7-child-PRW_討論-3.md",
+   "score": 8
+  },
+  {
+   "title": "技術資料庫\\SQS-THC設計開發\\【4】(舊版)Spartoi-AgentOS\\【1】Spartoi-AgentOS_藍圖\\開發討論\\【2】TISAQ_Spartoi_升級\\TISAQ_Spartoi重構升級_討論\\TISAQ_Spartoi重構升級_討論-2.md",
+   "score": 8
+  },
+  {
+   "title": "技術資料庫\\SQS-THC設計開發\\【3】(舊版)HC-Spartoi\\討論&設計原意\\HC-Spartoi_討論-3_《HG-Spartoi AgentOS》架構與工具鏈工程鑑定報告.md",
+   "score": 8
+  }
+ ],
+ "web_top": [
+  {
+   "title": "Applying Digital Twins in Metaverse: User Interface, Security and Privacy Challenges",
+   "url": "http://arxiv.org/abs/2204.11343v1",
+   "score": 10
+  },
+  {
+   "title": "Energy-Efficient Coalition Formation in Sensor Networks: a Game-Theoretic Approach",
+   "url": "http://arxiv.org/abs/1512.08019v2",
+   "score": 9
+  },
+  {
+   "title": "Refined method to extract frequency-noise components of lasers by delayed self-heterodyne",
+   "url": "http://arxiv.org/abs/2106.01205v1",
+   "score": 8
+  }
+ ],
+ "cross_reference_count": 106,
+ "cross_sample": [
+  {
+   "channel_a": "KB",
+   "channel_b": "MEMORY",
+   "term": "(none)",
+   "count_a": "0",
+   "count_b": "0",
+   "agreement": "False",
+   "disagreement": "True",
+   "note": "no-overlap flag for human review"
+  }
+ ],
+ "tri_source_confirmed": true,
+ "auto_stage": "far_retrieval.run_retrieval_stage invoked automatically with question only (roots/web roots from policy)",
+ "terminal": "RESEARCH_PASS_CANDIDATE"
+}

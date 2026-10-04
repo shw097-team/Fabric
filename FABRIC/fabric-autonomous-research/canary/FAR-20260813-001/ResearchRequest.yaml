@@ -1,0 +1,20 @@
+schema: LOGICAL_FAR_RESEARCH_REQUEST_V1
+workorder_ref:
+  id: WO-FAR-002/004
+  digest: BOUND_AT_ADMISSION
+run_id: FAR-20260813-001
+decision_question: 是否應將 ARIS 選定研究方法層導入 fabric-autonomous-research 作為 P0 方法來源，並將 Prime
+  Agent 定位為 CANDIDATE_STANDBY（本輪不啟用）？
+owner: HGK-REFERENCE-PROJECT-002 / Fabric Shared Infrastructure
+task_class: RESEARCH_LITERATURE_REPO
+source_requirements:
+- 設計原意 D01-D05
+- 藍圖 B01
+- current 手冊 N01/N03
+- upstream pins (ARIS/Prime)
+freshness_requirement: 2026-08-13 current
+budget_ref: BIND-FAR-001 budget (wall 14400s, retry 2, watchdog defaults)
+security_boundary_ref: FAR_SOURCE_SECURITY.yaml (source-as-data)
+expected_decision_output: ARIS adopt/deny disposition + Prime N/A_NOT_SELECTED_WITH_REASON
+  record
+generated_at_utc: '2026-08-13T08:53:56Z'

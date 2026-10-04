@@ -1,0 +1,14 @@
+# Fabric Evidence Contract — raw evidence layers (Stage-1)
+schema: FABRIC-EVIDENCE-CONTRACT/1
+stage_id: RP002-STAGE-FABRIC
+master_sha256: "3bc4ad6c4bfe028e3686484f452d5fd015536e5e18b19c10ac978b2203c2087a"
+layers:
+  E0: source_or_raw_readback
+  E1: deterministic_parse_hash_command_result
+  E2: current_subject_or_candidate_manifest
+  E3: bootstrap_independent_checker_receipt
+  E4: stage_seal_or_handoff
+hard_rules:
+  maker_self_acceptance: false
+  summary_only_evidence: rejected
+  raw_sha256_required: true

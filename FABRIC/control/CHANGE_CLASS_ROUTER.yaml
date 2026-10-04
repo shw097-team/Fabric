@@ -1,0 +1,55 @@
+# Fabric Deterministic Change Class Router — frozen INACTIVE in Stage-1 (F0 activates)
+schema: RP002-CHANGE-CLASS-ROUTER/3
+stage_id: RP002-STAGE-FABRIC
+master_sha256: "3bc4ad6c4bfe028e3686484f452d5fd015536e5e18b19c10ac978b2203c2087a"
+norm_source_keys: [MASTER-CHANGE-ROUTER, DISCUSSION-6, DISCUSSION-8]
+source_locators: ["RP-002_v2.0_Master_Blueprint_2026-08-12_r2.md + RP-002_v2.0_STAGE-1_FABRIC-FOUNDATION_子藍圖_2026-08-12_r2.md"]
+semantic_delta: POST_R3_EXTEND
+stage1_state: CONTRACT_FROZEN_INACTIVE
+runtime_consumption_gate: F0
+bootstrap_allowed_routes: [G0_G1_BOOTSTRAP_ONLY]
+all_non_bootstrap_routes_active_in_stage1: false
+classes:
+  RUNTIME_TRANSIENT:
+    risk_class: R0
+    route: OWNING_ORCHESTRATOR_NATIVE
+    durable_change: false
+    activation: F0_OR_OWNING_RUNTIME_GATE
+  CONFIG_PREAPPROVED:
+    risk_class: R1
+    route: FABRIC_POLICY_APPLY_SMOKE_READBACK
+    durable_change: false
+    activation: F0
+  PROFILE_CHANGE:
+    risk_class: R2
+    route: COMMANDER_TO_HGK
+    active_after: O1
+    assurance_pack: profile
+  SKILL_CHANGE:
+    risk_class: R2
+    route: COMMANDER_TO_HGK
+    active_after: O1
+    assurance_pack: skill
+  PIPELINE_CHANGE:
+    risk_class: R2
+    route: COMMANDER_TO_HGK
+    active_after: O1
+    assurance_pack: multi-profile-pipeline
+  STACK_CHANGE:
+    risk_class: R2
+    route: COMMANDER_TO_HGK
+    active_after: O1
+    assurance_pack: stack
+  PROVIDER_UPGRADE:
+    risk_class: R2
+    route: COMMANDER_TO_HGK_QUALIFICATION_ONLY
+    active_after: O1
+  DOMAIN_CHANGE:
+    risk_class: R3
+    route: DOMAIN_AUTHORITY_TO_COMMANDER_TO_HGK
+    active_after: O1
+    requires_domain_checker: true
+  CONSTITUTIONAL_CHANGE:
+    risk_class: R3
+    route: HUMAN_AUTHORITY_META_ASSURANCE
+    auto_promotion: false

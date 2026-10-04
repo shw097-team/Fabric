@@ -1,0 +1,27 @@
+# RP002_GATE_CATALOG.yaml — unique machine gate vocabulary (r3 §20.1)
+schema: RP002-GATE-CATALOG/1
+mandatory:
+  - G0
+  - G1
+  - K1
+  - D1
+  - C1
+  - H1
+  - O1
+  - B1
+  - F0
+  - CF1
+  - F1
+  - KG1
+  - SQP1
+  - S1
+  - E1
+  - E2
+  - R1
+conditional:
+  E3:
+    required_if: ACTUAL_ORACLE_CHANGE_EXISTS
+    otherwise: N/A_WITH_SOURCE_LOCATOR
+historical_names_do_not_execute:
+  - KBN1
+  - FG1

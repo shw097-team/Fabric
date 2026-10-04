@@ -1,0 +1,19 @@
+{
+  "pack_id": "shared-service",
+  "subject_type": "SHARED_SERVICE",
+  "core_checks": [
+    "exact pin",
+    "license",
+    "install",
+    "security",
+    "rollback"
+  ],
+  "final_semantic_owner": "provider/Fabric policy owner",
+  "blocking_predicates": [
+    "locator:exact pin",
+    "locator:license",
+    "locator:install",
+    "locator:security",
+    "locator:rollback"
+  ]
+}

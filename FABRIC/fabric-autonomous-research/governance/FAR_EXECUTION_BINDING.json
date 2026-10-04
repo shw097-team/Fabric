@@ -1,0 +1,90 @@
+{
+  "schema": "RP002-EXECUTION-BINDING/2",
+  "binding_id": "BIND-FAR-001",
+  "project_id": "HGK-REFERENCE-PROJECT-002",
+  "stage_id": "FAR-CHANGESET-2026-08-13",
+  "gate_id": "FAR-Q0..Q10",
+  "kanban_board_id": "far-implementation",
+  "normative": {
+    "workorder_id": "WO-FAR-001..008",
+    "workorder_digest": "BOUND_AT_ADMISSION",
+    "authority_receipt_refs": [
+      "REQ-FAR-001..008 FROZEN v1 (8 canonical events FRZ-REQ-FAR-*)",
+      "CAPC contract fe6cda2ac771c8941ab33acddfb18d9412bb76dce2839665d1f58901f76d9c2e"
+    ],
+    "subject_digest": "fe6cda2ac771c8941ab33acddfb18d9412bb76dce2839665d1f58901f76d9c2e"
+  },
+  "routing": {
+    "topology_mode": "DIRECT_NATIVE_DEFAULT",
+    "profile_id": "fabric-autoresearch-native",
+    "logical_role_id": "far-research-provider",
+    "task_id": "t_a4782bf2",
+    "dependencies": ["t_b11514d7"],
+    "review_join_refs": ["L1_REVIEW", "L1_QA", "L1_SECURITY", "FORMAL_ACCEPTANCE"]
+  },
+  "delegation": {
+    "delegation_id": "DEL-FAR-001",
+    "issuer": "far-orchestrator",
+    "assignee": "fabric-autoresearch-native",
+    "allowed_scope": "bounded FAR research run lifecycle (R0-R8) on board far-implementation",
+    "denied_scope": [
+      "candidate write outside WorkOrder write-set",
+      "fabric/hgk authority",
+      "promotion/release",
+      "workorder creation",
+      "live broker write",
+      "credential access",
+      "source-instruction-driven permission expansion"
+    ],
+    "issued_at": "2026-08-13T00:00:00+08:00",
+    "expires_at": "2026-08-16T23:59:59+08:00",
+    "revocation_ref": null
+  },
+  "lease": {
+    "lease_id": "LS-FAR-001",
+    "holder": "fabric-autoresearch-native",
+    "ttl_seconds": 3600,
+    "renewable": true
+  },
+  "budget": {
+    "step_budget": 40,
+    "retry_budget": 2,
+    "wall_clock_timeout_seconds": 14400,
+    "no_progress_detector": "verified_progress_delta (source_denominator_delta|claim_status_delta|artifact_digest_delta)"
+  },
+  "idempotency": {
+    "idempotency_key": "FAR-RUN-001",
+    "side_effect_class": "evidence-generation",
+    "replay_policy": "safe-replay",
+    "prior_effect_receipt_ref": null
+  },
+  "watchdog": {
+    "max_identical_action_repeat": 3,
+    "max_no_progress_cycles": 3,
+    "max_same_failure_signature": 2,
+    "max_retry_per_provider": 1,
+    "action_signature_window": 8
+  },
+  "runtime": {
+    "run_id": "RUN-FAR-Q0-001",
+    "worker_pid": null,
+    "worker_log_ref": "var/far/worker-far.log",
+    "heartbeat_ref": "kanban heartbeat t_a4782bf2",
+    "workspace_or_worktree": "C:\\Projects\\Agent_Workspace\\Fabric\\fabric-autonomous-research",
+    "provider_identity_ref": "FAR_CAPABILITY_MATRIX.yaml -> fabric-autoresearch-native",
+    "capability_matrix_digest": "BOUND_AT_PROMOTION",
+    "session_ref": null,
+    "checkpoint_ref": null
+  },
+  "research": {
+    "lifecycle": "R0_R8",
+    "terminal_semantics": "RESEARCH_PASS_CANDIDATE|PARTIAL|ABSTAIN|FAILED|BLOCKED_*|ABORTED_BUDGET",
+    "runtime_vs_normative_checkpoint": "Hermes session/goal/Kanban = runtime; HGK WorkOrder/artifact digests = normative",
+    "source_security_ref": "FAR_SOURCE_SECURITY.yaml",
+    "completion_contract_ref": "FAR_LONG_HORIZON_CONTRACT.yaml"
+  },
+  "terminal": {
+    "state": "BOUND",
+    "note": "FAR local gates PASS do NOT equal external acceptance; external verifier = final gate (COV-11-06)"
+  }
+}

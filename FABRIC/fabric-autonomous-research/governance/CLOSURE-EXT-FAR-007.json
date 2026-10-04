@@ -1,0 +1,24 @@
+{
+ "finding": "EXT-FAR-007",
+ "classification": "EVIDENCE_GAP",
+ "status": "CLOSED",
+ "smallest_repair": "PROVIDE_FRESH_SUBJECT_BOUND_AO_RECEIPT",
+ "focused_retest": {
+  "checker_identity": "acceptance-officer (deleg_bab33aae fresh lane + deleg_e4a09db4 focused retest)",
+  "fresh_context_maker_separation": true,
+  "exact_frozen_subject_digest": "5720337bce9ef09402c8f22a2fecff39bffe881a5e46a187a78aabd10519ec6a",
+  "denominator": "T001..T092 via FAR_REGRESSION_CROSSWALK.json (92 rows)",
+  "pass_fail_counts": "lane1 9/10 PASS + 1 packaging finding (AO-FINDING-FAR-002, repaired); focused retest 4/4 PASS",
+  "blockers": 0,
+  "no_candidate_writes": true,
+  "swarm_challenger_as_input_not_final": true,
+  "raw_receipt": "FAR_Q10_AO_RECEIPT.json (sha da3174916358fdc20c8072e1adfb3062af72d44e0a4d65093b0fda4708e496eb)"
+ },
+ "bound_into": [
+  "FAR_Q10_AO_RECEIPT.json",
+  "FAR_INTERNAL_ALLPASS_GATE.json",
+  "FAR_IMPLEMENTATION_EVIDENCE_v2.md §8"
+ ],
+ "verdict": "CLOSED",
+ "generated_at_utc": "2026-08-13T20:16:00Z"
+}

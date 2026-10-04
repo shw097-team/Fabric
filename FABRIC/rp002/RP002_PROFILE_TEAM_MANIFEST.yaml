@@ -1,0 +1,22 @@
+# RP002_PROFILE_TEAM_MANIFEST.yaml (r3 §20.4)
+schema: RP002-PROFILE-TEAM-MANIFEST/1
+profile_contract_schema: RP002-PROFILE-RUNTIME-CONTRACT/1
+instances:
+  - hgk-orchestrator
+  - hgk-knowledge-factory
+  - hgk-document-factory
+  - hgk-coding-factory
+  - construction-acceptance-oracle
+  - sqs-orchestrator
+  - sqs-data-analysis
+  - sqs-risk
+  # FDA (WO-FDA-001, 2026-08-13): additive shared-infrastructure provider profiles.
+  # team_class SHARED_INFRASTRUCTURE_PROFILE_TEAM is expressed in the team artifact
+  # (fabric-desktop-automation/TEAM.md); no schema fork, parent rows preserved.
+  - fabric-desktop-cua
+  - fabric-desktop-ufo2
+team_artifacts:
+  - HGK/TEAM.md
+  - SQS/TEAM.md
+  - RP002/TEAM.md
+  - fabric-desktop-automation/TEAM.md

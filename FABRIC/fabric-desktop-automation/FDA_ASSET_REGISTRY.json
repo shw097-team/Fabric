@@ -1,0 +1,58 @@
+{
+  "schema": "FDA-ASSET-REGISTRY/1",
+  "artifact_id": "FDA_ASSET_REGISTRY",
+  "purpose": "Canonical inventory of ALL qualified FDA assets. ANY FDA operation MUST check this registry FIRST (reuse-first / verify-and-CALL). If an operation maps to an existing asset, CALL it — do not re-implement.",
+  "updated_at": "2026-08-14T14:00:00+08:00",
+  "upgrade_source": "知識庫/實作相關DOC/FDA/升級方案/最新版 XQXS 專用升級修補方案.md (PATCH_ID=FDA-XQ-BUILD-AWARE-NATIVE-HYBRID-001)",
+  "assets": {
+    "adapter": {
+      "file": "Fabric/fabric-desktop-automation/xq_native_adapter.py",
+      "functions": {
+        "find_main_window": "locate XQ main window (DAQXQLITEMainWnd) — XQ_LAUNCH_LOCATE",
+        "find_window_by_title": "locate window by title — radar/dialog discovery",
+        "invoke_button": "PostMessage BM_CLICK on a button hwnd — dialog buttons",
+        "set_edit_text": "SendMessage WM_SETTEXT — dialog name/product edit",
+        "get_edit_text": "read edit text (WM_GETTEXT)",
+        "press_toolbar": "TB_PRESSBUTTON by command id — radar toolbar (17551/17554/17555…)",
+        "toolbar_button_count": "toolbar button count",
+        "is_button_enabled": "fsState&4 — START/STOP enabled truth (wash-complete)",
+        "close_window": "WM_CLOSE a window — stuck dialog cleanup"
+      },
+      "mandatory_use": "ANY XQ window/dialog/toolbar op must route through these; self-written ctypes = reuse violation"
+    },
+    "router": {
+      "file": "Fabric/fabric-desktop-automation/fda_router.py",
+      "rule": "fail-closed; reads matrix digest (never memory); no silent fallback; unknown-state=STOP/HITL"
+    },
+    "matrix": {
+      "file": "Fabric/fabric-desktop-automation/FDA_DESKTOP_CAPABILITY_MATRIX.yaml",
+      "schema": "FDA-DESKTOP-CAPABILITY-MATRIX/1",
+      "build_firewall": "XQ_BUILD_DRIFT_FIREWALL/1 — REQUALIFY locate/uia/clipboard; INVALIDATE pixel; INVALIDATE+10x radar/PAPER; DENY_ALWAYS live broker",
+      "action_classes": {
+        "XQ_LAUNCH_LOCATE": {"state": "QUALIFIED", "backend": "PYWINAUTO_WIN32", "runs": "10/10"},
+        "XS_COMPILE_PASS": {"state": "QUALIFIED", "backend": "CUA_0_19_3", "runs": "10/10"},
+        "XS_COMPILE_FAIL_READBACK": {"state": "QUALIFIED", "backend": "CUA_0_19_3", "runs": "10/10"},
+        "XQ_PAPER_CONFIG": {"state": "QUALIFIED", "backend": "PYWINAUTO_WIN32", "runs": "10/10"},
+        "XQ_LOG_EXPORT_READBACK": {"state": "QUALIFIED", "backend": "CUA_0_19_3", "runs": "10/10"},
+        "XQ_RADAR_OPEN": {"state": "REQUALIFY_PENDING", "note": "upgrade STEP 10 split — verify via matrix upgrade"},
+        "XQ_PAPER_START": {"state": "REQUALIFY_PENDING", "note": "upgrade STEP 10 split"},
+        "XQ_PAPER_STATUS_READBACK": {"state": "REQUALIFY_PENDING", "note": "upgrade STEP 10 split"},
+        "XQ_PAPER_STOP": {"state": "REQUALIFY_PENDING", "note": "upgrade STEP 10 split"}
+      }
+    },
+    "fingerprint": {
+      "file": "Fabric/fabric-desktop-automation/evidence/receipts/FDA_XQ_BUILD_FINGERPRINT_RECEIPT.json",
+      "subject": "XQ 3.20.02-260811 sha6c0c7cbc54a3b5827926866ee8d907718e15eb74cf35e935a8c7ac2a7c9c4abe"
+    },
+    "guard": {"file": "var/fda/FDA_PREFLIGHT_GUARD.py", "rule": "any new/edited script → preflight scan before first run"},
+    "executor": {"file": "var/fda/fda_run.py", "rule": "all FDA automation scripts run through this (preflight→execute→anomaly auto screen-check)"},
+    "screen_state_check": {"file": "var/fda/screen_state_check.py", "rule": "ANY anomaly → run FIRST (SSC-V2: dynamic pid, hidden windows, NEEDS_CONFIRM)"}
+  },
+  "reuse_contract": [
+    "1. Before any XQ operation: check registry → find mapping asset",
+    "2. If asset exists (adapter fn / matrix QUALIFIED row): CALL it — do not re-implement",
+    "3. If asset missing/REQUALIFY: upgrade matrix or WO first, then use the upgraded path",
+    "4. New scripts: preflight guard → fda_run.py → screen_state_check on anomaly",
+    "5. Any upgrade (WO/self-evolution): update THIS registry + matrix + skill in the same ChangeSet"
+  ]
+}

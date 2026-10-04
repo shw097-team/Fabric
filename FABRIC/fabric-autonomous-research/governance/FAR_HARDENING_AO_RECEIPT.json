@@ -1,0 +1,26 @@
+{
+  "schema": "FAR-HARDENING-AO-RECEIPT/1",
+  "lane": "deleg_0620d9f1 (security checker + fresh Acceptance Officer, read-only, 265.62s)",
+  "checker_identity": "acceptance-officer (fresh context, VERIFY_ONLY, no repair; maker != checker)",
+  "verdict": "SECURITY_VERDICT=PASS_WITH_LOW_INFO_FINDINGS (2 LOW / 3 INFO) + ACCEPTANCE_OFFICER_VERDICT=PASS",
+  "ao_items": {
+    "AO-H01": "PASS — same-origin derivations not counted independent (compute_independence dedups by origin_artifact_digest/id)",
+    "AO-H02": "PASS — HTML5 <!DOCTYPE html> accepted for text/html (inert)",
+    "AO-H03": "PASS — unsafe XML external resolution impossible (DTD/entities rejected; XInclude inert)",
+    "AO-H04": "PASS — redirects DISABLED entirely (EXT-FAR-TS-HARD-001 repair; any redirect denied)",
+    "AO-H05": "PASS — resolved-IP validation exists (pre-connect DNS classification incl. 6to4/Teredo)",
+    "AO-H06": "PASS — 256KB truncation explicit (content_read fields)",
+    "AO-H07": "PASS — truncated evidence cannot support full-document absence",
+    "AO-H08": "PASS — query cap cannot force PASS (budget Case A/B)",
+    "AO-H09": "PASS — real Web HIT canary externally readable (CANARY-H2)",
+    "AO-H10": "PASS — test denominator exact/recomputable (103 + nodeids digest)",
+    "AO-H11": "PASS — historical r8 artifacts unchanged (58de0815 immutable record)",
+    "AO-H12": "PASS — no new crawler/service/DB/control plane (stdlib only)",
+    "AO-H13": "PASS — SQS Financial Truth mutation=0",
+    "AO-H14": "PASS — live broker write=0",
+    "AO-H15": "PASS — rollback valid (RB-WO-FAR-HARDENING-001 in spine)"
+  },
+  "files_modified_by_lane": "none (VERIFY_ONLY)",
+  "readback": "103/103 tests re-run OK; CANARY-H1..H5 ALL_PASS; EV-01 denominator recomputable",
+  "generated_at_utc": "2026-08-13T17:08:00Z"
+}

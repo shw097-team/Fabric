@@ -1,0 +1,52 @@
+---
+schema: HGK-WORKORDER/1
+workorder_id: WO-FDA-XQ-002
+parent: WO-FDA-001
+change_class: PROFILE_CHANGE_BOUNDED
+objective: "XQ exact-build-aware native hybrid qualification (FDA-XQ-BUILD-AWARE-NATIVE-HYBRID-001)"
+created: 2026-08-14
+owner: HGK
+executor: HERMES
+verifier: INDEPENDENT_ACCEPTANCE_OFFICER
+authority_chain:
+  - HGK_WO_ADMISSION
+  - CAPC_REVIEW
+  - EXECUTION
+  - CHALLENGE_LANE
+  - HITL_GATE
+  - PATCH_VERIFY
+live_broker_write: false
+financial_truth_mutation: false
+third_heavy_stack: false
+new_profile: false
+new_rp002_gate: false
+scope:
+  modify:
+    - FDA_DESKTOP_CAPABILITY_MATRIX.yaml (subject_binding + validity + pywinauto_win32 backend rows)
+    - fabric-desktop-cua runtime contract (executor_backend field)
+  add:
+    - FDA_XQ_BUILD_FINGERPRINT_RECEIPT.json
+    - FDA_XQ_NATIVE_QUALIFICATION_RECEIPT.json
+    - xq_native_adapter.py (thin win32 adapter)
+  test:
+    - test_xq_build_drift.py
+    - test_xq_native_adapter.py
+non_goals:
+  - 不新增第三 Heavy Stack / 第三 Profile / 第二 scheduler / 第二 task DB
+  - 不重做 FDA r2
+  - 不更動 SQS live write 邊界 (broker write OFF)
+  - 不取代 Cua baseline (0.19.3); 0.19.4 nightly 僅 shadow challenger
+acceptance_predicates:
+  xq_subject_digest_present: 1
+  public_vs_local_build_mismatch_acknowledged: 1
+  stale_selector_route: 0
+  stale_pixel_route: 0
+  silent_clipboard_fallback: 0
+  executor_backend_explicit: 1
+  backend_version_explicit: 1
+  wrong_action: 0
+  silent_wrong_action: 0
+  paper_surface_promoted_as_runtime: 0
+  unknown_state_auto_retry: 0
+  simultaneous_writer: 0
+  broker_write: 0

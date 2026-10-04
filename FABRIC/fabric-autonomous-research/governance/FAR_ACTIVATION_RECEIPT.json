@@ -1,0 +1,38 @@
+{
+  "schema": "FAR-ACTIVATION-RECEIPT/1",
+  "event": "FAR_FORMAL_ACTIVATION",
+  "date": "2026-08-13",
+  "authority_basis": {
+    "external_report": "FAR_FINAL_EXTERNAL_ACCEPTANCE_REPORT_2026-08-13_r7_ALL_PASS.md",
+    "verdict": "PASS_CHALLENGE / FAR_EXTERNAL_FINAL_ACCEPTANCE=GRANTED / FAR-R1=PASS",
+    "final_evidence": "FAR_FINAL_ACCEPTANCE_EVIDENCE.md b0b21ced799face772327199e5b29ca1bf016b5177a06ffe9ee1832efa653d40",
+    "conditions": "14/14 PASS; blocking contradiction=0; blocking evidence gap=0"
+  },
+  "activated_state": {
+    "team": "fabric-autonomous-research",
+    "state": "ACTIVE",
+    "usage_scope": "LOCAL_GOVERNED_SELF_USE (per r7 declared scope)",
+    "router": "far_router.py ACTIVE (native-first; specialists only when qualified)",
+    "profile": "fabric-autoresearch-native PRIMARY; fabric-autoresearch-prime CANDIDATE_STANDBY_UNTIL_QUALIFIED",
+    "kanban_board": "far-implementation (canonical) + task boards per WorkOrder"
+  },
+  "deliverables": {
+    "README": "Fabric/fabric-autonomous-research/README.md",
+    "user_guide": "Fabric/fabric-autonomous-research/docs/fabric-autonomous-research_使用說明手冊_v2026.08.13-r1.md",
+    "agents_md": "Fabric/fabric-autonomous-research/AGENTS.md",
+    "team_md_updated": "Fabric/fabric-autonomous-research/TEAM.md (Status section added)"
+  },
+  "nbo_cleanups": {
+    "NBO-01": "delivery manifest heading 12->14 (accepted)",
+    "NBO-02": "manifest semantics prose -> FAR_FINAL_ACCEPTANCE_EVIDENCE.md by path (accepted)",
+    "NBO-04": "negative receipt locator wording (far_router.py ade07192…) (accepted)"
+  },
+  "claim_ceiling": {
+    "production": "NOT_CLAIMED",
+    "sqs_live_trading": "NOT_AUTHORIZED",
+    "remote_deployment": "NOT_CLAIMED",
+    "provider_activation": "Prime/ARC/LongHorizon/EvoAgentX remain unqualified/off/lab until separately qualified",
+    "human_policy_gate": "COV-11-06 preserved for any evolution promotion"
+  },
+  "generated_at_utc": "2026-08-13T14:00:00Z"
+}

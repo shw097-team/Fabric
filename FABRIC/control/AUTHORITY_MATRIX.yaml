@@ -1,0 +1,36 @@
+# Fabric Authority Matrix — RP-002 v2.0 Stage-1 freeze
+schema: FABRIC-AUTHORITY-MATRIX/1
+stage_id: RP002-STAGE-FABRIC
+master_sha256: "3bc4ad6c4bfe028e3686484f452d5fd015536e5e18b19c10ac978b2203c2087a"
+norm_source_keys: [MASTER-R2-S1-S3, R3-S8.1, KP01]
+source_locators: ["RP-002_v2.0_Master_Blueprint_2026-08-12_r2.md + RP-002_v2.0_STAGE-1_FABRIC-FOUNDATION_子藍圖_2026-08-12_r2.md"]
+semantic_delta: PRESERVE
+objects:
+  RP002_GATE_TRUTH:
+    owner: MASTER
+    delegate_write: false
+  HGK_ENGINEERING_TRUTH:
+    owner: HGK
+    fabric_can_govern_access: true
+    fabric_can_mutate_truth: false
+  SQS_FINANCIAL_TRUTH:
+    owner: SQS_DOMAIN_AUTHORITY
+    fabric_can_govern_access: true
+    fabric_can_mutate_truth: false
+  BOOTSTRAP_ACCEPTANCE_RECEIPT:
+    owner: EXTERNAL_GPT_5_6_SOL_CURRENT_CONVERSATION
+    active_gates: [G0, G1]
+    handoff_mode: USER_UPLOAD_SINGLE_EXTERNAL_REVIEW_MD
+    substitution: SOURCE_AUTHORIZED_ONLY
+    retires_as_operational_L2_at: O1
+    remains_available_as_meta_review: true
+  ACCEPTANCE_RECEIPT:
+    owner: ACCEPTANCE_OFFICER
+    active_from_gate: O1
+  PROMOTION_DECISION:
+    owner: DETERMINISTIC_FABRIC_REDUCER
+    requires_acceptance: true
+human_only:
+  - constitutional_change
+  - unresolved_same_rank_authority_conflict
+  - live_financial_side_effect_authorization

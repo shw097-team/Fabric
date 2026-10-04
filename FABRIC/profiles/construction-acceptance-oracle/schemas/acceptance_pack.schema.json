@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "RP002-ACCEPTANCE-PACK/1",
+  "type": "object",
+  "required": [
+    "pack_id",
+    "subject_type",
+    "core_checks",
+    "final_semantic_owner"
+  ],
+  "properties": {
+    "pack_id": {
+      "type": "string"
+    },
+    "subject_type": {
+      "type": "string"
+    },
+    "core_checks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "final_semantic_owner": {
+      "type": "string"
+    },
+    "blocking_predicates": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

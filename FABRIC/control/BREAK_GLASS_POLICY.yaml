@@ -1,0 +1,45 @@
+# Fabric BreakGlass Policy — complete bounded schema (Stage-1 freeze; F1 enforces)
+schema: RP002-BREAK-GLASS/1
+stage_id: RP002-STAGE-FABRIC
+master_sha256: "3bc4ad6c4bfe028e3686484f452d5fd015536e5e18b19c10ac978b2203c2087a"
+norm_source_keys: [MASTER-R2-S6.6, R3-BREAKGLASS]
+source_locators: ["RP-002_v2.0_Master_Blueprint_2026-08-12_r2.md + RP-002_v2.0_STAGE-1_FABRIC-FOUNDATION_子藍圖_2026-08-12_r2.md"]
+semantic_delta: PRESERVE_EXACT_FIELDS
+receipt:
+  reason: string
+  operator: identity
+  authority_ref: string
+  subject_digest: sha256
+  started_at: rfc3339
+  expires_at: rfc3339
+  max_duration_policy_ref: string
+  affected_scope: []
+  affected_gates: []
+  bypassed_control: []
+  evidence_refs: []
+  restoration_plan: string
+  post_event_review: REQUIRED
+  closure_receipt: string|null
+activation:
+  authority_required: true
+  normal_stage1_use: FORBIDDEN_UNLESS_BLOCKED_HITL_AUTHORIZED
+  cannot_raise_claim_ceiling: true
+expiry:
+  auto_continue_after_expiry: false
+  expired_without_restoration: FAIL_CLOSED
+post_use:
+  invalidate_affected_runtime_receipts_if_subject_changed: true
+  rerun_affected_gate: REQUIRED
+  preserve_breakglass_history: true
+hard_required_fields:
+  - reason
+  - operator
+  - authority_ref
+  - subject_digest
+  - started_at
+  - expires_at
+  - affected_scope
+  - bypassed_control
+  - restoration_plan
+  - post_event_review
+  - closure_receipt

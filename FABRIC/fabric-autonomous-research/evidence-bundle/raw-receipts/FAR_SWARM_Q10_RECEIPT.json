@@ -1,0 +1,51 @@
+{
+  "schema": "FAR-Q10-SWARM-RECEIPT/1",
+  "gate": "FAR-Q10",
+  "delegation_id": "deleg_597936a6",
+  "dispatched_at_utc": "2026-08-13T17:01:30Z",
+  "lanes": 2,
+  "overlap_window_utc": "17:01:30Z - 17:02:46Z (both lanes live simultaneously)",
+  "lane_a_governance": {
+    "role": "leaf (read-only)",
+    "duration_s": 75.73,
+    "verdict": "ALL_PASS",
+    "checks": {
+      "workorders_wo_far": "8, writer=codex (state read CREATED mid-flight; final VERIFIED confirmed by orchestrator readback after recording)",
+      "requirements_req_far": "8, FROZEN v1, P0",
+      "canonical_events_frz": "8 (CANDIDATE->FROZEN, resulting_version 1)",
+      "capc_receipt": "PROMPT_COMPILE_PASS; contract_sha256 fe6cda2ac771c8941ab33acddfb18d9412bb76dce2839665d1f58901f76d9c2e; on-disk re-hash matches (genuine binding)",
+      "evolution_canary": "QUALIFIED / independent PASS / PROMOTION_READY_HITL_SOURCE_REQUIRED",
+      "gates_receipt_q0_q9": "all expected values confirmed",
+      "no_second_control_plane": "TEAM.md heavy_stack: false + manager_agent: NONE confirmed"
+    }
+  },
+  "lane_b_product": {
+    "role": "leaf (read-only)",
+    "duration_s": 37.72,
+    "verdict": "PASS_WITH_ONE_COUNT_CORRECTION",
+    "checks": {
+      "unit_tests": "23/23 OK (exit 0)",
+      "canary_run_receipt_terminal": "RESEARCH_PASS_CANDIDATE (field `terminal`)",
+      "templates": "22",
+      "aris_effective_load": "EFFECTIVE_LOAD_STRUCTURAL_PASS, selected 13/13 pin_match",
+      "interop_dispositions": "OASF/ContextForge/MCP/A2A/OpenTelemetry/Qdrant/Neo4j/Obsidian all explicit",
+      "security_fixtures": "SEC-SRC-01..08 all present",
+      "modules_non_empty": "far_router.py / far_watchdog.py / far_source_security.py confirmed"
+    }
+  },
+  "finding": {
+    "id": "SWARM-FINDING-FAR-001",
+    "severity": "INFO_CORRECTION",
+    "detail": "Maker gates receipt stated canary_artifacts=18; independent lane counted 19. 19 is correct: 17 required artifacts + CandidateKnowledge + ProposedEvolution (DisagreementLedger/ExperimentPlan/ExperimentResult correctly absent - R5 challenge/experiment not triggered).",
+    "resolution": "ACCEPTED_CORRECTION (gates receipt regenerated with expected_artifacts=19; canary_run.py output confirmed 19 files)",
+    "maker_miscount": true
+  },
+  "transcript_refs": [
+    "C:\\Users\\user\\AppData\\Local\\hermes\\cache\\delegation\\live\\deleg_597936a6\\task-0.log",
+    "C:\\Users\\user\\AppData\\Local\\hermes\\cache\\delegation\\live\\deleg_597936a6\\task-1.log",
+    "C:\\Users\\user\\AppData\\Local\\hermes\\cache\\delegation\\subagent-summary-0-20260813_170246_007804.txt",
+    "C:\\Users\\user\\AppData\\Local\\hermes\\cache\\delegation\\subagent-summary-1-20260813_170246_008802.txt"
+  ],
+  "conclusion": "FAR-Q10 PASS (independent fresh-context read-only verification; both lanes; 0 blocking findings)",
+  "generated_at_utc": "2026-08-13T09:10:00Z"
+}

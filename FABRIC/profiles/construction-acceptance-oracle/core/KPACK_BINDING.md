@@ -1,0 +1,6 @@
+# KP00~19 KnowledgePack binding
+
+bound_to: C:\Projects\Agent_Workspace\Fabric\Oracle\工程基座\GPTs_GENIEMAKER_開發實作+驗收指揮官\GPTs_GENIEMAKER_開發實作+驗收指揮官_KP_Builder_ReleasePack_v2026.06.03-r2\KnowledgePack
+kp_index_sha256: b0cd77297e1a57207ab41db683d14d0c8df12114315604c6da1efa81a1b9b561
+compiler_skill: C:\Projects\Agent_Workspace\Fabric\Oracle\工程基座\construction-acceptance-prompt-compiler\construction-acceptance-prompt-compiler\construction-acceptance-prompt-compiler_SKILL.md
+prompt_compiler_sha256: 214c7f048f7361fe0bc4a324a0c99aaaf0df4191a430b645b8a97d24620064b6

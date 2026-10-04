@@ -1,0 +1,36 @@
+{
+  "artifact_id": "RP002_K1_ACCEPTANCE_OBLIGATIONS",
+  "gate": "K1",
+  "obligations": [
+    {
+      "id": "K1-OBL-001",
+      "predicate": "source coverage: corpus governance total_files == 4717",
+      "status": "SATISFIED"
+    },
+    {
+      "id": "K1-OBL-002",
+      "predicate": "active-contract states CURRENT/SUPERSEDED/CONDITIONAL/REJECTED/DEFERRED all present or explicitly zero",
+      "status": "SATISFIED"
+    },
+    {
+      "id": "K1-OBL-003",
+      "predicate": "no invented norm: every distilled norm carries exact source locators + sha256",
+      "status": "SATISFIED"
+    },
+    {
+      "id": "K1-OBL-004",
+      "predicate": "same-rank conflict fail-closed: conflict_count == 0",
+      "status": "SATISFIED"
+    },
+    {
+      "id": "K1-OBL-005",
+      "predicate": "unsupported norm == 0",
+      "status": "SATISFIED"
+    },
+    {
+      "id": "K1-OBL-006",
+      "predicate": "requirement ledger: 18 REQ-RP2-* rows admitted in spine",
+      "status": "SATISFIED"
+    }
+  ]
+}

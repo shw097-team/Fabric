@@ -1,0 +1,62 @@
+# Fabric Stage-1 Contract Exact Set — content-addressed denominator
+schema: STAGE1-CONTRACT-EXACT-SET/1
+stage_id: RP002-STAGE-FABRIC
+master_digest: "3bc4ad6c4bfe028e3686484f452d5fd015536e5e18b19c10ac978b2203c2087a"
+fabric_policy_paths:
+  required_count: 13
+  rows:
+    - ACCEPTANCE_POLICY.yaml
+    - AUTHORITY_MATRIX.yaml
+    - BREAK_GLASS_POLICY.yaml
+    - CAPABILITY_QUALIFICATION_POLICY.yaml
+    - CHANGE_CLASS_ROUTER.yaml
+    - EVOLUTION_POLICY.yaml
+    - KNOWLEDGE_POLICY.yaml
+    - MEMBER_POLICY.yaml
+    - PROFILE_STACK_REGISTRATION_POLICY.yaml
+    - PROMOTION_POLICY.yaml
+    - RELEASE_POLICY.yaml
+    - RISK_POLICY.yaml
+    - SOD_POLICY.yaml
+fabric_contract_schema_paths:
+  required_count: 6
+  rows:
+    - AUTHORITY_RECEIPT.schema.yaml
+    - CANDIDATE_MANIFEST.schema.yaml
+    - FABRIC_CHANGE_PACKAGE.schema.yaml
+    - FABRIC_COLLABORATION_ABI.schema.yaml
+    - PROMOTION_RECEIPT.schema.yaml
+    - ROLLBACK_RECEIPT.schema.yaml
+assurance_paths:
+  required_count: 4
+  rows:
+    - ACCEPTANCE_SCHEMA.yaml
+    - BOOTSTRAP_META_ACCEPTANCE_POLICY.yaml
+    - EVIDENCE_CONTRACT.yaml
+    - PROFILE_ROLE_CONTRACTS.yaml
+tool_capabilities:
+  required_count: 35
+  matrix_ref: STAGE1_TOOL_CAPABILITY_FREEZE_MATRIX.yaml
+knowledge_packs:
+  required_count: 20
+  map_ref: STAGE1_KP_APPLICABILITY_MAP.yaml
+g0_required_evidence:
+  - RP002_INPUT_DENOMINATOR.jsonl
+  - RP002_SOURCE_CLASSIFICATION.tsv
+  - RP002_AUTHORITY_CONFLICTS.tsv
+  - RP002_CURRENT_SUBJECT.yaml
+  - G0_DIRTY_BASELINE_RECEIPT.yaml
+  - PROMPT_COMPILE_RECEIPT.yaml
+  - BOOTSTRAP_ACCEPTANCE_RECEIPT_G0.yaml
+g1_required_evidence:
+  - G1_RUNTIME_IDENTITY_RECEIPT.yaml
+  - G1_PROCESS_BINDING_RECEIPT.yaml
+  - G1_PREREQUISITE_SECURITY_RECEIPT.yaml
+  - G1_CRITICAL_WRITE_INTEGRITY_RECEIPT.yaml
+  - BOOTSTRAP_ACCEPTANCE_RECEIPT_G1.yaml
+hard_counts:
+  missing_fabric_policy: 0
+  missing_tool_row: 0
+  missing_kp_row: 0
+  missing_g0_required_evidence: 0
+  missing_g1_required_evidence: 0

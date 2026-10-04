@@ -1,0 +1,107 @@
+{
+ "schema": "FAR-ARIS-EFFECTIVE-LOAD-RECEIPT/1",
+ "pin": {
+  "full_commit": "e12e07c7b85ee1a4dc07e5463089aa16836af2bf",
+  "catalog_sha256": "77dcf928a85e033c51a22b56fe1e50196bc2d2a39f481c9176031073de1f0c40"
+ },
+ "actual_catalog_sha256": "77dcf928a85e033c51a22b56fe1e50196bc2d2a39f481c9176031073de1f0c40",
+ "catalog_total_skills": 86,
+ "selected_methods_verified": 13,
+ "all_ok": true,
+ "per_method": [
+  {
+   "method": "auto-review-loop",
+   "sha256": "782803dab87f636db235133a2fb1513400ca9bdce012305ec033a633a371538b",
+   "frontmatter_ok": true,
+   "disposition": "CONDITIONAL_BOUNDED_ROUNDS",
+   "pin_match": true
+  },
+  {
+   "method": "experiment-audit",
+   "sha256": "476bde891323ebf9496ac2a52f8dbbf67fae13cfc6f7c69d4d3213794f3f1af2",
+   "frontmatter_ok": true,
+   "disposition": "CONDITIONAL_ADVISORY",
+   "pin_match": true
+  },
+  {
+   "method": "experiment-plan",
+   "sha256": "c5b53692ff95b0b55e80702e33afc79d9fe8d4f55a69e2a39714013f97ac595e",
+   "frontmatter_ok": true,
+   "disposition": "CONDITIONAL_EXPERIMENT",
+   "pin_match": true
+  },
+  {
+   "method": "idea-creator",
+   "sha256": "980e2fb9214b092213e44993ace9ea8940f7eb0694b5032e7fbb9aeeadb5b5b1",
+   "frontmatter_ok": true,
+   "disposition": "SELECTED_WHEN_IDEATION_CLASS",
+   "pin_match": true
+  },
+  {
+   "method": "idea-discovery",
+   "sha256": "c265e307f1fb8b7f30eff7ea258218fc49aa52d785ebfdcee015736f1620807e",
+   "frontmatter_ok": true,
+   "disposition": "METHOD_DONOR_OR_SELECTED_CHAIN",
+   "pin_match": true
+  },
+  {
+   "method": "meta-apply",
+   "sha256": "5122453add96f0bd13933a1d9416ff61afbfce4f6892dc656f2495c0dcadbfa6",
+   "frontmatter_ok": true,
+   "disposition": "NO_ADOPT_LANDING_AUTHORITY",
+   "pin_match": true
+  },
+  {
+   "method": "meta-optimize",
+   "sha256": "07c8c71e3f9937036c762f444d8c04d7f18ed56ed80840b8a0d0e2df67f8458c",
+   "frontmatter_ok": true,
+   "disposition": "CANDIDATE_PRODUCER_ONLY",
+   "pin_match": true
+  },
+  {
+   "method": "novelty-check",
+   "sha256": "c512579faa065c7e886935d64c2d7d7c810cef8e8f5f6ff5cd902d6ab90e68af",
+   "frontmatter_ok": true,
+   "disposition": "P0_ADOPT_CANDIDATE",
+   "pin_match": true
+  },
+  {
+   "method": "research-lit",
+   "sha256": "00d9f549e4db72f3b02d55b9f6dcd61b20403f5a7e25cf3396160423140b9183",
+   "frontmatter_ok": true,
+   "disposition": "P0_ADOPT_CANDIDATE",
+   "pin_match": true
+  },
+  {
+   "method": "research-pipeline",
+   "sha256": "e1f97fdcc1e8a28af0a425d3bac344d9c675ef7397d3b3ad8f27cb97dbf20510",
+   "frontmatter_ok": true,
+   "disposition": "METHOD_DONOR",
+   "pin_match": true
+  },
+  {
+   "method": "research-refine",
+   "sha256": "2cbda50557603d608990eff7f7a9890b2f75978a5219a8bc8b6e49cebe7e1884",
+   "frontmatter_ok": true,
+   "disposition": "P0/P1_ADOPT_CANDIDATE",
+   "pin_match": true
+  },
+  {
+   "method": "research-refine-pipeline",
+   "sha256": "d5091663645dae48b84ce273d0f774090aeb2c553ed064d2d4cfc17fad9c52e9",
+   "frontmatter_ok": true,
+   "disposition": "MAP_TO_SELECTED_SUBCHAIN",
+   "pin_match": true
+  },
+  {
+   "method": "research-review",
+   "sha256": "2d2c27ccedeb9d053b16ff9e64e61e2653c42841618d382531a3191cc37b72db",
+   "frontmatter_ok": true,
+   "disposition": "P0_ADVISORY_CHALLENGER_CANDIDATE",
+   "pin_match": true
+  }
+ ],
+ "conclusion": "EFFECTIVE_LOAD_STRUCTURAL_PASS",
+ "no_fake_invocation": true,
+ "generated_at_utc": "2026-08-13T08:56:16Z"
+}

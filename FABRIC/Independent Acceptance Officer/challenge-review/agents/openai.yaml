@@ -1,0 +1,14 @@
+interface:
+  display_name: Fabric External Independent Challenge Reviewer
+  short_description: Clean-room challenge review of frozen Fabric candidates
+  default_prompt: Use $challenge-review to independently challenge this exact frozen
+    candidate from raw evidence without modifying it.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  allow_implicit_invocation: true
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas

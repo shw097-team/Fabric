@@ -1,0 +1,100 @@
+{
+  "schema": "RP002-STAGE-CROSSWALK/1",
+  "master": {
+    "artifact_id": "RP002_V2_MASTER_BLUEPRINT_20260812_R2",
+    "version": "v2.0-2026.08.12-r2",
+    "sha256": "3bc4ad6c4bfe028e3686484f452d5fd015536e5e18b19c10ac978b2203c2087a",
+    "gate_catalog": "RP002_GATE_CATALOG.yaml",
+    "execution_graph": "RP002_EXECUTION_GRAPH.yaml",
+    "claim_ceiling": "RP002_LOCAL_ACCEPTANCE_PASS"
+  },
+  "stages": {
+    "RP002-STAGE-FABRIC": {
+      "owner_document": "RP-002_v2.0_STAGE-1_FABRIC-FOUNDATION_子藍圖_2026-08-12_r2.md",
+      "gate_subset": [
+        "G0",
+        "G1"
+      ],
+      "inputs": [
+        "A0_execution_boundary",
+        "current_HGK_bootstrap_baseline",
+        "r3_machine_truth",
+        "current_source_denominator"
+      ],
+      "outputs": [
+        "frozen_fabric_contracts",
+        "frozen_assurance_contracts",
+        "G1_runtime_binding_receipt",
+        "STAGE-1-SEAL"
+      ]
+    },
+    "RP002-STAGE-HGK": {
+      "owner_document": "RP-002_v2.0_STAGE-2_HGK_SELF-HOSTING_AND_FABRIC_ACTIVATION_子藍圖_2026-08-12_r2.md",
+      "gate_subset": [
+        "K1",
+        "D1",
+        "C1",
+        "H1",
+        "O1",
+        "B1",
+        "F0",
+        "CF1",
+        "F1",
+        "KG1"
+      ],
+      "inputs": [
+        "STAGE-1-SEAL",
+        "frozen_fabric_contracts",
+        "current_HGK_authority"
+      ],
+      "outputs": [
+        "HGK_SELF_HOSTED_RUNTIME_PROJECTION",
+        "FABRIC_RUNTIME_ACTIVATED",
+        "KNOWLEDGE_GOVERNANCE_ACTIVE",
+        "STAGE-2-SEAL"
+      ]
+    },
+    "RP002-STAGE-SQS": {
+      "owner_document": "RP-002_v2.0_STAGE-3_SQS_PROFILEIZATION_AND_CROSS-STACK_EVOLUTION_2026-08-12_r2.md",
+      "gate_subset": [
+        "SQP1",
+        "S1",
+        "E1",
+        "E2",
+        "E3_IF_APPLICABLE",
+        "R1"
+      ],
+      "inputs": [
+        "STAGE-2-SEAL",
+        "current_SQS_authority",
+        "TWICT_FINANCIAL_RUNTIME_PACK"
+      ],
+      "outputs": [
+        "SQS_PROFILE_TEAM_RUNTIME",
+        "S1_CANARY_RECEIPT",
+        "E1_E2_EVOLUTION_RECEIPTS",
+        "R1_FINAL_RECEIPT"
+      ]
+    }
+  },
+  "ownership_rules": {
+    "orphan_requirement_count": 0,
+    "duplicate_stage_owner_count": 0,
+    "global_owner_allowed": [
+      "MASTER"
+    ],
+    "stage_seal_is_gate": false
+  },
+  "stage1_status": {
+    "seal": "STAGE-1-SEAL",
+    "seal_sha256": "d1a219a51c03ae64ab1ccbe67e4703fca99ce4aea9e73ced1f989caa9d1d40fd",
+    "sealed": true
+  },
+  "stage2_status": {
+    "entry": "AUTHORIZED",
+    "current_gate": "K1",
+    "seal": "STAGE-2-SEAL",
+    "sealed": false
+  },
+  "materialized_at": "2026-08-12T21:40:00+08:00"
+}

@@ -1,0 +1,54 @@
+# Fabric AUTHORITY_MATRIX — RP-002 governance contract (r3 §8.1)
+schema: RP002-AUTHORITY-MATRIX/1
+
+principals:
+  HUMAN_PRODUCT_AUTHORITY:
+    may:
+      - approve_constitutional_change
+      - approve_material_scope_change
+      - approve_production_or_live_side_effect
+
+  FABRIC_POLICY:
+    may:
+      - admit_work
+      - classify_risk
+      - route_after_authorization
+      - consume_oracle_receipt
+    may_not:
+      - rewrite_financial_truth
+      - override_frozen_oracle
+
+  HGK_ENGINEERING:
+    owns:
+      - engineering_lifecycle
+      - source_admission_mechanics
+      - requirements_and_taskspec
+      - workorder_admission
+      - software_change
+      - governed_platform_evolution
+    may_not:
+      - self_approve_final_candidate
+      - mutate_sqs_financial_truth_without_owner
+
+  SQS_FINANCIAL:
+    owns:
+      - financial_spec
+      - tw_ict_semantics
+      - market_data_semantics
+      - domain_risk
+      - domain_acceptance
+    may_not:
+      - promote_hgk_platform_candidate
+      - bypass_live_authorization
+
+  CONSTRUCTION_ACCEPTANCE_ORACLE:
+    may:
+      - read_subject
+      - read_raw_evidence
+      - compile_bounded_order
+      - issue_oracle_receipt
+      - request_changes
+    may_not:
+      - modify_candidate_under_review
+      - modify_frozen_oracle
+      - promote_itself

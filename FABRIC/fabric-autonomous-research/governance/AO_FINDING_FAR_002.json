@@ -1,0 +1,14 @@
+{
+  "schema": "FAR-AO-FINDING/1",
+  "finding_id": "AO-FINDING-FAR-002",
+  "lane": "deleg_bab33aae (fresh AO, Q10 core subject)",
+  "severity": "PACKAGING_ANOMALY (non-product; checklist-blocking)",
+  "detail": "evidence-bundle/raw-tests/far_tests_suite.stdout.txt was 0 bytes because unittest writes its output stream to stderr; 'OK' and 'Ran 23 tests' landed in far_tests_suite.stderr.txt (exit 0). Acceptance criterion required the named stdout file to contain OK.",
+  "classification": "maker packaging capture defect (subprocess stdout vs unittest stderr)",
+  "smallest_repair": "re-run suite with merged capture (2>&1) writing combined output to the stdout evidence file",
+  "repair_executed": "far_tests_suite.stdout.txt regenerated 2026-08-13 20:10 UTC (134 bytes, ends 'OK', 'EXIT=0'); suite exit 0; 23 tests OK",
+  "focused_retest": "deleg_e4a09db4 (4/4 PASS; stdout 134 bytes OK+EXIT=0; subject digest/crosswalk/EVD spot checks PASS)",
+  "bound_into": ["CLOSURE_EXT-FAR-002.json", "FAR_IMPLEMENTATION_EVIDENCE_v2.md §4"],
+  "verdict": "CLOSED",
+  "generated_at_utc": "2026-08-13T20:13:00Z"
+}

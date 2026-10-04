@@ -1,0 +1,33 @@
+schema: RP002-RESUME-CHECKPOINT/1
+project_id: HGK-REFERENCE-PROJECT-002
+stage_id: RP002-STAGE-SQS
+last_pass_gate: R1 (STAGE-3 LOCAL COMPLETE)
+current_gate: STOP_FOR_EXTERNAL_FINAL_META_REVIEW
+findings_open: 0
+subject_digest: "SQS Profile Team (3 profiles) + TW-ICT Financial Runtime Pack + Stage-3 evidence set"
+child_reducer: STAGE3_SQS_PASS_ELIGIBLE_FOR_MASTER_R1_REDUCTION
+master_reducer: RP002_LOCAL_ACCEPTANCE_PASS
+stage3_contract: ca6acc0f3cd8660f1efdc61c639d9e6029acf5cc3acbca5e476ab07f59a359f7
+handoff_ref: Fabric/rp002/RP002_STAGE3_HANDOFF.yaml
+review_md: SQS-THC/evidence/rp002/stage3/RP002_R1_EVIDENCE_FOR_EXTERNAL_REVIEW.md
+review_md_sha256: "computed at final freeze (mirrors byte-identical in Fabric/evidence/review + HGK/evidence/review)"
+gates:
+  SQP1: PASS
+  S1: PASS
+  E1: PASS
+  E2: PASS
+  E3: N/A_WITH_SOURCE_LOCATOR
+  R1: PASS
+fabric_dogfood_acceptance: PASS
+boundaries:
+  blocking_tt_cr: 0
+  unauthorized_side_effects: 0
+  live_broker_writes: 0
+  open_breakglass: 0
+  persistent_profile_count: 3
+  fast_loop_mutation_guard: PRESENT
+rollback_pointer: "RB-WO-RP2-STAGE3-{SQP1,S1,E1E2,R1} + e1-before/ e2-before/ byte copies"
+next_allowed_action: STOP_FOR_EXTERNAL_FINAL_META_REVIEW (user uploads single RP002_R1_EVIDENCE_FOR_EXTERNAL_REVIEW.md to external acceptance conversation)
+resume_token: RESUME:RP002_STAGE3_R1_CLOSURE
+idempotency_key: S3-R1-CLOSURE-20260813
+observed_at: 2026-08-13T02:45:00+08:00

@@ -1,0 +1,24 @@
+{
+ "canary": "CANARY-4",
+ "scenario": "stale approved memory vs current external official",
+ "adjudication": {
+  "cross_source_status": "MEMORY_STALE",
+  "detail": "approved memory stale vs canonical -> freshness check required"
+ },
+ "counterevidence": {
+  "required": true,
+  "query_count": 4,
+  "strategy": [
+   "known issues",
+   "security advisory",
+   "failed adoption / contradicting benchmark",
+   "superseded decision"
+  ],
+  "status": "ZERO_RELEVANT_COUNTEREVIDENCE_HIT",
+  "note": "recorded in QueryLedger; zero hit is explicit, not silent omission; ERROR -> incomplete (COUNTEREVIDENCE_MISSING)"
+ },
+ "no_stale_recommendation": true,
+ "staleness_finding_emitted": true,
+ "candidate_correction": "CandidateKnowledge correction in candidate namespace (no silent rewrite)",
+ "pass": true
+}

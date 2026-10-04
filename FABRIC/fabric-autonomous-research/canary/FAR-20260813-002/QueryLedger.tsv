@@ -1,0 +1,6 @@
+query_id	subquestion_id	route	query_or_lookup	timestamp	result_count	selected_source_ids	failure_code	cost
+Q01	SQ1	FAR_ROUTER	route(RESEARCH_WORKFLOW_OPTIMIZATION)	2026-08-13T11:08:19Z	1	FAR-GATES		0
+Q02	SQ1	KB_LOCAL	evidence MD + Q0 + gates + swarm receipts 讀取	2026-08-13T11:08:19Z	4	EVID-MD,FAR-Q0,FAR-GATES,FAR-SWARM		0
+Q03	SQ2	KB_LOCAL	skill SKILL.md + 9 references 清單讀取	2026-08-13T11:08:19Z	9	SKILL		0
+Q04	SQ2	KB_LOCAL	FDA 先例 readback	2026-08-13T11:08:19Z	1	FDA-PRECEDENT		0
+Q05	SQ3	WATCHDOG	far_watchdog identical-action check (4x read-skill)	2026-08-13T11:08:19Z	1	SKILL		0

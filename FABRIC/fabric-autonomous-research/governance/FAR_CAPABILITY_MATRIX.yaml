@@ -1,0 +1,138 @@
+# FAR Capability Matrix — deterministic research router canonical input
+schema: FAR-CAPABILITY-MATRIX/1
+subject: fabric-autonomous-research (WO-FAR-002)
+matrix_owner: HGK_CURRENT_ROUTER (+ far_router.py deterministic extension)
+updated: 2026-08-13
+
+## Provider / method states (canonical routing truth; never ephemeral dicts)
+providers:
+  fabric-autoresearch-native:
+    runtime: HERMES
+    state: ACTIVE_DEFAULT
+    role: DEFAULT_RESEARCH_PATH
+    mutation_writer_when_admitted: codex
+    authority: NONE
+    promotion: FORBIDDEN
+    sandbox: NOT_REQUIRED_FOR_RESEARCH
+  hermes-swarm:
+    runtime: HERMES_SWARM (delegate_task parallel fanout)
+    state: ACTIVE_DEFAULT       # UD-FAR-SWARM-DEFAULT-ON-2026-08-14-001: multi-subagent DEFAULT-ON
+    role: DEFAULT_PARALLEL_RESEARCH_PATH (SOURCE_FAMILY_SPLIT / HYPOTHESIS_SPLIT / INDEPENDENT_EXPERIMENT_SPLIT)
+    max_lanes: WorkOrder resource budget
+    canonical_parallel_writers: 0
+    merge_collision: RESEARCH_DISPUTE_OPEN (no majority vote)
+    workers: READ_ONLY_RESEARCH_WORKERS (candidate outputs only; no self-accept; no canonical write)
+    authority: NONE
+    single_thread_still_legal: true (explicitly selected native direct execution)
+  prime-agent:
+    state: CANDIDATE_DISABLED_UNTIL_QUALIFIED
+    default: false
+    lifecycle: ON_DEMAND
+    integration: ACP_FIRST (JSON-RPC 2.0, newline-delimited, stdin/stdout, one session per connection)
+    sandbox_required: true
+    global_schedule: OFF_P0
+    qualification_status: N/A_NOT_SELECTED_WITH_REASON (CR-FAR-002/003/005; recorded WO-FAR-006)
+  longhorizon-harness:
+    state: METHOD_DONOR_FIRST
+    provider_activation: BLOCKED_UNTIL_FIT_GAP (macOS-first; Windows unproven CR-FAR-008)
+    donor_concepts: [verified_task_state, fresh_context_executor, read_only_audit, rejected_result_not_progress]
+  autoresearchclaw:
+    state: DEFAULT_OFF
+    activation_scope: [SCIENTIFIC_EXPERIMENT, ML_EXPERIMENT, BENCHMARK_CAMPAIGN]
+    blockers: [DOCKER_SANDBOX_UNAVAILABLE, CLAIM_VERIFICATION_SUBSTRATE_UNQUALIFIED]
+  evoagentx:
+    state: LAB_ONLY / OFFLINE_WORKFLOW_OPTIMIZER
+    output_ceiling: CandidateWorkflow / CandidateEvolution only
+  aris:
+    state: SELECTED_PINNED_METHOD_PACK (exact pin + hashes in FAR_ARIS_METHOD_DISPOSITION.yaml)
+    role: METHOD_SOURCE (not manager; no bulk install)
+
+## Capability class -> route decision matrix
+classes:
+  RESEARCH_GENERAL:
+    decision: NATIVE
+    reason_code: FAR_ROUTE_NATIVE_DEFAULT
+    providers: [fabric-autoresearch-native]
+    methods: []
+    required_outputs: [ResearchPlan, ClaimLedger, ResearchSynthesis]
+  RESEARCH_LITERATURE_REPO:
+    decision: NATIVE_WITH_SELECTED_ARIS
+    reason_code: FAR_ROUTE_NATIVE_ARIS
+    providers: [fabric-autoresearch-native]
+    methods: [research-lit, novelty-check, research-review]
+    specialist_if: [source_set_too_large_for_normal_context, programmatic_context_processing_required]
+  RLM_CONTEXT_HEAVY:
+    decision: PRIME_IF_QUALIFIED_ELSE_NATIVE_IF_MINIMUM_ELSE_BLOCK
+    reason_code: FAR_ROUTE_PRIME_ACP_RLM | FAR_DEGRADE_NATIVE | FAR_BLOCK_PROVIDER_UNQUALIFIED
+    providers: [prime-agent, fabric-autoresearch-native]
+    block_condition: native_minimum_capability_not_met
+  RESEARCH_ADVERSARIAL_CHALLENGE:
+    decision: ARIS_SELECTED_CHALLENGE
+    reason_code: FAR_CHALLENGE_ARIS
+    final_acceptance: false
+    block_if_mandatory_and_unavailable: FAR_BLOCK_REQUIRED_CHALLENGE_UNAVAILABLE
+  RESEARCH_LONG_HORIZON:
+    decision: HERMES_LONG_HORIZON_NATIVE
+    reason_code: FAR_ROUTE_NATIVE_DEFAULT (long-horizon)
+    optional_provider: LONGHORIZON_ONLY_IF_QUALIFIED_AND_FIT_GAP_PROVEN (BLOCKED)
+  RESEARCH_SCIENTIFIC_EXPERIMENT:
+    decision: ARC_IF_QUALIFIED_ELSE_RESEARCH_ONLY_OR_BLOCK_EXPERIMENT_CLAIM
+    reason_code: FAR_ROUTE_ARC_SCIENCE | EXPERIMENT_NOT_EXECUTED
+    unqualified_behavior: RESEARCH_ONLY (no ExperimentResult=PASS without real run)
+  RESEARCH_TRAJECTORY_MINING:
+    decision: PRIME_IF_QUALIFIED_ELSE_NATIVE
+    reason_code: FAR_ROUTE_PRIME_TRAJECTORY | FAR_DEGRADE_NATIVE
+  RESEARCH_WORKFLOW_OPTIMIZATION:
+    decision: HGK_GOVERNED_EVOLUTION
+    donors: [PRIME_REFINE_CANDIDATE, ARIS_META_OPTIMIZE_CANDIDATE, EVOAGENTX_LAB_CANDIDATE]
+    reason_code: FAR_ROUTE_EVO_LAB (donor only)
+  RESEARCH_FINANCIAL_METHOD:
+    decision: NATIVE_WITH_SQS_OWNER_BOUNDARY
+    mutation_authority: NONE
+    route_after: [sqs-data-analysis, sqs-risk, domain_owner]
+    hard_boundary: CandidateResearch != Financial Truth; no live broker write
+
+## Eligibility factors (illustrative decision contract, far_router.py implements)
+eligibility_inputs:
+  - task_class
+  - required_capabilities
+  - source_classes
+  - source_freshness
+  - resume_checkpoint_requirement
+  - sandbox_requirement
+  - network_requirement
+  - credential_availability
+  - budget_cost_ceiling
+  - challenge_requirement
+  - provider_qualification_state
+  - provider_health
+  - known_current_blocker
+  - historical_task_class_performance
+  - mutation_need
+
+## Reason codes (18.3)
+reason_codes:
+  - FAR_ROUTE_NATIVE_DEFAULT
+  - FAR_ROUTE_NATIVE_ARIS
+  - FAR_ROUTE_PRIME_ACP_RLM
+  - FAR_ROUTE_PRIME_TRAJECTORY
+  - FAR_ROUTE_ARC_SCIENCE
+  - FAR_ROUTE_LONGHORIZON_QUALIFIED
+  - FAR_ROUTE_EVO_LAB
+  - FAR_CHALLENGE_ARIS
+  - FAR_DEGRADE_NATIVE
+  - FAR_BLOCK_PROVIDER_UNQUALIFIED
+  - FAR_BLOCK_REQUIRED_CHALLENGE_UNAVAILABLE
+  - FAR_BLOCK_SANDBOX_UNAVAILABLE
+  - FAR_BLOCK_NETWORK_POLICY
+  - FAR_BLOCK_CREDENTIAL
+  - FAR_ABORT_NO_PROGRESS
+  - FAR_ABORT_BUDGET
+
+## Non-claims (claim ceiling)
+claims:
+  production: NOT_CLAIMED
+  sqs_live_trading: NOT_AUTHORIZED
+  remote_deployment: NOT_CLAIMED
+  prime_qualified: false
+  provider_consensus_is_acceptance: false

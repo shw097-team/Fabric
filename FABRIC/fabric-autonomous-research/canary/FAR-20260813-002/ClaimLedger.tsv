@@ -1,0 +1,7 @@
+claim_id	claim_text	claim_class	support_source_ids	counter_source_ids	status	confidence	freshness	owner
+CL01	FAR 落地程序可萃取為 8 步可重複流程	PROCEDURE_REUSABILITY	X01,X06,X07		SUPPORTED	HIGH	current	FAR
+CL02	現有 skill references 缺 Shared-Infra-Team 全鏈 landing recipe	REFERENCE_COVERAGE	X02,X03	shared-infra-team-implementation.md (18:56)	REFUTED_WITH_EVIDENCE	HIGH	current	FAR
+CL03	thin reference + 交叉連結為最佳補法	PATCH_VALUE	X02,X06	FG03	SUPPORTED_WITH_LIMIT	MEDIUM	current	FAR
+CL04	含 dogfood/首次使用測試慣例的 recipe 對同類落地有幫助	PATCH_VALUE	X05,X09		SUPPORTED_WITH_LIMIT	MEDIUM	current	FAR
+CL05	獨立 swarm/challenge lane 能抓到 maker 盲點（重複草稿 + 計數錯誤）	PROCEDURE_REUSABILITY	X05		SUPPORTED	HIGH	current	FAR
+CL06	唯一增量 = first-use dogfood / 自升級慣例（既有 reference 未含）；應 MERGE 而非新增重複檔	PATCH_VALUE	shared-infra-team-implementation.md diff		SUPPORTED	HIGH	current	FAR

@@ -1,0 +1,428 @@
+{
+  "artifact_id": "RP002_K1_DISTILLATION",
+  "generated_at_utc": "2026-08-11T15:54:39.054733+00:00",
+  "oracle": "EXTERNAL_FROZEN_BOOTSTRAP_ORACLE",
+  "corpus_root": "C:\\Projects\\Agent_Workspace\\教程字幕",
+  "corpus_total_files": 4717,
+  "corpus_status_counts": {
+    "CURRENT": 2992,
+    "SUPERSEDED": 31,
+    "CONDITIONAL": 1694,
+    "REJECTED": 0,
+    "DEFERRED": 0
+  },
+  "requirement_ledger_count": 18,
+  "requirement_ledger": [
+    {
+      "requirement_id": "REQ-RP2-B1",
+      "wording": "KANBAN_BOARD_TEAM_DAG_READY: project board + TEAM + dependencies/review/liveness/auth + ExecutionBinding",
+      "acceptance_id": "RP2-T019..T027",
+      "state": "CANDIDATE"
+    },
+    {
+      "requirement_id": "REQ-RP2-C1",
+      "wording": "CODING_FACTORY_SECOND_ACCEPTANCE: reuse-first, Codex/named-method route, bounded change/test/rollback",
+      "acceptance_id": "RP2-T070..T072",
+      "state": "CANDIDATE"
+    },
+    {
+      "requirement_id": "REQ-RP2-CF1",
+      "wording": "CONTEXTFORGE_OASF_INTEROP_READY: exact pin/install/auth + A2A + applicable MCP + OASF + rollback; OTel conditional",
+      "acceptance_id": "RP2-T090..T094",
+      "state": "CANDIDATE"
+    },
+    {
+      "requirement_id": "REQ-RP2-D1",
+      "wording": "DOCUMENT_FACTORY_SECOND_ACCEPTANCE: zero required req->design->TaskSpec->acceptance->evidence->rollback orphan",
+      "acceptance_id": "RP2-T060..T061",
+      "state": "CANDIDATE"
+    },
+    {
+      "requirement_id": "REQ-RP2-E1",
+      "wording": "CROSS_STACK_ENGINEERING_EVOLUTION: real/fault-labeled defect->repair->independent/domain check->atomic promotion->same replay",
+      "acceptance_id": "RP2-T111..T113",
+      "state": "CANDIDATE"
+    },
+    {
+      "requirement_id": "REQ-RP2-E2",
+      "wording": "BEHAVIORAL_ARTIFACT_EVOLUTION: real/synthetic-labeled behavior defect->versioned patch->fresh effective-load/regression->promotion->replay+rollback",
+      "acceptance_id": "RP2-T120..T123",
+      "state": "CANDIDATE"
+    },
+    {
+      "requirement_id": "REQ-RP2-E3",
+      "wording": "META_ORACLE_EVOLUTION: frozen/external meta check; otherwise N/A_WITH_SOURCE_LOCATOR",
+      "acceptance_id": "RP2-T130",
+      "state": "CANDIDATE"
+    },
+    {
+      "requirement_id": "REQ-RP2-F0",
+      "wording": "FABRIC_POLICY_CONSUMER_READY: contracts consumed by existing HGK/owning orchestrators",
+      "acceptance_id": "RP2-T024,T033",
+      "state": "CANDIDATE"
+    },
+    {
+      "requirement_id": "REQ-RP2-F1",
+      "wording": "SELF_HOSTING_CUTOVER: post-F1 normal work via WorkOrder->Binding->Profile->Kanban",
+      "acceptance_id": "RP2-T026..T027",
+      "state": "CANDIDATE"
+    },
+    {
+      "requirement_id": "REQ-RP2-G0",
+      "wording": "INPUT_BASELINE_FREEZE: full material denominator + heads/config/capabilities + external oracle/claim seal",
+      "acceptance_id": "RP2-T001..T006",
+      "state": "CANDIDATE"
+    },
+    {
+      "requirement_id": "REQ-RP2-G1",
+      "wording": "HERMES_RUNTIME_QUALIFICATION: exact executable/profile/Kanban/Windows + known-issue regressions",
+      "acceptance_id": "RP2-T022..T027,T030,T036",
+      "state": "CANDIDATE"
+    },
+    {
+      "requirement_id": "REQ-RP2-H1",
+      "wording": "HGK_PROFILE_TEAM_READY: four profiles + HGK/TEAM + Stack Manifest + inherited capability probes",
+      "acceptance_id": "RP2-T010..T017",
+      "state": "CANDIDATE"
+    },
+    {
+      "requirement_id": "REQ-RP2-K1",
+      "wording": "KNOWLEDGE_FACTORY_SECOND_ACCEPTANCE: source coverage + active-contract/supersession + no invented norm",
+      "acceptance_id": "RP2-T050..T052",
+      "state": "CANDIDATE"
+    },
+    {
+      "requirement_id": "REQ-RP2-KG1",
+      "wording": "KNOWLEDGE_GOVERNANCE_READY: namespace/ACL/provenance/revoke/promotion/provider-state tests",
+      "acceptance_id": "RP2-T100..T105",
+      "state": "CANDIDATE"
+    },
+    {
+      "requirement_id": "REQ-RP2-O1",
+      "wording": "INTERNAL_ORACLE_READY: Core/Packs + fresh read-only checker + external/meta qualification",
+      "acceptance_id": "RP2-T080..T085",
+      "state": "CANDIDATE"
+    },
+    {
+      "requirement_id": "REQ-RP2-R1",
+      "wording": "FINAL_LOCAL_ACCEPTANCE: all applicable mandatory gates + blocking TT=0 + exact subject/evidence/package readback",
+      "acceptance_id": "RP2-T140..T144",
+      "state": "CANDIDATE"
+    },
+    {
+      "requirement_id": "REQ-RP2-S1",
+      "wording": "SQS_REAL_CANARY: real local/read-only/paper domain task E2E + domain/risk acceptance",
+      "acceptance_id": "RP2-T110",
+      "state": "CANDIDATE"
+    },
+    {
+      "requirement_id": "REQ-RP2-SQP1",
+      "wording": "SQS_PROFILE_TEAM_READY: 3 profiles + SQS/TEAM + Stack Manifest + Financial authority unchanged",
+      "acceptance_id": "RP2-T010,T018",
+      "state": "CANDIDATE"
+    }
+  ],
+  "distilled_norms": [
+    {
+      "family": "HERMES",
+      "source_count_current": 2545,
+      "source_locators": [
+        {
+          "path": "教程字幕/Hermes_Agent_OS_教程/【0】Hermes＋DocETL 知識蒸餾工廠/HG-KSEOS_藍圖_r2.md",
+          "sha256": "1fb99c9809aa2a299c7b717254aef2357162ef7ff432bf26b7642689f1a7c2be"
+        },
+        {
+          "path": "教程字幕/Hermes Agent_0720/【腾讯云煮鸡】—渐进式驾驭Hermes：玩转日常与工作—【2026-07-13】-中文.txt",
+          "sha256": "c7666d93836cf4c2e6d4bb055fb8e345037ae6a94d1e44f3697cc73b14bb4005"
+        },
+        {
+          "path": "教程字幕/Hermes Agent_0720/Hermes Agent接入MCP教程：万能接口扩展AI能力边界【2026-07-06】-中文.txt",
+          "sha256": "ed918c70e503ed093062b54efe88032c060ad870043a8c437af8b25caae40dc3"
+        }
+      ],
+      "informs_requirements": [
+        "REQ-RP2-G0",
+        "REQ-RP2-G1",
+        "REQ-RP2-H1",
+        "REQ-RP2-B1",
+        "REQ-RP2-E2"
+      ],
+      "distilled_norm": "Corpus family HERMES provides 2545 CURRENT technical transcripts covering topics relevant to RP-002 requirements REQ-RP2-G0, REQ-RP2-G1, REQ-RP2-H1, REQ-RP2-B1, REQ-RP2-E2. Claim ceiling: SUPPORT/DATA only; norm must be admitted by HGK/SQS authority before use."
+    },
+    {
+      "family": "OPENSPEC",
+      "source_count_current": 43,
+      "source_locators": [
+        {
+          "path": "教程字幕/Coding/OpenSpec/【为什么叫QQ】—抛弃Superpowers？深度拆解OpenSpec：轻量级AI编程框架的逆袭—【2026-07-08】-中文.txt",
+          "sha256": "2fe094dbb90718da619056929c25670338a860af555693ddd6e90e718a663156"
+        },
+        {
+          "path": "教程字幕/Coding/【为什么叫QQ】—你的AI编程总是翻车？因为你少做了一步：设计隔离 _ 拆解 Grill-me，Superpowers，Openspec 的第一步—【2026-07-08】-中文.txt",
+          "sha256": "ddc64574283344d2ed01df10e93084c005f6b8c2b019888530c3cae9549d7446"
+        },
+        {
+          "path": "教程字幕/【赋范】Spec-Kit：需求拆解+精确化+代码核对【2026-07-20】-中文/【赋范AI说】—【附完整文档】OpenSpec管得了文档，管不住AI瞎写？——Spec-Kit怎么补上需求拆解+精确化+代码核对这三道关 - P5【04-项目宪法怎么写，五条铁律加实战生成V1.0】—【2026-07-20】-中文.txt",
+          "sha256": "034d7a85ae37f21e05cd93c3490b3542292c9f96d7861ae3b920c37622e558d7"
+        }
+      ],
+      "informs_requirements": [
+        "REQ-RP2-C1",
+        "REQ-RP2-H1"
+      ],
+      "distilled_norm": "Corpus family OPENSPEC provides 43 CURRENT technical transcripts covering topics relevant to RP-002 requirements REQ-RP2-C1, REQ-RP2-H1. Claim ceiling: SUPPORT/DATA only; norm must be admitted by HGK/SQS authority before use."
+    },
+    {
+      "family": "GSTACK",
+      "source_count_current": 50,
+      "source_locators": [
+        {
+          "path": "教程字幕/【赋范】Harness Engineering实战_gstack【2026-07-25】-中文.txt",
+          "sha256": "97bff138a4db2e52156adcf76007d8283e1e31fa649bc9fda5ac7ab5eae21c8c"
+        },
+        {
+          "path": "教程字幕/Coding/【赋范】GStack实战，从Prompt到Harness，指挥28个Agent【2026-07-10】/【赋范课堂】—建议收藏｜28个Skill怎样拼出一支AI团队，GStack实战拆解，从Prompt到Harness，看YC爆火方法论如何让一个人指挥28个Agent做完整交付 - P9【8.冲刺阶段二：反馈墙功能与安全审计】—【2026-07-10】-中文.txt",
+          "sha256": "8d502734f49c8ba9901c6aaaf01a832f5745b6d7f3f822615d7219bc10b9589b"
+        },
+        {
+          "path": "教程字幕/Coding/【赋范】GStack实战，从Prompt到Harness，指挥28个Agent【2026-07-10】/【赋范课堂】—建议收藏｜28个Skill怎样拼出一支AI团队，GStack实战拆解，从Prompt到Harness，看YC爆火方法论如何让一个人指挥28个Agent做完整交付 - P5【4.一人公司时代与 Agent Swarm-1】—【2026-07-10】-中文.txt",
+          "sha256": "04033d37069ada27454d49d6f5cb5a7bf64367ec23fd7520d380a0f253a572f9"
+        }
+      ],
+      "informs_requirements": [
+        "REQ-RP2-C1",
+        "REQ-RP2-H1"
+      ],
+      "distilled_norm": "Corpus family GSTACK provides 50 CURRENT technical transcripts covering topics relevant to RP-002 requirements REQ-RP2-C1, REQ-RP2-H1. Claim ceiling: SUPPORT/DATA only; norm must be admitted by HGK/SQS authority before use."
+    },
+    {
+      "family": "SPEC_KIT",
+      "source_count_current": 16,
+      "source_locators": [
+        {
+          "path": "教程字幕/【赋范】Spec-Kit：需求、技术栈、测试规范【2026-07-29】-中文/【赋范课堂】—【建议收藏】AI 写代码越改越乱？Spec-Kit项目宪法实战，别再让 Agent 乱改架构：需求、技术栈、测试规范一次锁死，告别反复返工和失控崩盘完整避坑教程 - P1【AI 写代码越改越乱？Spec-Kit项目宪法实战】—【2026-07-29】-中文.txt",
+          "sha256": "d7cca8e0032eb7f5efcbee25f3c7428cc4a49b303cf1d07034b7baa93195385e"
+        },
+        {
+          "path": "教程字幕/【赋范】Spec-Kit：需求、技术栈、测试规范【2026-07-29】-中文/【赋范课堂】—【建议收藏】AI 写代码越改越乱？Spec-Kit项目宪法实战，别再让 Agent 乱改架构：需求、技术栈、测试规范一次锁死，告别反复返工和失控崩盘完整避坑教程 - P3【02-Lean五命令闭环与项目宪法：先把AI行为边界写死】—【2026-07-29】-中文.txt",
+          "sha256": "86a0b9fe91d6ed95583bfec8db14878c285fb0b44f997e467d720d4f364fad82"
+        },
+        {
+          "path": "教程字幕/【赋范】Spec-Kit：需求、技术栈、测试规范【2026-07-29】-中文/【赋范课堂】—【建议收藏】AI 写代码越改越乱？Spec-Kit项目宪法实战，别再让 Agent 乱改架构：需求、技术栈、测试规范一次锁死，告别反复返工和失控崩盘完整避坑教程 - P9【08-为什么AI写代码会跑偏：SDD用文档把需求边界钉住】—【2026-07-29】-中文.txt",
+          "sha256": "0ec9ba778a4ce4e8d17f8d9618b881c1406564d7bd6390b414a4a1ba854ecf92"
+        }
+      ],
+      "informs_requirements": [
+        "REQ-RP2-C1"
+      ],
+      "distilled_norm": "Corpus family SPEC_KIT provides 16 CURRENT technical transcripts covering topics relevant to RP-002 requirements REQ-RP2-C1. Claim ceiling: SUPPORT/DATA only; norm must be admitted by HGK/SQS authority before use."
+    },
+    {
+      "family": "SDLC_PRW",
+      "source_count_current": 6,
+      "source_locators": [
+        {
+          "path": "教程字幕/SDLC_PRW_教程資料/【3】AI Coding Components/Agent_Skills/【小行星AI观测站】—神级编程skills拆解，模型越强，skills越用不上？—【2026-07-15】-中文.txt",
+          "sha256": "59d8890275cc8c046e642c9d31d8f6561100e3bf43ddea0a046fcb5a7df2e11e"
+        },
+        {
+          "path": "教程字幕/SDLC_PRW_教程資料/【1】AI Coding 工具 & 開源項目/【】Matt Pocock Skills/【小棉花糖学AI】—手把手教你安装skill：Grill-me（上）—【2026-07-12】-中文.txt",
+          "sha256": "0d314bb21827771d719aae06bc8d0c5822b79d38cb1ba04100a6a3f372e98893"
+        },
+        {
+          "path": "教程字幕/SDLC_PRW_教程資料/【1】AI Coding 工具 & 開源項目/【】Matt Pocock Skills/【豚工智能】—[中配] mattpocock_skills：学习端到端完整流程—【2026-07-16】-中文.txt",
+          "sha256": "d5d60ba4c9d15daaab0fffd6b1b461e42b3a663bc08e892b52f2ef5d72227822"
+        }
+      ],
+      "informs_requirements": [
+        "REQ-RP2-D1",
+        "REQ-RP2-C1"
+      ],
+      "distilled_norm": "Corpus family SDLC_PRW provides 6 CURRENT technical transcripts covering topics relevant to RP-002 requirements REQ-RP2-D1, REQ-RP2-C1. Claim ceiling: SUPPORT/DATA only; norm must be admitted by HGK/SQS authority before use."
+    },
+    {
+      "family": "CODEX",
+      "source_count_current": 120,
+      "source_locators": [
+        {
+          "path": "教程字幕/GPT_Codex_0720/【在下小曾o】—真正省Codex 额度技巧，90%的人用错了—【2026-07-12】-中文.txt",
+          "sha256": "c5e8829a2192b2f29039e712b8e6a302177e8def5460fb8c2e0c606608ab702a"
+        },
+        {
+          "path": "教程字幕/GPT_Codex_0720/GPTwork正式连接！GPT5.6最新模型价格解析+省钱方法！【2026-07-11】-中文.txt",
+          "sha256": "dff96bc75a23331e97fa43ca06a7dc725e61eb58f163f561d6a0ce97bdc04f54"
+        },
+        {
+          "path": "教程字幕/GPT_Codex_0720/GPT-5.6 Sol编程能力有多离谱？在Codex中表现亮眼超乎预期！【2026-07-10】-中文.txt",
+          "sha256": "81868f64ce46f9942a7ef92211a32b20c6eaec2c1441e5532e4b26ac5536752c"
+        }
+      ],
+      "informs_requirements": [
+        "REQ-RP2-C1",
+        "REQ-RP2-H1"
+      ],
+      "distilled_norm": "Corpus family CODEX provides 120 CURRENT technical transcripts covering topics relevant to RP-002 requirements REQ-RP2-C1, REQ-RP2-H1. Claim ceiling: SUPPORT/DATA only; norm must be admitted by HGK/SQS authority before use."
+    },
+    {
+      "family": "SKILLS",
+      "source_count_current": 108,
+      "source_locators": [
+        {
+          "path": "教程字幕/Skills/【孙同学玩AI】—把一本书变成可调用 Skill—【2026-06-14】-中文.txt",
+          "sha256": "05e129e051f014115d752ed66ff636eb8078a0da3ffe1a613033bda5518d2d85"
+        },
+        {
+          "path": "教程字幕/Skills/【鱼亦乐】—全自动拆解爆款视频的Skill (我做的)—【2026-07-05】-中文.txt",
+          "sha256": "79d20cc4179717230f3dfe158260741e1fda23644df0cd15f95686f6575a7bd7"
+        },
+        {
+          "path": "教程字幕/Skills/【AI袋鼠帝】—开源仓颉.Skill，你现在可以蒸馏任何视频！—【2026-07-06】-中文.txt",
+          "sha256": "874c6b7d2cf1e1115824632bcd2e2c3e9a077924b4fb0c19d2c850b324c97b37"
+        }
+      ],
+      "informs_requirements": [
+        "REQ-RP2-H1",
+        "REQ-RP2-E2"
+      ],
+      "distilled_norm": "Corpus family SKILLS provides 108 CURRENT technical transcripts covering topics relevant to RP-002 requirements REQ-RP2-H1, REQ-RP2-E2. Claim ceiling: SUPPORT/DATA only; norm must be admitted by HGK/SQS authority before use."
+    },
+    {
+      "family": "MEMORY",
+      "source_count_current": 5,
+      "source_locators": [
+        {
+          "path": "教程字幕/Memory/企业级知识库问答系统搭建教程【2025-07-24】-中文.txt",
+          "sha256": "a77a6232e16f8a831984cd1241b72be3c749f8b736c1e727eddcfbed833efaf6"
+        },
+        {
+          "path": "教程字幕/Coding/Token/【为什么叫QQ】—Token消耗减少120倍？Codebase-Memory-MCP的性能突破原理解析—【2026-07-04】-中文.txt",
+          "sha256": "b1a2fccaa7c64ea5e8d46dcdbf0dd207a24cbb472e6b40cb48ba5d44ff96d909"
+        },
+        {
+          "path": "教程字幕/Memory/Gbrain打造第二大脑 AI Agent的Memory 【2026-07-08】/【狡猾的哈基】—用Gbrain打造第二大脑 AI Agent的Memory - P1【用Gbrain打造第二大脑 AI Agent的Memory】—【2026-07-08】-中文.txt",
+          "sha256": "3152da4e9ec1b3d158c49e8bc07ea9642a8f96d2239d0dd267c00a3840ace171"
+        }
+      ],
+      "informs_requirements": [
+        "REQ-RP2-KG1"
+      ],
+      "distilled_norm": "Corpus family MEMORY provides 5 CURRENT technical transcripts covering topics relevant to RP-002 requirements REQ-RP2-KG1. Claim ceiling: SUPPORT/DATA only; norm must be admitted by HGK/SQS authority before use."
+    },
+    {
+      "family": "LLM_WIKI",
+      "source_count_current": 7,
+      "source_locators": [
+        {
+          "path": "教程字幕/【赋范】LLM Wiki 个人_企业知识库：架构搭建_溯源问答_级联更新【2026-07-22】-中文/【赋范课堂】—【建议收藏】LLM Wiki 个人_企业知识库开发实战：从架构搭建到带溯源问答到级联更新，三条路线怎么选一次讲清，学完可判断自己的数据该走哪条路线 - P2【01-企业级RAG为什么不能只做向量检索】—【2026-07-22】-中文.txt",
+          "sha256": "0f7de54586b0a1f67bc923bc5a83b35790821912170bfca7b314a8dcc41e8776"
+        },
+        {
+          "path": "教程字幕/【赋范】LLM Wiki 个人_企业知识库：架构搭建_溯源问答_级联更新【2026-07-22】-中文/【赋范课堂】—【建议收藏】LLM Wiki 个人_企业知识库开发实战：从架构搭建到带溯源问答到级联更新，三条路线怎么选一次讲清，学完可判断自己的数据该走哪条路线 - P1【LLM Wiki 个人_企业知识库开发实战】—【2026-07-22】-日文.txt",
+          "sha256": "cc7a982f1eee37c7a5702b7243fc44c3e09837868d247f5f50015f8d271db258"
+        },
+        {
+          "path": "教程字幕/【赋范】LLM Wiki 个人_企业知识库：架构搭建_溯源问答_级联更新【2026-07-22】-中文/【赋范课堂】—【建议收藏】LLM Wiki 个人_企业知识库开发实战：从架构搭建到带溯源问答到级联更新，三条路线怎么选一次讲清，学完可判断自己的数据该走哪条路线 - P5【04-一条命令构建LMVK个人知识图谱的原理】—【2026-07-22】-中文.txt",
+          "sha256": "36b9739440d956cc9ee79621023f9f39a029ae037c3304aa09992be24b060feb"
+        }
+      ],
+      "informs_requirements": [
+        "REQ-RP2-K1",
+        "REQ-RP2-KG1"
+      ],
+      "distilled_norm": "Corpus family LLM_WIKI provides 7 CURRENT technical transcripts covering topics relevant to RP-002 requirements REQ-RP2-K1, REQ-RP2-KG1. Claim ceiling: SUPPORT/DATA only; norm must be admitted by HGK/SQS authority before use."
+    },
+    {
+      "family": "PROMPT",
+      "source_count_current": 24,
+      "source_locators": [
+        {
+          "path": "教程字幕/GPT WORK HARNESS & LOOP/【4】Prompt/提示词工程【2026-06-05】/【SenSenSenSir】—提示词工程：前缀感知—【2026-06-11】-中文.txt",
+          "sha256": "7afd446a1c0de56fe782b26aadc7b84e56f6f8a06a89dc80ae4f42fa13d8dd06"
+        },
+        {
+          "path": "教程字幕/GPT WORK HARNESS & LOOP/【4】Prompt/提示词工程【2026-06-05】/【SenSenSenSir】—提示词工程：条件渲染—【2026-06-11】-中文.txt",
+          "sha256": "b209c398b93595a3ef134143823d5d41be3e3b589ddf9cde94d3c72dded97a46"
+        },
+        {
+          "path": "教程字幕/GPT WORK HARNESS & LOOP/【4】Prompt/提示词工程【2026-06-05】/【SenSenSenSir】—提示词工程：目标声明—【2026-06-05】-中文.txt",
+          "sha256": "0079488ec498d956603726ece58b285fd45c0a1ff3de39e3c6e87636186454b1"
+        }
+      ],
+      "informs_requirements": [
+        "REQ-RP2-G0",
+        "REQ-RP2-O1"
+      ],
+      "distilled_norm": "Corpus family PROMPT provides 24 CURRENT technical transcripts covering topics relevant to RP-002 requirements REQ-RP2-G0, REQ-RP2-O1. Claim ceiling: SUPPORT/DATA only; norm must be admitted by HGK/SQS authority before use."
+    },
+    {
+      "family": "AGENTS",
+      "source_count_current": 8,
+      "source_locators": [
+        {
+          "path": "教程字幕/GPT WORK HARNESS & LOOP/【6】AGENTS.md/【小胖学安全】—AI Harness工程实践之如何编写AGENTS.md文件—【2026-06-22】-中文.txt",
+          "sha256": "b5535acc472536a06020324321c6fc10d1aa45e78dca902d550d05096285801f"
+        },
+        {
+          "path": "教程字幕/GPT WORK HARNESS & LOOP/【6】AGENTS.md/【小胖学安全】—AI Agent每日学习Day2——理解message和role的作用—【2026-06-02】-中文.txt",
+          "sha256": "2d583eb85ab63bbf6c651beeb2ddc309b04f0264635c19aaf45c5c1c3c123abc"
+        },
+        {
+          "path": "教程字幕/GPT WORK HARNESS & LOOP/【6】AGENTS.md/【服务器守夜人】—Claude Code for Real Engineers [中配] - P23【023 What Is an Agents MD File】—【2026-05-26】-中文.txt",
+          "sha256": "1c7cb76622feab93cab26e48c95c71fb70921945b8ad2ddecc170e9c25d2202b"
+        }
+      ],
+      "informs_requirements": [
+        "REQ-RP2-B1",
+        "REQ-RP2-F0"
+      ],
+      "distilled_norm": "Corpus family AGENTS provides 8 CURRENT technical transcripts covering topics relevant to RP-002 requirements REQ-RP2-B1, REQ-RP2-F0. Claim ceiling: SUPPORT/DATA only; norm must be admitted by HGK/SQS authority before use."
+    },
+    {
+      "family": "ORCA",
+      "source_count_current": 3,
+      "source_locators": [
+        {
+          "path": "教程字幕/Coding/Orca ADE/【不会写代码的小高】—Agent管理工具——Orca使用介绍—【2026-07-01】-中文.txt",
+          "sha256": "e2f6b51b689edc6db45df6a6ca7b21a1a20731a5721550a8a51b89d8c8f77680"
+        },
+        {
+          "path": "教程字幕/Coding/Orca ADE/【AI_transfer】—一个人指挥一群 AI 程序员：Orca 把 IDE 进化成 Agent 控制台—【2026-07-02】-中文.txt",
+          "sha256": "dd0d53ce25cf1f10a48de52aa5d4e87510e21f0df18d5083e74ab0345c8f3c11"
+        },
+        {
+          "path": "教程字幕/Coding/Orca ADE/【AI超元域】—🚀Orca ADE彻底改变AI编程方式！多Agent并行、语音输入、定时审查、Git Worktree自动隔离+结构化编排+面板分割布局自由调整，支持手机操控—【2026-07-20】-中文.txt",
+          "sha256": "484e495711564f8b4e3eaf39d7027fcfc33e09424cd5529c2f7f38bcbd607814"
+        }
+      ],
+      "informs_requirements": [
+        "REQ-RP2-C1"
+      ],
+      "distilled_norm": "Corpus family ORCA provides 3 CURRENT technical transcripts covering topics relevant to RP-002 requirements REQ-RP2-C1. Claim ceiling: SUPPORT/DATA only; norm must be admitted by HGK/SQS authority before use."
+    },
+    {
+      "family": "OTHER_ENGINEERING",
+      "source_count_current": 57,
+      "source_locators": [
+        {
+          "path": "教程字幕/Coding/Ponytail/【愿始】—github仓库：认识ponytail—【2026-07-10】-中文.txt",
+          "sha256": "f20c32a649056eb9a0c6bfc7827c6e533142fb39452dace4b8adb18e00df91e9"
+        },
+        {
+          "path": "教程字幕/【赋范】SDD全链路：四维调研+法庭式五决策对抗定选型+BE_FE_INT自动化测试三道关全流程 【2026-07-28】-中文.txt",
+          "sha256": "9dca5db6066072c7faea0b74b7cbbb23d52538c01b5223d01c749d8f204ef1b6"
+        },
+        {
+          "path": "教程字幕/Coding/superpowers/【未来的底稿】—EP01 驯服模型的活标本｜superpowers—【2026-07-01】-中文.txt",
+          "sha256": "18d0f9cf4b1f9064210c737b1429f46816645e30549f0f28c18e005e650d09d3"
+        }
+      ],
+      "informs_requirements": [
+        "REQ-RP2-C1"
+      ],
+      "distilled_norm": "Corpus family OTHER_ENGINEERING provides 57 CURRENT technical transcripts covering topics relevant to RP-002 requirements REQ-RP2-C1. Claim ceiling: SUPPORT/DATA only; norm must be admitted by HGK/SQS authority before use."
+    }
+  ],
+  "unsupported_norm_count": 0,
+  "same_rank_conflict_count": 0,
+  "note": "Every distilled norm is bound to exact CURRENT corpus file locators + sha256. No web/upstream claim is promoted to norm. Corpus content is SUPPORT/DATA until admitted."
+}

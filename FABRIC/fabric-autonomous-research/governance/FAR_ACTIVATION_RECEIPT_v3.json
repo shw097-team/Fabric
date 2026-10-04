@@ -1,0 +1,30 @@
+{
+  "schema": "FAR-ACTIVATION-RECEIPT/3",
+  "event": "FAR_V3_FORMAL_ACTIVATION",
+  "date": "2026-08-14",
+  "authority_basis": {
+    "external_report": "FAR_TRI_SOURCE_FINAL_EXTERNAL_FOCUSED_ACCEPTANCE_REPORT_2026-08-14_r3_ALL_PASS",
+    "verdict": "PASS_CHALLENGE / FAR_TRI_SOURCE_FOCUSED_HARDENING_EXTERNAL_ACCEPTANCE = GRANTED",
+    "falsification_attempts": 15, "blocking_counterexample": 0,
+    "master_evidence": "FAR_FINAL_HARDENING_ACCEPTANCE_EVIDENCE.md 1e74bbca65638866…",
+    "final_intake": "FAR_HARDENING_FINAL_INTAKE.json e6e7eabab1d3e1dc…",
+    "candidate_subject_digest": "5bc5af7031756872…",
+    "evidence_manifest_digest": "d47076f4fb8ca678…",
+    "test_denominator": "103/103 exit 0 (nodeids 626d6472…)"
+  },
+  "activated": {
+    "far_state": "ACTIVE (EXTERNALLY_ACCEPTED_FOR_DECLARED_LOCAL_SCOPE)",
+    "tri_source_mandatory": "ACTIVE",
+    "focused_hardening": "ACTIVE (redirects disabled / UTC timestamps / truncation semantics / budget semantics / lineage dedup / corroboration policy)",
+    "swarm_multi_subagent": "DEFAULT-ON (UD-FAR-SWARM-DEFAULT-ON-2026-08-14-001; CANARY-7 real fanout)",
+    "router": "far_router.py NATIVE primary; hermes-swarm class ACTIVE_DEFAULT in FAR_CAPABILITY_MATRIX.yaml",
+    "profile": "fabric-autoresearch-native PRIMARY; fabric-autoresearch-prime CANDIDATE_STANDBY_UNTIL_QUALIFIED"
+  },
+  "docs_updated": ["README.md", "AGENTS.md", "TEAM.md", "docs/fabric-autonomous-research_使用說明手冊_v2026.08.13-r1.md", "FAR_CAPABILITY_MATRIX.yaml (hermes-swarm class)", "FAR_ROUTE_CHECK.yaml (DEFAULT_ON)"],
+  "claim_ceiling": {
+    "production": "NOT_CLAIMED", "sqs_live": "NOT_AUTHORIZED", "remote": "NOT_CLAIMED",
+    "sqs_financial_truth_mutation": 0, "live_broker_write": 0,
+    "human_gate": "COV-11-06 對 evolution promotion 保留"
+  },
+  "generated_at_utc": "2026-08-14T02:30:00Z"
+}

@@ -1,0 +1,42 @@
+schema: LOGICAL_FAR_RESEARCH_PLAN_V1
+subquestions:
+- SQ1 ARIS 方法層是否低摩擦（markdown-only、可跑在 Hermes/Codex）？
+- SQ2 Prime Agent 本輪是否應啟用（Windows ACP/sandbox 現況）？
+- SQ3 藍圖 R0-R8 是否已可端到端執行（本 run 即驗證）？
+- SQ4 導入取捨的 claim 各自來源與信心？
+claim_classes:
+- METHOD_FIT
+- PROVIDER_QUALIFICATION
+- LIFECYCLE_OPERABILITY
+- SECURITY_POSTURE
+source_classes:
+- LOCAL_GOVERNED_CORPUS
+- GIT_REPOSITORY
+- OFFICIAL_DOC
+query_strategy:
+- 知識庫檢索討論&設計原意
+- upstream git ls-remote/clone pin
+- HGK doctor/registry fresh-read
+- FDA 先例 readback
+candidate_methods_providers:
+- fabric-autoresearch-native
+- ARIS selected methods
+- Prime (candidate)
+- LongHorizon (donor)
+- ARC (off)
+- EvoAgentX (lab)
+challenge_trigger:
+- high impact
+- source disagreement
+- provider runtime risk
+experiment_trigger: []
+stop_criteria:
+- denominator complete
+- load-bearing claims grounded
+- synthesis + handoff emitted
+abstain_criteria:
+- evidence cannot support recommendation
+budget_allocation:
+  wall_clock_seconds: 14400
+  retry_budget: 2
+generated_at_utc: '2026-08-13T08:53:56Z'

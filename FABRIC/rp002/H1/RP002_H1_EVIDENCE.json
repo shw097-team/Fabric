@@ -1,0 +1,146 @@
+{
+  "artifact_id": "RP002_H1_EVIDENCE",
+  "project_id": "HGK-REFERENCE-PROJECT-002",
+  "generated_at_utc": "2026-08-11T16:11:33.698535+00:00",
+  "oracle": "EXTERNAL_FROZEN_BOOTSTRAP_ORACLE",
+  "gate": "H1",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "id": "H1_PRE_BASELINE_CAPTURED",
+      "pass": true,
+      "detail": "pre-install profile baseline"
+    },
+    {
+      "id": "H1_INSTALL_hgk-orchestrator",
+      "pass": true,
+      "detail": "e\\HG-KSEOS\\var\\hermes-v020\\home\\profiles\\hgk-orchestrator/.env.EXAMPLE\n\n  Use with:      hermes -p hgk-orchestrator chat"
+    },
+    {
+      "id": "H1_INSTALL_hgk-knowledge-factory",
+      "pass": true,
+      "detail": "\\var\\hermes-v020\\home\\profiles\\hgk-knowledge-factory/.env.EXAMPLE\n\n  Use with:      hermes -p hgk-knowledge-factory chat"
+    },
+    {
+      "id": "H1_INSTALL_hgk-document-factory",
+      "pass": true,
+      "detail": "OS\\var\\hermes-v020\\home\\profiles\\hgk-document-factory/.env.EXAMPLE\n\n  Use with:      hermes -p hgk-document-factory chat"
+    },
+    {
+      "id": "H1_INSTALL_hgk-coding-factory",
+      "pass": true,
+      "detail": "-KSEOS\\var\\hermes-v020\\home\\profiles\\hgk-coding-factory/.env.EXAMPLE\n\n  Use with:      hermes -p hgk-coding-factory chat"
+    },
+    {
+      "id": "H1_PROFILE_LIST_RC",
+      "pass": true,
+      "detail": "rc=0"
+    },
+    {
+      "id": "H1_EFFECTIVE_hgk-orchestrator",
+      "pass": true,
+      "detail": "hgk-orchestrator + model visible"
+    },
+    {
+      "id": "H1_EFFECTIVE_hgk-knowledge-factory",
+      "pass": true,
+      "detail": "hgk-knowledge-factory + model visible"
+    },
+    {
+      "id": "H1_EFFECTIVE_hgk-document-factory",
+      "pass": true,
+      "detail": "hgk-document-factory + model visible"
+    },
+    {
+      "id": "H1_EFFECTIVE_hgk-coding-factory",
+      "pass": true,
+      "detail": "hgk-coding-factory + model visible"
+    },
+    {
+      "id": "H1_SOUL_hgk-orchestrator",
+      "pass": true,
+      "detail": "SOUL.md deployed"
+    },
+    {
+      "id": "H1_CONFIG_hgk-orchestrator",
+      "pass": true,
+      "detail": "config.yaml deployed with provider route"
+    },
+    {
+      "id": "H1_SOUL_hgk-knowledge-factory",
+      "pass": true,
+      "detail": "SOUL.md deployed"
+    },
+    {
+      "id": "H1_CONFIG_hgk-knowledge-factory",
+      "pass": true,
+      "detail": "config.yaml deployed with provider route"
+    },
+    {
+      "id": "H1_SOUL_hgk-document-factory",
+      "pass": true,
+      "detail": "SOUL.md deployed"
+    },
+    {
+      "id": "H1_CONFIG_hgk-document-factory",
+      "pass": true,
+      "detail": "config.yaml deployed with provider route"
+    },
+    {
+      "id": "H1_SOUL_hgk-coding-factory",
+      "pass": true,
+      "detail": "SOUL.md deployed"
+    },
+    {
+      "id": "H1_CONFIG_hgk-coding-factory",
+      "pass": true,
+      "detail": "config.yaml deployed with provider route"
+    },
+    {
+      "id": "H1_FRESH_SESSION_hgk-orchestrator",
+      "pass": true,
+      "detail": "rc=0 out=OK\n"
+    },
+    {
+      "id": "H1_FRESH_SESSION_hgk-coding-factory",
+      "pass": true,
+      "detail": "rc=0 out=OK\n"
+    },
+    {
+      "id": "H1_NAMED_METHOD_ROUTER",
+      "pass": true,
+      "detail": "NM_OK openspec CERTIFIED_ACTIVE_BROWNFIELD 9 8\n"
+    },
+    {
+      "id": "H1_OPENSPEC_EFFECTIVE_LOAD",
+      "pass": true,
+      "detail": "openspec skill projections: 0 (route preserved; effective-load verified in named-method probe)"
+    },
+    {
+      "id": "H1_KANBAN_ASSIGN_PROFILE",
+      "pass": true,
+      "detail": "k interval 60s by default); your task will be picked up on the next tick after the gateway comes up."
+    },
+    {
+      "id": "H1_KANBAN_TASK_ID",
+      "pass": true,
+      "detail": "task=t_f92b9840"
+    },
+    {
+      "id": "H1_ROLLBACK_DELETE",
+      "pass": true,
+      "detail": "profile removed (rollback baseline restored)"
+    },
+    {
+      "id": "H1_RESTORE_REINSTALL",
+      "pass": true,
+      "detail": "reinstall restores profile (rollback drill PASS)"
+    }
+  ],
+  "fabric_head": "68e4881b2242001a6adc051d7a6c0e8b8e700d34",
+  "notes": [
+    "C1 PASS is a prerequisite; H1 adds runtime readiness (this gate).",
+    "fresh-session canaries ran under disposable home copies; canonical home only gains profile distributions.",
+    "provider credential is process-scoped env-ref; never stored or printed."
+  ]
+}

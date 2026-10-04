@@ -1,0 +1,23 @@
+{
+  "schema": "FAR-AO-LANE-RECEIPT/1",
+  "subject": "FAR first-use test (WO-FAR-USE-001, run FAR-20260813-002)",
+  "delegation_id": "deleg_60df62df",
+  "role": "acceptance-officer (FRESH CONTEXT, VERIFY_ONLY, read-only)",
+  "duration_s": 95.44,
+  "checks_total": 7,
+  "checks_passed": 7,
+  "checks_failed": 0,
+  "verdict": "PASS",
+  "verdict_line": "ACCEPTANCE_OFFICER_VERDICT=PASS",
+  "items": {
+    "1_canary_run": "PASS (20 files; receipt terminal 'RESEARCH_PASS_CANDIDATE (revised after challenge)'; iteration DG01/CL02 REFUTED/MERGE_DELTA_AND_DELETE_DUPLICATE)",
+    "2_ledgers": "PASS (CL02 REFUTED_WITH_EVIDENCE + CL06; DG01 cites shared-infra-team-implementation.md)",
+    "3_challenge_closure": "PASS (verdict_on_draft REJECT-as-standalone; sections_added 10/11/12; 114->161 lines)",
+    "4_reference_patch": "PASS (## 10/11/12 headers; 161 lines; U+FFFD=0)",
+    "5_duplicate_deleted": "PASS (far-shared-infrastructure-landing.md absent)",
+    "6_skill_md_note": "PASS ('First-use dogfood / self-upgrade convention' present)",
+    "7_spine": "PASS (WO-FAR-USE-001 VERIFIED, writer=codex, rollback RB-WO-FAR-USE-001; EVD-FAR-USE-001 sha 16ab0010...)"
+  },
+  "notes": "Read-only; no files created/modified/deleted; evidence cross-checks mutually consistent; divergence only cosmetic (verdict_on_draft explanatory suffix).",
+  "generated_at_utc": "2026-08-13T11:47:00Z"
+}

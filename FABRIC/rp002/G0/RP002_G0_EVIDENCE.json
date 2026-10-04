@@ -1,0 +1,83 @@
+{
+  "artifact_id": "RP002_G0_EVIDENCE",
+  "project_id": "HGK-REFERENCE-PROJECT-002",
+  "generated_at_utc": "2026-08-11T15:31:19.635344+00:00",
+  "oracle": "EXTERNAL_FROZEN_BOOTSTRAP_ORACLE",
+  "gate": "G0",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "id": "DENOMINATOR_JSONL_SHA_MATCH",
+      "pass": true,
+      "detail": "9ac92e9f05a2509d95f26c989ea1bf2ffd893e8865f72652fb9fafcca470149a"
+    },
+    {
+      "id": "DENOMINATOR_COUNT_POSITIVE",
+      "pass": true,
+      "detail": 30372
+    },
+    {
+      "id": "CLASSIFICATION_TSV_EXISTS",
+      "pass": true,
+      "detail": "C:\\Projects\\Agent_Workspace\\Fabric\\rp002\\G0\\RP002_SOURCE_CLASSIFICATION.tsv"
+    },
+    {
+      "id": "SAMPLE_READBACK_25_ZERO_MISMATCH",
+      "pass": true,
+      "detail": "verified by verify_denominator.py: VERDICT PASS, 0/25 mismatch"
+    },
+    {
+      "id": "HGK_HEAD_EXACT",
+      "pass": true,
+      "detail": "22e21f0340501caf4ff0dbd67663faf49f521b03"
+    },
+    {
+      "id": "HERMES_PIN_EXACT",
+      "pass": true,
+      "detail": "config/hermes.json ACTIVE_SELECTED_CERTIFIED"
+    },
+    {
+      "id": "ORACLE_CONTRACT_FROZEN",
+      "pass": true,
+      "detail": "PROMPT_R1 sha256"
+    },
+    {
+      "id": "BLUEPRINT_R3_FROZEN",
+      "pass": true,
+      "detail": "r3 sha256"
+    },
+    {
+      "id": "KPACK_AND_COMPILER_FROZEN",
+      "pass": true,
+      "detail": "KP00~19 KnowledgePack + compiler SKILL.md"
+    },
+    {
+      "id": "INTERNAL_ORACLE_NULL_BEFORE_O1",
+      "pass": true,
+      "detail": "internal Oracle candidate null until O1"
+    },
+    {
+      "id": "GATE_REQUIREMENTS_ADMITTED",
+      "pass": true,
+      "detail": "admitted=0 existed=18 total=18"
+    },
+    {
+      "id": "R3_SUPERSEDES_R2",
+      "pass": true,
+      "detail": "r3 frontmatter supersedes R2; KBN1/FG1 are historical names only (gate catalog rejects)"
+    },
+    {
+      "id": "BLOCKING_TT_ZERO",
+      "pass": true,
+      "detail": "fresh RP-002 project; no blocking TT opened at G0"
+    },
+    {
+      "id": "NO_AUTHORITY_CONFLICT",
+      "pass": true,
+      "detail": "A0 prompt + r3 blueprint + HGK/SQS current controls consistent; no equal-rank conflict observed"
+    }
+  ],
+  "freeze_json": "C:\\Projects\\Agent_Workspace\\Fabric\\rp002\\G0\\RP002_G0_FREEZE.json",
+  "freeze_json_sha256": "9f7ddbb83fd1feea160ee33049f1b41dbdc18a62269bfe41474ea63951c09db5",
+  "baseline_suite": "274 tests OK"
+}

@@ -1,0 +1,62 @@
+{
+ "schema": "FAR-HARDENING-FITGAP/1",
+ "changeset": "FAR_TRI_SOURCE_FOCUSED_HARDENING_20260814",
+ "questions": [
+  {
+   "q": "Does evidence already have origin artifact id?",
+   "answer": "NO — retrieval rows carry source_id/sha256 but no origin_artifact_id/origin_artifact_digest/source_family lineage fields",
+   "gap": "FH-01 ADD"
+  },
+  {
+   "q": "Does memory record retain source capsule/digest?",
+   "answer": "PARTIAL — knowledge_fts rows carry doc_id (usable as origin_artifact_id); memory_records carry provenance text; no explicit digest linkage",
+   "gap": "FH-01 ADD lineage fields"
+  },
+  {
+   "q": "Does web client follow redirects?",
+   "answer": "YES — urllib HTTPRedirectHandler with exact-host allowlist; no resolved-IP validation per hop",
+   "gap": "FH-02 SSRF"
+  },
+  {
+   "q": "Does web client expose resolved IP?",
+   "answer": "NO — urllib hides peer address; need explicit DNS resolution + IP classification before connect",
+   "gap": "FH-02 ADD"
+  },
+  {
+   "q": "Does it reject all DOCTYPE or only XML DTD?",
+   "answer": "_parse_atom rejects ANY DOCTYPE in first 4096B (too broad for HTML5 <!DOCTYPE html>); no MIME-aware semantics",
+   "gap": "FH-02 MIME semantics"
+  },
+  {
+   "q": "Does response receipt record truncation?",
+   "answer": "NO — no bytes_received/bytes_read/content_complete/truncation_reason fields",
+   "gap": "FH-03 ADD"
+  },
+  {
+   "q": "Does query budget participate in PASS reducer?",
+   "answer": "NO — query_count hardcoded 1 per channel; no DEFAULT_QUERY_BUDGET / exhaustion semantics in reducer",
+   "gap": "FH-04 ADD"
+  },
+  {
+   "q": "Does raw test denominator really equal 68?",
+   "answer": "AMBIGUOUS — '63 existing + 26 tri-source 中 5 regression' wording not exact; need collect-only inventory",
+   "gap": "EV-01"
+  },
+  {
+   "q": "Is there already a Web HIT canary in implementation evidence?",
+   "answer": "NO — evidence shows UNAVAILABLE + ZERO_RELEVANT_HIT only",
+   "gap": "FH-05 ADD"
+  },
+  {
+   "q": "Is corroboration policy claim-class-aware?",
+   "answer": "NO — arbitration is claim-role aware but no minimum-evidence-by-class policy (INTERNAL_NORMATIVE vs EXTERNAL_CURRENT_FACT vs COMMUNITY_DEFECT)",
+   "gap": "FH-06 ADD"
+  },
+  {
+   "q": "Is D1-D4 '社群共識' wording too strong?",
+   "answer": "YES — GitHub small repos = SUPPORT/COMMUNITY_SIGNAL not normative consensus; need EV-02 wording + authoritative calibration (OWASP/WHATWG/arXiv)",
+   "gap": "EV-02"
+  }
+ ],
+ "generated_at_utc": "2026-08-13T16:22:57.815023+00:00"
+}

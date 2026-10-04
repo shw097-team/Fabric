@@ -1,0 +1,30 @@
+{
+  "schema": "RP002-KNOWLEDGE-PROVIDER-STATE-PRESERVATION/1",
+  "providers": {
+    "fts5": {
+      "target_state": "ACTIVE_BASELINE",
+      "activate_by_rp002": false
+    },
+    "qdrant": {
+      "target_state": "PRESERVE_CURRENT_READBACK",
+      "activate_by_rp002": false
+    },
+    "neo4j": {
+      "target_state": "PRESERVE_CURRENT_READBACK",
+      "activate_by_rp002": false
+    },
+    "cognee": {
+      "target_state": "P1_SHADOW_CANDIDATE",
+      "canonical_promotion": false
+    },
+    "pgvector": {
+      "target_state": "CONDITIONAL_IF_CURRENT_POSTGRESQL_ARCHITECTURE_REQUIRES"
+    }
+  },
+  "current_readback": {
+    "fts5": "ACTIVE (knowledge_fts tables present in hg-kseos.db)",
+    "qdrant": "NOT_ACTIVE (no provider binding in spine)",
+    "neo4j": "NOT_ACTIVE (no provider binding in spine)",
+    "cognee": "P1_SHADOW_ONLY (no canonical promotion)"
+  }
+}

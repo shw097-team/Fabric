@@ -1,0 +1,46 @@
+# FDA gstack/OpenSpec route-check evidence (execution-method surface, blueprint 5.11/5.12)
+schema: FDA-ROUTE-CHECK/1
+task: FDA-IMPLEMENTATION-2026-08-13-001
+registry_source_basis: HG-KSEOS/src/hg_kseos/named_methods.py
+
+## gstack named-method registry state
+gstack_registry_state: ACTIVE_SELECTED
+gstack_slices:
+  - slice: gstack.review
+    state: CERTIFIED_ACTIVE_SELECTED_SLICES
+    use: provider/routing artifact review
+  - slice: gstack.qa
+    state: CERTIFIED_ACTIVE_SELECTED_SLICES
+    use: fixture/test methodology
+  - slice: gstack.cso
+    state: CERTIFIED_ACTIVE_SELECTED_SLICES
+    use: security/permission audit method
+  - slice: gstack.retro
+    state: CERTIFIED_ACTIVE_SELECTED_SLICES
+    use: failure-signature learning
+  - slice: gstack.ship
+    state: CERTIFIED_ACTIVE_SELECTED_SLICES
+    use: advisory release checklist only (NOT authority)
+  - slice: gstack.plan-eng-review
+    state: CERTIFIED_ACTIVE_SELECTED_SLICES
+    use: planning support
+authority_ceiling: METHOD_ONLY (gstack role/method != WorkOrder authority; /spec != normative spec owner; /ship != release authority)
+
+## OpenSpec named-method registry state
+openspec_registry_state: CERTIFIED_ACTIVE_BROWNFIELD
+openspec_role: BROWNFIELD_ENGINEERING_DEFINITION_ADAPTER (spec/change carrier; no Root SSOT / release ownership)
+openspec_flow_selected: FDA durable infrastructure change (team/profile/matrix/routing/permission/knowledge/lease contract)
+openspec_not_applicable: ordinary XQ deploy / compile / readback / routine retry
+
+## Deterministic lane route (HGK named_methods.route)
+flow: fda-implementation
+route_result: NATIVE (HGK/Hermes orchestrates directly)
+reason_code: FDA_CHANGESET_CANONICAL_HGK_ROUTE (no external named method owns the lane)
+lane_vs_execution: lane=NATIVE does NOT disable Kanban/Swarm/Codex/gstack/OpenSpec execution surfaces
+selected_route: NATIVE
+fallback_degrade: none (no silent fallback)
+
+## Evidence
+registry_readback: HG-KSEOS evidence/review/HG-KSEOS_NAMED_METHOD_CURRENT_STATE_READBACK.json
+gstack_binding: HG-KSEOS evidence/review/HG-KSEOS_GSTACK_HERMES_BINDING_ACCEPTANCE.json
+openspec_binding: HG-KSEOS evidence/review/HG-KSEOS_OPENSPEC_HERMES_BINDING_ACCEPTANCE.json

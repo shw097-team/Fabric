@@ -1,0 +1,71 @@
+# FAR ARIS Method Disposition — selected pinned method pack (blueprint 17.2 materialization)
+schema: FAR-ARIS-METHOD-DISPOSITION/1
+subject: fabric-autonomous-research (WO-FAR-004)
+upstream: https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep
+pin:
+  full_commit: e12e07c7b85ee1a4dc07e5463089aa16836af2bf
+  fetched_at: 2026-08-13
+  clone_mode: depth-1 (shallow) at Fabric/fabric-autonomous-research/methods/aris-vendor
+  catalog_sha256: 77dcf928a85e033c51a22b56fe1e50196bc2d2a39f481c9176031073de1f0c40
+  catalog_total_skills: 86
+role: METHOD_SOURCE (not manager; no bulk install; pinned + bounded)
+authority_ceiling: METHOD_ONLY (reviewer != final acceptance; meta-apply no adopt authority)
+
+selected_methods:
+  research-lit:
+    sha256: 00d9f549e4db72f3b02d55b9f6dcd61b20403f5a7e25cf3396160423140b9183
+    disposition: P0_ADOPT_CANDIDATE
+    use: literature/source survey for RESEARCH_LITERATURE_REPO
+  novelty-check:
+    sha256: c512579faa065c7e886935d64c2d7d7c810cef8e8f5f6ff5cd902d6ab90e68af
+    disposition: P0_ADOPT_CANDIDATE
+    use: novelty/prior-art screening
+  research-review:
+    sha256: 2d2c27ccedeb9d053b16ff9e64e61e2653c42841618d382531a3191cc37b72db
+    disposition: P0_ADVISORY_CHALLENGER_CANDIDATE
+    use: adversarial challenge method (final_acceptance=false)
+  research-refine:
+    sha256: 2cbda50557603d608990eff7f7a9890b2f75978a5219a8bc8b6e49cebe7e1884
+    disposition: P0/P1_ADOPT_CANDIDATE
+    use: research candidate refinement (candidate only)
+  idea-discovery:
+    sha256: c265e307f1fb8b7f30eff7ea258218fc49aa52d785ebfdcee015736f1620807e
+    disposition: METHOD_DONOR_OR_SELECTED_CHAIN
+    use: ideation class only; must not own FAR lifecycle
+  idea-creator:
+    sha256: 980e2fb9214b092213e44993ace9ea8940f7eb0694b5032e7fbb9aeeadb5b5b1
+    disposition: SELECTED_WHEN_IDEATION_CLASS
+  experiment-plan:
+    sha256: c5b53692ff95b0b55e80702e33afc79d9fe8d4f55a69e2a39714013f97ac595e
+    disposition: CONDITIONAL_EXPERIMENT
+    use: experiment planning only when R5 experiment triggered
+  experiment-audit:
+    sha256: 476bde891323ebf9496ac2a52f8dbbf67fae13cfc6f7c69d4d3213794f3f1af2
+    disposition: CONDITIONAL_ADVISORY
+    note: advisory only; Fabric must not infer final pass from audit method
+  research-refine-pipeline:
+    sha256: d5091663645dae48b84ce273d0f774090aeb2c553ed064d2d4cfc17fad9c52e9
+    disposition: MAP_TO_SELECTED_SUBCHAIN
+  research-pipeline:
+    sha256: e1f97fdcc1e8a28af0a425d3bac344d9c675ef7397d3b3ad8f27cb97dbf20510
+    disposition: METHOD_DONOR
+    note: FAR R0-R8 remains lifecycle owner
+  auto-review-loop:
+    sha256: 782803dab87f636db235133a2fb1513400ca9bdce012305ec033a633a371538b
+    disposition: CONDITIONAL_BOUNDED_ROUNDS
+    note: never Acceptance Officer
+  meta-optimize:
+    sha256: 07c8c71e3f9937036c762f444d8c04d7f18ed56ed80840b8a0d0e2df67f8458c
+    disposition: CANDIDATE_PRODUCER_ONLY
+  meta-apply:
+    sha256: 5122453add96f0bd13933a1d9416ff61afbfce4f6892dc656f2495c0dcadbfa6
+    disposition: NO_ADOPT_LANDING_AUTHORITY
+    note: landing maps to HGK/Fabric promotion; never direct adopt
+
+effective_load:
+  status: VERIFIED_STRUCTURAL (all 13 SKILL.md frontmatter parse OK; see FAR_ARIS_EFFECTIVE_LOAD_RECEIPT.json)
+  real_invocation: FAR-CANARY-001 run used research-lit + research-review workflow semantics
+    (ledgers + challenge disposition) - see canary run directory
+  no_fake_invocation: true (every disposition has hash + structural verification)
+
+denied_as_global: [fabric_manager_authority, hgk_scheduler_replacement, canonical_memory, global_cron, final_acceptance, sqs_financial_truth, live_trading_authority]

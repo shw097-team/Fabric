@@ -1,0 +1,148 @@
+{
+ "schema": "FAR-Q4-REAL-INVOCATION-RECEIPT/1",
+ "gate": "FAR-Q4",
+ "finding_ref": "EXT-FAR-008",
+ "exact_set": {
+  "research-lit": "00d9f549e4db72f3b02d55b9f6dcd61b20403f5a7e25cf3396160423140b9183",
+  "novelty-check": "c512579faa065c7e886935d64c2d7d7c810cef8e8f5f6ff5cd902d6ab90e68af"
+ },
+ "effective_load": "EFFECTIVE_LOAD_STRUCTURAL_PASS (frontmatter parse + pin match; FAR_ARIS_EFFECTIVE_LOAD_RECEIPT.json)",
+ "real_invocations": [
+  {
+   "method": "research-lit",
+   "pinned_commit": "e12e07c7b85ee1a4dc07e5463089aa16836af2bf",
+   "skill_sha256": "00d9f549e4db72f3b02d55b9f6dcd61b20403f5a7e25cf3396160423140b9183",
+   "input": "governed autonomous research agent harnesses (Prime Agent / LongHorizon-Harness / AutoResearchClaw) related work",
+   "execution_trace": [
+    {
+     "step": "research-lit.source_scan",
+     "corpus_files": 5,
+     "extracted_identities": 80,
+     "sample": [
+      {
+       "source": "FAR_討論-1.md",
+       "repo": "github.com/PrimeIntellect-ai/prime-agent"
+      },
+      {
+       "source": "FAR_討論-1.md",
+       "repo": "github.com/PrimeIntellect-ai/prime-agent"
+      },
+      {
+       "source": "FAR_討論-1.md",
+       "repo": "github.com/PrimeIntellect-ai/prime-agent"
+      },
+      {
+       "source": "FAR_討論-1.md",
+       "repo": "github.com/PrimeIntellect-ai/prime-agent"
+      },
+      {
+       "source": "FAR_討論-1.md",
+       "repo": "github.com/PrimeIntellect-ai/prime-agent"
+      },
+      {
+       "source": "FAR_討論-1.md",
+       "repo": "github.com/PrimeIntellect-ai/prime-agent"
+      },
+      {
+       "source": "FAR_討論-1.md",
+       "repo": "github.com/PrimeIntellect-ai/prime-agent"
+      },
+      {
+       "source": "FAR_討論-1.md",
+       "repo": "github.com/PrimeIntellect-ai/prime-agent"
+      },
+      {
+       "source": "FAR_討論-1.md",
+       "repo": "github.com/PrimeIntellect-ai/prime-agent"
+      },
+      {
+       "source": "FAR_討論-1.md",
+       "repo": "github.com/PrimeIntellect-ai/prime-agent"
+      },
+      {
+       "source": "FAR_討論-1.md",
+       "repo": "github.com/PrimeIntellect-ai/prime-agent"
+      },
+      {
+       "source": "FAR_討論-1.md",
+       "repo": "github.com/PrimeIntellect-ai/prime-agent"
+      }
+     ]
+    },
+    {
+     "step": "research-lit.related_work_summary",
+     "papers": {
+      "Prime Agent": "self-improving RLM coding/research harness (v0.7.2, 2026-08-11); persistent IPython kernel; recursive subagents; Continual Harness /refine; ACP JSON-RPC stdio (source: FAR_討論-1/2)",
+      "LongHorizon-Harness": "verified-task-state long-horizon loop: Manager -> fresh-context Executor -> read-only Auditor; v0.1.4 2026-08-11; macOS-first (source: FAR_討論-3/4)",
+      "AutoResearchClaw": "23-stage scientific research pipeline; Docker sandbox; claim verification; HITL; cost guardrails (source: FAR_討論-3/4)",
+      "ARIS": "markdown-only composable research skills (86 in catalog); executor + cross-model reviewer; no framework lock-in (source: FAR_討論-3/4 + pinned vendor)"
+     }
+    }
+   ],
+   "output": {
+    "topic": "governed autonomous research agent harnesses (Prime Agent / LongHorizon-Harness / AutoResearchClaw) related work",
+    "sources_used": "LOCAL (network DENY per WorkOrder; method source directive 'sources: local')",
+    "related_work_found": 4,
+    "summaries": {
+     "Prime Agent": "self-improving RLM coding/research harness (v0.7.2, 2026-08-11); persistent IPython kernel; recursive subagents; Continual Harness /refine; ACP JSON-RPC stdio (source: FAR_討論-1/2)",
+     "LongHorizon-Harness": "verified-task-state long-horizon loop: Manager -> fresh-context Executor -> read-only Auditor; v0.1.4 2026-08-11; macOS-first (source: FAR_討論-3/4)",
+     "AutoResearchClaw": "23-stage scientific research pipeline; Docker sandbox; claim verification; HITL; cost guardrails (source: FAR_討論-3/4)",
+     "ARIS": "markdown-only composable research skills (86 in catalog); executor + cross-model reviewer; no framework lock-in (source: FAR_討論-3/4 + pinned vendor)"
+    },
+    "key_insight": "The related-work corpus positions FAR as the governed aggregation: native Hermes/Codex baseline + ARIS method layer + conditional specialists (Prime/ARC) + method donors (LongHorizon/EvoAgentX), all under HGK WorkOrder truth"
+   },
+   "output_digest": "bdb47993d9d8412dddfd512f1526331252aea2fd574f7fb4cf5cdc256ebecb96"
+  },
+  {
+   "method": "novelty-check",
+   "pinned_commit": "e12e07c7b85ee1a4dc07e5463089aa16836af2bf",
+   "skill_sha256": "c512579faa065c7e886935d64c2d7d7c810cef8e8f5f6ff5cd902d6ab90e68af",
+   "input": "FAR landing recipe novelty screening",
+   "execution_trace": [
+    {
+     "step": "research-lit.survey_output",
+     "output_keys": [
+      "topic",
+      "sources_used",
+      "related_work_found",
+      "summaries",
+      "key_insight"
+     ]
+    }
+   ],
+   "output": {
+    "subject": "FAR landing recipe (shared-infra-team-implementation.md §1-12)",
+    "prior_art_denominator": 10,
+    "findings": [
+     {
+      "claim": "landing recipe exists in references",
+      "prior_art_hit": "shared-infra-team-implementation.md (same-class sibling; NOT novel as a file)",
+      "verdict": "NOT_NOVEL_AS_FILE_BUT_UNIQUE_DELTAS_VERIFIED"
+     },
+     {
+      "claim": "WO batch admission via typed SharedSpine API",
+      "prior_art_hit": "shared-spine-admission.md (prior art, 2026-08-12)",
+      "verdict": "EXTENSION_VERIFIED (per-blueprint-batch 8-WO pattern + superseding EVD row semantics)"
+     },
+     {
+      "claim": "CAPC NEW_IMPLEMENTATION generator + unblock list",
+      "prior_art_hit": "capc-contract-building.md (prior art)",
+      "verdict": "EXTENSION_VERIFIED (duplication-ratio + hash + compile chain)"
+     },
+     {
+      "claim": "first-use dogfood / self-upgrade convention",
+      "prior_art_hit": "none found in 9 references",
+      "verdict": "NOVEL (unique delta; challenge-verified)"
+     }
+    ],
+    "novel_delta": "§10 dogfood/self-upgrade convention (verified NOVEL)"
+   },
+   "output_digest": "c9aaa93cb9e9fc12c8a9f33b0167821defeeae4249be505b10571c8e1a970900"
+  }
+ ],
+ "no_meta_apply_authority_import": true,
+ "reviewer_not_ao": true,
+ "network_boundary": "DENY (local sources only per WorkOrder)",
+ "no_fake_invocation": true,
+ "generated_at_utc": "2026-08-13T12:06:08Z"
+}

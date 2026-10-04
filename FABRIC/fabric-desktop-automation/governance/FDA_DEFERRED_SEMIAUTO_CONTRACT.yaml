@@ -1,0 +1,74 @@
+# FDA Deferred SQS/XQ Semi-Auto Consumer Safety Contract
+schema: FDA-DEFERRED-SEMIAUTO-CONTRACT/1
+disposition: DEFERRED_COMPATIBILITY_CONTRACT (NOT a current live permission)
+current_runtime_authority:
+  SQS_LIVE_TRADING: NOT_AUTHORIZED
+  FDA_V1: "LOCAL / PAPER / SHADOW / NO-LIVE-WRITE"
+source_lineage: FDA討論-3 (frozen XScript mechanical execution; Hermes/LLM/Codex NOT in active-position decision loop)
+
+phase_boundary:
+  PRE_POSITION:
+    fda_eligible:
+      - deploy validated XScript
+      - compile
+      - configure approved XQ/PAPER settings
+      - readback
+      - prepare arm surface
+  ENTRY:
+    - HUMAN_ENTRY_APPROVAL required; FDA/Hermes cannot approve on user's behalf
+  ACTIVE_POSITION:
+    owner: exact frozen XScript execution policy
+    not_in_decision_loop: [Hermes, Cua, UFO2, Codex]
+  POST_POSITION:
+    fda_sqs_eligible:
+      - readback
+      - export/log
+      - reconciliation
+      - journal/repair
+
+human_entry_approval_binding:
+  must_bind:
+    - script_digest
+    - FinancialSpec_or_approved_scenario_ref
+    - RiskAuthorization_ref
+    - instrument_or_symbol
+    - side
+    - account_profile_ref (non-secret)
+    - session_id_or_validity_interval
+    - max_initial_size
+    - max_total_size
+    - risk_ceiling
+    - scale_in_out_stop_take_profit_flatten_policy_refs
+  semantics: "approve exact frozen execution policy for this bounded position lifecycle - NOT LLM discretion"
+
+frozen_script_invariant:
+  rule: "script_digest_at_arm == script_digest_during_position"
+  drift_handling: "ARM_INVALIDATED; NO HOT PATCH TO ACTIVE POSITION; new script = next lifecycle only"
+  emergency_kill_flatten: "independent safety authority, NOT AI trading-logic mutation"
+
+position_independence_invariant:
+  rule: "Active-position deterministic risk management must NOT depend on Hermes/Cua/UFO2/LLM/Codex/MCP availability"
+
+paper_position_independence_canary:
+  required_for_claim: FDA_XQ_SEMIAUTO_COMPATIBILITY_PROVEN
+  canary_steps:
+    - "frozen XScript -> simulation trigger -> position-active simulation"
+    - "deliberately stop Hermes/Cua/UFO2"
+    - "XScript still executes scripted scale/stop/take-profit/flatten"
+    - "restart operator plane -> readback/reconcile"
+  canary_unavailable: "FDA_XQ_SEMIAUTO_COMPATIBILITY = UNVERIFIED (does NOT block FDA_PROFILE_TEAM_ACTIVE desktop infrastructure P0)"
+
+post_position_truth:
+  rule: "XQ UI screenshot != Financial Truth"
+  flow: "authorized XQ/broker facts + file-log output -> SQS validation -> execution reconciliation -> position/cash/PnL/journal truth per SQS authority"
+
+separate_authorization:
+  required_for: [live broker write, entry arm in real account, semi-auto production enablement]
+  route: "separate SQS ChangeSet + domain authority + risk + acceptance"
+  forbidden: "FDA must NOT open live write via profile permissions"
+
+current_status:
+  state: DEFERRED_CONTRACT_PRESENT
+  semiauto_compatibility_claim: NOT_CLAIMED
+  position_independence_canary: NOT_RUN (DEFERRED)
+  hot_patch_after_arm: FORBIDDEN

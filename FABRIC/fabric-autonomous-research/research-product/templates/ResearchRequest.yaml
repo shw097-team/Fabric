@@ -1,0 +1,17 @@
+# FAR artifact template: ResearchRequest
+# run_id: <FAR-run-id>
+# generated from RESEARCH_ARTIFACT_CONTRACTS.yaml (WO-FAR-002)
+
+schema: LOGICAL_FAR_RESEARCH_REQUEST_V1
+fields:
+  workorder_ref:
+    id: required
+    digest: required
+  decision_question: required
+  owner: required
+  task_class: required
+  source_requirements: []
+  freshness_requirement: required
+  budget_ref: required
+  security_boundary_ref: required
+  expected_decision_output: required

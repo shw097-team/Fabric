@@ -1,0 +1,37 @@
+{
+  "artifact_id": "RP002_CF1_INDEPENDENT_CHECKER",
+  "oracle": "EXTERNAL_FROZEN_BOOTSTRAP_ORACLE",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "id": "CF1I_MAKER_PASS",
+      "pass": true,
+      "detail": "10 checks"
+    },
+    {
+      "id": "CF1I_MCP_HANDSHAKE",
+      "pass": true,
+      "detail": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocolVersion\":\"2024-11-05\",\"capabilities\":{\"experimental\":{},\"prompts\":{\"listChang"
+    },
+    {
+      "id": "CF1I_NO_CONTEXTFORGE_CLAIM",
+      "pass": true,
+      "detail": "DEGRADED — not available offline; direct qualified Hermes lo"
+    },
+    {
+      "id": "CF1I_OTEL_DEFERRED",
+      "pass": true,
+      "detail": "DEFERRED_CONDITIONAL — no qualified OTel"
+    },
+    {
+      "id": "CF1I_OASF_NA",
+      "pass": true,
+      "detail": "N/A_WITH_UPSTREAM_LOCATOR — SDK absent; "
+    },
+    {
+      "id": "CF1I_MCP_SDK_INSTALLED",
+      "pass": true,
+      "detail": "1.28.1"
+    }
+  ]
+}

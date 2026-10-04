@@ -1,0 +1,71 @@
+{
+ "CANARY-H1": {
+  "scenario": "canonical DOC-A + memory summary of same DOC-A",
+  "retrieval_hits": 2,
+  "independent_origins": 1,
+  "independent_source_families": 2,
+  "duplicate_derivations": 1,
+  "status": "DERIVED_SAME_ORIGIN",
+  "pass": true
+ },
+ "CANARY-H2": {
+  "scenario": "real official web HIT via arXiv API (current network)",
+  "attempted": true,
+  "web_status": "OK",
+  "hit": true,
+  "official_primary_count": 1,
+  "sample": {
+   "fetch_url": "http://arxiv.org/abs/2206.03003v2",
+   "final_url": "http://arxiv.org/abs/2206.03003v2",
+   "redirect_chain": [],
+   "canonical_entry_url": "http://arxiv.org/abs/2206.03003v2",
+   "host": "export.arxiv.org",
+   "title": "Transformer-based Personalized Attention Mechanism for Medic",
+   "content_type_kind": "XML",
+   "content_complete": true,
+   "truncation_reason": "NONE",
+   "bytes_read": 9192,
+   "retrieved_at": "2026-08-13T17:47:28Z"
+  },
+  "claim_ledger_bound": true,
+  "pass": true
+ },
+ "CANARY-H3": {
+  "scenario": "normal HTML5 <!DOCTYPE html> must not be rejected",
+  "content_type_semantics": "HTML",
+  "doctype_rejected": false,
+  "pass": true
+ },
+ "CANARY-H4": {
+  "scenario": "redirects DISABLED entirely (EXT-FAR-TS-HARD-001): any redirect denied before protected access",
+  "targets": [
+   [
+    "https://evil.com/x",
+    "REJECTED"
+   ],
+   [
+    "https://10.0.0.5/x",
+    "REJECTED"
+   ],
+   [
+    "http://export.arxiv.org/x",
+    "REJECTED"
+   ],
+   [
+    "file:///etc/passwd",
+    "REJECTED"
+   ],
+   [
+    "https://export.arxiv.org/x2",
+    "REJECTED"
+   ]
+  ],
+  "no_real_private_probe": true,
+  "pass": true
+ },
+ "CANARY-H5": {
+  "scenario": "4+4 budget exhausted with DISPUTED claim",
+  "terminal": "RESEARCH_PARTIAL_BUDGET_EXHAUSTED",
+  "pass": true
+ }
+}

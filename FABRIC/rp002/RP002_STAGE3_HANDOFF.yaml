@@ -1,0 +1,17 @@
+schema: RP002-STAGE3-HANDOFF/1
+stage_from: RP002-STAGE-SQS
+stage_to: MASTER_R1_FINAL_REDUCER
+next_gate: null (stage complete)
+R1_receipt: SQS-THC/evidence/rp002/stage3/gates/R1_FINAL_RECEIPT.yaml
+final_SubjectAttestation: SQS-THC/evidence/rp002/stage3/gates/FINAL_SUBJECT_ATTESTATION.yaml
+final_EvidenceManifest: SQS-THC/evidence/rp002/stage3/gates/FINAL_EVIDENCE_MANIFEST.yaml
+final_PromotionTransaction: Fabric/rp002/RP002_PROMOTION_TRANSACTION.yaml
+final_package_manifest: SQS-THC/evidence/rp002/stage3/gates/FINAL_PACKAGE_MANIFEST.yaml
+package_exact_set_readback: true
+RP002_R1_EVIDENCE_FOR_EXTERNAL_REVIEW.md: SQS-THC/evidence/rp002/stage3/RP002_R1_EVIDENCE_FOR_EXTERNAL_REVIEW.md
+rollback_checkpoint: SQS-THC/evidence/rp002/stage3/gates/ROLLBACK_CHECKPOINT.yaml
+claim_ceiling: RP002_LOCAL_ACCEPTANCE_PASS (Master reducer only)
+master_digest: 3bc4ad6c4bfe028e3686484f452d5fd015536e5e18b19c10ac978b2203c2087a
+stage3_owner_digest: 02eda9b247f228a66e94e14db6ae8922b6c3733cb915aff2c05e6a43b7d30a32
+stage2_lineage: {seal: 12da14ac, handoff: 93a7da26, bundle: 104d4cf2}
+stage3_contract_sha256: ca6acc0f3cd8660f1efdc61c639d9e6029acf5cc3acbca5e476ab07f59a359f7

@@ -1,0 +1,52 @@
+{
+  "artifact_id": "RP002_D1_INDEPENDENT_CHECKER",
+  "oracle": "EXTERNAL_FROZEN_BOOTSTRAP_ORACLE",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "id": "D1I_FROZEN_18",
+      "pass": true,
+      "detail": "frozen=18"
+    },
+    {
+      "id": "D1I_NO_REQ_ORPHAN",
+      "pass": true,
+      "detail": "req_orphan=0"
+    },
+    {
+      "id": "D1I_NO_TASKSPEC_ORPHAN",
+      "pass": true,
+      "detail": "taskspec_orphan=0"
+    },
+    {
+      "id": "D1I_WO_ROLLBACK_BASEHEAD",
+      "pass": true,
+      "detail": "bad_wo=0"
+    },
+    {
+      "id": "D1I_EVIDENCE_REAL_SHA",
+      "pass": true,
+      "detail": "bad_ev=0"
+    },
+    {
+      "id": "D1I_EVIDENCE_BINDS_DESIGN",
+      "pass": true,
+      "detail": "9f12b05f9873ac24 vs 9f12b05f9873ac24"
+    },
+    {
+      "id": "D1I_DESIGN_DOC",
+      "pass": true,
+      "detail": "design doc present"
+    },
+    {
+      "id": "D1I_LEDGER_18",
+      "pass": true,
+      "detail": "ledger rows=18"
+    },
+    {
+      "id": "D1I_FREEZE_EVENTS",
+      "pass": true,
+      "detail": "freeze events=18"
+    }
+  ]
+}

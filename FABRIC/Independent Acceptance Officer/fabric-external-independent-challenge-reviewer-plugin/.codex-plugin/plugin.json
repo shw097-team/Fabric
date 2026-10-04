@@ -1,0 +1,19 @@
+{
+  "name": "fabric-external-independent-challenge-reviewer",
+  "version": "1.0.0",
+  "description": "Clean-room external challenge review for Fabric/HGK/Oracle candidates. Independently re-derive acceptance from frozen authority, exact candidate identity, raw evidence, tests, diffs, traces, and package readback without modifying the candidate.",
+  "keywords": ["fabric", "independent-review", "codex", "acceptance", "evidence", "oracle", "hg-kseos"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Fabric External Challenge Reviewer",
+    "shortDescription": "Independent clean-room challenge review for Fabric/HGK/Oracle",
+    "longDescription": "Reviews a frozen Fabric/HGK/Oracle candidate as an external challenger. Re-derives verdicts from source-backed acceptance predicates and raw evidence, searches for disconfirming evidence and correlated blind spots, and returns findings without patching the candidate or self-approving release.",
+    "developerName": "Local project",
+    "category": "Engineering",
+    "capabilities": ["Read"],
+    "defaultPrompt": [
+      "Use the Fabric External Challenge Reviewer to independently review this frozen RP-002 candidate and evidence pack. Do not trust existing PASS claims; re-derive the verdict from raw evidence.",
+      "Run a clean-room external challenge review on this Fabric/HGK/Oracle candidate. Treat maker and Internal Oracle conclusions as claims, not evidence."
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+ "schema": "FAR-HARDENING-SECURITY-CLOSURE/1",
+ "lane": "deleg_0620d9f1 (security checker + AO, read-only, 265.62s)",
+ "verdict": "SECURITY_VERDICT=PASS_WITH_LOW_INFO_FINDINGS (2 LOW / 3 INFO, none blocking) + ACCEPTANCE_OFFICER_VERDICT=PASS",
+ "findings": {
+  "FAR-SEC-01": "CLOSED — EXT-FAR-TS-HARD-001 repair applied: automatic redirects DISABLED (_NoRedirectHandler raises on any redirect); strict allowlist + pre-connect public-IP validation + no redirect chain (no DNS-rebinding window via redirect hops); FH-T013/T014 + CANARY-H4 re-verified",
+  "FAR-SEC-02": "CLOSED — 6to4/Teredo-embedded non-global IPv4 now denied (2002:7f00:1::1 -> DENY verified)",
+  "FAR-SEC-03": "CLOSED — non-443 HTTPS port denied (port 8443 -> False; 443 -> True verified)",
+  "FAR-SEC-04": "CLOSED_BY_DOCUMENTATION — 4096B DOCTYPE window is fast-path only; expat >=2.4 default protection verified (undefined entity / amplification factor breached -> ParseError, no fetch)",
+  "FAR-SEC-05": "CLOSED_BY_DOCUMENTATION — userinfo benign (internally constructed URLs; host allowlist enforced)",
+  "EXT-RE-2026-08-14-001": "CLOSED — nodeids digest prefix corrected to 626d6472 (authoritative digest recomputes)"
+ },
+ "verification": "103/103 tests OK; CANARY-H1..H5 ALL_PASS; EV-01 denominator 103 (nodeids digest 626d6472); post-fix re-run green",
+ "generated_at_utc": "2026-08-13T17:17:08Z"
+}

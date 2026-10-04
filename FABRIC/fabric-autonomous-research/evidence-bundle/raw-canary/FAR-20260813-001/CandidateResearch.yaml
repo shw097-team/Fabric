@@ -1,0 +1,15 @@
+schema: LOGICAL_FAR_CANDIDATE_RESEARCH_V1
+run_ref: FAR-20260813-001
+decision_question: 是否應將 ARIS 選定研究方法層導入 fabric-autonomous-research 作為 P0 方法來源，並將 Prime
+  Agent 定位為 CANDIDATE_STANDBY（本輪不啟用）？
+disposition: ADOPT_CANDIDATE (ARIS selected method pack) + PRIME_N/A_NOT_SELECTED_WITH_REASON
+evidence_digests:
+  synthesis: 88ef08fc014012322ff103c9bd0b40387af26a2cd7fdde31c237096ee82f420a
+  claims: c996162edf57053bc0748aa4b831c6751089718fe9d844ea34768842e32fc8ed
+confidence: HIGH (literature-level); runtime deep-qualification deferred
+limits:
+- Prime Windows ACP unverified
+- ARIS deep runtime unproven
+- external acceptance pending
+owner_action_required: 外部驗收官最終驗收（COV-11-06）
+status: CANDIDATE_ONLY

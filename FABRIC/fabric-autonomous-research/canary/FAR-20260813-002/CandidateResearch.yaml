@@ -1,0 +1,14 @@
+schema: LOGICAL_FAR_CANDIDATE_RESEARCH_V1
+run_ref: FAR-20260813-002
+decision_question: FAR 落地流程補進 skill references 是否有幫助？
+disposition: 'ADOPT_WITH_REVISION: MERGE dogfood/自升級慣例 into existing shared-infra-team-implementation.md
+  + DELETE duplicate draft (reuse-first; challenge lane finding DG01)'
+evidence_digests:
+  synthesis: 165e28381f78e5d009e23527175b4b52db9d4ff1fb40dbf5b8c85b0841f193c2
+  claims: 0676060ee33035984e9b9dc8dce1a193aceb90973d500432fbc149b3626650aa
+  disagreement: d4b66dde431de39bced6f41b859914d41dd9734b4bd4254c078d66f3fba38001
+confidence: HIGH
+limits:
+- patch 後需 skill_view 驗證
+owner_action_required: user 已授權 patch
+status: CANDIDATE_ONLY

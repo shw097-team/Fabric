@@ -1,0 +1,23 @@
+schema: RP002-STACK-MANIFEST/1
+stack_id: HGK_ENGINEERING
+profiles:
+  - hgk-orchestrator
+  - hgk-knowledge-factory
+  - hgk-document-factory
+  - hgk-coding-factory
+authority_domain: [SOFTWARE_ENGINEERING, AGENTIC_ENGINEERING_GOVERNANCE]
+services: [source_ledger, evidence_store, knowledge_fts]
+knowledge_namespace:
+  read: ["hgk.*", "shared.*"]
+  write: ["hgk.*"]
+  promote: ["hgk.*"]
+runtime: {engine: hermes, coordination: kanban, board_policy: project_scoped}
+acceptance: {oracle_profile: construction-acceptance-oracle}
+inherited_capabilities:
+  codex: {owner_profile: hgk-coding-factory, rule: PRESERVE_CURRENT_CERTIFIED_ROUTE_OR_REQUALIFY}
+  opencodex_opencode_provider: {owner_profile: hgk-coding-factory, rule: NO_SILENT_FALLBACK}
+  openspec: {state: CERTIFIED_ACTIVE_BROWNFIELD, owner_profile: hgk-coding-factory, rule: NO_SILENT_FALLBACK}
+  gstack: {state: CERTIFIED_SELECTED_SLICES, authority: ADVISORY_NOT_REDUCER}
+  spec_kit: {state: INHERITED_STANDBY_XOR, rule: NO_DUAL_SPEC_OWNER}
+  governed_evolution: {state: INHERITED_REQUIRED}
+  independent_checker_reducers: {state: INHERITED_REQUIRED_FINAL_AUTHORITY}

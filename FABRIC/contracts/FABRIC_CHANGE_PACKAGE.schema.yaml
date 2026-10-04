@@ -1,0 +1,25 @@
+# Fabric Change Package — thin artifact-graph pattern (OpenSpec semantics borrowed, not authority)
+schema: FABRIC-CHANGE-PACKAGE/1
+stage_id: RP002-STAGE-FABRIC
+master_sha256: "3bc4ad6c4bfe028e3686484f452d5fd015536e5e18b19c10ac978b2203c2087a"
+norm_source_keys: [DISCUSSION-8, OPENSPEC-ARTIFACT-GRAPH-ONLY]
+source_locators: ["RP-002_v2.0_Master_Blueprint_2026-08-12_r2.md + RP-002_v2.0_STAGE-1_FABRIC-FOUNDATION_子藍圖_2026-08-12_r2.md"]
+semantic_delta: POST_R3_EXTEND
+change_id: string
+intent_ref: string
+authority_ref: string
+change_class: string
+subject_before: sha256
+target_outcome: string
+non_goals: []
+risk_class: string
+scope:
+  read: []
+  write: []
+  forbidden: []
+acceptance_refs: []
+rollback_ref: string
+evidence_contract_ref: string
+downstream_method:
+  preferred: OPENSPEC_WHEN_CURRENTLY_QUALIFIED
+  stage1_execution: false

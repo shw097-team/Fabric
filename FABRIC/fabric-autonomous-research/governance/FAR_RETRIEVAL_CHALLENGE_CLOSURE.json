@@ -1,0 +1,27 @@
+{
+  "schema": "FAR-CHALLENGE-CLOSURE-RETRIEVAL/1",
+  "lane": "deleg_410aa410 (adversarial, read-only, 310.53s)",
+  "verdict": "ACCEPT_WITH_FIXES",
+  "findings_total": 14,
+  "findings_major": 8,
+  "findings_info": 6,
+  "critical": 0,
+  "disposition": {
+    "FAR-RET-01": "CLOSED — host allowlist exact match (host == root or endswith .root)",
+    "FAR-RET-02": "CLOSED — https for arXiv API",
+    "FAR-RET-03": "CLOSED — DOCTYPE/ENTITY rejected before ET.fromstring",
+    "FAR-RET-04": "CLOSED — spine DB read-only open (file:...?mode=ro) + existence check (no file creation)",
+    "FAR-RET-05": "CLOSED — web score max(1, 10-index) (no negatives)",
+    "FAR-RET-06": "CLOSED — CJK tokens included in query; graceful ascii-only fallback on CJK query failure (honest degradation, no silent fake); tri_source_confirmed requires real web rows + OK status",
+    "FAR-RET-07": "CLOSED — FTS LIMIT 500 / LIKE LIMIT 200",
+    "FAR-RET-08": "CLOSED — trivial tokens (len<2 / all-digit) filtered from cross-reference terms",
+    "FAR-RET-09": "CLOSED — early-stop sort adds source_id tiebreak",
+    "FAR-RET-10": "CLOSED — off-by-one fixed (>= max_files)",
+    "FAR-RET-11": "NOTED — last_web_status module global documented (single-threaded stage usage)",
+    "FAR-RET-12": "CLOSED — memory error returns [] (no non-schema key injection)",
+    "FAR-RET-13": "NOTED — seen_urls harmless (single-root usage)",
+    "FAR-RET-14": "NOTED — substring token match documented deterministic behavior"
+  },
+  "verification": "37/37 unit tests OK (incl. 4 new security tests: DOCTYPE rejection, exact-host allowlist, https URL, trivial-token filter); canary FAR-20260813-003 regenerated with fixed module: KB 6 + MEM 6 + WEB 6 (real arXiv GET), web_status OK, cross_reference 106, tri_source_confirmed True",
+  "generated_at_utc": "2026-08-13T15:15:00Z"
+}

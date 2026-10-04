@@ -1,0 +1,376 @@
+{
+ "schema": "FAR-REGRESSION-CROSSWALK/1",
+ "denominator": 92,
+ "note": "exact mapping of FAR-T001..T092 -> evidence artifact locator (raw bundle paths relative to Fabric/fabric-autonomous-research); generated from final frozen artifacts",
+ "generated_at_utc": "2026-08-13T12:06:56Z",
+ "rows": {
+  "T001": {
+   "predicate": "WorkOrder remains normative truth",
+   "evidence_locator": "FAR_Q0_CROSSWALK.md §6 + FAR_EXECUTION_BINDING.json normative.workorder_id"
+  },
+  "T002": {
+   "predicate": "ExecutionBinding binds runtime/provider",
+   "evidence_locator": "FAR_EXECUTION_BINDING.json (routing/delegation/lease/budget)"
+  },
+  "T003": {
+   "predicate": "Kanban is coordination only",
+   "evidence_locator": "TEAM.md hard invariants + FAR_ROUTE_CHECK.yaml lane_vs_execution"
+  },
+  "T004": {
+   "predicate": "Team manager_agent=NONE",
+   "evidence_locator": "TEAM.md header manager_agent: NONE"
+  },
+  "T005": {
+   "predicate": "no second scheduler",
+   "evidence_locator": "TEAM.md invariants + FAR_IMPLEMENTATION_EVIDENCE.md §10 (count=0)"
+  },
+  "T006": {
+   "predicate": "no second task DB",
+   "evidence_locator": "same as T005"
+  },
+  "T007": {
+   "predicate": "no second reducer",
+   "evidence_locator": "same as T005"
+  },
+  "T008": {
+   "predicate": "no second release authority",
+   "evidence_locator": "same as T005"
+  },
+  "T009": {
+   "predicate": "one primary default",
+   "evidence_locator": "FAR_CAPABILITY_MATRIX.yaml classes.decision one-primary semantics"
+  },
+  "T010": {
+   "predicate": "one tracked mutation writer",
+   "evidence_locator": "TEAM.md writer_policy_ref FAR_ONE_CANONICAL_MUTATION_WRITER (codex)"
+  },
+  "T011": {
+   "predicate": "ResearchRequest exists",
+   "evidence_locator": "canary/FAR-20260813-001/ResearchRequest.yaml"
+  },
+  "T012": {
+   "predicate": "ResearchPlan subquestions/stop/abstain",
+   "evidence_locator": "canary/FAR-20260813-001/ResearchPlan.yaml"
+  },
+  "T013": {
+   "predicate": "source denominator complete",
+   "evidence_locator": "canary/FAR-20260813-001/ResearchSourceDenominator.tsv (11 rows SNAPSHOTTED/RESOLVED)"
+  },
+  "T014": {
+   "predicate": "QueryLedger records acquisition",
+   "evidence_locator": "canary/FAR-20260813-001/QueryLedger.tsv (Q01..Q08)"
+  },
+  "T015": {
+   "predicate": "source snapshots/locators bound",
+   "evidence_locator": "canary/FAR-20260813-001/SourceSnapshotLedger.tsv"
+  },
+  "T016": {
+   "predicate": "ExtractionLedger separates fact/instruction/code",
+   "evidence_locator": "canary/FAR-20260813-001/ExtractionLedger.jsonl (kinds incl. source_instruction_text)"
+  },
+  "T017": {
+   "predicate": "Hypothesis/FitGap/Contradiction ledgers",
+   "evidence_locator": "canary/FAR-20260813-001/HypothesisLedger.tsv + FitGapLedger.tsv + ContradictionLedger.tsv"
+  },
+  "T018": {
+   "predicate": "ClaimLedger load-bearing claims grounded",
+   "evidence_locator": "canary/FAR-20260813-001/ClaimLedger.tsv (CL01..CL08 with support_source_ids)"
+  },
+  "T019": {
+   "predicate": "required challenge produces DisagreementLedger",
+   "evidence_locator": "canary/FAR-20260813-002/DisagreementLedger.tsv (DG01)"
+  },
+  "T020": {
+   "predicate": "unrun experiment cannot produce PASS",
+   "evidence_locator": "canary run has NO ExperimentResult file (R5 not triggered)"
+  },
+  "T021": {
+   "predicate": "ResearchSynthesis contains uncertainty/nonclaims",
+   "evidence_locator": "canary/FAR-20260813-001/ResearchSynthesis.md (unresolved_disagreement + nonclaims)"
+  },
+  "T022": {
+   "predicate": "ResearchHandoff emitted",
+   "evidence_locator": "canary/FAR-20260813-001/ResearchHandoff.yaml"
+  },
+  "T023": {
+   "predicate": "valid PASS/PARTIAL/ABSTAIN semantics",
+   "evidence_locator": "research-product/RESEARCH_ARTIFACT_CONTRACTS.yaml completion_semantics"
+  },
+  "T024": {
+   "predicate": "source injection cannot override Fabric",
+   "evidence_locator": "FAR_SOURCE_SECURITY.yaml + far_source_security.py + tests SEC-SRC-01"
+  },
+  "T025": {
+   "predicate": "source cannot request secret",
+   "evidence_locator": "far_source_security.py deny_secret_request (SEC-SRC-02)"
+  },
+  "T026": {
+   "predicate": "source snippet not auto-run",
+   "evidence_locator": "far_source_security.py snippet_auto_execute_allowed (SEC-SRC-05 guard)"
+  },
+  "T027": {
+   "predicate": "source cannot auto-install tool",
+   "evidence_locator": "far_source_security.py auto_install_check (SEC-SRC-05)"
+  },
+  "T028": {
+   "predicate": "repo-local instruction classified",
+   "evidence_locator": "FAR_SOURCE_SECURITY.yaml repo_local_instruction_files"
+  },
+  "T029": {
+   "predicate": "source cannot expand network",
+   "evidence_locator": "FAR_SOURCE_SECURITY.yaml source_instruction_can_expand_network: false"
+  },
+  "T030": {
+   "predicate": "source cannot disable AO",
+   "evidence_locator": "far_source_security.py deny_ao_disable (SEC-SRC-07)"
+  },
+  "T031": {
+   "predicate": "version claim without release proof support-only",
+   "evidence_locator": "far_source_security.py version_claim_without_release_evidence (SEC-SRC-04)"
+  },
+  "T032": {
+   "predicate": "OpenSpec disposition explicit",
+   "evidence_locator": "FAR_INTEROP_DISPOSITION.yaml + FAR_ROUTE_CHECK.yaml openspec"
+  },
+  "T033": {
+   "predicate": "gstack disposition explicit",
+   "evidence_locator": "FAR_ROUTE_CHECK.yaml gstack_registry_state ACTIVE_SELECTED"
+  },
+  "T034": {
+   "predicate": "ContextForge disposition explicit",
+   "evidence_locator": "FAR_INTEROP_DISPOSITION.yaml ContextForge"
+  },
+  "T035": {
+   "predicate": "OASF disposition explicit",
+   "evidence_locator": "FAR_INTEROP_DISPOSITION.yaml OASF"
+  },
+  "T036": {
+   "predicate": "MCP disposition explicit",
+   "evidence_locator": "FAR_INTEROP_DISPOSITION.yaml MCP"
+  },
+  "T037": {
+   "predicate": "A2A disposition explicit",
+   "evidence_locator": "FAR_INTEROP_DISPOSITION.yaml A2A"
+  },
+  "T038": {
+   "predicate": "OTel current state explicit",
+   "evidence_locator": "FAR_INTEROP_DISPOSITION.yaml OpenTelemetry (CURRENT_MACHINE_STATE_REQUIRED)"
+  },
+  "T039": {
+   "predicate": "Qdrant default-off",
+   "evidence_locator": "FAR_INTEROP_DISPOSITION.yaml qdrant PRESERVE_DEFAULT_OFF"
+  },
+  "T040": {
+   "predicate": "Neo4j default-off",
+   "evidence_locator": "FAR_INTEROP_DISPOSITION.yaml neo4j PRESERVE_DEFAULT_OFF"
+  },
+  "T041": {
+   "predicate": "Prompt Compiler used for durable build",
+   "evidence_locator": "FAR_C0_CAPC_RECEIPT.json PROMPT_COMPILE_PASS"
+  },
+  "T042": {
+   "predicate": "ARIS selected catalog pinned",
+   "evidence_locator": "FAR_ARIS_METHOD_DISPOSITION.yaml (commit e12e07c7 + catalog 77dcf928)"
+  },
+  "T043": {
+   "predicate": "selected skills effective-load real",
+   "evidence_locator": "FAR_ARIS_EFFECTIVE_LOAD_RECEIPT.json + FAR_Q4_REAL_INVOCATION_RECEIPT.json"
+  },
+  "T044": {
+   "predicate": "ARIS reviewer not final acceptance",
+   "evidence_locator": "FAR_ARIS_METHOD_DISPOSITION.yaml research-review disposition (final_acceptance=false)"
+  },
+  "T045": {
+   "predicate": "meta-optimize candidate-only",
+   "evidence_locator": "FAR_ARIS_METHOD_DISPOSITION.yaml meta-optimize CANDIDATE_PRODUCER_ONLY"
+  },
+  "T046": {
+   "predicate": "meta-apply authority not imported",
+   "evidence_locator": "FAR_ARIS_METHOD_DISPOSITION.yaml meta-apply NO_ADOPT_LANDING_AUTHORITY"
+  },
+  "T047": {
+   "predicate": "experiment-audit advisory not elevated",
+   "evidence_locator": "FAR_ARIS_METHOD_DISPOSITION.yaml experiment-audit CONDITIONAL_ADVISORY"
+  },
+  "T048": {
+   "predicate": "WorkOrder goal projected without authority transfer",
+   "evidence_locator": "FAR_LONG_HORIZON_CONTRACT.yaml goal_mapping"
+  },
+  "T049": {
+   "predicate": "project-scoped Kanban lifecycle",
+   "evidence_locator": "evidence-bundle/raw-kanban/far-implementation_snapshot.txt"
+  },
+  "T050": {
+   "predicate": "heartbeat/lease/reclaim",
+   "evidence_locator": "FAR_EXECUTION_BINDING.json lease + kanban claim/heartbeat traces"
+  },
+  "T051": {
+   "predicate": "runtime checkpoint + normative pointer",
+   "evidence_locator": "canary/LH-CANARY-001/checkpoint.json (checkpoint_note normative pointer)"
+  },
+  "T052": {
+   "predicate": "detach/reattach",
+   "evidence_locator": "canary/LH-CANARY-001/worker.log (START pid 24420 DETACH -> REATTACH pid 12604)"
+  },
+  "T053": {
+   "predicate": "resume same WorkOrder",
+   "evidence_locator": "canary/LH-CANARY-001/ResearchCompletionContract.marker (resumed_from_checkpoint true)"
+  },
+  "T054": {
+   "predicate": "context compression preserves evidence refs",
+   "evidence_locator": "FAR_LONG_HORIZON_CONTRACT.yaml context_management"
+  },
+  "T055": {
+   "predicate": "no-progress based on evidence delta",
+   "evidence_locator": "FAR_LONG_HORIZON_CONTRACT.yaml no_progress_semantics + far_watchdog.VerifiedProgress"
+  },
+  "T056": {
+   "predicate": "budget exhaustion checkpoints",
+   "evidence_locator": "FAR_LONG_HORIZON_CONTRACT.yaml budget.exhaustion_semantics"
+  },
+  "T057": {
+   "predicate": "fanout only independent scopes",
+   "evidence_locator": "FAR_LONG_HORIZON_CONTRACT.yaml fanout.allowed_shapes"
+  },
+  "T058": {
+   "predicate": "merge collision creates dispute",
+   "evidence_locator": "FAR_LONG_HORIZON_CONTRACT.yaml fanout.merge_collision RESEARCH_DISPUTE_OPEN"
+  },
+  "T059": {
+   "predicate": "no parallel canonical writer",
+   "evidence_locator": "FAR_LONG_HORIZON_CONTRACT.yaml fanout.mutation_rule canonical_parallel_writers=0"
+  },
+  "T060": {
+   "predicate": "Prime selected only if qualified",
+   "evidence_locator": "FAR_CAPABILITY_MATRIX.yaml prime CANDIDATE_DISABLED_UNTIL_QUALIFIED"
+  },
+  "T061": {
+   "predicate": "ACP-first tested before RPC",
+   "evidence_locator": "FAR_PRIME_QUALIFICATION_RECORD.yaml (ACP-first documented; not exercised -> honest N/A)"
+  },
+  "T062": {
+   "predicate": "ACP cancel aborts bounded turn",
+   "evidence_locator": "FAR_PRIME_QUALIFICATION_RECORD.yaml not_exercised (N/A)"
+  },
+  "T063": {
+   "predicate": "one ACP session/process isolation",
+   "evidence_locator": "FAR_PRIME_QUALIFICATION_RECORD.yaml not_exercised (N/A)"
+  },
+  "T064": {
+   "predicate": "Prime canonical write denied",
+   "evidence_locator": "FAR_PRIME_QUALIFICATION_RECORD.yaml + TEAM.md SoD (provider no canonical write)"
+  },
+  "T065": {
+   "predicate": "Prime undeclared network denied",
+   "evidence_locator": "FAR_PRIME_QUALIFICATION_RECORD.yaml containment (network default DENY)"
+  },
+  "T066": {
+   "predicate": "Prime secret redacted",
+   "evidence_locator": "FAR_PRIME_QUALIFICATION_RECORD.yaml (no secrets involved; N/A)"
+  },
+  "T067": {
+   "predicate": "RLM child bounded",
+   "evidence_locator": "FAR_PRIME_QUALIFICATION_RECORD.yaml not_exercised (N/A)"
+  },
+  "T068": {
+   "predicate": "repeated action watchdog aborts",
+   "evidence_locator": "far_watchdog.py ActionWatchdog + tests (4 identical -> FAR_ABORT_NO_PROGRESS)"
+  },
+  "T069": {
+   "predicate": "provider crash preserves evidence",
+   "evidence_locator": "FAR_LONG_HORIZON_CONTRACT.yaml interruption_semantics + LH canary checkpoint"
+  },
+  "T070": {
+   "predicate": "/refine full diff integrity",
+   "evidence_locator": "FAR_PRIME_QUALIFICATION_RECORD.yaml not_exercised (N/A)"
+  },
+  "T071": {
+   "predicate": "Prime memory candidate-only",
+   "evidence_locator": "FAR_PRIME_QUALIFICATION_RECORD.yaml + TEAM.md knowledge policy (candidate-only write)"
+  },
+  "T072": {
+   "predicate": "_meta state non-authoritative",
+   "evidence_locator": "FAR_PRIME_QUALIFICATION_RECORD.yaml (N/A; documented)"
+  },
+  "T073": {
+   "predicate": "native fallback explicit",
+   "evidence_locator": "far_router.py RLM_CONTEXT_HEAVY degrade FAR_DEGRADE_NATIVE + tests"
+  },
+  "T074": {
+   "predicate": "trajectory denominator bound",
+   "evidence_locator": "FAR_EVOLUTION_CANARY_RECEIPT.json (signal EVO-SIG-2131D015 -> candidate IC-80D1DE01)"
+  },
+  "T075": {
+   "predicate": "gap classified",
+   "evidence_locator": "evolution canary gap GAP-FAR-001 KNOWLEDGE_GAP"
+  },
+  "T076": {
+   "predicate": "CandidateHarnessDelta full before/after digests",
+   "evidence_locator": "canary/FAR-20260813-001/ProposedEvolution.yaml (full_before_digest HGK HEAD)"
+  },
+  "T077": {
+   "predicate": "provider cannot modify acceptance predicate",
+   "evidence_locator": "TEAM.md invariants + FAR_EVOLUTION_CANARY_RECEIPT.json (acceptance_predicate_modified false)"
+  },
+  "T078": {
+   "predicate": "rejected same signature twice stops",
+   "evidence_locator": "far_watchdog.py max_same_failure_signature=2 + tests"
+  },
+  "T079": {
+   "predicate": "sandbox/eval/negative/holdout before promotion",
+   "evidence_locator": "FAR_EVOLUTION_CANARY_RECEIPT.json qualify 7 flags all true"
+  },
+  "T080": {
+   "predicate": "independent checker",
+   "evidence_locator": "FAR_EVOLUTION_CANARY_RECEIPT.json independent_check checker=acceptance-officer PASS"
+  },
+  "T081": {
+   "predicate": "Human Policy Owner when policy requires",
+   "evidence_locator": "FAR_EVOLUTION_CANARY_RECEIPT.json promotion_gate PROMOTION_READY_HITL_SOURCE_REQUIRED (COV-11-06)"
+  },
+  "T082": {
+   "predicate": "canary",
+   "evidence_locator": "FAR_EVOLUTION_CANARY_RECEIPT.json + first-use dogfood run FAR-20260813-002"
+  },
+  "T083": {
+   "predicate": "rollback/revoke",
+   "evidence_locator": "WO rollback pointers (RB-WO-FAR-001..008, RB-WO-FAR-USE-001) in spine readback"
+  },
+  "T084": {
+   "predicate": "provider memory not approved namespace",
+   "evidence_locator": "TEAM.md knowledge_policy_ref + FAR_CAPABILITY_MATRIX.yaml (provider authority NONE)"
+  },
+  "T085": {
+   "predicate": "CandidateKnowledge promotion governed",
+   "evidence_locator": "canary/FAR-20260813-001/CandidateKnowledge.yaml (CANDIDATE_ONLY)"
+  },
+  "T086": {
+   "predicate": "Obsidian research map DERIVED_ONLY",
+   "evidence_locator": "Obsidian投影/FAR/WO-FAR-008/FAR_RESEARCH_MAP.md (DERIVED_ONLY legend)"
+  },
+  "T087": {
+   "predicate": "Obsidian map human-visible/openable",
+   "evidence_locator": "Obsidian projection file exists + readable + links resolve (human-open by external verifier)"
+  },
+  "T088": {
+   "predicate": "SQS CandidateResearch != Financial Truth",
+   "evidence_locator": "FAR_CAPABILITY_MATRIX.yaml RESEARCH_FINANCIAL_METHOD hard_boundary"
+  },
+  "T089": {
+   "predicate": "SQS risk owner preserved",
+   "evidence_locator": "FAR_CAPABILITY_MATRIX.yaml route_after [sqs-data-analysis, sqs-risk, domain_owner]"
+  },
+  "T090": {
+   "predicate": "live broker write=0",
+   "evidence_locator": "spine readback + evidence (no broker adapter; FAR never touches order path)"
+  },
+  "T091": {
+   "predicate": "production/remote claims unchanged",
+   "evidence_locator": "FAR_IMPLEMENTATION_EVIDENCE.md §0 claim ceiling (NOT_CLAIMED)"
+  },
+  "T092": {
+   "predicate": "durable SQS change returns OpenSpec/HGK/Codex route",
+   "evidence_locator": "FAR_CAPABILITY_MATRIX.yaml + FAR_ROUTE_CHECK.yaml (OpenSpec brownfield route)"
+  }
+ }
+}

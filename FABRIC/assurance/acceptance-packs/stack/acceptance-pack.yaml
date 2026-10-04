@@ -1,0 +1,11 @@
+{
+  "schema": "RP002-ACCEPTANCE-PACK/1",
+  "pack": "stack",
+  "subject": "HGK_STACK_MANIFEST.yaml",
+  "checks": [
+    "read != candidate_write != canonical_promote",
+    "5 P0 profiles exact",
+    "checker routing"
+  ],
+  "materialized_at": "2026-08-12T22:50:00+08:00"
+}

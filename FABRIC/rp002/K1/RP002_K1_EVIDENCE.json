@@ -1,0 +1,141 @@
+{
+  "artifact_id": "RP002_K1_EVIDENCE",
+  "project_id": "HGK-REFERENCE-PROJECT-002",
+  "generated_at_utc": "2026-08-11T15:54:39.225353+00:00",
+  "oracle": "EXTERNAL_FROZEN_BOOTSTRAP_ORACLE",
+  "gate": "K1",
+  "maker_or_checker": "MAKER",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "id": "K1_CORPUS_TOTAL",
+      "pass": true,
+      "detail": "total=4717"
+    },
+    {
+      "id": "K1_STATUS_STATES_COVERED",
+      "pass": true,
+      "detail": "{'CURRENT': 2992, 'SUPERSEDED': 31, 'CONDITIONAL': 1694, 'REJECTED': 0, 'DEFERRED': 0}"
+    },
+    {
+      "id": "K1_NO_REJECTED_DEFERRED_UNEXPLAINED",
+      "pass": true,
+      "detail": "all files are technical transcript sources; none rejected/deferred at this pass"
+    },
+    {
+      "id": "K1_EXACT_DUP_MARKED",
+      "pass": true,
+      "detail": "dup=1694"
+    },
+    {
+      "id": "K1_DEDUP_TSV_ROWS",
+      "pass": true,
+      "detail": "dedup tsv row parity"
+    },
+    {
+      "id": "K1_CLASSIFICATION_ROWS",
+      "pass": true,
+      "detail": "classification tsv row parity"
+    },
+    {
+      "id": "K1_NORMS_SOURCE_BOUND",
+      "pass": true,
+      "detail": "norms=13"
+    },
+    {
+      "id": "K1_REQ_LEDGER_18",
+      "pass": true,
+      "detail": "ledger=18"
+    },
+    {
+      "id": "K1_UNSUPPORTED_NORM_ZERO",
+      "pass": true,
+      "detail": "unsupported norm=0"
+    },
+    {
+      "id": "K1_CONFLICT_ZERO",
+      "pass": true,
+      "detail": "same-rank conflict=0"
+    },
+    {
+      "id": "K1_OBLIGATIONS_ALL_SATISFIED",
+      "pass": true,
+      "detail": "6/6"
+    }
+  ],
+  "artifacts": {
+    "governance": {
+      "path": "C:\\Projects\\Agent_Workspace\\Fabric\\rp002\\K1\\RP002_K1_CORPUS_GOVERNANCE.json",
+      "sha256": "cfa3893bded29fa2185d8e5733a982798ff0d399ec94bd24c26cc82c75aa0942",
+      "bytes": 2499
+    },
+    "dedup_tsv": {
+      "path": "C:\\Projects\\Agent_Workspace\\Fabric\\rp002\\K1\\RP002_K1_CORPUS_DEDUP.tsv",
+      "sha256": "b36b4bfe46420d1e5f4a779f610c4e891fce26b860acedc46cdcd9b1643f12c4",
+      "bytes": 1358033
+    },
+    "classification_tsv": {
+      "path": "C:\\Projects\\Agent_Workspace\\Fabric\\rp002\\K1\\RP002_K1_SOURCE_CLASSIFICATION.tsv",
+      "sha256": "5d5ef3ec0a85ba18ce5d05040176740f17532d8b182fbf3436344f768f13dde0",
+      "bytes": 2801245
+    },
+    "family_summary": {
+      "path": "C:\\Projects\\Agent_Workspace\\Fabric\\rp002\\K1\\RP002_K1_FAMILY_SUMMARY.json",
+      "sha256": "2f690f591885b2f2d9af207fd09d0e4a48ffed8aab8558c8212d3cf1ed51acc9",
+      "bytes": 1351
+    },
+    "distillation": {
+      "path": "C:\\Projects\\Agent_Workspace\\Fabric\\rp002\\K1\\RP002_K1_DISTILLATION.json",
+      "sha256": "533e35ba58a55ce8e677f6e668e675ab2455c37eebbf30d9f3e1dbbab3008d1d",
+      "bytes": 24492
+    },
+    "crosswalk_tsv": {
+      "path": "C:\\Projects\\Agent_Workspace\\Fabric\\rp002\\K1\\RP002_K1_SOURCE_REQUIREMENT_CROSSWALK.tsv",
+      "sha256": "6b3e1f5f8abacb3a7d71f6ca8d4b35a333e4f7cd7918f9dde0d945e9cfd9bd2a",
+      "bytes": 6587
+    },
+    "obligations": {
+      "path": "C:\\Projects\\Agent_Workspace\\Fabric\\rp002\\K1\\RP002_K1_ACCEPTANCE_OBLIGATIONS.json",
+      "sha256": "4ba9f5e93f14d44aa78f7f1c33ac0ecbc525ceaf6548831f0c98f7cd745dc77a",
+      "bytes": 1028
+    }
+  },
+  "oss_reuse_matrix": [
+    {
+      "tool": "Hermes runtime",
+      "state": "REQUIRED_P0",
+      "source": "tool matrix + corpus family HERMES (3604 files)"
+    },
+    {
+      "tool": "OpenSpec",
+      "state": "INHERITED_CERTIFIED_ACTIVE_BROWNFIELD",
+      "source": "tool matrix + corpus family OPENSPEC (100 files)"
+    },
+    {
+      "tool": "gstack",
+      "state": "INHERITED_CERTIFIED_SELECTED_SLICES",
+      "source": "tool matrix + corpus family GSTACK"
+    },
+    {
+      "tool": "Spec Kit",
+      "state": "INHERITED_STANDBY_XOR",
+      "source": "tool matrix + corpus family SPEC_KIT (23 files)"
+    },
+    {
+      "tool": "Codex CLI",
+      "state": "INHERITED_REQUIRED",
+      "source": "tool matrix + corpus family CODEX (147 files)"
+    },
+    {
+      "tool": "ContextForge",
+      "state": "ADOPT_CANDIDATE_P0",
+      "source": "tool matrix (CF1 to qualify)"
+    },
+    {
+      "tool": "OASF",
+      "state": "ADOPT_SCHEMA_P0",
+      "source": "tool matrix (CF1 to validate)"
+    }
+  ],
+  "claim_ceiling": "corpus content is SUPPORT/DATA; distilled norms require HGK/SQS authority admission before use"
+}

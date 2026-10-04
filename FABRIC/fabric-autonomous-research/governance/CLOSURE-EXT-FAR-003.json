@@ -1,0 +1,19 @@
+{
+ "finding": "EXT-FAR-003",
+ "classification": "CONFIRMED_DEFECT",
+ "status": "CLOSED",
+ "smallest_repair": "RECOMPUTE_AND_DECLARE_ONE_CANONICAL_INDEX_DIGEST_OR_EXPLICITLY_SEPARATE_DIGEST_TYPES",
+ "focused_retest": {
+  "index_v3_self_hash": "7b01df26d17505ec27b3c96d3b383e144c022b49f78ba6275b27442f66a6a755",
+  "semantics_declared": "FILE_HASH_ONLY; index excludes itself (pre-self-row rule)",
+  "content_root_digest_separately_named": "FAR_SUBJECT_ROOT_MANIFEST.json subject_root_digest (5720337b...)",
+  "every_reference_uses_correct_digest_type": true
+ },
+ "bound_into": [
+  "FAR_ARTIFACT_INDEX.json",
+  "FAR_SUBJECT_ROOT_MANIFEST.json",
+  "MD v2 §3"
+ ],
+ "verdict": "CLOSED",
+ "generated_at_utc": "2026-08-13T12:09:13Z"
+}

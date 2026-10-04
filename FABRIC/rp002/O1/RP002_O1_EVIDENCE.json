@@ -1,0 +1,76 @@
+{
+  "artifact_id": "RP002_O1_EVIDENCE",
+  "project_id": "HGK-REFERENCE-PROJECT-002",
+  "generated_at_utc": "2026-08-11T16:16:11.891024+00:00",
+  "oracle": "EXTERNAL_FROZEN_META_ORACLE",
+  "gate": "O1",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "id": "O1_KPACK_INDEX_EXISTS",
+      "pass": true,
+      "detail": "C:\\Projects\\Agent_Workspace\\Fabric\\Oracle\\工程基座\\GPTs_GENIEMAKER_開發實作+驗收指揮官\\GPTs_GENIEMAKER_開發實作+驗收指揮官_KP_Builder_ReleasePack_v2026.06.03-r2\\KnowledgePack\\19_KP_INDEX_CROSSWALK.md"
+    },
+    {
+      "id": "O1_VALIDATOR_oracle_preflight",
+      "pass": true,
+      "detail": "ect_digest\", \"MISSING:acceptance_oracle_digest\", \"BAD_VERDICT:SELF_APPROVED\"]}}\n"
+    },
+    {
+      "id": "O1_VALIDATOR_evidence_readback",
+      "pass": true,
+      "detail": ", 'sha256': 'afdd9f26d7923b8ba946b31af74ea9bf7021ebb490a1a8db0fff82edacbe3d39'}\n"
+    },
+    {
+      "id": "O1_VALIDATOR_subject_binding",
+      "pass": true,
+      "detail": "k\": false, \"errors\": [\"SUBJECT_MISMATCH\", \"MISSING_PACKS:['hermes-runtime']\"]}}\n"
+    },
+    {
+      "id": "O1_TESTS_golden",
+      "pass": true,
+      "detail": "TESTS_OK\n"
+    },
+    {
+      "id": "O1_TESTS_negative",
+      "pass": true,
+      "detail": "TESTS_OK\n"
+    },
+    {
+      "id": "O1_TESTS_adversarial",
+      "pass": true,
+      "detail": "TESTS_OK\n"
+    },
+    {
+      "id": "O1_TESTS_holdout",
+      "pass": true,
+      "detail": "TESTS_OK\n"
+    },
+    {
+      "id": "O1_CHECKER_RECIPE",
+      "pass": true,
+      "detail": "isolation recipe present"
+    },
+    {
+      "id": "O1_SELF_PROMOTION_DENIED",
+      "pass": true,
+      "detail": "self-promotion denied in SOUL"
+    }
+  ],
+  "oracle_profile_dir": "C:\\Projects\\Agent_Workspace\\Fabric\\profiles\\construction-acceptance-oracle",
+  "oracle_package_digest": "8b43e00d2ba7fdc5a252cc371d854f2f1475e08730fd3e361c3b51b7cfbbece4",
+  "acceptance_oracle_digest": "246d50bd71c92f09e0f2af3bb0a639197e8e9694c0bf2893758661b829deaa8f",
+  "internal_oracle_promotion_receipt": null,
+  "external_meta_qualification_required": {
+    "authority": "EXTERNAL FROZEN META-ORACLE (this dialogue's GPT-5.6 Sol contract)",
+    "rule": "Internal Oracle candidate must NOT self-promote (r3 §9.5, §16 O1, §26.2)",
+    "status": "PENDING_EXTERNAL_CONFIRMATION_VIA_SINGLE_REVIEW_MD",
+    "evidence_for_external_check": [
+      "Fabric/rp002/O1/RP002_O1_EVIDENCE.json",
+      "Fabric/profiles/construction-acceptance-oracle/CHECKER_ISOLATION_RECIPE.md",
+      "Fabric/profiles/construction-acceptance-oracle/validators/*.py",
+      "Fabric/profiles/construction-acceptance-oracle/tests/{golden,negative,adversarial,holdout}/*.py"
+    ],
+    "note": "Deterministic materialization + validators/tests PASS here; the promotion receipt is created only by the external Meta-Oracle after reviewing the single evidence MD (prompt §8)."
+  }
+}

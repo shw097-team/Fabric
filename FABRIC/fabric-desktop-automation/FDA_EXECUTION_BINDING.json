@@ -1,0 +1,98 @@
+{
+  "schema": "RP002-EXECUTION-BINDING/2",
+  "binding_id": "BIND-FDA-001",
+  "project_id": "HGK-REFERENCE-PROJECT-002",
+  "stage_id": "FDA-CHANGESET-2026-08-13",
+  "gate_id": "FDA-C1",
+  "kanban_board_id": "fda-implementation",
+  "normative": {
+    "workorder_id": "WO-FDA-001",
+    "workorder_digest": "BOUND_AT_ADMISSION",
+    "authority_receipt_refs": [
+      "REQ-FDA-001 FROZEN (EVT-63eeae45e1039b18)",
+      "CAPC contract fcd64c17ea63eaf023e861336bc508967a7b9ba0d4bb936069fa5c6e06b6bdf2"
+    ],
+    "subject_digest": "fcd64c17ea63eaf023e861336bc508967a7b9ba0d4bb936069fa5c6e06b6bdf2"
+  },
+  "routing": {
+    "topology_mode": "DIRECT",
+    "profile_id": "fabric-desktop-cua",
+    "logical_role_id": "fda-desktop-provider",
+    "task_id": "t_8321c75f",
+    "dependencies": ["t_7bf9bd93"],
+    "review_join_refs": ["L1_REVIEW", "L1_QA", "L1_SECURITY", "FORMAL_ACCEPTANCE"]
+  },
+  "delegation": {
+    "delegation_id": "DEL-FDA-001",
+    "issuer": "fda-orchestrator",
+    "assignee": "fabric-desktop-cua",
+    "allowed_scope": "bounded FDA desktop automation action classes on board fda-implementation",
+    "denied_scope": [
+      "candidate write outside worktree",
+      "fabric authority",
+      "promotion/release",
+      "workorder creation",
+      "live broker write",
+      "credential access"
+    ],
+    "issued_at": "2026-08-13T00:00:00+08:00",
+    "expires_at": "2026-08-15T23:59:59+08:00",
+    "revocation_ref": null
+  },
+  "lease": {
+    "lease_id": "LS-FDA-001",
+    "holder": "fabric-desktop-cua",
+    "ttl_seconds": 1800,
+    "renewable": true
+  },
+  "budget": {
+    "step_budget": 20,
+    "retry_budget": 2,
+    "wall_clock_timeout_seconds": 7200,
+    "no_progress_detector": "candidate_digest_delta|new_evidence_delta|root_cause_delta"
+  },
+  "idempotency": {
+    "idempotency_key": "FDA-C1-RUN-001",
+    "side_effect_class": "evidence-generation",
+    "replay_policy": "safe-replay",
+    "prior_effect_receipt_ref": null
+  },
+  "desktop": {
+    "desktop_session_id": "FDA-SESSION-001",
+    "target_host": "CURRENT_HOST",
+    "application_id": "XQ",
+    "application_version": "XQLite-1.10.0.0-INSTALLED",
+    "process_identity": null,
+    "window_identity": null,
+    "writer_profile_id": "fabric-desktop-cua",
+    "provider_identity_ref": "RP002_TOOL_AND_INHERITED_CAPABILITY_MATRIX.yaml -> cua_driver",
+    "capability_matrix_digest": "BOUND_AT_PROMOTION",
+    "desktop_state_digest": null,
+    "checkpoint_ref": null,
+    "one_active_writer": true,
+    "unknown_state_replay": "FORBIDDEN"
+  },
+  "runtime": {
+    "run_id": "RUN-FDA-C1-001",
+    "worker_pid": null,
+    "worker_log_ref": "var/fda/worker-C1.log",
+    "heartbeat_ref": "kanban heartbeat t_8321c75f",
+    "workspace_or_worktree": "C:\\Projects\\Agent_Workspace\\Fabric\\fabric-desktop-automation",
+    "candidate_write_set": [
+      "Fabric/fabric-desktop-automation/*",
+      "Fabric/profiles/fabric-desktop-cua/*",
+      "Fabric/profiles/fabric-desktop-ufo2/*"
+    ],
+    "evidence_output_refs": [
+      "fabric-desktop-automation/TEAM.md",
+      "fabric-desktop-automation/FDA_DESKTOP_CAPABILITY_MATRIX.yaml",
+      "profiles/fabric-desktop-cua/*",
+      "profiles/fabric-desktop-ufo2/*"
+    ]
+  },
+  "terminal": {
+    "allowed": true,
+    "session_end_is_terminal": false,
+    "worker_exit_zero_is_pass": false
+  }
+}
