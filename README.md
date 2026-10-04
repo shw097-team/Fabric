@@ -60,11 +60,14 @@ state or secrets, not governance artifacts.
 - Neither SWOF W2 (external `PASS_CHALLENGE`) nor W3 dispatch is claimed here.
 - Credentials, tokens and connection strings are **never** mirrored.
 
-## 5. Pending
+## 5. Desktop-effect plane slice
 
-- The desktop-effect plane artifact tree is **not yet mirrored**. Its operations are gated by a
-  fail-closed mechanical authorization hook whose session token had expired at mirror time; the
-  gate was **not** bypassed. That slice lands when the authorization token is refreshed.
+The desktop-effect plane artifact tree is mirrored at `DESKTOP/` (adapter, routing/preflight
+guards, capability matrix, asset registry, verified action-class receipts, documentation).
+
+Curation: third-party vendored material (a downloaded distribution archive and its extraction,
+~133 MB) is **excluded** - it is not a governance artifact. The scripts that operate on it are
+kept.
 
 ## 6. Provenance
 

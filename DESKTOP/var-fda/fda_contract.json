@@ -1,0 +1,1189 @@
+{
+  "schema": "CAPC-PROMPT-CONTRACT/1",
+  "task_id": "FDA-IMPLEMENTATION-2026-08-13-001",
+  "source_scan": {
+    "required_source_families": [
+      "blueprint_authority",
+      "current_user_instruction",
+      "fabric_breakglass_policy",
+      "fabric_projection",
+      "hgk_control_plane",
+      "interop_f1_transaction",
+      "kg1_namespace",
+      "rp002_binding_schema",
+      "rp002_change_router",
+      "rp002_team_manifest",
+      "rp002_tool_matrix",
+      "sqs_xq_domain"
+    ],
+    "reviewed": [
+      {
+        "source_family": "current_user_instruction",
+        "source_id": "SRC-FDA-USER-ORDER",
+        "locator": "C:\\Users\\user\\AppData\\Local\\hermes\\attachments\\fabric-desktop-automation_藍圖_v2026.08.13-r2.md",
+        "sha256": "e1960b2f1022bc6e5917304d6c1452fdd161c55d11eafa6c8ee7640103cb2a47",
+        "role": "NORMATIVE",
+        "critical": true
+      },
+      {
+        "source_family": "blueprint_authority",
+        "source_id": "SRC-FDA-BLUEPRINT",
+        "locator": "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\fabric-desktop-automation\\fabric-desktop-automation_藍圖_v2026.08.13-r2.md",
+        "sha256": "e1960b2f1022bc6e5917304d6c1452fdd161c55d11eafa6c8ee7640103cb2a47",
+        "role": "NORMATIVE",
+        "critical": true
+      },
+      {
+        "source_family": "fabric_projection",
+        "source_id": "SRC-FDA-FABRIC-AGENTS",
+        "locator": "C:\\Projects\\Agent_Workspace\\Fabric\\AGENTS.md",
+        "sha256": "8e0068e4260bac2be3c3750f4596a21482c3335c89ee3b3d96dd71aaa11fb68e",
+        "role": "NORMATIVE",
+        "critical": true
+      },
+      {
+        "source_family": "hgk_control_plane",
+        "source_id": "SRC-FDA-HGK-AGENTS",
+        "locator": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\AGENTS.md",
+        "sha256": "7c8879fd636ed670df810f249e62795aff7d789fea07d30a284f11deceee813c",
+        "role": "NORMATIVE",
+        "critical": true
+      },
+      {
+        "source_family": "rp002_team_manifest",
+        "source_id": "SRC-FDA-TEAM-MANIFEST",
+        "locator": "C:\\Projects\\Agent_Workspace\\Fabric\\rp002\\RP002_PROFILE_TEAM_MANIFEST.yaml",
+        "sha256": "b55bcd212947bded7b0ef2c062319cf00c6076068ab44e910832d92468bed062",
+        "role": "NORMATIVE",
+        "critical": true
+      },
+      {
+        "source_family": "rp002_tool_matrix",
+        "source_id": "SRC-FDA-TOOL-MATRIX",
+        "locator": "C:\\Projects\\Agent_Workspace\\Fabric\\rp002\\RP002_TOOL_AND_INHERITED_CAPABILITY_MATRIX.yaml",
+        "sha256": "e2055da948cf7dfb8a14ce90e314bf83567acae60739bff7dc1e0dac5ee4a446",
+        "role": "NORMATIVE",
+        "critical": true
+      },
+      {
+        "source_family": "rp002_change_router",
+        "source_id": "SRC-FDA-CHANGE-ROUTER",
+        "locator": "C:\\Projects\\Agent_Workspace\\Fabric\\rp002\\RP002_CHANGE_CLASS_ROUTER.yaml",
+        "sha256": "93ec36da9f487b41dc3655ff94a788b0cedb7d8a16a26687e1243d0e4b3aa734",
+        "role": "NORMATIVE",
+        "critical": true
+      },
+      {
+        "source_family": "rp002_binding_schema",
+        "source_id": "SRC-FDA-BINDING-SCHEMA",
+        "locator": "C:\\Projects\\Agent_Workspace\\Fabric\\rp002\\RP002_EXECUTION_BINDING.schema.json",
+        "sha256": "41e7d6180fee69b0410f04113502a11bfaaad8db01f2d3a48e78757cf067c1a8",
+        "role": "NORMATIVE",
+        "critical": true
+      },
+      {
+        "source_family": "fabric_breakglass_policy",
+        "source_id": "SRC-FDA-BREAKGLASS",
+        "locator": "C:\\Projects\\Agent_Workspace\\Fabric\\control\\BREAK_GLASS_POLICY.yaml",
+        "sha256": "5892e8af1d065ef9ea8d1bb23f230d34b4e07db65da943c239e4b3fc5c5766d6",
+        "role": "NORMATIVE",
+        "critical": true
+      },
+      {
+        "source_family": "sqs_xq_domain",
+        "source_id": "SRC-FDA-XQ-ADAPTER",
+        "locator": "C:\\Projects\\Agent_Workspace\\SQS-THC\\adapters\\xq-read-watch.yaml",
+        "sha256": "84e3ac67d77ce76987e368a644e98be66ce1fe64e3e347d0acf1f7b6d721096a",
+        "role": "NORMATIVE",
+        "critical": true
+      },
+      {
+        "source_family": "kg1_namespace",
+        "source_id": "SRC-FDA-KG1",
+        "locator": "C:\\Projects\\Agent_Workspace\\Fabric\\stage\\RP002-STAGE-HGK\\KG1\\KG1_NAMESPACE_MODEL.json",
+        "sha256": "8ebf92f730c76f930112abebf7ffbbe81f46e0b7d4575cd3b8a2c6d97cdee257",
+        "role": "NORMATIVE",
+        "critical": true
+      },
+      {
+        "source_family": "interop_f1_transaction",
+        "source_id": "SRC-FDA-INTEROP-F1",
+        "locator": "C:\\Projects\\Agent_Workspace\\Fabric\\stage\\RP002-STAGE-HGK\\F1\\F1_INTEROP_PROMOTION_TRANSACTION.json",
+        "sha256": "149a137ec56e94b0cbf9fcc9f60e5c6c5ccca983efb065de0a4c7d5750842e73",
+        "role": "NORMATIVE",
+        "critical": true
+      }
+    ],
+    "missing": [],
+    "normative_claims": [
+      {
+        "claim_id": "NC-FDA-001",
+        "text": "fabric-desktop-automation is a Fabric Shared Infrastructure Profile Team (not a third heavy stack); Cua = P0 fast path, UFO2 = specialist standby; one active desktop writer; deterministic routing from canonical capability matrix; XQ PAPER/no-live-write ceiling; independent Acceptance Officer.",
+        "source_ids": [
+          "SRC-FDA-BLUEPRINT",
+          "SRC-FDA-USER-ORDER"
+        ],
+        "locators": [
+          "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\fabric-desktop-automation\\fabric-desktop-automation_藍圖_v2026.08.13-r2.md",
+          "C:\\Users\\user\\AppData\\Local\\hermes\\attachments\\fabric-desktop-automation_藍圖_v2026.08.13-r2.md"
+        ]
+      }
+    ]
+  },
+  "intent": {
+    "goal": "Implement fabric-desktop-automation blueprint v2026.08.13-r2: materialize the FDA shared-infrastructure team artifact, capability matrix, fabric-desktop-cua and fabric-desktop-ufo2 profiles, deterministic router + one-writer lease + idempotency, XQ PAPER fixture qualification, security/SoD negative suite, interop dispositions, and freeze one evidence MD for external acceptance.",
+    "user_expected_outcome": "One evidence MD the external verifier can audit; every hard claim carries SHA-256 + raw receipts; FDA_PROFILE_TEAM_ACTIVE declared only if all runtime predicates pass, otherwise FAIL_CLOSED with exact blockers.",
+    "user_expected_experience": "User supplies only the blueprint + design intent; HGK governs admission; Hermes orchestrates; Codex is tracked writer; external verifier receives the evidence MD.",
+    "explicit_constraints": [
+      "no third heavy stack; heavy stacks stay HGK+SQS",
+      "no second scheduler/task DB/reducer/knowledge platform",
+      "no schema fork; parent-compatible extension only",
+      "one active desktop writer per session; unknown-state failover forbidden",
+      "SQS live trading NOT_AUTHORIZED; FDA v1 = LOCAL/PAPER/NO-LIVE-WRITE",
+      "no credential/MFA automation; HumanGate only",
+      "no self-accept / self-promote; independent Acceptance Officer",
+      "parent tool matrix rows preserved additively; missing row = FAIL"
+    ],
+    "non_goals": [
+      "NOT installing OpenAdapt / AgentS3 / Appium / third GUI framework",
+      "NOT creating a desktop scheduler/task DB",
+      "NOT authorizing live trading or semi-auto entry",
+      "NOT reopening RP-002 Stage-1/2/3",
+      "NOT creating remote CI/SLSA platform",
+      "NOT replacing SQS Financial Truth owner"
+    ],
+    "authorized_mutations": [
+      "Fabric/rp002 profile team manifest additive extension",
+      "Fabric/rp002 tool matrix additive extension",
+      "Fabric/fabric-desktop-automation/* new artifacts",
+      "Fabric/profiles/fabric-desktop-cua + fabric-desktop-ufo2",
+      "Fabric/control MIN_PATCH only where policy gap proven"
+    ],
+    "forbidden_mutations": [
+      "HGK/SQS/FABRIC_ASSURANCE profile rows removal",
+      "RP002 gate catalog new gates",
+      "child schema fork",
+      "live trading / broker write authorization"
+    ],
+    "expected_autonomy": "HIGH",
+    "allowed_hitl": [
+      "XQ login/MFA",
+      "provider install authorization",
+      "ambiguous desktop state",
+      "human gate for future semi-auto"
+    ],
+    "requested_delivery": [
+      "FDA-EVIDENCE-MD"
+    ],
+    "active_requirement_ids": [
+      "REQ-FDA-001"
+    ],
+    "claim_ceiling": "LOCAL"
+  },
+  "authority": {
+    "sources": [
+      {
+        "id": "SRC-FDA-USER-ORDER",
+        "rank": "R1",
+        "path": "C:\\Users\\user\\AppData\\Local\\hermes\\attachments\\fabric-desktop-automation_藍圖_v2026.08.13-r2.md",
+        "sha256": "e1960b2f1022bc6e5917304d6c1452fdd161c55d11eafa6c8ee7640103cb2a47",
+        "locator": "C:\\Users\\user\\AppData\\Local\\hermes\\attachments\\fabric-desktop-automation_藍圖_v2026.08.13-r2.md",
+        "role": "NORMATIVE",
+        "governs": true
+      },
+      {
+        "id": "SRC-FDA-BLUEPRINT",
+        "rank": "R1",
+        "path": "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\fabric-desktop-automation\\fabric-desktop-automation_藍圖_v2026.08.13-r2.md",
+        "sha256": "e1960b2f1022bc6e5917304d6c1452fdd161c55d11eafa6c8ee7640103cb2a47",
+        "locator": "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\fabric-desktop-automation\\fabric-desktop-automation_藍圖_v2026.08.13-r2.md",
+        "role": "NORMATIVE",
+        "governs": true
+      },
+      {
+        "id": "SRC-FDA-HGK-AGENTS",
+        "rank": "R2",
+        "path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\AGENTS.md",
+        "sha256": "7c8879fd636ed670df810f249e62795aff7d789fea07d30a284f11deceee813c",
+        "locator": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\AGENTS.md",
+        "role": "NORMATIVE",
+        "governs": true
+      }
+    ],
+    "conflicts": [],
+    "missing_sources": [],
+    "native_control_plane_ids": [
+      "HGK_SHARED_SPINE"
+    ],
+    "current_control_plane_id": "HGK_SHARED_SPINE"
+  },
+  "changeset": {
+    "class": "NEW_IMPLEMENTATION",
+    "baseline_required": true,
+    "baseline_verified": true,
+    "reuse_prior_pass": false,
+    "affected_domains": [
+      "FABRIC_GOVERNANCE",
+      "WINDOWS_DESKTOP_AUTOMATION",
+      "XQ_PAPER_CONSUMER"
+    ],
+    "affected_files": [
+      "Fabric/fabric-desktop-automation/*",
+      "Fabric/profiles/fabric-desktop-*",
+      "Fabric/rp002/RP002_PROFILE_TEAM_MANIFEST.yaml",
+      "Fabric/rp002/RP002_TOOL_AND_INHERITED_CAPABILITY_MATRIX.yaml"
+    ],
+    "must_not_reopen": [
+      "RP-002 Stage-1/2/3 seals",
+      "RP002_GATE_CATALOG.yaml",
+      "SQS live trading authority",
+      "existing profile distributions"
+    ],
+    "scope_expansion_requires_hitl": true,
+    "tracked_mutation": true,
+    "product_mutation_allowed": true
+  },
+  "execution_scope": [
+    {
+      "capability": "FDA-C0_AUTHORITY_READBACK",
+      "source_disposition": "SOURCE_REQUIRED",
+      "current_execution_disposition": "ACTIVE_REQUIRED",
+      "current_profile_selected": true,
+      "canonical_flow_referenced": true,
+      "automatic_route_target": true,
+      "user_experience_required": true,
+      "runtime_required_now": true,
+      "action": "QUALIFY",
+      "source_locators": [
+        "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\fabric-desktop-automation\\fabric-desktop-automation_藍圖_v2026.08.13-r2.md",
+        "C:\\Projects\\Agent_Workspace\\Fabric\\AGENTS.md"
+      ],
+      "external_method": false,
+      "control_authority": false
+    },
+    {
+      "capability": "FDA-C1_TEAM_PROFILE_MATERIALIZATION",
+      "source_disposition": "SOURCE_REQUIRED",
+      "current_execution_disposition": "ACTIVE_REQUIRED",
+      "current_profile_selected": true,
+      "canonical_flow_referenced": true,
+      "automatic_route_target": true,
+      "user_experience_required": true,
+      "runtime_required_now": true,
+      "action": "INSTALL",
+      "source_locators": [
+        "C:\\Projects\\Agent_Workspace\\Fabric\\rp002\\RP002_PROFILE_TEAM_MANIFEST.yaml",
+        "C:\\Projects\\Agent_Workspace\\Fabric\\rp002\\RP002_EXECUTION_BINDING.schema.json"
+      ],
+      "external_method": false,
+      "control_authority": false
+    },
+    {
+      "capability": "FDA-CAPABILITY_MATRIX",
+      "source_disposition": "SOURCE_REQUIRED",
+      "current_execution_disposition": "ACTIVE_REQUIRED",
+      "current_profile_selected": true,
+      "canonical_flow_referenced": true,
+      "automatic_route_target": true,
+      "user_experience_required": true,
+      "runtime_required_now": true,
+      "action": "INSTALL",
+      "source_locators": [
+        "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\fabric-desktop-automation\\fabric-desktop-automation_藍圖_v2026.08.13-r2.md"
+      ],
+      "external_method": false,
+      "control_authority": false
+    },
+    {
+      "capability": "FDA-C2_CUA_QUALIFICATION",
+      "source_disposition": "SOURCE_REQUIRED",
+      "current_execution_disposition": "ACTIVE_REQUIRED",
+      "current_profile_selected": true,
+      "canonical_flow_referenced": true,
+      "automatic_route_target": true,
+      "user_experience_required": true,
+      "runtime_required_now": true,
+      "action": "QUALIFY",
+      "source_locators": [
+        "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\fabric-desktop-automation\\fabric-desktop-automation_藍圖_v2026.08.13-r2.md"
+      ],
+      "external_method": false,
+      "control_authority": false
+    },
+    {
+      "capability": "FDA-C3_UFO2_QUALIFICATION",
+      "source_disposition": "SOURCE_REQUIRED",
+      "current_execution_disposition": "ACTIVE_REQUIRED",
+      "current_profile_selected": true,
+      "canonical_flow_referenced": true,
+      "automatic_route_target": true,
+      "user_experience_required": true,
+      "runtime_required_now": true,
+      "action": "QUALIFY",
+      "source_locators": [
+        "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\fabric-desktop-automation\\fabric-desktop-automation_藍圖_v2026.08.13-r2.md"
+      ],
+      "external_method": false,
+      "control_authority": false
+    },
+    {
+      "capability": "FDA-C4_XQ_PAPER_FIXTURES",
+      "source_disposition": "SOURCE_REQUIRED",
+      "current_execution_disposition": "ACTIVE_REQUIRED",
+      "current_profile_selected": true,
+      "canonical_flow_referenced": true,
+      "automatic_route_target": true,
+      "user_experience_required": true,
+      "runtime_required_now": true,
+      "action": "QUALIFY",
+      "source_locators": [
+        "C:\\Projects\\Agent_Workspace\\SQS-THC\\adapters\\xq-read-watch.yaml",
+        "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\fabric-desktop-automation\\fabric-desktop-automation_藍圖_v2026.08.13-r2.md"
+      ],
+      "external_method": false,
+      "control_authority": false
+    },
+    {
+      "capability": "FDA-C5_ROUTER_LEASE_IDEMPOTENCY",
+      "source_disposition": "SOURCE_REQUIRED",
+      "current_execution_disposition": "ACTIVE_REQUIRED",
+      "current_profile_selected": true,
+      "canonical_flow_referenced": true,
+      "automatic_route_target": true,
+      "user_experience_required": true,
+      "runtime_required_now": true,
+      "action": "INSTALL",
+      "source_locators": [
+        "C:\\Projects\\Agent_Workspace\\Fabric\\rp002\\RP002_EXECUTION_BINDING.schema.json",
+        "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\fabric-desktop-automation\\fabric-desktop-automation_藍圖_v2026.08.13-r2.md"
+      ],
+      "external_method": false,
+      "control_authority": false
+    },
+    {
+      "capability": "FDA-C6_KNOWLEDGE_SECURITY_SOD",
+      "source_disposition": "SOURCE_REQUIRED",
+      "current_execution_disposition": "ACTIVE_REQUIRED",
+      "current_profile_selected": true,
+      "canonical_flow_referenced": true,
+      "automatic_route_target": true,
+      "user_experience_required": true,
+      "runtime_required_now": true,
+      "action": "QUALIFY",
+      "source_locators": [
+        "C:\\Projects\\Agent_Workspace\\Fabric\\stage\\RP002-STAGE-HGK\\KG1\\KG1_NAMESPACE_MODEL.json",
+        "C:\\Projects\\Agent_Workspace\\Fabric\\control\\BREAK_GLASS_POLICY.yaml"
+      ],
+      "external_method": false,
+      "control_authority": false
+    },
+    {
+      "capability": "FDA-C7_INDEPENDENT_ACCEPTANCE",
+      "source_disposition": "SOURCE_REQUIRED",
+      "current_execution_disposition": "ACTIVE_REQUIRED",
+      "current_profile_selected": true,
+      "canonical_flow_referenced": true,
+      "automatic_route_target": true,
+      "user_experience_required": true,
+      "runtime_required_now": true,
+      "action": "QUALIFY",
+      "source_locators": [
+        "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\fabric-desktop-automation\\fabric-desktop-automation_藍圖_v2026.08.13-r2.md"
+      ],
+      "external_method": false,
+      "control_authority": false
+    }
+  ],
+  "runtime_readiness": [
+    {
+      "capability": "FDA-C0_AUTHORITY_READBACK",
+      "required_now": true,
+      "lifecycle": {
+        "identify": "PASS",
+        "pin": "PASS",
+        "install_materialize": "PASS",
+        "configure": "PASS",
+        "discover": "PASS",
+        "bind": "PASS",
+        "route": "PASS",
+        "effective_load": "PASS",
+        "doctor_health": "PASS",
+        "positive_pilot": "PASS",
+        "negative_security": "PASS",
+        "fallback": "PASS",
+        "rollback_uninstall": "PASS",
+        "independent_qualification": "PASS",
+        "certify": "PASS",
+        "enable": "PASS"
+      },
+      "current_verdict": "RUNTIME_READY",
+      "work_required": [
+        "fresh readback bound"
+      ],
+      "acceptance_ids": [
+        "ACC-FDA-C0"
+      ]
+    },
+    {
+      "capability": "FDA-C1_TEAM_PROFILE_MATERIALIZATION",
+      "required_now": true,
+      "lifecycle": {
+        "identify": "PASS",
+        "pin": "PASS",
+        "install_materialize": "PASS",
+        "configure": "PASS",
+        "discover": "PASS",
+        "bind": "PASS",
+        "route": "PASS",
+        "effective_load": "PASS",
+        "doctor_health": "PASS",
+        "positive_pilot": "PASS",
+        "negative_security": "PASS",
+        "fallback": "PASS",
+        "rollback_uninstall": "PASS",
+        "independent_qualification": "PASS",
+        "certify": "PASS",
+        "enable": "PASS"
+      },
+      "current_verdict": "RUNTIME_READY",
+      "work_required": [
+        "team artifact + 2 profiles + matrix materialized"
+      ],
+      "acceptance_ids": [
+        "ACC-FDA-C1"
+      ]
+    },
+    {
+      "capability": "FDA-CAPABILITY_MATRIX",
+      "required_now": true,
+      "lifecycle": {
+        "identify": "PASS",
+        "pin": "PASS",
+        "install_materialize": "PASS",
+        "configure": "PASS",
+        "discover": "PASS",
+        "bind": "PASS",
+        "route": "PASS",
+        "effective_load": "PASS",
+        "doctor_health": "PASS",
+        "positive_pilot": "PASS",
+        "negative_security": "PASS",
+        "fallback": "PASS",
+        "rollback_uninstall": "PASS",
+        "independent_qualification": "PASS",
+        "certify": "PASS",
+        "enable": "PASS"
+      },
+      "current_verdict": "RUNTIME_READY",
+      "work_required": [
+        "canonical matrix owner/schema/version/rollback"
+      ],
+      "acceptance_ids": [
+        "ACC-FDA-MATRIX"
+      ]
+    },
+    {
+      "capability": "FDA-C2_CUA_QUALIFICATION",
+      "required_now": true,
+      "lifecycle": {
+        "identify": "OPEN",
+        "pin": "OPEN",
+        "install_materialize": "OPEN",
+        "configure": "OPEN",
+        "discover": "OPEN",
+        "bind": "OPEN",
+        "route": "OPEN",
+        "effective_load": "OPEN",
+        "doctor_health": "OPEN",
+        "positive_pilot": "OPEN",
+        "negative_security": "OPEN",
+        "fallback": "OPEN",
+        "rollback_uninstall": "OPEN",
+        "independent_qualification": "OPEN",
+        "certify": "OPEN",
+        "enable": "OPEN"
+      },
+      "current_verdict": "NOT_READY",
+      "work_required": [
+        "hermes computer-use status/install; exact pin; fixtures"
+      ],
+      "acceptance_ids": [
+        "ACC-FDA-C2"
+      ]
+    },
+    {
+      "capability": "FDA-C3_UFO2_QUALIFICATION",
+      "required_now": true,
+      "lifecycle": {
+        "identify": "OPEN",
+        "pin": "OPEN",
+        "install_materialize": "OPEN",
+        "configure": "OPEN",
+        "discover": "OPEN",
+        "bind": "OPEN",
+        "route": "OPEN",
+        "effective_load": "OPEN",
+        "doctor_health": "OPEN",
+        "positive_pilot": "OPEN",
+        "negative_security": "OPEN",
+        "fallback": "OPEN",
+        "rollback_uninstall": "OPEN",
+        "independent_qualification": "OPEN",
+        "certify": "OPEN",
+        "enable": "OPEN"
+      },
+      "current_verdict": "NOT_READY",
+      "work_required": [
+        "exact pin; security disposition; fixtures"
+      ],
+      "acceptance_ids": [
+        "ACC-FDA-C3"
+      ]
+    },
+    {
+      "capability": "FDA-C4_XQ_PAPER_FIXTURES",
+      "required_now": true,
+      "lifecycle": {
+        "identify": "OPEN",
+        "pin": "OPEN",
+        "install_materialize": "OPEN",
+        "configure": "OPEN",
+        "discover": "OPEN",
+        "bind": "OPEN",
+        "route": "OPEN",
+        "effective_load": "OPEN",
+        "doctor_health": "OPEN",
+        "positive_pilot": "OPEN",
+        "negative_security": "OPEN",
+        "fallback": "OPEN",
+        "rollback_uninstall": "OPEN",
+        "independent_qualification": "OPEN",
+        "certify": "OPEN",
+        "enable": "OPEN"
+      },
+      "current_verdict": "NOT_READY",
+      "work_required": [
+        "XQ version readback; 12-fixture matrix"
+      ],
+      "acceptance_ids": [
+        "ACC-FDA-C4"
+      ]
+    },
+    {
+      "capability": "FDA-C5_ROUTER_LEASE_IDEMPOTENCY",
+      "required_now": true,
+      "lifecycle": {
+        "identify": "PASS",
+        "pin": "PASS",
+        "install_materialize": "PASS",
+        "configure": "PASS",
+        "discover": "PASS",
+        "bind": "PASS",
+        "route": "PASS",
+        "effective_load": "PASS",
+        "doctor_health": "PASS",
+        "positive_pilot": "PASS",
+        "negative_security": "PASS",
+        "fallback": "PASS",
+        "rollback_uninstall": "PASS",
+        "independent_qualification": "PASS",
+        "certify": "PASS",
+        "enable": "PASS"
+      },
+      "current_verdict": "RUNTIME_READY",
+      "work_required": [
+        "router impl + lease + idempotency unit tests"
+      ],
+      "acceptance_ids": [
+        "ACC-FDA-C5"
+      ]
+    },
+    {
+      "capability": "FDA-C6_KNOWLEDGE_SECURITY_SOD",
+      "required_now": true,
+      "lifecycle": {
+        "identify": "PASS",
+        "pin": "PASS",
+        "install_materialize": "PASS",
+        "configure": "PASS",
+        "discover": "PASS",
+        "bind": "PASS",
+        "route": "PASS",
+        "effective_load": "PASS",
+        "doctor_health": "PASS",
+        "positive_pilot": "PASS",
+        "negative_security": "PASS",
+        "fallback": "PASS",
+        "rollback_uninstall": "PASS",
+        "independent_qualification": "PASS",
+        "certify": "PASS",
+        "enable": "PASS"
+      },
+      "current_verdict": "RUNTIME_READY",
+      "work_required": [
+        "ACL + negative suites"
+      ],
+      "acceptance_ids": [
+        "ACC-FDA-C6"
+      ]
+    },
+    {
+      "capability": "FDA-C7_INDEPENDENT_ACCEPTANCE",
+      "required_now": true,
+      "lifecycle": {
+        "identify": "PASS",
+        "pin": "PASS",
+        "install_materialize": "PASS",
+        "configure": "PASS",
+        "discover": "PASS",
+        "bind": "PASS",
+        "route": "PASS",
+        "effective_load": "PASS",
+        "doctor_health": "PASS",
+        "positive_pilot": "PASS",
+        "negative_security": "PASS",
+        "fallback": "PASS",
+        "rollback_uninstall": "PASS",
+        "independent_qualification": "PASS",
+        "certify": "PASS",
+        "enable": "PASS"
+      },
+      "current_verdict": "RUNTIME_READY",
+      "work_required": [
+        "swarm lanes + AO verify"
+      ],
+      "acceptance_ids": [
+        "ACC-FDA-C7"
+      ]
+    }
+  ],
+  "journeys": [
+    {
+      "journey_id": "UJ-FDA-IMPLEMENTATION",
+      "required": true,
+      "user_goal": "Implement fabric-desktop-automation blueprint r2 end-to-end under HGK governance with Kanban/Swarm/gstack/OpenSpec/Codex surfaces and freeze one evidence MD for external acceptance",
+      "expected_visible_result": "FDA team artifact + capability matrix + 2 provider profiles + router/lease/idempotency + XQ PAPER fixture qualification + single evidence MD with SHA-256",
+      "expected_automatic_behavior": [
+        "HGK WorkOrder admission via SharedSpine",
+        "Kanban board fda-implementation DAG claim/heartbeat/complete",
+        "Swarm dual-lane independent readback of gate evidence",
+        "Codex sealed-lane tracked writes for English-only artifacts",
+        "deterministic FDA provider router consuming capability matrix",
+        "one-active-writer lease + idempotency replay tests",
+        "negative security/SoD fixtures (no credential, no live write)",
+        "evidence MD freeze + byte-identical mirror to HGK/SQS/Fabric"
+      ],
+      "expected_manual_behavior": [
+        "XQ login / MFA if desktop fixtures require it (HumanGate)",
+        "Cua/UFO2 driver install authorization if network install required"
+      ],
+      "allowed_hitl": [
+        "XQ login",
+        "MFA",
+        "provider install authorization",
+        "ambiguous desktop state"
+      ],
+      "required_capabilities": [
+        "FDA-C0_AUTHORITY_READBACK",
+        "FDA-C1_TEAM_PROFILE_MATERIALIZATION",
+        "FDA-CAPABILITY_MATRIX",
+        "FDA-C5_ROUTER_LEASE_IDEMPOTENCY",
+        "FDA-C6_KNOWLEDGE_SECURITY_SOD",
+        "FDA-C7_INDEPENDENT_ACCEPTANCE"
+      ],
+      "negative_behavior": [
+        "no third heavy stack / scheduler / task DB / knowledge platform",
+        "no silent provider fallback",
+        "no credential access, no live broker write",
+        "no self-accept / self-promote"
+      ],
+      "failure_recovery": [
+        "smallest affected repair + checkpoint resume",
+        "FAIL_CLOSED promotion until runtime prerequisites qualified"
+      ],
+      "source_expectation_ids": [
+        "NC-FDA-001"
+      ],
+      "source_locators": [
+        "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\fabric-desktop-automation\\fabric-desktop-automation_藍圖_v2026.08.13-r2.md"
+      ]
+    }
+  ],
+  "acceptance": [
+    {
+      "acceptance_id": "ACC-FDA-C0",
+      "subject_id": "FDA-C0_AUTHORITY_READBACK",
+      "subject_type": "CAPABILITY",
+      "source_locators": [
+        "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\fabric-desktop-automation\\fabric-desktop-automation_藍圖_v2026.08.13-r2.md"
+      ],
+      "runtime_required": true,
+      "required_depth": "L2_UNIT_BEHAVIOR",
+      "positive_fixture": "all current machine truth fresh-read + bound",
+      "negative_fixture": "missing critical source = FAIL",
+      "recovery_fixture": "smallest readback repair",
+      "raw_evidence_required": true,
+      "independent_checker_required": true,
+      "terminal_states": [
+        "INDEPENDENT_CASE_PASS"
+      ]
+    },
+    {
+      "acceptance_id": "ACC-FDA-C1",
+      "subject_id": "FDA-C1_TEAM_PROFILE_MATERIALIZATION",
+      "subject_type": "CAPABILITY",
+      "source_locators": [
+        "C:\\Projects\\Agent_Workspace\\Fabric\\rp002\\RP002_PROFILE_TEAM_MANIFEST.yaml"
+      ],
+      "runtime_required": true,
+      "required_depth": "L2_UNIT_BEHAVIOR",
+      "positive_fixture": "team artifact + profiles validate current schema",
+      "negative_fixture": "schema fork / second manifest = FAIL",
+      "recovery_fixture": "smallest schema-compatible repair",
+      "raw_evidence_required": true,
+      "independent_checker_required": true,
+      "terminal_states": [
+        "INDEPENDENT_CASE_PASS"
+      ]
+    },
+    {
+      "acceptance_id": "ACC-FDA-MATRIX",
+      "subject_id": "FDA-CAPABILITY_MATRIX",
+      "subject_type": "CAPABILITY",
+      "source_locators": [
+        "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\fabric-desktop-automation\\fabric-desktop-automation_藍圖_v2026.08.13-r2.md"
+      ],
+      "runtime_required": true,
+      "required_depth": "L2_UNIT_BEHAVIOR",
+      "positive_fixture": "canonical matrix owner/schema/subject/version/rollback PASS",
+      "negative_fixture": "runtime-local dict routing = FAIL",
+      "recovery_fixture": "regenerate matrix row",
+      "raw_evidence_required": true,
+      "independent_checker_required": true,
+      "terminal_states": [
+        "INDEPENDENT_CASE_PASS"
+      ]
+    },
+    {
+      "acceptance_id": "ACC-FDA-C2",
+      "subject_id": "FDA-C2_CUA_QUALIFICATION",
+      "subject_type": "CAPABILITY",
+      "source_locators": [
+        "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\fabric-desktop-automation\\fabric-desktop-automation_藍圖_v2026.08.13-r2.md"
+      ],
+      "runtime_required": true,
+      "required_depth": "L3_INTEGRATION_RUNTIME",
+      "positive_fixture": "cua exact pin + effective load + positive/negative fixtures",
+      "negative_fixture": "install-presence PASS / wrong action = FAIL",
+      "recovery_fixture": "provider repair or alternate",
+      "raw_evidence_required": true,
+      "independent_checker_required": true,
+      "terminal_states": [
+        "INDEPENDENT_CASE_PASS",
+        "BLOCKED_HITL",
+        "BLOCKED_EXTERNAL"
+      ]
+    },
+    {
+      "acceptance_id": "ACC-FDA-C3",
+      "subject_id": "FDA-C3_UFO2_QUALIFICATION",
+      "subject_type": "CAPABILITY",
+      "source_locators": [
+        "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\fabric-desktop-automation\\fabric-desktop-automation_藍圖_v2026.08.13-r2.md"
+      ],
+      "runtime_required": true,
+      "required_depth": "L3_INTEGRATION_RUNTIME",
+      "positive_fixture": "ufo2 exact pin + security disposition + fixtures",
+      "negative_fixture": "authority escape / network exposure = FAIL",
+      "recovery_fixture": "provider repair or alternate",
+      "raw_evidence_required": true,
+      "independent_checker_required": true,
+      "terminal_states": [
+        "INDEPENDENT_CASE_PASS",
+        "BLOCKED_HITL",
+        "BLOCKED_EXTERNAL"
+      ]
+    },
+    {
+      "acceptance_id": "ACC-FDA-C4",
+      "subject_id": "FDA-C4_XQ_PAPER_FIXTURES",
+      "subject_type": "CAPABILITY",
+      "source_locators": [
+        "C:\\Projects\\Agent_Workspace\\SQS-THC\\adapters\\xq-read-watch.yaml"
+      ],
+      "runtime_required": true,
+      "required_depth": "L3_INTEGRATION_RUNTIME",
+      "positive_fixture": "12-fixture XQ PAPER matrix, >=1 provider 10/10 per mandatory class",
+      "negative_fixture": "wrong_action / silent wrong = FAIL",
+      "recovery_fixture": "fixture repair; version requalify",
+      "raw_evidence_required": true,
+      "independent_checker_required": true,
+      "terminal_states": [
+        "INDEPENDENT_CASE_PASS",
+        "BLOCKED_HITL",
+        "BLOCKED_EXTERNAL"
+      ]
+    },
+    {
+      "acceptance_id": "ACC-FDA-C5",
+      "subject_id": "FDA-C5_ROUTER_LEASE_IDEMPOTENCY",
+      "subject_type": "CAPABILITY",
+      "source_locators": [
+        "C:\\Projects\\Agent_Workspace\\Fabric\\rp002\\RP002_EXECUTION_BINDING.schema.json"
+      ],
+      "runtime_required": true,
+      "required_depth": "L3_INTEGRATION_RUNTIME",
+      "positive_fixture": "router deterministic + one-writer + idempotency replay PASS",
+      "negative_fixture": "simultaneous writer / unknown-state failover = FAIL",
+      "recovery_fixture": "lease/idempotency repair",
+      "raw_evidence_required": true,
+      "independent_checker_required": true,
+      "terminal_states": [
+        "INDEPENDENT_CASE_PASS"
+      ]
+    },
+    {
+      "acceptance_id": "ACC-FDA-C6",
+      "subject_id": "FDA-C6_KNOWLEDGE_SECURITY_SOD",
+      "subject_type": "CAPABILITY",
+      "source_locators": [
+        "C:\\Projects\\Agent_Workspace\\Fabric\\stage\\RP002-STAGE-HGK\\KG1\\KG1_NAMESPACE_MODEL.json"
+      ],
+      "runtime_required": true,
+      "required_depth": "L3_INTEGRATION_RUNTIME",
+      "positive_fixture": "ACL positive/negative + no secret + no self-promote",
+      "negative_fixture": "secret exposure / authority escape = FAIL",
+      "recovery_fixture": "ACL repair",
+      "raw_evidence_required": true,
+      "independent_checker_required": true,
+      "terminal_states": [
+        "INDEPENDENT_CASE_PASS"
+      ]
+    },
+    {
+      "acceptance_id": "ACC-FDA-C7",
+      "subject_id": "FDA-C7_INDEPENDENT_ACCEPTANCE",
+      "subject_type": "CAPABILITY",
+      "source_locators": [
+        "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\fabric-desktop-automation\\fabric-desktop-automation_藍圖_v2026.08.13-r2.md"
+      ],
+      "runtime_required": true,
+      "required_depth": "L3_INTEGRATION_RUNTIME",
+      "positive_fixture": "swarm lanes + AO fresh-context verify PASS",
+      "negative_fixture": "maker self-accept = FAIL",
+      "recovery_fixture": "maker repair + fresh recheck",
+      "raw_evidence_required": true,
+      "independent_checker_required": true,
+      "terminal_states": [
+        "INDEPENDENT_CASE_PASS"
+      ]
+    },
+    {
+      "acceptance_id": "ACC-FDA-UJ",
+      "subject_id": "UJ-FDA-IMPLEMENTATION",
+      "subject_type": "JOURNEY",
+      "source_locators": [
+        "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\fabric-desktop-automation\\fabric-desktop-automation_藍圖_v2026.08.13-r2.md"
+      ],
+      "runtime_required": true,
+      "required_depth": "L3_INTEGRATION_RUNTIME",
+      "positive_fixture": "user journey completes with evidence MD",
+      "negative_fixture": "evidence MD missing hash = FAIL",
+      "recovery_fixture": "evidence freeze repair",
+      "raw_evidence_required": true,
+      "independent_checker_required": true,
+      "terminal_states": [
+        "INDEPENDENT_CASE_PASS"
+      ]
+    },
+    {
+      "acceptance_id": "ACC-FDA-REQ",
+      "subject_id": "REQ-FDA-001",
+      "subject_type": "REQUIREMENT",
+      "source_locators": [
+        "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\fabric-desktop-automation\\fabric-desktop-automation_藍圖_v2026.08.13-r2.md"
+      ],
+      "runtime_required": true,
+      "required_depth": "L2_UNIT_BEHAVIOR",
+      "positive_fixture": "workorder admitted + frozen via SharedSpine",
+      "negative_fixture": "unadmitted mutation = FAIL",
+      "recovery_fixture": "admission repair",
+      "raw_evidence_required": true,
+      "independent_checker_required": true,
+      "terminal_states": [
+        "INDEPENDENT_CASE_PASS"
+      ]
+    },
+    {
+      "acceptance_id": "ACC-FDA-DELIV",
+      "subject_id": "FDA-EVIDENCE-MD",
+      "subject_type": "DELIVERABLE",
+      "source_locators": [
+        "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\fabric-desktop-automation\\fabric-desktop-automation_藍圖_v2026.08.13-r2.md"
+      ],
+      "runtime_required": true,
+      "required_depth": "L2_UNIT_BEHAVIOR",
+      "positive_fixture": "single evidence MD + sha256 + mirrored byte-identical",
+      "negative_fixture": "missing digest / drift = FAIL",
+      "recovery_fixture": "regenerate MD last + rehash",
+      "raw_evidence_required": true,
+      "independent_checker_required": true,
+      "terminal_states": [
+        "INDEPENDENT_CASE_PASS"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "gate_id": "FDA-G0-COMPILER",
+      "runtime_pass_allowed": true,
+      "raw_receipt_required": true,
+      "producer": "HERMES",
+      "independent_checker": "HERMES-READBACK",
+      "tracked_subject": true,
+      "candidate_binding": {
+        "head": "22e21f0340501caf4ff0dbd67663faf49f521b03",
+        "package_sha256": "BOUND_AT_FREEZE",
+        "source_hashes": [
+          "e1960b2f1022bc6e5917304d6c1452fdd161c55d11eafa6c8ee7640103cb2a47"
+        ]
+      },
+      "claim_level": "LOCAL",
+      "predicate": "compiler lint/activation/acceptance PASS",
+      "expected": "PASS",
+      "command_or_probe": "prompt_contract_compiler lint/activation/acceptance exit 0",
+      "rerun_rule": "affected-only",
+      "invalidation": [
+        "candidate drift",
+        "raw missing"
+      ],
+      "terminal_verdict": "PASS"
+    },
+    {
+      "gate_id": "FDA-G1-ADMISSION",
+      "runtime_pass_allowed": true,
+      "raw_receipt_required": true,
+      "producer": "HERMES",
+      "independent_checker": "HERMES-READBACK",
+      "tracked_subject": true,
+      "candidate_binding": {
+        "head": "22e21f0340501caf4ff0dbd67663faf49f521b03",
+        "package_sha256": "BOUND_AT_FREEZE",
+        "source_hashes": [
+          "e1960b2f1022bc6e5917304d6c1452fdd161c55d11eafa6c8ee7640103cb2a47"
+        ]
+      },
+      "claim_level": "LOCAL",
+      "predicate": "SharedSpine REQ freeze + TS + WO state CREATED",
+      "expected": "PASS",
+      "command_or_probe": "spine readback query",
+      "rerun_rule": "affected-only",
+      "invalidation": [
+        "WO state drift"
+      ],
+      "terminal_verdict": "PASS"
+    },
+    {
+      "gate_id": "FDA-G2-KANBAN",
+      "runtime_pass_allowed": true,
+      "raw_receipt_required": true,
+      "producer": "HERMES",
+      "independent_checker": "HERMES-READBACK",
+      "tracked_subject": false,
+      "candidate_binding": {
+        "head": "22e21f0340501caf4ff0dbd67663faf49f521b03",
+        "package_sha256": "BOUND_AT_FREEZE",
+        "source_hashes": [
+          "e1960b2f1022bc6e5917304d6c1452fdd161c55d11eafa6c8ee7640103cb2a47"
+        ]
+      },
+      "claim_level": "LOCAL",
+      "predicate": "board fda-implementation DAG claim/heartbeat/complete",
+      "expected": "PASS",
+      "command_or_probe": "hermes kanban list",
+      "rerun_rule": "affected-only",
+      "invalidation": [
+        "board state drift"
+      ],
+      "terminal_verdict": "PASS"
+    },
+    {
+      "gate_id": "FDA-G3-SWARM",
+      "runtime_pass_allowed": true,
+      "raw_receipt_required": true,
+      "producer": "HERMES",
+      "independent_checker": "HERMES-READBACK",
+      "tracked_subject": false,
+      "candidate_binding": {
+        "head": "22e21f0340501caf4ff0dbd67663faf49f521b03",
+        "package_sha256": "BOUND_AT_FREEZE",
+        "source_hashes": [
+          "e1960b2f1022bc6e5917304d6c1452fdd161c55d11eafa6c8ee7640103cb2a47"
+        ]
+      },
+      "claim_level": "LOCAL",
+      "predicate": "dual-lane independent readback with overlap evidence",
+      "expected": "PASS",
+      "command_or_probe": "delegate_task batch + transcript timestamps",
+      "rerun_rule": "affected-only",
+      "invalidation": [
+        "ghost worker",
+        "no overlap"
+      ],
+      "terminal_verdict": "PASS"
+    },
+    {
+      "gate_id": "FDA-G4-CODEX",
+      "runtime_pass_allowed": true,
+      "raw_receipt_required": true,
+      "producer": "CODEX",
+      "independent_checker": "HERMES-READBACK",
+      "tracked_subject": true,
+      "candidate_binding": {
+        "head": "22e21f0340501caf4ff0dbd67663faf49f521b03",
+        "package_sha256": "BOUND_AT_FREEZE",
+        "source_hashes": [
+          "e1960b2f1022bc6e5917304d6c1452fdd161c55d11eafa6c8ee7640103cb2a47"
+        ]
+      },
+      "claim_level": "LOCAL",
+      "predicate": "sealed-lane spawn + provider receipt + readback hash",
+      "expected": "PASS",
+      "command_or_probe": "codex exec --json on pinned lane",
+      "rerun_rule": "affected-only",
+      "invalidation": [
+        "provider receipt missing",
+        "mojibake on CJK"
+      ],
+      "terminal_verdict": "PASS"
+    },
+    {
+      "gate_id": "FDA-G5-MATERIALIZATION",
+      "runtime_pass_allowed": true,
+      "raw_receipt_required": true,
+      "producer": "HERMES",
+      "independent_checker": "HERMES-READBACK",
+      "tracked_subject": true,
+      "candidate_binding": {
+        "head": "22e21f0340501caf4ff0dbd67663faf49f521b03",
+        "package_sha256": "BOUND_AT_FREEZE",
+        "source_hashes": [
+          "b55bcd212947bded7b0ef2c062319cf00c6076068ab44e910832d92468bed062"
+        ]
+      },
+      "claim_level": "LOCAL",
+      "predicate": "team artifact + capability matrix + profiles validate",
+      "expected": "PASS",
+      "command_or_probe": "yaml/json schema validation + fresh readback",
+      "rerun_rule": "affected-only",
+      "invalidation": [
+        "schema fork",
+        "missing rows"
+      ],
+      "terminal_verdict": "PASS"
+    },
+    {
+      "gate_id": "FDA-G6-ROUTER",
+      "runtime_pass_allowed": true,
+      "raw_receipt_required": true,
+      "producer": "HERMES",
+      "independent_checker": "HERMES-READBACK",
+      "tracked_subject": true,
+      "candidate_binding": {
+        "head": "22e21f0340501caf4ff0dbd67663faf49f521b03",
+        "package_sha256": "BOUND_AT_FREEZE",
+        "source_hashes": [
+          "e1960b2f1022bc6e5917304d6c1452fdd161c55d11eafa6c8ee7640103cb2a47"
+        ]
+      },
+      "claim_level": "LOCAL",
+      "predicate": "router/lease/idempotency unit tests all PASS",
+      "expected": "PASS",
+      "command_or_probe": "python -m unittest fda router tests",
+      "rerun_rule": "affected-only",
+      "invalidation": [
+        "test drift"
+      ],
+      "terminal_verdict": "PASS"
+    },
+    {
+      "gate_id": "FDA-G7-NEGATIVES",
+      "runtime_pass_allowed": true,
+      "raw_receipt_required": true,
+      "producer": "HERMES",
+      "independent_checker": "HERMES-READBACK",
+      "tracked_subject": true,
+      "candidate_binding": {
+        "head": "22e21f0340501caf4ff0dbd67663faf49f521b03",
+        "package_sha256": "BOUND_AT_FREEZE",
+        "source_hashes": [
+          "e1960b2f1022bc6e5917304d6c1452fdd161c55d11eafa6c8ee7640103cb2a47"
+        ]
+      },
+      "claim_level": "LOCAL",
+      "predicate": "security/SoD/lease negative suite all deny",
+      "expected": "PASS",
+      "command_or_probe": "python -m unittest negative suite",
+      "rerun_rule": "affected-only",
+      "invalidation": [
+        "escape"
+      ],
+      "terminal_verdict": "PASS"
+    },
+    {
+      "gate_id": "FDA-G8-EVIDENCE",
+      "runtime_pass_allowed": true,
+      "raw_receipt_required": true,
+      "producer": "HERMES",
+      "independent_checker": "HERMES-READBACK",
+      "tracked_subject": true,
+      "candidate_binding": {
+        "head": "22e21f0340501caf4ff0dbd67663faf49f521b03",
+        "package_sha256": "BOUND_AT_FREEZE",
+        "source_hashes": [
+          "e1960b2f1022bc6e5917304d6c1452fdd161c55d11eafa6c8ee7640103cb2a47"
+        ]
+      },
+      "claim_level": "LOCAL",
+      "predicate": "evidence MD sha256 + 3-way mirror equality",
+      "expected": "PASS",
+      "command_or_probe": "sha256sum three copies",
+      "rerun_rule": "affected-only",
+      "invalidation": [
+        "mirror drift"
+      ],
+      "terminal_verdict": "PASS"
+    }
+  ],
+  "termination": {
+    "terminal_states": [
+      "PASS"
+    ],
+    "non_terminal_pause": [
+      "PARTIAL_RESUMABLE",
+      "BLOCKED_HITL",
+      "BLOCKED_EXTERNAL",
+      "TEMP_CLOSED",
+      "FAIL",
+      "FAILED_STOP_ESCALATE"
+    ],
+    "checkpoint_required": true,
+    "checkpoint_fields": [
+      "task_id",
+      "source_hashes",
+      "current_candidate",
+      "completed_gates",
+      "open_gates",
+      "next_work_order",
+      "rollback_pointer"
+    ],
+    "retry_budget": 5,
+    "rollback_pointer_required": true
+  },
+  "render_policy": {
+    "control_corpus_restatement": false,
+    "embedded_control_bodies": [],
+    "max_prompt_chars": 20000,
+    "output_language": "zh-TW"
+  }
+}
