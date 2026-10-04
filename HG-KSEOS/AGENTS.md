@@ -1,6 +1,6 @@
 # AGENTS.md — HG-KSEOS local P0
 
-Version: 2026-08-13.1
+Version: 2026-10-04.1  (adds: canonical transition API for acceptance; ordering oracle)
 Scope: this repository and all descendants unless a nearer AGENTS.md narrows execution details.
 
 HG-KSEOS is the sole system governance / normative control plane. Within this repository, HG-KSEOS is the canonical HGK product root. Hermes, Codex, HLPE, DocETL, providers, tools, skills, memory, retrieval, and graph components are bounded capabilities and never become a second Product Root, canonical truth, Human Authority, or release authority. External admitted product/domain roots such as SQS-THC remain governed stacks, not second system control planes. `..\Fabric` is the governance / assurance / interop / knowledge contract surface consumed by HGK (policy consumption trace required); it is not a second control plane.
@@ -50,6 +50,20 @@ For any governed task, read in this order before acting:
    `..\Fabric\rp002\RP002_GATE_CATALOG.yaml`, `..\Fabric\rp002\RP002_EXECUTION_GRAPH.yaml`.
 9. Current WorkOrder / ExecutionBinding — the WorkOrder and its `RP002-EXECUTION-BINDING/2`
    binding (e.g. `..\Fabric\stage\RP002-STAGE-HGK\B1\B1_EXECUTION_BINDING.json`).
+
+## Canonical transition API (acceptance) and the ordering oracle
+
+- **Acceptance resolution has exactly one entry point**: the typed Shared Spine API
+  (`resolve_acceptance` + `TRANSITIONS['acceptance']`). A consumer must never issue direct SQL to
+  change acceptance state. The canonical transition is performed by the spine / domain owner,
+  preserves the canonical event + audit trace, is fail-closed on subject/evidence binding, rejects
+  stale or conflicting subjects, is idempotent on identical replay, and is transactional.
+- **Ordering decisions use the implicit `rowid` (monotonic insertion order), never wall-clock
+  `created_at`.** `created_at` has second granularity, so two rows sharing a timestamp make the
+  choice arbitrary. Guarded by `tests/test_ordering_oracle.py`; a wall-clock ordering site in
+  `src/hg_kseos` fails that guard.
+- Both are engineering-base changes with a recorded rollback path and an independent checker
+  result; neither authorizes production, release, or a second control plane.
 
 ## Admission chain (no durable free-form mutation)
 

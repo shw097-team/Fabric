@@ -16,6 +16,24 @@ HG-KSEOS 是受治理的多閘門本機交付系統（governed multi-gate local 
 - **Codex CLI = primary bounded executor**：tracked implementation 的 bounded writer，只寫 admitted writable root。
 - **SQS-THC = financial domain stack**（`C:\Projects\Agent_Workspace\SQS-THC`）：在 HGK governance 之下運作，不建立第二 control plane。
 
+## 2a. 控制平面能力（current，engineering-base 已實作）
+
+以下兩項為受治理的 engineering-base ChangeSet，已實作、測試並經獨立驗收：
+
+### 2a.1 Canonical acceptance resolver（`HGK-EBC-ACCEPTANCE-RESOLUTION-001`）
+
+- `SharedSpine.resolve_acceptance(...)` ＋ `TRANSITIONS['acceptance']`：acceptance 的 canonical transition 由 **SharedSpine / domain owner** 執行。
+- 保留 canonical event / audit trace；`subject` / `evidence` binding **fail-closed**；stale / conflicting 一律拒絕；identical replay **idempotent**；transaction **atomic**。
+- **禁止 consumer 以直接 SQL bypass domain API**（spine 自身的 repository / transaction 實作仍可依既有架構使用內部 persistence SQL）。
+- 測試：`tests/test_acceptance_resolution.py`。
+
+### 2a.2 Ordering oracle（`HGK-EBC-ORDERING-ORACLE-001`）
+
+- **排序一律用隱式 `rowid`（單調插入序），不得用 wall-clock `created_at`。** `created_at` 只有秒級精度，同一秒的兩列會讓排序決策變成任意。
+- 已修正的四處：`lifecycle.py` checkpoint 的 current-workorder 選擇（＝ admission 序，最關鍵）、`lifecycle.py` 近期 transitions、`knowledge.py` memory 記錄、`evidence_graph.py` 的 qualified 形式。
+- Guard：`tests/test_ordering_oracle.py`（含 source 掃描 + 分歧證明）。
+- 前例：`evidence_graph.py` 既有的 `ORDER BY rowid`。
+
 ## 3. Canonical Root 與檔案位置
 
 - **Canonical root**: `C:\Projects\Agent_Workspace\HG-KSEOS`（HG-KSEOS 的 canonical product/control root）。其他 root（如 SQS / Fabric）可由 WorkOrder 另行 admitted；不代表整個系統只有一個 writable filesystem root。

@@ -345,6 +345,19 @@ External Acceptance 的 hard-check denominator 按 **unique predicate ID** 計�
 
 ---
 
+## 28a. Canonical acceptance resolver 與 ordering oracle（current）
+
+**28a.1 Acceptance transition（唯一入口）**
+- `SharedSpine.resolve_acceptance(...)` ＋ `TRANSITIONS['acceptance']` 是 acceptance 的唯一 canonical transition 入口；由 SharedSpine / domain owner 執行。
+- 保證：canonical event / audit trace 保留；subject / evidence binding fail-closed；stale / conflicting 拒絕；identical replay idempotent；transaction atomic。
+- **consumer 不得以直接 SQL bypass domain API**；spine 自身的 repository / transaction 實作可依既有架構使用內部 persistence SQL。
+- 複核入口：`tests/test_acceptance_resolution.py`。
+
+**28a.2 Ordering oracle**
+- 排序一律用隱式 `rowid`（單調插入序），**不得用 wall-clock `created_at`**（秒級精度，同秒即任意）。
+- 已修正四處：checkpoint 的 current-workorder 選擇（＝ admission 序）、近期 transitions、memory 記錄、qualified 形式。
+- 複核入口：`tests/test_ordering_oracle.py`。
+
 # Part VII — RP-002 v2.0 現況、Diagnostics & Troubleshooting
 
 ## 30. Diagnostics（實際存在、語法已確認命令）
@@ -403,6 +416,13 @@ powershell -File .\scripts\start-hgk-hermes.ps1 -Action Verify   # lane 隔離�
 **Local Delivery PASS ≠ Production Authorized**。目前 `PRODUCTION = NOT_CLAIMED`：本文件與所有 evidence 只代表 local delivery / Stage-2 狀態；未宣稱 remote CI / deploy / production 完成。`sqs_live_trading: NOT_AUTHORIZED`、`remote_deployment: NOT_CLAIMED`、`production_autonomy: NOT_CLAIMED`（external receipt non_claims）。
 
 ## 33. Changelog / Historical Baselines
+
+**engineering-base delta（current）**：兩項受治理 ChangeSet 已實作、測試並經獨立驗收——
+- `HGK-EBC-ACCEPTANCE-RESOLUTION-001`：canonical acceptance resolver（`resolve_acceptance` ＋ `TRANSITIONS['acceptance']`；consumer 禁直接 SQL；fail-closed / idempotent / atomic）。
+- `HGK-EBC-ORDERING-ORACLE-001`：排序 oracle 由 wall-clock 改為隱式 `rowid`（4 站點）；guard `tests/test_ordering_oracle.py`。
+兩者皆附 rollback 路徑與獨立 checker 結果；**不宣稱 production / release，也不構成第二個 control plane**。
+
+
 
 **v2026.08.13-r1（本版）**：RP-002 v2.0 更新總覽（Part 0）；current claim 更新為 Stage-2 externally accepted；next gate SQP1 NOT_AUTHORIZED；Fabric relationship + evidence locations（§31c）；troubleshooting（§31d）；命令語法確認（§30）。
 
