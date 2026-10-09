@@ -126,6 +126,13 @@ Hermes runtime state ≠ HGK normative state; `/goal done` ≠ HGK PASS. Evidenc
   `TX-RP2-S2-F1-002-REPAIRED`).
 - Knowledge governance: `stage\RP002-STAGE-HGK\KG1\KG1_NAMESPACE_MODEL.json`,
   `KG1_PROVIDER_LEDGER.json`, `KG1_RUNTIME_EVIDENCE.json`, `KG1_RUNTIME.db`.
+- Independent checker upgrade (round `HGK-CHU-20261009`, candidate): mirror
+  `evidence\review\checker-upgrade-20261009\HGK-CHU-20261009_CHECKER_UPGRADE_EVIDENCE.md`
+  (byte-identical to the HG-KSEOS source) and the round summary
+  `HG-KSEOS\evidence\checker-upgrade-20261009\IMPLEMENTATION_SUMMARY.md`. What it binds: a checker
+  lane's verdict is **advisory only** — never an OracleReceipt, never a canonical acceptance status, and
+  no Fabric contract may consume it as one. Honest status: cutover gate `TEMP_CLOSED/UNVERIFIED`;
+  `hgk_canonical_acceptance: NOT_PERFORMED`.
 
 When in doubt: read the file, then read the receipt that binds it, then the seal that binds the
 receipt. Do not claim anything the chain does not show.
