@@ -358,6 +358,41 @@ External Acceptance 的 hard-check denominator 按 **unique predicate ID** 計�
 - 已修正四處：checkpoint 的 current-workorder 選擇（＝ admission 序）、近期 transitions、memory 記錄、qualified 形式。
 - 複核入口：`tests/test_ordering_oracle.py`。
 
+## 28b. 獨立 Checker 升級（advisory，candidate；本節依 owner 指示於 cutover 前登錄）
+
+> **狀態**：candidate。cutover gate 為 `TEMP_CLOSED/UNVERIFIED`，**非** accepted / released；`hgk_canonical_acceptance: NOT_PERFORMED`。
+> **標記**：`NEW_R2 = hgk-checker-upgrade-adapter v2026.10.09-r2`｜`OLD_BASELINE_DIGEST = 77afad7edce341c7779bee9920bd0e1b90e963d5496da654269e64b3b2e58bed`（source ZIP）｜`ROLLBACK_POINTER = docs/checker-upgrade-20261009/ROLLBACK.md`
+
+### 28b.1 這是什麼
+HG-KSEOS 可派送一條**獨立 checker lane**：Codex CLI → loopback bridge（Responses→Chat Completions）→ 與 maker **不同**的模型，產出 **advisory verdict**。它補的是「maker 不能自我驗收」的那一段。
+
+### 28b.2 不可越界的 ceiling
+- checker verdict **永遠不是 OracleReceipt**，也**不是** canonical acceptance status。
+- runtime 只能經由帶明確 advisory ceiling 的 **named method** 消費它；**不得**由它產生任何 canonical token（`PASS` / `PARTIAL` / `FAIL` / `TEMP_CLOSED` / `INDEPENDENT_PASS` / `RELEASED` / `PRODUCTION_VERIFIED`）。
+- watchdog 的暫停一律是 advisory request（`WATCHDOG_ADVISORY_ONLY`）；**恢復 canonical 狀態一律需 operator 決定**。
+
+### 28b.3 fail-closed 行為（皆已測）
+拒絕聲稱 canonical token 的 binding、拒絕非 candidate binding、拒絕逸出 advisory enum 的 verdict、拒絕 digest 與 intake 不一致的 verdict；corrupt state 一律 fail-closed，不得靜默略過。
+
+### 28b.4 落點與如何驗證
+- 套件：`src/hg_kseos/checker_bridge/`（`binding.py` / `runner.py` / `watchdog.py` / `verdict.py` / `integration.py` / `advisory_verdict.schema.json`）。
+- 接線：`named_methods.py` 的一個 named method + `cli.py` 的一個子命令 + `integration.py`（runtime 消費側）。
+- 設定：`config/checker/checker-binding.candidate.json`（`status: CANDIDATE_NOT_ADMITTED`）、`config/checker/monitor-policy.json`。
+- 驗證命令（套件）：
+  `PYTHONPATH=src .venv\Scripts\python.exe -B -m unittest discover -s tests/checker_bridge -t . -p "test*.py"`
+  → 113 tests, OK（skipped=1）。
+- 連線資格（loopback-only、正向）：`scripts/checker_bridge_qualify.py`。
+
+### 28b.5 上限揭露（不可略讀）
+- **cutover 未發生**。規格 §15 的切換批准條件有多項未達（無 canonical v2 binding、無受信任簽章 payload、無 Go upstream route-attestation、無 ACL/egress/proc-tree 負向矩陣、無 live supervisor ack、無 Golden/Holdout、**Shadow A/B 未跑**、無 authorized OracleReceipt、未做回滾演練）→ 依規則維持 `TEMP_CLOSED/UNVERIFIED`。
+- **symlink fixture** 是在可建立 symlink 的平台上證明（本機 Developer Mode 關閉、junction 實測**不能**替代），屬跨平台替代證據。
+- **寫入拒絕僅為 DETECTION**，非 OS ACL 邊界（read-only 屬性同使用者可清除）。
+- **模型獨立性**：當指定 checker 模型與 maker 相同時，該 lane 的獨立性僅為 **PROCESS-only**；模型多樣性由第二條（GLM）lane 提供。
+- 完整整理：`evidence/checker-upgrade-20261009/IMPLEMENTATION_SUMMARY.md`。
+
+### 28b.6 延後項
+規格 §9.3 的**兩份 User Guide currentness 編輯**在 cutover 正式接受後才進行（附 `NEW_R2` 與 rollback pointer）。本節依 owner 指示登錄於 cutover 前，並已明確標示候選與未接受狀態；正式 currentness patch 仍待 cutover。
+
 # Part VII — RP-002 v2.0 現況、Diagnostics & Troubleshooting
 
 ## 30. Diagnostics（實際存在、語法已確認命令）
