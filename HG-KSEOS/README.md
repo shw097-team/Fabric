@@ -34,6 +34,18 @@ HG-KSEOS 是受治理的多閘門本機交付系統（governed multi-gate local 
 - Guard：`tests/test_ordering_oracle.py`（含 source 掃描 + 分歧證明）。
 - 前例：`evidence_graph.py` 既有的 `ORDER BY rowid`。
 
+## 2b. 獨立 Checker 升級（advisory，candidate）
+
+> `NEW_R2`: `hgk-checker-upgrade-adapter v2026.10.09-r2`　|　`OLD_BASELINE_DIGEST`: `77afad7edce341c7779bee9920bd0e1b90e963d5496da654269e64b3b2e58bed`（source ZIP）　|　`ROLLBACK_POINTER`: `docs/checker-upgrade-20261009/ROLLBACK.md`
+
+- **能力**：HG-KSEOS 可派送一條獨立 checker lane（Codex CLI → loopback bridge → 與 maker 不同的模型），其輸出**僅為 advisory verdict**。
+- **Advisory ceiling（不可越界）**：checker verdict **永遠不是 OracleReceipt**，也不是 canonical acceptance status；runtime 只能經由帶明確 ceiling 的 named method 消費它，且**不得**由它產生任何 canonical token（`PASS` / `PARTIAL` / `FAIL` / `TEMP_CLOSED` / `INDEPENDENT_PASS` / `RELEASED` / `PRODUCTION_VERIFIED`）。
+- **fail-closed 行為（已測）**：拒絕聲稱 canonical token 的 binding、拒絕非 candidate binding、拒絕逸出 advisory enum 的 verdict、拒絕 digest 與 intake 不一致的 verdict；watchdog 的暫停一律是 advisory request（`WATCHDOG_ADVISORY_ONLY`），恢復 canonical 狀態一律需 operator 決定。
+- **落點**：`src/hg_kseos/checker_bridge/`（含 runtime 接線 `integration.py` + named method + CLI 子命令）；套件測試 `tests/checker_bridge/`（113 tests, OK, skipped=1）。
+- **實作整理與上限揭露**：`evidence/checker-upgrade-20261009/IMPLEMENTATION_SUMMARY.md`。
+- **狀態（誠實）**：cutover gate 為 `TEMP_CLOSED/UNVERIFIED`，**非** accepted/released；`hgk_canonical_acceptance: NOT_PERFORMED`。
+- **延後項（§9.3）**：本升級的**兩份 User Guide currentness 編輯**依規格在 cutover 正式接受後才進行，並附 `NEW_R2` 與 rollback pointer；本節不宣稱 cutover 已完成。
+
 ## 3. Canonical Root 與檔案位置
 
 - **Canonical root**: `C:\Projects\Agent_Workspace\HG-KSEOS`（HG-KSEOS 的 canonical product/control root）。其他 root（如 SQS / Fabric）可由 WorkOrder 另行 admitted；不代表整個系統只有一個 writable filesystem root。
