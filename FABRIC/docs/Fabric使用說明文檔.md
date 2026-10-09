@@ -199,6 +199,16 @@ consumer 實作：`Fabric\fabric\consumers\hgk_policy_consumer.py`（HGK policy 
 - **Subject-candidate binding**：subject digest 跨 K1..KG1 與 repair 不變（`KG1\KG1_FOCUSED_CONSISTENCY_RECEIPT.yaml`：`subject_consistency PASS`）；candidate digest 各 gate 不同（`candidate_digest` 欄位）。
 - External review bundle：`Fabric\evidence\review\RP002_STAGE-2_KG1_EVIDENCE_FOR_EXTERNAL_REVIEW.md`（sha `104d4cf2…`，Fabric/HGK mirror byte-identical；`RP002_STAGE-2_EXTERNAL_BUNDLE_HASHES.json`）。
 
+## 12a. Independent checker（advisory；candidate，round `HGK-CHU-20261009`）
+
+- **它綁什麼**：獨立 checker lane（Codex CLI → loopback bridge → 與 maker 不同的模型）產出的 verdict **僅為 advisory**。**永遠不是 OracleReceipt，也不是 canonical acceptance status**；**任何 Fabric contract 都不得把它當成兩者之一來消費**。canonical acceptance 只能由 authorized actor 經 typed transition 產生。
+- **fail-closed**：拒絕聲稱 canonical token 的 binding、拒絕非 candidate binding、拒絕逸出 advisory enum 的 verdict、拒絕 digest 與 intake 不一致的 verdict；watchdog 暫停為 advisory request（`WATCHDOG_ADVISORY_ONLY`），恢復 canonical 狀態一律需 operator 決定。
+- **證據位置**：
+  - 鏡射：`evidence/review/checker-upgrade-20261009/HGK-CHU-20261009_CHECKER_UPGRADE_EVIDENCE.md`（與 HG-KSEOS 來源 byte-identical）。
+  - 實作整理與上限揭露：`HG-KSEOS/evidence/checker-upgrade-20261009/IMPLEMENTATION_SUMMARY.md`。
+- **誠實狀態**：cutover gate `TEMP_CLOSED/UNVERIFIED`，**非** accepted / released；`hgk_canonical_acceptance: NOT_PERFORMED`。規格 §15 的切換批准條件有多項未達（含 Shadow A/B 未跑、無 authorized OracleReceipt、未做回滾演練）。
+- **邊界**：本節只描述綁定與證據位置，**不變更任何 contract**，也不宣稱任何 canonical 狀態。
+
 ## 13. rollback / BreakGlass / failure / TT-CR
 
 - **Rollback pointer**：`SUPERSEDED_ARTIFACTS.yaml` 保存被取代工件（prior CF1 receipt、prior F1 tx `149a137e…`、prior STAGE-2-SEAL `14726894…`、prior handoff、prior review bundle），全部 preserved unchanged。rollback 依 pointer 還原，不做整輪重做。
