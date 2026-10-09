@@ -109,6 +109,20 @@ goal / source → source admission → Requirement (freeze) → TaskSpec → Wor
   promotion / release / deploy (fresh session, read-only candidate, 8 acceptance packs).
 - Officer cannot repair the candidate it checks; defects are reported to the maker, then rechecked
   independently.
+- **Independent checker lane (advisory binding, candidate)**: `REQ-CHU-04-CHECKER-ADAPTER` +
+  `REQ-CHU-04-WIRING`. A dispatched checker (Codex CLI -> loopback bridge -> a model distinct from the
+  maker) produces an **advisory verdict only**. It is never an OracleReceipt and never a canonical
+  acceptance status; the runtime consumes it through one named method that carries an explicit advisory
+  ceiling, and no canonical token may be derived from it. The adapter fails closed on a binding that
+  claims a canonical token, a non-candidate binding, a verdict outside the advisory enum, and a verdict
+  whose digests disagree with the intake. Watchdog pauses are advisory requests
+  (`WATCHDOG_ADVISORY_ONLY`); resuming canonical state always requires an operator decision.
+  Landed at `src/hg_kseos/checker_bridge/` with its suite under `tests/checker_bridge/`
+  (113 tests, OK, skipped=1). Round summary and ceilings:
+  `evidence/checker-upgrade-20261009/IMPLEMENTATION_SUMMARY.md`. Honest status: the cutover gate is
+  `TEMP_CLOSED/UNVERIFIED`, NOT accepted/released; `hgk_canonical_acceptance: NOT_PERFORMED`.
+  Deferred by the specification's section 9.3 and NOT claimed here: the two User Guide currentness
+  edits, which happen only after cutover is formally accepted.
 
 ## Knowledge
 
