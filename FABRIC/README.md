@@ -32,6 +32,14 @@ Fabric 是 **HG-KSEOS 的 contract surface**：它不擁有 authority，擁有�
 - **綁定規則（重要）**：獨立 checker lane 的 verdict **僅為 advisory** —— **永遠不是 OracleReceipt、永遠不是 canonical acceptance status**，**任何 Fabric contract 都不得把它當成兩者之一來消費**。canonical acceptance 只能由 authorized actor 經 typed transition 產生。
 - **誠實狀態**：cutover gate 為 `TEMP_CLOSED/UNVERIFIED`，**非** accepted / released；`hgk_canonical_acceptance: NOT_PERFORMED`。
 
+## 本輪新增：AO lane 獨立性與 required-arm（FAR-AO-INDEPENDENCE-20261010）
+
+- **鏡射證據**：`evidence/review/FAR-AO-INDEPENDENCE-20261010/FAR-AO-INDEPENDENCE-20261010_EVIDENCE.md`（與 HG-KSEOS 來源 **byte-identical**）。
+- **實作整理與上限揭露**：`HG-KSEOS/evidence/FAR-AO-INDEPENDENCE-20261010/IMPLEMENTATION_SUMMARY.md`。
+- **能力**：AO / VERIFY / SECURITY lane 可在**無人窗口**下被證明地獨立查核——被點名的 arm（`openai-codex/gpt-6.1-sol`）**必須實際服務**本回合；不健康即 `exit 4` / `ERR_RELAY_OAUTH_NEEDS_REAUTH` 且**不 spawn**；受檢主體被改動則該回合 verdict **自我作廢**。實測：`required_arm == served_arm`、`exit 0`、`usage 200`。
+- **綁定規則（重要）**：本能力**不改動**上一節的綁定規則——checker／AO verdict **仍僅為 advisory**，**永遠不是 OracleReceipt、永遠不是 canonical acceptance status**。本輪的 `ACC-AO-INDEP-012 = PASS` 之所以有效，是因為它是由**獨立 checker lane** 產生 verdict、經 **typed spine API**（`resolve_acceptance`）落帳並附 canonical event，**不是**因為它是某份 advisory verdict。
+- **誠實狀態**：**process-only 獨立性**（三條 lane 同模型，owner D-3 裁決）→ **不得**宣稱模型多樣性；守衛是**偵測非阻止**；瞬時改寫／還原偵測不到；`(ii)` 專用帳號**撤銷為 NOT APPLICABLE**（owner 僅一個帳號），殘餘為共用失效域。
+
 ## 邊界
 
 Stage-1 / Stage-2 的既有封存、歷史 receipts 與原 sealed 產物**不被覆寫**。本 README 只描述現況與入口，不變更任何 contract。
