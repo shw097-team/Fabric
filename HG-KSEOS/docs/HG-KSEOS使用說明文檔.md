@@ -393,6 +393,41 @@ HG-KSEOS 可派送一條**獨立 checker lane**：Codex CLI → loopback bridge�
 ### 28b.6 延後項
 規格 §9.3 的**兩份 User Guide currentness 編輯**在 cutover 正式接受後才進行（附 `NEW_R2` 與 rollback pointer）。本節依 owner 指示登錄於 cutover 前，並已明確標示候選與未接受狀態；正式 currentness patch 仍待 cutover。
 
+## 28c. AO lane 獨立性與 required-arm（current；已實作、已獨立驗收）
+
+> Round `FAR-AO-INDEPENDENCE-20261010`（2026-10-10）　|　`REQ-AO-INDEP-012` → **ACCEPTED**（v4）　|　`ACC-AO-INDEP-012` → **PASS**
+
+### 28c.1 這是什麼
+
+AO / VERIFY / SECURITY lane 的派送器（`scripts/hgk-lane-dispatch.py`）新增一組機制，使「獨立查核」**可被證明**，而不是只在外觀上獨立。核心：**被點名的 arm 必須實際服務該回合**；**不健康即 fail-closed**；**受檢主體被改動則該回合 verdict 自我作廢**；**回合原始 bytes 落檔且可被第三方重算**。
+
+### 28c.2 四個關鍵行為
+
+| 行為 | 觸發 | 結果 |
+|---|---|---|
+| 身分／健康閘門（spawn **前**） | relay arm 憑證不可 refresh | `exit 4` / `ERR_RELAY_OAUTH_NEEDS_REAUTH`，**不 spawn**、**不**改跑別的 arm |
+| required **必須被服務** | `--require-arm` 且閘門放行但由別的 arm 服務 | `exit 3` / `ERR_REQUIRED_ARM_NOT_SERVED` |
+| 守衛根缺失 | `--guard-subject` 指向不存在路徑 | `exit 4` / `ERR_GUARD_ROOT_MISSING`，`attempts=0` |
+| 受檢主體被改動 | 回合中 `removed`/`changed` | 該回合 verdict **作廢**（`ERR_CHECKER_MUTATED_SUBJECT`）；`added` 記錄但不致命 |
+
+**要確保用到某個模型，必須同時釘 rank**：`--force-rank <n> --require-arm <provider>/<model>`。
+
+### 28c.3 無模型的確定性負測
+
+`--codex-executable` 可把 checked child 換成 `tests/fixtures/stub_lane_child.py`：stub 會提供兩個受理條件（`nonce` 與匹配用量列，用量寫入 **scratch 帳本**），因此「突變／刪除 → 作廢」是**本應通過**的回合被守衛作廢。此路徑**不耗模型額度**，可作為日常回歸。
+
+### 28c.4 實測（core goal：無人窗口 `gpt-6.1-sol`）
+
+`required_arm == served_arm == openai-codex/gpt-6.1-sol`、`exit 0`、`usage 200`、`nonce` present、`stdout_byte_exact=true`。lane home **無 `auth.json`**、`--ask-for-approval never`、經 relay URL 取得 arm——**沒有開任何互動視窗**。
+
+### 28c.5 上限（不可略讀）
+
+- **process-only 獨立性**：三條 lane 同模型（owner D-3 裁決）→ maker==checker 在構造上可達，**不得**宣稱模型多樣性。
+- 守衛是**偵測非阻止**；瞬時改寫／還原偵測不到；守衛根以外未量測；F10 / F13 未關閉。
+- AO / checker verdict 一律 **ADVISORY**；**promotion ≠ acceptance**。
+- 專用 relay-pool 帳號 `(ii)` **撤銷為 NOT APPLICABLE**（owner 僅一個帳號）；殘餘為**共用失效域**。
+- 完整證據：`evidence/FAR-AO-INDEPENDENCE-20261010/`。
+
 # Part VII — RP-002 v2.0 現況、Diagnostics & Troubleshooting
 
 ## 30. Diagnostics（實際存在、語法已確認命令）
@@ -458,6 +493,8 @@ powershell -File .\scripts\start-hgk-hermes.ps1 -Action Verify   # lane 隔離�
 兩者皆附 rollback 路徑與獨立 checker 結果；**不宣稱 production / release，也不構成第二個 control plane**。
 
 
+
+**v2026.10.10-r1（AO lane 獨立性）**：`FAR-AO-INDEPENDENCE-20261010` — 派送器加入 spawn 前 fail-closed 身分閘門、`--require-arm` 必須**被服務**、非變異守衛條件必備（含守衛根缺失拒絕）、回合原始 bytes 保真落檔、`--codex-executable` 確定性負測接縫；**無人窗口 `gpt-6.1-sol` 實測通過**（E12）；`REQ-AO-INDEP-012` **ACCEPTED** / `ACC-AO-INDEP-012` **PASS**（獨立 checker lane，5 筆 canonical events）。新增 User Guide §28c。上限：process-only 獨立性、偵測非阻止、AO verdict 一律 advisory。`(ii)` 專用帳號撤銷為 NOT APPLICABLE（owner 僅一帳號）。
 
 **v2026.08.13-r1（本版）**：RP-002 v2.0 更新總覽（Part 0）；current claim 更新為 Stage-2 externally accepted；next gate SQP1 NOT_AUTHORIZED；Fabric relationship + evidence locations（§31c）；troubleshooting（§31d）；命令語法確認（§30）。
 
