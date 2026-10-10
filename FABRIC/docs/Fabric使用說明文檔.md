@@ -209,6 +209,14 @@ consumer 實作：`Fabric\fabric\consumers\hgk_policy_consumer.py`（HGK policy 
 - **誠實狀態**：cutover gate `TEMP_CLOSED/UNVERIFIED`，**非** accepted / released；`hgk_canonical_acceptance: NOT_PERFORMED`。規格 §15 的切換批准條件有多項未達（含 Shadow A/B 未跑、無 authorized OracleReceipt、未做回滾演練）。
 - **邊界**：本節只描述綁定與證據位置，**不變更任何 contract**，也不宣稱任何 canonical 狀態。
 
+## 12b. AO lane 獨立性與 required-arm（round `FAR-AO-INDEPENDENCE-20261010`）
+
+- **能力**：AO / VERIFY / SECURITY lane 可在**無人窗口**下被證明地獨立查核。四個行為：spawn **前** fail-closed 身分閘門（不健康 → `exit 4` / `ERR_RELAY_OAUTH_NEEDS_REAUTH`，**不 spawn**、**不**改跑別的 arm）；`--require-arm` 意指該 arm 必須**實際服務**（否則 `exit 3` / `ERR_REQUIRED_ARM_NOT_SERVED`；要特定模型須同時釘 rank）；非變異守衛（根無法解析 → `ERR_GUARD_ROOT_MISSING`、0 attempts；`removed`/`changed` → 該回合 verdict **自我作廢**）；回合原始 bytes 保真落檔、可獨立重算。
+- **實測**：無人窗口 `openai-codex/gpt-6.1-sol` → `required_arm == served_arm`、`exit 0`、`usage 200`。
+- **綁定規則不變（重要）**：checker / AO verdict **仍僅為 advisory**，**永遠不是 OracleReceipt、永遠不是 canonical acceptance status**。本輪 `ACC-AO-INDEP-012 = PASS` 的有效性來自「**獨立 checker lane** 產生 verdict ＋ 經 **typed spine API** 落帳並附 canonical event」，**不是**因為 advisory verdict 被當成 canonical。
+- **鏡射證據**：`evidence/review/FAR-AO-INDEPENDENCE-20261010/FAR-AO-INDEPENDENCE-20261010_EVIDENCE.md`。
+- **誠實狀態**：**process-only 獨立性**（三條 lane 同模型，owner D-3 裁決）；守衛是**偵測非阻止**；瞬時改寫／還原偵測不到；專用帳號項 **NOT APPLICABLE**（owner 僅一帳號）。
+
 ## 13. rollback / BreakGlass / failure / TT-CR
 
 - **Rollback pointer**：`SUPERSEDED_ARTIFACTS.yaml` 保存被取代工件（prior CF1 receipt、prior F1 tx `149a137e…`、prior STAGE-2-SEAL `14726894…`、prior handoff、prior review bundle），全部 preserved unchanged。rollback 依 pointer 還原，不做整輪重做。
@@ -276,6 +284,8 @@ $env:PYTHONPATH='C:\Projects\Agent_Workspace\HG-KSEOS\src'
 - `v2026.08.13-r1`（本文件）：基於 Stage-2 externally accepted 狀態撰寫；更新 external acceptance、repaired CF1/F1/KG1、RESUME checkpoint、SQP1 boundary、evidence paths。
 - 歷史：`Fabric\evidence\review\RP002_EVIDENCE_FOR_EXTERNAL_REVIEW.md`（Stage-1/早期）、`RP002_POST_HERMES_REINSTALL_HANDOFF.md` / `RP002_PRE_HERMES_REINSTALL_HANDOFF.md`（Hermes reinstall 前後 handoff，historical）、`SUPERSEDED_ARTIFACTS.yaml`（被取代工件清單）。
 - 本文件是 projection；每次操作前 fresh-read stage seals / machine truth，不要以本文件取代 contracts。
+
+- **v2026.10.10-r1**：round `FAR-AO-INDEPENDENCE-20261010` — AO lane 獨立性（spawn 前 fail-closed 閘門、required＝served、非變異守衛、確定性無模型負測）；無人窗口 `gpt-6.1-sol` 實測通過；`REQ-AO-INDEP-012` ACCEPTED / `ACC-AO-INDEP-012` PASS（獨立 checker lane，5 筆 canonical events）。**advisory 綁定規則不變**；上限：process-only 獨立性、偵測非阻止。新增 §12b。
 
 ## 附錄 A — 常用 digest 速查（2026-08-13）
 
