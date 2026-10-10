@@ -4,6 +4,7 @@
 > 治理規則、權威來源與施工細節以 `AGENTS.md`、`docs\HG-KSEOS使用說明文檔.md`（User Guide）與 `control\` 工件為準。
 > **Current claim**: `HG-KSEOS_LOCAL_DELIVERY_PASS — EXTERNAL FINAL ACCEPTED`（保留，不重寫）。
 > **A-3 delta claim ceiling**: `HGK_SQS_A3_OPERABILITY_STEERING_READY`（never production / live / remote）。
+> **FAR-AO-INDEPENDENCE-20261010（2026-10-10）**: 無人窗口 `gpt-6.1-sol` **實測通過**（E12：`required_arm == served_arm == openai-codex/gpt-6.1-sol`、`usage 200`）；`REQ-AO-INDEP-012` **ACCEPTED** / `ACC-AO-INDEP-012` **PASS**（判決由獨立 checker lane 產生）。**Ceiling**：local verification ＋ owner-approved promotion ＋ **process-only independence**（三條 lane 同模型，依 owner D-3 裁決）。證據：`evidence/FAR-AO-INDEPENDENCE-20261010/`。
 
 ## 1. 這是什麼
 
@@ -45,6 +46,21 @@ HG-KSEOS 是受治理的多閘門本機交付系統（governed multi-gate local 
 - **實作整理與上限揭露**：`evidence/checker-upgrade-20261009/IMPLEMENTATION_SUMMARY.md`。
 - **狀態（誠實）**：cutover gate 為 `TEMP_CLOSED/UNVERIFIED`，**非** accepted/released；`hgk_canonical_acceptance: NOT_PERFORMED`。
 - **延後項（§9.3）**：本升級的**兩份 User Guide currentness 編輯**依規格在 cutover 正式接受後才進行，並附 `NEW_R2` 與 rollback pointer；本節不宣稱 cutover 已完成。
+
+## 2c. AO lane 獨立性與 required-arm（已實作、已獨立驗收）
+
+> Round `FAR-AO-INDEPENDENCE-20261010`（2026-10-10）　|　`REQ-AO-INDEP-012` → `ACCEPTED`（v4）　|　`ACC-AO-INDEP-012` → `PASS`
+
+- **核心能力**：AO / VERIFY / SECURITY lane 可在**無人窗口**下被證明地獨立查核——被點名的 arm（例：`openai-codex/gpt-6.1-sol`）**必須實際服務**該回合，否則 fail-closed 並具名拒絕。
+- **閘門語意 = 驗證後放行**（不是排除）：OAuth arm **留在** pool 內；spawn **之前**驗證其憑證可 refresh。不健康 → `ERR_RELAY_OAUTH_NEEDS_REAUTH`（exit 4）且**不 spawn**、**不**靜默改跑別的 arm。
+- **`--require-arm` = required ＝ served**：檢查在 gate 分支**之外**、以 **pre-gate 候選集**判定；閘門放行卻由別的 arm 服務 → `ERR_REQUIRED_ARM_NOT_SERVED`（exit 3）。**要確保用到某模型，必須同時釘 rank**（`--force-rank <n>`）。
+- **非變異守衛為條件必備**：升權 lane 須帶 `--guard-subject`；根無法解析 → `ERR_GUARD_ROOT_MISSING`（0 attempts）；根含 harness 自身輸出 → `ERR_GUARD_ROOT_CONTAINS_HARNESS_OUTPUT`；`removed/changed` → 該回合 verdict **自我作廢**（`added` 記錄但不致命）。
+- **位元組保真**：回合原始 stdout/stderr 以 bytes 落檔，receipt 記 `stdout_bytes` / `stdout_byte_exact`，第三方可獨立重算（checker 已示範 `MATCH_ALL=True`）。
+- **確定性（無模型）負測**：`--codex-executable` 接縫可把 checked child 換成 `tests/fixtures/stub_lane_child.py`，讓守衛的作廢路徑在**不耗模型額度**的情況下端到端驅動（E11a–E11e）。
+- **實測（E12，core goal）**：`required_arm == served_arm == openai-codex/gpt-6.1-sol`、`exit 0`、`usage 200`、`nonce` present；lane home **無 `auth.json`**、`--ask-for-approval never`、經 relay URL 取得 arm。
+- **測試**：`tests/test_lane_dispatch_ao_guard.py` **34/34**；全量 holdout 失敗 ID 集合與基線**完全相同**（0 引入）。
+- **上限**：**process-only 獨立性**（三條 lane 同模型，owner D-3 裁決）；守衛是**偵測非阻止**；瞬時改寫／還原偵測不到；守衛根以外未量測；AO verdict 一律 **ADVISORY**。
+- **完整證據**：`evidence/FAR-AO-INDEPENDENCE-20261010/`（EVIDENCE ＋ IMPLEMENTATION_SUMMARY）。
 
 ## 3. Canonical Root 與檔案位置
 
