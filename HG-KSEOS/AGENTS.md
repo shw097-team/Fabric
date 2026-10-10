@@ -1,6 +1,6 @@
 # AGENTS.md — HG-KSEOS local P0
 
-Version: 2026-10-04.1  (adds: canonical transition API for acceptance; ordering oracle)
+Version: 2026-10-10.1  (adds: AO lane 獨立性 — 身分閘門 / required-arm / 非變異守衛 / 確定性負測；false-green 三陷阱；promotion≠acceptance 落帳規則)
 Scope: this repository and all descendants unless a nearer AGENTS.md narrows execution details.
 
 HG-KSEOS is the sole system governance / normative control plane. Within this repository, HG-KSEOS is the canonical HGK product root. Hermes, Codex, HLPE, DocETL, providers, tools, skills, memory, retrieval, and graph components are bounded capabilities and never become a second Product Root, canonical truth, Human Authority, or release authority. External admitted product/domain roots such as SQS-THC remain governed stacks, not second system control planes. `..\Fabric` is the governance / assurance / interop / knowledge contract surface consumed by HGK (policy consumption trace required); it is not a second control plane.
@@ -31,6 +31,20 @@ Lane ≠ execution method. Registry state that contradicts live evidence (e.g.
 `kanban_state` stale) is a smallest-repair candidate, not a reason to skip the
 surfaces. Each execution surface must carry raw evidence and an independent
 checker result.
+
+## AO lane 獨立性與 false-green 陷阱（2026-10-10，預設適用）
+
+獨立查核 lane 的價值來自「**能被證明**」，不是「看起來獨立」。以下規則為本 repo 通則：
+
+1. **閘門在 spawn 前 fail-closed**：受點名的 arm 不健康即拒絕（具名錯誤碼、非零 exit、**不 spawn**）；**永不**靜默改跑其他 arm 來讓回合「成功」。
+2. **required ＝ served**：`--require-arm` 意指該 arm 必須**實際服務**本回合；只通過閘門不算。要確保用到特定模型，**同時釘 rank**。
+3. **升權 lane 必須帶守衛主體**：`--guard-subject` 為條件必備；守衛根**無法解析**時必須拒絕（0 attempts），**不得**回報「乾淨」。受檢主體的 `removed`/`changed` 使該回合 verdict **自我作廢**。
+4. **空泛通過（vacuous pass）禁令**：任何比較器／守衛若在**輸入缺失**時回報成功，即為缺陷。以三值判定（`PASS` / `FAIL` / **`INCONCLUSIVE`**）實作，`INCONCLUSIVE` 一律視為**未驗收**；比較前先斷言輸入非空。
+5. **自我指涉禁令**：工件**不得**記錄自身的 digest／大小，也**不得**由「正在寫入它的那條指令」同時被 digest。排除要**由構造達成**，不可事後手改 manifest。
+6. **負測必須是「本應通過」的回合**：若該回合因其他條件（缺 nonce、缺用量收據、缺 arm）先被拒，則它證明不了受測條件。優先使用**確定性（無模型）**接縫驅動負測。
+7. **promotion ≠ acceptance**：promotion 是狀態轉移；acceptance 必須由**獨立** checker lane 產生 verdict，且 oracle 要在檢查**之前**登記。maker 只**機械化轉錄** verdict（fail-closed 映射），**不得**自判；`actor` 欄位必須區分「判決作者」與「動列者」。
+8. **不得以「重新登入同一帳號」主張身分分離**：單一帳號環境下，重複的互動登入對身分分離毫無作用；此類目標應記為 **NOT APPLICABLE**，而非 blocked/deferred。
+9. **成本與副作用必須實測後如實更正**：預估與實測不符時，以實測值更正紀錄（例：relay 帳本列數），不得沿用較好看的預估。
 
 ## Files-first bootstrap (reading order)
 
