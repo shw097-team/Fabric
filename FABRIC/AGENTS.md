@@ -1,6 +1,6 @@
 # AGENTS.md — Fabric (agent-operating projection)
 
-Version: 2026-08-13.1
+Version: 2026-10-10.1  (adds: AO lane independence — spawn-前 fail-closed 身分閘門、required＝served、非變異守衛、確定性負測；advisory 綁定規則不變)
 Scope: this repository (`Fabric\`) and all descendants unless a nearer AGENTS.md narrows execution details.
 
 > Status: operational projection for agents working inside the Fabric repository. This file is NOT a new
@@ -95,6 +95,28 @@ Admitted WorkOrder → ExecutionBinding (BIND-RP2-S2-001) → Profile dispatch (
 Hermes runtime state ≠ HGK normative state; `/goal done` ≠ HGK PASS. Evidence:
 `..\HG-KSEOS\evidence\review\HG-KSEOS_HERMES_V020_*.json` and
 `stage\RP002-STAGE-HGK\B1\B1_WORKER.log`.
+
+## AO lane independence (round `FAR-AO-INDEPENDENCE-20261010`, 2026-10-10)
+
+- **What it is**: the AO / VERIFY / SECURITY dispatch surface (`HG-KSEOS/scripts/hgk-lane-dispatch.py`)
+  can now be *proven* independent in an unattended window, instead of only looking independent.
+- **Four behaviours**: (1) a **pre-spawn** identity/health gate — an unhealthy arm is refused
+  (`exit 4` / `ERR_RELAY_OAUTH_NEEDS_REAUTH`) and **never** silently swapped for another arm;
+  (2) `--require-arm` means the named arm must **SERVE** the turn, else `exit 3` /
+  `ERR_REQUIRED_ARM_NOT_SERVED` (pin the rank too when a specific model is required);
+  (3) a non-mutation guard whose root must resolve (`ERR_GUARD_ROOT_MISSING`, 0 attempts) and whose
+  `removed`/`changed` **voids the turn's own verdict**; (4) the turn's raw bytes are persisted and
+  independently re-derivable.
+- **Measured**: unattended `openai-codex/gpt-6.1-sol` — `required_arm == served_arm`, `exit 0`,
+  `usage 200`, no interactive window (`HG-KSEOS/evidence/FAR-AO-INDEPENDENCE-20261010/`).
+- **Binding rule is UNCHANGED**: a checker/AO verdict remains **advisory** — never an OracleReceipt,
+  never a canonical acceptance status, and no Fabric contract may consume it as either. The round's
+  `ACC-AO-INDEP-012 = PASS` is valid because an **independent checker lane** produced the verdict and
+  it was recorded through the **typed spine API** with a canonical event — not because a verdict was
+  advisory-but-convenient.
+- **Honest status**: **process-only independence** (all three lanes run one model, per the owner's
+  D-3 ruling) → model diversity must never be claimed; the guard is **detection, not prevention**;
+  the dedicated pool-account item is **NOT APPLICABLE** (the owner holds one account).
 
 ## Hard prohibitions
 
