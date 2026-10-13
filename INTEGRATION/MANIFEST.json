@@ -1,5 +1,5 @@
 {
-  "schema": "FABRIC-INTEGRATION-MIRROR/2",
+  "schema": "FABRIC-INTEGRATION-MIRROR/3",
   "subjects": [
     "Fabric",
     "FAR",
@@ -9,7 +9,7 @@
   "binding": "Under the current Fabric governance contract, HG-KSEOS is the sole control plane; current canonical Hermes is bound as its governed Runtime/Orchestration Plane.",
   "purpose": "single-surface external acceptance of all subjects at once",
   "claim_ceiling": "MIRROR_OF_GOVERNED_ARTIFACTS_FOR_EXTERNAL_ACCEPTANCE_ONLY",
-  "published_at": "2026-10-13T11:50:38.128148+00:00",
+  "published_at": "2026-10-13T12:23:20.088907+00:00",
   "published_by": "owner-ordered change-set on branch hygiene/external-upgrade-readiness-20261013, merged to main",
   "excluded": [
     "credentials and API keys",
@@ -34,7 +34,10 @@
     "INTEGRATION/UPGRADE-SCOPE.md",
     "INTEGRATION/DEPENDENCY-AND-CONTRACT-MATRIX.md",
     "INTEGRATION/VALIDATION-AND-ROLLBACK.md",
-    "INTEGRATION/NON-CLAIMS.md"
+    "INTEGRATION/NON-CLAIMS.md",
+    "INTEGRATION/KNOWN-FINDINGS.md",
+    "INTEGRATION/APPROVAL-LIST-PROPOSAL.md",
+    "INTEGRATION/LANE-INVOCATION-NOTES.md"
   ],
   "hygiene": {
     "root_gitignore": "present",
@@ -62,7 +65,8 @@
     "bulk-binary disposition (owner)",
     "remote linkage of the local Fabric tree (owner)",
     "subject baseline re-certification (fresh G1)",
-    "acceptance of any subject (Acceptance Officer)"
+    "acceptance of any subject (Acceptance Officer)",
+    "owner freeze of the approval list (unblocks the in-repo mirror builder)"
   ],
   "non_claims": [
     "NOT_EXTERNALLY_ACCEPTED",
@@ -70,5 +74,12 @@
     "NOT_RELEASED",
     "NOT_PRODUCTION",
     "NO_LIVE_WORLD_EFFECT"
-  ]
+  ],
+  "subject_navigation_indexes": [
+    "HG-KSEOS/UPGRADE-INDEX.md",
+    "FABRIC/UPGRADE-INDEX.md",
+    "FAR/UPGRADE-INDEX.md",
+    "DESKTOP/UPGRADE-INDEX.md"
+  ],
+  "approval_list_status": "PROPOSAL - awaiting owner freeze; the in-repo builder stays unauthorised until then"
 }
