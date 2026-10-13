@@ -1,11 +1,10 @@
 # Fabric — Integrated Governance Mirror
 
-> **Fabric + FAR + the desktop-effect plane + HG-KSEOS** — integrated under one governance
-> contract, mirrored for external acceptance.
+> **Fabric + FAR + the desktop-effect plane + HG-KSEOS** — integrated under one governance contract,
+> mirrored so that an **external engineer can plan a complete upgrade** of the subjects from this
+> repository alone.
 
 ## 1. Governance contract of this integration
-
-This repository mirrors the subjects **as one governed system**, under the following binding:
 
 ```
 在 current Fabric 治理契約下，
@@ -16,62 +15,53 @@ This repository mirrors the subjects **as one governed system**, under the follo
 
 | Layer | Role | What it may NOT do |
 |---|---|---|
-| **Fabric** | Governance contract / policy owner of the system | not a runtime; does not execute work |
-| **HG-KSEOS** (SharedSpine) | **Sole control plane**: WorkOrder / ExecutionBinding are the single source of truth; admission; router; reducer | must not bypass its own domain API from consumers |
-| **Hermes** (canonical) | **Governed Runtime / Orchestration Plane**: admission execution, Kanban, swarm, heartbeat, R0-R8 execution | must not self-set itself as task truth or release authority |
-| **FAR** | Autonomous-research **method layer** (governed research product) | not final acceptance; does not land meta-apply |
-| **Desktop-effect plane** | Governed desktop adapter with a zero-mouse hard route | never auto-invoked without a registered authorization route |
+| **Fabric** | governance contract / policy owner of the system | not a runtime; does not execute work |
+| **HG-KSEOS** | **sole control plane**: typed lifecycle, admission, evidence ledger | may not self-accept; may not accept on a subject's behalf |
+| **canonical Hermes** | governed Runtime / Orchestration Plane under HG-KSEOS | is not a controlling authority; routing changes are owner-gated |
+| **FAR** | research product: contracts, routing, retrieval | does not own governance |
+| **desktop-effect plane** | documented desktop procedures, guards, skills | no live-world effect is claimed here |
 
-## 2. Directory map
+## 2. Start here — planning an upgrade from outside
 
-| Path | Subject | Notes |
-|---|---|---|
-| `FABRIC/` | Fabric governance | contract, policy, tooling |
-| `HG-KSEOS/` | HG-KSEOS control plane | curated: `src/ tests/ docs/ schemas/ scripts/ config/ requirements/ tools/` |
-| `FAR/` | FAR research deliverables | research request/plan, integrated findings, root-cause, challenge, proposed evolution |
-| `DESKTOP/` | Desktop-effect plane | *pending authorization-token refresh — see Sec.5* |
-| `INTEGRATION/` | This integration | manifest, binding statement, acceptance entry point |
+| If you want to … | read |
+|---|---|
+| know what may be planned against | [`INTEGRATION/UPGRADE-SCOPE.md`](INTEGRATION/UPGRADE-SCOPE.md) |
+| follow the ordered procedure | [`INTEGRATION/UPGRADE-PLANNING-GUIDE.md`](INTEGRATION/UPGRADE-PLANNING-GUIDE.md) |
+| map this mirror onto the four subjects | [`INTEGRATION/SOURCE-PROJECTION.md`](INTEGRATION/SOURCE-PROJECTION.md) |
+| see cross-subject dependencies and who may change what | [`INTEGRATION/DEPENDENCY-AND-CONTRACT-MATRIX.md`](INTEGRATION/DEPENDENCY-AND-CONTRACT-MATRIX.md) |
+| know the tests and the rollback for a change | [`INTEGRATION/VALIDATION-AND-ROLLBACK.md`](INTEGRATION/VALIDATION-AND-ROLLBACK.md) |
+| know what is **not** claimed | [`INTEGRATION/NON-CLAIMS.md`](INTEGRATION/NON-CLAIMS.md) |
+| see what this publication contains and excludes | [`INTEGRATION/MANIFEST.json`](INTEGRATION/MANIFEST.json) |
+| read the hygiene record and the independent verdict | [`EVIDENCE/repo-hygiene-20261013/`](EVIDENCE/repo-hygiene-20261013) |
 
-**Deliberately excluded** (not part of the acceptance surface): `var/` (working data, SQLite DBs),
-`worktrees/`, `evidence/` raw stores, `.venv/`, and any `API KEY/` directory. These are runtime
-state or secrets, not governance artifacts.
+**Capability test.** An external engineer must be able to produce the upgrade scope, the dependency
+and contract map, the validation plan, the rollback plan and the non-claim list — from this
+repository alone, without any private workspace path. The `INTEGRATION/` set exists to make that
+test passable.
 
-## 3. What an external acceptance officer can verify here
+## 3. Repository layout
 
-1. **The binding is real, not prose** - HG-KSEOS is a single control plane: check
-   `HG-KSEOS/src/hg_kseos/spine.py` for the canonical transition API and the `TRANSITIONS`
-   table; consumers call it rather than issuing SQL.
-2. **The ordering-oracle defect class is closed** -
-   `HG-KSEOS/src/hg_kseos/{lifecycle,knowledge,evidence_graph}.py` order by the implicit `rowid`
-   (monotonic insertion order), never by wall-clock `created_at`.
-   Guard: `HG-KSEOS/tests/test_ordering_oracle.py`.
-3. **The acceptance-integrity controls** -
-   `FAR/far-swof-kseos-rca-001/impl/acceptance_integrity_checks.py` + its 22-test suite, plus the
-   inventory record that grounded them.
-4. **The FAR research chain** - request -> plan -> integrated findings -> root cause -> challenge
-   -> proposed evolution -> Gate-1 receipt, all in `FAR/`.
+| folder | contents |
+|---|---|
+| `HG-KSEOS/` | control plane: contracts, typed lifecycle, evidence, requirements |
+| `FABRIC/` | governance contract, research and automation trees, methods and skills |
+| `FAR/` | research-product contracts, routing and retrieval |
+| `DESKTOP/` | desktop-effect plane: documentation, guards and skills (runtime state is a named, bounded exception — see the manifest) |
+| `INTEGRATION/` | the readiness set described in section 2, plus the mirror manifest |
+| `EVIDENCE/` | assessment, hygiene and independent-check records |
 
-## 4. Claim ceiling of this mirror
+## 4. Ground rules for contributors and planners
 
-`MIRROR_OF_GOVERNED_ARTIFACTS_FOR_EXTERNAL_ACCEPTANCE_ONLY`
+1. **Do not read this repository as an authority.** It is a projection; `HG-KSEOS` is the control plane.
+2. **A gate that is not named is not passed.** Presence, digests, file counts and model votes are not passes.
+3. **Owner-class decisions stay with the owner**: licence choice, bulk-binary disposition, remote
+   linkage, subject baseline re-certification and acceptance are recorded as open, never resolved here.
+4. **Never publish credentials or machine-local state.** The root `.gitignore` encodes the publish control.
+5. **Changes arrive as a reviewed change-set**, on a branch, with an approval list, then merge.
 
-- This repository does **not** claim external acceptance, merge, release, production, or any
-  live-world effect.
-- Neither SWOF W2 (external `PASS_CHALLENGE`) nor W3 dispatch is claimed here.
-- Credentials, tokens and connection strings are **never** mirrored.
+## 5. Status of the subjects
 
-## 5. Desktop-effect plane slice
+`NOT_EXTERNALLY_ACCEPTED · NOT_MERGED · NOT_RELEASED · NOT_PRODUCTION · NO_LIVE_WORLD_EFFECT`
 
-The desktop-effect plane artifact tree is mirrored at `DESKTOP/` (adapter, routing/preflight
-guards, capability matrix, asset registry, verified action-class receipts, documentation).
-
-Curation: third-party vendored material (a downloaded distribution archive and its extraction,
-~133 MB) is **excluded** - it is not a governance artifact. The scripts that operate on it are
-kept.
-
-## 6. Provenance
-
-Mirrored from the local governed workspace `C:\Projects\Agent_Workspace` at the state where:
-- HG-KSEOS commits `c0cb5cb` (canonical acceptance resolver) and `c12412e` (ordering oracle) are HEAD.
-- FAR Gate 1 = `CONFIRMS_USEFUL`; Gate 2 = authorized; controls C1-C8 implemented with an
-  independent-checker PASS.
+Published 2026-10-13T11:50:38.128148+00:00. The previous publication is preserved in history; this one records its own scope,
+its hygiene result and its open owner decisions.

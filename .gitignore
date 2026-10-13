@@ -1,0 +1,24 @@
+# Publish control for this mirror.
+# Generated files are never part of an approved publication payload.
+*.pyc
+__pycache__/
+*.lnk
+*.tmp
+.DS_Store
+Thumbs.db
+# Credentials and machine-local state are never published.
+.env
+.env.*
+!*.env.example
+*API KEY*
+*API_KEY*
+*token*.txt
+auth.json
+*.pem
+*.key
+var/
+worktrees/
+.venv/
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
