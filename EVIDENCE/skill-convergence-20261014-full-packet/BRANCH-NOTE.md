@@ -37,6 +37,22 @@ cd Fabric/EVIDENCE/skill-convergence-20261014-full-packet/SKILL_CONVERGENCE_RETU
 # run the command in this packet's README.md -> expect `files 638 mismatch []` and `scan NO_HITS`
 ```
 
+**Windows note.** The packet carries one 188-character relative path (a deliberate deep-path fixture of the subject,
+a zero-byte file). With this branch's nesting the whole path exceeds the Windows `MAX_PATH` limit for some clone
+roots, and git then checks the tree out with that one file missing while reporting "Clone succeeded, but checkout
+failed". Use a short clone root and long-path support:
+
+```bash
+git -c core.longpaths=true clone --depth 1 --branch evidence/skill-convergence-20261014-full-packet \
+  https://github.com/shw097-team/Fabric.git C:/fx
+cd C:/fx/EVIDENCE/skill-convergence-20261014-full-packet/SKILL_CONVERGENCE_RETURN_20261014
+git -c core.longpaths=true restore --source=HEAD :/     # only if the checkout reported the fixture missing
+```
+
+On Linux and macOS the checkout is unaffected. The committed blob is the empty file the manifest records
+(`bytes: 0`, sha256 `e3b0c442…`), so nothing is lost by the long path — it is an environment limit, not missing
+content, and it is recorded here rather than discovered by a reader.
+
 ## Provenance of this branch
 
 The packet was first pushed to `shw097-team/PIPD-LS-SP` (branch `feat/skill-convergence-return-20261014`,
