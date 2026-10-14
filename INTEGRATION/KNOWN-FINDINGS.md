@@ -25,5 +25,6 @@ Three values only: `RESOLVED` (a named artifact closes it), `PARTIAL` (remaining
 | K-17 | the control plane's timeout path discards partial captures | `PARTIAL` | a candidate patch exists (2,621 bytes) and is **not** landed; landing needs its own admission and governed change-set |
 | K-18 | this round's lane failures (12 timeouts, 2 nonce-less dispatches, 1 contaminated verdict, 1 empty answer) | `PARTIAL` | none repaired; the timeout class was root-caused and the lane budget raised, and every failure is retained in the round record |
 | K-19 | the guarded apply path has only ever run against fixtures | `PARTIAL` | no real write was executed; the subject stays candidate-only |
+| K-20 | the round's return packet was first pushed to a repository the owner had not named for it | `RESOLVED` | `EVIDENCE/SKILL-CONVERGENCE-20261014/PUBLICATION-RECORD.md` section A: the packet was republished byte-identically to this repository's branch `evidence/skill-convergence-20261014-full-packet` and the other repository's branch was deleted (its `main` never moved); the deleted tip is recoverable from this branch |
 
 Nothing here is an acceptance. Presence of a row in this table is not a pass.

@@ -48,7 +48,7 @@ Fabric 是 **HG-KSEOS 的 contract surface**：它不擁有 authority，擁有�
 
 ## 本輪新增：skill 收斂候選回合（`SKILL-CONVERGENCE-20261014`，**candidate-only**）
 
-- **鏡射證據**：`EVIDENCE/SKILL-CONVERGENCE-20261014/`（策展投影：結案主文、FAR 裁決、兩軸獨立查核與其裁決、發布紀錄、審核清單、機器收據）；完整 632 檔回傳包在 `shw097-team/PIPD-LS-SP` 的 `feat/skill-convergence-return-20261014` 分支。
+- **鏡射證據**：`EVIDENCE/SKILL-CONVERGENCE-20261014/`（策展投影：結案主文、FAR 裁決、兩軸獨立查核與其裁決、發布紀錄、審核清單、機器收據）；完整回傳包（638 檔）在本 repo 的分支 `evidence/skill-convergence-20261014-full-packet`（曾短暫落在 `PIPD-LS-SP`，已更正並移除該分支；見 K-20）。
 - **本輪與 Fabric 這一層有關的一件事**：Fabric 側的工程衛生（`.gitignore` ＋ `HYGIENE_MANIFEST_20261014.json`，221 檔掃描 0 命中）與首頁／文檔提交，原先**只落在本機 working copy**（該 repo 無 remote）；本 change-set 把首頁與證據指標帶進 mirror。`FABRIC/AGENTS.md` 在本 mirror 與本機為**同一個 blob**（`bc269ffe…`）。
 - **綁定規則（不變）**：checker lane（`VERIFY 6`、`SECURITY 5`）的 verdict **僅為 advisory**——**不是** OracleReceipt、**不是** canonical acceptance；`WARN_LANE_CREDENTIAL_POSTURE_INCONCLUSIVE` 為 inconclusive，**非 pass**。
 - **誠實狀態**：canonical 樹**未 apply、未 promote**；控制平面逾時 partial-capture 缺陷**只有候選補丁**；本回合車道失敗四類（逾時 12／無 nonce 2／污染 1／空答案 1）**完整保留、無一被洗成 PASS**；references **94** 檔仍高於 linter 的 60 檔警告線 34 檔。

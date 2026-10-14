@@ -3,7 +3,7 @@
 > `NOT_EXTERNALLY_ACCEPTED · NOT_MERGED · NOT_RELEASED · NOT_PRODUCTION · NO_LIVE_WORLD_EFFECT`
 > Publishing is not promoting: making bytes public grants nothing and accepts nothing.
 
-## A. 完整回傳包 → `shw097-team/PIPD-LS-SP`
+## A. 完整回傳包（現址：本 repo 的分支；曾短暫落在 `shw097-team/PIPD-LS-SP`）
 
 | 項目 | 值 |
 |---|---|
@@ -15,8 +15,15 @@
 
 **逐位元驗證**：提交位元複驗 `committed_blob_match: 632 / mismatch: 0`，工作樹同為 632/632，
 verdict `PACKET_BYTES_REPRODUCIBLE_FROM_THE_CLONE`。
-**匿名重跑**：免憑證 clone 後執行入口文件命令 → `files 632 mismatch []`、`scan NO_HITS`
-（計數 632／5,540,242／排除 134 一致），verdict `ENTRY_DOCUMENT_COMMAND_SUCCEEDS_ANONYMOUSLY`。
+**匿名重跑**：免憑證 clone 後執行入口文件命令 → `files 638 mismatch []`、`scan NO_HITS`
+（計數 638／5,558,771／排除 134 一致），verdict `ENTRY_DOCUMENT_COMMAND_SUCCEEDS_ANONYMOUSLY`。
+
+**落點更正（2026-10-14）**：此包最初落在另一個 repo（`shw097-team/PIPD-LS-SP`，分支
+`feat/skill-convergence-return-20261014`，tip `e8997254c369957fb8b3a137aacb3c84d9d458ee`）。owner 指出本回合的
+落點應為 Fabric repo 之後，本包以**相同位元**改發佈於**本 repo 的分支**
+`evidence/skill-convergence-20261014-full-packet`（tip `df411fbd2ff6db2fc1f1b03120756194a9f76b81`，641 檔在樹，
+含 `BRANCH-NOTE.md`），並**刪除** PIPD-LS-SP 上的該分支（刪除回應 204、複查 404）。該 repo 的 `main` 全程為
+`f4021ae`，未動；被刪除的 tip 其位元與本 repo 該分支相同，仍可復原。
 
 ## B. 策展投影 → `shw097-team/Fabric`（本 mirror）
 
