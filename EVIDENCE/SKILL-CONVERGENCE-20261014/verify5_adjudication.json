@@ -1,0 +1,134 @@
+{
+  "schema": "SKCV-HARNESS-ADJUDICATION-VERIFY5/1",
+  "observed_at": "2026-10-14T07:24:37.294358+00:00",
+  "lane": "WHO-SKCV-20261014-VERIFY tag 5",
+  "transport": {
+    "exit": "0",
+    "ok": true,
+    "used_rank": 3,
+    "served_arm": "opencode-go/glm-5.3-flash",
+    "required_arm": "opencode-go/glm-5.3-flash",
+    "usage_receipt_ok": true,
+    "used_seconds": 486.87,
+    "token_at_both_ends": false
+  },
+  "conformance": {
+    "json": [
+      "parsed clean"
+    ],
+    "case_ids_match_fixed_list": true,
+    "case_ids": [
+      "SUBJECT-BINDING",
+      "HARNESS-CONVERGENCE",
+      "HARNESS-AVR-BATCH1",
+      "HARNESS-HGK-BATCH1",
+      "HARNESS-HGK-BATCH2",
+      "STUB-SIGNAL-REPAIR",
+      "REMEDIATION-HGK-SPRAWL",
+      "REMEDIATION-APPLY-PATCH",
+      "RECONSTRUCTION-AVR",
+      "RECONSTRUCTION-HGK",
+      "RECONSTRUCTION-MUTATIONS",
+      "C1-EXTRACTION",
+      "C2-THEMES",
+      "C3-CONSUMER",
+      "C4-ROLLBACK",
+      "C5-POLICY",
+      "COVERAGE"
+    ],
+    "statuses": {
+      "SUBJECT-BINDING": "PASS",
+      "HARNESS-CONVERGENCE": "PASS",
+      "HARNESS-AVR-BATCH1": "PASS",
+      "HARNESS-HGK-BATCH1": "PASS",
+      "HARNESS-HGK-BATCH2": "PASS",
+      "STUB-SIGNAL-REPAIR": "PASS",
+      "REMEDIATION-HGK-SPRAWL": "PASS",
+      "REMEDIATION-APPLY-PATCH": "PASS",
+      "RECONSTRUCTION-AVR": "PASS",
+      "RECONSTRUCTION-HGK": "PASS",
+      "RECONSTRUCTION-MUTATIONS": "PASS",
+      "C1-EXTRACTION": "agree",
+      "C2-THEMES": "agree",
+      "C3-CONSUMER": "agree",
+      "C4-ROLLBACK": "agree",
+      "C5-POLICY": "agree",
+      "COVERAGE": "PARTIAL"
+    },
+    "foreign_vocabulary_found": [],
+    "verdict_declared": "PASS_ADVISORY",
+    "findings": [
+      {
+        "severity": "none",
+        "summary": "No blocker, major, or direct counterexample found in any inspected artifact; every measured claim reproduced in this lane matches its on-disk or recorded value."
+      },
+      {
+        "severity": "observation",
+        "summary": "Generation 1's false-signal stub_points_at_topic field is repaired in the current harness without weakening the headline verdict: the repaired check (evidence/check_topic_batch.py lines 20-33) reads the same per-entry topic the segment came from and keeps the headline bound to the three substantive fields."
+      },
+      {
+        "severity": "observation",
+        "summary": "The lane filesystem rejects writes (Set-Content denied inside the verify/ worktree), consistent with the read-only mandate; all verification was performed by read-only reads plus the four harness scripts, which themselves print their own refusal note when denied a write."
+      }
+    ],
+    "carry_forward": [
+      "The generation 1 verdict (FAIL on evidence/lanes/verify/4/verdict.json's own subject_manifest_sha256 9b68418bcbfd230d43d6525752a09d156b37b31fb214eacaf3b5c77b616936cb) is superseded by this advisory, not overwritten; nothing that landed in generation 2 is retroactively declared accepted by generation 1's failure."
+    ],
+    "claim_ceiling": "This is an advisory independent rederivation over the frozen generation 2 subject only. It supports the measured byte-exactness, merge, patch consistency, and per-file policy/rollback/consumer reuse claims and nothing else. It is not canonical acceptance, not release authority, not promotion, and it does not by itself change any runtime, skill store, WorkOrder, or acceptance status. HGK reference count remains above the 60-file sprawl warning (94 after the pilot merge); only theme batches 1 and 2 are consolidated; nothing from this round has been applied to the canonical tree or promoted; the timeout-capture patch remains a candidate; eleven timed-out lane dispatches, one nonce-less dispatch, one contaminated verdict, and one false-signal harness field from earlier rounds remain on the record and are not repaired by this advisory."
+  },
+  "harness_rederivation": {
+    "rows": 370,
+    "rows_with_wrong_digest": 0,
+    "digest_matches_declared": true,
+    "declared_digest": "b050a0256e57f5e6958956874d3f4c4d63ac38c7cbe46489990183a16b48e8fa",
+    "harness_runs": {
+      "convergence": {
+        "exit": 0,
+        "rows_reporting_stub_points_at_topic_true": 0,
+        "rows_reporting_false": 0,
+        "all_absorbed_lossless": false,
+        "verdict_token": null
+      },
+      "avr_batch1": {
+        "exit": 0,
+        "rows_reporting_stub_points_at_topic_true": 7,
+        "rows_reporting_false": 0,
+        "all_absorbed_lossless": true,
+        "verdict_token": null
+      },
+      "hgk_batch1": {
+        "exit": 0,
+        "rows_reporting_stub_points_at_topic_true": 5,
+        "rows_reporting_false": 0,
+        "all_absorbed_lossless": true,
+        "verdict_token": null
+      },
+      "hgk_batch2": {
+        "exit": 0,
+        "rows_reporting_stub_points_at_topic_true": 4,
+        "rows_reporting_false": 0,
+        "all_absorbed_lossless": true,
+        "verdict_token": null
+      }
+    },
+    "sprawl_pilot": {
+      "merged_verified": 14,
+      "merged_not_verified": [],
+      "topic_bytes": 44879,
+      "reference_md_files_now": 95,
+      "linter_cap": 60,
+      "still_over_cap_by": 35
+    },
+    "apply_patch": {
+      "patch_exists": true,
+      "patch_bytes": 2621,
+      "canonical_sha256_now": "17e667d136f1463609a44e2de6a8f7ba9aab07653f6ea4490178fc4ff93a6c56",
+      "patch_context_matches_canonical": {
+        "context_lines": 18,
+        "context_lines_present_in_canonical": 18,
+        "all_present": true
+      }
+    }
+  },
+  "claim_ceiling": "harness adjudication of a checker verdict over generation 2; it reproduces measurable claims, names what it cannot reproduce, and grants no acceptance"
+}

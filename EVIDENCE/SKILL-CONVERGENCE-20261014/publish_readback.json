@@ -1,0 +1,66 @@
+{
+  "schema": "SKILL-CONVERGENCE-PUBLICATION-READBACK/1",
+  "observed_utc": "2026-10-14T07:35:23.420493+00:00",
+  "branch": "feat/skill-convergence-return-20261014",
+  "local_tip": "fbb0dc75a19b2f2fa0e7bd78704f458eda8818ba",
+  "remote_tip": "fbb0dc75a19b2f2fa0e7bd78704f458eda8818ba",
+  "tip_matches": true,
+  "local_tree": "1ccca4d878d75dfe8d0a604153a054e13f91194b",
+  "default_branch_sha": "f4021aeff9c016cfb14f17e68a0c570ed4e825c5",
+  "default_branch_unmoved": true,
+  "channel_1_refs": {
+    "credential_used": false,
+    "branch_tip_matches_local": true
+  },
+  "channel_2_anonymous_clone": {
+    "credential_used": false,
+    "files_compared": 609,
+    "blob_mismatch": 0,
+    "checked_out_mismatch": 0,
+    "blob_mismatch_sample": [],
+    "worktree_mismatch_sample": [],
+    "verdict": "CLONE_BYTES_EQUAL_THE_MANIFEST"
+  },
+  "channel_3_raw_file_host": {
+    "credential_used": false,
+    "results": [
+      {
+        "path": "EVIDENCE_MANIFEST.json",
+        "raw_bytes": 301511,
+        "local_bytes": 305772,
+        "raw_equals_local": false,
+        "outcome": "STALE_CDN_CONTENT"
+      },
+      {
+        "path": "README.md",
+        "raw_bytes": 6654,
+        "local_bytes": 6654,
+        "raw_equals_local": true,
+        "outcome": "MATCH"
+      },
+      {
+        "path": "HASHES.sha256",
+        "raw_bytes": 82340,
+        "local_bytes": 83559,
+        "raw_equals_local": false,
+        "outcome": "STALE_CDN_CONTENT"
+      },
+      {
+        "path": ".gitattributes",
+        "raw_bytes": 376,
+        "local_bytes": 376,
+        "raw_equals_local": true,
+        "outcome": "MATCH"
+      }
+    ],
+    "interpretation": "the raw host is a cache: it served an earlier revision of the two files whose content changed between the two commits on this branch. The clone and the committed blob agree with the manifest, so this is classified as cache staleness, not as a content mismatch. A reviewer whose only channel is the raw host should re-fetch after the cache expires, or use a clone."
+  },
+  "packet": {
+    "delivered_files": 609,
+    "delivered_bytes": 5449435,
+    "excluded_entries": 129,
+    "credential_scan": "NO_HITS"
+  },
+  "claim_ceiling": "a publication and a credential-free read-back of it: candidate-only subject, advisory verdicts, no acceptance, no promotion",
+  "what_this_does_not_show": "that any consumer accepts the packet, or that the packet is free of defects it discloses about itself"
+}

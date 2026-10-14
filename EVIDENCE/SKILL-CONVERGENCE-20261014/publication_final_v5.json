@@ -1,0 +1,33 @@
+{
+  "record": "final publication state of the skill-convergence return packet",
+  "note": "This file postdates the published packet: the packet cannot contain the hash of the commit that contains it. Read it beside evidence/postfreeze/RETURN_README.md, which explains the fixed-point limit.",
+  "remote": "https://github.com/shw097-team/PIPD-LS-SP.git",
+  "branch": "feat/skill-convergence-return-20261014",
+  "published_tip": "dcdc46295bacd829f1bd1d611f3b478e3646a93e",
+  "revision_chain": [
+    {"rev": "v1 (initial)", "files": 598, "note": "first return packet"},
+    {"rev": "v2", "note": "adds the security lane's verdict text and its adjudication, since the verdict otherwise existed only inside a transcript that the packet excludes by size"},
+    {"rev": "v3", "note": "adds the three-channel read-back record, including the raw-host cache staleness classified as such"},
+    {"rev": "v4", "note": "adds the close-out set: board close-out readback, resume and handover checkpoints, closure manifest, closure review verdict and its adjudication; corrects the reference population to 94"},
+    {"rev": "v5", "files": 632, "bytes": 5540242, "note": "renames the handover checkpoint inside the packet because this repository's .gitignore excludes CHECKPOINT_*.md; v4 had listed it as delivered while the commit silently dropped it, and the commit-byte read-back refused to claim reproducibility until it was fixed"}
+  ],
+  "main_ref": "f4021aeff9c016cfb14f17e68a0c570ed4e825c5",
+  "main_moved": false,
+  "verification_of_the_published_commit": {
+    "committed_blob_match": 632,
+    "committed_blob_mismatch": 0,
+    "worktree_match": 632,
+    "worktree_mismatch": 0,
+    "verdict": "PACKET_BYTES_REPRODUCIBLE_FROM_THE_CLONE",
+    "command_shape": "git clone --depth 1 --branch <branch> <remote> <dir>; then, inside SKILL_CONVERGENCE_RETURN_20261014/, run the entry document's command"
+  },
+  "anonymous_rehearsal_v5": {
+    "files": 632,
+    "mismatch": [],
+    "secret_scan": "NO_HITS",
+    "counts": {"delivered_files": 632, "delivered_bytes": 5540242, "excluded_entries": 134},
+    "verdict": "ENTRY_DOCUMENT_COMMAND_SUCCEEDS_ANONYMOUSLY",
+    "credential_used": "none"
+  },
+  "claim_ceiling": "a re-readable publication of a candidate round's artefacts; it is not acceptance, promotion, landing authority, or a repair of any recorded failure"
+}

@@ -18,5 +18,12 @@ Three values only: `RESOLVED` (a named artifact closes it), `PARTIAL` (remaining
 | K-10 | the mandated checker arm was absent from the sealed lane pool, so checks ran provider-direct with no pool ledger | `OWNER` | route-registry change is owner-gated; each affected run is disclosed in its receipt |
 | K-11 | long prompts passed as a single argv element produced no artifact on the PLAN lane | `PARTIAL` | rule recorded in `LANE-INVOCATION-NOTES.md`; a long-prompt run by file is the confirming test and has not been executed |
 | K-12 | carried-forward findings from earlier rounds were never triaged individually | `RESOLVED` | this ledger; each row names its artifact or its remaining gap |
+| K-13 | the local Fabric tree has no remote linkage, so a round's Fabric-side work can be committed and still never reach this mirror | `OWNER` | `EVIDENCE/SKILL-CONVERGENCE-20261014/PUBLICATION-RECORD.md` section C: the round's hygiene work was local-only until this change-set projected it; the remote linkage itself stays the owner's open item (`MANIFEST.json` `pending`) |
+| K-14 | a closure text described the Fabric front page as upgraded when it had only been committed | `RESOLVED` | corrected in the publication record; the round section is added by this change-set |
+| K-15 | a publication manifest can list a file the commit silently drops, because the host repo's own ignore rules apply | `RESOLVED` | the commit-byte read-back refused to claim reproducibility and the packet was renamed; the rule is recorded in the `remote-repo-publication` skill |
+| K-16 | the reference population still exceeds the linter's warning line (94 files against 60) | `PARTIAL` | only a 14-file pilot group was merged this round; the remaining topic groups are unmerged |
+| K-17 | the control plane's timeout path discards partial captures | `PARTIAL` | a candidate patch exists (2,621 bytes) and is **not** landed; landing needs its own admission and governed change-set |
+| K-18 | this round's lane failures (12 timeouts, 2 nonce-less dispatches, 1 contaminated verdict, 1 empty answer) | `PARTIAL` | none repaired; the timeout class was root-caused and the lane budget raised, and every failure is retained in the round record |
+| K-19 | the guarded apply path has only ever run against fixtures | `PARTIAL` | no real write was executed; the subject stays candidate-only |
 
 Nothing here is an acceptance. Presence of a row in this table is not a pass.
