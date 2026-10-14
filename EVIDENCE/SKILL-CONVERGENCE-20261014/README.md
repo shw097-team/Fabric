@@ -20,7 +20,7 @@ Runtime／Orchestration Plane，對 canonical Hermes 的兩個近硬限入口 sk
 | `FAR-CLOSURE-REPORT.md` | FAR 裁決＋低阻力執行方案（本回合實際執行的那一份） |
 | `INDEPENDENT-CHECK-VERDICT.md` | 結案複核車道的 **advisory** verdict，加上我方對其主張的**獨立重算**（不採信自述） |
 | `SECURITY-CHECK.md` | 安全車道 verdict 的逐位元疑點裁決（從該回合自身紀錄重算） |
-| `PUBLICATION-RECORD.md` | 兩次發布的紀錄：PIPD-LS-SP 的完整回傳包、以及本 mirror 的投影 |
+| `PUBLICATION-RECORD.md` | 發布紀錄：完整回傳包（現址為本 repo 的分支）與本 mirror 的策展投影 |
 | `APPROVAL-LIST.md` | 本 change-set 的變更清單與審核依據（mirror §4.5 要求） |
 | `closure_manifest.json` | 結案依據 artifact → sha256 對照（可由隨附腳本重生） |
 | `*.json` | 機器收據：verdict 裁決、看板結案回讀、收斂／回退檢查 |
@@ -37,16 +37,22 @@ Runtime／Orchestration Plane，對 canonical Hermes 的兩個近硬限入口 sk
 
 ## 完整證據在哪裡
 
-本目錄是**策展投影**（mirror 排除 raw stores）。完整 632 檔回傳包（含全部 lane 逐字稿、契約、
-harness 腳本與 manifest）在 `shw097-team/PIPD-LS-SP` 的
-`feat/skill-convergence-return-20261014` 分支之 `SKILL_CONVERGENCE_RETURN_20261014/` 下，
-可免憑證 clone 與重跑驗收命令。
+本目錄是**策展投影**（mirror 排除 raw stores）。完整回傳包（638 檔：全部 lane 逐字稿、brief、harness、
+manifest、結案集）在**本 repo 的分支** `evidence/skill-convergence-20261014-full-packet` 之
+`EVIDENCE/skill-convergence-20261014-full-packet/SKILL_CONVERGENCE_RETURN_20261014/`，可免憑證 clone 並重跑
+驗收命令。該分支的 `BRANCH-NOTE.md` 說明它為何放在分支上、推送前做過哪些檢查，以及 Windows 長路徑注意事項。
+
+> **落點更正（2026-10-14）**：此回傳包最初被推到 `shw097-team/PIPD-LS-SP`（分支
+> `feat/skill-convergence-return-20261014`，tip `e8997254…`）。owner 指出本回合的落點應為 Fabric repo，
+> 故已改發佈於本 repo 的上述分支，並**刪除** PIPD-LS-SP 上的該分支（該 repo 的 `main` 全程未動，
+> 仍為 `f4021ae`）。此為本回合第二次落點更正，事件本身記於
+> `INTEGRATION/KNOWN-FINDINGS.md` 的 K-20。
 
 ## 重現
 
 ```bash
-git clone --depth 1 --branch feat/skill-convergence-return-20261014 \
-  https://github.com/shw097-team/PIPD-LS-SP.git
-cd PIPD-LS-SP/SKILL_CONVERGENCE_RETURN_20261014
-# 依 README.md 的驗收命令執行 → 期待 `files 632 mismatch []` 與 `scan NO_HITS`
+git clone --depth 1 --branch evidence/skill-convergence-20261014-full-packet \
+  https://github.com/shw097-team/Fabric.git
+cd Fabric/EVIDENCE/skill-convergence-20261014-full-packet/SKILL_CONVERGENCE_RETURN_20261014
+# 依 README.md 的驗收命令執行 → 期待 `files 638 mismatch []` 與 `scan NO_HITS`
 ```
