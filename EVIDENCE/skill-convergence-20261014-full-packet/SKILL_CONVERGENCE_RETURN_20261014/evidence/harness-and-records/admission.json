@@ -1,0 +1,211 @@
+{
+  "project_id": "SKILL-CONVERGENCE-20261014",
+  "observed_at": "2026-10-14T04:01:20.284090+00:00",
+  "base_head": "903e47cddeceb40cb8f5f5793105533b3988a463",
+  "compiler_receipt": {
+    "compiler_sha256": "2c282ad6539a465c3b1d751868cab98437a8f35e9728be686117e364a70857d9",
+    "contract_sha256": "8841a6c35fdcc10505e03686cf326f698519dad43c48b1e4e8a858cd87bc60d0",
+    "generated_at": "2026-10-14T03:59:25.144283+00:00",
+    "independent_claim": "NOT_EVALUATED",
+    "production_claim": "NOT_CLAIMED",
+    "prompt_sha256": "62c54c95130b864e80f889681330594238be9410ee7911ccc847b3a48526da72",
+    "runtime_claim": "NOT_EVALUATED",
+    "schema": "CAPC-COMPILER-RECEIPT/1",
+    "task_id": "HGK-SKILL-CONVERGENCE-20261014",
+    "verdict": "PROMPT_COMPILE_PASS"
+  },
+  "scope": "candidate only; live apply binding required separately",
+  "items": [
+    {
+      "role": "PROBE",
+      "binding": {
+        "requirement_id": "REQ-SKCV-20261014-PROBE",
+        "requirement_state": "FROZEN",
+        "taskspec_id": "TS-SKCV-20261014-PROBE",
+        "taskspec_state": "ADMITTED",
+        "writable_root": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\SKILL-CONVERGENCE-20261014\\qualification",
+        "permissions_json": "{\"canonical_acceptance\":false,\"evidence_write_surface\":\"orchestrator generated inputs/receipts; not attributed to Codex\",\"expires_at\":\"2026-10-14T12:01:19.789091+00:00\",\"live_skill_mutation\":false,\"model_route\":{\"EXECUTE\":\"opencode-go/deepseek-v4.1-flash Codex CLI\",\"PLAN\":\"openai-codex/gpt-6.1-sol medium OpenAI OAuth in Hermes main\",\"VERIFY_SECURITY\":\"opencode-go/glm-5.3-flash Codex CLI read-only\"},\"network\":\"LOOPBACK_ONLY\",\"network_allowlist\":[\"http://127.0.0.1:10101\"],\"orchestrator_evidence_root\":\"C:\\\\Projects\\\\Agent_Workspace\\\\HG-KSEOS\\\\var\\\\SKILL-CONVERGENCE-20261014\\\\evidence\",\"promotion\":false,\"read_roots\":[\"C:\\\\Projects\\\\Agent_Workspace\\\\HG-KSEOS\",\"C:\\\\Projects\\\\Agent_Workspace\\\\Fabric\",\"C:\\\\Users\\\\user\\\\AppData\\\\Local\\\\Packages\\\\OpenAI.Codex_2p2nqsd0c76g0\\\\LocalCache\\\\Local\\\\hermes\\\\skills\",\"C:\\\\Users\\\\user\\\\AppData\\\\Local\\\\Packages\\\\OpenAI.Codex_2p2nqsd0c76g0\\\\LocalCache\\\\Local\\\\hermes\\\\hermes-agent\"],\"role\":\"PROBE\",\"rollback_pointer\":\"C:\\\\Projects\\\\Agent_Workspace\\\\HG-KSEOS\\\\var\\\\SKILL-CONVERGENCE-20261014\\\\baseline\",\"source_equivalence\":\"frozen complete bytes copied from exact current canonical subject; manifest/digests required\",\"write_roots\":[\"C:\\\\Projects\\\\Agent_Workspace\\\\HG-KSEOS\\\\var\\\\SKILL-CONVERGENCE-20261014\\\\qualification\"],\"writer_gate\":\"PROBE two-axis native sandbox qualification required before candidate writes\"}",
+        "workorder_id": "WO-SKCV-20261014-PROBE",
+        "writer": "codex",
+        "workorder_state": "CREATED",
+        "worktree": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\SKILL-CONVERGENCE-20261014\\qualification",
+        "base_head": "903e47cddeceb40cb8f5f5793105533b3988a463"
+      },
+      "canonical_event": {
+        "event_id": "EVT-47b3ff8ed0a08ad0",
+        "resulting_version": 1,
+        "to_state": "FROZEN"
+      }
+    },
+    {
+      "role": "HGK",
+      "binding": {
+        "requirement_id": "REQ-SKCV-20261014-HGK",
+        "requirement_state": "FROZEN",
+        "taskspec_id": "TS-SKCV-20261014-HGK",
+        "taskspec_state": "ADMITTED",
+        "writable_root": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\SKILL-CONVERGENCE-20261014\\candidates\\hgk",
+        "permissions_json": "{\"canonical_acceptance\":false,\"evidence_write_surface\":\"orchestrator generated inputs/receipts; not attributed to Codex\",\"expires_at\":\"2026-10-14T12:01:19.960903+00:00\",\"live_skill_mutation\":false,\"model_route\":{\"EXECUTE\":\"opencode-go/deepseek-v4.1-flash Codex CLI\",\"PLAN\":\"openai-codex/gpt-6.1-sol medium OpenAI OAuth in Hermes main\",\"VERIFY_SECURITY\":\"opencode-go/glm-5.3-flash Codex CLI read-only\"},\"network\":\"LOOPBACK_ONLY\",\"network_allowlist\":[\"http://127.0.0.1:10101\"],\"orchestrator_evidence_root\":\"C:\\\\Projects\\\\Agent_Workspace\\\\HG-KSEOS\\\\var\\\\SKILL-CONVERGENCE-20261014\\\\evidence\",\"promotion\":false,\"read_roots\":[\"C:\\\\Projects\\\\Agent_Workspace\\\\HG-KSEOS\",\"C:\\\\Projects\\\\Agent_Workspace\\\\Fabric\",\"C:\\\\Users\\\\user\\\\AppData\\\\Local\\\\Packages\\\\OpenAI.Codex_2p2nqsd0c76g0\\\\LocalCache\\\\Local\\\\hermes\\\\skills\",\"C:\\\\Users\\\\user\\\\AppData\\\\Local\\\\Packages\\\\OpenAI.Codex_2p2nqsd0c76g0\\\\LocalCache\\\\Local\\\\hermes\\\\hermes-agent\"],\"role\":\"HGK\",\"rollback_pointer\":\"C:\\\\Projects\\\\Agent_Workspace\\\\HG-KSEOS\\\\var\\\\SKILL-CONVERGENCE-20261014\\\\baseline\",\"source_equivalence\":\"frozen complete bytes copied from exact current canonical subject; manifest/digests required\",\"write_roots\":[\"C:\\\\Projects\\\\Agent_Workspace\\\\HG-KSEOS\\\\var\\\\SKILL-CONVERGENCE-20261014\\\\candidates\\\\hgk\"],\"writer_gate\":\"PROBE two-axis native sandbox qualification required before candidate writes\"}",
+        "workorder_id": "WO-SKCV-20261014-HGK",
+        "writer": "codex",
+        "workorder_state": "CREATED",
+        "worktree": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\SKILL-CONVERGENCE-20261014\\candidates\\hgk",
+        "base_head": "903e47cddeceb40cb8f5f5793105533b3988a463"
+      },
+      "canonical_event": {
+        "event_id": "EVT-300f28d17c31eb66",
+        "resulting_version": 1,
+        "to_state": "FROZEN"
+      }
+    },
+    {
+      "role": "AVR",
+      "binding": {
+        "requirement_id": "REQ-SKCV-20261014-AVR",
+        "requirement_state": "FROZEN",
+        "taskspec_id": "TS-SKCV-20261014-AVR",
+        "taskspec_state": "ADMITTED",
+        "writable_root": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\SKILL-CONVERGENCE-20261014\\candidates\\avr",
+        "permissions_json": "{\"canonical_acceptance\":false,\"evidence_write_surface\":\"orchestrator generated inputs/receipts; not attributed to Codex\",\"expires_at\":\"2026-10-14T12:01:20.024631+00:00\",\"live_skill_mutation\":false,\"model_route\":{\"EXECUTE\":\"opencode-go/deepseek-v4.1-flash Codex CLI\",\"PLAN\":\"openai-codex/gpt-6.1-sol medium OpenAI OAuth in Hermes main\",\"VERIFY_SECURITY\":\"opencode-go/glm-5.3-flash Codex CLI read-only\"},\"network\":\"LOOPBACK_ONLY\",\"network_allowlist\":[\"http://127.0.0.1:10101\"],\"orchestrator_evidence_root\":\"C:\\\\Projects\\\\Agent_Workspace\\\\HG-KSEOS\\\\var\\\\SKILL-CONVERGENCE-20261014\\\\evidence\",\"promotion\":false,\"read_roots\":[\"C:\\\\Projects\\\\Agent_Workspace\\\\HG-KSEOS\",\"C:\\\\Projects\\\\Agent_Workspace\\\\Fabric\",\"C:\\\\Users\\\\user\\\\AppData\\\\Local\\\\Packages\\\\OpenAI.Codex_2p2nqsd0c76g0\\\\LocalCache\\\\Local\\\\hermes\\\\skills\",\"C:\\\\Users\\\\user\\\\AppData\\\\Local\\\\Packages\\\\OpenAI.Codex_2p2nqsd0c76g0\\\\LocalCache\\\\Local\\\\hermes\\\\hermes-agent\"],\"role\":\"AVR\",\"rollback_pointer\":\"C:\\\\Projects\\\\Agent_Workspace\\\\HG-KSEOS\\\\var\\\\SKILL-CONVERGENCE-20261014\\\\baseline\",\"source_equivalence\":\"frozen complete bytes copied from exact current canonical subject; manifest/digests required\",\"write_roots\":[\"C:\\\\Projects\\\\Agent_Workspace\\\\HG-KSEOS\\\\var\\\\SKILL-CONVERGENCE-20261014\\\\candidates\\\\avr\"],\"writer_gate\":\"PROBE two-axis native sandbox qualification required before candidate writes\"}",
+        "workorder_id": "WO-SKCV-20261014-AVR",
+        "writer": "codex",
+        "workorder_state": "CREATED",
+        "worktree": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\SKILL-CONVERGENCE-20261014\\candidates\\avr",
+        "base_head": "903e47cddeceb40cb8f5f5793105533b3988a463"
+      },
+      "canonical_event": {
+        "event_id": "EVT-c98f1d3d9066b4ef",
+        "resulting_version": 1,
+        "to_state": "FROZEN"
+      }
+    },
+    {
+      "role": "CONSUMER",
+      "binding": {
+        "requirement_id": "REQ-SKCV-20261014-CONSUMER",
+        "requirement_state": "FROZEN",
+        "taskspec_id": "TS-SKCV-20261014-CONSUMER",
+        "taskspec_state": "ADMITTED",
+        "writable_root": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\SKILL-CONVERGENCE-20261014\\candidates\\consumer",
+        "permissions_json": "{\"canonical_acceptance\":false,\"evidence_write_surface\":\"orchestrator generated inputs/receipts; not attributed to Codex\",\"expires_at\":\"2026-10-14T12:01:20.074705+00:00\",\"live_skill_mutation\":false,\"model_route\":{\"EXECUTE\":\"opencode-go/deepseek-v4.1-flash Codex CLI\",\"PLAN\":\"openai-codex/gpt-6.1-sol medium OpenAI OAuth in Hermes main\",\"VERIFY_SECURITY\":\"opencode-go/glm-5.3-flash Codex CLI read-only\"},\"network\":\"LOOPBACK_ONLY\",\"network_allowlist\":[\"http://127.0.0.1:10101\"],\"orchestrator_evidence_root\":\"C:\\\\Projects\\\\Agent_Workspace\\\\HG-KSEOS\\\\var\\\\SKILL-CONVERGENCE-20261014\\\\evidence\",\"promotion\":false,\"read_roots\":[\"C:\\\\Projects\\\\Agent_Workspace\\\\HG-KSEOS\",\"C:\\\\Projects\\\\Agent_Workspace\\\\Fabric\",\"C:\\\\Users\\\\user\\\\AppData\\\\Local\\\\Packages\\\\OpenAI.Codex_2p2nqsd0c76g0\\\\LocalCache\\\\Local\\\\hermes\\\\skills\",\"C:\\\\Users\\\\user\\\\AppData\\\\Local\\\\Packages\\\\OpenAI.Codex_2p2nqsd0c76g0\\\\LocalCache\\\\Local\\\\hermes\\\\hermes-agent\"],\"role\":\"CONSUMER\",\"rollback_pointer\":\"C:\\\\Projects\\\\Agent_Workspace\\\\HG-KSEOS\\\\var\\\\SKILL-CONVERGENCE-20261014\\\\baseline\",\"source_equivalence\":\"frozen complete bytes copied from exact current canonical subject; manifest/digests required\",\"write_roots\":[\"C:\\\\Projects\\\\Agent_Workspace\\\\HG-KSEOS\\\\var\\\\SKILL-CONVERGENCE-20261014\\\\candidates\\\\consumer\"],\"writer_gate\":\"PROBE two-axis native sandbox qualification required before candidate writes\"}",
+        "workorder_id": "WO-SKCV-20261014-CONSUMER",
+        "writer": "codex",
+        "workorder_state": "CREATED",
+        "worktree": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\SKILL-CONVERGENCE-20261014\\candidates\\consumer",
+        "base_head": "903e47cddeceb40cb8f5f5793105533b3988a463"
+      },
+      "canonical_event": {
+        "event_id": "EVT-47d4b417fbc57688",
+        "resulting_version": 1,
+        "to_state": "FROZEN"
+      }
+    },
+    {
+      "role": "VERIFY",
+      "binding": {
+        "requirement_id": "REQ-SKCV-20261014-VERIFY",
+        "requirement_state": "FROZEN",
+        "taskspec_id": "TS-SKCV-20261014-VERIFY",
+        "taskspec_state": "ADMITTED",
+        "writable_root": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\SKILL-CONVERGENCE-20261014\\verification\\verify",
+        "permissions_json": "{\"canonical_acceptance\":false,\"evidence_write_surface\":\"orchestrator generated inputs/receipts; not attributed to Codex\",\"expires_at\":\"2026-10-14T12:01:20.126290+00:00\",\"live_skill_mutation\":false,\"model_route\":{\"EXECUTE\":\"opencode-go/deepseek-v4.1-flash Codex CLI\",\"PLAN\":\"openai-codex/gpt-6.1-sol medium OpenAI OAuth in Hermes main\",\"VERIFY_SECURITY\":\"opencode-go/glm-5.3-flash Codex CLI read-only\"},\"network\":\"LOOPBACK_ONLY\",\"network_allowlist\":[\"http://127.0.0.1:10101\"],\"orchestrator_evidence_root\":\"C:\\\\Projects\\\\Agent_Workspace\\\\HG-KSEOS\\\\var\\\\SKILL-CONVERGENCE-20261014\\\\evidence\",\"promotion\":false,\"read_roots\":[\"C:\\\\Projects\\\\Agent_Workspace\\\\HG-KSEOS\",\"C:\\\\Projects\\\\Agent_Workspace\\\\Fabric\",\"C:\\\\Users\\\\user\\\\AppData\\\\Local\\\\Packages\\\\OpenAI.Codex_2p2nqsd0c76g0\\\\LocalCache\\\\Local\\\\hermes\\\\skills\",\"C:\\\\Users\\\\user\\\\AppData\\\\Local\\\\Packages\\\\OpenAI.Codex_2p2nqsd0c76g0\\\\LocalCache\\\\Local\\\\hermes\\\\hermes-agent\"],\"role\":\"VERIFY\",\"rollback_pointer\":\"C:\\\\Projects\\\\Agent_Workspace\\\\HG-KSEOS\\\\var\\\\SKILL-CONVERGENCE-20261014\\\\baseline\",\"source_equivalence\":\"frozen complete bytes copied from exact current canonical subject; manifest/digests required\",\"write_roots\":[\"C:\\\\Projects\\\\Agent_Workspace\\\\HG-KSEOS\\\\var\\\\SKILL-CONVERGENCE-20261014\\\\verification\\\\verify\"],\"writer_gate\":\"PROBE two-axis native sandbox qualification required before candidate writes\"}",
+        "workorder_id": "WO-SKCV-20261014-VERIFY",
+        "writer": "codex",
+        "workorder_state": "CREATED",
+        "worktree": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\SKILL-CONVERGENCE-20261014\\verification\\verify",
+        "base_head": "903e47cddeceb40cb8f5f5793105533b3988a463"
+      },
+      "canonical_event": {
+        "event_id": "EVT-e1dd4ecca7bf011c",
+        "resulting_version": 1,
+        "to_state": "FROZEN"
+      }
+    },
+    {
+      "role": "SECURITY",
+      "binding": {
+        "requirement_id": "REQ-SKCV-20261014-SECURITY",
+        "requirement_state": "FROZEN",
+        "taskspec_id": "TS-SKCV-20261014-SECURITY",
+        "taskspec_state": "ADMITTED",
+        "writable_root": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\SKILL-CONVERGENCE-20261014\\verification\\security",
+        "permissions_json": "{\"canonical_acceptance\":false,\"evidence_write_surface\":\"orchestrator generated inputs/receipts; not attributed to Codex\",\"expires_at\":\"2026-10-14T12:01:20.181366+00:00\",\"live_skill_mutation\":false,\"model_route\":{\"EXECUTE\":\"opencode-go/deepseek-v4.1-flash Codex CLI\",\"PLAN\":\"openai-codex/gpt-6.1-sol medium OpenAI OAuth in Hermes main\",\"VERIFY_SECURITY\":\"opencode-go/glm-5.3-flash Codex CLI read-only\"},\"network\":\"LOOPBACK_ONLY\",\"network_allowlist\":[\"http://127.0.0.1:10101\"],\"orchestrator_evidence_root\":\"C:\\\\Projects\\\\Agent_Workspace\\\\HG-KSEOS\\\\var\\\\SKILL-CONVERGENCE-20261014\\\\evidence\",\"promotion\":false,\"read_roots\":[\"C:\\\\Projects\\\\Agent_Workspace\\\\HG-KSEOS\",\"C:\\\\Projects\\\\Agent_Workspace\\\\Fabric\",\"C:\\\\Users\\\\user\\\\AppData\\\\Local\\\\Packages\\\\OpenAI.Codex_2p2nqsd0c76g0\\\\LocalCache\\\\Local\\\\hermes\\\\skills\",\"C:\\\\Users\\\\user\\\\AppData\\\\Local\\\\Packages\\\\OpenAI.Codex_2p2nqsd0c76g0\\\\LocalCache\\\\Local\\\\hermes\\\\hermes-agent\"],\"role\":\"SECURITY\",\"rollback_pointer\":\"C:\\\\Projects\\\\Agent_Workspace\\\\HG-KSEOS\\\\var\\\\SKILL-CONVERGENCE-20261014\\\\baseline\",\"source_equivalence\":\"frozen complete bytes copied from exact current canonical subject; manifest/digests required\",\"write_roots\":[\"C:\\\\Projects\\\\Agent_Workspace\\\\HG-KSEOS\\\\var\\\\SKILL-CONVERGENCE-20261014\\\\verification\\\\security\"],\"writer_gate\":\"PROBE two-axis native sandbox qualification required before candidate writes\"}",
+        "workorder_id": "WO-SKCV-20261014-SECURITY",
+        "writer": "codex",
+        "workorder_state": "CREATED",
+        "worktree": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\SKILL-CONVERGENCE-20261014\\verification\\security",
+        "base_head": "903e47cddeceb40cb8f5f5793105533b3988a463"
+      },
+      "canonical_event": {
+        "event_id": "EVT-b265c56dd87b5cb3",
+        "resulting_version": 1,
+        "to_state": "FROZEN"
+      }
+    },
+    {
+      "role": "APPLY",
+      "binding": {
+        "requirement_id": "REQ-SKCV-20261014-APPLY",
+        "requirement_state": "FROZEN",
+        "taskspec_id": "TS-SKCV-20261014-APPLY",
+        "taskspec_state": "ADMITTED",
+        "writable_root": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\SKILL-CONVERGENCE-20261014\\candidates\\apply",
+        "permissions_json": "{\"canonical_acceptance\":false,\"evidence_write_surface\":\"orchestrator generated inputs/receipts; not attributed to Codex\",\"expires_at\":\"2026-10-14T12:01:20.231996+00:00\",\"live_skill_mutation\":false,\"model_route\":{\"EXECUTE\":\"opencode-go/deepseek-v4.1-flash Codex CLI\",\"PLAN\":\"openai-codex/gpt-6.1-sol medium OpenAI OAuth in Hermes main\",\"VERIFY_SECURITY\":\"opencode-go/glm-5.3-flash Codex CLI read-only\"},\"network\":\"LOOPBACK_ONLY\",\"network_allowlist\":[\"http://127.0.0.1:10101\"],\"orchestrator_evidence_root\":\"C:\\\\Projects\\\\Agent_Workspace\\\\HG-KSEOS\\\\var\\\\SKILL-CONVERGENCE-20261014\\\\evidence\",\"promotion\":false,\"read_roots\":[\"C:\\\\Projects\\\\Agent_Workspace\\\\HG-KSEOS\",\"C:\\\\Projects\\\\Agent_Workspace\\\\Fabric\",\"C:\\\\Users\\\\user\\\\AppData\\\\Local\\\\Packages\\\\OpenAI.Codex_2p2nqsd0c76g0\\\\LocalCache\\\\Local\\\\hermes\\\\skills\",\"C:\\\\Users\\\\user\\\\AppData\\\\Local\\\\Packages\\\\OpenAI.Codex_2p2nqsd0c76g0\\\\LocalCache\\\\Local\\\\hermes\\\\hermes-agent\"],\"role\":\"APPLY\",\"rollback_pointer\":\"C:\\\\Projects\\\\Agent_Workspace\\\\HG-KSEOS\\\\var\\\\SKILL-CONVERGENCE-20261014\\\\baseline\",\"source_equivalence\":\"frozen complete bytes copied from exact current canonical subject; manifest/digests required\",\"write_roots\":[\"C:\\\\Projects\\\\Agent_Workspace\\\\HG-KSEOS\\\\var\\\\SKILL-CONVERGENCE-20261014\\\\candidates\\\\apply\"],\"writer_gate\":\"PROBE two-axis native sandbox qualification required before candidate writes\"}",
+        "workorder_id": "WO-SKCV-20261014-APPLY",
+        "writer": "codex",
+        "workorder_state": "CREATED",
+        "worktree": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\SKILL-CONVERGENCE-20261014\\candidates\\apply",
+        "base_head": "903e47cddeceb40cb8f5f5793105533b3988a463"
+      },
+      "canonical_event": {
+        "event_id": "EVT-ad417dd7d2e21c68",
+        "resulting_version": 1,
+        "to_state": "FROZEN"
+      }
+    }
+  ],
+  "intake": {
+    "project_id": "SKILL-CONVERGENCE-20261014",
+    "goal_hash": "47e6c48ad5f1e7b0d98e3bc353ccbf67f6f086b7ca1f7bb9aaa07a4454608200",
+    "source_count": 5,
+    "inventory": [
+      {
+        "path": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\cache\\scratch\\SKILL-CONVERGENCE-20261014-MANDATE.md",
+        "sha256": "7f18ebd064a77c8e6b1bf1ef12103c7e3776336050fade818ca9aff1918e0d01",
+        "bytes": 1347
+      },
+      {
+        "path": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\cache\\scratch\\SKILL-CONVERGENCE-20261014-preflight\\PLAN-GPT61-SOL-MEDIUM.md",
+        "sha256": "402edb83c595eae0e05a8453dec3eff4558f86ffd491995d955a4122ac740324",
+        "bytes": 5108
+      },
+      {
+        "path": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\cache\\scratch\\SKILL-CONVERGENCE-20261014-preflight-2\\CONTRACT.json",
+        "sha256": "8841a6c35fdcc10505e03686cf326f698519dad43c48b1e4e8a858cd87bc60d0",
+        "bytes": 46857
+      },
+      {
+        "path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\AGENTS.md",
+        "sha256": "369ecd0ec4fe36b55b9a3a1efc93b68b03d7c04a1bfe767d138732e849d58eb3",
+        "bytes": 12415
+      },
+      {
+        "path": "C:\\Projects\\Agent_Workspace\\Fabric\\AGENTS.md",
+        "sha256": "115912cdccbf5b3788fe1d6e1c8c10fe575252d72accf31cb6f1955dd8750974",
+        "bytes": 10894
+      }
+    ],
+    "authority_order": [
+      "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\cache\\scratch\\SKILL-CONVERGENCE-20261014-MANDATE.md",
+      "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\cache\\scratch\\SKILL-CONVERGENCE-20261014-preflight\\PLAN-GPT61-SOL-MEDIUM.md",
+      "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\cache\\scratch\\SKILL-CONVERGENCE-20261014-preflight-2\\CONTRACT.json",
+      "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\AGENTS.md",
+      "C:\\Projects\\Agent_Workspace\\Fabric\\AGENTS.md"
+    ],
+    "conflicts": [],
+    "blocking_missing": [],
+    "non_blocking_missing": [],
+    "status": "READY"
+  },
+  "main_plan": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\SKILL-CONVERGENCE-20261014\\evidence\\SKILL-CONVERGENCE-20261014-preflight\\PLAN-GPT61-SOL-MEDIUM.md"
+}

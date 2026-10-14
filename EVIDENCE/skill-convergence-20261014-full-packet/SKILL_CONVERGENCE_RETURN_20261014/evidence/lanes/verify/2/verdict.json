@@ -1,0 +1,202 @@
+{
+  "verdict": "PASS_ADVISORY",
+  "subject_manifest_sha256": "9b68418bcbfd230d43d6525752a09d156b37b31fb214eacaf3b5c77b616936cb",
+  "cases": [
+    {
+      "case_id": "SUBJECT-BINDING",
+      "status": "PASS",
+      "evidence_refs": [
+        "evidence/subject_manifest.json",
+        "Powershell s1.py stdout"
+      ],
+      "observation": "374 rows; recomputed sha256 over newline-joined '<digest> <path>' lines = declared; 5/5 spothashes (avr/hgk entry_map.json, hgk/avr topic_batch_1.json, convergence_report.json) match on-disk bytes."
+    },
+    {
+      "case_id": "HARNESS-CONVERGENCE-CHECK",
+      "status": "PASS",
+      "evidence_refs": [
+        "evidence/convergence_check.py",
+        "evidence stdout"
+      ],
+      "observation": "Exit 0. Verdict line: \"verdict\": \"CONVERGENCE_INVARIANTS_HOLD\". No findings printed."
+    },
+    {
+      "case_id": "HARNESS-AVR-BATCH1",
+      "status": "PASS",
+      "evidence_refs": [
+        "evidence/check_topic_batch.py",
+        "candidates/avr/topic_batch_1.json",
+        "evidence stdout"
+      ],
+      "observation": "Exit 0. Verdict line: \"all_absorbed_lossless\": true over 7 absorbed entries; every segment_matches_claim, baseline_equals_segment, stub_exists; batch_scope \"2_of_many_theme_groups\"."
+    },
+    {
+      "case_id": "HARNESS-HGK-BATCH1",
+      "status": "PASS",
+      "evidence_refs": [
+        "evidence/check_topic_batch.py",
+        "candidates/hgk/topic_batch_1.json",
+        "evidence stdout"
+      ],
+      "observation": "Exit 0. Verdict line: \"all_absorbed_lossless\": true over 5 absorbed entries."
+    },
+    {
+      "case_id": "HARNESS-HGK-BATCH2",
+      "status": "PASS",
+      "evidence_refs": [
+        "evidence/check_topic_batch.py",
+        "candidates/hgk/topic_batch_2.json",
+        "evidence stdout"
+      ],
+      "observation": "Exit 0. Verdict line: \"all_absorbed_lossless\": true over 4 absorbed entries."
+    },
+    {
+      "case_id": "RECONSTRUCTION-AVR",
+      "status": "PASS",
+      "evidence_refs": [
+        "candidates/avr/entry_map.json",
+        "baseline/adversarial-verification-rounds/SKILL.md"
+      ],
+      "observation": "Clean reconstruction from 10 slices = 101488 bytes, sha256 4be690a4feaee5ba..., EQUAL_BASE=True. Drop -> len 95419 sha 081c6262ddef1413... detected False. Swap -> len 101488 sha 1ad4f13e8d040d66... detected False. Flip -> len 101488 sha 14bb08c46eb22923... detected False."
+    },
+    {
+      "case_id": "RECONSTRUCTION-HGK",
+      "status": "PASS",
+      "evidence_refs": [
+        "candidates/hgk/entry_map.json",
+        "baseline/hgk-governed-execution/SKILL.md"
+      ],
+      "observation": "Clean reconstruction from 6 slices = 105116 bytes, sha256 174df0185026de09..., EQUAL_BASE=True. Drop -> len 101585 sha 0ca8d0e1109b7973... detected False. Swap -> len 105116 sha abb2fc74de586b2c... detected False. Flip -> len 105116 sha afdf13261c52dd3e... detected False."
+    },
+    {
+      "case_id": "RECONSTRUCTION-MUTATION-DETECTION",
+      "status": "PASS",
+      "evidence_refs": [
+        "candidates/avr/entry_map.json",
+        "candidates/hgk/entry_map.json",
+        "Powershell s2.py stdout"
+      ],
+      "observation": "All three mutations (drop one slice, swap first two slices, flip one byte inside first slice's destination range) produced digests distinct from the clean reconstruction, i.e. detected by digest-vs-base comparison on both candidates."
+    },
+    {
+      "case_id": "C1-LOSSLESS-EXTRACTION",
+      "status": "PASS",
+      "evidence_refs": [
+        "candidates/avr/entry_map.json",
+        "candidates/hgk/entry_map.json",
+        "candidates/avr/skill/SKILL.md",
+        "candidates/hgk/skill/SKILL.md"
+      ],
+      "observation": "Byte-exact reconstruction achieved for both candidates. Agree with maker claim."
+    },
+    {
+      "case_id": "C2-CONSOLIDATED-LOSSLESSLY",
+      "status": "PASS",
+      "evidence_refs": [
+        "candidates/avr/topic_batch_1.json",
+        "candidates/hgk/topic_batch_1.json",
+        "candidates/hgk/topic_batch_2.json",
+        "convergence_check/check_topic_batch stdout"
+      ],
+      "observation": "All three batch checks returned all_absorbed_lossless:true with matching segment digests. Agree with maker claim for batches 1-2 (AVR 7 files, HGK 9 files over two topics); nothing verifies beyond these batches."
+    },
+    {
+      "case_id": "C3-CONSUMER-REUSED",
+      "status": "PASS",
+      "evidence_refs": [
+        "candidates/consumer/tools/skill_manager_tool.py",
+        "candidates/consumer/phase3_result.json"
+      ],
+      "observation": "phase3_result.json explicitly says: \"no second linter, no cache/daemon, no policy or cap change: the primitive is the single evaluation surface and this only fixes its reachability from the edit/apply actions.\" Reader at L399-419 (def _consult_skill_lint) delegates to the pre-existing _attach_lint_findings. agree."
+    },
+    {
+      "case_id": "C4-ROLLBACK-POINT",
+      "status": "PASS",
+      "evidence_refs": [
+        "verification/round-harness/rollback_receipt.json"
+      ],
+      "observation": "Receipt says restore_exercised_in_this_environment: true, restore into a scratch tree then re-hashed, R3_restore_procedure_exercised for both skills restored = baseline digests. agree, scoped to the scratch-tree drill (not applied to canonical)."
+    },
+    {
+      "case_id": "C5-POLICY-UNCHANGED",
+      "status": "PASS",
+      "evidence_refs": [
+        "verification/round-harness/convergence_report.json"
+      ],
+      "observation": "Report records I9_policy_constants_unchanged_vs_live_runtime:true and per_file policy_constants_identical:true across all 4 patched consumer files. agree, at the convergence-report evidence level."
+    },
+    {
+      "case_id": "GLOBAL-BASELINE-DRIFT",
+      "status": "NOT_RUN",
+      "evidence_refs": [
+        "verification/round-harness/rollback_receipt.json"
+      ],
+      "observation": "Not independently re-derived here; relied on the receipt's reported 12-changed-file summary and classifications. Noted in coverage. Not a blocker for this advisory scope."
+    },
+    {
+      "case_id": "PYTEST-UNIT-RUN",
+      "status": "NOT_RUN",
+      "evidence_refs": [
+        "candidates/consumer/phase3_result.json",
+        "lane environment"
+      ],
+      "observation": "Not re-run independently in this lane; phase3_result.json cites 7 passed in 0.45s (maker-run). Noted in coverage. Not a blocker for this advisory scope."
+    }
+  ],
+  "findings": [],
+  "commands": [
+    "sha256 over newline-joined '<digest> <path>' from evidence/subject_manifest.json (374 rows) -> 9b68418bcbfd230d43d6525752a09d156b37b31fb214eacaf3b5c77b616936cb",
+    "Get-ChildItem spothashes of 5 named files -> match",
+    "python evidence/convergence_check.py -> exit 0, CONVERGENCE_INVARIANTS_HOLD",
+    "python evidence/check_topic_batch.py avr topic_batch_1.json -> exit 0, all_absorbed_lossless:true",
+    "python evidence/check_topic_batch.py hgk topic_batch_1.json -> exit 0, all_absorbed_lossless:true",
+    "python evidence/check_topic_batch.py hgk topic_batch_2.json -> exit 0, all_absorbed_lossless:true",
+    "s1.py inline reconstruction script (candidates/avr entry map + candidates/hgk entry map) against baseline SKILL.md bytes",
+    "s2.py inline mutation script drop/swap/flip on both candidates -> three distinct digests for each candidate, digest-vs-base detection",
+    "Selective-String reads on phase3_result.json / rollback_receipt.json / convergence_report.json / skill_manager_tool.py (read-only)"
+  ],
+  "quotation_check": [
+    {
+      "claim": "\"the two entries were extracted losslessly\"",
+      "artifact": "\"ordered_source_ranges_reproduce_baseline\": true (convergence_report.json), \"EQUAL_BASE\": True for both clean reconstructions",
+      "stance": "agree"
+    },
+    {
+      "claim": "\"theme references were consolidated losslessly\"",
+      "artifact": "\"all_absorbed_lossless\": true in all three batch-check outputs",
+      "stance": "agree; scope limited to batches 1-2 (AVR 7 files, HGK 9 files in 2 topics) and that is exactly how the lane brief bounds it"
+    },
+    {
+      "claim": "\"the existing consumer was reused rather than duplicated\"",
+      "artifact": "\"no second linter, no cache/daemon, no policy or cap change: the primitive is the single evaluation surface and this only fixes its reachability from the edit/apply actions.\"",
+      "stance": "agree"
+    },
+    {
+      "claim": "\"a rollback point exists and was exercised\"",
+      "artifact": "\"restore_exercised_in_this_environment\": true; \"R3_restore_procedure_exercised\" restored_matches_baseline_digests:true for both skills",
+      "stance": "agree; exercised into a scratch tree, not applied to canonical"
+    },
+    {
+      "claim": "\"no policy, cap or threshold was changed\"",
+      "artifact": "\"I9_policy_constants_unchanged_vs_live_runtime\": true; \"policy_constants_identical\": true for all 4 per-file entries",
+      "stance": "agree at the convergence-report evidence surface"
+    }
+  ],
+  "carry_forward": [
+    "Advisory lane result only; not canonical acceptance.",
+    "Scope limited by design to the frozen candidate/baseline/qualification tree in evidence/subject_manifest.json plus the named control evidence files; the live Hermes runtime skill trees were not independently re-derived here.",
+    "Batch coverage is only batches 1-2 of reference themes (AVR 7 files, 1 topic; HGK 9 files, 2 topics); anything outside those batches is unverified by this lane.",
+    "Candidate reference-file counts went up (AVR 27→30; HGK 119→122) as expected from batch absorption; no files were deleted.",
+    "Nothing was applied to the canonical tree; live adversarial-verification-rounds skill has already moved past the round baseline via a ledger-attributed curator patch at 05:49:46Z, so byte-exactness holds against the frozen generation only.",
+    "Eleven timed-out lane dispatches and one nonce-less dispatch remain on the earlier record, unrepaired by this verdict.",
+    "12 global-baseline drift items reported by rollback_receipt.json were read at the receipt level only, not independently re-derived."
+  ],
+  "coverage": [
+    "Did not run pytest unit tests (lane has no pytest on PYTHONPATH; the phase3 pytest report is a maker self-report).",
+    "Did not attempt symlink creation (last known host limit WinError 1314).",
+    "Did not re-derive the 12 rollback_receipt.json global-baseline drift classifications.",
+    "Did not exercise any mutation beyond drop/swap/flip on the reconstruction (single-byte flip only; targeted at the first slice's destination range).",
+    "Did not independently inspect the live runtime skill files or their ledger beyond the receipt's classification."
+  ],
+  "claim_ceiling": "This is an advisory independent rederivation over the frozen subject: byte-level losslessness, mutation-detection, batch-scope convergence, consumer reuse evidence, rollback-drill evidence, and no-policy-change at the convergence-report surface. It is not canonical acceptance, it grants no promote/apply authority, and it neither repairs nor dismisses the eleven timed-out lane dispatches and one nonce-less dispatch already on the round record."
+}

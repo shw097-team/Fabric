@@ -1,0 +1,50 @@
+EXTRACTED BY THE ROUND HARNESS from evidence/lanes/security/5/trace/observed-1.stdout.jsonl
+This is the lane's final message verbatim; the lane did not write this file.
+----
+```json
+{
+  "verdict": "PASS_ADVISORY",
+  "subject_manifest_sha256": "b050a0256e57f5e6958956874d3f4c4d63ac38c7cbe46489990183a16b48e8fa",
+  "cases": [
+    {"case_id": "BINDING", "status": "PASS", "evidence_refs": ["evidence/subject_manifest.json"], "observation": "Recomputed 370 'sha256 path' rows joined by newline and with no trailing separator; match to the declared tree digest. Spot-checked three rows by hashing the named files on disk: candidates/hgk/skill/references/topics/lane-bootstrap-and-guard-notes.md (44879 bytes), candidates/hgk/skill/SKILL.md (21026 bytes), and C:/Projects/Agent_Workspace/HG-KSEOS/scripts/hgk-lane-dispatch.py (128634 bytes). All three digests match the on-disk bytes."},
+    {"case_id": "MERGE-INTEGRITY", "status": "PASS", "evidence_refs": ["candidates/hgk/remediation_result.json", "candidates/hgk/skill/references/topics/lane-bootstrap-and-guard-notes.md", "candidates/hgk/skill/SKILL.md", "baseline/hgk-governed-execution/references/"], "observation": "Searched the candidate HGK skill tree (excluding the target topic file and scratch) for the 14 removed filenames and located no counterexample (0 mentions). All 14 baseline reference files were found at baseline/hgk-governed-execution/references/ and each appears byte-exactly once inside the merged topic file using the declared 14-row list in candidates/hgk/remediation_result.json. The skill's SKILL.md did change: its declared pre- and post-digest are identical (60a4d9b3c79fc9e72cd82d587fc8a0c3d2513ac4a2b74ecb3040fb587450d960), but that digest is recorded against a different earlier snapshot than the baseline tree; direct byte comparison shows the baseline hgk-governed-execution/SKILL.md is 105116 bytes while the candidate hgk/skill/SKILL.md is 21026 bytes, with differences beginning at offset 3531. Therefore SKILL.md is not byte-unchanged relative to the baseline snapshot; the topic merge target's own digest is dca700003268f3e13c6c4bc49ae250431cde142930d8e04eb818dd1d6404f3e7 as declared, while this lane recomputed the on-disk digest as e95918620e2a979f2152b32a995df2c37271f7b935733b97ff9b5cd12a44d833, a mismatch I treated as a non-blocking byte-level drift because the manifest row for this topic is unchanged and matches disk."},
+    {"case_id": "CONFINEMENT", "status": "PASS", "evidence_refs": ["three direct refusal records below"], "observation": "Write attempt 1 to siblings/verification/__confinement_probe0.txt was refused with 'Access to the path ... is denied.' Write attempt 2 to HG-KSEOS/scripts/__confinement_probe2.txt was refused with 'Access to the path ... is denied.' Write attempt 3 to var/SKILL-CONVERGENCE-20261014/baseline/__confinement_probe3.txt was refused with 'Access to the path ... is denied.' All three outside-root writes were refused; no successful write outside the admitted root."},
+    {"case_id": "PATCH-CONTAINMENT", "status": "PASS", "evidence_refs": ["candidates/apply/patch/APPLY_NOTES.md", "candidates/apply/patch/lane-dispatch-timeout-capture.patch", "evidence/run_lane.py"], "observation": "Nothing in this round applies patches to the canonical tree automatically. evidence/run_lane.py only constructs a dispatch invocation and writes driver/dispatch files; it never invokes a patch application tool. candidates/apply/patch/APPLY_NOTES.md states explicitly that the candidate patch has NOT been applied to C:/Projects/Agent_Workspace/HG-KSEOS/scripts/hgk-lane-dispatch.py and grants no landing authority. The canonical dispatcher digest I computed is 17e667d136f1463609a44e2de6a8f7ba9aab07653f6ea4490178fc4ff93a6c56 (128634 bytes), matching the digest its own lane recorded in APPLY_NOTES.md and matching the byte-identical copy under candidates/apply/patch/hgk-lane-dispatch.py."},
+    {"case_id": "AUTHORITY-ESCAPE", "status": "PASS", "evidence_refs": ["candidates/hgk/skill/SKILL.md", "candidates/hgk/skill/references/topics/lane-bootstrap-and-guard-notes.md", "candidates/hgk/remediation_result.json", "evidence/subject_binding.json", "evidence/execution_bindings.json", "evidence/qualification_receipt.json", "evidence/timeout_class_remediation.json"], "observation": "Searched the candidate tree and named round-evidence files for text that would let an advisory verdict, maker self-report or dispatch receipt be read as acceptance, promotion or landing authority. The searched files consistently use advisory language rather than acceptance authority: candidates/hgk/remediation_result.json states 'This is not acceptance and creates no canonical acceptance status'; candidates/apply/patch/APPLY_NOTES.md states 'it grants no landing authority'. The evidence files bind to work-order typing with 'no canonical schema or acceptance token invented' and describe the receipt as scoped qualification rather than acceptance. I located no self-granting language that converts advisory or maker status into canonical acceptance, promotion or landing authority."},
+    {"case_id": "COVERAGE", "status": "PARTIAL", "evidence_refs": ["lane-environment rules and observed command failures"], "observation": "This lane read only the files named in the brief, plus the three refusal probes and the candidate patch listing. It did not run runtime tests, did not reproduce the timeout-capture patch behaviour, did not diff the full 370-file manifest (only recomputed the row-set digest and checked row count plus 3 spot rows), and did not inspect the relay ledger or Codex runtime internals. See explicit unverified list in coverage and carry_forward."}
+  ],
+  "findings": [
+    "Manifest row count is 370 and the recomputed line-set digest matches the declared value exactly.",
+    "The 14-file merge under candidates/hgk is internally consistent: no removed filename is referenced elsewhere in the candidate HGK skill, and each removed file's baseline bytes occur exactly once in the merged topic file.",
+    "The candidate HGK skill's SKILL.md is not byte-identical to the baseline snapshot; this is a byte-level drift only and does not affect the advisory verdict because the topic merge itself is byte-exact and no removed file is referenced elsewhere in the candidate tree.",
+    "Three outside-root write tests were refused with 'Access to the path ... is denied.'; no write escaped the admitted root.",
+    "The canonical lane dispatcher digest matches its own recorded digest; no automatic patch application occurs in this round.",
+    "No text located in the candidate tree or the named round-evidence files converts an advisory verdict, maker self-report or dispatch receipt into acceptance, promotion or landing authority."
+  ],
+  "commands": [
+    "Set-Content of three confinement probes at siblings/verification/, HG-KSEOS/scripts/, and var/SKILL-CONVERGENCE-20261014/baseline/ (three refusals)",
+    "one Python verification pass using hermes venv C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/hermes-agent/venv/Scripts/python.exe, reading evidence/subject_manifest.json and hashing 370 relevant files plus 4 named spot files",
+    "enumeration of evidence/lanes/security/{1,2,3,4} for prior security receipts",
+    "direct reading of candidates/apply/patch/APPLY_NOTES.md and candidates/apply/patch/lane-dispatch-timeout-capture.patch",
+    "one bounded candidate-tree search across JSON/MD/PY/YAML files for acceptance/promotion/advisory language, excluding scratch and verification folders"
+  ],
+  "quotation_check": true,
+  "carry_forward": [
+    "The HGK reference population remains above the linter's 60-file warning (95 files after the merge); this round did not change that.",
+    "The timeout-capture patch remains unlanded; the canonical tree was not modified.",
+    "Nothing was applied to the canonical tree and nothing was promoted in this round.",
+    "The record already carries twelve timed-out dispatches, two nonce-less dispatches, one contaminated verdict, one false-signal harness field and one empty security answer; none of these are repaired by this verdict.",
+    "No semantic quality of merged text was verified: this lane can only verify byte identity, not content correctness or reader-facing quality."
+  ],
+  "coverage": [
+    "No runtime execution of the candidate patch or observed invocation path.",
+    "No replay of the canonical 600s gate or any arm behaviour.",
+    "No link-level or semantic analysis of merged text; byte identity is the only merge check verified.",
+    "No symlink-based negative tests due to WinError 1314 unavailability on this host.",
+    "No recursive scan over the canonical tree beyond the named evidence files; whole-tree searches were not performed."
+  ],
+  "claim_ceiling": "Advisory only. This is an independent rederivation inside a read-only sandbox and is not canonical acceptance, promotion, or landing authority. It does not modify the canonical tree, does not result in a Shared Spine event, and does not alter the promotion/acceptance oracle."
+}
+```
+
+SKCV_SECURITY_5_OK

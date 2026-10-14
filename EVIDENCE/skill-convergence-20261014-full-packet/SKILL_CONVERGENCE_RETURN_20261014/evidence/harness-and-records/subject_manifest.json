@@ -1,0 +1,4234 @@
+{
+  "kind": "SKILL-CONVERGENCE-20261014 verification subject manifest",
+  "generated_from": "frozen candidate/baseline/qualification trees plus named control evidence files",
+  "inclusion_rule": "every regular file under candidates/, baseline/ and qualification/, plus the named control evidence files listed in INCLUDE_FILES",
+  "exclusion_rule": "directory parts __pycache__/_pytest_tmp/pytest-tmp/.pytest_cache/_lintcheck*/_scratch/scratch/sandbox/_work_p2/_work_dbg/_blobdbg/.avr_p2_probe/.avr_p2_snap and paths tests/_work/, trace/, raw/, rollback_drill/, files named driver.json or dispatch.json, and .pyc/.log files — excluded because they are volatile coordination, log, sandbox-copy or fixture-work artefacts rather than subject bytes",
+  "excluded_count": 592,
+  "excluded": [
+    {
+      "path": "candidates/apply/tests/_blobdbg/a.bin",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_blobdbg/b.bin",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/binding_draft/binding.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/binding_draft/candidates/cand_0_existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/binding_draft/candidates/cand_1_newfile.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/binding_draft/candidates/cand_2_pkg_mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/binding_draft/owner_scope.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/binding_draft/plan.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/binding_draft/review.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/binding_draft/target/existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/binding_draft/target/pkg/mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/binding_foreign_round/binding.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/binding_foreign_round/candidates/cand_0_existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/binding_foreign_round/candidates/cand_1_newfile.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/binding_foreign_round/candidates/cand_2_pkg_mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/binding_foreign_round/owner_scope.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/binding_foreign_round/plan.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/binding_foreign_round/review.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/binding_foreign_round/target/existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/binding_foreign_round/target/pkg/mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/binding_rogue_authority/binding.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/binding_rogue_authority/candidates/cand_0_existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/binding_rogue_authority/candidates/cand_1_newfile.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/binding_rogue_authority/candidates/cand_2_pkg_mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/binding_rogue_authority/owner_scope.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/binding_rogue_authority/plan.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/binding_rogue_authority/review.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/binding_rogue_authority/target/existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/binding_rogue_authority/target/pkg/mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/binding_stale_manifest/binding.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/binding_stale_manifest/candidates/cand_0_existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/binding_stale_manifest/candidates/cand_1_newfile.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/binding_stale_manifest/candidates/cand_2_pkg_mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/binding_stale_manifest/owner_scope.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/binding_stale_manifest/plan.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/binding_stale_manifest/review.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/binding_stale_manifest/target/existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/binding_stale_manifest/target/pkg/mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/candidate_corrupt/binding.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/candidate_corrupt/candidates/cand_0_existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/candidate_corrupt/candidates/cand_1_newfile.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/candidate_corrupt/candidates/cand_2_pkg_mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/candidate_corrupt/owner_scope.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/candidate_corrupt/plan.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/candidate_corrupt/review.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/candidate_corrupt/target/existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/candidate_corrupt/target/pkg/mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/candidate_empty/binding.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/candidate_empty/candidates/cand_0_existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/candidate_empty/candidates/cand_1_newfile.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/candidate_empty/candidates/cand_2_pkg_mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/candidate_empty/owner_scope.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/candidate_empty/plan.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/candidate_empty/review.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/candidate_empty/target/existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/candidate_empty/target/pkg/mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/candidate_missing/binding.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/candidate_missing/candidates/cand_1_newfile.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/candidate_missing/candidates/cand_2_pkg_mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/candidate_missing/owner_scope.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/candidate_missing/plan.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/candidate_missing/review.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/candidate_missing/target/existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/candidate_missing/target/pkg/mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/checkplan/binding.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/checkplan/candidates/cand_0_existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/checkplan/candidates/cand_1_newfile.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/checkplan/candidates/cand_2_pkg_mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/checkplan/owner_scope.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/checkplan/plan.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/checkplan/review.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/checkplan/target/existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/checkplan/target/pkg/mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/duplicates/binding.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/duplicates/candidates/cand_0_existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/duplicates/candidates/cand_1_newfile.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/duplicates/candidates/cand_2_pkg_mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/duplicates/owner_scope.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/duplicates/plan.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/duplicates/review.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/duplicates/target/existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/duplicates/target/pkg/mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/empty_allowed_roots/plan.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/empty_plan/plan.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/empty_targets/plan.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/fixture_flag/binding.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/fixture_flag/candidates/cand_0_existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/fixture_flag/candidates/cand_1_newfile.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/fixture_flag/candidates/cand_2_pkg_mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/fixture_flag/owner_scope.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/fixture_flag/plan.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/fixture_flag/review.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/fixture_flag/target/existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/fixture_flag/target/pkg/mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/junction/binding.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/junction/candidates/cand_0_existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/junction/candidates/cand_1_newfile.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/junction/candidates/cand_2_pkg_mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/junction/outside/secret.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/junction/owner_scope.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/junction/plan.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/junction/review.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/junction/target/existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/junction/target/linkdir/secret.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/junction/target/pkg/mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/live_refused/binding.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/live_refused/candidates/cand_0_existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/live_refused/candidates/cand_1_newfile.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/live_refused/candidates/cand_2_pkg_mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/live_refused/owner_scope.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/live_refused/plan.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/live_refused/review.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/live_refused/target/existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/live_refused/target/pkg/mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/new_target_present/binding.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/new_target_present/candidates/cand_0_existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/new_target_present/candidates/cand_1_newfile.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/new_target_present/candidates/cand_2_pkg_mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/new_target_present/owner_scope.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/new_target_present/plan.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/new_target_present/review.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/new_target_present/target/existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/new_target_present/target/newfile.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/new_target_present/target/pkg/mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/outside_root/binding.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/outside_root/candidates/cand_0_existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/outside_root/candidates/cand_1_newfile.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/outside_root/candidates/cand_2_pkg_mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/outside_root/outside.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/outside_root/owner_scope.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/outside_root/plan.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/outside_root/review.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/outside_root/target/existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/outside_root/target/pkg/mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/positive_dry_run/binding.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/positive_dry_run/candidates/cand_0_existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/positive_dry_run/candidates/cand_1_newfile.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/positive_dry_run/candidates/cand_2_pkg_mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/positive_dry_run/owner_scope.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/positive_dry_run/plan.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/positive_dry_run/review.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/positive_dry_run/target/existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/positive_dry_run/target/pkg/mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/relative_target/binding.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/relative_target/candidates/cand_0_existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/relative_target/candidates/cand_1_newfile.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/relative_target/candidates/cand_2_pkg_mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/relative_target/owner_scope.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/relative_target/plan.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/relative_target/review.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/relative_target/target/existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/relative_target/target/pkg/mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/review_advisory_real/binding.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/review_advisory_real/candidates/cand_0_existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/review_advisory_real/candidates/cand_1_newfile.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/review_advisory_real/candidates/cand_2_pkg_mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/review_advisory_real/owner_scope.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/review_advisory_real/plan.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/review_advisory_real/review.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/review_advisory_real/target/existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/review_advisory_real/target/pkg/mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/review_fail/binding.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/review_fail/candidates/cand_0_existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/review_fail/candidates/cand_1_newfile.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/review_fail/candidates/cand_2_pkg_mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/review_fail/owner_scope.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/review_fail/plan.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/review_fail/review.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/review_fail/target/existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/review_fail/target/pkg/mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/review_inconclusive/binding.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/review_inconclusive/candidates/cand_0_existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/review_inconclusive/candidates/cand_1_newfile.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/review_inconclusive/candidates/cand_2_pkg_mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/review_inconclusive/owner_scope.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/review_inconclusive/plan.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/review_inconclusive/review.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/review_inconclusive/target/existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/review_inconclusive/target/pkg/mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/review_missing_verdict/binding.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/review_missing_verdict/candidates/cand_0_existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/review_missing_verdict/candidates/cand_1_newfile.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/review_missing_verdict/candidates/cand_2_pkg_mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/review_missing_verdict/owner_scope.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/review_missing_verdict/plan.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/review_missing_verdict/review.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/review_missing_verdict/target/existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/review_missing_verdict/target/pkg/mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/review_stale_manifest/binding.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/review_stale_manifest/candidates/cand_0_existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/review_stale_manifest/candidates/cand_1_newfile.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/review_stale_manifest/candidates/cand_2_pkg_mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/review_stale_manifest/owner_scope.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/review_stale_manifest/plan.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/review_stale_manifest/review.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/review_stale_manifest/target/existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/review_stale_manifest/target/pkg/mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/review_stale_ref/binding.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/review_stale_ref/candidates/cand_0_existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/review_stale_ref/candidates/cand_1_newfile.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/review_stale_ref/candidates/cand_2_pkg_mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/review_stale_ref/owner_scope.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/review_stale_ref/plan.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/review_stale_ref/review.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/review_stale_ref/target/existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/review_stale_ref/target/pkg/mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/scope_missing/binding.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/scope_missing/candidates/cand_0_existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/scope_missing/candidates/cand_1_newfile.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/scope_missing/candidates/cand_2_pkg_mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/scope_missing/owner_scope.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/scope_missing/plan.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/scope_missing/review.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/scope_missing/target/existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/scope_missing/target/pkg/mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/scope_stale/binding.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/scope_stale/candidates/cand_0_existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/scope_stale/candidates/cand_1_newfile.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/scope_stale/candidates/cand_2_pkg_mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/scope_stale/owner_scope.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/scope_stale/plan.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/scope_stale/review.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/scope_stale/target/existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/scope_stale/target/pkg/mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/scope_widen/binding.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/scope_widen/candidates/cand_0_existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/scope_widen/candidates/cand_1_newfile.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/scope_widen/candidates/cand_2_pkg_mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/scope_widen/owner_scope.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/scope_widen/plan.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/scope_widen/review.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/scope_widen/target/existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/scope_widen/target/pkg/mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/stale/binding.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/stale/candidates/cand_0_existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/stale/candidates/cand_1_newfile.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/stale/candidates/cand_2_pkg_mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/stale/owner_scope.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/stale/plan.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/stale/review.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/stale/target/existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/stale/target/pkg/mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/symlink/binding.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/symlink/candidates/cand_0_existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/symlink/candidates/cand_1_newfile.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/symlink/candidates/cand_2_pkg_mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/symlink/outside/secret.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/symlink/owner_scope.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/symlink/plan.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/symlink/review.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/symlink/target/existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/symlink/target/pkg/mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/traversal/binding.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/traversal/candidates/cand_0_existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/traversal/candidates/cand_1_newfile.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/traversal/candidates/cand_2_pkg_mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/traversal/owner_scope.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/traversal/plan.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/traversal/review.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/traversal/target/existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work/traversal/target/pkg/mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_dbg/binding.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_dbg/candidates/cand_0_existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_dbg/candidates/cand_1_newfile.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_dbg/candidates/cand_2_pkg_mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_dbg/owner_scope.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_dbg/plan.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_dbg/review.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_dbg/target/existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_dbg/target/pkg/mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_p2/_store/apply_success_with_readback/SKCV-P2-APPLY_SUCCESS_WITH_READBACK/ledger.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_p2/_store/apply_success_with_readback/SKCV-P2-APPLY_SUCCESS_WITH_READBACK/preimages/051363a4bb2883b3584ef7e45298127dad6f5152802e52b27538ff552f37c9c1.bin",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_p2/_store/apply_success_with_readback/SKCV-P2-APPLY_SUCCESS_WITH_READBACK/preimages/5bc24505873f29d7ccf8dcfa62816d00df9706fdebb85a7528475f1005c96f40.bin",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_p2/_store/rollback_roundtrip_exact_bytes/SKCV-P2-ROLLBACK_ROUNDTRIP_EXACT_BYTES/ledger.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_p2/_store/rollback_roundtrip_exact_bytes/SKCV-P2-ROLLBACK_ROUNDTRIP_EXACT_BYTES/preimages/9aa6aa53cfb8693b1520f57f3c47b186137c0c7bfb9802c9c8304398ee26fbcb.bin",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_p2/_store/rollback_roundtrip_exact_bytes/SKCV-P2-ROLLBACK_ROUNDTRIP_EXACT_BYTES/preimages/f0118f100c31eabb1330dc1c6d9ef8eb72a415133cea6b1ea3986233dd9d2be9.bin",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_p2/_store/stale_seam/SKCV-P2-STALE_PREIMAGE_REFUSED_BEFORE_WRITE/preimages/dfbb6b32996d941292865304fe66a6d20911c49da90cfba59f817dd8fdd62e6a.bin",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_p2/apply_ok/binding.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_p2/apply_ok/candidates/cand_0_existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_p2/apply_ok/candidates/cand_1_newfile.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_p2/apply_ok/candidates/cand_2_pkg_mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_p2/apply_ok/owner_scope.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_p2/apply_ok/plan.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_p2/apply_ok/review.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_p2/apply_ok/target/existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_p2/apply_ok/target/newfile.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_p2/apply_ok/target/pkg/mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_p2/mid_failure/binding.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_p2/mid_failure/candidates/cand_0_existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_p2/mid_failure/candidates/cand_1_newfile.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_p2/mid_failure/candidates/cand_2_pkg_mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_p2/mid_failure/owner_scope.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_p2/mid_failure/plan.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_p2/mid_failure/review.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_p2/mid_failure/target/existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_p2/mid_failure/target/pkg/mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_p2/rollback_ok/binding.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_p2/rollback_ok/candidates/cand_0_existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_p2/rollback_ok/candidates/cand_1_newfile.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_p2/rollback_ok/candidates/cand_2_pkg_mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_p2/rollback_ok/owner_scope.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_p2/rollback_ok/plan.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_p2/rollback_ok/review.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_p2/rollback_ok/target/existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_p2/rollback_ok/target/newfile.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_p2/rollback_ok/target/pkg/mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_p2/stale_apply_cli/binding.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_p2/stale_apply_cli/candidates/cand_0_existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_p2/stale_apply_cli/candidates/cand_1_newfile.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_p2/stale_apply_cli/candidates/cand_2_pkg_mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_p2/stale_apply_cli/owner_scope.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_p2/stale_apply_cli/plan.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_p2/stale_apply_cli/review.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_p2/stale_apply_cli/target/existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_p2/stale_apply_cli/target/pkg/mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_p2/stale_apply_seam/binding.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_p2/stale_apply_seam/candidates/cand_0_existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_p2/stale_apply_seam/candidates/cand_1_newfile.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_p2/stale_apply_seam/candidates/cand_2_pkg_mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_p2/stale_apply_seam/owner_scope.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_p2/stale_apply_seam/plan.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_p2/stale_apply_seam/review.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_p2/stale_apply_seam/target/existing.txt",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/apply/tests/_work_p2/stale_apply_seam/target/pkg/mod.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/avr/.avr_p2_probe/inspect_links.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/avr/.avr_p2_probe/inspect_topic.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/avr/.avr_p2_probe/inventory.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/avr/.avr_p2_probe/rules.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/avr/.avr_p2_snap/entry_map.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/avr/.avr_p2_snap/SKILL.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/avr/.avr_p2_snap/topic-source-remainder.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-0.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-1.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-10.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-11.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-12.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-13.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-14.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-15.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-16.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-17.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-18.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-19.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-2.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-20.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-21.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-22.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-23.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-24.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-25.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-26.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-27.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-28.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-29.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-3.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-30.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-31.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-32.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-33.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-34.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-35.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-36.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-37.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-38.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-39.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-4.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-40.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-41.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-42.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-43.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-44.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-45.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-46.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-47.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-48.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-49.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-5.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-50.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-51.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-52.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-53.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-54.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-55.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-56.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-57.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-58.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-59.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-6.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-60.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-7.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-8.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/references/note-9.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/_lintcheck2/my-skill/SKILL.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/tests/tools/__pycache__/conftest.cpython-311-pytest-9.1.1.pyc",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/tests/tools/__pycache__/test_lint_full_current.cpython-311-pytest-9.1.1.pyc",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/tests/tools/__pycache__/test_lint_reader_edit.cpython-311-pytest-9.1.1.pyc",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/tests/tools/__pycache__/test_skill_linter.cpython-311-pytest-9.1.1.pyc",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/tests/tools/__pycache__/test_skill_manage_batch.cpython-311-pytest-9.1.1.pyc",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/tests/tools/__pycache__/test_skill_manager_tool.cpython-311-pytest-9.1.1.pyc",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/tools/__pycache__/skill_linter.cpython-311.pyc",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/tools/__pycache__/skill_manager_batch.cpython-311.pyc",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/tools/__pycache__/skill_manager_guards.cpython-311.pyc",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/consumer/tools/__pycache__/skill_manager_tool.cpython-311.pyc",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/hgk/scratch/analyze1.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/hgk/scratch/check_names.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/hgk/scratch/clean.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/hgk/scratch/negatives/duplicated.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/hgk/scratch/negatives/missing.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/hgk/scratch/negatives/mutated.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/hgk/scratch/negatives/reordered.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/hgk/scratch/read_once.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/hgk/scratch/readonce/reads.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/hgk/scratch/readonce/SKILL.md.bin",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/hgk/scratch/readonce/src0.bin",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/hgk/scratch/readonce/src1.bin",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/hgk/scratch/readonce/src2.bin",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/hgk/scratch/readonce/src3.bin",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/hgk/scratch/readonce/src4.bin",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/hgk/scratch/recover.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/hgk/scratch/sandbox/entry_map.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/hgk/scratch/sandbox/skill/references/capc-contract-building.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/hgk/scratch/sandbox/skill/references/cross-session-integrity.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/hgk/scratch/sandbox/skill/references/daytrading-t0-axis-authoritative-chain.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/hgk/scratch/sandbox/skill/references/external-acceptance-single-md-closure.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/hgk/scratch/sandbox/skill/references/external-challenge-evidence-closure-far.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/hgk/scratch/sandbox/skill/references/external-challenge-review-closure.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/hgk/scratch/sandbox/skill/references/external-single-md-mandatory-route.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/hgk/scratch/sandbox/skill/references/external-submission-gates.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/hgk/scratch/sandbox/skill/references/fda_guard_hook.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/hgk/scratch/sandbox/skill/references/fda_guard_mint.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/hgk/scratch/sandbox/skill/references/FDA_ROUTE_REGISTRY.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/hgk/scratch/sandbox/skill/references/final-closure-resume.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/hgk/scratch/sandbox/skill/references/order-completion-audit.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/hgk/scratch/sandbox/skill/references/self-verifying-probe-authoring.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/hgk/scratch/sandbox/skill/references/sqs-data-plane-verification.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/hgk/scratch/sandbox/skill/references/topics/construction-wave-and-remaining-procedures.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/hgk/scratch/sandbox/skill/references/topics/external-evidence-closure.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/hgk/scratch/sandbox/skill/SKILL.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/hgk/scratch/sandbox/topic_batch_1.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/hgk/scratch/skill_lines.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/hgk/scratch/skill_refs.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/hgk/scratch/skill_refs2.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/hgk/scratch/skill_refs3.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/hgk/scratch/skill_tail.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "candidates/hgk/scratch/v.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/adversarial-verification-rounds/references/attacking-a-gate-implementation.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/adversarial-verification-rounds/references/checker-binding-and-false-defect-signals.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/adversarial-verification-rounds/references/checker-contract-authoring.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/adversarial-verification-rounds/references/checker-dispatch-frozen-subject.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/adversarial-verification-rounds/references/cross-model-verification-lessons.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/adversarial-verification-rounds/references/delivered-tree-vs-gate-verification.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/adversarial-verification-rounds/references/finding-classification.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/adversarial-verification-rounds/references/git-tree-integrity-signals.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/adversarial-verification-rounds/references/independent-verification-hygiene.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/adversarial-verification-rounds/references/lane-handover-hygiene.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/adversarial-verification-rounds/references/lane-harness-and-admission-gate.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/adversarial-verification-rounds/references/locally-executable-gates.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/adversarial-verification-rounds/references/mandate-completion-audit.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/adversarial-verification-rounds/references/post-verdict-drift.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/adversarial-verification-rounds/references/probe-and-claim-discipline.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/adversarial-verification-rounds/references/probe-shape-and-false-red.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/adversarial-verification-rounds/references/round-closeout-and-handover.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/adversarial-verification-rounds/references/route-scheme-enforcement.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/adversarial-verification-rounds/references/sealed-evidence-corpus.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/adversarial-verification-rounds/references/sqlite-wal-forensics.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/adversarial-verification-rounds/references/verdict-artifact-and-budget.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/adversarial-verification-rounds/references/verification-control-defects.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/adversarial-verification-rounds/references/verifier-lane-handover.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/adversarial-verification-rounds/references/verify-lane-performance.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/adversarial-verification-rounds/scripts/freeze-subject-and-guard.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/adversarial-verification-rounds/scripts/run-gate-matrix.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/adversarial-verification-rounds/SKILL.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/a-verdict-experimentspec-contract-verification.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/acceptance-mirror-publication.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/acceptance-verification-lane.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/adversarial-verification-rounds.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/artefact-disposal-and-cwd-locks.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/browser-account-automation-under-guard.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/bundle-specification-discipline.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/candidate-apply-gates.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/capc-contract-building.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/codex-canary-powershell.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/codex-lane-log-liveness-markers.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/codex-sealed-lane-windows.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/codex-workspace-write.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/conflicting-challenge-report-adjudication.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/construction-acceptance-prompt-compiler.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/corpus-freeze-and-digest-reconciliation.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/cross-session-integrity.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/daytrading-t0-axis-authoritative-chain.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/delegation-marker-env-leak.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/equal-rank-external-conflict-adjudication.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/evidence-integrity-lessons.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/external-acceptance-single-md-closure.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/external-challenge-evidence-closure-far.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/external-challenge-review-closure.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/external-evidence-closure.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/external-provider-tool-enablement.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/external-publication-mirror.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/external-rereview-normalization-rebind.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/external-review-evidence-packaging.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/external-single-md-mandatory-route.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/external-submission-gates.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/fabric-rule-to-code-gap-and-invariant-spoof.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/false-green-verification-traps.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/fda-authorization-gate.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/fda-authorization-guardrail-design.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/fda-desktop-automation-cua.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/fda-folder-reorganization.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/fda-guardrail-implementation-2026-08-15.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/fda-guardrail-operations.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/fda-guardrail-research-2026-08-15.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/fda-guardrail-runtime-notes.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/fda-invocation-route-inventory.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/fda-route-registration.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/fda-upgrade-research-2026-08-14.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/fda_guard_hook.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/fda_guard_mint.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/fda_preflight.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/FDA_ROUTE_REGISTRY.json",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/fda_script_guard.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/final-closure-resume.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/final-evidence-reseal-binding.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/focused-hardening-rereview.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/fsdt-stack-doc-series-research.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/gate-blockage-far-research.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/github-acceptance-bridge.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/governance-knowledge-map.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/governance-ordering-and-binding-proof.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/guard-false-positives.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/harness-and-evidence-defects.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/hermes-memory-full-handling.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/hermes-provider-fallback-routing.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/hermes-provider-routing-failover.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/hgk-spine-knowledge-facilities.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/hgk-ssot-authority-determination.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/independent-verifier-lane-pitfalls.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/interrupted-lane-recovery-and-officer-invocation.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/landing-authored-suites.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/lane-model-routing-verified.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/method-finalization-contract.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/model-lane-routing-and-codex-execute-route.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/negative-pnl-method-change-contract.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/oneshot-lane-liveness-and-model-proof.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/opencodex-human-home-hijack-restore.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/order-completion-audit.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/oss-landscape-research.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/oversized-skill-handling-route.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/oversized-skill-split-notes.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/pack_external_single_md.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/plan-model-fallback.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/post-acceptance-subject-hygiene.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/predesign-design-discussion.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/proportional-runtime-config-closure.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/publication-credential-and-handover.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/python-security-review-probes.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/rbwi-4plus1-pack-execution.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/repair-round-equality-and-closure.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/screen_state_check.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/self-verifying-probe-authoring.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/shared-core-change-set-authorization.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/shared-core-primitive-changeset.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/shared-infra-team-implementation.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/shared-spine-admission.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/spartoi-reopen-preopen-execution.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/spine-lifecycle-closeout.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/sqs-data-plane-verification.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/sqs-thc-knowledge-base-research.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/step-10-external-provider-tool-enablement.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/step-6d-evidence-closure-pipeline.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/step-9-fda-cua-operations.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/step-evidence-only-contract-a.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/step-pitfalls-checklist.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/step-verify-only-lane.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/strategy-backtest-correctness-and-method-finalization.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/support-files-index.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/taiwan-daily-ohlcv-acquisition.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/taiwan-isin-venue-master.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/validator-authoring-lessons.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/verify-lane-must-be-pinned-oneshot.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/verifying-lane-declaration-changes.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/xq-community-automation-solution.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/references/xq-radar-paper-runtime.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/scripts/atomic_reseal.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/scripts/docs_gap_audit.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/scripts/far_gate_check.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/scripts/hgk_evidence_preflight.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/scripts/run_mvlt_mode_a.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/scripts/skill_guard.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/scripts/verify_mvlt_ab.py",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/rollback_drill/hgk-governed-execution/SKILL.md",
+      "reason": "excluded_dir_or_fixture_work"
+    },
+    {
+      "path": "verification/round-harness/security2_adjudication.json",
+      "reason": "excluded_volatile_coordination_file"
+    }
+  ],
+  "file_count": 370,
+  "files": [
+    {
+      "path": "baseline/adversarial-verification-rounds/SKILL.md",
+      "sha256": "4be690a4feaee5ba1fcf7bb5c109b6c41a3834060f1e962a3d9112952f66e97e",
+      "bytes": 101488
+    },
+    {
+      "path": "baseline/adversarial-verification-rounds/references/attacking-a-gate-implementation.md",
+      "sha256": "e742c44409518efe0f54d8052101b76379b7d11b147105a09f8768103810a565",
+      "bytes": 4408
+    },
+    {
+      "path": "baseline/adversarial-verification-rounds/references/checker-binding-and-false-defect-signals.md",
+      "sha256": "31ae9774cd4e245c47aa051adfae17ac3e14f68b5ba49b1e867c5cb8225053c4",
+      "bytes": 5403
+    },
+    {
+      "path": "baseline/adversarial-verification-rounds/references/checker-contract-authoring.md",
+      "sha256": "d41bd7a4b5b102fadf53bb0653e584f1ca1c4b20580407678264a8f2a32f2614",
+      "bytes": 7366
+    },
+    {
+      "path": "baseline/adversarial-verification-rounds/references/checker-dispatch-frozen-subject.md",
+      "sha256": "9a3d18f383fee61e94a441e8e1bc8062ccaa242ca5321144ea61a73e027b149e",
+      "bytes": 3120
+    },
+    {
+      "path": "baseline/adversarial-verification-rounds/references/cross-model-verification-lessons.md",
+      "sha256": "5f94085d5afabebd8c1894246a9afad8868068ac0597c4bc6578e40163f6fa9b",
+      "bytes": 24668
+    },
+    {
+      "path": "baseline/adversarial-verification-rounds/references/delivered-tree-vs-gate-verification.md",
+      "sha256": "3efc0afdf652bf099d647999ea390781bbd6b930210d19b72ec6964ecac18805",
+      "bytes": 9041
+    },
+    {
+      "path": "baseline/adversarial-verification-rounds/references/finding-classification.md",
+      "sha256": "6055fcd360b24dfab3c7bfd642df25a99575b69ccc2dcfa96c8822930dce9226",
+      "bytes": 3707
+    },
+    {
+      "path": "baseline/adversarial-verification-rounds/references/git-tree-integrity-signals.md",
+      "sha256": "6218935c20b76312728ad274f224d4fb9a4ac3db1fd056a026b8486928e8aa56",
+      "bytes": 5652
+    },
+    {
+      "path": "baseline/adversarial-verification-rounds/references/independent-verification-hygiene.md",
+      "sha256": "9da3a1278235d4373e38a4ddf83c4f07b8cb2287d563e5cd3da4f43d7d40b339",
+      "bytes": 3385
+    },
+    {
+      "path": "baseline/adversarial-verification-rounds/references/lane-handover-hygiene.md",
+      "sha256": "d9601528f160d8c5c2fb833a5894b47ba1882f912fbc5c062bce41207277696a",
+      "bytes": 4149
+    },
+    {
+      "path": "baseline/adversarial-verification-rounds/references/lane-harness-and-admission-gate.md",
+      "sha256": "61bdb0cd1763f7494bef8337c42a2d1e53c3550ab18102b7ee4f219eaf52c140",
+      "bytes": 22476
+    },
+    {
+      "path": "baseline/adversarial-verification-rounds/references/locally-executable-gates.md",
+      "sha256": "b238f5ab8ee93e6a55e36f12cc2f0d07a8ce30431dfe459742961c10871d6a0e",
+      "bytes": 4398
+    },
+    {
+      "path": "baseline/adversarial-verification-rounds/references/mandate-completion-audit.md",
+      "sha256": "6976882d8394a9f6048ec9f31ebd21f3109f1c61a4bf67bacc7dc05fa6d7b89c",
+      "bytes": 9726
+    },
+    {
+      "path": "baseline/adversarial-verification-rounds/references/post-verdict-drift.md",
+      "sha256": "2123ca231639dc6f3c7664a0c1f2f4348b3328d82b24fd752f47cd3b0b7417fb",
+      "bytes": 4999
+    },
+    {
+      "path": "baseline/adversarial-verification-rounds/references/probe-and-claim-discipline.md",
+      "sha256": "67f7bb8726d8baeb5e9820fc337d91e7096c25be7566c7c2061355e167e45e64",
+      "bytes": 2688
+    },
+    {
+      "path": "baseline/adversarial-verification-rounds/references/probe-shape-and-false-red.md",
+      "sha256": "79e758357a8428315bffe270b56f2b7fb3cd8a1a386a970bce94ff744c03dac4",
+      "bytes": 2757
+    },
+    {
+      "path": "baseline/adversarial-verification-rounds/references/round-closeout-and-handover.md",
+      "sha256": "1f9ad53b039882ff2f00a9011b36587238602396d0dccaf66dca06fde0ec1b57",
+      "bytes": 5175
+    },
+    {
+      "path": "baseline/adversarial-verification-rounds/references/route-scheme-enforcement.md",
+      "sha256": "e943f00cd9af8a8643cdeab0349536679bddbcf00e4390e17ec16d37215fae85",
+      "bytes": 16184
+    },
+    {
+      "path": "baseline/adversarial-verification-rounds/references/sealed-evidence-corpus.md",
+      "sha256": "276955b67c30961e7d6cf0bc22b56e2968da719d4e0d86719440c2e096e82b81",
+      "bytes": 4816
+    },
+    {
+      "path": "baseline/adversarial-verification-rounds/references/sqlite-wal-forensics.md",
+      "sha256": "90349088ec7bfac8a9a72cfab78cacb1542761e5779e5771fcc1899c9452f5be",
+      "bytes": 3764
+    },
+    {
+      "path": "baseline/adversarial-verification-rounds/references/verdict-artifact-and-budget.md",
+      "sha256": "79efb0c631348071900d7a2ad599bfd4f5792f79c564a455bb2b22936313f5ab",
+      "bytes": 5032
+    },
+    {
+      "path": "baseline/adversarial-verification-rounds/references/verification-control-defects.md",
+      "sha256": "2a4c6459d1f3c02ce740975ae4cdf69efc208a3a37ec2f26708c087899ce4c7e",
+      "bytes": 5839
+    },
+    {
+      "path": "baseline/adversarial-verification-rounds/references/verifier-lane-handover.md",
+      "sha256": "aebb35ea0ef523de9d64940081706fc62bd36fb4712abe51ef8baa19e3dd939b",
+      "bytes": 26549
+    },
+    {
+      "path": "baseline/adversarial-verification-rounds/references/verify-lane-performance.md",
+      "sha256": "a44081e44177fdbd5f47c6cd2cc9d759f4c5bd12095f2ba8b89a53dc17b4ecb6",
+      "bytes": 8600
+    },
+    {
+      "path": "baseline/adversarial-verification-rounds/scripts/freeze-subject-and-guard.py",
+      "sha256": "4aa4a8bcd974ee87220385c42e74afefe9103fb5ce34262e904209b786665756",
+      "bytes": 6532
+    },
+    {
+      "path": "baseline/adversarial-verification-rounds/scripts/run-gate-matrix.py",
+      "sha256": "0964d650229219b2b343318dac6671320935f78cae81330b1e00adea1491bbe2",
+      "bytes": 8727
+    },
+    {
+      "path": "baseline/hgk-governed-execution/SKILL.md",
+      "sha256": "174df0185026de09c673b92d1df5b8f01dcb35cf0cf7facbbdf095b368fdf9e4",
+      "bytes": 105116
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/FDA_ROUTE_REGISTRY.json",
+      "sha256": "c5105e9a8045b15960033edfab955cdb15864ad31ef7a0a04c8a3c772d0fcfa8",
+      "bytes": 3486
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/a-verdict-experimentspec-contract-verification.md",
+      "sha256": "7cee5fc8e2b0fba465658104336b5a9ef1e5df8053e14cfff892ce4a63be3ccd",
+      "bytes": 3656
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/acceptance-mirror-publication.md",
+      "sha256": "6bc6fb1639ebadaaf091145f7594a8c642c29ad8eb361e05d22e5cb574ffa1cd",
+      "bytes": 4430
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/acceptance-verification-lane.md",
+      "sha256": "433fe0dc0f80f25fa73bfd2ac5771709b10eb9fcef9abb73a795f6b7a4d4cfb6",
+      "bytes": 11012
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/adversarial-verification-rounds.md",
+      "sha256": "e85e690b6c74040dfde51befbfbccc8120a422ee5e9459bce8e32fbca35ba4c6",
+      "bytes": 4893
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/artefact-disposal-and-cwd-locks.md",
+      "sha256": "0f17fda9ab49dcb18093c85d2c222501937e521a40c4f25308c2a8375c9cbf27",
+      "bytes": 3458
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/browser-account-automation-under-guard.md",
+      "sha256": "503663e240c946dd5229e14a4f76ff82370dd6a14c5d0f036e46364efa374ed9",
+      "bytes": 7140
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/bundle-specification-discipline.md",
+      "sha256": "08335d04649e4f80dd93ff71c0df663be865c9efeee6b3f128aceaf1bb98a507",
+      "bytes": 2553
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/candidate-apply-gates.md",
+      "sha256": "396736cec9c1a1dc2e1e1f319dfd23abde607b4bce633524b033bb08c240fa3e",
+      "bytes": 2162
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/capc-contract-building.md",
+      "sha256": "1ea596bc19cbe81e35a0fd13ebb357dc0f8481fd486ea802bf6c1edd8d96c76b",
+      "bytes": 13902
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/codex-canary-powershell.md",
+      "sha256": "4be423b5e1137632a54c92f4be82ab6a32419bcf07cafcdab4ce5ce02c84b774",
+      "bytes": 5511
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/codex-lane-log-liveness-markers.md",
+      "sha256": "9a2a56a7f19e6db8fb048a84d37fb91c0378632716778fa468f474a131f1e850",
+      "bytes": 2029
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/codex-sealed-lane-windows.md",
+      "sha256": "3d1d8a2ca61c0c0fdf5bbfc875a9459d3863f17a7a537cee3420be8ad94aa0ab",
+      "bytes": 11271
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/codex-workspace-write.md",
+      "sha256": "fd9dfe87142d314acc880960cec0b68544c4a025496bbf82d1c7c55d7092eab5",
+      "bytes": 17006
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/conflicting-challenge-report-adjudication.md",
+      "sha256": "84bf1efa430deb66016bed94561cf69e696b9936f87573e6127eb3960db8e664",
+      "bytes": 8784
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/construction-acceptance-prompt-compiler.md",
+      "sha256": "1c5af00ceb44cc5b8ffd72ae5c526ceb2412b10e0c74be4cf29276e55d4d95d3",
+      "bytes": 5611
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/corpus-freeze-and-digest-reconciliation.md",
+      "sha256": "763badfd9266aa7f32268481d0c3d625fdceceb2fcfea173383e8a007014f4bd",
+      "bytes": 7362
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/cross-session-integrity.md",
+      "sha256": "e95bf78d2b8371608489006bab3ba571e79a4aa97dbe89b6ccfcf07f0ea9843f",
+      "bytes": 11778
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/daytrading-t0-axis-authoritative-chain.md",
+      "sha256": "160c09c5f35a1e6d911a0ce235d92cca695e7cf3d8204362b72c0d26c84a4aa8",
+      "bytes": 7932
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/delegation-marker-env-leak.md",
+      "sha256": "a4ac5d8dea3e0740bf6fd8aa85ee0353da73c4dfee47f0170f78cb331f6d0250",
+      "bytes": 5573
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/equal-rank-external-conflict-adjudication.md",
+      "sha256": "ee143ada9e2288977ff3024c9960b1cd85d7718184bc4a04bce336d081a291c0",
+      "bytes": 4037
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/evidence-integrity-lessons.md",
+      "sha256": "6131ff288fc62a2bd989cb1020b689681b028595c8ace62f702e0129a9f3bf41",
+      "bytes": 33595
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/external-acceptance-single-md-closure.md",
+      "sha256": "5af0c9dfd49aa60faca75a8b0ce7fa7bb624d6c02f18e07c6f116f102540c688",
+      "bytes": 5544
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/external-challenge-evidence-closure-far.md",
+      "sha256": "9412dfe386962e8e71280dbc129e16dfe89a93cb6c91e93c90390ffe1a157505",
+      "bytes": 5363
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/external-challenge-review-closure.md",
+      "sha256": "85fc306679893ece6233bd26b1157b2735fc97efd6729571e23f6d9cca13a7aa",
+      "bytes": 10097
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/external-evidence-closure.md",
+      "sha256": "285fd761a3ee9d4e582fe6f41843a1a5ed2c4253374fe6168a7de00e2d341852",
+      "bytes": 15389
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/external-provider-tool-enablement.md",
+      "sha256": "1269f2092d215c53b05453cd00a02bc5d9e090c13c17c3981f856083a71e5f78",
+      "bytes": 4757
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/external-publication-mirror.md",
+      "sha256": "019888718a5e356858876b09310b96f9f820dde12a7a6838169cd488d04ac155",
+      "bytes": 7883
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/external-rereview-normalization-rebind.md",
+      "sha256": "002ab7685460bd5f35acd66153d10d7e2d5bc12dc8172129f0062ece237dacd6",
+      "bytes": 11520
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/external-review-evidence-packaging.md",
+      "sha256": "95f120ad81cd664972d1869e289d93be51528bf39baaf82b5314c4a8fdf8d061",
+      "bytes": 18425
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/external-single-md-mandatory-route.md",
+      "sha256": "975407d870df5443901ce90a4ff32cbc9b5a2bc6b5dce6a998c1b9c1ece8f682",
+      "bytes": 2546
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/external-submission-gates.md",
+      "sha256": "8525b204cc789419123321b49a0f61dea65216f9eecce1a313754feb27d3c7b0",
+      "bytes": 7083
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/fabric-rule-to-code-gap-and-invariant-spoof.md",
+      "sha256": "2e85122f34e5cef865655503a16ea240fb8f946aeb39eb78517f590b322fda16",
+      "bytes": 2942
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/false-green-verification-traps.md",
+      "sha256": "074fcadced5551e8c28885d71f203cf6866ad8ecdd37ea37d45f1f3bbe5640cd",
+      "bytes": 5844
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/fda-authorization-gate.md",
+      "sha256": "5e752f2e94fa79686b89d95d0f05b62fe3272e38a54f8d0cc9c666400393df8d",
+      "bytes": 3935
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/fda-authorization-guardrail-design.md",
+      "sha256": "cd102817d9cbffbe0f93db68a992c682137fa1ed41e13c5578d2b2c43c9ab1e3",
+      "bytes": 7894
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/fda-desktop-automation-cua.md",
+      "sha256": "0bb55eaf45dfb536ee1c2aded95f681cac2e1f762146deec1a3099785a3d0b61",
+      "bytes": 36359
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/fda-folder-reorganization.md",
+      "sha256": "2d07065546cc2560a998b25dfa3c3e619129bb112eed56d134b8544fccb43374",
+      "bytes": 4032
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/fda-guardrail-implementation-2026-08-15.md",
+      "sha256": "0a2517310ddd9c9baf72225255bf2dc9bed05608bf2596894caf1c029b60e4db",
+      "bytes": 6696
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/fda-guardrail-operations.md",
+      "sha256": "02dada73380e667ab524dac721afe2649bbe06edd8d0e303d36a511f425f1206",
+      "bytes": 3086
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/fda-guardrail-research-2026-08-15.md",
+      "sha256": "982096177522af9cbaaaaa8a41c5a65a6e0ec6ff04ddda29a6f92f46b91f3982",
+      "bytes": 5137
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/fda-guardrail-runtime-notes.md",
+      "sha256": "138e4f05aca7f348c3130c791db93f542d39b3ada3d44d75577239474f9eae93",
+      "bytes": 7805
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/fda-invocation-route-inventory.md",
+      "sha256": "b3c4187e6c9e1045f9437efaf091e958e88565a476447eaa18fdac4ceb98c740",
+      "bytes": 4630
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/fda-route-registration.md",
+      "sha256": "53e977fff45fc23557ee7adb04c5785d0ab1f2ac3a1607ca58a5e998bb9a7464",
+      "bytes": 4979
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/fda-upgrade-research-2026-08-14.md",
+      "sha256": "d5433271040f9ff5c972b62b45730ae6b0be4a46638af0816d978ec9a1db1085",
+      "bytes": 5969
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/fda_guard_hook.py",
+      "sha256": "cc8dcd9cf9deca2f73ff78fd8cea1db1727c655af96bb597f54594d6981201f8",
+      "bytes": 12019
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/fda_guard_mint.py",
+      "sha256": "211dace836ea0a88300768e3d193e7b2e64c3c83c68f706fdab9ab2547878028",
+      "bytes": 4710
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/fda_preflight.py",
+      "sha256": "28d3fbb58956b00f12e771038ed8805b7c0511862ce26d48399c6a20c8b3a7c5",
+      "bytes": 12599
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/fda_script_guard.py",
+      "sha256": "27f879ed0f57309b82b459fac734d5cf62798602dc804b469360bb662095f858",
+      "bytes": 6658
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/final-closure-resume.md",
+      "sha256": "3eeb125ccd2521944145c09d9faa357868d086590335377d8f4820ef41eb0682",
+      "bytes": 5903
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/final-evidence-reseal-binding.md",
+      "sha256": "f0ce7d0dde821cae585e951a388c76c81b8a1488ce3847ad37c8881c551bc584",
+      "bytes": 11126
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/focused-hardening-rereview.md",
+      "sha256": "55f8137286ee79d5fb8a27ea20ef0d7e595bea04e9a159d457d0981da5a297a6",
+      "bytes": 4113
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/fsdt-stack-doc-series-research.md",
+      "sha256": "0deab46ef554bb45718c1737764b401d558baec4106624e31b5055cb02a537db",
+      "bytes": 6225
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/gate-blockage-far-research.md",
+      "sha256": "d5b25c3dcaef1f7494e6afc5674d353eb9e8b458153a3e6ec177b6f277235489",
+      "bytes": 4463
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/github-acceptance-bridge.md",
+      "sha256": "a05f1d6adf062cdbccf840838213f1728274afb6f2d97289b797ca9aa1d52902",
+      "bytes": 7505
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/governance-knowledge-map.md",
+      "sha256": "0ea51926582c0a23b698175862e1d346e205a185de6a87530760e044435f204e",
+      "bytes": 10359
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/governance-ordering-and-binding-proof.md",
+      "sha256": "611887ba101e248bd85cfe1ee1abab185f52342ff3914cbc977af2690c0c55f9",
+      "bytes": 9126
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/guard-false-positives.md",
+      "sha256": "da5ffb69a886b5b65d4788c4239f3c8364d3c9f48fab819b68201074ed7d58ba",
+      "bytes": 3496
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/harness-and-evidence-defects.md",
+      "sha256": "3556de3ca94f71e448d142a02da1b2cd5d8a23507ca8e978d4d48a56f2640950",
+      "bytes": 5736
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/hermes-memory-full-handling.md",
+      "sha256": "598d621420ffe2336b794ca6696337ab6f168a576d078cc4475ef437ca830280",
+      "bytes": 5186
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/hermes-provider-fallback-routing.md",
+      "sha256": "e8af671681a33cf758ecd64bc3a1f1774b44fdce6c756f0dafc89c1f989da872",
+      "bytes": 4380
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/hermes-provider-routing-failover.md",
+      "sha256": "e5b8a334d1cfbaade7bb9f693419107dbe7153d6551fa2b8f1fbc95afcb372a7",
+      "bytes": 5606
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/hgk-spine-knowledge-facilities.md",
+      "sha256": "355beedfa2a3630c95ce346215196241550669ccaab01b07461f24b359cadb9d",
+      "bytes": 6449
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/hgk-ssot-authority-determination.md",
+      "sha256": "b9009c97e799dbf89685311eaf526d58455e7d19c3584ffb1153d48582544eb4",
+      "bytes": 8874
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/independent-verifier-lane-pitfalls.md",
+      "sha256": "889adc7dcdec37e63bf002a12f34daaaa4135fec8cb411b14b831ac74232e7cd",
+      "bytes": 2533
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/interrupted-lane-recovery-and-officer-invocation.md",
+      "sha256": "7272c92ffcbafbb174df4b0517e0b8563aab9a9819979ac75dbe7fb9943c41aa",
+      "bytes": 3819
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/landing-authored-suites.md",
+      "sha256": "ded3467fb3dad327d5c2315b242b6e0abac9fbdc7a3a67177e0755f1afc9d894",
+      "bytes": 5183
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/lane-model-routing-verified.md",
+      "sha256": "a77c10d03e1fabf3bb3471c50d94e4415118687e096adb8c2414e78827e699e7",
+      "bytes": 4249
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/method-finalization-contract.md",
+      "sha256": "4334f7e2fa2823aafeee85bc7df1f98929a4e424810677c3aef9ab508198543a",
+      "bytes": 4682
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/model-lane-routing-and-codex-execute-route.md",
+      "sha256": "085a4399f2fa338886658588b6430418ef5a544efbe037c3836cd6dfaf3f45d5",
+      "bytes": 16907
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/negative-pnl-method-change-contract.md",
+      "sha256": "d41842569d263fe2ddcb336594deb905388903257161e0e53a92551665e43dc3",
+      "bytes": 7932
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/oneshot-lane-liveness-and-model-proof.md",
+      "sha256": "c8a30f8ecc8cdd1b5e6cb8e427885f9c1fe35371c0e1fba4eab8792ed24f63c7",
+      "bytes": 2387
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/opencodex-human-home-hijack-restore.md",
+      "sha256": "42cebcc8ba1a6be9b5306cc031f08d21e7d5f1098611b1ec5791469a531ce1eb",
+      "bytes": 9250
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/order-completion-audit.md",
+      "sha256": "e210816f8146a4244d10e42a36182575e33975535711840d5abb65069596abe0",
+      "bytes": 3928
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/oss-landscape-research.md",
+      "sha256": "6ddb9ff79db318f9ee494d9803d42e7bfa528874e92420a975ef160b6cd6e6d3",
+      "bytes": 4747
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/oversized-skill-handling-route.md",
+      "sha256": "a539a616bf8b918037789ba7b3c9a9e6c2074fe3c64eb80f73df70acaac868be",
+      "bytes": 5556
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/oversized-skill-split-notes.md",
+      "sha256": "323b79c35933f18238d415fa2266ce51aebf9681fddda3434cc0a584c790a766",
+      "bytes": 2482
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/pack_external_single_md.py",
+      "sha256": "e5d56211266fc6585059b7fdbe31e28d43039126ff0fd86b75f38f2ee2e47753",
+      "bytes": 7481
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/plan-model-fallback.md",
+      "sha256": "a1e32faff56f08c432edc40637f79f11fe7b9dbedf088c34aa42bc8e5c2f8dc9",
+      "bytes": 3018
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/post-acceptance-subject-hygiene.md",
+      "sha256": "5cf48dc03409cc63c05a244df873367f3afcd0fae7255e42396bb27b03585ff3",
+      "bytes": 5126
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/predesign-design-discussion.md",
+      "sha256": "871f2d2bdc94ff456bc9abbfd650350907e68f5b24a4d006360cd61809450fef",
+      "bytes": 3977
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/proportional-runtime-config-closure.md",
+      "sha256": "f614c9335cb383851cc3369ecf24471d32b9b73eaefe1bcad21413c4d110108a",
+      "bytes": 3255
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/publication-credential-and-handover.md",
+      "sha256": "ddd242d2a0d6c43be94a83828d66c43ce3057958b5ddfd43a44141bc1660a985",
+      "bytes": 7387
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/python-security-review-probes.md",
+      "sha256": "90b5b2d31654cab56ed24e85de91dcf73c2704b6ff622768761274fa9398e8ef",
+      "bytes": 8233
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/rbwi-4plus1-pack-execution.md",
+      "sha256": "7411fd16b72171d6396377ad3c53d30e9d6bbc6b4e05d2729e910682e53c8ea0",
+      "bytes": 19548
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/repair-round-equality-and-closure.md",
+      "sha256": "82070e64144188f7bdfebf0b627c12d0b4b6d926c9f9700c22cae5a48fe6b964",
+      "bytes": 8264
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/screen_state_check.py",
+      "sha256": "1d1e19f574f55a2a675c5c7e3d761ee9230a33129e5771a270d563670ab0e472",
+      "bytes": 3567
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/self-verifying-probe-authoring.md",
+      "sha256": "7b47141e17f3689368c2b7dd993dac7288e0dd1c3f196e7ff66a1a0ad7a4e58d",
+      "bytes": 10891
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/shared-core-change-set-authorization.md",
+      "sha256": "d0c1eee18fefdcce4ba1f668ebb782bc1aaa65ecca0c615bde87397a6174264f",
+      "bytes": 8540
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/shared-core-primitive-changeset.md",
+      "sha256": "b67453774176a0393e7427a0afe2299640d5053dc048316a9f137ac806193b73",
+      "bytes": 6737
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/shared-infra-team-implementation.md",
+      "sha256": "a1088d40037f88c920aa1896d5aaa860b8f0dcffda272656963b69215de75d34",
+      "bytes": 12032
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/shared-spine-admission.md",
+      "sha256": "5dc1f3dd089f2dd260c9e1920069732df1d803c10d08af58fdf756fd42dff622",
+      "bytes": 5212
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/spartoi-reopen-preopen-execution.md",
+      "sha256": "8583997d256612ce2e93e1bddd2ef956e967e39d516b49dccdcdee4ee1568651",
+      "bytes": 6363
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/spine-lifecycle-closeout.md",
+      "sha256": "b360a0256484df421525330061e2478ed301fea8897ce7ace304344bf0acad71",
+      "bytes": 4282
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/sqs-data-plane-verification.md",
+      "sha256": "f78a976f2b7ae4c85c45d51f7604c9532d4cc937771be0100c36b6b05d66751f",
+      "bytes": 5591
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/sqs-thc-knowledge-base-research.md",
+      "sha256": "70342eb9555b8661d6252866c09b18e1260c0287739bd241d1461b94d1fda2a5",
+      "bytes": 4223
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/step-10-external-provider-tool-enablement.md",
+      "sha256": "371f763bba824ec2ff4b9e64157bbabed3750849db7db0986293b556b4d36259",
+      "bytes": 4270
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/step-6d-evidence-closure-pipeline.md",
+      "sha256": "e447705ea3ca2fdac4f60bb99c4090cb7fd8d5d57d86494728891480dc21e702",
+      "bytes": 9236
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/step-9-fda-cua-operations.md",
+      "sha256": "3aa4a31924afbc25ee4cdd5c92dc8a98a99871cb5aa010cec871d52b06102b81",
+      "bytes": 12036
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/step-evidence-only-contract-a.md",
+      "sha256": "a3133c854125d199e0c042196dc63602883387e1db99cba19a0c3f531eecda32",
+      "bytes": 5441
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/step-pitfalls-checklist.md",
+      "sha256": "bf6273ecfad496c6587d961842f40ca1be70e9f2418d921f2f18c013996a4e87",
+      "bytes": 31530
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/step-verify-only-lane.md",
+      "sha256": "4909fa47f0d96f6b8b3bf33f98ae78be2a93ef768684080a98a0163a3963aaab",
+      "bytes": 6029
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/strategy-backtest-correctness-and-method-finalization.md",
+      "sha256": "305518bf92b9000f34a42d71cefd1e40c3ad8bbdf9910d7c7162736086966d1a",
+      "bytes": 5594
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/support-files-index.md",
+      "sha256": "230a108a7c3ad16ebfb3db9ba2257ed67ac5f5524e7db61f64ebdb03c5c8978b",
+      "bytes": 18892
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/taiwan-daily-ohlcv-acquisition.md",
+      "sha256": "fdfdb8251a604d5292044462419eda20190cc5e070a8bae0615a419809ee564c",
+      "bytes": 13025
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/taiwan-isin-venue-master.md",
+      "sha256": "f2a385089b5cacdd1303a5c84f58990d56c22f19d2d787edba203acc043e9615",
+      "bytes": 5146
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/validator-authoring-lessons.md",
+      "sha256": "6128a727ce183db01ccac7cdc7c758001b21137e7208ead3779c8b533d92f5d8",
+      "bytes": 7003
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/verify-lane-must-be-pinned-oneshot.md",
+      "sha256": "d2f81f887e20683c63f3994a405c4c592e7f318fd9b1d1b5d1ed92e99e21d0d5",
+      "bytes": 3024
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/verifying-lane-declaration-changes.md",
+      "sha256": "9c92778a39f959e1d61fe47c60af5afe671a8a119e8d289021cdac016060bab9",
+      "bytes": 3921
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/xq-community-automation-solution.md",
+      "sha256": "f36a609821509d1cd16de5ad1b02f5118b7f1124939cc7dae35b62986829dc69",
+      "bytes": 8591
+    },
+    {
+      "path": "baseline/hgk-governed-execution/references/xq-radar-paper-runtime.md",
+      "sha256": "06a0c00d19142865db1bb7a62632d29d013ecc066b153cd1675fb83815875d63",
+      "bytes": 9896
+    },
+    {
+      "path": "baseline/hgk-governed-execution/scripts/atomic_reseal.py",
+      "sha256": "2a02954efac42a0fc70115deced446dd7c9336c8cca416cb0d59c63b41adcf0b",
+      "bytes": 5136
+    },
+    {
+      "path": "baseline/hgk-governed-execution/scripts/docs_gap_audit.py",
+      "sha256": "a7aa8a6cdc5eaedcfb8974e1331b4cdb29fbc3699a52f91de95f7bcdeef76fdc",
+      "bytes": 3850
+    },
+    {
+      "path": "baseline/hgk-governed-execution/scripts/far_gate_check.py",
+      "sha256": "037efda2d0a6ce4cffacf2bfbea12ebf38f1fa16d6897d7c9047f7d19d9ec235",
+      "bytes": 2235
+    },
+    {
+      "path": "baseline/hgk-governed-execution/scripts/hgk_evidence_preflight.py",
+      "sha256": "8250061da0a6d3c2c2c51ccf561342894f8584b167dbb486ba2b0de1ffa9dd01",
+      "bytes": 6118
+    },
+    {
+      "path": "baseline/hgk-governed-execution/scripts/run_mvlt_mode_a.py",
+      "sha256": "50e3321c258c20e7eb4e265c4975ee1d220ba1e62caec89cfe49822b439f7eb9",
+      "bytes": 5079
+    },
+    {
+      "path": "baseline/hgk-governed-execution/scripts/skill_guard.py",
+      "sha256": "35b2549bfd2e852ca6867cd586a6949f08fd1878f8c64d8ab638f9ea8bb98dad",
+      "bytes": 2553
+    },
+    {
+      "path": "baseline/hgk-governed-execution/scripts/verify_mvlt_ab.py",
+      "sha256": "dde8029afe5d832783803744e20207a57c019da167e6d841680aa77542cf4ab5",
+      "bytes": 6560
+    },
+    {
+      "path": "baseline/runtime/tests/tools/test_skill_linter.py",
+      "sha256": "6f772b18235f9b4db6af46d4abee937bb8e17dfce36d7ba85e989ba578bc42f0",
+      "bytes": 7351
+    },
+    {
+      "path": "baseline/runtime/tests/tools/test_skill_manage_batch.py",
+      "sha256": "fd4db842c1d1c375aa29ea9edfe10c1f37ce04e49beec2ff86c3ce10bc0514f3",
+      "bytes": 12888
+    },
+    {
+      "path": "baseline/runtime/tests/tools/test_skill_manager_tool.py",
+      "sha256": "a2fc1b0ab5b8a1070ef1b82cd061d46ad8c394a115caa65ade14883f6f5b0440",
+      "bytes": 50990
+    },
+    {
+      "path": "baseline/runtime/tools/skill_linter.py",
+      "sha256": "e2d31b8f217899f9280d0d11de235bd0644ec125a26ef4fa4656eac571c6f254",
+      "bytes": 11991
+    },
+    {
+      "path": "baseline/runtime/tools/skill_manager_batch.py",
+      "sha256": "63f55e36d30d6e601811597fec3b26474d8a0e595fc02810a37bf98b3a1a515e",
+      "bytes": 15331
+    },
+    {
+      "path": "baseline/runtime/tools/skill_manager_guards.py",
+      "sha256": "3af7a295755c7b5579b28abcbce44ac081e565cf4003a48b657fa5120f9cffad",
+      "bytes": 15422
+    },
+    {
+      "path": "baseline/runtime/tools/skill_manager_tool.py",
+      "sha256": "44b1744d535196b3d34ac06e9610e7b8d171516236d9cf506e278e59546f437f",
+      "bytes": 47847
+    },
+    {
+      "path": "candidates/apply/guarded_apply.py",
+      "sha256": "0211c55b20271680ff1e816073daca394d3528cd6b277febf518c60d9cfb8366",
+      "bytes": 52296
+    },
+    {
+      "path": "candidates/apply/patch/APPLY_NOTES.md",
+      "sha256": "85eb7c87f109d0396c71feb03edb88e91346e9461c0202b0ad46d1bdb14426e2",
+      "bytes": 4509
+    },
+    {
+      "path": "candidates/apply/patch/hgk-lane-dispatch.py",
+      "sha256": "17e667d136f1463609a44e2de6a8f7ba9aab07653f6ea4490178fc4ff93a6c56",
+      "bytes": 128634
+    },
+    {
+      "path": "candidates/apply/patch/lane-dispatch-timeout-capture.patch",
+      "sha256": "31847a3f4f5d7932542f0db20f3e7b6b78457a5df3d2f3bcb128def481e9a024",
+      "bytes": 2621
+    },
+    {
+      "path": "candidates/apply/patch/repro_timeout_capture.py",
+      "sha256": "7a0a9a89c0d1df749cfc973c81c8d20d2568e8019358a94a486f8738d776c318",
+      "bytes": 10676
+    },
+    {
+      "path": "candidates/apply/phase1_result.json",
+      "sha256": "af369f587cdc23c18b9e9eb7227b78055772cbe374508de23e2f4090ff7ce7c3",
+      "bytes": 6248
+    },
+    {
+      "path": "candidates/apply/remediation_result.json",
+      "sha256": "3b93ebbfa07eed1be8599a717f123f13045cc17abbadeb16d68fc4b44bf0c9a6",
+      "bytes": 3543
+    },
+    {
+      "path": "candidates/apply/tests/_longpath/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB/preimages/.p_i41x9z1c",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "candidates/apply/tests/run_guarded_apply_phase2_tests.py",
+      "sha256": "a41871ea15cf9f96a96209fef1c23391d44ef04b8a82b3b2412484cde6f60628",
+      "bytes": 18411
+    },
+    {
+      "path": "candidates/apply/tests/run_guarded_apply_tests.py",
+      "sha256": "674728cd45021f72e91c443a5e6a7d00c410727d4897f2df5468131fb97c16d3",
+      "bytes": 30439
+    },
+    {
+      "path": "candidates/avr/consolidate.py",
+      "sha256": "d326f19540447da31b9b4d724b28d052e448e69a2959ca1c9912fcd359c63581",
+      "bytes": 14312
+    },
+    {
+      "path": "candidates/avr/entry_extract.py",
+      "sha256": "726388dd783fb601a8b06fb441cf61d9c1635f591aa5a517cb655f91684d85f7",
+      "bytes": 11831
+    },
+    {
+      "path": "candidates/avr/entry_map.json",
+      "sha256": "e31e82e9401510c3b6a28733997f770037975abe2fd8ce1d2855678ea78dded8",
+      "bytes": 5337
+    },
+    {
+      "path": "candidates/avr/phase1_result.json",
+      "sha256": "fbaf35dd82b9c0a9d41b238c5dc365d8b864e0bc2ccfc48160840b2160639234",
+      "bytes": 3399
+    },
+    {
+      "path": "candidates/avr/phase2_result.json",
+      "sha256": "38af6ba0e8f898e93b0a6ec24bc98970a530a77bd070ac489c010f66d66cd7dd",
+      "bytes": 10553
+    },
+    {
+      "path": "candidates/avr/skill/SKILL.md",
+      "sha256": "eaf6172b9031f3f0a70671ca5f2b8fd10408ba1f6979e90d235e0ff2e7c60f2f",
+      "bytes": 22091
+    },
+    {
+      "path": "candidates/avr/skill/references/attacking-a-gate-implementation.md",
+      "sha256": "e742c44409518efe0f54d8052101b76379b7d11b147105a09f8768103810a565",
+      "bytes": 4408
+    },
+    {
+      "path": "candidates/avr/skill/references/checker-binding-and-false-defect-signals.md",
+      "sha256": "78e748905957696ff15405a88d0c27ff56740db57824d382af937c186337d95a",
+      "bytes": 237
+    },
+    {
+      "path": "candidates/avr/skill/references/checker-contract-authoring.md",
+      "sha256": "d41bd7a4b5b102fadf53bb0653e584f1ca1c4b20580407678264a8f2a32f2614",
+      "bytes": 7366
+    },
+    {
+      "path": "candidates/avr/skill/references/checker-dispatch-frozen-subject.md",
+      "sha256": "9a3d18f383fee61e94a441e8e1bc8062ccaa242ca5321144ea61a73e027b149e",
+      "bytes": 3120
+    },
+    {
+      "path": "candidates/avr/skill/references/cross-model-verification-lessons.md",
+      "sha256": "5f94085d5afabebd8c1894246a9afad8868068ac0597c4bc6578e40163f6fa9b",
+      "bytes": 24668
+    },
+    {
+      "path": "candidates/avr/skill/references/delivered-tree-vs-gate-verification.md",
+      "sha256": "3efc0afdf652bf099d647999ea390781bbd6b930210d19b72ec6964ecac18805",
+      "bytes": 9041
+    },
+    {
+      "path": "candidates/avr/skill/references/finding-classification.md",
+      "sha256": "7bf5a31c25946faf2cb70036834380f70a5f7bbc0ddd98e2c90bf5f2b7b6b390",
+      "bytes": 244
+    },
+    {
+      "path": "candidates/avr/skill/references/git-tree-integrity-signals.md",
+      "sha256": "6218935c20b76312728ad274f224d4fb9a4ac3db1fd056a026b8486928e8aa56",
+      "bytes": 5652
+    },
+    {
+      "path": "candidates/avr/skill/references/independent-verification-hygiene.md",
+      "sha256": "a512f1661d0c2dd18ceca3811dd3722e1891f1e0500b43b7bf0398d82f527a4a",
+      "bytes": 244
+    },
+    {
+      "path": "candidates/avr/skill/references/lane-handover-hygiene.md",
+      "sha256": "d9601528f160d8c5c2fb833a5894b47ba1882f912fbc5c062bce41207277696a",
+      "bytes": 4149
+    },
+    {
+      "path": "candidates/avr/skill/references/lane-harness-and-admission-gate.md",
+      "sha256": "32bf3608a9a6d538d30e4a985bf30e3ff30173aafe2ffaf67f7fd26b309ef8a3",
+      "bytes": 237
+    },
+    {
+      "path": "candidates/avr/skill/references/locally-executable-gates.md",
+      "sha256": "b238f5ab8ee93e6a55e36f12cc2f0d07a8ce30431dfe459742961c10871d6a0e",
+      "bytes": 4398
+    },
+    {
+      "path": "candidates/avr/skill/references/mandate-completion-audit.md",
+      "sha256": "6976882d8394a9f6048ec9f31ebd21f3109f1c61a4bf67bacc7dc05fa6d7b89c",
+      "bytes": 9726
+    },
+    {
+      "path": "candidates/avr/skill/references/post-verdict-drift.md",
+      "sha256": "2123ca231639dc6f3c7664a0c1f2f4348b3328d82b24fd752f47cd3b0b7417fb",
+      "bytes": 4999
+    },
+    {
+      "path": "candidates/avr/skill/references/probe-and-claim-discipline.md",
+      "sha256": "67f7bb8726d8baeb5e9820fc337d91e7096c25be7566c7c2061355e167e45e64",
+      "bytes": 2688
+    },
+    {
+      "path": "candidates/avr/skill/references/probe-shape-and-false-red.md",
+      "sha256": "79e758357a8428315bffe270b56f2b7fb3cd8a1a386a970bce94ff744c03dac4",
+      "bytes": 2757
+    },
+    {
+      "path": "candidates/avr/skill/references/round-closeout-and-handover.md",
+      "sha256": "1f9ad53b039882ff2f00a9011b36587238602396d0dccaf66dca06fde0ec1b57",
+      "bytes": 5175
+    },
+    {
+      "path": "candidates/avr/skill/references/route-scheme-enforcement.md",
+      "sha256": "e943f00cd9af8a8643cdeab0349536679bddbcf00e4390e17ec16d37215fae85",
+      "bytes": 16184
+    },
+    {
+      "path": "candidates/avr/skill/references/sealed-evidence-corpus.md",
+      "sha256": "04847b7a128a79609d73d5929026935d4e5fb5bc532906b4d844c8855a885ebf",
+      "bytes": 243
+    },
+    {
+      "path": "candidates/avr/skill/references/sqlite-wal-forensics.md",
+      "sha256": "90349088ec7bfac8a9a72cfab78cacb1542761e5779e5771fcc1899c9452f5be",
+      "bytes": 3764
+    },
+    {
+      "path": "candidates/avr/skill/references/topic-source-remainder.md",
+      "sha256": "15d6ab99131f46d2fe1663b61a21a40672be0f6c29ff845a0347544b54b78eaa",
+      "bytes": 82592
+    },
+    {
+      "path": "candidates/avr/skill/references/topics/lane-harness-and-handover.md",
+      "sha256": "84b546f1429089ff0313f4ac68df8aee342c21fcdcb228d7ba79328357967b2f",
+      "bytes": 55417
+    },
+    {
+      "path": "candidates/avr/skill/references/topics/verification-and-acceptance-lane.md",
+      "sha256": "8b3a6945b3f9bfb19c30d35f895a70a233c7c5e7c050e65c4265581e9d9ad0ba",
+      "bytes": 18144
+    },
+    {
+      "path": "candidates/avr/skill/references/verdict-artifact-and-budget.md",
+      "sha256": "fca40ed375dedcaa8b7b60505d9eb9d2b9aa4bc5511a97ce6aff46c3b083f4e1",
+      "bytes": 242
+    },
+    {
+      "path": "candidates/avr/skill/references/verification-control-defects.md",
+      "sha256": "2a4c6459d1f3c02ce740975ae4cdf69efc208a3a37ec2f26708c087899ce4c7e",
+      "bytes": 5839
+    },
+    {
+      "path": "candidates/avr/skill/references/verifier-lane-handover.md",
+      "sha256": "6ea6c5b3e1f0235e22a366ff56a672d3a67f7e6db2f8c8edc6c0ececf04c2ba6",
+      "bytes": 235
+    },
+    {
+      "path": "candidates/avr/skill/references/verify-lane-performance.md",
+      "sha256": "a44081e44177fdbd5f47c6cd2cc9d759f4c5bd12095f2ba8b89a53dc17b4ecb6",
+      "bytes": 8600
+    },
+    {
+      "path": "candidates/avr/skill/scripts/freeze-subject-and-guard.py",
+      "sha256": "4aa4a8bcd974ee87220385c42e74afefe9103fb5ce34262e904209b786665756",
+      "bytes": 6532
+    },
+    {
+      "path": "candidates/avr/skill/scripts/run-gate-matrix.py",
+      "sha256": "0964d650229219b2b343318dac6671320935f78cae81330b1e00adea1491bbe2",
+      "bytes": 8727
+    },
+    {
+      "path": "candidates/avr/topic_batch_1.json",
+      "sha256": "79d009b502f4c3089855d8975970e388e15406feea5ee188ab32f53666c95d2b",
+      "bytes": 5967
+    },
+    {
+      "path": "candidates/avr/topic_check.py",
+      "sha256": "a5ee4c3ef10ab11a78324cd6547c5987403b1591980ba6386706623503c07f8a",
+      "bytes": 8561
+    },
+    {
+      "path": "candidates/avr/topic_extract.py",
+      "sha256": "5458f88f99c5e5daa637877716dae6451d2856b9b7a00fc52d05ed9194eacd95",
+      "bytes": 7640
+    },
+    {
+      "path": "candidates/consumer/phase1_result.json",
+      "sha256": "78516b916cb8e646d836e72356d6c358c6c64510148de0ccea6567a83ece4b19",
+      "bytes": 7437
+    },
+    {
+      "path": "candidates/consumer/phase3_result.json",
+      "sha256": "fde7baa9df40ec3d5c8969da90662b7e614f2db8f69054b4f6906ce1370f1ca6",
+      "bytes": 7514
+    },
+    {
+      "path": "candidates/consumer/tests/tools/conftest.py",
+      "sha256": "276ed99c19658615ddf8b6b721539c49a3232a3f0fd5a67602c2acd003e885b5",
+      "bytes": 2177
+    },
+    {
+      "path": "candidates/consumer/tests/tools/test_lint_full_current.py",
+      "sha256": "859f6097eda5f86c49c587e12e4432a0e75001e5d42cc13b3455154608d4c180",
+      "bytes": 6484
+    },
+    {
+      "path": "candidates/consumer/tests/tools/test_lint_reader_edit.py",
+      "sha256": "741cea5c05bbf1265f8ee799caaba14e285bfdd19090a9e291178ed5de12b572",
+      "bytes": 3026
+    },
+    {
+      "path": "candidates/consumer/tests/tools/test_skill_linter.py",
+      "sha256": "6f772b18235f9b4db6af46d4abee937bb8e17dfce36d7ba85e989ba578bc42f0",
+      "bytes": 7351
+    },
+    {
+      "path": "candidates/consumer/tests/tools/test_skill_manage_batch.py",
+      "sha256": "fd4db842c1d1c375aa29ea9edfe10c1f37ce04e49beec2ff86c3ce10bc0514f3",
+      "bytes": 12888
+    },
+    {
+      "path": "candidates/consumer/tests/tools/test_skill_manager_tool.py",
+      "sha256": "a2fc1b0ab5b8a1070ef1b82cd061d46ad8c394a115caa65ade14883f6f5b0440",
+      "bytes": 50990
+    },
+    {
+      "path": "candidates/consumer/tools/skill_linter.py",
+      "sha256": "e2d31b8f217899f9280d0d11de235bd0644ec125a26ef4fa4656eac571c6f254",
+      "bytes": 11991
+    },
+    {
+      "path": "candidates/consumer/tools/skill_manager_batch.py",
+      "sha256": "162c50e45cc4c369588d371e9a3acd12d950e3c9f396869e8884d3816142a9c9",
+      "bytes": 15405
+    },
+    {
+      "path": "candidates/consumer/tools/skill_manager_guards.py",
+      "sha256": "3af7a295755c7b5579b28abcbce44ac081e565cf4003a48b657fa5120f9cffad",
+      "bytes": 15422
+    },
+    {
+      "path": "candidates/consumer/tools/skill_manager_tool.py",
+      "sha256": "d51e995714c2f3281448fa29958b55c09184701007e7294ad18705793682c3e8",
+      "bytes": 50494
+    },
+    {
+      "path": "candidates/hgk/build_phase2.py",
+      "sha256": "37e413775669c84f8a5eb848036c3cbc2223950d060ed80b675011edac3d3b75",
+      "bytes": 3496
+    },
+    {
+      "path": "candidates/hgk/entry_extract.py",
+      "sha256": "4c13c6e956003e2f0299a35fbbf1c9a9ebbcb02c0e5330f7ddbbc713a5f42c64",
+      "bytes": 10929
+    },
+    {
+      "path": "candidates/hgk/entry_map.json",
+      "sha256": "320c81fb399a66c2b24423ff7373dc5705b2d16686d77ff6e033c81f08dd7685",
+      "bytes": 3458
+    },
+    {
+      "path": "candidates/hgk/entry_map.phase1.json",
+      "sha256": "320c81fb399a66c2b24423ff7373dc5705b2d16686d77ff6e033c81f08dd7685",
+      "bytes": 3458
+    },
+    {
+      "path": "candidates/hgk/final_check.py",
+      "sha256": "ae8a8143951b5c38701e626edaa710db0dfa735fb0b4116d8b27ce63db3c1e03",
+      "bytes": 1360
+    },
+    {
+      "path": "candidates/hgk/fixup_result.py",
+      "sha256": "af0bded4ce67bc757e32fd68de18a4fcb3fd3c30eef9483968c7a14a0a1dacdc",
+      "bytes": 2452
+    },
+    {
+      "path": "candidates/hgk/make_negatives.py",
+      "sha256": "a08cf1c8cf645656c6d80dcb216f104022150e367403d6aa84314d49d4b30d0d",
+      "bytes": 1467
+    },
+    {
+      "path": "candidates/hgk/phase1_result.json",
+      "sha256": "643e362721b1d6ea2fc378e40de5fc6c8b8c4aee52cdba5327b9665818914cf4",
+      "bytes": 1937
+    },
+    {
+      "path": "candidates/hgk/phase2_consolidate.py",
+      "sha256": "0728a173c62f8c83ca035b53a4d792f5719c5fdd3fe5b4b755515a65187f375d",
+      "bytes": 15138
+    },
+    {
+      "path": "candidates/hgk/phase2_result.json",
+      "sha256": "960767da72f021197c8e55ba9cd23f47e27c854c0522aa2cbc4f939b85415232",
+      "bytes": 7672
+    },
+    {
+      "path": "candidates/hgk/phase3_result.json",
+      "sha256": "3bab451b4a238a04742a6d3ff483a3007afddfd97c26b58767c55a0c93f5f99d",
+      "bytes": 7271
+    },
+    {
+      "path": "candidates/hgk/refcount.py",
+      "sha256": "7407778e9d8babf420d86787e8322f592156971a8bbb92db1a36e4e1f2786fe9",
+      "bytes": 669
+    },
+    {
+      "path": "candidates/hgk/remediate_pilot.py",
+      "sha256": "38bfdeeca20ba8a8ad9b8db6a8b7fde4aa55e6c35425a326ee126d7e9bc7e27f",
+      "bytes": 6178
+    },
+    {
+      "path": "candidates/hgk/remediation_result.json",
+      "sha256": "bd245e63d4ae0540f053f9d18a9468f14f95b2a38e05fdb8a17bc7e09f7e57cb",
+      "bytes": 6952
+    },
+    {
+      "path": "candidates/hgk/restore_pre.py",
+      "sha256": "4105e57566d9b0a17c55377a88abe999663e40b524ca7679680570bf5fc8c529",
+      "bytes": 938
+    },
+    {
+      "path": "candidates/hgk/skill/SKILL.md",
+      "sha256": "60a4d9b3c79fc9e72cd82d587fc8a0c3d2513ac4a2b74ecb3040fb587450d960",
+      "bytes": 21026
+    },
+    {
+      "path": "candidates/hgk/skill/references/FDA_ROUTE_REGISTRY.json",
+      "sha256": "c5105e9a8045b15960033edfab955cdb15864ad31ef7a0a04c8a3c772d0fcfa8",
+      "bytes": 3486
+    },
+    {
+      "path": "candidates/hgk/skill/references/a-verdict-experimentspec-contract-verification.md",
+      "sha256": "7cee5fc8e2b0fba465658104336b5a9ef1e5df8053e14cfff892ce4a63be3ccd",
+      "bytes": 3656
+    },
+    {
+      "path": "candidates/hgk/skill/references/acceptance-mirror-publication.md",
+      "sha256": "6bc6fb1639ebadaaf091145f7594a8c642c29ad8eb361e05d22e5cb574ffa1cd",
+      "bytes": 4430
+    },
+    {
+      "path": "candidates/hgk/skill/references/acceptance-verification-lane.md",
+      "sha256": "433fe0dc0f80f25fa73bfd2ac5771709b10eb9fcef9abb73a795f6b7a4d4cfb6",
+      "bytes": 11012
+    },
+    {
+      "path": "candidates/hgk/skill/references/adversarial-verification-rounds.md",
+      "sha256": "e85e690b6c74040dfde51befbfbccc8120a422ee5e9459bce8e32fbca35ba4c6",
+      "bytes": 4893
+    },
+    {
+      "path": "candidates/hgk/skill/references/browser-account-automation-under-guard.md",
+      "sha256": "503663e240c946dd5229e14a4f76ff82370dd6a14c5d0f036e46364efa374ed9",
+      "bytes": 7140
+    },
+    {
+      "path": "candidates/hgk/skill/references/capc-contract-building.md",
+      "sha256": "1ea596bc19cbe81e35a0fd13ebb357dc0f8481fd486ea802bf6c1edd8d96c76b",
+      "bytes": 13902
+    },
+    {
+      "path": "candidates/hgk/skill/references/codex-canary-powershell.md",
+      "sha256": "eca46327744909e45d8bf81273df85dc8f78e764aceb231dd69f16ce4d35b62d",
+      "bytes": 110
+    },
+    {
+      "path": "candidates/hgk/skill/references/codex-lane-log-liveness-markers.md",
+      "sha256": "a69c18acb734855e9e39f4dd64aace8ea14fd96581e36f896da8abb8fcaece45",
+      "bytes": 111
+    },
+    {
+      "path": "candidates/hgk/skill/references/codex-sealed-lane-windows.md",
+      "sha256": "d67e39b149150f831941d26dcb98b96df7dc6ce711f15aba9b80e7e22fb7918b",
+      "bytes": 111
+    },
+    {
+      "path": "candidates/hgk/skill/references/codex-workspace-write.md",
+      "sha256": "bad62a779ef43877c4528a09b49983005c52b302a26ea0fe1acc40f952d23b3c",
+      "bytes": 112
+    },
+    {
+      "path": "candidates/hgk/skill/references/conflicting-challenge-report-adjudication.md",
+      "sha256": "84bf1efa430deb66016bed94561cf69e696b9936f87573e6127eb3960db8e664",
+      "bytes": 8784
+    },
+    {
+      "path": "candidates/hgk/skill/references/construction-acceptance-prompt-compiler.md",
+      "sha256": "1c5af00ceb44cc5b8ffd72ae5c526ceb2412b10e0c74be4cf29276e55d4d95d3",
+      "bytes": 5611
+    },
+    {
+      "path": "candidates/hgk/skill/references/corpus-freeze-and-digest-reconciliation.md",
+      "sha256": "763badfd9266aa7f32268481d0c3d625fdceceb2fcfea173383e8a007014f4bd",
+      "bytes": 7362
+    },
+    {
+      "path": "candidates/hgk/skill/references/cross-session-integrity.md",
+      "sha256": "e95bf78d2b8371608489006bab3ba571e79a4aa97dbe89b6ccfcf07f0ea9843f",
+      "bytes": 11778
+    },
+    {
+      "path": "candidates/hgk/skill/references/daytrading-t0-axis-authoritative-chain.md",
+      "sha256": "160c09c5f35a1e6d911a0ce235d92cca695e7cf3d8204362b72c0d26c84a4aa8",
+      "bytes": 7932
+    },
+    {
+      "path": "candidates/hgk/skill/references/delegation-marker-env-leak.md",
+      "sha256": "a4ac5d8dea3e0740bf6fd8aa85ee0353da73c4dfee47f0170f78cb331f6d0250",
+      "bytes": 5573
+    },
+    {
+      "path": "candidates/hgk/skill/references/equal-rank-external-conflict-adjudication.md",
+      "sha256": "ee143ada9e2288977ff3024c9960b1cd85d7718184bc4a04bce336d081a291c0",
+      "bytes": 4037
+    },
+    {
+      "path": "candidates/hgk/skill/references/evidence-integrity-lessons.md",
+      "sha256": "6131ff288fc62a2bd989cb1020b689681b028595c8ace62f702e0129a9f3bf41",
+      "bytes": 33595
+    },
+    {
+      "path": "candidates/hgk/skill/references/external-acceptance-single-md-closure.md",
+      "sha256": "0ea33098e31835c6e8938ad6f27519d703282c87cce01762c07d20287406865f",
+      "bytes": 241
+    },
+    {
+      "path": "candidates/hgk/skill/references/external-challenge-evidence-closure-far.md",
+      "sha256": "870c322cb5ef870e0594bf8dc5d02b6fb78e2d715745691feb970d1933572114",
+      "bytes": 242
+    },
+    {
+      "path": "candidates/hgk/skill/references/external-challenge-review-closure.md",
+      "sha256": "875d5d45b03c881c2b06afe3c279443e03fd13820cb4702fbbe5d1581f53ecdc",
+      "bytes": 243
+    },
+    {
+      "path": "candidates/hgk/skill/references/external-evidence-closure.md",
+      "sha256": "285fd761a3ee9d4e582fe6f41843a1a5ed2c4253374fe6168a7de00e2d341852",
+      "bytes": 15389
+    },
+    {
+      "path": "candidates/hgk/skill/references/external-provider-tool-enablement.md",
+      "sha256": "1269f2092d215c53b05453cd00a02bc5d9e090c13c17c3981f856083a71e5f78",
+      "bytes": 4757
+    },
+    {
+      "path": "candidates/hgk/skill/references/external-publication-mirror.md",
+      "sha256": "019888718a5e356858876b09310b96f9f820dde12a7a6838169cd488d04ac155",
+      "bytes": 7883
+    },
+    {
+      "path": "candidates/hgk/skill/references/external-rereview-normalization-rebind.md",
+      "sha256": "002ab7685460bd5f35acd66153d10d7e2d5bc12dc8172129f0062ece237dacd6",
+      "bytes": 11520
+    },
+    {
+      "path": "candidates/hgk/skill/references/external-review-evidence-packaging.md",
+      "sha256": "95f120ad81cd664972d1869e289d93be51528bf39baaf82b5314c4a8fdf8d061",
+      "bytes": 18425
+    },
+    {
+      "path": "candidates/hgk/skill/references/external-single-md-mandatory-route.md",
+      "sha256": "c68e52019cc65d61222aea114c39aa45190ddfc570a878a2c7ca881900883fd6",
+      "bytes": 240
+    },
+    {
+      "path": "candidates/hgk/skill/references/external-submission-gates.md",
+      "sha256": "c3eaf647d1c5f2e25ae075ac5ff096ff35a7ded26ebce33de912027a5016b83e",
+      "bytes": 241
+    },
+    {
+      "path": "candidates/hgk/skill/references/false-green-verification-traps.md",
+      "sha256": "074fcadced5551e8c28885d71f203cf6866ad8ecdd37ea37d45f1f3bbe5640cd",
+      "bytes": 5844
+    },
+    {
+      "path": "candidates/hgk/skill/references/fda-authorization-guardrail-design.md",
+      "sha256": "cd102817d9cbffbe0f93db68a992c682137fa1ed41e13c5578d2b2c43c9ab1e3",
+      "bytes": 7894
+    },
+    {
+      "path": "candidates/hgk/skill/references/fda-desktop-automation-cua.md",
+      "sha256": "0bb55eaf45dfb536ee1c2aded95f681cac2e1f762146deec1a3099785a3d0b61",
+      "bytes": 36359
+    },
+    {
+      "path": "candidates/hgk/skill/references/fda-folder-reorganization.md",
+      "sha256": "2d07065546cc2560a998b25dfa3c3e619129bb112eed56d134b8544fccb43374",
+      "bytes": 4032
+    },
+    {
+      "path": "candidates/hgk/skill/references/fda-guardrail-implementation-2026-08-15.md",
+      "sha256": "0a2517310ddd9c9baf72225255bf2dc9bed05608bf2596894caf1c029b60e4db",
+      "bytes": 6696
+    },
+    {
+      "path": "candidates/hgk/skill/references/fda-guardrail-operations.md",
+      "sha256": "02dada73380e667ab524dac721afe2649bbe06edd8d0e303d36a511f425f1206",
+      "bytes": 3086
+    },
+    {
+      "path": "candidates/hgk/skill/references/fda-guardrail-research-2026-08-15.md",
+      "sha256": "982096177522af9cbaaaaa8a41c5a65a6e0ec6ff04ddda29a6f92f46b91f3982",
+      "bytes": 5137
+    },
+    {
+      "path": "candidates/hgk/skill/references/fda-guardrail-runtime-notes.md",
+      "sha256": "138e4f05aca7f348c3130c791db93f542d39b3ada3d44d75577239474f9eae93",
+      "bytes": 7805
+    },
+    {
+      "path": "candidates/hgk/skill/references/fda-invocation-route-inventory.md",
+      "sha256": "b3c4187e6c9e1045f9437efaf091e958e88565a476447eaa18fdac4ceb98c740",
+      "bytes": 4630
+    },
+    {
+      "path": "candidates/hgk/skill/references/fda-route-registration.md",
+      "sha256": "53e977fff45fc23557ee7adb04c5785d0ab1f2ac3a1607ca58a5e998bb9a7464",
+      "bytes": 4979
+    },
+    {
+      "path": "candidates/hgk/skill/references/fda-upgrade-research-2026-08-14.md",
+      "sha256": "d5433271040f9ff5c972b62b45730ae6b0be4a46638af0816d978ec9a1db1085",
+      "bytes": 5969
+    },
+    {
+      "path": "candidates/hgk/skill/references/fda_guard_hook.py",
+      "sha256": "cc8dcd9cf9deca2f73ff78fd8cea1db1727c655af96bb597f54594d6981201f8",
+      "bytes": 12019
+    },
+    {
+      "path": "candidates/hgk/skill/references/fda_guard_mint.py",
+      "sha256": "211dace836ea0a88300768e3d193e7b2e64c3c83c68f706fdab9ab2547878028",
+      "bytes": 4710
+    },
+    {
+      "path": "candidates/hgk/skill/references/fda_preflight.py",
+      "sha256": "28d3fbb58956b00f12e771038ed8805b7c0511862ce26d48399c6a20c8b3a7c5",
+      "bytes": 12599
+    },
+    {
+      "path": "candidates/hgk/skill/references/fda_script_guard.py",
+      "sha256": "27f879ed0f57309b82b459fac734d5cf62798602dc804b469360bb662095f858",
+      "bytes": 6658
+    },
+    {
+      "path": "candidates/hgk/skill/references/final-closure-resume.md",
+      "sha256": "3eeb125ccd2521944145c09d9faa357868d086590335377d8f4820ef41eb0682",
+      "bytes": 5903
+    },
+    {
+      "path": "candidates/hgk/skill/references/final-evidence-reseal-binding.md",
+      "sha256": "f0ce7d0dde821cae585e951a388c76c81b8a1488ce3847ad37c8881c551bc584",
+      "bytes": 11126
+    },
+    {
+      "path": "candidates/hgk/skill/references/focused-hardening-rereview.md",
+      "sha256": "55f8137286ee79d5fb8a27ea20ef0d7e595bea04e9a159d457d0981da5a297a6",
+      "bytes": 4113
+    },
+    {
+      "path": "candidates/hgk/skill/references/fsdt-stack-doc-series-research.md",
+      "sha256": "0deab46ef554bb45718c1737764b401d558baec4106624e31b5055cb02a537db",
+      "bytes": 6225
+    },
+    {
+      "path": "candidates/hgk/skill/references/gate-blockage-far-research.md",
+      "sha256": "d5b25c3dcaef1f7494e6afc5674d353eb9e8b458153a3e6ec177b6f277235489",
+      "bytes": 4463
+    },
+    {
+      "path": "candidates/hgk/skill/references/github-acceptance-bridge.md",
+      "sha256": "a05f1d6adf062cdbccf840838213f1728274afb6f2d97289b797ca9aa1d52902",
+      "bytes": 7505
+    },
+    {
+      "path": "candidates/hgk/skill/references/governance-knowledge-map.md",
+      "sha256": "0ea51926582c0a23b698175862e1d346e205a185de6a87530760e044435f204e",
+      "bytes": 10359
+    },
+    {
+      "path": "candidates/hgk/skill/references/governance-ordering-and-binding-proof.md",
+      "sha256": "611887ba101e248bd85cfe1ee1abab185f52342ff3914cbc977af2690c0c55f9",
+      "bytes": 9126
+    },
+    {
+      "path": "candidates/hgk/skill/references/harness-and-evidence-defects.md",
+      "sha256": "3556de3ca94f71e448d142a02da1b2cd5d8a23507ca8e978d4d48a56f2640950",
+      "bytes": 5736
+    },
+    {
+      "path": "candidates/hgk/skill/references/hermes-memory-full-handling.md",
+      "sha256": "598d621420ffe2336b794ca6696337ab6f168a576d078cc4475ef437ca830280",
+      "bytes": 5186
+    },
+    {
+      "path": "candidates/hgk/skill/references/hermes-provider-fallback-routing.md",
+      "sha256": "e8af671681a33cf758ecd64bc3a1f1774b44fdce6c756f0dafc89c1f989da872",
+      "bytes": 4380
+    },
+    {
+      "path": "candidates/hgk/skill/references/hermes-provider-routing-failover.md",
+      "sha256": "e5b8a334d1cfbaade7bb9f693419107dbe7153d6551fa2b8f1fbc95afcb372a7",
+      "bytes": 5606
+    },
+    {
+      "path": "candidates/hgk/skill/references/hgk-spine-knowledge-facilities.md",
+      "sha256": "355beedfa2a3630c95ce346215196241550669ccaab01b07461f24b359cadb9d",
+      "bytes": 6449
+    },
+    {
+      "path": "candidates/hgk/skill/references/hgk-ssot-authority-determination.md",
+      "sha256": "b9009c97e799dbf89685311eaf526d58455e7d19c3584ffb1153d48582544eb4",
+      "bytes": 8874
+    },
+    {
+      "path": "candidates/hgk/skill/references/landing-authored-suites.md",
+      "sha256": "ded3467fb3dad327d5c2315b242b6e0abac9fbdc7a3a67177e0755f1afc9d894",
+      "bytes": 5183
+    },
+    {
+      "path": "candidates/hgk/skill/references/lane-model-routing-verified.md",
+      "sha256": "a77c10d03e1fabf3bb3471c50d94e4415118687e096adb8c2414e78827e699e7",
+      "bytes": 4249
+    },
+    {
+      "path": "candidates/hgk/skill/references/method-finalization-contract.md",
+      "sha256": "4334f7e2fa2823aafeee85bc7df1f98929a4e424810677c3aef9ab508198543a",
+      "bytes": 4682
+    },
+    {
+      "path": "candidates/hgk/skill/references/model-lane-routing-and-codex-execute-route.md",
+      "sha256": "085a4399f2fa338886658588b6430418ef5a544efbe037c3836cd6dfaf3f45d5",
+      "bytes": 16907
+    },
+    {
+      "path": "candidates/hgk/skill/references/negative-pnl-method-change-contract.md",
+      "sha256": "d41842569d263fe2ddcb336594deb905388903257161e0e53a92551665e43dc3",
+      "bytes": 7932
+    },
+    {
+      "path": "candidates/hgk/skill/references/opencodex-human-home-hijack-restore.md",
+      "sha256": "42cebcc8ba1a6be9b5306cc031f08d21e7d5f1098611b1ec5791469a531ce1eb",
+      "bytes": 9250
+    },
+    {
+      "path": "candidates/hgk/skill/references/order-completion-audit.md",
+      "sha256": "e210816f8146a4244d10e42a36182575e33975535711840d5abb65069596abe0",
+      "bytes": 3928
+    },
+    {
+      "path": "candidates/hgk/skill/references/oss-landscape-research.md",
+      "sha256": "6ddb9ff79db318f9ee494d9803d42e7bfa528874e92420a975ef160b6cd6e6d3",
+      "bytes": 4747
+    },
+    {
+      "path": "candidates/hgk/skill/references/oversized-skill-handling-route.md",
+      "sha256": "a539a616bf8b918037789ba7b3c9a9e6c2074fe3c64eb80f73df70acaac868be",
+      "bytes": 5556
+    },
+    {
+      "path": "candidates/hgk/skill/references/pack_external_single_md.py",
+      "sha256": "e5d56211266fc6585059b7fdbe31e28d43039126ff0fd86b75f38f2ee2e47753",
+      "bytes": 7481
+    },
+    {
+      "path": "candidates/hgk/skill/references/post-acceptance-subject-hygiene.md",
+      "sha256": "5cf48dc03409cc63c05a244df873367f3afcd0fae7255e42396bb27b03585ff3",
+      "bytes": 5126
+    },
+    {
+      "path": "candidates/hgk/skill/references/predesign-design-discussion.md",
+      "sha256": "871f2d2bdc94ff456bc9abbfd650350907e68f5b24a4d006360cd61809450fef",
+      "bytes": 3977
+    },
+    {
+      "path": "candidates/hgk/skill/references/publication-credential-and-handover.md",
+      "sha256": "ddd242d2a0d6c43be94a83828d66c43ce3057958b5ddfd43a44141bc1660a985",
+      "bytes": 7387
+    },
+    {
+      "path": "candidates/hgk/skill/references/python-security-review-probes.md",
+      "sha256": "90b5b2d31654cab56ed24e85de91dcf73c2704b6ff622768761274fa9398e8ef",
+      "bytes": 8233
+    },
+    {
+      "path": "candidates/hgk/skill/references/rbwi-4plus1-pack-execution.md",
+      "sha256": "7411fd16b72171d6396377ad3c53d30e9d6bbc6b4e05d2729e910682e53c8ea0",
+      "bytes": 19548
+    },
+    {
+      "path": "candidates/hgk/skill/references/repair-round-equality-and-closure.md",
+      "sha256": "82070e64144188f7bdfebf0b627c12d0b4b6d926c9f9700c22cae5a48fe6b964",
+      "bytes": 8264
+    },
+    {
+      "path": "candidates/hgk/skill/references/screen_state_check.py",
+      "sha256": "1d1e19f574f55a2a675c5c7e3d761ee9230a33129e5771a270d563670ab0e472",
+      "bytes": 3567
+    },
+    {
+      "path": "candidates/hgk/skill/references/self-verifying-probe-authoring.md",
+      "sha256": "7b47141e17f3689368c2b7dd993dac7288e0dd1c3f196e7ff66a1a0ad7a4e58d",
+      "bytes": 10891
+    },
+    {
+      "path": "candidates/hgk/skill/references/shared-core-change-set-authorization.md",
+      "sha256": "d0c1eee18fefdcce4ba1f668ebb782bc1aaa65ecca0c615bde87397a6174264f",
+      "bytes": 8540
+    },
+    {
+      "path": "candidates/hgk/skill/references/shared-core-primitive-changeset.md",
+      "sha256": "b67453774176a0393e7427a0afe2299640d5053dc048316a9f137ac806193b73",
+      "bytes": 6737
+    },
+    {
+      "path": "candidates/hgk/skill/references/shared-infra-team-implementation.md",
+      "sha256": "a1088d40037f88c920aa1896d5aaa860b8f0dcffda272656963b69215de75d34",
+      "bytes": 12032
+    },
+    {
+      "path": "candidates/hgk/skill/references/shared-spine-admission.md",
+      "sha256": "5dc1f3dd089f2dd260c9e1920069732df1d803c10d08af58fdf756fd42dff622",
+      "bytes": 5212
+    },
+    {
+      "path": "candidates/hgk/skill/references/spartoi-reopen-preopen-execution.md",
+      "sha256": "8583997d256612ce2e93e1bddd2ef956e967e39d516b49dccdcdee4ee1568651",
+      "bytes": 6363
+    },
+    {
+      "path": "candidates/hgk/skill/references/spine-lifecycle-closeout.md",
+      "sha256": "b360a0256484df421525330061e2478ed301fea8897ce7ace304344bf0acad71",
+      "bytes": 4282
+    },
+    {
+      "path": "candidates/hgk/skill/references/sqs-data-plane-verification.md",
+      "sha256": "f78a976f2b7ae4c85c45d51f7604c9532d4cc937771be0100c36b6b05d66751f",
+      "bytes": 5591
+    },
+    {
+      "path": "candidates/hgk/skill/references/sqs-thc-knowledge-base-research.md",
+      "sha256": "70342eb9555b8661d6252866c09b18e1260c0287739bd241d1461b94d1fda2a5",
+      "bytes": 4223
+    },
+    {
+      "path": "candidates/hgk/skill/references/step-10-external-provider-tool-enablement.md",
+      "sha256": "371f763bba824ec2ff4b9e64157bbabed3750849db7db0986293b556b4d36259",
+      "bytes": 4270
+    },
+    {
+      "path": "candidates/hgk/skill/references/step-6d-evidence-closure-pipeline.md",
+      "sha256": "e447705ea3ca2fdac4f60bb99c4090cb7fd8d5d57d86494728891480dc21e702",
+      "bytes": 9236
+    },
+    {
+      "path": "candidates/hgk/skill/references/step-9-fda-cua-operations.md",
+      "sha256": "3aa4a31924afbc25ee4cdd5c92dc8a98a99871cb5aa010cec871d52b06102b81",
+      "bytes": 12036
+    },
+    {
+      "path": "candidates/hgk/skill/references/step-evidence-only-contract-a.md",
+      "sha256": "a3133c854125d199e0c042196dc63602883387e1db99cba19a0c3f531eecda32",
+      "bytes": 5441
+    },
+    {
+      "path": "candidates/hgk/skill/references/step-pitfalls-checklist.md",
+      "sha256": "bf6273ecfad496c6587d961842f40ca1be70e9f2418d921f2f18c013996a4e87",
+      "bytes": 31530
+    },
+    {
+      "path": "candidates/hgk/skill/references/step-verify-only-lane.md",
+      "sha256": "4909fa47f0d96f6b8b3bf33f98ae78be2a93ef768684080a98a0163a3963aaab",
+      "bytes": 6029
+    },
+    {
+      "path": "candidates/hgk/skill/references/strategy-backtest-correctness-and-method-finalization.md",
+      "sha256": "305518bf92b9000f34a42d71cefd1e40c3ad8bbdf9910d7c7162736086966d1a",
+      "bytes": 5594
+    },
+    {
+      "path": "candidates/hgk/skill/references/support-files-index.md",
+      "sha256": "230a108a7c3ad16ebfb3db9ba2257ed67ac5f5524e7db61f64ebdb03c5c8978b",
+      "bytes": 18892
+    },
+    {
+      "path": "candidates/hgk/skill/references/taiwan-daily-ohlcv-acquisition.md",
+      "sha256": "fdfdb8251a604d5292044462419eda20190cc5e070a8bae0615a419809ee564c",
+      "bytes": 13025
+    },
+    {
+      "path": "candidates/hgk/skill/references/taiwan-isin-venue-master.md",
+      "sha256": "f2a385089b5cacdd1303a5c84f58990d56c22f19d2d787edba203acc043e9615",
+      "bytes": 5146
+    },
+    {
+      "path": "candidates/hgk/skill/references/topics/codex-lane-execution-and-workspace-write.md",
+      "sha256": "50bb3325e38d17e8f5b2cf7de7c9075441364cb775ebd29c6aee47801bd45b18",
+      "bytes": 36511
+    },
+    {
+      "path": "candidates/hgk/skill/references/topics/construction-wave-and-remaining-procedures.md",
+      "sha256": "79b539d0065902a16e5a52b91ae89eb8c2bf6b6876c57b9c1008a9fe2a4fa5b3",
+      "bytes": 85811
+    },
+    {
+      "path": "candidates/hgk/skill/references/topics/external-evidence-closure.md",
+      "sha256": "c388431aac767a189627e318dbaa9a1bbed4f54d438ef99883811b387434cf66",
+      "bytes": 31543
+    },
+    {
+      "path": "candidates/hgk/skill/references/topics/lane-bootstrap-and-guard-notes.md",
+      "sha256": "e95918620e2a979f2152b32a995df2c37271f7b935733b97ff9b5cd12a44d833",
+      "bytes": 44879
+    },
+    {
+      "path": "candidates/hgk/skill/references/validator-authoring-lessons.md",
+      "sha256": "6128a727ce183db01ccac7cdc7c758001b21137e7208ead3779c8b533d92f5d8",
+      "bytes": 7003
+    },
+    {
+      "path": "candidates/hgk/skill/references/xq-community-automation-solution.md",
+      "sha256": "f36a609821509d1cd16de5ad1b02f5118b7f1124939cc7dae35b62986829dc69",
+      "bytes": 8591
+    },
+    {
+      "path": "candidates/hgk/skill/references/xq-radar-paper-runtime.md",
+      "sha256": "06a0c00d19142865db1bb7a62632d29d013ecc066b153cd1675fb83815875d63",
+      "bytes": 9896
+    },
+    {
+      "path": "candidates/hgk/skill/scripts/atomic_reseal.py",
+      "sha256": "2a02954efac42a0fc70115deced446dd7c9336c8cca416cb0d59c63b41adcf0b",
+      "bytes": 5136
+    },
+    {
+      "path": "candidates/hgk/skill/scripts/docs_gap_audit.py",
+      "sha256": "a7aa8a6cdc5eaedcfb8974e1331b4cdb29fbc3699a52f91de95f7bcdeef76fdc",
+      "bytes": 3850
+    },
+    {
+      "path": "candidates/hgk/skill/scripts/far_gate_check.py",
+      "sha256": "037efda2d0a6ce4cffacf2bfbea12ebf38f1fa16d6897d7c9047f7d19d9ec235",
+      "bytes": 2235
+    },
+    {
+      "path": "candidates/hgk/skill/scripts/hgk_evidence_preflight.py",
+      "sha256": "8250061da0a6d3c2c2c51ccf561342894f8584b167dbb486ba2b0de1ffa9dd01",
+      "bytes": 6118
+    },
+    {
+      "path": "candidates/hgk/skill/scripts/run_mvlt_mode_a.py",
+      "sha256": "50e3321c258c20e7eb4e265c4975ee1d220ba1e62caec89cfe49822b439f7eb9",
+      "bytes": 5079
+    },
+    {
+      "path": "candidates/hgk/skill/scripts/skill_guard.py",
+      "sha256": "35b2549bfd2e852ca6867cd586a6949f08fd1878f8c64d8ab638f9ea8bb98dad",
+      "bytes": 2553
+    },
+    {
+      "path": "candidates/hgk/skill/scripts/verify_mvlt_ab.py",
+      "sha256": "dde8029afe5d832783803744e20207a57c019da167e6d841680aa77542cf4ab5",
+      "bytes": 6560
+    },
+    {
+      "path": "candidates/hgk/test_guards.py",
+      "sha256": "a1908ae727211be2c0eeba06076a95c468b8cbf56970b2707e9325b53e9d59ba",
+      "bytes": 3448
+    },
+    {
+      "path": "candidates/hgk/topic_batch_1.json",
+      "sha256": "af75954559887790f49de28ce8e021ffff55fcc673b0867a415b8cccf8ac7478",
+      "bytes": 2015
+    },
+    {
+      "path": "candidates/hgk/topic_batch_2.json",
+      "sha256": "2b9404db3b2ae16d58beab888524d4ee1d81a2d38617516eaef6c3fa9a6df92b",
+      "bytes": 1591
+    },
+    {
+      "path": "candidates/hgk/topic_check.py",
+      "sha256": "f498216e55adb761ae93676d553ca86039e8e3df55f5f75d5dc4b3e63ad80144",
+      "bytes": 9956
+    },
+    {
+      "path": "candidates/hgk/verify_bytes.py",
+      "sha256": "c0a753c4b299965c048cd86de01881f6f8f75ba91c791fcf345aa0fcd7d604a6",
+      "bytes": 1101
+    },
+    {
+      "path": "candidates/hgk/verify_pilot.py",
+      "sha256": "9ed0c3df49d19091557a6bd3c16ee3adb66c5846a2a80b0444ba75b462ebde1f",
+      "bytes": 2742
+    },
+    {
+      "path": "candidates/hgk/write_result.py",
+      "sha256": "b3d027d1ee4427c7f63534562c055ba605c93e57787371bdf32606348b956766",
+      "bytes": 5075
+    },
+    {
+      "path": "evidence/check_topic_batch.py",
+      "sha256": "82ee8578121b63d3d3a5d2d262be2b14a5f5ae56fe96aabef51f407e1b9580d6",
+      "bytes": 3558
+    },
+    {
+      "path": "evidence/continuation_turn_record.py",
+      "sha256": "a2c6ef509a61734e7e8f99b300941f19471d914bfba137a272acc5ab5d0cbfcc",
+      "bytes": 4864
+    },
+    {
+      "path": "evidence/convergence_check.py",
+      "sha256": "73de308e35b0660eed41c3a9c3fb375d385621e46e6fa56d422af56d2514e414",
+      "bytes": 12192
+    },
+    {
+      "path": "evidence/execution_bindings.json",
+      "sha256": "d3137a25e8566f8b3a4d250b0ceadb0a86ce16ff5bedb730a33bb9a766457c86",
+      "bytes": 11743
+    },
+    {
+      "path": "evidence/global_baseline.json",
+      "sha256": "97c229982585516dca8ec1de3dda96e3d58e64edbaf8174f6c1b06d74a547465",
+      "bytes": 196150
+    },
+    {
+      "path": "evidence/gstack_route_receipt.json",
+      "sha256": "7d429155aac492877fd03a36956bc02c725a3c08d7070cc80c98183fed69d959",
+      "bytes": 15187
+    },
+    {
+      "path": "evidence/qualification_receipt.json",
+      "sha256": "134fdd292da3ac992ddcf8c93004d78cc3d389147815b10c76e88b6ec74a9271",
+      "bytes": 4421
+    },
+    {
+      "path": "evidence/rollback_drill.py",
+      "sha256": "59e2844fe2369f1ee17cfc96bfc08ecf98fc816a6ea7697cd7a99c5316acee49",
+      "bytes": 7708
+    },
+    {
+      "path": "evidence/status_check.py",
+      "sha256": "67d79a0c1da0647981c8fd500f87eb6cbddb5a0b2a0bdbdb02a63a9837c6d7a9",
+      "bytes": 7125
+    },
+    {
+      "path": "evidence/subject_binding.json",
+      "sha256": "ddc59e22a86d165519d2a7e7bb80aa6301c1bd2b061ea0ffd5c9241db830cfd7",
+      "bytes": 838
+    },
+    {
+      "path": "evidence/timeout_class_remediation.json",
+      "sha256": "e5d7a22f053119fd1f3898fd9b05e32fa17c76cfd896c292a47839a8c4dd6a60",
+      "bytes": 5120
+    },
+    {
+      "path": "evidence/verification_contract.json",
+      "sha256": "46b8c1ca777bdd0c39a1e492b2e8b4207459c8d09ce959f88056cb8e92355a96",
+      "bytes": 3367
+    },
+    {
+      "path": "qualification/admitted-marker.txt",
+      "sha256": "6d1603cdc9bd4fbb92b9cfeaa8941f6d0e45840b45c70b00284c2609704ceda8",
+      "bytes": 19
+    },
+    {
+      "path": "qualification/probe-positive.txt",
+      "sha256": "76d3d85610102d83d6a3752f992142f6cb680496877c0c2586719ed0af0edc73",
+      "bytes": 30
+    },
+    {
+      "path": "qualification/probe_subprocess.py",
+      "sha256": "8c70618b50ba666cded5be69708da16d086725d1daffa4ee1c2fd3eca6d7e513",
+      "bytes": 687
+    },
+    {
+      "path": "qualification/probe_symlink.py",
+      "sha256": "b8e564898d020faf6198aab1e1e49e4d7bb682b64bb2d7645872dae5f7db8962",
+      "bytes": 1093
+    },
+    {
+      "path": "qualification/qualify_native.py",
+      "sha256": "1cfa393f6d8de77e3459a1b6b4fcb4414515d1bdab6154bc7fb9cc3c45f131e6",
+      "bytes": 1833
+    },
+    {
+      "path": "verification/round-harness/avr_batch1_adjudication.json",
+      "sha256": "b956f942aee8d26d4909ece0abd238243e2ed2a25badd4190576fc878ed3f069",
+      "bytes": 3150
+    },
+    {
+      "path": "verification/round-harness/avr_batch1_independent_check.json",
+      "sha256": "07bfd7345911d5b2d1a572525cbf3d60f77c58397e8e4ba229690f5b8697e19b",
+      "bytes": 3494
+    },
+    {
+      "path": "verification/round-harness/avr_batch1_reference_check.json",
+      "sha256": "2273df072e16a682c2c22061fb70e8532a171ccd608e4a96adafb6de212b1009",
+      "bytes": 4282
+    },
+    {
+      "path": "verification/round-harness/consumer_phase3_independent_check.json",
+      "sha256": "db46d70dafb06ebcbfbb330d9654d6fc0480eb820800db6f4b7b766ffb31865f",
+      "bytes": 2160
+    },
+    {
+      "path": "verification/round-harness/consumer_phase3_tests_rerun.json",
+      "sha256": "981cc6276e3b880a63db7f66df099446776036ae5c8592bf96011c547af1e4ce",
+      "bytes": 2397
+    },
+    {
+      "path": "verification/round-harness/convergence_report.json",
+      "sha256": "fdd6a3258d54e98364ee97067428310db73a68b64eb89494cf5935cf02de38ad",
+      "bytes": 5957
+    },
+    {
+      "path": "verification/round-harness/hgk_batch1_independent_check.json",
+      "sha256": "c8c6ee00f871dd809a943774757c8161b10c24c0e5e0c348f0436daac41cd846",
+      "bytes": 2634
+    },
+    {
+      "path": "verification/round-harness/hgk_batch2_independent_check.json",
+      "sha256": "8a3968aeb6a5a5072e4392451f2278c6d195504cb3526ab4d0dd97d339eb7950",
+      "bytes": 2322
+    },
+    {
+      "path": "verification/round-harness/rollback_receipt.json",
+      "sha256": "1a63149935963ecc9c3bdc2d8996ef0831692cfdaf460abad99c6b9cdea512da",
+      "bytes": 15789
+    }
+  ],
+  "tree_digest": "b050a0256e57f5e6958956874d3f4c4d63ac38c7cbe46489990183a16b48e8fa",
+  "digest_method": "tree_digest = sha256( '\\n'.join( f\"{row.sha256} {row.path}\" for row in files ) ) — a hash over the newline-joined 'digest path' lines of the row list, NOT a concatenation of file bytes. A checker must use this composition; hashing concatenated file bytes will not reproduce it.",
+  "semantic_freeze": false,
+  "honesty_note": "this is a byte-level manifest of the executed files; it is not a semantic freeze and does not assert that every included file is correct, only that its bytes are fixed for the checker"
+}

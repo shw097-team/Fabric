@@ -1,0 +1,160 @@
+{
+  "schema": "SKCV-AVR-TOPIC-BATCH/1",
+  "workorder": "WO-SKCV-20261014-AVR",
+  "phase": "TOPIC_BATCH_1",
+  "batch_scope": "2_of_many_theme_groups",
+  "theme_groups": [
+    "verification-and-acceptance-lane",
+    "lane-harness-and-handover"
+  ],
+  "topics": {
+    "verification-and-acceptance-lane": {
+      "file": "skill/references/topics/verification-and-acceptance-lane.md",
+      "sha256": "8b3a6945b3f9bfb19c30d35f895a70a233c7c5e7c050e65c4265581e9d9ad0ba",
+      "bytes": 18144,
+      "segments": 4
+    },
+    "lane-harness-and-handover": {
+      "file": "skill/references/topics/lane-harness-and-handover.md",
+      "sha256": "84b546f1429089ff0313f4ac68df8aee342c21fcdcb228d7ba79328357967b2f",
+      "bytes": 55417,
+      "segments": 3
+    }
+  },
+  "absorbed": [
+    {
+      "absorbed_path": "references/verdict-artifact-and-budget.md",
+      "sha256": "79efb0c631348071900d7a2ad599bfd4f5792f79c564a455bb2b22936313f5ab",
+      "bytes": 5032,
+      "owned_by_theme": "verification-and-acceptance-lane",
+      "segment_index": 1,
+      "topic_file": "skill/references/topics/verification-and-acceptance-lane.md",
+      "byte_offset": 475,
+      "payload_byte_end": 5507,
+      "main_doc_offset": 2136,
+      "stub_path": "skill/references/verdict-artifact-and-budget.md"
+    },
+    {
+      "absorbed_path": "references/sealed-evidence-corpus.md",
+      "sha256": "276955b67c30961e7d6cf0bc22b56e2968da719d4e0d86719440c2e096e82b81",
+      "bytes": 4816,
+      "owned_by_theme": "verification-and-acceptance-lane",
+      "segment_index": 2,
+      "topic_file": "skill/references/topics/verification-and-acceptance-lane.md",
+      "byte_offset": 5722,
+      "payload_byte_end": 10538,
+      "main_doc_offset": 2338,
+      "stub_path": "skill/references/sealed-evidence-corpus.md"
+    },
+    {
+      "absorbed_path": "references/independent-verification-hygiene.md",
+      "sha256": "9da3a1278235d4373e38a4ddf83c4f07b8cb2287d563e5cd3da4f43d7d40b339",
+      "bytes": 3385,
+      "owned_by_theme": "verification-and-acceptance-lane",
+      "segment_index": 3,
+      "topic_file": "skill/references/topics/verification-and-acceptance-lane.md",
+      "byte_offset": 10764,
+      "payload_byte_end": 14149,
+      "main_doc_offset": 2561,
+      "stub_path": "skill/references/independent-verification-hygiene.md"
+    },
+    {
+      "absorbed_path": "references/finding-classification.md",
+      "sha256": "6055fcd360b24dfab3c7bfd642df25a99575b69ccc2dcfa96c8822930dce9226",
+      "bytes": 3707,
+      "owned_by_theme": "verification-and-acceptance-lane",
+      "segment_index": 4,
+      "topic_file": "skill/references/topics/verification-and-acceptance-lane.md",
+      "byte_offset": 14365,
+      "payload_byte_end": 18072,
+      "main_doc_offset": 2978,
+      "stub_path": "skill/references/finding-classification.md"
+    },
+    {
+      "absorbed_path": "references/verifier-lane-handover.md",
+      "sha256": "aebb35ea0ef523de9d64940081706fc62bd36fb4712abe51ef8baa19e3dd939b",
+      "bytes": 26549,
+      "owned_by_theme": "lane-harness-and-handover",
+      "segment_index": 1,
+      "topic_file": "skill/references/topics/lane-harness-and-handover.md",
+      "byte_offset": 457,
+      "payload_byte_end": 27006,
+      "main_doc_offset": 1253,
+      "stub_path": "skill/references/verifier-lane-handover.md"
+    },
+    {
+      "absorbed_path": "references/checker-binding-and-false-defect-signals.md",
+      "sha256": "31ae9774cd4e245c47aa051adfae17ac3e14f68b5ba49b1e867c5cb8225053c4",
+      "bytes": 5403,
+      "owned_by_theme": "lane-harness-and-handover",
+      "segment_index": 2,
+      "topic_file": "skill/references/topics/lane-harness-and-handover.md",
+      "byte_offset": 27240,
+      "payload_byte_end": 32643,
+      "main_doc_offset": 1372,
+      "stub_path": "skill/references/checker-binding-and-false-defect-signals.md"
+    },
+    {
+      "absorbed_path": "references/lane-harness-and-admission-gate.md",
+      "sha256": "61bdb0cd1763f7494bef8337c42a2d1e53c3550ab18102b7ee4f219eaf52c140",
+      "bytes": 22476,
+      "owned_by_theme": "lane-harness-and-handover",
+      "segment_index": 3,
+      "topic_file": "skill/references/topics/lane-harness-and-handover.md",
+      "byte_offset": 32869,
+      "payload_byte_end": 55345,
+      "main_doc_offset": 1567,
+      "stub_path": "skill/references/lane-harness-and-admission-gate.md"
+    }
+  ],
+  "stub_template": "[SKCV-AVR phase2 absorbed -> skill/references/topics/{theme}.md :: topic_byte_offset={offset} :: sha256={sha256} :: original bytes verbatim in topic, no byte edits]\r\n",
+  "main_doc_linked_paths": [
+    {
+      "path": "references/verifier-lane-handover.md",
+      "offset": 1253
+    },
+    {
+      "path": "references/checker-binding-and-false-defect-signals.md",
+      "offset": 1372
+    },
+    {
+      "path": "references/lane-harness-and-admission-gate.md",
+      "offset": 1567
+    },
+    {
+      "path": "references/verdict-artifact-and-budget.md",
+      "offset": 2136
+    },
+    {
+      "path": "references/sealed-evidence-corpus.md",
+      "offset": 2338
+    },
+    {
+      "path": "references/independent-verification-hygiene.md",
+      "offset": 2561
+    },
+    {
+      "path": "references/finding-classification.md",
+      "offset": 2978
+    },
+    {
+      "path": "references/topic-source-remainder.md",
+      "offset": 7678
+    }
+  ],
+  "open_debt": [
+    "theme groups not in this batch remain unaugmented",
+    "physical alias-file count debt (stubs + topics do not reduce the physical file count)"
+  ],
+  "not_claimed": [
+    "reference count reduction",
+    "comprehensive tests",
+    "independent acceptance",
+    "canonical promotion"
+  ],
+  "partial_entry_only": true,
+  "not_final_tests": true,
+  "not_acceptance": true,
+  "hgk_canonical_acceptance": "NOT_PERFORMED",
+  "sqs_live_trading": "NOT_AUTHORIZED"
+}

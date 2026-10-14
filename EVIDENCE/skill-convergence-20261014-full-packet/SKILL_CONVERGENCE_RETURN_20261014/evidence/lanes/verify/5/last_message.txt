@@ -1,0 +1,202 @@
+All eight steps done. Here is the advisory verdict.
+
+```json
+{
+  "verdict": "PASS_ADVISORY",
+  "subject_manifest_sha256": "b050a0256e57f5e6958956874d3f4c4d63ac38c7cbe46489990183a16b48e8fa",
+  "cases": [
+    {
+      "case_id": "SUBJECT-BINDING",
+      "result": "PASS",
+      "observed": "Independent SHA-256 over the newline-joined '<sha256> <path>' rows of evidence/subject_manifest.json (370 rows, excluded_count 592) equals the manifest's own tree_digest b050a0256e57f5e6958956874d3f4c4d63ac38c7cbe46489990183a16b48e8fa. Pow() of five rows (baseline/adversarial-verification-rounds/SKILL.md, baseline/hgk-governed-execution/references/external-acceptance-single-md-closure.md, baseline/runtime/tools/skill_manager_batch.py, candidates/hgk/skill/references/python-security-review-probes.md, verification/round-harness/rollback_receipt.json) all matched their recorded digests on disk."
+    },
+    {
+      "case_id": "HARNESS-CONVERGENCE",
+      "result": "PASS",
+      "observed": "evidence/convergence_check.py exit 0; printed verdict CONVERGENCE_INVARIANTS_HOLD_WITH_DECLARED_REMEDIATION; findings []; the only non-true invariant is I5_no_baseline_file_removed=false by design under the declaration (14 HGK reference merges)."
+    },
+    {
+      "case_id": "HARNESS-AVR-BATCH1",
+      "result": "PASS",
+      "observed": "evidence/check_topic_batch.py avr topic_batch_1.json exit 0; all_absorbed_lossless true; 7 rows, all with segment_matches_claim=true, baseline_equals_segment=true, stub_exists=true and stub_points_at_topic=true."
+    },
+    {
+      "case_id": "HARNESS-HGK-BATCH1",
+      "result": "PASS",
+      "observed": "evidence/check_topic_batch.py hgk topic_batch_1.json exit 0; all_absorbed_lossless true; 5 rows, all three substantive fields true for every row."
+    },
+    {
+      "case_id": "HARNESS-HGK-BATCH2",
+      "result": "PASS",
+      "observed": "evidence/check_topic_batch.py hgk topic_batch_2.json exit 0; all_absorbed_lossless true; 4 rows, all three substantive fields true for every row."
+    },
+    {
+      "case_id": "STUB-SIGNAL-REPAIR",
+      "result": "PASS",
+      "observed": "Rewritten harness (evidence/check_topic_batch.py lines 20-24) reads per-entry topic_file and byte range before stub checks; the headline (lines 27-33) still uses only segment_matches_claim, baseline_equals_segment and stub_exists. All 16 rows across the three batch re-runs now report stub_points_at_topic=true (7 AVR + 5 HGK batch1 + 4 HGK batch2)."
+    },
+    {
+      "case_id": "REMEDIATION-HGK-SPRAWL",
+      "result": "PASS",
+      "observed": "candidates/hgk/remediation_result.json records 14 merged originals, references_md 107 before / 94 after (recounted on disk from this lane = 94 .md files under candidates/hgk/skill/references, matching the after value), all 14 original paths gone as files, all 14 baseline sha256 digests reproduced from disk and each source's full bytes found verbatim inside skill/references/topics/lane-bootstrap-and-guard-notes.md (digest dca700003268f3e13c6c4bc49ae250431cde142930d8e04eb818dd1d6404f3e7), and skill/SKILL.md sha256 60a4d9b3... equal before and after."
+    },
+    {
+      "case_id": "REMEDIATION-APPLY-PATCH",
+      "result": "PASS",
+      "observed": "candidates/apply/patch/ contains a unified diff (lane-dispatch-timeout-capture.patch, 2621 bytes, sha256 31847a3f4f5d7932542f0db20f3e7b6b78457a5df3d2f3bcb128def481e9a024, matching both the manifest row and the recorded candidate receipt), a reproduction script (repro_timeout_capture.py) and APPLY_NOTES.md. The canonical C:/Projects/Agent_Workspace/HG-KSEOS/scripts/hgk-lane-dispatch.py currently hashes to 17e667d136f1463609a44e2de6a8f7ba9aab07653f6ea4490178fc4ff93a6c56 over 128634 bytes, equal to the receipt's before/after. The diff's context lines exact-match the canonical file's current content at the patch line ranges (1126-1144 and 1239-1248); the patch is consistent with the pre-patch file and has not been applied."
+    },
+    {
+      "case_id": "RECONSTRUCTION-AVR",
+      "result": "PASS",
+      "observed": "Concatenating candidates/avr/entry_map.json slices by src_start/src_end in source order over baseline/adversarial-verification-rounds/SKILL.md yields 101488 bytes with sha256 4be690a4feaee5ba1fcf7bb5c109b6c41a3834060f1e962a3d9112952f66e97e; equal to baseline (baseline_bytes 101488, same sha)."
+    },
+    {
+      "case_id": "RECONSTRUCTION-HGK",
+      "result": "PASS",
+      "observed": "Concatenating candidates/hgk/entry_map.json slices by source.start/source.end in source order over baseline/hgk-governed-execution/SKILL.md yields 105116 bytes with sha256 174df0185026de09c673b92d1df5b8f01dcb35cf0cf7facbbdf095b368fdf9e4; equal to baseline (baseline_bytes 105116, same sha)."
+    },
+    {
+      "case_id": "RECONSTRUCTION-MUTATIONS",
+      "result": "PASS",
+      "observed": "Map-driven reconstruction detects all three mutations for both roles (drop one slice: cat differs, equals_baseline false for AVR and HGK; swap first two slices: equals_baseline false for both; flip one byte in the first slice: equals_baseline false for both)."
+    },
+    {
+      "case_id": "C1-EXTRACTION",
+      "result": "agree",
+      "observed": "Lossless extraction claim is supported: both entry maps reconstruct their baseline SKILL.md byte-exactly, as measured in RECONSTRUCTION-AVR / RECONSTRUCTION-HGK and re-run convergence (I4_detail true for both roles)."
+    },
+    {
+      "case_id": "C2-THEMES",
+      "result": "agree",
+      "observed": "Lossless theme consolidation is supported for the consolidated batches only: all three batch harnesses exit 0 with all_absorbed_lossless true and convergence_Report counts show AVR 1 batch / 7 absorbed and HGK 2 batches / 9 absorbed. No claim beyond these two batches is asserted; HGK reference count is 94 .md files, above the linter threshold of 60 (candidates/consumer/tools/skill_linter.py lines 47-51)."
+    },
+    {
+      "case_id": "C3-CONSUMER",
+      "result": "agree",
+      "observed": "candidates/consumer/phase3_result.json records reuse of the existing linter primitive (primitive_reused tools/skill_manager_tool.py::_attach_lint_findings -> tools.skill_linter), no_second_linter true and no_cap_threshold_policy_change true; candidates/consumer/tools/skill_manager_tool.py defines _consult_skill_lint at line 438 and calls it from _edit_skill at line 506; verification/round-harness/consumer_phase3_independent_check.json claims_after_match is_dek/is_new_file record all three patched segments as claimed_after_matches_disk true (one new file, two edits)."
+    },
+    {
+      "case_id": "C4-ROLLBACK",
+      "result": "agree",
+      "observed": "verification/round-harness/rollback_receipt.json records restore_exercised_in_this_environment true; R3_restore_procedure_exercised.restored_matches_baseline_digests true for both skills; R2_rollback_source_is_valid documented at receipt time. The procedure exists, is recorded, and was exercised in this lane's earlier round context; my verdict does not rerun the restore here (no canonical mutation is allowed in this read-only lane)."
+    },
+    {
+      "case_id": "C5-POLICY",
+      "result": "agree",
+      "observed": "verification/round-harness/convergence_report.json consumer invariant I9_policy_constants_unchanged_vs_live_runtime true with per-file policy_constants_identical true for all four patched consumers (tools/skill_linter.py, tools/skill_manager_tool.py, tools/skill_manager_batch.py, tools/skill_manager_guards.py); candidates/consumer/phase3_result.json reader_shape shows no cap/threshold/policy constant was touched."
+    },
+    {
+      "case_id": "COVERAGE",
+      "result": "PARTIAL",
+      "observed": "Not verified here: candidate pytest tests (verification/round-harness/consumer_phase3_tests_rerun.json records 'No module named pytest' because the harness did not attach the user site-packages on PYTHONPATH; pytest 9.1.1 lives at C:/Users/user/AppData/Roaming/Python/Python311/site-packages); symlink-based negative tests were not attempted because this host account cannot create symlinks (WinError 1314). The 108-vs-107 reference count discrepancy inside candidates/hgk/remediation_result.json is recorded honestly under discrepancy_note and does not change the net delta (-13, from 14 removed and 1 added) that I recount independently at 94 after."
+    }
+  ],
+  "findings": [
+    {
+      "severity": "none",
+      "summary": "No blocker, major, or direct counterexample found in any inspected artifact; every measured claim reproduced in this lane matches its on-disk or recorded value."
+    },
+    {
+      "severity": "observation",
+      "summary": "Generation 1's false-signal stub_points_at_topic field is repaired in the current harness without weakening the headline verdict: the repaired check (evidence/check_topic_batch.py lines 20-33) reads the same per-entry topic the segment came from and keeps the headline bound to the three substantive fields."
+    },
+    {
+      "severity": "observation",
+      "summary": "The lane filesystem rejects writes (Set-Content denied inside the verify/ worktree), consistent with the read-only mandate; all verification was performed by read-only reads plus the four harness scripts, which themselves print their own refusal note when denied a write."
+    }
+  ],
+  "commands": [
+    {
+      "name": "subject_manifest_digest",
+      "cmd": "PowerShell: $m = Get-Content -Raw evidence\\subject_manifest.json | ConvertFrom-Json; $joined = ($m.files | ForEach-Object { $_.sha256 + ' ' + $_.path }) -join \"`n\"; [System.BitConverter]::ToString([System.Security.Cryptography.SHA256]::Create().ComputeHash([System.Text.Encoding]::UTF8.GetBytes($joined))).Replace('-','').ToLower()",
+      "observed": "b050a0256e57f5e6958956874d3f4c4d63ac38c7cbe46489990183a16b48e8fa (equals manifest tree_digest; row count 370)"
+    },
+    {
+      "name": "post_row_powers",
+      "cmd": "Get-FileHash on the five selected rows' named paths with indices 0,50,150,300,369 of manifest files",
+      "observed": "all five rows' recomputed sha256 equal to their manifest row sha256 values (OK lines printed)"
+    },
+    {
+      "name": "harness_convergence",
+      "cmd": "python evidence/convergence_check.py",
+      "observed": "exit 0; verdict CONVERGENCE_INVARIANTS_HOLD_WITH_DECLARED_REMEDIATION; I5b/I5c true; 14 declared HGK reference removals and 2 declared topic writers."
+    },
+    {
+      "name": "harness_avr_batch1",
+      "cmd": "python evidence/check_topic_batch.py avr topic_batch_1.json",
+      "observed": "exit 0; all_absorbed_lossless true; 7 rows, all three substantive fields true; stub_points_at_topic=true for every row."
+    },
+    {
+      "name": "harness_hgk_batch1",
+      "cmd": "python evidence/check_topic_batch.py hgk topic_batch_1.json",
+      "observed": "exit 0; all_absorbed_lossless true; 5 rows, all three substantive fields true; stub_points_at_topic=true for every row."
+    },
+    {
+      "name": "harness_hgk_batch2",
+      "cmd": "python evidence/check_topic_batch.py hgk topic_batch_2.json",
+      "observed": "exit 0; all_absorbed_lossless true; 4 rows, all three substantive fields true; stub_points_at_topic=true for every row."
+    },
+    {
+      "name": "recon_and_mutations",
+      "cmd": "python -c (inline Python over candidates/<role>/entry_map.json + baseline .md) implementing recon(role, mutate) with drop/swap/flip",
+      "observed": "AVR: 101488 bytes, sha 4be690a4feaee5ba1fcf7bb5c109b6c41a3834060f1e962a3d9112952f66e97e equals_baseline true; HGK: 105116 bytes, sha 174df0185026de09c673b92d1df5b8f01dcb35cf0cf7facbbdf095b368fdf9e4 equals_baseline true; after each of drop / swap / flip equals_baseline is false for both roles."
+    },
+    {
+      "name": "remediation_hgk_sprawl",
+      "cmd": "Get-ChildItem candidates\\hgk\\skill\\references -Recurse -Filter *.md; Get-FileHash on each merged original's baseline path; -Contains readback of each original's bytes inside skill/references/topics/lane-bootstrap-and-guard-notes.md; SKILL.md hashes before/after",
+      "observed": "current .md count = 94; 14 originals gone from the candidate tree; each original's baseline digest matches its recorded sha256_before; each baseline file's full bytes found verbatim in the merged topic file; skill/SKILL.md sha256 identical before and after (60a4d9b3c79fc9e72cd82d587fc8a0c3d2513ac4a2b74ecb3040fb587450d960)."
+    },
+    {
+      "name": "remediation_apply_patch",
+      "cmd": "Get-Item and Get-FileHash on candidates/apply/patch/lane-dispatch-timeout-capture.patch and on C:/Projects/Agent_Workspace/HG-KSEOS/scripts/hgk-lane-dispatch.py; canonical line range readback",
+      "observed": "patch 2621 bytes / sha 31847a3f4f5d7932542f0db20f3e7b6b78457a5df3d2f3bcb128def481e9a024; canonical file 128634 bytes / sha 17e667d136f1463609a44e2de6a8f7ba9aab07653f6ea4490178fc4ff93a6c56 (equal to receipt's before/after); patch context lines line-match canonical ranges 1126-1144 and 1239-1248 verbatim at the recorded byte offsets."
+    },
+    {
+      "name": "consumer_c3_readback",
+      "cmd": "Select-String on candidates/consumer/phase3_result.json, candidates/consumer/tools/skill_manager_tool.py, verification/round-harness/consumer_phase3_independent_check.json",
+      "observed": "primitive_reused and no_second_linter true; _consult_skill_lint exists at line 438 with a single external call site inside _edit_skill at line 506; claimed_after_matches_disk true for all three patched files."
+    },
+    {
+      "name": "rollback_c4_readback",
+      "cmd": "Select-String on verification/round-harness/rollback_receipt.json",
+      "observed": "restore_exercised_in_this_environment true; R3_restore_procedure_exercised.restored_matches_baseline_digests true for both skills; R2_rollback_source_is_valid recorded."
+    },
+    {
+      "name": "policy_c5_readback",
+      "cmd": "Select-String on verification/round-harness/convergence_report.json consumer block and on candidates/consumer/phase3_result.json reader_shape",
+      "observed": "I9_policy_constants_unchanged_vs_live_runtime true; per-file policy_constants_identical true for all four patched consumers; no cap/threshold/policy constant touched."
+    }
+  ],
+  "quotation_check": [
+    {
+      "phrase": "stub_points_at_topic",
+      "occurrences": "5 rows x the 3 batch outputs plus the harness source reference",
+      "all_are_quotations": true,
+      "exceptions": []
+    },
+    {
+      "phrase": "references-sprawl",
+      "occurrences": "1 candidates/consumer/tools/skill_linter.py (internal rule name) + 1 this report",
+      "all_are_quotations": true,
+      "exceptions": []
+    },
+    {
+      "phrase": "references_md_before",
+      "occurrences": "1 candidates/hgk/remediation_result.json + 1 this report",
+      "all_are_quotations": true,
+      "exceptions": []
+    }
+  ],
+  "carry_forward": [
+    "The generation 1 verdict (FAIL on evidence/lanes/verify/4/verdict.json's own subject_manifest_sha256 9b68418bcbfd230d43d6525752a09d156b37b31fb214eacaf3b5c77b616936cb) is superseded by this advisory, not overwritten; nothing that landed in generation 2 is retroactively declared accepted by generation 1's failure."
+  ],
+  "coverage": {
+    "verified_here": "subject byte-binding, four harness runs, per-row stub signal repair, HGK sprawl pilot merge, apply-patch candidate packaging and hash/context consistency with the canonical dispatcher, byte-exact reconstruction for both roles, detection of drop/swap/flip mutations, C1-C5 artifact/readback anchors; all made without mutating any tree.",
+    "not_verified_here": "candidate pytest tests run (host pytest lives only in user site-packages, not attached on PYTHONPATH in this lane) and no symlink-based negative tests (host refuses symlink creation with WinError 1314); no live runtime relaunch and no rollback restore re-execution (any mutation on the canonical tree or live skill store would have crossed the read-only lane's write boundary, so none was attempted).",
+    "not_verified_by_prior_record": "the byte-exact reconstruction claims are reproducible in this lane but byte-exactness of the live adversarial-verification-rounds skill against a curator-patched later baseline is not testable from a frozen generation alone and is separately recorded as drifted."
+  },
+  "claim_ceiling": "This is an advisory independent rederivation over the frozen generation 2 subject only. It supports the measured byte-exactness, merge, patch consistency, and per-file policy/rollback/consumer reuse claims and nothing else. It is not canonical acceptance, not release authority, not promotion, and it does not by itself change any runtime, skill store, WorkOrder, or acceptance status. HGK reference count remains above the 60-file sprawl warning (94 after the pilot merge); only theme batches 1 and 2 are consolidated; nothing from this round has been applied to the canonical tree or promoted; the timeout-capture patch remains a candidate; eleven timed-out lane dispatches, one nonce-less dispatch, one contaminated verdict, and one false-signal harness field from earlier rounds remain on the record and are not repaired by this advisory."
+}
+```
+
+SKCV_VERIFY_5_OK

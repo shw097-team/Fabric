@@ -1,0 +1,410 @@
+{
+  "observed_at": "2026-10-14T05:09:12.818558+00:00",
+  "workorder": "WO-SKCV-20261014-HGK",
+  "kind": "GSTACK / OpenSpec named-method route receipt (real registry calls, not a projection)",
+  "route_calls": {
+    "brownfield-skill-migration": {
+      "flow": "brownfield-skill-migration",
+      "provider": "openspec",
+      "state": "CERTIFIED_ACTIVE_BROWNFIELD",
+      "fallback": "hgk_native_prw",
+      "final_authority": true,
+      "route": "OPENSPEC"
+    },
+    "plan-eng-review": {
+      "flow": "plan-eng-review",
+      "provider": "gstack.plan-eng-review",
+      "state": "CERTIFIED",
+      "fallback": "hgk_native_plan_review",
+      "final_authority": true,
+      "route": "GSTACK"
+    },
+    "review": {
+      "flow": "review",
+      "provider": "gstack.review",
+      "state": "CERTIFIED",
+      "fallback": "hgk_native_review",
+      "final_authority": true,
+      "route": "GSTACK"
+    },
+    "qa": {
+      "flow": "qa",
+      "provider": "gstack.qa",
+      "state": "CERTIFIED",
+      "fallback": "hgk_native_qa",
+      "final_authority": true,
+      "route": "GSTACK"
+    },
+    "security": {
+      "flow": "security",
+      "provider": "gstack.cso",
+      "state": "CERTIFIED",
+      "fallback": "hgk_native_security",
+      "final_authority": true,
+      "route": "GSTACK"
+    },
+    "retro": {
+      "flow": "retro",
+      "provider": "gstack.retro",
+      "state": "CERTIFIED",
+      "fallback": "hgk_native_retro",
+      "final_authority": true,
+      "route": "GSTACK"
+    },
+    "ship": {
+      "flow": "ship",
+      "provider": null,
+      "state": null,
+      "fallback": null,
+      "final_authority": true,
+      "route": "NATIVE"
+    },
+    "office-hours": {
+      "flow": "office-hours",
+      "provider": null,
+      "state": null,
+      "fallback": null,
+      "final_authority": true,
+      "route": "NATIVE"
+    },
+    "no-such-flow": {
+      "flow": "no-such-flow",
+      "provider": null,
+      "state": null,
+      "fallback": null,
+      "final_authority": true,
+      "route": "NATIVE"
+    }
+  },
+  "unmapped_flow_falls_back_to_native": {
+    "flow": "no-such-flow",
+    "provider": null,
+    "state": null,
+    "fallback": null,
+    "final_authority": true,
+    "route": "NATIVE"
+  },
+  "live_registry": {
+    "openspec": {
+      "provider_state": "CERTIFIED_ACTIVE_BROWNFIELD",
+      "final_authority": false,
+      "current_execution_scope": "USER_AUTHORIZED_ACTIVE_REQUIRED_FOR_BROWNFIELD",
+      "fallback": "hgk_native_prw",
+      "runtime_required_now": true,
+      "evidence_refs": [
+        "HG-KSEOS_OPENSPEC_IDENTITY_READBACK.json",
+        "HG-KSEOS_OPENSPEC_HERMES_BINDING_ACCEPTANCE.json",
+        "HG-KSEOS_OPENSPEC_BROWNFIELD_E2E.json",
+        "HG-KSEOS_OPENSPEC_NEGATIVE_SECURITY.json",
+        "HG-KSEOS_OPENSPEC_ROLLBACK.json",
+        "HG-KSEOS_OPENSPEC_RUNTIME_INDEPENDENT_ACCEPTANCE.json"
+      ]
+    },
+    "gstack.plan-eng-review": {
+      "provider_state": "CERTIFIED_ACTIVE_SELECTED_SLICES",
+      "final_authority": false,
+      "current_execution_scope": "USER_AUTHORIZED_ACTIVE_SELECTED_SLICES",
+      "fallback": "hgk_native_plan_review",
+      "runtime_required_now": true,
+      "evidence_refs": [
+        "HG-KSEOS_GSTACK_IDENTITY_READBACK.json",
+        "HG-KSEOS_GSTACK_HERMES_BINDING_ACCEPTANCE.json"
+      ]
+    },
+    "gstack.review": {
+      "provider_state": "CERTIFIED_ACTIVE_SELECTED_SLICES",
+      "final_authority": false,
+      "current_execution_scope": "USER_AUTHORIZED_ACTIVE_SELECTED_SLICES",
+      "fallback": "hgk_native_review",
+      "runtime_required_now": true,
+      "evidence_refs": [
+        "HG-KSEOS_GSTACK_IDENTITY_READBACK.json",
+        "HG-KSEOS_GSTACK_HERMES_BINDING_ACCEPTANCE.json"
+      ]
+    },
+    "gstack.qa": {
+      "provider_state": "CERTIFIED_ACTIVE_SELECTED_SLICES",
+      "final_authority": false,
+      "current_execution_scope": "USER_AUTHORIZED_ACTIVE_SELECTED_SLICES",
+      "fallback": "hgk_native_qa",
+      "runtime_required_now": true,
+      "evidence_refs": [
+        "HG-KSEOS_GSTACK_IDENTITY_READBACK.json",
+        "HG-KSEOS_GSTACK_HERMES_BINDING_ACCEPTANCE.json"
+      ]
+    },
+    "gstack.cso": {
+      "provider_state": "CERTIFIED_ACTIVE_SELECTED_SLICES",
+      "final_authority": false,
+      "current_execution_scope": "USER_AUTHORIZED_ACTIVE_SELECTED_SLICES",
+      "fallback": "hgk_native_security",
+      "runtime_required_now": true,
+      "evidence_refs": [
+        "HG-KSEOS_GSTACK_IDENTITY_READBACK.json",
+        "HG-KSEOS_GSTACK_HERMES_BINDING_ACCEPTANCE.json"
+      ]
+    },
+    "gstack.ship": {
+      "provider_state": "CERTIFIED_ACTIVE_SELECTED_SLICES",
+      "final_authority": false,
+      "current_execution_scope": "USER_AUTHORIZED_ACTIVE_SELECTED_SLICES",
+      "fallback": "hgk_native_release_checklist",
+      "runtime_required_now": true,
+      "evidence_refs": [
+        "HG-KSEOS_GSTACK_IDENTITY_READBACK.json",
+        "HG-KSEOS_GSTACK_HERMES_BINDING_ACCEPTANCE.json"
+      ]
+    },
+    "gstack.office-hours": {
+      "provider_state": "CERTIFIED_ACTIVE_SELECTED_SLICES",
+      "final_authority": false,
+      "current_execution_scope": "USER_AUTHORIZED_ACTIVE_SELECTED_SLICES",
+      "fallback": "hgk_native_prw",
+      "runtime_required_now": true,
+      "evidence_refs": [
+        "HG-KSEOS_GSTACK_IDENTITY_READBACK.json",
+        "HG-KSEOS_GSTACK_HERMES_BINDING_ACCEPTANCE.json"
+      ]
+    },
+    "gstack.retro": {
+      "provider_state": "CERTIFIED_ACTIVE_SELECTED_SLICES",
+      "final_authority": false,
+      "current_execution_scope": "USER_AUTHORIZED_ACTIVE_SELECTED_SLICES",
+      "fallback": "hgk_native_retro",
+      "runtime_required_now": true,
+      "evidence_refs": [
+        "HG-KSEOS_GSTACK_IDENTITY_READBACK.json",
+        "HG-KSEOS_GSTACK_HERMES_BINDING_ACCEPTANCE.json"
+      ]
+    },
+    "spec_kit": {
+      "provider_state": "STANDBY",
+      "final_authority": false,
+      "current_execution_scope": "STANDBY",
+      "fallback": "hgk_native_prw",
+      "runtime_required_now": false,
+      "evidence_refs": []
+    }
+  },
+  "activation_invariants": {
+    "canonical_flow_named_method_without_runtime_or_certified_substitute": 0,
+    "active_named_method_missing_identity": 0,
+    "active_named_method_missing_pin": 0,
+    "active_named_method_missing_install": 0,
+    "active_named_method_missing_binding": 0,
+    "active_named_method_missing_doctor": 0,
+    "active_named_method_missing_pilot": 0,
+    "active_named_method_missing_independent_cert": 0,
+    "active_named_method_silent_fallback": 0,
+    "named_method_fake_invocation": 0,
+    "named_method_silent_fallback": 0,
+    "dual_spec_owner": 0,
+    "second_orchestrator": 0,
+    "release_authority_escape": 0
+  },
+  "registry_snapshot_keys": [
+    "gstack.cso",
+    "gstack.office-hours",
+    "gstack.plan-eng-review",
+    "gstack.qa",
+    "gstack.retro",
+    "gstack.review",
+    "gstack.ship",
+    "openspec",
+    "spec_kit"
+  ],
+  "registry_snapshot": {
+    "openspec": {
+      "source_disposition": "ADOPT_FOR_BLUEPRINT / RUNTIME_CERT_PENDING",
+      "current_execution_scope": "USER_AUTHORIZED_ACTIVE_REQUIRED_FOR_BROWNFIELD",
+      "runtime_required_now": true,
+      "role": "BROWNFIELD_ENGINEERING_DEFINITION_ADAPTER",
+      "provider_state": "CERTIFIED_ACTIVE_BROWNFIELD",
+      "fallback": "hgk_native_prw",
+      "final_authority": false,
+      "xor_with": "spec_kit"
+    },
+    "gstack.plan-eng-review": {
+      "source_disposition": "CONDITIONAL_RECOMMENDED / SELECTIVE",
+      "current_execution_scope": "USER_AUTHORIZED_ACTIVE_SELECTED_SLICES",
+      "runtime_required_now": true,
+      "role": "ADVISORY_REVIEW_QA_SECURITY_METHOD_ADAPTER",
+      "provider_state": "CERTIFIED_ACTIVE_SELECTED_SLICES",
+      "fallback": "hgk_native_plan_review",
+      "final_authority": false,
+      "xor_with": null
+    },
+    "gstack.review": {
+      "source_disposition": "CONDITIONAL_RECOMMENDED / SELECTIVE",
+      "current_execution_scope": "USER_AUTHORIZED_ACTIVE_SELECTED_SLICES",
+      "runtime_required_now": true,
+      "role": "ADVISORY_REVIEW_QA_SECURITY_METHOD_ADAPTER",
+      "provider_state": "CERTIFIED_ACTIVE_SELECTED_SLICES",
+      "fallback": "hgk_native_review",
+      "final_authority": false,
+      "xor_with": null
+    },
+    "gstack.qa": {
+      "source_disposition": "CONDITIONAL_RECOMMENDED / SELECTIVE",
+      "current_execution_scope": "USER_AUTHORIZED_ACTIVE_SELECTED_SLICES",
+      "runtime_required_now": true,
+      "role": "ADVISORY_REVIEW_QA_SECURITY_METHOD_ADAPTER",
+      "provider_state": "CERTIFIED_ACTIVE_SELECTED_SLICES",
+      "fallback": "hgk_native_qa",
+      "final_authority": false,
+      "xor_with": null
+    },
+    "gstack.cso": {
+      "source_disposition": "CONDITIONAL_RECOMMENDED / SELECTIVE",
+      "current_execution_scope": "USER_AUTHORIZED_ACTIVE_SELECTED_SLICES",
+      "runtime_required_now": true,
+      "role": "ADVISORY_REVIEW_QA_SECURITY_METHOD_ADAPTER",
+      "provider_state": "CERTIFIED_ACTIVE_SELECTED_SLICES",
+      "fallback": "hgk_native_security",
+      "final_authority": false,
+      "xor_with": null
+    },
+    "gstack.ship": {
+      "source_disposition": "CONDITIONAL_RECOMMENDED / SELECTIVE",
+      "current_execution_scope": "USER_AUTHORIZED_ACTIVE_SELECTED_SLICES",
+      "runtime_required_now": true,
+      "role": "ADVISORY_REVIEW_QA_SECURITY_METHOD_ADAPTER",
+      "provider_state": "CERTIFIED_ACTIVE_SELECTED_SLICES",
+      "fallback": "hgk_native_release_checklist",
+      "final_authority": false,
+      "xor_with": null
+    },
+    "gstack.office-hours": {
+      "source_disposition": "CONDITIONAL_RECOMMENDED / SELECTIVE",
+      "current_execution_scope": "USER_AUTHORIZED_ACTIVE_SELECTED_SLICES",
+      "runtime_required_now": true,
+      "role": "AMBIGUITY_PRODUCT_INTERROGATION_ADVISORY",
+      "provider_state": "CERTIFIED_ACTIVE_SELECTED_SLICES",
+      "fallback": "hgk_native_prw",
+      "final_authority": false,
+      "xor_with": null
+    },
+    "gstack.retro": {
+      "source_disposition": "CONDITIONAL_RECOMMENDED / SELECTIVE",
+      "current_execution_scope": "USER_AUTHORIZED_ACTIVE_SELECTED_SLICES",
+      "runtime_required_now": true,
+      "role": "RETROSPECTIVE_LEARNING_ADVISORY",
+      "provider_state": "CERTIFIED_ACTIVE_SELECTED_SLICES",
+      "fallback": "hgk_native_retro",
+      "final_authority": false,
+      "xor_with": null
+    },
+    "spec_kit": {
+      "source_disposition": "STANDBY / GREENFIELD PROFILE",
+      "current_execution_scope": "STANDBY",
+      "runtime_required_now": false,
+      "role": "GREENFIELD_SPEC_PROJECTION",
+      "provider_state": "STANDBY",
+      "fallback": "hgk_native_prw",
+      "final_authority": false,
+      "xor_with": "openspec"
+    }
+  },
+  "prior_projection_drift": [
+    {
+      "flow": "brownfield-skill-migration",
+      "provider": "openspec",
+      "router_route_final_authority": true,
+      "registry_final_authority": false,
+      "prior_projection_final_authority": true,
+      "projection_matches_router": true,
+      "projection_matches_registry": false
+    },
+    {
+      "flow": "plan-eng-review",
+      "provider": "gstack.plan-eng-review",
+      "router_route_final_authority": true,
+      "registry_final_authority": false,
+      "prior_projection_final_authority": true,
+      "projection_matches_router": true,
+      "projection_matches_registry": false
+    },
+    {
+      "flow": "review",
+      "provider": "gstack.review",
+      "router_route_final_authority": true,
+      "registry_final_authority": false,
+      "prior_projection_final_authority": true,
+      "projection_matches_router": true,
+      "projection_matches_registry": false
+    },
+    {
+      "flow": "qa",
+      "provider": "gstack.qa",
+      "router_route_final_authority": true,
+      "registry_final_authority": false,
+      "prior_projection_final_authority": true,
+      "projection_matches_router": true,
+      "projection_matches_registry": false
+    },
+    {
+      "flow": "security",
+      "provider": "gstack.cso",
+      "router_route_final_authority": true,
+      "registry_final_authority": false,
+      "prior_projection_final_authority": true,
+      "projection_matches_router": true,
+      "projection_matches_registry": false
+    }
+  ],
+  "consistency_gap": {
+    "kind": "LIVE_CONTROL_INCONSISTENCY",
+    "count": 5,
+    "flows": [
+      {
+        "flow": "brownfield-skill-migration",
+        "provider": "openspec",
+        "router_route_final_authority": true,
+        "registry_final_authority": false,
+        "prior_projection_final_authority": true,
+        "projection_matches_router": true,
+        "projection_matches_registry": false
+      },
+      {
+        "flow": "plan-eng-review",
+        "provider": "gstack.plan-eng-review",
+        "router_route_final_authority": true,
+        "registry_final_authority": false,
+        "prior_projection_final_authority": true,
+        "projection_matches_router": true,
+        "projection_matches_registry": false
+      },
+      {
+        "flow": "review",
+        "provider": "gstack.review",
+        "router_route_final_authority": true,
+        "registry_final_authority": false,
+        "prior_projection_final_authority": true,
+        "projection_matches_router": true,
+        "projection_matches_registry": false
+      },
+      {
+        "flow": "qa",
+        "provider": "gstack.qa",
+        "router_route_final_authority": true,
+        "registry_final_authority": false,
+        "prior_projection_final_authority": true,
+        "projection_matches_router": true,
+        "projection_matches_registry": false
+      },
+      {
+        "flow": "security",
+        "provider": "gstack.cso",
+        "router_route_final_authority": true,
+        "registry_final_authority": false,
+        "prior_projection_final_authority": true,
+        "projection_matches_router": true,
+        "projection_matches_registry": false
+      }
+    ],
+    "reading": "route() is lookup-based and returns final_authority true for installed certified providers, while the NAMED_METHODS registry record for the same provider states final_authority false. Both are live code paths; the registry field is the one evidence_refs and evaluate_activation_invariants key off. This round treats gstack/OpenSpec routes as ADVISORY routing only and does NOT derive acceptance authority from either value.",
+    "owner_action": "reconcile route() output with the NAMED_METHODS registry field, since a reader that trusts route() over the registry would overstate provider authority."
+  },
+  "drift_note": "evidence/named_routes.json was an earlier hand-written projection. It agreed with the live route() output and disagreed with the NAMED_METHODS registry field for the same providers. The earlier note in this round that called the projection simply \"overstated\" was wrong and is corrected here: the real finding is that two live sources inside hg_kseos.named_methods disagree. The projection copy retained under evidence/superseded/ was itself overwritten by that first, mistaken run and has been restored byte-for-byte from the round transcript; provenance is recorded in this receipt.",
+  "claim_ceiling": "registry lookup receipts prove the routing decision, not that any provider workflow ran; this round does not claim gstack workflow execution"
+}

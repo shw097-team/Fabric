@@ -1,0 +1,135 @@
+{
+  "schema": "SKCV-HARNESS-ADJUDICATION-VERIFY4/2",
+  "observed_at": "2026-10-14T06:33:43.883104+00:00",
+  "lane": "WO-SKCV-20261014-VERIFY tag 4",
+  "transport": {
+    "exit": "0",
+    "ok": true,
+    "used_rank": 3,
+    "served_arm": "opencode-go/glm-5.3-flash",
+    "required_arm": "opencode-go/glm-5.3-flash",
+    "usage_receipt_ok": true,
+    "used_seconds": 451.69
+  },
+  "conformance": {
+    "json_parsed": "clean, no repair needed",
+    "case_ids_match_fixed_list": true,
+    "case_statuses": {
+      "SUBJECT-BINDING": "PASS",
+      "HARNESS-CONVERGENCE": "PASS",
+      "HARNESS-AVR-BATCH1": "PASS",
+      "HARNESS-HGK-BATCH1": "PASS",
+      "HARNESS-HGK-BATCH2": "PASS",
+      "RECONSTRUCTION-AVR": "PASS",
+      "RECONSTRUCTION-HGK": "PASS",
+      "RECONSTRUCTION-MUTATIONS": "PASS",
+      "C1-EXTRACTION": "agree",
+      "C2-THEMES": "agree",
+      "C3-CONSUMER": "agree",
+      "C4-ROLLBACK": "agree",
+      "C5-POLICY": "agree",
+      "COVERAGE": "PARTIAL"
+    },
+    "foreign_vocabulary_found": [],
+    "findings": [
+      {
+        "severity": "none",
+        "summary": "No blocker, major, or direct counterexample was found in any inspected artifact."
+      },
+      {
+        "severity": "none",
+        "summary": "Manifest digest, both byte-level reconstructions, and all three mutation checks were reproduced independently in this lane rather than relying on maker output alone."
+      },
+      {
+        "severity": "none",
+        "summary": "Prior timed-out lane dispatches, the nonce-less dispatch, and the contaminated earlier verdict are prior process-control failures and are not repaired by this advisory result; they remain on the record."
+      }
+    ],
+    "verdict_declared": "PASS_ADVISORY",
+    "coverage_status": "PARTIAL",
+    "carry_forward": [
+      "Only theme batches 1 and 2 are consolidated in this round: AVR 7 files in 1 topic, HGK 9 files in 2 topics.",
+      "Candidate reference counts increased: AVR 27 to 30, HGK 119 to 122.",
+      "Nothing from this round was applied to the canonical tree.",
+      "The live adversarial-verification-rounds skill can drift beyond the frozen baseline through curator action; reconstruction byte-exactness in this round holds only against the frozen generation.",
+      "Eleven timed-out lane dispatches, one nonce-less dispatch, and one contaminated verdict from earlier attempts remain preserved as process-control failures and are not repaired by this advisory result."
+    ],
+    "claim_ceiling": "This is an advisory independent rederivation performed over a frozen subject in this lane. It supports the stated byte-exactness, consumer reuse, rollback-existence, and unchanged-policy claims on the frozen artifacts. It is not canonical acceptance and grants no release authority."
+  },
+  "harness_rederivation": {
+    "rows": 374,
+    "rows_with_wrong_digest": 0,
+    "digest_matches_declared": true,
+    "reconstruction_clean": {
+      "avr": {
+        "slices": 10,
+        "bytes": 101488,
+        "sha16": "4be690a4feaee5ba",
+        "equals_baseline": true,
+        "baseline_bytes": 101488,
+        "baseline_sha16": "4be690a4feaee5ba"
+      },
+      "hgk": {
+        "slices": 6,
+        "bytes": 105116,
+        "sha16": "174df0185026de09",
+        "equals_baseline": true,
+        "baseline_bytes": 105116,
+        "baseline_sha16": "174df0185026de09"
+      }
+    },
+    "mutation_detection_equals_baseline": {
+      "drop": {
+        "avr": false,
+        "hgk": false
+      },
+      "swap": {
+        "avr": false,
+        "hgk": false
+      },
+      "flip": {
+        "avr": false,
+        "hgk": false
+      }
+    },
+    "mutations_all_detected": true,
+    "harness_runs": {
+      "convergence": {
+        "exit": 0,
+        "all_absorbed_lossless": false,
+        "verdict_token": "CONVERGENCE_INVARIANTS_HOLD"
+      },
+      "avr_batch1": {
+        "exit": 0,
+        "all_absorbed_lossless": true,
+        "verdict_token": null
+      },
+      "hgk_batch1": {
+        "exit": 0,
+        "all_absorbed_lossless": true,
+        "verdict_token": null
+      },
+      "hgk_batch2": {
+        "exit": 0,
+        "all_absorbed_lossless": true,
+        "verdict_token": null
+      }
+    }
+  },
+  "harness_defects_observed_this_round": [
+    {
+      "id": "H1",
+      "where": "evidence/check_topic_batch.py line 31",
+      "symptom": "stub_points_at_topic reports false for every row",
+      "diagnosis": "str(pathlib.Path) renders with backslashes on Windows, so str(tfd).split('/')[-1] returns the whole path and never matches the stub text",
+      "effect_on_verdict": "none: the ok computation uses segment_matches_claim, baseline_equals_segment and stub_exists only; the headline all_absorbed_lossless is unaffected",
+      "independent_confirmation": "reading the stub directly shows the topic path it names, and stub_points_at_offset is true",
+      "status": "not repaired in place; the file is inside the frozen row set, so editing it now would invalidate the digest every running checker binds"
+    }
+  ],
+  "my_own_errors_corrected": [
+    "the first adjudication passed absolute paths as the role and batch arguments, so the three batch harnesses were invoked wrongly and their exit 1 was mine; with correct arguments all four harnesses exit 0",
+    "the first AVR reconstruction used the HGK map shape, so it hashed the whole file ten times and reported 1,014,880 bytes; with the AVR keys (src_start, src_end) the reconstruction is byte-exact"
+  ],
+  "claim_ceiling": "harness adjudication of a checker verdict over a frozen generation; it reproduces measurable claims and grants no acceptance, no promotion and no apply"
+}

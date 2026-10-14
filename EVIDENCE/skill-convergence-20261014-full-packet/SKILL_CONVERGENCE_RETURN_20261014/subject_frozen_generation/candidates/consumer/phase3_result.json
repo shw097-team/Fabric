@@ -1,0 +1,113 @@
+{
+  "schema": "SKCV-CONSUMER-PHASE3-RESULT/1",
+  "wo": "WO-SKCV-20261014-CONSUMER phase 3",
+  "maker": "Codex CLI (opencode-go/deepseek-v4.1-flash)",
+  "status": "READER_WIRED_SINGLE_AND_BATCH",
+  "claimed_complete": false,
+  "phase2_result_json_present": false,
+  "phase2_result_note": "phase2_result.json does not exist in the candidate root; per brief, continued from phase1_result.json (PARTIAL_PRIMITIVE_ONLY).",
+  "runtime": {
+    "python": "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/hermes-agent/venv/Scripts/python.exe",
+    "python_version": "3.11.17",
+    "pytest": "9.1.1",
+    "pytest_source": "user site-packages on PYTHONPATH (C:\\Users\\user\\AppData\\Roaming\\Python\\Python311\\site-packages); the qualified venv ships no pytest"
+  },
+  "files_changed": [
+    {
+      "path": "tools/skill_manager_tool.py",
+      "before_sha256": "d14dd541cb637864f3345e51f3ca9c09cb04eebda561cb2014a36d83b37f7b05",
+      "after_sha256": "d51e995714c2f3281448fa29958b55c09184701007e7294ad18705793682c3e8",
+      "delta": "Added bounded reader _consult_skill_lint (consults existing _attach_lint_findings -> tools.skill_linter); wired it into _edit_skill (full-rewrite/edit/apply path) with a pre-write before-capture. No cap/threshold/policy constant touched."
+    },
+    {
+      "path": "tools/skill_manager_batch.py",
+      "before_sha256": "63f55e36d30d6e601811597fec3b26474d8a0e595fc02810a37bf98b3a1a515e",
+      "after_sha256": "162c50e45cc4c369588d371e9a3acd12d950e3c9f396869e8884d3816142a9c9",
+      "delta": "Extended _ADVISORY_KEYS to also forward lint_evaluation_status and full_current_lint_findings, so batch results carry the same findings shape as single mode."
+    },
+    {
+      "path": "tests/tools/test_lint_reader_edit.py",
+      "before_sha256": null,
+      "after_sha256": "741cea5c05bbf1265f8ee799caaba14e285bfdd19090a9e291178ed5de12b572",
+      "delta": "New focused test (1 test)."
+    }
+  ],
+  "reader_shape": {
+    "reader": "tools/skill_manager_tool.py::_consult_skill_lint(result, name, *, before=None, skill_md=None)",
+    "primitive_reused": "tools/skill_manager_tool.py::_attach_lint_findings -> tools.skill_linter.lint_skill / lint_content (unchanged)",
+    "keys_recorded_on_result": ["lint_evaluation_status", "full_current_lint_findings"],
+    "finding_dict_shape": "{severity, rule, message}",
+    "behavior": "Locates the target skill (or uses the caller-supplied skill_md), and if SKILL.md exists calls the existing primitive with the pre-write content (before) so the delta (lint_warnings) is preserved while the full current list is recorded. A skill that cannot be located or whose SKILL.md is absent records nothing (no fabricated clean list; UNAVAILABLE/absent stays distinct from an evaluated empty list).",
+    "no_second_linter": true,
+    "no_daemon_db_lock_added": true,
+    "no_cap_threshold_policy_change": true
+  },
+  "consumer_chain": {
+    "now_wired": [
+      "single mode: _edit_skill (full rewrite / edit / apply) consults the reader",
+      "single mode: _create_skill and _patch_skill already consulted the primitive (phase 1)",
+      "single mode: _write_file (references/) already consulted the primitive (phase 1)",
+      "batch mode: _skill_manage_batch._ADVISORY_KEYS forwards lint_evaluation_status + full_current_lint_findings per op"
+    ],
+    "still_unwired": [
+      "_remove_file does not consult the lint primitive (no SKILL.md content change; left as-is)",
+      "the staged-write / approval replay path (_run_write_gate -> apply_skill_pending) only reaches the reader indirectly through the replay of the underlying edit/patch/create handler; its staged JSON payload itself is not lint-annotated",
+      "no downstream enforcement/repair consumer: findings are recorded and reported, not acted upon",
+      "no docs / references / PROMPT_COMPILE work",
+      "no independent checker verdict; this is a maker self-report only",
+      "no broad suite run (only the two named test files were executed)"
+    ]
+  },
+  "commands": [
+    {
+      "cmd": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe -m pytest tests/tools/test_lint_reader_edit.py tests/tools/test_lint_full_current.py -p no:cacheprovider -q --basetemp=<candidate>/_pytest_tmp/p3",
+      "env": "PYTHONPATH=C:\\Users\\user\\AppData\\Roaming\\Python\\Python311\\site-packages; PYTHONDONTWRITEBYTECODE=1",
+      "exit_code": 0,
+      "result": "7 passed in 0.45s"
+    },
+    {
+      "cmd": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe -m pytest tests/tools/test_lint_reader_edit.py tests/tools/test_lint_full_current.py -p no:cacheprovider -v --basetemp=<candidate>/_pytest_tmp/p3v",
+      "env": "PYTHONPATH=C:\\Users\\user\\AppData\\Roaming\\Python\\Python311\\site-packages; PYTHONDONTWRITEBYTECODE=1",
+      "exit_code": 0,
+      "result": "7 passed in 0.43s"
+    }
+  ],
+  "counts": {
+    "collected": 7,
+    "passed": 7,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "ran": [
+      "tests/tools/test_lint_reader_edit.py::test_edit_reader_fires_for_oversized_subject_and_matches_primitive",
+      "tests/tools/test_lint_full_current.py::test_clean_evaluation_is_empty_and_evaluated",
+      "tests/tools/test_lint_full_current.py::test_standing_finding_persists_in_full_when_delta_empty",
+      "tests/tools/test_lint_full_current.py::test_delta_introduced_rule_rides_both_lists",
+      "tests/tools/test_lint_full_current.py::test_evaluation_failure_is_unavailable_not_clean",
+      "tests/tools/test_lint_full_current.py::test_import_failure_is_unavailable",
+      "tests/tools/test_lint_full_current.py::test_original_error_result_shape_unchanged"
+    ]
+  },
+  "focused_test": {
+    "name": "tests/tools/test_lint_reader_edit.py::test_edit_reader_fires_for_oversized_subject_and_matches_primitive",
+    "proves": "For an oversized subject (body over the soft budget), _edit_skill fires the reader path: lint_evaluation_status=EVALUATED and full_current_lint_findings contains 'oversized-body'; the recorded list equals the primitive's own lint_skill() output mapped through the same _lint_finding_repr shape (byte-for-byte list equality). A batch patch on the same skill returns the same findings shape via the forwarded keys.",
+    "not_verified_here": "no independent checker; this is a maker self-report."
+  },
+  "rollback": {
+    "preserved_surfaces": [
+      "existing delta-only lint_warnings + lint_hint emission rules (unchanged)",
+      "hard reject / guard / lock / approval / ledger paths (untouched)",
+      "no thresholds, caps, budgets or policy constants changed"
+    ],
+    "revert": "Restore tools/skill_manager_tool.py to d14dd541... and tools/skill_manager_batch.py to 63f55e36...; delete tests/tools/test_lint_reader_edit.py. No other file changed."
+  },
+  "explicit_statements": {
+    "no_policy_cap_or_threshold_changed": true,
+    "no_acceptance_claimed": true,
+    "no_promotion_or_canonical_transition_claimed": true,
+    "no_self_verification_claim": true,
+    "no_deletion_or_hidden_files": true
+  },
+  "ceiling": "The reader is now reachable from the edit/apply action and its findings propagate through batch mode, but nothing downstream ENFORCES or REPAIRS on those findings; an unread-after-record finding is still evidence, not enforcement. Not an acceptance.",
+  "transport_token": "SKCV_CONSUMER_4_OK"
+}

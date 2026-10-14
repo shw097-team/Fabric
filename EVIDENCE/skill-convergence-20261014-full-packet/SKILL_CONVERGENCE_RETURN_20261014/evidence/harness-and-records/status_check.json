@@ -1,0 +1,259 @@
+{
+  "observed_at": "2026-10-14T06:00:21.256006+00:00",
+  "kind": "round execution status check",
+  "lanes_measured": [
+    {
+      "lane": "apply/2",
+      "commands": 36,
+      "failed": 1
+    },
+    {
+      "lane": "apply/3",
+      "commands": 32,
+      "failed": 3
+    },
+    {
+      "lane": "avr/2",
+      "commands": 42,
+      "failed": 1
+    },
+    {
+      "lane": "avr/3",
+      "commands": 26,
+      "failed": 3
+    },
+    {
+      "lane": "avr/4",
+      "commands": 36,
+      "failed": 1
+    },
+    {
+      "lane": "consumer/2",
+      "commands": 61,
+      "failed": 8
+    },
+    {
+      "lane": "consumer/3",
+      "commands": 34,
+      "failed": 2
+    },
+    {
+      "lane": "consumer/4",
+      "commands": 20,
+      "failed": 1
+    },
+    {
+      "lane": "hgk/2",
+      "commands": 16,
+      "failed": 0
+    },
+    {
+      "lane": "hgk/3",
+      "commands": 26,
+      "failed": 3
+    },
+    {
+      "lane": "hgk/4",
+      "commands": 29,
+      "failed": 5
+    },
+    {
+      "lane": "hgk/5",
+      "commands": 25,
+      "failed": 3
+    },
+    {
+      "lane": "hgk/6",
+      "commands": 21,
+      "failed": 1
+    }
+  ],
+  "repeated_block_classes": {
+    "UNCLASSIFIED": 12,
+    "LANE_BUDGET_TIMEOUT": 10,
+    "POWERSHELL_CMD_NOT_FOUND": 6,
+    "SHELL_HERESTRING_QUOTING": 6,
+    "SOLVER_ERROR_OTHER": 2,
+    "PATH_NOT_FOUND": 2,
+    "MODULE_MISSING": 2,
+    "SCRIPT_UNDEFINED_NAME": 2
+  },
+  "per_class_lanes": {
+    "POWERSHELL_CMD_NOT_FOUND": [
+      "apply/2",
+      "consumer/2",
+      "consumer/3",
+      "hgk/4"
+    ],
+    "UNCLASSIFIED": [
+      "apply/3",
+      "consumer/2",
+      "hgk/4",
+      "hgk/5",
+      "hgk/6"
+    ],
+    "SOLVER_ERROR_OTHER": [
+      "apply/3",
+      "hgk/4"
+    ],
+    "SHELL_HERESTRING_QUOTING": [
+      "avr/2",
+      "avr/3",
+      "consumer/3",
+      "hgk/3"
+    ],
+    "PATH_NOT_FOUND": [
+      "avr/4",
+      "hgk/3"
+    ],
+    "MODULE_MISSING": [
+      "consumer/2",
+      "consumer/4"
+    ],
+    "SCRIPT_UNDEFINED_NAME": [
+      "hgk/3",
+      "hgk/5"
+    ],
+    "LANE_BUDGET_TIMEOUT": []
+  },
+  "classes_over_threshold": [
+    {
+      "class": "UNCLASSIFIED",
+      "count": 12,
+      "lanes_involved": [
+        "apply/3",
+        "consumer/2",
+        "hgk/4",
+        "hgk/5",
+        "hgk/6"
+      ],
+      "exceeds_threshold": true
+    },
+    {
+      "class": "LANE_BUDGET_TIMEOUT",
+      "count": 10,
+      "lanes_involved": [],
+      "exceeds_threshold": true
+    },
+    {
+      "class": "POWERSHELL_CMD_NOT_FOUND",
+      "count": 6,
+      "lanes_involved": [
+        "apply/2",
+        "consumer/2",
+        "consumer/3",
+        "hgk/4"
+      ],
+      "exceeds_threshold": true
+    },
+    {
+      "class": "SHELL_HERESTRING_QUOTING",
+      "count": 6,
+      "lanes_involved": [
+        "avr/2",
+        "avr/3",
+        "consumer/3",
+        "hgk/3"
+      ],
+      "exceeds_threshold": true
+    }
+  ],
+  "threshold": 4,
+  "running_now": [
+    {
+      "pid": 17304,
+      "ppid": 17620,
+      "name": "codex.exe",
+      "created_local": "2026-10-14T10:40:12.78117+08:00",
+      "age_minutes": 200.2,
+      "cmd": "C:\\Users\\user\\AppData\\Local\\OpenAI\\Codex\\bin\\2e5e00daee91c61d\\codex.exe -c features.code_mode_host=true app-server --analytics-default-enabled -c feat"
+    },
+    {
+      "pid": 19304,
+      "ppid": 17620,
+      "name": "codex.exe",
+      "created_local": "2026-10-14T10:40:25.060432+08:00",
+      "age_minutes": 199.9,
+      "cmd": "C:\\Users\\user\\AppData\\Local\\OpenAI\\Codex\\bin\\2e5e00daee91c61d\\codex.exe -c features.prefer_mxc=true -c \"forced_login_method=\\\"chatgpt\\\"\" exec-server -"
+    },
+    {
+      "pid": 20052,
+      "ppid": 19968,
+      "name": "bash.exe",
+      "created_local": "2026-10-14T14:00:19.707039+08:00",
+      "age_minutes": 0.0,
+      "cmd": "\"C:\\Program Files\\Git\\bin\\bash.exe\" -c \"source /c/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/cache/terminal/"
+    },
+    {
+      "pid": 23324,
+      "ppid": 20052,
+      "name": "bash.exe",
+      "created_local": "2026-10-14T14:00:19.72968+08:00",
+      "age_minutes": 0.0,
+      "cmd": "\"C:\\Program Files\\Git\\bin\\..\\usr\\bin\\bash.exe\" -c \"source /c/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/cach"
+    },
+    {
+      "pid": 20224,
+      "ppid": 23324,
+      "name": "bash.exe",
+      "created_local": "2026-10-14T14:00:21.187995+08:00",
+      "age_minutes": 0.0,
+      "cmd": "\"C:\\Program Files\\Git\\bin\\..\\usr\\bin\\bash.exe\" -c \"source /c/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/cach"
+    },
+    {
+      "pid": 17496,
+      "ppid": 21260,
+      "name": "pwsh.exe",
+      "created_local": "2026-10-14T14:00:21.321977+08:00",
+      "age_minutes": 0.0,
+      "cmd": "C:/Users/user/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/powershell/pwsh.exe -NoProfile -Command \"Get-CimInstance Win32_Process |"
+    }
+  ],
+  "running_over_10_minutes": [
+    {
+      "pid": 17304,
+      "ppid": 17620,
+      "name": "codex.exe",
+      "created_local": "2026-10-14T10:40:12.78117+08:00",
+      "age_minutes": 200.2,
+      "cmd": "C:\\Users\\user\\AppData\\Local\\OpenAI\\Codex\\bin\\2e5e00daee91c61d\\codex.exe -c features.code_mode_host=true app-server --analytics-default-enabled -c feat"
+    },
+    {
+      "pid": 19304,
+      "ppid": 17620,
+      "name": "codex.exe",
+      "created_local": "2026-10-14T10:40:25.060432+08:00",
+      "age_minutes": 199.9,
+      "cmd": "C:\\Users\\user\\AppData\\Local\\OpenAI\\Codex\\bin\\2e5e00daee91c61d\\codex.exe -c features.prefer_mxc=true -c \"forced_login_method=\\\"chatgpt\\\"\" exec-server -"
+    }
+  ],
+  "running_now_note": "classified: a lane worker is a run_lane.py / observe_dispatch.py / sandboxed codex.exe chain launched by this round (parent chain bash->python->python->codex). The two 163-minute codex.exe entries are the Hermes desktop host app-server/exec-server processes, i.e. the runtime this session runs inside, NOT round work; they are listed for completeness and must not be paused. No lane worker has exceeded its budget while still being alive: a lane that runs out of budget is killed by the dispatcher and appears in LANE_BUDGET_TIMEOUT instead.",
+  "interventions_applied_this_check": [
+    {
+      "class": "SHELL_HERESTRING_QUOTING",
+      "count": 6,
+      "action": "durable fix: run_lane.py now prepends a LANE ENVIRONMENT preamble to every lane prompt telling the maker the shell is pwsh, that bash here-strings/heredocs fail, and to write a .py file then invoke it by path",
+      "why_not_paused": "the block wastes budget but is fully recoverable inside the turn; removing it directly attacks the timeout class rather than ending the work"
+    },
+    {
+      "class": "POWERSHELL_CMD_NOT_FOUND",
+      "count": 6,
+      "action": "same preamble: rg/grep/bare python are not on PATH in the lane; use Select-String and the qualified interpreter path",
+      "why_not_paused": "same reasoning"
+    },
+    {
+      "class": "LANE_BUDGET_TIMEOUT",
+      "count": 10,
+      "action": "already in force: scope decomposition, serial dispatch, explicit read allow-list, round-only diagnostic budget; the canonical 600s gate and the acceptance oracle are unchanged",
+      "why_not_paused": "the failures are budget exhaustion with partial artefacts, not gate refusals and not frozen-subject mutation; two of the same-shape lanes did return valid receipts after decomposition, so the remedy is still producing results"
+    },
+    {
+      "class": "STALE_ORPHAN_LANE_PROCESSES",
+      "count": 0,
+      "action": "none needed: the process table shows no orphaned codex lane process from any timed-out attempt; the long-lived python processes seen are the Hermes runtime kernels owned by this session, not lane workers, and killing them would break the session",
+      "why_not_paused": "nothing to pause"
+    }
+  ],
+  "pause_trigger": "any lane that mutates a frozen subject, returns a gate refusal instead of producing a bounded artefact, or repeats the exhausted shape with zero new artefact",
+  "claim_ceiling": "a status check of coordination and failure counts; it verifies no product behaviour and grants no acceptance"
+}

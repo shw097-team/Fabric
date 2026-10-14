@@ -1,0 +1,128 @@
+{
+  "schema": "HGK-LANE-RESOLUTION/1",
+  "lane": "EXECUTE",
+  "role": "writer",
+  "engine": "codex-cli",
+  "codex_executable": "C:\\Users\\user\\AppData\\Local\\OpenAI\\Codex\\bin\\2e5e00daee91c61d\\codex.exe",
+  "codex_home": "C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\codex-hermes",
+  "relay_base": "http://127.0.0.1:10101/v1",
+  "codex_home_is_declared_lane_home": true,
+  "human_home_transport_acknowledged": false,
+  "skipped_arms": [
+    {
+      "rank": 2,
+      "arm": "nvidia/deepseek-ai/deepseek-v4.1-flash",
+      "reason": "UNREACHABLE_MEASURED_20261011"
+    }
+  ],
+  "transport": "opencodex relay via per-invocation -c openai_base_url (no config mutation)",
+  "transport_target": "http://127.0.0.1:10101/v1",
+  "front_door_port": null,
+  "front_door_note": "the lane-scoped pool door (10103 VERIFY_SECURITY / 10105 EXECUTE) carries the hop and ledgers every decision; the sealed single-model 10100 door is unchanged and unused; None here means direct to the relay on 10101",
+  "sandbox": "workspace-write",
+  "sandbox_by_role_default": "danger-full-access",
+  "sandbox_escalation_authorised": false,
+  "cwd": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\SKILL-CONVERGENCE-20261014\\candidates\\hgk",
+  "side_effect_note": "no write access granted by the sandbox mode",
+  "receipt_binding": "usage rows appended after this attempt started (byte offset bound)",
+  "pool": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\lane-route-slots.candidate.json",
+  "candidates_considered": [
+    1
+  ],
+  "mode": "forced_rank",
+  "unguarded_escalation_acknowledged": false,
+  "inject_429_first": false,
+  "identity_gate": {
+    "state": "enforced",
+    "lane_home": "C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\codex-hermes",
+    "relay_home": "C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\opencodex-hermes",
+    "arms": [
+      {
+        "rank": 1,
+        "provider": "opencode-go",
+        "model": "deepseek-v4.1-flash",
+        "requirement": "none",
+        "ok": true,
+        "detail": "key-auth arm: no human-attended identity"
+      }
+    ],
+    "degraded": false,
+    "required_arm": "opencode-go/deepseek-v4.1-flash"
+  },
+  "authorization": {
+    "checked": false
+  },
+  "subject_mutation": {
+    "state": "not_guarded"
+  },
+  "attempt_log_dir": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\SKILL-CONVERGENCE-20261014\\evidence\\lanes\\hgk\\7\\raw",
+  "output_dir_policy": {
+    "mode": "explicit-path",
+    "derived": null,
+    "existing": false
+  },
+  "repair_precondition": {
+    "checked": false
+  },
+  "remote_write_precheck": {
+    "mode": "DETECTION_ONLY",
+    "ran": false
+  },
+  "attempts": [
+    {
+      "rank": 1,
+      "provider": "opencode-go",
+      "model": "deepseek-v4.1-flash",
+      "transport_model": "opencode-go/deepseek-v4.1-flash",
+      "sandbox": "workspace-write",
+      "reasoning_effort": null,
+      "exit": 0,
+      "seconds": 341.2,
+      "nonce_present": true,
+      "nonce_present_raw_stdout": true,
+      "nonce_source": "item.completed/agent_message",
+      "usage_rows_after_offset": 90,
+      "usage_offset": 21299848,
+      "usage_provider": "opencode-go",
+      "usage_model": "deepseek-v4.1-flash",
+      "usage_status": 200,
+      "usage_receipt_ok": true,
+      "usage_receipt_reason": "",
+      "usage_ledger_rewritten": false,
+      "usage_rows_shape_invalid": 0,
+      "usage_rows_undecodable": 0,
+      "carrier_lines_undecodable": 0,
+      "carrier_lines_surrogate": 0,
+      "credential_posture": {
+        "verdict": "INCONCLUSIVE",
+        "decision": "WARN_CONTINUE",
+        "reason": "helper-only verdict (no child env asserted): helper_resolution_reset=PASS; helper_non_interactive=UNKNOWN",
+        "prompt_capable_helper": null,
+        "origin": null,
+        "git_terminal_prompt": "0"
+      },
+      "attempt_log_dir": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\SKILL-CONVERGENCE-20261014\\evidence\\lanes\\hgk\\7\\raw",
+      "stdout_byte_exact": true,
+      "stdout_path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\SKILL-CONVERGENCE-20261014\\evidence\\lanes\\hgk\\7\\raw\\attempt-4592-1791960160-1-stdout.txt",
+      "stdout_bytes": 55556,
+      "stdout_sha256": "2d39743576db5262c1177d284aa72e0420f14d75f6dd216367c3345403e8b4b2",
+      "stderr_byte_exact": true,
+      "stderr_path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\SKILL-CONVERGENCE-20261014\\evidence\\lanes\\hgk\\7\\raw\\attempt-4592-1791960160-1-stderr.txt",
+      "stderr_bytes": 464,
+      "stderr_sha256": "4e5e3d58ca80bf738f9a41621508b2b6eeef0afd218855794e667dcfd4c52fdf",
+      "stdout_tail": " whose byte-level checks were recomputed in this lane; it is not acceptance; the merge cuts the count by 13 net but the result is still above the 60-file `references-sprawl` warning cap, so the cap is not met.\\n\\nSKCV_HGK_7_OK\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":697727,\"cached_input_tokens\":672896,\"cache_write_input_tokens\":0,\"output_tokens\":26535,\"reasoning_output_tokens\":14445}}\n",
+      "stderr_tail": "pgrade Required, url: ws://127.0.0.1:10101/v1/responses\n2026-10-14T06:44:50.646497Z ERROR codex_core::tools::router: error=apply_patch verification failed: invalid patch: multiple operations target C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\SKILL-CONVERGENCE-20261014\\candidates\\hgk\\remediate_pilot.py\n"
+    }
+  ],
+  "used_rank": 1,
+  "used_transport_model": "opencode-go/deepseek-v4.1-flash",
+  "used_seconds": 341.2,
+  "generated_utc": "2026-10-14T06:48:21.996069+00:00",
+  "claim_ceiling": "a pass here proves the Codex-CLI lane served this turn through the relay with a matching usage receipt; it is not an acceptance of any subject",
+  "ok": true,
+  "usage_receipt_ok": true,
+  "usage_rows_shape_invalid": 0,
+  "usage_rows_undecodable": 0,
+  "required_arm": "opencode-go/deepseek-v4.1-flash",
+  "served_arm": "opencode-go/deepseek-v4.1-flash"
+}

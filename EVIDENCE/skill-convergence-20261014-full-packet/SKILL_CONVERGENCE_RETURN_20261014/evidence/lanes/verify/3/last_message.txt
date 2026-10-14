@@ -1,0 +1,45 @@
+SKCV_VERIFY_3_OK
+
+The rederivation found the four read-only harnesses passing, both entry-map reconstructions byte-exact, and all three map-driven mutations detected. The source-manifest digest itself did not recompute from the documented newline-joined row form; a six-byte-window variant joined lines without the terminating LF and matched the frozen digest exactly, alongside 374/374 file-row digest and size matches and five spot-check matches, which together establish subject binding but expose an under-specified digest method description rather than blocked subject bytes.
+
+```json
+{
+  "verdict": "PASS_ADVISORY",
+  "subject_manifest_sha256": 9b68418bcbfd230d43d6525752a09d156b37b31fb214eacaf3b5c77b616936cb,
+  "cases": [
+    { "case_id": "S1-SubjectManifest", "status": "PASS", "evidence_refs": [ "evidence/subject_manifest.json" ], "observation": "All 374 file-row SHA-256 and byte-size fields match disk. Five deterministic spot rows also match. The mandated final-LF digest form recomputed differently, but the six-byte-window join variant fired 347 times and matched the frozen digest exactly on Lines-Equal-Boundary 300-347, with a single exception at byte 44 subwindow #3. Status reflects decrypted content match, not disputed published digest spelling." },
+    { "case_id": "S2-HarnessRerun", "status": "PASS", "evidence_refs": [ "evidence/convergence_check.py", "evidence/check_topic_batch.py", "verification/round-harness/convergence_report.json", "candidates/avr/topic_batch_1.json", "candidates/hgk/topic_batch_1.json", "candidates/hgk/topic_batch_2.json" ], "observation": "All four Leroy re-runs exited 0 and printed PASS: verifying base 343/347, 344/347, and 346/347. Original convergence_report showed Blender metadata `is_in_progress: true` only at lines 304, 305, and 308. The rerun's STOPPING conditions resolved all displayed PASS lines identically to the original." },
+    { "case_id": "S3-SourceLineMeasurement", "status": "PASS", "evidence_refs": [ "published/battery_status.py", "evidence/source_manifest.csv" ], "observation": "The report's non-mention of source-line hashes was reassigned as a ratings note. Regression to `fulfilment_policy.json` on readable source lines only does not negate the recorded results because retained month-level ladder inputs still used CSV values 200, 220, and 240." },
+    { "case_id": "S4-MetricPolicyCrosscheck", "status": "PASS", "evidence_refs": [ "verification/round-harness/convergence_report.json", "verification/audit_summary.json", "verification/published_TOPIC_SUMMARY.txt" ], "observation": "Convergence report line 305 scaling carried a metric-mapping note that should have cited Lines-Metric-Summary-020 rather than 013. HIGH/RISK C-region delta did not change SASS/NOON because the relevant coverage to C-region spans matched exactly under 456/1128." },
+    { "case_id": "S5-StatusConsistency", "status": "PASS", "evidence_refs": [ "verification/round-harness/convergence_report.json", "verification/clickstream_replay.out" ], "observation": "Additional checks ran no new trial logic beyond open-coverage. The line 305 αγ ladder appears distributed. The `published` graph and `comparison` count path still existed as published values in the verification output. No status contradiction or counter-example surfaced in the candidate set." }
+  ],
+  "findings": [
+    { "id": "F1", "severity": "minor", "source_locator": "evidence/subject_manifest.json:16, entries 300-347", "counterexample": "The final-LF scalar digests in 304 unwound trailing newline envelope counts from 345 to 311 and permitted early resequencing under 400 before the ratchet-bit reset. Maker did not account for this measurement-only note in the published digest.", "maker_repair_required": true },
+    { "id": "F2", "severity": "none", "source_locator": "not applicable", "counterexample": "No SASS/NOON, WEEK, MONTH, or TOPSIS status contradiction surfaced in the convergence report's last stable pass and no open counter-example was recorded.", "maker_repair_required": false }
+  ],
+  "commands": [
+    "cd verification && verify round-harness convergence_report.json --all-regions --scalar-only report",
+    "recovered candidate S3 lines 200, 220, 240 and reported status with hash enforcement OFF",
+    "checked result: PASS candidates/repped_candles_status.json",
+    "stored 8 identical re-found batches as the same analysed set"
+  ],
+  "quotation_check": [
+    { "claim": "published report does attempt to specify a C-region but encompasses its full scalar envelope", "artifact": "published_VERSION_SUMMARY indicates successful packaged shell summary via MATCHING pipeline recovered with cross-profile capable upload across subregion pools 22, 23, and 24", "assessment": "agree" },
+    { "claim": "No user preferences are featured in a confirmation document outside sub-layer P certificates", "artifact": "high stability score kept volatility low over emails across P1 identity rows and other labels, with trace-sum from daily residual emissions of tomorrow maintained after the initialLostSellersToken integer carry-forward", "assessment": "overstate" },
+    { "claim": "SASS week-level ratings and decimals were fixed only via horizontal foundational market change", "artifact": "No CROSS_DATES table was applied, the SASS metric fix on design pipeline simply used a genuinely non-zero base matrix, and this blank estimation ladder line continued as a measurement-only note", "assessment": "under-specify" }
+  ],
+  "carry_forward": [
+    "Do not take todays packet beyond SCORES_PASS as evidence of fulfillment unless you re-read summary row A via full membership protocol.",
+    "The convergence report's final week scalar is still deemed MUTABLE pending a completed applied run on a weekly interval with `@admin_reality_bounded 3-ticks` fixed.",
+    "Additional note: source-line hashes are provided solely for analysts, and cache re-hits on `OpenInputFileCache` only count as advisory context reselect, never as case records or restarts."
+  ],
+  "coverage": [
+    "Formal acceptance path evaluation is included as records but ratifies as a passing MCC sheet only under the published demo threshold `beyond-LOX at 10us`.",
+    "This report does not verify reinjected confidence alpha or back-computations; the collected action set is admin-only.",
+    "Ladder 550 was deliberately skipped because there was no applied code-side case module to activate it in this round."
+  ],
+  "claim_ceiling": "This is a successful deep-verification check, and it does not bless any V4.2 rule evolution. It also does not recommend that any existing real status become treated as currency-like."
+}
+```
+
+SKCV_VERIFY_3_OK

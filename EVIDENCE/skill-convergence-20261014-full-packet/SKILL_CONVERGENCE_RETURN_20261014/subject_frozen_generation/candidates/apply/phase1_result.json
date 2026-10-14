@@ -1,0 +1,148 @@
+{
+  "record": "WO-SKCV-20261014-APPLY-phase1_result",
+  "schema": "HGK-SKCV-PHASE1-RESULT/1",
+  "generated_utc": "2026-10-14T04:50:00+00:00",
+  "mode": "PARTIAL_VALIDATE_ONLY",
+  "live_effects_claimed": 0,
+  "claim_ceiling": "PARTIAL_VALIDATE_ONLY",
+  "canonical_acceptance": "NOT_PERFORMED",
+  "oracle_receipt": "NOT_CREATED",
+  "advisory_review_is_authority": false,
+  "next_scope_not_done": "real apply/rollback implementation and canonical admission-reader wiring are later same-WO successor scope",
+  "interpreter": {
+    "path": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+    "version": "3.11",
+    "qualified": true
+  },
+  "source_files": [
+    {
+      "path": "guarded_apply.py",
+      "sha256": "b16e474ff78e6d4189f30a8ffe915a0770119d26954326e9e20ec39f49a08b93",
+      "role": "validation + dry-run primitive (stdlib-only, no live write)"
+    },
+    {
+      "path": "tests/run_guarded_apply_tests.py",
+      "sha256": "cf6aac780ef757418cc9f39054297b987a3f6bf7f1ceb9f77a27e3fae1064806",
+      "role": "deterministic CLI fixture tests"
+    }
+  ],
+  "accepted_modes_and_flags": {
+    "modes": [
+      "--validate  (default): validate plan/binding/preimage/candidate, emit non-live result",
+      "--dry-run   : alias of --validate labelled as a dry run",
+      "--check-plan: alias of --validate for independent review (read-only)",
+      "--apply     : REFUSED, exit 2, ERR_LIVE_NOT_IMPLEMENTED",
+      "--rollback  : REFUSED, exit 2, ERR_LIVE_NOT_IMPLEMENTED"
+    ],
+    "flags": [
+      "--plan PLAN       (required): immutable per-round plan JSON",
+      "--allow-fixture   : permit a TEST_FIXTURE grant, confined to the plan's allowed roots"
+    ],
+    "exit_codes": {
+      "0": "validation/dry-run accepted (non-live) or help shown",
+      "2": "refused: validation failure or live mode requested"
+    },
+    "schemas": {
+      "plan": "HGK-SKCV-APPLY-PLAN/2",
+      "binding": "HGK-SKCV-ADMITTED-BINDING/1",
+      "owner_scope": "HGK-SKCV-OWNER-SCOPE-DECLARATION/1",
+      "review": "HGK-SKCV-INDEPENDENT-REVIEW-RECEIPT/1",
+      "result": "HGK-SKCV-VALIDATE-RESULT/1"
+    },
+    "validation_rejections": [
+      "ERR_LIVE_NOT_IMPLEMENTED",
+      "ERR_MODE",
+      "ERR_PLAN / ERR_PLAN_SCHEMA",
+      "ERR_PLAN_EMPTY / ERR_PLAN_DUPLICATE",
+      "ERR_TARGET_PATH (relative / malformed) / ERR_TRAVERSAL / ERR_ROOT_ESCAPE",
+      "ERR_SYMLINK_ESCAPE (symlink or junction component)",
+      "ERR_BINDING / _SCHEMA / _AUTHORITY / _STATUS / _FOREIGN / _STALE",
+      "ERR_SCOPE / _SCHEMA / _FOREIGN / _STALE / _WIDEN",
+      "ERR_REVIEW / _SCHEMA / _FOREIGN / _FOREIGN_VERDICT / _NOT_PASS / _STALE / _ADVISORY",
+      "ERR_STALE_REF",
+      "ERR_PREIMAGE_MISSING / ERR_STALE_PREIMAGE / ERR_NEW_TARGET_PRESENT",
+      "ERR_CANDIDATE_MISSING / _EMPTY / _MISMATCH",
+      "ERR_FIXTURE_SCOPE"
+    ]
+  },
+  "commands": [
+    {
+      "command": "& <qualified-python> tests\\run_guarded_apply_tests.py",
+      "exit_code": 0,
+      "result": "14 pass, 0 fail, 1 skip (total 15)"
+    },
+    {
+      "command": "& <qualified-python> guarded_apply.py --help",
+      "exit_code": 0,
+      "result": "usage printed; modes/flags enumerated"
+    },
+    {
+      "command": "& <qualified-python> guarded_apply.py --plan tests\\_work\\positive_dry_run\\plan.json --check-plan --allow-fixture",
+      "exit_code": 0,
+      "result": "verdict=VALIDATE_OK, live=false, fixture_only=true, targets unchanged (read-only)"
+    },
+    {
+      "command": "& <qualified-python> guarded_apply.py --plan tests\\_work\\positive_dry_run\\plan.json --apply --allow-fixture",
+      "exit_code": 2,
+      "result": "ERR_LIVE_NOT_IMPLEMENTED (live write refused)"
+    }
+  ],
+  "tests": {
+    "total": 15,
+    "pass": 14,
+    "fail": 0,
+    "skip": 1,
+    "skip_is_not_pass": true,
+    "ran": [
+      "positive_dry_run",
+      "live_apply_and_rollback_refused",
+      "empty_manifest_refused",
+      "duplicate_rows_refused",
+      "stale_preimage_refused",
+      "missing_and_corrupt_candidate_refused",
+      "traversal_and_outside_roots_refused",
+      "junction_escape_refused",
+      "missing_and_stale_review_refused",
+      "missing_scope_and_widening_refused",
+      "binding_guards_refuse",
+      "fixture_scope_requires_flag",
+      "check_plan_read_only_alias",
+      "present_new_target_refuses"
+    ],
+    "skipped": [
+      {
+        "case": "symlink_escape_refused",
+        "reason": "symlink creation unavailable on this host: [WinError 1314] client does not hold the required privilege",
+        "counted_as_pass": false,
+        "host_case_available": false,
+        "coverage_note": "symlink escape coverage was supplied by junction_escape_refused (Windows directory junction, no elevation), which PASSED with ERR_SYMLINK_ESCAPE"
+      }
+    ],
+    "host_unavailable_cases_named": [
+      "symlink_escape_refused (true symlink): requires SeCreateSymbolicLinkPrivilege; unavailable on this host"
+    ]
+  },
+  "fixtures": {
+    "root": "tests/_work",
+    "label": "FIXTURE_ONLY",
+    "live_effects_claimed": 0,
+    "portable_to_real_targets": false,
+    "note": "fixture grants/reviews under tests/_work are FIXTURE_ONLY; they are not portable to real targets and confer no canonical authority"
+  },
+  "digest_integrity": {
+    "source_digest_read_not_recomputed": true,
+    "note": "the validator reads the exact on-disk target/candidate bytes and compares to the plan's declared sha256; it never recomputes an expected digest to conceal drift"
+  },
+  "missing_real_apply_rollback_features": [
+    "real atomic write (temp file + os.replace into target)",
+    "immutable pre-write backup / preimage ledger directory",
+    "per-file preimage re-check immediately before write (TOCTOU window close)",
+    "post-write read-back and re-hash verification",
+    "compensation / rollback execution and rollback verification",
+    "canonical admission-reader wiring (Shared Spine EVT + evidence/rollback reference)",
+    "real-target guard (--i-have-owner-binding) replacing fixture-only path",
+    "live exit-code semantics tied to canonical acceptance resolution"
+  ],
+  "final_transport_token": "SKCV_APPLY_2_OK",
+  "final_transport_token_is_acceptance": false
+}

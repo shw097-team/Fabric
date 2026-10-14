@@ -1,0 +1,135 @@
+{
+  "subject_manifest": {
+    "rows": 370,
+    "row_set_digest_recomputed": "b050a0256e57f5e6958956874d3f4c4d63ac38c7cbe46489990183a16b48e8fa",
+    "row_set_digest_expected": "b050a0256e57f5e6958956874d3f4c4d63ac38c7cbe46489990183a16b48e8fa",
+    "digest_match": true,
+    "rows_not_matching_disk": []
+  },
+  "topic_file": {
+    "bytes_now": 44879,
+    "sha256_now": "e95918620e2a979f2152b32a995df2c37271f7b935733b97ff9b5cd12a44d833",
+    "sha256_recorded_after_normalisation": "e95918620e2a979f2152b32a995df2c37271f7b935733b97ff9b5cd12a44d833",
+    "matches_record": true,
+    "sha256_recorded_by_maker": "dca700003268f3e13c6c4bc49ae250431cde142930d8e04eb818dd1d6404f3e7",
+    "bytes_recorded_by_maker": 43675,
+    "heading_lines_now": 82,
+    "heading_lines_rewritten_at_normalisation": 14
+  },
+  "merged_payloads": [
+    {
+      "path": "references/candidate-apply-gates.md",
+      "baseline_sha_matches_record": true,
+      "baseline_bytes": 2162,
+      "occurrences_in_topic": 1,
+      "recorded_bytes_before": 2162
+    },
+    {
+      "path": "references/oneshot-lane-liveness-and-model-proof.md",
+      "baseline_sha_matches_record": true,
+      "baseline_bytes": 2387,
+      "occurrences_in_topic": 1,
+      "recorded_bytes_before": 2387
+    },
+    {
+      "path": "references/oversized-skill-split-notes.md",
+      "baseline_sha_matches_record": true,
+      "baseline_bytes": 2482,
+      "occurrences_in_topic": 1,
+      "recorded_bytes_before": 2482
+    },
+    {
+      "path": "references/independent-verifier-lane-pitfalls.md",
+      "baseline_sha_matches_record": true,
+      "baseline_bytes": 2533,
+      "occurrences_in_topic": 1,
+      "recorded_bytes_before": 2533
+    },
+    {
+      "path": "references/bundle-specification-discipline.md",
+      "baseline_sha_matches_record": true,
+      "baseline_bytes": 2553,
+      "occurrences_in_topic": 1,
+      "recorded_bytes_before": 2553
+    },
+    {
+      "path": "references/fabric-rule-to-code-gap-and-invariant-spoof.md",
+      "baseline_sha_matches_record": true,
+      "baseline_bytes": 2942,
+      "occurrences_in_topic": 1,
+      "recorded_bytes_before": 2942
+    },
+    {
+      "path": "references/plan-model-fallback.md",
+      "baseline_sha_matches_record": true,
+      "baseline_bytes": 3018,
+      "occurrences_in_topic": 1,
+      "recorded_bytes_before": 3018
+    },
+    {
+      "path": "references/verify-lane-must-be-pinned-oneshot.md",
+      "baseline_sha_matches_record": true,
+      "baseline_bytes": 3024,
+      "occurrences_in_topic": 1,
+      "recorded_bytes_before": 3024
+    },
+    {
+      "path": "references/proportional-runtime-config-closure.md",
+      "baseline_sha_matches_record": true,
+      "baseline_bytes": 3255,
+      "occurrences_in_topic": 1,
+      "recorded_bytes_before": 3255
+    },
+    {
+      "path": "references/artefact-disposal-and-cwd-locks.md",
+      "baseline_sha_matches_record": true,
+      "baseline_bytes": 3458,
+      "occurrences_in_topic": 1,
+      "recorded_bytes_before": 3458
+    },
+    {
+      "path": "references/guard-false-positives.md",
+      "baseline_sha_matches_record": true,
+      "baseline_bytes": 3496,
+      "occurrences_in_topic": 1,
+      "recorded_bytes_before": 3496
+    },
+    {
+      "path": "references/interrupted-lane-recovery-and-officer-invocation.md",
+      "baseline_sha_matches_record": true,
+      "baseline_bytes": 3819,
+      "occurrences_in_topic": 1,
+      "recorded_bytes_before": 3819
+    },
+    {
+      "path": "references/verifying-lane-declaration-changes.md",
+      "baseline_sha_matches_record": true,
+      "baseline_bytes": 3921,
+      "occurrences_in_topic": 1,
+      "recorded_bytes_before": 3921
+    },
+    {
+      "path": "references/fda-authorization-gate.md",
+      "baseline_sha_matches_record": true,
+      "baseline_bytes": 3935,
+      "occurrences_in_topic": 1,
+      "recorded_bytes_before": 3935
+    }
+  ],
+  "disposition_of_lane_doubts": [
+    {
+      "doubt": "the candidate main file is not byte-identical to the baseline snapshot (21026 against 105116 bytes)",
+      "disposition": "expected by construction, not drift: this round's subject is a lossless extraction that moves the oversized main file's body into slices and references, so the main file must be smaller. Byte-exactness is claimed for the union of main file plus slices, which the round re-derives against the baseline digest, not for the main file alone."
+    },
+    {
+      "doubt": "the topic file on disk hashes to a different digest than the maker recorded",
+      "disposition": "attributable and already disclosed: the round harness rewrote fourteen heading lines after the maker lane, changing 43675 bytes into 44879 and the digest from the maker value to the current one. The normalisation record states that the content excluding those heading lines is unchanged, and the payload search above re-establishes it: every absorbed file still occurs in the topic exactly as many times as it should."
+    },
+    {
+      "doubt": "the lane could not judge merged-text semantics",
+      "disposition": "accepted as a real ceiling. Byte identity is all this axis can prove; reader-facing quality of merged text is unverified and stays that way."
+    }
+  ],
+  "verdict": "LANE_DOUBTS_RECONCILED_WITH_ROUND_RECORDS",
+  "claim_ceiling": "recomputation of the subject binding and of the merge payload identity in support of a security verdict; it grants no acceptance and repairs no earlier failure"
+}

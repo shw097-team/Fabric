@@ -1,0 +1,88 @@
+{
+ "schema": "SKCV-CONVERGENCE-REPORT/1",
+ "roles": {
+  "avr": {
+   "skill": "adversarial-verification-rounds",
+   "invariants": {
+    "I1_no_newly_dangling_reference_name": true,
+    "I1_newly_dangling": [],
+    "I1_dangling_also_present_in_baseline": [
+     "references/evidence-curation.md",
+     "references/relay-ledger-and-lane-health.md"
+    ],
+    "I1_note": "names are collected from the shipped tree only; scratch/, sandbox/ and fixture files (test_*.py, *_check.py, *probe*.py) are excluded from the scan because their dangling names are intentional refusal fixtures, and any name dangling in the baseline as well is a pre-existing cross-skill pointer rather than a regression from this round",
+    "I2_every_absorbed_entry_has_bound_stub": true,
+    "I3_every_absorbed_segment_is_byte_exact_vs_baseline": true,
+    "I4_entry_map_reconstructs_baseline_entry": true,
+    "I4_detail": {
+     "destination_digests_match_disk": true,
+     "source_ranges_partition_the_baseline": true,
+     "ordered_source_ranges_reproduce_baseline": true,
+     "slices": 10,
+     "baseline_bytes": 101488
+    },
+    "I5_no_baseline_file_removed": true,
+    "I5_removed": [],
+    "I6_no_underscore_hidden_files": true,
+    "I6_hidden": [],
+    "I7_main_doc_under_hard_limit": true,
+    "I8_all_source_files_in_known_state": true
+   },
+   "counts": {
+    "mentioned_reference_names": 17,
+    "batches": 1,
+    "absorbed": 7,
+    "main_doc_bytes": 22091,
+    "reference_files_candidate": 30,
+    "reference_files_baseline": 27
+   }
+  },
+  "hgk": {
+   "skill": "hgk-governed-execution",
+   "invariants": {
+    "I1_no_newly_dangling_reference_name": false,
+    "I1_newly_dangling": [
+     "references/artefact-disposal-and-cwd-locks.md",
+     "references/bundle-specification-discipline.md",
+     "references/candidate-apply-gates.md",
+     "references/fabric-rule-to-code-gap-and-invariant-spoof.md",
+     "references/fda-authorization-gate.md",
+     "references/guard-false-positives.md",
+     "references/independent-verifier-lane-pitfalls.md",
+     "references/interrupted-lane-recovery-and-officer-invocation.md",
+     "references/oneshot-lane-liveness-and-model-proof.md",
+     "references/oversized-skill-split-notes.md",
+     "references/plan-model-fallback.md",
+     "references/proportional-runtime-config-closure.md",
+     "references/verify-lane-must-be-pinned-oneshot.md",
+     "references/verifying-lane-declaration-changes.md"
+    ],
+    "I1_dangling_also_present_in_baseline": [
+     "references/gptwork-codex-desktop-restore.md",
+     "references/prompt-contract.schema.json"
+    ],
+    "I1_note": "names are collected from the shipped tree only; scratch/, sandbox/ and fixture files (test_*.py, *_check.py, *probe*.py) are excluded from the scan because their dangling names are intentional refusal fixtures, and any name dangling in the baseline as well is a pre-existing cross-skill pointer rather than a regression from this round",
+    "I2_every_absorbed_entry_has_bound_stub": true,
+    "I3_every_absorbed_segment_is_byte_exact_vs_baseline": true,
+    "I4_entry_map_reconstructs_baseline_entry": true,
+    "I4_detail": {
+     "destination_digests_match_disk": true,
+     "source_ranges_partition_the_baseline": true,
+     "ordered_source_ranges_reproduce_baseline": true,
+     "slices": 6,
+     "baseline_bytes": 105116
+    },
+    "I5_no_baseline_file_removed": false,
+    "I5_removed": [
+     "references/artefact-disposal-and-cwd-locks.md",
+     "references/bundle-specification-discipline.md",
+     "references/candidate-apply-gates.md",
+     "references/fabric-rule-to-code-gap-and-invariant-spoof.md",
+     "references/fda-authorization-gate.md",
+     "references/guard-false-positives.md",
+     "references/independent-verifier-lane-pitfalls.md",
+     "references/interrupted-lane-recovery-and-officer-invocation.md",
+     "references/oneshot-lane-liveness-and-model-proof.md",
+     "references/oversized-skill-split-notes.md",
+     "references/plan-model-fallback.md",
+     "reference

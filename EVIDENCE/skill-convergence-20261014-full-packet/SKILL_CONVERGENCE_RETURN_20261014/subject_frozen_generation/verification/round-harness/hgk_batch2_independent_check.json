@@ -1,0 +1,75 @@
+{
+ "schema": "SKCV-INDEP-HARNESS-BATCH-CHECK/1",
+ "role": "hgk",
+ "batch": "topic_batch_2.json",
+ "batch_scope": null,
+ "absorbed_entries": 4,
+ "all_absorbed_lossless": true,
+ "rows": [
+  {
+   "path": "skill/references/codex-canary-powershell.md",
+   "claim_bytes": 5511,
+   "segment_bytes": 5511,
+   "segment_matches_claim": true,
+   "baseline_bytes": 5511,
+   "baseline_equals_segment": true,
+   "stub_exists": true,
+   "stub_bytes": 110,
+   "stub_points_at_topic": true,
+   "stub_points_at_offset": true
+  },
+  {
+   "path": "skill/references/codex-lane-log-liveness-markers.md",
+   "claim_bytes": 2029,
+   "segment_bytes": 2029,
+   "segment_matches_claim": true,
+   "baseline_bytes": 2029,
+   "baseline_equals_segment": true,
+   "stub_exists": true,
+   "stub_bytes": 111,
+   "stub_points_at_topic": true,
+   "stub_points_at_offset": true
+  },
+  {
+   "path": "skill/references/codex-sealed-lane-windows.md",
+   "claim_bytes": 11271,
+   "segment_bytes": 11271,
+   "segment_matches_claim": true,
+   "baseline_bytes": 11271,
+   "baseline_equals_segment": true,
+   "stub_exists": true,
+   "stub_bytes": 111,
+   "stub_points_at_topic": true,
+   "stub_points_at_offset": true
+  },
+  {
+   "path": "skill/references/codex-workspace-write.md",
+   "claim_bytes": 17006,
+   "segment_bytes": 17006,
+   "segment_matches_claim": true,
+   "baseline_bytes": 17006,
+   "baseline_equals_segment": true,
+   "stub_exists": true,
+   "stub_bytes": 112,
+   "stub_points_at_topic": true,
+   "stub_points_at_offset": true
+  }
+ ],
+ "named_paths_in_main_doc": 3,
+ "named_md_paths_all_resolve": true,
+ "unresolved_named_md_paths": [],
+ "baseline_named_md_no_longer_named": [],
+ "unnamed_baseline_refs_present_in_topic_source_remainder": {},
+ "files_deleted_vs_baseline": [],
+ "files_added_vs_baseline": [
+  "references/topics/codex-lane-execution-and-workspace-write.md",
+  "references/topics/construction-wave-and-remaining-procedures.md",
+  "references/topics/external-evidence-closure.md"
+ ],
+ "underscore_prefixed_files": [],
+ "physical_counts": {
+  "baseline": 119,
+  "candidate": 122
+ },
+ "claim_ceiling": "byte-level losslessness and structure for this batch only, recomputed by the round harness; it is not independent-checker authority and grants no acceptance"
+}

@@ -1,0 +1,198 @@
+{
+  "schema": "SKCV-HGK-PHASE3-RESULT/1",
+  "phase": "phase 3",
+  "batch": "batch 2 of the reference themes",
+  "theme": "codex-lane-execution-and-workspace-write",
+  "remaining_themes_status": "OPEN",
+  "remaining_themes_statement": "This is batch 2 of the reference themes. The remaining HGK themes stay OPEN; no cap, threshold, linter, lock or policy was changed and no canonical acceptance or promotion is claimed.",
+  "topic_file": {
+    "path": "skill/references/topics/codex-lane-execution-and-workspace-write.md",
+    "bytes": 36511,
+    "sha256": "50bb3325e38d17e8f5b2cf7de7c9075441364cb775ebd29c6aee47801bd45b18"
+  },
+  "absorbed_batch_2": [
+    {
+      "absorbed_path": "skill/references/codex-canary-powershell.md",
+      "bytes": 5511,
+      "sha256": "4be423b5e1137632a54c92f4be82ab6a32419bcf07cafcdab4ce5ce02c84b774",
+      "byte_offset": 170,
+      "payload_byte_end": 5681,
+      "stub_path": "skill/references/codex-canary-powershell.md"
+    },
+    {
+      "absorbed_path": "skill/references/codex-lane-log-liveness-markers.md",
+      "bytes": 2029,
+      "sha256": "9a2a56a7f19e6db8fb048a84d37fb91c0378632716778fa468f474a131f1e850",
+      "byte_offset": 5860,
+      "payload_byte_end": 7889,
+      "stub_path": "skill/references/codex-lane-log-liveness-markers.md"
+    },
+    {
+      "absorbed_path": "skill/references/codex-sealed-lane-windows.md",
+      "bytes": 11271,
+      "sha256": "3d1d8a2ca61c0c0fdf5bbfc875a9459d3863f17a7a537cee3420be8ad94aa0ab",
+      "byte_offset": 8063,
+      "payload_byte_end": 19334,
+      "stub_path": "skill/references/codex-sealed-lane-windows.md"
+    },
+    {
+      "absorbed_path": "skill/references/codex-workspace-write.md",
+      "bytes": 17006,
+      "sha256": "fd9dfe87142d314acc880960cec0b68544c4a025496bbf82d1c7c55d7092eab5",
+      "byte_offset": 19505,
+      "payload_byte_end": 36511,
+      "stub_path": "skill/references/codex-workspace-write.md"
+    }
+  ],
+  "absorbed_count": 4,
+  "schema_absorbed": "SKCV-HGK-TOPIC-BATCH/1",
+  "absorbed_files_in_order": [
+    "skill/references/codex-canary-powershell.md",
+    "skill/references/codex-lane-log-liveness-markers.md",
+    "skill/references/codex-sealed-lane-windows.md",
+    "skill/references/codex-workspace-write.md"
+  ],
+  "deliverables": {
+    "topic_file": "skill/references/topics/codex-lane-execution-and-workspace-write.md",
+    "stubs": [
+      "skill/references/codex-canary-powershell.md",
+      "skill/references/codex-lane-log-liveness-markers.md",
+      "skill/references/codex-sealed-lane-windows.md",
+      "skill/references/codex-workspace-write.md"
+    ],
+    "batch_manifest": "topic_batch_2.json",
+    "checker": "topic_check.py"
+  },
+  "checker": {
+    "path": "topic_check.py",
+    "validates_batches": [
+      "topic_batch_1.json",
+      "topic_batch_2.json"
+    ],
+    "interface": "default = both batches; --batch <file> selects one; --topic <file> overrides the topic under test (skip topic digest/length assertion)",
+    "checks": [
+      "recompute every absorbed digest out of its topic file",
+      "assert every named absorbed_path and stub_path still resolves on disk",
+      "assert each stub names the right topic file and offset",
+      "assert skill/SKILL.md reference names still resolve"
+    ],
+    "refusal_codes": {
+      "ERR_SKCV_SEGMENT_MISSING": 11,
+      "ERR_SKCV_SEGMENT_DUPLICATED": 12,
+      "ERR_SKCV_SEGMENT_REORDERED": 13,
+      "ERR_SKCV_SEGMENT_MUTATED": 14,
+      "ERR_SKCV_STUB_MISSING": 20,
+      "ERR_STUB_MISMATCH": 20,
+      "ERR_SKCV_SKILL_NAME_UNRESOLVED": 21,
+      "ERR_SKCV_TOPIC_MISSING": 22,
+      "ERR_SKCV_SEGMENT_DIGEST": 22,
+      "ERR_SKCV_BATCH_MISSING": 23
+    }
+  },
+  "commands": [
+    {
+      "command": "python topic_check.py",
+      "purpose": "positive run over both batches",
+      "exit_code": 0,
+      "result": "OK",
+      "batches": [
+        "topic_batch_1.json",
+        "topic_batch_2.json"
+      ],
+      "segments_checked": 9
+    },
+    {
+      "command": "python topic_check.py --batch topic_batch_1.json",
+      "purpose": "positive run, batch 1 only",
+      "exit_code": 0,
+      "result": "OK"
+    },
+    {
+      "command": "python topic_check.py --batch topic_batch_2.json",
+      "purpose": "positive run, batch 2 only",
+      "exit_code": 0,
+      "result": "OK"
+    },
+    {
+      "command": "python topic_check.py --batch topic_batch_2.json --topic <missing-probe>",
+      "purpose": "negative probe: dropped segment",
+      "exit_code": 11,
+      "observed_code": "ERR_SKCV_SEGMENT_MISSING"
+    },
+    {
+      "command": "python topic_check.py --batch topic_batch_2.json --topic <duplicated-probe>",
+      "purpose": "negative probe: duplicated segment",
+      "exit_code": 12,
+      "observed_code": "ERR_SKCV_SEGMENT_DUPLICATED"
+    },
+    {
+      "command": "python topic_check.py --batch topic_batch_2.json --topic <reordered-probe>",
+      "purpose": "negative probe: reordered segments",
+      "exit_code": 13,
+      "observed_code": "ERR_SKCV_SEGMENT_REORDERED"
+    },
+    {
+      "command": "python topic_check.py --batch topic_batch_2.json --topic <mutated-probe>",
+      "purpose": "negative probe: one bit flipped inside a payload",
+      "exit_code": 14,
+      "observed_code": "ERR_SKCV_SEGMENT_MUTATED"
+    }
+  ],
+  "ran_skipped": {
+    "positive_runs": 3,
+    "segments_checked": 9,
+    "segments_skipped": 0,
+    "negative_runs": 4,
+    "negative_probes_matched": 4
+  },
+  "typed_refusals_observed": [
+    {
+      "probe": "missing",
+      "code": "ERR_SKCV_SEGMENT_MISSING",
+      "exit_code": 11,
+      "detail": "missing=['skill/references/codex-lane-log-liveness-markers.md'] unexpected=[] blocks=3 expected=4"
+    },
+    {
+      "probe": "duplicated",
+      "code": "ERR_SKCV_SEGMENT_DUPLICATED",
+      "exit_code": 12,
+      "detail": "duplicated segment(s): skill/references/codex-canary-powershell.md"
+    },
+    {
+      "probe": "reordered",
+      "code": "ERR_SKCV_SEGMENT_REORDERED",
+      "exit_code": 13,
+      "detail": "physical order differs from declared order"
+    },
+    {
+      "probe": "mutated",
+      "code": "ERR_SKCV_SEGMENT_MUTATED",
+      "exit_code": 14,
+      "detail": "digest mismatch for skill/references/codex-canary-powershell.md"
+    }
+  ],
+  "reference_file_count": {
+    "scope": "physical files under skill/references (recursive, includes topics/ and stubs)",
+    "before": 113,
+    "after": 114,
+    "delta": 1,
+    "count_fell": false,
+    "before_measured": false,
+    "after_measured": true,
+    "note": "after=114 was measured by enumeration. before=113 is derived, not measured: batch 1 had already landed before this session and the only file-count change made by this batch was adding the one new topic file, so before = after - 1. The four absorbed files remain on disk as one-line stubs, so the absorbed count is unchanged and the reference-file count did NOT fall."
+  },
+  "not_touched": [
+    "SKILL.md",
+    "entry_map.json",
+    "skill/references/topics/external-evidence-closure.md",
+    "topic_batch_1.json"
+  ],
+  "no_claim": [
+    "no cap, threshold, linter, lock or policy change",
+    "no canonical acceptance",
+    "no promotion",
+    "no whole-tree scan"
+  ],
+  "status": "COMPLETE",
+  "status_ceiling": "candidate batch evidence only; not canonical acceptance or promotion"
+}

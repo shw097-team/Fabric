@@ -1,0 +1,280 @@
+{
+  "schema": "SKCV-AVR-PHASE2-RESULT/1",
+  "workorder": "WO-SKCV-20261014-AVR",
+  "phase": "TOPIC_BATCH_1",
+  "status": "PHASE2_SERIAL_REMEDIATION_DONE",
+  "interpreter": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+  "python": "3.11.17",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "step_a_reproduction": {
+    "method": "copied entry_extract.py + baseline source into an isolated scratch tree, ran generate/reconstruct/negative there, then re-ran all three in place; the map's source.path echoes the tree root, so the scratch copy's path differed - the in-place run and the fs-level write path both reproduce the on-disk bytes exactly",
+    "verdict_per_file": {
+      "skill/SKILL.md": {
+        "disk": {
+          "bytes": 22091,
+          "sha256": "eaf6172b9031f3f0a70671ca5f2b8fd10408ba1f6979e90d235e0ff2e7c60f2f"
+        },
+        "verdict": "BYTE_IDENTICAL"
+      },
+      "skill/references/topic-source-remainder.md": {
+        "disk": {
+          "bytes": 82592,
+          "sha256": "15d6ab99131f46d2fe1663b61a21a40672be0f6c29ff845a0347544b54b78eaa"
+        },
+        "verdict": "BYTE_IDENTICAL"
+      },
+      "entry_map.json": {
+        "disk": {
+          "bytes": 5337,
+          "sha256": "e31e82e9401510c3b6a28733997f770037975abe2fd8ce1d2855678ea78dded8"
+        },
+        "verdict": "BYTE_IDENTICAL"
+      }
+    },
+    "scratch_map_divergence": {
+      "code": "ATTRIBUTED_RELOCATION_ONLY",
+      "attribution": "input_echo",
+      "detail": "scratch entry_map.json differed from disk by exactly source.path (relocated tree) and line endings from the harness's raw-text reconstruction; byte-identical when the map is serialized through entry_extract.write_all's own write_text path and the real source path",
+      "product_impact": "none"
+    },
+    "in_place_commands": [
+      {
+        "cmd": "python entry_extract.py generate",
+        "exit_code": 0,
+        "stdout": "GENERATE_OK main=eaf6172b..22091 topic=15d6ab99..82592 slices=10"
+      },
+      {
+        "cmd": "python entry_extract.py reconstruct",
+        "exit_code": 0,
+        "stdout": "RECONSTRUCT_OK bytes=101488 sha=4be690a4.."
+      },
+      {
+        "cmd": "python entry_extract.py negative",
+        "exit_code": 0,
+        "stdout": "3/3 refused with COVERAGE_GAP/REORDERED_MAP/SLICE_HASH_MISMATCH"
+      }
+    ],
+    "scratch_commands": [
+      {
+        "cmd": "python entry_extract.py generate (scratch)",
+        "exit_code": 0
+      },
+      {
+        "cmd": "python entry_extract.py reconstruct (scratch)",
+        "exit_code": 0
+      },
+      {
+        "cmd": "python entry_extract.py negative (scratch)",
+        "exit_code": 0
+      }
+    ],
+    "post_in_place_unchanged": true
+  },
+  "step_b_topic_batch": {
+    "theme_groups": [
+      "verification-and-acceptance-lane",
+      "lane-harness-and-handover"
+    ],
+    "batch_scope": "2_of_many_theme_groups",
+    "topics": {
+      "verification-and-acceptance-lane": {
+        "file": "skill/references/topics/verification-and-acceptance-lane.md",
+        "bytes": 18144,
+        "sha256": "8b3a6945b3f9bfb19c30d35f895a70a233c7c5e7c050e65c4265581e9d9ad0ba",
+        "segments": 4
+      },
+      "lane-harness-and-handover": {
+        "file": "skill/references/topics/lane-harness-and-handover.md",
+        "bytes": 55417,
+        "sha256": "84b546f1429089ff0313f4ac68df8aee342c21fcdcb228d7ba79328357967b2f",
+        "segments": 3
+      }
+    },
+    "absorbed_paths": [
+      {
+        "path": "references/verdict-artifact-and-budget.md",
+        "sha256": "79efb0c631348071900d7a2ad599bfd4f5792f79c564a455bb2b22936313f5ab",
+        "bytes": 5032,
+        "owned_by_theme": "verification-and-acceptance-lane",
+        "byte_offset": 475,
+        "topic_file": "skill/references/topics/verification-and-acceptance-lane.md",
+        "stub_path": "skill/references/verdict-artifact-and-budget.md"
+      },
+      {
+        "path": "references/sealed-evidence-corpus.md",
+        "sha256": "276955b67c30961e7d6cf0bc22b56e2968da719d4e0d86719440c2e096e82b81",
+        "bytes": 4816,
+        "owned_by_theme": "verification-and-acceptance-lane",
+        "byte_offset": 5722,
+        "topic_file": "skill/references/topics/verification-and-acceptance-lane.md",
+        "stub_path": "skill/references/sealed-evidence-corpus.md"
+      },
+      {
+        "path": "references/independent-verification-hygiene.md",
+        "sha256": "9da3a1278235d4373e38a4ddf83c4f07b8cb2287d563e5cd3da4f43d7d40b339",
+        "bytes": 3385,
+        "owned_by_theme": "verification-and-acceptance-lane",
+        "byte_offset": 10764,
+        "topic_file": "skill/references/topics/verification-and-acceptance-lane.md",
+        "stub_path": "skill/references/independent-verification-hygiene.md"
+      },
+      {
+        "path": "references/finding-classification.md",
+        "sha256": "6055fcd360b24dfab3c7bfd642df25a99575b69ccc2dcfa96c8822930dce9226",
+        "bytes": 3707,
+        "owned_by_theme": "verification-and-acceptance-lane",
+        "byte_offset": 14365,
+        "topic_file": "skill/references/topics/verification-and-acceptance-lane.md",
+        "stub_path": "skill/references/finding-classification.md"
+      },
+      {
+        "path": "references/verifier-lane-handover.md",
+        "sha256": "aebb35ea0ef523de9d64940081706fc62bd36fb4712abe51ef8baa19e3dd939b",
+        "bytes": 26549,
+        "owned_by_theme": "lane-harness-and-handover",
+        "byte_offset": 457,
+        "topic_file": "skill/references/topics/lane-harness-and-handover.md",
+        "stub_path": "skill/references/verifier-lane-handover.md"
+      },
+      {
+        "path": "references/checker-binding-and-false-defect-signals.md",
+        "sha256": "31ae9774cd4e245c47aa051adfae17ac3e14f68b5ba49b1e867c5cb8225053c4",
+        "bytes": 5403,
+        "owned_by_theme": "lane-harness-and-handover",
+        "byte_offset": 27240,
+        "topic_file": "skill/references/topics/lane-harness-and-handover.md",
+        "stub_path": "skill/references/checker-binding-and-false-defect-signals.md"
+      },
+      {
+        "path": "references/lane-harness-and-admission-gate.md",
+        "sha256": "61bdb0cd1763f7494bef8337c42a2d1e53c3550ab18102b7ee4f219eaf52c140",
+        "bytes": 22476,
+        "owned_by_theme": "lane-harness-and-handover",
+        "byte_offset": 32869,
+        "topic_file": "skill/references/topics/lane-harness-and-handover.md",
+        "stub_path": "skill/references/lane-harness-and-admission-gate.md"
+      }
+    ],
+    "stub_count": 7,
+    "manifest": {
+      "file": "topic_batch_1.json",
+      "bytes": 5967,
+      "sha256": "79d009b502f4c3089855d8975970e388e15406feea5ee188ab32f53666c95d2b"
+    },
+    "builder": {
+      "file": "topic_extract.py",
+      "bytes": 7640,
+      "sha256": "5458f88f99c5e5daa637877716dae6451d2856b9b7a00fc52d05ed9194eacd95"
+    },
+    "commands": [
+      {
+        "cmd": "python topic_extract.py generate",
+        "exit_code": 0,
+        "stdout": "GENERATE_OK themes=2 absorbed=7"
+      },
+      {
+        "cmd": "python topic_extract.py verify (superseded by topic_check.py check)",
+        "exit_code": 7,
+        "note": "extractor verify rebuilds from live originals; after stubbing them it cannot rebuild, so topic_check.py check is the canonical verifier"
+      }
+    ]
+  },
+  "step_c_topic_check": {
+    "checker": {
+      "file": "topic_check.py",
+      "bytes": 8561,
+      "sha256": "a5ee4c3ef10ab11a78324cd6547c5987403b1591980ba6386706623503c07f8a"
+    },
+    "commands": [
+      {
+        "cmd": "python topic_check.py check",
+        "exit_code": 0,
+        "stdout": "code=OK checked_segments=7 linked_paths=8 stub_count=7"
+      },
+      {
+        "cmd": "python topic_check.py negative",
+        "exit_code": 0,
+        "stdout": "5/5 refused with the expected typed code"
+      }
+    ],
+    "typed_refusals_observed": [
+      {
+        "case": "missing_segment",
+        "code": "MISSING_SEGMENT",
+        "exit_code": 10,
+        "pass_": true
+      },
+      {
+        "case": "duplicated_segment",
+        "code": "DUPLICATED_SEGMENT",
+        "exit_code": 11,
+        "pass_": true
+      },
+      {
+        "case": "reordered_segment",
+        "code": "REORDERED_SEGMENT",
+        "exit_code": 12,
+        "pass_": true
+      },
+      {
+        "case": "mutated_segment",
+        "code": "MUTATED_SEGMENT",
+        "exit_code": 13,
+        "pass_": true
+      },
+      {
+        "case": "dangling_link",
+        "code": "DANGLING_LINK",
+        "exit_code": 17,
+        "pass_": true
+      }
+    ],
+    "refusal_classes_total": 5,
+    "refusal_classes_covered": 5,
+    "positive_check": {
+      "code": "OK",
+      "checked_segments": 7,
+      "linked_paths": 8,
+      "themes": [
+        "verification-and-acceptance-lane",
+        "lane-harness-and-handover"
+      ]
+    }
+  },
+  "counts": {
+    "themes_total_referenced": null,
+    "themes_in_this_batch": 2,
+    "files_absorbed": 7,
+    "topic_files_written": 2,
+    "stubs_written": 7,
+    "segments_verified": 7,
+    "checks_ran": 1,
+    "checks_skipped": 0,
+    "negative_probes_ran": 5,
+    "negative_probes_skipped": 0,
+    "reproduction_entries_ran": 3,
+    "reproduction_entries_skipped": 0
+  },
+  "open_debt": [
+    "theme groups beyond the two in this batch remain unaugmented",
+    "the physical alias-file count did not fall: this batch adds 2 topic files and 7 stubs while absorbing 7 originals"
+  ],
+  "explicit_scope_statement": "This batch covers ONLY 2 theme groups (verification-and-acceptance-lane and lane-harness-and-handover). The remaining themes and the physical alias-file count debt stay OPEN. No claim is made that the reference count fell.",
+  "constraints_respected": {
+    "no_cap_threshold_linter_lock_policy_change": true,
+    "no_underscore_hidden_files": true,
+    "no_deletion_of_contradicting_history": true,
+    "no_reference_count_reduction_claim": true,
+    "no_whole_tree_scan": true
+  },
+  "not_reference_consolidation": true,
+  "not_final_tests": true,
+  "not_acceptance": true,
+  "hgk_canonical_acceptance": "NOT_PERFORMED",
+  "sqs_live_trading": "NOT_AUTHORIZED",
+  "successors": [
+    "remaining theme groups",
+    "physical alias-file count reduction",
+    "independent acceptance"
+  ]
+}

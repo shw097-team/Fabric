@@ -1,0 +1,144 @@
+{
+  "observed_at": "2026-10-14T05:16:53.032397+00:00",
+  "error_class": "LANE_BUDGET_TIMEOUT",
+  "class_definition": "a maker lane whose Codex turn did not finish inside the granted execution budget; the canonical dispatcher records attempt exit TIMEOUT and ERR_LANE_ALL_ROUTES_EXHAUSTED, and (as separately reproduced) drops partial capture",
+  "occurrences_in_this_round": [
+    {
+      "lane": "HGK-1",
+      "outcome": "TIMEOUT",
+      "kept_partial": "diagnostic trace only"
+    },
+    {
+      "lane": "HGK-2",
+      "outcome": "TIMEOUT",
+      "kept_partial": "diagnostic trace, 16 successful read commands"
+    },
+    {
+      "lane": "AVR-1",
+      "outcome": "TIMEOUT",
+      "kept_partial": "diagnostic trace"
+    },
+    {
+      "lane": "AVR-2",
+      "outcome": "TIMEOUT",
+      "kept_partial": "phase-1 artefacts on disk, no completion receipt"
+    },
+    {
+      "lane": "CONSUMER-1",
+      "outcome": "TIMEOUT",
+      "kept_partial": "diagnostic trace"
+    },
+    {
+      "lane": "APPLY-1",
+      "outcome": "TIMEOUT",
+      "kept_partial": "diagnostic trace"
+    },
+    {
+      "lane": "HGK-4",
+      "outcome": "TIMEOUT",
+      "kept_partial": "partial scripts on disk, no phase2_result.json"
+    },
+    {
+      "lane": "AVR-3",
+      "outcome": "TIMEOUT",
+      "kept_partial": "partial scripts on disk, no phase2_result.json"
+    },
+    {
+      "lane": "CONSUMER-3",
+      "outcome": "TIMEOUT",
+      "kept_partial": "NOTHING — this lane wrote no product in its turn"
+    },
+    {
+      "lane": "APPLY-3",
+      "outcome": "TIMEOUT",
+      "kept_partial": "phase-2 test file written, no phase2_result.json"
+    }
+  ],
+  "count": 10,
+  "grouping_note": "counted per ERROR CLASS (lane budget timeout), not per session; the class covers all roles because the dispatcher and the relay are the same for each",
+  "remediation_already_applied": [
+    "decomposed the broad generation-1 asks into bounded single-step phases (this is why HGK-3, CONSUMER-2 and APPLY-2 returned valid receipts)",
+    "added a round-only diagnostic observer because the canonical timeout branch discards partial capture (reproduced from source with an executable fixture)",
+    "serialized dispatch after the 4-way parallel phase-2 batch all timed out inside the same window, to remove relay contention",
+    "replaced tree enumeration with an explicit allow-list of files to read, since the traces show the timed-out turns spending their budget on recursive listings"
+  ],
+  "current_intervention": {
+    "action": "SERIAL single-lane dispatch (AVR-4) with an explicit no-enumeration read list and a round-only diagnostic budget of 900s, while the canonical 600s gate and the acceptance oracle stay unchanged",
+    "why_not_paused": "the work is still producing bounded, reviewable artefacts under an unchanged oracle; the failure mode is budget exhaustion, not a gate refusal, so pausing would stop legitimate progress",
+    "would_pause_if": "a lane starts returning gate refusals, mutating frozen subjects, or repeating the same exhausted shape with no new artefact"
+  },
+  "lane_disposition": {
+    "hgk": {
+      "skill_tree": {
+        "baseline_files": 119,
+        "candidate_files": 120,
+        "added": [
+          "references/topics/construction-wave-and-remaining-procedures.md"
+        ],
+        "removed": [],
+        "modified": [
+          "SKILL.md"
+        ]
+      },
+      "phase2_result_present": false,
+      "top_level_artifacts": [
+        "entry_extract.py",
+        "entry_map.json",
+        "entry_map.phase1.json",
+        "phase1_result.json",
+        "phase2_consolidate.py",
+        "scratch\\analyze1.py",
+        "scratch\\clean.py",
+        "scratch\\recover.py",
+        "scratch\\v.py"
+      ],
+      "dispatch_ok": false
+    },
+    "avr": {
+      "skill_tree": {
+        "baseline_files": 27,
+        "candidate_files": 28,
+        "added": [
+          "references/topic-source-remainder.md"
+        ],
+        "removed": [],
+        "modified": [
+          "SKILL.md"
+        ]
+      },
+      "phase2_result_present": false,
+      "top_level_artifacts": [
+        ".avr_p2_probe\\inspect_links.py",
+        ".avr_p2_probe\\inspect_topic.py",
+        ".avr_p2_probe\\inventory.py",
+        ".avr_p2_probe\\rules.py",
+        ".avr_p2_snap\\entry_map.json",
+        "consolidate.py",
+        "entry_extract.py",
+        "entry_map.json",
+        "phase1_result.json"
+      ],
+      "dispatch_ok": false
+    },
+    "consumer": {
+      "phase2_result_present": false,
+      "top_level_artifacts": [
+        "phase1_result.json",
+        "tools\\skill_linter.py",
+        "tools\\skill_manager_batch.py",
+        "tools\\skill_manager_guards.py",
+        "tools\\skill_manager_tool.py"
+      ],
+      "dispatch_ok": false
+    },
+    "apply": {
+      "phase2_result_present": false,
+      "top_level_artifacts": [
+        "guarded_apply.py",
+        "phase1_result.json"
+      ],
+      "dispatch_ok": false
+    }
+  },
+  "claim_ceiling": "no lane in the timed-out batch may be cited as a completed maker phase; their artefacts are UNVERIFIED partial work and none produced a phase2_result.json"
+}

@@ -1,0 +1,92 @@
+{
+  "openspec": {
+    "source_disposition": "ADOPT_FOR_BLUEPRINT / RUNTIME_CERT_PENDING",
+    "current_execution_scope": "USER_AUTHORIZED_ACTIVE_REQUIRED_FOR_BROWNFIELD",
+    "runtime_required_now": true,
+    "role": "BROWNFIELD_ENGINEERING_DEFINITION_ADAPTER",
+    "provider_state": "CERTIFIED_ACTIVE_BROWNFIELD",
+    "fallback": "hgk_native_prw",
+    "final_authority": false,
+    "xor_with": "spec_kit"
+  },
+  "gstack.plan-eng-review": {
+    "source_disposition": "CONDITIONAL_RECOMMENDED / SELECTIVE",
+    "current_execution_scope": "USER_AUTHORIZED_ACTIVE_SELECTED_SLICES",
+    "runtime_required_now": true,
+    "role": "ADVISORY_REVIEW_QA_SECURITY_METHOD_ADAPTER",
+    "provider_state": "CERTIFIED_ACTIVE_SELECTED_SLICES",
+    "fallback": "hgk_native_plan_review",
+    "final_authority": false,
+    "xor_with": null
+  },
+  "gstack.review": {
+    "source_disposition": "CONDITIONAL_RECOMMENDED / SELECTIVE",
+    "current_execution_scope": "USER_AUTHORIZED_ACTIVE_SELECTED_SLICES",
+    "runtime_required_now": true,
+    "role": "ADVISORY_REVIEW_QA_SECURITY_METHOD_ADAPTER",
+    "provider_state": "CERTIFIED_ACTIVE_SELECTED_SLICES",
+    "fallback": "hgk_native_review",
+    "final_authority": false,
+    "xor_with": null
+  },
+  "gstack.qa": {
+    "source_disposition": "CONDITIONAL_RECOMMENDED / SELECTIVE",
+    "current_execution_scope": "USER_AUTHORIZED_ACTIVE_SELECTED_SLICES",
+    "runtime_required_now": true,
+    "role": "ADVISORY_REVIEW_QA_SECURITY_METHOD_ADAPTER",
+    "provider_state": "CERTIFIED_ACTIVE_SELECTED_SLICES",
+    "fallback": "hgk_native_qa",
+    "final_authority": false,
+    "xor_with": null
+  },
+  "gstack.cso": {
+    "source_disposition": "CONDITIONAL_RECOMMENDED / SELECTIVE",
+    "current_execution_scope": "USER_AUTHORIZED_ACTIVE_SELECTED_SLICES",
+    "runtime_required_now": true,
+    "role": "ADVISORY_REVIEW_QA_SECURITY_METHOD_ADAPTER",
+    "provider_state": "CERTIFIED_ACTIVE_SELECTED_SLICES",
+    "fallback": "hgk_native_security",
+    "final_authority": false,
+    "xor_with": null
+  },
+  "gstack.ship": {
+    "source_disposition": "CONDITIONAL_RECOMMENDED / SELECTIVE",
+    "current_execution_scope": "USER_AUTHORIZED_ACTIVE_SELECTED_SLICES",
+    "runtime_required_now": true,
+    "role": "ADVISORY_REVIEW_QA_SECURITY_METHOD_ADAPTER",
+    "provider_state": "CERTIFIED_ACTIVE_SELECTED_SLICES",
+    "fallback": "hgk_native_release_checklist",
+    "final_authority": false,
+    "xor_with": null
+  },
+  "gstack.office-hours": {
+    "source_disposition": "CONDITIONAL_RECOMMENDED / SELECTIVE",
+    "current_execution_scope": "USER_AUTHORIZED_ACTIVE_SELECTED_SLICES",
+    "runtime_required_now": true,
+    "role": "AMBIGUITY_PRODUCT_INTERROGATION_ADVISORY",
+    "provider_state": "CERTIFIED_ACTIVE_SELECTED_SLICES",
+    "fallback": "hgk_native_prw",
+    "final_authority": false,
+    "xor_with": null
+  },
+  "gstack.retro": {
+    "source_disposition": "CONDITIONAL_RECOMMENDED / SELECTIVE",
+    "current_execution_scope": "USER_AUTHORIZED_ACTIVE_SELECTED_SLICES",
+    "runtime_required_now": true,
+    "role": "RETROSPECTIVE_LEARNING_ADVISORY",
+    "provider_state": "CERTIFIED_ACTIVE_SELECTED_SLICES",
+    "fallback": "hgk_native_retro",
+    "final_authority": false,
+    "xor_with": null
+  },
+  "spec_kit": {
+    "source_disposition": "STANDBY / GREENFIELD PROFILE",
+    "current_execution_scope": "STANDBY",
+    "runtime_required_now": false,
+    "role": "GREENFIELD_SPEC_PROJECTION",
+    "provider_state": "STANDBY",
+    "fallback": "hgk_native_prw",
+    "final_authority": false,
+    "xor_with": "openspec"
+  }
+}

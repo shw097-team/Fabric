@@ -1,0 +1,30 @@
+{
+  "schema": "SKCV-WORKORDER-PAUSE/1",
+  "observed_at": "2026-10-14T07:05:34.820830+00:00",
+  "workorder": "WO-SKCV-20261014-SECURITY at generation 2",
+  "status": "PAUSED_PENDING_USER_AUTHORISATION",
+  "attempts": [
+    {
+      "tag": 1,
+      "outcome": "ERR_NO_ARM_EMITTED_NONCE",
+      "why": "complete verdict, turn ended without the transport token",
+      "disposition": "content preserved, cross-checked for honesty, not admitted"
+    },
+    {
+      "tag": 3,
+      "outcome": "ERR_LANE_ALL_ROUTES_EXHAUSTED",
+      "why": "~700s budget exhausted after 101 commands and 1 message; no verdict",
+      "disposition": "inadmissible, trace retained"
+    },
+    {
+      "tag": 4,
+      "outcome": "ok=true BUT EMPTY ANSWER",
+      "why": "the lane emitted the transport token in its first message and ended the turn 7.04s later with no case, no JSON and no command; a token-only turn satisfies the transport gate and proves nothing about the subject",
+      "disposition": "inadmissible; recorded as a defect of my own brief, which let the gate be satisfied without work"
+    }
+  ],
+  "why_paused": "the security work order has now failed three different ways on this subject and the pattern is no longer budget-only. My declared rule was to pause rather than dispatch a third variation, and honouring it is the point of the rule",
+  "what_the_pause_does_not_do": "it does not convert any security case to PASS, and it does not weaken the confinement properties already evidenced: generation 1 security (SECURITY tag 2, PASS_ADVISORY, adjudicated in verification/round-harness/security2_adjudication.json) evidenced write confinement inside an admitted root, typed refusals from the apply validator, no authority escape in its search scope, and observer neutrality. This lane additionally observed the gen2 confinement refusing Set-Content and New-Item attempts",
+  "what_remains_unverified_at_gen2": "an independent security verdict over generation 2 specifically: the merge integrity search, patch containment, authority escape and confinement were NOT independently re-derived for gen2 by a security lane; VERIFY tag 5 did cover merge byte-identity (14/14) and patch context/hash consistency (18/18) with anchored evidence",
+  "claim_ceiling": "a paused work order with inadmissible attempts recorded; it grants no acceptance and repairs nothing"
+}

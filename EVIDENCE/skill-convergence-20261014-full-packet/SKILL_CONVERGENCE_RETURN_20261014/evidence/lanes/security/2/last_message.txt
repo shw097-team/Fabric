@@ -1,0 +1,145 @@
+Subject digest matched (row-set line hash `9b68418b…36cb`); all four harness runs exited 0 and converged on byte-exact absorption for AVR batch 1 and HGK batches 1–2. Attack cases ran as commanded: outside-root write refused, validator path probes each produced a typed refusal, no self-granting canonical-acceptance path found in the files searched, and the observer is diagnostic-only with byte handling asserted unchanged.
+
+This is an advisory independent rederivation, not canonical acceptance.
+
+```json
+{
+  "verdict": "PASS_ADVISORY",
+  "subject_manifest_sha256": "9b68418bcbfd230d43d6525752a09d156b37b31fb214eacaf3b5c77b616936cb",
+  "cases": [
+    {
+      "case_id": "subject_manifest_digest",
+      "status": "PASS",
+      "evidence_refs": ["evidence/subject_manifest.json"],
+      "observation": "Row-set line hash (sha256 of 'sha  path' lines joined by \\n) matches expected; all 374 row-level digest/size tests pass against disk (bad count = 0)."
+    },
+    {
+      "case_id": "convergence_check",
+      "status": "PASS",
+      "evidence_refs": ["evidence/convergence_check.py"],
+      "observation": "CONVERGENCE_INVARIANTS_HOLD, no findings; report-write refusal (read-only lane) noted, stdout verdict unaffected."
+    },
+    {
+      "case_id": "batch1_harness_check",
+      "status": "PASS",
+      "evidence_refs": ["evidence/check_topic_batch.py", "candidates/avr/topic_batch_1.json", "candidates/hgk/topic_batch_1.json", "candidates/hgk/topic_batch_2.json"],
+      "observation": "AVR batch1: 7/7 absorbed_lossless; HGK batch1: 5/5; HGK batch2: 4/4; all row digest/size matches true."
+    },
+    {
+      "case_id": "write_confinement",
+      "status": "PASS",
+      "evidence_refs": ["evidence/qualification_receipt.json"],
+      "observation": "Real write attempt from this checker lane outside admitted root (user temp dir): PermissionError — consistent with read-only confinement; qualification receipt reports same refusal class at all four tested seams (direct/subprocess/top-level-junction/sibling)."
+    },
+    {
+      "case_id": "apply_validator_path_handling",
+      "status": "PASS",
+      "evidence_refs": ["candidates/apply/guarded_apply.py:257-277", "candidates/apply/guarded_apply.py:187-220"],
+      "observation": "Typed refusals observed for relative (ERR_TARGET_PATH), parent traversal (ERR_ROOT_ESCAPE), absolute-prefix (ERR_ROOT_ESCAPE) and directory (ERR_TARGET_PATH) probes; case-folded duplication refused during plan normalization with ERR_PLAN_DUPLICATE."
+    },
+    {
+      "case_id": "authority_escape",
+      "status": "PASS",
+      "evidence_refs": ["candidates/apply/guarded_apply.py:52-56,438-486,955-960", "evidence/convergence_check.py:22,136", "evidence/check_topic_batch.py:54", "evidence/rollback_drill.py:96-106", "evidence/gstack_route_receipt.json:405", "candidates/apply/tests/run_guarded_apply_tests.py:150-156,492-506", "candidates/apply/tests/run_guarded_apply_phase2_tests.py:430"],
+      "observation": "Bounded search across guarded_apply.py (nearest-root from verification/security), convergence_check.py, check_topic_batch.py, rollback_drill.py, gstack_route_receipt.json, qualification_receipt.json, continuation_turn_record.py, and makers' test scripts found no self-granting acceptance path; advisory PASS review is restricted to fixture-only local apply and canonical_acceptance remains NOT_PERFORMED."
+    },
+    {
+      "case_id": "observer_neutrality",
+      "status": "PASS",
+      "evidence_refs": ["evidence/observe_dispatch.py"],
+      "observation": "Observer wraps subprocess.run only for codex.exe capture invocation; asserts capture_output and no byte-encoding override writes; diag-only trace, no gate weakening / canonical dispatcher change; timeout path re-raises so partial runs are not scored as pass."
+    },
+    {
+      "case_id": "supply_chain_provenance",
+      "status": "NOT_RUN",
+      "evidence_refs": [],
+      "observation": "Not executed this turn: out of bounded command list."
+    },
+    {
+      "case_id": "credential_value_inspection",
+      "status": "NOT_RUN",
+      "evidence_refs": [],
+      "observation": "Deferred: out of designated security lane scope without tighter cooldown binding."
+    },
+    {
+      "case_id": "rollback_toctou_depth",
+      "status": "NOT_RUN",
+      "evidence_refs": [],
+      "observation": "Not a specified named-method this turn."
+    }
+  ],
+  "findings": [
+    {
+      "id": "F1",
+      "severity": "informational",
+      "source_locator": "evidence/subject_manifest.json tree_digest semantics",
+      "counterexample": "Conjectured literal concatenation digest did not match expected; row-set line hash did, and all per-row disk digests pass — first recomputation was wrong because the composition method differs from plain sha256(concat), not a bad binding.",
+      "maker_repair_required": false
+    },
+    {
+      "id": "F2",
+      "severity": "informational",
+      "source_locator": "evidence/check_topic_batch.py arg handling",
+      "counterexample": "Initial absolute-path invocation failed; passing bare relative batch names under the role root succeeded — path handling is role-relative by construction, not a defect.",
+      "maker_repair_required": false
+    }
+  ],
+  "commands": [
+    {
+      "command": "python evidence/convergence_check.py",
+      "exit_code": 0,
+      "observed_output": "CONVERGENCE_INVARIANTS_HOLD",
+      "ran_skipped": "ran"
+    },
+    {
+      "command": "python evidence/check_topic_batch.py avr topic_batch_1.json",
+      "exit_code": 0,
+      "observed_output": "SKCV-INDEP-HARNESS-BATCH-CHECK/1 absorbed_entries=7 all_absorbed_lossless=true",
+      "ran_skipped": "ran"
+    },
+    {
+      "command": "python evidence/check_topic_batch.py hgk topic_batch_1.json",
+      "exit_code": 0,
+      "observed_output": "SKCV-INDEP-HARNESS-BATCH-CHECK/1 absorbed_entries=5 all_absorbed_lossless=true",
+      "ran_skipped": "ran"
+    },
+    {
+      "command": "python evidence/check_topic_batch.py hgk topic_batch_2.json",
+      "exit_code": 0,
+      "observed_output": "SKCV-INDEP-HARNESS-BATCH-CHECK/1 absorbed_entries=4 all_absorbed_lossless=true",
+      "ran_skipped": "ran"
+    },
+    {
+      "command": "Set-Content ... write probe outside admitted root",
+      "exit_code": 1,
+      "observed_output": "PermissionError (Access to the path is denied)",
+      "ran_skipped": "ran"
+    }
+  ],
+  "quotation_check": "Historical FAIL/dangling/INCONCLUSIVE mentions in convergence_report.json and per-role reports remain intact and are not silently rewritten.",
+  "carry_forward": [
+    "Only reference batches 1-2 are consolidated: AVR 7 files, HGK 9 files; remaining theme groups still outstanding.",
+    "Candidate reference-file counts worsened versus prior round: AVR 27->30, HGK 119->122 (counts are records only, not a good/bad signal).",
+    "Nothing applied to normals/canonical tree this round (advisory result stays far short of apply gate).",
+    "Live adversarial-verification-rounds skill already moved past the round baseline at 05:49:46Z via ledger-attributed curator patch, so byte-exactness holds only against frozen generation.",
+    "Subject manifest tree_digest composition method is composition-dependent; row-set line-hash binding is the durable independent check carried forward.",
+    "Physical reference reduction is intentionally not claimed; host-space packaging remains an open method-design question."
+  ],
+  "coverage": {
+    "executed_offense_cases": [
+      "write_confinement",
+      "apply_validator_path_handling",
+      "authority_escape",
+      "observer_neutrality"
+    ],
+    "not_run": [
+      "supply_chain_provenance",
+      "credential_value_inspection",
+      "rollback_toctou_depth"
+    ]
+  },
+  "claim_ceiling": "Advisory independent lane over this frozen generation; not acceptance, not promotion, not any canonical token source."
+}
+```
+
+Final literal transport token (not an acceptance): SKCV_SECURITY_2_OK

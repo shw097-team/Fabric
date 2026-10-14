@@ -1,0 +1,41 @@
+{
+  "record": "landing of this round's projection on the Fabric mirror",
+  "why": "the round's Fabric-side work had been committed only in the local Fabric tree, which has no remote, and the full return packet had gone to shw097-team/PIPD-LS-SP; nothing had reached the mirror named as the Fabric repository",
+  "target_repo": "https://github.com/shw097-team/Fabric",
+  "target_repo_identity": "Fabric - Integrated Governance Mirror (FABRIC/, HG-KSEOS/, FAR/, DESKTOP/, INTEGRATION/, EVIDENCE/)",
+  "before": {"main": "71de521e80470ee1c9a808bf26d42c4eaedf803e", "published_at_declared": "2026-10-13T12:23:20.088907+00:00"},
+  "change_set": {
+    "branch": "docs/skill-convergence-20261014",
+    "branch_commit": "37074480a7ac3ab94e86b90e34bfff478481d769",
+    "pull_request": "https://github.com/shw097-team/Fabric/pull/1",
+    "merge_commit": "f14724dd701c5af185c9e003d41a9d56791832bc",
+    "merged_by": "pull request merge on the remote",
+    "files": 27,
+    "added": 22,
+    "modified": 5,
+    "added_paths": "EVIDENCE/SKILL-CONVERGENCE-20261014/ (22 files: round record, FAR decision, independent check and its adjudication, security check and its adjudication, publication record, approval list, closure manifest, machine receipts)",
+    "modified_paths": ["README.md", "FABRIC/README.md", "FABRIC/UPGRADE-INDEX.md", "INTEGRATION/MANIFEST.json", "INTEGRATION/KNOWN-FINDINGS.md"]
+  },
+  "verification": {
+    "anonymous_ls_remote_main": "f14724dd701c5af185c9e003d41a9d56791832bc",
+    "anonymous_fetch": "credential-free fetch of main succeeded; the merge commit carries two parents",
+    "files_under_the_round_dir_at_main": 22,
+    "decisive_byte_comparisons": [
+      {"path": "EVIDENCE/SKILL-CONVERGENCE-20261014/README.md", "result": "MATCH (sha256 prefix 420d9b1585df1aab)"},
+      {"path": "EVIDENCE/SKILL-CONVERGENCE-20261014/PUBLICATION-RECORD.md", "result": "MATCH (sha256 prefix 2ca2f6e8e0cf3469)"},
+      {"path": "EVIDENCE/SKILL-CONVERGENCE-20261014/ROUND-CLOSURE.md", "result": "MATCH (sha256 prefix 780b7c046b4d8bca)"}
+    ],
+    "committed_blob_equals_authored_source": true
+  },
+  "credential_handling": {
+    "value": "[REDACTED] - read at runtime from the owner-specified file; never in argv, URL, config or log",
+    "capability_probe": "reversible ref probe on the mirror: create a ref at an existing commit (201), then delete it (204); residual ref 404",
+    "local_artifacts_removed_after_use": ["clone used for the change-set is retained only as a work directory", "no credential helper file remains on disk"]
+  },
+  "disclosures": [
+    "Two pre-existing files (HG-KSEOS/tests/test_knowledge_memory_poison.py, HG-KSEOS/tools/case_executors_depth.py) contain deliberate fake token fixtures that match common secret patterns; they are untouched by this change-set and were left alone.",
+    "The local Fabric tree's remote linkage remains an owner-class open item (INTEGRATION/MANIFEST.json pending, KNOWN-FINDINGS K-13); this record does not close it.",
+    "The mirror's manifest exclusion of raw evidence stores is respected: this projection is curated (22 files), and the full 632-file packet stays on the PIPD-LS-SP branch."
+  ],
+  "claim_ceiling": "a mirrored projection of a candidate round's records, for external planning only; it accepts, merges nothing beyond its own change-set, releases and promotes nothing"
+}

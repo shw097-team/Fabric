@@ -1,0 +1,101 @@
+{
+  "schema": "SKCV-AVR-PHASE1-RESULT/1",
+  "workorder": "WO-SKCV-20261014-AVR",
+  "phase": "PARTIAL_ENTRY_ONLY",
+  "status": "PHASE1_ATOMIC_ENTRY_EXTRACT_DONE",
+  "interpreter": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+  "python": "3.11.17",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "source": {
+    "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/SKILL-CONVERGENCE-20261014/baseline/adversarial-verification-rounds/SKILL.md",
+    "sha256": "4be690a4feaee5ba1fcf7bb5c109b6c41a3834060f1e962a3d9112952f66e97e",
+    "total_bytes": 101488
+  },
+  "commands": {
+    "generate": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe entry_extract.py generate",
+    "reconstruct": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe entry_extract.py reconstruct",
+    "negative": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe entry_extract.py negative",
+    "phase1": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe entry_extract.py phase1"
+  },
+  "protected_intervals": [
+    [
+      0,
+      6069
+    ],
+    [
+      8615,
+      15004
+    ],
+    [
+      44763,
+      48598
+    ],
+    [
+      49896,
+      51145
+    ],
+    [
+      55137,
+      57343
+    ]
+  ],
+  "generated": {
+    "skill/SKILL.md": {
+      "sha256": "eaf6172b9031f3f0a70671ca5f2b8fd10408ba1f6979e90d235e0ff2e7c60f2f",
+      "bytes": 22091
+    },
+    "skill/references/topic-source-remainder.md": {
+      "sha256": "15d6ab99131f46d2fe1663b61a21a40672be0f6c29ff845a0347544b54b78eaa",
+      "bytes": 82592
+    }
+  },
+  "main_decoded_body_chars": 22021,
+  "main_under_24000": true,
+  "repeat_generation_digest_equal": true,
+  "reconstruct": {
+    "ok": true,
+    "code": "OK",
+    "source_sha256": "4be690a4feaee5ba1fcf7bb5c109b6c41a3834060f1e962a3d9112952f66e97e"
+  },
+  "negative_checks": [
+    {
+      "case": "missing_slice",
+      "refused": true,
+      "code": "COVERAGE_GAP",
+      "expected": "COVERAGE_GAP",
+      "pass_": true
+    },
+    {
+      "case": "reordered_slice",
+      "refused": true,
+      "code": "REORDERED_MAP",
+      "expected": "REORDERED_MAP",
+      "pass_": true
+    },
+    {
+      "case": "corrupt_slice",
+      "refused": true,
+      "code": "SLICE_HASH_MISMATCH",
+      "expected": "SLICE_HASH_MISMATCH",
+      "pass_": true
+    }
+  ],
+  "boundary_validation": "PASS (source sha256, line-start/line-end alignment, interval hints)",
+  "files_written": [
+    "skill/SKILL.md",
+    "skill/references/topic-source-remainder.md",
+    "entry_map.json"
+  ],
+  "unchanged": "all other skill/references/* and skill/scripts/* untouched",
+  "partial_entry_only": true,
+  "not_reference_consolidation": true,
+  "not_final_tests": true,
+  "not_acceptance": true,
+  "hgk_canonical_acceptance": "NOT_PERFORMED",
+  "sqs_live_trading": "NOT_AUTHORIZED",
+  "successors": [
+    "full reference grouping",
+    "comprehensive tests",
+    "independent acceptance"
+  ]
+}

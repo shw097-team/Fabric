@@ -1,0 +1,41 @@
+--- a/scripts/hgk-lane-dispatch.py
++++ b/scripts/hgk-lane-dispatch.py
+@@ -1126,6 +1126,7 @@
+     # GROWS); the digest of the exact prefix can, and does.
+     prefix_digest_before = usage_prefix_digest(usage_path, offset)
+     t0 = time.time()
++    timed_out = False
+     try:
+         # stdin=DEVNULL matters: `codex exec` reads stdin ("Reading additional input from stdin...")
+         # and blocks forever when the parent's stdin is an open pipe that never closes - which is
+@@ -1140,8 +1141,20 @@
+         # BEFORE any file is written, which made "byte-identical" untrue).
+         out = out_b.decode("utf-8", errors="replace")
+         err = err_b.decode("utf-8", errors="replace")
+-    except subprocess.TimeoutExpired:
+-        rc, out, err, out_b, err_b = "TIMEOUT", "", "", b"", b""
++    except subprocess.TimeoutExpired as exc:
++        # TIMEOUT-CAPTURE: `subprocess.TimeoutExpired` carries whatever the child had already
++        # written to stdout/stderr (exc.stdout / exc.stderr) before it was killed. The old
++        # branch forced the streams to b"" / "", so a timed-out attempt was written with
++        # 0 bytes and an empty tail and the child's diagnostics were lost. Preserve the bytes
++        # already read; the timeout CLASSIFICATION (exit "TIMEOUT", ok=false, no nonce,
++        # usage_receipt_ok=false) is unchanged -- a timeout stays a timeout, it just stops
++        # being silent.
++        timed_out = True
++        rc = "TIMEOUT"
++        out_b = exc.stdout if isinstance(exc.stdout, bytes) else (exc.stdout or "").encode("utf-8", errors="replace")
++        err_b = exc.stderr if isinstance(exc.stderr, bytes) else (exc.stderr or "").encode("utf-8", errors="replace")
++        out = out_b.decode("utf-8", errors="replace")
++        err = err_b.decode("utf-8", errors="replace")
+     dur = round(time.time() - t0, 2)
+     # H1 (pass-4 checker false green): the nonce verdict is decided on the PRESERVED BYTES.
+     # `errors="replace"` manufactures U+FFFD (so a raw 0xFF "satisfied" a U+FFFD nonce), and the old
+@@ -1237,6 +1250,7 @@
+     attempt = {"rank": entry["rank"], "provider": entry["provider"], "model": entry["model"],
+             "transport_model": entry["transport_model"], "sandbox": sandbox,
+             "reasoning_effort": entry.get("reasoning_effort"), "exit": rc,
++            "timed_out": timed_out,
+             "seconds": dur, "nonce_present": nonce_ok, "nonce_present_raw_stdout": nonce_raw,
+             "nonce_source": "item.completed/agent_message",
+             "usage_rows_after_offset": len(rows), "usage_offset": offset,

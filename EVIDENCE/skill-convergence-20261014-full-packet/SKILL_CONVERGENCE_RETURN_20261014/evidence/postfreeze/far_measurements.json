@@ -1,0 +1,181 @@
+{
+  "schema": "SKCV-FAR-MEASUREMENTS/1",
+  "observed_at": "2026-10-14T06:40:27.912985+00:00",
+  "thresholds": {
+    "body_soft_budget_chars": 24000,
+    "max_skill_content_chars": 100000,
+    "references_warning_cap": 60,
+    "source": "live tools/skill_linter.py lines 51,56,192: the 60-file rule is a warning named references-sprawl"
+  },
+  "roles": {
+    "avr": {
+      "main_doc": {
+        "baseline_chars": 99999,
+        "candidate_chars": 21759,
+        "delta_chars": -78240,
+        "pct_of_hard_cap": 21.8,
+        "over_body_soft_budget": false
+      },
+      "references": {
+        "baseline_files": 25,
+        "candidate_files": 28,
+        "over_linter_cap": false,
+        "over_by": 0,
+        "size_bands": {
+          ">20KB": 4,
+          "4KB-20KB": 13,
+          "<400B": 7,
+          "400B-4KB": 4
+        },
+        "reachability": {
+          "named_by_another_reference": 10,
+          "unreachable": 10,
+          "named_by_main_doc": 8
+        },
+        "unreachable_sample": [
+          [
+            "references/cross-model-verification-lessons.md",
+            24668
+          ],
+          [
+            "references/verification-control-defects.md",
+            5839
+          ],
+          [
+            "references/round-closeout-and-handover.md",
+            5175
+          ],
+          [
+            "references/post-verdict-drift.md",
+            4999
+          ],
+          [
+            "references/attacking-a-gate-implementation.md",
+            4408
+          ],
+          [
+            "references/locally-executable-gates.md",
+            4398
+          ],
+          [
+            "references/lane-handover-hygiene.md",
+            4149
+          ],
+          [
+            "references/checker-dispatch-frozen-subject.md",
+            3120
+          ],
+          [
+            "references/probe-shape-and-false-red.md",
+            2757
+          ],
+          [
+            "references/probe-and-claim-discipline.md",
+            2688
+          ]
+        ],
+        "unreachable_bytes": 62201
+      },
+      "named_by_main_doc": [
+        "references/checker-binding-and-false-defect-signals.md",
+        "references/finding-classification.md",
+        "references/independent-verification-hygiene.md",
+        "references/lane-harness-and-admission-gate.md",
+        "references/sealed-evidence-corpus.md",
+        "references/topic-source-remainder.md",
+        "references/verdict-artifact-and-budget.md",
+        "references/verifier-lane-handover.md"
+      ]
+    },
+    "hgk": {
+      "main_doc": {
+        "baseline_chars": 99996,
+        "candidate_chars": 19658,
+        "delta_chars": -80338,
+        "pct_of_hard_cap": 19.7,
+        "over_body_soft_budget": false
+      },
+      "references": {
+        "baseline_files": 105,
+        "candidate_files": 108,
+        "over_linter_cap": true,
+        "over_by": 48,
+        "size_bands": {
+          ">20KB": 7,
+          "400B-4KB": 20,
+          "4KB-20KB": 72,
+          "<400B": 9
+        },
+        "reachability": {
+          "named_by_another_reference": 64,
+          "unreachable": 37,
+          "named_by_main_doc": 7
+        },
+        "unreachable_sample": [
+          [
+            "references/evidence-integrity-lessons.md",
+            33595
+          ],
+          [
+            "references/rbwi-4plus1-pack-execution.md",
+            19548
+          ],
+          [
+            "references/model-lane-routing-and-codex-execute-route.md",
+            16907
+          ],
+          [
+            "references/governance-knowledge-map.md",
+            10359
+          ],
+          [
+            "references/fda-authorization-guardrail-design.md",
+            7894
+          ],
+          [
+            "references/publication-credential-and-handover.md",
+            7387
+          ],
+          [
+            "references/browser-account-automation-under-guard.md",
+            7140
+          ],
+          [
+            "references/validator-authoring-lessons.md",
+            7003
+          ],
+          [
+            "references/fda-guardrail-implementation-2026-08-15.md",
+            6696
+          ],
+          [
+            "references/hgk-spine-knowledge-facilities.md",
+            6449
+          ],
+          [
+            "references/spartoi-reopen-preopen-execution.md",
+            6363
+          ],
+          [
+            "references/false-green-verification-traps.md",
+            5844
+          ]
+        ],
+        "unreachable_bytes": 230407
+      },
+      "named_by_main_doc": [
+        "references/FDA_ROUTE_REGISTRY.json",
+        "references/capc-contract-building.md",
+        "references/cross-session-integrity.md",
+        "references/daytrading-t0-axis-authoritative-chain.md",
+        "references/fda_guard_hook.py",
+        "references/fda_guard_mint.py",
+        "references/final-closure-resume.md",
+        "references/order-completion-audit.md",
+        "references/self-verifying-probe-authoring.md",
+        "references/sqs-data-plane-verification.md"
+      ]
+    }
+  },
+  "claim_ceiling": "measurement of a frozen candidate generation; it supports an engineering ruling and grants no acceptance"
+}

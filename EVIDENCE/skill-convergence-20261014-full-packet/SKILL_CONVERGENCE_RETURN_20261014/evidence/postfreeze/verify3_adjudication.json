@@ -1,0 +1,86 @@
+{
+  "schema": "SKCV-HARNESS-ADJUDICATION-VERIFY/1",
+  "observed_at": "2026-10-14T06:23:33.678450+00:00",
+  "lane": "WO-SKCV-20261014-VERIFY tag 3",
+  "transport_gate": {
+    "exit": "0",
+    "token_emitted": true,
+    "ok": true,
+    "used_rank": 3,
+    "served_arm": "opencode-go/glm-5.3-flash",
+    "required_arm": "opencode-go/glm-5.3-flash",
+    "usage_receipt_ok": true,
+    "used_seconds": 228.34
+  },
+  "content_admissibility": {
+    "json_parse": "repaired",
+    "repair_notes": [
+      "repair required: Expecting ',' delimiter at line 3 column 31",
+      "repaired by quoting the bare where the sha256 value was emitted without quotes; no other change"
+    ],
+    "foreign_vocabulary_found_in_verdict": [
+      "V4.2",
+      "currency-like",
+      "reinjected",
+      "Ladder 550",
+      "alpha"
+    ],
+    "foreign_vocabulary_disposition": "these terms do not occur anywhere in this subject; their presence in the verdict narrative is context contamination from another task, so the contaminated fields are excluded from the acceptance basis rather than read as findings about this subject"
+  },
+  "checker_claimed_verdict": "PASS_ADVISORY",
+  "checker_cases": [
+    {
+      "case_id": "S1-SubjectManifest",
+      "status": "PASS"
+    },
+    {
+      "case_id": "S2-HarnessRerun",
+      "status": "PASS"
+    },
+    {
+      "case_id": "S3-SourceLineMeasurement",
+      "status": "PASS"
+    },
+    {
+      "case_id": "S4-MetricPolicyCrosscheck",
+      "status": "PASS"
+    },
+    {
+      "case_id": "S5-StatusConsistency",
+      "status": "PASS"
+    }
+  ],
+  "checker_findings": [
+    {
+      "id": "F1",
+      "severity": "minor",
+      "source_locator": "evidence/subject_manifest.json:16, entries 300-347",
+      "counterexample": "The final-LF scalar digests in 304 unwound trailing newline envelope counts from 345 to 311 and permitted early resequencing under 400 before the ratchet-bit reset. Maker did not account for this measurement-only note in the published digest.",
+      "maker_repair_required": true
+    },
+    {
+      "id": "F2",
+      "severity": "none",
+      "source_locator": "not applicable",
+      "counterexample": "No SASS/NOON, WEEK, MONTH, or TOPSIS status contradiction surfaced in the convergence report's last stable pass and no open counter-example was recorded.",
+      "maker_repair_required": false
+    }
+  ],
+  "digest_method_dispute": {
+    "checker_claim": "the tree digest does not recompute from the documented newline-joined row form; a variant without the terminating LF matched",
+    "harness_recomputation": {
+      "documented_lf_joined": "9b68418bcbfd230d43d6525752a09d156b37b31fb214eacaf3b5c77b616936cb",
+      "lf_joined_trailing_newline": "2bb90bc27c2f3821c2c2b39800093a4f7da13e201363a450e26f98383c568449",
+      "crlf_joined": "18ca8eee3157f799b27d2546dc4ac59d6b385879ff804304f3c699ca03210485",
+      "lf_joined_trailing_lf_after_each": "2bb90bc27c2f3821c2c2b39800093a4f7da13e201363a450e26f98383c568449"
+    },
+    "declared": "9b68418bcbfd230d43d6525752a09d156b37b31fb214eacaf3b5c77b616936cb",
+    "variants_that_reproduce_declared": [
+      "documented_lf_joined"
+    ],
+    "harness_position": "the documented method reproduces the declared digest exactly and has now done so three times independently (this harness twice, and the SECURITY lane once), so the method is adequately specified in substance; the manifest text can still be made unambiguous by stating the absence of a trailing separator, which is a documentation sharpening, not a subject-byte defect",
+    "checker_digest_commands_captured": 7
+  },
+  "harness_position_on_verdict": "the transport gate passed, but the verdict content is admitted only for the fields the harness reproduces. Its substantive PASS cases (subject binding by 374 row digests and sizes, the four read-only harness verdicts, both byte-exact entry-map reconstructions, the three detected mutations) reproduce here; its contaminated narrative fields do not enter the acceptance basis, and a clean re-issue is required before any advisory verdict may be cited",
+  "claim_ceiling": "harness adjudication of a checker verdict; it reproduces measurable claims and identifies contamination, but it does not grant acceptance, does not promote, and does not apply anything to the canonical tree"
+}

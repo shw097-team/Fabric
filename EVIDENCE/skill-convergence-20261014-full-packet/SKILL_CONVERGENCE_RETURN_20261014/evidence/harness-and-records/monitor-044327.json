@@ -1,0 +1,78 @@
+[
+  {
+    "role": "hgk",
+    "completed_commands": 21,
+    "failed_commands": 3,
+    "last_commands": [
+      {
+        "exit": 0,
+        "command": "\"C:\\\\Users\\\\user\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$probe = @'\"'\nsrc=r\\\"C:/Projects/Agent_Workspace/HG-KSEOS/var/SKILL-CONVERGENCE-2",
+        "output": "guard_hook.py`，fail_closed: true）——FDA 相關 tool call（terminal/computer_use/execute_code/delegate_task/write_file/patch）無 token、無 route → `{\"action\":\"block\"}` + exit 2 → 模型被迫「暫停+詢問」。\r\r\n- **B 層**：`fda_preflight.py` 新增 `--route-id <ID>` / `--auth-token <FILE>`——`--action-class`（操作意圖）無授權 → exit 2 `no_authorization:<reason>`；`--check-assets`/`--list` 診斷模式免授權。\r\r\n- **C 層**：`approvals.deny`（config.yaml）——`*quarantined_violations*`、`*cua-driver*foreground*`、`*cua-driver*bring_to_front*` 無條件硬擋（**先於 --yolo**；勿加 `*python*var/fda/*`——會誤擋合法 fda_run 路由執行）。\r\r\n- **allowlist**：`references/FDA_ROUTE_REGISTRY.json`（schema FDA-ROUTE-REGISTRY/1；新增/撤銷 route 一律經 HGK WorkOrder + 用戶確認）。\r\r\n\r\r\n**三條件皆無 → STOP + 主動詢問用戶**（BLOCK message 內建條件 3 指令）。任何 FDA 操作前先自問：本次授權來源是 1/2/3 哪一個？答不出來就是條件 3 路徑。\r\r\n\r\r\n\r\n################END\r\n"
+      },
+      {
+        "exit": 0,
+        "command": "\"C:\\\\Users\\\\user\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$probe = @'\"'\nimport re\nsrc=r\\\"C:/Projects/Agent_Workspace/HG-KSEOS/var/SKILL-CON",
+        "output": "CE CLOSURE PIPELINE: machine-generated, freeze-order-enforced (FAR self-evolution 2026-08-14, RR4 root-cause)\r\n    ## Step 10A — Upgrade/self-evolution proposal routing: FAR research gate FIRST (user-mandated 2026-08-14, UD-FAR-RESEARCH-GATE-2026-08-14-001)\r\n    ## Step 8 — A-3-class operability ChangeSet: evolution canary + cold-start canaries\r\n    ## Pitfalls checklist\r\n========= C3 103288 105116\r\n    ### Step 9 操作細節（Fabric profile / cua items）→ 載入 `references/step-9-fda-cua-operations.md`（2026-08-15 拆分搬移，原文 bytes 未改動）。\r\n    ## Step 9A — Shared Infrastructure Profile Team blueprint implementation (FDA/FAR class, verified 2026-08-13)\r\n    ## Step 10 — External provider-tool governed enablement (P0-TOOL registry class, verified 2026-08-13 WO-HGK-GENIE-PREDESIGN-001)\r\n    ## Support files\r\n"
+      }
+    ],
+    "new_top_files": [
+      "entry_extract.py"
+    ]
+  },
+  {
+    "role": "avr",
+    "completed_commands": 25,
+    "failed_commands": 1,
+    "last_commands": [
+      {
+        "exit": 0,
+        "command": "\"C:\\\\Users\\\\user\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"cd 'C:\\\\Projects\\\\Agent_Workspace\\\\HG-KSEOS\\\\var\\\\SKILL-CONVERGENCE-20261014\\\\can",
+        "output": "s\\Agent_Workspace\\HG-KSEOS\\var\\SKILL-CONVERGENCE-20261014\\candidates\\avr\\skill\\references\\verifier-lane-hando\r\nver.md\r\nC:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\SKILL-CONVERGENCE-20261014\\candidates\\avr\\skill\\references\\verify-lane-perform\r\nance.md\r\nC:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\SKILL-CONVERGENCE-20261014\\candidates\\avr\\skill\\scripts\\freeze-subject-and-gua\r\nrd.py\r\nC:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\SKILL-CONVERGENCE-20261014\\candidates\\avr\\skill\\scripts\\run-gate-matrix.py\r\nC:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\SKILL-CONVERGENCE-20261014\\candidates\\avr\\_scratch\\loc.py\r\nC:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\SKILL-CONVERGENCE-20261014\\candidates\\avr\\_scratch\\probe.py\r\nC:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\SKILL-CONVERGENCE-20261014\\candidates\\avr\\_scratch\\rules.py\r\n\r\n"
+      },
+      {
+        "exit": 0,
+        "command": "\"C:\\\\Users\\\\user\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$p='\"'C:\\\\Projects\\\\Agent_Workspace\\\\HG-KSEOS\\\\var\\\\SKILL-CONVERGENCE-20261014\\\\b",
+        "output": " before\r\n1120\t  writing a verdict, the seconds-long remote-acceptance blocker checks (`git remote -v`,\r\n1121\t  `git cat-file -t <baseline-sha>`, the artifact's own publication gate), and the honest local-vs-remote\r\n1122\t  split. Load it whenever you are asked whether a governed round is finished or acceptable.\r\n1123\t- `references/checker-contract-authoring.md` — how to write a verification contract that yields a\r\n1124\t  DECIDABLE verdict: the uncommitted-candidate / overlay form, the control-probe rules that keep a\r\n1125\t  disagreement from being read as a product defect, why the suite is graded in a clean copy and what to\r\n1126\t  exclude from that copy (Windows MAX_PATH), and the contract-revision discipline. Load it before authoring\r\n1127\t  or revising any independent-checker contract.\r\n"
+      }
+    ],
+    "new_top_files": []
+  },
+  {
+    "role": "consumer",
+    "completed_commands": 39,
+    "failed_commands": 6,
+    "last_commands": [
+      {
+        "exit": 1,
+        "command": "\"C:\\\\Users\\\\user\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"& \\\"C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe\\\" --version;",
+        "output": "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\n     | The term 'C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe' is not recognized as a name of a cmdlet, function, script file, or executable program.\r\nCheck the spelling of the name, or if a path was included, verify that the path is correct and try again.\r\n&: \r\nLine |\r\n   2 |  … -version; & \"C:/Users/user/AppData/Local/Programs/Python/Python311/py …\r\n     |                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\n     | The term 'C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe' is not recognized as a name of a cmdlet, function, script file, or executable program.\r\nCheck the spelling of the name, or if a path was included, verify that the path is correct and try again.\r\n"
+      },
+      {
+        "exit": 0,
+        "command": "\"C:\\\\Users\\\\user\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-ChildItem \"C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/Lo",
+        "output": "hermes_state_messages.py\r\nhermes_state_portability.py\r\nhermes_state_profile_repair.py\r\nhermes_state_readpool.py\r\nhermes_state_registry.py\r\nhermes_state_repair.py\r\nhermes_state_rewind.py\r\nhermes_state_schema.py\r\nhermes_state_search.py\r\nhermes_state_sessions.py\r\nhermes_state_telegram.py\r\nhermes_state_timeline.py\r\nhermes_state_titles.py\r\nhermes_state_usage.py\r\nhermes_state_user_copy.py\r\nhermes_state_wal.py\r\nhermes_state.py\r\nhermes_time.py\r\nLICENSE\r\nmcp_serve.py\r\nmini_swe_runner.py\r\nmodel_tools.py\r\npackage-lock.json\r\npackage.json\r\npyproject.toml\r\nREADME.es.md\r\nREADME.md\r\nREADME.ur-pk.md\r\nREADME.zh-CN.md\r\nregistration_lifecycle.py\r\nrun_agent.py\r\nSECURITY.es.md\r\nSECURITY.md\r\nsetup-hermes.sh\r\nsetup.py\r\nSOUL.md\r\ntoolset_distributions.py\r\ntoolsets.py\r\ntrajectory_compressor.py\r\nutils.py\r\nuv.lock\r\n\r\n"
+      }
+    ],
+    "new_top_files": []
+  },
+  {
+    "role": "apply",
+    "completed_commands": 17,
+    "failed_commands": 1,
+    "last_commands": [
+      {
+        "exit": 0,
+        "command": "\"C:\\\\Users\\\\user\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw C:\\\\Projects\\\\Agent_Workspace\\\\HG-KSEOS\\\\var\\\\SKILL-CONVERGENCE-",
+        "output": "ply.py\",\r\n        \"command\": \"%s tests/run_guarded_apply_tests.py\" % sys.executable,\r\n        \"interpreter\": sys.executable,\r\n        \"ran\": [x.name for x in passed] + [x.name for x in failed],\r\n        \"skipped\": [x.name for x in skipped],\r\n        \"passed\": [x.name for x in passed],\r\n        \"failed\": [\"%s: %s\" % (x.name, x.detail) for x in failed],\r\n        \"count\": {\"total\": len(RESULTS), \"pass\": len(passed), \"fail\": len(failed), \"skip\": len(skipped)},\r\n        \"test_fixture_only\": True,\r\n        \"claim_ceiling\": \"LOCAL_APPLY_ONLY\",\r\n        \"detail\": {x.name: {\"status\": x.status, \"detail\": x.detail} for x in RESULTS},\r\n    }\r\n    print(json.dumps(summary, indent=2, ensure_ascii=False))\r\n    return 0 if not failed else 1\r\n\r\n\r\nif __name__ == \"__main__\":\r\n    raise SystemExit(main())\r\n\r\n"
+      },
+      {
+        "exit": 0,
+        "command": "\"C:\\\\Users\\\\user\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw C:\\\\Projects\\\\Agent_Workspace\\\\HG-KSEOS\\\\var\\\\SKILL-CONVERGENCE-",
+        "output": "sh GLM Independent Acceptance Officer / VERIFY与SECURITY在冻结候选上并行，只读重算与重跑。明确 required_arm=served_arm、nonce、fresh usage receipt、合法verdict、精确locator与subject nonmutation；模型文字PASS不得绕过dispatcher或证据校验。\n12. 任一验证FAIL→退回原writeset的DeepSeek maker，产生新candidate generation，再用fresh GLM reverify；不让checker修补自己的subject。全部指定条件满足前不apply；local apply后的读回/cold-start/canary与回推演练另行绑定真实文件。\n13. 最后用HGK typed APIs记录真实结果、checkpoint与completion_sweep。分开 implemented、locally verified、independently verified、canonical accepted；不自签human promotion或外部acceptance。\n\n## 当前完成与未完成\n\n已更新此 PLAN 的唯一作者/runtime route为目前Hermes GPT主会话；旧DeepSeek PLAN helpers输出排除。\n\n原始执行任务未完成：compiler当前仍为 `PROMPT_COMPILE_BLOCKED`（`runtime_readiness.current_verdict='OPEN'`不在合法enum）；本轮HGK admission、正式Codex writers、独立验收、live apply与rollback尚未执行。不得将此revision称为工程完成。\n\r\n"
+      }
+    ],
+    "new_top_files": [
+      "guarded_apply.py"
+    ]
+  }
+]

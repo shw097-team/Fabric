@@ -1,0 +1,43 @@
+{
+  "kind": "ROUND_ONLY_INDEPENDENT_REVIEW_CONTRACT",
+  "project_id": "SKILL-CONVERGENCE-20261014",
+  "authority": "Owner instruction + current Fabric/HGK contracts; this JSON is an engineering oracle projection, not a new canonical gate or acceptance token",
+  "plan_author": "current Hermes main openai-codex/gpt-6.1-sol medium OpenAI OAuth",
+  "maker": "Codex CLI opencode-go/deepseek-v4.1-flash",
+  "checker": "fresh Codex CLI opencode-go/glm-5.3-flash",
+  "decision_before_check": true,
+  "required_cases": [
+    "nonempty_exact_subject_manifest",
+    "hgk_entry_and_all_migrated_refs_byte_reconstruction",
+    "avr_entry_and_all_migrated_refs_byte_reconstruction",
+    "corrupted_missing_reordered_slice_refusal",
+    "inline_identity_trigger_authority_sod_refusal_rollback_core",
+    "topic_ownership_and_old_file_section_alias_resolution",
+    "no_added_dangling_or_unexplained_orphan_refs",
+    "deterministic_regeneration_and_source_drift_refusal",
+    "full_current_lint_delta_compatibility_and_unavailable_distinction",
+    "single_edit_patch_support_and_batch_actual_caller_forwarding",
+    "consumer_positive_negative_boundary_cross_skill_and_rollback_suites",
+    "dry_run_apply_rollback_stale_preimage_midfailure_and_path_escape_fixtures",
+    "trigger_positive_negative_boundary_cross_role_holdout_and_no_authority_escape",
+    "global_changed_unchanged_denominator_and_uncovered_surface_matrix",
+    "raw_required_equals_served_nonce_fresh_usage_and_actual_commands",
+    "independent_readonly_subject_preserved_and_test_oracle_not_weakened"
+  ],
+  "verdict_values": ["PASS_ADVISORY", "PARTIAL_ADVISORY", "FAIL_ADVISORY", "INCONCLUSIVE"],
+  "pass_requirements": [
+    "Every required case independently rederived from exact frozen nonempty subject with actual commands or explicit source-clause evidence",
+    "No blocker/major unresolved; no required case NOT_RUN, NOT_REDERIVED or UNKNOWN",
+    "Dispatcher ok with exact required/served arm, fresh matching usage and literal nonce",
+    "No candidate/baseline mutation during checker; valid strict JSON verdict with exact manifest digest",
+    "No promotion/canonical/external acceptance token derived from an advisory result"
+  ],
+  "closure_on_repeated_failure": "If a blocker class remains after three maker repair generations, retain FAIL + named carry_forward and checkpoint; do not enlarge budget, loosen oracle or manufacture completion",
+  "json_required_fields": ["verdict", "subject_manifest_sha256", "cases", "findings", "commands", "quotation_check", "carry_forward", "coverage", "claim_ceiling"],
+  "case_required_fields": ["case_id", "status", "evidence_refs", "observation"],
+  "allowed_case_status": ["PASS", "FAIL", "NOT_RUN", "INCONCLUSIVE"],
+  "finding_required_fields": ["id", "severity", "source_locator", "counterexample", "maker_repair_required"],
+  "command_required_fields": ["command", "exit_code", "observed_output", "ran_skipped"],
+  "quotation_rule": "Preserve historical wrong claims and earlier FAIL verdicts as quoted records; identify them separately from current live claims. Never silently delete contradictions.",
+  "scope_ceiling": "Default canonical Hermes profile and HGK control/skills + named mutation callers. Other profiles/models/install/direct-write consumers are not automatically verified. A bounded review is not proof of zero global regression."
+}

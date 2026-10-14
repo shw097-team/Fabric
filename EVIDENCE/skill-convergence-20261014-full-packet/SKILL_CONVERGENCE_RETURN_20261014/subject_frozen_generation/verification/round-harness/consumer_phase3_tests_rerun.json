@@ -1,0 +1,56 @@
+{
+  "schema": "SKCV-CONSUMER-PHASE3-TESTS-RERUN/2",
+  "observed_at": "2026-10-14T05:49:39.578132+00:00",
+  "superseded_first_attempt": {
+    "what_it_said": "both test targets exited 1",
+    "real_reason": "the harness invoked pytest without the user site-packages on PYTHONPATH, so the qualified interpreter reported \"No module named pytest\". This was a harness fault, not a product failure, and it is kept here rather than deleted."
+  },
+  "environment": {
+    "pytest": "9.1.1 from C:/Users/user/AppData/Roaming/Python/Python311/site-packages",
+    "interpreter": "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/hermes-agent/venv/Scripts/python.exe",
+    "known_environment_limit": "symlink creation is refused on this host (WinError 1314, no SeCreateSymbolicLinkPrivilege), so symlink-dependent tests cannot run here"
+  },
+  "corrected_runs": {
+    "reader_test": {
+      "cwd": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\SKILL-CONVERGENCE-20261014\\candidates\\consumer",
+      "args": [
+        "tests/tools/test_lint_reader_edit.py"
+      ],
+      "exit": 0,
+      "summary": [
+        "1 passed in 1.25s"
+      ]
+    },
+    "lint_full_current": {
+      "cwd": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\SKILL-CONVERGENCE-20261014\\candidates\\consumer",
+      "args": [
+        "tests/tools/test_lint_full_current.py"
+      ],
+      "exit": 0,
+      "summary": [
+        "6 passed in 0.43s"
+      ]
+    },
+    "whole_tools_suite_candidate": {
+      "cwd": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\SKILL-CONVERGENCE-20261014\\candidates\\consumer",
+      "args": [
+        "tests/tools/"
+      ],
+      "exit": 1,
+      "summary": [
+        "1 failed, 102 passed, 3 skipped in 11.56s"
+      ]
+    },
+    "same_failing_test_on_unpatched_live_runtime": {
+      "cwd": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\hermes-agent",
+      "args": [
+        "tests/tools/test_skill_manager_tool.py::TestDeleteSkillRmtreeGuard::test_symlinked_skill_dir_refused"
+      ],
+      "exit": 1,
+      "summary": [
+        "1 failed in 2.04s"
+      ]
+    }
+  },
+  "claim_ceiling": "these are runs of the maker-authored tests by the round harness; a green suite proves those tests pass in this environment and that no test the patch touches regressed, not that the change is correct or accepted"
+}

@@ -1,0 +1,118 @@
+{
+  "schema": "SKILL-CONVERGENCE-BOARD-CLOSURE/1",
+  "observed_utc": "2026-10-14T07:37:22.739053+00:00",
+  "board": "skill-convergence-20261014",
+  "board_db": "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/kanban/boards/skill-convergence-20261014/kanban.db",
+  "readback_before": null,
+  "readback_after": [
+    {
+      "id": "t_abd1c49d",
+      "title": "Swarm: Two-entry lossless extraction topic references full-lint consumer and independen",
+      "status": "done",
+      "assignee": null
+    },
+    {
+      "id": "t_ecf1b71c",
+      "title": "HGK lossless candidate",
+      "status": "done",
+      "assignee": null
+    },
+    {
+      "id": "t_cc3569a4",
+      "title": "AVR lossless candidate",
+      "status": "done",
+      "assignee": null
+    },
+    {
+      "id": "t_82b1e625",
+      "title": "Existing consumer candidate",
+      "status": "done",
+      "assignee": null
+    },
+    {
+      "id": "t_187f9c1d",
+      "title": "Verify swarm outputs",
+      "status": "done",
+      "assignee": null
+    },
+    {
+      "id": "t_0706f07e",
+      "title": "Synthesize swarm outputs",
+      "status": "done",
+      "assignee": null
+    }
+  ],
+  "calls": [
+    {
+      "id": "t_ecf1b71c",
+      "title": "HGK lossless candidate",
+      "comment_rc": 0,
+      "comment2_rc": 0,
+      "complete_rc": 0,
+      "complete_out": "Completed t_ecf1b71c"
+    },
+    {
+      "id": "t_cc3569a4",
+      "title": "AVR lossless candidate",
+      "comment_rc": 0,
+      "comment2_rc": 0,
+      "complete_rc": 0,
+      "complete_out": "Completed t_cc3569a4"
+    },
+    {
+      "id": "t_82b1e625",
+      "title": "Existing consumer candidate",
+      "comment_rc": 0,
+      "comment2_rc": 0,
+      "complete_rc": 0,
+      "complete_out": "Completed t_82b1e625"
+    },
+    {
+      "id": "t_187f9c1d",
+      "title": "Verify swarm outputs",
+      "comment_rc": 0,
+      "comment2_rc": 0,
+      "complete_rc": 0,
+      "complete_out": "Completed t_187f9c1d"
+    },
+    {
+      "id": "t_0706f07e",
+      "title": "Synthesize swarm outputs",
+      "comment_rc": 0,
+      "comment2_rc": 0,
+      "complete_rc": 0,
+      "complete_out": "Completed t_0706f07e"
+    }
+  ],
+  "note": "本回合以既有可複用的手動 exact 派遣車道執行，未由 native dispatcher 驅動此卡；證據見 var/SKILL-CONVERGENCE-20261014/evidence/postfreeze/SESSION_CLOSURE.md 與同目錄 CLOSURE_MANIFEST.json。",
+  "result_text": "結案：候選成果已交付；兩軸獨立查核皆 PASS_ADVISORY（VERIFY 與 SECURITY，gen2）；對外發佈 feat/skill-convergence-return-20261014；殘留缺口與失敗紀錄見 SESSION_CLOSURE.md。本卡狀態為結案紀錄，不構成 acceptance 或 promotion。",
+  "claim_ceiling": "a board close-out; card status is mutable state and grants no acceptance",
+  "readback_source": "direct sqlite read of the board database; the kanban CLI on this host has no `tasks` verb, so a CLI readback was impossible and the exit codes alone would have been a claim",
+  "comments_per_task": {
+    "t_0706f07e": 2,
+    "t_187f9c1d": 2,
+    "t_82b1e625": 3,
+    "t_abd1c49d": 2,
+    "t_cc3569a4": 3,
+    "t_ecf1b71c": 3
+  },
+  "tables": [
+    "tasks",
+    "task_links",
+    "task_comments",
+    "sqlite_sequence",
+    "task_events",
+    "task_runs",
+    "task_attachments",
+    "kanban_notify_subs"
+  ],
+  "statuses": {
+    "t_abd1c49d": "done",
+    "t_ecf1b71c": "done",
+    "t_cc3569a4": "done",
+    "t_82b1e625": "done",
+    "t_187f9c1d": "done",
+    "t_0706f07e": "done"
+  },
+  "all_round_cards_done": true
+}

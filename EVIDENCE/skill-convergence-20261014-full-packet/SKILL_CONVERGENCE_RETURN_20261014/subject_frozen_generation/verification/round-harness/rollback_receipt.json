@@ -1,0 +1,322 @@
+{
+  "schema": "SKCV-ROLLBACK-RECEIPT/1",
+  "observed_at": "2026-10-14T06:01:22.945524+00:00",
+  "restore_exercised_in_this_environment": true,
+  "restore_note": "the restore drill was executed into a scratch tree and re-hashed",
+  "R1_global_baseline_drift": {
+    "checked": 581,
+    "unchanged": 569,
+    "changed": 12,
+    "missing": 0,
+    "changed_detail": [
+      {
+        "path": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\skills\\.curator_ledger.jsonl",
+        "baseline": "a2001ffe92b59e5e",
+        "now": "d3e09ce7b850dcff",
+        "classification": "RUNTIME_BOOKKEEPING",
+        "note": "skill usage/curation bookkeeping written by the Hermes runtime, not skill content"
+      },
+      {
+        "path": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\skills\\.usage.json",
+        "baseline": "ccccda354b99b851",
+        "now": "7168e093e86aa6c5",
+        "classification": "RUNTIME_BOOKKEEPING",
+        "note": "skill usage/curation bookkeeping written by the Hermes runtime, not skill content"
+      },
+      {
+        "path": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\skills\\hgk-lifecycle-admission\\references\\sealed-execute-lane-operations.md",
+        "baseline": "c4096876c5977135",
+        "now": "0a983e0124173366",
+        "classification": "CONCURRENT_CURATOR_PATCH",
+        "actor": "curator",
+        "action": "patch",
+        "skill": "hgk-lifecycle-admission",
+        "ledger_ts": "2026-10-14T05:12:05.795734+00:00",
+        "ledger_id": "c27eb9956287",
+        "ledger_session": "20261014_105653_625a5d"
+      },
+      {
+        "path": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\skills\\hgk-lifecycle-admission\\references\\spine-api-and-sealed-lane-gotchas.md",
+        "baseline": "ca3cf95bb399fd5b",
+        "now": "a2607c52b025ad2e",
+        "classification": "CONCURRENT_CURATOR_PATCH",
+        "actor": "curator",
+        "action": "patch",
+        "skill": "hgk-lifecycle-admission",
+        "ledger_ts": "2026-10-14T05:51:14.900697+00:00",
+        "ledger_id": "a410d092684a",
+        "ledger_session": "20261014_001634_6bbe39"
+      },
+      {
+        "path": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\skills\\hgk-lifecycle-admission\\SKILL.md",
+        "baseline": "291ce168a077ad5e",
+        "now": "2b211f906da8b7c2",
+        "classification": "CONCURRENT_CURATOR_PATCH",
+        "actor": "curator",
+        "action": "patch",
+        "skill": "hgk-lifecycle-admission",
+        "ledger_ts": "2026-10-14T05:12:05.635641+00:00",
+        "ledger_id": "bd0b8ea234f8",
+        "ledger_session": "20261014_105653_625a5d"
+      },
+      {
+        "path": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\skills\\software-development\\adversarial-verification-rounds\\references\\verifier-lane-handover.md",
+        "baseline": "aebb35ea0ef523de",
+        "now": "d8e95038d4055c86",
+        "classification": "CONCURRENT_CURATOR_PATCH",
+        "actor": "curator",
+        "action": "patch",
+        "skill": "adversarial-verification-rounds",
+        "ledger_ts": "2026-10-14T05:49:46.554785+00:00",
+        "ledger_id": "d40009f4ce4f",
+        "ledger_session": "20261014_001634_6bbe39"
+      },
+      {
+        "path": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\skills\\software-development\\canonical-change-landing\\SKILL.md",
+        "baseline": "e6187f8612793a90",
+        "now": "a019da4db6f47206",
+        "classification": "CONCURRENT_CURATOR_PATCH",
+        "actor": "curator",
+        "action": "patch",
+        "skill": "canonical-change-landing",
+        "ledger_ts": "2026-10-14T05:46:17.004211+00:00",
+        "ledger_id": "7201a66572a1",
+        "ledger_session": "20261014_105653_625a5d"
+      },
+      {
+        "path": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\skills\\software-development\\governed-stack-audit\\SKILL.md",
+        "baseline": "04284c618f75b75f",
+        "now": "227df0eb8870ac2e",
+        "classification": "CONCURRENT_CURATOR_PATCH",
+        "actor": "curator",
+        "action": "patch",
+        "skill": "governed-stack-audit",
+        "ledger_ts": "2026-10-14T05:25:26.290173+00:00",
+        "ledger_id": "6214fa375ed9",
+        "ledger_session": "20261014_105653_625a5d"
+      },
+      {
+        "path": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\skills\\software-development\\hgk-kanban-and-lane-routing\\references\\codex-lane-transport-and-identity.md",
+        "baseline": "c8823ce5dbfb03b0",
+        "now": "7198f96393dc619f",
+        "classification": "CONCURRENT_CURATOR_PATCH",
+        "actor": "curator",
+        "action": "patch",
+        "skill": "hgk-kanban-and-lane-routing",
+        "ledger_ts": "2026-10-14T05:49:36.821244+00:00",
+        "ledger_id": "3859e551aec3",
+        "ledger_session": "20261014_001634_6bbe39"
+      },
+      {
+        "path": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\skills\\software-development\\hgk-kanban-and-lane-routing\\SKILL.md",
+        "baseline": "03a1f4caaeb96d11",
+        "now": "05facf76f7031fd8",
+        "classification": "CONCURRENT_CURATOR_PATCH",
+        "actor": "curator",
+        "action": "patch",
+        "skill": "hgk-kanban-and-lane-routing",
+        "ledger_ts": "2026-10-14T05:49:36.715215+00:00",
+        "ledger_id": "0ce77d223da7",
+        "ledger_session": "20261014_001634_6bbe39"
+      },
+      {
+        "path": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\skills\\software-development\\long-running-worker-supervision\\SKILL.md",
+        "baseline": "ac62951564fd4e58",
+        "now": "89a2511d5facc930",
+        "classification": "CONCURRENT_CURATOR_PATCH",
+        "actor": "curator",
+        "action": "patch",
+        "skill": "long-running-worker-supervision",
+        "ledger_ts": "2026-10-14T05:25:01.104318+00:00",
+        "ledger_id": "9c18debc1722",
+        "ledger_session": "20261014_105653_625a5d"
+      },
+      {
+        "path": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\skills\\software-development\\remote-repo-publication\\SKILL.md",
+        "baseline": "acfc0ab1755c964b",
+        "now": "394650e0e50c7580",
+        "classification": "CONCURRENT_CURATOR_PATCH",
+        "actor": "curator",
+        "action": "patch",
+        "skill": "remote-repo-publication",
+        "ledger_ts": "2026-10-14T05:50:09.302844+00:00",
+        "ledger_id": "327b043b425d",
+        "ledger_session": "20261014_001634_6bbe39"
+      }
+    ],
+    "baseline_recorded_at": "2026-10-14T04:01:20.284090+00:00",
+    "denominator": 581
+  },
+  "R2_rollback_source_is_valid": {
+    "hgk-governed-execution": {
+      "baseline_files": 119,
+      "live_files": 119,
+      "identical": true,
+      "live_only": [],
+      "baseline_only": [],
+      "walk_note": "byte-code caches (__pycache__) are excluded from both sides"
+    },
+    "adversarial-verification-rounds": {
+      "baseline_files": 27,
+      "live_files": 27,
+      "identical": false,
+      "live_only": [],
+      "baseline_only": [],
+      "walk_note": "byte-code caches (__pycache__) are excluded from both sides"
+    }
+  },
+  "R3_restore_procedure_exercised": {
+    "hgk-governed-execution": {
+      "files_restored": 119,
+      "restored_matches_baseline_digests": true
+    },
+    "adversarial-verification-rounds": {
+      "files_restored": 27,
+      "restored_matches_baseline_digests": true
+    }
+  },
+  "restore_plan": {
+    "what": "no live skill was written by this round, so the rollback point is intact and the restore is a no-op today. If a later governed apply lands, restore by copying baseline/<skill>/** over the live skill directory after confirming the receipt digests",
+    "source": "var/SKILL-CONVERGENCE-20261014/baseline/<skill>/",
+    "targets": {
+      "hgk-governed-execution": "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/skills/software-development/hgk-governed-execution",
+      "adversarial-verification-rounds": "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/skills/software-development/adversarial-verification-rounds"
+    },
+    "verify_after_restore": "re-hash the live tree and compare with evidence/global_baseline.json and verification/round-harness/rollback_drill/"
+  },
+  "drift_attribution": {
+    "runtime_bookkeeping": [
+      "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\skills\\.curator_ledger.jsonl",
+      "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\skills\\.usage.json"
+    ],
+    "concurrent_curator_patches": [
+      {
+        "path": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\skills\\hgk-lifecycle-admission\\references\\sealed-execute-lane-operations.md",
+        "baseline": "c4096876c5977135",
+        "now": "0a983e0124173366",
+        "classification": "CONCURRENT_CURATOR_PATCH",
+        "actor": "curator",
+        "action": "patch",
+        "skill": "hgk-lifecycle-admission",
+        "ledger_ts": "2026-10-14T05:12:05.795734+00:00",
+        "ledger_id": "c27eb9956287",
+        "ledger_session": "20261014_105653_625a5d"
+      },
+      {
+        "path": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\skills\\hgk-lifecycle-admission\\references\\spine-api-and-sealed-lane-gotchas.md",
+        "baseline": "ca3cf95bb399fd5b",
+        "now": "a2607c52b025ad2e",
+        "classification": "CONCURRENT_CURATOR_PATCH",
+        "actor": "curator",
+        "action": "patch",
+        "skill": "hgk-lifecycle-admission",
+        "ledger_ts": "2026-10-14T05:51:14.900697+00:00",
+        "ledger_id": "a410d092684a",
+        "ledger_session": "20261014_001634_6bbe39"
+      },
+      {
+        "path": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\skills\\hgk-lifecycle-admission\\SKILL.md",
+        "baseline": "291ce168a077ad5e",
+        "now": "2b211f906da8b7c2",
+        "classification": "CONCURRENT_CURATOR_PATCH",
+        "actor": "curator",
+        "action": "patch",
+        "skill": "hgk-lifecycle-admission",
+        "ledger_ts": "2026-10-14T05:12:05.635641+00:00",
+        "ledger_id": "bd0b8ea234f8",
+        "ledger_session": "20261014_105653_625a5d"
+      },
+      {
+        "path": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\skills\\software-development\\adversarial-verification-rounds\\references\\verifier-lane-handover.md",
+        "baseline": "aebb35ea0ef523de",
+        "now": "d8e95038d4055c86",
+        "classification": "CONCURRENT_CURATOR_PATCH",
+        "actor": "curator",
+        "action": "patch",
+        "skill": "adversarial-verification-rounds",
+        "ledger_ts": "2026-10-14T05:49:46.554785+00:00",
+        "ledger_id": "d40009f4ce4f",
+        "ledger_session": "20261014_001634_6bbe39"
+      },
+      {
+        "path": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\skills\\software-development\\canonical-change-landing\\SKILL.md",
+        "baseline": "e6187f8612793a90",
+        "now": "a019da4db6f47206",
+        "classification": "CONCURRENT_CURATOR_PATCH",
+        "actor": "curator",
+        "action": "patch",
+        "skill": "canonical-change-landing",
+        "ledger_ts": "2026-10-14T05:46:17.004211+00:00",
+        "ledger_id": "7201a66572a1",
+        "ledger_session": "20261014_105653_625a5d"
+      },
+      {
+        "path": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\skills\\software-development\\governed-stack-audit\\SKILL.md",
+        "baseline": "04284c618f75b75f",
+        "now": "227df0eb8870ac2e",
+        "classification": "CONCURRENT_CURATOR_PATCH",
+        "actor": "curator",
+        "action": "patch",
+        "skill": "governed-stack-audit",
+        "ledger_ts": "2026-10-14T05:25:26.290173+00:00",
+        "ledger_id": "6214fa375ed9",
+        "ledger_session": "20261014_105653_625a5d"
+      },
+      {
+        "path": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\skills\\software-development\\hgk-kanban-and-lane-routing\\references\\codex-lane-transport-and-identity.md",
+        "baseline": "c8823ce5dbfb03b0",
+        "now": "7198f96393dc619f",
+        "classification": "CONCURRENT_CURATOR_PATCH",
+        "actor": "curator",
+        "action": "patch",
+        "skill": "hgk-kanban-and-lane-routing",
+        "ledger_ts": "2026-10-14T05:49:36.821244+00:00",
+        "ledger_id": "3859e551aec3",
+        "ledger_session": "20261014_001634_6bbe39"
+      },
+      {
+        "path": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\skills\\software-development\\hgk-kanban-and-lane-routing\\SKILL.md",
+        "baseline": "03a1f4caaeb96d11",
+        "now": "05facf76f7031fd8",
+        "classification": "CONCURRENT_CURATOR_PATCH",
+        "actor": "curator",
+        "action": "patch",
+        "skill": "hgk-kanban-and-lane-routing",
+        "ledger_ts": "2026-10-14T05:49:36.715215+00:00",
+        "ledger_id": "0ce77d223da7",
+        "ledger_session": "20261014_001634_6bbe39"
+      },
+      {
+        "path": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\skills\\software-development\\long-running-worker-supervision\\SKILL.md",
+        "baseline": "ac62951564fd4e58",
+        "now": "89a2511d5facc930",
+        "classification": "CONCURRENT_CURATOR_PATCH",
+        "actor": "curator",
+        "action": "patch",
+        "skill": "long-running-worker-supervision",
+        "ledger_ts": "2026-10-14T05:25:01.104318+00:00",
+        "ledger_id": "9c18debc1722",
+        "ledger_session": "20261014_105653_625a5d"
+      },
+      {
+        "path": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\skills\\software-development\\remote-repo-publication\\SKILL.md",
+        "baseline": "acfc0ab1755c964b",
+        "now": "394650e0e50c7580",
+        "classification": "CONCURRENT_CURATOR_PATCH",
+        "actor": "curator",
+        "action": "patch",
+        "skill": "remote-repo-publication",
+        "ledger_ts": "2026-10-14T05:50:09.302844+00:00",
+        "ledger_id": "327b043b425d",
+        "ledger_session": "20261014_001634_6bbe39"
+      }
+    ],
+    "unattributed": [],
+    "why_it_matters": "a governed surface changed while this round was running, by the runtime skill curator and not by the round itself. Every change is attributable through the curator ledger with before/after digests, so it is reviewable, but it means a baseline taken before a round can silently drift mid-round: the short-horizon baseline must be re-taken at freeze time, not reused across a long round."
+  },
+  "live_moved_since_baseline": [
+    "adversarial-verification-rounds"
+  ],
+  "verdict": "ROLLBACK_POINT_INTACT_BASELINE_FROZEN_LIVE_MOVED_BY_ATTRIBUTED_EDITS",
+  "claim_ceiling": "it proves the round did not modify the recorded surfaces and that the restore source reproduces the baseline bytes in a scratch tree; it does not authorise any apply and is not an acceptance"
+}

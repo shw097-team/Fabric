@@ -1,0 +1,59 @@
+{
+ "schema": "SKCV-INDEP-CONSUMER-PHASE3-CHECK/1",
+ "digest_check": {
+  "tools/skill_manager_tool.py": {
+   "exists": true,
+   "claimed_after_matches_disk": true,
+   "is_new_file": false
+  },
+  "tools/skill_manager_batch.py": {
+   "exists": true,
+   "claimed_after_matches_disk": true,
+   "is_new_file": false
+  },
+  "tests/tools/test_lint_reader_edit.py": {
+   "exists": true,
+   "claimed_after_matches_disk": true,
+   "is_new_file": true
+  }
+ },
+ "reader_reached_from_edit_path": {
+  "definitions": 1,
+  "call_sites_outside_definition": 1,
+  "called_inside_edit_skill": true
+ },
+ "batch_advisor_keys": {
+  "lint_evaluation_status": true,
+  "full_current_lint_findings": true
+ },
+ "policy_constants": {
+  "candidate": {
+   "_MAX_REFERENCE_FILES": "60",
+   "_BODY_SOFT_BUDGET_CHARS": "24_000"
+  },
+  "live": {
+   "_MAX_REFERENCE_FILES": "60",
+   "_BODY_SOFT_BUDGET_CHARS": "24_000"
+  },
+  "identical": true
+ },
+ "tests_rerun_by_harness": {
+  "reader_test": {
+   "cmd": "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/hermes-agent/venv/Scripts/python.exe -m pytest -q --no-header -p no:cacheprovider tests/tools/test_lint_reader_edit.py",
+   "exit": 1,
+   "tail": [],
+   "stderr_tail": [
+    "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe: No module named pytest"
+   ]
+  },
+  "lint_full_current": {
+   "cmd": "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/hermes-agent/venv/Scripts/python.exe -m pytest -q --no-header -p no:cacheprovider tests/tools/test_lint_full_current.py",
+   "exit": 1,
+   "tail": [],
+   "stderr_tail": [
+    "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe: No module named pytest"
+   ]
+  }
+ },
+ "claim_ceiling": "it re-runs the maker tests and re-hashes its files; it is not an independent checker verdict, it does not prove the reader changes behaviour under a real governed edit, and it grants no acceptance"
+}

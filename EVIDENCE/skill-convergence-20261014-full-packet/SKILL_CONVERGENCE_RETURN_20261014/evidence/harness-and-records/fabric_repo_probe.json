@@ -1,0 +1,29 @@
+{
+  "credential_length": 93,
+  "credential_family": "github_pat",
+  "repo_read": {
+    "http": 200,
+    "accepted_permissions": "metadata=read",
+    "default_branch": "main",
+    "private": false,
+    "permissions_block_for_the_user_not_the_token": {
+      "admin": true,
+      "maintain": true,
+      "push": true,
+      "triage": true,
+      "pull": true
+    }
+  },
+  "contents_read": {
+    "http": 200,
+    "accepted_permissions": "contents=read"
+  },
+  "main_sha": "71de521e80470ee1c9a808bf26d42c4eaedf803e",
+  "write_probe": {
+    "http": 201,
+    "body_head": "{\"ref\":\"refs/heads/__write_probe__\",\"node_id\":\"REF_kwDOU7aI7bpyZWZzL2hlYWRzL19fd3JpdGVfcHJvYmVfXw\",\"url\":\"https://api.github.com/repos/shw097-team/Fabric/git/refs/heads/__write_probe__\",\"object\":{\"sha",
+    "deleted_http": 204
+  },
+  "residual_probe_ref": 404,
+  "verdict": "WRITE_GRANTED_TO_MIRROR"
+}

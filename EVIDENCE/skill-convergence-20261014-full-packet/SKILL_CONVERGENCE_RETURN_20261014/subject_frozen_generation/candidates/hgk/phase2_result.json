@@ -1,0 +1,170 @@
+{
+  "schema": "SKCV-HGK-PHASE2-RESULT/1",
+  "workorder": "WO-SKCV-20261014-HGK",
+  "phase": "phase 2",
+  "batch": 1,
+  "theme": "external-evidence-closure",
+  "maker": "Codex CLI (opencode-go/deepseek-v4.1-flash)",
+  "shell": "pwsh (Windows)",
+  "python": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+  "absorbed": [
+    {
+      "absorbed_path": "skill/references/external-single-md-mandatory-route.md",
+      "bytes": 2546,
+      "sha256": "975407d870df5443901ce90a4ff32cbc9b5a2bc6b5dce6a998c1b9c1ece8f682",
+      "byte_offset": 181,
+      "payload_byte_end": 2727,
+      "stub_path": "skill/references/external-single-md-mandatory-route.md",
+      "stub_sha256": "c68e52019cc65d61222aea114c39aa45190ddfc570a878a2c7ca881900883fd6"
+    },
+    {
+      "absorbed_path": "skill/references/external-acceptance-single-md-closure.md",
+      "bytes": 5544,
+      "sha256": "5af0c9dfd49aa60faca75a8b0ce7fa7bb624d6c02f18e07c6f116f102540c688",
+      "byte_offset": 2912,
+      "payload_byte_end": 8456,
+      "stub_path": "skill/references/external-acceptance-single-md-closure.md",
+      "stub_sha256": "0ea33098e31835c6e8938ad6f27519d703282c87cce01762c07d20287406865f"
+    },
+    {
+      "absorbed_path": "skill/references/external-submission-gates.md",
+      "bytes": 7083,
+      "sha256": "8525b204cc789419123321b49a0f61dea65216f9eecce1a313754feb27d3c7b0",
+      "byte_offset": 8629,
+      "payload_byte_end": 15712,
+      "stub_path": "skill/references/external-submission-gates.md",
+      "stub_sha256": "c3eaf647d1c5f2e25ae075ac5ff096ff35a7ded26ebce33de912027a5016b83e"
+    },
+    {
+      "absorbed_path": "skill/references/external-challenge-evidence-closure-far.md",
+      "bytes": 5363,
+      "sha256": "9412dfe386962e8e71280dbc129e16dfe89a93cb6c91e93c90390ffe1a157505",
+      "byte_offset": 15900,
+      "payload_byte_end": 21263,
+      "stub_path": "skill/references/external-challenge-evidence-closure-far.md",
+      "stub_sha256": "870c322cb5ef870e0594bf8dc5d02b6fb78e2d715745691feb970d1933572114"
+    },
+    {
+      "absorbed_path": "skill/references/external-challenge-review-closure.md",
+      "bytes": 10097,
+      "sha256": "85fc306679893ece6233bd26b1157b2735fc97efd6729571e23f6d9cca13a7aa",
+      "byte_offset": 21446,
+      "payload_byte_end": 31543,
+      "stub_path": "skill/references/external-challenge-review-closure.md",
+      "stub_sha256": "875d5d45b03c881c2b06afe3c279443e03fd13820cb4702fbbe5d1581f53ecdc"
+    }
+  ],
+  "topic_file": {
+    "path": "skill/references/topics/external-evidence-closure.md",
+    "bytes": 31543,
+    "sha256": "c388431aac767a189627e318dbaa9a1bbed4f54d438ef99883811b387434cf66"
+  },
+  "deliverables": {
+    "topic_file": "skill/references/topics/external-evidence-closure.md",
+    "stubs": [
+      "skill/references/external-single-md-mandatory-route.md",
+      "skill/references/external-acceptance-single-md-closure.md",
+      "skill/references/external-submission-gates.md",
+      "skill/references/external-challenge-evidence-closure-far.md",
+      "skill/references/external-challenge-review-closure.md"
+    ],
+    "batch_json": "topic_batch_1.json",
+    "checker": "topic_check.py",
+    "result": "phase2_result.json"
+  },
+  "untouched": [
+    "skill/SKILL.md",
+    "entry_map.json",
+    "skill/references/topics/construction-wave-and-remaining-procedures.md"
+  ],
+  "commands": [
+    {
+      "cmd": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe build_phase2.py",
+      "exit_code": 0,
+      "note": "wrote topic file, 5 stubs, topic_batch_1.json"
+    },
+    {
+      "cmd": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe verify_bytes.py",
+      "exit_code": 0,
+      "note": "ALL_OK True: each segment == original bytes and recomputes to recorded sha256"
+    },
+    {
+      "cmd": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe topic_check.py",
+      "exit_code": 0,
+      "note": "good case: status OK, 5 segments, 12 skill name tokens resolved"
+    },
+    {
+      "cmd": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe topic_check.py --topic scratch\\negatives\\missing.md",
+      "exit_code": 11,
+      "note": "ERR_SKCV_SEGMENT_MISSING"
+    },
+    {
+      "cmd": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe topic_check.py --topic scratch\\negatives\\duplicated.md",
+      "exit_code": 12,
+      "note": "ERR_SKCV_SEGMENT_DUPLICATED"
+    },
+    {
+      "cmd": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe topic_check.py --topic scratch\\negatives\\reordered.md",
+      "exit_code": 13,
+      "note": "ERR_SKCV_SEGMENT_REORDERED"
+    },
+    {
+      "cmd": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe topic_check.py --topic scratch\\negatives\\mutated.md",
+      "exit_code": 14,
+      "note": "ERR_SKCV_SEGMENT_MUTATED"
+    },
+    {
+      "cmd": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe test_guards.py",
+      "exit_code": 0,
+      "note": "sandbox probes: GOOD OK; ERR_SKCV_STUB_MISMATCH(20), ERR_SKCV_STUB_MISSING(20), ERR_SKCV_SKILL_NAME_UNRESOLVED(21)"
+    },
+    {
+      "cmd": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe refcount.py",
+      "exit_code": 0,
+      "note": "after: recursive=113 top-level=111"
+    }
+  ],
+  "checker_ran": {
+    "good_case": 1,
+    "negative_probes": 4,
+    "extra_guard_probes": 3
+  },
+  "checker_skipped": 0,
+  "typed_refusals_observed": [
+    "ERR_SKCV_SEGMENT_MISSING",
+    "ERR_SKCV_SEGMENT_DUPLICATED",
+    "ERR_SKCV_SEGMENT_REORDERED",
+    "ERR_SKCV_SEGMENT_MUTATED",
+    "ERR_SKCV_STUB_MISSING",
+    "ERR_SKCV_STUB_MISMATCH",
+    "ERR_SKCV_SKILL_NAME_UNRESOLVED"
+  ],
+  "reference_file_count": {
+    "root": "skill/references",
+    "before": {
+      "recursive": 112,
+      "top_level": 111
+    },
+    "after": {
+      "recursive": 113,
+      "top_level": 111
+    },
+    "delta": {
+      "recursive": 1,
+      "top_level": 0,
+      "explanation": "the 5 original reference files were replaced 1:1 by one-line stubs (top-level count unchanged at 111); one new topic file was added under topics/ (recursive 112 -> 113)"
+    },
+    "count_claim": "the physical reference-file count did NOT fall; it rose by 1"
+  },
+  "remaining_themes": {
+    "statement": "This is batch 1 of the SKCV-HGK reference themes. All remaining HGK reference themes stay OPEN; no other theme was absorbed, and no whole-tree consolidation was performed.",
+    "status": "OPEN"
+  },
+  "nonclaims": [
+    "no canonical acceptance / promotion / release claim",
+    "no cap, threshold, linter, lock or policy change",
+    "no underscored/hidden files created",
+    "no deletion; the 5 original paths now carry pointer stubs",
+    "no whole-tree scan; only the 6 permitted files were read"
+  ]
+}

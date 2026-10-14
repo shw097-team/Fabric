@@ -1,0 +1,117 @@
+{
+  "wo": "WO-SKCV-20261014-CONSUMER successor",
+  "phase": "PARTIAL_PRIMITIVE_ONLY",
+  "status": "PARTIAL_PRIMITIVE_ONLY",
+  "claimed_complete": false,
+  "scope_note": "Bounded turn: patch ONLY _attach_lint_findings (+ its representation helper) in the candidate primitive and prove the four additive properties with a focused fixture/test. Caller wiring, batch propagation, edit/support-file reachability, docs and broad suites are NOT implemented or claimed here; they are the next same-WO successors.",
+  "runtime_python": "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/hermes-agent/venv/Scripts/python.exe",
+  "runtime_python_version": "3.11.17",
+  "pytest_version": "9.1.1 (user site-packages C:\\Users\\user\\AppData\\Roaming\\Python\\Python311\\site-packages on PYTHONPATH; the qualified venv itself ships no pytest)",
+  "applyable_write_set": [
+    "tools/skill_manager_tool.py",
+    "tests/tools/test_lint_full_current.py"
+  ],
+  "non_applyable_classification": {
+    "tests/tools/conftest.py": "harness/bootstrap candidate-first import shim, NOT part of the applyable write set (pre-existing)"
+  },
+  "changed_files": {
+    "tools/skill_manager_tool.py": {
+      "baseline_sha256": "44b1744d535196b3d34ac06e9610e7b8d171516236d9cf506e278e59546f437f",
+      "result_sha256": "d14dd541cb637864f3345e51f3ca9c09cb04eebda561cb2014a36d83b37f7b05",
+      "delta": "Rewrote _attach_lint_findings; added helper _lint_finding_repr. No other function touched."
+    },
+    "tests/tools/test_lint_full_current.py": {
+      "baseline_sha256": null,
+      "result_sha256": "859f6097eda5f86c49c587e12e4432a0e75001e5d42cc13b3455154608d4c180",
+      "delta": "New focused test file (6 tests)."
+    },
+    "tools/skill_manager_batch.py": {
+      "sha256_unchanged": "63f55e36d30d6e601811597fec3b26474d8a0e595fc02810a37bf98b3a1a515e",
+      "delta": "NOT touched this turn."
+    }
+  },
+  "primitive": "tools/skill_manager_tool.py::_attach_lint_findings (line ~397) + tools/skill_manager_tool.py::_lint_finding_repr",
+  "evaluation_semantics": {
+    "lint_evaluation_status": "EVALUATED when the linter import+evaluation succeed; UNAVAILABLE when the import or evaluation raises.",
+    "full_current_lint_findings": "list of {severity, rule, message} dicts for the COMPLETE current finding set; present (possibly []) ONLY on EVALUATED. A clean evaluated [] is therefore distinct from an unavailable evaluation (which emits no list).",
+    "lint_warnings": "UNCHANGED delta-only list (rules the write INTRODUCED). Absent when the delta is empty, exactly as before.",
+    "lint_hint": "UNCHANGED; only emitted alongside a non-empty delta.",
+    "error_results": "UNCHANGED: error/guard returns never route through this helper, so rejected writes gain no lint keys and keep their existing shape.",
+    "thresholds_caps_locks_scanner": "UNCHANGED; no new normative gate, no duplicate scanner, no live mutation."
+  },
+  "dependency_modules_readonly": [
+    "tools/skill_linter.py (lint_content, lint_skill) — present in candidate root, verified importable",
+    "agent.skill_utils (SKILL_PROMPT_DESC_LIMIT, parse_frontmatter)"
+  ],
+  "missing_primitive_dependencies": "none observed; tools.skill_linter and agent.skill_utils both resolved",
+  "commands": [
+    {
+      "cmd": "python -m pytest tests/tools/test_lint_full_current.py -p no:cacheprovider -q --basetemp=<candidate>/_pytest_tmp/lintfull",
+      "env": "PYTHONPATH=<user site-packages>; PYTHONDONTWRITEBYTECODE=1",
+      "first_run_result": "1 failed, 5 passed (fixture bug: test_delta_introduced_rule_rides_both_lists patched non-existent text)",
+      "repaired_result": "6 passed in 0.34s",
+      "exit": 0
+    },
+    {
+      "cmd": "python -m pytest tests/tools/test_skill_manager_tool.py::TestPatchSkill::test_patch_surfaces_oversized_body_finding_and_stays_quiet_when_clean -p no:cacheprovider -q --basetemp=<candidate>/_pytest_tmp/compat",
+      "env": "PYTHONPATH=<user site-packages>; PYTHONDONTWRITEBYTECODE=1",
+      "result": "1 passed in 0.36s",
+      "exit": 0,
+      "purpose": "pre-existing delta-only compatibility assertion (`lint_warnings` absent when delta empty) still holds"
+    }
+  ],
+  "focused_test_counts": {
+    "collected": 6,
+    "passed": 6,
+    "failed": 0,
+    "skipped": 0,
+    "ran": [
+      "test_clean_evaluation_is_empty_and_evaluated",
+      "test_standing_finding_persists_in_full_when_delta_empty",
+      "test_delta_introduced_rule_rides_both_lists",
+      "test_evaluation_failure_is_unavailable_not_clean",
+      "test_import_failure_is_unavailable",
+      "test_original_error_result_shape_unchanged"
+    ]
+  },
+  "compatibility_check_counts": {
+    "collected": 1,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "ran": [
+      "tests/tools/test_skill_manager_tool.py::TestPatchSkill::test_patch_surfaces_oversized_body_finding_and_stays_quiet_when_clean"
+    ]
+  },
+  "properties_proven": {
+    "old_warning_persists_in_full_when_delta_empty": "PASS (standing 'missing-section' visible in full_current_lint_findings while lint_warnings stays absent)",
+    "clean_empty_is_EVALUATED": "PASS (lint_evaluation_status=EVALUATED, full_current_lint_findings=[])",
+    "evaluation_failure_is_UNAVAILABLE": "PASS (lint_evaluation_status=UNAVAILABLE, no fabricated list; both injected RuntimeError and ImportError covered)",
+    "delta_error_result_compatibility": "PASS (delta-only lint_warnings semantics unchanged; rejected writes keep prior error shape, no lint keys)"
+  },
+  "candidate_import_identity": {
+    "runtime_root": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\hermes-agent",
+    "skill_manager_tool": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\SKILL-CONVERGENCE-20261014\\candidates\\consumer\\tools\\skill_manager_tool.py",
+    "skill_manager_batch": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\SKILL-CONVERGENCE-20261014\\candidates\\consumer\\tools\\skill_manager_batch.py"
+  },
+  "rollback_preservation": {
+    "preserved_surfaces": [
+      "success/failure/advisory return semantics",
+      "delta-only lint_warnings + lint_hint emission rules",
+      "_validate_frontmatter hard rejects and all guards/locks/approval/ledger paths (untouched)",
+      "no thresholds/caps/budget/policy changed"
+    ],
+    "rollback": "Revert tools/skill_manager_tool.py to baseline_sha256 44b1744d... and delete tests/tools/test_lint_full_current.py; no other file changed."
+  },
+  "explicitly_not_done_next_successors": [
+    "_edit_skill does not call _attach_lint_findings — reachable edit path still unproven/unwired",
+    "support-file (write_file references/) callers use no before= delta and were not re-verified this turn",
+    "tools/skill_manager_batch.py _ADVISORY_KEYS does NOT forward lint_evaluation_status / full_current_lint_findings — batch propagation not implemented",
+    "single-action/batch result forwarding of the two new keys not wired",
+    "docs / references / PROMPT_COMPILE work / broad suite (3 suites) not run",
+    "no independent checker verdict; this is a maker self-report only",
+    "no direct-filesystem / install / curator / profile bypass analysis executed"
+  ],
+  "ceiling": "Detection only: full_current_lint_findings with no downstream reader is still just evidence. No reader/consumer wired this turn. Not an acceptance, not globally enforcing.",
+  "transport_token": "SKCV_CONSUMER_2_OK"
+}

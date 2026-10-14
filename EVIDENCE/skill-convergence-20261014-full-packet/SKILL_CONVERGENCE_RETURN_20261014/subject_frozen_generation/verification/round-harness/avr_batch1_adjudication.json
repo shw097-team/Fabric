@@ -1,0 +1,68 @@
+{
+  "schema": "SKCV-HARNESS-ADJUDICATION/1",
+  "lane": "WO-SKCV-20261014-AVR tag 4",
+  "observed_at": "2026-10-14T05:29:51.147556+00:00",
+  "transport": {
+    "exit": "0",
+    "served_arm": "opencode-go/deepseek-v4.1-flash",
+    "required_arm": "opencode-go/deepseek-v4.1-flash",
+    "used_seconds": 693.05,
+    "usage_receipt_ok": true,
+    "ok": true
+  },
+  "step_a_reproduction": {
+    "maker_claim": "BYTE_IDENTICAL for all three artefacts",
+    "harness_recomputed": {
+      "skill/SKILL.md": true,
+      "skill/references/topic-source-remainder.md": true,
+      "entry_map.json": true
+    },
+    "agrees": true
+  },
+  "step_b_lossless": {
+    "absorbed_entries": 7,
+    "all_segments_match_claim": true,
+    "segments_equal_untouched_baseline_bytes": true,
+    "stubs_present_with_topic_pointer": true,
+    "files_deleted_vs_baseline": [],
+    "underscore_prefixed_files": []
+  },
+  "reference_structure": {
+    "named_in_main_doc": 8,
+    "all_named_paths_resolve": true,
+    "link_convention_note": "the main doc names references in backticks, not markdown links; a markdown-link check finds nothing and is NOT evidence of integrity - the backtick-name resolution check is the real one and it resolves",
+    "baseline_refs_no_longer_named": [
+      "references/checker-contract-authoring.md",
+      "references/delivered-tree-vs-gate-verification.md",
+      "references/git-tree-integrity-signals.md",
+      "references/mandate-completion-audit.md",
+      "references/route-scheme-enforcement.md",
+      "references/sqlite-wal-forensics.md",
+      "references/verify-lane-performance.md"
+    ],
+    "those_present_verbatim_in_topic_source_remainder": {
+      "references/checker-contract-authoring.md": true,
+      "references/delivered-tree-vs-gate-verification.md": true,
+      "references/git-tree-integrity-signals.md": true,
+      "references/mandate-completion-audit.md": true,
+      "references/route-scheme-enforcement.md": true,
+      "references/sqlite-wal-forensics.md": true,
+      "references/verify-lane-performance.md": true
+    },
+    "physical_reference_files": {
+      "candidate_named": 8,
+      "baseline_named": 14,
+      "candidate_physical": 27,
+      "baseline_physical": 24
+    }
+  },
+  "verdict": "BATCH_1_INDEPENDENTLY_CONFIRMED_LOSSLESS_BY_THE_ROUND_HARNESS",
+  "what_this_does_not_establish": [
+    "it is not an acceptance of the skill change and it is not independent-checker authority: the harness that ran the lanes checked too",
+    "the reference-file count did NOT fall in this batch (baseline 24 -> candidate 27 physical files), so no sprawl-reduction claim is made yet",
+    "only 2 theme groups are done; the remaining AVR theme groups and ALL of the HGK reference groups stay open",
+    "the consumer wiring, the guarded apply and the rollback drill never ran",
+    "the timed-out lanes in this round (hgk/1,2,4, avr/1,2,3, consumer/1,3, apply/1,3) stay failures and are not repaired by this verdict"
+  ],
+  "claim_ceiling": "byte-level losslessness and structure for this one batch, recomputed by the round harness from raw bytes; nothing about other batches, other lanes, or the product as a whole"
+}

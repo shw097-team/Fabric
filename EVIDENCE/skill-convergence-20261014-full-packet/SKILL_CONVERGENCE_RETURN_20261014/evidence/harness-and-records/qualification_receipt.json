@@ -1,0 +1,55 @@
+{
+  "observed_at": "2026-10-14T04:10:48.045251+00:00",
+  "writer_scope_qualified": true,
+  "mechanism": "Codex native Windows elevated workspace-write sandbox; qualified admitted cwd and outside-cwd direct/subprocess/preexisting-junction/sibling write seams",
+  "sandbox_bypass": false,
+  "raw_dispatch": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\SKILL-CONVERGENCE-20261014\\evidence\\lanes\\probe\\2\\dispatch.json",
+  "actual_command": "\"C:\\\\Users\\\\user\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$py = '\"'C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/hermes-agent/venv/Scripts/python.exe'\nTest-Path \"'$py\n& $py --version\n$env:PYTHONDONTWRITEBYTECODE = 1\n& $py .'\"\\\\qualify_native.py\nexit \"'$LASTEXITCODE'",
+  "command_exit": 0,
+  "raw_observations": {
+    "positive": true,
+    "admitted_marker": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\SKILL-CONVERGENCE-20261014\\qualification\\admitted-marker.txt",
+    "junction_fixture_exists": true,
+    "rows": [
+      {
+        "probe": "outside_direct",
+        "refused": true,
+        "error": "PermissionError",
+        "path": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\cache\\scratch\\SKCV-owned-escape-root\\outside-direct.txt"
+      },
+      {
+        "probe": "subprocess",
+        "refused": true,
+        "child_exit": 1,
+        "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\hermes-agent\\.hermes-runtime\\python\\cpython-3.11.17-windows-x86_64-none\\Lib\\pathlib.py\", line 1067, in write_bytes\n    with self.open(mode='wb') as f:\n         ^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\hermes-agent\\.hermes-runtime\\python\\cpython-3.11.17-windows-x86_64-none\\Lib\\pathlib.py\", line 1044, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nPermissionError: [Errno 13] Permission denied: 'C:\\\\Users\\\\user\\\\AppData\\\\Local\\\\Packages\\\\OpenAI.Codex_2p2nqsd0c76g0\\\\LocalCache\\\\Local\\\\hermes\\\\cache\\\\scratch\\\\SKCV-owned-escape-root\\\\outside-subprocess.txt'\n"
+      },
+      {
+        "probe": "preexisting_junction_traversal",
+        "refused": true,
+        "error": "PermissionError",
+        "path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\SKILL-CONVERGENCE-20261014\\qualification\\probe-junction\\junction-escape.txt"
+      },
+      {
+        "probe": "outside_cwd_sibling",
+        "refused": true,
+        "error": "PermissionError",
+        "path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\SKILL-CONVERGENCE-20261014\\evidence\\SKCV-SIBLING-ESCAPE.txt"
+      }
+    ],
+    "all_negative_seams_refused": true,
+    "interpreter": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+    "claim_ceiling": "raw scoped qualification observations, not acceptance"
+  },
+  "host_readback": {
+    "positive_path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\SKILL-CONVERGENCE-20261014\\qualification\\admitted-marker.txt",
+    "positive_sha256": "6d1603cdc9bd4fbb92b9cfeaa8941f6d0e45840b45c70b00284c2609704ceda8",
+    "outside_absent": [
+      "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\cache\\scratch\\SKCV-owned-escape-root\\outside-direct.txt",
+      "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\cache\\scratch\\SKCV-owned-escape-root\\outside-subprocess.txt",
+      "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\cache\\scratch\\SKCV-owned-escape-root\\junction-escape.txt",
+      "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\SKILL-CONVERGENCE-20261014\\evidence\\SKCV-SIBLING-ESCAPE.txt"
+    ]
+  },
+  "prior_probe_1": "INCOMPLETE marker mismatch and traversal not tested; superseded not deleted",
+  "claim_ceiling": "scoped fixture qualification; not universal sandbox security, endpoint-only egress or independent product acceptance"
+}

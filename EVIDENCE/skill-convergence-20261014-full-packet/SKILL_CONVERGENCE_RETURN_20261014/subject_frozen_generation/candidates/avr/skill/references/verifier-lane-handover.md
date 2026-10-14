@@ -1,0 +1,1 @@
+[SKCV-AVR phase2 absorbed -> skill/references/topics/lane-harness-and-handover.md :: topic_byte_offset=457 :: sha256=aebb35ea0ef523de9d64940081706fc62bd36fb4712abe51ef8baa19e3dd939b :: original bytes verbatim in topic, no byte edits]

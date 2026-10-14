@@ -1,0 +1,46 @@
+{
+  "schema": "hgk-lane-timeout-capture-candidate/1",
+  "lane": "EXECUTE (bounded candidate patch)",
+  "observed_at": "2026-10-14T06:51:42.301157+00:00",
+  "canonical": {
+    "path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\scripts\\hgk-lane-dispatch.py",
+    "sha256_before": "17e667d136f1463609a44e2de6a8f7ba9aab07653f6ea4490178fc4ff93a6c56",
+    "sha256_after": "17e667d136f1463609a44e2de6a8f7ba9aab07653f6ea4490178fc4ff93a6c56",
+    "bytes": 128634,
+    "timeout_branch_line_range": [
+      1143,
+      1144
+    ]
+  },
+  "reproduction": {
+    "before_bytes_preserved": 0,
+    "after_bytes_preserved": 161,
+    "command": "C:/Projects/Agent_Workspace/HG-KSEOS/.venv/Scripts/python.exe patch/repro_timeout_capture.py  (drives the copied dispatcher's run_candidate timeout path twice against a tiny child that prints 4 stdout + 3 stderr lines then sleeps 30s, with a 2s timeout)"
+  },
+  "patch": {
+    "path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\SKILL-CONVERGENCE-20261014\\candidates\\apply\\patch\\lane-dispatch-timeout-capture.patch",
+    "bytes": 2621,
+    "sha256": "31847a3f4f5d7932542f0db20f3e7b6b78457a5df3d2f3bcb128def481e9a024"
+  },
+  "notes_path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\SKILL-CONVERGENCE-20261014\\candidates\\apply\\patch\\APPLY_NOTES.md",
+  "canonical_untouched": true,
+  "exact_commands": [
+    "Get-FileHash -LiteralPath 'C:/Projects/Agent_Workspace/HG-KSEOS/scripts/hgk-lane-dispatch.py' -Algorithm SHA256",
+    "Copy-Item -LiteralPath 'C:/Projects/Agent_Workspace/HG-KSEOS/scripts/hgk-lane-dispatch.py' -Destination 'patch/hgk-lane-dispatch.py' -Force",
+    "C:/Projects/Agent_Workspace/HG-KSEOS/.venv/Scripts/python.exe patch/repro_timeout_capture.py",
+    "git apply --check --verbose patch/lane-dispatch-timeout-capture.patch   # from the repo root; reports a clean apply",
+    "Get-FileHash -LiteralPath 'C:/Projects/Agent_Workspace/HG-KSEOS/scripts/hgk-lane-dispatch.py' -Algorithm SHA256   # verify untouched"
+  ],
+  "coverage": {
+    "read_canonical_sha256_bytes_timeout_branch": true,
+    "copied_canonical_into_cwd_never_edited_canonical": true,
+    "repro_deterministic_no_model_via_run_candidate_timeout_path": true,
+    "patch_is_unified_diff_against_canonical_path": true,
+    "patch_applies_cleanly": true,
+    "patch_preserves_nonzero_exit_no_nonce_ok_false_usage_receipt_ok_false_on_timeout": true,
+    "apply_notes_written": true,
+    "canonical_sha256_reverified": true,
+    "note": "the briefed interpreter C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe exists but is DENIED to this process (PermissionError / 'Access is denied'); the reproduction recorded this and ran under the running interpreter C:/Projects/Agent_Workspace/HG-KSEOS/.venv/Scripts/python.exe (3.12.14). No other interpreter was found on PATH."
+  },
+  "claim_ceiling": "This is a candidate patch plus a deterministic reproduction. It grants NO landing authority and has NOT been applied to the canonical control plane: C:/Projects/Agent_Workspace/HG-KSEOS/scripts/hgk-lane-dispatch.py is byte-unchanged (sha256 same before and after). Editing the control plane's lane mechanism is a canonical change requiring its own admission and landing (Shared Spine event + evidence + rollback reference + an independent checker result). A patch that applies cleanly is not a fix; only a landed, re-verified dispatcher is. This result carries no acceptance and no promotion; the repro proves the defect and the candidate behavior, not a live fix."
+}

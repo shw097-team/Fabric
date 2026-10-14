@@ -1,0 +1,5 @@
+# Byte-fidelity control for this return packet.
+# Every digest this packet records was computed over the bytes as they sit on the authoring host, so the
+# repository's own line-ending normalisation must not rewrite them on the way into the object store or back out
+# into a clone. Without this file a reader cannot reproduce a single digest in EVIDENCE_MANIFEST.json.
+* -text

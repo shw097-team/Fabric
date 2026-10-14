@@ -1,0 +1,1374 @@
+{
+  "schema": "FABRIC-REPO-HYGIENE-MANIFEST/1",
+  "observed_at": "2026-10-14T07:20:29.438718+00:00",
+  "purpose": "classify the Fabric working tree, prove the pre-commit secret scan, and hash every file brought under version control",
+  "counts": {
+    "changed_or_untracked_entries": 58,
+    "junk_removed": 6,
+    "formerly_untracked_directories_expanded": 13,
+    "files_hashed": 221,
+    "secret_hits": 0,
+    "excluded_by_gitignore_not_deleted": 1
+  },
+  "junk_removed": [
+    "fabric-autonomous-research/__pycache__/",
+    "fabric-desktop-automation/__pycache__/fda_lease.cpython-312.pyc",
+    "fabric-desktop-automation/tests/__pycache__/test_fda_lease.cpython-312.pyc",
+    "fabric-desktop-automation/tests/__pycache__/test_fda_router.cpython-312.pyc",
+    "fabric-desktop-automation/tests/__pycache__/test_fda_router_integration.cpython-312.pyc",
+    "fabric-desktop-automation/tests/__pycache__/test_fda_security.cpython-312.pyc"
+  ],
+  "excluded_by_gitignore_not_deleted": [
+    "fabric-autonomous-research/runs/"
+  ],
+  "formerly_untracked_directories_expanded": [
+    "evidence/review/FAR-AO-INDEPENDENCE-20261010/",
+    "evidence/review/HGK-SOLUTION-APPLY-20261012/",
+    "evidence/review/_repair_backup_2026-08-21/",
+    "evidence/review/checker-upgrade-20261009/",
+    "evidence/review/daytrading-t0/",
+    "evidence/review/far-negative-pnl/",
+    "evidence/review/far-nextweek-method/",
+    "evidence/review/far-review-session/",
+    "evidence/review/method-finalization/",
+    "evidence/review/rbwi-fullrun/",
+    "evidence/review/spartoi-preopen/",
+    "evidence/review/wiki-daytrading/",
+    "evidence/review/wiki-kb-rebuild/"
+  ],
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "git_state": " M",
+      "bytes": 10894,
+      "sha256": "115912cdccbf5b3788fe1d6e1c8c10fe575252d72accf31cb6f1955dd8750974"
+    },
+    {
+      "path": "HYGIENE_MANIFEST_20261014.json",
+      "git_state": "??",
+      "bytes": 10276,
+      "sha256": "1c00659d84a17520696fe0fc61a8dfb24b7cbd37fa5187d4d21eb74fb60271a5"
+    },
+    {
+      "path": "README.md",
+      "git_state": "??",
+      "bytes": 5344,
+      "sha256": "f5e390caaada577b01dbdb24192f32c91fc09a20f29e5d827423c36164e4958d"
+    },
+    {
+      "path": "docs/Fabricä½¿ç¨èªªæææª.md",
+      "read_error": "[Errno 2] No such file or directory: 'C:\\\\Projects\\\\Agent_Workspace\\\\Fabric\\\\docs\\\\Fabricä½¿ç\\x94¨èªªæ\\x98\\x8eæ\\x96\\x87æª\\x94.md'"
+    },
+    {
+      "path": "evidence/review/CODEX_COLLAB_CHECK_ACCEPTANCE_20260820.md",
+      "git_state": "??",
+      "bytes": 12856,
+      "sha256": "238d17e3850d06ee9fcc1ed05d01af0c454caa3051e184bcde73419fee585878"
+    },
+    {
+      "path": "evidence/review/CONSOLIDATED_STATUS_20261013.md",
+      "git_state": "??",
+      "bytes": 12735,
+      "sha256": "13da4e3c28c1448291a7f9fd0839935227b6c82329c0089b835be75339b0d2cf"
+    },
+    {
+      "path": "evidence/review/FABRIC_REPO_INTEGRATION_AUDIT_EVIDENCE_2026-10-05.md",
+      "git_state": "??",
+      "bytes": 245746,
+      "sha256": "784958d8e30658e5a4beea8be340c05f51801ba0b1624a11c0b57ec6e919f076"
+    },
+    {
+      "path": "evidence/review/FAR-AO-INDEPENDENCE-20261010/FAR-AO-INDEPENDENCE-20261010_EVIDENCE.md",
+      "git_state": "inside-untracked-dir",
+      "bytes": 17016,
+      "sha256": "91ae8a4c85120380e0e34d7f580b6155bb0fcc3b664906e1a6059dcbf80f7058"
+    },
+    {
+      "path": "evidence/review/FAR_LANE_SOD_003_EVIDENCE_2026-10-07.md",
+      "git_state": "??",
+      "bytes": 14500,
+      "sha256": "505cf08af2f4e85865a516095c311e31b62676d9bcd0bd43ce08d30750435c3c"
+    },
+    {
+      "path": "evidence/review/FAR_LANE_SOD_004_ADOPTION_EVIDENCE_2026-10-07.md",
+      "git_state": "??",
+      "bytes": 8026,
+      "sha256": "1e43528c9c846fe5ed91ad2f999a51bb45fcc6e110071cd4c4ed28e84af16bf7"
+    },
+    {
+      "path": "evidence/review/FAR_LANE_SOD_005_RESEARCH_EVIDENCE_2026-10-07.md",
+      "git_state": "??",
+      "bytes": 12075,
+      "sha256": "4b52ae1de4a08f6d191dde9d41aa70ad6530acfbb0e7883ab1c053f6d940858c"
+    },
+    {
+      "path": "evidence/review/FAR_LANE_VERIFY_002_EVIDENCE_2026-10-07.md",
+      "git_state": "??",
+      "bytes": 9654,
+      "sha256": "30193b5e086c35455603360b89cf7b4942856f421d0164408e113fc06a7f4b04"
+    },
+    {
+      "path": "evidence/review/FDA_EXTERNAL_FINAL_SINGLE_EVIDENCE_RR8.md",
+      "git_state": " M",
+      "bytes": 69870,
+      "sha256": "acbf7463119785537fdb0c2088d49f629fb09735990ccb07662dc9f795b1265c"
+    },
+    {
+      "path": "evidence/review/FDA_GUARDRAIL_FINAL_ACCEPTANCE_EVIDENCE_2026-08-15.md",
+      "git_state": "??",
+      "bytes": 10709,
+      "sha256": "7c3ced42daf44d16e23c5ec13e28c2b8c37a4fffd9ff3d59cf775915b64c679a"
+    },
+    {
+      "path": "evidence/review/FDA_RAW_REVIEW_BUNDLE/Fabric/fabric-desktop-automation/DOC/FDA_USER_GUIDE.md",
+      "git_state": " M",
+      "bytes": 20138,
+      "sha256": "81271eb745b7f37ab577182a0f675f0ce4a0ec4ab7bda7eb69c7884ac7f04367"
+    },
+    {
+      "path": "evidence/review/GPTWORK_CODEX_DAEMON_FAR_RESEARCH_REPORT.md",
+      "git_state": "??",
+      "bytes": 6372,
+      "sha256": "14ab6af374f9aaa626b1a06fea5f4ae0ba6eb4c7126b4711045198367ba37da1"
+    },
+    {
+      "path": "evidence/review/GPTWORK_CODEX_RESTORE_ACCEPTANCE_EVIDENCE.md",
+      "git_state": "??",
+      "bytes": 12330,
+      "sha256": "1656620ef0d706260c52fa675c39ada5f4766b7dc490ef5061b773578e465e18"
+    },
+    {
+      "path": "evidence/review/GPTWORK_CODEX_RESTORE_USER_CONFIRMATION.md",
+      "git_state": "??",
+      "bytes": 1769,
+      "sha256": "f031df01b40584a2bcc807a6d0527eca4460a92a69b6aa54a8202ed38e92efbd"
+    },
+    {
+      "path": "evidence/review/GPTWORK_CODEX_SKILL_RECIPE_FAR_RESEARCH_REPORT.md",
+      "git_state": "??",
+      "bytes": 5252,
+      "sha256": "6d62d998ae81dd4763550335e479a7fbd0aa1e8d6bc7a26b326912a1a6137776"
+    },
+    {
+      "path": "evidence/review/HERMES_INCIDENT_2026-10-05_FAR_RCA_EVIDENCE_2026-10-07.md",
+      "git_state": "??",
+      "bytes": 918602,
+      "sha256": "a8e9bb12c2f3b4acef132e124390dd2c9f598417698cc9e92d961729e51a756b"
+    },
+    {
+      "path": "evidence/review/HGK-GCM-APPLY-20261013_EVIDENCE.md",
+      "git_state": "??",
+      "bytes": 14715,
+      "sha256": "4179978877147ff7ff0adf7cd5419228996c8968ed39879812c7c05934e4a8ab"
+    },
+    {
+      "path": "evidence/review/HGK-GCM-REPAIR-20261013_EVIDENCE.md",
+      "git_state": "??",
+      "bytes": 13492,
+      "sha256": "316a0b9e517ab0d18e088516bfb611a01b8dc4cfaea18fc66d19b5eb38e04b0d"
+    },
+    {
+      "path": "evidence/review/HGK-GCM-REPAIR2-20261013_EVIDENCE.md",
+      "git_state": "??",
+      "bytes": 10466,
+      "sha256": "ae98c524d2849c519d777e62bd2799c61cfb838200cdbb0e7e8a6660c383d999"
+    },
+    {
+      "path": "evidence/review/HGK-SOLUTION-APPLY-20261012/HGK-SOLUTION-APPLY-20261012_EVIDENCE.md",
+      "git_state": "inside-untracked-dir",
+      "bytes": 6542,
+      "sha256": "bc50fa4f6404bcdacecf196492628336651ac7208e607568d067db2cd6f19750"
+    },
+    {
+      "path": "evidence/review/MANUAL_MODEL_PROVIDER_SWITCH.md",
+      "git_state": "??",
+      "bytes": 2198,
+      "sha256": "9b4b6ebf1d1a4b7a117891a4778ebf7e8b77338bc25594ce85663cfa1a6081a2"
+    },
+    {
+      "path": "evidence/review/MVLT_GOVERNED_VS_BARE_EVIDENCE.md",
+      "git_state": "??",
+      "bytes": 5275,
+      "sha256": "d5d9dcca1ce8bbf5f95be4f585b32118c70af3f32b181248e815d6178c8dbcdc"
+    },
+    {
+      "path": "evidence/review/PFR_LIVE_SMOKE_EVIDENCE_MD.md",
+      "git_state": "??",
+      "bytes": 4528,
+      "sha256": "1d5d621e92c0c5f246446fc8c0bb606ef156d6895a4611d3fe23cfc13094fe98"
+    },
+    {
+      "path": "evidence/review/PFR_SINGLE_EVIDENCE_MD.md",
+      "git_state": "??",
+      "bytes": 5712,
+      "sha256": "ebc08bcc89ed0561a6c45ae959dc03837f415bd81b8a27fcdb7fc2f4401cf015"
+    },
+    {
+      "path": "evidence/review/ROOTCAUSE_IMPL_EVIDENCE_20260821.md",
+      "git_state": "??",
+      "bytes": 5815,
+      "sha256": "57395aca50635e6ff41bd0dce3556f4c1eeff53ba4e2f998f3fa3462855167bf"
+    },
+    {
+      "path": "evidence/review/ROUTE_LANE_001_EVIDENCE.md",
+      "git_state": "??",
+      "bytes": 17838,
+      "sha256": "8b0ebfdb8490bbd4111a8fc4bfeeb25ec258cb5df72962a79248117c7b5b6753"
+    },
+    {
+      "path": "evidence/review/SKILLCAP_20261007_SKILL_MAINFILE_CAP_RESEARCH_EVIDENCE.manifest.json",
+      "git_state": "??",
+      "bytes": 2734,
+      "sha256": "9616df64d4aabd2ad700813cc02853c27c067730ccc5ef1e48be36a99c563140"
+    },
+    {
+      "path": "evidence/review/SKILLCAP_20261007_SKILL_MAINFILE_CAP_RESEARCH_EVIDENCE.md",
+      "git_state": "??",
+      "bytes": 12742,
+      "sha256": "a3576ca72be504501a77c2093cdecf5709d9eec1089cf9b9736e47b3638ffa9b"
+    },
+    {
+      "path": "evidence/review/SKILL_SPLIT_FINAL_ACCEPTANCE_EVIDENCE_2026-08-15.md",
+      "git_state": "??",
+      "bytes": 4114,
+      "sha256": "8adfa546a5c5bf8c92ddb4fecc3df14d4dcc4285f3424a74bdcbad0dc460bf24"
+    },
+    {
+      "path": "evidence/review/SKILL_SPLIT_RECHECK_ADDENDUM_2026-08-15.md",
+      "git_state": "??",
+      "bytes": 3125,
+      "sha256": "c0eaeba545df52b55038ec5e4d84aa512afdca257ff96b07ac4cb1e6003d0c8e"
+    },
+    {
+      "path": "evidence/review/SKILL_provider-failover-emergency-checkpoint.md",
+      "git_state": "??",
+      "bytes": 4649,
+      "sha256": "df49c8e3192d4c2a39ac2cdbaac180a1844c7b649acb76a6befcf23cba6521e9"
+    },
+    {
+      "path": "evidence/review/WO-HGK-MODRED-001_EVIDENCE.md",
+      "git_state": "??",
+      "bytes": 4105,
+      "sha256": "ebae49999b01eb2f222cb8767641ff83779219acc2597641455495884cffcb94"
+    },
+    {
+      "path": "evidence/review/WO-HGK-MODRED-002_EVIDENCE.md",
+      "git_state": "??",
+      "bytes": 6907,
+      "sha256": "e06a3690fa39bff4b2ddd0654fe107f5405b0288b266c5373dda50e35dcd4fac"
+    },
+    {
+      "path": "evidence/review/_repair_backup_2026-08-21/FDA_USER_GUIDE_crlf_checkout_15c9a464.md",
+      "git_state": "inside-untracked-dir",
+      "bytes": 20628,
+      "sha256": "15c9a4643931dee127a30ac33005af34669b9f71ca85b839fbf6d7a731dbcfa8"
+    },
+    {
+      "path": "evidence/review/_repair_backup_2026-08-21/FDA_USER_GUIDE_drift_012ba7f9.md",
+      "git_state": "inside-untracked-dir",
+      "bytes": 21101,
+      "sha256": "012ba7f9241372518a1e4a0ad602f9e0f63aad88fd8b4e0708a43c73c093fa1a"
+    },
+    {
+      "path": "evidence/review/_repair_backup_2026-08-21/REPAIR_FDA_EVIDENCE_MANIFEST_2026-08-21-001.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 1807,
+      "sha256": "58e5b10ffd8fad90d86abd7ac7e9e65213391303ae20e0e514256e1b55b48e14"
+    },
+    {
+      "path": "evidence/review/checker-upgrade-20261009/HGK-CHU-20261009_CHECKER_UPGRADE_EVIDENCE.md",
+      "git_state": "inside-untracked-dir",
+      "bytes": 25736,
+      "sha256": "f42b0d109ebd87db5075da2b6b48e2c7fe018aea6d811228b96873cfdb649eca"
+    },
+    {
+      "path": "evidence/review/daytrading-t0/BACKTEST_RUN_RECEIPT_t0_open_auction_breakout.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 3336,
+      "sha256": "69d2b8ce4e83d1781927e29d93bcd90b289a781a453c8ef148c7122025d795ed"
+    },
+    {
+      "path": "evidence/review/daytrading-t0/BACKTEST_RUN_RECEIPT_t0_or_breakout_retest.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 2272,
+      "sha256": "6300ff23218d107ec49085500845d5c47657bb7ad38b38facdc4ca55a0e1b2f6"
+    },
+    {
+      "path": "evidence/review/daytrading-t0/C1_ACCEPTANCE_RESOLUTION.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 592,
+      "sha256": "6e55959aa2beb84299f69bdd76494622ffc2b6a0b344ad58e6b8a62276ef17e6"
+    },
+    {
+      "path": "evidence/review/daytrading-t0/C1_OR_BREAKOUT_RETEST_SINGLE_EVIDENCE.md",
+      "git_state": "inside-untracked-dir",
+      "bytes": 2379,
+      "sha256": "381d76fed235290757bdbb06bb35affd5d393b7599aaa10a144cfbb9d1469c33"
+    },
+    {
+      "path": "evidence/review/daytrading-t0/DAYTRADING_T0_OPEN_AUCTION_BREAKOUT_SINGLE_EVIDENCE.md",
+      "git_state": "inside-untracked-dir",
+      "bytes": 2168,
+      "sha256": "411d04ec6e4b5acc2c3a74e2231d1880bdbfbfcdf9f87a93ffa1ed6194cd4a83"
+    },
+    {
+      "path": "evidence/review/daytrading-t0/EXPERIMENT_SPEC_open_auction_breakout_T0.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 995,
+      "sha256": "6529430fd340d3b4fc2985197fce57567353b849c437653548058f07423c2643"
+    },
+    {
+      "path": "evidence/review/daytrading-t0/METHOD_SPEC_WF_t0_open_auction_breakout.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 249,
+      "sha256": "36cfb91a876e8961e5485e596671d05ca6220c615376e276c4df562d27bf442a"
+    },
+    {
+      "path": "evidence/review/daytrading-t0/T0_ACCEPTANCE_LANES.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 293,
+      "sha256": "517474226cbc44a1145ce50d0859c36323aa79f10994bee95ea6da2fefb676a4"
+    },
+    {
+      "path": "evidence/review/far-negative-pnl/FAR_NEGATIVE_PNL_RESEARCH_RESULT.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 4472,
+      "sha256": "aef2bed2b3e7fd78e00ae68e1f91af70524b9f51a7c3b639bd75beb1fd6ff664"
+    },
+    {
+      "path": "evidence/review/far-nextweek-method/FAR_NEXTWEEK_METHOD_RESEARCH_RESULT.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 4179,
+      "sha256": "b8880d191f82c96fa6ee9eadbd31dd49c4004e4d01951c8ba9cd9ec1e1f9ec9b"
+    },
+    {
+      "path": "evidence/review/far-nextweek-method/FAR_NEXTWEEK_METHOD_SINGLE_EVIDENCE.md",
+      "git_state": "inside-untracked-dir",
+      "bytes": 3182,
+      "sha256": "35a5fb5ade79bdc49d31e06b6368f21f18220843f139a12050488de868ab3bee"
+    },
+    {
+      "path": "evidence/review/far-review-session/AO_VERDICT_GAP_CLOSURE_2026-08-21.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 1664,
+      "sha256": "2253f79caa7b30d00c9f183c01590ce37f2c43c19e056202df29236d1835391f"
+    },
+    {
+      "path": "evidence/review/far-review-session/FAR_REVIEW_GAP_CLOSURE_SINGLE_EVIDENCE.md",
+      "git_state": "inside-untracked-dir",
+      "bytes": 3424,
+      "sha256": "af7c66423a3f414ae0baa4a4182dfd152b92f3e017caa0e07c1415db514d27c1"
+    },
+    {
+      "path": "evidence/review/far-review-session/FAR_REVIEW_SESSION_2026-08-21.md",
+      "git_state": "inside-untracked-dir",
+      "bytes": 4009,
+      "sha256": "7d00e8e20a0b648c27e1fbee26bcae77386db9ccb4038f180b41f7ea77610fcc"
+    },
+    {
+      "path": "evidence/review/far-review-session/SSOT_ALIGNMENT_REVIEW_2026-08-21.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 2647,
+      "sha256": "b357d96b7cb8888446752141ef5a0c783026cad6c8a69d7e7c18f38311c1c613"
+    },
+    {
+      "path": "evidence/review/method-finalization/BACKTEST_RUN_RECEIPT_W34_OVERNIGHT_PULLBACK.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 2309,
+      "sha256": "c8658a5d25dfa51356155fe81c928e0e29d1cc5d3c19a27d79ff72cc624176b5"
+    },
+    {
+      "path": "evidence/review/method-finalization/BACKTEST_RUN_RECEIPT_rf_overnight_proxy.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 1951,
+      "sha256": "0e13740f32b69e0141dd5235ccfe95b849d2aa7e789f40a3456ec058cd5c882c"
+    },
+    {
+      "path": "evidence/review/method-finalization/CODEX_PROVIDER_RECEIPT.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 1193,
+      "sha256": "ed535f2dd4a16889598f57e99f0bb21d480c43b05167e430b33c099b59553181"
+    },
+    {
+      "path": "evidence/review/method-finalization/CODEX_RF_PROXY_VERDICT.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 456,
+      "sha256": "042f547c07044316425d2eef8a6310a8cc28ecc4bc6b5c9fc303ab49f38c856f"
+    },
+    {
+      "path": "evidence/review/method-finalization/CODEX_RF_REAL_FINAL_VERDICT.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 292,
+      "sha256": "acdad9971b0d9dcde111e75cdecad29e88d12732ab23d9fca38889bbef6cd995"
+    },
+    {
+      "path": "evidence/review/method-finalization/CODEX_TRACKED_READBACK_VERDICT.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 781,
+      "sha256": "63c5cdb300648eade8fece0d36526b3aedec093db9f43d3a1e77bfc1e7bf6e91"
+    },
+    {
+      "path": "evidence/review/method-finalization/EXPERIMENT_SPEC_rf_overnight_SlowLoop.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 1337,
+      "sha256": "bc368974c3f2213f0043ac42ff2a8e4d5830b53671d4f4e7e5c8346b1d66f643"
+    },
+    {
+      "path": "evidence/review/method-finalization/INDEPENDENT_VERIFY_lane1_Adisposition_ExpSpec.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 441,
+      "sha256": "fa6978d914f9fa270f326928efe35e7e48fa1b30a4fb8aae8a966ab76575c93a"
+    },
+    {
+      "path": "evidence/review/method-finalization/INDEPENDENT_VERIFY_rf_proxy_lane0.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 383,
+      "sha256": "4ce65e28141a5e2f79936e194bb08f159b130e1a4bda1878b34d0845a7f87eed"
+    },
+    {
+      "path": "evidence/review/method-finalization/METHOD_D_VERIFICATION_RECORD.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 273,
+      "sha256": "629c9edc5a6fac40aff43a6672e03e63fab4aca287428e69b625a92e1f22fb65"
+    },
+    {
+      "path": "evidence/review/method-finalization/METHOD_FINALIZATION_D_SINGLE_EVIDENCE.md",
+      "git_state": "inside-untracked-dir",
+      "bytes": 7599,
+      "sha256": "c9d17678cf4c09898f311a4f91528e5bcd1f8e59cae0a1bef871b7641acd634e"
+    },
+    {
+      "path": "evidence/review/method-finalization/MODEL_RUN_RECEIPT_rf_overnight_real_weights.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 2404,
+      "sha256": "0716ce66f668ee514ca7aee41b9f42a9c0e57b6fff4af20b20ef6b7b6112bdf9"
+    },
+    {
+      "path": "evidence/review/method-finalization/NEGATIVE_RESULT_w34_overnight_pullback_REJECTED.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 952,
+      "sha256": "2da9118d6f4f1d3ff3b212887bd725373d0ef65108efa508e676fa239451598f"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/AO_VERDICT_Q1.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 321,
+      "sha256": "0348e513bd216b90648c5fc08015a7b9cb81466c5b19b8a7c5dd7965eed76b1a"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/AO_VERDICT_Q234_SIM_820.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 1735,
+      "sha256": "3c52f9d3c026178a36edc2d72de551c88d9453d61b73e51907eece78e6e6f361"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/BACKTEST_RUN_RECEIPTS/BACKTEST_RUN_RECEIPT_Q1.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 2137,
+      "sha256": "ab10306b9d88a15d7e8a30138b3ed65d67ca85cde916ffc19bffbf656ad5aa03"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/BASELINE_AUTHORITY_INVENTORY.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 1493,
+      "sha256": "1cc30d6c7e5529b567efdb1fbe2c42daa90a28e5862c0b271580dd889e869f3e"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/BASELINE_DATASET_INVENTORY.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 595,
+      "sha256": "4b7fabfc370683ffcf0b378a0904c190d2c8e80068a868c658a7b993707df06b"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/BASELINE_FAR_RUNTIME.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 349,
+      "sha256": "6911ab34fe3b8d212fb2351fc10c5c0a15aff7f936933bab771ea0aee9db62b1"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/BASELINE_FDA_XQ_SUBJECT.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 583,
+      "sha256": "e2a94976d97a70476896f803b3ebcc9a265aaf1073a8779fdb921b582111b586"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/BASELINE_GSTACK_OPENSPEC_STATE.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 980,
+      "sha256": "912e987029b3afa246712685d81bd9d437ad753d0a5b021fc7941f0c465c73c1"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/BASELINE_HGK_HEALTH.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 168,
+      "sha256": "c8f563a6c896bab2d7db1321116346701bc2892969b132d42645019a297db7f3"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/BASELINE_MACHINE_STATE.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 551,
+      "sha256": "d165b6ea87a0f01a52be5017905ef1cecf4d79cd91d0ac356ad060bb0fa8c061"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/BASELINE_RBWI_SUBJECT_MANIFEST.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 1577,
+      "sha256": "6cc801ec8815be28cef028fcc13c63fcc976a10ea3808b94c486ce3e5d7ce744"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/BASELINE_RECEIPT_CROSSWALK.tsv",
+      "git_state": "inside-untracked-dir",
+      "bytes": 1423,
+      "sha256": "115b91dd6b9d4d560f14f16724cc0332edab997e21ca63188ad6cd4d8a4b0b20"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/BASELINE_REQUIRED_CAPABILITY_PREFLIGHT.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 1366,
+      "sha256": "267cc0ad8f324c9d389e6c3ed9128263b399bea5ffbee40f53faf6cd8d7ab8d3"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/BASELINE_SQS_TESTS.exitcode.txt",
+      "git_state": "inside-untracked-dir",
+      "bytes": 1,
+      "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/BASELINE_SQS_TESTS.stdout.txt",
+      "git_state": "inside-untracked-dir",
+      "bytes": 336,
+      "sha256": "793c73d5d7900773ccd4dd0b8be8f26570e7c6b345d1e44745749956b72c56b6"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/BASELINE_XQ_ACCOUNT_MODE.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 380,
+      "sha256": "3626a50b36205c08730c0159daf75012ceee48fd23e440c75250b7b5f302bcc0"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/CODEX_REVIEW_Q234_ENGINE_820.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 1292,
+      "sha256": "62195b32796781279559ec0bcf5a775e4d62b109dbdaab939870a55601ea86a0"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/FAR_RUN_RECEIPT.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 1119,
+      "sha256": "10a8faeb2ee007c4b92d892c5751825abca786f12c81bcf2386caf8a06177545"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/FINAL_CLEAN_E2E.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 3332,
+      "sha256": "2dd7d14d603c716a05b336bcbec52332147bc5541112e2e05f9f8ef43c326451"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/FINAL_DATA_CHECKER.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 232,
+      "sha256": "4d5ef6d8d36f3b50c75a6cae2231af3c7fe9ec9b02398a1bd20d1bc5465df70c"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/FINAL_RISK_CHECKER.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 291,
+      "sha256": "8a87fbc996c9a2a33bc07453455604cc945b595891c3e462c2767580fcbbe8d9"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/FINAL_SF16_PREFLIGHT.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 378,
+      "sha256": "bf7de1c9e71f6a8c27960a8a0f65c2751e3906f8704ae100e7a97a132cbe603b"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/GATE0_RECEIPTS_SUMMARY.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 2324,
+      "sha256": "949a365b58b61c6a56550f500a2c6a82ed6bc8da2d3d6a96b19bef963497a292"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/PREOPEN_COVERAGE_INDEPENDENT_VERDICT.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 407,
+      "sha256": "f89790fe726ddb67b22ee51d4b8dab98be4878399752c934520ce5920a47b60c"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/PREOPEN_WORKING/D-00.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 899,
+      "sha256": "c1d23135baf4998e425a7a857567c5c0cca16c7705089fe54e9b92345ec6368f"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/PREOPEN_WORKING/D-01.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 857,
+      "sha256": "fa260f8af0989e851537ef06ba064c3b51909024affeabad03253106e34d7221"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/PREOPEN_WORKING/D-02.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 850,
+      "sha256": "329f5f38983e5d26cd82eae42cd9db61d4971f8eb517e63e2fe1ed4de06cd8b5"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/PREOPEN_WORKING/D-03.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 892,
+      "sha256": "d2cf7ddd93423364f76d4007b5d0c5bc2c488abed63ae67567a824155a4503fc"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/PREOPEN_WORKING/D-04.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 881,
+      "sha256": "7bc9d5a7b7c15e8b1eb87e5639a0d17774cfb11640faab49f0e123be45bdfb27"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/PREOPEN_WORKING/D-05.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 865,
+      "sha256": "cdbac09808c65e943f5f0dfaafd0ddafc9aa549ee8d5bb935664cf191ced0b4a"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/PREOPEN_WORKING/D-06.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 840,
+      "sha256": "6a0451adfabb3cff3ce78f7cf1b6520cd12f7ec833f2608d4f23ada31db81124"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/PREOPEN_WORKING/D-07.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 852,
+      "sha256": "38c8e7174c1e268b79ea1f4f99590a89bcfff0eac55ed0d349fdc142f144db84"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/PREOPEN_WORKING/D-08.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 885,
+      "sha256": "6e9ce217297a29f608509ef727cfae449225ba304e70997273acc160ae635444"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/PREOPEN_WORKING/D-09.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 935,
+      "sha256": "6baee1567b871ba215e15998ebe2320dff7728329c2787c86c0894697b97ae5e"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/PREOPEN_WORKING/SF-00.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 870,
+      "sha256": "be8e06d21661b55f2e1b838ff07483aeaef80384a026a57fad43067f4a492e50"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/PREOPEN_WORKING/SF-16.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 860,
+      "sha256": "f8cecb82f19923713f476d1cc1876dc8bbed42c29811a602962d4af562aa6797"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/PREOPEN_WORKING/SF-17.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 859,
+      "sha256": "997c81c9987987b22e3f2cfb9eb63a0bc61bdbaa615b58ed8e25ecb31633519b"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/PREOPEN_WORKING/W-00.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 941,
+      "sha256": "1ba1ac8221b3c8c5693042527b7eb0691124d33fc0360127328379799efe9248"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/PREOPEN_WORKING/W-01.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 927,
+      "sha256": "337a9a4a8e14cf005a3c428fb5199d4b2a521c393b84e898c3df1e651bb556f5"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/PREOPEN_WORKING/W-02.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 872,
+      "sha256": "00b53af679e2483b9d859e3aa0d7cd0c86fda6146a90b2ebde442ae7eabf4692"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/PREOPEN_WORKING/W-03.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 861,
+      "sha256": "11a6294c1a93fbfc4f9a398e4ebcbc467f2334a677da3f65f31271c5eac38651"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/PREOPEN_WORKING/W-04.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 848,
+      "sha256": "4aed63702955889fc56a293c60a0a9bd3660f5e128abc8ebac74cc6cf1e19f6b"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/PREOPEN_WORKING/W-05.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 873,
+      "sha256": "68056ee7b6c2ee2dc6691ce56f8c45b71c394e11487f71b4a00bc5cf059cc858"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/PREOPEN_WORKING/W-06.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 836,
+      "sha256": "ce133be147fc738ea9e83e51753557a8b7943c092f5f9fc3a80c1390e103ff1d"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/PREOPEN_WORKING/W-07.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 833,
+      "sha256": "730affb9ee42050ac6db00870fbdca50aefc87b6761097c71b802345fee36bb9"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/PREOPEN_WORKING/W-08.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 851,
+      "sha256": "765b613de407ce1079b5fd0dcc50cfab7050bb4035a0074016878abef191f57b"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/Q2_OPENING_S1_sim_2026-08-03.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 9056,
+      "sha256": "242a553b7b97be2503671f25f51ce3b99b664ae09365b800abcab81c5a2fdd6e"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/Q2_OPENING_S1_sim_2026-08-04.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 10431,
+      "sha256": "5d3d0cb2566eb79f01d9b6a80a048db02a1b4b0a6762a8165b13967adaff4e72"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/Q2_OPENING_S1_sim_2026-08-05.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 12824,
+      "sha256": "9b4ae35eff4e62de005afef9149cc322119678124bd1ecc6785c1b881d7aa690"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/Q2_OPENING_S1_sim_2026-08-06.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 6892,
+      "sha256": "57eabaf6c732112aa3e73684cb9b8a7e5e6af4c5498b3fcd38353aa4f143d44f"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/Q2_OPENING_S1_sim_2026-08-07.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 6703,
+      "sha256": "e7131c7b10fbc1e553c65f7e3d1cf278686c8d2a1b7d9c926dd65e56338b0849"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/Q2_OPENING_S1_sim_2026-08-10.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 8668,
+      "sha256": "4dc9ef816dcb2ef8d9b45e1c7b5578868bed95d177a1461a37f556e61768d531"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/Q2_OPENING_S1_sim_2026-08-11.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 7091,
+      "sha256": "39d6f11c2ac2002cde0c4bd5d53ee18b8a208b4469271abc846470fbf41020c0"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/Q2_OPENING_S1_sim_2026-08-12.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 5908,
+      "sha256": "8097ac36e65d05d7c461753f1aeb84b91d1096858f76f0444e67f27c598254c0"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/Q2_OPENING_S1_sim_2026-08-13.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 9475,
+      "sha256": "4e6b6c5fc024ce2a5f4cf4aac94ea52b16f2862df41a44f0cdeace261f7c0134"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/Q2_OPENING_S1_sim_2026-08-14.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 5712,
+      "sha256": "3687d999b700f640a52511dc758e5b36c5ab653eee4129345f589e6995aaa372"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/Q2_OPENING_S1_sim_2026-08-17.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 6303,
+      "sha256": "d52b319c9c912f94b2d53441359e71f64c940fc18ea0130abe6c26d81c9622ea"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/Q2_OPENING_S1_sim_2026-08-18.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 5315,
+      "sha256": "cbc7f7ba5b0e53f5a6e3c71a923b5607030dc304b4b764c6fd7d1e77fcc26fae"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/Q2_OPENING_S1_sim_2026-08-19.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 10629,
+      "sha256": "5868e77492deb82ceef3af16debe8db62389d1fecc4cf875b9b72fcededae28b"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/Q2_OPENING_S1_sim_2026-08-20.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 8477,
+      "sha256": "39af9914a4481a4aed1c4f8e54dd82f0e72c33b6e50cde226e0e73fc2db6961a"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/Q2_OPENING_S1_sim_receipt.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 14540,
+      "sha256": "74af59e60d4b1e55e806656c5f5ca23be1d1ff4510041f57117ac60eb9d004d4"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/Q3_MIDDAY_S2_sim_2026-08-03.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 669,
+      "sha256": "3e8bf83781ae7164c59b1fcdbb70ed58a6d6749d3cc7ae0724224ac66021671a"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/Q3_MIDDAY_S2_sim_2026-08-04.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 669,
+      "sha256": "7ac0602250af33d58a231d11517cb19a2ed692d41aaf7817227961b37a4e7ed3"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/Q3_MIDDAY_S2_sim_2026-08-05.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 669,
+      "sha256": "467994a68dde985a866a5e366689754a6f9c2abeb786ae90e9e88e89aae67f7c"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/Q3_MIDDAY_S2_sim_2026-08-06.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 669,
+      "sha256": "7abc70fe01ed053a2130756ad4b1f3acebf4d92e4b3ebd80ea2ba6a6ca4331a8"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/Q3_MIDDAY_S2_sim_2026-08-07.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 669,
+      "sha256": "ffbdc1f039d97b4a9e25a67902d7e4d7050ca070c6da5ca9259972601f45cfec"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/Q3_MIDDAY_S2_sim_2026-08-10.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 669,
+      "sha256": "f0ffd2c37c83ae1cc23fd402eae20259560707918a1da1cf8f5b1ec060a563d8"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/Q3_MIDDAY_S2_sim_2026-08-11.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 669,
+      "sha256": "b8c4e001707017441a21e06868dc98bc4750d8721a65c719852331fdc0763770"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/Q3_MIDDAY_S2_sim_2026-08-12.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 669,
+      "sha256": "4ba79942073b997064394c8ae28ba49dfbaebcb70886e50e0bf53991fe870240"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/Q3_MIDDAY_S2_sim_2026-08-13.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 669,
+      "sha256": "6b8cdd5b39dcd869128c48f3034b73694fe11645efbaed7b7e2285e90d4f7b5b"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/Q3_MIDDAY_S2_sim_2026-08-14.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 669,
+      "sha256": "44f8c4b38ba86c6c35d378f777e163918f072361a41aa7fca92d1e050ce69ca5"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/Q3_MIDDAY_S2_sim_2026-08-17.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 669,
+      "sha256": "565469365844107c0f035450f3e0b29b237e4b95fc518bce3b3d8d04ed5019e4"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/Q3_MIDDAY_S2_sim_2026-08-18.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 669,
+      "sha256": "d2a7632ff31106c958c7d18d964f0575a0e1d4fa6df6eab8d30b9a3c629d96b2"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/Q3_MIDDAY_S2_sim_2026-08-19.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 669,
+      "sha256": "175236592dacff0fdbb33069c9b76f8f952293d347c081760843117679b3a90c"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/Q3_MIDDAY_S2_sim_2026-08-20.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 669,
+      "sha256": "6a5c6869297e04e553124468d9b1f1161b7b21c9b33fd61ffeb70ba2937048ba"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/Q3_MIDDAY_S2_sim_receipt.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 6637,
+      "sha256": "6ae41945a5bb5703afd86a3289c8e2b7c654f0f13a352488b5c4049e7135b52d"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/Q4_CLOSE_POSTMARKET_sim_2026-08-03.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 552,
+      "sha256": "518fdd49e157ce701c02ab3c0a66f1a3a5daf577584c825a40b1dfbc53de0b8c"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/Q4_CLOSE_POSTMARKET_sim_2026-08-04.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 552,
+      "sha256": "b9afb571b490fbeba5aa1fa38008f15b1ccea5cbab5402009c06830b4bc7e93c"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/Q4_CLOSE_POSTMARKET_sim_2026-08-05.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 552,
+      "sha256": "c393fefb5cfbfe5e4b6101d00b987190adfe8d2dd4e681f096cafe48994403b6"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/Q4_CLOSE_POSTMARKET_sim_2026-08-06.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 552,
+      "sha256": "f7942557fc069b86c4135f1a22501885cb3f4edd000142501781a39cba4f15df"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/Q4_CLOSE_POSTMARKET_sim_2026-08-07.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 552,
+      "sha256": "489e0f44d785a91bd5ec80b57268e44530047665d5d5a61670c9f44ed6b3f75d"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/Q4_CLOSE_POSTMARKET_sim_2026-08-10.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 552,
+      "sha256": "ac0d5a922d4a9aaa7afd4b8d18f4561c18702cc21c24967af16e94488fa046e1"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/Q4_CLOSE_POSTMARKET_sim_2026-08-11.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 552,
+      "sha256": "b458244f57df0ab1bcdac64bd298185fd880ff915f7c4b7bdc85327772110ac6"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/Q4_CLOSE_POSTMARKET_sim_2026-08-12.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 552,
+      "sha256": "fdbc24009534affbac5be1eae5be6b6487d873fff4cb980b90bf5a5e98b54428"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/Q4_CLOSE_POSTMARKET_sim_2026-08-13.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 552,
+      "sha256": "e6362866be8ba89e2ef8bdcb9fac39db7761ed0e6fc82588627e1dcf05e19dde"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/Q4_CLOSE_POSTMARKET_sim_2026-08-14.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 552,
+      "sha256": "d3c9ad49c6f5de642b6affa478d83c653b33edb2a6c978a267c3a4b66ebf40d8"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/Q4_CLOSE_POSTMARKET_sim_2026-08-17.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 552,
+      "sha256": "b4905ae07de1cf89d138598fd76d045f9be26e7f2042d392172ef5cce0dd9bcb"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/Q4_CLOSE_POSTMARKET_sim_2026-08-18.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 552,
+      "sha256": "c0c5cfaac110c848e9983e92a84c58355e53be93e50f189f98249c3f4361cec4"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/Q4_CLOSE_POSTMARKET_sim_2026-08-19.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 552,
+      "sha256": "b186e313f3bab6e7f6bf0f1aee8a2a9553bf363f8233e311a4e28298e2cb7fe1"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/Q4_CLOSE_POSTMARKET_sim_2026-08-20.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 552,
+      "sha256": "46f5e967ca46b4b6dd479b35e7a13ac462468fd7ff3cd90cc3e23f59c3d8faed"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/Q4_CLOSE_POSTMARKET_sim_receipt.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 1769,
+      "sha256": "86036c54be98b63be2964ebab8e29c24b50dcf522a9a9ef5b7897c428fcd7039"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/RBWI_CHECKPOINTS/Q1_SEGMENT_CHECKPOINT.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 3614,
+      "sha256": "c63645b8aeb0c2b3a4003d4964791498738eb45b5d3055ded582791336dcee07"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/RBWI_CHECKPOINTS/Q2_OPENING_S1_CHECKPOINT.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 948,
+      "sha256": "2faddb626b92956ab50c27e6ef66009689d2d41c4fc7f5a008ff46da8bd23b5e"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/RBWI_CHECKPOINTS/Q3_MIDDAY_S2_CHECKPOINT.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 945,
+      "sha256": "b03a00a980bdd83b0db14fae37fdf981f84ba0acec59c1fae00a046c399dfa61"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/RBWI_CHECKPOINTS/Q4_CLOSE_POSTMARKET_CHECKPOINT.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 966,
+      "sha256": "9838109e9e87320716079f63cd187a8de20b08d4545db5b3d332996efe72d589"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/RBWI_DENOMINATOR_PROJECTION_SUMMARY.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 805,
+      "sha256": "ad8351bdd8bcbe4f4f5ec89a7135369a70819606b170233e59c0d64b1af702bc"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/RBWI_FULL_JOBCARD_SIM_SINGLE_EVIDENCE.md",
+      "git_state": "inside-untracked-dir",
+      "bytes": 2839,
+      "sha256": "dff1704738c9d4809f7c2e8eaf690c9d67a570e44255deba377da3fffd108252"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/RBWI_METHOD_ACTUAL_USE_LEDGER.tsv",
+      "git_state": "inside-untracked-dir",
+      "bytes": 612,
+      "sha256": "76df5dcf862e44ba16d2b2d60be3e7e0c4db4ab6f7350755476f0c84accb8ac5"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/RBWI_PACK_Q1_SEGMENT_SINGLE_EVIDENCE.md",
+      "git_state": "inside-untracked-dir",
+      "bytes": 11675,
+      "sha256": "2cd91652fe16bdf27f6cd6d517e7016ef999cf39de82cead18c6947588903e44"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/RBWI_PREOPEN_100PCT_COVERAGE_CHECK.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 778,
+      "sha256": "51baa4caf1e446226a1d613f1ba9d762f6282d32485cae1c1b95c68322a4d8b9"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/RBWI_PREOPEN_COVERAGE_MANIFEST.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 2869,
+      "sha256": "f6368bd651d2110e5f52190a080a03c1aec321c8bcd50a4cc5fce19f50d65e30"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/RBWI_Q234_820_SIMCLOCK_SINGLE_EVIDENCE.md",
+      "git_state": "inside-untracked-dir",
+      "bytes": 3802,
+      "sha256": "49df2fb7c446140496cf5211a78d56c2a23a474f32b6a9a8da58fb27d35a350a"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/RBWI_RUN_LEDGER.jsonl",
+      "git_state": "inside-untracked-dir",
+      "bytes": 6393,
+      "sha256": "27fe1d492a8764285e4b41f4ee5cc0ff1ba26ff868925be7a690ecc1e26ddeac"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/RBWI_SEGMENT_BINDINGS/BIND-RBWI-Q1-20260820-001.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 1470,
+      "sha256": "5b84841bba62cd89a297cd9acd047dadbe8f9303cd8e4ef4c51ed240264efc41"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/RBWI_SEGMENT_BINDINGS/BIND-RBWI-Q2-20260820-001.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 1444,
+      "sha256": "9b4f698187881e347fdae0c9a00d632436b69c370ca7f8f415bbfad6cf13198b"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/RBWI_SEGMENT_BINDINGS/BIND-RBWI-Q3-20260820-001.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 1421,
+      "sha256": "db8bc98b817d26920acf536b0792b434af5f9f8d46665fa1af846c1416b646b1"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/RBWI_SEGMENT_BINDINGS/BIND-RBWI-Q4-20260820-001.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 1415,
+      "sha256": "ba3f92548f53e3e9139ccea6b8e5d63631476f8ab48052558a7ed214d52f5108"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/RBWI_SELF_REPAIR_MIRROR_GAP_2026-08-21-001.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 996,
+      "sha256": "47002a3f155205c45807c8f41555dc310336b1b2fd75ac02887fe53aabe1722d"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/ROUTE_GSTACK_OPENSPEC_RBWI_Q234_820.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 1142,
+      "sha256": "52f6beb8a2debc97f9b9c979351ab708c0e84d4b1b001dc4f1bd956221c49163"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/SWARM_MULTILANE_RECEIPT_Q234_820.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 2060,
+      "sha256": "663019c4f5f9328f43e076284857de4bb301790ad3474a492e0b1d73ec10728c"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/USER_DECISION_RBWI_Q234_0820_SIMCLOCK_2026-08-21-001.md",
+      "git_state": "inside-untracked-dir",
+      "bytes": 2749,
+      "sha256": "f194f96ca4ba99b576b684906ffdd00ae420029faef1722167b3793b69b89fac"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/sf-01-receipt.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 7129,
+      "sha256": "9e65b7c32d744e098738dc4e8c97f11f3eff89f14a057cb20fe233bc48b2646b"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/sf-02-receipt.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 1410,
+      "sha256": "d37f6efff4560934f084661deb256e56843b5699f261fe1ed52a20d252cafce9"
+    },
+    {
+      "path": "evidence/review/rbwi-fullrun/sf-03-receipt.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 80295,
+      "sha256": "33d63b2beb527a21bf4f25a575686d09c492bf7deda62b7c5e6f997cce725daa"
+    },
+    {
+      "path": "evidence/review/spartoi-preopen/SPARTOI_AUG_SIMCLOCK_SINGLE_EVIDENCE.md",
+      "git_state": "inside-untracked-dir",
+      "bytes": 2789,
+      "sha256": "7073ac3b48613e0e9bf6acb59eaadf45f906c7ad2cfe95faef5a21e2c5fe083a"
+    },
+    {
+      "path": "evidence/review/spartoi-preopen/SPARTOI_PREOPEN_AO_VERDICT.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 766,
+      "sha256": "9d0efca3f40c70dcd1336432c760b977c65e00c0af792cf168932e855e912efa"
+    },
+    {
+      "path": "evidence/review/spartoi-preopen/SPARTOI_PREOPEN_RUN_COVERAGE.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 3857,
+      "sha256": "4492fae2cdfe8160ef9e6639546d3aadb9d01a2fd4db9ee98be6afc911773b83"
+    },
+    {
+      "path": "evidence/review/spartoi-preopen/SPARTOI_PREOPEN_SINGLE_EVIDENCE.md",
+      "git_state": "inside-untracked-dir",
+      "bytes": 5762,
+      "sha256": "58a7458316392a0ca77d8b0b2a933cbf0bf28ea4f8414ab07a30c03da22d30fb"
+    },
+    {
+      "path": "evidence/review/spartoi-preopen/SPARTOI_W35_REAL_POSTCLOSE_SINGLE_EVIDENCE.md",
+      "git_state": "inside-untracked-dir",
+      "bytes": 2454,
+      "sha256": "65e117b5d304c46d42a10e7f3a552aead92928b293175c0ce704045f0b154f25"
+    },
+    {
+      "path": "evidence/review/spartoi-preopen/artifacts/archive/version_manifest.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 1900,
+      "sha256": "a1ad5b8d414f106b479645547b17ba1ada3ccbcca5d3436e152d45ba9b6a7f20"
+    },
+    {
+      "path": "evidence/review/spartoi-preopen/artifacts/dayflow/2026-08-20/S1_final_list.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 919,
+      "sha256": "fbac54bc558a53ed9935edab1cc5b6c82b3b0392f2858e2b3dd3804ae12a930a"
+    },
+    {
+      "path": "evidence/review/spartoi-preopen/artifacts/dayflow/2026-08-20/daily_pack.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 3106,
+      "sha256": "34579ff34da8d624e8322e683d599125df179c10b46b6248686e581513f0f709"
+    },
+    {
+      "path": "evidence/review/spartoi-preopen/artifacts/dayflow/2026-08-20/daily_report.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 672,
+      "sha256": "e3159bdb3a2aa2673734e0f71d78d1f0acf03300ccc559bfb0c6a606a406d41d"
+    },
+    {
+      "path": "evidence/review/spartoi-preopen/artifacts/dayflow/2026-08-20/feedback_to_method.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 160,
+      "sha256": "077ef71f58921d20c3cd1b358156743ca5d783dcc1668fc0ad1fbc50284c709a"
+    },
+    {
+      "path": "evidence/review/spartoi-preopen/artifacts/dayflow/2026-08-20/preopen_risk_report.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 243,
+      "sha256": "12a65d2873255e0338cae8e01048597baed3a950997ead729b8db87964baf138"
+    },
+    {
+      "path": "evidence/review/spartoi-preopen/artifacts/dayflow/2026-08-20/xs_watchlist.xs",
+      "git_state": "inside-untracked-dir",
+      "bytes": 429,
+      "sha256": "1dea0d1e8e7763f7ec70c92c8777ba3a8dfd17f7818fd86a0c2dd52912681356"
+    },
+    {
+      "path": "evidence/review/spartoi-preopen/artifacts/sf01_weekly.py",
+      "git_state": "inside-untracked-dir",
+      "bytes": 8099,
+      "sha256": "acf5242cda8b6d9e4eed101056b7d694fdaf0a68a646a8953babf120e49a42c6"
+    },
+    {
+      "path": "evidence/review/spartoi-preopen/artifacts/sf020314_executor.py",
+      "git_state": "inside-untracked-dir",
+      "bytes": 8573,
+      "sha256": "c22b761fb96d1a2fd44a668b3ce1e3d1065b8a39ddf3ba6c92492883f532dd6b"
+    },
+    {
+      "path": "evidence/review/spartoi-preopen/artifacts/spartoi_flow/2026-W34/weekly_pack.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 11447,
+      "sha256": "6fc44a225632d44f57cf94eee047aae263d2dbf06d53e390fcd6c2700afc1a36"
+    },
+    {
+      "path": "evidence/review/spartoi-preopen/artifacts/spartoi_flow/2026-W34/weekly_report.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 289,
+      "sha256": "8551b3b69639049dee2ade94b33c8a051b1c51f56b6a01b082c1ce9d8da48c9a"
+    },
+    {
+      "path": "evidence/review/wiki-daytrading/SQS_WIKI_BUILD_RECEIPT.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 6549,
+      "sha256": "4e30b1dc4c50e816aad10bebca4c534481af2a2c88583c2979d640acc79f2154"
+    },
+    {
+      "path": "evidence/review/wiki-daytrading/SQS_WIKI_DAYTRADING_SINGLE_EVIDENCE.md",
+      "git_state": "inside-untracked-dir",
+      "bytes": 3455,
+      "sha256": "ad98eeeda74c87cae24d6dc64a08266dda7c2f9ece6d5ec138ec2034ef493e2c"
+    },
+    {
+      "path": "evidence/review/wiki-daytrading/WIKI_ACCEPTANCE_LANES.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 205,
+      "sha256": "b1a89e1dea8d34d16152df4c36da882646dcf4991d72e3f74d9a206b1a302223"
+    },
+    {
+      "path": "evidence/review/wiki-daytrading/concepts/daytrading-intraday-exits.md",
+      "git_state": "inside-untracked-dir",
+      "bytes": 3830,
+      "sha256": "65f08a4e7e85a404f62be351fdb0e1b5abbc21bdfce7a230a8638b08e3c704cd"
+    },
+    {
+      "path": "evidence/review/wiki-daytrading/concepts/daytrading-open-auction.md",
+      "git_state": "inside-untracked-dir",
+      "bytes": 2759,
+      "sha256": "51a6a832225ba519e82093d1e6f1902b1deb18f520a7bfc9c986ce56a876feb4"
+    },
+    {
+      "path": "evidence/review/wiki-daytrading/concepts/daytrading-stock-selection.md",
+      "git_state": "inside-untracked-dir",
+      "bytes": 3770,
+      "sha256": "2a5a68ec4b8b438079695554eb31278d52491b4d701fcf61ccd6a5f48aaf537a"
+    },
+    {
+      "path": "evidence/review/wiki-daytrading/concepts/daytrading-t0-flow.md",
+      "git_state": "inside-untracked-dir",
+      "bytes": 3707,
+      "sha256": "f98a3f86e123cd901334d61a93bbae7f2503d0c233cebebefe34e9b8b86c1ac6"
+    },
+    {
+      "path": "evidence/review/wiki-daytrading/concepts/ict-context-bias-scenario.md",
+      "git_state": "inside-untracked-dir",
+      "bytes": 5132,
+      "sha256": "08fa862eeb8b471f750d3661cb85d168f8d7f5911991652ed4fb67c746f06818"
+    },
+    {
+      "path": "evidence/review/wiki-daytrading/concepts/ict-daytrading-modules.md",
+      "git_state": "inside-untracked-dir",
+      "bytes": 3687,
+      "sha256": "cd9794e8b832e19c53e6f8329a713b577821b892015d16e7ef1504b307301b04"
+    },
+    {
+      "path": "evidence/review/wiki-daytrading/concepts/ict-intraday-microstructure.md",
+      "git_state": "inside-untracked-dir",
+      "bytes": 4016,
+      "sha256": "c1cf49a7a869a13ce8d30e84c24417829d05dab8a01311bad1389116e211c241"
+    },
+    {
+      "path": "evidence/review/wiki-daytrading/concepts/smc-market-structure.md",
+      "git_state": "inside-untracked-dir",
+      "bytes": 3687,
+      "sha256": "3d01513a555fdf757701dd7de1499d939e8402298dd82ec60a4ec5fe0017dfdf"
+    },
+    {
+      "path": "evidence/review/wiki-daytrading/concepts/tw-funds-and-news-flow.md",
+      "git_state": "inside-untracked-dir",
+      "bytes": 4540,
+      "sha256": "435d2e7d636d6a2af7e27752068debcc40e69cfa6cc93b1f564e1514aa236c79"
+    },
+    {
+      "path": "evidence/review/wiki-daytrading/concepts/tw-ict-mainline-method.md",
+      "git_state": "inside-untracked-dir",
+      "bytes": 4619,
+      "sha256": "92af65c8372c2ed1883f9d2ce436517507ced670c933504ea647f0ad60aa310a"
+    },
+    {
+      "path": "evidence/review/wiki-daytrading/concepts/tw-ict-risk-gates.md",
+      "git_state": "inside-untracked-dir",
+      "bytes": 4259,
+      "sha256": "ab6545693e9e0f8d4e33d3b7ff4503d716e3e9156ebff6d47049b5c1ab73440a"
+    },
+    {
+      "path": "evidence/review/wiki-daytrading/concepts/tw-market-index-structure.md",
+      "git_state": "inside-untracked-dir",
+      "bytes": 4780,
+      "sha256": "906882ee34e41e3b8170220e743bd8e315281492335be4c002c43d875ea141e6"
+    },
+    {
+      "path": "evidence/review/wiki-daytrading/concepts/tw-scenario-daytrading-suitability.md",
+      "git_state": "inside-untracked-dir",
+      "bytes": 4053,
+      "sha256": "d661c2014043b77963cc638f9453326a85beecf2fdca2e0d76938d4d897e3fbd"
+    },
+    {
+      "path": "evidence/review/wiki-kb-rebuild/PARAM_CALIBRATION_SINGLE_EVIDENCE.md",
+      "git_state": "inside-untracked-dir",
+      "bytes": 3591,
+      "sha256": "2f1d0635154cd78a9cd2d9c3b64ef1a48132b104c917b66a1aabc195cce2c38b"
+    },
+    {
+      "path": "evidence/review/wiki-kb-rebuild/ROUTE_GSTACK_OPENSPEC_WIKI_KB_REBUILD.json",
+      "git_state": "inside-untracked-dir",
+      "bytes": 870,
+      "sha256": "a2aec5c20bdd4496535ee4ad8cdf194e095effe5a3e74589c81f2b9dc1c86fe7"
+    },
+    {
+      "path": "evidence/review/wiki-kb-rebuild/WIKI_KB_REBUILD_SINGLE_EVIDENCE.md",
+      "git_state": "inside-untracked-dir",
+      "bytes": 4476,
+      "sha256": "a8fc2f6bbd44e0447c2b386d7880db23adcad984aa49e7e699f5c9cbfdccf4df"
+    },
+    {
+      "path": "fabric-autonomous-research/README.md",
+      "git_state": " M",
+      "bytes": 4958,
+      "sha256": "ce8f141a169f42cb42839edacb636231234d813d085a1c74a531834090e6fae5"
+    },
+    {
+      "path": "fabric-autonomous-research/evidence/FAR_MVT_PLANNED_GATE1_RECEIPT.json",
+      "git_state": "??",
+      "bytes": 2828,
+      "sha256": "2856bad29acaf47cd54ae07fe7cb2fefb69fc7b361779c039e79b3c4510ce06e"
+    },
+    {
+      "path": "fabric-desktop-automation/README.md",
+      "git_state": " M",
+      "bytes": 4585,
+      "sha256": "779683f276c9924c4b537660be42628f85e8cba369eab8a51c38e28c411d59fa"
+    }
+  ],
+  "secret_hits": [],
+  "policy": {
+    "junk": "byte-cache directories and compiled artifacts are removed from the working tree and excluded by the new .gitignore; they are regenerable",
+    "untracked_directories": "directories that were untracked are expanded and hashed file by file rather than swept in as opaque blobs",
+    "runs_left_out": "the autonomous research subsystem's run output is excluded by .gitignore as regenerable run product, and is named here rather than hidden",
+    "scan": "patterns for host tokens, cloud key ids, private-key headers and credential assignments; a hit aborts the commit",
+    "hash": "sha256 of the file as it sits in the working tree at manifest time"
+  },
+  "claim_ceiling": "a hygiene and scan record for a local repository with no remote; it asserts nothing about whether the underlying content is correct"
+}
