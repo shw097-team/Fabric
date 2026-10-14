@@ -1,0 +1,43 @@
+{
+  "schema": "SKCV-POSTFREEZE-RECEIPT/1",
+  "observed_at": "2026-10-14T06:13:08.697996+00:00",
+  "why_this_directory_exists": "receipts written after the subject freeze are kept out of the frozen include-roots so the frozen row set and its digest cannot drift under a running checker. The earlier adjudication receipt inside verification/round-harness changed the digest and had to be excluded explicitly; that lesson is recorded here.",
+  "frozen_subject": {
+    "manifest": "evidence/subject_manifest.json",
+    "file_count": 374,
+    "tree_digest": "9b68418bcbfd230d43d6525752a09d156b37b31fb214eacaf3b5c77b616936cb",
+    "digest_method_recorded_in_manifest": true
+  },
+  "error_class_update": {
+    "class": "ERR_LANE_ALL_ROUTES_EXHAUSTED",
+    "count_now": 11,
+    "new_occurrence": {
+      "lane": "verify/1",
+      "timed_out_arm": "opencode-go/glm-5.3-flash",
+      "exit": 3,
+      "window": "2026-10-14T06:01:50Z to 06:11:53Z (about 600s, the canonical gate)",
+      "partial_capture": "0 bytes stdout and stderr — the dispatcher timeout branch dropped them, which is the known reproduced defect; an empty capture is NOT evidence the lane did nothing",
+      "why_it_was_slow": "the lane was given the long original verification brief (seven required steps including a per-case coverage matrix and a 3-mutation falsification) and spent its budget reading; the same pattern that exhausted the earlier maker lanes"
+    },
+    "threshold": 4,
+    "exceeds_threshold": true,
+    "intervention_applied": {
+      "lane": "verify/2",
+      "changes": [
+        "brief narrowed to five numbered steps with a bounded case list instead of \"every contract case\"",
+        "RULE ZERO forbids ending a turn without the transport token; RULE ONE forbids permission probing and planning; RULE TWO forbids re-reading large files or dumping bodies",
+        "round-only diagnostic budget raised to 1200s AND the diagnostic trace enabled, so this attempt is observable while it runs — the canonical 600s gate and the acceptance oracle are unchanged, and the raise is disclosed here",
+        "the strongest-claim falsification is now pointed at named artifacts (entry maps, baseline entries, topic payloads) instead of being left to discovery"
+      ],
+      "why_remediate_rather_than_pause": "the failure is budget exhaustion on an over-broad brief, not a gate refusal or a frozen-subject mutation; the same narrowing already converted the SECURITY work order from a nonce-less failure into a token-bearing PASS_ADVISORY, so the remedy has demonstrated effect. A pause here would abandon the acceptance step the order requires"
+    },
+    "pause_trigger": "if this narrowed attempt also fails on the same exhausted class, or if the class keeps growing without a successful verdict, the VERIFY work order is paused and reported instead of retried again"
+  },
+  "other_class_counts_this_round": {
+    "OK": 9,
+    "ERR_NO_ARM_EMITTED_NONCE": 1,
+    "ERR_LANE_ALL_ROUTES_EXHAUSTED": 11,
+    "lanes_dispatched_total": 22
+  },
+  "claim_ceiling": "a record of failure-class accounting and the remediation applied; it verifies no product behaviour and grants no acceptance"
+}

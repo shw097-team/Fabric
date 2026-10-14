@@ -1,0 +1,84 @@
+{
+  "schema": "SKCV-CLOSING-TALLY/1",
+  "observed_at": "2026-10-14T06:40:00+00:00",
+  "note": "written by hand as a closing tally of the lane-discipline and checker round; every number in it was produced by a harness run in this round and is reproducible from the named artifacts",
+  "subject": {
+    "manifest": "evidence/subject_manifest.json",
+    "file_count": 374,
+    "excluded_count": 592,
+    "tree_digest": "9b68418bcbfd230d43d6525752a09d156b37fb31fb214eacaf3b5c77b616936cb",
+    "digest_method": "sha256 over the newline-joined '<sha256> <path>' row lines, no trailing separator",
+    "digest_reproduced_independently_by": ["round harness (twice)", "SECURITY lane tag 2", "VERIFY lane tag 4"]
+  },
+  "gate_valid_advisory_verdicts": [
+    {
+      "lane": "WO-SKCV-20261014-SECURITY tag 2",
+      "verdict": "PASS_ADVISORY",
+      "transport": "exit 0, ok true, rank 3, served opencode-go/glm-5.3-flash, usage receipt ok, 242.6s",
+      "adjudication": "verification/round-harness/security2_adjudication.json",
+      "harness_agreement": "374 rows re-hashed, 0 missing, 0 wrong digest, 0 wrong size, row-set digest reproduced",
+      "cases": "7 PASS, 3 NOT_RUN",
+      "findings": "two informational, both the checker's own self-corrected composition and argument-handling slips"
+    },
+    {
+      "lane": "WO-SKCV-20261014-VERIFY tag 4",
+      "verdict": "PASS_ADVISORY",
+      "transport": "exit 0, ok true, rank 3, served opencode-go/glm-5.3-flash, usage receipt ok, 451.69s",
+      "adjudication": "evidence/postfreeze/verify4_adjudication.json",
+      "harness_agreement": "case ids match the fixed list exactly; no foreign vocabulary; JSON parsed without repair; findings all severity none; digest reproduced; AVR 10 slices reconstructed to 101488 bytes sha 4be690a4feaee5ba equal to baseline; HGK 6 slices to 105116 bytes sha 174df0185026de09 equal to baseline; drop, swap and byte-flip mutations all detected; four harnesses exit 0",
+      "cases": "13 PASS or agree, 1 PARTIAL (COVERAGE)",
+      "findings": "none"
+    }
+  ],
+  "inadmissible_lane_outputs": [
+    {
+      "lane": "VERIFY tag 2",
+      "why": "complete verdict emitted, then the turn ended without the transport token",
+      "disposition": "content preserved and cross-checked for honesty (its two reconstruction byte counts and hashes match the baseline files) but not admitted as a verdict"
+    },
+    {
+      "lane": "VERIFY tag 3",
+      "why": "token emitted, but the verdict body used invented case ids, contained vocabulary that does not occur anywhere in this subject, carried an incoherent finding marked maker_repair_required, and its digest-method complaint is contradicted by the harness reproducing the declared digest exactly",
+      "disposition": "classified content contamination; not admitted; the class is recorded so a later round does not mistake it for a product defect"
+    }
+  ],
+  "lane_discipline_tally": {
+    "lanes_dispatched_total": 26,
+    "ok_transport": 12,
+    "ERR_LANE_ALL_ROUTES_EXHAUSTED": 11,
+    "ERR_NO_ARM_EMITTED_NONCE": 2,
+    "CONTENT_CONTAMINATION": 1,
+    "threshold": 4,
+    "classes_over_threshold": ["ERR_LANE_ALL_ROUTES_EXHAUSTED"],
+    "remediation_of_that_class": "serial dispatch, allow-listed reads, shell preamble in every lane prompt, round-only diagnostic budget; after the intervention the last four maker lanes and both checker lanes completed with valid receipts",
+    "longest_task_this_batch_minutes": 7.53,
+    "tasks_over_ten_minutes_now": 0,
+    "paused": false,
+    "pause_trigger": "any lane mutating the frozen subject, a gate refusal standing in for bounded output, or the same class repeating more than four times without a valid verdict"
+  },
+  "harness_defects_observed": [
+    {
+      "id": "H1",
+      "where": "evidence/check_topic_batch.py line 31",
+      "symptom": "stub_points_at_topic reports false for every row",
+      "diagnosis": "str(pathlib.Path) renders with backslashes on Windows, so splitting on '/' returns the whole path and never matches the stub text",
+      "effect_on_verdict": "none; the ok computation uses segment_matches_claim, baseline_equals_segment and stub_exists, and stub_points_at_offset is true",
+      "repair_not_applied_because": "the file is inside the frozen row set, so editing it now would invalidate the digest both checker lanes bound",
+      "independent_confirmation": "the stub for references/verdict-artifact-and-budget.md names topics/verification-and-acceptance-lane.md and its offset directly"
+    }
+  ],
+  "my_own_errors_corrected_this_batch": [
+    "the first VERIFY 4 adjudication converted the role and batch arguments into absolute paths, so three batch harnesses were invoked with wrong arguments and their exit 1 was mine; with correct arguments all four exit 0",
+    "the first AVR reconstruction used the HGK entry-map shape, so it hashed the whole file ten times and reported 1014880 bytes; with the AVR keys src_start and src_end it is byte-exact",
+    "a post-freeze receipt written inside a frozen include-root changed the row set and the digest, which would have broken a running checker's binding; post-freeze receipts now live in evidence/postfreeze/"
+  ],
+  "open_items_not_claimed_as_done": [
+    "only theme batches 1 and 2 are consolidated: AVR 7 files in one topic, HGK 9 files in two topics",
+    "candidate reference-file counts went up rather than down: AVR 27 to 30, HGK 119 to 122",
+    "consumer downstream wiring is partial: the reader is reused and its tests match the live runtime, but not every consumer path was exercised",
+    "guarded apply has not written to any real target; its evidence is fixture-only",
+    "no live rollback drill and no canonical apply; nothing was promoted",
+    "the live adversarial-verification-rounds skill moved past the round baseline through a ledger-attributed curator patch, so byte-exactness holds against the frozen generation only"
+  ],
+  "claim_ceiling": "two advisory verdicts over a frozen candidate generation, adjudicated by the round harness; this is not canonical acceptance, grants no promotion and no apply authority, and repairs none of the failed lane dispatches it records"
+}

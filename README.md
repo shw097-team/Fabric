@@ -33,6 +33,7 @@
 | know what is **not** claimed | [`INTEGRATION/NON-CLAIMS.md`](INTEGRATION/NON-CLAIMS.md) |
 | see what this publication contains and excludes | [`INTEGRATION/MANIFEST.json`](INTEGRATION/MANIFEST.json) |
 | read the hygiene record and the independent verdict | [`EVIDENCE/repo-hygiene-20261013/`](EVIDENCE/repo-hygiene-20261013) |
+| read the current round's closure record and its independent check | [`EVIDENCE/SKILL-CONVERGENCE-20261014/`](EVIDENCE/SKILL-CONVERGENCE-20261014) |
 
 **Capability test.** An external engineer must be able to produce the upgrade scope, the dependency
 and contract map, the validation plan, the rollback plan and the non-claim list — from this
@@ -63,5 +64,9 @@ test passable.
 
 `NOT_EXTERNALLY_ACCEPTED · NOT_MERGED · NOT_RELEASED · NOT_PRODUCTION · NO_LIVE_WORLD_EFFECT`
 
-Published 2026-10-13T11:50:38.128148+00:00. The previous publication is preserved in history; this one records its own scope,
-its hygiene result and its open owner decisions.
+Published 2026-10-13T11:50:38.128148+00:00 (the readiness set). A second publication is recorded: **2026-10-14, change-set
+`docs/skill-convergence-20261014`** — it carries the candidate-only convergence round's closure record and its independent
+check under [`EVIDENCE/SKILL-CONVERGENCE-20261014/`](EVIDENCE/SKILL-CONVERGENCE-20261014), brings the `FABRIC/` front page up
+to the local revision, adds the round's rows to [`INTEGRATION/KNOWN-FINDINGS.md`](INTEGRATION/KNOWN-FINDINGS.md), and changes
+no contract. Each publication is preserved in history and records its own scope, its hygiene result and its open owner
+decisions.

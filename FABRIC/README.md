@@ -40,6 +40,19 @@ Fabric 是 **HG-KSEOS 的 contract surface**：它不擁有 authority，擁有�
 - **綁定規則（重要）**：本能力**不改動**上一節的綁定規則——checker／AO verdict **仍僅為 advisory**，**永遠不是 OracleReceipt、永遠不是 canonical acceptance status**。本輪的 `ACC-AO-INDEP-012 = PASS` 之所以有效，是因為它是由**獨立 checker lane** 產生 verdict、經 **typed spine API**（`resolve_acceptance`）落帳並附 canonical event，**不是**因為它是某份 advisory verdict。
 - **誠實狀態**：**process-only 獨立性**（三條 lane 同模型，owner D-3 裁決）→ **不得**宣稱模型多樣性；守衛是**偵測非阻止**；瞬時改寫／還原偵測不到；`(ii)` 專用帳號**撤銷為 NOT APPLICABLE**（owner 僅一個帳號），殘餘為共用失效域。
 
+## 本輪新增：lane 重綁 + W3 落地（`HGK-SOLUTION-APPLY-20261012`，**`PARTIAL`**）
+
+- **鏡射證據**：`evidence/review/HGK-SOLUTION-APPLY-20261012/HGK-SOLUTION-APPLY-20261012_EVIDENCE.md`（**digest-stamped** mirror：本回合沒有單一來源文件，故以「收尾報告 ＋ 獨立 checker 裁決 ＋ 落地收據」三件的 sha256 標記，而不是 byte-identical 單檔）。
+- **本輪與 Fabric 有關的一件事**：本回合的 VERIFY/SECURITY checker 與 maker/executor **同模型**（owner 授權、`HG-KSEOS/var/hgk-solution-apply-20261012/admission/AMENDMENT_03` 記載的 task-scoped 偏離）。這**不是**新的綁定規則，而是上一節「process-only 獨立性」上限的**同類第二例**：獨立性由**車道／角色／harness 分離**（獨立行程、獨立 `CODEX_HOME`、獨立 brief、獨立 log）承擔 → **不得**宣稱模型多樣性；**advisory 綁定規則不變**。
+- **誠實狀態**：terminal state **`PARTIAL`**（獨立 checker `verdict: PARTIAL` — R8 FAIL＝rollback 未以最終收據重新鍵結；1 項主張被 checker 推翻；**0** 過度宣稱）；**owner acceptance `NOT_RUN`**；自承的宣告-實況漂移 F18 已修（registry `epoch 16→17`）。本輪**不改動**任何 contract、無 promotion、無 archive、無 push。
+
+## 本輪新增：skill 收斂候選回合（`SKILL-CONVERGENCE-20261014`，**candidate-only**）
+
+- **鏡射證據**：`EVIDENCE/SKILL-CONVERGENCE-20261014/`（策展投影：結案主文、FAR 裁決、兩軸獨立查核與其裁決、發布紀錄、審核清單、機器收據）；完整 632 檔回傳包在 `shw097-team/PIPD-LS-SP` 的 `feat/skill-convergence-return-20261014` 分支。
+- **本輪與 Fabric 這一層有關的一件事**：Fabric 側的工程衛生（`.gitignore` ＋ `HYGIENE_MANIFEST_20261014.json`，221 檔掃描 0 命中）與首頁／文檔提交，原先**只落在本機 working copy**（該 repo 無 remote）；本 change-set 把首頁與證據指標帶進 mirror。`FABRIC/AGENTS.md` 在本 mirror 與本機為**同一個 blob**（`bc269ffe…`）。
+- **綁定規則（不變）**：checker lane（`VERIFY 6`、`SECURITY 5`）的 verdict **僅為 advisory**——**不是** OracleReceipt、**不是** canonical acceptance；`WARN_LANE_CREDENTIAL_POSTURE_INCONCLUSIVE` 為 inconclusive，**非 pass**。
+- **誠實狀態**：canonical 樹**未 apply、未 promote**；控制平面逾時 partial-capture 缺陷**只有候選補丁**；本回合車道失敗四類（逾時 12／無 nonce 2／污染 1／空答案 1）**完整保留、無一被洗成 PASS**；references **94** 檔仍高於 linter 的 60 檔警告線 34 檔。
+
 ## 邊界
 
 Stage-1 / Stage-2 的既有封存、歷史 receipts 與原 sealed 產物**不被覆寫**。本 README 只描述現況與入口，不變更任何 contract。
