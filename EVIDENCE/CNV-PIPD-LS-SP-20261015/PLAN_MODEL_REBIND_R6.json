@@ -1,0 +1,91 @@
+{
+  "schema": "CNV-PIPD-LS-SP-20261015/PLAN-MODEL-REBIND/1",
+  "mission": "CNV-PIPD-LS-SP-20261015",
+  "round": "CNV-PIPD-LS-SP-20261015-R6",
+  "artifact": "PLAN_MODEL_REBIND_R6",
+  "generated_utc": "2026-10-15T19:45Z",
+  "owner_order_verbatim": "因為GPT配合耗盡，你必須把本SEESION的任務執行「PLAN & Orchestrator在HERMES內執行，PLAN & Orchestrator模型」，改成使用「GLM-5.3-Flash(OPENCODE GO)」",
+  "order_authority": "OWNER (explicit instruction, this session)",
+  "change": {
+    "scope": "in-Hermes PLAN & Orchestrator plane (the runtime that is not a Codex-CLI lane)",
+    "before": {
+      "provider": "openai-codex",
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "medium",
+      "auth": "openai_oauth"
+    },
+    "after": {
+      "provider": "opencode-go",
+      "model": "glm-5.3-flash",
+      "reasoning_effort": "medium",
+      "auth": "env_ref:OPENCODE_GO_API_KEY (relay catalog route)"
+    },
+    "former_arm_disposition": "gpt-6.1-sol retained as a NON-DEFAULT, non-automatic operator-selectable alternate; never auto-selected (usable_now QUOTA_429)"
+  },
+  "reason_evidence": {
+    "claim": "the OpenAI OAuth GPT arm cannot serve this session / this round",
+    "measured": [
+      "hermes logs/agent.log: 'agent.credential_pool: credential pool: marking openai-codex-oauth-1 exhausted (status=429), rotating' at 2026-10-15 19:00:30 local",
+      "hermes logs/agent.log: 'API call failed (attempt 1/3) error_type=RateLimitError provider=openai-codex base_url=https://chatgpt.com/backend'",
+      "gpt-6.1-sol last served 2026-10-15 18:54:18 (agent.log API call #138, provider=openai-codex); the same session fell through to opencode-go models afterwards (mimo-v2.6-pro at 19:08:50)"
+    ],
+    "not_claimed": "no provider-liveness proof for the GLM arm is asserted here beyond the relay catalog route existing and the R6 checker turn having been served on it (usage receipt, HTTP 200)"
+  },
+  "changes_applied": [
+    {
+      "path": "HG-KSEOS/config/model-lane-assignment.json",
+      "kind": "canonical control-plane policy file (candidate lifecycle)",
+      "revision_before": 18,
+      "revision_after": 19,
+      "sha256_before_12": "cabbf0ac0b61",
+      "sha256_after_12": "6af264c9ffdb",
+      "sha256_after_full": "6af264c9ffdb57113be769842ac1a8503eb472a3c55f1941ee42667078808753",
+      "backup": "config/model-lane-assignment.json.bak-planrebind-20261015T1940Z",
+      "backup_sha256_12": "d89148b98331",
+      "backup_identity_check": "the backup digest equals the revision-18 source_of_routes pin previously declared by the registry — i.e. the backup IS the exact preimage",
+      "fields_changed": [
+        "revision 18 -> 19; registry_epoch 18 -> 19; declared_at_utc; declared_by; authorization_basis",
+        "assignment[0] (PLAN): assigned_model/assigned_provider -> glm-5.3-flash/opencode-go (medium) + non_default_alternates",
+        "lane_chains.PLAN: glm-5.3-flash primary -> deepseek-v4.1-flash fallback1 -> gpt-6.1-sol NON-DEFAULT operator-selectable (QUOTA_429); revision-18 chain preserved as lane_chains.PLAN_previous_revision_18",
+        "sod.plan_lane / sod.plan_reasoning_effort / sod.maker_self_acceptance / sod.verify_vs_plan_model_separation recomputed honestly",
+        "sod_conflicts += SOD006-C3 (PLAN glm-5.3-flash == VERIFY fallback1 glm-5.3-flash; recorded, not enforced)",
+        "effective_wiring.delegation.model / delegation.provider -> glm-5.3-flash / opencode-go (matches the live config read back)",
+        "claim_ceiling extended with the revision-19 scope statement"
+      ]
+    },
+    {
+      "path": "HG-KSEOS/config/lane-routing-registry.yaml",
+      "kind": "CANDIDATE enforcement artifact (epoch bump)",
+      "epoch_before": 18,
+      "epoch_after": 19,
+      "changes": "PLAN route provider/model/canonical_identity/auth/oauth + arm list + fallbacks rebound; projections bindings for PLAN, /assignment/0/*, /sod/plan_lane, /sod/maker_self_acceptance, /sod/verify_vs_plan_model_separation and /effective_wiring/delegation.model updated to the new expected values; source_of_routes revision 19 + sha256 re-pinned; history entry added; epoch-19 header note added"
+    },
+    {
+      "path": "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/config.yaml",
+      "kind": "runtime application setting (declared NON_AUTHORITATIVE for governed HGK calls)",
+      "changes": [
+        "model.default was already glm-5.3-flash / provider opencode-go (read back before the change)",
+        "delegation.model set to glm-5.3-flash by 'hermes config set' (read back: glm-5.3-flash) so the orchestrator's ordinary child plane follows the same rebind"
+      ]
+    }
+  ],
+  "verification_performed": {
+    "gate": "HG-KSEOS/scripts/hgk-lane-policy.py validate (registry -> live projection drift check)",
+    "result": "epoch 19 | fatal False | findings 0 | debt 0",
+    "resolved_drift": "one DRIFT_VALUE was raised and fixed during the rebind: /effective_wiring/delegation.model expected glm-5.3-flash while the canonical file still held deepseek-v4.1-flash (the pointer is a flat key 'delegation.model', not a nested object) — corrected, then re-validated clean",
+    "route_readback": "PLAN -> opencode-go / glm-5.3-flash (default arm: primary); EXECUTE -> opencode-go / deepseek-v4.1-flash; VERIFY_SECURITY -> openai-codex / gpt-6.1-sol (default arm: A)"
+  },
+  "session_runtime_honesty": {
+    "this_session_id": "20261015_125956_d5f877",
+    "this_session_served_model": "deepseek-v4.1-flash (provider opencode-go) — the model is pinned when a chat session starts, so THIS window keeps serving the pre-rebind model",
+    "effective_from": "sessions started after the rebind; a concurrent session started 18:00:48 logs model=glm-5.3-flash provider=opencode-go (agent.log, 2026-10-15 19:21-19:22), which is the config default in force",
+    "action_for_this_window": "switch the model in the desktop model picker or start a new chat; the agent cannot re-pin a running session's own model"
+  },
+  "residual_records": [
+    "SOD006-C3 OPEN_OWNER_ORDERED: PLAN and VERIFY_SECURITY can share the glm-5.3-flash identity when the verifier uses fallback1 — recorded, not hidden; dispatch still refuses same-call self-verification",
+    "SOD006-C2 remains an owner-ordered record from the previous round",
+    "the earlier round's mandate (PLAN = gpt-6.1-sol medium) is superseded by this owner order for this session; the revision-18 chain is preserved in the file"
+  ],
+  "claim_ceiling": "LOCAL: an owner-ordered canonical declaration plus a matching runtime config change and a clean drift-gate run. NOT independent verification, NOT acceptance, NOT promotion, and NOT provider-liveness proof for either arm.",
+  "disclosure": "every file touched, every backup, and the one drift the gate caught during the edit are listed above; nothing was rounded up to 'clean pass' that the gate did not itself confirm"
+}

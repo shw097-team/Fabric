@@ -226,6 +226,30 @@ ROOT patch 的記錄性失誤），使其自身 299 檔掃描一度出現 `bad_c
 → 結論：**writer 候選集最終狀態未被污染**；過程中的暫態改動已由 checker 自報並還原，且經 orchestrator 獨立
 驗證。此項列為 **DEV-R6-7**（不隱藏）。
 
+## §13 Owner 命令落地：PLAN & Orchestrator 模型置換為 GLM-5.3-Flash（2026-10-15 19:40 台北）
+
+Owner 原話：「因為GPT配合耗盡，你必須把本SEESION的任務執行「PLAN & Orchestrator在HERMES內執行，PLAN &
+Orchestrator模型」，改成使用「GLM-5.3-Flash(OPENCODE GO)」」。落地範圍與結果（詳見 `PLAN_MODEL_REBIND_R6.json`）：
+
+| 層 | 變更 | 讀回／證據 |
+|----|------|-----------|
+| 治理宣告（canonical） | `HG-KSEOS/config/model-lane-assignment.json` rev **18 → 19**；PLAN rank-1 = `opencode-go/glm-5.3-flash`(medium)；gpt-6.1-sol 降為 **NON-DEFAULT、非自動** alternate | sha256 `cabbf0ac0b61…` → `6af264c9ffdb57113be769842ac1a8503eb472a3c55f1941ee42667078808753`（39,257 B）；備份 `.bak-planrebind-20261015T1940Z` sha `d89148b98331…` **等於 registry 原本的 rev-18 pin**＝確實是原檔 |
+| 候選強制件（CANDIDATE） | `HG-KSEOS/config/lane-routing-registry.yaml` epoch **18 → 19**；PLAN route／arms／fallbacks／projections／source pin／history 同步 | `hgk-lane-policy.py epoch` → `19` |
+| 執行期設定 | Hermes `config.yaml`：`model.default` 本來就是 `glm-5.3-flash`/`opencode-go`；另設 `delegation.model = glm-5.3-flash` | `hermes config get` 讀回 `glm-5.3-flash` |
+
+**驗證（專案自己的閘門，非我自評）**：`scripts/hgk-lane-policy.py validate` → **epoch 19 | fatal False |
+findings 0 | debt 0**。過程中該閘門**抓到 1 筆 DRIFT_VALUE**（`/effective_wiring/delegation.model`：該指標是**扁平鍵**
+`delegation.model` 而非巢狀物件，我第一次改錯位置）→ 修正後重跑才乾淨；此漂移已寫入收據，未隱藏。
+
+**誠實邊界**：本視窗（session `20261015_125956_d5f877`）的模型在 session 開始時就 binding 為
+`deepseek-v4.1-flash`，**agent 無法重綁執行中 session 的自身模型**；本 rebind 對「之後新開的 session」生效
+（已在 agent.log 量到另一 session 以 `model=glm-5.3-flash provider=opencode-go` 服務）。要在本視窗使用 GLM，
+請用桌面端模型選擇器切換或另開新對話。
+
+**新增紀錄**：`SOD006-C3`（PLAN glm-5.3-flash == VERIFY fallback1 glm-5.3-flash；recorded, not enforced，
+dispatch 仍拒絕同一 call 自我驗證）。claim ceiling 維持 **LOCAL**：這是 owner 命令下的宣告＋設定落地與閘門
+通過，**不是**獨立驗收、不是核准、也不是 provider 存活證明。
+
 ## §10.1 本節新增副作用（除 §6 之外）
 
 1. Fabric 本地 clone 設定 `core.longpaths=true`（repo-local；因 repo 內容路徑超過 MAX_PATH，worktree 需短根
