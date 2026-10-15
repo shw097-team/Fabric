@@ -1,96 +1,106 @@
 {
-  "schema": "CNV-PIPD-LS-SP-20261015-R7/TOOLING-FINDINGS/1",
-  "generated_local": "2026-10-15T21:18:50+08:00",
-  "purpose": "defects in the governed tooling observed while executing R7-0, each with raw evidence, impact, owner and a low-friction fix",
-  "findings": [
-    {
-      "id": "TF-01",
-      "tool": "scripts/hgk-lane-dispatch.py (lane resolution guard)",
-      "severity": "MEDIUM",
-      "observation": "the dispatcher refused to dispatch the EXECUTE lane twice because the BRIEF TEXT contained the markers 'git push' and then 'publish' - both inside PROHIBITION sentences ('do not ... '), not in any command. Rewriting the prose to avoid those words let the same lane run.",
-      "raw_evidence": [
-        "lane_runs/EXECUTE_dispatch_receipt_attempt1.json (code ERR_LANE_REMOTE_WRITE_NOT_AUTHORIZED, remote_write_markers ['git push'])",
-        "second refusal recorded with remote_write_markers ['publish']",
-        "the receipt itself prints detection_only=true and says the check cannot stop a lane that writes from inside its own shell"
-      ],
-      "impact": "false positives block legitimate bounded writers and tempt operators to weaken briefs (which is worse: a prohibition sentence is exactly what a safe brief SHOULD contain). Detection-only means the guard provides no protection against the attack it names.",
-      "fix": "match command context, not bare words: require a shell-looking occurrence (e.g. a line beginning with git/gh/curl, or an argv form) and ignore matches inside negative/prohibition sentences; keep detection_only semantics but stop refusing the dispatch on prose.",
-      "owner": "HGK Lane Owner"
-    },
-    {
-      "id": "TF-02",
-      "tool": "hg_kseos.lifecycle (taskspec id + workorder admission)",
-      "severity": "MEDIUM",
-      "observation": "taskspec_id is derived from the LAST dash segment of the project id, so two projects for the same mission collide on the spine (UNIQUE constraint), and create_workorder resolves git HEAD from the ambient process cwd rather than the project's target_root (ERR_WORKORDER_CRITICAL_FIELD_MISSING when admission runs from a non-repo directory). Three admission attempts were stranded at PLAN_READY as a result.",
-      "raw_evidence": [
-        "HGK_TYPED_ADMISSION_R6R7.json steps + R7_BLOCKERS_AND_TASKS.json BLK-R7-08"
-      ],
-      "impact": "a governed admission path fails for reasons unrelated to authority, and the failed attempts leave residue in the spine that later readers may misread as real work.",
-      "fix": "use a full project-id digest (or a spine-wide counter) for taskspec ids, and resolve base_head from the project's target_root instead of cwd; return a typed error instead of inserting a taskspec before the workorder check.",
-      "owner": "HGK Lifecycle Owner"
-    },
-    {
-      "id": "TF-03",
-      "tool": "C:/Projects/Agent_Workspace/PIPD (product worktree)",
-      "severity": "LOW",
-      "observation": "the PIPD product tree is not a git repository, so a bounded writer cannot express its change as a commit or a `git diff`; the WriteSet (path/bytes/sha256 + pre-hash) and a unified diff produced with `diff -u` / `git diff --no-index` are the only reproducibility handle.",
-      "impact": "reviewers cannot rely on git-provided provenance for product changes in this tree; the WriteSet digest becomes the binding.",
-      "fix": "either place the product under version control or require the WriteSet+diff pair as the standing convention for this tree (the R7-0 writer receipt follows the latter).",
-      "owner": "PIPD Product Owner / Fabric Repo Maintainer"
-    },
-    {
-      "id": "TF-04",
-      "tool": "Hermes desktop (tool output rendering)",
-      "severity": "LOW",
-      "observation": "a credential-shaped literal inside a script line (an authorization header written from an f-string) is rendered back to the operator as 'Bearer ***'. Reading the file directly (bytes) shows the real placeholder, so the display is a redaction, not the file content - it can mislead an operator into 'repairing' a working line.",
-      "raw_evidence": [
-        "operator observed the redacted rendering, then confirmed the on-disk bytes with a byte-level read"
-      ],
-      "impact": "wasted edit cycles and a risk of corrupting working code; no integrity impact.",
-      "fix": "none required in the product; note it in the operating guidance (verify bytes before editing secret-adjacent lines).",
-      "owner": "Operator guidance (Hermes usage notes)"
-    },
-    {
-      "id": "TF-05",
-      "severity": "low",
-      "title": "Product test suite depends on a git ref the product tree does not have",
-      "observation": "tests/test_publication_projection.py and tests/test_tooling_executes.py fail with \"cannot resolve ref 'r5-s4-candidate' in C:/Projects/Agent_Workspace/PIPD/.git\"; the full suite reports 7 failed / 319 passed / 2 skipped.",
-      "impact": "A regression signal is unusable as-is: a reader cannot tell pre-existing environment failures from change-induced ones without a baseline run.",
-      "remediation": "Make the suite skip (not fail) when the required ref is absent, or provide the ref in the fixture. Checker is separately required to classify the 7 as pre-existing vs introduced. Owner: PIPD tooling."
-    },
-    {
-      "id": "TF-06",
-      "severity": "low",
-      "title": "Recurring nonce-carrier verdict defect on Codex-CLI lanes",
-      "observation": "Attempt 3 also returned ok=false ERR_NO_ARM_EMITTED_NONCE with usage_receipt_ok=true and nonce_absent_arms=[opencode-go/deepseek-v4.1-flash] (attempts 1-2 in R6R7 showed the same shape, and the VERIFY lane showed it for opencode-go/glm-5.3-flash).",
-      "impact": "The dispatcher cannot positively attest the served arm from its own evidence, so model attribution rests on recorded usage rows rather than a nonce.",
-      "remediation": "Fix the nonce emission/echo path in the relay or the wrapper so require==served can be shown, instead of continuing to record WARNs. Owner: HG-KSEOS lane tooling."
-    },
-    {
-      "id": "TF-07",
-      "severity": "high",
-      "title": "Checker lane voids its own verdict when a re-run driver writes in place over the guarded subject",
-      "observation": "VERIFY_SECURITY attempt 1 produced a full review, then the dispatcher returned ERR_CHECKER_MUTATED_SUBJECT (changed=14, removed=0): the re-run of the mutation driver wrote RAW/mut_m*.json + RUNNERS/mutation_records.json in place inside the guarded subject R6_DELIVERY/, i.e. over the writer's frozen receipts. The guard behaved correctly; the lane self-voided.",
-      "impact": "A void verdict costs a full lane turn (22 min) and, worse, silently drifts a frozen evidence tree in the workspace unless someone restores it. The drift was repaired byte-for-byte from the merged packet (recorded in R6_DELIVERY_RAW_RESTORE.json).",
-      "remediation": "(a) The dispatch brief for a checker must state a writable output root OUTSIDE every guarded subject and forbid writes into the subject (now done); (b) give the mutation driver an explicit --out-dir so a re-run never defaults into the frozen tree; (c) print the guarded subject paths in the brief so the lane can see them. Owner: HG-KSEOS lane tooling + PIPD driver."
-    },
-    {
-      "id": "TF-08",
-      "severity": "medium",
-      "title": "Guard subject includes VCS-ignored byproducts, so routine hygiene can void a verdict",
-      "observation": "VERIFY_SECURITY attempt 2 was voided with changed=0 removed=1: the removed path was the gitignored byproduct R6_DELIVERY/RUNNERS/__pycache__/probe_lib.cpython-311.pyc, deleted out-of-band by the orchestrator after the checker's own turn. The checker's own conduct in that turn was clean (added=0, changed=0).",
-      "impact": "A lane's verdict can be voided by an event it neither caused nor can see. Two of this round's three checker attempts were voided this way or similarly (attempt 1 by the lane's own in-place re-run), which is 50+ minutes of lane budget spent on receipt plumbing rather than verification.",
-      "remediation": "(a) Define the guarded subject as the tracked (packet) file set, or normalise VCS-ignored byproducts out of it before the turn opens and keep them out; (b) treat ignored paths as 'added/removed, not fatal, recorded' instead of voiding; (c) state in the dispatch brief that the guard covers ignored byproducts. Owner: HG-KSEOS lane tooling."
-    },
-    {
-      "id": "TF-09",
-      "severity": "high",
-      "title": "Guard compares end-state only, so a lane can write into the subject and restore it without being caught; the driver keeps defaulting its output into the frozen tree",
-      "observation": "During VERIFY_SECURITY attempt 3 the mutation driver again wrote 13 RAW receipts in place into the guarded subject R6_DELIVERY (23:28 local). The checker detected it, restored the bytes from the merged git blobs itself, and disclosed it as a boundary violation. The dispatcher's guard reported CLEAN (added=0 removed=0 changed=0) because it compares the subject digest before vs after the turn only. Third occurrence of the in-place-driver-write class this round (attempt 1 fatal, attempt 2 orchestrator-caused, attempt 3 self-detected and repaired).",
-      "impact": "The guard cannot see intra-turn writes, so 'CLEAN' is weaker than it looks; the only reason the frozen bytes survived is that the lane chose to repair and disclose. Two of three checker attempts were spent on this class of problem.",
-      "remediation": "(a) add --out-dir/DEST to probe_mutations.py so a re-run writes where it is told; (b) sample the subject digest during the turn (or use a read-only mount / deny ACE for the duration) instead of comparing end states; (c) keep the disclosure requirement in the brief (it worked). Owner: PIPD tooling (a) + HG-KSEOS lane tooling (b)."
-    }
-  ],
-  "claim_ceiling": "LOCAL observation; not a product defect verdict",
-  "count": 9
+ "schema": "CNV-PIPD-LS-SP-20261015-R7/TOOLING-FINDINGS/1",
+ "generated_local": "2026-10-15T21:18:50+08:00",
+ "purpose": "defects in the governed tooling observed while executing R7-0, each with raw evidence, impact, owner and a low-friction fix",
+ "findings": [
+  {
+   "id": "TF-01",
+   "tool": "scripts/hgk-lane-dispatch.py (lane resolution guard)",
+   "severity": "MEDIUM",
+   "observation": "the dispatcher refused to dispatch the EXECUTE lane twice because the BRIEF TEXT contained the markers 'git push' and then 'publish' - both inside PROHIBITION sentences ('do not ... '), not in any command. Rewriting the prose to avoid those words let the same lane run.",
+   "raw_evidence": [
+    "lane_runs/EXECUTE_dispatch_receipt_attempt1.json (code ERR_LANE_REMOTE_WRITE_NOT_AUTHORIZED, remote_write_markers ['git push'])",
+    "second refusal recorded with remote_write_markers ['publish']",
+    "the receipt itself prints detection_only=true and says the check cannot stop a lane that writes from inside its own shell"
+   ],
+   "impact": "false positives block legitimate bounded writers and tempt operators to weaken briefs (which is worse: a prohibition sentence is exactly what a safe brief SHOULD contain). Detection-only means the guard provides no protection against the attack it names.",
+   "fix": "match command context, not bare words: require a shell-looking occurrence (e.g. a line beginning with git/gh/curl, or an argv form) and ignore matches inside negative/prohibition sentences; keep detection_only semantics but stop refusing the dispatch on prose.",
+   "owner": "HGK Lane Owner"
+  },
+  {
+   "id": "TF-02",
+   "tool": "hg_kseos.lifecycle (taskspec id + workorder admission)",
+   "severity": "MEDIUM",
+   "observation": "taskspec_id is derived from the LAST dash segment of the project id, so two projects for the same mission collide on the spine (UNIQUE constraint), and create_workorder resolves git HEAD from the ambient process cwd rather than the project's target_root (ERR_WORKORDER_CRITICAL_FIELD_MISSING when admission runs from a non-repo directory). Three admission attempts were stranded at PLAN_READY as a result.",
+   "raw_evidence": [
+    "HGK_TYPED_ADMISSION_R6R7.json steps + R7_BLOCKERS_AND_TASKS.json BLK-R7-08"
+   ],
+   "impact": "a governed admission path fails for reasons unrelated to authority, and the failed attempts leave residue in the spine that later readers may misread as real work.",
+   "fix": "use a full project-id digest (or a spine-wide counter) for taskspec ids, and resolve base_head from the project's target_root instead of cwd; return a typed error instead of inserting a taskspec before the workorder check.",
+   "owner": "HGK Lifecycle Owner"
+  },
+  {
+   "id": "TF-03",
+   "tool": "C:/Projects/Agent_Workspace/PIPD (product worktree)",
+   "severity": "LOW",
+   "observation": "the PIPD product tree is not a git repository, so a bounded writer cannot express its change as a commit or a `git diff`; the WriteSet (path/bytes/sha256 + pre-hash) and a unified diff produced with `diff -u` / `git diff --no-index` are the only reproducibility handle.",
+   "impact": "reviewers cannot rely on git-provided provenance for product changes in this tree; the WriteSet digest becomes the binding.",
+   "fix": "either place the product under version control or require the WriteSet+diff pair as the standing convention for this tree (the R7-0 writer receipt follows the latter).",
+   "owner": "PIPD Product Owner / Fabric Repo Maintainer"
+  },
+  {
+   "id": "TF-04",
+   "tool": "Hermes desktop (tool output rendering)",
+   "severity": "LOW",
+   "observation": "a credential-shaped literal inside a script line (an authorization header written from an f-string) is rendered back to the operator as 'Bearer ***'. Reading the file directly (bytes) shows the real placeholder, so the display is a redaction, not the file content - it can mislead an operator into 'repairing' a working line.",
+   "raw_evidence": [
+    "operator observed the redacted rendering, then confirmed the on-disk bytes with a byte-level read"
+   ],
+   "impact": "wasted edit cycles and a risk of corrupting working code; no integrity impact.",
+   "fix": "none required in the product; note it in the operating guidance (verify bytes before editing secret-adjacent lines).",
+   "owner": "Operator guidance (Hermes usage notes)"
+  },
+  {
+   "id": "TF-05",
+   "severity": "low",
+   "title": "Product test suite depends on a git ref the product tree does not have",
+   "observation": "tests/test_publication_projection.py and tests/test_tooling_executes.py fail with \"cannot resolve ref 'r5-s4-candidate' in C:/Projects/Agent_Workspace/PIPD/.git\"; the full suite reports 7 failed / 319 passed / 2 skipped.",
+   "impact": "A regression signal is unusable as-is: a reader cannot tell pre-existing environment failures from change-induced ones without a baseline run.",
+   "remediation": "Make the suite skip (not fail) when the required ref is absent, or provide the ref in the fixture. Checker is separately required to classify the 7 as pre-existing vs introduced. Owner: PIPD tooling."
+  },
+  {
+   "id": "TF-06",
+   "severity": "low",
+   "title": "Recurring nonce-carrier verdict defect on Codex-CLI lanes",
+   "observation": "Attempt 3 also returned ok=false ERR_NO_ARM_EMITTED_NONCE with usage_receipt_ok=true and nonce_absent_arms=[opencode-go/deepseek-v4.1-flash] (attempts 1-2 in R6R7 showed the same shape, and the VERIFY lane showed it for opencode-go/glm-5.3-flash).",
+   "impact": "The dispatcher cannot positively attest the served arm from its own evidence, so model attribution rests on recorded usage rows rather than a nonce.",
+   "remediation": "Fix the nonce emission/echo path in the relay or the wrapper so require==served can be shown, instead of continuing to record WARNs. Owner: HG-KSEOS lane tooling."
+  },
+  {
+   "id": "TF-07",
+   "severity": "high",
+   "title": "Checker lane voids its own verdict when a re-run driver writes in place over the guarded subject",
+   "observation": "VERIFY_SECURITY attempt 1 produced a full review, then the dispatcher returned ERR_CHECKER_MUTATED_SUBJECT (changed=14, removed=0): the re-run of the mutation driver wrote RAW/mut_m*.json + RUNNERS/mutation_records.json in place inside the guarded subject R6_DELIVERY/, i.e. over the writer's frozen receipts. The guard behaved correctly; the lane self-voided.",
+   "impact": "A void verdict costs a full lane turn (22 min) and, worse, silently drifts a frozen evidence tree in the workspace unless someone restores it. The drift was repaired byte-for-byte from the merged packet (recorded in R6_DELIVERY_RAW_RESTORE.json).",
+   "remediation": "(a) The dispatch brief for a checker must state a writable output root OUTSIDE every guarded subject and forbid writes into the subject (now done); (b) give the mutation driver an explicit --out-dir so a re-run never defaults into the frozen tree; (c) print the guarded subject paths in the brief so the lane can see them. Owner: HG-KSEOS lane tooling + PIPD driver."
+  },
+  {
+   "id": "TF-08",
+   "severity": "medium",
+   "title": "Guard subject includes VCS-ignored byproducts, so routine hygiene can void a verdict",
+   "observation": "VERIFY_SECURITY attempt 2 was voided with changed=0 removed=1: the removed path was the gitignored byproduct R6_DELIVERY/RUNNERS/__pycache__/probe_lib.cpython-311.pyc, deleted out-of-band by the orchestrator after the checker's own turn. The checker's own conduct in that turn was clean (added=0, changed=0).",
+   "impact": "A lane's verdict can be voided by an event it neither caused nor can see. Two of this round's three checker attempts were voided this way or similarly (attempt 1 by the lane's own in-place re-run), which is 50+ minutes of lane budget spent on receipt plumbing rather than verification.",
+   "remediation": "(a) Define the guarded subject as the tracked (packet) file set, or normalise VCS-ignored byproducts out of it before the turn opens and keep them out; (b) treat ignored paths as 'added/removed, not fatal, recorded' instead of voiding; (c) state in the dispatch brief that the guard covers ignored byproducts. Owner: HG-KSEOS lane tooling."
+  },
+  {
+   "id": "TF-09",
+   "severity": "high",
+   "title": "Guard compares end-state only, so a lane can write into the subject and restore it without being caught; the driver keeps defaulting its output into the frozen tree",
+   "observation": "During VERIFY_SECURITY attempt 3 the mutation driver again wrote 13 RAW receipts in place into the guarded subject R6_DELIVERY (23:28 local). The checker detected it, restored the bytes from the merged git blobs itself, and disclosed it as a boundary violation. The dispatcher's guard reported CLEAN (added=0 removed=0 changed=0) because it compares the subject digest before vs after the turn only. Third occurrence of the in-place-driver-write class this round (attempt 1 fatal, attempt 2 orchestrator-caused, attempt 3 self-detected and repaired).",
+   "impact": "The guard cannot see intra-turn writes, so 'CLEAN' is weaker than it looks; the only reason the frozen bytes survived is that the lane chose to repair and disclose. Two of three checker attempts were spent on this class of problem.",
+   "remediation": "(a) add --out-dir/DEST to probe_mutations.py so a re-run writes where it is told; (b) sample the subject digest during the turn (or use a read-only mount / deny ACE for the duration) instead of comparing end states; (c) keep the disclosure requirement in the brief (it worked). Owner: PIPD tooling (a) + HG-KSEOS lane tooling (b)."
+  },
+  {
+   "id": "TF-10",
+   "severity": "medium",
+   "title": "self-check harness expectations are snapshotted, so they go stale after every packet commit",
+   "detail": "round_selfcheck.py compares the live packet against recorded readback blobs/manifest from an earlier commit; after the packet grew 212 -> 227 blobs the harness returned 1=PASS 2=FAIL 3=FAIL 4=PASS 5=PASS 6=PASS (OVERALL FAIL) instead of silently passing. The refusal is correct behaviour, but the recorded expectation source is the wrong one.",
+   "evidence": "R7_VERIFIER_SWARM/RAW/selfcheck_fullrun.txt; selfcheck/SELFCHECK_OUTPUT.txt (212-blob state)",
+   "fix": "derive expectations from the live manifest/tree at run time (or regenerate them as an explicit step of the publish pipeline) so a green run means 'the packet equals its own manifest', not 'the packet equals an old snapshot'.",
+   "status": "OPEN_RESIDUAL",
+   "owner_action": "none (advisory)"
+  }
+ ],
+ "claim_ceiling": "LOCAL observation; not a product defect verdict",
+ "count": 9
 }

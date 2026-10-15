@@ -1,31 +1,47 @@
 {
-  "schema": "CNV-PIPD-LS-SP-20261015-R7/REBASE-MEASURE/1",
-  "stale_base_commit": "a503efe (the writer's pre-change blobs are exactly this revision's blobs)",
-  "current_main": "dba4b19456777d3b597fdf71480f6423dd974243",
-  "rows": [
-    {
-      "file": "validate.py",
-      "delta_lines": 203,
-      "apply_check_rc": 1,
-      "applied": false,
-      "post_sha256": "50d69fe651cadebe93a799d12252c8698a8f56fc1792068e707ed1f381726475",
-      "stderr": "Checking patch src/pipd_ls_sp/validate.py...\nerror: while searching for:\nCLAIM_LADDER = [\"PROMPT_COMPILE_PASS\", \"HGK_ADMITTED\", \"RUNTIME_READY\", \"LOCAL_QUALIFIED\",\n                \"INDEPENDENT_PASS\", \"PUBLICATION_APPROVED\", \"RELEASED\", \"PRODUCTION_VERIFIED\"]\nRELEASE_BOUND = (\"PI-PKG\", \"PD-PKG\", \"ECP"
-    },
-    {
-      "file": "pipeline.py",
-      "delta_lines": 48,
-      "apply_check_rc": 0,
-      "applied": true,
-      "post_sha256": "9e9f6ab02e385a7b0c8b428bdcd8659f8c3de479d4125b1610e1188f8875749a",
-      "stderr": "Checking patch src/pipd_ls_sp/pipeline.py...\nHunk #1 succeeded at 204 (offset 16 lines).\n"
-    },
-    {
-      "file": "cli.py",
-      "delta_lines": 17,
-      "apply_check_rc": 1,
-      "applied": false,
-      "post_sha256": "cc97660b079f7c4fa1f38e0c631b3fdf24a896feea6d9b278e25920b4bf82324",
-      "stderr": "Checking patch src/pipd_ls_sp/cli.py...\nerror: while searching for:\n        return out\n    if cmd == \"validate\":\n        bundle = _read_json(args.bundle, \"validation bundle\")\n        out = validate.validate_bundle(bundle, root / \"schemas\")\n        if getattr(args, \"explain\", False):\n            out "
-    }
-  ]
+ "schema": "CNV-PIPD-LS-SP-20261015-R7/REBASE-MEASURE/1",
+ "stale_base_commit": "9bd33a1 (r5q tip) -- CORRECTED (an earlier pass mis-attributed it to a503efe)",
+ "current_main": "dba4b19456777d3b597fdf71480f6423dd974243",
+ "rows": [
+  {
+   "file": "validate.py",
+   "delta_lines": 203,
+   "apply_check_rc": 1,
+   "applied": false,
+   "post_sha256": "50d69fe651cadebe93a799d12252c8698a8f56fc1792068e707ed1f381726475",
+   "stderr": "Checking patch src/pipd_ls_sp/validate.py...\nerror: while searching for:\nCLAIM_LADDER = [\"PROMPT_COMPILE_PASS\", \"HGK_ADMITTED\", \"RUNTIME_READY\", \"LOCAL_QUALIFIED\",\n                \"INDEPENDENT_PASS\", \"PUBLICATION_APPROVED\", \"RELEASED\", \"PRODUCTION_VERIFIED\"]\nRELEASE_BOUND = (\"PI-PKG\", \"PD-PKG\", \"ECP"
+  },
+  {
+   "file": "pipeline.py",
+   "delta_lines": 48,
+   "apply_check_rc": 0,
+   "applied": true,
+   "post_sha256": "9e9f6ab02e385a7b0c8b428bdcd8659f8c3de479d4125b1610e1188f8875749a",
+   "stderr": "Checking patch src/pipd_ls_sp/pipeline.py...\nHunk #1 succeeded at 204 (offset 16 lines).\n"
+  },
+  {
+   "file": "cli.py",
+   "delta_lines": 17,
+   "apply_check_rc": 1,
+   "applied": false,
+   "post_sha256": "cc97660b079f7c4fa1f38e0c631b3fdf24a896feea6d9b278e25920b4bf82324",
+   "stderr": "Checking patch src/pipd_ls_sp/cli.py...\nerror: while searching for:\n        return out\n    if cmd == \"validate\":\n        bundle = _read_json(args.bundle, \"validation bundle\")\n        out = validate.validate_bundle(bundle, root / \"schemas\")\n        if getattr(args, \"explain\", False):\n            out "
+  }
+ ],
+ "base_identity_corrected_2026-10-16": {
+  "true_base": "9bd33a1 (r5q tip)",
+  "blobs_9bd33a1": {
+   "cli.py": "69095baeb68a758d7c20baba4ab5f14a1174ddf1",
+   "pipeline.py": "7f21aa84c4aec5817b9739fc7bb447c39cc6ad46",
+   "validate.py": "ce840caadca8a6724c6b4c6baf536c68a378e567"
+  },
+  "blobs_main_dba4b19": {
+   "cli.py": "4a2e13fbbdd77e1f775a90c4a6d105901311e7ab",
+   "pipeline.py": "75799b744e8ace9ba69efb7ab5be0570fd320ed6",
+   "validate.py": "7c3145cd002bec1f8496b257fe932c826a6c109b"
+  },
+  "recheck_on_9bd33a1": "all three deltas rc=0; applied == candidate sha256 for all 3 files (exact reconstruction)",
+  "recheck_on_main": "pipeline.py rc=0 (offset 16); cli.py rc=1 (fails cli.py:163); validate.py rc=1 (fails validate.py:14, CLAIM_LADDER region)",
+  "source": "independent verifier lane attempt 4 RAW/{base_blob_ids,rebase_check_main,rebase_check_r5q,r5q_repro}.txt"
+ }
 }

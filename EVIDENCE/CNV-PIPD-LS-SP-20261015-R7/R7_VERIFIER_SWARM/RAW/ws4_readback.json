@@ -1,0 +1,874 @@
+{
+ "probe_name": "WS4_GSTACK_ROLEMAP_READBACK",
+ "generated_at_utc": "2026-10-15T16:08:59Z",
+ "generated_by": "opencode-go/glm-5.3-flash subagent (Hermes delegation deleg_68ec5414, task_index 1) under orchestrator session 20261015_125956_d5f877 (session model deepseek-v4.1-flash, provider opencode-go)",
+ "gstack_named_method_definition": "AGENTS.md line 23: 'GSTACK named-method route check (registry ACTIVE_SELECTED + route(flow) evidence)'",
+ "inputs": {
+  "role_map_path": "HG-KSEOS/HGK/HGK_GSTACK_ROLE_MAP.yaml",
+  "role_map_sha256": "f8b8b967b1acab723e290fa5c7c45ec1e376a7348bfd886b4049e7b1cc9f0627",
+  "snapshot_path": "HG-KSEOS/HGK/HGK_GSTACK_UPSTREAM_CAPABILITY_SNAPSHOT.tsv",
+  "snapshot_sha256": "a4c427a6e0a96f981209bed437102643f52fd1a0ce6768d8ee445c31554960dc",
+  "registry_path": "HG-KSEOS/config/lane-routing-registry.yaml",
+  "registry_sha256": "06a8d10aed3785a9fb015d76291c32ef26cc3d4b36c00eb8ec9f7860d6f550d2",
+  "assignment_path": "HG-KSEOS/config/model-lane-assignment.json",
+  "assignment_sha256": "6af264c9ffdb57113be769842ac1a8503eb472a3c55f1941ee42667078808753"
+ },
+ "registry_epoch": 19,
+ "registry_status": "CANDIDATE",
+ "registry_claim_ceiling": "CANDIDATE_ONLY",
+ "assignment_revision": 19,
+ "assignment_registry_epoch": 19,
+ "probe_command": "cd C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/R6_DELIVERY/RUNNERS && C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe probe_gstack_rolemap.py positive && ... probe_gstack_rolemap.py negative",
+ "probe_result": {
+  "positive_exit": 0,
+  "negative_exit": 0,
+  "positive": {
+   "verdict": "GSTACK_ROLEMAP_POSITIVE_OK",
+   "adopt_full_role_architecture": true,
+   "adopt_full_control_plane": false,
+   "role_count": 19,
+   "hard_deny_count": 4,
+   "missing_disposition_count": 0
+  },
+  "negative": {
+   "verdict": "GSTACK_ROLEMAP_NEGATIVE_OK",
+   "breach_count": 0,
+   "breaches": []
+  }
+ },
+ "per_role_rows": [
+  {
+   "role": "office-hours",
+   "category": "support",
+   "role_map_disposition": "ADOPT",
+   "host": "hgk-orchestrator",
+   "worker_mode": "on-demand",
+   "declared_fallback": "hgk_native_support",
+   "named_method_key": "gstack.office-hours",
+   "named_method_in_registry": true,
+   "active_selected": true,
+   "active_selected_evidence_keys": {
+    "tool_id": "gstack.office-hours",
+    "current_execution_scope": "USER_AUTHORIZED_ACTIVE_SELECTED_SLICES",
+    "runtime_required_now": true,
+    "provider_state": "CERTIFIED_ACTIVE_SELECTED_SLICES",
+    "source_disposition": "CONDITIONAL_RECOMMENDED / SELECTIVE",
+    "declared_fallback": "hgk_native_prw",
+    "final_authority": false
+   },
+   "router_flow_probe": "ambiguity interrogation",
+   "router_dispatch": {
+    "route": "GSTACK",
+    "provider": "gstack.office-hours",
+    "state": "CERTIFIED",
+    "fallback": "hgk_native_prw",
+    "final_authority": true
+   },
+   "dispatched_method": "gstack.office-hours",
+   "internal_lane_route_reference": "no per-role lane route; advisory method route only",
+   "gap_class": null,
+   "gap_note": "role-keyed named method is ACTIVE_SELECTED in src/hg_kseos/named_methods.py"
+  },
+  {
+   "role": "plan-ceo-review",
+   "category": "plan",
+   "role_map_disposition": "MAP_TO_EXISTING_OWNER",
+   "host": "hgk-engineering-reviewer",
+   "worker_mode": "on-demand",
+   "declared_fallback": "hgk_native_plan",
+   "named_method_key": "gstack.plan-ceo-review",
+   "named_method_in_registry": false,
+   "active_selected": false,
+   "active_selected_evidence_keys": null,
+   "router_flow_probe": "plan review",
+   "router_dispatch": {
+    "route": "GSTACK",
+    "provider": "gstack.plan-eng-review",
+    "state": "CERTIFIED",
+    "fallback": "hgk_native_plan_review",
+    "final_authority": true
+   },
+   "dispatched_method": "gstack.plan-eng-review",
+   "internal_lane_route_reference": "PLAN",
+   "gap_class": null,
+   "gap_note": "MAP_TO_EXISTING_OWNER: no role-keyed method by design; flow dispatches to shared ACTIVE method gstack.plan-eng-review"
+  },
+  {
+   "role": "plan-eng-review",
+   "category": "plan",
+   "role_map_disposition": "ADOPT",
+   "host": "hgk-engineering-reviewer",
+   "worker_mode": "on-demand",
+   "declared_fallback": "hgk_native_plan",
+   "named_method_key": "gstack.plan-eng-review",
+   "named_method_in_registry": true,
+   "active_selected": true,
+   "active_selected_evidence_keys": {
+    "tool_id": "gstack.plan-eng-review",
+    "current_execution_scope": "USER_AUTHORIZED_ACTIVE_SELECTED_SLICES",
+    "runtime_required_now": true,
+    "provider_state": "CERTIFIED_ACTIVE_SELECTED_SLICES",
+    "source_disposition": "CONDITIONAL_RECOMMENDED / SELECTIVE",
+    "declared_fallback": "hgk_native_plan_review",
+    "final_authority": false
+   },
+   "router_flow_probe": "plan review",
+   "router_dispatch": {
+    "route": "GSTACK",
+    "provider": "gstack.plan-eng-review",
+    "state": "CERTIFIED",
+    "fallback": "hgk_native_plan_review",
+    "final_authority": true
+   },
+   "dispatched_method": "gstack.plan-eng-review",
+   "internal_lane_route_reference": "PLAN",
+   "gap_class": null,
+   "gap_note": "role-keyed named method is ACTIVE_SELECTED in src/hg_kseos/named_methods.py"
+  },
+  {
+   "role": "autoplan",
+   "category": "plan",
+   "role_map_disposition": "ADOPT",
+   "host": "hgk-orchestrator",
+   "worker_mode": "on-demand",
+   "declared_fallback": "hgk_native_plan",
+   "named_method_key": "gstack.autoplan",
+   "named_method_in_registry": false,
+   "active_selected": false,
+   "active_selected_evidence_keys": null,
+   "router_flow_probe": "autoplan",
+   "router_dispatch": {
+    "route": "GSTACK",
+    "provider": "gstack.plan-eng-review",
+    "state": "CERTIFIED",
+    "fallback": "hgk_native_plan_review",
+    "final_authority": true
+   },
+   "dispatched_method": "gstack.plan-eng-review",
+   "internal_lane_route_reference": "PLAN",
+   "gap_class": "DECLARED_NOT_SELECTED",
+   "gap_note": "ADOPT role with NO role-keyed ACTIVE_SELECTED method; flow dispatches to shared method gstack.plan-eng-review"
+  },
+  {
+   "role": "plan-design-review",
+   "category": "plan",
+   "role_map_disposition": "MAP_TO_EXISTING_OWNER",
+   "host": "hgk-design-worker",
+   "worker_mode": "on-demand",
+   "declared_fallback": "hgk_native_plan",
+   "named_method_key": "gstack.plan-design-review",
+   "named_method_in_registry": false,
+   "active_selected": false,
+   "active_selected_evidence_keys": null,
+   "router_flow_probe": "design review",
+   "router_dispatch": {
+    "route": "GSTACK",
+    "provider": "gstack.review",
+    "state": "CERTIFIED",
+    "fallback": "hgk_native_review",
+    "final_authority": true
+   },
+   "dispatched_method": "gstack.review",
+   "internal_lane_route_reference": "PLAN",
+   "gap_class": null,
+   "gap_note": "MAP_TO_EXISTING_OWNER: no role-keyed method by design; flow dispatches to shared ACTIVE method gstack.review"
+  },
+  {
+   "role": "plan-devex-review",
+   "category": "plan",
+   "role_map_disposition": "MAP_TO_EXISTING_OWNER",
+   "host": "hgk-devex-worker",
+   "worker_mode": "on-demand",
+   "declared_fallback": "hgk_native_plan",
+   "named_method_key": "gstack.plan-devex-review",
+   "named_method_in_registry": false,
+   "active_selected": false,
+   "active_selected_evidence_keys": null,
+   "router_flow_probe": "devex review",
+   "router_dispatch": {
+    "route": "GSTACK",
+    "provider": "gstack.review",
+    "state": "CERTIFIED",
+    "fallback": "hgk_native_review",
+    "final_authority": true
+   },
+   "dispatched_method": "gstack.review",
+   "internal_lane_route_reference": "PLAN (map category 'plan'; registry lane_group PLAN carries no devex sub-lane)",
+   "gap_class": null,
+   "gap_note": "MAP_TO_EXISTING_OWNER: no role-keyed method by design; flow dispatches to shared ACTIVE method gstack.review"
+  },
+  {
+   "role": "design-consultation",
+   "category": "design",
+   "role_map_disposition": "MAP_TO_EXISTING_OWNER",
+   "host": "hgk-design-worker",
+   "worker_mode": "on-demand",
+   "declared_fallback": "hgk_native_design",
+   "named_method_key": "gstack.design-consultation",
+   "named_method_in_registry": false,
+   "active_selected": false,
+   "active_selected_evidence_keys": null,
+   "router_flow_probe": "design consultation",
+   "router_dispatch": {
+    "route": "NATIVE",
+    "provider": null,
+    "state": null,
+    "fallback": null,
+    "final_authority": true
+   },
+   "dispatched_method": null,
+   "internal_lane_route_reference": "no dedicated design lane_group in the registry (registry lane_groups: PLAN/EXECUTE/VERIFY_SECURITY only); map category 'design' has no lane counterpart",
+   "gap_class": "MAP_ROLE_ABSENT",
+   "gap_note": "map declares the role, but the live named-method router has NO GSTACK branch for its flow (route=NATIVE, provider=None); the role rides the native HGK surface only"
+  },
+  {
+   "role": "devex-review",
+   "category": "devex",
+   "role_map_disposition": "MAP_TO_EXISTING_OWNER",
+   "host": "hgk-devex-worker",
+   "worker_mode": "on-demand",
+   "declared_fallback": "hgk_native_devex",
+   "named_method_key": "gstack.devex-review",
+   "named_method_in_registry": false,
+   "active_selected": false,
+   "active_selected_evidence_keys": null,
+   "router_flow_probe": "devex review",
+   "router_dispatch": {
+    "route": "GSTACK",
+    "provider": "gstack.review",
+    "state": "CERTIFIED",
+    "fallback": "hgk_native_review",
+    "final_authority": true
+   },
+   "dispatched_method": "gstack.review",
+   "internal_lane_route_reference": "no devex lane_group in the registry; nearest shape is the VERIFY/review path via gstack.review at the named-method level",
+   "gap_class": null,
+   "gap_note": "MAP_TO_EXISTING_OWNER: no role-keyed method by design; flow dispatches to shared ACTIVE method gstack.review"
+  },
+  {
+   "role": "investigate",
+   "category": "research",
+   "role_map_disposition": "ADOPT",
+   "host": "specialist-research-worker",
+   "worker_mode": "on-demand",
+   "declared_fallback": "hgk_native_research",
+   "named_method_key": "gstack.investigate",
+   "named_method_in_registry": false,
+   "active_selected": false,
+   "active_selected_evidence_keys": null,
+   "router_flow_probe": "investigate research",
+   "router_dispatch": {
+    "route": "NATIVE",
+    "provider": null,
+    "state": null,
+    "fallback": null,
+    "final_authority": true
+   },
+   "dispatched_method": null,
+   "internal_lane_route_reference": "PLAN (RESEARCH lane)",
+   "gap_class": "MAP_ROLE_ABSENT",
+   "gap_note": "map declares the role, but the live named-method router has NO GSTACK branch for its flow (route=NATIVE, provider=None); the role rides the native HGK surface only"
+  },
+  {
+   "role": "review",
+   "category": "review",
+   "role_map_disposition": "ADOPT",
+   "host": "hgk-engineering-reviewer",
+   "worker_mode": "on-demand",
+   "declared_fallback": "hgk_native_review",
+   "named_method_key": "gstack.review",
+   "named_method_in_registry": true,
+   "active_selected": true,
+   "active_selected_evidence_keys": {
+    "tool_id": "gstack.review",
+    "current_execution_scope": "USER_AUTHORIZED_ACTIVE_SELECTED_SLICES",
+    "runtime_required_now": true,
+    "provider_state": "CERTIFIED_ACTIVE_SELECTED_SLICES",
+    "source_disposition": "CONDITIONAL_RECOMMENDED / SELECTIVE",
+    "declared_fallback": "hgk_native_review",
+    "final_authority": false
+   },
+   "router_flow_probe": "review",
+   "router_dispatch": {
+    "route": "GSTACK",
+    "provider": "gstack.review",
+    "state": "CERTIFIED",
+    "fallback": "hgk_native_review",
+    "final_authority": true
+   },
+   "dispatched_method": "gstack.review",
+   "internal_lane_route_reference": "VERIFY_SECURITY (VERIFY lane)",
+   "gap_class": null,
+   "gap_note": "role-keyed named method is ACTIVE_SELECTED in src/hg_kseos/named_methods.py"
+  },
+  {
+   "role": "qa",
+   "category": "qa",
+   "role_map_disposition": "ADOPT",
+   "host": "hgk-qa",
+   "worker_mode": "on-demand",
+   "declared_fallback": "hgk_native_qa",
+   "named_method_key": "gstack.qa",
+   "named_method_in_registry": true,
+   "active_selected": true,
+   "active_selected_evidence_keys": {
+    "tool_id": "gstack.qa",
+    "current_execution_scope": "USER_AUTHORIZED_ACTIVE_SELECTED_SLICES",
+    "runtime_required_now": true,
+    "provider_state": "CERTIFIED_ACTIVE_SELECTED_SLICES",
+    "source_disposition": "CONDITIONAL_RECOMMENDED / SELECTIVE",
+    "declared_fallback": "hgk_native_qa",
+    "final_authority": false
+   },
+   "router_flow_probe": "qa",
+   "router_dispatch": {
+    "route": "GSTACK",
+    "provider": "gstack.qa",
+    "state": "CERTIFIED",
+    "fallback": "hgk_native_qa",
+    "final_authority": true
+   },
+   "dispatched_method": "gstack.qa",
+   "internal_lane_route_reference": "VERIFY_SECURITY (ACCEPTANCE lane)",
+   "gap_class": null,
+   "gap_note": "role-keyed named method is ACTIVE_SELECTED in src/hg_kseos/named_methods.py"
+  },
+  {
+   "role": "qa-only",
+   "category": "qa",
+   "role_map_disposition": "ADOPT",
+   "host": "hgk-qa",
+   "worker_mode": "on-demand",
+   "declared_fallback": "hgk_native_qa",
+   "named_method_key": "gstack.qa-only",
+   "named_method_in_registry": false,
+   "active_selected": false,
+   "active_selected_evidence_keys": null,
+   "router_flow_probe": "qa only",
+   "router_dispatch": {
+    "route": "GSTACK",
+    "provider": "gstack.qa",
+    "state": "CERTIFIED",
+    "fallback": "hgk_native_qa",
+    "final_authority": true
+   },
+   "dispatched_method": "gstack.qa",
+   "internal_lane_route_reference": "VERIFY_SECURITY (ACCEPTANCE lane)",
+   "gap_class": "DECLARED_NOT_SELECTED",
+   "gap_note": "ADOPT role with NO role-keyed ACTIVE_SELECTED method; flow dispatches to shared method gstack.qa"
+  },
+  {
+   "role": "cso",
+   "category": "security",
+   "role_map_disposition": "ADOPT",
+   "host": "hgk-security",
+   "worker_mode": "on-demand",
+   "declared_fallback": "hgk_native_security",
+   "named_method_key": "gstack.cso",
+   "named_method_in_registry": true,
+   "active_selected": true,
+   "active_selected_evidence_keys": {
+    "tool_id": "gstack.cso",
+    "current_execution_scope": "USER_AUTHORIZED_ACTIVE_SELECTED_SLICES",
+    "runtime_required_now": true,
+    "provider_state": "CERTIFIED_ACTIVE_SELECTED_SLICES",
+    "source_disposition": "CONDITIONAL_RECOMMENDED / SELECTIVE",
+    "declared_fallback": "hgk_native_security",
+    "final_authority": false
+   },
+   "router_flow_probe": "security review",
+   "router_dispatch": {
+    "route": "GSTACK",
+    "provider": "gstack.cso",
+    "state": "CERTIFIED",
+    "fallback": "hgk_native_security",
+    "final_authority": true
+   },
+   "dispatched_method": "gstack.cso",
+   "internal_lane_route_reference": "VERIFY_SECURITY (SECURITY REVIEW lane)",
+   "gap_class": null,
+   "gap_note": "role-keyed named method is ACTIVE_SELECTED in src/hg_kseos/named_methods.py"
+  },
+  {
+   "role": "benchmark",
+   "category": "perf",
+   "role_map_disposition": "MAP_TO_EXISTING_OWNER",
+   "host": "hgk-performance-worker",
+   "worker_mode": "on-demand",
+   "declared_fallback": "hgk_native_bench",
+   "named_method_key": "gstack.benchmark",
+   "named_method_in_registry": false,
+   "active_selected": false,
+   "active_selected_evidence_keys": null,
+   "router_flow_probe": "benchmark perf",
+   "router_dispatch": {
+    "route": "NATIVE",
+    "provider": null,
+    "state": null,
+    "fallback": null,
+    "final_authority": true
+   },
+   "dispatched_method": null,
+   "internal_lane_route_reference": "no per-role lane route (no perf/benchmark lane in registry)",
+   "gap_class": "MAP_ROLE_ABSENT",
+   "gap_note": "map declares the role, but the live named-method router has NO GSTACK branch for its flow (route=NATIVE, provider=None); the role rides the native HGK surface only"
+  },
+  {
+   "role": "document-*",
+   "category": "docs",
+   "role_map_disposition": "MAP_TO_EXISTING_OWNER",
+   "host": "hgk-documentation-worker",
+   "worker_mode": "on-demand",
+   "declared_fallback": "hgk_native_docs",
+   "named_method_key": "gstack.document-*",
+   "named_method_in_registry": false,
+   "active_selected": false,
+   "active_selected_evidence_keys": null,
+   "router_flow_probe": "document writing",
+   "router_dispatch": {
+    "route": "NATIVE",
+    "provider": null,
+    "state": null,
+    "fallback": null,
+    "final_authority": true
+   },
+   "dispatched_method": null,
+   "internal_lane_route_reference": "no per-role lane route (no docs lane in registry)",
+   "gap_class": "MAP_ROLE_ABSENT",
+   "gap_note": "map declares the role, but the live named-method router has NO GSTACK branch for its flow (route=NATIVE, provider=None); the role rides the native HGK surface only"
+  },
+  {
+   "role": "ship",
+   "category": "release",
+   "role_map_disposition": "SUPPORT_ONLY",
+   "host": "hgk-orchestrator",
+   "worker_mode": "advisory",
+   "declared_fallback": "hgk_native_release",
+   "named_method_key": "gstack.ship",
+   "named_method_in_registry": true,
+   "active_selected": true,
+   "active_selected_evidence_keys": {
+    "tool_id": "gstack.ship",
+    "current_execution_scope": "USER_AUTHORIZED_ACTIVE_SELECTED_SLICES",
+    "runtime_required_now": true,
+    "provider_state": "CERTIFIED_ACTIVE_SELECTED_SLICES",
+    "source_disposition": "CONDITIONAL_RECOMMENDED / SELECTIVE",
+    "declared_fallback": "hgk_native_release_checklist",
+    "final_authority": false
+   },
+   "router_flow_probe": "release shipping",
+   "router_dispatch": {
+    "route": "GSTACK",
+    "provider": "gstack.ship",
+    "state": "CERTIFIED",
+    "fallback": "hgk_native_release_checklist",
+    "final_authority": false
+   },
+   "dispatched_method": "gstack.ship",
+   "internal_lane_route_reference": "no per-role lane route; SUPPORT_ONLY/advisory (hard_deny: gstack /ship as promote/release)",
+   "gap_class": null,
+   "gap_note": "role-keyed named method is ACTIVE_SELECTED in src/hg_kseos/named_methods.py"
+  },
+  {
+   "role": "canary",
+   "category": "canary",
+   "role_map_disposition": "MAP_TO_EXISTING_OWNER",
+   "host": "hgk-qa",
+   "worker_mode": "local-paper",
+   "declared_fallback": "hgk_native_canary",
+   "named_method_key": "gstack.canary",
+   "named_method_in_registry": false,
+   "active_selected": false,
+   "active_selected_evidence_keys": null,
+   "router_flow_probe": "canary rollout",
+   "router_dispatch": {
+    "route": "NATIVE",
+    "provider": null,
+    "state": null,
+    "fallback": null,
+    "final_authority": true
+   },
+   "dispatched_method": null,
+   "internal_lane_route_reference": "no per-role lane route (no canary lane in registry; worker_mode=local-paper)",
+   "gap_class": "MAP_ROLE_ABSENT",
+   "gap_note": "map declares the role, but the live named-method router has NO GSTACK branch for its flow (route=NATIVE, provider=None); the role rides the native HGK surface only"
+  },
+  {
+   "role": "retro",
+   "category": "retro",
+   "role_map_disposition": "ADOPT",
+   "host": "hgk-orchestrator",
+   "worker_mode": "on-demand",
+   "declared_fallback": "hgk_native_retro",
+   "named_method_key": "gstack.retro",
+   "named_method_in_registry": true,
+   "active_selected": true,
+   "active_selected_evidence_keys": {
+    "tool_id": "gstack.retro",
+    "current_execution_scope": "USER_AUTHORIZED_ACTIVE_SELECTED_SLICES",
+    "runtime_required_now": true,
+    "provider_state": "CERTIFIED_ACTIVE_SELECTED_SLICES",
+    "source_disposition": "CONDITIONAL_RECOMMENDED / SELECTIVE",
+    "declared_fallback": "hgk_native_retro",
+    "final_authority": false
+   },
+   "router_flow_probe": "retro",
+   "router_dispatch": {
+    "route": "GSTACK",
+    "provider": "gstack.retro",
+    "state": "CERTIFIED",
+    "fallback": "hgk_native_retro",
+    "final_authority": true
+   },
+   "dispatched_method": "gstack.retro",
+   "internal_lane_route_reference": "no per-role lane route",
+   "gap_class": null,
+   "gap_note": "role-keyed named method is ACTIVE_SELECTED in src/hg_kseos/named_methods.py"
+  },
+  {
+   "role": "codex",
+   "category": "coding",
+   "role_map_disposition": "MAP_TO_EXISTING_OWNER",
+   "host": "hgk-coding-factory",
+   "worker_mode": "tracked-writer",
+   "declared_fallback": "sealed-codex-lane",
+   "named_method_key": "gstack.codex",
+   "named_method_in_registry": false,
+   "active_selected": false,
+   "active_selected_evidence_keys": null,
+   "router_flow_probe": "coding delegation",
+   "router_dispatch": {
+    "route": "NATIVE",
+    "provider": null,
+    "state": null,
+    "fallback": null,
+    "final_authority": true
+   },
+   "dispatched_method": null,
+   "internal_lane_route_reference": "EXECUTE (sealed-codex-lane; assignment effective_wiring.default_execute_route=CODEX_CLI_SEALED_LANE)",
+   "gap_class": "MAP_ROLE_ABSENT",
+   "gap_note": "map declares the role, but the live named-method router has NO GSTACK branch for its flow (route=NATIVE, provider=None); the role rides the native HGK surface only"
+  }
+ ],
+ "gaps": {
+  "legend": {
+   "no_gap": "role-keyed named method ACTIVE_SELECTED and router serves the flow",
+   "DECLARED_NOT_SELECTED": "map declares the role ADOPT (first-class) but no role-keyed ACTIVE_SELECTED method exists; flow rides a shared method",
+   "SELECTED_NOT_IN_MAP": "an ACTIVE_SELECTED named method with no corresponding role-map entry",
+   "MAP_ROLE_ABSENT": "map declares the role but the live named-method router has no GSTACK branch for its flow (route=NATIVE)"
+  },
+  "roles_with_active_selected_role_keyed_method": [
+   "office-hours",
+   "plan-eng-review",
+   "review",
+   "qa",
+   "cso",
+   "ship",
+   "retro"
+  ],
+  "DECLARED_NOT_SELECTED": [
+   "autoplan",
+   "qa-only"
+  ],
+  "DECLARED_NOT_SELECTED_COUNT": 2,
+  "MAP_TO_EXISTING_OWNER_SHARED_DISPATCH": [
+   "plan-ceo-review",
+   "plan-design-review",
+   "plan-devex-review",
+   "devex-review"
+  ],
+  "MAP_ROLE_ABSENT": [
+   "design-consultation",
+   "investigate",
+   "benchmark",
+   "document-*",
+   "canary",
+   "codex"
+  ],
+  "MAP_ROLE_ABSENT_COUNT": 6,
+  "SELECTED_NOT_IN_MAP": [],
+  "SELECTED_NOT_IN_MAP_COUNT": 0,
+  "summary": "7/19 map roles have a role-keyed ACTIVE_SELECTED named method; 2 ADOPT roles are DECLARED_NOT_SELECTED; 6 roles are MAP_ROLE_ABSENT (no route(flow) branch); SELECTED_NOT_IN_MAP is empty (0)"
+ },
+ "active_selected_named_method_registry": {
+  "gstack.plan-eng-review": {
+   "source_disposition": "CONDITIONAL_RECOMMENDED / SELECTIVE",
+   "current_execution_scope": "USER_AUTHORIZED_ACTIVE_SELECTED_SLICES",
+   "runtime_required_now": true,
+   "role": "ADVISORY_REVIEW_QA_SECURITY_METHOD_ADAPTER",
+   "provider_state": "CERTIFIED_ACTIVE_SELECTED_SLICES",
+   "fallback": "hgk_native_plan_review",
+   "final_authority": false,
+   "xor_with": null
+  },
+  "gstack.review": {
+   "source_disposition": "CONDITIONAL_RECOMMENDED / SELECTIVE",
+   "current_execution_scope": "USER_AUTHORIZED_ACTIVE_SELECTED_SLICES",
+   "runtime_required_now": true,
+   "role": "ADVISORY_REVIEW_QA_SECURITY_METHOD_ADAPTER",
+   "provider_state": "CERTIFIED_ACTIVE_SELECTED_SLICES",
+   "fallback": "hgk_native_review",
+   "final_authority": false,
+   "xor_with": null
+  },
+  "gstack.qa": {
+   "source_disposition": "CONDITIONAL_RECOMMENDED / SELECTIVE",
+   "current_execution_scope": "USER_AUTHORIZED_ACTIVE_SELECTED_SLICES",
+   "runtime_required_now": true,
+   "role": "ADVISORY_REVIEW_QA_SECURITY_METHOD_ADAPTER",
+   "provider_state": "CERTIFIED_ACTIVE_SELECTED_SLICES",
+   "fallback": "hgk_native_qa",
+   "final_authority": false,
+   "xor_with": null
+  },
+  "gstack.cso": {
+   "source_disposition": "CONDITIONAL_RECOMMENDED / SELECTIVE",
+   "current_execution_scope": "USER_AUTHORIZED_ACTIVE_SELECTED_SLICES",
+   "runtime_required_now": true,
+   "role": "ADVISORY_REVIEW_QA_SECURITY_METHOD_ADAPTER",
+   "provider_state": "CERTIFIED_ACTIVE_SELECTED_SLICES",
+   "fallback": "hgk_native_security",
+   "final_authority": false,
+   "xor_with": null
+  },
+  "gstack.ship": {
+   "source_disposition": "CONDITIONAL_RECOMMENDED / SELECTIVE",
+   "current_execution_scope": "USER_AUTHORIZED_ACTIVE_SELECTED_SLICES",
+   "runtime_required_now": true,
+   "role": "ADVISORY_REVIEW_QA_SECURITY_METHOD_ADAPTER",
+   "provider_state": "CERTIFIED_ACTIVE_SELECTED_SLICES",
+   "fallback": "hgk_native_release_checklist",
+   "final_authority": false,
+   "xor_with": null
+  },
+  "gstack.office-hours": {
+   "source_disposition": "CONDITIONAL_RECOMMENDED / SELECTIVE",
+   "current_execution_scope": "USER_AUTHORIZED_ACTIVE_SELECTED_SLICES",
+   "runtime_required_now": true,
+   "role": "AMBIGUITY_PRODUCT_INTERROGATION_ADVISORY",
+   "provider_state": "CERTIFIED_ACTIVE_SELECTED_SLICES",
+   "fallback": "hgk_native_prw",
+   "final_authority": false,
+   "xor_with": null
+  },
+  "gstack.retro": {
+   "source_disposition": "CONDITIONAL_RECOMMENDED / SELECTIVE",
+   "current_execution_scope": "USER_AUTHORIZED_ACTIVE_SELECTED_SLICES",
+   "runtime_required_now": true,
+   "role": "RETROSPECTIVE_LEARNING_ADVISORY",
+   "provider_state": "CERTIFIED_ACTIVE_SELECTED_SLICES",
+   "fallback": "hgk_native_retro",
+   "final_authority": false,
+   "xor_with": null
+  }
+ },
+ "registry_lane_route_readback": {
+  "PLAN": {
+   "lane_group": "PLAN",
+   "lanes": [
+    "ARCH",
+    "HARD WORK",
+    "THREAT",
+    "EFFECT PLANNING",
+    "RESEARCH",
+    "SYNTHESIS",
+    "EVOLUTION"
+   ],
+   "engine": "hermes",
+   "provider": "opencode-go",
+   "model": "glm-5.3-flash",
+   "canonical_identity": "glm-5.3-flash",
+   "reasoning_effort": "medium",
+   "selection_authority": "owner-order-20261015-plan-model-rebind-glm",
+   "selected_arm": null,
+   "selected_arm_identity": null,
+   "admission_status": "UNPROVEN",
+   "fallbacks": [
+    {
+     "provider": "opencode-go",
+     "model": "deepseek-v4.1-flash",
+     "canonical_identity": "deepseek-v4.1-flash"
+    },
+    {
+     "provider": "openai-codex",
+     "model": "gpt-6.1-sol",
+     "canonical_identity": "gpt-6.1-sol"
+    }
+   ],
+   "arms_count": 3
+  },
+  "EXECUTE": {
+   "lane_group": "EXECUTE",
+   "lanes": [
+    "BULK BUILD",
+    "BULK SECURITY TEST",
+    "REPAIR",
+    "BULK CODE",
+    "HARNESS",
+    "EVAL CODE",
+    "BULK TRANSFORM"
+   ],
+   "engine": "codex-cli",
+   "provider": "opencode-go",
+   "model": "deepseek-v4.1-flash",
+   "canonical_identity": "deepseek-v4.1-flash",
+   "reasoning_effort": null,
+   "selection_authority": "owner-order-20261015-lane-model-chain-rebind",
+   "selected_arm": null,
+   "selected_arm_identity": null,
+   "admission_status": "UNPROVEN",
+   "fallbacks": [
+    {
+     "provider": "openai-codex",
+     "model": "gpt-6-luna",
+     "canonical_identity": "gpt-6-luna"
+    },
+    {
+     "provider": "nvidia",
+     "model": "deepseek-ai/deepseek-v4.1-flash",
+     "canonical_identity": "deepseek-v4.1-flash"
+    }
+   ],
+   "arms_count": 2
+  },
+  "VERIFY_SECURITY": {
+   "lane_group": "VERIFY_SECURITY",
+   "lanes": [
+    "ACCEPTANCE",
+    "SECURITY REVIEW",
+    "VERIFY"
+   ],
+   "engine": "hermes",
+   "provider": "openai-codex",
+   "model": "gpt-6.1-sol",
+   "canonical_identity": "gpt-6.1-sol",
+   "reasoning_effort": "medium",
+   "selection_authority": "owner-order-20261015-lane-model-chain-rebind",
+   "selected_arm": "A",
+   "selected_arm_identity": "gpt-6.1-sol",
+   "admission_status": "UNPROVEN",
+   "fallbacks": [
+    {
+     "provider": "opencode-go",
+     "model": "glm-5.3-flash",
+     "canonical_identity": "glm-5.3-flash"
+    },
+    {
+     "provider": "opencode-go",
+     "model": "deepseek-v4.1-flash",
+     "canonical_identity": "deepseek-v4.1-flash"
+    }
+   ],
+   "arms_count": 3
+  }
+ },
+ "registry_drift_findings": [
+  {
+   "code": "DRIFT_VALUE",
+   "id": "hermes-codex-lane",
+   "path": "config/hermes-codex-lane.json",
+   "pointer": "/codex_sha256",
+   "expected": "D13914CED6C7AF174D8D638DB938284231227312104B06A25E9608C632A7DAEC",
+   "actual": "e98c516f1c8935789aabe9122ee7e05ec4c3efd1ba6acf179242e031c495b99e",
+   "severity": "error"
+  }
+ ],
+ "registry_drift_sites_checked": 90,
+ "registry_check_sod": {
+  "PLAN_vs_VERIFY_SECURITY": {
+   "ok": true,
+   "reason": "SOD_OK glm-5.3-flash != gpt-6.1-sol"
+  },
+  "EXECUTE_vs_VERIFY_SECURITY": {
+   "ok": true,
+   "reason": "SOD_OK deepseek-v4.1-flash != gpt-6.1-sol"
+  },
+  "PLAN_vs_EXECUTE": {
+   "ok": true,
+   "reason": "SOD_OK glm-5.3-flash != deepseek-v4.1-flash"
+  }
+ },
+ "sod_conflict_records_quoted": {
+  "registry_declared_conflicts_ids": [
+   "SOD006-C1:SUPERSEDED",
+   "SOD006-C2:OPEN_OWNER_ORDERED",
+   "SOD-APPLY-01:OPEN"
+  ],
+  "assignment_sod_conflicts": [
+   {
+    "id": "SOD006-C1",
+    "status": "RESOLVED_BY_REBINDING",
+    "axis": "canonical_identity"
+   },
+   {
+    "id": "SOD006-C2",
+    "status": "OPEN",
+    "axis": "reasoning_effort_on_the_delegation_surface"
+   },
+   {
+    "id": "SOD-APPLY-01",
+    "status": "OPEN",
+    "axis": "canonical_identity"
+   },
+   {
+    "id": "SOD006-C3",
+    "status": "OPEN_OWNER_ORDERED",
+    "axis": "canonical_identity"
+   }
+  ]
+ },
+ "session_sod_observation": {
+  "this_delegation_model": "opencode-go/glm-5.3-flash (delegation.model, effective_wiring.delegation.model; measured: async_delegations.task_json.model=glm-5.3-flash for deleg_68ec5414 and the three child sessions 20261015_235535_*, state.db)",
+  "this_orchestrator_session_model": "opencode-go/deepseek-v4.1-flash (state.db sessions row 20261015_125956_d5f877; NOTE the LIVE config.yaml model.default is glm-5.3-flash — the session predates the 20261015 rebind and kept its start-time pin)",
+  "verify_security_declared_checker": "openai-codex/gpt-6.1-sol (registry top-level route + selected_arm A + selected_arm_identity; medium)",
+  "claim": "PLAN/Orchestrator (session) and the delegation (subagent) plane are BOTH served by opencode-go models while VERIFY_SECURITY declares opencode-codex/gpt-6.1-sol; but the divider that matters is that PLAN(orchestrator session)=deepseek-v4.1-flash vs VERIFY=gpt-6.1-sol stays distinct, while the DELEGATION children (glm-5.3-flash) equal VERIFY's fallback1 arm B (glm-5.3-flash) - the recorded SOD006-C3 residual.",
+  "is_owner_deviation": "YES - court-recorded, not hidden: registry sod_invariants.declared_conflicts SOD006-C2 (OPEN_OWNER_ORDERED) and SOD006-C3 (OPEN_OWNER_ORDERED, registry epoch-19 header + assignment sod_conflicts[3]) record the owner-ordered same-identity residuals; sod pairs PLAN-vs-VERIFY_SECURITY carries distinct_required=false.",
+  "independence_absent": [
+   "model-identity independence between the delegation/checker plane when VERIFY falls back to arm B (glm-5.3-flash == delegation child glm-5.3-flash)",
+   "provider independence (PLAN/EXECUTE/VERIFY-armA all opencode-go; provider_axis_required=false)"
+  ],
+  "independence_still_present": [
+   "EXECUTE deepseek-v4.1-flash vs VERIFY default gpt-6.1-sol (distinct_required=true, check_sod SOD_OK)",
+   "maker self-acceptance refusal at dispatch (no single call verifies its own output)",
+   "process/context separation only, not model separation"
+  ]
+ },
+ "assignment_cross_check": {
+  "source_of_routes_digest_matches_bytes": true,
+  "assignment_revision_matches_registry_pin": true,
+  "assignment_registry_epoch_matches_registry_epoch": true,
+  "gstack_role_names_in_registry_yaml": false
+ },
+ "disagreements_with_map": [
+  "MAP declares ADOPT_FULL_GSTACK_ROLE_ARCHITECTURE:true and missing_disposition_count:0, but only 7/19 roles have a role-keyed ACTIVE_SELECTED named method; 2 ADOPT roles (autoplan, qa-only) ride shared methods and 6 roles have no route(flow) branch at all. 'Full role architecture' holds at the DECLARATION level (map + snapshot agree on all 19 rows) but NOT at the named-method/router level.",
+  "3 ADOPT roles (autoplan, investigate, qa-only) dispatch to shared or NATIVE paths: autoplan->gstack.plan-eng-review via the 'plan' substring rule; qa-only->gstack.qa via the 'qa' substring rule; investigate->NO GSTACK branch at all (route=NATIVE). The strongest single disagreement: an ADOPT role (investigate, host specialist-research-worker) has no router path whatsoever.",
+  "The map's declared fallbacks (hgk_native_*) are declared but not encoded in the live router for the 12 non-role-keyed roles; nothing at the code layer carries those fallback strings.",
+  "codex (MAP_TO_EXISTING_OWNER, worker_mode tracked-writer, fallback sealed-codex-lane) has no gstack.codex router branch (route=NATIVE for 'coding'); the sealed lane is reached only through assignment.effective_wiring.default_execute_route=CODEX_CLI_SEALED_LANE, not the named-method router.",
+  "The map marks devex-review as a full MAP role with its own host (hgk-devex-worker) but the registry carries no devex lane_group; that role's only live path is the shared gstack.review method at the named-method level."
+ ],
+ "claim_ceiling": "DECLARATION-LEVEL READBACK ONLY: a comparison of the GStack role map's declared role architecture against the live lane-routing registry (epoch 19, sha256 06a8d10a...) and the repo's own named-method registry (src/hg_kseos/named_methods.py), plus a live probe_gstack_rolemap.py run, lane_policy route/load/check_drift/check_sod returns, named_methods.route(flow) probes and an activation-invariant evaluation. NOT a runtime attestation: no per-role worker was dispatched, no gstack advisory turn ran on any model, no lane/registry/map/config file was mutated, and no model-liveness or quota-support measurement was performed. Evidence-file existence (evidence/review/HG-KSEOS_GSTACK_*.json) was checked for presence only, not for content validity.",
+ "registry_sod_pairs_staleness": {
+  "fact": "registry sod_invariants.pairs[PLAN,VERIFY_SECURITY].note still carries epoch-18-era text (owner rebind of BOTH lanes to openai-codex/gpt-6.1-sol), but epoch-19 live routes have PLAN=opencode-go/glm-5.3-flash and VERIFY top-level=openai-codex/gpt-6.1-sol; the pair verdict distinct_required=false is one epoch behind its own routes",
+  "consequence": "on TODAY's default arms PLAN and VERIFY are model-DISTINCT (check_sod SOD_OK); the same-identity residual materializes only on (a) VERIFY arm B glm-5.3-flash fallback path (automatic_selection=true) or (b) delegation-plane children (glm-5.3-flash) serving a VERIFY/checker turn"
+ },
+ "assignment_internal_contradiction": {
+  "found": true,
+  "where": "config/model-lane-assignment.json (revision 19), both blocks inside the SAME file, byte-pinned by the registry drift gate at matching expected strings",
+  "facs": {
+   "encoding_1": "/sod/verify_security_lane + /sod/verify_security_arm_A + /sod/verify_security_default_arm + /sod/verify_security_selection declare DEFAULT primary arm A = opencode-go/glm-5.3-flash, arm B = openai-codex/gpt-6.1-sol",
+   "encoding_2": "/assignment[2]/supply_selector.unspecified_default + supply_selector.arms[0] + /lane_chains/VERIFY_SECURITY/0 (and registry routes[].selected_arm=A/selected_arm_identity=gpt-6.1-sol + routes top-level provider/model) declare arm A = openai-codex/gpt-6.1-sol with arm B = glm-5.3-flash fallback1"
+  },
+  "why_check_drift_is_green": "the drift gate compares each pointer to a byte-exact EXPECTATION recorded in the registry; both contradictory blocks are self-consistent with their own snapshots, so 90/90 sites pass except the unrelated /codex_sha256 error. The gate proves expectation-matching, not internal coherence (the repository's own skill warns: a green built-in check is not evidence the invariant you care about holds).",
+  "resid": "the stale encoding survives at the /sod/* prose sites; the machine routes + supply_selector + registry routes agree on A=gpt-6.1-sol(OAuth), so that is the owner-standing value; the /sod/* prose is recorded as the stale side, NOT silently reconciled in this read-only round"
+ },
+ "runtime_role_binding_assert_caller_graph": {
+  "script": "scripts/runtime_role_binding_assert.py",
+  "git_state": "UNTRACKED (git status: '?? scripts/runtime_role_binding_assert.py')",
+  "wired_callers": [
+   "evidence/FAR-LANE-ROUTE-REBIND-20261015/run_e2e.py (a PRIOR round's evidence harness only)"
+  ],
+  "production_callers": [],
+  "verdict": "UNWIRED at the production layer: the per-turn mandate chain[] gate exists as an untracked script whose only wired caller is the prior round's own E2E runner; no src/** or live dispatcher path imports or invokes it, so the gate is declaration-level, not a production pre-dispatch refusal",
+  "this_round_execution": "NOT executed here (no mandate-file exists for this R7 subagent round, so the fail-closed path could not be exercised with a real mandate)"
+ }
+}

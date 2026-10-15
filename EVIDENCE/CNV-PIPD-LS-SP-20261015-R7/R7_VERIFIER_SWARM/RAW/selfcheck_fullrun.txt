@@ -1,0 +1,173 @@
+claim_ceiling: LOCAL / candidate-only
+== R7-0 selfcheck started at 2026-10-15T16:48:11+00:00 ==
+       guard probes: outside-write-refused=True | git-push-refused=True | rev-parse-allowed=True (offline, no effects)
+
+== FULL CHECKS ==
+[1] local branch == remote branch head
+       command: git -C C:/Projects/wt-cnv-r7 rev-parse HEAD  |  API /repos/.../branches/{branch}
+       local=96b9307d51b40c4169230a8eb0d74c9e62152b20 | remote=96b9307d51b40c4169230a8eb0d74c9e62152b20 | local record head_after_r7=96b9307d51b40c4169230a8eb0d74c9e62152b20
+       result: PASS
+[2] blob inventory under EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/ (--no-filters bytes)
+       command: GET repos/.../git/trees/{head}?recursive=1  x  local walk blob-id rehash
+       remote=212 blobs | local files=227 | MISSING=0 | LOCAL_ONLY=15 | MISMATCHES=2
+       result: FAIL
+       local_only sample: ['EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/KANBAN_SWARM_GRAPH_R7.json', 'EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/R7_ACCELERATION_AND_SWARM.md', 'EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/REBASE/cli.py.delta.patch', 'EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/REBASE/pipeline.py.delta.patch', 'EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/REBASE/validate.py.delta.patch', 'EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/REBASE_MEASUREMENT.json', 'EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/VERIFIER_BRIEF_SWARM_R7.md', 'EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/WS1_BLOCKER_STALE_BASELINE.json', 'EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/WS1_PIPD_COPY_VERIFICATION.json', 'EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/WS3_OPENSPEC_PROPOSAL_RECEIPT.md']
+       mismatch sample: ['EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/PACKET_MANIFEST.json', 'EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/R7_SIDE_EFFECTS.json']
+[3] packet manifest reconciliation
+       command: GET repos/.../contents/PACKET_MANIFEST.json (raw bytes -> sha256) + blob count from [2]
+       file_count=227 | tracked_file_count=227 | local_only_excluded=0 | tracked_inventory=227
+       c1 tracked==live blobs (227==212): False
+       c2 file_count - tracked == len(local_only_excluded) (227-227==0): True
+       manifest bytes sha256=22d0550b39e0b807... matches expected (c5fc66e4...): False
+       result: FAIL
+[4] merged archive untouched @ main
+       command: GET repos/.../branches/main + GET git/trees/{main}?recursive=1 + GET contents EVIDENCE/CNV-PIPD-LS-SP-20261015/PACKET_MANIFEST.json (raw -> sha256)
+       main=b8ff81043e47 | expected=b8ff81043e47 | c1: True
+       frozen blobs=581 | expected=581 | c2: True
+       manifest sha256=27ba42f7cb32d9f4... | expected=27ba42f7... | c3: True
+       result: PASS
+[5] M2 trusted-scope/secrets record
+       command: read M2_TRUSTED_SCOPE_SECRETS_R7.json locally (sha256=a65389b166024c76...) | parse
+       verdict=PASS | scope violations (out_of_prefix=0 + symlinks=0 + exec_bit=0)=0
+       hard secret findings=0 | scan_digest=e4f913244cd649c4...
+       result: PASS
+[6] checker attempt-3 verdict parse
+       command: parse R7_CHECKER_ATTEMPT3/R7_CHECKER_VERDICT.json locally (no network)
+       schema=CNV-PIPD-LS-SP-20261015-R7/CHECKER-VERDICT/3 (expected CNV-PIPD-LS-SP-20261015-R7/CHECKER-VERDICT/3): True
+       overall_verdict=PENDING_OWNER in {PENDING_OWNER, CHALLENGED}: True
+       items=6 ids=['1', '2', '3', '4', '5', '6'] | all item verdicts in allowed set: True | first_fail=None
+       result: PASS
+
+== REPAIRS (safe mode: this round's own records only, max 3 iterations) ==
+[repair 1] actions:
+       action: R7_POST_COMMIT_READBACK.json: published_bytes recomputed from live enumeration (blobs=212, mismatches=2, set_equality=False)
+       action: R7_PUBLICATION_VERIFICATION.json: byte_level_verification + frozen_archive recomputed from live wire (mismatches=2, main=b8ff81043e47)
+       action: R7_POST_COMMIT_READBACK.json: rewritten (bytes changed)
+       action: R7_PUBLICATION_VERIFICATION.json: rewritten (bytes changed)
+[repair 1] re-running all checks...
+[1] local branch == remote branch head
+       command: git -C C:/Projects/wt-cnv-r7 rev-parse HEAD  |  API /repos/.../branches/{branch}
+       local=96b9307d51b40c4169230a8eb0d74c9e62152b20 | remote=96b9307d51b40c4169230a8eb0d74c9e62152b20 | local record head_after_r7=96b9307d51b40c4169230a8eb0d74c9e62152b20
+       result: PASS
+[2] blob inventory under EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/ (--no-filters bytes)
+       command: GET repos/.../git/trees/{head}?recursive=1  x  local walk blob-id rehash
+       remote=212 blobs | local files=227 | MISSING=0 | LOCAL_ONLY=15 | MISMATCHES=2
+       result: FAIL
+       local_only sample: ['EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/KANBAN_SWARM_GRAPH_R7.json', 'EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/R7_ACCELERATION_AND_SWARM.md', 'EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/REBASE/cli.py.delta.patch', 'EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/REBASE/pipeline.py.delta.patch', 'EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/REBASE/validate.py.delta.patch', 'EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/REBASE_MEASUREMENT.json', 'EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/VERIFIER_BRIEF_SWARM_R7.md', 'EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/WS1_BLOCKER_STALE_BASELINE.json', 'EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/WS1_PIPD_COPY_VERIFICATION.json', 'EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/WS3_OPENSPEC_PROPOSAL_RECEIPT.md']
+       mismatch sample: ['EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/PACKET_MANIFEST.json', 'EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/R7_SIDE_EFFECTS.json']
+[3] packet manifest reconciliation
+       command: GET repos/.../contents/PACKET_MANIFEST.json (raw bytes -> sha256) + blob count from [2]
+       file_count=227 | tracked_file_count=227 | local_only_excluded=0 | tracked_inventory=227
+       c1 tracked==live blobs (227==212): False
+       c2 file_count - tracked == len(local_only_excluded) (227-227==0): True
+       manifest bytes sha256=22d0550b39e0b807... matches expected (c5fc66e4...): False
+       result: FAIL
+[4] merged archive untouched @ main
+       command: GET repos/.../branches/main + GET git/trees/{main}?recursive=1 + GET contents EVIDENCE/CNV-PIPD-LS-SP-20261015/PACKET_MANIFEST.json (raw -> sha256)
+       main=b8ff81043e47 | expected=b8ff81043e47 | c1: True
+       frozen blobs=581 | expected=581 | c2: True
+       manifest sha256=27ba42f7cb32d9f4... | expected=27ba42f7... | c3: True
+       result: PASS
+[5] M2 trusted-scope/secrets record
+       command: read M2_TRUSTED_SCOPE_SECRETS_R7.json locally (sha256=a65389b166024c76...) | parse
+       verdict=PASS | scope violations (out_of_prefix=0 + symlinks=0 + exec_bit=0)=0
+       hard secret findings=0 | scan_digest=e4f913244cd649c4...
+       result: PASS
+[6] checker attempt-3 verdict parse
+       command: parse R7_CHECKER_ATTEMPT3/R7_CHECKER_VERDICT.json locally (no network)
+       schema=CNV-PIPD-LS-SP-20261015-R7/CHECKER-VERDICT/3 (expected CNV-PIPD-LS-SP-20261015-R7/CHECKER-VERDICT/3): True
+       overall_verdict=PENDING_OWNER in {PENDING_OWNER, CHALLENGED}: True
+       items=6 ids=['1', '2', '3', '4', '5', '6'] | all item verdicts in allowed set: True | first_fail=None
+       result: PASS
+[repair 1] residuals remain: ['2', '3']
+[repair 2] actions:
+       action: R7_POST_COMMIT_READBACK.json: published_bytes recomputed from live enumeration (blobs=212, mismatches=2, set_equality=False)
+       action: R7_PUBLICATION_VERIFICATION.json: byte_level_verification + frozen_archive recomputed from live wire (mismatches=2, main=b8ff81043e47)
+       action: R7_POST_COMMIT_READBACK.json: rewritten (bytes changed)
+       action: R7_PUBLICATION_VERIFICATION.json: rewritten (bytes changed)
+[repair 2] re-running all checks...
+[1] local branch == remote branch head
+       command: git -C C:/Projects/wt-cnv-r7 rev-parse HEAD  |  API /repos/.../branches/{branch}
+       local=96b9307d51b40c4169230a8eb0d74c9e62152b20 | remote=96b9307d51b40c4169230a8eb0d74c9e62152b20 | local record head_after_r7=96b9307d51b40c4169230a8eb0d74c9e62152b20
+       result: PASS
+[2] blob inventory under EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/ (--no-filters bytes)
+       command: GET repos/.../git/trees/{head}?recursive=1  x  local walk blob-id rehash
+       remote=212 blobs | local files=227 | MISSING=0 | LOCAL_ONLY=15 | MISMATCHES=2
+       result: FAIL
+       local_only sample: ['EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/KANBAN_SWARM_GRAPH_R7.json', 'EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/R7_ACCELERATION_AND_SWARM.md', 'EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/REBASE/cli.py.delta.patch', 'EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/REBASE/pipeline.py.delta.patch', 'EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/REBASE/validate.py.delta.patch', 'EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/REBASE_MEASUREMENT.json', 'EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/VERIFIER_BRIEF_SWARM_R7.md', 'EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/WS1_BLOCKER_STALE_BASELINE.json', 'EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/WS1_PIPD_COPY_VERIFICATION.json', 'EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/WS3_OPENSPEC_PROPOSAL_RECEIPT.md']
+       mismatch sample: ['EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/PACKET_MANIFEST.json', 'EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/R7_SIDE_EFFECTS.json']
+[3] packet manifest reconciliation
+       command: GET repos/.../contents/PACKET_MANIFEST.json (raw bytes -> sha256) + blob count from [2]
+       file_count=227 | tracked_file_count=227 | local_only_excluded=0 | tracked_inventory=227
+       c1 tracked==live blobs (227==212): False
+       c2 file_count - tracked == len(local_only_excluded) (227-227==0): True
+       manifest bytes sha256=22d0550b39e0b807... matches expected (c5fc66e4...): False
+       result: FAIL
+[4] merged archive untouched @ main
+       command: GET repos/.../branches/main + GET git/trees/{main}?recursive=1 + GET contents EVIDENCE/CNV-PIPD-LS-SP-20261015/PACKET_MANIFEST.json (raw -> sha256)
+       main=b8ff81043e47 | expected=b8ff81043e47 | c1: True
+       frozen blobs=581 | expected=581 | c2: True
+       manifest sha256=27ba42f7cb32d9f4... | expected=27ba42f7... | c3: True
+       result: PASS
+[5] M2 trusted-scope/secrets record
+       command: read M2_TRUSTED_SCOPE_SECRETS_R7.json locally (sha256=a65389b166024c76...) | parse
+       verdict=PASS | scope violations (out_of_prefix=0 + symlinks=0 + exec_bit=0)=0
+       hard secret findings=0 | scan_digest=e4f913244cd649c4...
+       result: PASS
+[6] checker attempt-3 verdict parse
+       command: parse R7_CHECKER_ATTEMPT3/R7_CHECKER_VERDICT.json locally (no network)
+       schema=CNV-PIPD-LS-SP-20261015-R7/CHECKER-VERDICT/3 (expected CNV-PIPD-LS-SP-20261015-R7/CHECKER-VERDICT/3): True
+       overall_verdict=PENDING_OWNER in {PENDING_OWNER, CHALLENGED}: True
+       items=6 ids=['1', '2', '3', '4', '5', '6'] | all item verdicts in allowed set: True | first_fail=None
+       result: PASS
+[repair 2] residuals remain: ['2', '3']
+[repair 3] actions:
+       action: R7_POST_COMMIT_READBACK.json: published_bytes recomputed from live enumeration (blobs=212, mismatches=2, set_equality=False)
+       action: R7_PUBLICATION_VERIFICATION.json: byte_level_verification + frozen_archive recomputed from live wire (mismatches=2, main=b8ff81043e47)
+       action: R7_POST_COMMIT_READBACK.json: rewritten (bytes changed)
+       action: R7_PUBLICATION_VERIFICATION.json: rewritten (bytes changed)
+[repair 3] re-running all checks...
+[1] local branch == remote branch head
+       command: git -C C:/Projects/wt-cnv-r7 rev-parse HEAD  |  API /repos/.../branches/{branch}
+       local=96b9307d51b40c4169230a8eb0d74c9e62152b20 | remote=96b9307d51b40c4169230a8eb0d74c9e62152b20 | local record head_after_r7=96b9307d51b40c4169230a8eb0d74c9e62152b20
+       result: PASS
+[2] blob inventory under EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/ (--no-filters bytes)
+       command: GET repos/.../git/trees/{head}?recursive=1  x  local walk blob-id rehash
+       remote=212 blobs | local files=227 | MISSING=0 | LOCAL_ONLY=15 | MISMATCHES=2
+       result: FAIL
+       local_only sample: ['EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/KANBAN_SWARM_GRAPH_R7.json', 'EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/R7_ACCELERATION_AND_SWARM.md', 'EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/REBASE/cli.py.delta.patch', 'EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/REBASE/pipeline.py.delta.patch', 'EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/REBASE/validate.py.delta.patch', 'EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/REBASE_MEASUREMENT.json', 'EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/VERIFIER_BRIEF_SWARM_R7.md', 'EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/WS1_BLOCKER_STALE_BASELINE.json', 'EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/WS1_PIPD_COPY_VERIFICATION.json', 'EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/WS3_OPENSPEC_PROPOSAL_RECEIPT.md']
+       mismatch sample: ['EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/PACKET_MANIFEST.json', 'EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/R7_SIDE_EFFECTS.json']
+[3] packet manifest reconciliation
+       command: GET repos/.../contents/PACKET_MANIFEST.json (raw bytes -> sha256) + blob count from [2]
+       file_count=227 | tracked_file_count=227 | local_only_excluded=0 | tracked_inventory=227
+       c1 tracked==live blobs (227==212): False
+       c2 file_count - tracked == len(local_only_excluded) (227-227==0): True
+       manifest bytes sha256=22d0550b39e0b807... matches expected (c5fc66e4...): False
+       result: FAIL
+[4] merged archive untouched @ main
+       command: GET repos/.../branches/main + GET git/trees/{main}?recursive=1 + GET contents EVIDENCE/CNV-PIPD-LS-SP-20261015/PACKET_MANIFEST.json (raw -> sha256)
+       main=b8ff81043e47 | expected=b8ff81043e47 | c1: True
+       frozen blobs=581 | expected=581 | c2: True
+       manifest sha256=27ba42f7cb32d9f4... | expected=27ba42f7... | c3: True
+       result: PASS
+[5] M2 trusted-scope/secrets record
+       command: read M2_TRUSTED_SCOPE_SECRETS_R7.json locally (sha256=a65389b166024c76...) | parse
+       verdict=PASS | scope violations (out_of_prefix=0 + symlinks=0 + exec_bit=0)=0
+       hard secret findings=0 | scan_digest=e4f913244cd649c4...
+       result: PASS
+[6] checker attempt-3 verdict parse
+       command: parse R7_CHECKER_ATTEMPT3/R7_CHECKER_VERDICT.json locally (no network)
+       schema=CNV-PIPD-LS-SP-20261015-R7/CHECKER-VERDICT/3 (expected CNV-PIPD-LS-SP-20261015-R7/CHECKER-VERDICT/3): True
+       overall_verdict=PENDING_OWNER in {PENDING_OWNER, CHALLENGED}: True
+       items=6 ids=['1', '2', '3', '4', '5', '6'] | all item verdicts in allowed set: True | first_fail=None
+       result: PASS
+[repair 3] residuals remain: ['2', '3']
+
+== VERDICT ==
+1=PASS 2=FAIL 3=FAIL 4=PASS 5=PASS 6=PASS
+OVERALL_SELFCHECK_VERDICT: FAIL
+
+REPAIR MODE NOTE: repairs touched only these files (if any): R7_POST_COMMIT_READBACK.json, R7_PUBLICATION_VERIFICATION.json
+
+claim_ceiling: LOCAL / candidate-only. No acceptance, approval, Gate PASS, merge authorisation, or production effect is claimed. Unverifiable claims (provider/model attestation, upstream CI, the 221-case acceptance, voided attempt-1 evidence) remain explicitly unverifiable and are not upgraded.
+== R7-0 selfcheck complete ==

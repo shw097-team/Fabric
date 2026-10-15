@@ -1,37 +1,64 @@
 {
-  "schema": "CNV-PIPD-LS-SP-20261015-R7/WS1-BLOCKER/1",
-  "id": "BLK-R7-WS1-STALE-BASELINE",
-  "severity": "high",
-  "finding": "The R7-0 product change was authored against a STALE product revision. The writer's pre-change snapshots (RAW/pre_change/*) are byte-identical to commit a503efe ('r5r: repair CE-1 ... CE-2 ...'); origin/main is dba4b19456777d3b597fdf71480f6423dd974243 with different blobs for all three files (validate.py 7c3145cd002b, pipeline.py 75799b744e8a, cli.py 4a2e13fbbdd7 vs the snapshots' ce840caadca8 / 7f21aa84c4ae / 69095baeb68a).",
-  "consequence": "Copying the workspace post-change files onto a branch based on main would REVERT intervening main work (net repo->published delta is +164/-158 lines in validate.py alone, including the CE-2 refinement block). A rebase of the R7-0 delta onto main does NOT apply cleanly: pipeline.py applies (rc=0), validate.py and cli.py conflict (git apply --check rc=1, context hunks missing).",
-  "evidence": {
-    "copy_verification": "WS1_PIPD_COPY_VERIFICATION.json",
-    "rebase_measurement": "REBASE_MEASUREMENT.json",
-    "delta_patches": "REBASE/*.delta.patch",
-    "base_commit": "a503efe",
-    "main": "dba4b19456777d3b597fdf71480f6423dd974243"
+ "schema": "CNV-PIPD-LS-SP-20261015-R7/WS1-BLOCKER/1",
+ "id": "BLK-R7-WS1-STALE-BASELINE",
+ "severity": "high",
+ "finding": "The R7-0 product change was authored against a STALE product revision. The writer's pre-change snapshots (RAW/pre_change/*) are byte-identical to commit a503efe ('r5r: repair CE-1 ... CE-2 ...'); origin/main is dba4b19456777d3b597fdf71480f6423dd974243 with different blobs for all three files (validate.py 7c3145cd002b, pipeline.py 75799b744e8a, cli.py 4a2e13fbbdd7 vs the snapshots' ce840caadca8 / 7f21aa84c4ae / 69095baeb68a).",
+ "consequence": "Copying the workspace post-change files onto a branch based on main would REVERT intervening main work (net repo->published delta is +164/-158 lines in validate.py alone, including the CE-2 refinement block). A rebase of the R7-0 delta onto main does NOT apply cleanly: pipeline.py applies (rc=0), validate.py and cli.py conflict (git apply --check rc=1, context hunks missing).",
+ "evidence": {
+  "copy_verification": "WS1_PIPD_COPY_VERIFICATION.json",
+  "rebase_measurement": "REBASE_MEASUREMENT.json",
+  "delta_patches": "REBASE/*.delta.patch",
+  "base_commit": "a503efe",
+  "main": "dba4b19456777d3b597fdf71480f6423dd974243"
+ },
+ "claim_ceiling_impact": "The R7-0 mutation result (M04/M06/M16 REJECT) is measured on the a503efe-derived tree. On any main-based rebase it is UNMEASURED until re-run.",
+ "what_was_not_done": "No branch, commit or pull request was created for the product change; the worktree was restored to main (clean). No product file was pushed.",
+ "options": [
+  {
+   "id": "A",
+   "label": "publish the candidate as a patch with its subject bound (base a503efe) + the conflict evidence; no application onto main",
+   "friction": "low",
+   "risk": "none (nothing applies to main)"
   },
-  "claim_ceiling_impact": "The R7-0 mutation result (M04/M06/M16 REJECT) is measured on the a503efe-derived tree. On any main-based rebase it is UNMEASURED until re-run.",
-  "what_was_not_done": "No branch, commit or pull request was created for the product change; the worktree was restored to main (clean). No product file was pushed.",
-  "options": [
-    {
-      "id": "A",
-      "label": "publish the candidate as a patch with its subject bound (base a503efe) + the conflict evidence; no application onto main",
-      "friction": "low",
-      "risk": "none (nothing applies to main)"
-    },
-    {
-      "id": "B",
-      "label": "rebuild the change against current main under a new bounded lane, then re-measure the 18 mutations on the rebased tree",
-      "friction": "high (new change set + re-measurement)",
-      "risk": "medium: hand-authored hunks without a lane"
-    },
-    {
-      "id": "C",
-      "label": "disclose only in the Fabric packet (diff already published there); no PIPD publication",
-      "friction": "lowest",
-      "risk": "the product side stays workspace-only"
-    }
-  ],
-  "orchestrator_recommendation": "A now, B as the next admitted change set (R8-0)"
+  {
+   "id": "B",
+   "label": "rebuild the change against current main under a new bounded lane, then re-measure the 18 mutations on the rebased tree",
+   "friction": "high (new change set + re-measurement)",
+   "risk": "medium: hand-authored hunks without a lane"
+  },
+  {
+   "id": "C",
+   "label": "disclose only in the Fabric packet (diff already published there); no PIPD publication",
+   "friction": "lowest",
+   "risk": "the product side stays workspace-only"
+  }
+ ],
+ "orchestrator_recommendation": "A now, B as the next admitted change set (R8-0)",
+ "CORRECTION_2026-10-16": {
+  "source": "independent verifier lane attempt 4, RAW/base_blob_ids.txt",
+  "was": "base attributed to a503efe",
+  "now": "base is 9bd33a1 (the r5q branch tip); the three candidate files' pre-change ancestors equal 9bd33a1's blobs",
+  "blobs": {
+   "9bd33a1_r5q": {
+    "cli.py": "69095baeb68a758d7c20baba4ab5f14a1174ddf1",
+    "pipeline.py": "7f21aa84c4aec5817b9739fc7bb447c39cc6ad46",
+    "validate.py": "ce840caadca8a6724c6b4c6baf536c68a378e567"
+   },
+   "main_dba4b19456777d3b597fdf71480f6423dd974243": {
+    "cli.py": "4a2e13fbbdd77e1f775a90c4a6d105901311e7ab",
+    "pipeline.py": "75799b744e8ace9ba69efb7ab5be0570fd320ed6",
+    "validate.py": "7c3145cd002bec1f8496b257fe932c826a6c109b"
+   },
+   "a503efe": {
+    "cli.py": "4a2e13fbbdd77e1f775a90c4a6d105901311e7ab",
+    "pipeline.py": "01aeaa2ca2ada5000fa3ec3a0928b9fc22ef97c5",
+    "validate.py": "affd8243d66569596e212e009ac65b6a17246aa4"
+   }
+  },
+  "rebase_recheck": {
+   "on_9bd33a1_r5q": "all three deltas apply rc=0 and reproduce the candidate byte-for-byte (r5q_repro.txt: applied==candidate sha256 for all 3 files)",
+   "on_main_dba4b19": "pipeline.py rc=0; cli.py rc=1; validate.py rc=1 (conflict at cli.py:163 and validate.py:14)"
+  },
+  "claim_effect": "Blocking conclusion UNCHANGED (the change was authored against an older revision than main and does not apply to main), but the base identity and therefore the pointer in the PR/ledger is corrected; the M04/M06/M16 result is measured on the 9bd33a1-derived tree."
+ }
 }

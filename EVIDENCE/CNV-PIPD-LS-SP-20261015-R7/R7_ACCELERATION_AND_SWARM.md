@@ -43,27 +43,34 @@ It is a **proposal**: zero implementation, every task unchecked.
 
 ## WS1 — product-side publication, and the blocker it exposed
 The R7-0 change was authored in a workspace copy of the product that is **not** current `main`:
-- the writer's pre-change snapshots are byte-identical to the blobs of commit **`a503efe`**
-  (`ce840caadca8` / `7f21aa84c4ae` / `69095baeb68a`); `main` is `dba4b19456777d3b597fdf71480f6423dd974243`
-  (`7c3145cd002b` / `75799b744e8a` / `4a2e13fbbdd7`);
-- so the patch is a delta **against `a503efe`**, and copying the candidate files onto `main` would **revert**
+- the writer's pre-change snapshots are byte-identical to the blobs of commit **`9bd33a1`** (the r5q tip)
+  (`69095baeb68a` / `7f21aa84c4ae` / `ce840caadca8`); `main` is `dba4b19456777d3b597fdf71480f6423dd974243`
+  (`4a2e13fbbdd7` / `75799b744e8a` / `7c3145cd002b`). *(A first pass mis-attributed the base to `a503efe`; the
+  independent verifier's raw evidence corrected it — see `WS1_BLOCKER_STALE_BASELINE.json` → `CORRECTION_2026-10-16`.)*
+- so the patch is a delta **against `9bd33a1`**, and copying the candidate files onto `main` would **revert**
   intervening work (net `main`→candidate is +164/−158 lines in `validate.py` alone, including the CE-2 refinement);
-- a mechanical rebase does not apply cleanly: `pipeline.py` applies (`rc=0`); `validate.py` and `cli.py` conflict
-  (`git apply --check rc=1`). Measurement: `REBASE_MEASUREMENT.json`; deltas: `REBASE/*.delta.patch`.
+- a mechanical rebase does not apply cleanly: on `main`, `pipeline.py` applies (`rc=0`) while `validate.py`
+  (`rc=1`, `CLAIM_LADDER` region) and `cli.py` (`rc=1`, line 163) conflict. On `9bd33a1` all three apply (`rc=0`)
+  and reproduce the candidate byte-for-byte. Measurement: `REBASE_MEASUREMENT.json`; deltas: `REBASE/*.delta.patch`.
 
 Handling (option A, chosen for zero regression risk): nothing was applied to `src/`. The candidate files (evidence
 copies), the delta patches, the measurement and the blocker record were published on PIPD-LS-SP branch
 `evidence/cnv-r7-0-validator-hardening-20261015` (head `eae636d8668027887977a797b20e63899465ad8d`, 16 blobs under
 `evidence/cnv-r7-0/`, `src/` untouched, blob-ids verified) with Draft PR #15. Option B — rebuild against `main`
 and **re-measure the 18 mutations there** — is the recommended next change set (R8-0), because the round's M04/M06/
-M16 result is measured only on the `a503efe`-derived tree.
+M16 result is measured only on the `9bd33a1`-derived tree.
 
 ## WS5 — the self-check / self-repair harness
 `selfcheck/round_selfcheck.py` re-verifies the round's invariants from live evidence (branch head vs remote vs
 recorded readback; 212 packet blobs re-hashed as `sha1("blob N\0"+bytes)`; manifest reconciliation; `main` and the
 R6 archive frozen by digest; the M2 verdict; the authoritative checker verdict's schema and ceiling), refuses to
-write outside the handover root, refuses git write verbs, and prints the claim ceiling on every run. Result:
-**6/6 PASS, overall PASS, exit 0**, re-run by the orchestrator with the same outcome (`SELFCHECK_OUTPUT.txt`).
+write outside the handover root, refuses git write verbs, and prints the claim ceiling on every run. Result at the 212-blob packet state:
+**6/6 PASS, overall PASS, exit 0** (`SELFCHECK_OUTPUT.txt`); the orchestrator's re-run agreed at that state.
+After the packet grew to 227 blobs the independent verifier's re-run returned
+**`1=PASS 2=FAIL 3=FAIL 4=PASS 5=PASS 6=PASS` → OVERALL FAIL** (residuals 2,3 = the blob-set/manifest
+reconciliation, still carrying the 212-blob expectation): the harness refused stale expectations instead of
+passing. So its recorded expectations must be regenerated after every commit — see
+`R7_VERIFIER_SWARM_PARTIAL.md` §3.
 Repair mode is armed but touched nothing (no repair was needed). Its own limits are stated in
 `selfcheck/WS5_SELFCHECK_RECEIPT.md`: it is a **machine gate**, not a governance acceptance, and it explicitly
 keeps four claims unverifiable (provider/model attestation, upstream CI, the 221 acceptance cases, the voided
