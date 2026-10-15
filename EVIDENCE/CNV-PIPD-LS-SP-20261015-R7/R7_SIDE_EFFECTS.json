@@ -32,7 +32,9 @@
     "HG-KSEOS spine: project CNV-R7-VALIDATOR-HARDEN-R7VH + WorkOrders WO-TS-R7VH-01/02 (WORKORDERS_ADMITTED); no status advanced by any agent"
   ],
   "repo_mutations": [
-    "none in this round yet: merged archive EVIDENCE/CNV-PIPD-LS-SP-20261015/** unchanged (main b8ff8104, 581/581 blobs byte-identical)"
+    "Fabric: branch evidence/cnv-pipd-ls-sp-20261015-r7 pushed, head 7d610e5821b6eddd3969cd537f05efe81fdd54b6, 212 blobs under EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/; Draft PR #4 with 3 verification comments (6196257481, 6196277922, 6196400843).",
+    "PIPD-LS-SP: branch evidence/cnv-r7-0-validator-hardening-20261015 pushed, head eae636d8668027887977a797b20e63899465ad8d, 16 blobs under evidence/cnv-r7-0/ (NOTHING applied to src/); Draft PR #15.",
+    "main in both repos untouched: Fabric b8ff8104 (R6 archive 581 blobs, manifest sha256 27ba42f7...), PIPD-LS-SP dba4b19."
   ],
   "no_effect": [
     "no merge to main",
@@ -70,6 +72,26 @@
       "guard_behaviour": "the dispatcher reported subject_mutation CLEAN (added/removed/changed all 0) because it compares the pre/post turn digest; an intra-turn write-then-restore is invisible to it.",
       "repair": "independently re-verified by the orchestrator after the turn: 300/300 blobs equal origin/main, 0 drift, 0 extras. Checker's own final line: FINAL MATCH=300 MISMATCH=0.",
       "status": "no residual drift; recorded as TF-09 with owner"
+    },
+    {
+      "id": "BLK-R7-WS1-STALE-BASELINE",
+      "severity": "high",
+      "what": "The R7-0 product change was authored against a stale revision: the writer's pre-change snapshots are byte-identical to commit a503efe while main is dba4b19. Publishing the candidate files onto main would revert intervening work; a mechanical rebase conflicts on validate.py and cli.py (pipeline.py applies).",
+      "handling": "option A taken by the orchestrator: nothing applied to src/; the delta patches, the candidate files (evidence copies), the rebase measurement and the blocker record were published on a PIPD evidence branch (head eae636d8) with Draft PR #15. Option B (rebuild against main and re-measure the 18 mutations) is recommended as the next change set R8-0.",
+      "ceiling": "the R7-0 mutation result is measured on the a503efe-derived tree and is unmeasured on any main-based rebase"
     }
-  ]
+  ],
+  "kanban_swarm": {
+    "board": "cnv-r7-0-accel-20261015",
+    "root": "t_cb349415",
+    "workers": [
+      "t_6b486801(WS1 done)",
+      "t_309d743f(WS2 done)",
+      "t_487b3659(WS3 pending)",
+      "t_d11b97eb(WS4 pending)",
+      "t_9bb5924a(WS5 pending)"
+    ],
+    "verifier": "t_18395e4b",
+    "synthesizer": "t_c7f0b89b"
+  }
 }

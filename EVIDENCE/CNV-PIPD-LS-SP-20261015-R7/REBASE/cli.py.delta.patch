@@ -1,0 +1,17 @@
+--- a/src/pipd_ls_sp/cli.py
++++ b/src/pipd_ls_sp/cli.py
+@@ -163,7 +163,13 @@
+         return out
+     if cmd == "validate":
+         bundle = _read_json(args.bundle, "validation bundle")
+-        out = validate.validate_bundle(bundle, root / "schemas")
++        # R7-0 wiring: derive a deterministic frozen context from an embedded PI package when the
++        # bundle carries one, so the trace-endpoint / oracle-expected / profile-assurance bindings
++        # are discharged against frozen references. With no source for a given binding the hardened
++        # validator fails closed (UNBOUND_FROZEN_CONTEXT) instead of silently passing.
++        source = bundle.get("PI-PKG") if isinstance(bundle.get("PI-PKG"), dict) else None
++        frozen = validate.derive_frozen_context(source)
++        out = validate.validate_bundle(bundle, root / "schemas", frozen)
+         if getattr(args, "explain", False):
+             out = dict(out); out.update(_explain("validate", out))
+         return out

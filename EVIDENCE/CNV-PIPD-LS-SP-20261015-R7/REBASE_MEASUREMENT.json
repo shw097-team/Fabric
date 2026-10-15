@@ -1,0 +1,31 @@
+{
+  "schema": "CNV-PIPD-LS-SP-20261015-R7/REBASE-MEASURE/1",
+  "stale_base_commit": "a503efe (the writer's pre-change blobs are exactly this revision's blobs)",
+  "current_main": "dba4b19456777d3b597fdf71480f6423dd974243",
+  "rows": [
+    {
+      "file": "validate.py",
+      "delta_lines": 203,
+      "apply_check_rc": 1,
+      "applied": false,
+      "post_sha256": "50d69fe651cadebe93a799d12252c8698a8f56fc1792068e707ed1f381726475",
+      "stderr": "Checking patch src/pipd_ls_sp/validate.py...\nerror: while searching for:\nCLAIM_LADDER = [\"PROMPT_COMPILE_PASS\", \"HGK_ADMITTED\", \"RUNTIME_READY\", \"LOCAL_QUALIFIED\",\n                \"INDEPENDENT_PASS\", \"PUBLICATION_APPROVED\", \"RELEASED\", \"PRODUCTION_VERIFIED\"]\nRELEASE_BOUND = (\"PI-PKG\", \"PD-PKG\", \"ECP"
+    },
+    {
+      "file": "pipeline.py",
+      "delta_lines": 48,
+      "apply_check_rc": 0,
+      "applied": true,
+      "post_sha256": "9e9f6ab02e385a7b0c8b428bdcd8659f8c3de479d4125b1610e1188f8875749a",
+      "stderr": "Checking patch src/pipd_ls_sp/pipeline.py...\nHunk #1 succeeded at 204 (offset 16 lines).\n"
+    },
+    {
+      "file": "cli.py",
+      "delta_lines": 17,
+      "apply_check_rc": 1,
+      "applied": false,
+      "post_sha256": "cc97660b079f7c4fa1f38e0c631b3fdf24a896feea6d9b278e25920b4bf82324",
+      "stderr": "Checking patch src/pipd_ls_sp/cli.py...\nerror: while searching for:\n        return out\n    if cmd == \"validate\":\n        bundle = _read_json(args.bundle, \"validation bundle\")\n        out = validate.validate_bundle(bundle, root / \"schemas\")\n        if getattr(args, \"explain\", False):\n            out "
+    }
+  ]
+}

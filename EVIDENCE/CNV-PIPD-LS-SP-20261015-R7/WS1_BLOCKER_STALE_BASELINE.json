@@ -1,0 +1,37 @@
+{
+  "schema": "CNV-PIPD-LS-SP-20261015-R7/WS1-BLOCKER/1",
+  "id": "BLK-R7-WS1-STALE-BASELINE",
+  "severity": "high",
+  "finding": "The R7-0 product change was authored against a STALE product revision. The writer's pre-change snapshots (RAW/pre_change/*) are byte-identical to commit a503efe ('r5r: repair CE-1 ... CE-2 ...'); origin/main is dba4b19456777d3b597fdf71480f6423dd974243 with different blobs for all three files (validate.py 7c3145cd002b, pipeline.py 75799b744e8a, cli.py 4a2e13fbbdd7 vs the snapshots' ce840caadca8 / 7f21aa84c4ae / 69095baeb68a).",
+  "consequence": "Copying the workspace post-change files onto a branch based on main would REVERT intervening main work (net repo->published delta is +164/-158 lines in validate.py alone, including the CE-2 refinement block). A rebase of the R7-0 delta onto main does NOT apply cleanly: pipeline.py applies (rc=0), validate.py and cli.py conflict (git apply --check rc=1, context hunks missing).",
+  "evidence": {
+    "copy_verification": "WS1_PIPD_COPY_VERIFICATION.json",
+    "rebase_measurement": "REBASE_MEASUREMENT.json",
+    "delta_patches": "REBASE/*.delta.patch",
+    "base_commit": "a503efe",
+    "main": "dba4b19456777d3b597fdf71480f6423dd974243"
+  },
+  "claim_ceiling_impact": "The R7-0 mutation result (M04/M06/M16 REJECT) is measured on the a503efe-derived tree. On any main-based rebase it is UNMEASURED until re-run.",
+  "what_was_not_done": "No branch, commit or pull request was created for the product change; the worktree was restored to main (clean). No product file was pushed.",
+  "options": [
+    {
+      "id": "A",
+      "label": "publish the candidate as a patch with its subject bound (base a503efe) + the conflict evidence; no application onto main",
+      "friction": "low",
+      "risk": "none (nothing applies to main)"
+    },
+    {
+      "id": "B",
+      "label": "rebuild the change against current main under a new bounded lane, then re-measure the 18 mutations on the rebased tree",
+      "friction": "high (new change set + re-measurement)",
+      "risk": "medium: hand-authored hunks without a lane"
+    },
+    {
+      "id": "C",
+      "label": "disclose only in the Fabric packet (diff already published there); no PIPD publication",
+      "friction": "lowest",
+      "risk": "the product side stays workspace-only"
+    }
+  ],
+  "orchestrator_recommendation": "A now, B as the next admitted change set (R8-0)"
+}
