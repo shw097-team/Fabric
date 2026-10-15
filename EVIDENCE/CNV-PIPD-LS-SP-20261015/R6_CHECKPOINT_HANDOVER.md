@@ -250,6 +250,36 @@ findings 0 | debt 0**。過程中該閘門**抓到 1 筆 DRIFT_VALUE**（`/effec
 dispatch 仍拒絕同一 call 自我驗證）。claim ceiling 維持 **LOCAL**：這是 owner 命令下的宣告＋設定落地與閘門
 通過，**不是**獨立驗收、不是核准、也不是 provider 存活證明。
 
+## §14 發布到兩個 REPO 並做位元級驗證（2026-10-15 20:20 台北）
+
+| REPO | 分支 | base（origin/main） | 遠端 head（讀回 MATCH） | Draft PR |
+|------|------|---------------------|------------------------|----------|
+| `shw097-team/Fabric` | `evidence/cnv-pipd-ls-sp-20261015-r6` | `266f8d65cf9b` | **`e6fd5b2dec84531575450d8e106abc3653ea51fa`** | **#3**（open, draft） |
+| `shw097-team/PIPD-LS-SP` | `evidence/cnv-pipd-ls-sp-20261015-r6` | `dba4b19456777d3b597fdf71480f6423dd974243` | **`92f726ac6ae63a2a8b35f3fd991a0d68e9ad68cf`** | **#14**（open, draft） |
+
+兩 repo 皆：未動 local `main`、未 force push、token 不上 argv/URL/檔案；packet 路徑皆 `EVIDENCE/CNV-PIPD-LS-SP-20261015/`。
+
+**位元級驗證（外部驗收官可重跑）**：對遠端 tree 內**每一個** blob，用本地來源檔重算 git 自己的 blob id
+`sha1("blob <len>\0" + bytes)` 並比對 → **Fabric 566/566、PIPD-LS-SP 566/566 完全相同、0 mismatch**
+（其中 2 檔為 worktree 內生成：`PACKET_MANIFEST.json`、`.gitattributes`）。跨 repo：**565/566 blobs 一致**，
+唯一差異是 `PACKET_MANIFEST.json`（各自嵌入自己的 `base_origin_main`，刻意如此）。
+
+**發布期間抓到並修掉的兩個缺陷（DEV-R6-8／DEV-R6-9，皆不隱藏）**：
+
+1. **DEV-R6-8｜EOL 正規化會讓外部驗證失敗**：兩個 repo 的文字正規化把 CRLF 改寫成 LF，導致 **328 個 packet 檔**
+   的 blob 內容與 `PACKET_MANIFEST.json` 內的 sha256 **不符**——若外部驗收官下載檔案自行比對 sha256，會得到假性
+   mismatch。**發現方式**：不是宣告，是先抽 3 檔用遠端 API 重算 blob id 見到 MISMATCH，再抓遠端 blob 內容確認差異
+   正好是 CRLF→LF。**修法**：packet 子樹放 `.gitattributes`（`* -text`）＋兩個 clone 設 `core.autocrlf=false`
+   ＋`git add --renormalize`＋各自補一個 commit 重推。**修後驗證**：全量 566 檔 blob 比對，0 mismatch。
+2. **DEV-R6-9｜PIPD-LS-SP 第一次發布其實什麼都沒提交**：該 clone 缺 identity，git 回
+   `fatal: empty ident name ... not allowed`；但 push 仍建立了分支，而 readback 印出 `MATCH True`
+   （＝兩邊都是 base commit 的空分支）。**修法**：對該 clone 設 repo-local `user.name/user.email`
+   （`RP-002 HGK <hgk-rp002@local>`，與 Fabric 證據分支同一身份）後重跑 commit／push，並改以**內容**驗證。
+   **教訓**：ref 層的 `MATCH` 只證明 ref 相等，**永遠不是內容證據**——要驗 tree，不是驗 ref。
+
+→ 因此本節的「566/566 位元相同」是**內容層**證據；claim ceiling 仍為 **LOCAL / candidate-only**，
+不代表任何驗收通過。
+
 ## §10.1 本節新增副作用（除 §6 之外）
 
 1. Fabric 本地 clone 設定 `core.longpaths=true`（repo-local；因 repo 內容路徑超過 MAX_PATH，worktree 需短根

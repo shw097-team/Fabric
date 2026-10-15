@@ -1,0 +1,63 @@
+{
+  "schema": "CNV-PIPD-LS-SP-20261015/PUBLICATION-VERIFICATION/1",
+  "mission": "CNV-PIPD-LS-SP-20261015",
+  "round": "CNV-PIPD-LS-SP-20261015-R6",
+  "generated_utc": "2026-10-15T20:20Z",
+  "purpose": "record every publication channel, the exact commit read back from the remote, and the byte-level verification an external acceptor can repeat",
+  "channels": [
+    {
+      "repo": "shw097-team/Fabric",
+      "branch": "evidence/cnv-pipd-ls-sp-20261015-r6",
+      "base_origin_main": "266f8d65cf9b (Fabric origin/main at prepare time)",
+      "packet_path_in_repo": "EVIDENCE/CNV-PIPD-LS-SP-20261015/",
+      "draft_pr": {"number": 3, "state": "open", "draft": true, "url": "https://github.com/shw097-team/Fabric/pull/3"},
+      "commit_chain": ["5932aae4f0c3", "66fdc559a1aa", "c6242373e796", "821af5af496f", "f5867e54e6e5", "6da74b77dd23", "e6fd5b2dec84531575450d8e106abc3653ea51fa"],
+      "head_verified": "e6fd5b2dec84531575450d8e106abc3653ea51fa (remote ref read back == local HEAD)",
+      "forced_push": false,
+      "local_main_touched": false
+    },
+    {
+      "repo": "shw097-team/PIPD-LS-SP",
+      "branch": "evidence/cnv-pipd-ls-sp-20261015-r6",
+      "base_origin_main": "dba4b19456777d3b597fdf71480f6423dd974243",
+      "packet_path_in_repo": "EVIDENCE/CNV-PIPD-LS-SP-20261015/",
+      "draft_pr": {"number": 14, "state": "open", "draft": true, "url": "https://github.com/shw097-team/PIPD-LS-SP/pull/14"},
+      "commit_chain": ["467244412025b36b10977d14d78ae217633c78ff", "92f726ac6ae63a2a8b35f3fd991a0d68e9ad68cf"],
+      "head_verified": "92f726ac6ae63a2a8b35f3fd991a0d68e9ad68cf (remote ref read back == local HEAD)",
+      "forced_push": false,
+      "local_main_touched": false
+    }
+  ],
+  "byte_level_verification": {
+    "method": "for every blob under the packet path in the remote git tree, recompute git's own blob id sha1('blob <len>\\0' + bytes) from the local source-of-truth file and compare",
+    "result_fabric": "566/566 blob entries byte-identical to the source; 0 mismatches (2 of them are generated inside the worktree and checked against the worktree copy: PACKET_MANIFEST.json, .gitattributes)",
+    "result_pipd_ls_sp": "566/566 blob entries byte-identical to the source; 0 mismatches (same 2 generated files)",
+    "cross_repo": "565 of 566 blobs are identical across the two repositories; the single difference is PACKET_MANIFEST.json, which embeds each repo's own base_origin_main / branch metadata by design",
+    "why_this_matters": "PACKET_MANIFEST.json lists a sha256 per file; without byte-identical blobs an external acceptor downloading a file and comparing its sha256 would see a spurious mismatch"
+  },
+  "defects_found_and_fixed_during_publication": [
+    {
+      "id": "DEV-R6-8",
+      "what": "the repositories' text normalization (core.autocrlf=true + text attributes) rewrote CRLF to LF in the committed blobs: 328 of the packet files were published with EOL-converted content, so their sha256 did not match PACKET_MANIFEST.json",
+      "how_found": "not by a claim — by recomputing git blob ids for 3 spot-checked files against the remote API, seeing MISMATCH, then fetching the remote blob bytes and confirming the difference was exactly CRLF->LF",
+      "fix": "EVIDENCE/CNV-PIPD-LS-SP-20261015/.gitattributes with '* -text' inside the packet subtree + core.autocrlf=false repo-local + 'git add --renormalize' + a follow-up commit on both branches",
+      "verification_after_fix": "full 566-file blob comparison on both repos: 0 mismatches",
+      "residual": "none known; the attribute is committed with the packet so a re-clone keeps the exact bytes"
+    },
+    {
+      "id": "DEV-R6-9",
+      "what": "the first PIPD-LS-SP publication attempt committed nothing: git refused with 'empty ident name (for <@users.noreply.github.com>) not allowed' in that clone, yet the push still created the branch and the readback printed MATCH True",
+      "how_found": "reading the commit output instead of trusting the exit path",
+      "fix": "repo-local user.name/user.email set on the PIPD-LS-SP clone (RP-002 HGK <hgk-rp002@local>, the same identity the Fabric evidence branch uses), then commit + push + a real content check",
+      "lesson_recorded": "a ref-level MATCH proves only ref equality; it is never content evidence — verify the tree, not the ref"
+    }
+  ],
+  "what_an_external_acceptor_can_check": [
+    "git ls-remote / API: branch head equals the commit ids above (done here for both repos)",
+    "download EVIDENCE/CNV-PIPD-LS-SP-20261015/PACKET_MANIFEST.json and recompute sha256 for every listed file — all 566 blobs are byte-identical, so the manifest verifies as published",
+    "read R6_CHECKPOINT_HANDOVER.md §5/§10/§11/§12/§13/§14 for the deviations, and R6_RECONCILIATION.json for writer-vs-checker reconciliation",
+    "read PLAN_MODEL_REBIND_R6.json for the owner-ordered PLAN model rebind and the drift-gate result",
+    "note the claim ceiling: candidate-only, LOCAL; no acceptance, no approval, no production effect is claimed"
+  ],
+  "claim_ceiling": "LOCAL / candidate-only. These are publication facts plus a byte-level integrity check performed by the mission itself; they are NOT independent acceptance and do NOT close any acceptance case."
+}
