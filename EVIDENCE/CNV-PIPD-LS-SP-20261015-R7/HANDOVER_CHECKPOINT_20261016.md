@@ -174,3 +174,12 @@ only on the `9bd33a1`-derived tree and must be re-measured after any rebase onto
 but it carries **no verifier verdict** (the lane ran out of turn budget; two re-dispatches were lost to an
 owner-ordered halt and a guard false positive) and the harness's green run does not hold at the current head.
 Everything else in the R6/R7 backlog remains open exactly as it was.
+
+---
+
+## 9. Checkpoint commit (added after this file was written)
+
+This checkpoint was published as its own commit on the R7 packet branch:
+`evidence/cnv-pipd-ls-sp-20261015-r7` → **`20446c06c85cbce04a8c5d94c877738f2cf203ae`**, 306 blobs,
+readback `local_head == remote_head`, 0 blob mismatches. §2's table is the state **at capture** (`f763c485…`)
+and remains accurate for every subject it names; the only change since is the addition of this checkpoint.

@@ -88,6 +88,14 @@
    "mitigation": "brief prose rewritten to remove the marker words; re-dispatched as attempt 6 (1200s cap).",
    "attribution": "lane tooling (brief marker matching), not the subject and not a credential/write attempt",
    "disclosed": "yes"
+  },
+  {
+   "id": "INC-R7-05",
+   "what": "owner-ordered halt: the swarm verifier re-dispatch attempt 6 (proc_e9af3404a9be, pid 5288) was killed at the dispatch-echo stage, before any turn output; the machine is being shut down.",
+   "impact": "no artifacts produced or lost; the lane is fully reproducible from VERIFIER_BRIEF_SWARM_R7_attempt5.md.",
+   "mitigation": "checkpoint written: HANDOVER_CHECKPOINT_20261016.md (human) + CHECKPOINT_STATE_20261016.json (machine) + this ledger; resume playbook step 1 re-dispatches as attempt 7.",
+   "attribution": "owner instruction (not a failure of the lane)",
+   "disclosed": "yes"
   }
  ],
  "kanban_swarm": {
