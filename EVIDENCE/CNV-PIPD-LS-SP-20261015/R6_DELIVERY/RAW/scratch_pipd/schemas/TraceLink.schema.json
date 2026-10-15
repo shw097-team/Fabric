@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:pipd:s0:TraceLink:1",
+  "x-s0": {
+    "index": "08",
+    "contract": "TraceLink",
+    "materialization": "REQUIRED_NOW",
+    "owner": "PIPD/TQAEP",
+    "consumers": ["validators/checkers"]
+  },
+  "type": "object",
+  "description": "Owner: PIPD/TQAEP. Consumer: validators/checkers.",
+  "additionalProperties": false,
+  "required": [
+    "from_type",
+    "from_id",
+    "from_hash",
+    "to_type",
+    "to_id",
+    "to_hash",
+    "rationale",
+    "subject_id",
+    "version",
+    "content_hash",
+    "schema_version"
+  ],
+  "properties": {
+    "from_type": {},
+    "from_id": {},
+    "from_hash": {},
+    "to_type": {},
+    "to_id": {},
+    "to_hash": {},
+    "rationale": {},
+    "subject_id": {},
+    "version": {},
+    "content_hash": {},
+    "schema_version": {}
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "producer": "Codex CLI bounded writer EXECUTE lane (opencode-go/deepseek-v4.1-flash)",
+  "produced_utc": "2026-10-15T08:15:06.912744+00:00",
+  "source_hashes_used": [
+    "6629af1d4cf09ec11b99e79488ea515692ebd9c802fef6353b1ac3ed31b7bd6e",
+    "115912cdccbf5b3788fe1d6e1c8c10fe575252d72accf31cb6f1955dd8750974",
+    "96d9d564286743e17550ccef15b9952347901eb77168f930376938893cff9c3f",
+    "6894a6ba08781f2ed5758af132f758c14c1a9e9b69d42056837f5ce45bba6c64",
+    "7f7246d34be112bb465b48dadaef6163e466e16e5e705fc58acee04b3809a613",
+    "8b78edebd79c8149a2b74e2a7f873e3116f772c881a501bd4600ea0e7a891f6b",
+    "2f246796c3b927170a90ed7dd3f4307e913579db2efb56b307cbc2377a1cb77f"
+  ],
+  "raw_evidence_refs": [],
+  "verdict": "PENDING_CHECKER",
+  "claim_level": "LOCAL",
+  "artifact": "TT_CR_REGISTER.json",
+  "as_of_utc": "2026-10-15T08:15:06.912744+00:00",
+  "rows": [
+    {
+      "id": "TT-PIPD-03",
+      "title": "Source reference disposition (SRC-DOC03)",
+      "status": "RESOLVED",
+      "resolution": "Owner order of 2026-10-15, option A: SRC-DOC03 -> SUPPORT, governs=false",
+      "authority": "Owner decision 2026-10-15 (this session)",
+      "prior_state": "source reference quarantined; no canonical disposition made",
+      "evidence": "Owner instruction in this round's dispatch; recorded in this receipt"
+    },
+    {
+      "id": "TT-PIPD-04",
+      "title": "Bridge-mapping question",
+      "status": "OPEN",
+      "question": "How should the 64 RQ bridge map onto canonical 64+129 requirement granularity so each project child can be projected from a signed mapping? (AUD-P0-03)",
+      "scope_note": "This ticket tracks a mapping/verification question only. It is NOT an equivalent Oracle writer and does not supersede, replace, or stand in for the Owner-approved PKG authority anchor.",
+      "must_not": [
+        "describe itself as an equivalent Oracle writer",
+        "claim canonical authority over source semantics"
+      ],
+      "owner": "PI compiler owner / HGK Owner",
+      "evidence": "AUDIT_24_CLOSURE.json AUD-P0-03"
+    },
+    {
+      "id": "TT-PIPD-05",
+      "title": "Hermes runtime binding certification",
+      "status": "OPEN",
+      "question": "Declared runtime binding (0.20.0 / v2026.8.3) differs from served Hermes Agent v0.21.5 (2026.9.24); certify the correct current binding.",
+      "owner": "Hermes Owner",
+      "evidence": "RAW/cap04_hermes_version.stdout.txt; K_LEDGER_CROSSWALK.json K-06"
+    },
+    {
+      "id": "CR-R6-01",
+      "title": "Change request: declare missing lane binary",
+      "status": "OPEN",
+      "question": "Lane toolchain declaration references .../Codex/bin/2e5e00daee91c61d/codex.exe which is absent on this host; supply or re-point the declared binary.",
+      "owner": "Tooling owner",
+      "evidence": "RAW/cap05_lane_toolchain_resolve.stdout.txt"
+    }
+  ],
+  "note": "Only TT-PIPD-03 is RESOLVED; all others remain OPEN pending external/Owner action."
+}

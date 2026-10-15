@@ -1,0 +1,127 @@
+{
+  "schema": "CNV-PIPD-LS-SP-20261015/MISSION-PLAN-SPEC-CHECKLIST/1",
+  "mission": "CNV-PIPD-LS-SP-20261015",
+  "changeset": "CONTINUATION",
+  "phase": "R6-PHASE-A (bounded writer EXECUTE + independent AO/checker + HGK typed admission + publication candidate)",
+  "claim_ceiling": "LOCAL_ORCHESTRATION",
+  "authority_anchors": {
+    "sole_normative_anchor": "Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md (v2.0.0, Owner-locked)",
+    "owner_locked_package_sha256_12": "96d9d5642867",
+    "mission_prompt": "Fabric_HG-KSEOS_Convergence_指揮薄PROMPT.md",
+    "standalone_verifier_sha256_12": "85a3381703f8",
+    "compiler_contract": "C0_C9_CONTRACT_R5.json (sha256_12 6629af1d0a1c)",
+    "compiled_thin_prompt": "compiler_native_output_R5/thin-prompt.md (sha256_12 2f2467960d5f, 30199 chars)",
+    "legacy_blueprints": "STATE_EVIDENCE_ONLY (Owner de-scope decision; not normative)"
+  },
+  "core_goal": {
+    "id": "CG-1",
+    "statement": "以 HG-KSEOS 為唯一控制平面、current canonical Hermes 為受治理 Runtime／Orchestration Plane，在既有車道上完成 R5 contract 的下一階段施工：由 Codex CLI bounded writer 執行 EXECUTE，並由獨立 AO／checker 執行 VERIFY／SECURITY；全程不得自我驗收、不得自行晉升批准狀態。",
+    "sub_goals": [
+      "CG-1.1 先搜尋並複用既有車道（lane-routing-registry epoch 18、lane dispatcher、sealed EXECUTE frontdoor、Shared Spine），不新建第二控制平面。",
+      "CG-1.2 將 R5 thin-prompt 交入 HGK typed admission（Requirement → TaskSpec → WorkOrder），並落地可獨立查核的 admission 收據。",
+      "CG-1.3 由 Codex CLI bounded writer（opencode-go/deepseek-v4.1-flash）在受控 WriteSet 內產出實作與原始證據。",
+      "CG-1.4 由獨立 AO／checker（opencode-go/glm-5.3-flash，不同模型家族）重跑並挑戰 writer 的成品與證據。",
+      "CG-1.5 以 Owner 指定憑證把實作與證據發布為候選分支＋Draft PR（禁 direct main push、禁 force push、禁秘密入庫），供外部驗收官驗收。"
+    ]
+  },
+  "execution_spec": {
+    "id": "SPEC-R6",
+    "control_plane": "HG-KSEOS (唯一控制平面)",
+    "runtime_plane": "current canonical Hermes (受治理 Runtime／Orchestration Plane)",
+    "lane_chain": [
+      {
+        "lane": "PLAN",
+        "engine": "hermes",
+        "role": "Orchestrator / plan + gate arbitration",
+        "mandated_model": "openai-codex/gpt-6.1-sol (medium, OpenAI OAuth)",
+        "registry_route_default": "openai-codex/gpt-6.1-sol medium",
+        "source_authority": "lane-routing-registry epoch 18 (owner-order-20261015-lane-model-chain-rebind)"
+      },
+      {
+        "lane": "EXECUTE",
+        "engine": "codex-cli",
+        "role": "bounded writer",
+        "mandated_model": "opencode-go/deepseek-v4.1-flash",
+        "transport": "hgk-lane-dispatch.py --lane EXECUTE --require-arm opencode-go/deepseek-v4.1-flash (sealed EXECUTE frontdoor 127.0.0.1:10100 upstream 127.0.0.1:10101)",
+        "pool_rank": 1,
+        "write_scope": "bounded WriteSet only (evidence root + declared candidate files); no secret read, no remote push"
+      },
+      {
+        "lane": "VERIFY_SECURITY",
+        "engine": "codex-cli",
+        "role": "independent Acceptance Officer / checker",
+        "mandated_model": "opencode-go/glm-5.3-flash",
+        "transport": "hgk-lane-dispatch.py --lane VERIFY_SECURITY --require-arm opencode-go/glm-5.3-flash",
+        "independence": "different model family from writer; must re-derive, not read-and-agree",
+        "remediation_option": "checker backup when that checker is out of quota = opencode-go/glm-5.3-flash (catalog route); on 429 switch at once and record the switch"
+      }
+    ],
+    "sod_rule": "writer model != checker model; checker verdict cannot be produced by the writer lane; no agent self-acceptance, no promotion of PROPOSAL to approved",
+    "write_set_policy": "every write recorded with path + sha256 + bytes; writes outside WriteSet = violation, recorded and reverted",
+    "transport_preconditions": [
+      "sealed EXECUTE frontdoor on 10100 healthy (sanctioned pair opencode-go/deepseek-v4.1-flash)",
+      "relay 10101 up with opencode-go/deepseek-v4.1-flash and opencode-go/glm-5.3-flash routable"
+    ],
+    "claim_ceiling_rule": "本輪產出最高只到 candidate-only；HGK admission 成立不等於世界效應、不等於外部驗收、不等於發布核准"
+  },
+  "task_list": [
+    {"id": "T1", "task": "搜尋並複用既有車道與既有控制平面元件（registry／dispatcher／frontdoor／spine）", "state": "DONE", "evidence": "lane-routing-registry epoch 18 讀取；10101 healthz ok (opencodex 2.11.0)；10100 healthz ok (sanctioned pair 已核)"},
+    {"id": "T2", "task": "落地本階段計畫四件套（核心大目標／SPEC／任務清單／檢測清單）", "state": "DONE", "evidence": "本檔"},
+    {"id": "T3", "task": "HGK typed admission：project start → intake → INTENT_BOUND/REQUIREMENTS_READY/DESIGN_READY → plan → admit_workorders", "state": "IN_PROGRESS", "evidence": "HGK_TYPED_ADMISSION_R6.json"},
+    {"id": "T4", "task": "以 R5 thin-prompt 派送 EXECUTE 車道（Codex CLI bounded writer, deepseek-v4.1-flash）", "state": "PENDING", "evidence": "lane attempt dir + raw child logs + registry-verified writer arm"},
+    {"id": "T5", "task": "於 writer 產出後派送 VERIFY_SECURITY 車道（Codex CLI, glm-5.3-flash）獨立複驗", "state": "PENDING", "evidence": "checker receipt + independent verdict (不得由 writer 產生)"},
+    {"id": "T6", "task": "檢視並分類兩車道回傳：PASS／FAIL／PARTIAL／BLOCKED，逐項對映 acceptance 與 classifier 分母", "state": "PENDING", "evidence": "R6 lane reconciliation record"},
+    {"id": "T7", "task": "發布候選：以 Owner 指定憑證推候選分支並開 Draft PR（僅實作與證據、零秘密、零 main 直推）", "state": "PENDING", "evidence": "branch + commit sha + Draft PR URL（遠端回讀核對）"},
+    {"id": "T8", "task": "更新阻擋帳：admission 已成立之子項 vs 仍 open 之外部項目（G-A..G-H、Fresh G1、approval list）", "state": "PENDING", "evidence": "R6 blocker ledger"},
+    {"id": "T9", "task": "對 Owner 回報：宣稱上限、每項副作用、偏離項與低摩擦補救選項", "state": "PENDING", "evidence": "本輪最終回報"}
+  ],
+  "check_list": [
+    {"id": "C1", "check": "既有車道複用而非新建", "method": "讀 registry epoch 18 + dispatcher help + 兩端 healthz", "state": "PASS"},
+    {"id": "C2", "check": "writer 車道 served arm == required arm", "method": "runtime_role_binding_assert / dispatcher receipt 比對 require==served", "state": "PENDING"},
+    {"id": "C3", "check": "checker 車道 served arm == required arm 且與 writer 不同模型", "method": "同上；並比對 writer／checker model 不同", "state": "PENDING"},
+    {"id": "C4", "check": "無 self-acceptance：checker 產物不得由 writer lane 生成", "method": "檢查 checker receipt 的 lane/arm/model 欄位與 writer 不同", "state": "PENDING"},
+    {"id": "C5", "check": "WriteSet 邊界：所有寫入落在宣告範圍內", "method": "writer 前後檔案清單 + sha256 比對，列出越界項並回報", "state": "PENDING"},
+    {"id": "C6", "check": "零秘密：候選內容不得含憑證或金鑰", "method": "提交前掃描（token 值／金鑰樣式／API KEY 路徑）＋ git 檢查", "state": "PENDING"},
+    {"id": "C7", "check": "publication 邊界：非 main、非 force push、非核准", "method": "遠端 ref 回讀 + 分支名檢查 + approval 狀態保持 PROPOSAL", "state": "PENDING"},
+    {"id": "C8", "check": "R5 compiler PASS 未被本輪改寫", "method": "重算 C0_C9_CONTRACT_R5.json 與 thin-prompt.md 之 hash 並比對前值", "state": "PENDING"},
+    {"id": "C9", "check": "admission 收據可獨立查核", "method": "以唯讀查詢回讀 spine：project state / taskspecs / workorders", "state": "PENDING"},
+    {"id": "C10", "check": "detection 未以靜態盤點抵充實跑", "method": "區分『已實跑』與『僅盤點』，實跑項須附 raw log 路徑", "state": "PENDING"},
+    {"id": "C11", "check": "偏離項揭露：PLAN 車道模型現況 vs 授權方案", "method": "比對現行 runtime model 與 mandate；不足處提低摩擦補救", "state": "PENDING"},
+    {"id": "C12", "check": "本輪不宣稱世界效應或外部驗收", "method": "最終回報逐條標示 claim ceiling", "state": "PENDING"}
+  ],
+  "deviation_register": [
+    {
+      "id": "DEV-R6-1",
+      "item": "PLAN／Orchestrator 車道模型",
+      "mandated": "openai-codex/gpt-6.1-sol (medium, OpenAI OAuth)",
+      "observed": "本次 session 之 active chat model 為 opencode-go/deepseek-v4.1-flash（registry epoch 18 之 PLAN fallback2）",
+      "impact": "PLAN 逐題模型綁定與 mandate 不一致；EXECUTE 與 VERIFY_SECURITY 兩車道仍依 mandate 精確綁定。",
+      "remediation_options": [
+        "由 Owner 指示把 Hermes agent model 重綁為 openai-codex/gpt-6.1-sol (medium) 後續跑 PLAN 段",
+        "接受本次 PLAN 由 deepseek-v4.1-flash 執行並記為已揭露偏離（registry fallback2 屬已宣告備援）"
+      ],
+      "status": "OPEN_HITL"
+    },
+    {
+      "id": "DEV-R6-2",
+      "item": "PKG 文件級驗證來源第 6 號",
+      "observed": "v1.1.0 PATCHED 原件在所有已授權來源皆無法以原始 bytes 重製；standalone verifier 仍 FAIL_CLOSED",
+      "impact": "在此 pin 下該 Trust 需求不得由同類文件或本地 manifest 取代。",
+      "remediation_options": ["Owner 提供原件", "Owner 明示變更該來源 pin"],
+      "status": "OPEN_HITL"
+    }
+  ],
+  "non_goals": [
+    "不直推 main、不 force push、不發布 secrets",
+    "不以 agent 自我驗收或自我晉升批准狀態",
+    "不新建第二 Catalog／第二控制平面／第二 orchestrator",
+    "不修改 governance hook 或 secrets 存取路徑",
+    "不清理或混入既有 HGK dirty tree"
+  ],
+  "inherited_blockers": [
+    "Fresh G1 certification（current canonical Hermes Owner 重認證）未核實",
+    "Gateway G-A..G-H 全 NOT_RUN",
+    "approval list 仍為 PROPOSAL（未逐路徑核准）",
+    "221 requirement cases 與 M01..M18 hostile cases 未實跑"
+  ]
+}

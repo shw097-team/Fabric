@@ -1,0 +1,76 @@
+{
+  "producer": "Codex CLI bounded writer EXECUTE lane (opencode-go/deepseek-v4.1-flash)",
+  "produced_utc": "2026-10-15T08:17:41.061258+00:00",
+  "source_hashes_used": [
+    "6629af1d4cf09ec11b99e79488ea515692ebd9c802fef6353b1ac3ed31b7bd6e",
+    "115912cdccbf5b3788fe1d6e1c8c10fe575252d72accf31cb6f1955dd8750974",
+    "96d9d564286743e17550ccef15b9952347901eb77168f930376938893cff9c3f",
+    "6894a6ba08781f2ed5758af132f758c14c1a9e9b69d42056837f5ce45bba6c64",
+    "7f7246d34be112bb465b48dadaef6163e466e16e5e705fc58acee04b3809a613",
+    "8b78edebd79c8149a2b74e2a7f873e3116f772c881a501bd4600ea0e7a891f6b",
+    "2f246796c3b927170a90ed7dd3f4307e913579db2efb56b307cbc2377a1cb77f"
+  ],
+  "raw_evidence_refs": [
+    "RAW/cap_checkpoint_drill.json",
+    "RAW/cap_checkpoint_drill.stdout.txt"
+  ],
+  "verdict": "PENDING_CHECKER",
+  "claim_level": "LOCAL",
+  "artifact": "CHECKPOINT_AND_ROLLBACK.json",
+  "drill_subject": "R6_DELIVERY/CHECKPOINT_DRILL_SUBJECT.json",
+  "drill_runner": "RUNNERS/checkpoint_drill.py",
+  "drill_command": [
+    "python",
+    "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/R6_DELIVERY/RUNNERS/checkpoint_drill.py"
+  ],
+  "drill_cwd": "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/R6_DELIVERY",
+  "drill_started_utc": "2026-10-15T08:15:18.660329+00:00",
+  "drill_exit_code": 0,
+  "drill_stdout_file": "RAW/cap_checkpoint_drill.stdout.txt",
+  "drill_stdout_sha256": "48bdcd2b79c980bc02f01c896bead2c2b2c48a1edaf7abd06ec6db178e1c3a6e",
+  "snapshot_sha256": "1052061aeaae04784fb45ba2f2a5f4916f359875f54d03401c1fe0bb669f949d",
+  "mutated_sha256": "938f220a787f260f4c4e4d96ef8865400a30d5849e8ff84d9cbdb39686d7ddd9",
+  "restored_sha256": "1052061aeaae04784fb45ba2f2a5f4916f359875f54d03401c1fe0bb669f949d",
+  "mutation_detected": true,
+  "rollback_verified": true,
+  "rollback_pointer": "R6_DELIVERY/CHECKPOINT_DRILL_SUBJECT.json (restored to snapshot sha)",
+  "checkpoint_fields": {
+    "task_id": "CNV-PIPD-LS-SP-20261015-R6",
+    "source_hashes": [
+      "6629af1d4cf09ec11b99e79488ea515692ebd9c802fef6353b1ac3ed31b7bd6e",
+      "115912cdccbf5b3788fe1d6e1c8c10fe575252d72accf31cb6f1955dd8750974",
+      "96d9d564286743e17550ccef15b9952347901eb77168f930376938893cff9c3f",
+      "6894a6ba08781f2ed5758af132f758c14c1a9e9b69d42056837f5ce45bba6c64",
+      "7f7246d34be112bb465b48dadaef6163e466e16e5e705fc58acee04b3809a613",
+      "8b78edebd79c8149a2b74e2a7f873e3116f772c881a501bd4600ea0e7a891f6b",
+      "2f246796c3b927170a90ed7dd3f4307e913579db2efb56b307cbc2377a1cb77f"
+    ],
+    "current_candidate": "R6_DELIVERY (LOCAL candidate; head NOT_CREATED)",
+    "completed_gates": [],
+    "open_gates": [
+      "G-A",
+      "G-B",
+      "G-C",
+      "G-D",
+      "G-E",
+      "G-F",
+      "G-G",
+      "G-H"
+    ],
+    "next_work_order": "supply physical sources + authoritative oracle mapping; then bind gate runners",
+    "rollback_pointer": "R6_DELIVERY/CHECKPOINT_DRILL_SUBJECT.json",
+    "typed_admission_ids": [
+      "HGK_TYPED_ADMISSION_R6 ADMISSION_OK (WORKORDERS_ADMITTED)"
+    ],
+    "open_tt_cr": [
+      "TT-PIPD-04",
+      "TT-PIPD-05",
+      "CR-R6-01"
+    ],
+    "raw_evidence_refs": [
+      "RAW/cap_checkpoint_drill.json"
+    ],
+    "resume_condition": "Owner supplies missing physical sources and certifies runtime binding"
+  },
+  "note": "The drill mutated, detected the mutation by re-hash, rolled back to exact original bytes, and re-verified."
+}

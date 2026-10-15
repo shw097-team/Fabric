@@ -1,0 +1,140 @@
+{
+  "schema": "CNV-PIPD-LS-SP-20261015/HANDOVER-STATE/2",
+  "supersedes": "R6_HANDOVER_STATE.json (attempt-1 checkpoint state; kept as history)",
+  "authoritative": true,
+  "mission": "CNV-PIPD-LS-SP-20261015",
+  "changeset": "CONTINUATION",
+  "phase": "R6-PHASE-A COMPLETE (admission -> writer -> independent checker -> candidate publication)",
+  "updated_utc": "2026-10-15T10:40:00Z",
+  "updated_local": "2026-10-15 18:40 +08:00",
+  "claim_ceiling": "LOCAL / candidate-only",
+  "hgk_control_plane": {
+    "project_id": "CNV-PIPD-LS-SP-20261015",
+    "state": "EXECUTING",
+    "state_transition": "WORKORDERS_ADMITTED -> EXECUTING (trigger R6_WRITER_AND_CHECKER_ROUND_COMPLETE) at 2026-10-15T10:36:18Z",
+    "checkpoint_id": "CK-20261015-31CA2106",
+    "previous_checkpoint_id": "CK-20261015-81EA388B",
+    "checkpoint_note": "checkpoint payload current_workorder stays a spine-wide query result (WO-R5Z-08), not project-scoped; this project's open workorders are WO-TS-20261015-01..04",
+    "requirement": "REQ-CNV-PIPD-LS-SP-20261015-PLAN (FROZEN)",
+    "taskspecs": ["TS-20261015-01", "TS-20261015-02", "TS-20261015-03", "TS-20261015-04"],
+    "workorders_open": ["WO-TS-20261015-01", "WO-TS-20261015-02", "WO-TS-20261015-03", "WO-TS-20261015-04"],
+    "workorders_verified": [],
+    "self_acceptance_performed": false,
+    "intake_sources": 9,
+    "admission_receipt_sha256_12": "5dbffd0bb0e1"
+  },
+  "lanes": {
+    "PLAN": {
+      "mandated": "openai-codex/gpt-6.1-sol (medium, OpenAI OAuth)",
+      "observed_runtime": "opencode-go/deepseek-v4.1-flash",
+      "status": "ACTIVE_RUNTIME_DEVIATION (DEV-R6-1)",
+      "decision_pending_owner": true
+    },
+    "EXECUTE": {
+      "status": "COMPLETED",
+      "arm_required": "opencode-go/deepseek-v4.1-flash",
+      "arm_served_evidence": "usage receipt opencode-go/deepseek-v4.1-flash http 200 (266 rows) + nonce in raw stdout agent_message",
+      "child_exit": 0,
+      "dispatcher_exit": 3,
+      "dispatcher_code": "ERR_NO_ARM_EMITTED_NONCE (DEV-R6-4; channel fault, arm corroborated)",
+      "seconds": 2450.8,
+      "sandbox": "danger-full-access (role default)",
+      "guard_subject_verdict": "CLEAN",
+      "credential_posture": "INCONCLUSIVE / WARN_CONTINUE (DEV-R6-5; not a pass)",
+      "receipt_sha256_12": "9c71b4c294bc",
+      "products": "R6_DELIVERY/** 301 files; R6_WRITE_SET.json 299/299 byte+sha exact",
+      "self_status": "PARTIAL"
+    },
+    "VERIFY_SECURITY_attempt2": {
+      "status": "INLINE_ONLY (no files)",
+      "arm_served": "opencode-go/glm-5.3-flash",
+      "seconds": 1098.6,
+      "cause": "lane dispatched at the read-only role default sandbox; checker identity had no write authority, no Python311 read access, no R6_DELIVERY/RAW write access",
+      "preserved_at": "R6_CHECKER_INLINE_attempt2/ALL_AGENT_MESSAGES_attempt2.md + R6_CHECKER_VERDICT_inline_attempt2.json"
+    },
+    "VERIFY_SECURITY_attempt3": {
+      "status": "FILE_BACKED_VERDICT",
+      "arm_required": "opencode-go/glm-5.3-flash",
+      "arm_served_evidence": "usage receipt opencode-go/glm-5.3-flash http 200 + nonce in raw stdout",
+      "child_exit": 0,
+      "dispatcher_exit": 3,
+      "dispatcher_code": "ERR_NO_ARM_EMITTED_NONCE (same channel quirk)",
+      "seconds": 598.4,
+      "sandbox": "danger-full-access (explicit escalation, authorized and recorded)",
+      "guard_subject_verdict": "CLEAN (301 -> 301; writer candidate set unmodified)",
+      "verdict_file": "R6_CHECKER/R6_CHECKER_VERDICT.json",
+      "verdict_summary": {
+        "artifacts_judged": 19,
+        "artifact_verdicts": {"CONFIRMED": 19},
+        "checks_performed": 9,
+        "challenges": 0,
+        "boundary_violations": 0,
+        "secret_findings": 0,
+        "reproduction": "34/39 main + 8/8 supplement + 10/10 mutation byte-identical; 5 main probes state-dependent (semantic bar only)",
+        "unverifiable_claims": [],
+        "hitl_items": [],
+        "overall": "PENDING_OWNER",
+        "claim_ceiling": "LOCAL"
+      },
+      "receipt_sha256_12": "n/a (see DISPATCH_RECEIPTS)"
+    }
+  },
+  "publication": {
+    "repository": "github.com/shw097-team/Fabric",
+    "branch": "evidence/cnv-pipd-ls-sp-20261015-r6",
+    "base": "origin/main",
+    "base_sha256_12": "266f8d65cf9b",
+    "first_commit_sha256_12": "5932aae4f0c3",
+    "packet_root_in_repo": "evidence/CNV-PIPD-LS-SP-20261015/",
+    "draft_pr": 3,
+    "draft_pr_url": "https://github.com/shw097-team/Fabric/pull/3",
+    "draft": true,
+    "state": "open",
+    "remote_readback": "MATCH",
+    "excluded": ["physical_source_readback (restricted mirrors)", "credential material", "canonical spine database"],
+    "approval_state": "PROPOSAL (unchanged)",
+    "local_main_untouched": true,
+    "force_push_used": false
+  },
+  "round_results": {
+    "capabilities": "22 probed: 17 QUALIFIED_LOCAL, 4 BLOCKED_EXTERNAL, 1 BLOCKED_HITL",
+    "hostile_mutations": "18: 10 executed (7 detected, 3 NOT detected = genuine findings), 8 NOT_RUN",
+    "checkpoint_rollback_drill": "performed by writer; independently re-run by checker on its own COPIES (hashes recur)",
+    "requirement_cases": "0/221 executed (REAL_RUNNER_NOT_BOUND)",
+    "audit_findings": "0/24 closed",
+    "evidence_gates": "0/8 passed (G-A..G-H NOT_RUN)",
+    "k_ledger": "0 mapped, 20 UNMAPPED"
+  },
+  "side_effects": [
+    "Shared Spine: projects/lifecycles/transitions/canonical_events/checkpoints + 1 REQ + 4 TS + 4 WO; transition to EXECUTING; checkpoint CK-20261015-31CA2106",
+    "Fabric clone: repo-local git config core.longpaths=true; git remote origin added (no credentials in URL); temporary worktree C:/Projects/wt-cnv-r6 on the evidence branch",
+    "remote: 1 branch + 1 commit + Draft PR #3 (no main push, no force push)",
+    "handover root: lane_runs/**, R6_DELIVERY/**, R6_CHECKER/**, R6_CHECKER_INLINE_attempt2/** (all noncanonical)",
+    "processes: 2 lane turns (writer, checker attempt3) exited normally; checker attempt2 exited normally (inline-only); no lane child remains",
+    "credential handling: token supplied only via inline git credential helper and a temporary curl config file; never in argv/URL/file/output; token value occurrences in the published packet = 0"
+  ],
+  "deviations": [
+    "DEV-R6-1 PLAN runtime model vs mandate",
+    "DEV-R6-2 PKG source #6 unreproducible; standalone verifier FAIL_CLOSED",
+    "DEV-R6-3 codex_executable pin drift; documented --codex-executable override used",
+    "DEV-R6-4 dispatcher ok=false ERR_NO_ARM_EMITTED_NONCE on both lanes",
+    "DEV-R6-5 credential-posture INCONCLUSIVE (not a pass)",
+    "DEV-R6-6 checker attempt2 dispatched at the read-only role default sandbox -> inline-only verdict; attempt3 used an explicit authorized escalation",
+    "DEV-R6-7 checker attempt3 transiently wrote into WRITER_ROOT mid-turn (ROOT-patch slip), self-detected, restored from its COPIES snapshot; orchestrator post-turn sweep confirms 299/299 exact and anchors unchanged"
+  ],
+  "open_blockers": [
+    "Owner adjudication of the PENDING_OWNER checker verdict and of Draft PR #3",
+    "per-path approval list still PROPOSAL",
+    "G-A..G-H 0/8; 221 cases 0/221; AUD 24 0/24",
+    "Fresh G1 certification (HITL)",
+    "PKG document-verifier source #6 FAIL_CLOSED",
+    "PLAN lane model rebind decision (DEV-R6-1)"
+  ],
+  "next_actions_if_ordered": [
+    "Owner review of https://github.com/shw097-team/Fabric/pull/3",
+    "run the 221-case matrix with real runners (needs runner bindings) and G-A..G-H receipts",
+    "decide DEV-R6-1 (rebind PLAN to openai-codex/gpt-6.1-sol medium or accept the deviation)",
+    "close or extend the Draft PR per the per-path approval list"
+  ],
+  "hash_policy": "12-char prefixes only; full 64-hex digests are taken from each artifact's own fields or recomputed with sha256sum"
+}

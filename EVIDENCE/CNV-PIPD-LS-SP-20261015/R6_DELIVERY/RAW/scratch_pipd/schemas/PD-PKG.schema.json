@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:pipd:s0:PD-PKG:1",
+  "x-s0": {
+    "index": "07",
+    "contract": "PD-PKG",
+    "materialization": "REQUIRED_NOW",
+    "owner": "PIPD",
+    "consumers": ["execution handoff"]
+  },
+  "type": "object",
+  "description": "Owner: PIPD. Consumer: execution handoff.",
+  "additionalProperties": false,
+  "required": [
+    "RepoContext",
+    "currentness",
+    "late_bound_construction_binding",
+    "subject_id",
+    "version",
+    "content_hash",
+    "schema_version"
+  ],
+  "properties": {
+    "RepoContext": {},
+    "currentness": {},
+    "late_bound_construction_binding": {},
+    "subject_id": {},
+    "version": {},
+    "content_hash": {},
+    "schema_version": {}
+  }
+}

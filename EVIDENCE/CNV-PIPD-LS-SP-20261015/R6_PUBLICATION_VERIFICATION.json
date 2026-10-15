@@ -1,0 +1,98 @@
+{
+  "schema": "CNV-PIPD-LS-SP-20261015/PUBLICATION-VERIFICATION/2",
+  "mission": "CNV-PIPD-LS-SP-20261015",
+  "round": "CNV-PIPD-LS-SP-20261015-R6R7",
+  "changeset": "NARROW_REPAIR",
+  "supersedes": [
+    "CNV-PIPD-LS-SP-20261015/PUBLICATION-VERIFICATION/1 as published at head e6a5ce5899edb62e37c2fb9bd340b43673903141"
+  ],
+  "purpose": "record every publication channel, the commit read back from the remote, and the byte-level verification an external acceptor can repeat",
+  "clock_semantics": {
+    "generated_local": "2026-10-15T20:34:41+08:00",
+    "generated_utc": "2026-10-15T12:34:41+00:00",
+    "note": "local wall clock (+08:00) and UTC are recorded as separate fields; neither is used as a commit-ordering oracle. The authoritative commit time is git's committer time, taken from the commit itself in the post-commit readback.",
+    "superseded_defect": "version /1 carried generated_utc=2026-10-15T20:20Z, which post-dated the commit it described (real committer time 2026-10-15T11:33:13Z). EIA-R6-02."
+  },
+  "historical_claim": {
+    "at_head": "e6fd5b2dec84531575450d8e106abc3653ea51fa",
+    "stated": "566/566 blobs byte-identical; 566 tracked entries",
+    "why_historical": "the branch moved on (EOL-normalization commit) and the remote head observed by the external reviewer is e6a5ce5899edb62e37c2fb9bd340b43673903141 with 567 blobs in the git tree. The 566/566 statement is preserved here as history and is NOT a current claim.",
+    "finding": "EIA-R6-01 (publication set equality) + EIA-R6-02 (currentness)"
+  },
+  "channels": [
+    {
+      "repo": "shw097-team/Fabric",
+      "branch": "evidence/cnv-pipd-ls-sp-20261015-r6",
+      "base_origin_main": "266f8d65cf9b21c3b37c1c243946a5c828cf973b (origin/main, unchanged by this round)",
+      "packet_path_in_repo": "EVIDENCE/CNV-PIPD-LS-SP-20261015/",
+      "draft_pr": {
+        "number": 3,
+        "state": "open",
+        "draft": true,
+        "url": "https://github.com/shw097-team/Fabric/pull/3"
+      },
+      "head_at_repair_start": "e6a5ce5899edb62e37c2fb9bd340b43673903141",
+      "head_after_repair": "BOUND_BY_POST_COMMIT_READBACK (this file deliberately does not name the sha of the commit that contains it; see R6R7_POST_COMMIT_READBACK.json and the PR #3 comment, both held outside the commit)",
+      "forced_push": false,
+      "local_main_touched": false
+    },
+    {
+      "repo": "shw097-team/PIPD-LS-SP",
+      "branch": "evidence/cnv-pipd-ls-sp-20261015-r6",
+      "packet_path_in_repo": "EVIDENCE/CNV-PIPD-LS-SP-20261015/",
+      "draft_pr": {
+        "number": 14,
+        "state": "open",
+        "draft": true,
+        "url": "https://github.com/shw097-team/PIPD-LS-SP/pull/14"
+      },
+      "status": "unchanged by this round: the R6R7 repair is scoped to the Fabric PR #3 branch only",
+      "head_at_last_round": "d89e7f33ec14",
+      "forced_push": false,
+      "local_main_touched": false
+    }
+  ],
+  "byte_level_verification": {
+    "method": "for every blob under the packet path in the remote git tree, recompute git's blob id sha1('blob <len>\\\\0' + bytes) from the source-of-truth file and compare with the remote entry",
+    "delivered_set_source": "PACKET_MANIFEST.json /2 -> tracked_inventory (paths git actually carries)",
+    "result_for_current_head": "recomputed in R6R7_POST_COMMIT_READBACK.json after the repair commit; that file is outside the commit so its numbers cannot go stale the way the 566/566 claim did",
+    "why_this_matters": "PACKET_MANIFEST.json lists a sha256 per file; if blobs are EOL-normalized on the way into git, an external acceptor downloading a file and recomputing sha256 sees a spurious mismatch"
+  },
+  "defects_found_and_fixed_during_publication": [
+    {
+      "id": "DEV-R6-8",
+      "when": "R6 publication round",
+      "what": "the repositories' text normalization (core.autocrlf=true + text attributes) rewrote CRLF to LF in the committed blobs: 328 packet files were published with converted content, so their sha256 did not match PACKET_MANIFEST.json",
+      "how_found": "by recomputing git blob ids for spot-checked files against the remote API, seeing MISMATCH, then fetching the remote blob bytes and confirming the difference was exactly CRLF->LF",
+      "fix": "EVIDENCE/CNV-PIPD-LS-SP-20261015/.gitattributes with '* -text' in the packet subtree + core.autocrlf=false repo-local + 'git add --renormalize' + a follow-up commit",
+      "verification_after_fix": "full blob comparison on the affected branch: 0 mismatches",
+      "residual": "none known"
+    },
+    {
+      "id": "DEV-R6-9",
+      "when": "R6 publication round",
+      "what": "the first PIPD-LS-SP publication attempt committed nothing: git refused with 'empty ident name not allowed', yet the push still created the branch and the readback printed MATCH True",
+      "how_found": "reading the commit output instead of trusting the exit path",
+      "fix": "repo-local user.name/user.email on that clone, then commit + push + a real content check",
+      "lesson_recorded": "a ref-level MATCH proves only ref equality; it is never content evidence — verify the tree, not the ref"
+    },
+    {
+      "id": "DEV-R6R7-1",
+      "when": "R6R7 archive repair",
+      "what": "PACKET_MANIFEST.json /1 listed 569 rows including two gitignored __pycache__/*.pyc that git never carried, so the packet's implied '569/569 published' was false; PACKET_MANIFEST.json /2 now separates tracked_inventory from local_only_excluded",
+      "how_found": "external independent review (EIA-R6-01) by set comparison of the PR tree against the manifest rows",
+      "fix": "manifest schema /2 + explicit publish_claim + local_only_excluded rows with reason and check-ignore rule",
+      "verification_after_fix": "set equality between tracked_inventory and the remote tree at the post-commit head (R6R7_POST_COMMIT_READBACK.json)"
+    }
+  ],
+  "what_an_external_acceptor_can_check": [
+    "API/ls-remote: PR #3 branch head equals the head in R6R7_POST_COMMIT_READBACK.json",
+    "download PACKET_MANIFEST.json and recompute sha256 for every path in tracked_inventory; the count must equal the git tree's blob count under the prefix",
+    "confirm local_inventory_count - tracked_file_count == len(local_only_excluded) == 2 and that neither .pyc path is in the git tree, nor indexed",
+    "read R6R7_ARCHIVE_ERRATA.json for what this round corrected and what was deliberately left untouched",
+    "read M2_TRUSTED_SCOPE_SECRETS.json for the scope/secret scan (tool version, scanned blob count, scan digest, hard/soft findings)",
+    "read EIA_R6_FINDINGS_DISPOSITION.json for EIA-R6-01..09 disposition and R7_BLOCKERS_AND_TASKS.json for what is still open",
+    "note the claim ceiling: candidate-only, LOCAL; no acceptance, no approval, no production effect is claimed"
+  ],
+  "claim_ceiling": "LOCAL / candidate-only. Publication facts plus integrity and hygiene checks performed by the mission itself; they are NOT independent acceptance and close no acceptance case."
+}

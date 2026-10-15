@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:pipd:s0:ECP:1",
+  "x-s0": {
+    "index": "12",
+    "contract": "ECP",
+    "materialization": "REQUIRED_NOW",
+    "owner": "PIPD/ECP semantics",
+    "consumers": ["HGK/TQAEP"]
+  },
+  "type": "object",
+  "description": "Owner: PIPD/ECP semantics. Consumer: HGK/TQAEP.",
+  "additionalProperties": false,
+  "required": [
+    "effect_intent",
+    "permission",
+    "retries",
+    "idempotency",
+    "readback",
+    "rollback",
+    "subject_id",
+    "version",
+    "content_hash",
+    "schema_version"
+  ],
+  "properties": {
+    "effect_intent": {},
+    "permission": {},
+    "retries": {},
+    "idempotency": {},
+    "readback": {},
+    "rollback": {},
+    "subject_id": {},
+    "version": {},
+    "content_hash": {},
+    "schema_version": {}
+  }
+}

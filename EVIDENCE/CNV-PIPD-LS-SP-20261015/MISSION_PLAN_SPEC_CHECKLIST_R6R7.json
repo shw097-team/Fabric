@@ -1,0 +1,163 @@
+{
+  "schema": "CNV-PIPD-LS-SP-20261015/R6R7-MISSION-PLAN/1",
+  "mission_id": "CNV-PIPD-LS-SP-20261015",
+  "changeset": "NARROW_REPAIR",
+  "contract_id": "CNV-R6-EVIDENCE-ARCHIVE-NARROW-REPAIR-20261015",
+  "generated_local": "2026-10-15T20:33:06+08:00",
+  "generated_utc": "2026-10-15T12:33:06+00:00",
+  "master_objective": {
+    "id": "MO-CNV-001",
+    "text": "以上位 PIPD-LS-PKG v2.0.0 的 PI→PD→DEV/OPS ECP→TQAEP→DOC-05 Admission→真實效果→獨立驗收→受權發布鏈達成可稽核 Convergence；分母 18 PI／10 PD／64+129／221 cases／18 hostile／24 AUD／342 TechnologyAdmission／5 effect planes／8 Gates。",
+    "status": "NOT_ACHIEVED",
+    "carried_forward": "R7"
+  },
+  "round_objective": {
+    "id": "MO-R6-ARCHIVE",
+    "text": "依 EIA 報告 §3.1/§8/§9/§12 只做 PR #3 出版 Manifest/Currentness 最小修補＋受信任範圍與秘密掃描＋Maintainer 單一 prefix 授權＋更新既有候選分支並交付可獨立查驗 Draft PR。",
+    "status": "IN_EXECUTION"
+  },
+  "spec": {
+    "user_visible_journey": "輸入來源與 repo → 檢核 → M1 → M2 → M3 → 分支更新／Draft PR → same-commit 外部 readback → R7 handoff",
+    "authority_chain": "HG-KSEOS=唯一控制平面；Hermes=受治理 Runtime/Orchestration；Codex=admitted bounded writer；Fabric=policy/contracts；GitHub=投影鏡像（非 canonical root）",
+    "authorized_paths": [
+      "EVIDENCE/CNV-PIPD-LS-SP-20261015/**"
+    ],
+    "forbidden": [
+      "main 直推",
+      "force push",
+      "產品路徑",
+      "CI 控制",
+      "PR 內 helper 自動執行",
+      ".pyc 入庫",
+      "刪改失敗 receipt",
+      "自簽 AO"
+    ],
+    "claim_ceiling": "CANDIDATE_EVIDENCE_ARCHIVE_READY_ONLY",
+    "merge_criteria": [
+      "M1",
+      "M2",
+      "M3"
+    ]
+  },
+  "core_objective_mapping": {
+    "MO-CNV-001": "carried to R7 (NOT claimed this round)",
+    "MO-R6-ARCHIVE": "this round"
+  },
+  "task_list": [
+    {
+      "id": "AR-00",
+      "task": "來源核驗＋C0-C9 正式編譯＋HGK 有效授權＋fresh PR refs",
+      "state": "DONE",
+      "evidence": [
+        "R6R7_LINT.stdout.txt",
+        "R6R7_activation.stdout.txt",
+        "R6R7_acceptance.stdout.txt",
+        "R6R7_compile.stdout.txt",
+        "R6R7_COMPILED_OUT/compiler-receipt.json",
+        "HGK_TYPED_ADMISSION_R6R7.json"
+      ]
+    },
+    {
+      "id": "AR-01",
+      "task": "凍結 PR #3 base/head、WorkOrder/ExecutionBinding、scope admission",
+      "state": "DONE",
+      "evidence": [
+        "R6R7_HEAD_BASE_SNAPSHOT (in this file + EIA disposition)"
+      ]
+    },
+    {
+      "id": "AR-02",
+      "task": "M1 就地修 PACKET_MANIFEST：tracked 精確對應 HEAD、local 569、LOCAL_ONLY_EXCLUDED=2",
+      "state": "IN_EXECUTION"
+    },
+    {
+      "id": "AR-03",
+      "task": "M1 修 R6_PUBLICATION_VERIFICATION：舊 566/e6fd 標 historical、新 head 由提交後 readback 綁定、UTC 語意隔離",
+      "state": "IN_EXECUTION"
+    },
+    {
+      "id": "AR-04",
+      "task": "M2 受信任包外掃描器：prefix/traversal/symlink/自動執行/secrets",
+      "state": "IN_EXECUTION"
+    },
+    {
+      "id": "AR-05",
+      "task": "M3 Maintainer 對單一 evidence prefix 之一次性授權紀錄",
+      "state": "BLOCKED_HITL_OWNER"
+    },
+    {
+      "id": "AR-06",
+      "task": "既有 PR 分支非 force 推送只含修補檔",
+      "state": "PENDING"
+    },
+    {
+      "id": "AR-07",
+      "task": "提交後外部機制讀回 new_head/tree/集合/secrets 並存於 PR comment（避免同 commit 自引用）",
+      "state": "PENDING"
+    },
+    {
+      "id": "AR-08",
+      "task": "更新 Draft PR 描述（PARTIAL_CHALLENGE／TEMP_CLOSED／未閉合項／revert pointer）",
+      "state": "PENDING"
+    },
+    {
+      "id": "AR-09",
+      "task": "R7 checkpoint、EIA-01..09 去向、AUD24、TT/CR、4 open WO、return pack",
+      "state": "PENDING"
+    }
+  ],
+  "check_list": [
+    {
+      "id": "Q01",
+      "check": "compiler lint/activation/acceptance/compile 四階",
+      "state": "PASS",
+      "note": "四階 PROMPT_COMPILE_PASS exit 0；contract sha256 e8a34e2f3ecbeec96499096c9463eafc895e912ea1e0e22a0c126551463a8f97"
+    },
+    {
+      "id": "Q02",
+      "check": "source/report/pr base-head currentness",
+      "state": "PASS",
+      "note": "EIA 報告附件 sha256 與指揮薄內 review_sha256 相符；base/main 未動、head=e6a5ce58…"
+    },
+    {
+      "id": "Q03",
+      "check": "manifest tracked-set/duplicate/local-only2/self-reference",
+      "state": "PENDING"
+    },
+    {
+      "id": "Q04",
+      "check": "changed-path/code-no-autoexecute/secret scan",
+      "state": "PENDING"
+    },
+    {
+      "id": "Q05",
+      "check": "Maintainer prefix 授權",
+      "state": "BLOCKED_HITL_OWNER"
+    },
+    {
+      "id": "Q06",
+      "check": "push 後 remote tree/SHA/PR readback＋回退指針",
+      "state": "PENDING"
+    },
+    {
+      "id": "Q07..Q18",
+      "check": "R7 gate：M04/M06/M16 REJECT、OS ACL DENY、G1/nonce/timeout、DEV/OPS ECP／DOC05、capabilities、SoD、221/18/24/G-A..H、AO/release",
+      "state": "DEFERRED_R7"
+    }
+  ],
+  "source_identity": {
+    "eia_report": "Fabric_Convergence_External_Independent_Acceptance_Report_20261015.md",
+    "eia_report_sha256": "10caf4dbdb1993cd46ff2c50394dd01dfd5f34d635816f95e3d2e5ab6c566206",
+    "eia_report_sha256_matches_brief": true,
+    "r6r7_brief_sha256": "b8526954b4ce9e0f70a387d19ebd5345e9a4bcd58686a9395b30e07537d1704d",
+    "pkg_sha256": "96d9d564286743e17550ccef15b9952347901eb77168f930376938893cff9c3f"
+  },
+  "claim_ceiling": "LOCAL_ORCHESTRATION",
+  "not_claimed": [
+    "完整 Convergence",
+    "Runtime/Production release",
+    "AO/Release 簽核",
+    "八 Gate PASS",
+    "221 cases 已跑"
+  ]
+}

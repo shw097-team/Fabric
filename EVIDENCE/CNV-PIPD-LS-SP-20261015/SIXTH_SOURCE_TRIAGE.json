@@ -1,0 +1,32 @@
+{
+  "record_type": "NONCANONICAL_SOURCE_RECOVERY_TRIAGE",
+  "mission_id": "CNV-PIPD-LS-SP-20261015",
+  "observed_at": "2026-10-15T06:07:19.534981+00:00",
+  "target": {
+    "filename": "Fabric_Hermes_HGK_Convergence_Global_Engineering_Blueprint_v1.1.0_PATCHED_2026-10-15.md",
+    "bytes": 161045,
+    "sha256": "0ef885a6506464a7f7eab77d17902d1a1f49f52915a911ebe0ea13193b2f2d78",
+    "headers": 73,
+    "lines": 1974
+  },
+  "methods_tried": [
+    "workspace+attachments+Downloads+Desktop byte scan (0)",
+    "userdir scan OneDrive/Documents/Desktop/Downloads byte-exact (0)",
+    "Hermes profiles/attachments/scratch/all-LAD scan (0)",
+    "Recycle Bin all $R files byte-exact (0)",
+    "full C:/Users + ProgramData size-filter walk (0 / suspects 0)",
+    "embedded appendix within pinned PKG (only v1.0.0 present)",
+    "all 41 SLOTs cross-ref (only metadata, no payload)",
+    "base64 payload scan in PKG (0 runs)",
+    "git objects / local Fabric repo walk (0)",
+    "file-history / Recent .lnk path tracing (no 6th path)",
+    "v1-byte mutation from v2.0.0: contiguous 287-byte deletion anywhere (None)",
+    "single-line / pair-line / contiguous-2-3-line line-aligned deletion with byte-sum constraint (None)",
+    "header-revert variants (None)",
+    "full noncontig-2-line feasible & executed (None)",
+    "non-line-aligned multi-edit reconstruction (not attempted; combinatorial)"
+  ],
+  "conclusion": "unrecoverable_all_authorized_sources_exhausted",
+  "independent_acceptance": "NOT_CLAIMED",
+  "written_evidence": "PHYSICAL_SOURCE_READBACK_MANIFEST_R2.json; verifier still FAIL_CLOSED per design"
+}

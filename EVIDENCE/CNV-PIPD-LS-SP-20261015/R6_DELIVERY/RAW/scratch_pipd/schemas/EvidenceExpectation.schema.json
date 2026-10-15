@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:pipd:s0:EvidenceExpectation:1",
+  "x-s0": {
+    "index": "15",
+    "contract": "EvidenceExpectation",
+    "materialization": "REQUIRED_NOW",
+    "owner": "PIPD/TQAEP",
+    "consumers": ["HGK/CI/provider"]
+  },
+  "type": "object",
+  "description": "Owner: PIPD/TQAEP. Consumer: HGK/CI/provider.",
+  "additionalProperties": false,
+  "required": [
+    "expected_evidence_type",
+    "producer",
+    "postcondition",
+    "freshness",
+    "claim_effect",
+    "subject_id",
+    "version",
+    "content_hash",
+    "schema_version"
+  ],
+  "properties": {
+    "expected_evidence_type": {},
+    "producer": {},
+    "postcondition": {},
+    "freshness": {},
+    "claim_effect": {},
+    "subject_id": {},
+    "version": {},
+    "content_hash": {},
+    "schema_version": {}
+  }
+}

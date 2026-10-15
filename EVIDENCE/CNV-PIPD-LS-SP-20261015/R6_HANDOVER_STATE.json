@@ -1,0 +1,112 @@
+{
+  "schema": "CNV-PIPD-LS-SP-20261015/HANDOVER-STATE/1",
+  "mission": "CNV-PIPD-LS-SP-20261015",
+  "changeset": "CONTINUATION",
+  "phase_stopped_at": "R6-PHASE-A",
+  "stop_reason": "Owner order 2026-10-15 (pause all tasks, checkpoint + handover so the host can be shut down)",
+  "stopped_utc": "2026-10-15T08:26:00Z",
+  "stopped_local": "2026-10-15 16:26 +08:00",
+  "claim_ceiling": "LOCAL / candidate-only",
+  "hgk_control_plane": {
+    "project_id": "CNV-PIPD-LS-SP-20261015",
+    "lifecycle_state": "WORKORDERS_ADMITTED",
+    "checkpoint_id": "CK-20261015-81EA388B",
+    "checkpoint_note": "checkpoint payload current_workorder is a spine-wide query result (WO-R5Z-08), not project-scoped; this project's open workorders are WO-TS-20261015-01..04",
+    "requirement": "REQ-CNV-PIPD-LS-SP-20261015-PLAN (FROZEN)",
+    "taskspecs": ["TS-20261015-01", "TS-20261015-02", "TS-20261015-03", "TS-20261015-04"],
+    "workorders_open": ["WO-TS-20261015-01", "WO-TS-20261015-02", "WO-TS-20261015-03", "WO-TS-20261015-04"],
+    "denominator_available": true,
+    "admission_receipt": "HGK_TYPED_ADMISSION_R6.json sha256_12 5dbffd0bb0e1",
+    "intake_sources": 9
+  },
+  "lanes": {
+    "EXECUTE": {
+      "status": "COMPLETED",
+      "arm_required": "opencode-go/deepseek-v4.1-flash",
+      "arm_served_evidence": "usage receipt provider/model http 200 (266 rows) + nonce present in raw stdout agent_message",
+      "dispatcher_machine_verdict": "ok=false ERR_NO_ARM_EMITTED_NONCE (nonce delivered on the agent_message channel, not the expected carrier line)",
+      "exit": 0,
+      "dispatcher_wrapper_exit": 3,
+      "credential_posture": "INCONCLUSIVE / WARN_CONTINUE (WARN_LANE_CREDENTIAL_POSTURE_INCONCLUSIVE x2 on dispatcher stderr; helper-only verdict, no child env asserted; L1 user-scope git default remains the structural control; INCONCLUSIVE is not a pass)",
+      "seconds": 2450.82,
+      "sandbox": "danger-full-access (role default)",
+      "guard_subject_verdict": "CLEAN (digest before == after)",
+      "receipt": "lane_runs/EXECUTE_dispatch_receipt_attempt1.json sha256_12 9c71b4c294bc",
+      "raw_stdout": "lane_runs/CNV-PIPD-LS-SP-20261015-R6/EXECUTE/attempt-1-20261015T073929Z/attempt-2140-1792049969-1-stdout.txt (3,541,041 B, sha256_12 48a6bb9d0cad)",
+      "outputs": "R6_DELIVERY/** 301 files 1.7 MB; R6_WRITE_SET.json lists 299 files, 299/299 bytes+sha256 match (2 on-disk files unlisted: R6_WRITE_SET.json itself, RUNNERS/__pycache__/probe_lib.cpython-311.pyc)",
+      "writer_self_status": "PARTIAL"
+    },
+    "VERIFY_SECURITY": {
+      "status": "INTERRUPTED_BY_OWNER_ORDER",
+      "arm_required": "opencode-go/glm-5.3-flash (rank 2)",
+      "started_utc": "2026-10-15T08:20:53Z",
+      "stopped_utc": "2026-10-15T08:22:35Z",
+      "products": "none (R6_CHECKER/ does not exist)",
+      "marker": "lane_runs/CNV-PIPD-LS-SP-20261015-R6/VERIFY_SECURITY/attempt-1-20261015T082053Z/attempt.marker.json",
+      "prior_pid_checked": "7356 not alive",
+      "resume": "dispatch_r6.py VERIFY_SECURITY CHECKER_BRIEF_R6.md 2 2700 (may need --prior-attempt-* + --allow-unverified-prior-gone because attempt-1 has no EXIT= marker)",
+      "warning": "an interrupted checker produced no verdict: it must not be reported as pass or fail"
+    },
+    "PLAN": {
+      "status": "ACTIVE_RUNTIME_DEVIATION",
+      "mandated": "openai-codex/gpt-6.1-sol (medium, OpenAI OAuth)",
+      "observed_runtime": "opencode-go/deepseek-v4.1-flash",
+      "remediation": "Owner decides: rebind the Hermes agent model to gpt-6.1-sol-medium, or accept the recorded deviation"
+    }
+  },
+  "results_summary": {
+    "capabilities": "22 probed: 17 QUALIFIED_LOCAL, 4 BLOCKED_EXTERNAL, 1 BLOCKED_HITL",
+    "hostile_mutations": "18: 10 executed (7 detected, 3 NOT detected = genuine findings), 8 NOT_RUN",
+    "checkpoint_rollback_drill": "performed and verified by the writer",
+    "requirement_cases": "0/221 executed (REAL_RUNNER_NOT_BOUND)",
+    "audit_findings": "0/24 closed (24 OPEN/BLOCKED_EXTERNAL)",
+    "evidence_gates": "0/8 passed (G-A..G-H all NOT_RUN)",
+    "k_ledger": "0 mapped, 20 explicitly UNMAPPED",
+    "effects_5": "1 NOT_RUN, remainder pending same-run readback"
+  },
+  "not_started": [
+    "publication: candidate branch + Draft PR (only read-only ls-remote probes done)",
+    "G-A..G-H gate execution",
+    "Fresh G1 certification (HITL)",
+    "full 221-case and M01..M18 execution",
+    "AUD 24 closure",
+    "per-path approval list (still PROPOSAL)"
+  ],
+  "side_effects_disclosed": [
+    "Shared Spine canonical writes via the lifecycle controller: projects, project_lifecycles, project_transitions, canonical_events, checkpoints, requirements(1), taskspecs(4), workorders(4)",
+    "lane_runs/** outputs (EXECUTE receipt + marker + 3.5 MB raw stdout; VERIFY_SECURITY marker only)",
+    "R6_DELIVERY/** 301 candidate files (no product/canonical writes)",
+    "processes: EXECUTE child exited 0; VERIFY_SECURITY wrapper session proc_8f8ce133f6cf killed by orchestrator on Owner order; one background sleep session killed; no lane codex child remains",
+    "no credential content read (token file only used as a read-only remote credential via an inline helper; never in argv/URL/file)"
+  ],
+  "observed_preexisting": "stray tree C:/c/Users/user/AppData/Local/Packages/.../Local/hermes/SOUL.md — mtime predates this round (not produced by this round)",
+  "deviations": [
+    "DEV-R6-1 PLAN runtime model vs mandate",
+    "DEV-R6-2 PKG source #6 unreproducible; standalone verifier FAIL_CLOSED",
+    "DEV-R6-3 codex_executable declaration drift (pin path missing); used the documented --codex-executable live-path override, pin untouched",
+    "DEV-R6-4 dispatcher ok=false ERR_NO_ARM_EMITTED_NONCE despite corroborated arm binding and nonce in raw stdout"
+  ],
+  "resume_contract": {
+    "first_step": "curl http://127.0.0.1:10101/healthz (relay does not auto-start)",
+    "second_step": "resume the VERIFY_SECURITY checker attempt 2 (see lanes.VERIFY_SECURITY.resume)",
+    "third_step": "publication prepare/commit/push/readback/pr (branch evidence/cnv-pipd-ls-sp-20261015-r6 from origin/main 266f8d65; excludes restricted source mirrors and credentials; no local-main change, no force push)",
+    "fourth_step": "HGK project status/resume; keep PROPOSAL approval state untouched"
+  },
+  "evidence_index": {
+    "MISSION_PLAN_SPEC_CHECKLIST_R6.json": {"bytes": 10327, "sha256_12": "1d147100048a"},
+    "HGK_TYPED_ADMISSION_R6.json": {"bytes": 4719, "sha256_12": "5dbffd0bb0e1"},
+    "C0_C9_CONTRACT_R5.json": {"bytes": 345313, "sha256_12": "6629af1d4cf0"},
+    "compiler_native_output_R5/thin-prompt.md": {"bytes": 30199, "sha256_12": "2f246796c3b9"},
+    "OWNER_TRUST_LOCK.json": {"bytes": 1472, "sha256_12": "8b78edebd79c"},
+    "WRITER_BRIEF_R6.md": {"bytes": 7461, "sha256_12": "eacc59460641"},
+    "CHECKER_BRIEF_R6.md": {"bytes": 4779, "sha256_12": "22a6fc99cae0"},
+    "dispatch_r6.py": {"bytes": 2679, "sha256_12": "80638bca1097"},
+    "publish_r6.py": {"bytes": 9454, "sha256_12": "d0a797483a78"},
+    "hgk_admission_r6.py": {"bytes": 8066, "sha256_12": "cfc6620e8b43"},
+    "lane_runs/EXECUTE_dispatch_receipt_attempt1.json": {"bytes": 7587, "sha256_12": "9c71b4c294bc"},
+    "R6_DELIVERY/R6_WRITE_SET.json": {"bytes": 56197, "sha256_12": "43dcd8087d9b"},
+    "R6_DELIVERY/R6_WRITER_RECEIPT.json": {"bytes": 79021, "sha256_12": "98594ce4dae0"},
+    "R6_CHECKPOINT_HANDOVER.md": "this round's human-readable handover"
+  },
+  "hash_policy": "12-char prefixes only; full 64-hex digests are taken from each artifact's own fields or recomputed with sha256sum (the pre-tool guard on this host rejects some 64-hex literals)"
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:pipd:s0:ClaimCeiling:1",
+  "x-s0": {
+    "index": "16",
+    "contract": "ClaimCeiling",
+    "materialization": "REQUIRED_NOW",
+    "owner": "PIPD",
+    "consumers": ["all planes"]
+  },
+  "type": "object",
+  "description": "Owner: PIPD. Consumer: all planes.",
+  "additionalProperties": false,
+  "required": [
+    "allowed_claims",
+    "forbidden_escalation",
+    "close_conditions",
+    "subject_id",
+    "version",
+    "content_hash",
+    "schema_version"
+  ],
+  "properties": {
+    "allowed_claims": {},
+    "forbidden_escalation": {},
+    "close_conditions": {},
+    "subject_id": {},
+    "version": {},
+    "content_hash": {},
+    "schema_version": {}
+  }
+}

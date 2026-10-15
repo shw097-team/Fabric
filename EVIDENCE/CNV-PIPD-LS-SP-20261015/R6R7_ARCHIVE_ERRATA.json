@@ -1,0 +1,48 @@
+{
+  "schema": "CNV-PIPD-LS-SP-20261015/ARCHIVE-ERRATA/1",
+  "errata_id": "ERRATA-R6R7-01",
+  "applies_to": {
+    "repo": "shw097-team/Fabric",
+    "pr": 3,
+    "branch": "evidence/cnv-pipd-ls-sp-20261015-r6",
+    "base": "266f8d65cf9b21c3b37c1c243946a5c828cf973b",
+    "superseded_head": "e6a5ce5899edb62e37c2fb9bd340b43673903141",
+    "superseded_head_statement": "the manifest/verification pair published AT THAT HEAD is corrected by this errata"
+  },
+  "round": {
+    "mission_id": "CNV-PIPD-LS-SP-20261015",
+    "changeset": "NARROW_REPAIR",
+    "contract_id": "CNV-R6-EVIDENCE-ARCHIVE-NARROW-REPAIR-20261015"
+  },
+  "generated_local": "2026-10-15T20:33:47+08:00",
+  "generated_utc": "2026-10-15T12:33:47+00:00",
+  "time_semantics": {
+    "note": "three distinct clocks are kept apart: local wall clock (Asia/Taipei, +08:00), UTC, and the git committer time of the repair commit. No ordering claim is made from any of them.",
+    "local_clock": "+08:00 offset, this host",
+    "utc_clock": "derived, not an authority",
+    "commit_clock": "read from git log of the repair commit (see post-commit readback)"
+  },
+  "corrected_claims": [
+    {
+      "finding": "EIA-R6-01",
+      "was": "PACKET_MANIFEST.json listed 569 rows and the packet described itself as 'N/N published' with 569 including two gitignored __pycache__/*.pyc that git never carried",
+      "is": "PACKET_MANIFEST.json (schema /2) separates tracked_inventory (the delivered set) from local_only_excluded (2 gitignored .pyc, with path/bytes/sha256, never added to git) and states the publish claim explicitly",
+      "verification": "set equality between tracked_inventory and the remote git tree at the post-commit head"
+    },
+    {
+      "finding": "EIA-R6-02",
+      "was": "R6_PUBLICATION_VERIFICATION.json recorded an older head e6fd5b2d... and 566/566, and carried a UTC field that post-dated the commit it described",
+      "is": "rewritten: superseded values marked historical_claim; currentness bound to the POST-commit external readback (not to this file's own sha); clock fields labelled with their source",
+      "verification": "R6R7_POST_COMMIT_READBACK.json (outside this commit) + PR comment"
+    }
+  ],
+  "not_changed": [
+    "the 567 tracked blobs of candidate evidence are byte-unchanged",
+    "no failed R6 receipt was deleted or rewritten",
+    "no .pyc was added",
+    "221 cases / 8 gates / AUD24 / M04-M06-M16 remain exactly as recorded"
+  ],
+  "archived_code_notice": "the packet contains ~53 .py/.ps1 archive artifacts; they are evidence copies. Nothing in this packet is executed by any of this round's tooling, and no consumer should execute them.",
+  "self_reference_policy": "this file deliberately does NOT assert the sha of the commit that contains it; that sha is bound by the post-commit readback held outside the commit.",
+  "claim_ceiling": "LOCAL_ORCHESTRATION"
+}

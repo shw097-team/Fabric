@@ -1,0 +1,138 @@
+{
+  "schema": "CNV-PIPD-LS-SP-20261015/HGK-TYPED-ADMISSION/R6R7",
+  "project_id": "CNV-R6R7-ARCHIVE-REPAIR-R6ARC2",
+  "changeset": "NARROW_REPAIR",
+  "sources_present": 8,
+  "sources_missing": [],
+  "source_inventory": [
+    {
+      "path": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_Convergence_External_Independent_Acceptance_Report_20261015.md",
+      "bytes": 33616,
+      "sha256": "10caf4dbdb1993cd46ff2c50394dd01dfd5f34d635816f95e3d2e5ab6c566206"
+    },
+    {
+      "path": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric × Hermes × HG-KSEOS｜R6 外部驗收後續作指揮薄 PROMPT.md",
+      "bytes": 28121,
+      "sha256": "b85269541d83994f997360589b7650e75f33c243c1aaecae382d583f2d903e63"
+    },
+    {
+      "path": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md",
+      "bytes": 2689181,
+      "sha256": "96d9d564286743e17550ccef15b9952347901eb77168f930376938893cff9c3f"
+    },
+    {
+      "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\C0_C9_CONTRACT_R6R7.json",
+      "bytes": 77216,
+      "sha256": "e8a34e2f3ecbeec96499096c9463eafc895e912ea1e0e22a0c126551463a8f97"
+    },
+    {
+      "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6R7_COMPILED_OUT\\thin-prompt.md",
+      "bytes": 9904,
+      "sha256": "46209b6279fe804393394f7493e4ecb569093840a59a4d99fa673a5361cf6561"
+    },
+    {
+      "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6R7_COMPILED_OUT\\compiler-receipt.json",
+      "bytes": 555,
+      "sha256": "3ad2162a462457bb03aa2ef727e329aa59f483d3aa11a5544c7e5fdbe25abd64"
+    },
+    {
+      "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\OWNER_TRUST_LOCK.json",
+      "bytes": 1472,
+      "sha256": "8b78edebd79c8149a2b74e2a7f873e3116f772c881a501bd4600ea0e7a891f6b"
+    },
+    {
+      "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_HANDOVER_STATE_R2.json",
+      "bytes": 7758,
+      "sha256": "ba8b374e22f9577e72b8b799d75f7d4c6f0797315d72cf83d2506bdb95f0af46"
+    }
+  ],
+  "steps": [
+    {
+      "step": "start",
+      "result": "CREATED",
+      "state": "PROJECT_CREATED"
+    },
+    {
+      "step": "intake",
+      "status": "READY",
+      "source_count": 8,
+      "blocking_missing": [],
+      "conflicts": []
+    },
+    {
+      "step": "transition",
+      "to": "INTENT_BOUND",
+      "result": "OK"
+    },
+    {
+      "step": "transition",
+      "to": "REQUIREMENTS_READY",
+      "result": "OK"
+    },
+    {
+      "step": "transition",
+      "to": "DESIGN_READY",
+      "result": "OK"
+    },
+    {
+      "step": "plan",
+      "task_count": 3,
+      "titles": [
+        "Source discovery",
+        "Acceptance and evidence",
+        "Package and delivery"
+      ],
+      "non_goals_preserved": 4
+    },
+    {
+      "step": "admit_workorders",
+      "result": {
+        "project_id": "CNV-R6R7-ARCHIVE-REPAIR-R6ARC2",
+        "workorders": [
+          "WO-TS-R6ARC2-01",
+          "WO-TS-R6ARC2-02",
+          "WO-TS-R6ARC2-03"
+        ],
+        "count": 3
+      }
+    }
+  ],
+  "claim_ceiling": "LOCAL_ORCHESTRATION",
+  "final_state": "WORKORDERS_ADMITTED",
+  "denominator": {
+    "project_id": "CNV-R6R7-ARCHIVE-REPAIR-R6ARC2",
+    "state": "WORKORDERS_ADMITTED",
+    "requirements_total": 1,
+    "requirements_frozen": 1,
+    "taskspecs_total": 3,
+    "workorders_total": 3,
+    "workorders_open": [
+      "WO-TS-R6ARC2-01",
+      "WO-TS-R6ARC2-02",
+      "WO-TS-R6ARC2-03"
+    ],
+    "workorders_open_count": 3,
+    "acceptances_total": 1,
+    "acceptances_open": [
+      "ACC-REQ-CNV-R6R7-ARCHIVE-REPAIR-R6ARC2-PLAN"
+    ],
+    "acceptances_open_count": 1,
+    "required_active_capabilities": [
+      "openspec",
+      "gstack.plan-eng-review",
+      "gstack.review",
+      "gstack.qa",
+      "gstack.cso",
+      "gstack.ship",
+      "gstack.office-hours",
+      "gstack.retro"
+    ],
+    "required_active_capabilities_total": 8,
+    "required_active_capabilities_open": [],
+    "required_active_capabilities_open_count": 0,
+    "required_local_scope_open": 4,
+    "guard_required_workorders_terminal": false,
+    "denominator_available": true
+  },
+  "verdict": "ADMISSION_OK"
+}

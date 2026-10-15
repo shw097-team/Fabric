@@ -1,0 +1,86 @@
+{
+  "kind": "NONCANONICAL_HANDOFF_NOT_SPINE_CHECKPOINT",
+  "blockers": [
+    {
+      "code": "SOURCE_PHYSICAL_MISSING",
+      "owner": "source corpus custodian",
+      "details": [
+        {
+          "bytes": 114776,
+          "filename": "AUDIT_Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG_v1.0.0_FULL_DESTRUCTIVE_2026-10-15(1).md",
+          "headers": 40,
+          "lines": 937,
+          "sha256": "58082173be70cc03faf2af6e8e1d443e346eb90346eedb15cc3ea91c485c6611"
+        },
+        {
+          "bytes": 119685,
+          "filename": "Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG_Blueprint_v1.0.0_2026-10-15.md",
+          "headers": 36,
+          "lines": 1312,
+          "sha256": "e10c7e891a5aaf43cbe99c4e485d6eb7f7a84d95e3462a26c4e6eea3d1600fc0"
+        },
+        {
+          "bytes": 114425,
+          "filename": "Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG_Blueprint_v1.0.0_FULL_DESTRUCTIVE_AUDIT_2026-10-15(1).md",
+          "headers": 30,
+          "lines": 781,
+          "sha256": "36179c960e9a4b2198547b51d6858e9799cfe735975ad4a9b49b0ec77466a07a"
+        },
+        {
+          "bytes": 100348,
+          "filename": "Fabric_Hermes_HGK_Convergence_Blueprint_Full_Destructive_Audit_2026-10-14(1).md",
+          "headers": 40,
+          "lines": 1024,
+          "sha256": "77050f24ee68bf56b4d359b7c9f6f51f7a169d8639ce1542519540bc727f8c93"
+        },
+        {
+          "bytes": 105330,
+          "filename": "Fabric_Hermes_HGK_Convergence_Global_Engineering_Blueprint_2026-10-14.md",
+          "headers": 57,
+          "lines": 1268,
+          "sha256": "589856b3d97cc895283585316f316eb29d39b1e6cc2e5310620b6a140d615dc4"
+        },
+        {
+          "bytes": 161045,
+          "filename": "Fabric_Hermes_HGK_Convergence_Global_Engineering_Blueprint_v1.1.0_PATCHED_2026-10-15.md",
+          "headers": 73,
+          "lines": 1974,
+          "sha256": "0ef885a6506464a7f7eab77d17902d1a1f49f52915a911ebe0ea13193b2f2d78"
+        }
+      ],
+      "unlock": "provide the six exact original files matching recorded SHA/bytes; do not fabricate or weaken source denominator"
+    },
+    {
+      "code": "ORACLE_OWNER_CONFLICT",
+      "reference": "TT-PIPD-03",
+      "owner": "DOC03/DOC07 authority owner",
+      "unlock": "explicit authorized oracle mapping; never implicit equivalence"
+    },
+    {
+      "code": "G1_UNCERTIFIED",
+      "owner": "Human Policy Owner",
+      "unlock": "Fresh G1 for actual canonical runtime and affected gates"
+    },
+    {
+      "code": "EXECUTION_ADMISSION_MISSING",
+      "owner": "HGK typed admission authority",
+      "unlock": "compiled contract, real RepoContext, exact TaskSpec/WorkOrder/ExecutionBinding before dispatch"
+    },
+    {
+      "code": "PUBLICATION_ALLOWLIST_PROPOSAL",
+      "owner": "publication owner",
+      "unlock": "approve exact changed paths, branch, reviewer, exclusions and revert plan; G-G before credential access"
+    }
+  ],
+  "canonical_checkpoint": null,
+  "workorder": null,
+  "execution_binding": null,
+  "resume": "Supply exact missing sources; inspect SOURCE_REVIEW_INVENTORY and quarantined TT-PIPD-03; derive a new non-overwriting compiler revision and rerun native four stages. No model/product dispatch until admitted.",
+  "rollback": "No product or canonical mutation; retain this evidence directory. No automatic delete or reset.",
+  "guard_refusals": {
+    "nested_source_copy_calls": 2,
+    "nested_contract_write_calls": 1,
+    "primary_tool_authorized_write": "succeeded under explicit Owner FDA grant",
+    "handling": "No hook/token-store modifications. First refusal attempts preserved in session; subsequently used direct authorized tools and an explicitly bounded evidence generator."
+  }
+}

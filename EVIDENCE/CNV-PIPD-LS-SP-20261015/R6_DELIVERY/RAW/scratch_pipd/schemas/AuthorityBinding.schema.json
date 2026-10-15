@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:pipd:s0:AuthorityBinding:1",
+  "x-s0": {
+    "index": "02",
+    "contract": "AuthorityBinding",
+    "materialization": "REQUIRED_NOW",
+    "owner": "PIPD",
+    "consumers": ["all compilers/adapters"]
+  },
+  "type": "object",
+  "description": "Owner: PIPD. Consumer: all compilers/adapters.",
+  "additionalProperties": false,
+  "required": [
+    "source_id",
+    "authority_rank",
+    "locator",
+    "supersession",
+    "conflict_state",
+    "subject_id",
+    "version",
+    "content_hash",
+    "schema_version"
+  ],
+  "properties": {
+    "source_id": {},
+    "authority_rank": {},
+    "locator": {},
+    "supersession": {},
+    "conflict_state": {},
+    "subject_id": {},
+    "version": {},
+    "content_hash": {},
+    "schema_version": {}
+  }
+}

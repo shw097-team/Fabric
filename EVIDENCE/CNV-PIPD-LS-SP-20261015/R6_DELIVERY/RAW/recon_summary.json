@@ -1,0 +1,250 @@
+[
+ {
+  "probe_id": "recon_spine_import",
+  "command": [
+   "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+   "-c",
+   "import sys;sys.path.insert(0,r'C:/Projects/Agent_Workspace/HG-KSEOS/src');from hg_kseos.spine import SharedSpine;print('SPINE_IMPORT_OK')"
+  ],
+  "cwd": "C:/Projects/Agent_Workspace",
+  "started_utc": "2026-10-15T07:49:49.861791+00:00",
+  "ended_utc": "2026-10-15T07:49:49.953856+00:00",
+  "exit_code": 0,
+  "timed_out": false,
+  "stdout_file": "RAW/recon_spine_import.stdout.txt",
+  "stderr_file": "RAW/recon_spine_import.stderr.txt",
+  "stdout_sha256": "b44092a3a9ac86d8b1a39c1e5acaa69bf3c3de7ae546cfbb08f5605003fe1589",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_bytes": 17,
+  "stderr_bytes": 0
+ },
+ {
+  "probe_id": "recon_hgk_cli_help",
+  "command": [
+   "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+   "-c",
+   "import sys;sys.path.insert(0,r'C:/Projects/Agent_Workspace/HG-KSEOS/src');from hg_kseos.cli import main;print('CLI_IMPORT_OK')"
+  ],
+  "cwd": "C:/Projects/Agent_Workspace",
+  "started_utc": "2026-10-15T07:49:49.955857+00:00",
+  "ended_utc": "2026-10-15T07:49:50.116770+00:00",
+  "exit_code": 0,
+  "timed_out": false,
+  "stdout_file": "RAW/recon_hgk_cli_help.stdout.txt",
+  "stderr_file": "RAW/recon_hgk_cli_help.stderr.txt",
+  "stdout_sha256": "8061553a9d6ff112243b1bc51ee056c49c3e0161082dc899c2575d6d2e1a5d2c",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_bytes": 15,
+  "stderr_bytes": 0
+ },
+ {
+  "probe_id": "recon_pipd_import",
+  "command": [
+   "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+   "-c",
+   "import sys;sys.path.insert(0,r'C:/Projects/Agent_Workspace/PIPD/src');from pipd_ls_sp import cli;print('PIPD_IMPORT_OK',len(cli.COMMANDS))"
+  ],
+  "cwd": "C:/Projects/Agent_Workspace",
+  "started_utc": "2026-10-15T07:49:50.118274+00:00",
+  "ended_utc": "2026-10-15T07:49:50.211745+00:00",
+  "exit_code": 0,
+  "timed_out": false,
+  "stdout_file": "RAW/recon_pipd_import.stdout.txt",
+  "stderr_file": "RAW/recon_pipd_import.stderr.txt",
+  "stdout_sha256": "7c897da7c632cc6d3a22a61700fbb30e3a2483b335388bc1dd3bb119b32ba766",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_bytes": 19,
+  "stderr_bytes": 0
+ },
+ {
+  "probe_id": "recon_compiler_help",
+  "command": [
+   "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+   "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\HG-KSEOS\\construction-acceptance-prompt-compiler\\construction-acceptance-prompt-compiler\\scripts\\prompt_contract_compiler.py",
+   "--help"
+  ],
+  "cwd": "C:/Projects/Agent_Workspace",
+  "started_utc": "2026-10-15T07:49:50.212746+00:00",
+  "ended_utc": "2026-10-15T07:49:50.311482+00:00",
+  "exit_code": 0,
+  "timed_out": false,
+  "stdout_file": "RAW/recon_compiler_help.stdout.txt",
+  "stderr_file": "RAW/recon_compiler_help.stderr.txt",
+  "stdout_sha256": "180d1e14acf3bff4e153ecbcd82541a3785255bc727622602499bfad9da638ee",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_bytes": 411,
+  "stderr_bytes": 0
+ },
+ {
+  "probe_id": "recon_pipd_pkg_check_help",
+  "command": [
+   "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+   "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/pipd_pkg_v2_check.py",
+   "--help"
+  ],
+  "cwd": "C:/Projects/Agent_Workspace",
+  "started_utc": "2026-10-15T07:49:50.312481+00:00",
+  "ended_utc": "2026-10-15T07:49:50.403184+00:00",
+  "exit_code": 0,
+  "timed_out": false,
+  "stdout_file": "RAW/recon_pipd_pkg_check_help.stdout.txt",
+  "stderr_file": "RAW/recon_pipd_pkg_check_help.stderr.txt",
+  "stdout_sha256": "43ad6952e3fe3f5c5f29bf31ced5bfa6a501a65a83a9b54797308c6386113445",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_bytes": 421,
+  "stderr_bytes": 0
+ },
+ {
+  "probe_id": "recon_checker_help",
+  "command": [
+   "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+   "C:/Projects/Agent_Workspace/HG-KSEOS/tools/check_acceptance_independent.py",
+   "--help"
+  ],
+  "cwd": "C:/Projects/Agent_Workspace",
+  "started_utc": "2026-10-15T07:49:50.409189+00:00",
+  "ended_utc": "2026-10-15T07:50:11.219860+00:00",
+  "exit_code": 1,
+  "timed_out": false,
+  "stdout_file": "RAW/recon_checker_help.stdout.txt",
+  "stderr_file": "RAW/recon_checker_help.stderr.txt",
+  "stdout_sha256": "40979cf2021f218c31d69052e0c376da6b6f83774195cbb11faef8d2d0cea4a4",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_bytes": 1546,
+  "stderr_bytes": 0
+ },
+ {
+  "probe_id": "recon_hlpe_help",
+  "command": [
+   "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+   "C:/Projects/Agent_Workspace/HG-KSEOS/tools/verify_hlpe.py",
+   "--help"
+  ],
+  "cwd": "C:/Projects/Agent_Workspace",
+  "started_utc": "2026-10-15T07:50:11.221364+00:00",
+  "ended_utc": "2026-10-15T07:50:11.309255+00:00",
+  "exit_code": 0,
+  "timed_out": false,
+  "stdout_file": "RAW/recon_hlpe_help.stdout.txt",
+  "stderr_file": "RAW/recon_hlpe_help.stderr.txt",
+  "stdout_sha256": "9cf19e0f2fb81d37319835291783648f5d851fcc56220e74016465ef4ec0aa62",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_bytes": 143,
+  "stderr_bytes": 0
+ },
+ {
+  "probe_id": "recon_far_retrieval_import",
+  "command": [
+   "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+   "-c",
+   "import sys;sys.path.insert(0,r'C:/Projects/Agent_Workspace/Fabric/fabric-autonomous-research');import far_retrieval;print('FAR_IMPORT_OK')"
+  ],
+  "cwd": "C:/Projects/Agent_Workspace",
+  "started_utc": "2026-10-15T07:50:11.310255+00:00",
+  "ended_utc": "2026-10-15T07:50:11.510739+00:00",
+  "exit_code": 0,
+  "timed_out": false,
+  "stdout_file": "RAW/recon_far_retrieval_import.stdout.txt",
+  "stderr_file": "RAW/recon_far_retrieval_import.stderr.txt",
+  "stdout_sha256": "7e00d1a05c23bf3f3b363ebc1513b14617a9abe4796ff6774de40df48fdae954",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_bytes": 15,
+  "stderr_bytes": 0
+ },
+ {
+  "probe_id": "recon_fda_lease_import",
+  "command": [
+   "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+   "-c",
+   "import sys;sys.path.insert(0,r'C:/Projects/Agent_Workspace/Fabric/evidence/review/FDA_RAW_REVIEW_BUNDLE/Fabric/fabric-desktop-automation');import fda_lease;print('FDA_IMPORT_OK')"
+  ],
+  "cwd": "C:/Projects/Agent_Workspace",
+  "started_utc": "2026-10-15T07:50:11.511739+00:00",
+  "ended_utc": "2026-10-15T07:50:11.550920+00:00",
+  "exit_code": 0,
+  "timed_out": false,
+  "stdout_file": "RAW/recon_fda_lease_import.stdout.txt",
+  "stderr_file": "RAW/recon_fda_lease_import.stderr.txt",
+  "stdout_sha256": "87803dc9fd5eec14dcd776206911a6a13a837a2cda0de64553a7f48bbefc0827",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_bytes": 15,
+  "stderr_bytes": 0
+ },
+ {
+  "probe_id": "recon_review_bundle_selftest",
+  "command": [
+   "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+   "C:/Projects/Agent_Workspace/Fabric/Independent Acceptance Officer/challenge-review/scripts/verify_review_bundle.py",
+   "--self-test"
+  ],
+  "cwd": "C:/Projects/Agent_Workspace",
+  "started_utc": "2026-10-15T07:50:11.551921+00:00",
+  "ended_utc": "2026-10-15T07:50:11.710836+00:00",
+  "exit_code": 0,
+  "timed_out": false,
+  "stdout_file": "RAW/recon_review_bundle_selftest.stdout.txt",
+  "stderr_file": "RAW/recon_review_bundle_selftest.stderr.txt",
+  "stdout_sha256": "adb4ecb6cd986f1b22f6837d7c64d2d04bdf9947861db579e1121ee6b516dd6b",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_bytes": 91,
+  "stderr_bytes": 0
+ },
+ {
+  "probe_id": "recon_openspec_version",
+  "command": [
+   "openspec",
+   "--version"
+  ],
+  "cwd": "C:/Projects/Agent_Workspace",
+  "started_utc": "2026-10-15T07:50:11.712836+00:00",
+  "ended_utc": "2026-10-15T07:50:11.714836+00:00",
+  "exit_code": null,
+  "timed_out": false,
+  "stdout_file": "RAW/recon_openspec_version.stdout.txt",
+  "stderr_file": "RAW/recon_openspec_version.stderr.txt",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "e8bfb26c5b3f5fa288d739a2608439e5b9d6987b3446c9a15c6c2b3f3b4a6e0d",
+  "stdout_bytes": 0,
+  "stderr_bytes": 69
+ },
+ {
+  "probe_id": "recon_codex_version",
+  "command": [
+   "C:/Users/user/AppData/Local/OpenAI/Codex/bin/9614f1d9b40d9c4f/codex.exe",
+   "--version"
+  ],
+  "cwd": "C:/Projects/Agent_Workspace",
+  "started_utc": "2026-10-15T07:50:11.716837+00:00",
+  "ended_utc": "2026-10-15T07:50:11.748862+00:00",
+  "exit_code": 0,
+  "timed_out": false,
+  "stdout_file": "RAW/recon_codex_version.stdout.txt",
+  "stderr_file": "RAW/recon_codex_version.stderr.txt",
+  "stdout_sha256": "7747b1c26798719d98cac787dfc2c425f845f347a443492894a0d739fae8ca0d",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_bytes": 29,
+  "stderr_bytes": 0
+ },
+ {
+  "probe_id": "recon_hermes_core",
+  "command": [
+   "powershell",
+   "-NoProfile",
+   "-ExecutionPolicy",
+   "Bypass",
+   "-File",
+   "C:/Projects/Agent_Workspace/HG-KSEOS/scripts/hermes-core.ps1"
+  ],
+  "cwd": "C:/Projects/Agent_Workspace/HG-KSEOS",
+  "started_utc": "2026-10-15T07:50:11.749862+00:00",
+  "ended_utc": "2026-10-15T07:50:12.771033+00:00",
+  "exit_code": 1,
+  "timed_out": false,
+  "stdout_file": "RAW/recon_hermes_core.stdout.txt",
+  "stderr_file": "RAW/recon_hermes_core.stderr.txt",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "e6200748f4c98011d16f92d3c6283030c5f6f4f34d136c3165477a0acb32c9df",
+  "stdout_bytes": 0,
+  "stderr_bytes": 432
+ }
+]
