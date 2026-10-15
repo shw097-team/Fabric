@@ -170,3 +170,36 @@ python -c "import json,os,hashlib;H='R6_DELIVERY';ws=json.load(open(H+'/R6_WRITE
 bad=[e['path'] for e in ws['files'] if not os.path.isfile(e['path']) or hashlib.sha256(open(e['path'],'rb').read()).hexdigest()!=e['sha256']];\
 print('listed',len(ws['files']),'bad',len(bad),bad[:3])"
 ```
+
+---
+
+# §10 續跑結果（reboot 後，2026-10-15 17:55–18:36 台北 / 09:55–10:36Z）
+
+本節為 reboot 後續跑之落地紀錄；**R6_HANDOVER_STATE.json 已被 `R6_HANDOVER_STATE_R2.json` 取代**
+（保留原檔為 history，不刪除）。
+
+| 項目 | 結果 | 證據 |
+|------|------|------|
+| 既有車道複用（複核） | relay 10101 存活（`opencodex 2.11.0`，pid 8016，uptime 已重置＝reboot 後重啟）；frontdoor 10100 未啟動（本輪 dispatcher 走 10101，不需要） | `curl /healthz` |
+| 續跑 VERIFY_SECURITY **attempt 2** | 車道確實服務（`opencode-go/glm-5.3-flash`，usage 200），但**角色預設 sandbox = read-only** → checker 身分在本機無任何寫入權、且讀不到 Python311、也寫不進 `R6_DELIVERY/RAW`；verdict 只以對話文字交付（**inline-only**） | `lane_runs/.../VERIFY_SECURITY/attempt-2-20261015T095516Z/`（stdout 861 KB）；inline 內容保存於 `R6_CHECKER_INLINE_attempt2/` |
+| 續跑 VERIFY_SECURITY **attempt 3**（加 `--sandbox danger-full-access --allow-sandbox-escalation`，guard subject = `R6_DELIVERY`） | **成功產出檔案化 verdict**：19/19 artifact `CONFIRMED`、0 challenge、0 boundary violation、0 secret finding；34/39 main + 8/8 supplement + 10/10 mutation 重跑 byte-identical；5 個 main probe 屬外部狀態相依，僅在語意/裁決不變層級確認；`unverifiable_claims` 由 46 降為 0；overall `PENDING_OWNER`；guard 判 `CLEAN`（301→301，writer 候選集未被改動） | `R6_CHECKER/R6_CHECKER_VERDICT.json`、`R6_CHECKER/R6_CHECKER_RECEIPT.md`、`R6_CHECKER/R6_CHECKER_RAW/**`、`R6_CHECKER/COPIES/**`（共 213 檔）；派送收據 `lane_runs/VERIFY_SECURITY_dispatch_receipt_attempt3.json` |
+| HGK 生命週期 | `WORKORDERS_ADMITTED` → **`EXECUTING`**（trigger `R6_WRITER_AND_CHECKER_ROUND_COMPLETE`，10:36:18Z）；新 checkpoint **`CK-20261015-31CA2106`**；4 個 WO 仍 open（未做任何自我驗收、未標 VERIFIED） | `project status/advance/checkpoint` |
+| **發布（候選）** | 分支 `evidence/cnv-pipd-ls-sp-20261015-r6`（base `origin/main` `266f8d65cf9b`）、commit `5932aae4f0c3`、**Draft PR #3** https://github.com/shw097-team/Fabric/pull/3 ；遠端回讀 `MATCH` | `R6_RECONCILIATION.json`、`publish_r6.py` |
+| 發布前掃描 | token 值出現次數 **0**；無真實憑證型內容（1 筆誤判：writer 自身 secret-scanner 的 pattern 表）；未含 `physical_source_readback` 受限鏡像；local `main` 未動、未 force push、`approval list` 仍 `PROPOSAL` | 同上 |
+
+## §10.1 本節新增副作用（除 §6 之外）
+
+1. Fabric 本地 clone 設定 `core.longpaths=true`（repo-local；因 repo 內容路徑超過 MAX_PATH，worktree 需短根
+   `C:/Projects/wt-cnv-r6`，否則 `worktree add` 會以 `Filename too long` 失敗）。
+2. 新增 git remote `origin` → `https://github.com/shw097-team/Fabric.git`（URL 不含憑證）。
+3. 建立分支 `evidence/cnv-pipd-ls-sp-20261015-r6` + 1 個 commit，並在遠端建立 Draft PR #3。
+4. 保留暫存 worktree `C:/Projects/wt-cnv-r6`（供檢查；可用 `git worktree remove` 清除）。
+5. Shared Spine：1 次 transition（→EXECUTING）與 1 個新 checkpoint。
+6. 憑證處理：僅以 git inline credential helper 與暫時 curl config 檔傳遞；未進入 argv／URL／檔案／輸出。
+
+## §10.2 續跑後仍未關閉
+
+Owner 對 `PENDING_OWNER` checker verdict 與 Draft PR 的裁決；逐路徑核准清單仍 `PROPOSAL`；G-A..G-H 0/8；
+221 cases 0/221；AUD 24 0/24 closed；Fresh G1（HITL）；PKG 來源 #6 FAIL_CLOSED。
+新增偏離 **DEV-R6-6**：checker 第一次派送沿用角色預設 read-only sandbox，導致 inline-only verdict；
+已以明確授權的 sandbox escalation 重派並產出檔案化 verdict（escalation 記錄於 dispatcher receipt）。
