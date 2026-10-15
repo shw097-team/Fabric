@@ -1,0 +1,117 @@
+{
+  "schema": "CNV-PIPD-LS-SP-20261015/R6-RECONCILIATION/1",
+  "mission": "CNV-PIPD-LS-SP-20261015",
+  "round": "CNV-PIPD-LS-SP-20261015-R6",
+  "phase": "R6-PHASE-A (typed admission -> bounded writer EXECUTE -> independent VERIFY_SECURITY -> candidate publication)",
+  "claim_ceiling": "LOCAL / candidate-only",
+  "control_plane": "HG-KSEOS (repository present; provenance evidence set not on this host)",
+  "hgk": {
+    "project_id": "CNV-PIPD-LS-SP-20261015",
+    "state": "WORKORDERS_ADMITTED",
+    "checkpoint_id": "CK-20261015-81EA388B",
+    "requirement": "REQ-CNV-PIPD-LS-SP-20261015-PLAN (FROZEN)",
+    "taskspecs": ["TS-20261015-01", "TS-20261015-02", "TS-20261015-03", "TS-20261015-04"],
+    "workorders_open": ["WO-TS-20261015-01", "WO-TS-20261015-02", "WO-TS-20261015-03", "WO-TS-20261015-04"],
+    "intake_sources": 9,
+    "admission_receipt_sha256_12": "5dbffd0bb0e1",
+    "note": "workorders remain open; no agent self-acceptance was performed, so none was marked VERIFIED"
+  },
+  "lanes": {
+    "EXECUTE_writer": {
+      "engine": "codex-cli",
+      "arm_required": "opencode-go/deepseek-v4.1-flash",
+      "arm_served_evidence": "usage receipt opencode-go/deepseek-v4.1-flash http 200 (266 rows); nonce string present in raw stdout",
+      "child_exit": 0,
+      "dispatcher_exit": 3,
+      "dispatcher_code": "ERR_NO_ARM_EMITTED_NONCE (nonce delivered on item.completed/agent_message, not the carrier line)",
+      "seconds": 2450.8,
+      "sandbox": "danger-full-access (lane role default)",
+      "guard_subject_verdict": "CLEAN (digest before == digest after)",
+      "receipt_sha256_12": "9c71b4c294bc",
+      "products": "R6_DELIVERY/** 301 files; R6_WRITE_SET.json lists 299 entries, 299/299 byte+sha exact",
+      "self_status": "PARTIAL"
+    },
+    "VERIFY_SECURITY_checker_attempt2": {
+      "outcome": "INLINE_ONLY / VOID_PRODUCT",
+      "arm_served": "opencode-go/glm-5.3-flash (usage 200)",
+      "seconds": 1098.6,
+      "cause": "lane dispatched at the VERIFY_SECURITY role default sandbox read-only; the checker identity had no write authority anywhere, no read access to the Python311 interpreter, and no write access on R6_DELIVERY/RAW",
+      "product": "verdict delivered as chat text only; preserved at R6_CHECKER_INLINE_attempt2/ALL_AGENT_MESSAGES_attempt2.md (+ R6_CHECKER_VERDICT_inline_attempt2.json) as a candidate artifact, NOT as a file-backed verdict",
+      "anchors_recomputed_by_checker": "R6_WRITE_SET and R6_WRITER_RECEIPT unchanged during its turn (verdict not voided)"
+    },
+    "VERIFY_SECURITY_checker_attempt3": {
+      "outcome": "FILE_BACKED_VERDICT",
+      "arm_required": "opencode-go/glm-5.3-flash",
+      "arm_served_evidence": "usage receipt opencode-go/glm-5.3-flash http 200; nonce present in raw stdout",
+      "child_exit": 0,
+      "dispatcher_exit": 3,
+      "dispatcher_code": "ERR_NO_ARM_EMITTED_NONCE (same channel quirk as the writer)",
+      "seconds": 598.4,
+      "sandbox": "danger-full-access (explicit escalation, authorized by --allow-sandbox-escalation and recorded in the receipt)",
+      "guard_subject_verdict": "CLEAN (301 files before == 301 after; writer candidate set NOT mutated by the checker)",
+      "products": {
+        "verdict": "R6_CHECKER/R6_CHECKER_VERDICT.json",
+        "receipt": "R6_CHECKER/R6_CHECKER_RECEIPT.md",
+        "raw": "R6_CHECKER/R6_CHECKER_RAW/**, R6_CHECKER/COPIES/** (213 files total)"
+      },
+      "verdict_summary": {
+        "artifacts_judged": 19,
+        "artifact_verdicts": {"CONFIRMED": 19},
+        "checks_performed": 9,
+        "challenges": 0,
+        "boundary_violations": 0,
+        "secret_findings": 0,
+        "reproduction": "34/39 main capability probes + 8/8 supplement + 10/10 mutation re-runs byte-identical; 5 main probes are externally-state-dependent and confirmed only at the semantic/verdict-invariant bar",
+        "unverifiable_claims": [],
+        "hitl_items": [],
+        "overall": "PENDING_OWNER (candidate verdict for the Owner; not acceptance)",
+        "claim_ceiling": "LOCAL"
+      }
+    }
+  },
+  "publication": {
+    "repository": "github.com/shw097-team/Fabric",
+    "branch": "evidence/cnv-pipd-ls-sp-20261015-r6",
+    "base": "origin/main",
+    "base_sha256_12": "266f8d65cf9b",
+    "commit_sha256_12": "5932aae4f0c3",
+    "packet_root_in_repo": "evidence/CNV-PIPD-LS-SP-20261015/",
+    "packet_files": 563,
+    "draft_pr": 3,
+    "draft_pr_url": "https://github.com/shw097-team/Fabric/pull/3",
+    "draft": true,
+    "state": "open",
+    "remote_readback": "MATCH (remote ref == local HEAD)",
+    "excluded_from_packet": ["physical_source_readback (restricted source-document mirrors)", "credential material", "canonical spine database"],
+    "secret_scan_before_push": "token value occurrences 0; no real credential-shaped material (one false positive: the writer's own secret-scanner pattern table)",
+    "local_main_untouched": true,
+    "force_push_used": false,
+    "approval_state": "PROPOSAL (unchanged; no approval claimed)"
+  },
+  "side_effects_this_round": [
+    "Shared Spine canonical writes via the lifecycle controller (project/lifecycle/transitions/events/checkpoint/1 REQ/4 TS/4 WO)",
+    "repo-local git config core.longpaths=true set on the Fabric clone (required: repo content exceeds MAX_PATH; the worktree root is short at C:/Projects/wt-cnv-r6)",
+    "a temporary git worktree C:/Projects/wt-cnv-r6 on branch evidence/cnv-pipd-ls-sp-20261015-r6 (left in place for inspection; removable with git worktree remove)",
+    "git remote origin added to the local Fabric clone pointing at https://github.com/shw097-team/Fabric.git (no credentials in the URL)",
+    "one branch + one commit + one Draft PR created on the remote repository",
+    "lane_runs/**, R6_DELIVERY/**, R6_CHECKER/** written under the noncanonical handover root",
+    "no credential content read or printed; the token was supplied only through an inline credential helper (git) and a temporary curl config file (API)"
+  ],
+  "remaining_blockers": [
+    "Owner/external acceptance of the checker verdict (PENDING_OWNER) and of the Draft PR",
+    "per-path approval list still PROPOSAL (exact changed paths / branch / reviewer / revert plan)",
+    "G-A..G-H: 0/8 executed (no real receipts)",
+    "221 requirement cases: 0 executed (REAL_RUNNER_NOT_BOUND)",
+    "AUD 24: 0/24 closed",
+    "Fresh G1 certification (HITL)",
+    "PKG document-verifier source #6: FAIL_CLOSED (original bytes unreproducible)"
+  ],
+  "deviations_carried": [
+    "DEV-R6-1 PLAN runtime model (opencode-go/deepseek-v4.1-flash) vs mandated openai-codex/gpt-6.1-sol medium",
+    "DEV-R6-2 PKG source #6 unreproducible",
+    "DEV-R6-3 codex_executable declaration drift; documented --codex-executable override used, pin untouched",
+    "DEV-R6-4 dispatcher ok=false ERR_NO_ARM_EMITTED_NONCE on both lanes despite corroborated arm binding",
+    "DEV-R6-5 credential-posture detector INCONCLUSIVE (WARN_CONTINUE), not a pass",
+    "DEV-R6-6 checker attempt 2 dispatched at the lane's read-only role default; needed an explicit sandbox escalation to persist a file-backed verdict"
+  ]
+}
