@@ -1,0 +1,50 @@
+diff --git "a/C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\RAW\\pre_change\\pipeline.py" "b/C:\\Projects\\Agent_Workspace\\PIPD\\src\\pipd_ls_sp\\pipeline.py"
+index 7f21aa8..30ce70c 100644
+--- "a/C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\RAW\\pre_change\\pipeline.py"
++++ "b/C:\\Projects\\Agent_Workspace\\PIPD\\src\\pipd_ls_sp\\pipeline.py"
+@@ -188,6 +188,45 @@ def strip_sidecar(record: dict[str, Any]) -> dict[str, Any]:
+     return {k: v for k, v in record.items() if not k.startswith("_")}
+ 
+ 
++# ---------------------------------------------------------------- validation wiring (R7-0)
++def frozen_validation_context(pi: dict[str, Any]) -> dict[str, Any]:
++    """Deterministic frozen context (profile requirement, oracle expectations, trace endpoint
++    digests) derived from a PI package, for `validate.validate_bundle(..., frozen_context=...)`.
++
++    Every value is read from the record the caller already holds; no LLM, network or clock is
++    consulted. This is how the pipeline PASSES the frozen context the R7-0 validator binds to.
++    """
++    from . import validate as _validate
++    return _validate.derive_frozen_context(pi)
++
++
++def validate_pi(pi: dict[str, Any], schemas_dir: Path | None = None) -> dict[str, Any]:
++    """Validate a PI package - the PI-PKG record, its ProfileBinding, every RequirementAtom and
++    every TraceLink - against the frozen context derived from itself.
++
++    Deterministic only. This is the pipeline-level entrypoint that threads the optional frozen
++    context through to the hardened `semantic_invariants`, so the trace-digest / oracle-expected /
++    profile-assurance bindings are checked on the compiler's own output.
++    """
++    from . import validate as _validate
++    ctx = _validate.derive_frozen_context(pi)
++    findings: list[dict[str, str]] = list(
++        _validate.validate_bundle({"PI-PKG": strip_sidecar(pi)}, schemas_dir, ctx)["findings"])
++    ssc = pi.get("stable_semantic_contract") or {}
++    members: list[tuple[str, dict[str, Any]]] = []
++    if isinstance(ssc.get("profile_binding"), dict):
++        members.append(("ProfileBinding", ssc["profile_binding"]))
++    members += [("RequirementAtom", a) for a in (ssc.get("atoms") or []) if isinstance(a, dict)]
++    members += [("TraceLink", t) for t in (pi.get("trace") or []) if isinstance(t, dict)]
++    for contract, rec in members:
++        for f in _validate.validate_record(contract, rec, schemas_dir):
++            findings.append({"contract": contract, "kind": "SCHEMA", "detail": f})
++        for f in _validate.semantic_invariants(contract, rec, ctx):
++            findings.append({"contract": contract, "kind": "SEMANTIC", "detail": f})
++    return {"verdict": "PASS" if not findings else "FAIL",
++            "checked": 1 + len(members), "findings": findings}
++
++
+ # ---------------------------------------------------------------- PD
+ def bind_pd(pi: dict[str, Any], repo_context: dict[str, Any] | None) -> dict[str, Any]:
+     """Late-bind PD against a REAL repository context (R-AUD-009).

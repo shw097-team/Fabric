@@ -1,0 +1,80 @@
+{
+  "schema": "CNV-PIPD-LS-SP-20261015/R6R7-POST-COMMIT-READBACK/1",
+  "generated_local": "2026-10-15T20:41:15+08:00",
+  "generated_utc": "2026-10-15T12:41:15+00:00",
+  "purpose": "AR-07: bind the published head to evidence held OUTSIDE the commit, so no sha is self-referential",
+  "method": "GitHub REST API (tree/contents/pulls) + local recomputation of git blob ids from the source-of-truth files",
+  "repo": {
+    "name": "shw097-team/Fabric",
+    "pr": 3,
+    "state": "open",
+    "draft": true,
+    "base_sha": "266f8d65cf9b21c3b37c1c243946a5c828cf973b",
+    "head_before_repair": "e6a5ce5899edb62e37c2fb9bd340b43673903141",
+    "head_after_repair": "a10f7bea645792048e3415443d417ffa3c2ac890",
+    "commits_on_branch": 11,
+    "changed_files_reported_by_api": 581,
+    "reviews": 0,
+    "forced_push": false,
+    "local_main_touched": false,
+    "committer_time_of_repair_commit": "2026-10-15T20:39:38+08:00",
+    "committer_identity": "RP-002 HGK"
+  },
+  "published_bytes": {
+    "prefix": "EVIDENCE/CNV-PIPD-LS-SP-20261015/",
+    "remote_blobs_under_prefix": 581,
+    "manifest_tracked_inventory": 581,
+    "set_equality": true,
+    "set_difference": 0,
+    "remote_manifest_bytes": 195886,
+    "remote_manifest_sha256": "27ba42f7cb32d9f490d8897ef0205b0b70cd13bb2b7bc6344e717e5bffbd118b",
+    "remote_manifest_sha256_equals_local": true,
+    "blob_ids_recomputed_locally": 581,
+    "blob_id_mismatches": 0,
+    "interpretation": "581/581 remote blobs are byte-identical to the source-of-truth files: the M2 secret/scope scan performed on those same bytes therefore applies to what a downloader receives"
+  },
+  "repair_delta": {
+    "added": 14,
+    "modified": [
+      "EVIDENCE/CNV-PIPD-LS-SP-20261015/PACKET_MANIFEST.json",
+      "EVIDENCE/CNV-PIPD-LS-SP-20261015/R6_PUBLICATION_VERIFICATION.json"
+    ],
+    "deleted": 0,
+    "note": "no candidate blob and no failed receipt was modified or deleted; the 567 blobs that existed before the repair are untouched"
+  },
+  "m2_scan_at_final_head": {
+    "tool": {
+      "id": "m2_scan.py",
+      "version": "1.0.0",
+      "source_sha256": "acc2f08d92c9e72973ef3b51bf64c7beb8b7fc530c39132ac4766d0ed1f29951",
+      "executes_packet_content": false,
+      "note": "reads git objects only; never imports or runs anything from the packet"
+    },
+    "blobs_scanned": 581,
+    "bytes_scanned": 11096870,
+    "scan_digest": "cc7021f06c55e766069414168a5ce343c7a1247e052c6583c8e537d93a0dd619",
+    "scope_violations": 0,
+    "hard_secret_findings": 0,
+    "soft_candidates": 4,
+    "hard_patterns_used": [
+      "aws_access_key_id",
+      "aws_secret_access_key",
+      "github_pat_classic",
+      "github_pat_fine_grained",
+      "private_key_block",
+      "slack_token",
+      "openai_style_key",
+      "url_with_credentials"
+    ],
+    "credential_value_occurrences_in_packet": 0,
+    "verdict": "PASS"
+  },
+  "checks_for_the_external_acceptor": [
+    "GET /repos/shw097-team/Fabric/pulls/3 -> head == a10f7bea645792048e3415443d417ffa3c2ac890, base == 266f8d65cf9b21c3b37c1c243946a5c828cf973b, draft, open",
+    "GET git/trees/{head}?recursive=1 -> 581 blobs under the prefix; compare with PACKET_MANIFEST.json tracked_inventory (581)",
+    "download PACKET_MANIFEST.json and compare its sha256 with the value recorded here (195886 bytes)",
+    "recompute git blob ids for any subset of tracked_inventory from the repository's own blobs; 0 mismatches is the claim ceiling of this round"
+  ],
+  "claim_ceiling": "LOCAL_ORCHESTRATION + publication integrity. This is the mission's own readback, NOT an AO or maintainer verdict.",
+  "phase_note": "the M2 report carried INSIDE the packet (M2_TRUSTED_SCOPE_SECRETS.json) scans commit 68201cfe (phase A, 580 blobs, one commit before the final head, because that commit is what it had to audit). The scan at the final head (581 blobs) is deliberately kept OUTSIDE the commit as R6R7_M2_SCAN_AT_FINAL_HEAD.json and is summarised here, so the published pair never has to assert its own sha."
+}

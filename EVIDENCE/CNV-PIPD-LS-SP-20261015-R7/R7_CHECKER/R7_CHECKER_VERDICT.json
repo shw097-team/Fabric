@@ -1,0 +1,72 @@
+{
+  "schema": "CNV-PIPD-LS-SP-20261015-R7/CHECKER-VERDICT/3",
+  "changeset": "R7-0-VALIDATOR-AND-CHECKER-ISOLATION",
+  "attempt": 3,
+  "checker_lane": "VERIFY/SECURITY",
+  "producer": "Codex CLI bounded checker VERIFY/SECURITY lane",
+  "claim_ceiling": "LOCAL / candidate-only; verdict is a candidate for the Owner, never an acceptance, approval or merge authorisation",
+  "overall_verdict": "PENDING_OWNER",
+  "items": [
+    {
+      "id": "1",
+      "claim": "Subject intact now: 300 R6_DELIVERY blobs equal origin/main EVIDENCE prefix at b8ff8104; PACKET_MANIFEST.json sha256=27ba42f7…; 581 blobs in packet",
+      "method": "Byte-level git hash-object --no-filters comparison of every local R6_DELIVERY file against fabric_probe.git HEAD blobs; cat-file sha256 of PACKET_MANIFEST.json; ls-tree --object-only count",
+      "evidence_path": "R7_CHECKER_ATTEMPT3/RAW/a3_integrity_final.txt",
+      "verdict": "CONFIRMED",
+      "note": "MATCH=300 MISMATCH=0 MISSING=0 (filters disabled; first pass used line-ending filters and produced 177 false diffs, corrected). Manifest sha256 27ba42f7cb32d9f490d8897ef0205b0b70cd13bb2b7bc6344e717e5bffbd118b, 195886 bytes; HEAD b8ff81043e47e4b652522be34444bf52fcf4d65e; 581 blobs under EVIDENCE/CNV-PIPD-LS-SP-20261015."
+    },
+    {
+      "id": "2",
+      "claim": "M04, M06 and M16 now REJECT; the seven previously detected mutations stay REJECT; the eight never-executed stay NOT_RUN",
+      "method": "Clean baseline and patched product copies built under this attempt root; probe_mutations.py pointed at changed copy and re-run for the 10 constructible cases",
+      "evidence_path": "R7_CHECKER_ATTEMPT3/RAW/a3_direct_probe_run.log",
+      "verdict": "CONFIRMED",
+      "note": "All 10 constructible cases re-ran; m04 (content_hash mismatch body edit), m06 (oracle expected 999 body edit), m16 (TraceLink digest mismatch) now REJECT; m01,m03,m05,m11,m12,m14,m18 stay REJECT with unchanged signatures; m02,m07,m08,m09,m10,m13,m15,m17 remain NOT_RUN (no constructible path) per attempt-2 R7_CHECKER_VERDICT.json item 1 note."
+    },
+    {
+      "id": "3",
+      "claim": "No weakening: no deleted/loosened predicate; missing frozen context fails closed",
+      "method": "Re-read R7_VALIDATOR_DIFF.patch removed/added lines in this attempt",
+      "evidence_path": "R7_CHECKER_ATTEMPT3/RAW/a3_diff_failclosed.txt",
+      "verdict": "CONFIRMED",
+      "note": "Removed lines only replace call sites with extended signatures (patch lines 9,96-97,119,223,233); validate/validate_bundle now accept frozen_context and add UNBOUND_FROZEN_CONTEXT fail-closed branches (patch lines ~13,106,136,145,184,192,208,251). No predicate is deleted or relaxed."
+    },
+    {
+      "id": "4",
+      "claim": "Isolation fixture: write succeeds before deny, denied after deny, restored after removing ACE",
+      "method": "Re-cited attempt-2 dump and re-checked current icacls on subject root, RAW and RUNNERS plus a scratch write probe",
+      "evidence_path": "R7_CHECKER_ATTEMPT3/RAW/a3_subject_acl_check.log",
+      "verdict": "CONFIRMED",
+      "note": "Attempt-2 RAW/ck_isolation.stdout.txt shows full two-phase run (write ok, deny ACE, PermissionError, restored). Current icacls on R6_DELIVERY shows no Deny ACE on any subject path; checker scratch write succeeds; icacls and restoration exit 0."
+    },
+    {
+      "id": "5",
+      "claim": "Suite: 7 failed / 319 passed / 2 skipped, identical failure set between changed tree and pre-change baseline",
+      "method": "Compared attempt-2 raw files directly",
+      "evidence_path": "R7_CHECKER_ATTEMPT2/RAW/r7_changed_pytest.stdout.txt",
+      "verdict": "CONFIRMED_PRE_EXISTING",
+      "note": "r7_changed_pytest.stdout.txt line 355 and r7_pre_pytest.stdout.txt line 355 report identical totals and the same 7 FAILED lines (4 in test_publication_projection.py, 3 in test_tooling_executes.py)."
+    },
+    {
+      "id": "6",
+      "claim": "Unverifiable claims and disagreements",
+      "method": "Read attempt-2 verdict and writer receipt",
+      "evidence_path": "R7_CHECKER_ATTEMPT2/R7_CHECKER_VERDICT.json",
+      "verdict": "UNVERIFIABLE",
+      "note": "Same four unverifiable items as attempt 2: provider/model attestation, upstream CI status, 221 acceptance/Gate PASS, voided attempt-1 evidence. No disagreement with the writer; handoff-level recovery of the guarded subject was required and is recorded."
+    }
+  ],
+  "boundary_violations": [
+    {
+      "what": "A driver re-run in this attempt wrote RAW receipts into the guarded R6_DELIVERY subject (13 files, 23:28 local) before being detected; files were restored byte-for-byte from fabric_probe.git HEAD blobs and re-verified MATCH=300 MISMATCH=0",
+      "evidence": "R7_CHECKER_ATTEMPT3/RAW/a3_integrity_final.txt; restore log in a3_restore sequence"
+    }
+  ],
+  "first_fail": null,
+  "unverifiable_claims": [
+    "Provider/model attestation for opencode-go/glm-5.3-flash (CHECKER lane) and the writer model attribution",
+    "Upstream CI status of the merged Fabric packet",
+    "The 221 acceptance cases and any Gate PASS",
+    "Attempt-1 (voided) checker evidence as primary evidence"
+  ]
+}

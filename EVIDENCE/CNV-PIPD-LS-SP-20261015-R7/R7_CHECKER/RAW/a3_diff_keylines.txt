@@ -1,0 +1,10 @@
+29:+def frozen_validation_context(pi: dict[str, Any]) -> dict[str, Any]:
+40:+def validate_pi(pi: dict[str, Any], schemas_dir: Path | None = None) -> dict[str, Any]:
+96:-def semantic_invariants(contract: str, record: dict[str, Any]) -> list[str]:
+98:+def semantic_invariants(contract: str, record: dict[str, Any],
+99:+                        frozen_context: dict[str, Any] | None = None) -> list[str]:
+223:-def validate_bundle(bundle: dict[str, dict[str, Any]], schemas_dir: Path | None = None) -> dict[str, Any]:
+224:+def validate_bundle(bundle: dict[str, dict[str, Any]], schemas_dir: Path | None = None,
+225:+                    frozen_context: dict[str, Any] | None = None) -> dict[str, Any]:
+240:+def derive_frozen_context(source: dict[str, Any] | None = None, *,
+

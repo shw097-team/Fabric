@@ -1,0 +1,110 @@
+=== m01 ===
+{
+ "id": "M01",
+ "mutation": "narrative spoof / wrong trusted package sha",
+ "expected": "REJECT",
+ "observed": "REJECT",
+ "validator_verdict": "exit=20",
+ "first_fail": "{\"verdict\": \"FAIL_CLOSED\", \"reason\": \"TRUSTED_PACKAGE_SHA_MISMATCH\", \"exit\": 20}",
+ "raw_receipt": "RAW/mut_m01.json"
+}
+
+=== m03 ===
+{
+ "id": "M03",
+ "mutation": "IntentCard atom claim forged",
+ "expected": "REJECT",
+ "observed": "REJECT",
+ "validator_verdict": "PiSemanticFail",
+ "first_fail": "PI_SEMANTIC",
+ "raw_receipt": "RAW/mut_m03.json"
+}
+
+=== m04 ===
+{
+ "id": "M04",
+ "mutation": "ProfileBinding assurance downgraded ASSURED->LITE",
+ "expected": "REJECT",
+ "observed": "ACCEPT",
+ "validator_verdict": "PASS",
+ "first_fail": "NONE",
+ "raw_receipt": "RAW/mut_m04.json"
+}
+
+=== m05 ===
+{
+ "id": "M05",
+ "mutation": "PI acceptance oracle poisoned",
+ "expected": "REJECT",
+ "observed": "REJECT",
+ "validator_verdict": "FAIL",
+ "first_fail": "PI-PKG/: Additional properties are not allowed ('_profile_meta' was unexpected)",
+ "raw_receipt": "RAW/mut_m05.json"
+}
+
+=== m06 ===
+{
+ "id": "M06",
+ "mutation": "domain oracle expected changed to 999",
+ "expected": "REJECT",
+ "observed": "ACCEPT",
+ "validator_verdict": "PASS",
+ "first_fail": "NONE",
+ "raw_receipt": "RAW/mut_m06.json"
+}
+
+=== m11 ===
+{
+ "id": "M11",
+ "mutation": "false RELEASED claim via unguarded key",
+ "expected": "REJECT",
+ "observed": "REJECT",
+ "validator_verdict": "FAIL",
+ "first_fail": "ClaimCeiling: claims above LOCAL_QUALIFIED require a bound approval receipt AND a checker identity; a maker cannot mint them unilaterally",
+ "raw_receipt": "RAW/mut_m11.json"
+}
+
+=== m12 ===
+{
+ "id": "M12",
+ "mutation": "self-minted INDEPENDENT_PASS ceiling",
+ "expected": "REJECT",
+ "observed": "REJECT",
+ "validator_verdict": "FAIL",
+ "first_fail": "ClaimCeiling: claims above LOCAL_QUALIFIED require a bound approval receipt AND a checker identity; a maker cannot mint them unilaterally",
+ "raw_receipt": "RAW/mut_m12.json"
+}
+
+=== m14 ===
+{
+ "id": "M14",
+ "mutation": "fake repo snapshot head claim",
+ "expected": "REJECT",
+ "observed": "REJECT",
+ "validator_verdict": "StaleProvider",
+ "first_fail": "STALE_PROVIDER",
+ "raw_receipt": "RAW/mut_m14.json"
+}
+
+=== m16 ===
+{
+ "id": "M16",
+ "mutation": "trace atom digest mismatched",
+ "expected": "REJECT",
+ "observed": "ACCEPT",
+ "validator_verdict": "PASS",
+ "first_fail": "NONE",
+ "raw_receipt": "RAW/mut_m16.json"
+}
+
+=== m18 ===
+{
+ "id": "M18",
+ "mutation": "remove 22nd CAND / candidate_only=false",
+ "expected": "REJECT",
+ "observed": "REJECT",
+ "validator_verdict": "FAIL",
+ "first_fail": "WorkOrderCandidate/: Additional properties are not allowed ('workorder_id' was unexpected)",
+ "raw_receipt": "RAW/mut_m18.json"
+}
+

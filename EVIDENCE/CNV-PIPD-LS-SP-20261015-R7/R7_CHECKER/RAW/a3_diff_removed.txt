@@ -1,0 +1,7 @@
+9:-        out = validate.validate_bundle(bundle, root / "schemas")
+96:-def semantic_invariants(contract: str, record: dict[str, Any]) -> list[str]:
+97:-    """Semantic invariants that a JSON Schema cannot express."""
+119:-    if contract in RELEASE_BOUND and ch and len(record) > 4:
+223:-def validate_bundle(bundle: dict[str, dict[str, Any]], schemas_dir: Path | None = None) -> dict[str, Any]:
+233:-        for f in semantic_invariants(contract, record):
+

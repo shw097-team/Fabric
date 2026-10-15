@@ -1,0 +1,102 @@
+{
+ "schema": "pipd-checker-isolation-denial-fixture/1",
+ "candidate_root": "C:\\Users\\user\\AppData\\Local\\Temp\\pipd-iso-selftest-_z9wgyss",
+ "subject_file": "C:\\Users\\user\\AppData\\Local\\Temp\\pipd-iso-selftest-_z9wgyss\\CANDIDATE_SUBJECT.txt",
+ "subject_created_by_fixture": true,
+ "subject_sha256_before": "d6931b0e9bc049e2686932cd1f536a6f9f02598c75b7764410522c312c6c2e4f",
+ "subject_sha256_after": "d6931b0e9bc049e2686932cd1f536a6f9f02598c75b7764410522c312c6c2e4f",
+ "subject_unchanged": true,
+ "user": "user",
+ "before": {
+  "wrote_new_file": true,
+  "new_file_detail": "wrote and removed .pipd_write_probe.tmp",
+  "modified_existing_file": true,
+  "modify_detail": "appended and restored a byte"
+ },
+ "deny_ace": {
+  "operation": "deny_write_tree",
+  "targets": 2,
+  "failed": 0,
+  "commands": [
+   {
+    "command": [
+     "icacls",
+     "C:\\Users\\user\\AppData\\Local\\Temp\\pipd-iso-selftest-_z9wgyss\\CANDIDATE_SUBJECT.txt",
+     "/deny",
+     "user:(WD,AD)"
+    ],
+    "exit": 0,
+    "stdout": "processed file: C:\\Users\\user\\AppData\\Local\\Temp\\pipd-iso-selftest-_z9wgyss\\CANDIDATE_SUBJECT.txt\nSuccessfully processed 1 files; Failed processing 0 files",
+    "stderr": ""
+   },
+   {
+    "command": [
+     "icacls",
+     "C:\\Users\\user\\AppData\\Local\\Temp\\pipd-iso-selftest-_z9wgyss",
+     "/deny",
+     "user:(WD,AD)"
+    ],
+    "exit": 0,
+    "stdout": "processed file: C:\\Users\\user\\AppData\\Local\\Temp\\pipd-iso-selftest-_z9wgyss\nSuccessfully processed 1 files; Failed processing 0 files",
+    "stderr": ""
+   }
+  ],
+  "command": [
+   "icacls",
+   "<tree, files+dirs+root>",
+   "/deny",
+   "user:(WD,AD)"
+  ],
+  "exit": 0,
+  "stderr": ""
+ },
+ "after": {
+  "wrote_new_file": false,
+  "new_file_detail": "PermissionError: [Errno 13] Permission denied: 'C:\\\\Users\\\\user\\\\AppData\\\\Local\\\\Temp\\\\pipd-iso-selftest-_z9wgyss\\\\.pipd_write_probe.tmp'",
+  "modified_existing_file": false,
+  "modify_detail": "PermissionError: [Errno 13] Permission denied: 'C:\\\\Users\\\\user\\\\AppData\\\\Local\\\\Temp\\\\pipd-iso-selftest-_z9wgyss\\\\CANDIDATE_SUBJECT.txt'",
+  "read_subject": true,
+  "read_detail": "read 26 bytes"
+ },
+ "before_read": {
+  "read_subject": true,
+  "detail": "read 26 bytes"
+ },
+ "read_preserved": true,
+ "remove_deny_ace": {
+  "operation": "remove_deny_tree",
+  "targets": 2,
+  "failed": 0,
+  "commands": [
+   {
+    "command": [
+     "icacls",
+     "C:\\Users\\user\\AppData\\Local\\Temp\\pipd-iso-selftest-_z9wgyss",
+     "/remove:d",
+     "user"
+    ],
+    "exit": 0,
+    "stdout": "processed file: C:\\Users\\user\\AppData\\Local\\Temp\\pipd-iso-selftest-_z9wgyss\nSuccessfully processed 1 files; Failed processing 0 files",
+    "stderr": ""
+   },
+   {
+    "command": [
+     "icacls",
+     "C:\\Users\\user\\AppData\\Local\\Temp\\pipd-iso-selftest-_z9wgyss\\CANDIDATE_SUBJECT.txt",
+     "/remove:d",
+     "user"
+    ],
+    "exit": 0,
+    "stdout": "processed file: C:\\Users\\user\\AppData\\Local\\Temp\\pipd-iso-selftest-_z9wgyss\\CANDIDATE_SUBJECT.txt\nSuccessfully processed 1 files; Failed processing 0 files",
+    "stderr": ""
+   }
+  ],
+  "exit": 0
+ },
+ "restored": {
+  "wrote": true,
+  "detail": "wrote and removed .pipd_write_probe.tmp"
+ },
+ "enforcement": "ENFORCED",
+ "verdict": "DENIED"
+}

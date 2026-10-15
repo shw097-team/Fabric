@@ -1,0 +1,257 @@
+{
+ "schema": "CNV-PIPD-LS-SP-20261015-R7/ISOLATION-PROOF/1",
+ "denial_fixture": {
+  "schema": "pipd-checker-isolation-denial-fixture/1",
+  "candidate_root": "C:\\Users\\user\\AppData\\Local\\Temp\\pipd-candidate-sandbox-zn707ftg",
+  "subject_file": "C:\\Users\\user\\AppData\\Local\\Temp\\pipd-candidate-sandbox-zn707ftg\\SUBJECT.json",
+  "subject_created_by_fixture": false,
+  "subject_sha256_before": "90ebd28429510a31d40791ead4406af297d98ee034dda1c46970c6d1478ad301",
+  "subject_sha256_after": "90ebd28429510a31d40791ead4406af297d98ee034dda1c46970c6d1478ad301",
+  "subject_unchanged": true,
+  "user": "user",
+  "before": {
+   "wrote_new_file": true,
+   "new_file_detail": "wrote and removed .pipd_write_probe.tmp",
+   "modified_existing_file": true,
+   "modify_detail": "appended and restored a byte"
+  },
+  "deny_ace": {
+   "operation": "deny_write_tree",
+   "targets": 5,
+   "failed": 0,
+   "commands": [
+    {
+     "command": [
+      "icacls",
+      "C:\\Users\\user\\AppData\\Local\\Temp\\pipd-candidate-sandbox-zn707ftg\\src\\candidate.py",
+      "/deny",
+      "user:(WD,AD)"
+     ],
+     "exit": 0,
+     "stdout": "processed file: C:\\Users\\user\\AppData\\Local\\Temp\\pipd-candidate-sandbox-zn707ftg\\src\\candidate.py\nSuccessfully processed 1 files; Failed processing 0 files",
+     "stderr": ""
+    },
+    {
+     "command": [
+      "icacls",
+      "C:\\Users\\user\\AppData\\Local\\Temp\\pipd-candidate-sandbox-zn707ftg\\SUBJECT.json",
+      "/deny",
+      "user:(WD,AD)"
+     ],
+     "exit": 0,
+     "stdout": "processed file: C:\\Users\\user\\AppData\\Local\\Temp\\pipd-candidate-sandbox-zn707ftg\\SUBJECT.json\nSuccessfully processed 1 files; Failed processing 0 files",
+     "stderr": ""
+    },
+    {
+     "command": [
+      "icacls",
+      "C:\\Users\\user\\AppData\\Local\\Temp\\pipd-candidate-sandbox-zn707ftg\\README.md",
+      "/deny",
+      "user:(WD,AD)"
+     ],
+     "exit": 0,
+     "stdout": "processed file: C:\\Users\\user\\AppData\\Local\\Temp\\pipd-candidate-sandbox-zn707ftg\\README.md\nSuccessfully processed 1 files; Failed processing 0 files",
+     "stderr": ""
+    },
+    {
+     "command": [
+      "icacls",
+      "C:\\Users\\user\\AppData\\Local\\Temp\\pipd-candidate-sandbox-zn707ftg\\src",
+      "/deny",
+      "user:(WD,AD)"
+     ],
+     "exit": 0,
+     "stdout": "processed file: C:\\Users\\user\\AppData\\Local\\Temp\\pipd-candidate-sandbox-zn707ftg\\src\nSuccessfully processed 1 files; Failed processing 0 files",
+     "stderr": ""
+    },
+    {
+     "command": [
+      "icacls",
+      "C:\\Users\\user\\AppData\\Local\\Temp\\pipd-candidate-sandbox-zn707ftg",
+      "/deny",
+      "user:(WD,AD)"
+     ],
+     "exit": 0,
+     "stdout": "processed file: C:\\Users\\user\\AppData\\Local\\Temp\\pipd-candidate-sandbox-zn707ftg\nSuccessfully processed 1 files; Failed processing 0 files",
+     "stderr": ""
+    }
+   ],
+   "command": [
+    "icacls",
+    "<tree, files+dirs+root>",
+    "/deny",
+    "user:(WD,AD)"
+   ],
+   "exit": 0,
+   "stderr": ""
+  },
+  "after": {
+   "wrote_new_file": false,
+   "new_file_detail": "PermissionError: [Errno 13] Permission denied: 'C:\\\\Users\\\\user\\\\AppData\\\\Local\\\\Temp\\\\pipd-candidate-sandbox-zn707ftg\\\\.pipd_write_probe.tmp'",
+   "modified_existing_file": false,
+   "modify_detail": "PermissionError: [Errno 13] Permission denied: 'C:\\\\Users\\\\user\\\\AppData\\\\Local\\\\Temp\\\\pipd-candidate-sandbox-zn707ftg\\\\SUBJECT.json'",
+   "read_subject": true,
+   "read_detail": "read 26 bytes"
+  },
+  "before_read": {
+   "read_subject": true,
+   "detail": "read 26 bytes"
+  },
+  "read_preserved": true,
+  "remove_deny_ace": {
+   "operation": "remove_deny_tree",
+   "targets": 5,
+   "failed": 0,
+   "commands": [
+    {
+     "command": [
+      "icacls",
+      "C:\\Users\\user\\AppData\\Local\\Temp\\pipd-candidate-sandbox-zn707ftg",
+      "/remove:d",
+      "user"
+     ],
+     "exit": 0,
+     "stdout": "processed file: C:\\Users\\user\\AppData\\Local\\Temp\\pipd-candidate-sandbox-zn707ftg\nSuccessfully processed 1 files; Failed processing 0 files",
+     "stderr": ""
+    },
+    {
+     "command": [
+      "icacls",
+      "C:\\Users\\user\\AppData\\Local\\Temp\\pipd-candidate-sandbox-zn707ftg\\src",
+      "/remove:d",
+      "user"
+     ],
+     "exit": 0,
+     "stdout": "processed file: C:\\Users\\user\\AppData\\Local\\Temp\\pipd-candidate-sandbox-zn707ftg\\src\nSuccessfully processed 1 files; Failed processing 0 files",
+     "stderr": ""
+    },
+    {
+     "command": [
+      "icacls",
+      "C:\\Users\\user\\AppData\\Local\\Temp\\pipd-candidate-sandbox-zn707ftg\\README.md",
+      "/remove:d",
+      "user"
+     ],
+     "exit": 0,
+     "stdout": "processed file: C:\\Users\\user\\AppData\\Local\\Temp\\pipd-candidate-sandbox-zn707ftg\\README.md\nSuccessfully processed 1 files; Failed processing 0 files",
+     "stderr": ""
+    },
+    {
+     "command": [
+      "icacls",
+      "C:\\Users\\user\\AppData\\Local\\Temp\\pipd-candidate-sandbox-zn707ftg\\SUBJECT.json",
+      "/remove:d",
+      "user"
+     ],
+     "exit": 0,
+     "stdout": "processed file: C:\\Users\\user\\AppData\\Local\\Temp\\pipd-candidate-sandbox-zn707ftg\\SUBJECT.json\nSuccessfully processed 1 files; Failed processing 0 files",
+     "stderr": ""
+    },
+    {
+     "command": [
+      "icacls",
+      "C:\\Users\\user\\AppData\\Local\\Temp\\pipd-candidate-sandbox-zn707ftg\\src\\candidate.py",
+      "/remove:d",
+      "user"
+     ],
+     "exit": 0,
+     "stdout": "processed file: C:\\Users\\user\\AppData\\Local\\Temp\\pipd-candidate-sandbox-zn707ftg\\src\\candidate.py\nSuccessfully processed 1 files; Failed processing 0 files",
+     "stderr": ""
+    }
+   ],
+   "exit": 0
+  },
+  "restored": {
+   "wrote": true,
+   "detail": "wrote and removed .pipd_write_probe.tmp"
+  },
+  "enforcement": "ENFORCED",
+  "verdict": "DENIED"
+ },
+ "copy_based_review": {
+  "prepare": {
+   "mode": "COPY_BASED_WORKAROUND",
+   "candidate_root": "C:\\Users\\user\\AppData\\Local\\Temp\\pipd-candidate-sandbox-zn707ftg",
+   "review_root": "C:\\Users\\user\\AppData\\Local\\Temp\\pipd-iso-review-l2_1k3ci\\subject",
+   "scratch_root": "C:\\Users\\user\\AppData\\Local\\Temp\\pipd-iso-review-l2_1k3ci\\scratch",
+   "enforcement": "ENFORCED",
+   "note": "checker reviews the read-only copy at review_root and writes only under scratch_root; the live candidate root was read, never written"
+  },
+  "deny_ace_exit": 0,
+  "write_into_review_copy": {
+   "wrote": false,
+   "detail": "PermissionError: [Errno 13] Permission denied: 'C:\\\\Users\\\\user\\\\AppData\\\\Local\\\\Temp\\\\pipd-iso-review-l2_1k3ci\\\\subject\\\\src\\\\candidate.py'"
+  },
+  "write_into_scratch": {
+   "wrote": true,
+   "detail": "wrote 3 bytes to checker_notes.txt"
+  },
+  "release": {
+   "removed_deny": {
+    "operation": "remove_deny_tree",
+    "targets": 5,
+    "failed": 0,
+    "commands": [
+     {
+      "command": [
+       "icacls",
+       "C:\\Users\\user\\AppData\\Local\\Temp\\pipd-iso-review-l2_1k3ci\\subject",
+       "/remove:d",
+       "user"
+      ],
+      "exit": 0,
+      "stdout": "processed file: C:\\Users\\user\\AppData\\Local\\Temp\\pipd-iso-review-l2_1k3ci\\subject\nSuccessfully processed 1 files; Failed processing 0 files",
+      "stderr": ""
+     },
+     {
+      "command": [
+       "icacls",
+       "C:\\Users\\user\\AppData\\Local\\Temp\\pipd-iso-review-l2_1k3ci\\subject\\src",
+       "/remove:d",
+       "user"
+      ],
+      "exit": 0,
+      "stdout": "processed file: C:\\Users\\user\\AppData\\Local\\Temp\\pipd-iso-review-l2_1k3ci\\subject\\src\nSuccessfully processed 1 files; Failed processing 0 files",
+      "stderr": ""
+     },
+     {
+      "command": [
+       "icacls",
+       "C:\\Users\\user\\AppData\\Local\\Temp\\pipd-iso-review-l2_1k3ci\\subject\\README.md",
+       "/remove:d",
+       "user"
+      ],
+      "exit": 0,
+      "stdout": "processed file: C:\\Users\\user\\AppData\\Local\\Temp\\pipd-iso-review-l2_1k3ci\\subject\\README.md\nSuccessfully processed 1 files; Failed processing 0 files",
+      "stderr": ""
+     },
+     {
+      "command": [
+       "icacls",
+       "C:\\Users\\user\\AppData\\Local\\Temp\\pipd-iso-review-l2_1k3ci\\subject\\SUBJECT.json",
+       "/remove:d",
+       "user"
+      ],
+      "exit": 0,
+      "stdout": "processed file: C:\\Users\\user\\AppData\\Local\\Temp\\pipd-iso-review-l2_1k3ci\\subject\\SUBJECT.json\nSuccessfully processed 1 files; Failed processing 0 files",
+      "stderr": ""
+     },
+     {
+      "command": [
+       "icacls",
+       "C:\\Users\\user\\AppData\\Local\\Temp\\pipd-iso-review-l2_1k3ci\\subject\\src\\candidate.py",
+       "/remove:d",
+       "user"
+      ],
+      "exit": 0,
+      "stdout": "processed file: C:\\Users\\user\\AppData\\Local\\Temp\\pipd-iso-review-l2_1k3ci\\subject\\src\\candidate.py\nSuccessfully processed 1 files; Failed processing 0 files",
+      "stderr": ""
+     }
+    ],
+    "exit": 0
+   },
+   "deleted_copy": "C:\\Users\\user\\AppData\\Local\\Temp\\pipd-iso-review-l2_1k3ci\\subject"
+  },
+  "verdict": "DENIED"
+ }
+}

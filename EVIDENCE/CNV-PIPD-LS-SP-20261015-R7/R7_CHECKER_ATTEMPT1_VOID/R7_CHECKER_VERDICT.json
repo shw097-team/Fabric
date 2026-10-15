@@ -1,0 +1,103 @@
+{
+  "schema": "CNV-PIPD-LS-SP-20261015-R7/CHECKER-VERDICT/1",
+  "changeset": "R7-0-VALIDATOR-AND-CHECKER-ISOLATION",
+  "checker_lane": "VERIFY/SECURITY (Codex CLI, provider/model opencode-go/glm-5.3-flash)",
+  "generated_utc": "2026-10-15T14:12:00+00:00",
+  "claim_ceiling": "LOCAL, candidate verdict for the Owner",
+  "overall_verdict": "PENDING_OWNER",
+  "checks": [
+    {
+      "id": "C1_mutation_rerun",
+      "claim": "The PIPD bound validator now rejects M04, M06, M16 that were previously accepted.",
+      "method": "Re-run the R6 mutation driver (run_mutations.py -> probe_mutations.py m01..m18) against the changed tree, then read each per-mutation stdout.",
+      "command": "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/R6_DELIVERY/RUNNERS/run_mutations.py",
+      "raw_evidence_ref": "RAW/check01_mutations_r6runner.stdout.txt, RAW/check01c_probe_m04.stdout.txt, RAW/check01c_probe_m06.stdout.txt, RAW/check01c_probe_m16.stdout.txt, RAW/check01b_git_status.txt",
+      "result": "CONFIRMED",
+      "note": "executed=10 detected=10 not_detected=0 not_run=8. M01/M03/M05/M11/M12/M14/M18 remain REJECT; M04/M06/M16 now REJECT; M02/M07/M08/M09/M10/M13/M15/M17 remain NOT_RUN. First-fail for M04/M06/M16 is the new self-digest predicate ('content_hash does not match the record body')."
+    },
+    {
+      "id": "C2_diff_review",
+      "claim": "The diff strengthens without weakening pre-existing predicates; no LLM/network/clock inside the validation path.",
+      "method": "Read the writer's unified diff and re-diff raw pre-change snapshots vs live files; inspect the full post-change validate.py/pipeline.py/cli.py for imports, network, LLM, or clock use.",
+      "command": "git diff --no-index RAW/pre_change/validate.py src/pipd_ls_sp/validate.py (same for pipeline.py, cli.py)",
+      "raw_evidence_ref": "RAW/check02_diff_validate.txt, RAW/check02_diff_pipeline.txt, RAW/check02_diff_cli.txt",
+      "result": "CONFIRMED",
+      "note": "Additive only: DIGEST_BOUND extends RELEASE_BOUND, optional frozen_context param, new ProfileBinding/RequirementAtom/TraceLink sub-predicates, new derive_frozen_context and pipeline.validate_pi. No prior predicate removed, relaxed, or made non-deterministic. No LLM, network, or clock import anywhere in the changed files."
+    },
+    {
+      "id": "C3_fail_closed",
+      "claim": "With frozen context unavailable the validator fails closed with an explicit finding.",
+      "method": "Run the writer's probe_r7_strong.py and the checker's own pre-change/adapted probes; observe UNBOUND_FROZEN_CONTEXT and the hard self-digest rejections.",
+      "command": "RAW/probe_r7_strong.py (writer) and RAW/check09_pre_change_probes.py (checker)",
+      "raw_evidence_ref": "RAW/check04_probe_r7_strong.stdout.txt, RAW/check09_pre_change_probes.stdout.txt",
+      "result": "CONFIRMED",
+      "note": "M16-strong no-ctx -> TraceLink: UNBOUND_FROZEN_CONTEXT; M06-strong no-ctx -> oracle.expected 999 contradicts clause polarity; M04-strong no-ctx -> assurance weaker than frozen requirement; PROFILE-unknown -> UNBOUND_FROZEN_CONTEXT."
+    },
+    {
+      "id": "C4_positive_regression",
+      "claim": "Valid, untampered records still pass.",
+      "method": "Run the writer's validator selftest and the targeted pytest subset that exists at both pre- and post-change; confirm PASS on positives and 44 passed.",
+      "command": "RAW/probe_r7_validator.py then write_pos = validate_bundle with derived ctx = pipeline_validate_pi(...) on an intact PI; pytest tests/test_s1_lite_slice.py tests/test_negative_and_rollback.py tests/test_technology_admission.py tests/test_tqaep_design_positive.py tests/test_cli_typed_errors.py -q",
+      "raw_evidence_ref": "RAW/check03_probe_r7_validator.stdout.txt",
+      "result": "CONFIRMED",
+      "note": "POSITIVE validate_pi verdict: PASS checked: 10 findings: 0. M16-positive, M06-positive, M04-positive all PASS. Targeted pytest: 44 passed, 3 subtests passed in 7.40s."
+    },
+    {
+      "id": "C5_archive_untouched",
+      "claim": "Merged archive prefix EVIDENCE/CNV-PIPD-LS-SP-20261015 is unchanged at main b8ff8104 (581 blobs, PACKET_MANIFEST sha256 27ba42f7...).",
+      "method": "Locate the real host repository, then count objects under the prefix and read main ref HEAD.",
+      "command": "git ls-tree -r --object-only refs/remotes/origin/main -- EVIDENCE/CNV-PIPD-LS-SP-20261015 | Measure-Object; git rev-parse refs/remotes/origin/main; git diff --stat HEAD refs/remotes/origin/main -- EVIDENCE/CNV-PIPD-LS-SP-20261015",
+      "raw_evidence_ref": "RAW/check06_repo_census.txt, RAW/check06_tree_files_origin_main.txt, RAW/check06_origin_main_log.txt, RAW/check06_head_vs_origin_diff.txt, RAW/check06_packet_manifest_content.txt",
+      "result": "CONFIRMED",
+      "note": "581 objects under the prefix; refs/remotes/origin/main is b8ff8104 (same as refs/heads/main); HEAD diff vs origin/main under the prefix is empty. The specific PACKET_MANIFEST sha256 marker 27ba42f7... itself could not be re-derived from any source this checker can access, so that specific hash value remains UNVERIFIABLE even though the 581-shape and the b8ff8104 baseline are confirmed."
+    },
+    {
+      "id": "C6_isolation_probe",
+      "claim": "Checker write-root isolation wrapper actually denies writes when applied from the checker position.",
+      "method": "Run the writer's checker_write_root_isolation.py selftest from the checker lane and read the post-deny write attempts, deny ACE, and cleanup.",
+      "command": "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe checker_write_root_isolation.py selftest",
+      "raw_evidence_ref": "RAW/check07_isolation_selftest.stdout.txt",
+      "result": "CONFIRMED",
+      "note": "Before: writing a new file and appending to the existing file both succeed. Deny ACE applied via icacls /deny user:(WD,AD) on root + subject file (2 targets, 0 failed). After: both writes denied (PermissionError [Errno 13]); read of the subject still succeeds (26 bytes). Deny ACE removed cleanly. Verdict DENIED; enforcement ENFORCED."
+    },
+    {
+      "id": "C7_pytest_full_changed",
+      "claim": "The maker's full product suite shows 7 failed / 319 passed / 2 skipped / 34 subtests passed.",
+      "method": "Run pytest tests -q in the live product tree.",
+      "command": "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe -m pytest tests -q",
+      "raw_evidence_ref": "RAW/check07_pytest_full_changed.stdout.txt, RAW/check07_pytest_full_changed.stderr.txt",
+      "result": "CONFIRMED",
+      "note": "7 failed, 319 passed, 2 skipped, 34 subtests passed in 410.77s. Failure names match the maker's list exactly (4 tests_publication_projection, 3 tests_tooling_executes)."
+    },
+    {
+      "id": "C8_prechange_repro",
+      "claim": "The 7 full-suite failures are pre-existing, not introduced by the change.",
+      "method": "Copy the live PIPD tree (excluding .hgk, .pytest_cache, __pycache__, *.pyc) into R7_CHECKER/pre, restore the three pre_change files, then rerun the full pytest suite and the targeted subset there.",
+      "command": "robocopy C:/Projects/Agent_Workspace/PIPD R7_CHECKER/pre /E /XD .hgk .pytest_cache __pycache__; Copy-Item RAW/pre_change/{validate,pipeline,cli}.py R7_CHECKER/pre/src/pipd_ls_sp/; pytest tests -q; pytest tests/test_s1_lite_slice.py tests/test_negative_and_rollback.py tests/test_technology_admission.py tests/test_tqaep_design_positive.py tests/test_cli_typed_errors.py -q",
+      "raw_evidence_ref": "RAW/check08_robocopy_pre.txt, RAW/check08_pytest_full_prechange.stdout.txt, RAW/check08_pytest_targeted_prechange.stdout.txt, RAW/check08_pytest_targeted_prechange.stderr.txt",
+      "result": "CONFIRMED",
+      "note": "Pre-change scratch tree reproduces the exact same 7 failures (7 failed / 319 passed / 2 skipped / 34 subtests passed, 355.90s) with the same cause: copytree of Windows venv junctions in .hgk/rounds (Errno 22 / WinError 1920). Targeted subset = 44 passed. So the 7 failures are CONFIRMED_PRE_EXISTING."
+    },
+    {
+      "id": "C9_pre_change_blindspots",
+      "claim": "Pre-change validator accepted the same three tamper classes that now get rejected.",
+      "method": "Run the checker's own pre-change probe script against the pre-change scratch tree and observe PASS for M04/M06/M16 and PROFILE-unknown.",
+      "command": "python RAW/check09_pre_change_probes.py",
+      "raw_evidence_ref": "RAW/check09_pre_change_probes.stdout.txt",
+      "result": "CONFIRMED",
+      "note": "Pre-change: M16 PASS, M06 PASS, M04 PASS, PROFILE-unknown PASS. Post-change: all four fail closed. The blind spots are real and the hardening closes all four."
+    }
+  ],
+  "unverifiable_claims": [
+    "The specific PACKET_MANIFEST.json sha256 marker 27ba42f7cb32d9f490d8897ef0205b0b70cd13bb2b7bc6344e717e5bffbd118b: 581 objects under the prefix and main at b8ff8104 are independently confirmed, but this checker has no canonical content on hand to re-derive that exact overlay-sha256 value, so the marker itself stays UNVERIFIABLE.",
+    "The writer's own model identity ('opencode-go/deepseek-v4.1-flash') cannot be independently verified by this checker.",
+    "The claim that attempt 2 produced the work and was killed mid-pytest is an internal-lane event narration this checker cannot observe.",
+    "The claim that M02/M07/M08/M09/M10/M13/M15/M17 are necessarily NOT_RUN because their frozen source bytes are unreachable is a stated reason this checker did not re-execute each case and so cannot confirm or refute."
+  ],
+  "boundary_violations": [],
+  "first_fail": {
+    "M04": "ProfileBinding: content_hash does not match the record body (body edited without re-issuing identity)",
+    "M06": "RequirementAtom: content_hash does not match the record body (body edited without re-issuing identity)",
+    "M16": "TraceLink: content_hash does not match the record body (body edited without re-issuing identity)"
+  }
+}

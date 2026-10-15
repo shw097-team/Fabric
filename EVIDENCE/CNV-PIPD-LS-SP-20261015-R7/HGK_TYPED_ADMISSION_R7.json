@@ -1,0 +1,134 @@
+{
+  "schema": "CNV-PIPD-LS-SP-20261015-R7/HGK-TYPED-ADMISSION/1",
+  "project_id": "CNV-R7-VALIDATOR-HARDEN-R7VH",
+  "changeset": "R7-0-VALIDATOR-AND-CHECKER-ISOLATION",
+  "sources_present": 8,
+  "sources_missing": [],
+  "source_inventory": [
+    {
+      "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\WRITER_BRIEF_R7.md",
+      "bytes": 4961,
+      "sha256": "08d7b8f8c77d8a2c75ce96dffab4e529783bf76b40f031d04805640da0b0dd19"
+    },
+    {
+      "path": "C:\\Projects\\Agent_Workspace\\Fabric\\fabric-autonomous-research\\runs\\FAR-20261015-010-r6r7-closure-and-r7-slice\\ResearchSynthesis.md",
+      "bytes": 2192,
+      "sha256": "e58a800d4f51aa66b8f6274fad46460c37f3ef97101e96cbf2525d2ee9cb7006"
+    },
+    {
+      "path": "C:\\Projects\\Agent_Workspace\\Fabric\\fabric-autonomous-research\\runs\\FAR-20261015-010-r6r7-closure-and-r7-slice\\CandidateResearch.yaml",
+      "bytes": 4554,
+      "sha256": "b3c0a40807ec7f33270273b561cd44052ae4507e9b6a6fa5372a6e8c84a0fb35"
+    },
+    {
+      "path": "C:\\Projects\\Agent_Workspace\\Fabric\\fabric-autonomous-research\\runs\\FAR-20261015-010-r6r7-closure-and-r7-slice\\ProposedEvolution.yaml",
+      "bytes": 1190,
+      "sha256": "cd406705cefd0c960e6958c2985c1d88ad13abb6de4ba05cbcb7c8b0f4519d03"
+    },
+    {
+      "path": "C:\\Projects\\Agent_Workspace\\Fabric\\fabric-autonomous-research\\runs\\FAR-20261015-010-r6r7-closure-and-r7-slice\\ClaimLedger.tsv",
+      "bytes": 1585,
+      "sha256": "71d8f7c4a277ef48ae6ea3476ccc6126303ba899a7294047077457328a47d436"
+    },
+    {
+      "path": "C:\\Projects\\Agent_Workspace\\Fabric\\fabric-autonomous-research\\runs\\FAR-20261015-010-r6r7-closure-and-r7-slice\\ResearchRunReceipt.json",
+      "bytes": 3353,
+      "sha256": "179b4b8c56ab431e0b172d54abd5c2a6aec34ad10a028091a04f2d3b935bc5b5"
+    },
+    {
+      "path": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_Convergence_External_Independent_Acceptance_Report_20261015.md",
+      "bytes": 33616,
+      "sha256": "10caf4dbdb1993cd46ff2c50394dd01dfd5f34d635816f95e3d2e5ab6c566206"
+    },
+    {
+      "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\MUTATIONS_18.json",
+      "bytes": 9973,
+      "sha256": "52907b15819e0a6352262dd846086890324fc3a106c3968b9effa2ef38fe3087"
+    }
+  ],
+  "steps": [
+    {
+      "step": "start",
+      "result": "CREATED",
+      "state": "PROJECT_CREATED"
+    },
+    {
+      "step": "intake",
+      "status": "READY",
+      "source_count": 8,
+      "blocking_missing": [],
+      "conflicts": []
+    },
+    {
+      "step": "transition",
+      "to": "INTENT_BOUND",
+      "result": "OK"
+    },
+    {
+      "step": "transition",
+      "to": "REQUIREMENTS_READY",
+      "result": "OK"
+    },
+    {
+      "step": "transition",
+      "to": "DESIGN_READY",
+      "result": "OK"
+    },
+    {
+      "step": "plan",
+      "task_count": 2,
+      "titles": [
+        "Source discovery",
+        "Package and delivery"
+      ]
+    },
+    {
+      "step": "admit_workorders",
+      "result": {
+        "project_id": "CNV-R7-VALIDATOR-HARDEN-R7VH",
+        "workorders": [
+          "WO-TS-R7VH-01",
+          "WO-TS-R7VH-02"
+        ],
+        "count": 2
+      }
+    }
+  ],
+  "final_state": "WORKORDERS_ADMITTED",
+  "denominator": {
+    "project_id": "CNV-R7-VALIDATOR-HARDEN-R7VH",
+    "state": "WORKORDERS_ADMITTED",
+    "requirements_total": 1,
+    "requirements_frozen": 1,
+    "taskspecs_total": 2,
+    "workorders_total": 2,
+    "workorders_open": [
+      "WO-TS-R7VH-01",
+      "WO-TS-R7VH-02"
+    ],
+    "workorders_open_count": 2,
+    "acceptances_total": 1,
+    "acceptances_open": [
+      "ACC-REQ-CNV-R7-VALIDATOR-HARDEN-R7VH-PLAN"
+    ],
+    "acceptances_open_count": 1,
+    "required_active_capabilities": [
+      "openspec",
+      "gstack.plan-eng-review",
+      "gstack.review",
+      "gstack.qa",
+      "gstack.cso",
+      "gstack.ship",
+      "gstack.office-hours",
+      "gstack.retro"
+    ],
+    "required_active_capabilities_total": 8,
+    "required_active_capabilities_open": [],
+    "required_active_capabilities_open_count": 0,
+    "required_local_scope_open": 3,
+    "guard_required_workorders_terminal": false,
+    "denominator_available": true
+  },
+  "verdict": "ADMISSION_OK",
+  "checkpoint": "CK-R7VH-6CC76787"
+}

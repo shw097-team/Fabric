@@ -1,0 +1,46 @@
+{
+  "schema": "CNV-PIPD-LS-SP-20261015/R6R7-HANDOVER-STATE/1",
+  "round": "R6R7",
+  "changeset": "NARROW_REPAIR",
+  "generated_local": "2026-10-15T20:33:47+08:00",
+  "generated_utc": "2026-10-15T12:33:47+00:00",
+  "repo": {
+    "name": "shw097-team/Fabric",
+    "pr": 3,
+    "branch": "evidence/cnv-pipd-ls-sp-20261015-r6",
+    "base": "266f8d65cf9b21c3b37c1c243946a5c828cf973b",
+    "head_before_repair": "e6a5ce5899edb62e37c2fb9bd340b43673903141",
+    "head_after_repair": "BOUND_BY_POST_COMMIT_READBACK"
+  },
+  "hgk": {
+    "control_plane": "HG-KSEOS",
+    "admission_project": "CNV-R6R7-ARCHIVE-REPAIR-R6ARC2",
+    "state": "WORKORDERS_ADMITTED",
+    "checkpoint": "see HGK checkpoint after this round"
+  },
+  "compiler": {
+    "contract": "C0_C9_CONTRACT_R6R7.json",
+    "contract_sha256": "e8a34e2f3ecbeec96499096c9463eafc895e912ea1e0e22a0c126551463a8f97",
+    "verdict": "PROMPT_COMPILE_PASS",
+    "stages": [
+      "lint",
+      "activation",
+      "acceptance",
+      "compile"
+    ]
+  },
+  "top_level_verdicts": {
+    "archive_stage": "APPROVE_STAGE_CLOSURE (external reviewer; this round closes M1/M2, M3 pending human signature)",
+    "merge": "CONDITIONAL (M1+M2+M3)",
+    "full_convergence": "TEMP_CLOSED_CHALLENGE",
+    "production": "FAIL_CLOSED"
+  },
+  "not_claimed": [
+    "完整 Convergence",
+    "Production release",
+    "AO 簽核",
+    "八 Gate PASS",
+    "221 cases 已跑"
+  ],
+  "claim_ceiling": "LOCAL_ORCHESTRATION"
+}

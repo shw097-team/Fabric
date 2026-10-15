@@ -1,0 +1,12 @@
+{
+  "schema": "CNV-PIPD-LS-SP-20261015-R7/CHECKER-ATTEMPT-VOID/1",
+  "attempt": 1,
+  "dispatcher_code": "ERR_CHECKER_MUTATED_SUBJECT",
+  "reason": "the guarded subject changed during the turn: changed=14 removed=0",
+  "changed_files_root": "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/R6_DELIVERY/",
+  "changed_files": "13 x RAW/mut_m*.json|stdout.txt + RUNNERS/mutation_records.json",
+  "cause": "the re-run of the mutation driver wrote its raw receipts in place over the writer's frozen receipts",
+  "consequence": "the verdict produced in this attempt is VOID and must not be read as an independent verdict",
+  "repair": "workspace copies restored byte-for-byte from the merged packet (origin/main b8ff8104) - see R6_DELIVERY_RAW_RESTORE.json; re-run as attempt 2 under a root that cannot touch the subject",
+  "recorded_utc": "2026-10-15T14:21:19+00:00"
+}

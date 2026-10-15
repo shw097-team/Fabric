@@ -1,0 +1,11 @@
+schema: LOGICAL_FAR_RESEARCH_REQUEST_V1
+run_id: FAR-20261015-010-r6r7-closure-and-r7-slice
+workorder_ref: {id: WO-TS-R6ARC2-01, digest: see HGK_TYPED_ADMISSION_R6R7.json, note: R6R7 narrow-repair admission}
+decision_question: >- 本輪未閉合項中哪些必須立即工程化、R7 是否開跑、以及三個 workspace-only 收據是否必須發布進 REPO
+owner: human owner (shw097-team)
+task_class: RESEARCH_LITERATURE_REPO
+source_requirements: [pkg_authority, prompt_brief, external_review, repo_evidence, hgk_machine_truth]
+freshness_requirement: as-of 2026-10-15 (Asia/Taipei)
+budget_ref: local, no external spend
+security_boundary_ref: read-only; no credential material read; packet content never executed
+expected_decision_output: CandidateResearch + ProposedEvolution (execution plan) for the owner

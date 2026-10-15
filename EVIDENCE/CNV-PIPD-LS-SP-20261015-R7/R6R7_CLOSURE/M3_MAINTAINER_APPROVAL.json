@@ -1,0 +1,35 @@
+{
+  "schema": "CNV-PIPD-LS-SP-20261015/MAINTAINER-PREFIX-APPROVAL/2",
+  "status": "APPROVED_BY_OWNER_MAINTAINER",
+  "approval_kind": "ONE_TIME_PREFIX_APPROVAL_FOR_THIS_PR",
+  "approver": {
+    "identity": "Owner of shw097-team (human)",
+    "decision_channel": "interactive Owner decision in the governed Hermes session",
+    "decision_local": "2026-10-15T20:45:08+08:00",
+    "decision_utc": "2026-10-15T12:45:08+00:00",
+    "authorised_execution": "the Owner authorised the orchestration to mark PR #3 ready and perform the merge; the approval identity is the Owner, not the maker or the external reviewer"
+  },
+  "subject": {
+    "repo": "shw097-team/Fabric",
+    "pr": 3,
+    "branch": "evidence/cnv-pipd-ls-sp-20261015-r6",
+    "base_sha": "266f8d65cf9b21c3b37c1c243946a5c828cf973b",
+    "approved_head": "a10f7bea645792048e3415443d417ffa3c2ac890",
+    "approved_paths": [
+      "EVIDENCE/CNV-PIPD-LS-SP-20261015/**"
+    ],
+    "candidate_only": true,
+    "production_effect": "none",
+    "embedded_scripts": "archive artifacts only; MUST NOT be executed by any consumer or CI",
+    "rationale": "the review's M1 (exact publication set + currentness) and M2 (trusted scope/secrets, 581/581 blob ids recomputed, 0 hard findings) are complete and independently re-checkable; M3 is the single-prefix approval itself"
+  },
+  "explicitly_not_granted": [
+    "AO / Release authority",
+    "runtime or production promotion",
+    "permission to modify product/control/CI paths",
+    "permission to auto-execute packet content",
+    "any claim upgrade of PARTIAL_CHALLENGE / TEMP_CLOSED_CHALLENGE / FAIL_CLOSED"
+  ],
+  "rollback": "maintainer-authorised `git revert <merge-commit>` on main, or a new PR; never force-push main; a leaked credential would additionally require rotation",
+  "claim_ceiling": "LOCAL_ORCHESTRATION (the approval is the Owner's; the orchestration records and executes it)"
+}

@@ -1,0 +1,355 @@
+.....................................s.......................... [ 19%]
+............................................................... [ 38%]
+................................................s.............F.FFF..... [ 60%]
+......................................................................................F..F.F................................... [ 99%]
+..                                                                       [100%]
+================================== FAILURES ===================================
+__________________ CliSmoke.test_write_then_check_exits_zero __________________
+
+self = <tests.test_publication_projection.CliSmoke testMethod=test_write_then_check_exits_zero>
+
+    def test_write_then_check_exits_zero(self) -> None:
+        # The gate has no --out option, so preserve the repository projection bytes and restore
+        # them afterwards: running the suite must never leave PUBLICATION_PROJECTION_MANIFEST.json
+        # rewritten (its digest is part of the frozen publication record).
+        original = PROJECTION.read_bytes() if PROJECTION.exists() else None
+        try:
+            proc = subprocess.run(
+                [sys.executable, str(ROOT / "tools" / "build_publication_manifest.py"), "--write", "--check"],
+                capture_output=True, text=True,
+            )
+>           self.assertEqual(proc.returncode, 0, proc.stdout + proc.stderr)
+E           AssertionError: 1 != 0 : {"verdict": "FAIL", "reason": "cannot resolve ref 'r5-s4-candidate' in C:\\Projects\\Agent_Workspace\\PIPD\\.git"}
+
+tests\test_publication_projection.py:228: AssertionError
+______ CurrentTreeCoverage.test_attestation_build_then_verify_exits_zero ______
+
+self = <tests.test_publication_projection.CurrentTreeCoverage testMethod=test_attestation_build_then_verify_exits_zero>
+
+    def test_attestation_build_then_verify_exits_zero(self) -> None:
+        # The attestation CLI has an --out option; write the sidecar to a temp dir so the frozen
+        # repository bytes are never touched.
+        with tempfile.TemporaryDirectory() as tmp:
+            out = Path(tmp) / "PUBLICATION_SUBJECT_ATTESTATION.json"
+            proc = subprocess.run(
+                [sys.executable, str(ROOT / "tools" / "publication_attestation.py"),
+                 "--build", "--verify", "--out", str(out)],
+                capture_output=True, text=True,
+            )
+>           self.assertEqual(proc.returncode, 0, proc.stdout + proc.stderr)
+E           AssertionError: 1 != 0 : {"verdict": "FAIL", "reason": "cannot resolve ref 'r5-s4-candidate' in C:\\Projects\\Agent_Workspace\\PIPD\\.git"}
+
+tests\test_publication_projection.py:284: AssertionError
+_____ CurrentTreeCoverage.test_check_always_prints_current_tree_coverage ______
+
+self = <tests.test_publication_projection.CurrentTreeCoverage testMethod=test_check_always_prints_current_tree_coverage>
+
+    def test_check_always_prints_current_tree_coverage(self) -> None:
+        proc = subprocess.run(
+            [sys.executable, str(ROOT / "tools" / "build_publication_manifest.py"), "--check"],
+            capture_output=True, text=True,
+        )
+>       self.assertEqual(proc.returncode, 0, proc.stdout + proc.stderr)
+E       AssertionError: 1 != 0 : {"verdict": "FAIL", "reason": "cannot resolve ref 'r5-s4-candidate' in C:\\Projects\\Agent_Workspace\\PIPD\\.git"}
+
+tests\test_publication_projection.py:245: AssertionError
+_ CurrentTreeCoverage.test_current_check_fails_while_any_current_product_path_is_uncovered _
+
+self = <tests.test_publication_projection.CurrentTreeCoverage testMethod=test_current_check_fails_while_any_current_product_path_is_uncovered>
+
+    def test_current_check_fails_while_any_current_product_path_is_uncovered(self) -> None:
+        block, violations = B.check_current_coverage()
+        self.assertTrue(block["uncovered_count"] > 0,
+                        "expected some current product path without a disposition")
+        self.assertTrue(any("CURRENT_TREE_UNCOVERED" in v for v in violations), violations)
+        proc = subprocess.run(
+            [sys.executable, str(ROOT / "tools" / "build_publication_manifest.py"),
+             "--check", "--current"],
+            capture_output=True, text=True,
+        )
+        self.assertNotEqual(proc.returncode, 0, "an uncovered current path must fail --current")
+>       self.assertIn("CURRENT_TREE_UNCOVERED", proc.stdout)
+E       AssertionError: 'CURRENT_TREE_UNCOVERED' not found in ''
+
+tests\test_publication_projection.py:263: AssertionError
+___________________ TestToolingExecutes.test_cli_smoke_runs ___________________
+
+self = <tests.test_tooling_executes.TestToolingExecutes testMethod=test_cli_smoke_runs>
+
+    def test_cli_smoke_runs(self) -> None:
+        """The 13-command CLI surface must actually execute, not just import.
+    
+        Run inside a throwaway copy of the repo: the runner writes .hgk/artifacts/cli/CLI_SMOKE.json
+        by design, and a test that rewrites tracked evidence makes "tree clean after a test run"
+        impossible. The copy has every artifact the runner reads, so nothing is skipped.
+        """
+        import os as _os
+        import shutil as _sh
+        import tempfile as _tf
+        with _tf.TemporaryDirectory() as tmp:
+            dst = Path(tmp) / "repo"
+>           _sh.copytree(ROOT, dst, ignore=_sh.ignore_patterns(".git", "__pycache__", "*.db", "*.pyc"))
+
+tests\test_tooling_executes.py:51: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\shutil.py:573: in copytree
+    return _copytree(entries=entries, src=src, dst=dst, symlinks=symlinks,
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+entries = [<DirEntry '.agents'>, <DirEntry '.git'>, <DirEntry '.gitattributes'>, <DirEntry '.gitignore'>, <DirEntry '.hermes'>, <DirEntry '.hgk'>, ...]
+src = WindowsPath('C:/Projects/Agent_Workspace/PIPD')
+dst = WindowsPath('C:/Users/user/AppData/Local/Temp/tmpats_r25x/repo')
+symlinks = False
+ignore = <function ignore_patterns.<locals>._ignore_patterns at 0x000001AE04DBDB20>
+copy_function = <function copy2 at 0x000001AE015E1A80>
+ignore_dangling_symlinks = False, dirs_exist_ok = False
+
+    def _copytree(entries, src, dst, symlinks, ignore, copy_function,
+                  ignore_dangling_symlinks, dirs_exist_ok=False):
+        if ignore is not None:
+            ignored_names = ignore(os.fspath(src), [x.name for x in entries])
+        else:
+            ignored_names = ()
+    
+        os.makedirs(dst, exist_ok=dirs_exist_ok)
+        errors = []
+        use_srcentry = copy_function is copy2 or copy_function is copy
+    
+        for srcentry in entries:
+            if srcentry.name in ignored_names:
+                continue
+            srcname = os.path.join(src, srcentry.name)
+            dstname = os.path.join(dst, srcentry.name)
+            srcobj = srcentry if use_srcentry else srcname
+            try:
+                is_symlink = srcentry.is_symlink()
+                if is_symlink and os.name == 'nt':
+                    # Special check for directory junctions, which appear as
+                    # symlinks but we want to recurse.
+                    lstat = srcentry.stat(follow_symlinks=False)
+                    if lstat.st_reparse_tag == stat.IO_REPARSE_TAG_MOUNT_POINT:
+                        is_symlink = False
+                if is_symlink:
+                    linkto = os.readlink(srcname)
+                    if symlinks:
+                        # We can't just leave it to `copy_function` because legacy
+                        # code with a custom `copy_function` may rely on copytree
+                        # doing the right thing.
+                        os.symlink(linkto, dstname)
+                        copystat(srcobj, dstname, follow_symlinks=not symlinks)
+                    else:
+                        # ignore dangling symlink if the flag is on
+                        if not os.path.exists(linkto) and ignore_dangling_symlinks:
+                            continue
+                        # otherwise let the copy occur. copy2 will raise an error
+                        if srcentry.is_dir():
+                            copytree(srcobj, dstname, symlinks, ignore,
+                                     copy_function, ignore_dangling_symlinks,
+                                     dirs_exist_ok)
+                        else:
+                            copy_function(srcobj, dstname)
+                elif srcentry.is_dir():
+                    copytree(srcobj, dstname, symlinks, ignore, copy_function,
+                             ignore_dangling_symlinks, dirs_exist_ok)
+                else:
+                    # Will raise a SpecialFileError for unsupported file types
+                    copy_function(srcobj, dstname)
+            # catch the Error from the recursive copytree so that we can
+            # continue with other files
+            except Error as err:
+                errors.extend(err.args[0])
+            except OSError as why:
+                errors.append((srcname, dstname, str(why)))
+        try:
+            copystat(src, dst)
+        except OSError as why:
+            # Copying file access times may fail on Windows
+            if getattr(why, 'winerror', None) is None:
+                errors.append((src, dst, str(why)))
+        if errors:
+>           raise Error(errors)
+E           shutil.Error: [('C:\\Projects\\Agent_Workspace\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\v2\\venv_adjusted_record\\bin\\python', 'C:\\Users\\user\\AppData\\Local\\Temp\\tmpats_r25x\\repo\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\v2\\venv_adjusted_record\\bin\\python', "[Errno 22] Invalid argument: 'C:\\\\Projects\\\\Agent_Workspace\\\\PIPD\\\\.hgk\\\\rounds\\\\R5P-20261010-s4-post-challenge\\\\ao\\\\out\\\\v2\\\\venv_adjusted_record\\\\bin\\\\python'"), ('C:\\Projects\\Agent_Workspace\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\v2\\venv_adjusted_record\\bin\\python3', 'C:\\Users\\user\\AppData\\Local\\Temp\\tmpats_r25x\\repo\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\v2\\venv_adjusted_record\\bin\\python3', "[Errno 22] Invalid argument: 'C:\\\\Projects\\\\Agent_Workspace\\\\PIPD\\\\.hgk\\\\rounds\\\\R5P-20261010-s4-post-challenge\\\\ao\\\\out\\\\v2\\\\venv_adjusted_record\\\\bin\\\\python3'"), ('C:\\Projects\\Agent_Workspace\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\v2\\venv_adjusted_record\\bin\\python3.11', 'C:\\Users\\user\\AppData\\Local\\Temp\\tmpats_r25x\\repo\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\v2\\venv_adjusted_record\\bin\\python3.11', "[Errno 22] Invalid argument: 'C:\\\\Projects\\\\Agent_Workspace\\\\PIPD\\\\.hgk\\\\rounds\\\\R5P-20261010-s4-post-challenge\\\\ao\\\\out\\\\v2\\\\venv_adjusted_record\\\\bin\\\\python3.11'"), ('C:\\Projects\\Agent_Workspace\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\v2\\venv_adjusted_record\\lib64', 'C:\\Users\\user\\AppData\\Local\\Temp\\tmpats_r25x\\repo\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\v2\\venv_adjusted_record\\lib64', "[WinError 1920] 系統無法存取該檔案。: 'C:\\\\Projects\\\\Agent_Workspace\\\\PIPD\\\\.hgk\\\\rounds\\\\R5P-20261010-s4-post-challenge\\\\ao\\\\out\\\\v2\\\\venv_adjusted_record\\\\lib64'"), ('C:\\Projects\\Agent_Workspace\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\v2\\venv_control\\bin\\python', 'C:\\Users\\user\\AppData\\Local\\Temp\\tmpats_r25x\\repo\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\v2\\venv_control\\bin\\python', "[Errno 22] Invalid argument: 'C:\\\\Projects\\\\Agent_Workspace\\\\PIPD\\\\.hgk\\\\rounds\\\\R5P-20261010-s4-post-challenge\\\\ao\\\\out\\\\v2\\\\venv_control\\\\bin\\\\python'"), ('C:\\Projects\\Agent_Workspace\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\v2\\venv_control\\bin\\python3', 'C:\\Users\\user\\AppData\\Local\\Temp\\tmpats_r25x\\repo\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\v2\\venv_control\\bin\\python3', "[Errno 22] Invalid argument: 'C:\\\\Projects\\\\Agent_Workspace\\\\PIPD\\\\.hgk\\\\rounds\\\\R5P-20261010-s4-post-challenge\\\\ao\\\\out\\\\v2\\\\venv_control\\\\bin\\\\python3'"), ('C:\\Projects\\Agent_Workspace\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\v2\\venv_control\\bin\\python3.11', 'C:\\Users\\user\\AppData\\Local\\Temp\\tmpats_r25x\\repo\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\v2\\venv_control\\bin\\python3.11', "[Errno 22] Invalid argument: 'C:\\\\Projects\\\\Agent_Workspace\\\\PIPD\\\\.hgk\\\\rounds\\\\R5P-20261010-s4-post-challenge\\\\ao\\\\out\\\\v2\\\\venv_control\\\\bin\\\\python3.11'"), ('C:\\Projects\\Agent_Workspace\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\v2\\venv_control\\lib64', 'C:\\Users\\user\\AppData\\Local\\Temp\\tmpats_r25x\\repo\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\v2\\venv_control\\lib64', "[WinError 1920] 系統無法存取該檔案。: 'C:\\\\Projects\\\\Agent_Workspace\\\\PIPD\\\\.hgk\\\\rounds\\\\R5P-20261010-s4-post-challenge\\\\ao\\\\out\\\\v2\\\\venv_control\\\\lib64'"), ('C:\\Projects\\Agent_Workspace\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\v2\\venv_unchanged_record\\bin\\python', 'C:\\Users\\user\\AppData\\Local\\Temp\\tmpats_r25x\\repo\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\v2\\venv_unchanged_record\\bin\\python', "[Errno 22] Invalid argument: 'C:\\\\Projects\\\\Agent_Workspace\\\\PIPD\\\\.hgk\\\\rounds\\\\R5P-20261010-s4-post-challenge\\\\ao\\\\out\\\\v2\\\\venv_unchanged_record\\\\bin\\\\python'"), ('C:\\Projects\\Agent_Workspace\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\v2\\venv_unchanged_record\\bin\\python3', 'C:\\Users\\user\\AppData\\Local\\Temp\\tmpats_r25x\\repo\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\v2\\venv_unchanged_record\\bin\\python3', "[Errno 22] Invalid argument: 'C:\\\\Projects\\\\Agent_Workspace\\\\PIPD\\\\.hgk\\\\rounds\\\\R5P-20261010-s4-post-challenge\\\\ao\\\\out\\\\v2\\\\venv_unchanged_record\\\\bin\\\\python3'"), ('C:\\Projects\\Agent_Workspace\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\v2\\venv_unchanged_record\\bin\\python3.11', 'C:\\Users\\user\\AppData\\Local\\Temp\\tmpats_r25x\\repo\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\v2\\venv_unchanged_record\\bin\\python3.11', "[Errno 22] Invalid argument: 'C:\\\\Projects\\\\Agent_Workspace\\\\PIPD\\\\.hgk\\\\rounds\\\\R5P-20261010-s4-post-challenge\\\\ao\\\\out\\\\v2\\\\venv_unchanged_record\\\\bin\\\\python3.11'"), ('C:\\Projects\\Agent_Workspace\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\v2\\venv_unchanged_record\\lib64', 'C:\\Users\\user\\AppData\\Local\\Temp\\tmpats_r25x\\repo\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\v2\\venv_unchanged_record\\lib64', "[WinError 1920] 系統無法存取該檔案。: 'C:\\\\Projects\\\\Agent_Workspace\\\\PIPD\\\\.hgk\\\\rounds\\\\R5P-20261010-s4-post-challenge\\\\ao\\\\out\\\\v2\\\\venv_unchanged_record\\\\lib64'"), ('C:\\Projects\\Agent_Workspace\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\venv_adjusted_record\\bin\\python', 'C:\\Users\\user\\AppData\\Local\\Temp\\tmpats_r25x\\repo\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\venv_adjusted_record\\bin\\python', "[Errno 22] Invalid argument: 'C:\\\\Projects\\\\Agent_Workspace\\\\PIPD\\\\.hgk\\\\rounds\\\\R5P-20261010-s4-post-challenge\\\\ao\\\\out\\\\venv_adjusted_record\\\\bin\\\\python'"), ('C:\\Projects\\Agent_Workspace\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\venv_adjusted_record\\bin\\python3', 'C:\\Users\\user\\AppData\\Local\\Temp\\tmpats_r25x\\repo\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\venv_adjusted_record\\bin\\python3', "[Errno 22] Invalid argument: 'C:\\\\Projects\\\\Agent_Workspace\\\\PIPD\\\\.hgk\\\\rounds\\\\R5P-20261010-s4-post-challenge\\\\ao\\\\out\\\\venv_adjusted_record\\\\bin\\\\python3'"), ('C:\\Projects\\Agent_Workspace\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\venv_adjusted_record\\bin\\python3.11', 'C:\\Users\\user\\AppData\\Local\\Temp\\tmpats_r25x\\repo\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\venv_adjusted_record\\bin\\python3.11', "[Errno 22] Invalid argument: 'C:\\\\Projects\\\\Agent_Workspace\\\\PIPD\\\\.hgk\\\\rounds\\\\R5P-20261010-s4-post-challenge\\\\ao\\\\out\\\\venv_adjusted_record\\\\bin\\\\python3.11'"), ('C:\\Projects\\Agent_Workspace\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\venv_adjusted_record\\lib64', 'C:\\Users\\user\\AppData\\Local\\Temp\\tmpats_r25x\\repo\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\venv_adjusted_record\\lib64', "[WinError 1920] 系統無法存取該檔案。: 'C:\\\\Projects\\\\Agent_Workspace\\\\PIPD\\\\.hgk\\\\rounds\\\\R5P-20261010-s4-post-challenge\\\\ao\\\\out\\\\venv_adjusted_record\\\\lib64'"), ('C:\\Projects\\Agent_Workspace\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\venv_control\\bin\\python', 'C:\\Users\\user\\AppData\\Local\\Temp\\tmpats_r25x\\repo\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\venv_control\\bin\\python', "[Errno 22] Invalid argument: 'C:\\\\Projects\\\\Agent_Workspace\\\\PIPD\\\\.hgk\\\\rounds\\\\R5P-20261010-s4-post-challenge\\\\ao\\\\out\\\\venv_control\\\\bin\\\\python'"), ('C:\\Projects\\Agent_Workspace\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\venv_control\\bin\\python3', 'C:\\Users\\user\\AppData\\Local\\Temp\\tmpats_r25x\\repo\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\venv_control\\bin\\python3', "[Errno 22] Invalid argument: 'C:\\\\Projects\\\\Agent_Workspace\\\\PIPD\\\\.hgk\\\\rounds\\\\R5P-20261010-s4-post-challenge\\\\ao\\\\out\\\\venv_control\\\\bin\\\\python3'"), ('C:\\Projects\\Agent_Workspace\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\venv_control\\bin\\python3.11', 'C:\\Users\\user\\AppData\\Local\\Temp\\tmpats_r25x\\repo\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\venv_control\\bin\\python3.11', "[Errno 22] Invalid argument: 'C:\\\\Projects\\\\Agent_Workspace\\\\PIPD\\\\.hgk\\\\rounds\\\\R5P-20261010-s4-post-challenge\\\\ao\\\\out\\\\venv_control\\\\bin\\\\python3.11'"), ('C:\\Projects\\Agent_Workspace\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\venv_control\\lib64', 'C:\\Users\\user\\AppData\\Local\\Temp\\tmpats_r25x\\repo\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\venv_control\\lib64', "[WinError 1920] 系統無法存取該檔案。: 'C:\\\\Projects\\\\Agent_Workspace\\\\PIPD\\\\.hgk\\\\rounds\\\\R5P-20261010-s4-post-challenge\\\\ao\\\\out\\\\venv_control\\\\lib64'"), ('C:\\Projects\\Agent_Workspace\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\venv_unchanged_record\\bin\\python', 'C:\\Users\\user\\AppData\\Local\\Temp\\tmpats_r25x\\repo\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\venv_unchanged_record\\bin\\python', "[Errno 22] Invalid argument: 'C:\\\\Projects\\\\Agent_Workspace\\\\PIPD\\\\.hgk\\\\rounds\\\\R5P-20261010-s4-post-challenge\\\\ao\\\\out\\\\venv_unchanged_record\\\\bin\\\\python'"), ('C:\\Projects\\Agent_Workspace\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\venv_unchanged_record\\bin\\python3', 'C:\\Users\\user\\AppData\\Local\\Temp\\tmpats_r25x\\repo\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\venv_unchanged_record\\bin\\python3', "[Errno 22] Invalid argument: 'C:\\\\Projects\\\\Agent_Workspace\\\\PIPD\\\\.hgk\\\\rounds\\\\R5P-20261010-s4-post-challenge\\\\ao\\\\out\\\\venv_unchanged_record\\\\bin\\\\python3'"), ('C:\\Projects\\Agent_Workspace\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\venv_unchanged_record\\bin\\python3.11', 'C:\\Users\\user\\AppData\\Local\\Temp\\tmpats_r25x\\repo\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\venv_unchanged_record\\bin\\python3.11', "[Errno 22] Invalid argument: 'C:\\\\Projects\\\\Agent_Workspace\\\\PIPD\\\\.hgk\\\\rounds\\\\R5P-20261010-s4-post-challenge\\\\ao\\\\out\\\\venv_unchanged_record\\\\bin\\\\python3.11'"), ('C:\\Projects\\Agent_Workspace\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\venv_unchanged_record\\lib64', 'C:\\Users\\user\\AppData\\Local\\Temp\\tmpats_r25x\\repo\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\venv_unchanged_record\\lib64', "[WinError 1920] 系統無法存取該檔案。: 'C:\\\\Projects\\\\Agent_Workspace\\\\PIPD\\\\.hgk\\\\rounds\\\\R5P-20261010-s4-post-challenge\\\\ao\\\\out\\\\venv_unchanged_record\\\\lib64'")]
+
+C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\shutil.py:527: Error
+__________ TestToolingExecutes.test_export_manifest_has_no_vcs_paths __________
+
+self = <tests.test_tooling_executes.TestToolingExecutes testMethod=test_export_manifest_has_no_vcs_paths>
+
+    def test_export_manifest_has_no_vcs_paths(self) -> None:
+        from pipd_ls_sp import workspace
+    
+>       bundle = workspace.export_manifest(ROOT, include=["."])
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_tooling_executes.py:160: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\pipd_ls_sp\workspace.py:73: in export_manifest
+    scan = secret_scan(root)
+           ^^^^^^^^^^^^^^^^^
+src\pipd_ls_sp\workspace.py:59: in secret_scan
+    for p in sorted(root.rglob("*")):
+             ^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\pathlib.py:968: in rglob
+    for p in selector.select_from(self):
+C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\pathlib.py:408: in _select_from
+    for p in successor_select(starting_point, is_dir, exists, scandir):
+C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\pathlib.py:355: in _select_from
+    with scandir(parent_path) as scandir_it:
+         ^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Projects/Agent_Workspace/PIPD/.hgk/rounds/R5P-20261010-s4-post-challenge/ao/out/v2/venv_adjusted_record/lib64')
+
+    def _scandir(self):
+        # bpo-24132: a future version of pathlib will support subclassing of
+        # pathlib.Path to customize how the filesystem is accessed. This
+        # includes scandir(), which is used to implement glob().
+>       return os.scandir(self)
+               ^^^^^^^^^^^^^^^^
+E       OSError: [WinError 1920] 系統無法存取該檔案。: 'C:\\Projects\\Agent_Workspace\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\v2\\venv_adjusted_record\\lib64'
+
+C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\pathlib.py:938: OSError
+_____ TestToolingExecutes.test_tracked_file_metric_excludes_vcs_internals _____
+
+self = <tests.test_tooling_executes.TestToolingExecutes testMethod=test_tracked_file_metric_excludes_vcs_internals>
+
+    def test_tracked_file_metric_excludes_vcs_internals(self) -> None:
+        """Pin the oracle for `_tracked_file_count` in BOTH subjects it must serve (R2-E2).
+    
+        The shipped probe in `src/pipd_ls_sp/cli.py::_tracked_file_count` is the authoritative
+        definition: it returns `git ls-files` when the subject IS a git checkout, and otherwise the
+        count of files in the tree EXCLUDING `.git/` and `__pycache__/`. The old test asserted only
+        the first branch against an unconditional `git ls-files` literal. That made the oracle
+        subject-incorrect: in a non-git fresh copy the walk branch runs, git prints 0, and the test
+        FAILED (R2-E2). The oracle is rebound to the probe's own defined behavior for the subject at
+        hand, so it holds in both environments. It is not relaxed: each branch is pinned EXACTLY to
+        the authoritative count (equality, not inequality), the walk branch is additionally pinned
+        to exclude `.git/` internals and `__pycache__/` on a synthetic tree, and no magic constant
+        is used.
+        """
+        import os as _os
+        import shutil as _sh
+        import subprocess as sp
+        import tempfile as _tf
+        from pipd_ls_sp.cli import _tracked_file_count
+    
+        def _walk_count(root: Path) -> int:
+            # The probe's non-git branch, stated independently of the implementation.
+            return sum(1 for p in root.rglob("*") if p.is_file()
+                       and ".git" not in p.parts and "__pycache__" not in p.parts)
+    
+        def _git_tracked(root: Path, *, ceiling: str | None = None) -> tuple[int, int]:
+            env = dict(_os.environ)
+            if ceiling is not None:
+                env["GIT_CEILING_DIRECTORIES"] = ceiling
+            r = sp.run(["git", "-C", str(root), "ls-files"], capture_output=True, text=True, env=env)
+            return r.returncode, len([l for l in r.stdout.splitlines() if l.strip()])
+    
+        # (a) On a real git checkout the probe must report EXACTLY the git-tracked count, never
+        #     rglob (which would also sweep .git). This is the branch the old test covered.
+        rc, tracked = _git_tracked(ROOT)
+        if rc == 0:
+            n = _tracked_file_count(ROOT)
+            self.assertEqual(n, tracked,
+                             "on a git checkout tracked_files must equal `git ls-files` exactly")
+            self.assertLess(n, 1000, "tracked_files looks like it is counting .git internals again")
+    
+        # (b) A non-git copy (no .git at all) is the exact condition that broke the old oracle.
+        #     GIT_CEILING_DIRECTORIES stops git from climbing to an enclosing repo, so the subject is
+        #     genuinely non-git even when the temp dir sits inside a checkout; the ignore list drops
+        #     any nested scratch so the copy cannot recurse into itself.
+        with _tf.TemporaryDirectory() as td:
+            dst = Path(td) / "PIPD"
+>           _sh.copytree(ROOT, dst,
+                         ignore=_sh.ignore_patterns(".git", "__pycache__", "*.db"))
+
+tests\test_tooling_executes.py:128: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\shutil.py:573: in copytree
+    return _copytree(entries=entries, src=src, dst=dst, symlinks=symlinks,
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+entries = [<DirEntry '.agents'>, <DirEntry '.git'>, <DirEntry '.gitattributes'>, <DirEntry '.gitignore'>, <DirEntry '.hermes'>, <DirEntry '.hgk'>, ...]
+src = WindowsPath('C:/Projects/Agent_Workspace/PIPD')
+dst = WindowsPath('C:/Users/user/AppData/Local/Temp/tmp8eft4rf2/PIPD')
+symlinks = False
+ignore = <function ignore_patterns.<locals>._ignore_patterns at 0x000001AE04E40D60>
+copy_function = <function copy2 at 0x000001AE015E1A80>
+ignore_dangling_symlinks = False, dirs_exist_ok = False
+
+    def _copytree(entries, src, dst, symlinks, ignore, copy_function,
+                  ignore_dangling_symlinks, dirs_exist_ok=False):
+        if ignore is not None:
+            ignored_names = ignore(os.fspath(src), [x.name for x in entries])
+        else:
+            ignored_names = ()
+    
+        os.makedirs(dst, exist_ok=dirs_exist_ok)
+        errors = []
+        use_srcentry = copy_function is copy2 or copy_function is copy
+    
+        for srcentry in entries:
+            if srcentry.name in ignored_names:
+                continue
+            srcname = os.path.join(src, srcentry.name)
+            dstname = os.path.join(dst, srcentry.name)
+            srcobj = srcentry if use_srcentry else srcname
+            try:
+                is_symlink = srcentry.is_symlink()
+                if is_symlink and os.name == 'nt':
+                    # Special check for directory junctions, which appear as
+                    # symlinks but we want to recurse.
+                    lstat = srcentry.stat(follow_symlinks=False)
+                    if lstat.st_reparse_tag == stat.IO_REPARSE_TAG_MOUNT_POINT:
+                        is_symlink = False
+                if is_symlink:
+                    linkto = os.readlink(srcname)
+                    if symlinks:
+                        # We can't just leave it to `copy_function` because legacy
+                        # code with a custom `copy_function` may rely on copytree
+                        # doing the right thing.
+                        os.symlink(linkto, dstname)
+                        copystat(srcobj, dstname, follow_symlinks=not symlinks)
+                    else:
+                        # ignore dangling symlink if the flag is on
+                        if not os.path.exists(linkto) and ignore_dangling_symlinks:
+                            continue
+                        # otherwise let the copy occur. copy2 will raise an error
+                        if srcentry.is_dir():
+                            copytree(srcobj, dstname, symlinks, ignore,
+                                     copy_function, ignore_dangling_symlinks,
+                                     dirs_exist_ok)
+                        else:
+                            copy_function(srcobj, dstname)
+                elif srcentry.is_dir():
+                    copytree(srcobj, dstname, symlinks, ignore, copy_function,
+                             ignore_dangling_symlinks, dirs_exist_ok)
+                else:
+                    # Will raise a SpecialFileError for unsupported file types
+                    copy_function(srcobj, dstname)
+            # catch the Error from the recursive copytree so that we can
+            # continue with other files
+            except Error as err:
+                errors.extend(err.args[0])
+            except OSError as why:
+                errors.append((srcname, dstname, str(why)))
+        try:
+            copystat(src, dst)
+        except OSError as why:
+            # Copying file access times may fail on Windows
+            if getattr(why, 'winerror', None) is None:
+                errors.append((src, dst, str(why)))
+        if errors:
+>           raise Error(errors)
+E           shutil.Error: [('C:\\Projects\\Agent_Workspace\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\v2\\venv_adjusted_record\\bin\\python', 'C:\\Users\\user\\AppData\\Local\\Temp\\tmp8eft4rf2\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\v2\\venv_adjusted_record\\bin\\python', "[Errno 22] Invalid argument: 'C:\\\\Projects\\\\Agent_Workspace\\\\PIPD\\\\.hgk\\\\rounds\\\\R5P-20261010-s4-post-challenge\\\\ao\\\\out\\\\v2\\\\venv_adjusted_record\\\\bin\\\\python'"), ('C:\\Projects\\Agent_Workspace\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\v2\\venv_adjusted_record\\bin\\python3', 'C:\\Users\\user\\AppData\\Local\\Temp\\tmp8eft4rf2\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\v2\\venv_adjusted_record\\bin\\python3', "[Errno 22] Invalid argument: 'C:\\\\Projects\\\\Agent_Workspace\\\\PIPD\\\\.hgk\\\\rounds\\\\R5P-20261010-s4-post-challenge\\\\ao\\\\out\\\\v2\\\\venv_adjusted_record\\\\bin\\\\python3'"), ('C:\\Projects\\Agent_Workspace\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\v2\\venv_adjusted_record\\bin\\python3.11', 'C:\\Users\\user\\AppData\\Local\\Temp\\tmp8eft4rf2\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\v2\\venv_adjusted_record\\bin\\python3.11', "[Errno 22] Invalid argument: 'C:\\\\Projects\\\\Agent_Workspace\\\\PIPD\\\\.hgk\\\\rounds\\\\R5P-20261010-s4-post-challenge\\\\ao\\\\out\\\\v2\\\\venv_adjusted_record\\\\bin\\\\python3.11'"), ('C:\\Projects\\Agent_Workspace\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\v2\\venv_adjusted_record\\lib64', 'C:\\Users\\user\\AppData\\Local\\Temp\\tmp8eft4rf2\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\v2\\venv_adjusted_record\\lib64', "[WinError 1920] 系統無法存取該檔案。: 'C:\\\\Projects\\\\Agent_Workspace\\\\PIPD\\\\.hgk\\\\rounds\\\\R5P-20261010-s4-post-challenge\\\\ao\\\\out\\\\v2\\\\venv_adjusted_record\\\\lib64'"), ('C:\\Projects\\Agent_Workspace\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\v2\\venv_control\\bin\\python', 'C:\\Users\\user\\AppData\\Local\\Temp\\tmp8eft4rf2\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\v2\\venv_control\\bin\\python', "[Errno 22] Invalid argument: 'C:\\\\Projects\\\\Agent_Workspace\\\\PIPD\\\\.hgk\\\\rounds\\\\R5P-20261010-s4-post-challenge\\\\ao\\\\out\\\\v2\\\\venv_control\\\\bin\\\\python'"), ('C:\\Projects\\Agent_Workspace\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\v2\\venv_control\\bin\\python3', 'C:\\Users\\user\\AppData\\Local\\Temp\\tmp8eft4rf2\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\v2\\venv_control\\bin\\python3', "[Errno 22] Invalid argument: 'C:\\\\Projects\\\\Agent_Workspace\\\\PIPD\\\\.hgk\\\\rounds\\\\R5P-20261010-s4-post-challenge\\\\ao\\\\out\\\\v2\\\\venv_control\\\\bin\\\\python3'"), ('C:\\Projects\\Agent_Workspace\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\v2\\venv_control\\bin\\python3.11', 'C:\\Users\\user\\AppData\\Local\\Temp\\tmp8eft4rf2\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\v2\\venv_control\\bin\\python3.11', "[Errno 22] Invalid argument: 'C:\\\\Projects\\\\Agent_Workspace\\\\PIPD\\\\.hgk\\\\rounds\\\\R5P-20261010-s4-post-challenge\\\\ao\\\\out\\\\v2\\\\venv_control\\\\bin\\\\python3.11'"), ('C:\\Projects\\Agent_Workspace\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\v2\\venv_control\\lib64', 'C:\\Users\\user\\AppData\\Local\\Temp\\tmp8eft4rf2\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\v2\\venv_control\\lib64', "[WinError 1920] 系統無法存取該檔案。: 'C:\\\\Projects\\\\Agent_Workspace\\\\PIPD\\\\.hgk\\\\rounds\\\\R5P-20261010-s4-post-challenge\\\\ao\\\\out\\\\v2\\\\venv_control\\\\lib64'"), ('C:\\Projects\\Agent_Workspace\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\v2\\venv_unchanged_record\\bin\\python', 'C:\\Users\\user\\AppData\\Local\\Temp\\tmp8eft4rf2\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\v2\\venv_unchanged_record\\bin\\python', "[Errno 22] Invalid argument: 'C:\\\\Projects\\\\Agent_Workspace\\\\PIPD\\\\.hgk\\\\rounds\\\\R5P-20261010-s4-post-challenge\\\\ao\\\\out\\\\v2\\\\venv_unchanged_record\\\\bin\\\\python'"), ('C:\\Projects\\Agent_Workspace\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\v2\\venv_unchanged_record\\bin\\python3', 'C:\\Users\\user\\AppData\\Local\\Temp\\tmp8eft4rf2\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\v2\\venv_unchanged_record\\bin\\python3', "[Errno 22] Invalid argument: 'C:\\\\Projects\\\\Agent_Workspace\\\\PIPD\\\\.hgk\\\\rounds\\\\R5P-20261010-s4-post-challenge\\\\ao\\\\out\\\\v2\\\\venv_unchanged_record\\\\bin\\\\python3'"), ('C:\\Projects\\Agent_Workspace\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\v2\\venv_unchanged_record\\bin\\python3.11', 'C:\\Users\\user\\AppData\\Local\\Temp\\tmp8eft4rf2\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\v2\\venv_unchanged_record\\bin\\python3.11', "[Errno 22] Invalid argument: 'C:\\\\Projects\\\\Agent_Workspace\\\\PIPD\\\\.hgk\\\\rounds\\\\R5P-20261010-s4-post-challenge\\\\ao\\\\out\\\\v2\\\\venv_unchanged_record\\\\bin\\\\python3.11'"), ('C:\\Projects\\Agent_Workspace\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\v2\\venv_unchanged_record\\lib64', 'C:\\Users\\user\\AppData\\Local\\Temp\\tmp8eft4rf2\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\v2\\venv_unchanged_record\\lib64', "[WinError 1920] 系統無法存取該檔案。: 'C:\\\\Projects\\\\Agent_Workspace\\\\PIPD\\\\.hgk\\\\rounds\\\\R5P-20261010-s4-post-challenge\\\\ao\\\\out\\\\v2\\\\venv_unchanged_record\\\\lib64'"), ('C:\\Projects\\Agent_Workspace\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\venv_adjusted_record\\bin\\python', 'C:\\Users\\user\\AppData\\Local\\Temp\\tmp8eft4rf2\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\venv_adjusted_record\\bin\\python', "[Errno 22] Invalid argument: 'C:\\\\Projects\\\\Agent_Workspace\\\\PIPD\\\\.hgk\\\\rounds\\\\R5P-20261010-s4-post-challenge\\\\ao\\\\out\\\\venv_adjusted_record\\\\bin\\\\python'"), ('C:\\Projects\\Agent_Workspace\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\venv_adjusted_record\\bin\\python3', 'C:\\Users\\user\\AppData\\Local\\Temp\\tmp8eft4rf2\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\venv_adjusted_record\\bin\\python3', "[Errno 22] Invalid argument: 'C:\\\\Projects\\\\Agent_Workspace\\\\PIPD\\\\.hgk\\\\rounds\\\\R5P-20261010-s4-post-challenge\\\\ao\\\\out\\\\venv_adjusted_record\\\\bin\\\\python3'"), ('C:\\Projects\\Agent_Workspace\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\venv_adjusted_record\\bin\\python3.11', 'C:\\Users\\user\\AppData\\Local\\Temp\\tmp8eft4rf2\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\venv_adjusted_record\\bin\\python3.11', "[Errno 22] Invalid argument: 'C:\\\\Projects\\\\Agent_Workspace\\\\PIPD\\\\.hgk\\\\rounds\\\\R5P-20261010-s4-post-challenge\\\\ao\\\\out\\\\venv_adjusted_record\\\\bin\\\\python3.11'"), ('C:\\Projects\\Agent_Workspace\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\venv_adjusted_record\\lib64', 'C:\\Users\\user\\AppData\\Local\\Temp\\tmp8eft4rf2\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\venv_adjusted_record\\lib64', "[WinError 1920] 系統無法存取該檔案。: 'C:\\\\Projects\\\\Agent_Workspace\\\\PIPD\\\\.hgk\\\\rounds\\\\R5P-20261010-s4-post-challenge\\\\ao\\\\out\\\\venv_adjusted_record\\\\lib64'"), ('C:\\Projects\\Agent_Workspace\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\venv_control\\bin\\python', 'C:\\Users\\user\\AppData\\Local\\Temp\\tmp8eft4rf2\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\venv_control\\bin\\python', "[Errno 22] Invalid argument: 'C:\\\\Projects\\\\Agent_Workspace\\\\PIPD\\\\.hgk\\\\rounds\\\\R5P-20261010-s4-post-challenge\\\\ao\\\\out\\\\venv_control\\\\bin\\\\python'"), ('C:\\Projects\\Agent_Workspace\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\venv_control\\bin\\python3', 'C:\\Users\\user\\AppData\\Local\\Temp\\tmp8eft4rf2\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\venv_control\\bin\\python3', "[Errno 22] Invalid argument: 'C:\\\\Projects\\\\Agent_Workspace\\\\PIPD\\\\.hgk\\\\rounds\\\\R5P-20261010-s4-post-challenge\\\\ao\\\\out\\\\venv_control\\\\bin\\\\python3'"), ('C:\\Projects\\Agent_Workspace\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\venv_control\\bin\\python3.11', 'C:\\Users\\user\\AppData\\Local\\Temp\\tmp8eft4rf2\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\venv_control\\bin\\python3.11', "[Errno 22] Invalid argument: 'C:\\\\Projects\\\\Agent_Workspace\\\\PIPD\\\\.hgk\\\\rounds\\\\R5P-20261010-s4-post-challenge\\\\ao\\\\out\\\\venv_control\\\\bin\\\\python3.11'"), ('C:\\Projects\\Agent_Workspace\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\venv_control\\lib64', 'C:\\Users\\user\\AppData\\Local\\Temp\\tmp8eft4rf2\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\venv_control\\lib64', "[WinError 1920] 系統無法存取該檔案。: 'C:\\\\Projects\\\\Agent_Workspace\\\\PIPD\\\\.hgk\\\\rounds\\\\R5P-20261010-s4-post-challenge\\\\ao\\\\out\\\\venv_control\\\\lib64'"), ('C:\\Projects\\Agent_Workspace\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\venv_unchanged_record\\bin\\python', 'C:\\Users\\user\\AppData\\Local\\Temp\\tmp8eft4rf2\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\venv_unchanged_record\\bin\\python', "[Errno 22] Invalid argument: 'C:\\\\Projects\\\\Agent_Workspace\\\\PIPD\\\\.hgk\\\\rounds\\\\R5P-20261010-s4-post-challenge\\\\ao\\\\out\\\\venv_unchanged_record\\\\bin\\\\python'"), ('C:\\Projects\\Agent_Workspace\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\venv_unchanged_record\\bin\\python3', 'C:\\Users\\user\\AppData\\Local\\Temp\\tmp8eft4rf2\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\venv_unchanged_record\\bin\\python3', "[Errno 22] Invalid argument: 'C:\\\\Projects\\\\Agent_Workspace\\\\PIPD\\\\.hgk\\\\rounds\\\\R5P-20261010-s4-post-challenge\\\\ao\\\\out\\\\venv_unchanged_record\\\\bin\\\\python3'"), ('C:\\Projects\\Agent_Workspace\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\venv_unchanged_record\\bin\\python3.11', 'C:\\Users\\user\\AppData\\Local\\Temp\\tmp8eft4rf2\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\venv_unchanged_record\\bin\\python3.11', "[Errno 22] Invalid argument: 'C:\\\\Projects\\\\Agent_Workspace\\\\PIPD\\\\.hgk\\\\rounds\\\\R5P-20261010-s4-post-challenge\\\\ao\\\\out\\\\venv_unchanged_record\\\\bin\\\\python3.11'"), ('C:\\Projects\\Agent_Workspace\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\venv_unchanged_record\\lib64', 'C:\\Users\\user\\AppData\\Local\\Temp\\tmp8eft4rf2\\PIPD\\.hgk\\rounds\\R5P-20261010-s4-post-challenge\\ao\\out\\venv_unchanged_record\\lib64', "[WinError 1920] 系統無法存取該檔案。: 'C:\\\\Projects\\\\Agent_Workspace\\\\PIPD\\\\.hgk\\\\rounds\\\\R5P-20261010-s4-post-challenge\\\\ao\\\\out\\\\venv_unchanged_record\\\\lib64'")]
+
+C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\shutil.py:527: Error
+=========================== short test summary info ===========================
+FAILED tests/test_publication_projection.py::CliSmoke::test_write_then_check_exits_zero
+FAILED tests/test_publication_projection.py::CurrentTreeCoverage::test_attestation_build_then_verify_exits_zero
+FAILED tests/test_publication_projection.py::CurrentTreeCoverage::test_check_always_prints_current_tree_coverage
+FAILED tests/test_publication_projection.py::CurrentTreeCoverage::test_current_check_fails_while_any_current_product_path_is_uncovered
+FAILED tests/test_tooling_executes.py::TestToolingExecutes::test_cli_smoke_runs
+FAILED tests/test_tooling_executes.py::TestToolingExecutes::test_export_manifest_has_no_vcs_paths
+FAILED tests/test_tooling_executes.py::TestToolingExecutes::test_tracked_file_metric_excludes_vcs_internals
+7 failed, 319 passed, 2 skipped, 34 subtests passed in 410.77s (0:06:50)
