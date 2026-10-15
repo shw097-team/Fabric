@@ -1,0 +1,5 @@
+# Published evidence packet: store bytes EXACTLY as produced.
+# Without this, the repo's text normalization rewrites CRLF to LF in the committed blob, so an external
+# acceptor that downloads a file and compares its sha256 against PACKET_MANIFEST.json gets a MISMATCH on
+# every CRLF-bearing file. `-text` disables that normalization for this subtree only.
+* -text
