@@ -65,7 +65,9 @@
         "unverifiable_claims": [],
         "hitl_items": [],
         "overall": "PENDING_OWNER (candidate verdict for the Owner; not acceptance)",
-        "claim_ceiling": "LOCAL"
+        "claim_ceiling": "LOCAL",
+        "transient_writer_root_write": "during attempt 3 the checker briefly wrote into WRITER_ROOT (its first-pass runner ROOT patch), its own 299-file sweep went bad_count>0, it detected this and restored the affected files from its COPIES snapshot, and ended the turn at bad_count=0 with no WRITER_ROOT content deleted; the dispatcher guard-subject verdict (start-vs-end digest) is CLEAN and does not contradict a mid-turn transient",
+        "orchestrator_post_checker_sweep": "independently re-run by the orchestrator after the turn: 299/299 files byte+sha exact, bad=0; anchors unchanged (WRITE_SET 43DCD8087D9B, RECEIPT 98594CE4DAE0)"
       }
     }
   },
@@ -117,6 +119,7 @@
     "DEV-R6-3 codex_executable declaration drift; documented --codex-executable override used, pin untouched",
     "DEV-R6-4 dispatcher ok=false ERR_NO_ARM_EMITTED_NONCE on both lanes despite corroborated arm binding",
     "DEV-R6-5 credential-posture detector INCONCLUSIVE (WARN_CONTINUE), not a pass",
-    "DEV-R6-6 checker attempt 2 dispatched at the lane's read-only role default; needed an explicit sandbox escalation to persist a file-backed verdict"
+    "DEV-R6-6 checker attempt 2 dispatched at the lane's read-only role default; needed an explicit sandbox escalation to persist a file-backed verdict",
+    "DEV-R6-7 during checker attempt 3 the checker transiently wrote into WRITER_ROOT (runner ROOT patch slip), detected it, restored the files from its own COPIES snapshot and ended at bad_count=0; independently re-verified by the orchestrator (299/299 exact)"
   ]
 }

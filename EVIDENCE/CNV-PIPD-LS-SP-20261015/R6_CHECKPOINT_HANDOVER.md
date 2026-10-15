@@ -202,6 +202,30 @@ print('listed',len(ws['files']),'bad',len(bad),bad[:3])"
 **注意（claim ceiling）**：上述「564 / 566 / MATCH」皆為**發布層**事實，不代表任何驗收、核准或世界效應；
 checker verdict 仍為 `PENDING_OWNER`。
 
+## §12 兩車道收尾通知之核對（2026-10-15 19:0x 台北）
+
+兩則背景完成通知（checker attempt 2、attempt 3）皆 `dispatcher exit 3 / ok=false / ERR_NO_ARM_EMITTED_NONCE`
+＋兩次 `WARN_LANE_CREDENTIAL_POSTURE_INCONCLUSIVE`（INCONCLUSIVE **不是** PASS）——與 §5 DEV-R6-4/5 一致，
+`usage_receipt_ok=true`（arm 綁定有旁證），非新事件。
+
+**但通知揭露一件必須記錄的事**：attempt 3 期間 checker **曾短暫寫入 `WRITER_ROOT`**（其 probe 重跑腳本首輪
+ROOT patch 的記錄性失誤），使其自身 299 檔掃描一度出現 `bad_count>0`；checker **自行偵測並從自己的
+`COPIES/` 還原**（COPIES 保存的是 writer 作者時位元），回合結束時 `bad_count=0`，且未刪除任何 `WRITER_ROOT`
+內容。dispatcher 的 guard-subject 判 `CLEAN`（301→301、首尾 digest 相同）與此事並不矛盾：guard 比對的是
+**回合首尾**，不是回合中。
+
+**Orchestrator 獨立複核（我本人在收尾後重跑，非引用 checker 自述）**：
+
+| 檢查 | 結果 |
+|------|------|
+| `R6_WRITE_SET.json` 全 299 檔重算 bytes+sha256 | **299/299 相符、bad=0** |
+| anchor `R6_WRITE_SET.json` | 56,197 B，sha256 前 12 `43DCD8087D9B`（與 checker 回合前、回合後所載一致） |
+| anchor `R6_WRITER_RECEIPT.json` | 79,021 B，sha256 前 12 `98594CE4DAE0`（同上） |
+| 檔案數 | `R6_DELIVERY` 301 檔（299 清單 + 清單自身 + `__pycache__` 之 `.pyc`） |
+
+→ 結論：**writer 候選集最終狀態未被污染**；過程中的暫態改動已由 checker 自報並還原，且經 orchestrator 獨立
+驗證。此項列為 **DEV-R6-7**（不隱藏）。
+
 ## §10.1 本節新增副作用（除 §6 之外）
 
 1. Fabric 本地 clone 設定 `core.longpaths=true`（repo-local；因 repo 內容路徑超過 MAX_PATH，worktree 需短根

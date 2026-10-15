@@ -119,7 +119,8 @@
     "DEV-R6-3 codex_executable pin drift; documented --codex-executable override used",
     "DEV-R6-4 dispatcher ok=false ERR_NO_ARM_EMITTED_NONCE on both lanes",
     "DEV-R6-5 credential-posture INCONCLUSIVE (not a pass)",
-    "DEV-R6-6 checker attempt2 dispatched at the read-only role default sandbox -> inline-only verdict; attempt3 used an explicit authorized escalation"
+    "DEV-R6-6 checker attempt2 dispatched at the read-only role default sandbox -> inline-only verdict; attempt3 used an explicit authorized escalation",
+    "DEV-R6-7 checker attempt3 transiently wrote into WRITER_ROOT mid-turn (ROOT-patch slip), self-detected, restored from its COPIES snapshot; orchestrator post-turn sweep confirms 299/299 exact and anchors unchanged"
   ],
   "open_blockers": [
     "Owner adjudication of the PENDING_OWNER checker verdict and of Draft PR #3",
