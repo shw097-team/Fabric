@@ -1,0 +1,20 @@
+{
+ "verdict": "PIPD_COMPILE_ECP_OK",
+ "subject_id": "ECP-8be4a8850ab6ee10",
+ "permission": {
+  "scope": "src/**",
+  "token_required": true
+ },
+ "idempotency": {
+  "key": "IDEM-e1232c6f61bd28d6",
+  "guarantee": "at_most_once"
+ },
+ "readback": {
+  "required": true,
+  "kind": "residue_scan"
+ },
+ "rollback": {
+  "pointer": "baseline_commit",
+  "required": true
+ }
+}

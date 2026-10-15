@@ -1,0 +1,3739 @@
+{
+  "producer": "Codex CLI bounded writer EXECUTE lane (opencode-go/deepseek-v4.1-flash)",
+  "produced_utc": "2026-10-15T08:15:06.905745+00:00",
+  "source_hashes_used": [
+    "6629af1d4cf09ec11b99e79488ea515692ebd9c802fef6353b1ac3ed31b7bd6e",
+    "115912cdccbf5b3788fe1d6e1c8c10fe575252d72accf31cb6f1955dd8750974",
+    "96d9d564286743e17550ccef15b9952347901eb77168f930376938893cff9c3f",
+    "6894a6ba08781f2ed5758af132f758c14c1a9e9b69d42056837f5ce45bba6c64",
+    "7f7246d34be112bb465b48dadaef6163e466e16e5e705fc58acee04b3809a613",
+    "8b78edebd79c8149a2b74e2a7f873e3116f772c881a501bd4600ea0e7a891f6b",
+    "2f246796c3b927170a90ed7dd3f4307e913579db2efb56b307cbc2377a1cb77f"
+  ],
+  "raw_evidence_refs": [],
+  "verdict": "PENDING_CHECKER",
+  "claim_level": "LOCAL",
+  "artifact": "RUNNER_AND_TEST_MATRIX.json",
+  "planned_cases": 221,
+  "executed_capability_and_mutation_probes": 57,
+  "planned_requirement_matrix_rows_unrun": 221,
+  "executed_probes": [
+    {
+      "probe_id": "cap01_compiler_acceptance",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:/Projects/Agent_Workspace/知識庫/實作相關DOC/HG-KSEOS/construction-acceptance-prompt-compiler/construction-acceptance-prompt-compiler/scripts/prompt_contract_compiler.py",
+        "acceptance",
+        "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/C0_C9_CONTRACT_R5.json"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:07:39.741694+00:00",
+      "ended_utc": "2026-10-15T08:07:40.005875+00:00",
+      "exit_code": 0,
+      "timed_out": false,
+      "raw_log_paths": {
+        "stdout": "RAW/cap01_compiler_acceptance.stdout.txt",
+        "stderr": "RAW/cap01_compiler_acceptance.stderr.txt"
+      },
+      "stdout_sha256": "9b718dd02a8f35fb25777044885eb03314962cb7b4035722e623c1f0648548f3",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap01_compiler_activation",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:/Projects/Agent_Workspace/知識庫/實作相關DOC/HG-KSEOS/construction-acceptance-prompt-compiler/construction-acceptance-prompt-compiler/scripts/prompt_contract_compiler.py",
+        "activation",
+        "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/C0_C9_CONTRACT_R5.json"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:07:40.007876+00:00",
+      "ended_utc": "2026-10-15T08:07:40.289171+00:00",
+      "exit_code": 0,
+      "timed_out": false,
+      "raw_log_paths": {
+        "stdout": "RAW/cap01_compiler_activation.stdout.txt",
+        "stderr": "RAW/cap01_compiler_activation.stderr.txt"
+      },
+      "stdout_sha256": "9b718dd02a8f35fb25777044885eb03314962cb7b4035722e623c1f0648548f3",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap01_compiler_duplication",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:/Projects/Agent_Workspace/知識庫/實作相關DOC/HG-KSEOS/construction-acceptance-prompt-compiler/construction-acceptance-prompt-compiler/scripts/prompt_contract_compiler.py",
+        "duplication",
+        "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/compiler_native_output_R5/thin-prompt.md",
+        "--source",
+        "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/attachments/Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:07:40.290172+00:00",
+      "ended_utc": "2026-10-15T08:07:40.540205+00:00",
+      "exit_code": 0,
+      "timed_out": false,
+      "raw_log_paths": {
+        "stdout": "RAW/cap01_compiler_duplication.stdout.txt",
+        "stderr": "RAW/cap01_compiler_duplication.stderr.txt"
+      },
+      "stdout_sha256": "c57d7661a96aeefaae9bf6ae99ed142eca58774259655c86ffba9dcb36c0dac5",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap01_compiler_hash",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:/Projects/Agent_Workspace/知識庫/實作相關DOC/HG-KSEOS/construction-acceptance-prompt-compiler/construction-acceptance-prompt-compiler/scripts/prompt_contract_compiler.py",
+        "hash",
+        "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/compiler_native_output_R5/thin-prompt.md"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:06:11.716521+00:00",
+      "ended_utc": "2026-10-15T08:06:11.821470+00:00",
+      "exit_code": 0,
+      "timed_out": false,
+      "raw_log_paths": {
+        "stdout": "RAW/cap01_compiler_hash.stdout.txt",
+        "stderr": "RAW/cap01_compiler_hash.stderr.txt"
+      },
+      "stdout_sha256": "0c640e38a392ac0d7a957ab68afeae004766ae0b01919ef877ff8760bc5a8ea0",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap01_compiler_lint",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:/Projects/Agent_Workspace/知識庫/實作相關DOC/HG-KSEOS/construction-acceptance-prompt-compiler/construction-acceptance-prompt-compiler/scripts/prompt_contract_compiler.py",
+        "lint",
+        "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/C0_C9_CONTRACT_R5.json"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:06:11.423553+00:00",
+      "ended_utc": "2026-10-15T08:06:11.715519+00:00",
+      "exit_code": 0,
+      "timed_out": false,
+      "raw_log_paths": {
+        "stdout": "RAW/cap01_compiler_lint.stdout.txt",
+        "stderr": "RAW/cap01_compiler_lint.stderr.txt"
+      },
+      "stdout_sha256": "9b718dd02a8f35fb25777044885eb03314962cb7b4035722e623c1f0648548f3",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap02_pkg_check_help",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/pipd_pkg_v2_check.py",
+        "--help"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:06:11.914378+00:00",
+      "ended_utc": "2026-10-15T08:06:12.006083+00:00",
+      "exit_code": 0,
+      "timed_out": false,
+      "raw_log_paths": {
+        "stdout": "RAW/cap02_pkg_check_help.stdout.txt",
+        "stderr": "RAW/cap02_pkg_check_help.stderr.txt"
+      },
+      "stdout_sha256": "43ad6952e3fe3f5c5f29bf31ced5bfa6a501a65a83a9b54797308c6386113445",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap02_pkg_check_run",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/pipd_pkg_v2_check.py",
+        "--doc",
+        "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/attachments/Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md",
+        "--check"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:07:40.542291+00:00",
+      "ended_utc": "2026-10-15T08:07:40.627707+00:00",
+      "exit_code": 30,
+      "timed_out": false,
+      "raw_log_paths": {
+        "stdout": "RAW/cap02_pkg_check_run.stdout.txt",
+        "stderr": "RAW/cap02_pkg_check_run.stderr.txt"
+      },
+      "stdout_sha256": "e6cfe5f4e202efb05734873da665c29289b5ab61a4f6d1408754b52217dbf3c2",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap02_pkg_check_selftest",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/pipd_pkg_v2_check.py",
+        "--selftest"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:06:11.822479+00:00",
+      "ended_utc": "2026-10-15T08:06:11.912379+00:00",
+      "exit_code": 2,
+      "timed_out": false,
+      "raw_log_paths": {
+        "stdout": "RAW/cap02_pkg_check_selftest.stdout.txt",
+        "stderr": "RAW/cap02_pkg_check_selftest.stderr.txt"
+      },
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "4bd4fcb493b3c23db0963abe399a01438e2a8ea9faa745dafc4df550e9691dba"
+    },
+    {
+      "probe_id": "cap02_pkg_check_selftest_corrected",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/pipd_pkg_v2_check.py",
+        "--doc",
+        "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/attachments/Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md",
+        "--materialize"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:07:40.629709+00:00",
+      "ended_utc": "2026-10-15T08:07:40.712637+00:00",
+      "exit_code": 30,
+      "timed_out": false,
+      "raw_log_paths": {
+        "stdout": "RAW/cap02_pkg_check_selftest_corrected.stdout.txt",
+        "stderr": "RAW/cap02_pkg_check_selftest_corrected.stderr.txt"
+      },
+      "stdout_sha256": "e6cfe5f4e202efb05734873da665c29289b5ab61a4f6d1408754b52217dbf3c2",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap03_spine_acceptance",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS\\probe_spine_lifecycle.py",
+        "acceptance"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:01:48.685651+00:00",
+      "ended_utc": "2026-10-15T08:01:49.195327+00:00",
+      "exit_code": 0,
+      "timed_out": false,
+      "raw_log_paths": {
+        "stdout": "RAW/cap03_spine_acceptance.stdout.txt",
+        "stderr": "RAW/cap03_spine_acceptance.stderr.txt"
+      },
+      "stdout_sha256": "9acb66419b44524710136ea80d36359627c9abc135bfe5da55a20f00c459e6c8",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap03_spine_negative",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS\\probe_spine_lifecycle.py",
+        "negative"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:01:48.319154+00:00",
+      "ended_utc": "2026-10-15T08:01:48.683651+00:00",
+      "exit_code": 0,
+      "timed_out": false,
+      "raw_log_paths": {
+        "stdout": "RAW/cap03_spine_negative.stdout.txt",
+        "stderr": "RAW/cap03_spine_negative.stderr.txt"
+      },
+      "stdout_sha256": "dc148da424579b1657bce220c256775c18f73c2b0166a30dd97962e0173e1e3d",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap03_spine_positive",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS\\probe_spine_lifecycle.py",
+        "positive"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:01:47.992317+00:00",
+      "ended_utc": "2026-10-15T08:01:48.317153+00:00",
+      "exit_code": 0,
+      "timed_out": false,
+      "raw_log_paths": {
+        "stdout": "RAW/cap03_spine_positive.stdout.txt",
+        "stderr": "RAW/cap03_spine_positive.stderr.txt"
+      },
+      "stdout_sha256": "fd70b21a9286843ff1995cd3420c4af932ad43c4e96b8aa6887bbaf2f72b74ea",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap03_spine_teardown",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS\\probe_spine_lifecycle.py",
+        "teardown"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:01:49.197327+00:00",
+      "ended_utc": "2026-10-15T08:01:49.293813+00:00",
+      "exit_code": 0,
+      "timed_out": false,
+      "raw_log_paths": {
+        "stdout": "RAW/cap03_spine_teardown.stdout.txt",
+        "stderr": "RAW/cap03_spine_teardown.stderr.txt"
+      },
+      "stdout_sha256": "e35cdb248edd0254953610cfeff42e9de4715ffb324dbe72b3081d3b96ca9e2e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap04_hermes_version",
+      "command": [
+        "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/hermes-agent/venv/Scripts/python.exe",
+        "-c",
+        "import sys;sys.argv=['hermes','--version'];from hermes_cli.main import main;main()"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:06:12.008085+00:00",
+      "ended_utc": "2026-10-15T08:06:12.631731+00:00",
+      "exit_code": 0,
+      "timed_out": false,
+      "raw_log_paths": {
+        "stdout": "RAW/cap04_hermes_version.stdout.txt",
+        "stderr": "RAW/cap04_hermes_version.stderr.txt"
+      },
+      "stdout_sha256": "9cd542948878302d6144483cf955e5812f54c461a4edda3081e017bb0f512c5c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap05_codex_version",
+      "command": [
+        "C:/Users/user/AppData/Local/OpenAI/Codex/bin/9614f1d9b40d9c4f/codex.exe",
+        "--version"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:06:12.633731+00:00",
+      "ended_utc": "2026-10-15T08:06:12.663749+00:00",
+      "exit_code": 0,
+      "timed_out": false,
+      "raw_log_paths": {
+        "stdout": "RAW/cap05_codex_version.stdout.txt",
+        "stderr": "RAW/cap05_codex_version.stderr.txt"
+      },
+      "stdout_sha256": "7747b1c26798719d98cac787dfc2c425f845f347a443492894a0d739fae8ca0d",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap05_lane_toolchain_resolve",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:/Projects/Agent_Workspace/HG-KSEOS/scripts/hgk-lane-toolchain.py",
+        "--resolve"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:06:12.664750+00:00",
+      "ended_utc": "2026-10-15T08:06:12.750988+00:00",
+      "exit_code": 3,
+      "timed_out": false,
+      "raw_log_paths": {
+        "stdout": "RAW/cap05_lane_toolchain_resolve.stdout.txt",
+        "stderr": "RAW/cap05_lane_toolchain_resolve.stderr.txt"
+      },
+      "stdout_sha256": "3e0f2a49dc174500eb4c2d567aff761aa81dd8a56d100c2b0f32caa9f3fca5b0",
+      "stderr_sha256": "4b631f87189415a3f1a95c315abc3ae5e061d6ea44821cbdd7f41ac4ff16116a"
+    },
+    {
+      "probe_id": "cap05_role_binding_assert",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:/Projects/Agent_Workspace/HG-KSEOS/scripts/runtime_role_binding_assert.py",
+        "--help"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:06:12.752988+00:00",
+      "ended_utc": "2026-10-15T08:06:12.840262+00:00",
+      "exit_code": 0,
+      "timed_out": false,
+      "raw_log_paths": {
+        "stdout": "RAW/cap05_role_binding_assert.stdout.txt",
+        "stderr": "RAW/cap05_role_binding_assert.stderr.txt"
+      },
+      "stdout_sha256": "c4a9f09099c009a05a94934fe209794ca3a578f0ce2e99977e1506fb15b5b8d7",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap07_kanban_boards",
+      "command": [
+        "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/hermes-agent/venv/Scripts/python.exe",
+        "-c",
+        "import sys;sys.argv=['hermes','kanban','boards','list'];from hermes_cli.main import main;main()"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:06:12.842346+00:00",
+      "ended_utc": "2026-10-15T08:06:14.835493+00:00",
+      "exit_code": 0,
+      "timed_out": false,
+      "raw_log_paths": {
+        "stdout": "RAW/cap07_kanban_boards.stdout.txt",
+        "stderr": "RAW/cap07_kanban_boards.stderr.txt"
+      },
+      "stdout_sha256": "fd1f37c99996198030f49328ca4e816b397880fa1a736c8656b07f93241af969",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap08_swarm_help",
+      "command": [
+        "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/hermes-agent/venv/Scripts/python.exe",
+        "-c",
+        "import sys;sys.argv=['hermes','kanban','swarm','--help'];from hermes_cli.main import main;main()"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:06:14.836491+00:00",
+      "ended_utc": "2026-10-15T08:06:16.059498+00:00",
+      "exit_code": 0,
+      "timed_out": false,
+      "raw_log_paths": {
+        "stdout": "RAW/cap08_swarm_help.stdout.txt",
+        "stderr": "RAW/cap08_swarm_help.stderr.txt"
+      },
+      "stdout_sha256": "d9fc213a671654cb2b9df0b7284ba20ac275467f03b87b813500e13506e7de83",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap11_gstack_negative",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_gstack_rolemap.py",
+        "negative"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:06:16.163017+00:00",
+      "ended_utc": "2026-10-15T08:06:16.269129+00:00",
+      "exit_code": 0,
+      "timed_out": false,
+      "raw_log_paths": {
+        "stdout": "RAW/cap11_gstack_negative.stdout.txt",
+        "stderr": "RAW/cap11_gstack_negative.stderr.txt"
+      },
+      "stdout_sha256": "9ec3d79601d4e3fef3a28c988f3c96d816729738c08060f33b3678d7dfb4f17e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap11_gstack_positive",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_gstack_rolemap.py",
+        "positive"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:06:16.062501+00:00",
+      "ended_utc": "2026-10-15T08:06:16.160015+00:00",
+      "exit_code": 0,
+      "timed_out": false,
+      "raw_log_paths": {
+        "stdout": "RAW/cap11_gstack_positive.stdout.txt",
+        "stderr": "RAW/cap11_gstack_positive.stderr.txt"
+      },
+      "stdout_sha256": "313599c57e01dac619cb5b11e7d0a12dfc7f8d499c91bbebcd6929a2ae3990ba",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap12_openspec_version",
+      "command": [
+        "C:/Users/user/AppData/Roaming/npm/openspec.cmd",
+        "--version"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:06:16.272135+00:00",
+      "ended_utc": "2026-10-15T08:06:16.703825+00:00",
+      "exit_code": 0,
+      "timed_out": false,
+      "raw_log_paths": {
+        "stdout": "RAW/cap12_openspec_version.stdout.txt",
+        "stderr": "RAW/cap12_openspec_version.stderr.txt"
+      },
+      "stdout_sha256": "3eb1ef94b5890ca727158b106142685c8733b0ace5bcb4cf3f0ac14f9f0643f4",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap13_fts5_negative",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_fts5.py",
+        "negative"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:06:16.883386+00:00",
+      "ended_utc": "2026-10-15T08:06:16.998894+00:00",
+      "exit_code": 0,
+      "timed_out": false,
+      "raw_log_paths": {
+        "stdout": "RAW/cap13_fts5_negative.stdout.txt",
+        "stderr": "RAW/cap13_fts5_negative.stderr.txt"
+      },
+      "stdout_sha256": "b8cb96ce2265671736f77bb66997d9040064eba0329816e447e6552e6ce046e7",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap13_fts5_positive",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_fts5.py",
+        "positive"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:06:16.714824+00:00",
+      "ended_utc": "2026-10-15T08:06:16.882385+00:00",
+      "exit_code": 0,
+      "timed_out": false,
+      "raw_log_paths": {
+        "stdout": "RAW/cap13_fts5_positive.stdout.txt",
+        "stderr": "RAW/cap13_fts5_positive.stderr.txt"
+      },
+      "stdout_sha256": "78710a4dab31aba0c5b7e5b557ac1b2df25c40637611b3672eb235e1b638ff02",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap13_fts5_teardown",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_fts5.py",
+        "teardown"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:06:16.999893+00:00",
+      "ended_utc": "2026-10-15T08:06:17.062415+00:00",
+      "exit_code": 0,
+      "timed_out": false,
+      "raw_log_paths": {
+        "stdout": "RAW/cap13_fts5_teardown.stdout.txt",
+        "stderr": "RAW/cap13_fts5_teardown.stderr.txt"
+      },
+      "stdout_sha256": "5e3e006ed90732296b790c76c4292b79b413440431ee1634a56960a4ed1fd982",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap14_fda_negative",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_fda_lease.py",
+        "negative"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:06:17.123922+00:00",
+      "ended_utc": "2026-10-15T08:06:17.183707+00:00",
+      "exit_code": 0,
+      "timed_out": false,
+      "raw_log_paths": {
+        "stdout": "RAW/cap14_fda_negative.stdout.txt",
+        "stderr": "RAW/cap14_fda_negative.stderr.txt"
+      },
+      "stdout_sha256": "5512303bb3863b3c364599c1034808407b6ea700e1f3814172301a5d1b29d780",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap14_fda_positive",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_fda_lease.py",
+        "positive"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:06:17.064414+00:00",
+      "ended_utc": "2026-10-15T08:06:17.121921+00:00",
+      "exit_code": 0,
+      "timed_out": false,
+      "raw_log_paths": {
+        "stdout": "RAW/cap14_fda_positive.stdout.txt",
+        "stderr": "RAW/cap14_fda_positive.stderr.txt"
+      },
+      "stdout_sha256": "ff72b154678b410ddf58a8bfd024896aee4025f799c5e7227bcbdf7b1fe1dd9e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap15_github_publish",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:/Projects/Agent_Workspace/PIPD/tools/github_publish.py"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:06:17.184707+00:00",
+      "ended_utc": "2026-10-15T08:06:17.306944+00:00",
+      "exit_code": 2,
+      "timed_out": false,
+      "raw_log_paths": {
+        "stdout": "RAW/cap15_github_publish.stdout.txt",
+        "stderr": "RAW/cap15_github_publish.stderr.txt"
+      },
+      "stdout_sha256": "b43a93bda3351c97d99104df0464e24527c38c7147e87e6dbf88580e827ff91c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap_avr_skill_pack",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:/Projects/Agent_Workspace/PIPD/tools/skill_pack_check.py",
+        "--all"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:06:17.308945+00:00",
+      "ended_utc": "2026-10-15T08:06:17.747603+00:00",
+      "exit_code": 0,
+      "timed_out": false,
+      "raw_log_paths": {
+        "stdout": "RAW/cap_avr_skill_pack.stdout.txt",
+        "stderr": "RAW/cap_avr_skill_pack.stderr.txt"
+      },
+      "stdout_sha256": "8be727127aa2b1a9f690d6385bfe9923d73593886d1e5e35f6ebcc1d9bd5bc99",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap_pipd_bind_pd",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_pipd_chain.py",
+        "bind-pd"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:06:18.367924+00:00",
+      "ended_utc": "2026-10-15T08:06:19.146212+00:00",
+      "exit_code": 0,
+      "timed_out": false,
+      "raw_log_paths": {
+        "stdout": "RAW/cap_pipd_bind_pd.stdout.txt",
+        "stderr": "RAW/cap_pipd_bind_pd.stderr.txt"
+      },
+      "stdout_sha256": "37e05aca70e1da175f4d23cc0db1c232e95c1c236e212a0d32c4b769803af143",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap_pipd_bind_pd_nocxt",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_pipd_chain.py",
+        "bind-pd-nocxt"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:06:18.275058+00:00",
+      "ended_utc": "2026-10-15T08:06:18.366924+00:00",
+      "exit_code": 0,
+      "timed_out": false,
+      "raw_log_paths": {
+        "stdout": "RAW/cap_pipd_bind_pd_nocxt.stdout.txt",
+        "stderr": "RAW/cap_pipd_bind_pd_nocxt.stderr.txt"
+      },
+      "stdout_sha256": "a3d8c593f7c73875401873b9005172c1a87798eb8e2cd653ce439a58c4483658",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap_pipd_claim_ceiling",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_pipd_chain.py",
+        "claim-ceiling"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:06:20.581408+00:00",
+      "ended_utc": "2026-10-15T08:06:20.667042+00:00",
+      "exit_code": 9,
+      "timed_out": false,
+      "raw_log_paths": {
+        "stdout": "RAW/cap_pipd_claim_ceiling.stdout.txt",
+        "stderr": "RAW/cap_pipd_claim_ceiling.stderr.txt"
+      },
+      "stdout_sha256": "0afd0ac0cdab992295e637a8ed8f7d4c24c198f749e55db921e5f2e1eb44206a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap_pipd_claim_ladder_ok",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_pipd_chain.py",
+        "claim-ladder-ok"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:07:40.801469+00:00",
+      "ended_utc": "2026-10-15T08:07:40.890844+00:00",
+      "exit_code": 0,
+      "timed_out": false,
+      "raw_log_paths": {
+        "stdout": "RAW/cap_pipd_claim_ladder_ok.stdout.txt",
+        "stderr": "RAW/cap_pipd_claim_ladder_ok.stderr.txt"
+      },
+      "stdout_sha256": "30e180117700faecce2930fa0c0f74acc3a1c829b1db49e920a1ce72f3695427",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap_pipd_compile_pi",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_pipd_chain.py",
+        "compile-pi"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:06:18.101791+00:00",
+      "ended_utc": "2026-10-15T08:06:18.187534+00:00",
+      "exit_code": 0,
+      "timed_out": false,
+      "raw_log_paths": {
+        "stdout": "RAW/cap_pipd_compile_pi.stdout.txt",
+        "stderr": "RAW/cap_pipd_compile_pi.stderr.txt"
+      },
+      "stdout_sha256": "ae0a2cedf890b9f39b1adf1a9d46eee8a7f13eb8f37b2ba72692c134e5efaeeb",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap_pipd_compile_pi_tamper",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_pipd_chain.py",
+        "compile-pi-tamper"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:06:18.188534+00:00",
+      "ended_utc": "2026-10-15T08:06:18.274059+00:00",
+      "exit_code": 0,
+      "timed_out": false,
+      "raw_log_paths": {
+        "stdout": "RAW/cap_pipd_compile_pi_tamper.stdout.txt",
+        "stderr": "RAW/cap_pipd_compile_pi_tamper.stderr.txt"
+      },
+      "stdout_sha256": "c243dd1d2a8490c51a951781f72738480bd8c152b3fbdab56f3dbe47d2ade9c9",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap_pipd_ecp",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_pipd_chain.py",
+        "ecp"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:06:19.148279+00:00",
+      "ended_utc": "2026-10-15T08:06:19.520251+00:00",
+      "exit_code": 0,
+      "timed_out": false,
+      "raw_log_paths": {
+        "stdout": "RAW/cap_pipd_ecp.stdout.txt",
+        "stderr": "RAW/cap_pipd_ecp.stderr.txt"
+      },
+      "stdout_sha256": "71977bf82dde5128378c6fc8f2d81be55df27a6d59e099f01f1d2a3169e72718",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap_pipd_intake",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_pipd_chain.py",
+        "intake"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:06:17.749605+00:00",
+      "ended_utc": "2026-10-15T08:06:17.839031+00:00",
+      "exit_code": 0,
+      "timed_out": false,
+      "raw_log_paths": {
+        "stdout": "RAW/cap_pipd_intake.stdout.txt",
+        "stderr": "RAW/cap_pipd_intake.stderr.txt"
+      },
+      "stdout_sha256": "19a0496cf040f2d3d9639dd22929b0ee42ab9e3498e64aa74527a3d4265a5498",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap_pipd_intake_ambiguous",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_pipd_chain.py",
+        "intake-ambiguous"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:06:17.927169+00:00",
+      "ended_utc": "2026-10-15T08:06:18.016326+00:00",
+      "exit_code": 0,
+      "timed_out": false,
+      "raw_log_paths": {
+        "stdout": "RAW/cap_pipd_intake_ambiguous.stdout.txt",
+        "stderr": "RAW/cap_pipd_intake_ambiguous.stderr.txt"
+      },
+      "stdout_sha256": "344d429c8ec5c104eb6778129a9dee16734c821817171d4d5b88ad2334c8a1ba",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap_pipd_intake_missing",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_pipd_chain.py",
+        "intake-missing"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:06:17.841083+00:00",
+      "ended_utc": "2026-10-15T08:06:17.926169+00:00",
+      "exit_code": 0,
+      "timed_out": false,
+      "raw_log_paths": {
+        "stdout": "RAW/cap_pipd_intake_missing.stdout.txt",
+        "stderr": "RAW/cap_pipd_intake_missing.stderr.txt"
+      },
+      "stdout_sha256": "2decf25c554013056a635d7a22c5b4a20827ccf8517a96b2121111b38982b42b",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap_pipd_intake_pkg",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_pipd_chain.py",
+        "intake-pkg"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:07:40.892844+00:00",
+      "ended_utc": "2026-10-15T08:07:41.592989+00:00",
+      "exit_code": 0,
+      "timed_out": false,
+      "raw_log_paths": {
+        "stdout": "RAW/cap_pipd_intake_pkg.stdout.txt",
+        "stderr": "RAW/cap_pipd_intake_pkg.stderr.txt"
+      },
+      "stdout_sha256": "d378ad7ee07f1c81942e3629b6bc46be72c9dc57d26330f1f84a8d4eebf9faa5",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap_pipd_profile",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_pipd_chain.py",
+        "profile"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:06:18.017387+00:00",
+      "ended_utc": "2026-10-15T08:06:18.099741+00:00",
+      "exit_code": 9,
+      "timed_out": false,
+      "raw_log_paths": {
+        "stdout": "RAW/cap_pipd_profile.stdout.txt",
+        "stderr": "RAW/cap_pipd_profile.stderr.txt"
+      },
+      "stdout_sha256": "0ee8c552095cd0ac3592aa2afa29ac4ed3e446935f53ef58266578bc79090cc6",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap_pipd_profile_ok",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_pipd_chain.py",
+        "profile-ok"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:07:40.714638+00:00",
+      "ended_utc": "2026-10-15T08:07:40.799402+00:00",
+      "exit_code": 0,
+      "timed_out": false,
+      "raw_log_paths": {
+        "stdout": "RAW/cap_pipd_profile_ok.stdout.txt",
+        "stderr": "RAW/cap_pipd_profile_ok.stderr.txt"
+      },
+      "stdout_sha256": "049ddabc08ce11cd31dc346de968cc286c6cc0f89f895a7f0ee5582eb16e2744",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap_pipd_project_unsafe",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_pipd_chain.py",
+        "project-unsafe"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:06:20.668042+00:00",
+      "ended_utc": "2026-10-15T08:06:20.799785+00:00",
+      "exit_code": 2,
+      "timed_out": false,
+      "raw_log_paths": {
+        "stdout": "RAW/cap_pipd_project_unsafe.stdout.txt",
+        "stderr": "RAW/cap_pipd_project_unsafe.stderr.txt"
+      },
+      "stdout_sha256": "b144b624d92836274373661fcb3e01e825dfbdd5fcd497eb2469acea91224dc8",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap_pipd_tqaep",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_pipd_chain.py",
+        "tqaep"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:06:20.216260+00:00",
+      "ended_utc": "2026-10-15T08:06:20.580409+00:00",
+      "exit_code": 0,
+      "timed_out": false,
+      "raw_log_paths": {
+        "stdout": "RAW/cap_pipd_tqaep.stdout.txt",
+        "stderr": "RAW/cap_pipd_tqaep.stderr.txt"
+      },
+      "stdout_sha256": "ecc4cc47d15d258ef70cfc8c3c0156e5d446f1c8d577ff11d621eeb386c7d7cc",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap_pipd_tqaep_noreceipt",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_pipd_chain.py",
+        "tqaep-noreceipt"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:06:19.861734+00:00",
+      "ended_utc": "2026-10-15T08:06:20.215262+00:00",
+      "exit_code": 0,
+      "timed_out": false,
+      "raw_log_paths": {
+        "stdout": "RAW/cap_pipd_tqaep_noreceipt.stdout.txt",
+        "stderr": "RAW/cap_pipd_tqaep_noreceipt.stderr.txt"
+      },
+      "stdout_sha256": "f8cd57a1a6858050356c70b19e19e8ddeff31ce8a9c8061275fa396c2ab2c2ec",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap_pipd_tqaep_self",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_pipd_chain.py",
+        "tqaep-self"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:06:19.522301+00:00",
+      "ended_utc": "2026-10-15T08:06:19.860732+00:00",
+      "exit_code": 0,
+      "timed_out": false,
+      "raw_log_paths": {
+        "stdout": "RAW/cap_pipd_tqaep_self.stdout.txt",
+        "stderr": "RAW/cap_pipd_tqaep_self.stderr.txt"
+      },
+      "stdout_sha256": "435530e458f8d0b1381ad903fecdc3069c64b5cfd3252ad562b1cc53ed7bd46d",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "checker_independent_run",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:/Projects/Agent_Workspace/HG-KSEOS/tools/check_acceptance_independent.py"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:06:20.801785+00:00",
+      "ended_utc": "2026-10-15T08:06:39.533062+00:00",
+      "exit_code": 1,
+      "timed_out": false,
+      "raw_log_paths": {
+        "stdout": "RAW/checker_independent_run.stdout.txt",
+        "stderr": "RAW/checker_independent_run.stderr.txt"
+      },
+      "stdout_sha256": "40979cf2021f218c31d69052e0c376da6b6f83774195cbb11faef8d2d0cea4a4",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "executed_mutations": [
+    {
+      "probe_id": "mut_m01",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_mutations.py",
+        "m01"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:09:36.635212+00:00",
+      "exit_code": 0,
+      "raw_log_paths": {
+        "stdout": "RAW/mut_m01.stdout.txt",
+        "stderr": "RAW/mut_m01.stderr.txt"
+      },
+      "stdout_sha256": "1b45ee368dfb4f37bf75091153a989b4eb79fa378e3c57eb39181dec1e417649"
+    },
+    {
+      "probe_id": "mut_m03",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_mutations.py",
+        "m03"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:09:36.799451+00:00",
+      "exit_code": 0,
+      "raw_log_paths": {
+        "stdout": "RAW/mut_m03.stdout.txt",
+        "stderr": "RAW/mut_m03.stderr.txt"
+      },
+      "stdout_sha256": "f6ec455bf1f74c8a6a31b7280c4e599e33dacd6d2dfbd28fdb1fff0dcaeae755"
+    },
+    {
+      "probe_id": "mut_m04",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_mutations.py",
+        "m04"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:09:36.891900+00:00",
+      "exit_code": 1,
+      "raw_log_paths": {
+        "stdout": "RAW/mut_m04.stdout.txt",
+        "stderr": "RAW/mut_m04.stderr.txt"
+      },
+      "stdout_sha256": "efd0a902f8f9c6ca49984b41139ab528fb5615f48a502825ce7c57b6555310dd"
+    },
+    {
+      "probe_id": "mut_m05",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_mutations.py",
+        "m05"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:09:37.101317+00:00",
+      "exit_code": 0,
+      "raw_log_paths": {
+        "stdout": "RAW/mut_m05.stdout.txt",
+        "stderr": "RAW/mut_m05.stderr.txt"
+      },
+      "stdout_sha256": "07738d7798c58e31ba041ddf036d98289ad9bf1f12940c57b29fdbf17d9e250a"
+    },
+    {
+      "probe_id": "mut_m06",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_mutations.py",
+        "m06"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:09:37.313602+00:00",
+      "exit_code": 1,
+      "raw_log_paths": {
+        "stdout": "RAW/mut_m06.stdout.txt",
+        "stderr": "RAW/mut_m06.stderr.txt"
+      },
+      "stdout_sha256": "7b5421a7f7f9c2b5be1ba83bacab108bf390e77ed57a82998e09c61ac8beedc3"
+    },
+    {
+      "probe_id": "mut_m11",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_mutations.py",
+        "m11"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:09:37.523763+00:00",
+      "exit_code": 0,
+      "raw_log_paths": {
+        "stdout": "RAW/mut_m11.stdout.txt",
+        "stderr": "RAW/mut_m11.stderr.txt"
+      },
+      "stdout_sha256": "5d1245d9b0439f2ad7e7b21cc382a7d3f1d5b2c07d0c078acf60818bc4e01eab"
+    },
+    {
+      "probe_id": "mut_m12",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_mutations.py",
+        "m12"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:09:37.734320+00:00",
+      "exit_code": 0,
+      "raw_log_paths": {
+        "stdout": "RAW/mut_m12.stdout.txt",
+        "stderr": "RAW/mut_m12.stderr.txt"
+      },
+      "stdout_sha256": "77da6db08b202710831fbf730355ca6caaa69d217fa49f01b9d51d24da4155a2"
+    },
+    {
+      "probe_id": "mut_m14",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_mutations.py",
+        "m14"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:09:37.942393+00:00",
+      "exit_code": 0,
+      "raw_log_paths": {
+        "stdout": "RAW/mut_m14.stdout.txt",
+        "stderr": "RAW/mut_m14.stderr.txt"
+      },
+      "stdout_sha256": "637bcc6e48037417093720f6c3b1fd5dad72f246c4e6d8b5adad5e288bc48572"
+    },
+    {
+      "probe_id": "mut_m16",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_mutations.py",
+        "m16"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:09:38.380115+00:00",
+      "exit_code": 1,
+      "raw_log_paths": {
+        "stdout": "RAW/mut_m16.stdout.txt",
+        "stderr": "RAW/mut_m16.stderr.txt"
+      },
+      "stdout_sha256": "2031509ed34ea5ccb7007577d523e9d67f641e511c6b745c5c4bd7364dfed6ca"
+    },
+    {
+      "probe_id": "mut_m18",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_mutations.py",
+        "m18"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "started_utc": "2026-10-15T08:09:38.591489+00:00",
+      "exit_code": 0,
+      "raw_log_paths": {
+        "stdout": "RAW/mut_m18.stdout.txt",
+        "stderr": "RAW/mut_m18.stderr.txt"
+      },
+      "stdout_sha256": "a6e7bc35ca1add82c6035c94f9697425b58074869a1f3fd95b838ce5cc1946e9"
+    }
+  ],
+  "planned_matrix_blocked": [
+    {
+      "id": "RQ01",
+      "test_id": "AT-RQ01",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ02",
+      "test_id": "AT-RQ02",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ02",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ03",
+      "test_id": "AT-RQ03",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ03",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ04",
+      "test_id": "AT-RQ04",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ04",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ05",
+      "test_id": "AT-RQ05",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ05",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ06",
+      "test_id": "AT-RQ06",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ06",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ07",
+      "test_id": "AT-RQ07",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ07",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ08",
+      "test_id": "AT-RQ08",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ08",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ09",
+      "test_id": "AT-RQ09",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ09",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ10",
+      "test_id": "AT-RQ10",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ10",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ11",
+      "test_id": "AT-RQ11",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ11",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ12",
+      "test_id": "AT-RQ12",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ12",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ13",
+      "test_id": "AT-RQ13",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ13",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ14",
+      "test_id": "AT-RQ14",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ14",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ15",
+      "test_id": "AT-RQ15",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ15",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ16",
+      "test_id": "AT-RQ16",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ16",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ17",
+      "test_id": "AT-RQ17",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ17",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ18",
+      "test_id": "AT-RQ18",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ18",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ19",
+      "test_id": "AT-RQ19",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ19",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ20",
+      "test_id": "AT-RQ20",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ20",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ21",
+      "test_id": "AT-RQ21",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ21",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ22",
+      "test_id": "AT-RQ22",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ22",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ23",
+      "test_id": "AT-RQ23",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ23",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ24",
+      "test_id": "AT-RQ24",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ24",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ25",
+      "test_id": "AT-RQ25",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ25",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ26",
+      "test_id": "AT-RQ26",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ26",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ27",
+      "test_id": "AT-RQ27",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ27",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ28",
+      "test_id": "AT-RQ28",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ28",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ29",
+      "test_id": "AT-RQ29",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ29",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ30",
+      "test_id": "AT-RQ30",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ30",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ31",
+      "test_id": "AT-RQ31",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ31",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ32",
+      "test_id": "AT-RQ32",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ32",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ33",
+      "test_id": "AT-RQ33",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ33",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ34",
+      "test_id": "AT-RQ34",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ34",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ35",
+      "test_id": "AT-RQ35",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ35",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ36",
+      "test_id": "AT-RQ36",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ36",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ37",
+      "test_id": "AT-RQ37",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ37",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ38",
+      "test_id": "AT-RQ38",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ38",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ39",
+      "test_id": "AT-RQ39",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ39",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ40",
+      "test_id": "AT-RQ40",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ40",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ41",
+      "test_id": "AT-RQ41",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ41",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ42",
+      "test_id": "AT-RQ42",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ42",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ43",
+      "test_id": "AT-RQ43",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ43",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ44",
+      "test_id": "AT-RQ44",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ44",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ45",
+      "test_id": "AT-RQ45",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ45",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ46",
+      "test_id": "AT-RQ46",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ46",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ47",
+      "test_id": "AT-RQ47",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ47",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ48",
+      "test_id": "AT-RQ48",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ48",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ49",
+      "test_id": "AT-RQ49",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ49",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ50",
+      "test_id": "AT-RQ50",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ50",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ51",
+      "test_id": "AT-RQ51",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ51",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ52",
+      "test_id": "AT-RQ52",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ52",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ53",
+      "test_id": "AT-RQ53",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ53",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ54",
+      "test_id": "AT-RQ54",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ54",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ55",
+      "test_id": "AT-RQ55",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ55",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ56",
+      "test_id": "AT-RQ56",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ56",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ57",
+      "test_id": "AT-RQ57",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ57",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ58",
+      "test_id": "AT-RQ58",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ58",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ59",
+      "test_id": "AT-RQ59",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ59",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ60",
+      "test_id": "AT-RQ60",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ60",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ61",
+      "test_id": "AT-RQ61",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ61",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ62",
+      "test_id": "AT-RQ62",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ62",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ63",
+      "test_id": "AT-RQ63",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ63",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "RQ64",
+      "test_id": "AT-RQ64",
+      "kind": "PARENT",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/RQ64",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ01/S01",
+      "test_id": "TEST-REQ-CNV-RQ01/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ01/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ02/S01",
+      "test_id": "TEST-REQ-CNV-RQ02/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ02/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ03/S01",
+      "test_id": "TEST-REQ-CNV-RQ03/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ03/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ04/S01",
+      "test_id": "TEST-REQ-CNV-RQ04/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ04/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ05/S01",
+      "test_id": "TEST-REQ-CNV-RQ05/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ05/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ06/S01",
+      "test_id": "TEST-REQ-CNV-RQ06/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ06/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ06/S02",
+      "test_id": "TEST-REQ-CNV-RQ06/S02",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ06/S02",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ06/S03",
+      "test_id": "TEST-REQ-CNV-RQ06/S03",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ06/S03",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ06/S04",
+      "test_id": "TEST-REQ-CNV-RQ06/S04",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ06/S04",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ07/S01",
+      "test_id": "TEST-REQ-CNV-RQ07/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ07/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ08/S01",
+      "test_id": "TEST-REQ-CNV-RQ08/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ08/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ09/S01",
+      "test_id": "TEST-REQ-CNV-RQ09/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ09/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ09/S02",
+      "test_id": "TEST-REQ-CNV-RQ09/S02",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ09/S02",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ09/S03",
+      "test_id": "TEST-REQ-CNV-RQ09/S03",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ09/S03",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ10/S01",
+      "test_id": "TEST-REQ-CNV-RQ10/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ10/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ11/S01",
+      "test_id": "TEST-REQ-CNV-RQ11/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ11/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ12/S01",
+      "test_id": "TEST-REQ-CNV-RQ12/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ12/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ12/S02",
+      "test_id": "TEST-REQ-CNV-RQ12/S02",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ12/S02",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ12/S03",
+      "test_id": "TEST-REQ-CNV-RQ12/S03",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ12/S03",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ13/S01",
+      "test_id": "TEST-REQ-CNV-RQ13/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ13/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ13/S02",
+      "test_id": "TEST-REQ-CNV-RQ13/S02",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ13/S02",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ13/S03",
+      "test_id": "TEST-REQ-CNV-RQ13/S03",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ13/S03",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ14/S01",
+      "test_id": "TEST-REQ-CNV-RQ14/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ14/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ14/S02",
+      "test_id": "TEST-REQ-CNV-RQ14/S02",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ14/S02",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ14/S03",
+      "test_id": "TEST-REQ-CNV-RQ14/S03",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ14/S03",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ15/S01",
+      "test_id": "TEST-REQ-CNV-RQ15/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ15/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ15/S02",
+      "test_id": "TEST-REQ-CNV-RQ15/S02",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ15/S02",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ15/S03",
+      "test_id": "TEST-REQ-CNV-RQ15/S03",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ15/S03",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ15/S04",
+      "test_id": "TEST-REQ-CNV-RQ15/S04",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ15/S04",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ16/S01",
+      "test_id": "TEST-REQ-CNV-RQ16/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ16/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ17/S01",
+      "test_id": "TEST-REQ-CNV-RQ17/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ17/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ18/S01",
+      "test_id": "TEST-REQ-CNV-RQ18/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ18/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ18/S02",
+      "test_id": "TEST-REQ-CNV-RQ18/S02",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ18/S02",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ18/S03",
+      "test_id": "TEST-REQ-CNV-RQ18/S03",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ18/S03",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ19/S01",
+      "test_id": "TEST-REQ-CNV-RQ19/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ19/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ20/S01",
+      "test_id": "TEST-REQ-CNV-RQ20/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ20/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ20/S02",
+      "test_id": "TEST-REQ-CNV-RQ20/S02",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ20/S02",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ20/S03",
+      "test_id": "TEST-REQ-CNV-RQ20/S03",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ20/S03",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ21/S01",
+      "test_id": "TEST-REQ-CNV-RQ21/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ21/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ22/S01",
+      "test_id": "TEST-REQ-CNV-RQ22/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ22/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ22/S02",
+      "test_id": "TEST-REQ-CNV-RQ22/S02",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ22/S02",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ22/S03",
+      "test_id": "TEST-REQ-CNV-RQ22/S03",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ22/S03",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ23/S01",
+      "test_id": "TEST-REQ-CNV-RQ23/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ23/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ24/S01",
+      "test_id": "TEST-REQ-CNV-RQ24/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ24/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ25/S01",
+      "test_id": "TEST-REQ-CNV-RQ25/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ25/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ25/S02",
+      "test_id": "TEST-REQ-CNV-RQ25/S02",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ25/S02",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ25/S03",
+      "test_id": "TEST-REQ-CNV-RQ25/S03",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ25/S03",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ26/S01",
+      "test_id": "TEST-REQ-CNV-RQ26/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ26/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ26/S02",
+      "test_id": "TEST-REQ-CNV-RQ26/S02",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ26/S02",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ26/S03",
+      "test_id": "TEST-REQ-CNV-RQ26/S03",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ26/S03",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ26/S04",
+      "test_id": "TEST-REQ-CNV-RQ26/S04",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ26/S04",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ27/S01",
+      "test_id": "TEST-REQ-CNV-RQ27/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ27/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ28/S01",
+      "test_id": "TEST-REQ-CNV-RQ28/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ28/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ29/S01",
+      "test_id": "TEST-REQ-CNV-RQ29/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ29/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ30/S01",
+      "test_id": "TEST-REQ-CNV-RQ30/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ30/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ30/S02",
+      "test_id": "TEST-REQ-CNV-RQ30/S02",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ30/S02",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ30/S03",
+      "test_id": "TEST-REQ-CNV-RQ30/S03",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ30/S03",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ30/S04",
+      "test_id": "TEST-REQ-CNV-RQ30/S04",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ30/S04",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ31/S01",
+      "test_id": "TEST-REQ-CNV-RQ31/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ31/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ32/S01",
+      "test_id": "TEST-REQ-CNV-RQ32/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ32/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ32/S02",
+      "test_id": "TEST-REQ-CNV-RQ32/S02",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ32/S02",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ32/S03",
+      "test_id": "TEST-REQ-CNV-RQ32/S03",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ32/S03",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ33/S01",
+      "test_id": "TEST-REQ-CNV-RQ33/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ33/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ33/S02",
+      "test_id": "TEST-REQ-CNV-RQ33/S02",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ33/S02",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ33/S03",
+      "test_id": "TEST-REQ-CNV-RQ33/S03",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ33/S03",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ34/S01",
+      "test_id": "TEST-REQ-CNV-RQ34/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ34/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ35/S01",
+      "test_id": "TEST-REQ-CNV-RQ35/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ35/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ36/S01",
+      "test_id": "TEST-REQ-CNV-RQ36/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ36/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ36/S02",
+      "test_id": "TEST-REQ-CNV-RQ36/S02",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ36/S02",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ36/S03",
+      "test_id": "TEST-REQ-CNV-RQ36/S03",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ36/S03",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ36/S04",
+      "test_id": "TEST-REQ-CNV-RQ36/S04",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ36/S04",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ37/S01",
+      "test_id": "TEST-REQ-CNV-RQ37/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ37/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ37/S02",
+      "test_id": "TEST-REQ-CNV-RQ37/S02",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ37/S02",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ37/S03",
+      "test_id": "TEST-REQ-CNV-RQ37/S03",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ37/S03",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ37/S04",
+      "test_id": "TEST-REQ-CNV-RQ37/S04",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ37/S04",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ37/S05",
+      "test_id": "TEST-REQ-CNV-RQ37/S05",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ37/S05",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ38/S01",
+      "test_id": "TEST-REQ-CNV-RQ38/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ38/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ39/S01",
+      "test_id": "TEST-REQ-CNV-RQ39/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ39/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ39/S02",
+      "test_id": "TEST-REQ-CNV-RQ39/S02",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ39/S02",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ39/S03",
+      "test_id": "TEST-REQ-CNV-RQ39/S03",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ39/S03",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ40/S01",
+      "test_id": "TEST-REQ-CNV-RQ40/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ40/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ40/S02",
+      "test_id": "TEST-REQ-CNV-RQ40/S02",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ40/S02",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ40/S03",
+      "test_id": "TEST-REQ-CNV-RQ40/S03",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ40/S03",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ40/S04",
+      "test_id": "TEST-REQ-CNV-RQ40/S04",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ40/S04",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ41/S01",
+      "test_id": "TEST-REQ-CNV-RQ41/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ41/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ42/S01",
+      "test_id": "TEST-REQ-CNV-RQ42/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ42/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ42/S02",
+      "test_id": "TEST-REQ-CNV-RQ42/S02",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ42/S02",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ42/S03",
+      "test_id": "TEST-REQ-CNV-RQ42/S03",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ42/S03",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ42/S04",
+      "test_id": "TEST-REQ-CNV-RQ42/S04",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ42/S04",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ43/S01",
+      "test_id": "TEST-REQ-CNV-RQ43/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ43/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ44/S01",
+      "test_id": "TEST-REQ-CNV-RQ44/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ44/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ45/S01",
+      "test_id": "TEST-REQ-CNV-RQ45/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ45/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ46/S01",
+      "test_id": "TEST-REQ-CNV-RQ46/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ46/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ46/S02",
+      "test_id": "TEST-REQ-CNV-RQ46/S02",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ46/S02",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ46/S03",
+      "test_id": "TEST-REQ-CNV-RQ46/S03",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ46/S03",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ46/S04",
+      "test_id": "TEST-REQ-CNV-RQ46/S04",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ46/S04",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ47/S01",
+      "test_id": "TEST-REQ-CNV-RQ47/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ47/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ48/S01",
+      "test_id": "TEST-REQ-CNV-RQ48/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ48/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ49/S01",
+      "test_id": "TEST-REQ-CNV-RQ49/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ49/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ50/S01",
+      "test_id": "TEST-REQ-CNV-RQ50/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ50/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ51/S01",
+      "test_id": "TEST-REQ-CNV-RQ51/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ51/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ52/S01",
+      "test_id": "TEST-REQ-CNV-RQ52/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ52/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ53/S01",
+      "test_id": "TEST-REQ-CNV-RQ53/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ53/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ53/S02",
+      "test_id": "TEST-REQ-CNV-RQ53/S02",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ53/S02",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ53/S03",
+      "test_id": "TEST-REQ-CNV-RQ53/S03",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ53/S03",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ53/S04",
+      "test_id": "TEST-REQ-CNV-RQ53/S04",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ53/S04",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ53/S05",
+      "test_id": "TEST-REQ-CNV-RQ53/S05",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ53/S05",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ54/S01",
+      "test_id": "TEST-REQ-CNV-RQ54/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ54/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ55/S01",
+      "test_id": "TEST-REQ-CNV-RQ55/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ55/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ56/S01",
+      "test_id": "TEST-REQ-CNV-RQ56/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ56/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ57/S01",
+      "test_id": "TEST-REQ-CNV-RQ57/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ57/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ57/S02",
+      "test_id": "TEST-REQ-CNV-RQ57/S02",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ57/S02",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ57/S03",
+      "test_id": "TEST-REQ-CNV-RQ57/S03",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ57/S03",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ57/S04",
+      "test_id": "TEST-REQ-CNV-RQ57/S04",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ57/S04",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ58/S01",
+      "test_id": "TEST-REQ-CNV-RQ58/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ58/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ58/S02",
+      "test_id": "TEST-REQ-CNV-RQ58/S02",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ58/S02",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ58/S03",
+      "test_id": "TEST-REQ-CNV-RQ58/S03",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ58/S03",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ58/S04",
+      "test_id": "TEST-REQ-CNV-RQ58/S04",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ58/S04",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ59/S01",
+      "test_id": "TEST-REQ-CNV-RQ59/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ59/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ59/S02",
+      "test_id": "TEST-REQ-CNV-RQ59/S02",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ59/S02",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ59/S03",
+      "test_id": "TEST-REQ-CNV-RQ59/S03",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ59/S03",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ60/S01",
+      "test_id": "TEST-REQ-CNV-RQ60/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ60/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ61/S01",
+      "test_id": "TEST-REQ-CNV-RQ61/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ61/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ61/S02",
+      "test_id": "TEST-REQ-CNV-RQ61/S02",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ61/S02",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ61/S03",
+      "test_id": "TEST-REQ-CNV-RQ61/S03",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ61/S03",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ61/S04",
+      "test_id": "TEST-REQ-CNV-RQ61/S04",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ61/S04",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ62/S01",
+      "test_id": "TEST-REQ-CNV-RQ62/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ62/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ63/S01",
+      "test_id": "TEST-REQ-CNV-RQ63/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ63/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "REQ-CNV-RQ64/S01",
+      "test_id": "TEST-REQ-CNV-RQ64/S01",
+      "kind": "CHILD",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/REQ-CNV-RQ64/S01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "T01",
+      "test_id": "T01",
+      "kind": "LEGACY",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/T01",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "T02",
+      "test_id": "T02",
+      "kind": "LEGACY",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/T02",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "T03",
+      "test_id": "T03",
+      "kind": "LEGACY",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/T03",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "T04",
+      "test_id": "T04",
+      "kind": "LEGACY",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/T04",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "T05",
+      "test_id": "T05",
+      "kind": "LEGACY",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/T05",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "T06",
+      "test_id": "T06",
+      "kind": "LEGACY",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/T06",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "T07",
+      "test_id": "T07",
+      "kind": "LEGACY",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/T07",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "T08",
+      "test_id": "T08",
+      "kind": "LEGACY",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/T08",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "T09",
+      "test_id": "T09",
+      "kind": "LEGACY",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/T09",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "T10",
+      "test_id": "T10",
+      "kind": "LEGACY",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/T10",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "T11",
+      "test_id": "T11",
+      "kind": "LEGACY",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/T11",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "T12",
+      "test_id": "T12",
+      "kind": "LEGACY",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/T12",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "T13",
+      "test_id": "T13",
+      "kind": "LEGACY",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/T13",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "T14",
+      "test_id": "T14",
+      "kind": "LEGACY",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/T14",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "T15",
+      "test_id": "T15",
+      "kind": "LEGACY",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/T15",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "T16",
+      "test_id": "T16",
+      "kind": "LEGACY",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/T16",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "T17",
+      "test_id": "T17",
+      "kind": "LEGACY",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/T17",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "T18",
+      "test_id": "T18",
+      "kind": "LEGACY",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/T18",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "T19",
+      "test_id": "T19",
+      "kind": "LEGACY",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/T19",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "T20",
+      "test_id": "T20",
+      "kind": "LEGACY",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/T20",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "T21",
+      "test_id": "T21",
+      "kind": "LEGACY",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/T21",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "T22",
+      "test_id": "T22",
+      "kind": "LEGACY",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/T22",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "T23",
+      "test_id": "T23",
+      "kind": "LEGACY",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/T23",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "T24",
+      "test_id": "T24",
+      "kind": "LEGACY",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/T24",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "T25",
+      "test_id": "T25",
+      "kind": "LEGACY",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/T25",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "T26",
+      "test_id": "T26",
+      "kind": "LEGACY",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/T26",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "T27",
+      "test_id": "T27",
+      "kind": "LEGACY",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/T27",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    },
+    {
+      "id": "T28",
+      "test_id": "T28",
+      "kind": "LEGACY",
+      "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md#Slot22/T28",
+      "actual": null,
+      "blockers": [
+        "SOURCE_PHYSICAL_MISSING",
+        "PROMPT_COMPILE_BLOCKED",
+        "EXECUTION_ADMISSION_NOT_RUN"
+      ]
+    }
+  ],
+  "note": "Every executed case's raw stdout/stderr lives under RAW/ with the listed paths."
+}

@@ -1,0 +1,152 @@
+{
+  "schema": "HGK-LANE-RESOLUTION/1",
+  "lane": "EXECUTE",
+  "role": "writer",
+  "engine": "codex-cli",
+  "codex_executable": "C:/Users/user/AppData/Local/OpenAI/Codex/bin/9614f1d9b40d9c4f/codex.exe",
+  "codex_home": "C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\codex-hermes",
+  "relay_base": "http://127.0.0.1:10101/v1",
+  "codex_home_is_declared_lane_home": true,
+  "human_home_transport_acknowledged": false,
+  "skipped_arms": [
+    {
+      "rank": 3,
+      "arm": "nvidia/deepseek-ai/deepseek-v4.1-flash",
+      "reason": "UNREACHABLE_MEASURED_20261011"
+    }
+  ],
+  "transport": "opencodex relay via per-invocation -c openai_base_url (no config mutation)",
+  "transport_target": "http://127.0.0.1:10101/v1",
+  "front_door_port": null,
+  "front_door_note": "the lane-scoped pool door (10103 VERIFY_SECURITY / 10105 EXECUTE) carries the hop and ledgers every decision; the sealed single-model 10100 door is unchanged and unused; None here means direct to the relay on 10101",
+  "sandbox": "danger-full-access",
+  "sandbox_by_role_default": "danger-full-access",
+  "sandbox_escalation_authorised": false,
+  "cwd": "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015",
+  "side_effect_note": "danger-full-access has NO sandbox root: any absolute path is writable, so a read-only subject must be a frozen copy checked afterwards by digest",
+  "receipt_binding": "usage rows appended after this attempt started (byte offset bound)",
+  "pool": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\lane-route-slots.candidate.json",
+  "candidates_considered": [
+    1
+  ],
+  "mode": "forced_rank",
+  "unguarded_escalation_acknowledged": false,
+  "inject_429_first": false,
+  "identity_gate": {
+    "state": "enforced",
+    "lane_home": "C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\codex-hermes",
+    "relay_home": "C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\opencodex-hermes",
+    "arms": [
+      {
+        "rank": 1,
+        "provider": "opencode-go",
+        "model": "deepseek-v4.1-flash",
+        "requirement": "none",
+        "ok": true,
+        "detail": "key-auth arm: no human-attended identity"
+      }
+    ],
+    "degraded": false,
+    "required_arm": "opencode-go/deepseek-v4.1-flash"
+  },
+  "authorization": {
+    "checked": false
+  },
+  "subject_mutation": {
+    "files_before": 3,
+    "files_after": 3,
+    "added": [],
+    "removed": [],
+    "changed": [],
+    "mutated": false,
+    "mutated_known": true,
+    "inconclusive": false,
+    "verdict": "CLEAN",
+    "rule": "removed/changed => verdict void; added is recorded, not fatal; an empty side => INCONCLUSIVE (never a clean verdict from nothing)",
+    "guard_roots": [
+      "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/C0_C9_CONTRACT_R5.json",
+      "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/compiler_native_output_R5/thin-prompt.md",
+      "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/OWNER_TRUST_LOCK.json"
+    ],
+    "subject_digest_sha256_before": "1347bbda634e5ea59740e04b37cf9854f261f9019d1d9bf7b57443b5998a1014",
+    "subject_digest_sha256_after": "1347bbda634e5ea59740e04b37cf9854f261f9019d1d9bf7b57443b5998a1014"
+  },
+  "attempt_log_dir": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\CNV-PIPD-LS-SP-20261015-R6\\EXECUTE\\attempt-1-20261015T073929Z",
+  "output_dir_policy": {
+    "mode": "derived",
+    "derived": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\CNV-PIPD-LS-SP-20261015-R6\\EXECUTE\\attempt-1-20261015T073929Z",
+    "attempt_number": 1,
+    "attempt_marker": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\CNV-PIPD-LS-SP-20261015-R6\\EXECUTE\\attempt-1-20261015T073929Z\\attempt.marker.json"
+  },
+  "repair_precondition": {
+    "checked": false
+  },
+  "remote_write_precheck": {
+    "mode": "DETECTION_ONLY",
+    "ran": true,
+    "brief": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\WRITER_BRIEF_R6.md",
+    "markers": [],
+    "publication_wo": null,
+    "would_refuse": false
+  },
+  "attempts": [
+    {
+      "rank": 1,
+      "provider": "opencode-go",
+      "model": "deepseek-v4.1-flash",
+      "transport_model": "opencode-go/deepseek-v4.1-flash",
+      "sandbox": "danger-full-access",
+      "reasoning_effort": null,
+      "exit": 0,
+      "timed_out": false,
+      "seconds": 2450.82,
+      "nonce_present": false,
+      "nonce_present_raw_stdout": true,
+      "nonce_source": "item.completed/agent_message",
+      "usage_rows_after_offset": 266,
+      "usage_offset": 22639304,
+      "usage_provider": "opencode-go",
+      "usage_model": "deepseek-v4.1-flash",
+      "usage_status": 200,
+      "usage_receipt_ok": true,
+      "usage_receipt_reason": "",
+      "usage_ledger_rewritten": false,
+      "usage_rows_shape_invalid": 0,
+      "usage_rows_undecodable": 0,
+      "carrier_lines_undecodable": 0,
+      "carrier_lines_surrogate": 0,
+      "credential_posture": {
+        "verdict": "INCONCLUSIVE",
+        "decision": "WARN_CONTINUE",
+        "reason": "helper-only verdict (no child env asserted): helper_resolution_reset=PASS; helper_non_interactive=UNKNOWN",
+        "prompt_capable_helper": null,
+        "origin": null,
+        "git_terminal_prompt": "0"
+      },
+      "attempt_log_dir": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\CNV-PIPD-LS-SP-20261015-R6\\EXECUTE\\attempt-1-20261015T073929Z",
+      "stdout_byte_exact": true,
+      "stdout_path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\CNV-PIPD-LS-SP-20261015-R6\\EXECUTE\\attempt-1-20261015T073929Z\\attempt-2140-1792049969-1-stdout.txt",
+      "stdout_bytes": 3541041,
+      "stdout_sha256": "48a6bb9d0cade34d23b663c5e79e924e356f59375c7240c617399daf6e3043b9",
+      "stderr_byte_exact": true,
+      "stderr_path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\CNV-PIPD-LS-SP-20261015-R6\\EXECUTE\\attempt-1-20261015T073929Z\\attempt-2140-1792049969-1-stderr.txt",
+      "stderr_bytes": 2145,
+      "stderr_sha256": "f3bec9ccf4824621b6b9779cd5e3dd25e04ff5cfd4484c80f420d23afa3e3e2f",
+      "stdout_tail": "4ecd87c8`; write-set sha256 `43dcd8087d9bccde04da76db6cdfac2defbfe84979fe55672e4d8628e47ae93f`.\\n\\nNothing here is accepted; every verdict remains PENDING_CHECKER for the independent checker (`opencode-go/glm-5.3-flash`).\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":15505579,\"cached_input_tokens\":14652544,\"cache_write_input_tokens\":0,\"output_tokens\":154539,\"reasoning_output_tokens\":44484}}\n",
+      "stderr_tail": "lete File: {path}', '*** Update File: {path}'\n2026-10-15T08:16:00.580411Z ERROR codex_core::tools::router: error=apply_patch verification failed: invalid hunk at line 187, '' is not a valid hunk header. Valid hunk headers: '*** Add File: {path}', '*** Delete File: {path}', '*** Update File: {path}'\n"
+    }
+  ],
+  "used_rank": null,
+  "used_transport_model": null,
+  "used_seconds": null,
+  "generated_utc": "2026-10-15T08:20:20.763375+00:00",
+  "claim_ceiling": "a pass here proves the Codex-CLI lane served this turn through the relay with a matching usage receipt; it is not an acceptance of any subject",
+  "ok": false,
+  "usage_receipt_ok": true,
+  "usage_rows_shape_invalid": 0,
+  "usage_rows_undecodable": 0,
+  "code": "ERR_NO_ARM_EMITTED_NONCE",
+  "nonce_absent_arms": [
+    "opencode-go/deepseek-v4.1-flash"
+  ]
+}

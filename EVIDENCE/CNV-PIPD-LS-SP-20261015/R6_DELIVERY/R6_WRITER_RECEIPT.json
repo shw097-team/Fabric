@@ -1,0 +1,1397 @@
+{
+  "producer": "Codex CLI bounded writer EXECUTE lane (opencode-go/deepseek-v4.1-flash)",
+  "produced_utc": "2026-10-15T08:19:34.182480+00:00",
+  "source_hashes_used": [
+    "6629af1d4cf09ec11b99e79488ea515692ebd9c802fef6353b1ac3ed31b7bd6e",
+    "115912cdccbf5b3788fe1d6e1c8c10fe575252d72accf31cb6f1955dd8750974",
+    "96d9d564286743e17550ccef15b9952347901eb77168f930376938893cff9c3f",
+    "6894a6ba08781f2ed5758af132f758c14c1a9e9b69d42056837f5ce45bba6c64",
+    "7f7246d34be112bb465b48dadaef6163e466e16e5e705fc58acee04b3809a613",
+    "8b78edebd79c8149a2b74e2a7f873e3116f772c881a501bd4600ea0e7a891f6b",
+    "2f246796c3b927170a90ed7dd3f4307e913579db2efb56b307cbc2377a1cb77f"
+  ],
+  "raw_evidence_refs": [
+    "RUNNERS/capability_probes.json",
+    "RUNNERS/supplement_probes.json",
+    "RUNNERS/cap03_records.json",
+    "RUNNERS/mutation_records.json",
+    "RAW/cap_checkpoint_drill.json"
+  ],
+  "verdict": "PENDING_CHECKER",
+  "claim_level": "LOCAL",
+  "artifact": "R6_WRITER_RECEIPT.json",
+  "round": "CNV-PIPD-LS-SP-20261015-R6",
+  "lane": "EXECUTE (Codex CLI bounded writer, opencode-go/deepseek-v4.1-flash)",
+  "claim_ceiling": "LOCAL",
+  "final_status": "PARTIAL",
+  "status_rationale": "Real capability probes ran and are captured raw, but multiple capabilities are BLOCKED_EXTERNAL/HITL, 3 executed mutations were NOT detected, and 0/221 requirement cases / 0/8 gates / 0/24 AUD closures are complete. This is a partial candidate, not a ready set.",
+  "authoritative_order": {
+    "file": "compiler_native_output_R5/thin-prompt.md",
+    "sha256": "2f246796c3b927170a90ed7dd3f4307e913579db2efb56b307cbc2377a1cb77f",
+    "compiler_state": "PROMPT_COMPILE_PASS",
+    "rule": "file 7 governs over the writer brief where they disagree"
+  },
+  "claims": [
+    {
+      "claim": "22 ACTIVE_REQUIRED capabilities probed on this host",
+      "ceiling": "LOCAL",
+      "result": "17 QUALIFIED_LOCAL, 4 BLOCKED_EXTERNAL, 1 BLOCKED_HITL"
+    },
+    {
+      "claim": "18 hostile mutation cases attempted",
+      "ceiling": "LOCAL",
+      "result": "10 executed (7 detected, 3 NOT detected), 8 NOT_RUN (frozen R5 corpus bytes unreachable)"
+    },
+    {
+      "claim": "checkpoint/rollback drill performed on own WriteSet",
+      "ceiling": "LOCAL",
+      "result": "mutation detected by re-hash; rolled back to exact original sha; re-verified"
+    },
+    {
+      "claim": "221 planning requirement cases traced",
+      "ceiling": "LOCAL",
+      "result": "0 executed; all BLOCKED_NOT_RUN / REAL_RUNNER_NOT_BOUND"
+    },
+    {
+      "claim": "24 AUD findings classified",
+      "ceiling": "LOCAL",
+      "result": "0 CLOSED_WITH_EVIDENCE; all OPEN/BLOCKED_EXTERNAL/NOT_RUN"
+    },
+    {
+      "claim": "8 evidence gates A..H assessed",
+      "ceiling": "LOCAL",
+      "result": "0 passed; all NOT_RUN (no real receipt held)"
+    },
+    {
+      "claim": "K-ledger crosswalk materialized",
+      "ceiling": "LOCAL",
+      "result": "0 mapped; 20 explicitly UNMAPPED (no guessing)"
+    }
+  ],
+  "claim_ceiling_statement": "No artifact in this delivery carries a verdict other than PENDING_CHECKER, and no claim above LOCAL is made. Acceptance is reserved for the independent Acceptance Officer.",
+  "capabilities": [
+    {
+      "capability": "native-prompt-compiler",
+      "status": "QUALIFIED_LOCAL",
+      "evidence": [
+        "RAW/cap01_compiler_lint.stdout.txt",
+        "RAW/cap01_compiler_activation.stdout.txt",
+        "RAW/cap01_compiler_acceptance.stdout.txt",
+        "RAW/cap01_compiler_hash.stdout.txt",
+        "RAW/cap01_compiler_duplication.stdout.txt"
+      ],
+      "note": "lint/activation/acceptance/hash/duplication all exit 0; PROMPT_COMPILE_PASS."
+    },
+    {
+      "capability": "approved-document-verifier",
+      "status": "BLOCKED_EXTERNAL",
+      "evidence": [
+        "RAW/cap02_pkg_check_run.stdout.txt",
+        "RAW/cap02_pkg_check_locked.stdout.txt"
+      ],
+      "note": "exit 30 FAIL_CLOSED MISSING_EXTERNAL_OWNER_APPROVED_LOCK; --check locked exit 30 SOURCE_PHYSICAL_MISSING.",
+      "missing_condition": "external Owner-approved lock + physical source bytes for AUDIT_..._FULL_DESTRUCTIVE_2026-10-15(1).md",
+      "smallest_unblock": "supply the Owner-approved lock file and the missing physical source document"
+    },
+    {
+      "capability": "HGK-typed-spine-and-lifecycle",
+      "status": "QUALIFIED_LOCAL",
+      "evidence": [
+        "RAW/cap03_spine_positive.stdout.txt",
+        "RAW/cap03_spine_negative.stdout.txt",
+        "RAW/cap03_spine_acceptance.stdout.txt",
+        "RAW/cap03_spine_fk_negative.stdout.txt"
+      ],
+      "note": "positive/negative/acceptance exit 0; illegal transition refused; FK refused."
+    },
+    {
+      "capability": "Hermes-canonical-runtime",
+      "status": "BLOCKED_HITL",
+      "evidence": [
+        "RAW/cap04_hermes_version.stdout.txt"
+      ],
+      "note": "served Hermes Agent v0.21.5 (2026.9.24) vs declared 0.20.0/v2026.8.3 (K-06).",
+      "missing_condition": "Owner certification of the correct runtime binding",
+      "smallest_unblock": "Owner certifies current runtime binding or re-points HG-KSEOS/config/hermes.json"
+    },
+    {
+      "capability": "Codex-EXECUTE-DeepSeek",
+      "status": "BLOCKED_EXTERNAL",
+      "evidence": [
+        "RAW/cap05_lane_toolchain_resolve.stdout.txt"
+      ],
+      "note": "declared lane binary .../Codex/bin/2e5e00daee91c61d/codex.exe absent; resolve exit 3 ERR_LANE_TOOLCHAIN_BINARY_MISSING.",
+      "missing_condition": "declared lane toolchain binary",
+      "smallest_unblock": "supply or re-point the declared codex.exe path in the lane manifest"
+    },
+    {
+      "capability": "Codex-VERIFY-GLM",
+      "status": "BLOCKED_EXTERNAL",
+      "evidence": [
+        "RAW/checker_independent_run.stdout.txt"
+      ],
+      "note": "check_acceptance_independent.py exit 1, verdict FAIL, denominator 92, 2 FAILs (TST-025, TST-048).",
+      "missing_condition": "independent GLM verify arm producing ACCEPT with denominator 92",
+      "smallest_unblock": "Owner supplies the GLM verify arm / fixes the 2 failing TST cases"
+    },
+    {
+      "capability": "Hermes-Kanban",
+      "status": "QUALIFIED_LOCAL",
+      "evidence": [
+        "RAW/cap07_kanban_boards.stdout.txt"
+      ],
+      "note": "hermes kanban boards list exit 0."
+    },
+    {
+      "capability": "Hermes-Swarm",
+      "status": "QUALIFIED_LOCAL",
+      "evidence": [
+        "RAW/cap08_swarm_help.stdout.txt"
+      ],
+      "note": "hermes kanban swarm --help exit 0."
+    },
+    {
+      "capability": "gstack-advisory",
+      "status": "QUALIFIED_LOCAL",
+      "evidence": [
+        "RAW/cap11_gstack_positive.stdout.txt",
+        "RAW/cap11_gstack_negative.stdout.txt"
+      ],
+      "note": "positive/negative exit 0."
+    },
+    {
+      "capability": "OpenSpec-brownfield",
+      "status": "QUALIFIED_LOCAL",
+      "evidence": [
+        "RAW/cap12_openspec_version.stdout.txt"
+      ],
+      "note": "openspec --version exit 0 = 1.8.0."
+    },
+    {
+      "capability": "AVR-HGK-Skill-loader",
+      "status": "QUALIFIED_LOCAL",
+      "evidence": [
+        "RAW/cap_avr_skill_pack.stdout.txt"
+      ],
+      "note": "exit 0 PASS 8/8 skills, 56/56 cases."
+    },
+    {
+      "capability": "FAR-SQLite-FTS5",
+      "status": "QUALIFIED_LOCAL",
+      "evidence": [
+        "RAW/cap13_fts5_positive.stdout.txt",
+        "RAW/cap13_fts5_negative.stdout.txt",
+        "RAW/cap13_fts5_teardown.stdout.txt"
+      ],
+      "note": "FTS5 positive/negative/teardown exit 0."
+    },
+    {
+      "capability": "bounded-FS-API-Desktop",
+      "status": "QUALIFIED_LOCAL",
+      "evidence": [
+        "RAW/cap_pipd_project_unsafe.stdout.txt"
+      ],
+      "note": "unsafe destination refused exit 2."
+    },
+    {
+      "capability": "approval-gated-GitHub",
+      "status": "BLOCKED_EXTERNAL",
+      "evidence": [
+        "RAW/cap15_github_publish.stdout.txt"
+      ],
+      "note": "github_publish.py exit 2 PAT_PRESENT=false verdict GITHUB_AUTH_BLOCKED.",
+      "missing_condition": "GitHub PAT (off-limits to this lane; no secret material may be read)",
+      "smallest_unblock": "Owner authorizes a publication lane that holds the PAT"
+    },
+    {
+      "capability": "pipd-route-intake",
+      "status": "QUALIFIED_LOCAL",
+      "evidence": [
+        "RAW/cap_pipd_intake.stdout.txt",
+        "RAW/cap_pipd_intake_missing.stdout.txt",
+        "RAW/cap_pipd_intake_ambiguous.stdout.txt"
+      ],
+      "note": "intake exit 0; missing/ambiguous refused."
+    },
+    {
+      "capability": "pipd-authority-source",
+      "status": "QUALIFIED_LOCAL",
+      "evidence": [
+        "RAW/cap_pipd_intake_pkg.stdout.txt"
+      ],
+      "note": "intake-pkg exit 0."
+    },
+    {
+      "capability": "pipd-profile-tailor",
+      "status": "QUALIFIED_LOCAL",
+      "evidence": [
+        "RAW/cap_pipd_profile_ok.stdout.txt",
+        "RAW/cap_pipd_profile.stdout.txt"
+      ],
+      "note": "profile-ok exit 0; unknown axis refused (exit 9)."
+    },
+    {
+      "capability": "pipd-pi-compile",
+      "status": "QUALIFIED_LOCAL",
+      "evidence": [
+        "RAW/cap_pipd_compile_pi.stdout.txt",
+        "RAW/cap_pipd_compile_pi_tamper.stdout.txt"
+      ],
+      "note": "compile-pi exit 0; tamper refused."
+    },
+    {
+      "capability": "pipd-pd-bind",
+      "status": "QUALIFIED_LOCAL",
+      "evidence": [
+        "RAW/cap_pipd_bind_pd.stdout.txt",
+        "RAW/cap_pipd_bind_pd_nocxt.stdout.txt"
+      ],
+      "note": "bind-pd exit 0; no-RepoContext refused."
+    },
+    {
+      "capability": "pipd-execution-contract",
+      "status": "QUALIFIED_LOCAL",
+      "evidence": [
+        "RAW/cap_pipd_ecp.stdout.txt"
+      ],
+      "note": "ecp exit 0."
+    },
+    {
+      "capability": "pipd-assurance-tqaep",
+      "status": "QUALIFIED_LOCAL",
+      "evidence": [
+        "RAW/cap_pipd_tqaep.stdout.txt",
+        "RAW/cap_pipd_tqaep_self.stdout.txt",
+        "RAW/cap_pipd_tqaep_noreceipt.stdout.txt"
+      ],
+      "note": "tqaep exit 0; self/noreceipt refused."
+    },
+    {
+      "capability": "pipd-package-project",
+      "status": "QUALIFIED_LOCAL",
+      "evidence": [
+        "RAW/cap_pipd_claim_ladder_ok.stdout.txt",
+        "RAW/cap_pipd_claim_ceiling.stdout.txt"
+      ],
+      "note": "project-unsafe exit 2; claim ladder LOCAL_QUALIFIED."
+    }
+  ],
+  "capabilities_qualified": [
+    "native-prompt-compiler",
+    "HGK-typed-spine-and-lifecycle",
+    "Hermes-Kanban",
+    "Hermes-Swarm",
+    "gstack-advisory",
+    "OpenSpec-brownfield",
+    "AVR-HGK-Skill-loader",
+    "FAR-SQLite-FTS5",
+    "bounded-FS-API-Desktop",
+    "pipd-route-intake",
+    "pipd-authority-source",
+    "pipd-profile-tailor",
+    "pipd-pi-compile",
+    "pipd-pd-bind",
+    "pipd-execution-contract",
+    "pipd-assurance-tqaep",
+    "pipd-package-project"
+  ],
+  "capabilities_blocked": [
+    {
+      "capability": "approved-document-verifier",
+      "status": "BLOCKED_EXTERNAL",
+      "missing_condition": "external Owner-approved lock + physical source bytes for AUDIT_..._FULL_DESTRUCTIVE_2026-10-15(1).md"
+    },
+    {
+      "capability": "Hermes-canonical-runtime",
+      "status": "BLOCKED_HITL",
+      "missing_condition": "Owner certification of the correct runtime binding"
+    },
+    {
+      "capability": "Codex-EXECUTE-DeepSeek",
+      "status": "BLOCKED_EXTERNAL",
+      "missing_condition": "declared lane toolchain binary"
+    },
+    {
+      "capability": "Codex-VERIFY-GLM",
+      "status": "BLOCKED_EXTERNAL",
+      "missing_condition": "independent GLM verify arm producing ACCEPT with denominator 92"
+    },
+    {
+      "capability": "approval-gated-GitHub",
+      "status": "BLOCKED_EXTERNAL",
+      "missing_condition": "GitHub PAT (off-limits to this lane; no secret material may be read)"
+    }
+  ],
+  "capability_counts": {
+    "ACTIVE_REQUIRED": 22,
+    "QUALIFIED_LOCAL": 17,
+    "BLOCKED_EXTERNAL": 4,
+    "BLOCKED_HITL": 1
+  },
+  "mutations_summary": {
+    "executed": 10,
+    "detected": 7,
+    "not_detected": 3,
+    "not_run": 8,
+    "detected_ids": [
+      "M01",
+      "M03",
+      "M05",
+      "M11",
+      "M12",
+      "M14",
+      "M18"
+    ],
+    "not_detected_ids": [
+      "M04",
+      "M06",
+      "M16"
+    ],
+    "not_run_ids": [
+      "M02",
+      "M07",
+      "M08",
+      "M09",
+      "M10",
+      "M13",
+      "M15",
+      "M17"
+    ],
+    "genuine_findings": [
+      "M04 (ProfileBinding ASSURED->LITE) is NOT detected: validator PASS. Assurance-downgrade mutation slips through.",
+      "M06 (domain oracle expected changed to 999) is NOT detected: validator PASS.",
+      "M16 (trace atom digest mismatched, to_hash='f'*64) is NOT detected: validator PASS."
+    ]
+  },
+  "blocked_external": [
+    "Codex-EXECUTE-DeepSeek: declared lane binary .../Codex/bin/2e5e00daee91c61d/codex.exe absent (ERR_LANE_TOOLCHAIN_BINARY_MISSING)",
+    "Codex-VERIFY-GLM: checker arm exit 1, verdict FAIL (TST-025, TST-048); no GLM accept arm",
+    "approved-document-verifier: external Owner-approved lock + physical source bytes missing",
+    "approval-gated-GitHub: no PAT (and secret material is off-limits to this lane)",
+    "221 planning requirement cases: source physical / admission not bound",
+    "8 hostile mutations (M02,M07,M08,M09,M10,M13,M15,M17): frozen R5 corpus bytes unreachable",
+    "24 AUD findings: independent checker receipts / external authority conditions absent",
+    "8 evidence gates A..H: no real gate runners bound",
+    "K-ledger: remote_main read-only only; no authorized mapping sources"
+  ],
+  "boundary_violations": [],
+  "boundary_statement": "No write occurred outside R6_DELIVERY/. Nothing under C:/Projects/Agent_Workspace/API KEY/ was read, copied, or referenced. The source corpus and Shared Spine were not modified. No network egress and no repository publication occurred.",
+  "did_not_do": [
+    "No repository publication, no network egress, no remote operations.",
+    "No secret/credential material read, copied, or referenced.",
+    "No verdict other than PENDING_CHECKER; no self-acceptance.",
+    "No claim above LOCAL.",
+    "No modification of the source corpus or Shared Spine (no raw SQL state mutation).",
+    "No closure of AUD findings, gates, or requirement cases by inference or file presence.",
+    "No K-ledger mapping guessed; unmapped entries marked explicitly.",
+    "No re-authoring of the Owner-approved PKG authority anchor."
+  ],
+  "disagreements_with_writer_brief": [
+    {
+      "topic": "ACC range",
+      "brief": "ACC-001..ACC-262 plus planning rows (=> 221)",
+      "file_7": "ACC-001..ACC-279 (adds CNV-01..CNV-19 ACC-244..262, 16 delivery artifacts ACC-263..278, CNV-USER-JOURNEY ACC-279)",
+      "resolution": "file 7 wins: REQ_TRACE_221.json enumerates 279 requirement rows; DENOMINATOR 221 stays 64 RQ parents + 129 children + 28 legacy T (planning rows), with CNV rows recorded separately.",
+      "recorded_in": [
+        "REQ_TRACE_221.json disagreement_note"
+      ]
+    },
+    {
+      "topic": "thin-prompt sha256 prefix",
+      "brief": "sha256 prefix 2f247960d5f1",
+      "observed": "2f246796c3b927170a90ed7dd3f4307e913579db2efb56b307cbc2377a1cb77f",
+      "resolution": "The file actually read (file 7) hashes to 2f246796c3b9...; the brief's stated prefix does not match the file present on disk. Recorded as a minor mismatch; the on-disk file governs.",
+      "recorded_in": [
+        "SUBJECT_AND_SOURCE.json"
+      ]
+    }
+  ],
+  "executed_probe_count": 57,
+  "rerun_commands": [
+    {
+      "probe_id": "cap01_compiler_acceptance",
+      "record_file": "R6_DELIVERY/RUNNERS/supplement_probes.json",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:/Projects/Agent_Workspace/知識庫/實作相關DOC/HG-KSEOS/construction-acceptance-prompt-compiler/construction-acceptance-prompt-compiler/scripts/prompt_contract_compiler.py",
+        "acceptance",
+        "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/C0_C9_CONTRACT_R5.json"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe\" \"C:/Projects/Agent_Workspace/知識庫/實作相關DOC/HG-KSEOS/construction-acceptance-prompt-compiler/construction-acceptance-prompt-compiler/scripts/prompt_contract_compiler.py\" acceptance \"C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/C0_C9_CONTRACT_R5.json\"",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 0,
+      "started_utc": "2026-10-15T08:07:39.741694+00:00",
+      "stdout_file": "RAW/cap01_compiler_acceptance.stdout.txt",
+      "stderr_file": "RAW/cap01_compiler_acceptance.stderr.txt",
+      "stdout_sha256": "9b718dd02a8f35fb25777044885eb03314962cb7b4035722e623c1f0648548f3",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap01_compiler_activation",
+      "record_file": "R6_DELIVERY/RUNNERS/supplement_probes.json",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:/Projects/Agent_Workspace/知識庫/實作相關DOC/HG-KSEOS/construction-acceptance-prompt-compiler/construction-acceptance-prompt-compiler/scripts/prompt_contract_compiler.py",
+        "activation",
+        "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/C0_C9_CONTRACT_R5.json"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe\" \"C:/Projects/Agent_Workspace/知識庫/實作相關DOC/HG-KSEOS/construction-acceptance-prompt-compiler/construction-acceptance-prompt-compiler/scripts/prompt_contract_compiler.py\" activation \"C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/C0_C9_CONTRACT_R5.json\"",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 0,
+      "started_utc": "2026-10-15T08:07:40.007876+00:00",
+      "stdout_file": "RAW/cap01_compiler_activation.stdout.txt",
+      "stderr_file": "RAW/cap01_compiler_activation.stderr.txt",
+      "stdout_sha256": "9b718dd02a8f35fb25777044885eb03314962cb7b4035722e623c1f0648548f3",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap01_compiler_duplication",
+      "record_file": "R6_DELIVERY/RUNNERS/supplement_probes.json",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:/Projects/Agent_Workspace/知識庫/實作相關DOC/HG-KSEOS/construction-acceptance-prompt-compiler/construction-acceptance-prompt-compiler/scripts/prompt_contract_compiler.py",
+        "duplication",
+        "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/compiler_native_output_R5/thin-prompt.md",
+        "--source",
+        "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/attachments/Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe\" \"C:/Projects/Agent_Workspace/知識庫/實作相關DOC/HG-KSEOS/construction-acceptance-prompt-compiler/construction-acceptance-prompt-compiler/scripts/prompt_contract_compiler.py\" duplication \"C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/compiler_native_output_R5/thin-prompt.md\" --source \"C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/attachments/Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md\"",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 0,
+      "started_utc": "2026-10-15T08:07:40.290172+00:00",
+      "stdout_file": "RAW/cap01_compiler_duplication.stdout.txt",
+      "stderr_file": "RAW/cap01_compiler_duplication.stderr.txt",
+      "stdout_sha256": "c57d7661a96aeefaae9bf6ae99ed142eca58774259655c86ffba9dcb36c0dac5",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap01_compiler_hash",
+      "record_file": "R6_DELIVERY/RUNNERS/capability_probes.json",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:/Projects/Agent_Workspace/知識庫/實作相關DOC/HG-KSEOS/construction-acceptance-prompt-compiler/construction-acceptance-prompt-compiler/scripts/prompt_contract_compiler.py",
+        "hash",
+        "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/compiler_native_output_R5/thin-prompt.md"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe\" \"C:/Projects/Agent_Workspace/知識庫/實作相關DOC/HG-KSEOS/construction-acceptance-prompt-compiler/construction-acceptance-prompt-compiler/scripts/prompt_contract_compiler.py\" hash \"C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/compiler_native_output_R5/thin-prompt.md\"",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 0,
+      "started_utc": "2026-10-15T08:06:11.716521+00:00",
+      "stdout_file": "RAW/cap01_compiler_hash.stdout.txt",
+      "stderr_file": "RAW/cap01_compiler_hash.stderr.txt",
+      "stdout_sha256": "0c640e38a392ac0d7a957ab68afeae004766ae0b01919ef877ff8760bc5a8ea0",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap01_compiler_lint",
+      "record_file": "R6_DELIVERY/RUNNERS/capability_probes.json",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:/Projects/Agent_Workspace/知識庫/實作相關DOC/HG-KSEOS/construction-acceptance-prompt-compiler/construction-acceptance-prompt-compiler/scripts/prompt_contract_compiler.py",
+        "lint",
+        "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/C0_C9_CONTRACT_R5.json"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe\" \"C:/Projects/Agent_Workspace/知識庫/實作相關DOC/HG-KSEOS/construction-acceptance-prompt-compiler/construction-acceptance-prompt-compiler/scripts/prompt_contract_compiler.py\" lint \"C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/C0_C9_CONTRACT_R5.json\"",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 0,
+      "started_utc": "2026-10-15T08:06:11.423553+00:00",
+      "stdout_file": "RAW/cap01_compiler_lint.stdout.txt",
+      "stderr_file": "RAW/cap01_compiler_lint.stderr.txt",
+      "stdout_sha256": "9b718dd02a8f35fb25777044885eb03314962cb7b4035722e623c1f0648548f3",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap02_pkg_check_help",
+      "record_file": "R6_DELIVERY/RUNNERS/capability_probes.json",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/pipd_pkg_v2_check.py",
+        "--help"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe\" \"C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/pipd_pkg_v2_check.py\" --help",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 0,
+      "started_utc": "2026-10-15T08:06:11.914378+00:00",
+      "stdout_file": "RAW/cap02_pkg_check_help.stdout.txt",
+      "stderr_file": "RAW/cap02_pkg_check_help.stderr.txt",
+      "stdout_sha256": "43ad6952e3fe3f5c5f29bf31ced5bfa6a501a65a83a9b54797308c6386113445",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap02_pkg_check_run",
+      "record_file": "R6_DELIVERY/RUNNERS/supplement_probes.json",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/pipd_pkg_v2_check.py",
+        "--doc",
+        "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/attachments/Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md",
+        "--check"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe\" \"C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/pipd_pkg_v2_check.py\" --doc \"C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/attachments/Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md\" --check",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 30,
+      "started_utc": "2026-10-15T08:07:40.542291+00:00",
+      "stdout_file": "RAW/cap02_pkg_check_run.stdout.txt",
+      "stderr_file": "RAW/cap02_pkg_check_run.stderr.txt",
+      "stdout_sha256": "e6cfe5f4e202efb05734873da665c29289b5ab61a4f6d1408754b52217dbf3c2",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap02_pkg_check_selftest",
+      "record_file": "R6_DELIVERY/RUNNERS/capability_probes.json",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/pipd_pkg_v2_check.py",
+        "--selftest"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe\" \"C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/pipd_pkg_v2_check.py\" --selftest",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 2,
+      "started_utc": "2026-10-15T08:06:11.822479+00:00",
+      "stdout_file": "RAW/cap02_pkg_check_selftest.stdout.txt",
+      "stderr_file": "RAW/cap02_pkg_check_selftest.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "4bd4fcb493b3c23db0963abe399a01438e2a8ea9faa745dafc4df550e9691dba"
+    },
+    {
+      "probe_id": "cap02_pkg_check_selftest_corrected",
+      "record_file": "R6_DELIVERY/RUNNERS/supplement_probes.json",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/pipd_pkg_v2_check.py",
+        "--doc",
+        "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/attachments/Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md",
+        "--materialize"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe\" \"C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/pipd_pkg_v2_check.py\" --doc \"C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/attachments/Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md\" --materialize",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 30,
+      "started_utc": "2026-10-15T08:07:40.629709+00:00",
+      "stdout_file": "RAW/cap02_pkg_check_selftest_corrected.stdout.txt",
+      "stderr_file": "RAW/cap02_pkg_check_selftest_corrected.stderr.txt",
+      "stdout_sha256": "e6cfe5f4e202efb05734873da665c29289b5ab61a4f6d1408754b52217dbf3c2",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap03_spine_acceptance",
+      "record_file": "R6_DELIVERY/RUNNERS/capability_probes.json",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_spine_lifecycle.py",
+        "acceptance"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe\" \"C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_spine_lifecycle.py\" acceptance",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 0,
+      "started_utc": "2026-10-15T08:06:10.741369+00:00",
+      "stdout_file": "RAW/cap03_spine_acceptance.stdout.txt",
+      "stderr_file": "RAW/cap03_spine_acceptance.stderr.txt",
+      "stdout_sha256": "853091a14712a799ad76737eb2c3669811e2fef2bddc5e5b0cb3e5710ed4f7a1",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap03_spine_negative",
+      "record_file": "R6_DELIVERY/RUNNERS/capability_probes.json",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_spine_lifecycle.py",
+        "negative"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe\" \"C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_spine_lifecycle.py\" negative",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 0,
+      "started_utc": "2026-10-15T08:06:10.458758+00:00",
+      "stdout_file": "RAW/cap03_spine_negative.stdout.txt",
+      "stderr_file": "RAW/cap03_spine_negative.stderr.txt",
+      "stdout_sha256": "dc148da424579b1657bce220c256775c18f73c2b0166a30dd97962e0173e1e3d",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap03_spine_positive",
+      "record_file": "R6_DELIVERY/RUNNERS/capability_probes.json",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_spine_lifecycle.py",
+        "positive"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe\" \"C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_spine_lifecycle.py\" positive",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 0,
+      "started_utc": "2026-10-15T08:06:10.141642+00:00",
+      "stdout_file": "RAW/cap03_spine_positive.stdout.txt",
+      "stderr_file": "RAW/cap03_spine_positive.stderr.txt",
+      "stdout_sha256": "fd70b21a9286843ff1995cd3420c4af932ad43c4e96b8aa6887bbaf2f72b74ea",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap03_spine_teardown",
+      "record_file": "R6_DELIVERY/RUNNERS/capability_probes.json",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_spine_lifecycle.py",
+        "teardown"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe\" \"C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_spine_lifecycle.py\" teardown",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 0,
+      "started_utc": "2026-10-15T08:06:11.332708+00:00",
+      "stdout_file": "RAW/cap03_spine_teardown.stdout.txt",
+      "stderr_file": "RAW/cap03_spine_teardown.stderr.txt",
+      "stdout_sha256": "e35cdb248edd0254953610cfeff42e9de4715ffb324dbe72b3081d3b96ca9e2e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap04_hermes_version",
+      "record_file": "R6_DELIVERY/RUNNERS/capability_probes.json",
+      "command": [
+        "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/hermes-agent/venv/Scripts/python.exe",
+        "-c",
+        "import sys;sys.argv=['hermes','--version'];from hermes_cli.main import main;main()"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/hermes-agent/venv/Scripts/python.exe\" -c \"import sys;sys.argv=['hermes','--version'];from hermes_cli.main import main;main()\"",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 0,
+      "started_utc": "2026-10-15T08:06:12.008085+00:00",
+      "stdout_file": "RAW/cap04_hermes_version.stdout.txt",
+      "stderr_file": "RAW/cap04_hermes_version.stderr.txt",
+      "stdout_sha256": "9cd542948878302d6144483cf955e5812f54c461a4edda3081e017bb0f512c5c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap05_codex_version",
+      "record_file": "R6_DELIVERY/RUNNERS/capability_probes.json",
+      "command": [
+        "C:/Users/user/AppData/Local/OpenAI/Codex/bin/9614f1d9b40d9c4f/codex.exe",
+        "--version"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/OpenAI/Codex/bin/9614f1d9b40d9c4f/codex.exe\" --version",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 0,
+      "started_utc": "2026-10-15T08:06:12.633731+00:00",
+      "stdout_file": "RAW/cap05_codex_version.stdout.txt",
+      "stderr_file": "RAW/cap05_codex_version.stderr.txt",
+      "stdout_sha256": "7747b1c26798719d98cac787dfc2c425f845f347a443492894a0d739fae8ca0d",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap05_lane_toolchain_resolve",
+      "record_file": "R6_DELIVERY/RUNNERS/capability_probes.json",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:/Projects/Agent_Workspace/HG-KSEOS/scripts/hgk-lane-toolchain.py",
+        "--resolve"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe\" \"C:/Projects/Agent_Workspace/HG-KSEOS/scripts/hgk-lane-toolchain.py\" --resolve",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 3,
+      "started_utc": "2026-10-15T08:06:12.664750+00:00",
+      "stdout_file": "RAW/cap05_lane_toolchain_resolve.stdout.txt",
+      "stderr_file": "RAW/cap05_lane_toolchain_resolve.stderr.txt",
+      "stdout_sha256": "3e0f2a49dc174500eb4c2d567aff761aa81dd8a56d100c2b0f32caa9f3fca5b0",
+      "stderr_sha256": "4b631f87189415a3f1a95c315abc3ae5e061d6ea44821cbdd7f41ac4ff16116a"
+    },
+    {
+      "probe_id": "cap05_role_binding_assert",
+      "record_file": "R6_DELIVERY/RUNNERS/capability_probes.json",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:/Projects/Agent_Workspace/HG-KSEOS/scripts/runtime_role_binding_assert.py",
+        "--help"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe\" \"C:/Projects/Agent_Workspace/HG-KSEOS/scripts/runtime_role_binding_assert.py\" --help",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 0,
+      "started_utc": "2026-10-15T08:06:12.752988+00:00",
+      "stdout_file": "RAW/cap05_role_binding_assert.stdout.txt",
+      "stderr_file": "RAW/cap05_role_binding_assert.stderr.txt",
+      "stdout_sha256": "c4a9f09099c009a05a94934fe209794ca3a578f0ce2e99977e1506fb15b5b8d7",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap07_kanban_boards",
+      "record_file": "R6_DELIVERY/RUNNERS/capability_probes.json",
+      "command": [
+        "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/hermes-agent/venv/Scripts/python.exe",
+        "-c",
+        "import sys;sys.argv=['hermes','kanban','boards','list'];from hermes_cli.main import main;main()"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/hermes-agent/venv/Scripts/python.exe\" -c \"import sys;sys.argv=['hermes','kanban','boards','list'];from hermes_cli.main import main;main()\"",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 0,
+      "started_utc": "2026-10-15T08:06:12.842346+00:00",
+      "stdout_file": "RAW/cap07_kanban_boards.stdout.txt",
+      "stderr_file": "RAW/cap07_kanban_boards.stderr.txt",
+      "stdout_sha256": "fd1f37c99996198030f49328ca4e816b397880fa1a736c8656b07f93241af969",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap08_swarm_help",
+      "record_file": "R6_DELIVERY/RUNNERS/capability_probes.json",
+      "command": [
+        "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/hermes-agent/venv/Scripts/python.exe",
+        "-c",
+        "import sys;sys.argv=['hermes','kanban','swarm','--help'];from hermes_cli.main import main;main()"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/hermes-agent/venv/Scripts/python.exe\" -c \"import sys;sys.argv=['hermes','kanban','swarm','--help'];from hermes_cli.main import main;main()\"",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 0,
+      "started_utc": "2026-10-15T08:06:14.836491+00:00",
+      "stdout_file": "RAW/cap08_swarm_help.stdout.txt",
+      "stderr_file": "RAW/cap08_swarm_help.stderr.txt",
+      "stdout_sha256": "d9fc213a671654cb2b9df0b7284ba20ac275467f03b87b813500e13506e7de83",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap11_gstack_negative",
+      "record_file": "R6_DELIVERY/RUNNERS/capability_probes.json",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_gstack_rolemap.py",
+        "negative"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe\" \"C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_gstack_rolemap.py\" negative",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 0,
+      "started_utc": "2026-10-15T08:06:16.163017+00:00",
+      "stdout_file": "RAW/cap11_gstack_negative.stdout.txt",
+      "stderr_file": "RAW/cap11_gstack_negative.stderr.txt",
+      "stdout_sha256": "9ec3d79601d4e3fef3a28c988f3c96d816729738c08060f33b3678d7dfb4f17e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap11_gstack_positive",
+      "record_file": "R6_DELIVERY/RUNNERS/capability_probes.json",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_gstack_rolemap.py",
+        "positive"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe\" \"C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_gstack_rolemap.py\" positive",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 0,
+      "started_utc": "2026-10-15T08:06:16.062501+00:00",
+      "stdout_file": "RAW/cap11_gstack_positive.stdout.txt",
+      "stderr_file": "RAW/cap11_gstack_positive.stderr.txt",
+      "stdout_sha256": "313599c57e01dac619cb5b11e7d0a12dfc7f8d499c91bbebcd6929a2ae3990ba",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap12_openspec_version",
+      "record_file": "R6_DELIVERY/RUNNERS/capability_probes.json",
+      "command": [
+        "C:/Users/user/AppData/Roaming/npm/openspec.cmd",
+        "--version"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Roaming/npm/openspec.cmd\" --version",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 0,
+      "started_utc": "2026-10-15T08:06:16.272135+00:00",
+      "stdout_file": "RAW/cap12_openspec_version.stdout.txt",
+      "stderr_file": "RAW/cap12_openspec_version.stderr.txt",
+      "stdout_sha256": "3eb1ef94b5890ca727158b106142685c8733b0ace5bcb4cf3f0ac14f9f0643f4",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap13_fts5_negative",
+      "record_file": "R6_DELIVERY/RUNNERS/capability_probes.json",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_fts5.py",
+        "negative"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe\" \"C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_fts5.py\" negative",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 0,
+      "started_utc": "2026-10-15T08:06:16.883386+00:00",
+      "stdout_file": "RAW/cap13_fts5_negative.stdout.txt",
+      "stderr_file": "RAW/cap13_fts5_negative.stderr.txt",
+      "stdout_sha256": "b8cb96ce2265671736f77bb66997d9040064eba0329816e447e6552e6ce046e7",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap13_fts5_positive",
+      "record_file": "R6_DELIVERY/RUNNERS/capability_probes.json",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_fts5.py",
+        "positive"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe\" \"C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_fts5.py\" positive",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 0,
+      "started_utc": "2026-10-15T08:06:16.714824+00:00",
+      "stdout_file": "RAW/cap13_fts5_positive.stdout.txt",
+      "stderr_file": "RAW/cap13_fts5_positive.stderr.txt",
+      "stdout_sha256": "78710a4dab31aba0c5b7e5b557ac1b2df25c40637611b3672eb235e1b638ff02",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap13_fts5_teardown",
+      "record_file": "R6_DELIVERY/RUNNERS/capability_probes.json",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_fts5.py",
+        "teardown"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe\" \"C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_fts5.py\" teardown",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 0,
+      "started_utc": "2026-10-15T08:06:16.999893+00:00",
+      "stdout_file": "RAW/cap13_fts5_teardown.stdout.txt",
+      "stderr_file": "RAW/cap13_fts5_teardown.stderr.txt",
+      "stdout_sha256": "5e3e006ed90732296b790c76c4292b79b413440431ee1634a56960a4ed1fd982",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap14_fda_negative",
+      "record_file": "R6_DELIVERY/RUNNERS/capability_probes.json",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_fda_lease.py",
+        "negative"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe\" \"C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_fda_lease.py\" negative",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 0,
+      "started_utc": "2026-10-15T08:06:17.123922+00:00",
+      "stdout_file": "RAW/cap14_fda_negative.stdout.txt",
+      "stderr_file": "RAW/cap14_fda_negative.stderr.txt",
+      "stdout_sha256": "5512303bb3863b3c364599c1034808407b6ea700e1f3814172301a5d1b29d780",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap14_fda_positive",
+      "record_file": "R6_DELIVERY/RUNNERS/capability_probes.json",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_fda_lease.py",
+        "positive"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe\" \"C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_fda_lease.py\" positive",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 0,
+      "started_utc": "2026-10-15T08:06:17.064414+00:00",
+      "stdout_file": "RAW/cap14_fda_positive.stdout.txt",
+      "stderr_file": "RAW/cap14_fda_positive.stderr.txt",
+      "stdout_sha256": "ff72b154678b410ddf58a8bfd024896aee4025f799c5e7227bcbdf7b1fe1dd9e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap15_github_publish",
+      "record_file": "R6_DELIVERY/RUNNERS/capability_probes.json",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:/Projects/Agent_Workspace/PIPD/tools/github_publish.py"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe\" \"C:/Projects/Agent_Workspace/PIPD/tools/github_publish.py\"",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 2,
+      "started_utc": "2026-10-15T08:06:17.184707+00:00",
+      "stdout_file": "RAW/cap15_github_publish.stdout.txt",
+      "stderr_file": "RAW/cap15_github_publish.stderr.txt",
+      "stdout_sha256": "b43a93bda3351c97d99104df0464e24527c38c7147e87e6dbf88580e827ff91c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap_avr_skill_pack",
+      "record_file": "R6_DELIVERY/RUNNERS/capability_probes.json",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:/Projects/Agent_Workspace/PIPD/tools/skill_pack_check.py",
+        "--all"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe\" \"C:/Projects/Agent_Workspace/PIPD/tools/skill_pack_check.py\" --all",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 0,
+      "started_utc": "2026-10-15T08:06:17.308945+00:00",
+      "stdout_file": "RAW/cap_avr_skill_pack.stdout.txt",
+      "stderr_file": "RAW/cap_avr_skill_pack.stderr.txt",
+      "stdout_sha256": "8be727127aa2b1a9f690d6385bfe9923d73593886d1e5e35f6ebcc1d9bd5bc99",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap_pipd_bind_pd",
+      "record_file": "R6_DELIVERY/RUNNERS/capability_probes.json",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_pipd_chain.py",
+        "bind-pd"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe\" \"C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_pipd_chain.py\" bind-pd",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 0,
+      "started_utc": "2026-10-15T08:06:18.367924+00:00",
+      "stdout_file": "RAW/cap_pipd_bind_pd.stdout.txt",
+      "stderr_file": "RAW/cap_pipd_bind_pd.stderr.txt",
+      "stdout_sha256": "37e05aca70e1da175f4d23cc0db1c232e95c1c236e212a0d32c4b769803af143",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap_pipd_bind_pd_nocxt",
+      "record_file": "R6_DELIVERY/RUNNERS/capability_probes.json",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_pipd_chain.py",
+        "bind-pd-nocxt"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe\" \"C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_pipd_chain.py\" bind-pd-nocxt",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 0,
+      "started_utc": "2026-10-15T08:06:18.275058+00:00",
+      "stdout_file": "RAW/cap_pipd_bind_pd_nocxt.stdout.txt",
+      "stderr_file": "RAW/cap_pipd_bind_pd_nocxt.stderr.txt",
+      "stdout_sha256": "a3d8c593f7c73875401873b9005172c1a87798eb8e2cd653ce439a58c4483658",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap_pipd_claim_ceiling",
+      "record_file": "R6_DELIVERY/RUNNERS/capability_probes.json",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_pipd_chain.py",
+        "claim-ceiling"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe\" \"C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_pipd_chain.py\" claim-ceiling",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 9,
+      "started_utc": "2026-10-15T08:06:20.581408+00:00",
+      "stdout_file": "RAW/cap_pipd_claim_ceiling.stdout.txt",
+      "stderr_file": "RAW/cap_pipd_claim_ceiling.stderr.txt",
+      "stdout_sha256": "0afd0ac0cdab992295e637a8ed8f7d4c24c198f749e55db921e5f2e1eb44206a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap_pipd_claim_ladder_ok",
+      "record_file": "R6_DELIVERY/RUNNERS/supplement_probes.json",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_pipd_chain.py",
+        "claim-ladder-ok"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe\" \"C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_pipd_chain.py\" claim-ladder-ok",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 0,
+      "started_utc": "2026-10-15T08:07:40.801469+00:00",
+      "stdout_file": "RAW/cap_pipd_claim_ladder_ok.stdout.txt",
+      "stderr_file": "RAW/cap_pipd_claim_ladder_ok.stderr.txt",
+      "stdout_sha256": "30e180117700faecce2930fa0c0f74acc3a1c829b1db49e920a1ce72f3695427",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap_pipd_compile_pi",
+      "record_file": "R6_DELIVERY/RUNNERS/capability_probes.json",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_pipd_chain.py",
+        "compile-pi"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe\" \"C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_pipd_chain.py\" compile-pi",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 0,
+      "started_utc": "2026-10-15T08:06:18.101791+00:00",
+      "stdout_file": "RAW/cap_pipd_compile_pi.stdout.txt",
+      "stderr_file": "RAW/cap_pipd_compile_pi.stderr.txt",
+      "stdout_sha256": "ae0a2cedf890b9f39b1adf1a9d46eee8a7f13eb8f37b2ba72692c134e5efaeeb",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap_pipd_compile_pi_tamper",
+      "record_file": "R6_DELIVERY/RUNNERS/capability_probes.json",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_pipd_chain.py",
+        "compile-pi-tamper"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe\" \"C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_pipd_chain.py\" compile-pi-tamper",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 0,
+      "started_utc": "2026-10-15T08:06:18.188534+00:00",
+      "stdout_file": "RAW/cap_pipd_compile_pi_tamper.stdout.txt",
+      "stderr_file": "RAW/cap_pipd_compile_pi_tamper.stderr.txt",
+      "stdout_sha256": "c243dd1d2a8490c51a951781f72738480bd8c152b3fbdab56f3dbe47d2ade9c9",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap_pipd_ecp",
+      "record_file": "R6_DELIVERY/RUNNERS/capability_probes.json",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_pipd_chain.py",
+        "ecp"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe\" \"C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_pipd_chain.py\" ecp",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 0,
+      "started_utc": "2026-10-15T08:06:19.148279+00:00",
+      "stdout_file": "RAW/cap_pipd_ecp.stdout.txt",
+      "stderr_file": "RAW/cap_pipd_ecp.stderr.txt",
+      "stdout_sha256": "71977bf82dde5128378c6fc8f2d81be55df27a6d59e099f01f1d2a3169e72718",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap_pipd_intake",
+      "record_file": "R6_DELIVERY/RUNNERS/capability_probes.json",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_pipd_chain.py",
+        "intake"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe\" \"C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_pipd_chain.py\" intake",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 0,
+      "started_utc": "2026-10-15T08:06:17.749605+00:00",
+      "stdout_file": "RAW/cap_pipd_intake.stdout.txt",
+      "stderr_file": "RAW/cap_pipd_intake.stderr.txt",
+      "stdout_sha256": "19a0496cf040f2d3d9639dd22929b0ee42ab9e3498e64aa74527a3d4265a5498",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap_pipd_intake_ambiguous",
+      "record_file": "R6_DELIVERY/RUNNERS/capability_probes.json",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_pipd_chain.py",
+        "intake-ambiguous"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe\" \"C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_pipd_chain.py\" intake-ambiguous",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 0,
+      "started_utc": "2026-10-15T08:06:17.927169+00:00",
+      "stdout_file": "RAW/cap_pipd_intake_ambiguous.stdout.txt",
+      "stderr_file": "RAW/cap_pipd_intake_ambiguous.stderr.txt",
+      "stdout_sha256": "344d429c8ec5c104eb6778129a9dee16734c821817171d4d5b88ad2334c8a1ba",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap_pipd_intake_missing",
+      "record_file": "R6_DELIVERY/RUNNERS/capability_probes.json",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_pipd_chain.py",
+        "intake-missing"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe\" \"C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_pipd_chain.py\" intake-missing",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 0,
+      "started_utc": "2026-10-15T08:06:17.841083+00:00",
+      "stdout_file": "RAW/cap_pipd_intake_missing.stdout.txt",
+      "stderr_file": "RAW/cap_pipd_intake_missing.stderr.txt",
+      "stdout_sha256": "2decf25c554013056a635d7a22c5b4a20827ccf8517a96b2121111b38982b42b",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap_pipd_intake_pkg",
+      "record_file": "R6_DELIVERY/RUNNERS/supplement_probes.json",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_pipd_chain.py",
+        "intake-pkg"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe\" \"C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_pipd_chain.py\" intake-pkg",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 0,
+      "started_utc": "2026-10-15T08:07:40.892844+00:00",
+      "stdout_file": "RAW/cap_pipd_intake_pkg.stdout.txt",
+      "stderr_file": "RAW/cap_pipd_intake_pkg.stderr.txt",
+      "stdout_sha256": "d378ad7ee07f1c81942e3629b6bc46be72c9dc57d26330f1f84a8d4eebf9faa5",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap_pipd_profile",
+      "record_file": "R6_DELIVERY/RUNNERS/capability_probes.json",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_pipd_chain.py",
+        "profile"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe\" \"C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_pipd_chain.py\" profile",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 9,
+      "started_utc": "2026-10-15T08:06:18.017387+00:00",
+      "stdout_file": "RAW/cap_pipd_profile.stdout.txt",
+      "stderr_file": "RAW/cap_pipd_profile.stderr.txt",
+      "stdout_sha256": "0ee8c552095cd0ac3592aa2afa29ac4ed3e446935f53ef58266578bc79090cc6",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap_pipd_profile_ok",
+      "record_file": "R6_DELIVERY/RUNNERS/supplement_probes.json",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_pipd_chain.py",
+        "profile-ok"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe\" \"C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_pipd_chain.py\" profile-ok",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 0,
+      "started_utc": "2026-10-15T08:07:40.714638+00:00",
+      "stdout_file": "RAW/cap_pipd_profile_ok.stdout.txt",
+      "stderr_file": "RAW/cap_pipd_profile_ok.stderr.txt",
+      "stdout_sha256": "049ddabc08ce11cd31dc346de968cc286c6cc0f89f895a7f0ee5582eb16e2744",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap_pipd_project_unsafe",
+      "record_file": "R6_DELIVERY/RUNNERS/capability_probes.json",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_pipd_chain.py",
+        "project-unsafe"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe\" \"C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_pipd_chain.py\" project-unsafe",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 2,
+      "started_utc": "2026-10-15T08:06:20.668042+00:00",
+      "stdout_file": "RAW/cap_pipd_project_unsafe.stdout.txt",
+      "stderr_file": "RAW/cap_pipd_project_unsafe.stderr.txt",
+      "stdout_sha256": "b144b624d92836274373661fcb3e01e825dfbdd5fcd497eb2469acea91224dc8",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap_pipd_tqaep",
+      "record_file": "R6_DELIVERY/RUNNERS/capability_probes.json",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_pipd_chain.py",
+        "tqaep"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe\" \"C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_pipd_chain.py\" tqaep",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 0,
+      "started_utc": "2026-10-15T08:06:20.216260+00:00",
+      "stdout_file": "RAW/cap_pipd_tqaep.stdout.txt",
+      "stderr_file": "RAW/cap_pipd_tqaep.stderr.txt",
+      "stdout_sha256": "ecc4cc47d15d258ef70cfc8c3c0156e5d446f1c8d577ff11d621eeb386c7d7cc",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap_pipd_tqaep_noreceipt",
+      "record_file": "R6_DELIVERY/RUNNERS/capability_probes.json",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_pipd_chain.py",
+        "tqaep-noreceipt"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe\" \"C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_pipd_chain.py\" tqaep-noreceipt",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 0,
+      "started_utc": "2026-10-15T08:06:19.861734+00:00",
+      "stdout_file": "RAW/cap_pipd_tqaep_noreceipt.stdout.txt",
+      "stderr_file": "RAW/cap_pipd_tqaep_noreceipt.stderr.txt",
+      "stdout_sha256": "f8cd57a1a6858050356c70b19e19e8ddeff31ce8a9c8061275fa396c2ab2c2ec",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "cap_pipd_tqaep_self",
+      "record_file": "R6_DELIVERY/RUNNERS/capability_probes.json",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_pipd_chain.py",
+        "tqaep-self"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe\" \"C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_pipd_chain.py\" tqaep-self",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 0,
+      "started_utc": "2026-10-15T08:06:19.522301+00:00",
+      "stdout_file": "RAW/cap_pipd_tqaep_self.stdout.txt",
+      "stderr_file": "RAW/cap_pipd_tqaep_self.stderr.txt",
+      "stdout_sha256": "435530e458f8d0b1381ad903fecdc3069c64b5cfd3252ad562b1cc53ed7bd46d",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "checker_independent_run",
+      "record_file": "R6_DELIVERY/RUNNERS/capability_probes.json",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:/Projects/Agent_Workspace/HG-KSEOS/tools/check_acceptance_independent.py"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe\" \"C:/Projects/Agent_Workspace/HG-KSEOS/tools/check_acceptance_independent.py\"",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 1,
+      "started_utc": "2026-10-15T08:06:20.801785+00:00",
+      "stdout_file": "RAW/checker_independent_run.stdout.txt",
+      "stderr_file": "RAW/checker_independent_run.stderr.txt",
+      "stdout_sha256": "40979cf2021f218c31d69052e0c376da6b6f83774195cbb11faef8d2d0cea4a4",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "mut_m01",
+      "record_file": "R6_DELIVERY/RUNNERS/mutation_records.json",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_mutations.py",
+        "m01"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe\" \"C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_mutations.py\" m01",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 0,
+      "started_utc": "2026-10-15T08:09:36.635212+00:00",
+      "stdout_file": "RAW/mut_m01.stdout.txt",
+      "stderr_file": "RAW/mut_m01.stderr.txt",
+      "stdout_sha256": "1b45ee368dfb4f37bf75091153a989b4eb79fa378e3c57eb39181dec1e417649",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "mut_m03",
+      "record_file": "R6_DELIVERY/RUNNERS/mutation_records.json",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_mutations.py",
+        "m03"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe\" \"C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_mutations.py\" m03",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 0,
+      "started_utc": "2026-10-15T08:09:36.799451+00:00",
+      "stdout_file": "RAW/mut_m03.stdout.txt",
+      "stderr_file": "RAW/mut_m03.stderr.txt",
+      "stdout_sha256": "f6ec455bf1f74c8a6a31b7280c4e599e33dacd6d2dfbd28fdb1fff0dcaeae755",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "mut_m04",
+      "record_file": "R6_DELIVERY/RUNNERS/mutation_records.json",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_mutations.py",
+        "m04"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe\" \"C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_mutations.py\" m04",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 1,
+      "started_utc": "2026-10-15T08:09:36.891900+00:00",
+      "stdout_file": "RAW/mut_m04.stdout.txt",
+      "stderr_file": "RAW/mut_m04.stderr.txt",
+      "stdout_sha256": "efd0a902f8f9c6ca49984b41139ab528fb5615f48a502825ce7c57b6555310dd",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "mut_m05",
+      "record_file": "R6_DELIVERY/RUNNERS/mutation_records.json",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_mutations.py",
+        "m05"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe\" \"C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_mutations.py\" m05",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 0,
+      "started_utc": "2026-10-15T08:09:37.101317+00:00",
+      "stdout_file": "RAW/mut_m05.stdout.txt",
+      "stderr_file": "RAW/mut_m05.stderr.txt",
+      "stdout_sha256": "07738d7798c58e31ba041ddf036d98289ad9bf1f12940c57b29fdbf17d9e250a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "mut_m06",
+      "record_file": "R6_DELIVERY/RUNNERS/mutation_records.json",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_mutations.py",
+        "m06"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe\" \"C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_mutations.py\" m06",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 1,
+      "started_utc": "2026-10-15T08:09:37.313602+00:00",
+      "stdout_file": "RAW/mut_m06.stdout.txt",
+      "stderr_file": "RAW/mut_m06.stderr.txt",
+      "stdout_sha256": "7b5421a7f7f9c2b5be1ba83bacab108bf390e77ed57a82998e09c61ac8beedc3",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "mut_m11",
+      "record_file": "R6_DELIVERY/RUNNERS/mutation_records.json",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_mutations.py",
+        "m11"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe\" \"C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_mutations.py\" m11",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 0,
+      "started_utc": "2026-10-15T08:09:37.523763+00:00",
+      "stdout_file": "RAW/mut_m11.stdout.txt",
+      "stderr_file": "RAW/mut_m11.stderr.txt",
+      "stdout_sha256": "5d1245d9b0439f2ad7e7b21cc382a7d3f1d5b2c07d0c078acf60818bc4e01eab",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "mut_m12",
+      "record_file": "R6_DELIVERY/RUNNERS/mutation_records.json",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_mutations.py",
+        "m12"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe\" \"C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_mutations.py\" m12",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 0,
+      "started_utc": "2026-10-15T08:09:37.734320+00:00",
+      "stdout_file": "RAW/mut_m12.stdout.txt",
+      "stderr_file": "RAW/mut_m12.stderr.txt",
+      "stdout_sha256": "77da6db08b202710831fbf730355ca6caaa69d217fa49f01b9d51d24da4155a2",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "mut_m14",
+      "record_file": "R6_DELIVERY/RUNNERS/mutation_records.json",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_mutations.py",
+        "m14"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe\" \"C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_mutations.py\" m14",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 0,
+      "started_utc": "2026-10-15T08:09:37.942393+00:00",
+      "stdout_file": "RAW/mut_m14.stdout.txt",
+      "stderr_file": "RAW/mut_m14.stderr.txt",
+      "stdout_sha256": "637bcc6e48037417093720f6c3b1fd5dad72f246c4e6d8b5adad5e288bc48572",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "mut_m16",
+      "record_file": "R6_DELIVERY/RUNNERS/mutation_records.json",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_mutations.py",
+        "m16"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe\" \"C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_mutations.py\" m16",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 1,
+      "started_utc": "2026-10-15T08:09:38.380115+00:00",
+      "stdout_file": "RAW/mut_m16.stdout.txt",
+      "stderr_file": "RAW/mut_m16.stderr.txt",
+      "stdout_sha256": "2031509ed34ea5ccb7007577d523e9d67f641e511c6b745c5c4bd7364dfed6ca",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "probe_id": "mut_m18",
+      "record_file": "R6_DELIVERY/RUNNERS/mutation_records.json",
+      "command": [
+        "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_mutations.py",
+        "m18"
+      ],
+      "rerun_command": "\"C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe\" \"C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS/probe_mutations.py\" m18",
+      "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+      "exit_code": 0,
+      "started_utc": "2026-10-15T08:09:38.591489+00:00",
+      "stdout_file": "RAW/mut_m18.stdout.txt",
+      "stderr_file": "RAW/mut_m18.stderr.txt",
+      "stdout_sha256": "a6e7bc35ca1add82c6035c94f9697425b58074869a1f3fd95b838ce5cc1946e9",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "rerun_command_note": "Each entry gives the record file, exact argv, one-line PowerShell rerun_command, cwd, exit code, UTC, and raw stdout/stderr paths+hashes.",
+  "checker": {
+    "identity": "opencode-go/glm-5.3-flash (independent; not this writer)",
+    "model_family": "opencode-go/glm-5.3-flash",
+    "relationship": "independent checker; different family from this writer",
+    "checker_is_writer": false
+  },
+  "producer_model_family": "opencode-go/deepseek-v4.1-flash",
+  "pending_checker_note": "All 16 top-level artifacts plus RAW/ and RUNNERS/ are candidate evidence. Nothing is accepted; verdicts remain PENDING_CHECKER."
+}

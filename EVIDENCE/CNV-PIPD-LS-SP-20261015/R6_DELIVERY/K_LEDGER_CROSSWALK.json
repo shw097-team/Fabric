@@ -1,0 +1,228 @@
+{
+  "producer": "Codex CLI bounded writer EXECUTE lane (opencode-go/deepseek-v4.1-flash)",
+  "produced_utc": "2026-10-15T08:15:06.904747+00:00",
+  "source_hashes_used": [
+    "6629af1d4cf09ec11b99e79488ea515692ebd9c802fef6353b1ac3ed31b7bd6e",
+    "115912cdccbf5b3788fe1d6e1c8c10fe575252d72accf31cb6f1955dd8750974",
+    "96d9d564286743e17550ccef15b9952347901eb77168f930376938893cff9c3f",
+    "6894a6ba08781f2ed5758af132f758c14c1a9e9b69d42056837f5ce45bba6c64",
+    "7f7246d34be112bb465b48dadaef6163e466e16e5e705fc58acee04b3809a613",
+    "8b78edebd79c8149a2b74e2a7f873e3116f772c881a501bd4600ea0e7a891f6b",
+    "2f246796c3b927170a90ed7dd3f4307e913579db2efb56b307cbc2377a1cb77f"
+  ],
+  "raw_evidence_refs": [],
+  "verdict": "PENDING_CHECKER",
+  "claim_level": "LOCAL",
+  "artifact": "K_LEDGER_CROSSWALK.json",
+  "remote_main": "266f8d65cf9b21c3b37c1c243946a5c828cf973b",
+  "remote_main_source": "public read-only observed main sha (readback only; no publication)",
+  "claim": "current public ledger carry-forward only",
+  "rows": [
+    {
+      "id": "K-01",
+      "finding": "a wholesale repository rewrite was refused as over-engineered",
+      "remote_status": "`RESOLVED`",
+      "evidence_or_gap": "`EVIDENCE/repo-hygiene-20261013/REPO-ASSESSMENT-ENGINEERING-EVALUATION.md`; the refusal is recorded as a scope rejection",
+      "local_convergence_reverification": "NOT_RUN",
+      "closure_claim": "NOT_MADE",
+      "mapped": false,
+      "unmapped_reason": "no local re-verification receipt bound to this K entry in this lane"
+    },
+    {
+      "id": "K-02",
+      "finding": "the owner requirement was not closed by ready-made readiness artifacts",
+      "remote_status": "`PARTIAL`",
+      "evidence_or_gap": "`INTEGRATION/` readiness set published; closure still needs owner-class evidence (K-06, K-07)",
+      "local_convergence_reverification": "NOT_RUN",
+      "closure_claim": "NOT_MADE",
+      "mapped": false,
+      "unmapped_reason": "no local re-verification receipt bound to this K entry in this lane"
+    },
+    {
+      "id": "K-03",
+      "finding": "generated files and shortcuts polluting the payload",
+      "remote_status": "`RESOLVED`",
+      "evidence_or_gap": "`EVIDENCE/repo-hygiene-20261013/REPO-HYGIENE-REPORT.md`: `*.pyc` 127 -> 0, `*.lnk` 1 -> 0",
+      "local_convergence_reverification": "NOT_RUN",
+      "closure_claim": "NOT_MADE",
+      "mapped": false,
+      "unmapped_reason": "no local re-verification receipt bound to this K entry in this lane"
+    },
+    {
+      "id": "K-04",
+      "finding": "a declared exclusion contradicted what was published",
+      "remote_status": "`RESOLVED`",
+      "evidence_or_gap": "`MANIFEST.json` schema v2 `exceptions[]`: declaration reconciled, runtime subtree named, nothing deleted",
+      "local_convergence_reverification": "NOT_RUN",
+      "closure_claim": "NOT_MADE",
+      "mapped": false,
+      "unmapped_reason": "no local re-verification receipt bound to this K entry in this lane"
+    },
+    {
+      "id": "K-05",
+      "finding": "publication procedure not reproducible (no in-repo builder)",
+      "remote_status": "`PARTIAL`",
+      "evidence_or_gap": "`SOURCE-PROJECTION.md` records the procedure; the builder itself is gated on the approval list (see `APPROVAL-LIST-PROPOSAL.md`)",
+      "local_convergence_reverification": "NOT_RUN",
+      "closure_claim": "NOT_MADE",
+      "mapped": false,
+      "unmapped_reason": "no local re-verification receipt bound to this K entry in this lane"
+    },
+    {
+      "id": "K-06",
+      "finding": "the canonical runtime binding baseline is uncertified (declared 0.20.0 / 3c27eb62 vs installed v0.21.5)",
+      "remote_status": "`OWNER`",
+      "evidence_or_gap": "needs a fresh G1 re-certification by the Human Policy Owner",
+      "local_convergence_reverification": "NOT_RUN",
+      "closure_claim": "NOT_MADE",
+      "mapped": false,
+      "unmapped_reason": "no local re-verification receipt bound to this K entry in this lane"
+    },
+    {
+      "id": "K-07",
+      "finding": "subject baselines are not certified in this mirror",
+      "remote_status": "`OWNER`",
+      "evidence_or_gap": "needs the Acceptance Officer; planners must treat the declared baseline as the planning assumption and the installed version mismatch as an explicit risk",
+      "local_convergence_reverification": "NOT_RUN",
+      "closure_claim": "NOT_MADE",
+      "mapped": false,
+      "unmapped_reason": "no local re-verification receipt bound to this K entry in this lane"
+    },
+    {
+      "id": "K-08",
+      "finding": "no independent digest recomputation is possible in a tool-less checker lane",
+      "remote_status": "`OWNER`",
+      "evidence_or_gap": "needs an owner-designated read-tool verification lane",
+      "local_convergence_reverification": "NOT_RUN",
+      "closure_claim": "NOT_MADE",
+      "mapped": false,
+      "unmapped_reason": "no local re-verification receipt bound to this K entry in this lane"
+    },
+    {
+      "id": "K-09",
+      "finding": "no tamper-evident commitment binds oracle time to dispatch time",
+      "remote_status": "`OWNER`",
+      "evidence_or_gap": "file mtimes are only an ordering witness; a hash-chain is new machinery the owner must choose",
+      "local_convergence_reverification": "NOT_RUN",
+      "closure_claim": "NOT_MADE",
+      "mapped": false,
+      "unmapped_reason": "no local re-verification receipt bound to this K entry in this lane"
+    },
+    {
+      "id": "K-10",
+      "finding": "the mandated checker arm was absent from the sealed lane pool, so checks ran provider-direct with no pool ledger",
+      "remote_status": "`OWNER`",
+      "evidence_or_gap": "route-registry change is owner-gated; each affected run is disclosed in its receipt",
+      "local_convergence_reverification": "NOT_RUN",
+      "closure_claim": "NOT_MADE",
+      "mapped": false,
+      "unmapped_reason": "no local re-verification receipt bound to this K entry in this lane"
+    },
+    {
+      "id": "K-11",
+      "finding": "long prompts passed as a single argv element produced no artifact on the PLAN lane",
+      "remote_status": "`PARTIAL`",
+      "evidence_or_gap": "rule recorded in `LANE-INVOCATION-NOTES.md`; a long-prompt run by file is the confirming test and has not been executed",
+      "local_convergence_reverification": "NOT_RUN",
+      "closure_claim": "NOT_MADE",
+      "mapped": false,
+      "unmapped_reason": "no local re-verification receipt bound to this K entry in this lane"
+    },
+    {
+      "id": "K-12",
+      "finding": "carried-forward findings from earlier rounds were never triaged individually",
+      "remote_status": "`RESOLVED`",
+      "evidence_or_gap": "this ledger; each row names its artifact or its remaining gap",
+      "local_convergence_reverification": "NOT_RUN",
+      "closure_claim": "NOT_MADE",
+      "mapped": false,
+      "unmapped_reason": "no local re-verification receipt bound to this K entry in this lane"
+    },
+    {
+      "id": "K-13",
+      "finding": "the local Fabric tree has no remote linkage, so a round's Fabric-side work can be committed and still never reach this mirror",
+      "remote_status": "`OWNER`",
+      "evidence_or_gap": "`EVIDENCE/SKILL-CONVERGENCE-20261014/PUBLICATION-RECORD.md` section C: the round's hygiene work was local-only until this change-set projected it; the remote linkage itself stays the owner's open item (`MANIFEST.json` `pending`)",
+      "local_convergence_reverification": "NOT_RUN",
+      "closure_claim": "NOT_MADE",
+      "mapped": false,
+      "unmapped_reason": "no local re-verification receipt bound to this K entry in this lane"
+    },
+    {
+      "id": "K-14",
+      "finding": "a closure text described the Fabric front page as upgraded when it had only been committed",
+      "remote_status": "`RESOLVED`",
+      "evidence_or_gap": "corrected in the publication record; the round section is added by this change-set",
+      "local_convergence_reverification": "NOT_RUN",
+      "closure_claim": "NOT_MADE",
+      "mapped": false,
+      "unmapped_reason": "no local re-verification receipt bound to this K entry in this lane"
+    },
+    {
+      "id": "K-15",
+      "finding": "a publication manifest can list a file the commit silently drops, because the host repo's own ignore rules apply",
+      "remote_status": "`RESOLVED`",
+      "evidence_or_gap": "the commit-byte read-back refused to claim reproducibility and the packet was renamed; the rule is recorded in the `remote-repo-publication` skill",
+      "local_convergence_reverification": "NOT_RUN",
+      "closure_claim": "NOT_MADE",
+      "mapped": false,
+      "unmapped_reason": "no local re-verification receipt bound to this K entry in this lane"
+    },
+    {
+      "id": "K-16",
+      "finding": "the reference population still exceeds the linter's warning line (94 files against 60)",
+      "remote_status": "`PARTIAL`",
+      "evidence_or_gap": "only a 14-file pilot group was merged this round; the remaining topic groups are unmerged",
+      "local_convergence_reverification": "NOT_RUN",
+      "closure_claim": "NOT_MADE",
+      "mapped": false,
+      "unmapped_reason": "no local re-verification receipt bound to this K entry in this lane"
+    },
+    {
+      "id": "K-17",
+      "finding": "the control plane's timeout path discards partial captures",
+      "remote_status": "`PARTIAL`",
+      "evidence_or_gap": "a candidate patch exists (2,621 bytes) and is **not** landed; landing needs its own admission and governed change-set",
+      "local_convergence_reverification": "NOT_RUN",
+      "closure_claim": "NOT_MADE",
+      "mapped": false,
+      "unmapped_reason": "no local re-verification receipt bound to this K entry in this lane"
+    },
+    {
+      "id": "K-18",
+      "finding": "this round's lane failures (12 timeouts, 2 nonce-less dispatches, 1 contaminated verdict, 1 empty answer)",
+      "remote_status": "`PARTIAL`",
+      "evidence_or_gap": "none repaired; the timeout class was root-caused and the lane budget raised, and every failure is retained in the round record",
+      "local_convergence_reverification": "NOT_RUN",
+      "closure_claim": "NOT_MADE",
+      "mapped": false,
+      "unmapped_reason": "no local re-verification receipt bound to this K entry in this lane"
+    },
+    {
+      "id": "K-19",
+      "finding": "the guarded apply path has only ever run against fixtures",
+      "remote_status": "`PARTIAL`",
+      "evidence_or_gap": "no real write was executed; the subject stays candidate-only",
+      "local_convergence_reverification": "NOT_RUN",
+      "closure_claim": "NOT_MADE",
+      "mapped": false,
+      "unmapped_reason": "no local re-verification receipt bound to this K entry in this lane"
+    },
+    {
+      "id": "K-20",
+      "finding": "the round's return packet was first pushed to a repository the owner had not named for it",
+      "remote_status": "`RESOLVED`",
+      "evidence_or_gap": "`EVIDENCE/SKILL-CONVERGENCE-20261014/PUBLICATION-RECORD.md` section A: the packet was republished byte-identically to this repository's branch `evidence/skill-convergence-20261014-full-packet` and the other repository's branch was deleted (its `main` never moved); the deleted tip is recoverable from this branch",
+      "local_convergence_reverification": "NOT_RUN",
+      "closure_claim": "NOT_MADE",
+      "mapped": false,
+      "unmapped_reason": "no local re-verification receipt bound to this K entry in this lane"
+    }
+  ],
+  "mapped_count": 0,
+  "unmapped_count": 20,
+  "notes": [
+    "Every K-ledger entry is recorded explicitly as UNMAPPED rather than guessed.",
+    "K-06 runtime binding mismatch is corroborated by cap04_hermes_version (served 0.21.5 vs declared 0.20.0)."
+  ]
+}

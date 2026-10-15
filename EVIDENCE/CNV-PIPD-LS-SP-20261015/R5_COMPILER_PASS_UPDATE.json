@@ -1,0 +1,51 @@
+{
+  "record_type": "NONCANONICAL_COMPILER_PROGRESS_UPDATE",
+  "mission_id": "CNV-PIPD-LS-SP-20261015",
+  "observed_at": "2026-10-15T07:12:21.928595+00:00",
+  "owner_high_decision": "PKG is the sole authority anchor; six superseded legacy blueprints de-scoped (STATE_EVIDENCE-only); no chase/recovery as normative authorities",
+  "owner_clarify_TTPIPD03": "SRC-DOC03 → SUPPORT/governs=false; TT-PIPD-03 decision=RESOLVED; future batch bridge arbitration to be established separately",
+  "native_compiler": {
+    "verdict_after_all_stages": "PROMPT_COMPILE_PASS",
+    "exit_code": 0,
+    "compiler_sha256": "2c282ad6539a465c3b1d751868cab98437a8f35e9728be686117e364a70857d9",
+    "contract_sha256": "6629af1d4cf09ec11b99e79488ea515692ebd9c802fef6353b1ac3ed31b7bd6e",
+    "prompt_sha256": "2f246796c3b927170a90ed7dd3f4307e913579db2efb56b307cbc2377a1cb77f",
+    "receipt": "compiler_native_output_R5/compiler-receipt.json",
+    "thin_prompt": "compiler_native_output_R5/thin-prompt.md"
+  },
+  "contract_iterations": {
+    "R2": {
+      "sha": "61a94c7596ff913ed28f051351338bcc74285452dd82563b272cbf480e25fa02",
+      "blocked": [
+        "PL-003 missing sources",
+        "PL-004 conflict"
+      ]
+    },
+    "R3": {
+      "sha": "9a83af348fb52d35fd032f21556a4b843aee06acee6052ed55e3e02c4a4c135e",
+      "blocked": [
+        "PL-004 conflict"
+      ]
+    },
+    "R4": {
+      "sha": "a858d01f5e873da1a92365ca15812377b0960017f188502d1f57c0147f78c1c5",
+      "blocked": [
+        "PL-001 prompt char limit"
+      ]
+    },
+    "R5": {
+      "sha": "6629af1d4cf09ec11b99e79488ea515692ebd9c802fef6353b1ac3ed31b7bd6e",
+      "status": "PROMPT_COMPILE_PASS"
+    }
+  },
+  "acceptance_id_map": "ACCEPTANCE_ID_SHORTEN_MAP.json (sha 2048e1131bc2f0eac3cc99eae45711450d80f1ffc6f7204fdbb848d782bf878a)",
+  "pkg_verifier_state": "20/21 physical sources verified; 6 superseded blueprint originals de-scoped per Owner decision; verifier remains FAIL_CLOSED for full 21-source bundle as designed",
+  "execution_admission": "NOT_RUN — not claimed;",
+  "next_blocks": [
+    "HGK typed admission",
+    "Fresh G1 certification",
+    "independent checker pass",
+    "publication gate"
+  ],
+  "claim_ceiling": "LOCAL — no acceptance, no release, no publication"
+}

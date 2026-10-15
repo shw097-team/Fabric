@@ -1,0 +1,77 @@
+{
+  "producer": "Codex CLI bounded writer EXECUTE lane (opencode-go/deepseek-v4.1-flash)",
+  "produced_utc": "2026-10-15T08:15:06.910744+00:00",
+  "source_hashes_used": [
+    "6629af1d4cf09ec11b99e79488ea515692ebd9c802fef6353b1ac3ed31b7bd6e",
+    "115912cdccbf5b3788fe1d6e1c8c10fe575252d72accf31cb6f1955dd8750974",
+    "96d9d564286743e17550ccef15b9952347901eb77168f930376938893cff9c3f",
+    "6894a6ba08781f2ed5758af132f758c14c1a9e9b69d42056837f5ce45bba6c64",
+    "7f7246d34be112bb465b48dadaef6163e466e16e5e705fc58acee04b3809a613",
+    "8b78edebd79c8149a2b74e2a7f873e3116f772c881a501bd4600ea0e7a891f6b",
+    "2f246796c3b927170a90ed7dd3f4307e913579db2efb56b307cbc2377a1cb77f"
+  ],
+  "raw_evidence_refs": [],
+  "verdict": "PENDING_CHECKER",
+  "claim_level": "LOCAL",
+  "artifact": "EFFECTS_5.json",
+  "source_slot": "SLOT:25_FUNCTIONAL_EFFECT_5.json in the Owner-approved PKG",
+  "rows": [
+    {
+      "effect_id": "EFF-1",
+      "plane": "SKILLS",
+      "subject": "AVR/HGK 10/6 raw pieces; references nested; trigger/nontrigger; Curator stage/install/retire",
+      "positive_acceptance": "Reconstruct byte equality from original source; invoke pinned host loader; deny fake pointer and unapproved retire",
+      "negative": "Forge reply without real same-run independently read-back evidence => BLOCK",
+      "positive_readback": "PARTIAL_LOCAL: cap_avr_skill_pack exit 0 PASS 8/8 skills, 56/56 cases (loader presence/parity)",
+      "negative_readback": "NOT_RUN",
+      "disposition": "NOT_RUN",
+      "reason": "Byte-exact 10/6 reconstruction and Curator staged/installed/retired transitions need the frozen raw pieces as a real runnable subject; only the loader self-run was reachable locally."
+    },
+    {
+      "effect_id": "EFF-2",
+      "plane": "HERMES",
+      "subject": "G1/route required=served; usage nonce; stdin/file; timeout child cleanup",
+      "positive_acceptance": "Pin executable, sealed route and raw stdout+stderr; independent same-run receipt; deny provider-direct substitute",
+      "negative": "Forge reply without real same-run independently read-back evidence => BLOCK",
+      "positive_readback": "PARTIAL_LOCAL: cap04_hermes_version exit 0 (real stdout captured)",
+      "negative_readback": "NOT_RUN",
+      "disposition": "BLOCKED_HITL",
+      "reason": "Sealed route / required=served arm audit cannot be certified because served runtime (0.21.5) differs from declared binding (0.20.0); Owner certification required (K-06)."
+    },
+    {
+      "effect_id": "EFF-3",
+      "plane": "FAR",
+      "subject": "query results with real retriever, grounded reference, SQLite reads",
+      "positive_acceptance": "Run fixed query corpus, independent fresh SELECT, deny ack with missing row",
+      "negative": "Forge reply without real same-run independently read-back evidence => BLOCK",
+      "positive_readback": "PARTIAL_LOCAL: cap13_fts5_positive exit 0 MATCH hit via real SQLite FTS5",
+      "negative_readback": "LOCAL: cap13_fts5_negative malformed MATCH refused",
+      "disposition": "PARTIAL_LOCAL",
+      "reason": "Fresh independent SELECT readback was performed locally on the probe DB; same-subject independent checker receipt still required."
+    },
+    {
+      "effect_id": "EFF-4",
+      "plane": "DESKTOP",
+      "subject": "Windows ACL/symlink scope; FS/API/browser world-effects and rollback",
+      "positive_acceptance": "Isolation + OS audit + pre/post residue; WinError1314 tracked not hidden",
+      "negative": "Forge reply without real same-run independently read-back evidence => BLOCK",
+      "positive_readback": "PARTIAL_LOCAL: cap_pipd_project_unsafe exit 2 (unsafe destination refused); cap03_spine_teardown exit 0",
+      "negative_readback": "LOCAL: out-of-scope write refused",
+      "disposition": "PARTIAL_LOCAL",
+      "reason": "Full OS ACL/symlink isolation proof not run; bounded-write refusal observed."
+    },
+    {
+      "effect_id": "EFF-5",
+      "plane": "FABRIC_CI",
+      "subject": "Owner FROZEN allowlist; commit tree blob equality; trusted verifier; secrets scan",
+      "positive_acceptance": "Readback commit blob, rulesets/CODEOWNERS, trust-base PR negative, deny untrusted PR check",
+      "negative": "Forge reply without real same-run independently read-back evidence => BLOCK",
+      "positive_readback": "NOT_RUN",
+      "negative_readback": "NOT_RUN",
+      "disposition": "BLOCKED_EXTERNAL",
+      "reason": "No GitHub PAT (cap15_github_publish exit 2 GITHUB_AUTH_BLOCKED); no FROZEN allowlist or ruleset available locally; no publication performed."
+    }
+  ],
+  "not_run_count": 1,
+  "note": "Each effect requires real same-run readback for promotion; none may be filled by inference."
+}

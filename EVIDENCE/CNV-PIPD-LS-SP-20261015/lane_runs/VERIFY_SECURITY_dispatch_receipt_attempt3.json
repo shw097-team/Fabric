@@ -1,0 +1,150 @@
+{
+  "schema": "HGK-LANE-RESOLUTION/1",
+  "lane": "VERIFY_SECURITY",
+  "role": "checker",
+  "engine": "codex-cli",
+  "codex_executable": "C:/Users/user/AppData/Local/OpenAI/Codex/bin/9614f1d9b40d9c4f/codex.exe",
+  "codex_home": "C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\codex-hermes",
+  "relay_base": "http://127.0.0.1:10101/v1",
+  "codex_home_is_declared_lane_home": true,
+  "human_home_transport_acknowledged": false,
+  "skipped_arms": [
+    {
+      "rank": 4,
+      "arm": "nvidia/deepseek-ai/deepseek-v4.1-flash",
+      "reason": "UNREACHABLE_MEASURED_20261011"
+    }
+  ],
+  "transport": "opencodex relay via per-invocation -c openai_base_url (no config mutation)",
+  "transport_target": "http://127.0.0.1:10101/v1",
+  "front_door_port": null,
+  "front_door_note": "the lane-scoped pool door (10103 VERIFY_SECURITY / 10105 EXECUTE) carries the hop and ledgers every decision; the sealed single-model 10100 door is unchanged and unused; None here means direct to the relay on 10101",
+  "sandbox": "danger-full-access",
+  "sandbox_by_role_default": "read-only",
+  "sandbox_escalation_authorised": true,
+  "cwd": "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015",
+  "side_effect_note": "danger-full-access has NO sandbox root: any absolute path is writable, so a read-only subject must be a frozen copy checked afterwards by digest",
+  "receipt_binding": "usage rows appended after this attempt started (byte offset bound)",
+  "pool": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\lane-route-slots.candidate.json",
+  "candidates_considered": [
+    2
+  ],
+  "mode": "forced_rank",
+  "unguarded_escalation_acknowledged": false,
+  "inject_429_first": false,
+  "identity_gate": {
+    "state": "enforced",
+    "lane_home": "C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\codex-hermes",
+    "relay_home": "C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\opencodex-hermes",
+    "arms": [
+      {
+        "rank": 2,
+        "provider": "opencode-go",
+        "model": "glm-5.3-flash",
+        "requirement": "none",
+        "ok": true,
+        "detail": "key-auth arm: no human-attended identity"
+      }
+    ],
+    "degraded": false,
+    "required_arm": "opencode-go/glm-5.3-flash"
+  },
+  "authorization": {
+    "checked": false
+  },
+  "subject_mutation": {
+    "files_before": 301,
+    "files_after": 301,
+    "added": [],
+    "removed": [],
+    "changed": [],
+    "mutated": false,
+    "mutated_known": true,
+    "inconclusive": false,
+    "verdict": "CLEAN",
+    "rule": "removed/changed => verdict void; added is recorded, not fatal; an empty side => INCONCLUSIVE (never a clean verdict from nothing)",
+    "guard_roots": [
+      "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/R6_DELIVERY"
+    ],
+    "subject_digest_sha256_before": "9bf6dbdd1a828f000ebee730a0049c229c6ef54cfb170168f369d40ba9f6137c",
+    "subject_digest_sha256_after": "9bf6dbdd1a828f000ebee730a0049c229c6ef54cfb170168f369d40ba9f6137c"
+  },
+  "attempt_log_dir": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\CNV-PIPD-LS-SP-20261015-R6\\VERIFY_SECURITY\\attempt-3-20261015T101900Z",
+  "output_dir_policy": {
+    "mode": "derived",
+    "derived": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\CNV-PIPD-LS-SP-20261015-R6\\VERIFY_SECURITY\\attempt-3-20261015T101900Z",
+    "attempt_number": 3,
+    "attempt_marker": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\CNV-PIPD-LS-SP-20261015-R6\\VERIFY_SECURITY\\attempt-3-20261015T101900Z\\attempt.marker.json"
+  },
+  "repair_precondition": {
+    "checked": false
+  },
+  "remote_write_precheck": {
+    "mode": "DETECTION_ONLY",
+    "ran": true,
+    "brief": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\CHECKER_BRIEF_R6b.md",
+    "markers": [],
+    "publication_wo": null,
+    "would_refuse": false
+  },
+  "attempts": [
+    {
+      "rank": 2,
+      "provider": "opencode-go",
+      "model": "glm-5.3-flash",
+      "transport_model": "opencode-go/glm-5.3-flash",
+      "sandbox": "danger-full-access",
+      "reasoning_effort": null,
+      "exit": 0,
+      "timed_out": false,
+      "seconds": 598.4,
+      "nonce_present": false,
+      "nonce_present_raw_stdout": false,
+      "nonce_source": "item.completed/agent_message",
+      "usage_rows_after_offset": 116,
+      "usage_offset": 23424124,
+      "usage_provider": "opencode-go",
+      "usage_model": "glm-5.3-flash",
+      "usage_status": 200,
+      "usage_receipt_ok": true,
+      "usage_receipt_reason": "",
+      "usage_ledger_rewritten": false,
+      "usage_rows_shape_invalid": 0,
+      "usage_rows_undecodable": 0,
+      "carrier_lines_undecodable": 0,
+      "carrier_lines_surrogate": 0,
+      "credential_posture": {
+        "verdict": "INCONCLUSIVE",
+        "decision": "WARN_CONTINUE",
+        "reason": "helper-only verdict (no child env asserted): helper_resolution_reset=PASS; helper_non_interactive=UNKNOWN",
+        "prompt_capable_helper": null,
+        "origin": null,
+        "git_terminal_prompt": "0"
+      },
+      "attempt_log_dir": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\CNV-PIPD-LS-SP-20261015-R6\\VERIFY_SECURITY\\attempt-3-20261015T101900Z",
+      "stdout_byte_exact": true,
+      "stdout_path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\CNV-PIPD-LS-SP-20261015-R6\\VERIFY_SECURITY\\attempt-3-20261015T101900Z\\attempt-21480-1792059540-2-stdout.txt",
+      "stdout_bytes": 394046,
+      "stdout_sha256": "74347a79b689ff05310bcc86f795a5c19fe4273e912b6f6870a1ab7a3c49ab5b",
+      "stderr_byte_exact": true,
+      "stderr_path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\CNV-PIPD-LS-SP-20261015-R6\\VERIFY_SECURITY\\attempt-3-20261015T101900Z\\attempt-21480-1792059540-2-stderr.txt",
+      "stderr_bytes": 444,
+      "stderr_sha256": "c10d10bba77e80a737ad95cde7c2bbd211a11711c67ece1500439060889f99d6",
+      "stdout_tail": "the checker COPIES (which preserved the writer's author-time bytes), and the full 299-file sweep is back to `bad_count=0` at end-of-turn. No content was deleted; the slip and its resolution are both documented in the receipt.\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":4448203,\"cached_input_tokens\":4306304,\"cache_write_input_tokens\":0,\"output_tokens\":28297,\"reasoning_output_tokens\":3684}}\n",
+      "stderr_tail": "t: HTTP error: 426 Upgrade Required, url: ws://127.0.0.1:10101/v1/responses\n2026-10-15T10:20:41.132042Z ERROR codex_core::tools::router: error=write_stdin failed: Unknown process id 18014\n2026-10-15T10:21:09.370377Z ERROR codex_core::tools::router: error=write_stdin failed: Unknown process id 49884\n"
+    }
+  ],
+  "used_rank": null,
+  "used_transport_model": null,
+  "used_seconds": null,
+  "generated_utc": "2026-10-15T10:28:59.593706+00:00",
+  "claim_ceiling": "a pass here proves the Codex-CLI lane served this turn through the relay with a matching usage receipt; it is not an acceptance of any subject",
+  "ok": false,
+  "usage_receipt_ok": true,
+  "usage_rows_shape_invalid": 0,
+  "usage_rows_undecodable": 0,
+  "code": "ERR_NO_ARM_EMITTED_NONCE",
+  "nonce_absent_arms": [
+    "opencode-go/glm-5.3-flash"
+  ]
+}

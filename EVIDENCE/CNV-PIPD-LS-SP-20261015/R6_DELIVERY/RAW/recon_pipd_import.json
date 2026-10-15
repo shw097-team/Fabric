@@ -1,0 +1,19 @@
+{
+ "probe_id": "recon_pipd_import",
+ "command": [
+  "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+  "-c",
+  "import sys;sys.path.insert(0,r'C:/Projects/Agent_Workspace/PIPD/src');from pipd_ls_sp import cli;print('PIPD_IMPORT_OK',len(cli.COMMANDS))"
+ ],
+ "cwd": "C:/Projects/Agent_Workspace",
+ "started_utc": "2026-10-15T07:49:50.118274+00:00",
+ "ended_utc": "2026-10-15T07:49:50.211745+00:00",
+ "exit_code": 0,
+ "timed_out": false,
+ "stdout_file": "RAW/recon_pipd_import.stdout.txt",
+ "stderr_file": "RAW/recon_pipd_import.stderr.txt",
+ "stdout_sha256": "7c897da7c632cc6d3a22a61700fbb30e3a2483b335388bc1dd3bb119b32ba766",
+ "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+ "stdout_bytes": 19,
+ "stderr_bytes": 0
+}

@@ -1,0 +1,16 @@
+{
+ "schema": "HGK-INDEPENDENT-ACCEPTANCE/1",
+ "checker": "INDEPENDENT_CHECKER (fresh subprocess per case; read-only; not the maker)",
+ "baseline_sha256": "1564bbf7a8cd4baeabc1704586dc50ebe1e30dd6c1d09c84a7ad629a2b8d8176",
+ "denominator": 92,
+ "checked": 92,
+ "counts": {
+  "INDEPENDENT_CASE_PASS": 90,
+  "INDEPENDENT_CASE_FAIL": 2
+ },
+ "failures": [
+  "TST-025: {'maker_status': 'MAKER_CASE_PASS', 'baseline_bound': True, 'fixture_match': True, 'oracle': 'Loaded-source order matches expected', 'source_locator': 'HG-KSEOS_實作RBWI_WP_控制工件_PACK_FINAL_r2_Group-07_CrossPack_Registries_Executable_Control_Contracts.md#L949', 'independent_rerun': False, 'rerun_stderr': \"ecute\\\\\\\\homes\\\\\\\\checker-option1\\\\\\\\.tmp\\\\\\\\plugins\\\\\\\\plugins\\\\\\\\nvidia\\\\\\\\skills\\\\\\\\omniverse-usd-performance-tuning\\\\\\\\references\\\\\\\\usd-structure-assessment\\\\\\\\references\\\\\\\\usd-hierarchy-dedupe-candidates\\\\\\\\references'\\n\"}",
+  "TST-048: {'maker_status': 'MAKER_CASE_PASS', 'baseline_bound': True, 'fixture_match': True, 'oracle': 'Exact counts and anchors', 'source_locator': 'HG-KSEOS_實作RBWI_WP_控制工件_PACK_FINAL_r2_Group-07_CrossPack_Registries_Executable_Control_Contracts.md#L972', 'independent_rerun': False, 'rerun_stderr': '1, in _count_csv_rows\\n    raise CaseFailure(f\"ERR_ARTIFACT_MISSING:{rel}\")\\nrun_acceptance.CaseFailure: ERR_ARTIFACT_MISSING:HG-KSEOS_實作RBWI_WP_控制工件_PACK_FINAL_r2/sidecars/WP_FULL_CONTRACT_CLOSURE.csv\\n'}"
+ ],
+ "verdict": "FAIL"
+}

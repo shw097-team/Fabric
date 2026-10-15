@@ -1,0 +1,65 @@
+{
+  "producer": "Codex CLI bounded writer EXECUTE lane (opencode-go/deepseek-v4.1-flash)",
+  "produced_utc": "2026-10-15T08:15:06.892745+00:00",
+  "source_hashes_used": [
+    "6629af1d4cf09ec11b99e79488ea515692ebd9c802fef6353b1ac3ed31b7bd6e",
+    "115912cdccbf5b3788fe1d6e1c8c10fe575252d72accf31cb6f1955dd8750974",
+    "96d9d564286743e17550ccef15b9952347901eb77168f930376938893cff9c3f",
+    "6894a6ba08781f2ed5758af132f758c14c1a9e9b69d42056837f5ce45bba6c64",
+    "7f7246d34be112bb465b48dadaef6163e466e16e5e705fc58acee04b3809a613",
+    "8b78edebd79c8149a2b74e2a7f873e3116f772c881a501bd4600ea0e7a891f6b",
+    "2f246796c3b927170a90ed7dd3f4307e913579db2efb56b307cbc2377a1cb77f"
+  ],
+  "raw_evidence_refs": [
+    {
+      "source": "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015\\OWNER_TRUST_LOCK.json",
+      "sha256": "8b78edebd79c8149a2b74e2a7f873e3116f772c881a501bd4600ea0e7a891f6b"
+    }
+  ],
+  "verdict": "PENDING_CHECKER",
+  "claim_level": "LOCAL",
+  "artifact": "AUTHORITY_LOCK_STATUS.json",
+  "owner_trust_lock": {
+    "path": "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015\\OWNER_TRUST_LOCK.json",
+    "sha256": "8b78edebd79c8149a2b74e2a7f873e3116f772c881a501bd4600ea0e7a891f6b",
+    "record_type": "NONCANONICAL_OWNER_TRUST_AUTHORIZATION",
+    "observed_at": "2026-10-15T05:21:34.788321+00:00",
+    "authority": "Human Policy Owner via explicit clarify responses in this session",
+    "signature_type": "user_interactive_attestation_not_cryptographic_signature",
+    "canonical_mutation": false
+  },
+  "package_pin": {
+    "path": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md",
+    "sha256": "96d9d564286743e17550ccef15b9952347901eb77168f930376938893cff9c3f",
+    "bytes": 2689181,
+    "approval_response": "核定此 SHA，並授權建立具本訊息來源的 detached Owner lock"
+  },
+  "verifier_pin": {
+    "source_locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md:44558-44781 PACKAGE_VERIFIER",
+    "sha256": "85a3381703f8de510a1670a27a2ace8b58258a7db8a7cff4c85244599cda6862",
+    "bytes": 18520,
+    "approval_response": "核定該 verifier SHA，授權上述信任紀錄與文件級檢查"
+  },
+  "authorized_scope": [
+    "persist this trust record",
+    "persist exact approved standalone verifier bytes",
+    "document-level read-only check"
+  ],
+  "not_granted_by_this_record": [
+    "independent acceptance",
+    "canonical admission",
+    "world effects",
+    "publication gate pass"
+  ],
+  "status": "OWNER_PINS_VERIFIED_OTHER_AUTHORITY_GATES_OPEN",
+  "open_authority_conditions": [
+    "canonical admission (C0-C9 typed admission) not performed",
+    "world effects not authorized",
+    "publication gate not passed",
+    "independent acceptance not granted"
+  ],
+  "notes": [
+    "This lock is a noncanonical interactive user attestation, not a cryptographic signature.",
+    "No canonical Shared Spine mutation was performed by this lane."
+  ]
+}

@@ -1,0 +1,29 @@
+{
+ "verdict": "SPINE_ACCEPTANCE_OK",
+ "resolve": {
+  "event_id": "EVT-4a5b82831b4ff1c4",
+  "resulting_version": 1,
+  "to_state": "PASS",
+  "from_state": "NOT_RUN",
+  "evidence_ref": "EVD-R6-ACC",
+  "idempotent_replay": false
+ },
+ "idempotent_replay": {
+  "event_id": "EVT-4a5b82831b4ff1c4",
+  "resulting_version": 1,
+  "to_state": "PASS",
+  "from_state": "NOT_RUN",
+  "evidence_ref": "EVD-R6-ACC",
+  "idempotent_replay": true
+ },
+ "wrong_subject_reuse_refused": {
+  "error_type": "InvariantViolation",
+  "error": "ERR_IDEMPOTENCY_KEY_REUSED_FOR_OTHER_SUBJECT:IDEM-R6-ACC-A:acceptance:ACC-REQ-R6-ACC"
+ },
+ "unregistered_evidence_refused": {
+  "error_type": "InvariantViolation",
+  "error": "ERR_ACCEPTANCE_EVIDENCE_UNKNOWN:EVD-DOES-NOT-EXIST"
+ },
+ "final_acceptance_verdict": "PASS",
+ "final_acceptance_evidence_ref": "EVD-R6-ACC"
+}

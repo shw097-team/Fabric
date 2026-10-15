@@ -1,0 +1,145 @@
+{
+  "schema": "CNV-PIPD-LS-SP-20261015/HGK-TYPED-ADMISSION/1",
+  "project_id": "CNV-PIPD-LS-SP-20261015",
+  "sources_present": 9,
+  "sources_missing": [],
+  "source_inventory": [
+    {
+      "path": "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/attachments/Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md",
+      "bytes": 2689181,
+      "sha256": "96d9d564286743e17550ccef15b9952347901eb77168f930376938893cff9c3f"
+    },
+    {
+      "path": "C:/Projects/Agent_Workspace/知識庫/實作相關DOC/HG-KSEOS/Fabric_HG-KSEOS_Convergence/PROMPT/Fabric_HG-KSEOS_Convergence_指揮薄PROMPT.md",
+      "bytes": 27321,
+      "sha256": "6894a6ba08781f2ed5758af132f758c14c1a9e9b69d42056837f5ce45bba6c64"
+    },
+    {
+      "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\C0_C9_CONTRACT_R5.json",
+      "bytes": 345313,
+      "sha256": "6629af1d4cf09ec11b99e79488ea515692ebd9c802fef6353b1ac3ed31b7bd6e"
+    },
+    {
+      "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\compiler_native_output_R5\\thin-prompt.md",
+      "bytes": 30199,
+      "sha256": "2f246796c3b927170a90ed7dd3f4307e913579db2efb56b307cbc2377a1cb77f"
+    },
+    {
+      "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\OWNER_TRUST_LOCK.json",
+      "bytes": 1472,
+      "sha256": "8b78edebd79c8149a2b74e2a7f873e3116f772c881a501bd4600ea0e7a891f6b"
+    },
+    {
+      "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\compiler_native_output_R5\\compiler-receipt.json",
+      "bytes": 553,
+      "sha256": "2eba932eff2218613539acd58e3b901f31c3e61bdc103b8858f6d7cf5b257f62"
+    },
+    {
+      "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R5_COMPILER_PASS_UPDATE.json",
+      "bytes": 2240,
+      "sha256": "66a8f2b6cdfccca05bdbdb1ec51ff397a58bf5ba7156f73eb27060e4f8e60068"
+    },
+    {
+      "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\MISSION_PLAN_SPEC_CHECKLIST_R6.json",
+      "bytes": 10327,
+      "sha256": "1d147100048a3ce41dbb9b80a84d298598e9e06058872fc48f50dc023510accd"
+    },
+    {
+      "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\FDA_SCOPE_AUTHORIZATION.json",
+      "bytes": 724,
+      "sha256": "2df7cecdf5e01b9715530c8f9b457266eae26ade805272621662e8d06d1ed0af"
+    }
+  ],
+  "steps": [
+    {
+      "step": "start",
+      "result": "CREATED",
+      "state": "PROJECT_CREATED"
+    },
+    {
+      "step": "intake",
+      "status": "READY",
+      "source_count": 9,
+      "blocking_missing": [],
+      "conflicts": []
+    },
+    {
+      "step": "transition",
+      "to": "INTENT_BOUND",
+      "result": "OK"
+    },
+    {
+      "step": "transition",
+      "to": "REQUIREMENTS_READY",
+      "result": "OK"
+    },
+    {
+      "step": "transition",
+      "to": "DESIGN_READY",
+      "result": "OK"
+    },
+    {
+      "step": "plan",
+      "task_count": 4,
+      "titles": [
+        "Source discovery",
+        "Core implementation",
+        "Acceptance and evidence",
+        "Package and delivery"
+      ],
+      "non_goals_preserved": 4
+    },
+    {
+      "step": "admit_workorders",
+      "result": {
+        "project_id": "CNV-PIPD-LS-SP-20261015",
+        "workorders": [
+          "WO-TS-20261015-01",
+          "WO-TS-20261015-02",
+          "WO-TS-20261015-03",
+          "WO-TS-20261015-04"
+        ],
+        "count": 4
+      }
+    }
+  ],
+  "claim_ceiling": "LOCAL_ORCHESTRATION",
+  "final_state": "WORKORDERS_ADMITTED",
+  "denominator": {
+    "project_id": "CNV-PIPD-LS-SP-20261015",
+    "state": "WORKORDERS_ADMITTED",
+    "requirements_total": 1,
+    "requirements_frozen": 1,
+    "taskspecs_total": 4,
+    "workorders_total": 4,
+    "workorders_open": [
+      "WO-TS-20261015-01",
+      "WO-TS-20261015-02",
+      "WO-TS-20261015-03",
+      "WO-TS-20261015-04"
+    ],
+    "workorders_open_count": 4,
+    "acceptances_total": 1,
+    "acceptances_open": [
+      "ACC-REQ-CNV-PIPD-LS-SP-20261015-PLAN"
+    ],
+    "acceptances_open_count": 1,
+    "required_active_capabilities": [
+      "openspec",
+      "gstack.plan-eng-review",
+      "gstack.review",
+      "gstack.qa",
+      "gstack.cso",
+      "gstack.ship",
+      "gstack.office-hours",
+      "gstack.retro"
+    ],
+    "required_active_capabilities_total": 8,
+    "required_active_capabilities_open": [],
+    "required_active_capabilities_open_count": 0,
+    "required_local_scope_open": 5,
+    "guard_required_workorders_terminal": false,
+    "denominator_available": true
+  },
+  "verdict": "ADMISSION_OK"
+}
