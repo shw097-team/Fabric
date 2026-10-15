@@ -80,6 +80,14 @@
    "what": "The R7-0 product change was authored against a stale revision: the writer's pre-change snapshots are byte-identical to commit a503efe while main is dba4b19. Publishing the candidate files onto main would revert intervening work; a mechanical rebase conflicts on validate.py and cli.py (pipeline.py applies).",
    "handling": "option A taken by the orchestrator: nothing applied to src/; the delta patches, the candidate files (evidence copies), the rebase measurement and the blocker record were published on a PIPD evidence branch (head eae636d8) with Draft PR #15. Option B (rebuild against main and re-measure the 18 mutations) is recommended as the next change set R8-0.",
    "ceiling": "the R7-0 mutation result is measured on the a503efe-derived tree and is unmeasured on any main-based rebase"
+  },
+  {
+   "id": "INC-R7-04",
+   "what": "the narrow verifier re-dispatch (attempt 5) was refused by the lane guard: ERR_LANE_REMOTE_WRITE_NOT_AUTHORIZED, markers ['publish'], detection_only=true, EXIT 4 - prose-marker false positive (TF-01, 3rd occurrence of that class).",
+   "impact": "~2 minutes lost; no lane ran, nothing written.",
+   "mitigation": "brief prose rewritten to remove the marker words; re-dispatched as attempt 6 (1200s cap).",
+   "attribution": "lane tooling (brief marker matching), not the subject and not a credential/write attempt",
+   "disclosed": "yes"
   }
  ],
  "kanban_swarm": {

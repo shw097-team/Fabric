@@ -1,0 +1,153 @@
+{
+ "schema": "CNV-PIPD-LS-SP-20261015-R7/CHECKPOINT/1",
+ "created_local": "2026-10-16",
+ "reason": "owner-ordered immediate halt for machine shutdown",
+ "mission": "CNV-PIPD-LS-SP-20261015",
+ "changeset": "R7-0-VALIDATOR-AND-CHECKER-ISOLATION",
+ "claim_ceiling": "LOCAL / candidate-only",
+ "halt": {
+  "killed": [
+   "proc_e9af3404a9be (VERIFY_SECURITY swarm verifier attempt 6, pid 5288, ~110s, dispatch-echo stage, no artifacts)"
+  ],
+  "other_processes": "all exited before the halt",
+  "mid_write": "none",
+  "worktrees_clean": [
+   "C:/Projects/wt-cnv-r7",
+   "C:/Projects/wt-pipd-r7"
+  ]
+ },
+ "published": {
+  "fabric_main": "b8ff81043e47e4b652522be34444bf52fcf4d65e",
+  "fabric_r6_prefix": {
+   "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015/",
+   "blobs": 581,
+   "manifest_sha256": "27ba42f7cb32d9f490d8897ef0205b0b70cd13bb2b7bc6344e717e5bffbd118b",
+   "frozen": true
+  },
+  "fabric_r7_branch": "evidence/cnv-pipd-ls-sp-20261015-r7",
+  "fabric_r7_head": "f763c485ffe6f8555c5ebd867a6b5118f96cb998",
+  "fabric_r7_blobs": 302,
+  "fabric_pr": 4,
+  "fabric_pr_comments": [
+   "6196257481",
+   "6196277922",
+   "6196400843",
+   "6196849904",
+   "6197511154"
+  ],
+  "pipd_main": "dba4b19456777d3b597fdf71480f6423dd974243",
+  "pipd_r7_branch": "evidence/cnv-r7-0-validator-hardening-20261015",
+  "pipd_r7_head": "eae636d8668027887977a797b20e63899465ad8d",
+  "pipd_r7_blobs": 16,
+  "pipd_src_touched": false,
+  "pipd_pr": 15,
+  "earlier": {
+   "fabric_pr_merged": 3,
+   "fabric_merge_commit": "b8ff81043e47e4b652522be34444bf52fcf4d65e",
+   "pipd_draft_pr": 14,
+   "pipd_pr14_head": "d89e7f33ec14"
+  }
+ },
+ "branch_heads_reverified_by_api": true,
+ "verdicts": {
+  "valid_checker_verdict": "R7_CHECKER_ATTEMPT3/R7_CHECKER_VERDICT.json (overall_verdict=PENDING_OWNER, first_fail=None)",
+  "maker_selfreport": "R7_MUTATIONS_18_RERUN.json (NOT an independent verdict)",
+  "swarm_verifier_verdict": "MISSING (INC-R7-03); R7_VERIFIER_SWARM_PARTIAL.md is the orchestrator's reading, explicitly not a verdict",
+  "selfcheck": "6/6 PASS at the 212-blob packet state; 1=PASS 2=FAIL 3=FAIL 4=PASS 5=PASS 6=PASS -> OVERALL FAIL at 227+ blobs (TF-10); NOT green at the published head"
+ },
+ "board": {
+  "slug": "cnv-r7-0-accel-20261015",
+  "cards": {
+   "t_cb349415": "done(root)",
+   "t_6b486801": "done(WS1)",
+   "t_309d743f": "done(WS2)",
+   "t_487b3659": "done(WS3)",
+   "t_d11b97eb": "done(WS4)",
+   "t_9bb5924a": "done(WS5)",
+   "t_18395e4b": "ready(verifier - lane attempts 4/5/6 lost)",
+   "t_c7f0b89b": "todo(synthesizer)"
+  }
+ },
+ "open_blockers": [
+  {
+   "id": "BLK-R7-WS1-STALE-BASELINE",
+   "severity": "high",
+   "detail": "R7-0 change authored against 9bd33a1 (r5q tip), not main dba4b19; deltas apply on 9bd33a1 (reproduce candidate byte-for-byte) but conflict on main at cli.py:163 and validate.py:14 (CLAIM_LADDER); pipeline.py applies. Nothing applied to src/.",
+   "effect": "M04/M06/M16 REJECT measured only on the 9bd33a1-derived tree; unmeasured on any main-based rebase",
+   "options": {
+    "A": "published as base-bound evidence (DONE)",
+    "B": "rebuild against main and re-measure the 18 mutations -> new change set R8-0 (RECOMMENDED)"
+   }
+  }
+ ],
+ "incidents": [
+  "INC-R7-01 checker attempt1 wrote into the guarded subject -> VOID, 14 files restored bit-for-bit",
+  "INC-R7-02 checker attempt2 VOID, orchestrator deleted a gitignored .pyc in the subject (changed=0 removed=1)",
+  "INC-R7-03 swarm verifier attempt4 left 31 raw evidence files, no named verdict (EXIT 3, ERR_NO_ARM_EMITTED_NONCE); subject guard CLEAN 300/300",
+  "INC-R7-04 verifier re-dispatch attempt5 refused by the lane guard (ERR_LANE_REMOTE_WRITE_NOT_AUTHORIZED, markers ['publish']) = TF-01 3rd occurrence",
+  "INC-R7-05 owner-ordered halt: attempt 6 killed at dispatch-echo stage; no artifacts lost"
+ ],
+ "tooling_findings": {
+  "count": 10,
+  "file": "R7_TOOLING_FINDINGS.json",
+  "new": [
+   "TF-10 selfcheck expectations are snapshotted -> stale after each commit"
+  ],
+  "recorded_owner_ordered_deviations": [
+   "SOD006-C2",
+   "SOD006-C3"
+  ],
+  "unfixed_needs_authorisation": [
+   "TF-06 ERR_NO_ARM_EMITTED_NONCE (7 occurrences, non-blocking)",
+   "TF-02/TF-06 root-cause (openspec BLOCKED-owner)"
+  ]
+ },
+ "resume_playbook": [
+  {
+   "step": 1,
+   "what": "re-dispatch the narrow swarm verifier to emit the missing verdict",
+   "cmd": "cd /c/Projects/Agent_Workspace/HG-KSEOS && ./.venv/Scripts/python.exe \"C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/dispatch_r6.py\" VERIFY_SECURITY \"C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015-R7/VERIFIER_BRIEF_SWARM_R7_attempt5.md\" 7 1200",
+   "note": "attempt number must increase (5,6 consumed); if the guard refuses, reword marker words in the brief prose (TF-01) - never bypass the guard.",
+   "expected": [
+    "R7_VERIFIER_SWARM/R7_VERIFIER_SWARM_VERDICT.json",
+    "R7_VERIFIER_SWARM/R7_VERIFIER_SWARM_RECEIPT.md"
+   ]
+  },
+  {
+   "step": 2,
+   "what": "final packet commit with the verdict + PR #4 comment",
+   "cmd": "cd /c/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015-R7 && python publish_r7.py prepare && python publish_r7.py push && python publish_r7.py readback",
+   "note": "run in background with a generous timeout (prepare has exceeded 420s); INCLUDE already carries R7_VERIFIER_SWARM, HANDOVER_CHECKPOINT_20261016.md and CHECKPOINT_STATE_20261016.json"
+  },
+  {
+   "step": 3,
+   "what": "fix TF-10 (harness expectations from the live manifest) and re-run the harness before quoting a green result"
+  },
+  {
+   "step": 4,
+   "what": "owner decision on BLK-R7-WS1-STALE-BASELINE (A done / B = R8-0 rebuild + 18-mutation re-measure)"
+  },
+  {
+   "step": 5,
+   "what": "still unclosed: R7-01..R7-09 backlog, Fresh G1, 221 acceptance cases (0 run), Gates G-A..G-H (0 PASS), AUD-24 (0/24), 3 PLAN_READY projects, PKG source #6 FAIL_CLOSED, 20 KP *-R04 quarantined"
+  }
+ ],
+ "resume_preconditions": [
+  "do not clean the pre-existing HG-KSEOS dirty trees",
+  "treat origin/main as canonical (local Fabric main abb70eb48d818a7a2d3224c1629cd77899651676 is a divergent local-only line, not part of origin/main)",
+  "token file C:/Projects/Agent_Workspace/API KEY/GITHUB-REPO_SHW097-4.txt needs Contents:Read+write; never print it",
+  "Hermes kanban needs HERMES_HOME (MSIX path) + PYTHONPATH=hermes-agent dir"
+ ],
+ "reference_files": {
+  "checkpoint": "HANDOVER_CHECKPOINT_20261016.md",
+  "acceleration": "R7_ACCELERATION_AND_SWARM.md",
+  "verifier_partial": "R7_VERIFIER_SWARM_PARTIAL.md",
+  "external_acceptor_guide": "R7_EXTERNAL_ACCEPTOR_GUIDE.md",
+  "non_claims": "R7_NON_CLAIMS.md",
+  "evidence_scope": "EVIDENCE_SCOPE.md",
+  "blocker": "WS1_BLOCKER_STALE_BASELINE.json",
+  "side_effects": "R7_SIDE_EFFECTS.json",
+  "findings": "R7_TOOLING_FINDINGS.json",
+  "rebase": "REBASE_MEASUREMENT.json"
+ }
+}

@@ -15,7 +15,9 @@
    ],
    "impact": "false positives block legitimate bounded writers and tempt operators to weaken briefs (which is worse: a prohibition sentence is exactly what a safe brief SHOULD contain). Detection-only means the guard provides no protection against the attack it names.",
    "fix": "match command context, not bare words: require a shell-looking occurrence (e.g. a line beginning with git/gh/curl, or an argv form) and ignore matches inside negative/prohibition sentences; keep detection_only semantics but stop refusing the dispatch on prose.",
-   "owner": "HGK Lane Owner"
+   "owner": "HGK Lane Owner",
+   "recurrence_2026_10_16": "3rd occurrence of the same class: the VERIFY/SECURITY dispatch for the swarm verifier was refused with code=ERR_LANE_REMOTE_WRITE_NOT_AUTHORIZED, remote_write_markers=['publish'], detection_only=true, exit 4 - the marker matched the prose of the brief (the words 'publish'/'published' in a checklist, and the prohibition sentences themselves), not a command line. Rewriting the prose removed it and the same brief then dispatched.",
+   "class_count": 3
   },
   {
    "id": "TF-02",
@@ -102,5 +104,5 @@
   }
  ],
  "claim_ceiling": "LOCAL observation; not a product defect verdict",
- "count": 9
+ "count": 10
 }

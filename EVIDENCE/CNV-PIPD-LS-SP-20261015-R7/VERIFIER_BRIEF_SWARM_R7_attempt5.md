@@ -10,8 +10,9 @@ extensive raw evidence but **ended without writing your two named deliverables**
 - Do **not** create any new clone, worktree or bulk copy. You already have `RAW/` (31 files), `artifacts/`,
   `rebase_scratch/`, `tmp_verify/` and the clone/worktree dirs. Re-use them; read them.
 - Do **not** re-run the long steps (no new full re-clone, no 221 cases, no Gate runs).
-- Do **not** write anything outside your own root; no git write command; nothing sent to a remote; never print
-  credential material (reads of the token file for API access are allowed, printing/argv/URL placement are not).
+- Do **not** write anything outside your own root; no git write command; nothing is sent to any outside host;
+  never print credential material (reads of the token file for GitHub API reads are allowed, printing/argv/URL
+  placement are not).
 
 ## Do (short)
 1. Read your own evidence from the previous turn and the round's records, then write **exactly these two files**:
@@ -36,11 +37,12 @@ extensive raw evidence but **ended without writing your two named deliverables**
      `1=PASS 2=FAIL 3=FAIL 4=PASS 5=PASS 6=PASS` → `OVERALL_SELFCHECK_VERDICT: FAIL` at 227 blobs, with the
      residuals being the stale blob-set/manifest expectations; (g) the round invariants (Fabric `main`
      `b8ff81043e47e4b652522be34444bf52fcf4d65e`, R6 prefix 581 blobs, `PACKET_MANIFEST.json` sha256
-     `27ba42f7cb32d9f490d8897ef0205b0b70cd13bb2b7bc6344e717e5bffbd118b`; R7 packet branch head as published).
+     `27ba42f7cb32d9f490d8897ef0205b0b70cd13bb2b7bc6344e717e5bffbd118b`; and the R7 packet branch head as it
+     currently stands).
    If a claim cannot be decided from the evidence you have, verdict `UNVERIFIABLE` with the reason — do not
      upgrade it and do not leave it out.
-2. If you need one fresh read of the remote (e.g. the R7 branch's current head, or the PIPD branch's blob list),
-   do it with a single API read (no clone) and save the raw response under `RAW/`.
+2. If you need one fresh read of the GitHub side (e.g. the R7 branch's current head, or the PIPD branch's blob
+   list), do it with a single API read (no clone) and save the raw response under `RAW/`.
 
 Claim ceiling: your verdict is a **candidate for the Owner**, never an acceptance, approval, Gate PASS or merge
 authorisation.
