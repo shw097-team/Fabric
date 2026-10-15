@@ -187,6 +187,21 @@ print('listed',len(ws['files']),'bad',len(bad),bad[:3])"
 | **發布（候選）** | 分支 `evidence/cnv-pipd-ls-sp-20261015-r6`（base `origin/main` `266f8d65cf9b`）、commit `5932aae4f0c3`、**Draft PR #3** https://github.com/shw097-team/Fabric/pull/3 ；遠端回讀 `MATCH` | `R6_RECONCILIATION.json`、`publish_r6.py` |
 | 發布前掃描 | token 值出現次數 **0**；無真實憑證型內容（1 筆誤判：writer 自身 secret-scanner 的 pattern 表）；未含 `physical_source_readback` 受限鏡像；local `main` 未動、未 force push、`approval list` 仍 `PROPOSAL` | 同上 |
 
+## §11 發布後核對（remote readback，2026-10-15 18:5x 台北）
+
+| 項目 | 值 |
+|------|-----|
+| 分支 | `evidence/cnv-pipd-ls-sp-20261015-r6`（base `origin/main` `266f8d65cf9b`） |
+| commits | `5932aae4f0c3`（初始 packet）→ `66fdc559a1aa`（checker verdict + reconciliation）→ **`c6242373e796`（最終；遠端回讀 MATCH）** |
+| packet 路徑 | `EVIDENCE/CNV-PIPD-LS-SP-20261015/`（**大寫 `EVIDENCE`**：repo 既有證據樹就是大寫，另有 `EVIDENCE/SKILL-CONVERGENCE-20261014`、`EVIDENCE/repo-hygiene-20261013`；腳本原用小寫 pathspec，git 對已追蹤路徑大小寫敏感 → 已修正並補上第二次 commit） |
+| 已追蹤的 packet 檔數 | **564**（`git ls-tree -r HEAD`） |
+| `PACKET_MANIFEST.json` 清單數 | **566** —— 差 2 檔為 `.gitignore:4 __pycache__/` 排除的 `probe_lib.cpython-311.pyc`（`R6_DELIVERY/RUNNERS/__pycache__/`、`R6_CHECKER/COPIES/probes/RUNNERS/__pycache__/`）。**這是 manifest 為「本機複製清單」而 repo 為「受 .gitignore 約束的追蹤集」之差異，非檔案遺失** |
+| Draft PR | **#3** https://github.com/shw097-team/Fabric/pull/3 （draft=true, state=open, base=main） |
+| 掃描 | 發布前 token 值出現 0 次；Draft PR 內容不含憑證與受限鏡像 |
+
+**注意（claim ceiling）**：上述「564 / 566 / MATCH」皆為**發布層**事實，不代表任何驗收、核准或世界效應；
+checker verdict 仍為 `PENDING_OWNER`。
+
 ## §10.1 本節新增副作用（除 §6 之外）
 
 1. Fabric 本地 clone 設定 `core.longpaths=true`（repo-local；因 repo 內容路徑超過 MAX_PATH，worktree 需短根
