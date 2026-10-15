@@ -1,0 +1,128 @@
+{
+  "schema": "CNV-PIPD-LS-SP-20261015/R7-BLOCKERS-AND-TASKS/1",
+  "generated_local": "2026-10-15T20:33:47+08:00",
+  "generated_utc": "2026-10-15T12:33:47+00:00",
+  "blockers": [
+    {
+      "id": "BLK-R7-01",
+      "item": "M04/M06/M16 accepted by the local validator (should REJECT)",
+      "owner": "DOC-07 Oracle/Validator Owner",
+      "gate": "blocks validator as a security gate"
+    },
+    {
+      "id": "BLK-R7-02",
+      "item": "checker lane can write the candidate root (transient write during R6 attempt 3, self-restored)",
+      "owner": "HGK Checker Harness Owner",
+      "gate": "blocks INDEPENDENT_PASS"
+    },
+    {
+      "id": "BLK-R7-03",
+      "item": "Fresh G1 re-certification (declared Hermes 0.20.0 vs observed 0.21.5)",
+      "owner": "Human Owner",
+      "gate": "blocks runtime convergence"
+    },
+    {
+      "id": "BLK-R7-04",
+      "item": "221 requirement cases 0 run; 8 gates 0 PASS; AUD24 0/24 closed",
+      "owner": "Domain/Gate Owners",
+      "gate": "blocks full convergence"
+    },
+    {
+      "id": "BLK-R7-05",
+      "item": "source #6 (v1.1.0 PATCHED) not byte-recoverable; needs Owner active-vs-historical adjudication",
+      "owner": "PIPD Source/Authority Owner",
+      "gate": "blocks PI/PD completeness"
+    },
+    {
+      "id": "BLK-R7-06",
+      "item": "20 KP *-R04 polarity defect (MUST NOT vs positive-duty text)",
+      "owner": "KP Policy Owner",
+      "gate": "blocks automatic policy import"
+    },
+    {
+      "id": "BLK-R7-07",
+      "item": "EXECUTE/VERIFY dispatcher arm nonce not emitted (ERR_NO_ARM_EMITTED_NONCE); required==served only circumstantial",
+      "owner": "HGK Lane Owner",
+      "gate": "blocks a clean lane PASS claim"
+    },
+    {
+      "id": "BLK-R7-08",
+      "item": "HGK taskspec id = last dash-segment of project_id -> cross-project collisions (TS-20261015-01, TS-R7-01, TS-R6ARC-01 all collided); workorder admission reads git HEAD from the ambient cwd rather than target_root",
+      "owner": "HGK Lifecycle Owner",
+      "gate": "governance: blocked two admission attempts this round (both recorded, both left at PLAN_READY / DRAFT)"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "R7-01",
+      "scope": "Source Authority / PI-PD adjudication (source #6, DOC03-DOC07 oracle bridge, 64->129 trace)"
+    },
+    {
+      "id": "R7-02",
+      "scope": "Validator hardening (M04/M06/M16 must REJECT + neighbours + M01..M18 applicability)"
+    },
+    {
+      "id": "R7-03",
+      "scope": "Checker SoD (OS ACL read-only candidate root, isolated write root, denial fixture, 299/299 re-read)"
+    },
+    {
+      "id": "R7-04",
+      "scope": "Runtime G1 / Hermes (re-cert, required==served, nonce/usage, timeout partial stdout+stderr, long-prompt file/stdin)"
+    },
+    {
+      "id": "R7-05",
+      "scope": "DEV/OPS ECP + DOC-05 effect admission (true RepoContext, owner-frozen write scope, lease, at-most-once, rollback)"
+    },
+    {
+      "id": "R7-06",
+      "scope": "Named capabilities/effects (Skills loader trigger/nontrigger, fresh SQLite connection, Windows FS/API/Desktop ACL pre-post/residue)"
+    },
+    {
+      "id": "R7-07",
+      "scope": "Assurance/gates (221 applicability with lawful N/A, real runners, gate calibration, anti-overfit)"
+    },
+    {
+      "id": "R7-08",
+      "scope": "Closure/policy cleanup (AUD24 1:1, K-01..20, TT/CR, 20 KP R04 correction, 94>60 as warning)"
+    },
+    {
+      "id": "R7-09",
+      "scope": "AO/Release boundary (independent raw receipts, SharedSpine.resolve_acceptance, HITL release owner)"
+    }
+  ],
+  "preserved_this_round": {
+    "R6_open_workorders": [
+      "WO-TS-20261015-01",
+      "WO-TS-20261015-02",
+      "WO-TS-20261015-03",
+      "WO-TS-20261015-04"
+    ],
+    "new_admission": {
+      "project": "CNV-R6R7-ARCHIVE-REPAIR-R6ARC2",
+      "state": "WORKORDERS_ADMITTED",
+      "workorders": [
+        "WO-TS-R6ARC2-01",
+        "WO-TS-R6ARC2-02",
+        "WO-TS-R6ARC2-03"
+      ],
+      "stranded_attempts": [
+        {
+          "project": "CNV-R6R7-EVIDENCE-ARCHIVE-REPAIR-20261015",
+          "state": "PLAN_READY",
+          "blocker": "taskspec id collision with TS-20261015-01..04"
+        },
+        {
+          "project": "CNV-R6R7-ARCHIVE-REPAIR-R7",
+          "state": "PLAN_READY",
+          "blocker": "taskspec id collision with pre-existing TS-R7-01..03"
+        },
+        {
+          "project": "CNV-R6R7-ARCHIVE-REPAIR-R6ARC",
+          "state": "PLAN_READY",
+          "blocker": "workorder admission needs git HEAD in the ambient cwd (ran from a non-repo directory); left one DRAFT taskspec TS-R6ARC-01"
+        }
+      ]
+    }
+  },
+  "claim_ceiling": "LOCAL_ORCHESTRATION"
+}

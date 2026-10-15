@@ -1,0 +1,79 @@
+{
+  "schema": "CNV-PIPD-LS-SP-20261015/EIA-FINDINGS-DISPOSITION/1",
+  "review_id": "EIA-FABRIC-CONVERGENCE-R6-20261015",
+  "review_sha256": "10caf4dbdb1993cd46ff2c50394dd01dfd5f34d635816f95e3d2e5ab6c566206",
+  "findings": {
+    "EIA-R6-01": {
+      "class_severity": "CONFIRMED_DEFECT/MEDIUM",
+      "this_round": "FIXED_THIS_ROUND (M1)",
+      "action": "PACKET_MANIFEST.json schema /2: tracked_inventory + local_only_excluded(2) + explicit publish claim",
+      "effect": "re-verified by set equality against the remote tree at the post-commit head"
+    },
+    "EIA-R6-02": {
+      "class_severity": "CONFIRMED_DEFECT/LOW",
+      "this_round": "FIXED_THIS_ROUND (M1)",
+      "action": "R6_PUBLICATION_VERIFICATION.json rewritten; superseded 566/e6fd marked historical; clock fields labelled; currentness bound POST-commit",
+      "effect": "re-verified by R6R7_POST_COMMIT_READBACK.json held outside the commit"
+    },
+    "EIA-R6-03": {
+      "class_severity": "EVIDENCE_GAP/HIGH",
+      "this_round": "DEFERRED_R7 (R7-03)",
+      "action": "OS-level candidate-root read-only ACL for the checker + isolated write root + write-denial fixture",
+      "effect": "blocks formal acceptance, not archive"
+    },
+    "EIA-R6-04": {
+      "class_severity": "EVIDENCE_GAP/HIGH",
+      "this_round": "DEFERRED_R7 (R7-02)",
+      "action": "M04 ASSURED->LITE, M06 domain oracle 999, M16 trace digest must REJECT; M01..M18 applicability",
+      "effect": "blocks validator/runtime promotion"
+    },
+    "EIA-R6-05": {
+      "class_severity": "EVIDENCE_GAP/HIGH",
+      "this_round": "DEFERRED_R7 (R7-01/04/05/06/07/09)",
+      "action": "221 applicable cases, 8 gates on the same candidate, DOC-05 effect admission, AO verdict",
+      "effect": "blocks Product/Production"
+    },
+    "EIA-R6-06": {
+      "class_severity": "EVIDENCE_GAP/MEDIUM",
+      "this_round": "THIS_ROUND (M2/M3) + R7",
+      "action": "trusted out-of-band scope/secrets scan (done); maintainer single-prefix approval (requested, pending human signature)",
+      "effect": "merge condition"
+    },
+    "EIA-R6-07": {
+      "class_severity": "EVIDENCE_GAP/MEDIUM",
+      "this_round": "DEFERRED_R7 (R7-01)",
+      "action": "Owner adjudication: source #6 active-normative vs historical; keep the gap visible",
+      "effect": "blocks PI/PD completeness claim"
+    },
+    "EIA-R6-08": {
+      "class_severity": "ORACLE_DISAGREEMENT/MEDIUM",
+      "this_round": "ISOLATED + DEFERRED_R7 (R7-08)",
+      "action": "`*-R04` polarity defect: policy auto-import isolated (contract constraint QUARANTINE); 20 KP policy correction to KP Owner",
+      "effect": "affects any gate that would import R04 automatically"
+    },
+    "EIA-R6-09": {
+      "class_severity": "NON_BLOCKING_OBSERVATION/LOW",
+      "this_round": "TRACKED (R7-08)",
+      "action": "94>60 refs stays a soft warning per ACC-RQ08; never promoted to a hard gate",
+      "effect": "none"
+    }
+  },
+  "counts": {
+    "total": 9,
+    "fixed_this_round": 2,
+    "in_progress_this_round": 1,
+    "isolated": 1,
+    "tracked": 1,
+    "deferred_r7": 5
+  },
+  "reviewer_verdicts_preserved": {
+    "scope_verdict": "PARTIAL_CHALLENGE",
+    "full_convergence_verdict": "TEMP_CLOSED_CHALLENGE",
+    "candidate_archive_decision": "APPROVE_STAGE_CLOSURE",
+    "merge_decision": "CONDITIONAL_APPROVE_AFTER_MINIMAL_METADATA_AND_SCOPE_CHECKS",
+    "production_decision": "FAIL_CLOSED",
+    "canonical_acceptance": "NOT_ISSUED"
+  },
+  "no_self_upgrade": "no verdict above is altered, upgraded or self-issued by this round",
+  "claim_ceiling": "LOCAL_ORCHESTRATION"
+}

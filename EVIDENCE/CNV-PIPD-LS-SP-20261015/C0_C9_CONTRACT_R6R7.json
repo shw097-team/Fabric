@@ -1,0 +1,2003 @@
+{
+ "schema": "CAPC-PROMPT-CONTRACT/1",
+ "task_id": "CNV-PIPD-LS-SP-20261015-R6R7",
+ "source_scan": {
+  "required_source_families": [
+   "A1",
+   "A3",
+   "Fabric",
+   "HGK",
+   "compiler",
+   "current-Fabric-policy-consumption-review",
+   "eight-plugin-typed-bundle-review",
+   "external-review",
+   "knowledge-00-19-review",
+   "owner",
+   "package",
+   "physical-02",
+   "physical-05",
+   "physical-06",
+   "physical-10",
+   "physical-11",
+   "physical-12",
+   "physical-13",
+   "physical-14",
+   "physical-15",
+   "physical-16",
+   "physical-17",
+   "physical-18",
+   "physical-19",
+   "physical-20",
+   "physical-21",
+   "prompt",
+   "r6r7-brief"
+  ],
+  "reviewed": [
+   {
+    "source_family": "owner",
+    "source_id": "SRC-OWNER",
+    "locator": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\OWNER_TRUST_LOCK.json",
+    "sha256": "8b78edebd79c8149a2b74e2a7f873e3116f772c881a501bd4600ea0e7a891f6b",
+    "role": "NORMATIVE",
+    "critical": true
+   },
+   {
+    "source_family": "prompt",
+    "source_id": "SRC-PROMPT",
+    "locator": "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\HG-KSEOS\\Fabric_HG-KSEOS_Convergence\\PROMPT\\Fabric_HG-KSEOS_Convergence_指揮薄PROMPT.md",
+    "sha256": "6894a6ba08781f2ed5758af132f758c14c1a9e9b69d42056837f5ce45bba6c64",
+    "role": "NORMATIVE",
+    "critical": true
+   },
+   {
+    "source_family": "package",
+    "source_id": "SRC-PKG",
+    "locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md",
+    "sha256": "96d9d564286743e17550ccef15b9952347901eb77168f930376938893cff9c3f",
+    "role": "NORMATIVE",
+    "critical": true
+   },
+   {
+    "source_family": "HGK",
+    "source_id": "SRC-HGK",
+    "locator": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\AGENTS.md",
+    "sha256": "7f7246d34be112bb465b48dadaef6163e466e16e5e705fc58acee04b3809a613",
+    "role": "NORMATIVE",
+    "critical": true
+   },
+   {
+    "source_family": "Fabric",
+    "source_id": "SRC-FABRIC",
+    "locator": "C:\\Projects\\Agent_Workspace\\Fabric\\AGENTS.md",
+    "sha256": "115912cdccbf5b3788fe1d6e1c8c10fe575252d72accf31cb6f1955dd8750974",
+    "role": "SUPPORT",
+    "critical": true
+   },
+   {
+    "source_family": "compiler",
+    "source_id": "SRC-COMPILER",
+    "locator": "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\HG-KSEOS\\construction-acceptance-prompt-compiler\\construction-acceptance-prompt-compiler\\construction-acceptance-prompt-compiler_SKILL.md",
+    "sha256": "48a3fdc5a0c65d4279c27ebc7586e747ba86c4bde82535cad2512d43547b4acb",
+    "role": "NORMATIVE",
+    "critical": true
+   },
+   {
+    "source_family": "A1",
+    "source_id": "SRC-A1",
+    "locator": "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\Fabric vNext\\Semantic World OS Fabric\\PIPD\\PIPD_LS\\藍圖\\Pre-Implementation_and_Pre-Dev_Lifecycle_Specification_總藍圖.md",
+    "sha256": "9a8323e5237c1555a76d9a75f706e3552d79c192915cc782b76b211c7f27d527",
+    "role": "NORMATIVE",
+    "critical": true
+   },
+   {
+    "source_family": "A3",
+    "source_id": "SRC-A3",
+    "locator": "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\Fabric vNext\\Semantic World OS Fabric\\PIPD\\PIPD_LS\\藍圖\\PIPD_LS_skeleton_2026-10-06_r2_FULL_REPAIR.md",
+    "sha256": "03bb3609dc67f85fa4b683a93736cf162e9047b6b253182aa3fdba11ba40cb28",
+    "role": "NORMATIVE",
+    "critical": true
+   },
+   {
+    "source_family": "physical-02",
+    "source_id": "SRC-physical-02",
+    "locator": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\physical_source_readback\\Fabric × Hermes × HG-KSEOS_Convergence_鑑定&方案.md",
+    "sha256": "2790fe1d5bdbd751c475d7982f2381758e3b689f2723c63053b3eec4c24cb490",
+    "role": "STATE_EVIDENCE",
+    "critical": true
+   },
+   {
+    "source_family": "physical-05",
+    "source_id": "SRC-physical-05",
+    "locator": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\physical_source_readback\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG_Blueprint_v1.1.0_AUDIT_PATCHED_2026-10-15.md",
+    "sha256": "8fb3f73e176562946efb5844e73429ee59c96ab5d75f19aab99779122ecfc7de",
+    "role": "STATE_EVIDENCE",
+    "critical": true
+   },
+   {
+    "source_family": "physical-06",
+    "source_id": "SRC-physical-06",
+    "locator": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\physical_source_readback\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG_v1.0.0_DOCUMENT_CANDIDATE_2026-10-15.md",
+    "sha256": "a990132cf561348a33b7e6a2b65f3ec74fcc859568991126b5dff6685ac1d70a",
+    "role": "STATE_EVIDENCE",
+    "critical": true
+   },
+   {
+    "source_family": "physical-10",
+    "source_id": "SRC-physical-10",
+    "locator": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\physical_source_readback\\Fabric_Hermes_HGK_Convergence_Global_Engineering_Blueprint_v2.0.0_PATCHED_2026-10-15.md",
+    "sha256": "15a8934934e85c771dfddb357f30599fcb90ec28b5577c38454b05832e674225",
+    "role": "STATE_EVIDENCE",
+    "critical": true
+   },
+   {
+    "source_family": "physical-11",
+    "source_id": "SRC-physical-11",
+    "locator": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\physical_source_readback\\PIPD_LS_DOC-00_2026-10-07_r2_HIGH_RETENTION_FULL_REPAIR_FULL_SUBSTANTIVE_BODY.md",
+    "sha256": "be3a672ec20aa0e6b5e0e35097fc08de749bfe7f59f827d18e38aef67dd68ea4",
+    "role": "STATE_EVIDENCE",
+    "critical": true
+   },
+   {
+    "source_family": "physical-12",
+    "source_id": "SRC-physical-12",
+    "locator": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\physical_source_readback\\PIPD_LS_DOC-01_2026-10-07_r2_HIGH_RETENTION_FULL_REPAIR_FULL_SUBSTANTIVE_BODY.md",
+    "sha256": "b753f2e5cdd5598a818f8a113d57b7f815aeb3f1dfa061ce74c76bb3553ac8c7",
+    "role": "STATE_EVIDENCE",
+    "critical": true
+   },
+   {
+    "source_family": "physical-13",
+    "source_id": "SRC-physical-13",
+    "locator": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\physical_source_readback\\PIPD_LS_DOC-02_2026-10-07_r2_HIGH_RETENTION_AUDIT_PATCHED_FULL_REPAIR_FULL_SUBSTANTIVE_BODY (1).md",
+    "sha256": "a021998dd3b63015e89af1dd40e0b413744a69b872da46c6bf5f4d92f7f23d0b",
+    "role": "STATE_EVIDENCE",
+    "critical": true
+   },
+   {
+    "source_family": "physical-14",
+    "source_id": "SRC-physical-14",
+    "locator": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\physical_source_readback\\PIPD_LS_DOC-03_2026-10-07_r2_AUDIT_REPAIR_FULL_SUBSTANTIVE_BODY.md",
+    "sha256": "d89d82dcd2c8603ec6b86c5ec8c40845e4594bc181adf5272bd48a3de7c88f0f",
+    "role": "STATE_EVIDENCE",
+    "critical": true
+   },
+   {
+    "source_family": "physical-15",
+    "source_id": "SRC-physical-15",
+    "locator": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\physical_source_readback\\PIPD_LS_DOC-04_2026-10-07_r2_HIGH_RETENTION_FULL_REPAIR_FULL_SUBSTANTIVE_BODY.md",
+    "sha256": "fa64d84da3d747b183e4affff62f4d2fb86c80bb5075f5dd933c09b20caeddcf",
+    "role": "STATE_EVIDENCE",
+    "critical": true
+   },
+   {
+    "source_family": "physical-16",
+    "source_id": "SRC-physical-16",
+    "locator": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\physical_source_readback\\PIPD_LS_DOC-05_2026-10-07_r2_HIGH_RETENTION_FULL_REPAIR_FULL_SUBSTANTIVE_BODY.md",
+    "sha256": "7b40584540c162cda6debfd09a4c04321416706acdb03a7a3c2b41383dc585f4",
+    "role": "STATE_EVIDENCE",
+    "critical": true
+   },
+   {
+    "source_family": "physical-17",
+    "source_id": "SRC-physical-17",
+    "locator": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\physical_source_readback\\PIPD_LS_DOC-06_2026-10-07_r2_HIGH_RETENTION_FULL_REPAIR_FULL_SUBSTANTIVE_BODY.md",
+    "sha256": "20e44ea4dd8e53c9b0a076ce861136bbea86f52687019307f6e995cd9079d303",
+    "role": "STATE_EVIDENCE",
+    "critical": true
+   },
+   {
+    "source_family": "physical-18",
+    "source_id": "SRC-physical-18",
+    "locator": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\physical_source_readback\\PIPD_LS_DOC-07_2026-10-07_r2_HIGH_RETENTION_FULL_REPAIR_FULL_SUBSTANTIVE_BODY.md",
+    "sha256": "a68dae1c3670d07bcfa3476a1e37463c534594df5cd65d8dab0dca064b5a9fc1",
+    "role": "STATE_EVIDENCE",
+    "critical": true
+   },
+   {
+    "source_family": "physical-19",
+    "source_id": "SRC-physical-19",
+    "locator": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\physical_source_readback\\PIPD_LS_DOC-08_2026-10-07_r2_HIGH_RETENTION_FULL_REPAIR_FULL_SUBSTANTIVE_BODY.md",
+    "sha256": "e46caa7e440392a6cfa7a86421aead5bce8a2a229fec97b133429db6b6748e42",
+    "role": "STATE_EVIDENCE",
+    "critical": true
+   },
+   {
+    "source_family": "physical-20",
+    "source_id": "SRC-physical-20",
+    "locator": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\physical_source_readback\\PIPD_LS_DOC-09_2026-10-07_r2_HIGH_RETENTION_AUDIT_PATCHED_FULL_REPAIR_FULL_SUBSTANTIVE_BODY.md",
+    "sha256": "eaf0aefe2b4711c140fc3274223d88fdc38ad4ec2b7184f756a0f2471f3b0b54",
+    "role": "STATE_EVIDENCE",
+    "critical": true
+   },
+   {
+    "source_family": "physical-21",
+    "source_id": "SRC-physical-21",
+    "locator": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\physical_source_readback\\PIPD_LS_canonical_standard.md",
+    "sha256": "6f6aafece90b34e33786647e14fee840f5424893995b3164cbb52953a5c4f14a",
+    "role": "STATE_EVIDENCE",
+    "critical": true
+   },
+   {
+    "source_family": "knowledge-00-19-review",
+    "source_id": "SRC-STATIC-REVIEW-0",
+    "locator": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\SOURCE_REVIEW_INVENTORY.json#knowledge-00-19-review",
+    "sha256": "cb831b6a23f14aa785618b7c205f0f07ce3efd0ff580a55351f9bcb9255951e5",
+    "role": "SUPPORT",
+    "critical": true
+   },
+   {
+    "source_family": "eight-plugin-typed-bundle-review",
+    "source_id": "SRC-STATIC-REVIEW-1",
+    "locator": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\SOURCE_REVIEW_INVENTORY.json#eight-plugin-typed-bundle-review",
+    "sha256": "cb831b6a23f14aa785618b7c205f0f07ce3efd0ff580a55351f9bcb9255951e5",
+    "role": "SUPPORT",
+    "critical": true
+   },
+   {
+    "source_family": "current-Fabric-policy-consumption-review",
+    "source_id": "SRC-STATIC-REVIEW-2",
+    "locator": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\SOURCE_REVIEW_INVENTORY.json#current-Fabric-policy-consumption-review",
+    "sha256": "cb831b6a23f14aa785618b7c205f0f07ce3efd0ff580a55351f9bcb9255951e5",
+    "role": "SUPPORT",
+    "critical": true
+   },
+   {
+    "source_family": "external-review",
+    "source_id": "SRC-EIA-R6-REPORT",
+    "locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_Convergence_External_Independent_Acceptance_Report_20261015.md",
+    "sha256": "10caf4dbdb1993cd46ff2c50394dd01dfd5f34d635816f95e3d2e5ab6c566206",
+    "role": "SUPPORT",
+    "critical": true
+   },
+   {
+    "source_family": "r6r7-brief",
+    "source_id": "SRC-R6R7-BRIEF",
+    "locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric × Hermes × HG-KSEOS｜R6 外部驗收後續作指揮薄 PROMPT.md",
+    "sha256": "b85269541d83994f997360589b7650e75f33c243c1aaecae382d583f2d903e63",
+    "role": "NORMATIVE",
+    "critical": true
+   }
+  ],
+  "missing": [],
+  "normative_claims": [
+   {
+    "claim_id": "NC-R6R7-01",
+    "text": "EIA-R6-01/02 是 publication metadata 的 CONFIRMED_DEFECT，且審查官未主張 567 檔 bytes 遭竄改。",
+    "source_ids": [
+     "SRC-EIA-R6-REPORT"
+    ],
+    "locators": [
+     "EIA report §3.1",
+     "EIA report §8"
+    ]
+   },
+   {
+    "claim_id": "NC-R6R7-02",
+    "text": "M1/M2/M3 是唯一的合併關卡；mergeable=true、git exit0、token 可用都不是過關條件。",
+    "source_ids": [
+     "SRC-EIA-R6-REPORT",
+     "SRC-R6R7-BRIEF"
+    ],
+    "locators": [
+     "EIA report §9",
+     "指揮薄 §6"
+    ]
+   },
+   {
+    "claim_id": "NC-R6R7-03",
+    "text": "R6 checker verdict 維持 PENDING_OWNER，本輪任何一方都不得提升為 AO/驗收；外部報告亦不得轉讓授權。",
+    "source_ids": [
+     "SRC-EIA-R6-REPORT",
+     "SRC-OWNER"
+    ],
+    "locators": [
+     "EIA report §10",
+     "指揮薄 §2.2"
+    ]
+   },
+   {
+    "claim_id": "NC-R6R7-04",
+    "text": "本輪只准遠端前綴 EVIDENCE/CNV-PIPD-LS-SP-20261015/**；產品、canonical DB、CI 控制一律不得變更。",
+    "source_ids": [
+     "SRC-R6R7-BRIEF",
+     "SRC-FABRIC"
+    ],
+    "locators": [
+     "指揮薄 §4 ACTIVE/FORBIDDEN",
+     "Fabric policy"
+    ]
+   }
+  ]
+ },
+ "intent": {
+  "goal": "依外部獨立驗收報告 EIA-FABRIC-CONVERGENCE-R6-20261015 的三個合併關卡（M1 manifest/currentness、M2 可信範圍與秘密掃描、M3 維護者 prefix 授權），對既有 PR #3 的 R6 候選證據包做最小、就地的發布修補並交付可獨立查驗的 Draft PR；不重跑 221、不改產品、不自行驗收、不代簽 AO/Release。",
+  "user_expected_outcome": "既有 PR #3 分支上一個 tracked_inventory 與實際 Git tree 完全一致、local-only 2 檔被明確標示、發布記錄不再自稱舊 HEAD/569-published 的證據包；外加可信 scope/secret 掃描結果、Maintainer prefix 授權紀錄、以及 POST-commit 的外部 readback。",
+  "user_expected_experience": "由本地受治理執行器一次跑完 M1→M2→M3 準備→推送→readback；缺任一權威/權限時回傳精確 blocker 與 checkpoint，不反覆詢問已提供的來源。",
+  "explicit_constraints": [
+   "HG-KSEOS 唯一控制平面；Hermes 為受治理 runtime；Codex 為 admitted bounded writer；GitHub 只是投影鏡像",
+   "PLAN & Orchestrator = opencode-go/glm-5.3-flash；EXECUTE = Codex CLI opencode-go/deepseek-v4.1-flash；VERIFY/SECURITY = Codex CLI opencode-go/glm-5.3-flash",
+   "只准變更遠端前綴 EVIDENCE/CNV-PIPD-LS-SP-20261015/**；不得觸碰 main、HG-KSEOS/、FABRIC/、.github/workflows/、secrets、canonical DB",
+   "不得加入兩個 .pyc；不得刪除或改寫 R6 失敗 receipts；不得對未改過的候選碼重跑 221 或宣稱八 Gate PASS",
+   "Maker≠Checker≠AO；本輪不得自行核准（M3 屬 Maintainer/Owner）",
+   "token 不得出現在模型脈絡、argv、URL、log、PR、.git/config 或 evidence；且不得執行 PR 內 helper"
+  ],
+  "non_goals": [
+   "重跑 221 live cases",
+   "宣稱 G-A..G-H PASS",
+   "修 M04/M06/M16 產品 validator",
+   "修 OS ACL / Fresh G1",
+   "建立新 CI 或第二控制平面",
+   "部署／production",
+   "把已歸檔 567 檔當已授權執行碼"
+  ],
+  "authorized_mutations": [
+   "本地 archive metadata：PACKET_MANIFEST.json、R6_PUBLICATION_VERIFICATION.json、以及新增的 errata／scope-scan／approval 紀錄",
+   "既有 PR #3 分支（evidence/cnv-pipd-ls-sp-20261015-r6）在 EVIDENCE/CNV-PIPD-LS-SP-20261015/** 內的提交與推送（非 force）",
+   "HG-KSEOS 內的 narrow admission 與本地 checkpoint／handover 紀錄"
+  ],
+  "forbidden_mutations": [
+   "main 直寫或 force push",
+   "產品／canonical DB／sealed Stage-2 變更",
+   "第二控制平面或 RBWI",
+   "自行核准或代簽 AO/Release",
+   "執行 PR 內腳本或 helper",
+   "加入 .pyc 或移除失敗證據"
+  ],
+  "expected_autonomy": "HIGH",
+  "allowed_hitl": [
+   "Maintainer 對 evidence prefix 的一次性授權（M3）",
+   "若 remote head 漂移需重新綁定",
+   "若掃到真 secret 需通報與輪替"
+  ],
+  "requested_delivery": [
+   "D1-manifest-metadata-repair",
+   "D2-trusted-scope-secret-scan",
+   "D3-maintainer-prefix-approval-record",
+   "D4-post-commit-external-readback",
+   "D5-pr-body-and-dispositions",
+   "D6-return-pack-and-blockers",
+   "D7-versioned-errata"
+  ],
+  "active_requirement_ids": [
+   "AR-00",
+   "AR-01",
+   "AR-02",
+   "AR-03",
+   "AR-04",
+   "AR-05",
+   "AR-06",
+   "AR-07",
+   "AR-08",
+   "AR-09",
+   "Q01",
+   "Q02",
+   "Q03",
+   "Q04",
+   "Q05",
+   "Q06",
+   "EIA-R6-01",
+   "EIA-R6-02",
+   "EIA-R6-06"
+  ],
+  "claim_ceiling": "LOCAL"
+ },
+ "authority": {
+  "sources": [
+   {
+    "id": "SRC-OWNER",
+    "rank": "A0",
+    "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\OWNER_TRUST_LOCK.json",
+    "sha256": "8b78edebd79c8149a2b74e2a7f873e3116f772c881a501bd4600ea0e7a891f6b",
+    "locator": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\OWNER_TRUST_LOCK.json",
+    "role": "NORMATIVE",
+    "governs": true
+   },
+   {
+    "id": "SRC-R6R7-BRIEF",
+    "rank": "A0-OWNER-INPUT",
+    "path": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric × Hermes × HG-KSEOS｜R6 外部驗收後續作指揮薄 PROMPT.md",
+    "sha256": "b85269541d83994f997360589b7650e75f33c243c1aaecae382d583f2d903e63",
+    "locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric × Hermes × HG-KSEOS｜R6 外部驗收後續作指揮薄 PROMPT.md",
+    "role": "NORMATIVE",
+    "governs": true
+   },
+   {
+    "id": "SRC-EIA-R6-REPORT",
+    "rank": "A0-OWNER-DELIVERED-REVIEW",
+    "path": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_Convergence_External_Independent_Acceptance_Report_20261015.md",
+    "sha256": "10caf4dbdb1993cd46ff2c50394dd01dfd5f34d635816f95e3d2e5ab6c566206",
+    "locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_Convergence_External_Independent_Acceptance_Report_20261015.md",
+    "role": "SUPPORT",
+    "governs": false
+   },
+   {
+    "id": "SRC-PKG",
+    "rank": "A3",
+    "path": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md",
+    "sha256": "96d9d564286743e17550ccef15b9952347901eb77168f930376938893cff9c3f",
+    "locator": "head",
+    "role": "NORMATIVE",
+    "governs": true
+   },
+   {
+    "id": "SRC-HGK",
+    "rank": "A1",
+    "path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\AGENTS.md",
+    "sha256": "7f7246d34be112bb465b48dadaef6163e466e16e5e705fc58acee04b3809a613",
+    "locator": "module root",
+    "role": "NORMATIVE",
+    "governs": true
+   },
+   {
+    "id": "SRC-FABRIC",
+    "rank": "A6",
+    "path": "C:\\Projects\\Agent_Workspace\\Fabric\\AGENTS.md",
+    "sha256": "115912cdccbf5b3788fe1d6e1c8c10fe575252d72accf31cb6f1955dd8750974",
+    "locator": "policy/contracts",
+    "role": "SUPPORT",
+    "governs": false
+   },
+   {
+    "id": "SRC-COMPILER",
+    "rank": "A5",
+    "path": "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\HG-KSEOS\\construction-acceptance-prompt-compiler",
+    "sha256": "cbcc9998cee3ba59f919417aacbc121ab20fc611f1c47c62cafcaa34bbf13612",
+    "locator": "references/prompt-contract.schema.json",
+    "role": "NORMATIVE",
+    "governs": true
+   },
+   {
+    "id": "SRC-R6-PR-HEAD",
+    "rank": "A7-PROJECTION",
+    "path": "https://github.com/shw097-team/Fabric/pull/3",
+    "sha256": "REMOTE_UNPINNED",
+    "locator": "EVIDENCE/CNV-PIPD-LS-SP-20261015/",
+    "role": "SUPPORT",
+    "governs": false
+   }
+  ],
+  "conflicts": [
+   {
+    "conflict_id": "TT-PIPD-03",
+    "sources": [
+     "SRC-DOC03",
+     "SRC-DOC07"
+    ],
+    "equal_rank": true,
+    "decision": "RESOLVED",
+    "tt_id": "TT-PIPD-03"
+   },
+   {
+    "conflict_id": "EIA-R6-08",
+    "sources": [
+     "SRC-COMPILER",
+     "SRC-HGK"
+    ],
+    "equal_rank": false,
+    "decision": "QUARANTINE",
+    "tt_id": "EIA-R6-08"
+   }
+  ],
+  "missing_sources": [],
+  "native_control_plane_ids": [
+   "HG-KSEOS"
+  ],
+  "current_control_plane_id": "HG-KSEOS"
+ },
+ "changeset": {
+  "class": "NARROW_REPAIR",
+  "baseline_required": true,
+  "baseline_verified": true,
+  "reuse_prior_pass": true,
+  "affected_domains": [
+   "Fabric GitHub projection: EVIDENCE/CNV-PIPD-LS-SP-20261015/** publication metadata"
+  ],
+  "affected_files": [
+   "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\PACKET_MANIFEST.json",
+   "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_PUBLICATION_VERIFICATION.json",
+   "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6R7_ARCHIVE_ERRATA.json",
+   "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\M2_TRUSTED_SCOPE_SECRETS.json"
+  ],
+  "must_not_reopen": [
+   "R6 567 blob 原包 bytes",
+   "R6 失敗 receipts (M04/M06/M16、checker transient write、driver exit3)",
+   "sealed RP-002 Stage-2",
+   "SQP1／Stage-3",
+   "221／18／24／8 Gate 的既有 NOT_RUN 事實"
+  ],
+  "scope_expansion_requires_hitl": true,
+  "tracked_mutation": true,
+  "product_mutation_allowed": false
+ },
+ "execution_scope": [
+  {
+   "capability": "native-prompt-compiler",
+   "source_disposition": "REQUIRED_BY_MISSION",
+   "current_execution_disposition": "ACTIVE_REQUIRED",
+   "current_profile_selected": true,
+   "canonical_flow_referenced": true,
+   "automatic_route_target": false,
+   "user_experience_required": true,
+   "runtime_required_now": true,
+   "action": "QUALIFY",
+   "source_locators": [
+    "construction-acceptance-prompt-compiler_SKILL.md C0-C9"
+   ],
+   "external_method": false,
+   "control_authority": false
+  },
+  {
+   "capability": "archive-publication-metadata-repair-M1",
+   "source_disposition": "REQUIRED_BY_MISSION",
+   "current_execution_disposition": "ACTIVE_REQUIRED",
+   "current_profile_selected": true,
+   "canonical_flow_referenced": true,
+   "automatic_route_target": false,
+   "user_experience_required": true,
+   "runtime_required_now": true,
+   "action": "QUALIFY",
+   "source_locators": [
+    "EIA report §3.1, §8 EIA-R6-01/02, §9 M1"
+   ],
+   "external_method": false,
+   "control_authority": false
+  },
+  {
+   "capability": "trusted-scope-secret-preflight-M2",
+   "source_disposition": "REQUIRED_BY_MISSION",
+   "current_execution_disposition": "ACTIVE_REQUIRED",
+   "current_profile_selected": true,
+   "canonical_flow_referenced": true,
+   "automatic_route_target": false,
+   "user_experience_required": true,
+   "runtime_required_now": true,
+   "action": "QUALIFY",
+   "source_locators": [
+    "EIA report §9 M2, §8 EIA-R6-06"
+   ],
+   "external_method": false,
+   "control_authority": false
+  },
+  {
+   "capability": "bounded-branch-update-and-readback",
+   "source_disposition": "REQUIRED_BY_MISSION",
+   "current_execution_disposition": "ACTIVE_REQUIRED",
+   "current_profile_selected": true,
+   "canonical_flow_referenced": true,
+   "automatic_route_target": false,
+   "user_experience_required": true,
+   "runtime_required_now": true,
+   "action": "QUALIFY",
+   "source_locators": [
+    "指揮薄 §6 AR-06/AR-07"
+   ],
+   "external_method": false,
+   "control_authority": false
+  },
+  {
+   "capability": "r7-handoff-return-pack",
+   "source_disposition": "REQUIRED_BY_MISSION",
+   "current_execution_disposition": "ACTIVE_REQUIRED",
+   "current_profile_selected": true,
+   "canonical_flow_referenced": true,
+   "automatic_route_target": false,
+   "user_experience_required": true,
+   "runtime_required_now": true,
+   "action": "QUALIFY",
+   "source_locators": [
+    "指揮薄 §6 R7 任務表, §9 termination"
+   ],
+   "external_method": false,
+   "control_authority": false
+  }
+ ],
+ "runtime_readiness": [
+  {
+   "capability": "native-prompt-compiler",
+   "required_now": true,
+   "lifecycle": {
+    "identify": "OPEN",
+    "pin": "OPEN",
+    "install_materialize": "OPEN",
+    "configure": "OPEN",
+    "discover": "OPEN",
+    "bind": "OPEN",
+    "route": "OPEN",
+    "effective_load": "OPEN",
+    "doctor_health": "OPEN",
+    "positive_pilot": "OPEN",
+    "negative_security": "OPEN",
+    "fallback": "OPEN",
+    "rollback_uninstall": "OPEN",
+    "independent_qualification": "OPEN",
+    "certify": "OPEN",
+    "enable": "OPEN"
+   },
+   "current_verdict": "NOT_READY",
+   "work_required": [
+    "本輪實跑 C0-C9 四階並保留 receipt；不因此轉 READY"
+   ],
+   "acceptance_ids": [
+    "ACC-CAP-01"
+   ]
+  },
+  {
+   "capability": "archive-publication-metadata-repair-M1",
+   "required_now": true,
+   "lifecycle": {
+    "identify": "OPEN",
+    "pin": "OPEN",
+    "install_materialize": "OPEN",
+    "configure": "OPEN",
+    "discover": "OPEN",
+    "bind": "OPEN",
+    "route": "OPEN",
+    "effective_load": "OPEN",
+    "doctor_health": "OPEN",
+    "positive_pilot": "OPEN",
+    "negative_security": "OPEN",
+    "fallback": "OPEN",
+    "rollback_uninstall": "OPEN",
+    "independent_qualification": "OPEN",
+    "certify": "OPEN",
+    "enable": "OPEN"
+   },
+   "current_verdict": "NOT_READY",
+   "work_required": [
+    "以提交後實際 Git tree 驗證 tracked_inventory 集合等價"
+   ],
+   "acceptance_ids": [
+    "ACC-CAP-02"
+   ]
+  },
+  {
+   "capability": "trusted-scope-secret-preflight-M2",
+   "required_now": true,
+   "lifecycle": {
+    "identify": "OPEN",
+    "pin": "OPEN",
+    "install_materialize": "OPEN",
+    "configure": "OPEN",
+    "discover": "OPEN",
+    "bind": "OPEN",
+    "route": "OPEN",
+    "effective_load": "OPEN",
+    "doctor_health": "OPEN",
+    "positive_pilot": "OPEN",
+    "negative_security": "OPEN",
+    "fallback": "OPEN",
+    "rollback_uninstall": "OPEN",
+    "independent_qualification": "OPEN",
+    "certify": "OPEN",
+    "enable": "OPEN"
+   },
+   "current_verdict": "NOT_READY",
+   "work_required": [
+    "受信任、PR 包外的固定掃描器；保留工具版本與 scan digest"
+   ],
+   "acceptance_ids": [
+    "ACC-CAP-03"
+   ]
+  },
+  {
+   "capability": "bounded-branch-update-and-readback",
+   "required_now": true,
+   "lifecycle": {
+    "identify": "OPEN",
+    "pin": "OPEN",
+    "install_materialize": "OPEN",
+    "configure": "OPEN",
+    "discover": "OPEN",
+    "bind": "OPEN",
+    "route": "OPEN",
+    "effective_load": "OPEN",
+    "doctor_health": "OPEN",
+    "positive_pilot": "OPEN",
+    "negative_security": "OPEN",
+    "fallback": "OPEN",
+    "rollback_uninstall": "OPEN",
+    "independent_qualification": "OPEN",
+    "certify": "OPEN",
+    "enable": "OPEN"
+   },
+   "current_verdict": "NOT_READY",
+   "work_required": [
+    "非 force push；POST-commit 外部讀回 new_head/tree/blob 集合"
+   ],
+   "acceptance_ids": [
+    "ACC-CAP-04"
+   ]
+  },
+  {
+   "capability": "r7-handoff-return-pack",
+   "required_now": true,
+   "lifecycle": {
+    "identify": "OPEN",
+    "pin": "OPEN",
+    "install_materialize": "OPEN",
+    "configure": "OPEN",
+    "discover": "OPEN",
+    "bind": "OPEN",
+    "route": "OPEN",
+    "effective_load": "OPEN",
+    "doctor_health": "OPEN",
+    "positive_pilot": "OPEN",
+    "negative_security": "OPEN",
+    "fallback": "OPEN",
+    "rollback_uninstall": "OPEN",
+    "independent_qualification": "OPEN",
+    "certify": "OPEN",
+    "enable": "OPEN"
+   },
+   "current_verdict": "NOT_READY",
+   "work_required": [
+    "EIA-01..09 去向、R7 blockers、rollback pointer、non-claims"
+   ],
+   "acceptance_ids": [
+    "ACC-CAP-05"
+   ]
+  }
+ ],
+ "journeys": [
+  {
+   "journey_id": "R6R7-ARCHIVE-MINIMAL-REPAIR",
+   "required": true,
+   "user_goal": "外部驗收後對既有 PR #3 做最小發布修補，讓驗收官能重算 manifest 且看到可信的範圍/秘密掃描與維護者授權紀錄",
+   "expected_visible_result": "更新後的 Draft PR #3、M1/M2/M3 raw refs、POST-commit external readback、R7 blockers",
+   "expected_automatic_behavior": [
+    "C0-C9 編譯",
+    "HGK narrow admission",
+    "就地最小 patch",
+    "受信任掃描",
+    "非 force 推送",
+    "外部 readback"
+   ],
+   "expected_manual_behavior": [
+    "Maintainer 決定 ready/merge",
+    "Owner 決定是否啟動 R7 runtime 修補"
+   ],
+   "allowed_hitl": [
+    "M3 evidence-prefix 授權",
+    "remote head 漂移重綁",
+    "真 secret 通報與輪替"
+   ],
+   "required_capabilities": [
+    "native-prompt-compiler",
+    "archive-publication-metadata-repair-M1",
+    "trusted-scope-secret-preflight-M2",
+    "bounded-branch-update-and-readback",
+    "r7-handoff-return-pack"
+   ],
+   "negative_behavior": [
+    "前綴外路徑、secret 命中、self-approval、force push、加入 .pyc、改寫失敗 receipts 一律 fail closed"
+   ],
+   "failure_recovery": [
+    "保留原 head 與 rollback pointer；以 Maintainer revert（不 force push）回復"
+   ],
+   "source_expectation_ids": [
+    "EIA-R6-01",
+    "EIA-R6-02",
+    "EIA-R6-06"
+   ],
+   "source_locators": [
+    "EIA report §3.1/§8/§9",
+    "指揮薄 §6 AR-02..AR-07"
+   ]
+  }
+ ],
+ "acceptance": [
+  {
+   "acceptance_id": "ACC-CAP-01",
+   "subject_id": "native-prompt-compiler",
+   "subject_type": "CAPABILITY",
+   "source_locators": [
+    "EIA report §3.1",
+    "EIA report §8",
+    "EIA report §9",
+    "指揮薄 §6"
+   ],
+   "runtime_required": true,
+   "required_depth": "L4_FAILURE_RECOVERY",
+   "positive_fixture": "lint/activation/acceptance/compile 四階 exit 0 且 receipt sha 保留",
+   "negative_fixture": "缺 schema/script 或 source conflict 必須 PROMPT_COMPILE_BLOCKED 且不寫入",
+   "recovery_fixture": "修正後重跑；不改既有 receipt 與失敗證據",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "INDEPENDENT_CASE_FAIL",
+    "BLOCKED_HITL",
+    "BLOCKED_EXTERNAL"
+   ]
+  },
+  {
+   "acceptance_id": "ACC-CAP-02",
+   "subject_id": "archive-publication-metadata-repair-M1",
+   "subject_type": "CAPABILITY",
+   "source_locators": [
+    "EIA report §3.1",
+    "EIA report §8",
+    "EIA report §9",
+    "指揮薄 §6"
+   ],
+   "runtime_required": true,
+   "required_depth": "L4_FAILURE_RECOVERY",
+   "positive_fixture": "manifest tracked_inventory 與提交後 Git tree blobs 集合差集為空；.pyc 明確 local-only",
+   "negative_fixture": "集合差非空、重複列名或 phantom 路徑即 BLOCKED",
+   "recovery_fixture": "修正後重跑；不改既有 receipt 與失敗證據",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "INDEPENDENT_CASE_FAIL",
+    "BLOCKED_HITL",
+    "BLOCKED_EXTERNAL"
+   ]
+  },
+  {
+   "acceptance_id": "ACC-CAP-03",
+   "subject_id": "trusted-scope-secret-preflight-M2",
+   "subject_type": "CAPABILITY",
+   "source_locators": [
+    "EIA report §3.1",
+    "EIA report §8",
+    "EIA report §9",
+    "指揮薄 §6"
+   ],
+   "runtime_required": true,
+   "required_depth": "L4_FAILURE_RECOVERY",
+   "positive_fixture": "changed paths ⊆ EVIDENCE/CNV-PIPD-LS-SP-20261015/；secret 命中 0 或有理據誤判",
+   "negative_fixture": "前綴外路徑、symlink、自動執行 helper 或真 secret 命中即 BLOCKED",
+   "recovery_fixture": "修正後重跑；不改既有 receipt 與失敗證據",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "INDEPENDENT_CASE_FAIL",
+    "BLOCKED_HITL",
+    "BLOCKED_EXTERNAL"
+   ]
+  },
+  {
+   "acceptance_id": "ACC-CAP-04",
+   "subject_id": "bounded-branch-update-and-readback",
+   "subject_type": "CAPABILITY",
+   "source_locators": [
+    "EIA report §3.1",
+    "EIA report §8",
+    "EIA report §9",
+    "指揮薄 §6"
+   ],
+   "runtime_required": true,
+   "required_depth": "L4_FAILURE_RECOVERY",
+   "positive_fixture": "非 force push；remote ref/tree 由外部讀回並與 local 相符",
+   "negative_fixture": "force push、main 直寫或 head 漂移未重綁即 BLOCKED",
+   "recovery_fixture": "修正後重跑；不改既有 receipt 與失敗證據",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "INDEPENDENT_CASE_FAIL",
+    "BLOCKED_HITL",
+    "BLOCKED_EXTERNAL"
+   ]
+  },
+  {
+   "acceptance_id": "ACC-CAP-05",
+   "subject_id": "r7-handoff-return-pack",
+   "subject_type": "CAPABILITY",
+   "source_locators": [
+    "EIA report §3.1",
+    "EIA report §8",
+    "EIA report §9",
+    "指揮薄 §6"
+   ],
+   "runtime_required": true,
+   "required_depth": "L4_FAILURE_RECOVERY",
+   "positive_fixture": "EIA-01..09 去向、R7 blockers、rollback pointer、non-claims 齊備",
+   "negative_fixture": "偽填 PASS 或缺 rollback pointer 即 FAIL",
+   "recovery_fixture": "修正後重跑；不改既有 receipt 與失敗證據",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "INDEPENDENT_CASE_FAIL",
+    "BLOCKED_HITL",
+    "BLOCKED_EXTERNAL"
+   ]
+  },
+  {
+   "acceptance_id": "ACC-DEL-10",
+   "subject_id": "D1-manifest-metadata-repair",
+   "subject_type": "DELIVERABLE",
+   "source_locators": [
+    "EIA report §3.1",
+    "EIA report §8",
+    "EIA report §9",
+    "指揮薄 §6"
+   ],
+   "runtime_required": true,
+   "required_depth": "L4_FAILURE_RECOVERY",
+   "positive_fixture": "manifest 新增 tracked_inventory 精確對應 HEAD 的 567 檔、LOCAL_ONLY_EXCLUDED=2 明列",
+   "negative_fixture": "聲稱 569/569 已發布或加入 .pyc 即 BLOCKED",
+   "recovery_fixture": "修正文字後重驗，不改 567 blob",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "INDEPENDENT_CASE_FAIL",
+    "BLOCKED_HITL",
+    "BLOCKED_EXTERNAL"
+   ]
+  },
+  {
+   "acceptance_id": "ACC-DEL-11",
+   "subject_id": "D2-trusted-scope-secret-scan",
+   "subject_type": "DELIVERABLE",
+   "source_locators": [
+    "EIA report §3.1",
+    "EIA report §8",
+    "EIA report §9",
+    "指揮薄 §6"
+   ],
+   "runtime_required": true,
+   "required_depth": "L4_FAILURE_RECOVERY",
+   "positive_fixture": "M2 掃描結果 JSON 含工具版本、掃描範圍、digest、逐筆判定",
+   "negative_fixture": "由 maker 自掃而無工具版本/digest 即視為未完成",
+   "recovery_fixture": "修正文字後重驗，不改 567 blob",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "INDEPENDENT_CASE_FAIL",
+    "BLOCKED_HITL",
+    "BLOCKED_EXTERNAL"
+   ]
+  },
+  {
+   "acceptance_id": "ACC-DEL-12",
+   "subject_id": "D3-maintainer-prefix-approval-record",
+   "subject_type": "DELIVERABLE",
+   "source_locators": [
+    "EIA report §3.1",
+    "EIA report §8",
+    "EIA report §9",
+    "指揮薄 §6"
+   ],
+   "runtime_required": true,
+   "required_depth": "L4_FAILURE_RECOVERY",
+   "positive_fixture": "Maintainer 對 evidence prefix 的一次性授權紀錄（身份/時間/paths/base/head）",
+   "negative_fixture": "maker 自簽、沿用 PROPOSAL 即 BLOCKED_HITL",
+   "recovery_fixture": "修正文字後重驗，不改 567 blob",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "INDEPENDENT_CASE_FAIL",
+    "BLOCKED_HITL",
+    "BLOCKED_EXTERNAL"
+   ]
+  },
+  {
+   "acceptance_id": "ACC-DEL-13",
+   "subject_id": "D4-post-commit-external-readback",
+   "subject_type": "DELIVERABLE",
+   "source_locators": [
+    "EIA report §3.1",
+    "EIA report §8",
+    "EIA report §9",
+    "指揮薄 §6"
+   ],
+   "runtime_required": true,
+   "required_depth": "L4_FAILURE_RECOVERY",
+   "positive_fixture": "由外部機制讀回 new_head/changed files/manifest 集合/secrets 狀態",
+   "negative_fixture": "只驗 ref 不驗 tree/內容即未完成",
+   "recovery_fixture": "修正文字後重驗，不改 567 blob",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "INDEPENDENT_CASE_FAIL",
+    "BLOCKED_HITL",
+    "BLOCKED_EXTERNAL"
+   ]
+  },
+  {
+   "acceptance_id": "ACC-DEL-14",
+   "subject_id": "D5-pr-body-and-dispositions",
+   "subject_type": "DELIVERABLE",
+   "source_locators": [
+    "EIA report §3.1",
+    "EIA report §8",
+    "EIA report §9",
+    "指揮薄 §6"
+   ],
+   "runtime_required": true,
+   "required_depth": "L4_FAILURE_RECOVERY",
+   "positive_fixture": "PR 描述載明 PARTIAL_CHALLENGE／TEMP_CLOSED／未閉合項與 revert pointer",
+   "negative_fixture": "描述仍稱已驗收即 BLOCKED",
+   "recovery_fixture": "修正文字後重驗，不改 567 blob",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "INDEPENDENT_CASE_FAIL",
+    "BLOCKED_HITL",
+    "BLOCKED_EXTERNAL"
+   ]
+  },
+  {
+   "acceptance_id": "ACC-DEL-15",
+   "subject_id": "D6-return-pack-and-blockers",
+   "subject_type": "DELIVERABLE",
+   "source_locators": [
+    "EIA report §3.1",
+    "EIA report §8",
+    "EIA report §9",
+    "指揮薄 §6"
+   ],
+   "runtime_required": true,
+   "required_depth": "L4_FAILURE_RECOVERY",
+   "positive_fixture": "R7 blockers、4 open WO、AUD24、TT/CR、rollback pointer 齊備",
+   "negative_fixture": "缺 rollback pointer 或偽填 PASS 即 FAIL",
+   "recovery_fixture": "修正文字後重驗，不改 567 blob",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "INDEPENDENT_CASE_FAIL",
+    "BLOCKED_HITL",
+    "BLOCKED_EXTERNAL"
+   ]
+  },
+  {
+   "acceptance_id": "ACC-DEL-16",
+   "subject_id": "D7-versioned-errata",
+   "subject_type": "DELIVERABLE",
+   "source_locators": [
+    "EIA report §3.1",
+    "EIA report §8",
+    "EIA report §9",
+    "指揮薄 §6"
+   ],
+   "runtime_required": true,
+   "required_depth": "L4_FAILURE_RECOVERY",
+   "positive_fixture": "舊 566/舊 head 標 historical；UTC 欄位語意隔離；不自引用自稱最新",
+   "negative_fixture": "覆寫歷史或刪除失敗 receipt 即 BLOCKED",
+   "recovery_fixture": "修正文字後重驗，不改 567 blob",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "INDEPENDENT_CASE_FAIL",
+    "BLOCKED_HITL",
+    "BLOCKED_EXTERNAL"
+   ]
+  },
+  {
+   "acceptance_id": "ACC-REQ-40",
+   "subject_id": "AR-00",
+   "subject_type": "REQUIREMENT",
+   "source_locators": [
+    "EIA report §3.1",
+    "EIA report §8",
+    "EIA report §9",
+    "指揮薄 §6"
+   ],
+   "runtime_required": true,
+   "required_depth": "L4_FAILURE_RECOVERY",
+   "positive_fixture": "C0-C9 四階 receipt 與 contract sha 產生",
+   "negative_fixture": "未執行、偽填 PASS 或以文件存在替代實測即 BLOCKED",
+   "recovery_fixture": "補做或記 BLOCKED 後重驗",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "INDEPENDENT_CASE_FAIL",
+    "BLOCKED_HITL",
+    "BLOCKED_EXTERNAL"
+   ]
+  },
+  {
+   "acceptance_id": "ACC-REQ-41",
+   "subject_id": "AR-01",
+   "subject_type": "REQUIREMENT",
+   "source_locators": [
+    "EIA report §3.1",
+    "EIA report §8",
+    "EIA report §9",
+    "指揮薄 §6"
+   ],
+   "runtime_required": true,
+   "required_depth": "L4_FAILURE_RECOVERY",
+   "positive_fixture": "PR #3 base/head 凍結並記錄 scope admission",
+   "negative_fixture": "未執行、偽填 PASS 或以文件存在替代實測即 BLOCKED",
+   "recovery_fixture": "補做或記 BLOCKED 後重驗",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "INDEPENDENT_CASE_FAIL",
+    "BLOCKED_HITL",
+    "BLOCKED_EXTERNAL"
+   ]
+  },
+  {
+   "acceptance_id": "ACC-REQ-42",
+   "subject_id": "AR-02",
+   "subject_type": "REQUIREMENT",
+   "source_locators": [
+    "EIA report §3.1",
+    "EIA report §8",
+    "EIA report §9",
+    "指揮薄 §6"
+   ],
+   "runtime_required": true,
+   "required_depth": "L4_FAILURE_RECOVERY",
+   "positive_fixture": "M1 manifest 就地修補完成且集合等價",
+   "negative_fixture": "未執行、偽填 PASS 或以文件存在替代實測即 BLOCKED",
+   "recovery_fixture": "補做或記 BLOCKED 後重驗",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "INDEPENDENT_CASE_FAIL",
+    "BLOCKED_HITL",
+    "BLOCKED_EXTERNAL"
+   ]
+  },
+  {
+   "acceptance_id": "ACC-REQ-43",
+   "subject_id": "AR-03",
+   "subject_type": "REQUIREMENT",
+   "source_locators": [
+    "EIA report §3.1",
+    "EIA report §8",
+    "EIA report §9",
+    "指揮薄 §6"
+   ],
+   "runtime_required": true,
+   "required_depth": "L4_FAILURE_RECOVERY",
+   "positive_fixture": "發布記錄 currentness 修正完成",
+   "negative_fixture": "未執行、偽填 PASS 或以文件存在替代實測即 BLOCKED",
+   "recovery_fixture": "補做或記 BLOCKED 後重驗",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "INDEPENDENT_CASE_FAIL",
+    "BLOCKED_HITL",
+    "BLOCKED_EXTERNAL"
+   ]
+  },
+  {
+   "acceptance_id": "ACC-REQ-44",
+   "subject_id": "AR-04",
+   "subject_type": "REQUIREMENT",
+   "source_locators": [
+    "EIA report §3.1",
+    "EIA report §8",
+    "EIA report §9",
+    "指揮薄 §6"
+   ],
+   "runtime_required": true,
+   "required_depth": "L4_FAILURE_RECOVERY",
+   "positive_fixture": "M2 受信任範圍/秘密掃描完成",
+   "negative_fixture": "未執行、偽填 PASS 或以文件存在替代實測即 BLOCKED",
+   "recovery_fixture": "補做或記 BLOCKED 後重驗",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "INDEPENDENT_CASE_FAIL",
+    "BLOCKED_HITL",
+    "BLOCKED_EXTERNAL"
+   ]
+  },
+  {
+   "acceptance_id": "ACC-REQ-45",
+   "subject_id": "AR-05",
+   "subject_type": "REQUIREMENT",
+   "source_locators": [
+    "EIA report §3.1",
+    "EIA report §8",
+    "EIA report §9",
+    "指揮薄 §6"
+   ],
+   "runtime_required": true,
+   "required_depth": "L4_FAILURE_RECOVERY",
+   "positive_fixture": "M3 授權請求與紀錄備妥待 Maintainer 簽",
+   "negative_fixture": "未執行、偽填 PASS 或以文件存在替代實測即 BLOCKED",
+   "recovery_fixture": "補做或記 BLOCKED 後重驗",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "INDEPENDENT_CASE_FAIL",
+    "BLOCKED_HITL",
+    "BLOCKED_EXTERNAL"
+   ]
+  },
+  {
+   "acceptance_id": "ACC-REQ-46",
+   "subject_id": "AR-06",
+   "subject_type": "REQUIREMENT",
+   "source_locators": [
+    "EIA report §3.1",
+    "EIA report §8",
+    "EIA report §9",
+    "指揮薄 §6"
+   ],
+   "runtime_required": true,
+   "required_depth": "L4_FAILURE_RECOVERY",
+   "positive_fixture": "既有分支非 force 推送成功",
+   "negative_fixture": "未執行、偽填 PASS 或以文件存在替代實測即 BLOCKED",
+   "recovery_fixture": "補做或記 BLOCKED 後重驗",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "INDEPENDENT_CASE_FAIL",
+    "BLOCKED_HITL",
+    "BLOCKED_EXTERNAL"
+   ]
+  },
+  {
+   "acceptance_id": "ACC-REQ-47",
+   "subject_id": "AR-07",
+   "subject_type": "REQUIREMENT",
+   "source_locators": [
+    "EIA report §3.1",
+    "EIA report §8",
+    "EIA report §9",
+    "指揮薄 §6"
+   ],
+   "runtime_required": true,
+   "required_depth": "L4_FAILURE_RECOVERY",
+   "positive_fixture": "POST-commit 外部 readback 完成",
+   "negative_fixture": "未執行、偽填 PASS 或以文件存在替代實測即 BLOCKED",
+   "recovery_fixture": "補做或記 BLOCKED 後重驗",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "INDEPENDENT_CASE_FAIL",
+    "BLOCKED_HITL",
+    "BLOCKED_EXTERNAL"
+   ]
+  },
+  {
+   "acceptance_id": "ACC-REQ-48",
+   "subject_id": "AR-08",
+   "subject_type": "REQUIREMENT",
+   "source_locators": [
+    "EIA report §3.1",
+    "EIA report §8",
+    "EIA report §9",
+    "指揮薄 §6"
+   ],
+   "runtime_required": true,
+   "required_depth": "L4_FAILURE_RECOVERY",
+   "positive_fixture": "Draft PR 描述更新完成",
+   "negative_fixture": "未執行、偽填 PASS 或以文件存在替代實測即 BLOCKED",
+   "recovery_fixture": "補做或記 BLOCKED 後重驗",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "INDEPENDENT_CASE_FAIL",
+    "BLOCKED_HITL",
+    "BLOCKED_EXTERNAL"
+   ]
+  },
+  {
+   "acceptance_id": "ACC-REQ-49",
+   "subject_id": "AR-09",
+   "subject_type": "REQUIREMENT",
+   "source_locators": [
+    "EIA report §3.1",
+    "EIA report §8",
+    "EIA report §9",
+    "指揮薄 §6"
+   ],
+   "runtime_required": true,
+   "required_depth": "L4_FAILURE_RECOVERY",
+   "positive_fixture": "R7 checkpoint 與 return pack 輸出",
+   "negative_fixture": "未執行、偽填 PASS 或以文件存在替代實測即 BLOCKED",
+   "recovery_fixture": "補做或記 BLOCKED 後重驗",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "INDEPENDENT_CASE_FAIL",
+    "BLOCKED_HITL",
+    "BLOCKED_EXTERNAL"
+   ]
+  },
+  {
+   "acceptance_id": "ACC-REQ-50",
+   "subject_id": "Q01",
+   "subject_type": "REQUIREMENT",
+   "source_locators": [
+    "EIA report §3.1",
+    "EIA report §8",
+    "EIA report §9",
+    "指揮薄 §6"
+   ],
+   "runtime_required": true,
+   "required_depth": "L4_FAILURE_RECOVERY",
+   "positive_fixture": "compiler 四階實測",
+   "negative_fixture": "未執行、偽填 PASS 或以文件存在替代實測即 BLOCKED",
+   "recovery_fixture": "補做或記 BLOCKED 後重驗",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "INDEPENDENT_CASE_FAIL",
+    "BLOCKED_HITL",
+    "BLOCKED_EXTERNAL"
+   ]
+  },
+  {
+   "acceptance_id": "ACC-REQ-51",
+   "subject_id": "Q02",
+   "subject_type": "REQUIREMENT",
+   "source_locators": [
+    "EIA report §3.1",
+    "EIA report §8",
+    "EIA report §9",
+    "指揮薄 §6"
+   ],
+   "runtime_required": true,
+   "required_depth": "L4_FAILURE_RECOVERY",
+   "positive_fixture": "PR base/head currentness 實測",
+   "negative_fixture": "未執行、偽填 PASS 或以文件存在替代實測即 BLOCKED",
+   "recovery_fixture": "補做或記 BLOCKED 後重驗",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "INDEPENDENT_CASE_FAIL",
+    "BLOCKED_HITL",
+    "BLOCKED_EXTERNAL"
+   ]
+  },
+  {
+   "acceptance_id": "ACC-REQ-52",
+   "subject_id": "Q03",
+   "subject_type": "REQUIREMENT",
+   "source_locators": [
+    "EIA report §3.1",
+    "EIA report §8",
+    "EIA report §9",
+    "指揮薄 §6"
+   ],
+   "runtime_required": true,
+   "required_depth": "L4_FAILURE_RECOVERY",
+   "positive_fixture": "manifest tracked-set/duplicate/local-only2 實測",
+   "negative_fixture": "未執行、偽填 PASS 或以文件存在替代實測即 BLOCKED",
+   "recovery_fixture": "補做或記 BLOCKED 後重驗",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "INDEPENDENT_CASE_FAIL",
+    "BLOCKED_HITL",
+    "BLOCKED_EXTERNAL"
+   ]
+  },
+  {
+   "acceptance_id": "ACC-REQ-53",
+   "subject_id": "Q04",
+   "subject_type": "REQUIREMENT",
+   "source_locators": [
+    "EIA report §3.1",
+    "EIA report §8",
+    "EIA report §9",
+    "指揮薄 §6"
+   ],
+   "runtime_required": true,
+   "required_depth": "L4_FAILURE_RECOVERY",
+   "positive_fixture": "changed-path/code-no-autoexecute/secret scan 實測",
+   "negative_fixture": "未執行、偽填 PASS 或以文件存在替代實測即 BLOCKED",
+   "recovery_fixture": "補做或記 BLOCKED 後重驗",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "INDEPENDENT_CASE_FAIL",
+    "BLOCKED_HITL",
+    "BLOCKED_EXTERNAL"
+   ]
+  },
+  {
+   "acceptance_id": "ACC-REQ-54",
+   "subject_id": "Q05",
+   "subject_type": "REQUIREMENT",
+   "source_locators": [
+    "EIA report §3.1",
+    "EIA report §8",
+    "EIA report §9",
+    "指揮薄 §6"
+   ],
+   "runtime_required": true,
+   "required_depth": "L4_FAILURE_RECOVERY",
+   "positive_fixture": "Maintainer prefix 授權狀態實測",
+   "negative_fixture": "未執行、偽填 PASS 或以文件存在替代實測即 BLOCKED",
+   "recovery_fixture": "補做或記 BLOCKED 後重驗",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "INDEPENDENT_CASE_FAIL",
+    "BLOCKED_HITL",
+    "BLOCKED_EXTERNAL"
+   ]
+  },
+  {
+   "acceptance_id": "ACC-REQ-55",
+   "subject_id": "Q06",
+   "subject_type": "REQUIREMENT",
+   "source_locators": [
+    "EIA report §3.1",
+    "EIA report §8",
+    "EIA report §9",
+    "指揮薄 §6"
+   ],
+   "runtime_required": true,
+   "required_depth": "L4_FAILURE_RECOVERY",
+   "positive_fixture": "push 後 remote readback 實測",
+   "negative_fixture": "未執行、偽填 PASS 或以文件存在替代實測即 BLOCKED",
+   "recovery_fixture": "補做或記 BLOCKED 後重驗",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "INDEPENDENT_CASE_FAIL",
+    "BLOCKED_HITL",
+    "BLOCKED_EXTERNAL"
+   ]
+  },
+  {
+   "acceptance_id": "ACC-REQ-56",
+   "subject_id": "EIA-R6-01",
+   "subject_type": "REQUIREMENT",
+   "source_locators": [
+    "EIA report §3.1",
+    "EIA report §8",
+    "EIA report §9",
+    "指揮薄 §6"
+   ],
+   "runtime_required": true,
+   "required_depth": "L4_FAILURE_RECOVERY",
+   "positive_fixture": "publication set equality 修補與重驗",
+   "negative_fixture": "未執行、偽填 PASS 或以文件存在替代實測即 BLOCKED",
+   "recovery_fixture": "補做或記 BLOCKED 後重驗",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "INDEPENDENT_CASE_FAIL",
+    "BLOCKED_HITL",
+    "BLOCKED_EXTERNAL"
+   ]
+  },
+  {
+   "acceptance_id": "ACC-REQ-57",
+   "subject_id": "EIA-R6-02",
+   "subject_type": "REQUIREMENT",
+   "source_locators": [
+    "EIA report §3.1",
+    "EIA report §8",
+    "EIA report §9",
+    "指揮薄 §6"
+   ],
+   "runtime_required": true,
+   "required_depth": "L4_FAILURE_RECOVERY",
+   "positive_fixture": "publication currentness 修補與重驗",
+   "negative_fixture": "未執行、偽填 PASS 或以文件存在替代實測即 BLOCKED",
+   "recovery_fixture": "補做或記 BLOCKED 後重驗",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "INDEPENDENT_CASE_FAIL",
+    "BLOCKED_HITL",
+    "BLOCKED_EXTERNAL"
+   ]
+  },
+  {
+   "acceptance_id": "ACC-REQ-58",
+   "subject_id": "EIA-R6-06",
+   "subject_type": "REQUIREMENT",
+   "source_locators": [
+    "EIA report §3.1",
+    "EIA report §8",
+    "EIA report §9",
+    "指揮薄 §6"
+   ],
+   "runtime_required": true,
+   "required_depth": "L4_FAILURE_RECOVERY",
+   "positive_fixture": "scope/secrets + maintainer prefix approval",
+   "negative_fixture": "未執行、偽填 PASS 或以文件存在替代實測即 BLOCKED",
+   "recovery_fixture": "補做或記 BLOCKED 後重驗",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "INDEPENDENT_CASE_FAIL",
+    "BLOCKED_HITL",
+    "BLOCKED_EXTERNAL"
+   ]
+  },
+  {
+   "acceptance_id": "ACC-JRN-01",
+   "subject_id": "R6R7-ARCHIVE-MINIMAL-REPAIR",
+   "subject_type": "JOURNEY",
+   "source_locators": [
+    "EIA report §3.1",
+    "EIA report §8",
+    "EIA report §9",
+    "指揮薄 §6"
+   ],
+   "runtime_required": true,
+   "required_depth": "L4_FAILURE_RECOVERY",
+   "positive_fixture": "使用者一次執行即得到更新後的 Draft PR、M1/M2/M3 refs 與 readback",
+   "negative_fixture": "缺權限時回傳精確 blocker 與 checkpoint，不反覆詢問已提供來源",
+   "recovery_fixture": "修正 blocker 後續跑",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "INDEPENDENT_CASE_FAIL",
+    "BLOCKED_HITL",
+    "BLOCKED_EXTERNAL"
+   ]
+  }
+ ],
+ "evidence": [
+  {
+   "gate_id": "G-A",
+   "predicate": "EIA-R6-09 維持 soft warning；loader 覆蓋屬 R7 | Current Slot14 registered oracle, positive/negative/recovery and independent same-subject raw evidence",
+   "expected": "R7_DEFERRED_NOT_CLOSED",
+   "command_or_probe": "UNBOUND; discover actual runner after source/compiler/admission prerequisites",
+   "raw_receipt_required": true,
+   "producer": "Codex CLI opencode-go/deepseek-v4.1-flash; Hermes preflight separately attributed",
+   "independent_checker": "fresh read-only Codex CLI opencode-go/glm-5.3-flash and canonical AO",
+   "candidate_binding": {
+    "head": "NOT_CREATED",
+    "package_sha256": "96d9d564286743e17550ccef15b9952347901eb77168f930376938893cff9c3f",
+    "source_hashes": [
+     "8b78edebd79c8149a2b74e2a7f873e3116f772c881a501bd4600ea0e7a891f6b",
+     "6894a6ba08781f2ed5758af132f758c14c1a9e9b69d42056837f5ce45bba6c64",
+     "96d9d564286743e17550ccef15b9952347901eb77168f930376938893cff9c3f",
+     "7f7246d34be112bb465b48dadaef6163e466e16e5e705fc58acee04b3809a613",
+     "115912cdccbf5b3788fe1d6e1c8c10fe575252d72accf31cb6f1955dd8750974",
+     "48a3fdc5a0c65d4279c27ebc7586e747ba86c4bde82535cad2512d43547b4acb",
+     "9a8323e5237c1555a76d9a75f706e3552d79c192915cc782b76b211c7f27d527",
+     "03bb3609dc67f85fa4b683a93736cf162e9047b6b253182aa3fdba11ba40cb28",
+     "2790fe1d5bdbd751c475d7982f2381758e3b689f2723c63053b3eec4c24cb490",
+     "8fb3f73e176562946efb5844e73429ee59c96ab5d75f19aab99779122ecfc7de",
+     "a990132cf561348a33b7e6a2b65f3ec74fcc859568991126b5dff6685ac1d70a",
+     "15a8934934e85c771dfddb357f30599fcb90ec28b5577c38454b05832e674225",
+     "be3a672ec20aa0e6b5e0e35097fc08de749bfe7f59f827d18e38aef67dd68ea4",
+     "b753f2e5cdd5598a818f8a113d57b7f815aeb3f1dfa061ce74c76bb3553ac8c7",
+     "a021998dd3b63015e89af1dd40e0b413744a69b872da46c6bf5f4d92f7f23d0b",
+     "d89d82dcd2c8603ec6b86c5ec8c40845e4594bc181adf5272bd48a3de7c88f0f",
+     "fa64d84da3d747b183e4affff62f4d2fb86c80bb5075f5dd933c09b20caeddcf",
+     "7b40584540c162cda6debfd09a4c04321416706acdb03a7a3c2b41383dc585f4",
+     "20e44ea4dd8e53c9b0a076ce861136bbea86f52687019307f6e995cd9079d303",
+     "a68dae1c3670d07bcfa3476a1e37463c534594df5cd65d8dab0dca064b5a9fc1",
+     "e46caa7e440392a6cfa7a86421aead5bce8a2a229fec97b133429db6b6748e42",
+     "eaf0aefe2b4711c140fc3274223d88fdc38ad4ec2b7184f756a0f2471f3b0b54",
+     "6f6aafece90b34e33786647e14fee840f5424893995b3164cbb52953a5c4f14a"
+    ]
+   },
+   "tracked_subject": false,
+   "rerun_rule": "affected-only",
+   "invalidation": [
+    "source digest",
+    "candidate HEAD/tree",
+    "scope/token",
+    "runtime version",
+    "served arm",
+    "oracle"
+   ],
+   "terminal_verdict": "BLOCKED_EXTERNAL",
+   "runtime_pass_allowed": false,
+   "claim_level": "LOCAL"
+  },
+  {
+   "gate_id": "G-B",
+   "predicate": "Fresh G1 未重認證（R7） | Current Slot14 registered oracle, positive/negative/recovery and independent same-subject raw evidence",
+   "expected": "R7_DEFERRED_NOT_CLOSED",
+   "command_or_probe": "UNBOUND; discover actual runner after source/compiler/admission prerequisites",
+   "raw_receipt_required": true,
+   "producer": "Codex CLI opencode-go/deepseek-v4.1-flash; Hermes preflight separately attributed",
+   "independent_checker": "fresh read-only Codex CLI opencode-go/glm-5.3-flash and canonical AO",
+   "candidate_binding": {
+    "head": "NOT_CREATED",
+    "package_sha256": "96d9d564286743e17550ccef15b9952347901eb77168f930376938893cff9c3f",
+    "source_hashes": [
+     "8b78edebd79c8149a2b74e2a7f873e3116f772c881a501bd4600ea0e7a891f6b",
+     "6894a6ba08781f2ed5758af132f758c14c1a9e9b69d42056837f5ce45bba6c64",
+     "96d9d564286743e17550ccef15b9952347901eb77168f930376938893cff9c3f",
+     "7f7246d34be112bb465b48dadaef6163e466e16e5e705fc58acee04b3809a613",
+     "115912cdccbf5b3788fe1d6e1c8c10fe575252d72accf31cb6f1955dd8750974",
+     "48a3fdc5a0c65d4279c27ebc7586e747ba86c4bde82535cad2512d43547b4acb",
+     "9a8323e5237c1555a76d9a75f706e3552d79c192915cc782b76b211c7f27d527",
+     "03bb3609dc67f85fa4b683a93736cf162e9047b6b253182aa3fdba11ba40cb28",
+     "2790fe1d5bdbd751c475d7982f2381758e3b689f2723c63053b3eec4c24cb490",
+     "8fb3f73e176562946efb5844e73429ee59c96ab5d75f19aab99779122ecfc7de",
+     "a990132cf561348a33b7e6a2b65f3ec74fcc859568991126b5dff6685ac1d70a",
+     "15a8934934e85c771dfddb357f30599fcb90ec28b5577c38454b05832e674225",
+     "be3a672ec20aa0e6b5e0e35097fc08de749bfe7f59f827d18e38aef67dd68ea4",
+     "b753f2e5cdd5598a818f8a113d57b7f815aeb3f1dfa061ce74c76bb3553ac8c7",
+     "a021998dd3b63015e89af1dd40e0b413744a69b872da46c6bf5f4d92f7f23d0b",
+     "d89d82dcd2c8603ec6b86c5ec8c40845e4594bc181adf5272bd48a3de7c88f0f",
+     "fa64d84da3d747b183e4affff62f4d2fb86c80bb5075f5dd933c09b20caeddcf",
+     "7b40584540c162cda6debfd09a4c04321416706acdb03a7a3c2b41383dc585f4",
+     "20e44ea4dd8e53c9b0a076ce861136bbea86f52687019307f6e995cd9079d303",
+     "a68dae1c3670d07bcfa3476a1e37463c534594df5cd65d8dab0dca064b5a9fc1",
+     "e46caa7e440392a6cfa7a86421aead5bce8a2a229fec97b133429db6b6748e42",
+     "eaf0aefe2b4711c140fc3274223d88fdc38ad4ec2b7184f756a0f2471f3b0b54",
+     "6f6aafece90b34e33786647e14fee840f5424893995b3164cbb52953a5c4f14a"
+    ]
+   },
+   "tracked_subject": false,
+   "rerun_rule": "affected-only",
+   "invalidation": [
+    "source digest",
+    "candidate HEAD/tree",
+    "scope/token",
+    "runtime version",
+    "served arm",
+    "oracle"
+   ],
+   "terminal_verdict": "BLOCKED_EXTERNAL",
+   "runtime_pass_allowed": false,
+   "claim_level": "LOCAL"
+  },
+  {
+   "gate_id": "G-C",
+   "predicate": "dispatcher exit3／nonce 通道未修（R7） | Current Slot14 registered oracle, positive/negative/recovery and independent same-subject raw evidence",
+   "expected": "R7_DEFERRED_NOT_CLOSED",
+   "command_or_probe": "UNBOUND; discover actual runner after source/compiler/admission prerequisites",
+   "raw_receipt_required": true,
+   "producer": "Codex CLI opencode-go/deepseek-v4.1-flash; Hermes preflight separately attributed",
+   "independent_checker": "fresh read-only Codex CLI opencode-go/glm-5.3-flash and canonical AO",
+   "candidate_binding": {
+    "head": "NOT_CREATED",
+    "package_sha256": "96d9d564286743e17550ccef15b9952347901eb77168f930376938893cff9c3f",
+    "source_hashes": [
+     "8b78edebd79c8149a2b74e2a7f873e3116f772c881a501bd4600ea0e7a891f6b",
+     "6894a6ba08781f2ed5758af132f758c14c1a9e9b69d42056837f5ce45bba6c64",
+     "96d9d564286743e17550ccef15b9952347901eb77168f930376938893cff9c3f",
+     "7f7246d34be112bb465b48dadaef6163e466e16e5e705fc58acee04b3809a613",
+     "115912cdccbf5b3788fe1d6e1c8c10fe575252d72accf31cb6f1955dd8750974",
+     "48a3fdc5a0c65d4279c27ebc7586e747ba86c4bde82535cad2512d43547b4acb",
+     "9a8323e5237c1555a76d9a75f706e3552d79c192915cc782b76b211c7f27d527",
+     "03bb3609dc67f85fa4b683a93736cf162e9047b6b253182aa3fdba11ba40cb28",
+     "2790fe1d5bdbd751c475d7982f2381758e3b689f2723c63053b3eec4c24cb490",
+     "8fb3f73e176562946efb5844e73429ee59c96ab5d75f19aab99779122ecfc7de",
+     "a990132cf561348a33b7e6a2b65f3ec74fcc859568991126b5dff6685ac1d70a",
+     "15a8934934e85c771dfddb357f30599fcb90ec28b5577c38454b05832e674225",
+     "be3a672ec20aa0e6b5e0e35097fc08de749bfe7f59f827d18e38aef67dd68ea4",
+     "b753f2e5cdd5598a818f8a113d57b7f815aeb3f1dfa061ce74c76bb3553ac8c7",
+     "a021998dd3b63015e89af1dd40e0b413744a69b872da46c6bf5f4d92f7f23d0b",
+     "d89d82dcd2c8603ec6b86c5ec8c40845e4594bc181adf5272bd48a3de7c88f0f",
+     "fa64d84da3d747b183e4affff62f4d2fb86c80bb5075f5dd933c09b20caeddcf",
+     "7b40584540c162cda6debfd09a4c04321416706acdb03a7a3c2b41383dc585f4",
+     "20e44ea4dd8e53c9b0a076ce861136bbea86f52687019307f6e995cd9079d303",
+     "a68dae1c3670d07bcfa3476a1e37463c534594df5cd65d8dab0dca064b5a9fc1",
+     "e46caa7e440392a6cfa7a86421aead5bce8a2a229fec97b133429db6b6748e42",
+     "eaf0aefe2b4711c140fc3274223d88fdc38ad4ec2b7184f756a0f2471f3b0b54",
+     "6f6aafece90b34e33786647e14fee840f5424893995b3164cbb52953a5c4f14a"
+    ]
+   },
+   "tracked_subject": false,
+   "rerun_rule": "affected-only",
+   "invalidation": [
+    "source digest",
+    "candidate HEAD/tree",
+    "scope/token",
+    "runtime version",
+    "served arm",
+    "oracle"
+   ],
+   "terminal_verdict": "BLOCKED_EXTERNAL",
+   "runtime_pass_allowed": false,
+   "claim_level": "LOCAL"
+  },
+  {
+   "gate_id": "G-D",
+   "predicate": "checker 暫態寫入已記錄，獨立 checker 與 trace raw 屬 R7 | Current Slot14 registered oracle, positive/negative/recovery and independent same-subject raw evidence",
+   "expected": "R7_DEFERRED_NOT_CLOSED",
+   "command_or_probe": "UNBOUND; discover actual runner after source/compiler/admission prerequisites",
+   "raw_receipt_required": true,
+   "producer": "Codex CLI opencode-go/deepseek-v4.1-flash; Hermes preflight separately attributed",
+   "independent_checker": "fresh read-only Codex CLI opencode-go/glm-5.3-flash and canonical AO",
+   "candidate_binding": {
+    "head": "NOT_CREATED",
+    "package_sha256": "96d9d564286743e17550ccef15b9952347901eb77168f930376938893cff9c3f",
+    "source_hashes": [
+     "8b78edebd79c8149a2b74e2a7f873e3116f772c881a501bd4600ea0e7a891f6b",
+     "6894a6ba08781f2ed5758af132f758c14c1a9e9b69d42056837f5ce45bba6c64",
+     "96d9d564286743e17550ccef15b9952347901eb77168f930376938893cff9c3f",
+     "7f7246d34be112bb465b48dadaef6163e466e16e5e705fc58acee04b3809a613",
+     "115912cdccbf5b3788fe1d6e1c8c10fe575252d72accf31cb6f1955dd8750974",
+     "48a3fdc5a0c65d4279c27ebc7586e747ba86c4bde82535cad2512d43547b4acb",
+     "9a8323e5237c1555a76d9a75f706e3552d79c192915cc782b76b211c7f27d527",
+     "03bb3609dc67f85fa4b683a93736cf162e9047b6b253182aa3fdba11ba40cb28",
+     "2790fe1d5bdbd751c475d7982f2381758e3b689f2723c63053b3eec4c24cb490",
+     "8fb3f73e176562946efb5844e73429ee59c96ab5d75f19aab99779122ecfc7de",
+     "a990132cf561348a33b7e6a2b65f3ec74fcc859568991126b5dff6685ac1d70a",
+     "15a8934934e85c771dfddb357f30599fcb90ec28b5577c38454b05832e674225",
+     "be3a672ec20aa0e6b5e0e35097fc08de749bfe7f59f827d18e38aef67dd68ea4",
+     "b753f2e5cdd5598a818f8a113d57b7f815aeb3f1dfa061ce74c76bb3553ac8c7",
+     "a021998dd3b63015e89af1dd40e0b413744a69b872da46c6bf5f4d92f7f23d0b",
+     "d89d82dcd2c8603ec6b86c5ec8c40845e4594bc181adf5272bd48a3de7c88f0f",
+     "fa64d84da3d747b183e4affff62f4d2fb86c80bb5075f5dd933c09b20caeddcf",
+     "7b40584540c162cda6debfd09a4c04321416706acdb03a7a3c2b41383dc585f4",
+     "20e44ea4dd8e53c9b0a076ce861136bbea86f52687019307f6e995cd9079d303",
+     "a68dae1c3670d07bcfa3476a1e37463c534594df5cd65d8dab0dca064b5a9fc1",
+     "e46caa7e440392a6cfa7a86421aead5bce8a2a229fec97b133429db6b6748e42",
+     "eaf0aefe2b4711c140fc3274223d88fdc38ad4ec2b7184f756a0f2471f3b0b54",
+     "6f6aafece90b34e33786647e14fee840f5424893995b3164cbb52953a5c4f14a"
+    ]
+   },
+   "tracked_subject": false,
+   "rerun_rule": "affected-only",
+   "invalidation": [
+    "source digest",
+    "candidate HEAD/tree",
+    "scope/token",
+    "runtime version",
+    "served arm",
+    "oracle"
+   ],
+   "terminal_verdict": "BLOCKED_EXTERNAL",
+   "runtime_pass_allowed": false,
+   "claim_level": "LOCAL"
+  },
+  {
+   "gate_id": "G-E",
+   "predicate": "effect planes 未具受權 live 證據（R7） | Current Slot14 registered oracle, positive/negative/recovery and independent same-subject raw evidence",
+   "expected": "R7_DEFERRED_NOT_CLOSED",
+   "command_or_probe": "UNBOUND; discover actual runner after source/compiler/admission prerequisites",
+   "raw_receipt_required": true,
+   "producer": "Codex CLI opencode-go/deepseek-v4.1-flash; Hermes preflight separately attributed",
+   "independent_checker": "fresh read-only Codex CLI opencode-go/glm-5.3-flash and canonical AO",
+   "candidate_binding": {
+    "head": "NOT_CREATED",
+    "package_sha256": "96d9d564286743e17550ccef15b9952347901eb77168f930376938893cff9c3f",
+    "source_hashes": [
+     "8b78edebd79c8149a2b74e2a7f873e3116f772c881a501bd4600ea0e7a891f6b",
+     "6894a6ba08781f2ed5758af132f758c14c1a9e9b69d42056837f5ce45bba6c64",
+     "96d9d564286743e17550ccef15b9952347901eb77168f930376938893cff9c3f",
+     "7f7246d34be112bb465b48dadaef6163e466e16e5e705fc58acee04b3809a613",
+     "115912cdccbf5b3788fe1d6e1c8c10fe575252d72accf31cb6f1955dd8750974",
+     "48a3fdc5a0c65d4279c27ebc7586e747ba86c4bde82535cad2512d43547b4acb",
+     "9a8323e5237c1555a76d9a75f706e3552d79c192915cc782b76b211c7f27d527",
+     "03bb3609dc67f85fa4b683a93736cf162e9047b6b253182aa3fdba11ba40cb28",
+     "2790fe1d5bdbd751c475d7982f2381758e3b689f2723c63053b3eec4c24cb490",
+     "8fb3f73e176562946efb5844e73429ee59c96ab5d75f19aab99779122ecfc7de",
+     "a990132cf561348a33b7e6a2b65f3ec74fcc859568991126b5dff6685ac1d70a",
+     "15a8934934e85c771dfddb357f30599fcb90ec28b5577c38454b05832e674225",
+     "be3a672ec20aa0e6b5e0e35097fc08de749bfe7f59f827d18e38aef67dd68ea4",
+     "b753f2e5cdd5598a818f8a113d57b7f815aeb3f1dfa061ce74c76bb3553ac8c7",
+     "a021998dd3b63015e89af1dd40e0b413744a69b872da46c6bf5f4d92f7f23d0b",
+     "d89d82dcd2c8603ec6b86c5ec8c40845e4594bc181adf5272bd48a3de7c88f0f",
+     "fa64d84da3d747b183e4affff62f4d2fb86c80bb5075f5dd933c09b20caeddcf",
+     "7b40584540c162cda6debfd09a4c04321416706acdb03a7a3c2b41383dc585f4",
+     "20e44ea4dd8e53c9b0a076ce861136bbea86f52687019307f6e995cd9079d303",
+     "a68dae1c3670d07bcfa3476a1e37463c534594df5cd65d8dab0dca064b5a9fc1",
+     "e46caa7e440392a6cfa7a86421aead5bce8a2a229fec97b133429db6b6748e42",
+     "eaf0aefe2b4711c140fc3274223d88fdc38ad4ec2b7184f756a0f2471f3b0b54",
+     "6f6aafece90b34e33786647e14fee840f5424893995b3164cbb52953a5c4f14a"
+    ]
+   },
+   "tracked_subject": false,
+   "rerun_rule": "affected-only",
+   "invalidation": [
+    "source digest",
+    "candidate HEAD/tree",
+    "scope/token",
+    "runtime version",
+    "served arm",
+    "oracle"
+   ],
+   "terminal_verdict": "BLOCKED_EXTERNAL",
+   "runtime_pass_allowed": false,
+   "claim_level": "LOCAL"
+  },
+  {
+   "gate_id": "G-F",
+   "predicate": "M04/M06/M16 與 checker ACL 屬 R7 高風險項 | Current Slot14 registered oracle, positive/negative/recovery and independent same-subject raw evidence",
+   "expected": "R7_DEFERRED_NOT_CLOSED",
+   "command_or_probe": "UNBOUND; discover actual runner after source/compiler/admission prerequisites",
+   "raw_receipt_required": true,
+   "producer": "Codex CLI opencode-go/deepseek-v4.1-flash; Hermes preflight separately attributed",
+   "independent_checker": "fresh read-only Codex CLI opencode-go/glm-5.3-flash and canonical AO",
+   "candidate_binding": {
+    "head": "NOT_CREATED",
+    "package_sha256": "96d9d564286743e17550ccef15b9952347901eb77168f930376938893cff9c3f",
+    "source_hashes": [
+     "8b78edebd79c8149a2b74e2a7f873e3116f772c881a501bd4600ea0e7a891f6b",
+     "6894a6ba08781f2ed5758af132f758c14c1a9e9b69d42056837f5ce45bba6c64",
+     "96d9d564286743e17550ccef15b9952347901eb77168f930376938893cff9c3f",
+     "7f7246d34be112bb465b48dadaef6163e466e16e5e705fc58acee04b3809a613",
+     "115912cdccbf5b3788fe1d6e1c8c10fe575252d72accf31cb6f1955dd8750974",
+     "48a3fdc5a0c65d4279c27ebc7586e747ba86c4bde82535cad2512d43547b4acb",
+     "9a8323e5237c1555a76d9a75f706e3552d79c192915cc782b76b211c7f27d527",
+     "03bb3609dc67f85fa4b683a93736cf162e9047b6b253182aa3fdba11ba40cb28",
+     "2790fe1d5bdbd751c475d7982f2381758e3b689f2723c63053b3eec4c24cb490",
+     "8fb3f73e176562946efb5844e73429ee59c96ab5d75f19aab99779122ecfc7de",
+     "a990132cf561348a33b7e6a2b65f3ec74fcc859568991126b5dff6685ac1d70a",
+     "15a8934934e85c771dfddb357f30599fcb90ec28b5577c38454b05832e674225",
+     "be3a672ec20aa0e6b5e0e35097fc08de749bfe7f59f827d18e38aef67dd68ea4",
+     "b753f2e5cdd5598a818f8a113d57b7f815aeb3f1dfa061ce74c76bb3553ac8c7",
+     "a021998dd3b63015e89af1dd40e0b413744a69b872da46c6bf5f4d92f7f23d0b",
+     "d89d82dcd2c8603ec6b86c5ec8c40845e4594bc181adf5272bd48a3de7c88f0f",
+     "fa64d84da3d747b183e4affff62f4d2fb86c80bb5075f5dd933c09b20caeddcf",
+     "7b40584540c162cda6debfd09a4c04321416706acdb03a7a3c2b41383dc585f4",
+     "20e44ea4dd8e53c9b0a076ce861136bbea86f52687019307f6e995cd9079d303",
+     "a68dae1c3670d07bcfa3476a1e37463c534594df5cd65d8dab0dca064b5a9fc1",
+     "e46caa7e440392a6cfa7a86421aead5bce8a2a229fec97b133429db6b6748e42",
+     "eaf0aefe2b4711c140fc3274223d88fdc38ad4ec2b7184f756a0f2471f3b0b54",
+     "6f6aafece90b34e33786647e14fee840f5424893995b3164cbb52953a5c4f14a"
+    ]
+   },
+   "tracked_subject": false,
+   "rerun_rule": "affected-only",
+   "invalidation": [
+    "source digest",
+    "candidate HEAD/tree",
+    "scope/token",
+    "runtime version",
+    "served arm",
+    "oracle"
+   ],
+   "terminal_verdict": "BLOCKED_EXTERNAL",
+   "runtime_pass_allowed": false,
+   "claim_level": "LOCAL"
+  },
+  {
+   "gate_id": "G-G",
+   "predicate": "本輪唯一允許前進者：publication set equality + currentness + scope/secrets，M1/M2/M3 完成後交 Maintainer 裁決 | Current Slot14 registered oracle, positive/negative/recovery and independent same-subject raw evidence",
+   "expected": "ARCHIVE_MERGE_CONDITION_M1M2M3",
+   "command_or_probe": "UNBOUND; discover actual runner after source/compiler/admission prerequisites",
+   "raw_receipt_required": true,
+   "producer": "Codex CLI opencode-go/deepseek-v4.1-flash; Hermes preflight separately attributed",
+   "independent_checker": "fresh read-only Codex CLI opencode-go/glm-5.3-flash and canonical AO",
+   "candidate_binding": {
+    "head": "NOT_CREATED",
+    "package_sha256": "96d9d564286743e17550ccef15b9952347901eb77168f930376938893cff9c3f",
+    "source_hashes": [
+     "8b78edebd79c8149a2b74e2a7f873e3116f772c881a501bd4600ea0e7a891f6b",
+     "6894a6ba08781f2ed5758af132f758c14c1a9e9b69d42056837f5ce45bba6c64",
+     "96d9d564286743e17550ccef15b9952347901eb77168f930376938893cff9c3f",
+     "7f7246d34be112bb465b48dadaef6163e466e16e5e705fc58acee04b3809a613",
+     "115912cdccbf5b3788fe1d6e1c8c10fe575252d72accf31cb6f1955dd8750974",
+     "48a3fdc5a0c65d4279c27ebc7586e747ba86c4bde82535cad2512d43547b4acb",
+     "9a8323e5237c1555a76d9a75f706e3552d79c192915cc782b76b211c7f27d527",
+     "03bb3609dc67f85fa4b683a93736cf162e9047b6b253182aa3fdba11ba40cb28",
+     "2790fe1d5bdbd751c475d7982f2381758e3b689f2723c63053b3eec4c24cb490",
+     "8fb3f73e176562946efb5844e73429ee59c96ab5d75f19aab99779122ecfc7de",
+     "a990132cf561348a33b7e6a2b65f3ec74fcc859568991126b5dff6685ac1d70a",
+     "15a8934934e85c771dfddb357f30599fcb90ec28b5577c38454b05832e674225",
+     "be3a672ec20aa0e6b5e0e35097fc08de749bfe7f59f827d18e38aef67dd68ea4",
+     "b753f2e5cdd5598a818f8a113d57b7f815aeb3f1dfa061ce74c76bb3553ac8c7",
+     "a021998dd3b63015e89af1dd40e0b413744a69b872da46c6bf5f4d92f7f23d0b",
+     "d89d82dcd2c8603ec6b86c5ec8c40845e4594bc181adf5272bd48a3de7c88f0f",
+     "fa64d84da3d747b183e4affff62f4d2fb86c80bb5075f5dd933c09b20caeddcf",
+     "7b40584540c162cda6debfd09a4c04321416706acdb03a7a3c2b41383dc585f4",
+     "20e44ea4dd8e53c9b0a076ce861136bbea86f52687019307f6e995cd9079d303",
+     "a68dae1c3670d07bcfa3476a1e37463c534594df5cd65d8dab0dca064b5a9fc1",
+     "e46caa7e440392a6cfa7a86421aead5bce8a2a229fec97b133429db6b6748e42",
+     "eaf0aefe2b4711c140fc3274223d88fdc38ad4ec2b7184f756a0f2471f3b0b54",
+     "6f6aafece90b34e33786647e14fee840f5424893995b3164cbb52953a5c4f14a"
+    ]
+   },
+   "tracked_subject": false,
+   "rerun_rule": "affected-only",
+   "invalidation": [
+    "source digest",
+    "candidate HEAD/tree",
+    "scope/token",
+    "runtime version",
+    "served arm",
+    "oracle"
+   ],
+   "terminal_verdict": "BLOCKED_EXTERNAL",
+   "runtime_pass_allowed": false,
+   "claim_level": "LOCAL"
+  },
+  {
+   "gate_id": "G-H",
+   "predicate": "PENDING_OWNER、4 WO OPEN、無 AO/Release（R7） | Current Slot14 registered oracle, positive/negative/recovery and independent same-subject raw evidence",
+   "expected": "R7_DEFERRED_NOT_CLOSED",
+   "command_or_probe": "UNBOUND; discover actual runner after source/compiler/admission prerequisites",
+   "raw_receipt_required": true,
+   "producer": "Codex CLI opencode-go/deepseek-v4.1-flash; Hermes preflight separately attributed",
+   "independent_checker": "fresh read-only Codex CLI opencode-go/glm-5.3-flash and canonical AO",
+   "candidate_binding": {
+    "head": "NOT_CREATED",
+    "package_sha256": "96d9d564286743e17550ccef15b9952347901eb77168f930376938893cff9c3f",
+    "source_hashes": [
+     "8b78edebd79c8149a2b74e2a7f873e3116f772c881a501bd4600ea0e7a891f6b",
+     "6894a6ba08781f2ed5758af132f758c14c1a9e9b69d42056837f5ce45bba6c64",
+     "96d9d564286743e17550ccef15b9952347901eb77168f930376938893cff9c3f",
+     "7f7246d34be112bb465b48dadaef6163e466e16e5e705fc58acee04b3809a613",
+     "115912cdccbf5b3788fe1d6e1c8c10fe575252d72accf31cb6f1955dd8750974",
+     "48a3fdc5a0c65d4279c27ebc7586e747ba86c4bde82535cad2512d43547b4acb",
+     "9a8323e5237c1555a76d9a75f706e3552d79c192915cc782b76b211c7f27d527",
+     "03bb3609dc67f85fa4b683a93736cf162e9047b6b253182aa3fdba11ba40cb28",
+     "2790fe1d5bdbd751c475d7982f2381758e3b689f2723c63053b3eec4c24cb490",
+     "8fb3f73e176562946efb5844e73429ee59c96ab5d75f19aab99779122ecfc7de",
+     "a990132cf561348a33b7e6a2b65f3ec74fcc859568991126b5dff6685ac1d70a",
+     "15a8934934e85c771dfddb357f30599fcb90ec28b5577c38454b05832e674225",
+     "be3a672ec20aa0e6b5e0e35097fc08de749bfe7f59f827d18e38aef67dd68ea4",
+     "b753f2e5cdd5598a818f8a113d57b7f815aeb3f1dfa061ce74c76bb3553ac8c7",
+     "a021998dd3b63015e89af1dd40e0b413744a69b872da46c6bf5f4d92f7f23d0b",
+     "d89d82dcd2c8603ec6b86c5ec8c40845e4594bc181adf5272bd48a3de7c88f0f",
+     "fa64d84da3d747b183e4affff62f4d2fb86c80bb5075f5dd933c09b20caeddcf",
+     "7b40584540c162cda6debfd09a4c04321416706acdb03a7a3c2b41383dc585f4",
+     "20e44ea4dd8e53c9b0a076ce861136bbea86f52687019307f6e995cd9079d303",
+     "a68dae1c3670d07bcfa3476a1e37463c534594df5cd65d8dab0dca064b5a9fc1",
+     "e46caa7e440392a6cfa7a86421aead5bce8a2a229fec97b133429db6b6748e42",
+     "eaf0aefe2b4711c140fc3274223d88fdc38ad4ec2b7184f756a0f2471f3b0b54",
+     "6f6aafece90b34e33786647e14fee840f5424893995b3164cbb52953a5c4f14a"
+    ]
+   },
+   "tracked_subject": false,
+   "rerun_rule": "affected-only",
+   "invalidation": [
+    "source digest",
+    "candidate HEAD/tree",
+    "scope/token",
+    "runtime version",
+    "served arm",
+    "oracle"
+   ],
+   "terminal_verdict": "BLOCKED_EXTERNAL",
+   "runtime_pass_allowed": false,
+   "claim_level": "LOCAL"
+  }
+ ],
+ "termination": {
+  "terminal_states": [
+   "CANDIDATE_READY_FOR_INDEPENDENT_REVIEW",
+   "INDEPENDENTLY_ACCEPTED",
+   "TEMP_CLOSED",
+   "FAIL"
+  ],
+  "non_terminal_pause": [
+   "ITERATION_BUDGET_PAUSE",
+   "SESSION_BOUNDARY",
+   "HITL_AUTHORITY_EDGE"
+  ],
+  "checkpoint_required": true,
+  "checkpoint_fields": [
+   "task_id",
+   "source_hashes",
+   "current_candidate",
+   "completed_gates",
+   "open_gates",
+   "next_work_order",
+   "rollback_pointer",
+   "typed_admission_ids",
+   "open_tt_cr",
+   "raw_evidence_refs",
+   "resume_condition"
+  ],
+  "retry_budget": 0,
+  "rollback_pointer_required": true
+ },
+ "render_policy": {
+  "control_corpus_restatement": false,
+  "embedded_control_bodies": [],
+  "max_prompt_chars": 30000,
+  "output_language": "zh-TW"
+ }
+}
