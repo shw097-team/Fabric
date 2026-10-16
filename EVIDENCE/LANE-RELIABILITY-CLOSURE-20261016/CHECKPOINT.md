@@ -76,6 +76,9 @@ or merged. `hgk_canonical_acceptance: NOT_PERFORMED`. Checker verdicts are advis
    checker correctly returned `UNCERTAIN` rather than fabricating; the brief was repaired and `V2` re-ran.
    See `FINDINGS_CHECKER_BRIEF_V1_WRITE_CONTRADICTION.md`.
 5. `E11` (five AO-guard cases) remains a named open residual from the previous round, unchanged.
+6. The round's **self-research / self-learning / self-iteration / self-evolution** record is
+   `RETROSPECTIVE.md` + `RETROSPECTIVE.json` (proposals P1–P6, all candidate-only and requiring owner
+   authorisation; nothing was adopted).
 
 ## 6. Next session's first moves
 

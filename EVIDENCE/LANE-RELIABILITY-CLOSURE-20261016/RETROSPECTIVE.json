@@ -1,0 +1,49 @@
+{
+  "schema": "HGK-ROUND-RETROSPECTIVE/1",
+  "round": "LANE-RELIABILITY-CLOSURE-20261016",
+  "claim_ceiling": "CANDIDATE_ONLY. A self-assessment by the party that did the work; proposals below are NOT adopted and require owner authorisation.",
+  "self_research": [
+    {
+      "finding": "A lane turn has a bounded editing budget and an unbounded command-execution budget; the wedge surface is command execution, not editing or reasoning.",
+      "evidence": "EXECUTE attempts BC1 and BC2 wedged at the 900 s timeout after each had written its first file; the same change set as an edit-only turn (BC3) completed in 74 s.",
+      "disconfirming_check": "BC1/BC2 receipts show required_arm == served_arm with a matching usage receipt, so the failure is attributable to turn shape, not to the arm."
+    },
+    {
+      "finding": "In a candidate-only round the strongest evidence is a before/after contrast across two roots rather than a pass at one.",
+      "evidence": "Identical fixtures returned exit 3 on the canonical root and exit 0 / allow / no-session-id-unattributable on the candidate root."
+    },
+    {
+      "finding": "Independent verification has a ceiling that is not 'agreement'; the checker stated it itself.",
+      "evidence": "V2 claim_B/claim_C AGREE, with the caveat 'These are declaration checks, not proof of actual backend effort.' Model selection is proven at the declaration and transport layer only."
+    },
+    {
+      "finding": "A contradiction inside a brief surfaces as a lane's refusal, not as self-review.",
+      "evidence": "The V1 checker brief both forbade all writes and required fixtures; the checker returned UNCERTAIN and named the contradiction. The defect was in the brief."
+    }
+  ],
+  "self_learning": [
+    {"rule": "Make EXECUTE turns edit-only; the orchestrator owns RED/GREEN.", "recorded_in": "hgk-kanban-and-lane-routing/references/bounded-writer-turn-shaping.md"},
+    {"rule": "Scope a checker brief's writes to its own work directory; never forbid a capability the brief requires; treat UNCERTAIN as a brief defect signal.", "recorded_in": "hgk-kanban-and-lane-routing/references/checker-brief-write-scope.md"},
+    {"rule": "Run one detection list at both roots; annotate root-dependent expectations instead of rewriting raw statuses.", "recorded_in": "hgk-kanban-and-lane-routing/references/detection-list-across-two-roots.md"},
+    {"rule": "Gate an evidence packet before publishing; verify the remote by git blob sha rather than by push output.", "recorded_in": "remote-repo-publication/references/packet-publication-gate.md"},
+    {"rule": "Terminate a wedged attempt only on measurement, and leave a TERMINATION.json.", "recorded_in": "hgk-kanban-and-lane-routing/references/lane-stall-triage.md"}
+  ],
+  "self_iteration": [
+    {"id": "P1", "proposal": "Adopt edit-only as the default EXECUTE turn shape with the oracle orchestrator-side.", "trigger": "any brief whose change set needs verification", "cost": "the lane receipt will not contain a GREEN; the orchestrator detection list becomes the primary oracle"},
+    {"id": "P2", "proposal": "Add a brief-lint step to the admission chain: does the brief forbid a capability it requires, and would a correct reader be forced into UNCERTAIN?", "trigger": "before any lane dispatch", "cost": "minutes; it would have saved a 413 s checker turn"},
+    {"id": "P3", "proposal": "Make the two-root detection list mandatory for candidate-only rounds.", "trigger": "any round with a candidate/canonical split", "cost": "one extra suite run"},
+    {"id": "P4", "proposal": "Require the lane runner itself to emit TERMINATION.json when a supervising process stops an attempt.", "trigger": "any orchestrator-stopped attempt", "cost": "small runner change"},
+    {"id": "P5", "proposal": "Price F1 (routes[].PLAN outlier) as a bounded rebind task with its own WorkOrder so it stops recurring as a residual.", "trigger": "this round's open finding F1", "cost": "one config change plus the conformance re-run"},
+    {"id": "P6", "proposal": "Record per round which lane shape was used and how many attempts it took (this round: 3 EXECUTE attempts, 1 success).", "trigger": "every round", "cost": "one field in the closure"}
+  ],
+  "self_evolution": {
+    "proposed_to_become_standing": ["P1", "P2", "P4"],
+    "must_not_be_inferred": [
+      "That the lanes are reliable in general. The supported claim is narrower: each of the three arms was served and identity-matched in the attempts that completed, on this host, in this session; 3 EXECUTE attempts produced 1 completing turn."
+    ],
+    "must_not_change": [
+      "The promotion gate. This round did not promote its own candidate even though its own proposals would have made that cheap; an agent that widens its own authority because its work looked good has no separation of duties left."
+    ],
+    "authorisation_required_from": "the owner; no agent may adopt these"
+  }
+}
