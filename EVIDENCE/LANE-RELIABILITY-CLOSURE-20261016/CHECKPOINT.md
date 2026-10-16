@@ -68,7 +68,9 @@ or merged. `hgk_canonical_acceptance: NOT_PERFORMED`. Checker verdicts are advis
 3. **EXECUTE lane-turn reliability** — attempts `BC1` and `BC2` wedged: first file written, then no
    progress, no socket, frozen CPU. `BC2` was terminated by the orchestrator on measurement, with a
    `TERMINATION.json` recording why and noting that the runner therefore never wrote its own receipt. The
-   cause is turn **shaping**, not the arm — both wedged turns still show the mandated arm served. The
+   cause is turn **shaping**, not the arm — but state it precisely: the identity gate passed only on `BC3`;
+   `BC1`'s attempt-level attribution names the mandated arm while its aggregate verdict is
+   `ok:false / usage_receipt_ok:false / served_arm:null`, and `BC2` carries no receipt at all. The
    remedy that worked was an **edit-only turn** (BC3, 74 s): remove test-running from the lane turn and
    keep the oracle orchestrator-side. Treat any lane turn that both edits and executes tests as a stall
    risk.

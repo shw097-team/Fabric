@@ -426,7 +426,7 @@
       },
       "status": "RECORDED",
       "evidence": "dispatch.json per attempt (never the verdict prose)",
-      "interpretation": "per-attempt receipts: BC1 TIMEOUT and BC3 ok, BOTH with required_arm == served_arm == opencode-go/deepseek-v4.1-flash and usage_receipt_ok true. BC2 has a TERMINATION record instead of a dispatch.json because the orchestrator stopped it."
+      "interpretation": "Read the two levels separately, because they disagree on a wedged attempt. BC3 (the turn that completed) satisfies the gate as an AGGREGATE verdict: required_arm == served_arm == opencode-go/deepseek-v4.1-flash, usage_receipt_ok true, rank 1, nonce present. BC1 (the wedged turn) does NOT: its aggregate verdict is ok:false / ERR_LANE_ALL_ROUTES_EXHAUSTED / usage_receipt_ok:false / served_arm:null, while only its ATTEMPT-level attribution names opencode-go/deepseek-v4.1-flash. BC2 has a TERMINATION record instead of a dispatch.json because the orchestrator stopped it, and so carries no arm claim at all. An attempt-level field is never the arm-identity gate."
     },
     "D14": {
       "expected": "checker window over the frozen subject: a real attempt with required_arm == served_arm, a clean subject-mutation verdict, and a verdict artifact",

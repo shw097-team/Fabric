@@ -11,8 +11,12 @@ reject each one cheaply.
    command execution is unbounded (a test runner, a process enumeration, anything that can open stdin).
    Evidence: two EXECUTE turns wedged at 900 s *after* writing their first file; the identical change set
    with test-running removed completed in **74 s**. The failure mode is therefore attributable to turn
-   *shape*, and the receipts prove it is not attributable to the arm — both wedged turns show
-   `required_arm == served_arm` with a matching usage receipt.
+   *shape*, and the arm is not the explanation — but state it precisely: the identity gate passed only on
+   **BC3** (the turn that completed). **BC1**'s attempt-level attribution names the mandated arm while its
+   aggregate verdict is `ok:false / usage_receipt_ok:false / served_arm:null`, so it does not establish arm
+   identity; **BC2** has no receipt at all. The first draft of this retrospective and the README read an
+   attempt-level field as the lane's verdict and were corrected in a follow-up commit — see
+   `FINDINGS_SELF_CORRECTION_BC1_ARM_CLAIM.md`.
 2. **The strongest evidence a candidate-only round can produce is a contrast, not a pass.** The same
    three fixtures returned `exit 3` on the canonical root and `exit 0 /
    no-session-id-unattributable` on the candidate root. A candidate-only detection list would have

@@ -6,7 +6,7 @@
     {
       "finding": "A lane turn has a bounded editing budget and an unbounded command-execution budget; the wedge surface is command execution, not editing or reasoning.",
       "evidence": "EXECUTE attempts BC1 and BC2 wedged at the 900 s timeout after each had written its first file; the same change set as an edit-only turn (BC3) completed in 74 s.",
-      "disconfirming_check": "BC1/BC2 receipts show required_arm == served_arm with a matching usage receipt, so the failure is attributable to turn shape, not to the arm."
+      "disconfirming_check": "The identity gate passed on BC3 alone (aggregate verdict: required_arm == served_arm == opencode-go/deepseek-v4.1-flash, usage_receipt_ok true, rank 1). BC1's ATTEMPT-level attribution names the mandated arm but its aggregate verdict is ok:false / usage_receipt_ok:false / served_arm:null, and BC2 has no receipt, so the arm claim is supported for the completing turn only. An attempt-level field is not the arm-identity gate."
     },
     {
       "finding": "In a candidate-only round the strongest evidence is a before/after contrast across two roots rather than a pass at one.",

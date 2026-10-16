@@ -38,13 +38,22 @@ measured live value; `source_of_routes` re-pinned. Backups and before/after sha2
 
 ## Lane receipts (verbatim, from each `dispatch.json`)
 
-| attempt | required arm | served arm | usage_receipt_ok | exit / outcome |
-|---|---|---|---|---|
-| EXECUTE/BC1 | opencode-go/deepseek-v4.1-flash | opencode-go/deepseek-v4.1-flash | True | TIMEOUT |
-| EXECUTE/BC2 | None | None | None | TERMINATED_BY_ORCHESTRATOR_AFTER_MEASURED_WEDGE |
-| EXECUTE/BC3 | opencode-go/deepseek-v4.1-flash | opencode-go/deepseek-v4.1-flash | True | None |
-| VERIFY_SECURITY/V1 | openai-codex/gpt-6.1-sol | openai-codex/gpt-6.1-sol | True | None |
-| VERIFY_SECURITY/V2 | openai-codex/gpt-6.1-sol | openai-codex/gpt-6.1-sol | True | None |
+| attempt | lane verdict (agg) | required arm (agg) | served arm (agg) | usage receipt (agg) | rank (agg) | attempt exit | attempt usage attribution | attempt usage receipt |
+|---|---|---|---|---|---|---|---|---|
+| EXECUTE/BC1 | FAIL ERR_LANE_ALL_ROUTES_EXHAUSTED | — | **null** | False | None | TIMEOUT | opencode-go/deepseek-v4.1-flash | True |
+| EXECUTE/BC2 | TERMINATED | — | **null** | None | None | TERMINATED_BY_ORCHESTRATOR_AFTER_MEASURED_WEDGE | — | None |
+| EXECUTE/BC3 | ok | opencode-go/deepseek-v4.1-flash | opencode-go/deepseek-v4.1-flash | True | 1 | None | opencode-go/deepseek-v4.1-flash | True |
+| VERIFY_SECURITY/V1 | ok | openai-codex/gpt-6.1-sol | openai-codex/gpt-6.1-sol | True | 1 | None | openai-p6a1fe3/gpt-6.1-sol | True |
+| VERIFY_SECURITY/V2 | ok | openai-codex/gpt-6.1-sol | openai-codex/gpt-6.1-sol | True | 1 | None | openai-p6a1fe3/gpt-6.1-sol | True |
+
+Two notes so the table above is not misread:
+
+1. **`served arm (agg)` is the identity gate; `attempt usage attribution` is not.** They can disagree, and on
+   BC1 they do: the attempt names the mandated arm while the aggregate verdict is a failure with
+   `served_arm` `null`. Read the gate from the aggregate columns. The `agg_*` / `attempt_*` split is deliberate.
+2. **`openai-p6a1fe3` is not a different arm from `openai-codex`.** For OpenAI-OAuth turns the usage ledger
+   records the pool-node id while the identity gate records the canonical provider, so the two columns show
+   the same arm at two layers. Same class of two-level naming as note 1, opposite direction: here they agree.
 
 ## Detection list — every item re-derived, none taken from a lane's own prose
 
@@ -80,9 +89,10 @@ measured live value; `source_of_routes` re-pinned. Backups and before/after sha2
 - F1-PLAN-ROUTE-ROW-OUTLIER: registry routes[].PLAN (opencode-go/glm-5.3-flash) disagrees with the pool, the registry SoD block, the conformance test and the owner mandate. Out of scope this round; remediation priced in FINDINGS_F1_PLAN_ROUTE_OUTLIER.md.
 - tests/test_lane_policy.py::test_registry_and_projection_shape is therefore RED on the canonical tree, and it is RED solely on F1 (the PLAN route row): both the test's other cases and everything else in the 7-module suite are green.
 - PLAN and VERIFY/SECURITY are the SAME model (openai-codex/gpt-6.1-sol): plan-vs-checker MODEL independence is ABSENT and is declared as SOD006-C2 OPEN_OWNER_ORDERED. Only process / lane / evidence-path independence remains.
-- EXECUTE lane-turn reliability: attempts BC1 and BC2 wedged (first file written, then no progress) and BC2 was terminated by the orchestrator on measurement. The cause is turn SHAPING, not the arm: BC1/BG3 receipts show the mandated arm served with a matching usage receipt. The remedy applied in-round was an EDIT-ONLY turn (BC3), which completed in 74 s. A lane that wedges twice on the same brief shape is a standing reliability caveat for future rounds.
+- EXECUTE lane-turn reliability: attempts BC1 and BC2 wedged (first file written, then no progress) and BC2 was terminated by the orchestrator on measurement. On the arm: the identity gate passed ONLY on BC3 (`required_arm == served_arm == opencode-go/deepseek-v4.1-flash`, `usage_receipt_ok: true`, rank 1). BC1's ATTEMPT-level attribution names the mandated arm (opencode-go/deepseek-v4.1-flash) but BC1's own aggregate verdict is `ok:false / ERR_LANE_ALL_ROUTES_EXHAUSTED / usage_receipt_ok:false / served_arm:null`, so BC1 does NOT establish arm identity; BC2 has no receipt at all and establishes nothing about the arm. Both fields are printed side by side in README's lane table for exactly this reason. The remedy applied in-round was an EDIT-ONLY turn (BC3), which completed in 74 s. A lane that wedges twice on the same brief shape is a standing reliability caveat for future rounds.
 - The claim that the lanes are reliable rests on ONE successful EXECUTE turn and the PLAN plane probes; the first two EXECUTE turns did not complete. That is stated as a count, not smoothed.
 - E11 (five AO-guard cases) remains a NAMED OPEN RESIDUAL from the previous round and is unchanged here.
+- SELF-CORRECTION published with this packet: the first commit described BC1's ATTEMPT-level fields as the lane's served arm and receipt verdict, which overstated it. See the corrections block above and FINDINGS_SELF_CORRECTION_BC1_ARM_CLAIM.md. A round that only ever corrects other people's work has not looked at its own.
 - The V1 checker brief was self-contradictory: it forbade every file write while requiring the checker to build mandate/pool fixtures. The checker refused to fabricate and returned UNCERTAIN with named_suite NOT_RUN; that refusal is why its other findings can be believed. The brief was repaired in-round to scope writes to the checker's own work directory, and V2 then seeded its own Shared Spine through the typed API with its own WorkOrder and CONFIRMED claim_B and claim_C. V1 is retained in the packet unedited: an acceptor is entitled to see that the first attempt did not agree and why.
 - The checker's V2 caveat is adopted verbatim: the effort-axis checks are DECLARATION checks. They prove the mandate, the declared pool arm and the declared served effort agree; they are NOT proof of the backend's actual reasoning effort.
 - Both checkers flagged registry integrity on the CANDIDATE copy (fatal /codex_sha256 drift, epoch 19). That is correct and expected: the candidate config/ is a pre-ChangeSet-A snapshot. ChangeSet A was applied to the CANONICAL config only, where canonical drift measures empty. The two facts are consistent, not contradictory, and both are published.
