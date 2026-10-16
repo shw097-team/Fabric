@@ -1,0 +1,53 @@
+{
+ "schema": "CNV-HYGIENE/SELF-EVOLUTION/1",
+ "round": "CNV-HYGIENE-README-CLOSURE-20261016",
+ "lessons": [
+  {
+   "id": "L1",
+   "lesson": "A measurement is not a premise. The audit called the front page 'pre-contract'; the verification found the contract, layout and ground rules already there, and only the status section stale. Read the artefact before ruling on it, or the ruling is fiction.",
+   "applied_to": "the ruling was narrowed from a rewrite to a refresh plus an appendix"
+  },
+  {
+   "id": "L2",
+   "lesson": "Batch status is not evidence of completeness. A killed driver can leave a board half-driven; the board must be read back before any card is reported done.",
+   "applied_to": "the board was re-read through the CLI and the histogram recorded"
+  },
+  {
+   "id": "L3",
+   "lesson": "Every subprocess call needs a bound. One unbounded CLI call turns a round into a hang with no output, which is the worst state to hand over.",
+   "applied_to": "each call in the second driver carries its own timeout and its own recorded exit"
+  },
+  {
+   "id": "L4",
+   "lesson": "A native tool must never be handed a python Path string. Backslashes are not a bash path; a silent no-op looks like a pass.",
+   "applied_to": "the validator was re-run with a forward-slash path and its output captured"
+  },
+  {
+   "id": "L5",
+   "lesson": "The readback is what catches the pack's own gaps: two of this round's three self-found defects were found only by comparing published bytes back.",
+   "applied_to": "the homepage was uploaded to the root and re-read; the receipt now records 10 of 10"
+  },
+  {
+   "id": "L6",
+   "lesson": "A check must be able to fail. Twelve injected mutations are what separate a check from a claim that a check exists.",
+   "applied_to": "SELF_CHECK_RECEIPT.json carries the mutation table and any undetected mutation by name"
+  },
+  {
+   "id": "L7",
+   "lesson": "A reader's verdict must be recorded where it can be read, not where the sandbox allows. When a checker cannot write, transcribe its output with the stream hash.",
+   "applied_to": "VERDICT.md carries the lane's stdout hash as provenance"
+  },
+  {
+   "id": "L8",
+   "lesson": "Deleting a ref is only reversible if the tip is recorded first. Hygiene without a rollback ref is destruction.",
+   "applied_to": "every removal recorded its tip commit and the exact restore command"
+  }
+ ],
+ "artifact_disclosure": {
+  "context_truncation": "large single-file writes were truncated by the context layer; the round's scripts were split into small files after the first attempt failed to land",
+  "hung_driver": "the first four-surface driver hung with a zero-byte log and was killed",
+  "same_model_lanes": "the writer and the checker ran the same mandated model; model-axis independence ABSENT",
+  "unmerged": "PR #16 is a candidate; the default branch is unchanged by this round's homepage work"
+ },
+ "claim_ceiling": "CANDIDATE_EVIDENCE_AND_HOMEPAGE_CANDIDATE_PUBLISHED_ONLY"
+}
