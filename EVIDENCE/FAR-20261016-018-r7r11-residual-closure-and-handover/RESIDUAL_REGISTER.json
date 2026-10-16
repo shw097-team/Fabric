@@ -1,0 +1,163 @@
+{
+ "schema": "FAR-20261016-018/RESIDUAL-REGISTER/1",
+ "generated_utc": "2026-10-16T11:30:56.803807+00:00",
+ "round": "FAR-20261016-018-r7r11-residual-closure-and-handover",
+ "claim_ceiling": "LOCAL",
+ "nonclaims": [
+  "no acceptance-report finding is claimed closed except those this register names as closed",
+  "the checker boundary demonstrated in A1 is ordinary OS denial, not an immutable boundary",
+  "no merge, release, cross-repo promotion or canonical control-plane edit was performed by this round",
+  "external acceptance remains with a real acceptance officer; canonical_AO_acceptance stays NOT_ISSUED"
+ ],
+ "inputs": {
+  "W1": {
+   "path": "W1_RESIDUAL_UNIVERSE.json",
+   "sha256": "5493d4abee20b68d6ac8c3a86ad311d86e08bdeb0e6aa80b786fcbac36534b80",
+   "items_as_reported": {
+    "total": 118,
+    "by_kind": {
+     "RESIDUAL": 18,
+     "GAP": 28,
+     "BLOCKED": 14,
+     "OWNER_DECISION": 14,
+     "UNLANDED_CANDIDATE": 13,
+     "CLOSED_ALREADY": 31
+    },
+    "by_authority": {
+     "agent-executable-now": 11,
+     "owner-gated": 58,
+     "other-round": 49
+    }
+   }
+  },
+  "W2": {
+   "path": "W2_DEFECT_DOSSIER.json",
+   "sha256": "05df0ac376ea33da1b970d843dd18cc46af482fa6409b93ca2f692eb6491e66a",
+   "defects_as_reported": 5
+  }
+ },
+ "recomputed_counts": {
+  "w1_items_total": 118,
+  "w1_by_kind": {
+   "UNLANDED_CANDIDATE": 13,
+   "BLOCKED": 14,
+   "OWNER_DECISION": 14,
+   "GAP": 28,
+   "CLOSED_ALREADY": 31,
+   "RESIDUAL": 18
+  },
+  "w1_by_authority": {
+   "other-round": 49,
+   "owner-gated": 58,
+   "agent-executable-now": 11
+  },
+  "w1_agent_executable_open": [
+   "MUTABLE-SOURCE-HASH-METADATA",
+   "CROSS-INDEX-PRESENCE-NONVacuity",
+   "SELF-CHECK-NONVacuity"
+  ],
+  "w2_defects": 5,
+  "w2_confirmed_defects": 4
+ },
+ "executable_now_actions": {
+  "actions": {
+   "A1": {
+    "title": "OS-enforced checker isolation harness (fail-able)",
+    "priority": "P0",
+    "closes": "mechanism half of EIA-20261016-02 / R7-03",
+    "artifact": "writer/checker_isolation_probe.py",
+    "residual_after": "an immutable, non-liftable boundary still needs a distinct OS identity (owner-gated OG6)"
+   },
+   "A2": {
+    "title": "de-vacuum the previous round's S8b check",
+    "priority": "P1",
+    "closes": "SELF-CHECK-NONVacutiy (found by W1)",
+    "artifact": "writer/self_check_v2.py"
+   },
+   "A3": {
+    "title": "reconstruct the skill index from verified pointers (partial)",
+    "priority": "P1",
+    "closes": "EIA-20261016-07 dangling reference",
+    "artifact": "writer/entry_map.json",
+    "residual_after": "the original index's full field set is unrecoverable from the pointers alone"
+   },
+   "A4": {
+    "title": "mutable-subject metadata semantics",
+    "priority": "P2",
+    "closes": "MUTABLE-SOURCE-HASH-METADATA (errata E2)",
+    "artifact": "writer/METADATA_SEMANTICS_V2.json"
+   },
+   "A5": {
+    "title": "de-vacuum the presence indicator",
+    "priority": "P2",
+    "closes": "CROSS-INDEX-PRESENCE-NONVacutiy (errata E4)",
+    "artifact": "writer/CROSS_INDEX_V2.json"
+   },
+   "A6": {
+    "title": "register + ruling + handover + single evidence MD + publish/readback",
+    "priority": "P0",
+    "closes": "the round's own closeout/handover obligation",
+    "artifact": "publish/payload/EVIDENCE_CLOSURE_FAR-20261016-018.md"
+   }
+  },
+  "evidence_present_at_registration": {
+   "A1": {
+    "evidence_present": true,
+    "artifact": "writer/checker_isolation_probe.py"
+   },
+   "A2": {
+    "evidence_present": true,
+    "artifact": "writer/self_check_v2.py"
+   },
+   "A3": {
+    "evidence_present": true,
+    "artifact": "writer/entry_map.json"
+   },
+   "A4": {
+    "evidence_present": true,
+    "artifact": "writer/METADATA_SEMANTICS_V2.json"
+   },
+   "A5": {
+    "evidence_present": true,
+    "artifact": "writer/CROSS_INDEX_V2.json"
+   },
+   "A6": {
+    "evidence_present": true,
+    "artifact": "publish/payload/EVIDENCE_CLOSURE_FAR-20261016-018.md"
+   }
+  },
+  "all_evidence_present": true
+ },
+ "owner_gated": {
+  "OG1": "peer chain #6/#8/#10 merge",
+  "OG2": "R7-02 validator cross-repo code promotion",
+  "OG3": "R7-04 Fresh G1 owner certificate",
+  "OG4": "canonical codex_executable pin repair",
+  "OG5": "KP R04 polarity (20 clauses) + source#6 status",
+  "OG6": "immutable checker boundary (distinct OS identity)",
+  "OG7": "PR #12 promotion out of draft",
+  "OG8": "guard predicate precision (runtime plane)"
+ },
+ "previous_round_state": {
+  "main_sha": "312baa0ee2aa591000959cc878bb978a31c89796",
+  "evidence_chain_merged": {
+   "4": "12cdeefe5ff5",
+   "5": "b03962313596",
+   "7": "c1debccd8bd0",
+   "9": "74431eb24564",
+   "11": "312baa0ee2aa"
+  },
+  "peer_chain_open": [
+   6,
+   8,
+   10
+  ],
+  "packet_pr": 12,
+  "packet_draft": true
+ },
+ "final_verdicts": {
+  "full_convergence_verdict": "TEMP_CLOSED_CHALLENGE",
+  "production_verdict": "FAIL_CLOSED",
+  "canonical_AO_acceptance": "NOT_ISSUED"
+ }
+}

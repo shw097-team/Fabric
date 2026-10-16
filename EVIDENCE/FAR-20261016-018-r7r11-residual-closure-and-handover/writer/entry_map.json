@@ -1,0 +1,96 @@
+{
+  "schema": "FAR018/ENTRY-MAP/1",
+  "skill_path": "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/skills/software-development/hgk-governed-execution",
+  "generation_method": "parse every SKCV-POINTER line under references/*.md; resolve target relative to the skill dir (strip leading `skill/`); verify sha256(bytes[offset:offset+length])",
+  "pointers": [
+    {
+      "pointer_file": "references/external-acceptance-single-md-closure.md",
+      "pointer_line": 1,
+      "label": "external-evidence-closure",
+      "target": "references/topics/external-evidence-closure.md",
+      "offset": 2912,
+      "length": 5544,
+      "slice_len_actual": 5544,
+      "claimed_sha256": "5af0c9dfd49aa60faca75a8b0ce7fa7bb624d6c02f18e07c6f116f102540c688",
+      "actual_sha256": "5af0c9dfd49aa60faca75a8b0ce7fa7bb624d6c02f18e07c6f116f102540c688",
+      "verdict": "VERIFIED"
+    },
+    {
+      "pointer_file": "references/external-challenge-evidence-closure-far.md",
+      "pointer_line": 1,
+      "label": "external-evidence-closure",
+      "target": "references/topics/external-evidence-closure.md",
+      "offset": 15900,
+      "length": 5363,
+      "slice_len_actual": 5363,
+      "claimed_sha256": "9412dfe386962e8e71280dbc129e16dfe89a93cb6c91e93c90390ffe1a157505",
+      "actual_sha256": "9412dfe386962e8e71280dbc129e16dfe89a93cb6c91e93c90390ffe1a157505",
+      "verdict": "VERIFIED"
+    },
+    {
+      "pointer_file": "references/external-challenge-review-closure.md",
+      "pointer_line": 1,
+      "label": "external-evidence-closure",
+      "target": "references/topics/external-evidence-closure.md",
+      "offset": 21446,
+      "length": 10097,
+      "slice_len_actual": 10097,
+      "claimed_sha256": "85fc306679893ece6233bd26b1157b2735fc97efd6729571e23f6d9cca13a7aa",
+      "actual_sha256": "85fc306679893ece6233bd26b1157b2735fc97efd6729571e23f6d9cca13a7aa",
+      "verdict": "VERIFIED"
+    },
+    {
+      "pointer_file": "references/external-single-md-mandatory-route.md",
+      "pointer_line": 1,
+      "label": "external-evidence-closure",
+      "target": "references/topics/external-evidence-closure.md",
+      "offset": 181,
+      "length": 2546,
+      "slice_len_actual": 2546,
+      "claimed_sha256": "975407d870df5443901ce90a4ff32cbc9b5a2bc6b5dce6a998c1b9c1ece8f682",
+      "actual_sha256": "975407d870df5443901ce90a4ff32cbc9b5a2bc6b5dce6a998c1b9c1ece8f682",
+      "verdict": "VERIFIED"
+    },
+    {
+      "pointer_file": "references/external-submission-gates.md",
+      "pointer_line": 1,
+      "label": "external-evidence-closure",
+      "target": "references/topics/external-evidence-closure.md",
+      "offset": 8629,
+      "length": 7083,
+      "slice_len_actual": 7083,
+      "claimed_sha256": "8525b204cc789419123321b49a0f61dea65216f9eecce1a313754feb27d3c7b0",
+      "actual_sha256": "8525b204cc789419123321b49a0f61dea65216f9eecce1a313754feb27d3c7b0",
+      "verdict": "VERIFIED"
+    }
+  ],
+  "destination_topic_files": [
+    "references/topics/codex-lane-execution-and-workspace-write.md",
+    "references/topics/construction-wave-and-remaining-procedures.md",
+    "references/topics/external-evidence-closure.md",
+    "references/topics/lane-bootstrap-and-guard-notes.md"
+  ],
+  "coverage": {
+    "status": "PARTIAL",
+    "basis": "reconstructed only from `SKCV-POINTER` lines discovered under references/*.md; the original index file is absent",
+    "covers": [
+      "pointer_file",
+      "target",
+      "offset",
+      "length",
+      "claimed_sha256",
+      "actual_sha256",
+      "verdict",
+      "destination topic files"
+    ],
+    "does_not_cover": [
+      "the original index's full field set: per-topic titles/summaries",
+      "topic-to-source provenance beyond the byte-slice pointer",
+      "the skill's ordering/priority metadata for each entry",
+      "any entry that was never emitted as a SKCV-POINTER move record",
+      "SKCV-TOPIC-ENTRY lines inside topic files (a different record type; their slices resolve against the topic file itself, not a source file)"
+    ],
+    "note": "Presence of a verified pointer proves the byte slice moved verbatim; it is not a claim that the reconstructed index is complete."
+  },
+  "claim_ceiling": "byte-slice move verification only; NOT an independent acceptance and NOT a claim the original index is restored"
+}

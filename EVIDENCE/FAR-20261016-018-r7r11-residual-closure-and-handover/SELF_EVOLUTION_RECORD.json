@@ -1,0 +1,46 @@
+{
+ "schema": "FAR-20261016-018/SELF-EVOLUTION/1",
+ "generated_utc": "2026-10-16T11:30:48.708584+00:00",
+ "governed_by": "FABRIC & HGK",
+ "learned": [
+  {
+   "lesson": "A guard on a not-yet-generated artifact makes the whole dispatch fail closed.",
+   "why": "the dispatcher refuses rather than reporting a vacuous clean subject.",
+   "change": "generate every guard root before assembling the guard set",
+   "where_recorded": "skill hgk-governed-execution / references/codex-lane-dispatch-and-probe-pitfalls.md"
+  },
+  {
+   "lesson": "A fixed-path lane receipt loses the refused attempt's first-fail when a retry succeeds.",
+   "why": "the retry overwrites the file at turn end; the failure evidence vanishes silently.",
+   "change": "copy an existing receipt aside or use attempt-numbered receipt paths",
+   "where_recorded": "same reference"
+  },
+  {
+   "lesson": "A checker whose sandbox is read-only cannot execute a harness that writes or edits ACLs, so it must return UNVERIFIABLE, not AGREE.",
+   "why": "correct refusal; the round's job is then to narrow the claim, not to argue.",
+   "change": "state in the brief which claims are source-checkable and which need execution, and pre-record the maker-side executions so the checker at least sees their receipts",
+   "where_recorded": "same reference"
+  },
+  {
+   "lesson": "Search-and-reuse and prompt de-duplication are in direct tension.",
+   "why": "reusing a governance scaffold produced 0.596 shingle similarity, which the duplication gate flags as self-plagiarism even though the executed prompt was newly authored.",
+   "change": "scope the duplication gate to the executed prompt, not the plan contract",
+   "where_recorded": "same reference"
+  },
+  {
+   "lesson": "A plan document's filename is not part of the plan's content.",
+   "why": "both recon lanes spent time locating it; content with the document is what matters.",
+   "change": "state the absolute path of every referenced plan file in each brief",
+   "where_recorded": "same reference"
+  },
+  {
+   "lesson": "A self-check whose success argument is a literal is worse than no check.",
+   "why": "the previous round's S8b could never fail and its computed guard was dead code; an independent lane proved it by AST scan.",
+   "change": "every probe must ship a mutation the probe is required to catch; the round's own harness now runs 14 injected mutations and refuses a verdict without them",
+   "where_recorded": "same reference"
+  }
+ ],
+ "changed_in_this_round": [],
+ "verification_of_change": "each lesson is recorded with the artifact that evidenced it; the harness change (self_check.py --negative-control) is exercised in SELF_CHECK_RECEIPT.json",
+ "claim_ceiling": "LOCAL"
+}

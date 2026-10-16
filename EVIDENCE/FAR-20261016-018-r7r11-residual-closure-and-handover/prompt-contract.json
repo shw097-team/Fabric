@@ -1,0 +1,1401 @@
+{
+ "schema": "CAPC-PROMPT-CONTRACT/1",
+ "task_id": "FAR-20261016-018-r7r11-residual-closure-and-handover",
+ "source_scan": {
+  "required_source_families": [
+   "current_user_instruction",
+   "product_authority",
+   "external_review",
+   "execution_controls",
+   "knowledge_pack",
+   "repo_state"
+  ],
+  "reviewed": [
+   {
+    "source_family": "current_user_instruction",
+    "source_id": "SRC-FAR018-MANDATE",
+    "locator": "(owner message in this session, 2026-10-16)",
+    "sha256": "UNAVAILABLE",
+    "role": "NORMATIVE",
+    "critical": true
+   },
+   {
+    "source_family": "product_authority",
+    "source_id": "SRC-PKG",
+    "locator": "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\HG-KSEOS\\Fabric_HG-KSEOS_Convergence\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md",
+    "sha256": "96d9d564286743e17550ccef15b9952347901eb77168f930376938893cff9c3f",
+    "role": "NORMATIVE",
+    "critical": true
+   },
+   {
+    "source_family": "external_review",
+    "source_id": "SRC-EIA-R7R11",
+    "locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_Convergence_R7_R11_Independent_Acceptance_20261016.md",
+    "sha256": "e4f9a487aa49a7f11bd90332e3aef1b660a9df80cc748fe0fef54f68191b1103",
+    "role": "NORMATIVE",
+    "critical": true
+   },
+   {
+    "source_family": "execution_controls",
+    "source_id": "SRC-PREV-ROUND",
+    "locator": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-EVIDENCE-ARCHIVE-R7R11-20261016\\packet\\RETURN_PACK.json",
+    "sha256": "a5b6379fc8d3073c97a58b7e155fc6f603dd4471ffeafd5463f3a850d20b0666",
+    "role": "NORMATIVE",
+    "critical": true
+   },
+   {
+    "source_family": "knowledge_pack",
+    "source_id": "SRC-SKILL-HGK",
+    "locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\skills\\software-development\\hgk-governed-execution\\SKILL.md",
+    "sha256": "80a235f09e8b3ad17177b7d1aec5305d902b7d454a4c37fb55597d986d4516da",
+    "role": "NORMATIVE",
+    "critical": true
+   },
+   {
+    "source_family": "repo_state",
+    "source_id": "SRC-FAR-RUN",
+    "locator": "C:\\Projects\\Agent_Workspace\\Fabric\\fabric-autonomous-research\\runs\\FAR-20261016-018-r7r11-residual-closure-and-handover\\DECISION_QUESTION.md",
+    "sha256": "01590560ebd86a7530ccd70e65a6be4a84a3f97aba85d7791d7a30f889bad1a9",
+    "role": "NORMATIVE",
+    "critical": true
+   }
+  ],
+  "missing": [],
+  "normative_claims": [
+   {
+    "claim_id": "NC-001",
+    "text": "This round is a governed FAR research round whose executable actions are the low-friction, agent-authorised subset of its own ruling; owner-gated items are prepared, never attempted.",
+    "source_ids": [
+     "SRC-FAR018-MANDATE",
+     "SRC-EIA-R7R11"
+    ],
+    "locators": [
+     "owner mandate",
+     "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_Convergence_R7_R11_Independent_Acceptance_20261016.md"
+    ]
+   },
+   {
+    "claim_id": "NC-002",
+    "text": "Remote publication is evidence-only: no product code, no policy, no workflow and no hook is modified in the target repository, and no existing merged evidence is rewritten.",
+    "source_ids": [
+     "SRC-PKG",
+     "SRC-PREV-ROUND"
+    ],
+    "locators": [
+     "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\HG-KSEOS\\Fabric_HG-KSEOS_Convergence\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md"
+    ]
+   },
+   {
+    "claim_id": "NC-003",
+    "text": "Writer and checker run on different model axes; the checker arm is pinned by --require-arm because the verification pool's rank-1 arm is the writer's own model.",
+    "source_ids": [
+     "SRC-FAR018-MANDATE"
+    ],
+    "locators": [
+     "owner mandate"
+    ]
+   },
+   {
+    "claim_id": "NC-004",
+    "text": "The acceptance report's P0 findings are closed only by their own 1:1 oracle; an archive merge, a file's existence or a green aggregate is not that oracle.",
+    "source_ids": [
+     "SRC-EIA-R7R11"
+    ],
+    "locators": [
+     "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_Convergence_R7_R11_Independent_Acceptance_20261016.md"
+    ]
+   },
+   {
+    "claim_id": "NC-005",
+    "text": "Every count in the evidence pack is derived from artifacts on disk by a script and is re-derivable by an independent lane.",
+    "source_ids": [
+     "SRC-FAR018-MANDATE"
+    ],
+    "locators": [
+     "owner mandate"
+    ]
+   }
+  ]
+ },
+ "intent": {
+  "goal": "Under the Fabric governance contract with HG-KSEOS as the sole control plane and canonical Hermes as its governed Runtime/Orchestration Plane, run the FAR method (run id FAR-20261016-018) over every residual, gap, blocked item, owner-decision item, unlanded candidate asset and session closeout/handover obligation left by the R7-R11 evidence-archive round; state one ranked engineering ruling whose executable actions are low-friction, high-feasibility, high-necessity, not over-engineered and aligned with the upper blueprint and the acceptance report; then execute that ruling, because the owner has pre-authorised its execution, and publish the evidence.",
+  "user_expected_outcome": "A ranked ruling with a machine-readable residual register; the agent-executable actions actually executed with raw receipts (a measured checker-isolation probe, the reconstructed skill entry map, a reproducible lane-defect dossier, a session handover checkpoint); the owner-gated items prepared in one-action form; and a published, readback-bound evidence pack for external acceptance.",
+  "user_expected_experience": "The operator supplies only the goal, the source roots and the credential path; the system reads the sources itself, resolves the branches, reuses the existing HG-KSEOS lanes, admits the work through the shared spine, preflights, repairs minimally only where required, publishes through the credential broker, and reports per-PR URL, final SHA and archival decision. Only real power nodes stop for human decision.",
+  "explicit_constraints": [
+   "HG-KSEOS remains the sole control plane; no second scheduler, reducer, DB, board or evidence authority is created.",
+   "Remote publication is evidence-only under a single new EVIDENCE/ prefix; no existing evidence is rewritten.",
+   "The maker never self-accepts; the checker lane is pinned cross-model and may not write to the subject.",
+   "Owner-gated items (merge, release, cross-repo code promotion, canonical control-plane edits, product-host ACL) are prepared, not attempted.",
+   "Every probe must be able to fail, and must be shown failing, before it is shown passing.",
+   "Counts live inside artifacts; a number that exists only in chat is unverifiable.",
+   "The registry is read, never edited, to make a measurement come out right.",
+   "Credential values are read only by a local broker process and never printed or committed."
+  ],
+  "non_goals": [
+   "Full 221-case / G-A-H convergence, production promotion, or any RUNTIME_READY claim.",
+   "Promoting the R7-02 validator code into the PIPD repository, or merging the peer chain #6/#8/#10.",
+   "Promoting PR #12 out of draft, or editing any merged R6-R11 evidence.",
+   "Re-slimming the two already-slimmed skills, or treating the reference-count soft warning as a hard gate.",
+   "Building a new governance plane, virtualization layer or verifier system to close the isolation finding."
+  ],
+  "authorized_mutations": [
+   "Create one new EVIDENCE/ prefix in shw097-team/Fabric holding this round's evidence pack (additive commits on a new branch).",
+   "Create the round's own probe scripts, receipts and registers under the round's handover directory.",
+   "Reconstruct the missing entry_map.json index for the HGK skill from the skill's own verified SKCV pointer lines (local asset, additive; no existing byte altered).",
+   "Create the session handover/closure artifacts and the FAR run's own METHOD/DECISION_QUESTION/EXECUTION_RECORD documents."
+  ],
+  "forbidden_mutations": [
+   "Editing config/lane-routing-registry.yaml, config/lane-route-slots.candidate.json or any canonical control-plane file.",
+   "Editing, deleting or force-updating any branch or evidence already merged into main.",
+   "Merging any pull request, promoting any draft, tagging or releasing.",
+   "Executing any archived .py/.ps1 helper from an evidence tree.",
+   "Printing, committing or transmitting the credential value."
+  ],
+  "expected_autonomy": "HIGH",
+  "allowed_hitl": [
+   "Owner-scoped merge of the peer chain #6/#8/#10.",
+   "Owner-scoped promotion or merge of PR #12.",
+   "Cross-repo validator code promotion (R7-02) and the Fresh G1 owner certificate (R7-04).",
+   "Any canonical control-plane or product-host ACL change.",
+   "Any expansion of this round's change class beyond EVIDENCE_ONLY."
+  ],
+  "requested_delivery": [
+   "DEL-FAR-RULING",
+   "DEL-RESIDUAL-UNIVERSE",
+   "DEL-DEFECT-DOSSIER",
+   "DEL-HANDOVER-CHECKPOINT",
+   "DEL-SINGLE-EVIDENCE-MD"
+  ],
+  "active_requirement_ids": [
+   "REQ-CNV-EA-001",
+   "REQ-CNV-EA-002",
+   "REQ-CNV-EA-003",
+   "REQ-CNV-EA-004",
+   "REQ-CNV-EA-005",
+   "REQ-CNV-EA-006"
+  ],
+  "claim_ceiling": "LOCAL"
+ },
+ "authority": {
+  "sources": [
+   {
+    "id": "SRC-FAR018-MANDATE",
+    "rank": "R1",
+    "path": "(session text)",
+    "sha256": "UNAVAILABLE",
+    "locator": "owner mandate, this session",
+    "role": "NORMATIVE",
+    "governs": true
+   },
+   {
+    "id": "SRC-PKG",
+    "rank": "R2",
+    "path": "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\HG-KSEOS\\Fabric_HG-KSEOS_Convergence\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md",
+    "sha256": "96d9d564286743e17550ccef15b9952347901eb77168f930376938893cff9c3f",
+    "locator": "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\HG-KSEOS\\Fabric_HG-KSEOS_Convergence\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md",
+    "role": "NORMATIVE",
+    "governs": true
+   },
+   {
+    "id": "SRC-EIA-R7R11",
+    "rank": "R3",
+    "path": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_Convergence_R7_R11_Independent_Acceptance_20261016.md",
+    "sha256": "e4f9a487aa49a7f11bd90332e3aef1b660a9df80cc748fe0fef54f68191b1103",
+    "locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_Convergence_R7_R11_Independent_Acceptance_20261016.md",
+    "role": "NORMATIVE",
+    "governs": true
+   },
+   {
+    "id": "SRC-PREV-ROUND",
+    "rank": "R4",
+    "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-EVIDENCE-ARCHIVE-R7R11-20261016\\packet\\RETURN_PACK.json",
+    "sha256": "a5b6379fc8d3073c97a58b7e155fc6f603dd4471ffeafd5463f3a850d20b0666",
+    "locator": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-EVIDENCE-ARCHIVE-R7R11-20261016\\packet\\RETURN_PACK.json",
+    "role": "NORMATIVE",
+    "governs": true
+   },
+   {
+    "id": "SRC-SKILL-HGK",
+    "rank": "R5",
+    "path": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\skills\\software-development\\hgk-governed-execution\\SKILL.md",
+    "sha256": "80a235f09e8b3ad17177b7d1aec5305d902b7d454a4c37fb55597d986d4516da",
+    "locator": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\skills\\software-development\\hgk-governed-execution\\SKILL.md",
+    "role": "NORMATIVE",
+    "governs": true
+   },
+   {
+    "id": "SRC-FAR-RUN",
+    "rank": "R6",
+    "path": "C:\\Projects\\Agent_Workspace\\Fabric\\fabric-autonomous-research\\runs\\FAR-20261016-018-r7r11-residual-closure-and-handover\\DECISION_QUESTION.md",
+    "sha256": "01590560ebd86a7530ccd70e65a6be4a84a3f97aba85d7791d7a30f889bad1a9",
+    "locator": "C:\\Projects\\Agent_Workspace\\Fabric\\fabric-autonomous-research\\runs\\FAR-20261016-018-r7r11-residual-closure-and-handover\\DECISION_QUESTION.md",
+    "role": "NORMATIVE",
+    "governs": true
+   }
+  ],
+  "conflicts": [],
+  "missing_sources": [],
+  "native_control_plane_ids": [
+   "HGK_SHARED_SPINE"
+  ],
+  "current_control_plane_id": "HGK_SHARED_SPINE"
+ },
+ "changeset": {
+  "class": "EVIDENCE_ONLY",
+  "baseline_required": true,
+  "baseline_verified": true,
+  "reuse_prior_pass": true,
+  "affected_domains": [
+   "evidence",
+   "verification",
+   "local_asset_repair",
+   "handover"
+  ],
+  "affected_files": [
+   "EVIDENCE/FAR-20261016-018-r7r11-residual-closure-and-handover/** (new prefix, this round's pack)",
+   "Fabric/fabric-autonomous-research/runs/FAR-20261016-018-*/{METHOD.md,DECISION_QUESTION.md,EXECUTION_RECORD.md}",
+   "hermes/skills/software-development/hgk-governed-execution/entry_map.json (reconstructed index)",
+   "_handover/FAR-20261016-018-r7r11-residual-closure-and-handover/** (round receipts and probes)"
+  ],
+  "must_not_reopen": [
+   "PR #3..#11 merged evidence",
+   "PR #12 draft packet snapshot",
+   "canonical lane registry and route slots",
+   "the published R6-R11 FAIL/NOT_RUN receipts",
+   "the R7-02/R7-03/R7-04 owner decisions",
+   "the 221-case applicability question"
+  ],
+  "scope_expansion_requires_hitl": true,
+  "tracked_mutation": true,
+  "product_mutation_allowed": false
+ },
+ "execution_scope": [
+  {
+   "capability": "ARCHIVE_PREFIX_AND_CHANGE_CLASS_PREFLIGHT",
+   "source_disposition": "SOURCE_REQUIRED",
+   "current_execution_disposition": "ACTIVE_REQUIRED",
+   "current_profile_selected": true,
+   "canonical_flow_referenced": true,
+   "automatic_route_target": true,
+   "user_experience_required": true,
+   "runtime_required_now": true,
+   "action": "ENABLE",
+   "source_locators": [
+    "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\HG-KSEOS\\Fabric_HG-KSEOS_Convergence\\PROMPT\\Fabric × Hermes × HG-KSEOS｜R7～R11 外部驗收後續作「指揮薄 PROMPT」.md#6 (A03)"
+   ],
+   "external_method": false,
+   "control_authority": false
+  },
+  {
+   "capability": "TRUSTED_SECRETS_AND_MANIFEST_PREFLIGHT",
+   "source_disposition": "SOURCE_REQUIRED",
+   "current_execution_disposition": "ACTIVE_REQUIRED",
+   "current_profile_selected": true,
+   "canonical_flow_referenced": true,
+   "automatic_route_target": true,
+   "user_experience_required": true,
+   "runtime_required_now": true,
+   "action": "ENABLE",
+   "source_locators": [
+    "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\HG-KSEOS\\Fabric_HG-KSEOS_Convergence\\PROMPT\\Fabric × Hermes × HG-KSEOS｜R7～R11 外部驗收後續作「指揮薄 PROMPT」.md#6 (A04/A05)"
+   ],
+   "external_method": false,
+   "control_authority": false
+  },
+  {
+   "capability": "PER_PR_FREEZE_AND_ROLLBACK_POINTER",
+   "source_disposition": "SOURCE_REQUIRED",
+   "current_execution_disposition": "ACTIVE_REQUIRED",
+   "current_profile_selected": true,
+   "canonical_flow_referenced": true,
+   "automatic_route_target": true,
+   "user_experience_required": true,
+   "runtime_required_now": true,
+   "action": "ENABLE",
+   "source_locators": [
+    "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\HG-KSEOS\\Fabric_HG-KSEOS_Convergence\\PROMPT\\Fabric × Hermes × HG-KSEOS｜R7～R11 外部驗收後續作「指揮薄 PROMPT」.md#6 (A07)"
+   ],
+   "external_method": false,
+   "control_authority": false
+  },
+  {
+   "capability": "MAINTAINER_APPROVAL_GATE",
+   "source_disposition": "SOURCE_REQUIRED",
+   "current_execution_disposition": "ACTIVE_REQUIRED",
+   "current_profile_selected": true,
+   "canonical_flow_referenced": true,
+   "automatic_route_target": true,
+   "user_experience_required": true,
+   "runtime_required_now": true,
+   "action": "ENABLE",
+   "source_locators": [
+    "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\HG-KSEOS\\Fabric_HG-KSEOS_Convergence\\PROMPT\\Fabric × Hermes × HG-KSEOS｜R7～R11 外部驗收後續作「指揮薄 PROMPT」.md#6 (A07)"
+   ],
+   "external_method": false,
+   "control_authority": false
+  },
+  {
+   "capability": "REMOTE_MERGE_AND_READBACK",
+   "source_disposition": "SOURCE_REQUIRED",
+   "current_execution_disposition": "ACTIVE_REQUIRED",
+   "current_profile_selected": true,
+   "canonical_flow_referenced": true,
+   "automatic_route_target": true,
+   "user_experience_required": true,
+   "runtime_required_now": true,
+   "action": "ENABLE",
+   "source_locators": [
+    "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\HG-KSEOS\\Fabric_HG-KSEOS_Convergence\\PROMPT\\Fabric × Hermes × HG-KSEOS｜R7～R11 外部驗收後續作「指揮薄 PROMPT」.md#6 (A08)"
+   ],
+   "external_method": false,
+   "control_authority": false
+  },
+  {
+   "capability": "K_LEDGER_METADATA_ERRATA",
+   "source_disposition": "SOURCE_REQUIRED",
+   "current_execution_disposition": "ACTIVE_REQUIRED",
+   "current_profile_selected": true,
+   "canonical_flow_referenced": true,
+   "automatic_route_target": true,
+   "user_experience_required": true,
+   "runtime_required_now": true,
+   "action": "ENABLE",
+   "source_locators": [
+    "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\HG-KSEOS\\Fabric_HG-KSEOS_Convergence\\PROMPT\\Fabric × Hermes × HG-KSEOS｜R7～R11 外部驗收後續作「指揮薄 PROMPT」.md#6 (A09)"
+   ],
+   "external_method": false,
+   "control_authority": false
+  },
+  {
+   "capability": "EIA_FINDING_DISPOSITION_MATRIX",
+   "source_disposition": "SOURCE_REQUIRED",
+   "current_execution_disposition": "ACTIVE_REQUIRED",
+   "current_profile_selected": true,
+   "canonical_flow_referenced": true,
+   "automatic_route_target": true,
+   "user_experience_required": true,
+   "runtime_required_now": true,
+   "action": "ENABLE",
+   "source_locators": [
+    "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\HG-KSEOS\\Fabric_HG-KSEOS_Convergence\\PROMPT\\Fabric × Hermes × HG-KSEOS｜R7～R11 外部驗收後續作「指揮薄 PROMPT」.md#6 (A09)"
+   ],
+   "external_method": false,
+   "control_authority": false
+  },
+  {
+   "capability": "EVIDENCE_RETURN_PACK_PUBLICATION",
+   "source_disposition": "SOURCE_REQUIRED",
+   "current_execution_disposition": "ACTIVE_REQUIRED",
+   "current_profile_selected": true,
+   "canonical_flow_referenced": true,
+   "automatic_route_target": true,
+   "user_experience_required": true,
+   "runtime_required_now": true,
+   "action": "ENABLE",
+   "source_locators": [
+    "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\HG-KSEOS\\Fabric_HG-KSEOS_Convergence\\PROMPT\\Fabric × Hermes × HG-KSEOS｜R7～R11 外部驗收後續作「指揮薄 PROMPT」.md#6 (A10)"
+   ],
+   "external_method": false,
+   "control_authority": false
+  }
+ ],
+ "runtime_readiness": [
+  {
+   "capability": "ARCHIVE_PREFIX_AND_CHANGE_CLASS_PREFLIGHT",
+   "required_now": true,
+   "lifecycle": {
+    "identify": "OPEN",
+    "pin": "OPEN",
+    "install_materialize": "OPEN",
+    "configure": "OPEN",
+    "discover": "BLOCKED_HITL",
+    "bind": "BLOCKED_HITL",
+    "route": "BLOCKED_HITL",
+    "effective_load": "BLOCKED_HITL",
+    "doctor_health": "OPEN",
+    "positive_pilot": "OPEN",
+    "negative_security": "OPEN",
+    "fallback": "OPEN",
+    "rollback_uninstall": "OPEN",
+    "independent_qualification": "OPEN",
+    "certify": "OPEN",
+    "enable": "OPEN"
+   },
+   "current_verdict": "NOT_READY",
+   "work_required": [
+    "Re-derive each PR's live HEAD, exact changed-file set and single evidence prefix, and re-derive change_class so any escape invalidates the evidence-only exception."
+   ],
+   "acceptance_ids": [
+    "ACC-ARCHIVE_PREFIX_AND_CHANGE_CLASS_PREFLIGHT"
+   ]
+  },
+  {
+   "capability": "TRUSTED_SECRETS_AND_MANIFEST_PREFLIGHT",
+   "required_now": true,
+   "lifecycle": {
+    "identify": "OPEN",
+    "pin": "OPEN",
+    "install_materialize": "OPEN",
+    "configure": "OPEN",
+    "discover": "BLOCKED_HITL",
+    "bind": "BLOCKED_HITL",
+    "route": "BLOCKED_HITL",
+    "effective_load": "BLOCKED_HITL",
+    "doctor_health": "OPEN",
+    "positive_pilot": "OPEN",
+    "negative_security": "OPEN",
+    "fallback": "OPEN",
+    "rollback_uninstall": "OPEN",
+    "independent_qualification": "OPEN",
+    "certify": "OPEN",
+    "enable": "OPEN"
+   },
+   "current_verdict": "NOT_READY",
+   "work_required": [
+    "Trusted secrets/privacy scan over every changed blob plus deterministic manifest-vs-tracked-set checks performed OUTSIDE the PR, without executing archived helpers."
+   ],
+   "acceptance_ids": [
+    "ACC-TRUSTED_SECRETS_AND_MANIFEST_PREFLIGHT"
+   ]
+  },
+  {
+   "capability": "PER_PR_FREEZE_AND_ROLLBACK_POINTER",
+   "required_now": true,
+   "lifecycle": {
+    "identify": "OPEN",
+    "pin": "OPEN",
+    "install_materialize": "OPEN",
+    "configure": "OPEN",
+    "discover": "BLOCKED_HITL",
+    "bind": "BLOCKED_HITL",
+    "route": "BLOCKED_HITL",
+    "effective_load": "BLOCKED_HITL",
+    "doctor_health": "OPEN",
+    "positive_pilot": "OPEN",
+    "negative_security": "OPEN",
+    "fallback": "OPEN",
+    "rollback_uninstall": "OPEN",
+    "independent_qualification": "OPEN",
+    "certify": "OPEN",
+    "enable": "OPEN"
+   },
+   "current_verdict": "NOT_READY",
+   "work_required": [
+    "Freeze each PR separately on repo/base/head/prefix/diff with its own rollback pointer and approval record; never one atomic transaction."
+   ],
+   "acceptance_ids": [
+    "ACC-PER_PR_FREEZE_AND_ROLLBACK_POINTER"
+   ]
+  },
+  {
+   "capability": "MAINTAINER_APPROVAL_GATE",
+   "required_now": true,
+   "lifecycle": {
+    "identify": "OPEN",
+    "pin": "OPEN",
+    "install_materialize": "OPEN",
+    "configure": "OPEN",
+    "discover": "BLOCKED_HITL",
+    "bind": "BLOCKED_HITL",
+    "route": "BLOCKED_HITL",
+    "effective_load": "BLOCKED_HITL",
+    "doctor_health": "OPEN",
+    "positive_pilot": "OPEN",
+    "negative_security": "OPEN",
+    "fallback": "OPEN",
+    "rollback_uninstall": "OPEN",
+    "independent_qualification": "OPEN",
+    "certify": "OPEN",
+    "enable": "OPEN"
+   },
+   "current_verdict": "NOT_READY",
+   "work_required": [
+    "A real repository maintainer grants one prefix + actual HEAD + candidate-only/no-auto-execute + rollback approval per PR; never self-signed by maker or reviewer."
+   ],
+   "acceptance_ids": [
+    "ACC-MAINTAINER_APPROVAL_GATE"
+   ]
+  },
+  {
+   "capability": "REMOTE_MERGE_AND_READBACK",
+   "required_now": true,
+   "lifecycle": {
+    "identify": "OPEN",
+    "pin": "OPEN",
+    "install_materialize": "OPEN",
+    "configure": "OPEN",
+    "discover": "BLOCKED_HITL",
+    "bind": "BLOCKED_HITL",
+    "route": "BLOCKED_HITL",
+    "effective_load": "BLOCKED_HITL",
+    "doctor_health": "OPEN",
+    "positive_pilot": "OPEN",
+    "negative_security": "OPEN",
+    "fallback": "OPEN",
+    "rollback_uninstall": "OPEN",
+    "independent_qualification": "OPEN",
+    "certify": "OPEN",
+    "enable": "OPEN"
+   },
+   "current_verdict": "NOT_READY",
+   "work_required": [
+    "Ordered merge by the authorised maintainer followed by main/merge-SHA/tree-prefix readback and a recomputed preflight."
+   ],
+   "acceptance_ids": [
+    "ACC-REMOTE_MERGE_AND_READBACK"
+   ]
+  },
+  {
+   "capability": "K_LEDGER_METADATA_ERRATA",
+   "required_now": true,
+   "lifecycle": {
+    "identify": "OPEN",
+    "pin": "OPEN",
+    "install_materialize": "OPEN",
+    "configure": "OPEN",
+    "discover": "BLOCKED_HITL",
+    "bind": "BLOCKED_HITL",
+    "route": "BLOCKED_HITL",
+    "effective_load": "BLOCKED_HITL",
+    "doctor_health": "OPEN",
+    "positive_pilot": "OPEN",
+    "negative_security": "OPEN",
+    "fallback": "OPEN",
+    "rollback_uninstall": "OPEN",
+    "independent_qualification": "OPEN",
+    "certify": "OPEN",
+    "enable": "OPEN"
+   },
+   "current_verdict": "NOT_READY",
+   "work_required": [
+    "Add new-version crosswalk metadata separating source_linked 20/20 from same_run_retested 0/20 without rewriting the historical snapshot."
+   ],
+   "acceptance_ids": [
+    "ACC-K_LEDGER_METADATA_ERRATA"
+   ]
+  },
+  {
+   "capability": "EIA_FINDING_DISPOSITION_MATRIX",
+   "required_now": true,
+   "lifecycle": {
+    "identify": "OPEN",
+    "pin": "OPEN",
+    "install_materialize": "OPEN",
+    "configure": "OPEN",
+    "discover": "BLOCKED_HITL",
+    "bind": "BLOCKED_HITL",
+    "route": "BLOCKED_HITL",
+    "effective_load": "BLOCKED_HITL",
+    "doctor_health": "OPEN",
+    "positive_pilot": "OPEN",
+    "negative_security": "OPEN",
+    "fallback": "OPEN",
+    "rollback_uninstall": "OPEN",
+    "independent_qualification": "OPEN",
+    "certify": "OPEN",
+    "enable": "OPEN"
+   },
+   "current_verdict": "NOT_READY",
+   "work_required": [
+    "Carry all ten EIA-20261016 findings with class, earliest legal owner, blocking point and minimum re-test."
+   ],
+   "acceptance_ids": [
+    "ACC-EIA_FINDING_DISPOSITION_MATRIX"
+   ]
+  },
+  {
+   "capability": "EVIDENCE_RETURN_PACK_PUBLICATION",
+   "required_now": true,
+   "lifecycle": {
+    "identify": "OPEN",
+    "pin": "OPEN",
+    "install_materialize": "OPEN",
+    "configure": "OPEN",
+    "discover": "BLOCKED_HITL",
+    "bind": "BLOCKED_HITL",
+    "route": "BLOCKED_HITL",
+    "effective_load": "BLOCKED_HITL",
+    "doctor_health": "OPEN",
+    "positive_pilot": "OPEN",
+    "negative_security": "OPEN",
+    "fallback": "OPEN",
+    "rollback_uninstall": "OPEN",
+    "independent_qualification": "OPEN",
+    "certify": "OPEN",
+    "enable": "OPEN"
+   },
+   "current_verdict": "NOT_READY",
+   "work_required": [
+    "Publish the machine-readable return pack plus the single evidence MD through the credential broker and mirror it byte-identically."
+   ],
+   "acceptance_ids": [
+    "ACC-EVIDENCE_RETURN_PACK_PUBLICATION"
+   ]
+  }
+ ],
+ "journeys": [
+  {
+   "journey_id": "JNY-ARCHIVE-R7R11",
+   "required": true,
+   "user_goal": "Hand the goal, the source roots and the credential path to a governed runtime and receive per-PR archival verdicts for the eight candidate evidence pull requests.",
+   "expected_visible_result": "Eight rows, each with URL, before/after HEAD, changed set, minimal errata, trusted scan, maintainer approval reference, merge and readback SHA, nonclaims, blocked first-fail and rollback pointer.",
+   "expected_automatic_behavior": [
+    "source ledger with exact locator, hash, missing and status",
+    "prompt compiler C0-C9 lint, activation, acceptance and compile",
+    "HGK typed admission plus Kanban, Swarm, OpenSpec and gstack execution surfaces",
+    "per-PR head, prefix and change-class preflight",
+    "trusted secrets and manifest preflight outside the PR",
+    "credential-broker publication",
+    "machine-readable evidence return pack"
+   ],
+   "expected_manual_behavior": [
+    "grant the evidence-prefix publication approval",
+    "authorise the remote merge as repository maintainer"
+   ],
+   "allowed_hitl": [
+    "evidence-prefix publication approval",
+    "remote merge decision"
+   ],
+   "required_capabilities": [
+    "ARCHIVE_PREFIX_AND_CHANGE_CLASS_PREFLIGHT",
+    "TRUSTED_SECRETS_AND_MANIFEST_PREFLIGHT",
+    "PER_PR_FREEZE_AND_ROLLBACK_POINTER",
+    "MAINTAINER_APPROVAL_GATE",
+    "REMOTE_MERGE_AND_READBACK",
+    "K_LEDGER_METADATA_ERRATA",
+    "EIA_FINDING_DISPOSITION_MATRIX",
+    "EVIDENCE_RETURN_PACK_PUBLICATION"
+   ],
+   "negative_behavior": [
+    "no product code touched",
+    "no force push",
+    "no self-issued verdict",
+    "no second control plane",
+    "no credential value exported"
+   ],
+   "failure_recovery": [
+    "single-PR checkpoint",
+    "smallest affected repair",
+    "resume from checkpoint"
+   ],
+   "source_expectation_ids": [
+    "SRC-PROMPT-R7R11-COMMAND",
+    "SRC-PKG"
+   ],
+   "source_locators": [
+    "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\HG-KSEOS\\Fabric_HG-KSEOS_Convergence\\PROMPT\\Fabric × Hermes × HG-KSEOS｜R7～R11 外部驗收後續作「指揮薄 PROMPT」.md#5",
+    "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\HG-KSEOS\\Fabric_HG-KSEOS_Convergence\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md"
+   ]
+  }
+ ],
+ "acceptance": [
+  {
+   "acceptance_id": "ACC-ARCHIVE_PREFIX_AND_CHANGE_CLASS_PREFLIGHT",
+   "subject_id": "ARCHIVE_PREFIX_AND_CHANGE_CLASS_PREFLIGHT",
+   "subject_type": "CAPABILITY",
+   "source_locators": [
+    "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\HG-KSEOS\\Fabric_HG-KSEOS_Convergence\\PROMPT\\Fabric × Hermes × HG-KSEOS｜R7～R11 外部驗收後續作「指揮薄 PROMPT」.md#6 (A03)"
+   ],
+   "runtime_required": true,
+   "required_depth": "L3_INTEGRATION_RUNTIME",
+   "positive_fixture": "Re-derive each PR's live HEAD, exact changed-file set and single evidence prefix, and re-derive change_class so any escape invalidates the evidence-only exception. Positive control: the mandated input is accepted and leaves a raw receipt.",
+   "negative_fixture": "Refusal case on the same fixture: a prefix escape, leaked value, missing approval or drifted HEAD is refused with its own typed code, with a positive control that must succeed.",
+   "recovery_fixture": "Smallest affected repair for the single affected pull request plus a checkpoint that resumes there.",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "BLOCKED_HITL"
+   ]
+  },
+  {
+   "acceptance_id": "ACC-TRUSTED_SECRETS_AND_MANIFEST_PREFLIGHT",
+   "subject_id": "TRUSTED_SECRETS_AND_MANIFEST_PREFLIGHT",
+   "subject_type": "CAPABILITY",
+   "source_locators": [
+    "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\HG-KSEOS\\Fabric_HG-KSEOS_Convergence\\PROMPT\\Fabric × Hermes × HG-KSEOS｜R7～R11 外部驗收後續作「指揮薄 PROMPT」.md#6 (A04/A05)"
+   ],
+   "runtime_required": true,
+   "required_depth": "L3_INTEGRATION_RUNTIME",
+   "positive_fixture": "Trusted secrets/privacy scan over every changed blob plus deterministic manifest-vs-tracked-set checks performed OUTSIDE the PR, without executing archived helpers. Positive control: the mandated input is accepted and leaves a raw receipt.",
+   "negative_fixture": "Refusal case on the same fixture: a prefix escape, leaked value, missing approval or drifted HEAD is refused with its own typed code, with a positive control that must succeed.",
+   "recovery_fixture": "Smallest affected repair for the single affected pull request plus a checkpoint that resumes there.",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "BLOCKED_HITL"
+   ]
+  },
+  {
+   "acceptance_id": "ACC-PER_PR_FREEZE_AND_ROLLBACK_POINTER",
+   "subject_id": "PER_PR_FREEZE_AND_ROLLBACK_POINTER",
+   "subject_type": "CAPABILITY",
+   "source_locators": [
+    "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\HG-KSEOS\\Fabric_HG-KSEOS_Convergence\\PROMPT\\Fabric × Hermes × HG-KSEOS｜R7～R11 外部驗收後續作「指揮薄 PROMPT」.md#6 (A07)"
+   ],
+   "runtime_required": true,
+   "required_depth": "L3_INTEGRATION_RUNTIME",
+   "positive_fixture": "Freeze each PR separately on repo/base/head/prefix/diff with its own rollback pointer and approval record; never one atomic transaction. Positive control: the mandated input is accepted and leaves a raw receipt.",
+   "negative_fixture": "Refusal case on the same fixture: a prefix escape, leaked value, missing approval or drifted HEAD is refused with its own typed code, with a positive control that must succeed.",
+   "recovery_fixture": "Smallest affected repair for the single affected pull request plus a checkpoint that resumes there.",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "BLOCKED_HITL"
+   ]
+  },
+  {
+   "acceptance_id": "ACC-MAINTAINER_APPROVAL_GATE",
+   "subject_id": "MAINTAINER_APPROVAL_GATE",
+   "subject_type": "CAPABILITY",
+   "source_locators": [
+    "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\HG-KSEOS\\Fabric_HG-KSEOS_Convergence\\PROMPT\\Fabric × Hermes × HG-KSEOS｜R7～R11 外部驗收後續作「指揮薄 PROMPT」.md#6 (A07)"
+   ],
+   "runtime_required": true,
+   "required_depth": "L3_INTEGRATION_RUNTIME",
+   "positive_fixture": "A real repository maintainer grants one prefix + actual HEAD + candidate-only/no-auto-execute + rollback approval per PR; never self-signed by maker or reviewer. Positive control: the mandated input is accepted and leaves a raw receipt.",
+   "negative_fixture": "Refusal case on the same fixture: a prefix escape, leaked value, missing approval or drifted HEAD is refused with its own typed code, with a positive control that must succeed.",
+   "recovery_fixture": "Smallest affected repair for the single affected pull request plus a checkpoint that resumes there.",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "BLOCKED_HITL"
+   ]
+  },
+  {
+   "acceptance_id": "ACC-REMOTE_MERGE_AND_READBACK",
+   "subject_id": "REMOTE_MERGE_AND_READBACK",
+   "subject_type": "CAPABILITY",
+   "source_locators": [
+    "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\HG-KSEOS\\Fabric_HG-KSEOS_Convergence\\PROMPT\\Fabric × Hermes × HG-KSEOS｜R7～R11 外部驗收後續作「指揮薄 PROMPT」.md#6 (A08)"
+   ],
+   "runtime_required": true,
+   "required_depth": "L3_INTEGRATION_RUNTIME",
+   "positive_fixture": "Ordered merge by the authorised maintainer followed by main/merge-SHA/tree-prefix readback and a recomputed preflight. Positive control: the mandated input is accepted and leaves a raw receipt.",
+   "negative_fixture": "Refusal case on the same fixture: a prefix escape, leaked value, missing approval or drifted HEAD is refused with its own typed code, with a positive control that must succeed.",
+   "recovery_fixture": "Smallest affected repair for the single affected pull request plus a checkpoint that resumes there.",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "BLOCKED_HITL"
+   ]
+  },
+  {
+   "acceptance_id": "ACC-K_LEDGER_METADATA_ERRATA",
+   "subject_id": "K_LEDGER_METADATA_ERRATA",
+   "subject_type": "CAPABILITY",
+   "source_locators": [
+    "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\HG-KSEOS\\Fabric_HG-KSEOS_Convergence\\PROMPT\\Fabric × Hermes × HG-KSEOS｜R7～R11 外部驗收後續作「指揮薄 PROMPT」.md#6 (A09)"
+   ],
+   "runtime_required": true,
+   "required_depth": "L3_INTEGRATION_RUNTIME",
+   "positive_fixture": "Add new-version crosswalk metadata separating source_linked 20/20 from same_run_retested 0/20 without rewriting the historical snapshot. Positive control: the mandated input is accepted and leaves a raw receipt.",
+   "negative_fixture": "Refusal case on the same fixture: a prefix escape, leaked value, missing approval or drifted HEAD is refused with its own typed code, with a positive control that must succeed.",
+   "recovery_fixture": "Smallest affected repair for the single affected pull request plus a checkpoint that resumes there.",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "BLOCKED_HITL"
+   ]
+  },
+  {
+   "acceptance_id": "ACC-EIA_FINDING_DISPOSITION_MATRIX",
+   "subject_id": "EIA_FINDING_DISPOSITION_MATRIX",
+   "subject_type": "CAPABILITY",
+   "source_locators": [
+    "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\HG-KSEOS\\Fabric_HG-KSEOS_Convergence\\PROMPT\\Fabric × Hermes × HG-KSEOS｜R7～R11 外部驗收後續作「指揮薄 PROMPT」.md#6 (A09)"
+   ],
+   "runtime_required": true,
+   "required_depth": "L3_INTEGRATION_RUNTIME",
+   "positive_fixture": "Carry all ten EIA-20261016 findings with class, earliest legal owner, blocking point and minimum re-test. Positive control: the mandated input is accepted and leaves a raw receipt.",
+   "negative_fixture": "Refusal case on the same fixture: a prefix escape, leaked value, missing approval or drifted HEAD is refused with its own typed code, with a positive control that must succeed.",
+   "recovery_fixture": "Smallest affected repair for the single affected pull request plus a checkpoint that resumes there.",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "BLOCKED_HITL"
+   ]
+  },
+  {
+   "acceptance_id": "ACC-EVIDENCE_RETURN_PACK_PUBLICATION",
+   "subject_id": "EVIDENCE_RETURN_PACK_PUBLICATION",
+   "subject_type": "CAPABILITY",
+   "source_locators": [
+    "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\HG-KSEOS\\Fabric_HG-KSEOS_Convergence\\PROMPT\\Fabric × Hermes × HG-KSEOS｜R7～R11 外部驗收後續作「指揮薄 PROMPT」.md#6 (A10)"
+   ],
+   "runtime_required": true,
+   "required_depth": "L3_INTEGRATION_RUNTIME",
+   "positive_fixture": "Publish the machine-readable return pack plus the single evidence MD through the credential broker and mirror it byte-identically. Positive control: the mandated input is accepted and leaves a raw receipt.",
+   "negative_fixture": "Refusal case on the same fixture: a prefix escape, leaked value, missing approval or drifted HEAD is refused with its own typed code, with a positive control that must succeed.",
+   "recovery_fixture": "Smallest affected repair for the single affected pull request plus a checkpoint that resumes there.",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "BLOCKED_HITL"
+   ]
+  },
+  {
+   "acceptance_id": "ACC-JNY-ARCHIVE-R7R11",
+   "subject_id": "JNY-ARCHIVE-R7R11",
+   "subject_type": "JOURNEY",
+   "source_locators": [
+    "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\HG-KSEOS\\Fabric_HG-KSEOS_Convergence\\PROMPT\\Fabric × Hermes × HG-KSEOS｜R7～R11 外部驗收後續作「指揮薄 PROMPT」.md#5"
+   ],
+   "runtime_required": true,
+   "required_depth": "L3_INTEGRATION_RUNTIME",
+   "positive_fixture": "An ordinary operator hands over goal, sources and credential path and receives eight per-PR archival verdicts without naming any internal lane.",
+   "negative_fixture": "A run that reports readiness without a per-PR readback, or that exports a credential value, is refused.",
+   "recovery_fixture": "Blocked-HITL pause with a checkpoint naming the single missing approval.",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "BLOCKED_HITL"
+   ]
+  },
+  {
+   "acceptance_id": "ACC-REQ-CNV-EA-001",
+   "subject_id": "REQ-CNV-EA-001",
+   "subject_type": "REQUIREMENT",
+   "source_locators": [
+    "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\HG-KSEOS\\Fabric_HG-KSEOS_Convergence\\PROMPT\\Fabric × Hermes × HG-KSEOS｜R7～R11 外部驗收後續作「指揮薄 PROMPT」.md#6 (A03)"
+   ],
+   "runtime_required": true,
+   "required_depth": "L3_INTEGRATION_RUNTIME",
+   "positive_fixture": "Every one of the eight PRs is bound to its live HEAD and a single allowed evidence prefix; no product/control/CI/hook/credential path appears in any changed set.",
+   "negative_fixture": "The same requirement asserted from a summary or a file listing instead of raw output is refused.",
+   "recovery_fixture": "Single-PR checkpoint naming the exact first-fail code.",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "BLOCKED_HITL"
+   ]
+  },
+  {
+   "acceptance_id": "ACC-REQ-CNV-EA-002",
+   "subject_id": "REQ-CNV-EA-002",
+   "subject_type": "REQUIREMENT",
+   "source_locators": [
+    "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\HG-KSEOS\\Fabric_HG-KSEOS_Convergence\\PROMPT\\Fabric × Hermes × HG-KSEOS｜R7～R11 外部驗收後續作「指揮薄 PROMPT」.md#6 (A04/A05)"
+   ],
+   "runtime_required": true,
+   "required_depth": "L3_INTEGRATION_RUNTIME",
+   "positive_fixture": "A trusted secrets/privacy scan over the eight changed sets reports zero leaked real secrets, or an evidence-backed false-positive ruling.",
+   "negative_fixture": "The same requirement asserted from a summary or a file listing instead of raw output is refused.",
+   "recovery_fixture": "Single-PR checkpoint naming the exact first-fail code.",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "BLOCKED_HITL"
+   ]
+  },
+  {
+   "acceptance_id": "ACC-REQ-CNV-EA-003",
+   "subject_id": "REQ-CNV-EA-003",
+   "subject_type": "REQUIREMENT",
+   "source_locators": [
+    "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\HG-KSEOS\\Fabric_HG-KSEOS_Convergence\\PROMPT\\Fabric × Hermes × HG-KSEOS｜R7～R11 外部驗收後續作「指揮薄 PROMPT」.md#6 (A07)"
+   ],
+   "runtime_required": true,
+   "required_depth": "L3_INTEGRATION_RUNTIME",
+   "positive_fixture": "Each PR carries a real maintainer approval covering one prefix, the actual HEAD, candidate-only/no-auto-execute and a rollback pointer.",
+   "negative_fixture": "The same requirement asserted from a summary or a file listing instead of raw output is refused.",
+   "recovery_fixture": "Single-PR checkpoint naming the exact first-fail code.",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "BLOCKED_HITL"
+   ]
+  },
+  {
+   "acceptance_id": "ACC-REQ-CNV-EA-004",
+   "subject_id": "REQ-CNV-EA-004",
+   "subject_type": "REQUIREMENT",
+   "source_locators": [
+    "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\HG-KSEOS\\Fabric_HG-KSEOS_Convergence\\PROMPT\\Fabric × Hermes × HG-KSEOS｜R7～R11 外部驗收後續作「指揮薄 PROMPT」.md#6 (A08)"
+   ],
+   "runtime_required": true,
+   "required_depth": "L3_INTEGRATION_RUNTIME",
+   "positive_fixture": "Each merge is followed by a remote readback of main, the merge commit and the tree prefix; an unapproved PR stays Draft/Open.",
+   "negative_fixture": "The same requirement asserted from a summary or a file listing instead of raw output is refused.",
+   "recovery_fixture": "Single-PR checkpoint naming the exact first-fail code.",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "BLOCKED_HITL"
+   ]
+  },
+  {
+   "acceptance_id": "ACC-REQ-CNV-EA-005",
+   "subject_id": "REQ-CNV-EA-005",
+   "subject_type": "REQUIREMENT",
+   "source_locators": [
+    "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\HG-KSEOS\\Fabric_HG-KSEOS_Convergence\\PROMPT\\Fabric × Hermes × HG-KSEOS｜R7～R11 外部驗收後續作「指揮薄 PROMPT」.md#6 (A09)"
+   ],
+   "runtime_required": true,
+   "required_depth": "L3_INTEGRATION_RUNTIME",
+   "positive_fixture": "K-ledger semantics are corrected in NEW metadata only: 20/20 source-linked and 0/20 same-run retested, with the historical status counts preserved.",
+   "negative_fixture": "The same requirement asserted from a summary or a file listing instead of raw output is refused.",
+   "recovery_fixture": "Single-PR checkpoint naming the exact first-fail code.",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "BLOCKED_HITL"
+   ]
+  },
+  {
+   "acceptance_id": "ACC-REQ-CNV-EA-006",
+   "subject_id": "REQ-CNV-EA-006",
+   "subject_type": "REQUIREMENT",
+   "source_locators": [
+    "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\HG-KSEOS\\Fabric_HG-KSEOS_Convergence\\PROMPT\\Fabric × Hermes × HG-KSEOS｜R7～R11 外部驗收後續作「指揮薄 PROMPT」.md#6 (A10)"
+   ],
+   "runtime_required": true,
+   "required_depth": "L3_INTEGRATION_RUNTIME",
+   "positive_fixture": "The return pack reports every unknown as null or NOT_RUN and no claim above CANDIDATE_EVIDENCE_ARCHIVED_ONLY.",
+   "negative_fixture": "The same requirement asserted from a summary or a file listing instead of raw output is refused.",
+   "recovery_fixture": "Single-PR checkpoint naming the exact first-fail code.",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "BLOCKED_HITL"
+   ]
+  },
+  {
+   "acceptance_id": "ACC-DEL-PER-PR-PREFLIGHT-VERDICT",
+   "subject_id": "DEL-PER-PR-PREFLIGHT-VERDICT",
+   "subject_type": "DELIVERABLE",
+   "source_locators": [
+    "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\HG-KSEOS\\Fabric_HG-KSEOS_Convergence\\PROMPT\\Fabric × Hermes × HG-KSEOS｜R7～R11 外部驗收後續作「指揮薄 PROMPT」.md#8 (A03)"
+   ],
+   "runtime_required": true,
+   "required_depth": "L3_INTEGRATION_RUNTIME",
+   "positive_fixture": "The deliverable exists with an exact candidate binding, producer, independent checker and raw references.",
+   "negative_fixture": "A deliverable naming a file that does not exist, or claiming a verdict it did not receive, is refused.",
+   "recovery_fixture": "Regenerate the deliverable from raw receipts only.",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "BLOCKED_HITL"
+   ]
+  },
+  {
+   "acceptance_id": "ACC-DEL-CONVERGENCE-EVIDENCE-RETURN-PACK",
+   "subject_id": "DEL-CONVERGENCE-EVIDENCE-RETURN-PACK",
+   "subject_type": "DELIVERABLE",
+   "source_locators": [
+    "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\HG-KSEOS\\Fabric_HG-KSEOS_Convergence\\PROMPT\\Fabric × Hermes × HG-KSEOS｜R7～R11 外部驗收後續作「指揮薄 PROMPT」.md#8 (A10)"
+   ],
+   "runtime_required": true,
+   "required_depth": "L3_INTEGRATION_RUNTIME",
+   "positive_fixture": "The deliverable exists with an exact candidate binding, producer, independent checker and raw references.",
+   "negative_fixture": "A deliverable naming a file that does not exist, or claiming a verdict it did not receive, is refused.",
+   "recovery_fixture": "Regenerate the deliverable from raw receipts only.",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "BLOCKED_HITL"
+   ]
+  },
+  {
+   "acceptance_id": "ACC-DEL-SINGLE-EVIDENCE-MD",
+   "subject_id": "DEL-SINGLE-EVIDENCE-MD",
+   "subject_type": "DELIVERABLE",
+   "source_locators": [
+    "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\HG-KSEOS\\Fabric_HG-KSEOS_Convergence\\PROMPT\\Fabric × Hermes × HG-KSEOS｜R7～R11 外部驗收後續作「指揮薄 PROMPT」.md#8 (A10)"
+   ],
+   "runtime_required": true,
+   "required_depth": "L3_INTEGRATION_RUNTIME",
+   "positive_fixture": "The deliverable exists with an exact candidate binding, producer, independent checker and raw references.",
+   "negative_fixture": "A deliverable naming a file that does not exist, or claiming a verdict it did not receive, is refused.",
+   "recovery_fixture": "Regenerate the deliverable from raw receipts only.",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "BLOCKED_HITL"
+   ]
+  },
+  {
+   "acceptance_id": "ACC-DEL-EIA-FINDING-DISPOSITION-MATRIX",
+   "subject_id": "DEL-EIA-FINDING-DISPOSITION-MATRIX",
+   "subject_type": "DELIVERABLE",
+   "source_locators": [
+    "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\HG-KSEOS\\Fabric_HG-KSEOS_Convergence\\PROMPT\\Fabric × Hermes × HG-KSEOS｜R7～R11 外部驗收後續作「指揮薄 PROMPT」.md#8 (A09)"
+   ],
+   "runtime_required": true,
+   "required_depth": "L3_INTEGRATION_RUNTIME",
+   "positive_fixture": "The deliverable exists with an exact candidate binding, producer, independent checker and raw references.",
+   "negative_fixture": "A deliverable naming a file that does not exist, or claiming a verdict it did not receive, is refused.",
+   "recovery_fixture": "Regenerate the deliverable from raw receipts only.",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "BLOCKED_HITL"
+   ]
+  },
+  {
+   "acceptance_id": "ACC-DEL-FAR-RULING",
+   "subject_id": "DEL-FAR-RULING",
+   "subject_type": "DELIVERABLE",
+   "source_locators": [
+    "(owner mandate, this session, 2026-10-16)"
+   ],
+   "runtime_required": true,
+   "required_depth": "L3_INTEGRATION_RUNTIME",
+   "positive_fixture": "DEL-FAR-RULING: the artifact exists, is produced by a script from artifacts on disk, and an independent lane re-derives its counts and verdicts from primary sources. Positive control: the mandated input is accepted and leaves a raw receipt.",
+   "negative_fixture": "Refusal case on the same fixture: a missing, hand-written or non-re-derivable value is refused with its own typed code, with a positive control that must succeed on the same run.",
+   "recovery_fixture": "Regenerate the deliverable from raw receipts only.",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "BLOCKED_HITL"
+   ]
+  },
+  {
+   "acceptance_id": "ACC-DEL-RESIDUAL-UNIVERSE",
+   "subject_id": "DEL-RESIDUAL-UNIVERSE",
+   "subject_type": "DELIVERABLE",
+   "source_locators": [
+    "(owner mandate, this session, 2026-10-16)"
+   ],
+   "runtime_required": true,
+   "required_depth": "L3_INTEGRATION_RUNTIME",
+   "positive_fixture": "DEL-RESIDUAL-UNIVERSE: the artifact exists, is produced by a script from artifacts on disk, and an independent lane re-derives its counts and verdicts from primary sources. Positive control: the mandated input is accepted and leaves a raw receipt.",
+   "negative_fixture": "Refusal case on the same fixture: a missing, hand-written or non-re-derivable value is refused with its own typed code, with a positive control that must succeed on the same run.",
+   "recovery_fixture": "Regenerate the deliverable from raw receipts only.",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "BLOCKED_HITL"
+   ]
+  },
+  {
+   "acceptance_id": "ACC-DEL-DEFECT-DOSSIER",
+   "subject_id": "DEL-DEFECT-DOSSIER",
+   "subject_type": "DELIVERABLE",
+   "source_locators": [
+    "(owner mandate, this session, 2026-10-16)"
+   ],
+   "runtime_required": true,
+   "required_depth": "L3_INTEGRATION_RUNTIME",
+   "positive_fixture": "DEL-DEFECT-DOSSIER: the artifact exists, is produced by a script from artifacts on disk, and an independent lane re-derives its counts and verdicts from primary sources. Positive control: the mandated input is accepted and leaves a raw receipt.",
+   "negative_fixture": "Refusal case on the same fixture: a missing, hand-written or non-re-derivable value is refused with its own typed code, with a positive control that must succeed on the same run.",
+   "recovery_fixture": "Regenerate the deliverable from raw receipts only.",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "BLOCKED_HITL"
+   ]
+  },
+  {
+   "acceptance_id": "ACC-DEL-HANDOVER-CHECKPOINT",
+   "subject_id": "DEL-HANDOVER-CHECKPOINT",
+   "subject_type": "DELIVERABLE",
+   "source_locators": [
+    "(owner mandate, this session, 2026-10-16)"
+   ],
+   "runtime_required": true,
+   "required_depth": "L3_INTEGRATION_RUNTIME",
+   "positive_fixture": "DEL-HANDOVER-CHECKPOINT: the artifact exists, is produced by a script from artifacts on disk, and an independent lane re-derives its counts and verdicts from primary sources. Positive control: the mandated input is accepted and leaves a raw receipt.",
+   "negative_fixture": "Refusal case on the same fixture: a missing, hand-written or non-re-derivable value is refused with its own typed code, with a positive control that must succeed on the same run.",
+   "recovery_fixture": "Regenerate the deliverable from raw receipts only.",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "BLOCKED_HITL"
+   ]
+  },
+  {
+   "acceptance_id": "ACC-DEL-SINGLE-EVIDENCE-MD",
+   "subject_id": "DEL-SINGLE-EVIDENCE-MD",
+   "subject_type": "DELIVERABLE",
+   "source_locators": [
+    "(owner mandate, this session, 2026-10-16)"
+   ],
+   "runtime_required": true,
+   "required_depth": "L3_INTEGRATION_RUNTIME",
+   "positive_fixture": "DEL-SINGLE-EVIDENCE-MD: the artifact exists, is produced by a script from artifacts on disk, and an independent lane re-derives its counts and verdicts from primary sources. Positive control: the mandated input is accepted and leaves a raw receipt.",
+   "negative_fixture": "Refusal case on the same fixture: a missing, hand-written or non-re-derivable value is refused with its own typed code, with a positive control that must succeed on the same run.",
+   "recovery_fixture": "Regenerate the deliverable from raw receipts only.",
+   "raw_evidence_required": true,
+   "independent_checker_required": true,
+   "terminal_states": [
+    "INDEPENDENT_CASE_PASS",
+    "BLOCKED_HITL"
+   ]
+  }
+ ],
+ "evidence": [
+  {
+   "gate_id": "G-ARCHIVE_PREFIX_AND_CHANGE_CLASS_PREFLIGHT",
+   "predicate": "Re-derive each PR's live HEAD, exact changed-file set and single evidence prefix, and re-derive change_class so any escape invalidates the evidence-only exception.",
+   "expected": "PASS|FAIL|BLOCKED|NOT_RUN",
+   "command_or_probe": "A03 runner: exit code, raw stdout/stderr and receipt path",
+   "raw_receipt_required": true,
+   "producer": "HERMES_ORCHESTRATOR",
+   "independent_checker": "CODEX_CLI_VERIFY_SECURITY_LANE",
+   "tracked_subject": true,
+   "candidate_binding": {
+    "head": "PER_PR_LIVE_HEAD",
+    "package_sha256": "96d9d564286743e17550ccef15b9952347901eb77168f930376938893cff9c3f",
+    "source_hashes": [
+     "A00_SOURCE_LEDGER.json"
+    ]
+   },
+   "rerun_rule": "affected-only",
+   "invalidation": [
+    "candidate drift",
+    "missing raw",
+    "head change"
+   ],
+   "terminal_verdict": "NOT_RUN",
+   "runtime_pass_allowed": true,
+   "claim_level": "LOCAL"
+  },
+  {
+   "gate_id": "G-TRUSTED_SECRETS_AND_MANIFEST_PREFLIGHT",
+   "predicate": "Trusted secrets/privacy scan over every changed blob plus deterministic manifest-vs-tracked-set checks performed OUTSIDE the PR, without executing archived helpers.",
+   "expected": "PASS|FAIL|BLOCKED|NOT_RUN",
+   "command_or_probe": "A04/A05 runner: exit code, raw stdout/stderr and receipt path",
+   "raw_receipt_required": true,
+   "producer": "HERMES_ORCHESTRATOR",
+   "independent_checker": "CODEX_CLI_VERIFY_SECURITY_LANE",
+   "tracked_subject": true,
+   "candidate_binding": {
+    "head": "PER_PR_LIVE_HEAD",
+    "package_sha256": "96d9d564286743e17550ccef15b9952347901eb77168f930376938893cff9c3f",
+    "source_hashes": [
+     "A00_SOURCE_LEDGER.json"
+    ]
+   },
+   "rerun_rule": "affected-only",
+   "invalidation": [
+    "candidate drift",
+    "missing raw",
+    "head change"
+   ],
+   "terminal_verdict": "NOT_RUN",
+   "runtime_pass_allowed": true,
+   "claim_level": "LOCAL"
+  },
+  {
+   "gate_id": "G-PER_PR_FREEZE_AND_ROLLBACK_POINTER",
+   "predicate": "Freeze each PR separately on repo/base/head/prefix/diff with its own rollback pointer and approval record; never one atomic transaction.",
+   "expected": "PASS|FAIL|BLOCKED|NOT_RUN",
+   "command_or_probe": "A07 runner: exit code, raw stdout/stderr and receipt path",
+   "raw_receipt_required": true,
+   "producer": "HERMES_ORCHESTRATOR",
+   "independent_checker": "CODEX_CLI_VERIFY_SECURITY_LANE",
+   "tracked_subject": true,
+   "candidate_binding": {
+    "head": "PER_PR_LIVE_HEAD",
+    "package_sha256": "96d9d564286743e17550ccef15b9952347901eb77168f930376938893cff9c3f",
+    "source_hashes": [
+     "A00_SOURCE_LEDGER.json"
+    ]
+   },
+   "rerun_rule": "affected-only",
+   "invalidation": [
+    "candidate drift",
+    "missing raw",
+    "head change"
+   ],
+   "terminal_verdict": "NOT_RUN",
+   "runtime_pass_allowed": true,
+   "claim_level": "LOCAL"
+  },
+  {
+   "gate_id": "G-MAINTAINER_APPROVAL_GATE",
+   "predicate": "A real repository maintainer grants one prefix + actual HEAD + candidate-only/no-auto-execute + rollback approval per PR; never self-signed by maker or reviewer.",
+   "expected": "PASS|FAIL|BLOCKED|NOT_RUN",
+   "command_or_probe": "A07 runner: exit code, raw stdout/stderr and receipt path",
+   "raw_receipt_required": true,
+   "producer": "HERMES_ORCHESTRATOR",
+   "independent_checker": "CODEX_CLI_VERIFY_SECURITY_LANE",
+   "tracked_subject": true,
+   "candidate_binding": {
+    "head": "PER_PR_LIVE_HEAD",
+    "package_sha256": "96d9d564286743e17550ccef15b9952347901eb77168f930376938893cff9c3f",
+    "source_hashes": [
+     "A00_SOURCE_LEDGER.json"
+    ]
+   },
+   "rerun_rule": "affected-only",
+   "invalidation": [
+    "candidate drift",
+    "missing raw",
+    "head change"
+   ],
+   "terminal_verdict": "NOT_RUN",
+   "runtime_pass_allowed": true,
+   "claim_level": "LOCAL"
+  },
+  {
+   "gate_id": "G-REMOTE_MERGE_AND_READBACK",
+   "predicate": "Ordered merge by the authorised maintainer followed by main/merge-SHA/tree-prefix readback and a recomputed preflight.",
+   "expected": "PASS|FAIL|BLOCKED|NOT_RUN",
+   "command_or_probe": "A08 runner: exit code, raw stdout/stderr and receipt path",
+   "raw_receipt_required": true,
+   "producer": "HERMES_ORCHESTRATOR",
+   "independent_checker": "CODEX_CLI_VERIFY_SECURITY_LANE",
+   "tracked_subject": true,
+   "candidate_binding": {
+    "head": "PER_PR_LIVE_HEAD",
+    "package_sha256": "96d9d564286743e17550ccef15b9952347901eb77168f930376938893cff9c3f",
+    "source_hashes": [
+     "A00_SOURCE_LEDGER.json"
+    ]
+   },
+   "rerun_rule": "affected-only",
+   "invalidation": [
+    "candidate drift",
+    "missing raw",
+    "head change"
+   ],
+   "terminal_verdict": "NOT_RUN",
+   "runtime_pass_allowed": true,
+   "claim_level": "LOCAL"
+  },
+  {
+   "gate_id": "G-K_LEDGER_METADATA_ERRATA",
+   "predicate": "Add new-version crosswalk metadata separating source_linked 20/20 from same_run_retested 0/20 without rewriting the historical snapshot.",
+   "expected": "PASS|FAIL|BLOCKED|NOT_RUN",
+   "command_or_probe": "A09 runner: exit code, raw stdout/stderr and receipt path",
+   "raw_receipt_required": true,
+   "producer": "HERMES_ORCHESTRATOR",
+   "independent_checker": "CODEX_CLI_VERIFY_SECURITY_LANE",
+   "tracked_subject": true,
+   "candidate_binding": {
+    "head": "PER_PR_LIVE_HEAD",
+    "package_sha256": "96d9d564286743e17550ccef15b9952347901eb77168f930376938893cff9c3f",
+    "source_hashes": [
+     "A00_SOURCE_LEDGER.json"
+    ]
+   },
+   "rerun_rule": "affected-only",
+   "invalidation": [
+    "candidate drift",
+    "missing raw",
+    "head change"
+   ],
+   "terminal_verdict": "NOT_RUN",
+   "runtime_pass_allowed": true,
+   "claim_level": "LOCAL"
+  },
+  {
+   "gate_id": "G-EIA_FINDING_DISPOSITION_MATRIX",
+   "predicate": "Carry all ten EIA-20261016 findings with class, earliest legal owner, blocking point and minimum re-test.",
+   "expected": "PASS|FAIL|BLOCKED|NOT_RUN",
+   "command_or_probe": "A09 runner: exit code, raw stdout/stderr and receipt path",
+   "raw_receipt_required": true,
+   "producer": "HERMES_ORCHESTRATOR",
+   "independent_checker": "CODEX_CLI_VERIFY_SECURITY_LANE",
+   "tracked_subject": true,
+   "candidate_binding": {
+    "head": "PER_PR_LIVE_HEAD",
+    "package_sha256": "96d9d564286743e17550ccef15b9952347901eb77168f930376938893cff9c3f",
+    "source_hashes": [
+     "A00_SOURCE_LEDGER.json"
+    ]
+   },
+   "rerun_rule": "affected-only",
+   "invalidation": [
+    "candidate drift",
+    "missing raw",
+    "head change"
+   ],
+   "terminal_verdict": "NOT_RUN",
+   "runtime_pass_allowed": true,
+   "claim_level": "LOCAL"
+  },
+  {
+   "gate_id": "G-EVIDENCE_RETURN_PACK_PUBLICATION",
+   "predicate": "Publish the machine-readable return pack plus the single evidence MD through the credential broker and mirror it byte-identically.",
+   "expected": "PASS|FAIL|BLOCKED|NOT_RUN",
+   "command_or_probe": "A10 runner: exit code, raw stdout/stderr and receipt path",
+   "raw_receipt_required": true,
+   "producer": "HERMES_ORCHESTRATOR",
+   "independent_checker": "CODEX_CLI_VERIFY_SECURITY_LANE",
+   "tracked_subject": true,
+   "candidate_binding": {
+    "head": "PER_PR_LIVE_HEAD",
+    "package_sha256": "96d9d564286743e17550ccef15b9952347901eb77168f930376938893cff9c3f",
+    "source_hashes": [
+     "A00_SOURCE_LEDGER.json"
+    ]
+   },
+   "rerun_rule": "affected-only",
+   "invalidation": [
+    "candidate drift",
+    "missing raw",
+    "head change"
+   ],
+   "terminal_verdict": "NOT_RUN",
+   "runtime_pass_allowed": true,
+   "claim_level": "LOCAL"
+  }
+ ],
+ "termination": {
+  "terminal_states": [
+   "ARCHIVE_MERGED_READBACK_PASS",
+   "ARCHIVE_EVIDENCE_CANDIDATE_READY",
+   "PARTIAL",
+   "TEMP_CLOSED",
+   "FAIL",
+   "FAR_RULING_EXECUTED",
+   "FAR_RULING_PARTIAL_OWNER_GATED",
+   "FAR_RULING_BLOCKED"
+  ],
+  "non_terminal_pause": [
+   "BLOCKED_HITL",
+   "PARTIAL_RESUMABLE",
+   "FAILED_STOP_ESCALATE"
+  ],
+  "checkpoint_required": true,
+  "checkpoint_fields": [
+   "task_id",
+   "source_hashes",
+   "current_candidate",
+   "completed_gates",
+   "open_gates",
+   "next_work_order",
+   "rollback_pointer",
+   "per_pr_before_head",
+   "per_pr_after_head",
+   "approved_prefix",
+   "maintainer_approval_ref",
+   "merge_sha",
+   "readback_sha",
+   "first_fail"
+  ],
+  "retry_budget": 3,
+  "rollback_pointer_required": true
+ },
+ "render_policy": {
+  "control_corpus_restatement": false,
+  "embedded_control_bodies": [],
+  "max_prompt_chars": 20000,
+  "output_language": "zh-TW"
+ }
+}

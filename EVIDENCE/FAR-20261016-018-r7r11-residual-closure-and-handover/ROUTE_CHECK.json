@@ -1,0 +1,170 @@
+{
+ "schema": "FAR-20261016-018/ROUTE-CHECK/1",
+ "generated_utc": "2026-10-16T10:55:17.585797+00:00",
+ "registry": {
+  "snapshot_ok": true,
+  "n_methods": 9,
+  "route_FAR_RESEARCH": {
+   "flow": "RESEARCH_LITERATURE_REPO",
+   "route": "NATIVE",
+   "reason_code": null
+  },
+  "route_NEGATIVE_CONTROL": {
+   "flow": "PURE_QA_CHAT",
+   "route": "GSTACK",
+   "reason_code": null
+  }
+ },
+ "lane_pools": {
+  "PLAN": {
+   "engine": "hermes",
+   "transport": "hermes_provider_client",
+   "pool": [
+    {
+     "rank": 1,
+     "arm": "opencode-go/glm-5.3-flash",
+     "transport": null
+    },
+    {
+     "rank": 2,
+     "arm": "openai-codex/gpt-6.1-sol",
+     "transport": null
+    },
+    {
+     "rank": 3,
+     "arm": "opencode-go/deepseek-v4.1-flash",
+     "transport": null
+    },
+    {
+     "rank": 4,
+     "arm": "opencode-go/mimo-v2.6-pro",
+     "transport": null
+    },
+    {
+     "rank": 5,
+     "arm": "nvidia/z-ai/glm-5.3-flash",
+     "transport": null
+    },
+    {
+     "rank": 6,
+     "arm": "nvidia/deepseek-ai/deepseek-v4.1-flash",
+     "transport": null
+    }
+   ]
+  },
+  "EXECUTE": {
+   "engine": "codex-cli",
+   "transport": "opencodex relay 10101 via the isolated lane home (codex -> 10100 front-door port -> 10101); the openai-codex entry additionally has a human-home transport",
+   "pool": [
+    {
+     "rank": 1,
+     "arm": "opencode-go/deepseek-v4.1-flash",
+     "transport": null
+    },
+    {
+     "rank": 2,
+     "arm": "openai-codex/gpt-6-luna",
+     "transport": null
+    },
+    {
+     "rank": 3,
+     "arm": "nvidia/deepseek-ai/deepseek-v4.1-flash",
+     "transport": null
+    }
+   ]
+  },
+  "VERIFY_SECURITY": {
+   "engine": "codex-cli",
+   "transport": "same as EXECUTE",
+   "pool": [
+    {
+     "rank": 1,
+     "arm": "opencode-go/deepseek-v4.1-flash",
+     "transport": null
+    },
+    {
+     "rank": 2,
+     "arm": "openai-codex/gpt-6.1-sol",
+     "transport": null
+    },
+    {
+     "rank": 3,
+     "arm": "opencode-go/glm-5.3-flash",
+     "transport": null
+    },
+    {
+     "rank": 4,
+     "arm": "nvidia/deepseek-ai/deepseek-v4.1-flash",
+     "transport": null
+    }
+   ]
+  }
+ },
+ "skcv_pointers": {
+  "count": 5,
+  "items": [
+   {
+    "pointer_file": "external-acceptance-single-md-closure.md",
+    "target": "references/topics/external-evidence-closure.md",
+    "offset": 2912,
+    "length": 5544,
+    "sha256_claimed": "5af0c9dfd49aa60faca75a8b0ce7fa7bb624d6c02f18e07c6f116f102540c688",
+    "target_exists": true,
+    "target_bytes": 31543,
+    "sha256_actual": "5af0c9dfd49aa60faca75a8b0ce7fa7bb624d6c02f18e07c6f116f102540c688",
+    "pointer_verdict": "MATCH"
+   },
+   {
+    "pointer_file": "external-challenge-evidence-closure-far.md",
+    "target": "references/topics/external-evidence-closure.md",
+    "offset": 15900,
+    "length": 5363,
+    "sha256_claimed": "9412dfe386962e8e71280dbc129e16dfe89a93cb6c91e93c90390ffe1a157505",
+    "target_exists": true,
+    "target_bytes": 31543,
+    "sha256_actual": "9412dfe386962e8e71280dbc129e16dfe89a93cb6c91e93c90390ffe1a157505",
+    "pointer_verdict": "MATCH"
+   },
+   {
+    "pointer_file": "external-challenge-review-closure.md",
+    "target": "references/topics/external-evidence-closure.md",
+    "offset": 21446,
+    "length": 10097,
+    "sha256_claimed": "85fc306679893ece6233bd26b1157b2735fc97efd6729571e23f6d9cca13a7aa",
+    "target_exists": true,
+    "target_bytes": 31543,
+    "sha256_actual": "85fc306679893ece6233bd26b1157b2735fc97efd6729571e23f6d9cca13a7aa",
+    "pointer_verdict": "MATCH"
+   },
+   {
+    "pointer_file": "external-single-md-mandatory-route.md",
+    "target": "references/topics/external-evidence-closure.md",
+    "offset": 181,
+    "length": 2546,
+    "sha256_claimed": "975407d870df5443901ce90a4ff32cbc9b5a2bc6b5dce6a998c1b9c1ece8f682",
+    "target_exists": true,
+    "target_bytes": 31543,
+    "sha256_actual": "975407d870df5443901ce90a4ff32cbc9b5a2bc6b5dce6a998c1b9c1ece8f682",
+    "pointer_verdict": "MATCH"
+   },
+   {
+    "pointer_file": "external-submission-gates.md",
+    "target": "references/topics/external-evidence-closure.md",
+    "offset": 8629,
+    "length": 7083,
+    "sha256_claimed": "8525b204cc789419123321b49a0f61dea65216f9eecce1a313754feb27d3c7b0",
+    "target_exists": true,
+    "target_bytes": 31543,
+    "sha256_actual": "8525b204cc789419123321b49a0f61dea65216f9eecce1a313754feb27d3c7b0",
+    "pointer_verdict": "MATCH"
+   }
+  ]
+ },
+ "entry_map_present": false,
+ "topics_present": [
+  "codex-lane-execution-and-workspace-write.md",
+  "construction-wave-and-remaining-procedures.md",
+  "external-evidence-closure.md",
+  "lane-bootstrap-and-guard-notes.md"
+ ]
+}

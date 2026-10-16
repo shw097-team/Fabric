@@ -1,0 +1,1050 @@
+{
+ "schema": "FAR-20261016-018/KANBAN-LIFECYCLE/1",
+ "board": "far-018-r7r11-residual",
+ "generated_utc": "2026-10-16T11:04:50.923972+00:00",
+ "cards_created": 17,
+ "board_state_histogram": {
+  "done": 4,
+  "running": 8,
+  "blocked": 5
+ },
+ "board_readback": [
+  {
+   "id": "t_48c34c7a",
+   "title": "R0 R0 Gate-1 route + negative control",
+   "status": "done"
+  },
+  {
+   "id": "t_cf154a90",
+   "title": "R1 R1 CAPC contract C0-C9 compile (PROMPT_COMPILE_PASS)",
+   "status": "done"
+  },
+  {
+   "id": "t_b7281fec",
+   "title": "R2 R2 HGK typed admission (project FAR-018-R7R11-RESIDUA",
+   "status": "done"
+  },
+  {
+   "id": "t_21bb6c0c",
+   "title": "R3 R3 Kanban/OpenSpec execution surfaces for this round",
+   "status": "done"
+  },
+  {
+   "id": "t_0fda22ca",
+   "title": "R4 R4 W1 residual universe (independent lane)",
+   "status": "running"
+  },
+  {
+   "id": "t_7b1a6a3e",
+   "title": "R5 R5 W2 defect dossier incl. checker-isolation feasibil",
+   "status": "running"
+  },
+  {
+   "id": "t_d002ad58",
+   "title": "R6 R6 EXECUTE lane: writer artifacts (deepseek-v4.1-flas",
+   "status": "running"
+  },
+  {
+   "id": "t_758f4f35",
+   "title": "R7 R7 VERIFY lane pinned to openai-codex/gpt-6.1-sol ran",
+   "status": "running"
+  },
+  {
+   "id": "t_3b0bb9ff",
+   "title": "R8 R8 owner-gated items prepared in one-action form",
+   "status": "running"
+  },
+  {
+   "id": "t_51a82b58",
+   "title": "R9 R9 publish to Fabric new prefix + remote readback",
+   "status": "running"
+  },
+  {
+   "id": "t_73fec1c5",
+   "title": "R10 R10 handover checkpoint + single evidence MD (3-root",
+   "status": "running"
+  },
+  {
+   "id": "t_a02cb9d1",
+   "title": "R11 R11 self-check/repair/acceptance + governed self-evo",
+   "status": "running"
+  },
+  {
+   "id": "t_23ff5409",
+   "title": "OG1 OG-OWNER: peer chain #6/#8/#10 merge batch",
+   "status": "blocked"
+  },
+  {
+   "id": "t_d82691bb",
+   "title": "OG2 OG-OWNER: R7-02 validator cross-repo code promotion",
+   "status": "blocked"
+  },
+  {
+   "id": "t_02416ab8",
+   "title": "OG3 OG-OWNER: R7-04 Fresh G1 owner certificate",
+   "status": "blocked"
+  },
+  {
+   "id": "t_786fcfbb",
+   "title": "OG4 OG-OWNER: canonical lane config repair (stale codex ",
+   "status": "blocked"
+  },
+  {
+   "id": "t_c412d366",
+   "title": "OG5 OG-OWNER: KP R04 polarity + source#6 status disposit",
+   "status": "blocked"
+  }
+ ],
+ "call_count": 67,
+ "calls": [
+  {
+   "argv": [
+    "boards",
+    "create",
+    "far-018-r7r11-residual"
+   ],
+   "exit": 0,
+   "stdout": "Board 'far-018-r7r11-residual' created.\n  Display name: Far 018 R7r11 Residual\n  DB path:      C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\far-018-r7r11-residual\\kanban.db\n  Use `hermes kanban boards switch far-018-r7r11-residual` to make it ",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "create",
+    "R0 R0 Gate-1 route + negative control",
+    "--idempotency-key",
+    "FAR018-R0",
+    "--created-by",
+    "hgk-orchestrator",
+    "--assignee",
+    "hgk-orchestrator",
+    "--body",
+    "FAR-20261016-018 gate card; evidence under _handover/FAR-20261016-018-*/"
+   ],
+   "exit": 0,
+   "stdout": "Created t_48c34c7a  (ready, assignee=hgk-orchestrator)",
+   "stderr": "⚠  No gateway is running — the task will sit in 'ready' until you start it. Run:\n    hermes gateway start\nThe gateway hosts an embedded dispatcher (tick interva"
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "create",
+    "R1 R1 CAPC contract C0-C9 compile (PROMPT_COMPILE_PASS)",
+    "--idempotency-key",
+    "FAR018-R1",
+    "--created-by",
+    "hgk-orchestrator",
+    "--assignee",
+    "hgk-orchestrator",
+    "--body",
+    "FAR-20261016-018 gate card; evidence under _handover/FAR-20261016-018-*/"
+   ],
+   "exit": 0,
+   "stdout": "Created t_cf154a90  (ready, assignee=hgk-orchestrator)",
+   "stderr": "⚠  No gateway is running — the task will sit in 'ready' until you start it. Run:\n    hermes gateway start\nThe gateway hosts an embedded dispatcher (tick interva"
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "create",
+    "R2 R2 HGK typed admission (project FAR-018-R7R11-RESIDUAL)",
+    "--idempotency-key",
+    "FAR018-R2",
+    "--created-by",
+    "hgk-orchestrator",
+    "--assignee",
+    "hgk-orchestrator",
+    "--body",
+    "FAR-20261016-018 gate card; evidence under _handover/FAR-20261016-018-*/"
+   ],
+   "exit": 0,
+   "stdout": "Created t_b7281fec  (ready, assignee=hgk-orchestrator)",
+   "stderr": "⚠  No gateway is running — the task will sit in 'ready' until you start it. Run:\n    hermes gateway start\nThe gateway hosts an embedded dispatcher (tick interva"
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "create",
+    "R3 R3 Kanban/OpenSpec execution surfaces for this round",
+    "--idempotency-key",
+    "FAR018-R3",
+    "--created-by",
+    "hgk-orchestrator",
+    "--assignee",
+    "hgk-orchestrator",
+    "--body",
+    "FAR-20261016-018 gate card; evidence under _handover/FAR-20261016-018-*/"
+   ],
+   "exit": 0,
+   "stdout": "Created t_21bb6c0c  (ready, assignee=hgk-orchestrator)",
+   "stderr": "⚠  No gateway is running — the task will sit in 'ready' until you start it. Run:\n    hermes gateway start\nThe gateway hosts an embedded dispatcher (tick interva"
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "create",
+    "R4 R4 W1 residual universe (independent lane)",
+    "--idempotency-key",
+    "FAR018-R4",
+    "--created-by",
+    "hgk-orchestrator",
+    "--assignee",
+    "hgk-orchestrator",
+    "--body",
+    "FAR-20261016-018 gate card; evidence under _handover/FAR-20261016-018-*/"
+   ],
+   "exit": 0,
+   "stdout": "Created t_0fda22ca  (ready, assignee=hgk-orchestrator)",
+   "stderr": "⚠  No gateway is running — the task will sit in 'ready' until you start it. Run:\n    hermes gateway start\nThe gateway hosts an embedded dispatcher (tick interva"
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "create",
+    "R5 R5 W2 defect dossier incl. checker-isolation feasibility",
+    "--idempotency-key",
+    "FAR018-R5",
+    "--created-by",
+    "hgk-orchestrator",
+    "--assignee",
+    "hgk-orchestrator",
+    "--body",
+    "FAR-20261016-018 gate card; evidence under _handover/FAR-20261016-018-*/"
+   ],
+   "exit": 0,
+   "stdout": "Created t_7b1a6a3e  (ready, assignee=hgk-orchestrator)",
+   "stderr": "⚠  No gateway is running — the task will sit in 'ready' until you start it. Run:\n    hermes gateway start\nThe gateway hosts an embedded dispatcher (tick interva"
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "create",
+    "R6 R6 EXECUTE lane: writer artifacts (deepseek-v4.1-flash)",
+    "--idempotency-key",
+    "FAR018-R6",
+    "--created-by",
+    "hgk-orchestrator",
+    "--assignee",
+    "hgk-orchestrator",
+    "--body",
+    "FAR-20261016-018 gate card; evidence under _handover/FAR-20261016-018-*/"
+   ],
+   "exit": 0,
+   "stdout": "Created t_d002ad58  (ready, assignee=hgk-orchestrator)",
+   "stderr": "⚠  No gateway is running — the task will sit in 'ready' until you start it. Run:\n    hermes gateway start\nThe gateway hosts an embedded dispatcher (tick interva"
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "create",
+    "R7 R7 VERIFY lane pinned to openai-codex/gpt-6.1-sol rank2",
+    "--idempotency-key",
+    "FAR018-R7",
+    "--created-by",
+    "hgk-orchestrator",
+    "--assignee",
+    "hgk-orchestrator",
+    "--body",
+    "FAR-20261016-018 gate card; evidence under _handover/FAR-20261016-018-*/"
+   ],
+   "exit": 0,
+   "stdout": "Created t_758f4f35  (ready, assignee=hgk-orchestrator)",
+   "stderr": "⚠  No gateway is running — the task will sit in 'ready' until you start it. Run:\n    hermes gateway start\nThe gateway hosts an embedded dispatcher (tick interva"
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "create",
+    "R8 R8 owner-gated items prepared in one-action form",
+    "--idempotency-key",
+    "FAR018-R8",
+    "--created-by",
+    "hgk-orchestrator",
+    "--assignee",
+    "hgk-orchestrator",
+    "--body",
+    "FAR-20261016-018 gate card; evidence under _handover/FAR-20261016-018-*/"
+   ],
+   "exit": 0,
+   "stdout": "Created t_3b0bb9ff  (ready, assignee=hgk-orchestrator)",
+   "stderr": "⚠  No gateway is running — the task will sit in 'ready' until you start it. Run:\n    hermes gateway start\nThe gateway hosts an embedded dispatcher (tick interva"
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "create",
+    "R9 R9 publish to Fabric new prefix + remote readback",
+    "--idempotency-key",
+    "FAR018-R9",
+    "--created-by",
+    "hgk-orchestrator",
+    "--assignee",
+    "hgk-orchestrator",
+    "--body",
+    "FAR-20261016-018 gate card; evidence under _handover/FAR-20261016-018-*/"
+   ],
+   "exit": 0,
+   "stdout": "Created t_51a82b58  (ready, assignee=hgk-orchestrator)",
+   "stderr": "⚠  No gateway is running — the task will sit in 'ready' until you start it. Run:\n    hermes gateway start\nThe gateway hosts an embedded dispatcher (tick interva"
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "create",
+    "R10 R10 handover checkpoint + single evidence MD (3-root mirror)",
+    "--idempotency-key",
+    "FAR018-R10",
+    "--created-by",
+    "hgk-orchestrator",
+    "--assignee",
+    "hgk-orchestrator",
+    "--body",
+    "FAR-20261016-018 gate card; evidence under _handover/FAR-20261016-018-*/"
+   ],
+   "exit": 0,
+   "stdout": "Created t_73fec1c5  (ready, assignee=hgk-orchestrator)",
+   "stderr": "⚠  No gateway is running — the task will sit in 'ready' until you start it. Run:\n    hermes gateway start\nThe gateway hosts an embedded dispatcher (tick interva"
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "create",
+    "R11 R11 self-check/repair/acceptance + governed self-evolution",
+    "--idempotency-key",
+    "FAR018-R11",
+    "--created-by",
+    "hgk-orchestrator",
+    "--assignee",
+    "hgk-orchestrator",
+    "--body",
+    "FAR-20261016-018 gate card; evidence under _handover/FAR-20261016-018-*/"
+   ],
+   "exit": 0,
+   "stdout": "Created t_a02cb9d1  (ready, assignee=hgk-orchestrator)",
+   "stderr": "⚠  No gateway is running — the task will sit in 'ready' until you start it. Run:\n    hermes gateway start\nThe gateway hosts an embedded dispatcher (tick interva"
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "create",
+    "OG1 OG-OWNER: peer chain #6/#8/#10 merge batch",
+    "--idempotency-key",
+    "FAR018-OG1",
+    "--created-by",
+    "hgk-orchestrator",
+    "--assignee",
+    "hgk-orchestrator",
+    "--body",
+    "FAR-20261016-018 gate card; evidence under _handover/FAR-20261016-018-*/"
+   ],
+   "exit": 0,
+   "stdout": "Created t_23ff5409  (ready, assignee=hgk-orchestrator)",
+   "stderr": "⚠  No gateway is running — the task will sit in 'ready' until you start it. Run:\n    hermes gateway start\nThe gateway hosts an embedded dispatcher (tick interva"
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "create",
+    "OG2 OG-OWNER: R7-02 validator cross-repo code promotion",
+    "--idempotency-key",
+    "FAR018-OG2",
+    "--created-by",
+    "hgk-orchestrator",
+    "--assignee",
+    "hgk-orchestrator",
+    "--body",
+    "FAR-20261016-018 gate card; evidence under _handover/FAR-20261016-018-*/"
+   ],
+   "exit": 0,
+   "stdout": "Created t_d82691bb  (ready, assignee=hgk-orchestrator)",
+   "stderr": "⚠  No gateway is running — the task will sit in 'ready' until you start it. Run:\n    hermes gateway start\nThe gateway hosts an embedded dispatcher (tick interva"
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "create",
+    "OG3 OG-OWNER: R7-04 Fresh G1 owner certificate",
+    "--idempotency-key",
+    "FAR018-OG3",
+    "--created-by",
+    "hgk-orchestrator",
+    "--assignee",
+    "hgk-orchestrator",
+    "--body",
+    "FAR-20261016-018 gate card; evidence under _handover/FAR-20261016-018-*/"
+   ],
+   "exit": 0,
+   "stdout": "Created t_02416ab8  (ready, assignee=hgk-orchestrator)",
+   "stderr": "⚠  No gateway is running — the task will sit in 'ready' until you start it. Run:\n    hermes gateway start\nThe gateway hosts an embedded dispatcher (tick interva"
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "create",
+    "OG4 OG-OWNER: canonical lane config repair (stale codex pin)",
+    "--idempotency-key",
+    "FAR018-OG4",
+    "--created-by",
+    "hgk-orchestrator",
+    "--assignee",
+    "hgk-orchestrator",
+    "--body",
+    "FAR-20261016-018 gate card; evidence under _handover/FAR-20261016-018-*/"
+   ],
+   "exit": 0,
+   "stdout": "Created t_786fcfbb  (ready, assignee=hgk-orchestrator)",
+   "stderr": "⚠  No gateway is running — the task will sit in 'ready' until you start it. Run:\n    hermes gateway start\nThe gateway hosts an embedded dispatcher (tick interva"
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "create",
+    "OG5 OG-OWNER: KP R04 polarity + source#6 status disposition",
+    "--idempotency-key",
+    "FAR018-OG5",
+    "--created-by",
+    "hgk-orchestrator",
+    "--assignee",
+    "hgk-orchestrator",
+    "--body",
+    "FAR-20261016-018 gate card; evidence under _handover/FAR-20261016-018-*/"
+   ],
+   "exit": 0,
+   "stdout": "Created t_c412d366  (ready, assignee=hgk-orchestrator)",
+   "stderr": "⚠  No gateway is running — the task will sit in 'ready' until you start it. Run:\n    hermes gateway start\nThe gateway hosts an embedded dispatcher (tick interva"
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "ls",
+    "--json"
+   ],
+   "exit": 0,
+   "stdout": "[\n  {\n    \"id\": \"t_48c34c7a\",\n    \"title\": \"R0 R0 Gate-1 route + negative control\",\n    \"body\": \"FAR-20261016-018 gate card; evidence under _handover/FAR-20261016-018-*/\",\n    \"assignee\": \"hgk-orchestrator\",\n    \"status\": \"ready\",\n    \"priority\": 0,\n    \"tenant\": null,\n    \"workspace_kind\": \"scratch",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "claim",
+    "t_48c34c7a",
+    "--ttl",
+    "1800"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_48c34c7a\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\far-018-r7r11-residual\\workspaces\\t_48c34c7a",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "heartbeat",
+    "t_48c34c7a"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_48c34c7a",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "comment",
+    "t_48c34c7a",
+    "verified: artifact on disk",
+    "--author",
+    "hgk-orchestrator"
+   ],
+   "exit": 0,
+   "stdout": "Comment added to t_48c34c7a",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "complete",
+    "t_48c34c7a",
+    "--result",
+    "done with raw receipt",
+    "--metadata",
+    "{\"evidence\": \"see round root receipts\"}"
+   ],
+   "exit": 0,
+   "stdout": "Completed t_48c34c7a",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "claim",
+    "t_cf154a90",
+    "--ttl",
+    "1800"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_cf154a90\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\far-018-r7r11-residual\\workspaces\\t_cf154a90",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "heartbeat",
+    "t_cf154a90"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_cf154a90",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "comment",
+    "t_cf154a90",
+    "verified: artifact on disk",
+    "--author",
+    "hgk-orchestrator"
+   ],
+   "exit": 0,
+   "stdout": "Comment added to t_cf154a90",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "complete",
+    "t_cf154a90",
+    "--result",
+    "done with raw receipt",
+    "--metadata",
+    "{\"evidence\": \"see round root receipts\"}"
+   ],
+   "exit": 0,
+   "stdout": "Completed t_cf154a90",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "claim",
+    "t_b7281fec",
+    "--ttl",
+    "1800"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_b7281fec\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\far-018-r7r11-residual\\workspaces\\t_b7281fec",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "heartbeat",
+    "t_b7281fec"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_b7281fec",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "comment",
+    "t_b7281fec",
+    "verified: artifact on disk",
+    "--author",
+    "hgk-orchestrator"
+   ],
+   "exit": 0,
+   "stdout": "Comment added to t_b7281fec",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "complete",
+    "t_b7281fec",
+    "--result",
+    "done with raw receipt",
+    "--metadata",
+    "{\"evidence\": \"see round root receipts\"}"
+   ],
+   "exit": 0,
+   "stdout": "Completed t_b7281fec",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "claim",
+    "t_21bb6c0c",
+    "--ttl",
+    "1800"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_21bb6c0c\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\far-018-r7r11-residual\\workspaces\\t_21bb6c0c",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "heartbeat",
+    "t_21bb6c0c"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_21bb6c0c",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "comment",
+    "t_21bb6c0c",
+    "verified: artifact on disk",
+    "--author",
+    "hgk-orchestrator"
+   ],
+   "exit": 0,
+   "stdout": "Comment added to t_21bb6c0c",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "complete",
+    "t_21bb6c0c",
+    "--result",
+    "done with raw receipt",
+    "--metadata",
+    "{\"evidence\": \"see round root receipts\"}"
+   ],
+   "exit": 0,
+   "stdout": "Completed t_21bb6c0c",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "claim",
+    "t_0fda22ca",
+    "--ttl",
+    "1800"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_0fda22ca\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\far-018-r7r11-residual\\workspaces\\t_0fda22ca",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "heartbeat",
+    "t_0fda22ca"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_0fda22ca",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "claim",
+    "t_7b1a6a3e",
+    "--ttl",
+    "1800"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_7b1a6a3e\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\far-018-r7r11-residual\\workspaces\\t_7b1a6a3e",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "heartbeat",
+    "t_7b1a6a3e"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_7b1a6a3e",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "claim",
+    "t_d002ad58",
+    "--ttl",
+    "1800"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_d002ad58\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\far-018-r7r11-residual\\workspaces\\t_d002ad58",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "heartbeat",
+    "t_d002ad58"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_d002ad58",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "claim",
+    "t_758f4f35",
+    "--ttl",
+    "1800"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_758f4f35\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\far-018-r7r11-residual\\workspaces\\t_758f4f35",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "heartbeat",
+    "t_758f4f35"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_758f4f35",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "claim",
+    "t_3b0bb9ff",
+    "--ttl",
+    "1800"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_3b0bb9ff\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\far-018-r7r11-residual\\workspaces\\t_3b0bb9ff",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "heartbeat",
+    "t_3b0bb9ff"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_3b0bb9ff",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "claim",
+    "t_51a82b58",
+    "--ttl",
+    "1800"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_51a82b58\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\far-018-r7r11-residual\\workspaces\\t_51a82b58",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "heartbeat",
+    "t_51a82b58"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_51a82b58",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "claim",
+    "t_73fec1c5",
+    "--ttl",
+    "1800"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_73fec1c5\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\far-018-r7r11-residual\\workspaces\\t_73fec1c5",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "heartbeat",
+    "t_73fec1c5"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_73fec1c5",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "claim",
+    "t_a02cb9d1",
+    "--ttl",
+    "1800"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_a02cb9d1\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\far-018-r7r11-residual\\workspaces\\t_a02cb9d1",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "heartbeat",
+    "t_a02cb9d1"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_a02cb9d1",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "claim",
+    "t_23ff5409",
+    "--ttl",
+    "1800"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_23ff5409\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\far-018-r7r11-residual\\workspaces\\t_23ff5409",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "heartbeat",
+    "t_23ff5409"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_23ff5409",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "block",
+    "t_23ff5409",
+    "structurally the owner's: authority exceeds this round",
+    "--kind",
+    "needs_input"
+   ],
+   "exit": 0,
+   "stdout": "Blocked t_23ff5409: structurally the owner's: authority exceeds this round",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "claim",
+    "t_d82691bb",
+    "--ttl",
+    "1800"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_d82691bb\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\far-018-r7r11-residual\\workspaces\\t_d82691bb",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "heartbeat",
+    "t_d82691bb"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_d82691bb",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "block",
+    "t_d82691bb",
+    "structurally the owner's: authority exceeds this round",
+    "--kind",
+    "needs_input"
+   ],
+   "exit": 0,
+   "stdout": "Blocked t_d82691bb: structurally the owner's: authority exceeds this round",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "claim",
+    "t_02416ab8",
+    "--ttl",
+    "1800"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_02416ab8\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\far-018-r7r11-residual\\workspaces\\t_02416ab8",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "heartbeat",
+    "t_02416ab8"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_02416ab8",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "block",
+    "t_02416ab8",
+    "structurally the owner's: authority exceeds this round",
+    "--kind",
+    "needs_input"
+   ],
+   "exit": 0,
+   "stdout": "Blocked t_02416ab8: structurally the owner's: authority exceeds this round",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "claim",
+    "t_786fcfbb",
+    "--ttl",
+    "1800"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_786fcfbb\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\far-018-r7r11-residual\\workspaces\\t_786fcfbb",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "heartbeat",
+    "t_786fcfbb"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_786fcfbb",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "block",
+    "t_786fcfbb",
+    "structurally the owner's: authority exceeds this round",
+    "--kind",
+    "needs_input"
+   ],
+   "exit": 0,
+   "stdout": "Blocked t_786fcfbb: structurally the owner's: authority exceeds this round",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "claim",
+    "t_c412d366",
+    "--ttl",
+    "1800"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_c412d366\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\far-018-r7r11-residual\\workspaces\\t_c412d366",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "heartbeat",
+    "t_c412d366"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_c412d366",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "block",
+    "t_c412d366",
+    "structurally the owner's: authority exceeds this round",
+    "--kind",
+    "needs_input"
+   ],
+   "exit": 0,
+   "stdout": "Blocked t_c412d366: structurally the owner's: authority exceeds this round",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "ls",
+    "--json"
+   ],
+   "exit": 0,
+   "stdout": "[\n  {\n    \"id\": \"t_48c34c7a\",\n    \"title\": \"R0 R0 Gate-1 route + negative control\",\n    \"body\": \"FAR-20261016-018 gate card; evidence under _handover/FAR-20261016-018-*/\",\n    \"assignee\": \"hgk-orchestrator\",\n    \"status\": \"done\",\n    \"priority\": 0,\n    \"tenant\": null,\n    \"workspace_kind\": \"scratch\"",
+   "stderr": ""
+  }
+ ]
+}

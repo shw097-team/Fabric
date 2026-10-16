@@ -1,0 +1,152 @@
+{
+ "schema": "FAR-20261016-018/ADJUDICATION-AND-LIMITATIONS/1",
+ "generated_utc": "2026-10-16T11:30:48.708584+00:00",
+ "checker": {
+  "arm": "openai-codex/gpt-6.1-sol",
+  "overall": "PARTIAL",
+  "verdicts": {
+   "V1": "AGREE",
+   "V2": "UNVERIFIABLE",
+   "V3": "AGREE",
+   "V4": "AGREE",
+   "V5": "AGREE",
+   "V6": "AGREE",
+   "V7": "UNVERIFIABLE"
+  },
+  "disagreements": []
+ },
+ "writer": {
+  "arm": "opencode-go/deepseek-v4.1-flash"
+ },
+ "model_axis_diversity": true,
+ "subject_untouched_by_checker": true,
+ "subject_mutation_detail": {
+  "files_before": 9,
+  "files_after": 9,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "mutated": false,
+  "mutated_known": true,
+  "inconclusive": false,
+  "verdict": "CLEAN",
+  "rule": "removed/changed => verdict void; added is recorded, not fatal; an empty side => INCONCLUSIVE (never a clean verdict from nothing)",
+  "guard_roots": [
+   "C:/Projects/Agent_Workspace/_handover/FAR-20261016-018-r7r11-residual-closure-and-handover/FAR_RULING.md",
+   "C:/Projects/Agent_Workspace/_handover/FAR-20261016-018-r7r11-residual-closure-and-handover/RESIDUAL_REGISTER.json",
+   "C:/Projects/Agent_Workspace/_handover/FAR-20261016-018-r7r11-residual-closure-and-handover/W1_RESIDUAL_UNIVERSE.json",
+   "C:/Projects/Agent_Workspace/_handover/FAR-20261016-018-r7r11-residual-closure-and-handover/W2_DEFECT_DOSSIER.json",
+   "C:/Projects/Agent_Workspace/_handover/FAR-20261016-018-r7r11-residual-closure-and-handover/writer/checker_isolation_probe.py",
+   "C:/Projects/Agent_Workspace/_handover/FAR-20261016-018-r7r11-residual-closure-and-handover/writer/self_check_v2.py",
+   "C:/Projects/Agent_Workspace/_handover/FAR-20261016-018-r7r11-residual-closure-and-handover/writer/entry_map.json",
+   "C:/Projects/Agent_Workspace/_handover/FAR-20261016-018-r7r11-residual-closure-and-handover/lane/EXECUTE_RECEIPT.json",
+   "C:/Projects/Agent_Workspace/_handover/CNV-EVIDENCE-ARCHIVE-R7R11-20261016/self_check.py"
+  ],
+  "subject_digest_sha256_before": "75bb3d0b5e0b8a6fed38367328a13ec3e7bcb6b2d9acef5e39a25058c29e27e9",
+  "subject_digest_sha256_after": "75bb3d0b5e0b8a6fed38367328a13ec3e7bcb6b2d9acef5e39a25058c29e27e9"
+ },
+ "verdict_adjudication": [
+  {
+   "id": "V2",
+   "checker": "UNVERIFIABLE",
+   "adjudication": "NOT_A_DISAGREEMENT_NARROWED_CLAIM",
+   "why": "the checker's enforced sandbox is read-only, so it could neither run the harness (which creates files and edits ACLs) nor run its mutation mode; it therefore refused to call it verified. Its refusal is correct behaviour, not a defect.",
+   "what_it_did_verify": "source-level fail-ability (PASS requires baseline AND denied AND restored AND cleanup); the stored receipt's booleans, including the raw PermissionError stderr of the denied attempt; and independently that the recorded probe path no longer exists.",
+   "evidence_for_the_round": {
+    "execution_1": {
+     "actor": "EXECUTE lane writer (not the checker)",
+     "source": "writer/WRITER_MANIFEST.json",
+     "command": "python -B writer/checker_isolation_probe.py",
+     "token": "SELF_TEST=PASS"
+    },
+    "execution_2": {
+     "actor": "orchestrator (PLAN side, not the checker)",
+     "source": "isolation_probe_receipt.json",
+     "verdict": "PASS",
+     "cleanup_verified": true
+    }
+   },
+   "claim_after_adjudication": "the mechanism is DEMONSTRATED by two non-checker executions and its fail-ability is SOURCE-CONFIRMED by the independent checker; an execution BY THE CHECKER ITSELF (or another actor under a write-capable sandbox) remains OPEN",
+   "residual": "R7-03-ISOLATE independent execution: open (owner-gated OG6 for the non-liftable boundary)"
+  },
+  {
+   "id": "V7",
+   "checker": "UNVERIFIABLE",
+   "adjudication": "NOT_A_DISAGREEMENT_NARROWED_CLAIM",
+   "why": "the refusal event, the guard predicate's execution, the append-only transcript and the orchestrator's persistence act are historical events that no artifact in this round can authenticate. The dossier records them as reported by the lane.",
+   "what_it_did_verify": "the dossier does contain the raw refusal error string and does separate 'the lane measured it' from 'the orchestrator persisted it'.",
+   "claim_after_adjudication": "ARTIFACT-LEVEL CLAIM ONLY: the dossier contains that raw error string and distinguishes the two actors. The historical false-positive and the provenance chain are asserted, not independently authenticated.",
+   "residual": "the guard false-positive class (OG8) is evidenced, not proven; a runtime-plane owner reproducing it from the guard's own logs would close it"
+  },
+  {
+   "id": "V6",
+   "checker": "AGREE_WITH_AN_OBSERVATION_THE_ROUND_ACCEPTS",
+   "observation": "the checker read lane/VERIFY_RECEIPT.json mid-run and saw ok=false with ERR_GUARD_ROOT_MISSING, and correctly declined to treat it as evidence of acceptance.",
+   "truth": "that was the REFUSED FIRST attempt of this lane, which the successful retry overwrote when it completed its turn. The current on-disk receipt is the successful one.",
+   "round_response": "the first-fail is preserved at lane/VERIFY_ATTEMPT1_REFUSED.json with its root cause and remediation; it is not deleted or hidden."
+  }
+ ],
+ "round_side_errata": [
+  {
+   "id": "ER1",
+   "class": "ARTIFACT_HYGIENE",
+   "severity": "P2",
+   "finding": "a lane receipt written to a fixed path is overwritten by a retry, destroying the first-fail of the refused attempt.",
+   "evidence": "lane/VERIFY_ATTEMPT1_REFUSED.json (preserved from the dispatch output) vs the successful lane/VERIFY_RECEIPT.json",
+   "fix": "write an attempt-numbered receipt path or copy the pre-existing receipt aside before retrying"
+  },
+  {
+   "id": "ER2",
+   "class": "TOOLCAUGHT_INVARIANT",
+   "severity": "P1",
+   "finding": "a guard root that does not yet exist makes the whole dispatch fail closed (ERR_GUARD_ROOT_MISSING, 'a vacuous guard would report a clean subject').",
+   "evidence": "lane/VERIFY_ATTEMPT1_REFUSED.json",
+   "fix": "generate every guard root BEFORE assembling the guard set; a guard on a not-yet-generated artifact is itself a defect the tool refuses to accept"
+  },
+  {
+   "id": "ER3",
+   "class": "MAKER_OVERCLAIM",
+   "severity": "P1",
+   "finding": "the round's own openspec tasks.md initially ticked tasks that had not been executed.",
+   "evidence": "the file's own correction note; the corrected file leaves unexecuted tasks unticked",
+   "fix": "tick only against an artifact that exists; keep the correction note in the file"
+  },
+  {
+   "id": "ER4",
+   "class": "MANDATE_TENSION",
+   "severity": "P2",
+   "finding": "the mandate to search-and-reuse produced a contract whose shingle similarity to the prior contract is 0.596, which the compiler's duplication gate flags.",
+   "evidence": "compiler/duplication.stdout.txt",
+   "fix": "scope the duplication gate to the EXECUTED prompt rather than the plan contract; the writer brief handed to the lane is newly authored"
+  }
+ ],
+ "counts_recomputed": {
+  "w1_items": 118,
+  "w2_defects": 5,
+  "agent_executable_open": [
+   "MUTABLE-SOURCE-HASH-METADATA",
+   "CROSS-INDEX-PRESENCE-NONVacuity",
+   "SELF-CHECK-NONVacuity"
+  ],
+  "workorders": 0,
+  "kanban_cli_calls": 67
+ },
+ "artifacts_digest_stubs": {
+  "FAR_RULING.md": "5b5d58470337c25b7a00f644",
+  "RESIDUAL_REGISTER.json": "f92a5dedf58503bb89c196ce",
+  "W1_RESIDUAL_UNIVERSE.json": "5493d4abee20b68d6ac8c3a8",
+  "W2_DEFECT_DOSSIER.json": "05df0ac376ea33da1b970d84",
+  "lane/EXECUTE_RECEIPT.json": "bd3522f43c241bfe4e9b7c18",
+  "lane/VERIFY_RECEIPT.json": "340a71a47a3847cfb15e8e0a",
+  "lane/VERIFY_VERDICT.json": "c86bad758da2e32fdbe88173",
+  "writer/entry_map.json": "dbd6f556e5bf9e743cc3c093",
+  "writer/WRITER_MANIFEST.json": "584445a0313b16df78b4e0bf",
+  "isolation_probe_receipt.json": "ecd040dd9980472b820acef0"
+ },
+ "claim_ceiling": "LOCAL",
+ "nonclaims": [
+  "no acceptance-report finding is claimed closed as a result of the checker's verdicts",
+  "the checker's 5 AGREE items are agreements about the ROUND'S ARTIFACTS, not an external acceptance",
+  "the two UNVERIFIABLE items were narrowed, never rounded up to verified"
+ ]
+}

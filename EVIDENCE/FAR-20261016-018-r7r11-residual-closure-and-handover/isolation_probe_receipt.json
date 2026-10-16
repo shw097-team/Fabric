@@ -1,0 +1,118 @@
+{
+  "schema": "FAR018/CHECKER-ISOLATION-PROBE/1",
+  "identity": "desktop-57eo414\\user",
+  "identity_source": "USERDOMAIN\\USERNAME (lowercased); owner SID S-1-5-21-2687334950-3868438633-1592137926-1000",
+  "probe_path": "C:\\tmp\\far018-probe2",
+  "deny_step_skipped_mutation": false,
+  "steps": {
+    "create_dir": {
+      "argv": [
+        "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-c",
+        "import os, sys\nos.makedirs('C:\\\\tmp\\\\far018-probe2', exist_ok=True)\nsys.stdout.write('created\\n')"
+      ],
+      "returncode": 0,
+      "stdout": "created\n",
+      "stderr": ""
+    },
+    "baseline_write": {
+      "argv": [
+        "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-c",
+        "import io,sys\nwith io.open('C:\\\\tmp\\\\far018-probe2\\\\baseline_write.txt', 'w', encoding='utf-8') as fh:\n    fh.write('probe-write-ok')\nsys.stdout.write('write-ok\\n')"
+      ],
+      "returncode": 0,
+      "stdout": "write-ok\n",
+      "stderr": ""
+    },
+    "apply_deny_ace": {
+      "argv": [
+        "icacls",
+        "C:\\tmp\\far018-probe2",
+        "/deny",
+        "desktop-57eo414\\user:(OI)(CI)(W)"
+      ],
+      "returncode": 0,
+      "stdout": "�w�B�z���ɮ�: C:\\tmp\\far018-probe2\n�w���Q�B�z 1 ���ɮ�; 0 ���ɮ׳B�z����\n",
+      "stderr": ""
+    },
+    "denied_write": {
+      "argv": [
+        "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-c",
+        "import io,sys\nwith io.open('C:\\\\tmp\\\\far018-probe2\\\\denied_write.txt', 'w', encoding='utf-8') as fh:\n    fh.write('probe-write-ok')\nsys.stdout.write('write-ok\\n')"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 2, in <module>\nPermissionError: [Errno 13] Permission denied: 'C:\\\\tmp\\\\far018-probe2\\\\denied_write.txt'\n"
+    },
+    "remove_deny_ace": {
+      "argv": [
+        "icacls",
+        "C:\\tmp\\far018-probe2",
+        "/remove:d",
+        "desktop-57eo414\\user"
+      ],
+      "returncode": 0,
+      "stdout": "�w�B�z���ɮ�: C:\\tmp\\far018-probe2\n�w���Q�B�z 1 ���ɮ�; 0 ���ɮ׳B�z����\n",
+      "stderr": ""
+    },
+    "restored_write": {
+      "argv": [
+        "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-c",
+        "import io,sys\nwith io.open('C:\\\\tmp\\\\far018-probe2\\\\restored_write.txt', 'w', encoding='utf-8') as fh:\n    fh.write('probe-write-ok')\nsys.stdout.write('write-ok\\n')"
+      ],
+      "returncode": 0,
+      "stdout": "write-ok\n",
+      "stderr": ""
+    }
+  },
+  "booleans": {
+    "baseline_write_succeeded": true,
+    "denied_write_failed": true,
+    "restored_write_succeeded": true
+  },
+  "cleanup": {
+    "remove_deny_ace_final": {
+      "argv": [
+        "icacls",
+        "C:\\tmp\\far018-probe2",
+        "/remove:d",
+        "desktop-57eo414\\user"
+      ],
+      "returncode": 0,
+      "stdout": "�w�B�z���ɮ�: C:\\tmp\\far018-probe2\n�w���Q�B�z 1 ���ɮ�; 0 ���ɮ׳B�z����\n",
+      "stderr": ""
+    },
+    "acl_readback": {
+      "argv": [
+        "icacls",
+        "C:\\tmp\\far018-probe2"
+      ],
+      "returncode": 0,
+      "stdout": "C:\\tmp\\far018-probe2 BUILTIN\\Administrators:(I)(OI)(CI)(F)\n                     NT AUTHORITY\\SYSTEM:(I)(OI)(CI)(F)\n                     BUILTIN\\Users:(I)(OI)(CI)(RX)\n                     NT AUTHORITY\\Authenticated Users:(I)(M)\n                     NT AUTHORITY\\Authenticated Users:(I)(OI)(CI)(IO)(M)\n\n�w���Q�B�z 1 ���ɮ�; 0 ���ɮ׳B�z����\n",
+      "stderr": ""
+    },
+    "deny_ace_removed": true,
+    "remove_dir": {
+      "argv": [
+        "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-c",
+        "import shutil, sys\nshutil.rmtree('C:\\\\tmp\\\\far018-probe2', ignore_errors=True)\nsys.stdout.write('removed\\n')"
+      ],
+      "returncode": 0,
+      "stdout": "removed\n",
+      "stderr": ""
+    },
+    "probe_dir_removed": true
+  },
+  "cleanup_verified": true,
+  "limit": "ORDINARY DENIAL, NOT AN IMMUTABLE BOUNDARY: the same identity that applies the deny ACE (`desktop-57eo414\\user`) can lift it again with `icacls <dir> /remove:d desktop-57eo414\\user`, which this harness itself does. The barrier is an owner-settable ACL, not an OS-enforced impossibility; a principal able to author the ACE can also remove it.",
+  "verdict": "PASS"
+}

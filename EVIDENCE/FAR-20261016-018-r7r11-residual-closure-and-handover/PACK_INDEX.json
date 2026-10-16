@@ -1,0 +1,284 @@
+{
+ "schema": "FAR-20261016-018/PACK-INDEX/1",
+ "generated_utc": "2026-10-16T11:40:26.866381+00:00",
+ "note": "the closure MD cannot contain its own hash (it is indexed here); PACK_INDEX.json is excluded from its own listing for the same reason — its digest is carried by the publish/readback receipts",
+ "self_excluded": {
+  "path": "PACK_INDEX.json",
+  "reason": "an index cannot contain its own digest; a row for itself would be stale by construction and failed a live remote readback",
+  "its_digest_is_carried_by": [
+   "PUBLISH_RECEIPT.json",
+   "REMOTE_READBACK_VERIFY.json",
+   "publish/payload/PUBLICATION_ADDENDUM.json"
+  ]
+ },
+ "not_listed_by_design": {
+  "reason": "every file below is a receipt ABOUT this commit or about a later commit, so it cannot be listed with a digest that the commit itself fixes. Their digests live in REMOTE_READBACK_VERIFY.json / PUBLISH_FOLLOWUP_*.json, produced after the commit.",
+  "files": [
+   "PACK_INDEX.json",
+   "PUBLISH_RECEIPT.json",
+   "REMOTE_READBACK_VERIFY.json",
+   "POST_PUBLICATION_ADDENDUM.md",
+   "PUBLISH_FOLLOWUP_CORRECT.json",
+   "PUBLISH_FOLLOWUP_FINAL.json"
+  ]
+ },
+ "files": [
+  {
+   "path": ".gitattributes",
+   "bytes": 9,
+   "sha256": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992"
+  },
+  {
+   "path": "ADJUDICATION_AND_LIMITATIONS.json",
+   "bytes": 8216,
+   "sha256": "268aff186ecc2ee9685f48b917cbea9ff7796007bc1716df6bfbf5100ecb880d"
+  },
+  {
+   "path": "build_pack.py",
+   "bytes": 13050,
+   "sha256": "04b712ca73a4cfb546d88c935adebbd7e8123837b336454c0a00f9d4195f9296"
+  },
+  {
+   "path": "build_register.py",
+   "bytes": 5712,
+   "sha256": "3378bff28c20e11e5dabfde30664398621a9a32227029d85ac3e80952c229eed"
+  },
+  {
+   "path": "compiler/acceptance.stdout.txt",
+   "bytes": 80,
+   "sha256": "9b718dd02a8f35fb25777044885eb03314962cb7b4035722e623c1f0648548f3"
+  },
+  {
+   "path": "compiler/activation.stdout.txt",
+   "bytes": 80,
+   "sha256": "9b718dd02a8f35fb25777044885eb03314962cb7b4035722e623c1f0648548f3"
+  },
+  {
+   "path": "compiler/compile.stdout.txt",
+   "bytes": 269,
+   "sha256": "16293c657c8a6ae2dd46604a1590ae6baf884b2c3d428f6ddf29b86632bd1ce9"
+  },
+  {
+   "path": "compiler/compiler-receipt.json",
+   "bytes": 579,
+   "sha256": "4d966571a56c6b0a94a484fc1c4bf6fa32a06a15674959780e2b35222767b140"
+  },
+  {
+   "path": "compiler/compiler-report.json",
+   "bytes": 261,
+   "sha256": "515f0363b39561479a60f69fcd2f9afe9820b0b8e9d85107403ee30a63ba03b5"
+  },
+  {
+   "path": "compiler/duplication.stdout.txt",
+   "bytes": 269,
+   "sha256": "59836837b0003c24990a94aead14ba71287fdd62601562ab2e6b31114e30aee7"
+  },
+  {
+   "path": "compiler/hash.stdout.txt",
+   "bytes": 66,
+   "sha256": "f14afee8f06972cb940723c9a1e1e19fe856088c3e85035e6856175041b9b504"
+  },
+  {
+   "path": "compiler/lint.stdout.txt",
+   "bytes": 80,
+   "sha256": "9b718dd02a8f35fb25777044885eb03314962cb7b4035722e623c1f0648548f3"
+  },
+  {
+   "path": "emit_closure.py",
+   "bytes": 15409,
+   "sha256": "329f61c1d6ab0953b34b22f7c77bab08c0874828168be3dc799038fa17a8a669"
+  },
+  {
+   "path": "EVIDENCE_CLOSURE_FAR-20261016-018.md",
+   "bytes": 9964,
+   "sha256": "b93d58b13df7f66311509bd20d6bd0cba2fbf677ef380219282e9f1e8505f534"
+  },
+  {
+   "path": "far018_admission.py",
+   "bytes": 9523,
+   "sha256": "a716fe8605558e169502d2d02748c33ab4291c910ec0c8a016e5d05406f1976f"
+  },
+  {
+   "path": "far018_contract.py",
+   "bytes": 12687,
+   "sha256": "fe53812c4a2dc8cedc5793663fedd80ce707a541bee3d16d32bc01dca2076dc4"
+  },
+  {
+   "path": "far018_kanban.py",
+   "bytes": 5258,
+   "sha256": "9501634e716b1541441329cd066ea86103e48aeeaf6829133721ecd2ccc93ef4"
+  },
+  {
+   "path": "FAR_RULING.md",
+   "bytes": 7231,
+   "sha256": "5b5d58470337c25b7a00f644ece8d957a77c1e2d92329fe4ff4a4cb7bdb95bc6"
+  },
+  {
+   "path": "HANDOVER_FAR018.md",
+   "bytes": 3059,
+   "sha256": "b2bb76092785af350185552fa39bc5bdbd900d6c51377ed82a85c41d8e095b77"
+  },
+  {
+   "path": "HGK_TYPED_ADMISSION_FAR018.json",
+   "bytes": 6229,
+   "sha256": "fdad8e5da19f7d2460e2f1269340413f36e2097f314c0ee04797cd1cccd26cb2"
+  },
+  {
+   "path": "HGK_WORKORDER_RESULTS_AND_DELIVERY.json",
+   "bytes": 5337,
+   "sha256": "c273bdd94a8a722b4a18f441730241a88629e04a49fb6e618e5df260de2870ce"
+  },
+  {
+   "path": "isolation_probe_receipt.json",
+   "bytes": 4782,
+   "sha256": "ecd040dd9980472b820acef041c0fe80574f40d5858a1083c99feacf1d52eb93"
+  },
+  {
+   "path": "KANBAN_LIFECYCLE_RECEIPT.json",
+   "bytes": 28833,
+   "sha256": "38df5f0d7d0ca970791b8b0fc59ff35750778631095bb0fa236cfcfcf39bd011"
+  },
+  {
+   "path": "lane/EXECUTE_BRIEF.md",
+   "bytes": 7480,
+   "sha256": "45d772536d2ad08b0edbae160f644ba9cd121ec0a5edc29d9191721c67a67695"
+  },
+  {
+   "path": "lane/EXECUTE_RECEIPT.json",
+   "bytes": 6706,
+   "sha256": "bd3522f43c241bfe4e9b7c1839cc2b5106cdc35a14aedee2293afb6c7083234e"
+  },
+  {
+   "path": "lane/VERIFY_ATTEMPT1_REFUSED.json",
+   "bytes": 1494,
+   "sha256": "696d0d3ed6b8b0244c0b3d6056ff517d31044bdb4365aad4a490af80fe785f04"
+  },
+  {
+   "path": "lane/VERIFY_BRIEF.md",
+   "bytes": 5277,
+   "sha256": "f3c4afa927b232b0cfccbcc9d414165b1c62989452f978253ae03f4066b60243"
+  },
+  {
+   "path": "lane/VERIFY_RECEIPT.json",
+   "bytes": 8053,
+   "sha256": "340a71a47a3847cfb15e8e0ac0a244b87fb206059a3c6cb951b26e7dfc41ba99"
+  },
+  {
+   "path": "lane/VERIFY_VERDICT.json",
+   "bytes": 12696,
+   "sha256": "c86bad758da2e32fdbe881736702e2c0046b198d12974b1c37c02b343560ce15"
+  },
+  {
+   "path": "persist_firstfail.py",
+   "bytes": 2966,
+   "sha256": "2f2be9c4dddb3542ad56f2bd84dacb87eb259a79150ddd5c9313fe9184ab6a4c"
+  },
+  {
+   "path": "prompt-contract.json",
+   "bytes": 62492,
+   "sha256": "70b227969c3e35f4527d511303d3bc60951b91f6d57d533b4ee284926d215d7c"
+  },
+  {
+   "path": "publish_followup2.py",
+   "bytes": 8124,
+   "sha256": "a55574ad8199435fce23527f8e6828ac96414d2737d5da4a8255292f0d725842"
+  },
+  {
+   "path": "recon_route.py",
+   "bytes": 4620,
+   "sha256": "dc7884a29d1b84367fe3022a9dd977c22568c1299fa789f1c3a99d8de72e8f1d"
+  },
+  {
+   "path": "RESIDUAL_REGISTER.json",
+   "bytes": 5018,
+   "sha256": "dfb44d55eb4598e030aea86e79a5408c327e446a363f228e3ee0d09bfff2f926"
+  },
+  {
+   "path": "ROUTE_CHECK.json",
+   "bytes": 4755,
+   "sha256": "d999906a2535c38d21f1b37543589fd431377c658bd933f4275c7fd99c28191c"
+  },
+  {
+   "path": "self_check.py",
+   "bytes": 12997,
+   "sha256": "75ce1af810cd746b09e998e2cccab1fe03986427c8476352d0ec9cca38428333"
+  },
+  {
+   "path": "SELF_CHECK_RECEIPT.json",
+   "bytes": 3610,
+   "sha256": "6ef3355594bf27d77ecdb43c2681ade86bd6adf30b215599b00eac5a7710be60"
+  },
+  {
+   "path": "SELF_EVOLUTION_RECORD.json",
+   "bytes": 2752,
+   "sha256": "7107be8eb64a0d58ca4498d393168f20c2009f40be2184b5b5e5ac5a61560e78"
+  },
+  {
+   "path": "skill_entry_map_install_receipt.json",
+   "bytes": 1618,
+   "sha256": "792360db4e09ab7cfa86a5f6ff8a729614d7736cdc5b0a0a3fd5fd17377a0caa"
+  },
+  {
+   "path": "verify_pack_local.py",
+   "bytes": 1113,
+   "sha256": "95ff86a232d9ee5f3280bf4a5bfb15f948f5d9d4958efc31d705902b8327fb26"
+  },
+  {
+   "path": "W1_RESIDUAL_UNIVERSE.json",
+   "bytes": 185506,
+   "sha256": "5493d4abee20b68d6ac8c3a86ad311d86e08bdeb0e6aa80b786fcbac36534b80"
+  },
+  {
+   "path": "W2_DEFECT_DOSSIER.json",
+   "bytes": 10540,
+   "sha256": "05df0ac376ea33da1b970d843dd18cc46af482fa6409b93ca2f692eb6491e66a"
+  },
+  {
+   "path": "writer/checker_isolation_probe.py",
+   "bytes": 8368,
+   "sha256": "2147eccc4410f8f69a3d355cb8e58d3452cef25043bef9e5cc3db4362dc3040e"
+  },
+  {
+   "path": "writer/CROSS_INDEX_V2.json",
+   "bytes": 6701,
+   "sha256": "25582fa269e487bf7e900376eeac50077a8ff7a44e6c150609592e05da69e53e"
+  },
+  {
+   "path": "writer/cross_index_v2.py",
+   "bytes": 6413,
+   "sha256": "f10e6c16c2ee22f253e294276858d666e5b4abae217a43cdd602a44653a617f7"
+  },
+  {
+   "path": "writer/entry_map.json",
+   "bytes": 4427,
+   "sha256": "dbd6f556e5bf9e743cc3c09368fedc5eb800862a0ac7aaf708ff9d5dd0bc8116"
+  },
+  {
+   "path": "writer/metadata_semantics.py",
+   "bytes": 7676,
+   "sha256": "6df34a59c20e900421325b8ea62176dd94b24c637c28f318edb2abaeaba8d6c8"
+  },
+  {
+   "path": "writer/METADATA_SEMANTICS_V2.json",
+   "bytes": 34343,
+   "sha256": "065249f3235658c3c01158af441c5e178c2dfe79fa2c17f1b74587c8c19d25e7"
+  },
+  {
+   "path": "writer/regen_entry_map.py",
+   "bytes": 8839,
+   "sha256": "dbc69152bd1d579f33c5f582459fbd1371025f045f69eaa9d1f1496937417ce0"
+  },
+  {
+   "path": "writer/self_check_v2.py",
+   "bytes": 8786,
+   "sha256": "81f27680f220f1dcd52ce3dc8db424b0ddd4883ac9b1a5e7e75807b024196d42"
+  },
+  {
+   "path": "writer/WRITER_MANIFEST.json",
+   "bytes": 4627,
+   "sha256": "584445a0313b16df78b4e0bfd98656e4ad5c071e6fd8714e6a5947d9b52e375c"
+  }
+ ],
+ "file_count": 51,
+ "payload_files_total": 52
+}

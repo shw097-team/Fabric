@@ -1,0 +1,38 @@
+{
+ "schema": "FAR-20261016-018/SKILL-ENTRY-MAP-INSTALL/1",
+ "installed_utc": "2026-10-16T11:25:18.538809+00:00",
+ "skill_dir": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\skills\\software-development\\hgk-governed-execution",
+ "target": "entry_map.json",
+ "pre_existing": false,
+ "pre_sha256": null,
+ "post_sha256": "1324d5a7e76695687980d92a1245635a3a458ce93e2774890ad9dd27edf06492",
+ "bytes": 4184,
+ "additive_only": true,
+ "existing_files_untouched": [
+  "SKILL.md",
+  "entry_map.json"
+ ],
+ "coverage": {
+  "status": "PARTIAL",
+  "basis": "reconstructed only from `SKCV-POINTER` lines discovered under references/*.md; the original index file is absent",
+  "covers": [
+   "pointer_file",
+   "target",
+   "offset",
+   "length",
+   "claimed_sha256",
+   "actual_sha256",
+   "verdict",
+   "destination topic files"
+  ],
+  "does_not_cover": [
+   "the original index's full field set: per-topic titles/summaries",
+   "topic-to-source provenance beyond the byte-slice pointer",
+   "the skill's ordering/priority metadata for each entry",
+   "any entry that was never emitted as a SKCV-POINTER move record",
+   "SKCV-TOPIC-ENTRY lines inside topic files (a different record type; their slices resolve against the topic file itself, not a source file)"
+  ],
+  "note": "Presence of a verified pointer proves the byte slice moved verbatim; it is not a claim that the reconstructed index is complete."
+ },
+ "note": "this installs the partial reconstruction the round generated; no pre-existing byte in the skill directory was altered"
+}

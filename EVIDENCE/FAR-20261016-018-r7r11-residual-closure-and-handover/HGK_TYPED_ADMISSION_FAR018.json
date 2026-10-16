@@ -1,0 +1,176 @@
+{
+  "schema": "FAR-20261016-018/HGK-TYPED-ADMISSION/1",
+  "project_id": "FAR-018-R7R11-RESIDUAL",
+  "changeset": "FAR-20261016-018-r7r11-residual-closure-and-handover",
+  "contract_id": "FAR-20261016-018-r7r11-residual-closure-and-handover",
+  "sources_present": 12,
+  "sources_missing": [],
+  "source_inventory": [
+    {
+      "id": "SRC-PKG",
+      "path": "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\HG-KSEOS\\Fabric_HG-KSEOS_Convergence\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md",
+      "bytes": 2689181,
+      "sha256": "96d9d564286743e17550ccef15b9952347901eb77168f930376938893cff9c3f"
+    },
+    {
+      "id": "SRC-EIA-R7R11",
+      "path": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_Convergence_R7_R11_Independent_Acceptance_20261016.md",
+      "bytes": 39873,
+      "sha256": "e4f9a487aa49a7f11bd90332e3aef1b660a9df80cc748fe0fef54f68191b1103"
+    },
+    {
+      "id": "SRC-PREV-RETURN-PACK",
+      "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-EVIDENCE-ARCHIVE-R7R11-20261016\\packet\\RETURN_PACK.json",
+      "bytes": 16224,
+      "sha256": "a5b6379fc8d3073c97a58b7e155fc6f603dd4471ffeafd5463f3a850d20b0666"
+    },
+    {
+      "id": "SRC-PREV-PREFLIGHT",
+      "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-EVIDENCE-ARCHIVE-R7R11-20261016\\A03_A05_PR_PREFLIGHT.json",
+      "bytes": 71490,
+      "sha256": "da7d94f50bd255ed567ee6a11ae1556ec95dfd496390b01066d0cf703df9f159"
+    },
+    {
+      "id": "SRC-PREV-ERRATA",
+      "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-EVIDENCE-ARCHIVE-R7R11-20261016\\ERRATA_AND_ADVISORIES.json",
+      "bytes": 4843,
+      "sha256": "1083934bf16aaf18ee07ee0c3942751fabdbf4dc2ffa6fc8f37bfb1ffe984486"
+    },
+    {
+      "id": "SRC-PREV-MERGE-CHAIN",
+      "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-EVIDENCE-ARCHIVE-R7R11-20261016\\MERGE_CHAIN_RECEIPT.json",
+      "bytes": 7479,
+      "sha256": "f39ae267ba15622d9cb22d3d8bdb80b866c9d248fef94a2e2dedf03358ec6a93"
+    },
+    {
+      "id": "SRC-PREV-SELF-CHECK",
+      "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-EVIDENCE-ARCHIVE-R7R11-20261016\\SELF_CHECK_RECEIPT.json",
+      "bytes": 4946,
+      "sha256": "9040b1d564725e4b22d6beb52a8bb4b58a6648453923eaea51b9b632123b63b8"
+    },
+    {
+      "id": "SRC-FAR-CONTRACT",
+      "path": "C:\\Projects\\Agent_Workspace\\_handover\\FAR-20261016-018-r7r11-residual-closure-and-handover\\prompt-contract.json",
+      "bytes": 62492,
+      "sha256": "70b227969c3e35f4527d511303d3bc60951b91f6d57d533b4ee284926d215d7c"
+    },
+    {
+      "id": "SRC-FAR-DECISION-QUESTION",
+      "path": "C:\\Projects\\Agent_Workspace\\Fabric\\fabric-autonomous-research\\runs\\FAR-20261016-018-r7r11-residual-closure-and-handover\\DECISION_QUESTION.md",
+      "bytes": 3527,
+      "sha256": "01590560ebd86a7530ccd70e65a6be4a84a3f97aba85d7791d7a30f889bad1a9"
+    },
+    {
+      "id": "SRC-FAR-METHOD",
+      "path": "C:\\Projects\\Agent_Workspace\\Fabric\\fabric-autonomous-research\\runs\\FAR-20261016-018-r7r11-residual-closure-and-handover\\METHOD.md",
+      "bytes": 3260,
+      "sha256": "be32a58a7a57da50991a618cfdb56c941aab5526627685c690f4ccbbdc7bae8a"
+    },
+    {
+      "id": "SRC-SKILL-HGK",
+      "path": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\skills\\software-development\\hgk-governed-execution\\SKILL.md",
+      "bytes": 21506,
+      "sha256": "80a235f09e8b3ad17177b7d1aec5305d902b7d454a4c37fb55597d986d4516da"
+    },
+    {
+      "id": "SRC-LANE-SLOTS",
+      "path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\lane-route-slots.candidate.json",
+      "bytes": 34932,
+      "sha256": "12f6667ee50bb369457c81dcc9d99ab9d244649a38c6f34ece29d1c3e5812418"
+    }
+  ],
+  "steps": [
+    {
+      "step": "start",
+      "result": "CREATED",
+      "state": "PROJECT_CREATED"
+    },
+    {
+      "step": "intake",
+      "status": "READY",
+      "source_count": 12,
+      "blocking_missing": [],
+      "conflicts": []
+    },
+    {
+      "step": "transition",
+      "to": "INTENT_BOUND",
+      "result": "OK"
+    },
+    {
+      "step": "transition",
+      "to": "REQUIREMENTS_READY",
+      "result": "OK"
+    },
+    {
+      "step": "transition",
+      "to": "DESIGN_READY",
+      "result": "OK"
+    },
+    {
+      "step": "plan",
+      "task_count": 5,
+      "titles": [
+        "Source discovery",
+        "Authority source admission",
+        "Knowledge pipeline",
+        "Acceptance and evidence",
+        "Package and delivery"
+      ]
+    },
+    {
+      "step": "admit_workorders",
+      "result": {
+        "project_id": "FAR-018-R7R11-RESIDUAL",
+        "workorders": [
+          "WO-TS-RESIDUAL-01",
+          "WO-TS-RESIDUAL-02",
+          "WO-TS-RESIDUAL-03",
+          "WO-TS-RESIDUAL-04",
+          "WO-TS-RESIDUAL-05"
+        ],
+        "count": 5
+      }
+    }
+  ],
+  "final_state": "WORKORDERS_ADMITTED",
+  "denominator": {
+    "project_id": "FAR-018-R7R11-RESIDUAL",
+    "state": "WORKORDERS_ADMITTED",
+    "requirements_total": 1,
+    "requirements_frozen": 1,
+    "taskspecs_total": 5,
+    "workorders_total": 5,
+    "workorders_open": [
+      "WO-TS-RESIDUAL-01",
+      "WO-TS-RESIDUAL-02",
+      "WO-TS-RESIDUAL-03",
+      "WO-TS-RESIDUAL-04",
+      "WO-TS-RESIDUAL-05"
+    ],
+    "workorders_open_count": 5,
+    "acceptances_total": 1,
+    "acceptances_open": [
+      "ACC-REQ-FAR-018-R7R11-RESIDUAL-PLAN"
+    ],
+    "acceptances_open_count": 1,
+    "required_active_capabilities": [
+      "openspec",
+      "gstack.plan-eng-review",
+      "gstack.review",
+      "gstack.qa",
+      "gstack.cso",
+      "gstack.ship",
+      "gstack.office-hours",
+      "gstack.retro"
+    ],
+    "required_active_capabilities_total": 8,
+    "required_active_capabilities_open": [],
+    "required_active_capabilities_open_count": 0,
+    "required_local_scope_open": 6,
+    "guard_required_workorders_terminal": false,
+    "denominator_available": true
+  },
+  "verdict": "ADMISSION_OK",
+  "checkpoint": "CK-RESIDUAL-0ACF3896"
+}

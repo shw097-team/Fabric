@@ -1,0 +1,107 @@
+{
+ "schema": "FAR-20261016-018/HGK-WORKORDER-RESULTS-AND-DELIVERY/1",
+ "generated_utc": "2026-10-16T11:39:48.852374+00:00",
+ "project_id": "FAR-018-R7R11-RESIDUAL",
+ "workorders": [
+  "WO-TS-RESIDUAL-01",
+  "WO-TS-RESIDUAL-02",
+  "WO-TS-RESIDUAL-03",
+  "WO-TS-RESIDUAL-04",
+  "WO-TS-RESIDUAL-05"
+ ],
+ "writer": "codex",
+ "checker": "codex-verify/openai-codex/gpt-6.1-sol",
+ "writer_identity_note": "the spine fixes the writer to the value the work order was admitted with (row.writer must equal the argument); the lane's actual arm is carried in the lane receipts and in evidence_refs, not in this field",
+ "served_arms": {
+  "execute": "opencode-go/deepseek-v4.1-flash",
+  "verify": "openai-codex/gpt-6.1-sol"
+ },
+ "same_writer_and_checker": false,
+ "results": [
+  {
+   "workorder": "WO-TS-RESIDUAL-01",
+   "ok": true,
+   "result": "{'verdict': 'PASS', 'checker': 'codex-verify/openai-codex/gpt-6.1-sol', 'evidence_refs': ['lane/EXECUTE_RECEIPT.json', 'writer/WRITER_MANIFEST.json', 'isolation_probe_receipt.json', 'lane/EXECUTE_BRIEF.md', 'lane/VERIFY_RECEIPT.json', 'lane/VERIFY_VERDICT.json', 'ADJUDICATION_AND_LIMITATIONS.json']}"
+  },
+  {
+   "workorder": "WO-TS-RESIDUAL-02",
+   "ok": true,
+   "result": "{'verdict': 'PASS', 'checker': 'codex-verify/openai-codex/gpt-6.1-sol', 'evidence_refs': ['lane/EXECUTE_RECEIPT.json', 'writer/WRITER_MANIFEST.json', 'isolation_probe_receipt.json', 'lane/EXECUTE_BRIEF.md', 'lane/VERIFY_RECEIPT.json', 'lane/VERIFY_VERDICT.json', 'ADJUDICATION_AND_LIMITATIONS.json']}"
+  },
+  {
+   "workorder": "WO-TS-RESIDUAL-03",
+   "ok": true,
+   "result": "{'verdict': 'PASS', 'checker': 'codex-verify/openai-codex/gpt-6.1-sol', 'evidence_refs': ['lane/EXECUTE_RECEIPT.json', 'writer/WRITER_MANIFEST.json', 'isolation_probe_receipt.json', 'lane/EXECUTE_BRIEF.md', 'lane/VERIFY_RECEIPT.json', 'lane/VERIFY_VERDICT.json', 'ADJUDICATION_AND_LIMITATIONS.json']}"
+  },
+  {
+   "workorder": "WO-TS-RESIDUAL-04",
+   "ok": true,
+   "result": "{'verdict': 'PASS', 'checker': 'codex-verify/openai-codex/gpt-6.1-sol', 'evidence_refs': ['lane/EXECUTE_RECEIPT.json', 'writer/WRITER_MANIFEST.json', 'isolation_probe_receipt.json', 'lane/EXECUTE_BRIEF.md', 'lane/VERIFY_RECEIPT.json', 'lane/VERIFY_VERDICT.json', 'ADJUDICATION_AND_LIMITATIONS.json']}"
+  },
+  {
+   "workorder": "WO-TS-RESIDUAL-05",
+   "ok": true,
+   "result": "{'verdict': 'PASS', 'checker': 'codex-verify/openai-codex/gpt-6.1-sol', 'evidence_refs': ['lane/EXECUTE_RECEIPT.json', 'writer/WRITER_MANIFEST.json', 'isolation_probe_receipt.json', 'lane/EXECUTE_BRIEF.md', 'lane/VERIFY_RECEIPT.json', 'lane/VERIFY_VERDICT.json', 'ADJUDICATION_AND_LIMITATIONS.json']}"
+  }
+ ],
+ "delivery": {
+  "method": "transition(trigger=DELIVER)",
+  "ok": false,
+  "error": "LifecycleError: ERR_ILLEGAL_TRANSITION EVOLUTION_REVIEW->DELIVERED",
+  "interpretation": "delivery is not reachable from the round's own state; the intermediate states encode release/evolution authority this round does not hold, so delivery stays owner-gated"
+ },
+ "claim_ceiling": "LOCAL",
+ "signature_unavailable": "AttributeError: 'ProjectLifecycleController' object has no attribute 'record_workorder_result'",
+ "record_signature": null,
+ "transitions": [
+  {
+   "to": "EXECUTING",
+   "trigger": "ROUND_EXECUTED",
+   "ok": true,
+   "result": "{'project_id': 'FAR-018-R7R11-RESIDUAL', 'run_id': 'RUN-D12BC9E5', 'state': 'EXECUTING', 'goal_hash': 'ca448f8a1e0a43477a5bbb753ab9a5e4d067e894f33b82d80a149193d0686821', 'source_count': 12, 'current_workorder': None, 'last_checkpoint': 'CK-RESIDUAL-0ACF3896', 'attempt_budget': 3, 'attempts_used': 0,"
+  },
+  {
+   "to": "VERIFYING",
+   "trigger": "ROUND_VERIFIED",
+   "ok": true,
+   "result": "{'project_id': 'FAR-018-R7R11-RESIDUAL', 'run_id': 'RUN-D12BC9E5', 'state': 'VERIFYING', 'goal_hash': 'ca448f8a1e0a43477a5bbb753ab9a5e4d067e894f33b82d80a149193d0686821', 'source_count': 12, 'current_workorder': None, 'last_checkpoint': 'CK-RESIDUAL-0ACF3896', 'attempt_budget': 3, 'attempts_used': 0,"
+  },
+  {
+   "to": "EVOLUTION_REVIEW",
+   "trigger": "ROUND_EVOLUTION_REVIEW",
+   "ok": true,
+   "result": "{'project_id': 'FAR-018-R7R11-RESIDUAL', 'run_id': 'RUN-D12BC9E5', 'state': 'EVOLUTION_REVIEW', 'goal_hash': 'ca448f8a1e0a43477a5bbb753ab9a5e4d067e894f33b82d80a149193d0686821', 'source_count': 12, 'current_workorder': None, 'last_checkpoint': 'CK-RESIDUAL-0ACF3896', 'attempt_budget': 3, 'attempts_us"
+  }
+ ],
+ "denominator_after": {
+  "project_id": "FAR-018-R7R11-RESIDUAL",
+  "state": "EVOLUTION_REVIEW",
+  "requirements_total": 1,
+  "requirements_frozen": 1,
+  "taskspecs_total": 5,
+  "workorders_total": 5,
+  "workorders_open": [],
+  "workorders_open_count": 0,
+  "acceptances_total": 1,
+  "acceptances_open": [
+   "ACC-REQ-FAR-018-R7R11-RESIDUAL-PLAN"
+  ],
+  "acceptances_open_count": 1,
+  "required_active_capabilities": [
+   "openspec",
+   "gstack.plan-eng-review",
+   "gstack.review",
+   "gstack.qa",
+   "gstack.cso",
+   "gstack.ship",
+   "gstack.office-hours",
+   "gstack.retro"
+  ],
+  "required_active_capabilities_total": 8,
+  "required_active_capabilities_open": [],
+  "required_active_capabilities_open_count": 0,
+  "required_local_scope_open": 1,
+  "guard_required_workorders_terminal": false,
+  "denominator_available": true
+ }
+}
