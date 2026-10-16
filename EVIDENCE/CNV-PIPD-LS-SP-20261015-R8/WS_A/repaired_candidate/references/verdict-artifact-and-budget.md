@@ -1,0 +1,1 @@
+[SKCV-AVR phase2 absorbed -> skill/references/topics/verification-and-acceptance-lane.md :: topic_byte_offset=475 :: sha256=79efb0c631348071900d7a2ad599bfd4f5792f79c564a455bb2b22936313f5ab :: original bytes verbatim in topic, no byte edits]

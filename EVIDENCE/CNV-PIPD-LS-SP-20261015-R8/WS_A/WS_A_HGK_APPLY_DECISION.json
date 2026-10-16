@@ -1,0 +1,51 @@
+{
+ "schema": "CNV-PIPD-LS-SP-20261015-R8/WS-A-HGK-APPLY-DECISION/1",
+ "produced_utc": "2026-10-16T03:17:01.539326+00:00",
+ "candidate": "C:/Projects/Agent_Workspace/HG-KSEOS/var/SKILL-CONVERGENCE-20261014/candidates/hgk/skill (hgk-governed-execution)",
+ "harness_verdict": "FAIL",
+ "checks": {
+  "C1_capacity": "PASS",
+  "C2_loader_shape": "PASS",
+  "C3_link_intake": "PASS",
+  "C4_lossless": "PASS",
+  "C6_reference_coverage": "FAIL",
+  "C5_controls": "PASS"
+ },
+ "blocking_finding": {
+  "id": "R8-F5",
+  "gate": "C6_reference_coverage",
+  "observed": {
+   "live_references": 112,
+   "byte_identical": 87,
+   "absorbed_but_present_verbatim": 23,
+   "lost": 2
+  },
+  "lost_rows": [
+   {
+    "ref": "lane-conformance-gate.md",
+    "live_bytes": 3299,
+    "live_sha256": "77e8b77164c0f0d3",
+    "candidate_state": "absent"
+   },
+   {
+    "ref": "step-verify-only-lane.md",
+    "live_bytes": 7994,
+    "live_sha256": "d8e7f1a561551fce",
+    "candidate_state": "rewritten/6029B"
+   }
+  ]
+ },
+ "decision": "NOT APPLIED — the candidate is not landable. Two live reference texts do not survive in the candidate corpus: 'lane-conformance-gate.md' (3,299 B, absent) and 'step-verify-only-lane.md' (7,994 B, rewritten to 6,029 B with the remainder present nowhere). Applying it would silently delete instructional content from a canonical skill.",
+ "secondary_observations": [
+  "the live tree carries 6 __pycache__/*.pyc entries under references/ — junk that a guarded apply should drop rather than publish (same defect class the R6 packet manifest exhibited)",
+  "9 files are absorbed stubs with a different marker format than the AVR candidate's, so a marker-format-specific detector would mis-classify them; the byte-presence test in C6 does not",
+  "reference count 90-101 vs the 60 soft cap: warning only, per EIA-R6-09 this must never be raised to a hard gate"
+ ],
+ "required_repair_before_apply": [
+  "restore or re-absorb 'lane-conformance-gate.md' verbatim",
+  "account for the 1,965 B dropped from 'step-verify-only-lane.md' (restore it or prove it is byte-verbatim inside a topic file)",
+  "drop the __pycache__ entries from the apply set",
+  "re-run the harness (C1..C6) and require PASS before any guarded apply into the canonical skills tree"
+ ],
+ "claim_ceiling": "LOCAL / candidate-only; the gate is a machine check, not an acceptance"
+}

@@ -1,0 +1,80 @@
+{
+ "step": "s34_stale_refs",
+ "stubs_examined": 7,
+ "verified": [
+  "checker-binding-and-false-defect-signals.md",
+  "finding-classification.md",
+  "independent-verification-hygiene.md",
+  "lane-harness-and-admission-gate.md",
+  "sealed-evidence-corpus.md",
+  "verdict-artifact-and-budget.md"
+ ],
+ "mismatches_handled": [
+  {
+   "ref": "verifier-lane-handover.md",
+   "path": "repaired_candidate\\references\\verifier-lane-handover.md",
+   "action": "EXCLUDED_STALE_ABSORPTION",
+   "stub_recorded_sha256": "aebb35ea0ef523de9d64940081706fc62bd36fb4712abe51ef8baa19e3dd939b",
+   "carried_live_sha256": "2126b82ea61da0d5ffb48c0474bffa5c8c640941de3608dcf43fe697ab328972",
+   "carried_live_bytes": 29708
+  }
+ ],
+ "rows": [
+  {
+   "ref": "checker-binding-and-false-defect-signals.md",
+   "recorded_sha256": "31ae9774cd4e245c47aa051adfae17ac3e14f68b5ba49b1e867c5cb8225053c4",
+   "live_sha256": "31ae9774cd4e245c47aa051adfae17ac3e14f68b5ba49b1e867c5cb8225053c4",
+   "live_bytes": 5403,
+   "sha_match": true,
+   "status": "VERIFIED"
+  },
+  {
+   "ref": "finding-classification.md",
+   "recorded_sha256": "6055fcd360b24dfab3c7bfd642df25a99575b69ccc2dcfa96c8822930dce9226",
+   "live_sha256": "6055fcd360b24dfab3c7bfd642df25a99575b69ccc2dcfa96c8822930dce9226",
+   "live_bytes": 3707,
+   "sha_match": true,
+   "status": "VERIFIED"
+  },
+  {
+   "ref": "independent-verification-hygiene.md",
+   "recorded_sha256": "9da3a1278235d4373e38a4ddf83c4f07b8cb2287d563e5cd3da4f43d7d40b339",
+   "live_sha256": "9da3a1278235d4373e38a4ddf83c4f07b8cb2287d563e5cd3da4f43d7d40b339",
+   "live_bytes": 3385,
+   "sha_match": true,
+   "status": "VERIFIED"
+  },
+  {
+   "ref": "lane-harness-and-admission-gate.md",
+   "recorded_sha256": "61bdb0cd1763f7494bef8337c42a2d1e53c3550ab18102b7ee4f219eaf52c140",
+   "live_sha256": "61bdb0cd1763f7494bef8337c42a2d1e53c3550ab18102b7ee4f219eaf52c140",
+   "live_bytes": 22476,
+   "sha_match": true,
+   "status": "VERIFIED"
+  },
+  {
+   "ref": "sealed-evidence-corpus.md",
+   "recorded_sha256": "276955b67c30961e7d6cf0bc22b56e2968da719d4e0d86719440c2e096e82b81",
+   "live_sha256": "276955b67c30961e7d6cf0bc22b56e2968da719d4e0d86719440c2e096e82b81",
+   "live_bytes": 4816,
+   "sha_match": true,
+   "status": "VERIFIED"
+  },
+  {
+   "ref": "verdict-artifact-and-budget.md",
+   "recorded_sha256": "79efb0c631348071900d7a2ad599bfd4f5792f79c564a455bb2b22936313f5ab",
+   "live_sha256": "79efb0c631348071900d7a2ad599bfd4f5792f79c564a455bb2b22936313f5ab",
+   "live_bytes": 5032,
+   "sha_match": true,
+   "status": "VERIFIED"
+  },
+  {
+   "ref": "verifier-lane-handover.md",
+   "recorded_sha256": "aebb35ea0ef523de9d64940081706fc62bd36fb4712abe51ef8baa19e3dd939b",
+   "live_sha256": "2126b82ea61da0d5ffb48c0474bffa5c8c640941de3608dcf43fe697ab328972",
+   "live_bytes": 29708,
+   "sha_match": false,
+   "status": "STALE_MISMATCH"
+  }
+ ]
+}

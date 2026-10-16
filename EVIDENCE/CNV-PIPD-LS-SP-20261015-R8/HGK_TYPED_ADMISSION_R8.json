@@ -1,0 +1,145 @@
+{
+  "schema": "CNV-PIPD-LS-SP-20261015-R8/HGK-TYPED-ADMISSION/1",
+  "project_id": "CNV-R8-SKILL-SLIM-EIA-CLOSURE",
+  "changeset": "R8-0-SKILL-SLIM-REGRESSION-AND-EIA-CLOSURE",
+  "sources_present": 9,
+  "sources_missing": [],
+  "source_inventory": [
+    {
+      "path": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md",
+      "bytes": 2689181,
+      "sha256": "96d9d564286743e17550ccef15b9952347901eb77168f930376938893cff9c3f"
+    },
+    {
+      "path": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_指揮薄PROMPT.md",
+      "bytes": 27321,
+      "sha256": "6894a6ba08781f2ed5758af132f758c14c1a9e9b69d42056837f5ce45bba6c64"
+    },
+    {
+      "path": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_Convergence_External_Independent_Acceptance_Report_20261015.md",
+      "bytes": 33616,
+      "sha256": "10caf4dbdb1993cd46ff2c50394dd01dfd5f34d635816f95e3d2e5ab6c566206"
+    },
+    {
+      "path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\AGENTS.md",
+      "bytes": 14055,
+      "sha256": "7f7246d34be112bb465b48dadaef6163e466e16e5e705fc58acee04b3809a613"
+    },
+    {
+      "path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\SKILL-CONVERGENCE-20261014\\evidence\\postfreeze\\SESSION_CLOSURE.md",
+      "bytes": 7813,
+      "sha256": "780b7c046b4d8bca58ad471135d55e7e51094d1b4f1ba342f6f6233d74858d02"
+    },
+    {
+      "path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\SKILL-CONVERGENCE-20261014\\_CHECKPOINT_RESUME.md",
+      "bytes": 4554,
+      "sha256": "bcb275a97607b4cdf1c5ab47953aabae399b9a8b61fe658f7e8a68ebf9ccbf8f"
+    },
+    {
+      "path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\SKILL-CONVERGENCE-20261014\\candidates\\avr\\skill\\SKILL.md",
+      "bytes": 22091,
+      "sha256": "eaf6172b9031f3f0a70671ca5f2b8fd10408ba1f6979e90d235e0ff2e7c60f2f"
+    },
+    {
+      "path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\SKILL-CONVERGENCE-20261014\\candidates\\apply\\patch\\lane-dispatch-timeout-capture.patch",
+      "bytes": 2621,
+      "sha256": "31847a3f4f5d7932542f0db20f3e7b6b78457a5df3d2f3bcb128def481e9a024"
+    },
+    {
+      "path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\SKILL-CONVERGENCE-20261014\\candidates\\hgk\\phase2_result.json",
+      "bytes": 7672,
+      "sha256": "960767da72f021197c8e55ba9cd23f47e27c854c0522aa2cbc4f939b85415232"
+    }
+  ],
+  "steps": [
+    {
+      "step": "start",
+      "result": "CREATED",
+      "state": "PROJECT_CREATED"
+    },
+    {
+      "step": "intake",
+      "status": "READY",
+      "source_count": 9,
+      "blocking_missing": [],
+      "conflicts": []
+    },
+    {
+      "step": "transition",
+      "to": "INTENT_BOUND",
+      "result": "OK"
+    },
+    {
+      "step": "transition",
+      "to": "REQUIREMENTS_READY",
+      "result": "OK"
+    },
+    {
+      "step": "transition",
+      "to": "DESIGN_READY",
+      "result": "OK"
+    },
+    {
+      "step": "plan",
+      "task_count": 4,
+      "titles": [
+        "Source discovery",
+        "Core implementation",
+        "Acceptance and evidence",
+        "Package and delivery"
+      ]
+    },
+    {
+      "step": "admit_workorders",
+      "result": {
+        "project_id": "CNV-R8-SKILL-SLIM-EIA-CLOSURE",
+        "workorders": [
+          "WO-TS-CLOSURE-01",
+          "WO-TS-CLOSURE-02",
+          "WO-TS-CLOSURE-03",
+          "WO-TS-CLOSURE-04"
+        ],
+        "count": 4
+      }
+    }
+  ],
+  "final_state": "WORKORDERS_ADMITTED",
+  "denominator": {
+    "project_id": "CNV-R8-SKILL-SLIM-EIA-CLOSURE",
+    "state": "WORKORDERS_ADMITTED",
+    "requirements_total": 1,
+    "requirements_frozen": 1,
+    "taskspecs_total": 4,
+    "workorders_total": 4,
+    "workorders_open": [
+      "WO-TS-CLOSURE-01",
+      "WO-TS-CLOSURE-02",
+      "WO-TS-CLOSURE-03",
+      "WO-TS-CLOSURE-04"
+    ],
+    "workorders_open_count": 4,
+    "acceptances_total": 1,
+    "acceptances_open": [
+      "ACC-REQ-CNV-R8-SKILL-SLIM-EIA-CLOSURE-PLAN"
+    ],
+    "acceptances_open_count": 1,
+    "required_active_capabilities": [
+      "openspec",
+      "gstack.plan-eng-review",
+      "gstack.review",
+      "gstack.qa",
+      "gstack.cso",
+      "gstack.ship",
+      "gstack.office-hours",
+      "gstack.retro"
+    ],
+    "required_active_capabilities_total": 8,
+    "required_active_capabilities_open": [],
+    "required_active_capabilities_open_count": 0,
+    "required_local_scope_open": 5,
+    "guard_required_workorders_terminal": false,
+    "denominator_available": true
+  },
+  "verdict": "ADMISSION_OK",
+  "checkpoint": "CK-CLOSURE-1F721F43"
+}

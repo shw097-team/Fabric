@@ -1,0 +1,215 @@
+{
+ "schema": "CNV-PIPD-LS-SP-20261015-R8/WS-D-EIA-R6-RECONCILIATION/1",
+ "produced_utc": "2026-10-16T03:04:28.027106+00:00",
+ "authority": [
+  "Fabric_Convergence_External_Independent_Acceptance_Report_20261015.md §4.1 §7 §8 §9",
+  "Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md v2.0.0"
+ ],
+ "method": "counterexample-first: each finding's own check is re-run against live state before any work order is written; no claim is upgraded",
+ "round": "R8-0-SKILL-SLIM-REGRESSION-AND-EIA-CLOSURE",
+ "project": "CNV-R8-SKILL-SLIM-EIA-CLOSURE",
+ "findings": [
+  {
+   "id": "EIA-R6-01",
+   "class": "CONFIRMED_DEFECT",
+   "severity": "MEDIUM",
+   "requirement": "publication manifest set equality vs the Git tree",
+   "check": "GitHub API: fabric/git/trees/<head>?recursive=1 vs PACKET_MANIFEST.json 'files[]', computed in Python as a set diff",
+   "observed": {
+    "r7_packet": {
+     "head": "04a1e118dd6616ccb6b2e68b68544fd5af4271ae",
+     "declared": 306,
+     "actual": 306,
+     "set_diff": "Ø",
+     "equal": true
+    },
+    "r6_packet_main": {
+     "head": "b8ff81043e47e4b652522be34444bf52fcf4d65e",
+     "declared": 583,
+     "actual": 581,
+     "equal": false,
+     "only_in_manifest": [
+      "EVIDENCE/CNV-PIPD-LS-SP-20261015/R6_CHECKER/COPIES/probes/RUNNERS/__pycache__/probe_lib.cpython-311.pyc",
+      "EVIDENCE/CNV-PIPD-LS-SP-20261015/R6_DELIVERY/RUNNERS/__pycache__/probe_lib.cpython-311.pyc"
+     ],
+     "only_in_git": []
+    }
+   },
+   "disposition": "OPEN_PARTIAL — the earlier open count mismatch is now identified exactly: the R6 manifest declares 2 __pycache__ .pyc paths that were (correctly) not shipped in the tree. R7 packet is equal.",
+   "minimal_remediation": "versioned errata record for the R6 packet naming the 2 excluded .pyc paths (no product change, no re-run); do not re-write the merged packet",
+   "earliest_owner": "Fabric publication owner",
+   "authority_needed": "none for the errata text; publication of it needs the publication step authority",
+   "blocking": "conditional: publication-side only"
+  },
+  {
+   "id": "EIA-R6-02",
+   "class": "CONFIRMED_DEFECT",
+   "severity": "LOW",
+   "requirement": "publication record currentness (SHA/count/UTC fields)",
+   "check": "live GitHub read of Fabric default branch + main head + blob counts on this host",
+   "observed": {
+    "fabric_main_head": "b8ff81043e47e4b652522be34444bf52fcf4d65e",
+    "fabric_main_total_blobs": 2488,
+    "r6_prefix_blobs": 581,
+    "pr4_head": "04a1e118dd6616ccb6b2e68b68544fd5af4271ae",
+    "pr4_prefix_blobs": 306
+   },
+   "disposition": "OPEN_PARTIAL — live heads recorded; the R6 publication-record errata is the same one-line edit as EIA-R6-01",
+   "minimal_remediation": "same errata (state the current head, 581 shipped, 2 excluded .pyc, and the stale 566/569 figures)",
+   "earliest_owner": "Fabric publication owner",
+   "authority_needed": "publication step",
+   "blocking": "conditional: publication-side only"
+  },
+  {
+   "id": "EIA-R6-03",
+   "class": "EVIDENCE_GAP",
+   "severity": "HIGH",
+   "requirement": "checker must not be able to write the candidate/guarded root; deny a deliberate write; rerun the 300-blob digests",
+   "check": "inspection of the R7-0 change set (R7_VALIDATOR_DIFF.patch touches only the 3 product src files; no ACL/isolation code) + the R7 verifier arrangement (write root relocated to R7_VERIFIER_SWARM/)",
+   "observed": {
+    "code_level_isolation": "ABSENT",
+    "procedural_isolation": "present (R7_CHECKER_DISPOSITION.md; verifier write root outside the guarded subject)",
+    "os_level_denial_evidence": "not yet produced (WS-C)"
+   },
+   "disposition": "OPEN — R7 addressed the symptom procedurally; no OS-enforced read-only/deny exists. Two honest options: (a) evidence-of-absence record + proposed deny-ACE with rollback, (b) apply the deny ACE under owner authorisation.",
+   "minimal_remediation": "WS-C: mechanism proof on a scratch copy + exact icacls deny command with rollback + rerun of the guarded-subject digest",
+   "earliest_owner": "HGK Checker Harness Owner",
+   "authority_needed": "owner authorisation for any filesystem ACL change on the guarded subject",
+   "blocking": "yes — blocks independent-acceptance claims"
+  },
+  {
+   "id": "EIA-R6-04",
+   "class": "EVIDENCE_GAP",
+   "severity": "HIGH",
+   "requirement": "M04/M06/M16 must REJECT on the shipped validator, plus applicability for the 8 NOT_RUN",
+   "check": "R7 re-run evidence (10 executed / 10 detected / 0 not detected on the 9bd33a1-derived tree) + WS-B re-measurement on main (in flight)",
+   "observed": {
+    "on_9bd33a1_tree": "M04/M06/M16 REJECT; executed 10 detected 10 not_detected 0 NOT_RUN 8",
+    "on_main_tree": "in flight (WS-B)",
+    "base_defect": "R7-0 was authored against 9bd33a1, not main"
+   },
+   "disposition": "IN_FLIGHT — closes when WS-B lands the rebased change + the 18-mutation re-measurement on main and an independent checker re-runs it",
+   "minimal_remediation": "WS-B + independent re-run",
+   "earliest_owner": "DOC-07 Oracle/Validator Owner",
+   "authority_needed": "none (local, bounded)",
+   "blocking": "yes until WS-B + checker"
+  },
+  {
+   "id": "EIA-R6-05",
+   "class": "EVIDENCE_GAP",
+   "severity": "HIGH",
+   "requirement": "G-A..H gates, Fresh G1, authorised WorkOrder+ECP/DOC05, 221 cases, AO verdict",
+   "check": "scope check against this round's admission (R8-0 admits none of these)",
+   "observed": {
+    "gates": "0 PASS",
+    "fresh_g1": "not certified",
+    "221_cases": "0 run",
+    "AO_verdict": "NOT_ISSUED"
+   },
+   "disposition": "BLOCKED_AUTHORITY — unchanged and honestly not claimed; requires owner/domain-gate authority and runtime effects beyond evidence-only change class",
+   "minimal_remediation": "out of scope for R8-0; keep the claim ceiling",
+   "earliest_owner": "HGK / domain Gate Owners",
+   "authority_needed": "owner authorisation + runtime admission",
+   "blocking": "yes for Product/Production claims only"
+  },
+  {
+   "id": "EIA-R6-06",
+   "class": "EVIDENCE_GAP",
+   "severity": "MEDIUM",
+   "requirement": "maintainer approval for the single evidence prefix",
+   "check": "M3_MAINTAINER_APPROVAL.json (status APPROVED_BY_OWNER_MAINTAINER) + the merged PR #3 (merge commit b8ff8104…) re-read live",
+   "observed": {
+    "m3_status": "APPROVED_BY_OWNER_MAINTAINER",
+    "merge": "executed, main head b8ff8104",
+    "pr_approvals": "0 (recorded as maintainer authorisation, not a GitHub review)"
+   },
+   "disposition": "CLOSED_LOCALLY — the R6 merge condition was satisfied and executed; the residual is that GitHub review objects are still 0, which the EIA explicitly did not require",
+   "minimal_remediation": "none for R6; the R8 packet will need its own approval before any merge",
+   "earliest_owner": "Fabric Repo Maintainer",
+   "authority_needed": "owner for any R8 merge",
+   "blocking": "no"
+  },
+  {
+   "id": "EIA-R6-07",
+   "class": "EVIDENCE_GAP",
+   "severity": "MEDIUM",
+   "requirement": "source #6 active-normative vs superseded history decision",
+   "check": "PKG source register state (source #6 FAIL_CLOSED; 20 KP items) — no new owner decision exists in this session",
+   "observed": {
+    "source_6": "FAIL_CLOSED",
+    "owner_decision": "absent",
+    "denominator": "not recomputed"
+   },
+   "disposition": "OWNER_GATED — unchanged; a local agent must not classify a normative source",
+   "minimal_remediation": "owner ruling; then recompute the active denominator",
+   "earliest_owner": "PIPD Source/Authority Owner",
+   "authority_needed": "owner decision",
+   "blocking": "yes for full PI/PD claims"
+  },
+  {
+   "id": "EIA-R6-08",
+   "class": "ORACLE_DISAGREEMENT",
+   "severity": "MEDIUM",
+   "requirement": "20 KP *-R04 polarity defects must not be executed as written",
+   "check": "quarantine state in the round artifacts (no R04 text used in any executed checker path)",
+   "observed": {
+    "r04_state": "quarantined / excluded from execution",
+    "auto_release_use": "none observed"
+   },
+   "disposition": "QUARANTINED_CONFIRMED — non-blocking while no automatic release checker consumes R04",
+   "minimal_remediation": "KP Policy Owner rewrites the clauses then regresses the safety negatives",
+   "earliest_owner": "KP Policy Owner / DOC Owner",
+   "authority_needed": "policy owner",
+   "blocking": "no"
+  },
+  {
+   "id": "EIA-R6-09",
+   "class": "NON_BLOCKING_OBSERVATION",
+   "severity": "LOW",
+   "requirement": "keep the references>60 condition a soft warning, preserve bytes and loader parity if the skill is slimmed",
+   "check": "library-wide scan (72 skill dirs) + the five-check regression harness run against both slim candidates",
+   "observed": {
+    "over_main_file_cap": [
+     "hgk-governed-execution 105116 B",
+     "adversarial-verification-rounds 101488 B"
+    ],
+    "references_over_60": [
+     "hgk-governed-execution 118 (live) / 90 (candidate)"
+    ],
+    "candidate_hgk": "PASS on C1..C5 (frontmatter at byte 0, 0 lost lines, 90 refs)",
+    "candidate_avr": "FAIL C2 (10 SKCV-SLICE markers; frontmatter not at byte 0) and C4 (1 stale absorbed reference: verifier-lane-handover.md recorded aebb35ea…, live now 2126b82e…)",
+    "soft_warning_preserved": "yes — not raised to a hard gate"
+   },
+   "disposition": "MEASURED_AND_IN_TREATMENT — regression detected in both candidates; hgk is landable after guarded apply, avr is blocked until its two defects are repaired",
+   "minimal_remediation": "WS-A (repair + guarded apply + independent re-run of the harness)",
+   "earliest_owner": "Skill Owner",
+   "authority_needed": "none (bounded, reversible)",
+   "blocking": "no"
+  }
+ ],
+ "summary": {
+  "total": 9,
+  "closed_locally": [
+   "EIA-R6-06"
+  ],
+  "in_flight": [
+   "EIA-R6-04",
+   "EIA-R6-09"
+  ],
+  "open": [
+   "EIA-R6-01",
+   "EIA-R6-02",
+   "EIA-R6-03"
+  ],
+  "blocked_authority": [
+   "EIA-R6-05"
+  ],
+  "owner_gated": [
+   "EIA-R6-07"
+  ],
+  "quarantined": [
+   "EIA-R6-08"
+  ]
+ },
+ "claim_ceiling": "LOCAL / candidate-only; dispositions are local reconciliations, not acceptances"
+}

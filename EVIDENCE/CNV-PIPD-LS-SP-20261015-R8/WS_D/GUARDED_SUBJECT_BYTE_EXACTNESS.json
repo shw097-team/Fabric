@@ -1,0 +1,19 @@
+{
+ "schema": "CNV-PIPD-LS-SP-20261015-R8/WS-D-GUARDED-SUBJECT-BYTE-EXACTNESS/1",
+ "purpose": "Independent, externally reproducible check that the guarded subject was not touched by this round or by the R7 checker lanes.",
+ "subject": "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/R6_DELIVERY/",
+ "method": "For every local file, compute the git blob id sha1(b\"blob <len>\\0\"+bytes) and compare it with the blob sha reported by the GitHub tree API for the same path in the merged publication (Fabric@b8ff81043e47e4b652522be34444bf52fcf4d65e, prefix EVIDENCE/CNV-PIPD-LS-SP-20261015/R6_DELIVERY/).",
+ "observed": {
+  "local_files": 300,
+  "local_bytes": 1102562,
+  "checked_against_merged_packet": 300,
+  "byte_exact_mismatches": 0,
+  "not_in_packet": 0,
+  "local_digest_sha256_over_sorted_relpath_sha256_lines": "3588d5d51a4941cf1c9425beee9dcf3f4162fe23bcdd276bc1dd3939af86f16c",
+  "digest_method_note": "the digest above uses this round's normalization (sorted 'relpath:sha256' lines); the earlier d34c8e0d… value in R7 artifacts used a different normalization, so it is not comparable byte-for-byte — the git-blob comparison above is the load-bearing evidence",
+  "local_digest_recomputed_utc_note": "recomputed on this host; full 64-hex value"
+ },
+ "verdict": "GUARDED_SUBJECT_BYTE_EXACT_VS_MERGED_PACKET",
+ "claim_ceiling": "LOCAL / candidate-only; proves byte identity of the local copy against the published tree, not an acceptance of that tree",
+ "reproduce": "python -c the snippet recorded in WS_D/README_WS_D.md"
+}

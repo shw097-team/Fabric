@@ -1,0 +1,104 @@
+{
+  "changeName": "hgk-r8-eia-closure-skill-slim-20261016",
+  "schemaName": "spec-driven",
+  "planningHome": {
+    "kind": "repo",
+    "root": "C:\\Projects\\Agent_Workspace\\HG-KSEOS",
+    "changesDir": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\openspec\\changes",
+    "defaultSchema": "spec-driven"
+  },
+  "changeRoot": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\openspec\\changes\\hgk-r8-eia-closure-skill-slim-20261016",
+  "artifactPaths": {
+    "proposal": {
+      "outputPath": "proposal.md",
+      "resolvedOutputPath": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\openspec\\changes\\hgk-r8-eia-closure-skill-slim-20261016\\proposal.md",
+      "existingOutputPaths": [
+        "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\openspec\\changes\\hgk-r8-eia-closure-skill-slim-20261016\\proposal.md"
+      ]
+    },
+    "specs": {
+      "outputPath": "specs/**/*.md",
+      "resolvedOutputPath": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\openspec\\changes\\hgk-r8-eia-closure-skill-slim-20261016\\specs\\**\\*.md",
+      "existingOutputPaths": [
+        "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\openspec\\changes\\hgk-r8-eia-closure-skill-slim-20261016\\specs\\r8-eia-closure-and-skill-slim-regression\\spec.md"
+      ]
+    },
+    "design": {
+      "outputPath": "design.md",
+      "resolvedOutputPath": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\openspec\\changes\\hgk-r8-eia-closure-skill-slim-20261016\\design.md",
+      "existingOutputPaths": [
+        "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\openspec\\changes\\hgk-r8-eia-closure-skill-slim-20261016\\design.md"
+      ]
+    },
+    "tasks": {
+      "outputPath": "tasks.md",
+      "resolvedOutputPath": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\openspec\\changes\\hgk-r8-eia-closure-skill-slim-20261016\\tasks.md",
+      "existingOutputPaths": [
+        "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\openspec\\changes\\hgk-r8-eia-closure-skill-slim-20261016\\tasks.md"
+      ]
+    }
+  },
+  "isPlanningComplete": true,
+  "isComplete": true,
+  "applyRequires": [
+    "tasks"
+  ],
+  "nextSteps": [
+    "All planning artifacts are complete. Run openspec instructions apply --change \"hgk-r8-eia-closure-skill-slim-20261016\" --json to inspect implementation progress."
+  ],
+  "actionContext": {
+    "mode": "repo-local",
+    "sourceOfTruth": "repo",
+    "planningArtifacts": [
+      "proposal",
+      "specs",
+      "design",
+      "tasks"
+    ],
+    "linkedContext": [],
+    "allowedEditRoots": [
+      "C:\\Projects\\Agent_Workspace\\HG-KSEOS"
+    ],
+    "requiresAffectedAreaSelection": false,
+    "constraints": [
+      "Repo-local change artifacts and implementation edits are scoped to this project."
+    ]
+  },
+  "artifacts": [
+    {
+      "id": "proposal",
+      "outputPath": "proposal.md",
+      "status": "done",
+      "requires": []
+    },
+    {
+      "id": "specs",
+      "outputPath": "specs/**/*.md",
+      "status": "done",
+      "requires": [
+        "proposal"
+      ]
+    },
+    {
+      "id": "design",
+      "outputPath": "design.md",
+      "status": "done",
+      "requires": [
+        "proposal"
+      ]
+    },
+    {
+      "id": "tasks",
+      "outputPath": "tasks.md",
+      "status": "done",
+      "requires": [
+        "specs",
+        "design"
+      ]
+    }
+  ],
+  "root": {
+    "path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS",
+    "source": "nearest"
+  }
+}

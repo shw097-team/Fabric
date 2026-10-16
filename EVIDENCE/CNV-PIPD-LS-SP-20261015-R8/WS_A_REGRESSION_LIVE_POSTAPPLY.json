@@ -1,0 +1,114 @@
+{
+ "schema": "CNV-PIPD-LS-SP-20261015-R8/WS-A-SKILL-SLIM-REGRESSION/1",
+ "subject_candidate": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\skills\\software-development\\adversarial-verification-rounds",
+ "subject_live": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\skills\\software-development\\adversarial-verification-rounds",
+ "claim_ceiling": "LOCAL / candidate-only; a machine gate, not an acceptance",
+ "checks": {
+  "C1_capacity": {
+   "verdict": "PASS",
+   "live_bytes": 101488,
+   "candidate_bytes": 21332,
+   "cap_bytes": 100000,
+   "live_over_cap": true,
+   "detail": "candidate main file within the recorded cap",
+   "references_count": 26,
+   "references_soft_cap": 60,
+   "references_over_soft_cap": false
+  },
+  "C2_loader_shape": {
+   "verdict": "PASS",
+   "frontmatter_at_byte_0": true,
+   "slice_markers_present": 0,
+   "marker_samples": [],
+   "candidate_name": "adversarial-verification-rounds",
+   "live_name": "adversarial-verification-rounds",
+   "candidate_description": "Use when verifying a frozen deliverable adversarially.",
+   "detail": "frontmatter parses and identity matches the live skill"
+  },
+  "C3_link_intake": {
+   "verdict": "PASS",
+   "links": 8,
+   "missing": []
+  },
+  "C4_lossless": {
+   "verdict": "PASS",
+   "note": "only files carrying an 'absorbed ->' marker are treated as stubs; other small files are ordinary references",
+   "absorbed_stubs": 6,
+   "sha_mismatch": [],
+   "offset_mismatch": [],
+   "unreached_stub": [],
+   "small_reference_not_stub": [],
+   "live_lines_gt40": 999,
+   "lost_lines": 0,
+   "lost_samples": [],
+   "stub_rows": [
+    {
+     "ref": "checker-binding-and-false-defect-signals.md",
+     "live_bytes": 5403,
+     "live_sha": "31ae9774cd4e245c",
+     "recorded_sha": "31ae9774cd4e245c",
+     "sha_match": true,
+     "offset_verbatim": true
+    },
+    {
+     "ref": "finding-classification.md",
+     "live_bytes": 3707,
+     "live_sha": "6055fcd360b24dfa",
+     "recorded_sha": "6055fcd360b24dfa",
+     "sha_match": true,
+     "offset_verbatim": true
+    },
+    {
+     "ref": "independent-verification-hygiene.md",
+     "live_bytes": 3385,
+     "live_sha": "9da3a1278235d437",
+     "recorded_sha": "9da3a1278235d437",
+     "sha_match": true,
+     "offset_verbatim": true
+    },
+    {
+     "ref": "lane-harness-and-admission-gate.md",
+     "live_bytes": 22476,
+     "live_sha": "61bdb0cd1763f749",
+     "recorded_sha": "61bdb0cd1763f749",
+     "sha_match": true,
+     "offset_verbatim": true
+    },
+    {
+     "ref": "sealed-evidence-corpus.md",
+     "live_bytes": 4816,
+     "live_sha": "276955b67c30961e",
+     "recorded_sha": "276955b67c30961e",
+     "sha_match": true,
+     "offset_verbatim": true
+    },
+    {
+     "ref": "verdict-artifact-and-budget.md",
+     "live_bytes": 5032,
+     "live_sha": "79efb0c631348071",
+     "recorded_sha": "79efb0c631348071",
+     "sha_match": true,
+     "offset_verbatim": true
+    }
+   ]
+  },
+  "C6_reference_coverage": {
+   "verdict": "PASS",
+   "live_references": 25,
+   "byte_identical": 19,
+   "absorbed_but_present_verbatim": 6,
+   "lost": 0,
+   "lost_rows": [],
+   "note": "a reference may be merged into a topic file, but its bytes must then appear verbatim in the corpus; deliberate deletions are not allowed by this gate"
+  },
+  "C5_controls": {
+   "verdict": "PASS",
+   "frontmatter_stripped": true,
+   "loss_detector_positive": true,
+   "offset_detector_positive": true,
+   "sha_detector_positive": true
+  },
+  "overall": "PASS"
+ },
+ "verdict": "PASS"
+}
