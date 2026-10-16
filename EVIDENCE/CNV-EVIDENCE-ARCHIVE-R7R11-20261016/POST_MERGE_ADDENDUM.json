@@ -1,0 +1,110 @@
+{
+ "schema": "CNV-EVIDENCE-ARCHIVE-R7R11/POST-MERGE-ADDENDUM/1",
+ "generated_utc": "2026-10-16T10:38:39.257776+00:00",
+ "why_this_file_exists": "the packet's first commit is a snapshot whose per-PR merge_sha fields are null by design (candidate evidence, no approval at snapshot time); the maintainer merges happened afterwards, so they are recorded here as an addition instead of by rewriting the snapshot",
+ "authorisation": "Owner (Fabric Repo Maintainer) answer to the round's HITL gate, 2026-10-16: \"先合併證據鏈 #4->#5->#7->#9->#11，peer 鏈 #6/#8/#10 另批\"",
+ "snapshot_base_sha": "b8ff81043e47e4b652522be34444bf52fcf4d65e",
+ "main_before_chain": "b8ff81043e47e4b652522be34444bf52fcf4d65e",
+ "main_after_chain": "312baa0ee2aa591000959cc878bb978a31c89796",
+ "main_observed_now": "312baa0ee2aa591000959cc878bb978a31c89796",
+ "merged_chain": [
+  {
+   "pr": 4,
+   "head_ref": "evidence/cnv-pipd-ls-sp-20261015-r7",
+   "before_head": "04a1e118dd6616ccb6b2e68b68544fd5af4271ae",
+   "merge_sha": "12cdeefe5ff5b19edd50bf9099bf47a5fb9e2452",
+   "status": "ARCHIVE_MERGED_READBACK_PASS",
+   "prefix_verified_in_main": true,
+   "approval_comment_url": "https://github.com/shw097-team/Fabric/pull/4#issuecomment-6213637830",
+   "rollback_pointer": {
+    "method": "delete the branch, or git revert the merge commit",
+    "branch_delete": "evidence/cnv-pipd-ls-sp-20261015-r7"
+   }
+  },
+  {
+   "pr": 5,
+   "head_ref": "evidence/cnv-pipd-ls-sp-20261015-r8",
+   "before_head": "3af4148021c2cc7bd5a30fba3f3dd46de61bb854",
+   "merge_sha": "b03962313596a92d38b21592f5a8819ba95436db",
+   "status": "ARCHIVE_MERGED_READBACK_PASS",
+   "prefix_verified_in_main": true,
+   "approval_comment_url": "https://github.com/shw097-team/Fabric/pull/5#issuecomment-6213640393",
+   "rollback_pointer": {
+    "method": "delete the branch, or git revert the merge commit",
+    "branch_delete": "evidence/cnv-pipd-ls-sp-20261015-r8"
+   }
+  },
+  {
+   "pr": 7,
+   "head_ref": "evidence/cnv-pipd-ls-sp-20261015-r9",
+   "before_head": "5cd47ceaa493f37de479aa558f1123fd4e3e4136",
+   "merge_sha": "c1debccd8bd0c5ffa2b247c8ce8f3f7441dacc90",
+   "status": "ARCHIVE_MERGED_READBACK_PASS",
+   "prefix_verified_in_main": true,
+   "approval_comment_url": "https://github.com/shw097-team/Fabric/pull/7#issuecomment-6213642748",
+   "rollback_pointer": {
+    "method": "delete the branch, or git revert the merge commit",
+    "branch_delete": "evidence/cnv-pipd-ls-sp-20261015-r9"
+   }
+  },
+  {
+   "pr": 9,
+   "head_ref": "evidence/cnv-pipd-ls-sp-20261015-r10",
+   "before_head": "34d57124415dac04860aeabfe12863304078f4e2",
+   "merge_sha": "74431eb24564f3ef3e93ccb328e4fa13d45be252",
+   "status": "ARCHIVE_MERGED_READBACK_PASS",
+   "prefix_verified_in_main": true,
+   "approval_comment_url": "https://github.com/shw097-team/Fabric/pull/9#issuecomment-6213644991",
+   "rollback_pointer": {
+    "method": "delete the branch, or git revert the merge commit",
+    "branch_delete": "evidence/cnv-pipd-ls-sp-20261015-r10"
+   }
+  },
+  {
+   "pr": 11,
+   "head_ref": "evidence/cnv-pipd-ls-sp-20261015-r11",
+   "before_head": "5e055ea28e445cd6c965036ef64fbf679a5b8f34",
+   "merge_sha": "312baa0ee2aa591000959cc878bb978a31c89796",
+   "status": "ARCHIVE_MERGED_READBACK_PASS",
+   "prefix_verified_in_main": true,
+   "approval_comment_url": "https://github.com/shw097-team/Fabric/pull/11#issuecomment-6213647082",
+   "rollback_pointer": {
+    "method": "delete the branch, or git revert the merge commit",
+    "branch_delete": "evidence/cnv-pipd-ls-sp-20261015-r11"
+   }
+  }
+ ],
+ "peer_chain_not_authorised_in_this_batch": [
+  {
+   "pr": 6,
+   "head_ref": "pub/lane-reliability-closure-20261016",
+   "before_head": "0cb59d904224afc553906ebab002d443a3981e3d",
+   "mergeable": null,
+   "status": "AWAITING_SEPARATE_OWNER_BATCH",
+   "note": "owner scoped this run to the evidence chain; the peer batch is a separate decision"
+  },
+  {
+   "pr": 8,
+   "head_ref": "pub/far-remediation-and-closure-20261016",
+   "before_head": "5ae6f37d305fa9da2da8e9a05b03ff65f02bd04f",
+   "mergeable": null,
+   "status": "AWAITING_SEPARATE_OWNER_BATCH",
+   "note": "owner scoped this run to the evidence chain; the peer batch is a separate decision"
+  },
+  {
+   "pr": 10,
+   "head_ref": "pub/round3-lane-rebind-and-closure-20261016",
+   "before_head": "4695e0cf870f5eb64b51a6d615cfd17b09f992cc",
+   "mergeable": null,
+   "status": "AWAITING_SEPARATE_OWNER_BATCH",
+   "note": "owner scoped this run to the evidence chain; the peer batch is a separate decision"
+  }
+ ],
+ "claim_ceiling_unchanged": "CANDIDATE_EVIDENCE_ARCHIVED_ONLY",
+ "nonclaims": [
+  "an archive merge is NOT an acceptance of the validator, the checker isolation, the runtime or production",
+  "the merged evidence PRs contain no product code; their archived .py/.ps1 files are payload, not executed",
+  "main was updated ONLY by the maintainer-authorised merges above; no force update was ever issued",
+  "live221 / gates A-H / AO acceptance remain NOT_RUN / NOT_ISSUED"
+ ]
+}

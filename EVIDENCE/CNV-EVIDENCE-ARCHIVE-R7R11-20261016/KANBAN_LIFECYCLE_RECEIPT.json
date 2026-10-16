@@ -1,0 +1,1195 @@
+{
+ "schema": "CNV-EVIDENCE-ARCHIVE-R7R11/KANBAN-LIFECYCLE/1",
+ "board": "cnv-ea-r7r11-20261016",
+ "generated_utc": "2026-10-16T10:22:51.530635+00:00",
+ "cards": [
+  {
+   "key": "A00",
+   "id": "t_4a5fe746",
+   "title": "A00 files-first source ledger (44 sources, 20/20 knowledge packs, 1 real gap)",
+   "target_state": "done",
+   "evidence_ref": "A00_SOURCE_LEDGER.json"
+  },
+  {
+   "key": "A01",
+   "id": "t_aa3b1c3d",
+   "title": "A01 codex-side contract compile C0-C9 (lint/activation/acceptance/compile/duplication)",
+   "target_state": "done",
+   "evidence_ref": "compiler/compiler-receipt.json"
+  },
+  {
+   "key": "A02",
+   "id": "t_61e8dc90",
+   "title": "A02 HGK typed admission + kanban/swarm/openspec/gstack surfaces",
+   "target_state": "done",
+   "evidence_ref": "HGK_TYPED_ADMISSION_EA.json"
+  },
+  {
+   "key": "A03A05",
+   "id": "t_b908df2c",
+   "title": "A03-A05 per-PR latest HEAD / single evidence prefix / change class / manifest / secret scan",
+   "target_state": "done",
+   "evidence_ref": "A03_A05_PR_PREFLIGHT.json"
+  },
+  {
+   "key": "A06",
+   "id": "t_800c94cb",
+   "title": "A06 minimal errata write (only if truly needed)",
+   "target_state": "done",
+   "evidence_ref": "A03_A05_PR_PREFLIGHT.json"
+  },
+  {
+   "key": "A07",
+   "id": "t_f54b09e6",
+   "title": "A07 per-PR Repo Maintainer approval (prefix + actual HEAD + candidate-only + rollback)",
+   "target_state": "blocked",
+   "evidence_ref": "A03_A05_PR_PREFLIGHT.json"
+  },
+  {
+   "key": "A08",
+   "id": "t_84cc1c8b",
+   "title": "A08 per-PR ready/merge + main readback by the authorised maintainer",
+   "target_state": "blocked",
+   "evidence_ref": "EIA_DISPOSITION_MATRIX.json"
+  },
+  {
+   "key": "A09",
+   "id": "t_84624f7c",
+   "title": "A09 K-01..K-20 source-vs-retested cross index (metadata only)",
+   "target_state": "done",
+   "evidence_ref": "A09_KLedger_CROSS_INDEX.json"
+  },
+  {
+   "key": "A10",
+   "id": "t_43ffa99b",
+   "title": "A10 evidence return pack + single evidence MD + closure",
+   "target_state": "done",
+   "evidence_ref": "publish/payload/PACK_INDEX.json"
+  },
+  {
+   "key": "EXEC",
+   "id": "t_e348f1af",
+   "title": "EXECUTE bounded writer lane (CODEX CLI, opencode-go/deepseek-v4.1-flash)",
+   "target_state": "done",
+   "evidence_ref": "lane/EXECUTE_RECEIPT.json"
+  },
+  {
+   "key": "VERI",
+   "id": "t_798b9ff8",
+   "title": "VERIFY independent checker lane (separate dispatch, read-only posture)",
+   "target_state": "done",
+   "evidence_ref": "lane/VERIFY_RECEIPT.json"
+  },
+  {
+   "key": "PUBL",
+   "id": "t_f19340be",
+   "title": "PUBLISH candidate evidence packet to the governed mirror",
+   "target_state": "done",
+   "evidence_ref": "PUBLISH_RECEIPT.json"
+  },
+  {
+   "key": "SELF",
+   "id": "t_c5a39557",
+   "title": "Self-check / self-repair / self-acceptance harness for this round",
+   "target_state": "done",
+   "evidence_ref": "SELF_CHECK_RECEIPT.json"
+  }
+ ],
+ "board_readback": [
+  {
+   "id": "t_89469084",
+   "title": "Swarm: Archive the eight candidate evidence PRs #4-#11 of shw097-team/",
+   "status": "done",
+   "assignee": "default"
+  },
+  {
+   "id": "t_51b316a1",
+   "title": "W1 per-PR preflight",
+   "status": "ready",
+   "assignee": "hgk-orchestrator"
+  },
+  {
+   "id": "t_a494973b",
+   "title": "W2 trusted secrets/privacy scan + manifest-vs-tracked-set checks over ",
+   "status": "ready",
+   "assignee": "hgk-security"
+  },
+  {
+   "id": "t_fcdb747d",
+   "title": "W3 K-ledger cross-index metadata errata + all ten EIA-20261016 finding",
+   "status": "ready",
+   "assignee": "hgk-orchestrator"
+  },
+  {
+   "id": "t_deed5ad7",
+   "title": "W4 evidence packet assembly + credential-broker publication to the Fab",
+   "status": "ready",
+   "assignee": "hgk-security"
+  },
+  {
+   "id": "t_dcd4d4b0",
+   "title": "Verify swarm outputs",
+   "status": "todo",
+   "assignee": "acceptance-officer"
+  },
+  {
+   "id": "t_9e1ba18e",
+   "title": "Synthesize swarm outputs",
+   "status": "todo",
+   "assignee": "hgk-orchestrator"
+  },
+  {
+   "id": "t_4a5fe746",
+   "title": "A00 files-first source ledger (44 sources, 20/20 knowledge packs, 1 re",
+   "status": "done",
+   "assignee": "hgk-orchestrator"
+  },
+  {
+   "id": "t_aa3b1c3d",
+   "title": "A01 codex-side contract compile C0-C9 (lint/activation/acceptance/comp",
+   "status": "done",
+   "assignee": "hgk-orchestrator"
+  },
+  {
+   "id": "t_61e8dc90",
+   "title": "A02 HGK typed admission + kanban/swarm/openspec/gstack surfaces",
+   "status": "done",
+   "assignee": "hgk-orchestrator"
+  },
+  {
+   "id": "t_b908df2c",
+   "title": "A03-A05 per-PR latest HEAD / single evidence prefix / change class / m",
+   "status": "done",
+   "assignee": "hgk-orchestrator"
+  },
+  {
+   "id": "t_800c94cb",
+   "title": "A06 minimal errata write (only if truly needed)",
+   "status": "done",
+   "assignee": "hgk-orchestrator"
+  },
+  {
+   "id": "t_f54b09e6",
+   "title": "A07 per-PR Repo Maintainer approval (prefix + actual HEAD + candidate-",
+   "status": "blocked",
+   "assignee": "hgk-orchestrator"
+  },
+  {
+   "id": "t_84cc1c8b",
+   "title": "A08 per-PR ready/merge + main readback by the authorised maintainer",
+   "status": "blocked",
+   "assignee": "hgk-orchestrator"
+  },
+  {
+   "id": "t_84624f7c",
+   "title": "A09 K-01..K-20 source-vs-retested cross index (metadata only)",
+   "status": "done",
+   "assignee": "hgk-orchestrator"
+  },
+  {
+   "id": "t_43ffa99b",
+   "title": "A10 evidence return pack + single evidence MD + closure",
+   "status": "done",
+   "assignee": "hgk-orchestrator"
+  },
+  {
+   "id": "t_e348f1af",
+   "title": "EXECUTE bounded writer lane (CODEX CLI, opencode-go/deepseek-v4.1-flas",
+   "status": "done",
+   "assignee": "hgk-orchestrator"
+  },
+  {
+   "id": "t_798b9ff8",
+   "title": "VERIFY independent checker lane (separate dispatch, read-only posture)",
+   "status": "done",
+   "assignee": "hgk-orchestrator"
+  },
+  {
+   "id": "t_f19340be",
+   "title": "PUBLISH candidate evidence packet to the governed mirror",
+   "status": "done",
+   "assignee": "hgk-orchestrator"
+  },
+  {
+   "id": "t_c5a39557",
+   "title": "Self-check / self-repair / self-acceptance harness for this round",
+   "status": "done",
+   "assignee": "hgk-orchestrator"
+  }
+ ],
+ "board_state_histogram": {
+  "done": 12,
+  "ready": 4,
+  "todo": 2,
+  "blocked": 2
+ },
+ "call_count": 60,
+ "calls": [
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "create",
+    "A00 files-first source ledger (44 sources, 20/20 knowledge packs, 1 real gap)",
+    "--assignee",
+    "hgk-orchestrator",
+    "--idempotency-key",
+    "CNV-EA-R7R11-A00",
+    "--created-by",
+    "hgk-orchestrator",
+    "--body",
+    "contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016; evidence: A00_SOURCE_LEDGER.json; 1 real gap: the Fabric tree has no root AGENTS.md",
+    "--json"
+   ],
+   "exit": 0,
+   "stdout": "{\n  \"id\": \"t_4a5fe746\",\n  \"title\": \"A00 files-first source ledger (44 sources, 20/20 knowledge packs, 1 real gap)\",\n  \"body\": \"contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016; evidence: A00_SOURCE_LEDGER.json; 1 real gap: the Fabric tree has no root AGENTS.md\",\n  \"assignee\": \"hgk-orchestrator\",\n  \"status\": \"ready\",\n  \"priority\": 0,\n  \"tenant\": null,\n  \"workspace_kind\": \"scratch\",\n  \"workspace_path\": null,\n  \"branch_name\": null,\n  \"project_id\": null,\n  \"created_by\": \"hgk-orchestrator\",\n  \"created_at\": 1792146005,\n  \"started_at\": null,\n  \"completed_at\": null,\n  \"result\": null,\n  \"skills\": [],\n  \"ma",
+   "stderr": "",
+   "_full": "{\n  \"id\": \"t_4a5fe746\",\n  \"title\": \"A00 files-first source ledger (44 sources, 20/20 knowledge packs, 1 real gap)\",\n  \"body\": \"contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016; evidence: A00_SOURCE_LEDGER.json; 1 real gap: the Fabric tree has no root AGENTS.md\",\n  \"assignee\": \"hgk-orchestrator\",\n  \"status\": \"ready\",\n  \"priority\": 0,\n  \"tenant\": null,\n  \"workspace_kind\": \"scratch\",\n  \"workspace_path\": null,\n  \"branch_name\": null,\n  \"project_id\": null,\n  \"created_by\": \"hgk-orchestrator\",\n  \"created_at\": 1792146005,\n  \"started_at\": null,\n  \"completed_at\": null,\n  \"result\": null,\n  \"skills\": [],\n  \"max_runtime_seconds\": null,\n  \"max_retries\": null,\n  \"model_override\": null,\n  \"provider_override\": null,\n  \"session_id\": null,\n  \"workflow_template_id\": null,\n  \"current_step_key\": null,\n  \"completion_contract\": \"local-only\",\n  \"last_failure_error\": null\n}\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "create",
+    "A01 codex-side contract compile C0-C9 (lint/activation/acceptance/compile/duplication)",
+    "--assignee",
+    "hgk-orchestrator",
+    "--idempotency-key",
+    "CNV-EA-R7R11-A01",
+    "--created-by",
+    "hgk-orchestrator",
+    "--body",
+    "contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016; evidence: compiler/compiler-receipt.json; PROMPT_COMPILE_PASS",
+    "--json"
+   ],
+   "exit": 0,
+   "stdout": "{\n  \"id\": \"t_aa3b1c3d\",\n  \"title\": \"A01 codex-side contract compile C0-C9 (lint/activation/acceptance/compile/duplication)\",\n  \"body\": \"contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016; evidence: compiler/compiler-receipt.json; PROMPT_COMPILE_PASS\",\n  \"assignee\": \"hgk-orchestrator\",\n  \"status\": \"ready\",\n  \"priority\": 0,\n  \"tenant\": null,\n  \"workspace_kind\": \"scratch\",\n  \"workspace_path\": null,\n  \"branch_name\": null,\n  \"project_id\": null,\n  \"created_by\": \"hgk-orchestrator\",\n  \"created_at\": 1792146008,\n  \"started_at\": null,\n  \"completed_at\": null,\n  \"result\": null,\n  \"skills\": [],\n  \"max_runtime_sec",
+   "stderr": "",
+   "_full": "{\n  \"id\": \"t_aa3b1c3d\",\n  \"title\": \"A01 codex-side contract compile C0-C9 (lint/activation/acceptance/compile/duplication)\",\n  \"body\": \"contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016; evidence: compiler/compiler-receipt.json; PROMPT_COMPILE_PASS\",\n  \"assignee\": \"hgk-orchestrator\",\n  \"status\": \"ready\",\n  \"priority\": 0,\n  \"tenant\": null,\n  \"workspace_kind\": \"scratch\",\n  \"workspace_path\": null,\n  \"branch_name\": null,\n  \"project_id\": null,\n  \"created_by\": \"hgk-orchestrator\",\n  \"created_at\": 1792146008,\n  \"started_at\": null,\n  \"completed_at\": null,\n  \"result\": null,\n  \"skills\": [],\n  \"max_runtime_seconds\": null,\n  \"max_retries\": null,\n  \"model_override\": null,\n  \"provider_override\": null,\n  \"session_id\": null,\n  \"workflow_template_id\": null,\n  \"current_step_key\": null,\n  \"completion_contract\": \"local-only\",\n  \"last_failure_error\": null\n}\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "create",
+    "A02 HGK typed admission + kanban/swarm/openspec/gstack surfaces",
+    "--assignee",
+    "hgk-orchestrator",
+    "--idempotency-key",
+    "CNV-EA-R7R11-A02",
+    "--created-by",
+    "hgk-orchestrator",
+    "--body",
+    "contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016; evidence: HGK_TYPED_ADMISSION_EA.json; epoch 22, drift 0, openspec strict-valid",
+    "--json"
+   ],
+   "exit": 0,
+   "stdout": "{\n  \"id\": \"t_61e8dc90\",\n  \"title\": \"A02 HGK typed admission + kanban/swarm/openspec/gstack surfaces\",\n  \"body\": \"contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016; evidence: HGK_TYPED_ADMISSION_EA.json; epoch 22, drift 0, openspec strict-valid\",\n  \"assignee\": \"hgk-orchestrator\",\n  \"status\": \"ready\",\n  \"priority\": 0,\n  \"tenant\": null,\n  \"workspace_kind\": \"scratch\",\n  \"workspace_path\": null,\n  \"branch_name\": null,\n  \"project_id\": null,\n  \"created_by\": \"hgk-orchestrator\",\n  \"created_at\": 1792146010,\n  \"started_at\": null,\n  \"completed_at\": null,\n  \"result\": null,\n  \"skills\": [],\n  \"max_runtime_seconds\"",
+   "stderr": "",
+   "_full": "{\n  \"id\": \"t_61e8dc90\",\n  \"title\": \"A02 HGK typed admission + kanban/swarm/openspec/gstack surfaces\",\n  \"body\": \"contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016; evidence: HGK_TYPED_ADMISSION_EA.json; epoch 22, drift 0, openspec strict-valid\",\n  \"assignee\": \"hgk-orchestrator\",\n  \"status\": \"ready\",\n  \"priority\": 0,\n  \"tenant\": null,\n  \"workspace_kind\": \"scratch\",\n  \"workspace_path\": null,\n  \"branch_name\": null,\n  \"project_id\": null,\n  \"created_by\": \"hgk-orchestrator\",\n  \"created_at\": 1792146010,\n  \"started_at\": null,\n  \"completed_at\": null,\n  \"result\": null,\n  \"skills\": [],\n  \"max_runtime_seconds\": null,\n  \"max_retries\": null,\n  \"model_override\": null,\n  \"provider_override\": null,\n  \"session_id\": null,\n  \"workflow_template_id\": null,\n  \"current_step_key\": null,\n  \"completion_contract\": \"local-only\",\n  \"last_failure_error\": null\n}\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "create",
+    "A03-A05 per-PR latest HEAD / single evidence prefix / change class / manifest / secret scan",
+    "--assignee",
+    "hgk-orchestrator",
+    "--idempotency-key",
+    "CNV-EA-R7R11-A03A05",
+    "--created-by",
+    "hgk-orchestrator",
+    "--body",
+    "contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016; evidence: A03_A05_PR_PREFLIGHT.json; 8/8 EVIDENCE_ONLY, 0 prefix escape, 0 new secrets",
+    "--json"
+   ],
+   "exit": 0,
+   "stdout": "{\n  \"id\": \"t_b908df2c\",\n  \"title\": \"A03-A05 per-PR latest HEAD / single evidence prefix / change class / manifest / secret scan\",\n  \"body\": \"contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016; evidence: A03_A05_PR_PREFLIGHT.json; 8/8 EVIDENCE_ONLY, 0 prefix escape, 0 new secrets\",\n  \"assignee\": \"hgk-orchestrator\",\n  \"status\": \"ready\",\n  \"priority\": 0,\n  \"tenant\": null,\n  \"workspace_kind\": \"scratch\",\n  \"workspace_path\": null,\n  \"branch_name\": null,\n  \"project_id\": null,\n  \"created_by\": \"hgk-orchestrator\",\n  \"created_at\": 1792146013,\n  \"started_at\": null,\n  \"completed_at\": null,\n  \"result\": null,\n  \"s",
+   "stderr": "",
+   "_full": "{\n  \"id\": \"t_b908df2c\",\n  \"title\": \"A03-A05 per-PR latest HEAD / single evidence prefix / change class / manifest / secret scan\",\n  \"body\": \"contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016; evidence: A03_A05_PR_PREFLIGHT.json; 8/8 EVIDENCE_ONLY, 0 prefix escape, 0 new secrets\",\n  \"assignee\": \"hgk-orchestrator\",\n  \"status\": \"ready\",\n  \"priority\": 0,\n  \"tenant\": null,\n  \"workspace_kind\": \"scratch\",\n  \"workspace_path\": null,\n  \"branch_name\": null,\n  \"project_id\": null,\n  \"created_by\": \"hgk-orchestrator\",\n  \"created_at\": 1792146013,\n  \"started_at\": null,\n  \"completed_at\": null,\n  \"result\": null,\n  \"skills\": [],\n  \"max_runtime_seconds\": null,\n  \"max_retries\": null,\n  \"model_override\": null,\n  \"provider_override\": null,\n  \"session_id\": null,\n  \"workflow_template_id\": null,\n  \"current_step_key\": null,\n  \"completion_contract\": \"local-only\",\n  \"last_failure_error\": null\n}\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "create",
+    "A06 minimal errata write (only if truly needed)",
+    "--assignee",
+    "hgk-orchestrator",
+    "--idempotency-key",
+    "CNV-EA-R7R11-A06",
+    "--created-by",
+    "hgk-orchestrator",
+    "--body",
+    "contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016; evidence: A03_A05_PR_PREFLIGHT.json; no errata needed: no PR branch was modified",
+    "--json"
+   ],
+   "exit": 0,
+   "stdout": "{\n  \"id\": \"t_800c94cb\",\n  \"title\": \"A06 minimal errata write (only if truly needed)\",\n  \"body\": \"contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016; evidence: A03_A05_PR_PREFLIGHT.json; no errata needed: no PR branch was modified\",\n  \"assignee\": \"hgk-orchestrator\",\n  \"status\": \"ready\",\n  \"priority\": 0,\n  \"tenant\": null,\n  \"workspace_kind\": \"scratch\",\n  \"workspace_path\": null,\n  \"branch_name\": null,\n  \"project_id\": null,\n  \"created_by\": \"hgk-orchestrator\",\n  \"created_at\": 1792146016,\n  \"started_at\": null,\n  \"completed_at\": null,\n  \"result\": null,\n  \"skills\": [],\n  \"max_runtime_seconds\": null,\n  \"max_",
+   "stderr": "",
+   "_full": "{\n  \"id\": \"t_800c94cb\",\n  \"title\": \"A06 minimal errata write (only if truly needed)\",\n  \"body\": \"contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016; evidence: A03_A05_PR_PREFLIGHT.json; no errata needed: no PR branch was modified\",\n  \"assignee\": \"hgk-orchestrator\",\n  \"status\": \"ready\",\n  \"priority\": 0,\n  \"tenant\": null,\n  \"workspace_kind\": \"scratch\",\n  \"workspace_path\": null,\n  \"branch_name\": null,\n  \"project_id\": null,\n  \"created_by\": \"hgk-orchestrator\",\n  \"created_at\": 1792146016,\n  \"started_at\": null,\n  \"completed_at\": null,\n  \"result\": null,\n  \"skills\": [],\n  \"max_runtime_seconds\": null,\n  \"max_retries\": null,\n  \"model_override\": null,\n  \"provider_override\": null,\n  \"session_id\": null,\n  \"workflow_template_id\": null,\n  \"current_step_key\": null,\n  \"completion_contract\": \"local-only\",\n  \"last_failure_error\": null\n}\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "create",
+    "A07 per-PR Repo Maintainer approval (prefix + actual HEAD + candidate-only + rollback)",
+    "--assignee",
+    "hgk-orchestrator",
+    "--idempotency-key",
+    "CNV-EA-R7R11-A07",
+    "--created-by",
+    "hgk-orchestrator",
+    "--body",
+    "contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016; evidence: A03_A05_PR_PREFLIGHT.json; MAINTAINER_APPROVAL_MISSING: a real maintainer must approve",
+    "--json"
+   ],
+   "exit": 0,
+   "stdout": "{\n  \"id\": \"t_f54b09e6\",\n  \"title\": \"A07 per-PR Repo Maintainer approval (prefix + actual HEAD + candidate-only + rollback)\",\n  \"body\": \"contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016; evidence: A03_A05_PR_PREFLIGHT.json; MAINTAINER_APPROVAL_MISSING: a real maintainer must approve\",\n  \"assignee\": \"hgk-orchestrator\",\n  \"status\": \"ready\",\n  \"priority\": 0,\n  \"tenant\": null,\n  \"workspace_kind\": \"scratch\",\n  \"workspace_path\": null,\n  \"branch_name\": null,\n  \"project_id\": null,\n  \"created_by\": \"hgk-orchestrator\",\n  \"created_at\": 1792146019,\n  \"started_at\": null,\n  \"completed_at\": null,\n  \"result\": null,",
+   "stderr": "",
+   "_full": "{\n  \"id\": \"t_f54b09e6\",\n  \"title\": \"A07 per-PR Repo Maintainer approval (prefix + actual HEAD + candidate-only + rollback)\",\n  \"body\": \"contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016; evidence: A03_A05_PR_PREFLIGHT.json; MAINTAINER_APPROVAL_MISSING: a real maintainer must approve\",\n  \"assignee\": \"hgk-orchestrator\",\n  \"status\": \"ready\",\n  \"priority\": 0,\n  \"tenant\": null,\n  \"workspace_kind\": \"scratch\",\n  \"workspace_path\": null,\n  \"branch_name\": null,\n  \"project_id\": null,\n  \"created_by\": \"hgk-orchestrator\",\n  \"created_at\": 1792146019,\n  \"started_at\": null,\n  \"completed_at\": null,\n  \"result\": null,\n  \"skills\": [],\n  \"max_runtime_seconds\": null,\n  \"max_retries\": null,\n  \"model_override\": null,\n  \"provider_override\": null,\n  \"session_id\": null,\n  \"workflow_template_id\": null,\n  \"current_step_key\": null,\n  \"completion_contract\": \"local-only\",\n  \"last_failure_error\": null\n}\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "create",
+    "A08 per-PR ready/merge + main readback by the authorised maintainer",
+    "--assignee",
+    "hgk-orchestrator",
+    "--idempotency-key",
+    "CNV-EA-R7R11-A08",
+    "--created-by",
+    "hgk-orchestrator",
+    "--body",
+    "contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016; evidence: EIA_DISPOSITION_MATRIX.json; depends on A07; never self-approved",
+    "--json"
+   ],
+   "exit": 0,
+   "stdout": "{\n  \"id\": \"t_84cc1c8b\",\n  \"title\": \"A08 per-PR ready/merge + main readback by the authorised maintainer\",\n  \"body\": \"contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016; evidence: EIA_DISPOSITION_MATRIX.json; depends on A07; never self-approved\",\n  \"assignee\": \"hgk-orchestrator\",\n  \"status\": \"ready\",\n  \"priority\": 0,\n  \"tenant\": null,\n  \"workspace_kind\": \"scratch\",\n  \"workspace_path\": null,\n  \"branch_name\": null,\n  \"project_id\": null,\n  \"created_by\": \"hgk-orchestrator\",\n  \"created_at\": 1792146022,\n  \"started_at\": null,\n  \"completed_at\": null,\n  \"result\": null,\n  \"skills\": [],\n  \"max_runtime_seconds\":",
+   "stderr": "",
+   "_full": "{\n  \"id\": \"t_84cc1c8b\",\n  \"title\": \"A08 per-PR ready/merge + main readback by the authorised maintainer\",\n  \"body\": \"contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016; evidence: EIA_DISPOSITION_MATRIX.json; depends on A07; never self-approved\",\n  \"assignee\": \"hgk-orchestrator\",\n  \"status\": \"ready\",\n  \"priority\": 0,\n  \"tenant\": null,\n  \"workspace_kind\": \"scratch\",\n  \"workspace_path\": null,\n  \"branch_name\": null,\n  \"project_id\": null,\n  \"created_by\": \"hgk-orchestrator\",\n  \"created_at\": 1792146022,\n  \"started_at\": null,\n  \"completed_at\": null,\n  \"result\": null,\n  \"skills\": [],\n  \"max_runtime_seconds\": null,\n  \"max_retries\": null,\n  \"model_override\": null,\n  \"provider_override\": null,\n  \"session_id\": null,\n  \"workflow_template_id\": null,\n  \"current_step_key\": null,\n  \"completion_contract\": \"local-only\",\n  \"last_failure_error\": null\n}\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "create",
+    "A09 K-01..K-20 source-vs-retested cross index (metadata only)",
+    "--assignee",
+    "hgk-orchestrator",
+    "--idempotency-key",
+    "CNV-EA-R7R11-A09",
+    "--created-by",
+    "hgk-orchestrator",
+    "--body",
+    "contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016; evidence: A09_KLedger_CROSS_INDEX.json; 20/20 linked, 0/20 retested, 7/7/6 preserved",
+    "--json"
+   ],
+   "exit": 0,
+   "stdout": "{\n  \"id\": \"t_84624f7c\",\n  \"title\": \"A09 K-01..K-20 source-vs-retested cross index (metadata only)\",\n  \"body\": \"contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016; evidence: A09_KLedger_CROSS_INDEX.json; 20/20 linked, 0/20 retested, 7/7/6 preserved\",\n  \"assignee\": \"hgk-orchestrator\",\n  \"status\": \"ready\",\n  \"priority\": 0,\n  \"tenant\": null,\n  \"workspace_kind\": \"scratch\",\n  \"workspace_path\": null,\n  \"branch_name\": null,\n  \"project_id\": null,\n  \"created_by\": \"hgk-orchestrator\",\n  \"created_at\": 1792146025,\n  \"started_at\": null,\n  \"completed_at\": null,\n  \"result\": null,\n  \"skills\": [],\n  \"max_runtime_secon",
+   "stderr": "",
+   "_full": "{\n  \"id\": \"t_84624f7c\",\n  \"title\": \"A09 K-01..K-20 source-vs-retested cross index (metadata only)\",\n  \"body\": \"contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016; evidence: A09_KLedger_CROSS_INDEX.json; 20/20 linked, 0/20 retested, 7/7/6 preserved\",\n  \"assignee\": \"hgk-orchestrator\",\n  \"status\": \"ready\",\n  \"priority\": 0,\n  \"tenant\": null,\n  \"workspace_kind\": \"scratch\",\n  \"workspace_path\": null,\n  \"branch_name\": null,\n  \"project_id\": null,\n  \"created_by\": \"hgk-orchestrator\",\n  \"created_at\": 1792146025,\n  \"started_at\": null,\n  \"completed_at\": null,\n  \"result\": null,\n  \"skills\": [],\n  \"max_runtime_seconds\": null,\n  \"max_retries\": null,\n  \"model_override\": null,\n  \"provider_override\": null,\n  \"session_id\": null,\n  \"workflow_template_id\": null,\n  \"current_step_key\": null,\n  \"completion_contract\": \"local-only\",\n  \"last_failure_error\": null\n}\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "create",
+    "A10 evidence return pack + single evidence MD + closure",
+    "--assignee",
+    "hgk-orchestrator",
+    "--idempotency-key",
+    "CNV-EA-R7R11-A10",
+    "--created-by",
+    "hgk-orchestrator",
+    "--body",
+    "contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016; evidence: publish/payload/PACK_INDEX.json; packet assembled; claim ceiling candidate-only",
+    "--json"
+   ],
+   "exit": 0,
+   "stdout": "{\n  \"id\": \"t_43ffa99b\",\n  \"title\": \"A10 evidence return pack + single evidence MD + closure\",\n  \"body\": \"contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016; evidence: publish/payload/PACK_INDEX.json; packet assembled; claim ceiling candidate-only\",\n  \"assignee\": \"hgk-orchestrator\",\n  \"status\": \"ready\",\n  \"priority\": 0,\n  \"tenant\": null,\n  \"workspace_kind\": \"scratch\",\n  \"workspace_path\": null,\n  \"branch_name\": null,\n  \"project_id\": null,\n  \"created_by\": \"hgk-orchestrator\",\n  \"created_at\": 1792146028,\n  \"started_at\": null,\n  \"completed_at\": null,\n  \"result\": null,\n  \"skills\": [],\n  \"max_runtime_second",
+   "stderr": "",
+   "_full": "{\n  \"id\": \"t_43ffa99b\",\n  \"title\": \"A10 evidence return pack + single evidence MD + closure\",\n  \"body\": \"contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016; evidence: publish/payload/PACK_INDEX.json; packet assembled; claim ceiling candidate-only\",\n  \"assignee\": \"hgk-orchestrator\",\n  \"status\": \"ready\",\n  \"priority\": 0,\n  \"tenant\": null,\n  \"workspace_kind\": \"scratch\",\n  \"workspace_path\": null,\n  \"branch_name\": null,\n  \"project_id\": null,\n  \"created_by\": \"hgk-orchestrator\",\n  \"created_at\": 1792146028,\n  \"started_at\": null,\n  \"completed_at\": null,\n  \"result\": null,\n  \"skills\": [],\n  \"max_runtime_seconds\": null,\n  \"max_retries\": null,\n  \"model_override\": null,\n  \"provider_override\": null,\n  \"session_id\": null,\n  \"workflow_template_id\": null,\n  \"current_step_key\": null,\n  \"completion_contract\": \"local-only\",\n  \"last_failure_error\": null\n}\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "create",
+    "EXECUTE bounded writer lane (CODEX CLI, opencode-go/deepseek-v4.1-flash)",
+    "--assignee",
+    "hgk-orchestrator",
+    "--idempotency-key",
+    "CNV-EA-R7R11-EXEC",
+    "--created-by",
+    "hgk-orchestrator",
+    "--body",
+    "contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016; evidence: lane/EXECUTE_RECEIPT.json; bounded write root; nonce required both ends",
+    "--json"
+   ],
+   "exit": 0,
+   "stdout": "{\n  \"id\": \"t_e348f1af\",\n  \"title\": \"EXECUTE bounded writer lane (CODEX CLI, opencode-go/deepseek-v4.1-flash)\",\n  \"body\": \"contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016; evidence: lane/EXECUTE_RECEIPT.json; bounded write root; nonce required both ends\",\n  \"assignee\": \"hgk-orchestrator\",\n  \"status\": \"ready\",\n  \"priority\": 0,\n  \"tenant\": null,\n  \"workspace_kind\": \"scratch\",\n  \"workspace_path\": null,\n  \"branch_name\": null,\n  \"project_id\": null,\n  \"created_by\": \"hgk-orchestrator\",\n  \"created_at\": 1792146031,\n  \"started_at\": null,\n  \"completed_at\": null,\n  \"result\": null,\n  \"skills\": [],\n  \"max_runti",
+   "stderr": "",
+   "_full": "{\n  \"id\": \"t_e348f1af\",\n  \"title\": \"EXECUTE bounded writer lane (CODEX CLI, opencode-go/deepseek-v4.1-flash)\",\n  \"body\": \"contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016; evidence: lane/EXECUTE_RECEIPT.json; bounded write root; nonce required both ends\",\n  \"assignee\": \"hgk-orchestrator\",\n  \"status\": \"ready\",\n  \"priority\": 0,\n  \"tenant\": null,\n  \"workspace_kind\": \"scratch\",\n  \"workspace_path\": null,\n  \"branch_name\": null,\n  \"project_id\": null,\n  \"created_by\": \"hgk-orchestrator\",\n  \"created_at\": 1792146031,\n  \"started_at\": null,\n  \"completed_at\": null,\n  \"result\": null,\n  \"skills\": [],\n  \"max_runtime_seconds\": null,\n  \"max_retries\": null,\n  \"model_override\": null,\n  \"provider_override\": null,\n  \"session_id\": null,\n  \"workflow_template_id\": null,\n  \"current_step_key\": null,\n  \"completion_contract\": \"local-only\",\n  \"last_failure_error\": null\n}\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "create",
+    "VERIFY independent checker lane (separate dispatch, read-only posture)",
+    "--assignee",
+    "hgk-orchestrator",
+    "--idempotency-key",
+    "CNV-EA-R7R11-VERI",
+    "--created-by",
+    "hgk-orchestrator",
+    "--body",
+    "contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016; evidence: lane/VERIFY_RECEIPT.json; re-derivation verdict recorded",
+    "--json"
+   ],
+   "exit": 0,
+   "stdout": "{\n  \"id\": \"t_798b9ff8\",\n  \"title\": \"VERIFY independent checker lane (separate dispatch, read-only posture)\",\n  \"body\": \"contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016; evidence: lane/VERIFY_RECEIPT.json; re-derivation verdict recorded\",\n  \"assignee\": \"hgk-orchestrator\",\n  \"status\": \"ready\",\n  \"priority\": 0,\n  \"tenant\": null,\n  \"workspace_kind\": \"scratch\",\n  \"workspace_path\": null,\n  \"branch_name\": null,\n  \"project_id\": null,\n  \"created_by\": \"hgk-orchestrator\",\n  \"created_at\": 1792146034,\n  \"started_at\": null,\n  \"completed_at\": null,\n  \"result\": null,\n  \"skills\": [],\n  \"max_runtime_seconds\": null",
+   "stderr": "",
+   "_full": "{\n  \"id\": \"t_798b9ff8\",\n  \"title\": \"VERIFY independent checker lane (separate dispatch, read-only posture)\",\n  \"body\": \"contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016; evidence: lane/VERIFY_RECEIPT.json; re-derivation verdict recorded\",\n  \"assignee\": \"hgk-orchestrator\",\n  \"status\": \"ready\",\n  \"priority\": 0,\n  \"tenant\": null,\n  \"workspace_kind\": \"scratch\",\n  \"workspace_path\": null,\n  \"branch_name\": null,\n  \"project_id\": null,\n  \"created_by\": \"hgk-orchestrator\",\n  \"created_at\": 1792146034,\n  \"started_at\": null,\n  \"completed_at\": null,\n  \"result\": null,\n  \"skills\": [],\n  \"max_runtime_seconds\": null,\n  \"max_retries\": null,\n  \"model_override\": null,\n  \"provider_override\": null,\n  \"session_id\": null,\n  \"workflow_template_id\": null,\n  \"current_step_key\": null,\n  \"completion_contract\": \"local-only\",\n  \"last_failure_error\": null\n}\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "create",
+    "PUBLISH candidate evidence packet to the governed mirror",
+    "--assignee",
+    "hgk-orchestrator",
+    "--idempotency-key",
+    "CNV-EA-R7R11-PUBL",
+    "--created-by",
+    "hgk-orchestrator",
+    "--body",
+    "contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016; evidence: PUBLISH_RECEIPT.json; new branch + draft PR; main untouched",
+    "--json"
+   ],
+   "exit": 0,
+   "stdout": "{\n  \"id\": \"t_f19340be\",\n  \"title\": \"PUBLISH candidate evidence packet to the governed mirror\",\n  \"body\": \"contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016; evidence: PUBLISH_RECEIPT.json; new branch + draft PR; main untouched\",\n  \"assignee\": \"hgk-orchestrator\",\n  \"status\": \"ready\",\n  \"priority\": 0,\n  \"tenant\": null,\n  \"workspace_kind\": \"scratch\",\n  \"workspace_path\": null,\n  \"branch_name\": null,\n  \"project_id\": null,\n  \"created_by\": \"hgk-orchestrator\",\n  \"created_at\": 1792146037,\n  \"started_at\": null,\n  \"completed_at\": null,\n  \"result\": null,\n  \"skills\": [],\n  \"max_runtime_seconds\": null,\n  \"max_re",
+   "stderr": "",
+   "_full": "{\n  \"id\": \"t_f19340be\",\n  \"title\": \"PUBLISH candidate evidence packet to the governed mirror\",\n  \"body\": \"contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016; evidence: PUBLISH_RECEIPT.json; new branch + draft PR; main untouched\",\n  \"assignee\": \"hgk-orchestrator\",\n  \"status\": \"ready\",\n  \"priority\": 0,\n  \"tenant\": null,\n  \"workspace_kind\": \"scratch\",\n  \"workspace_path\": null,\n  \"branch_name\": null,\n  \"project_id\": null,\n  \"created_by\": \"hgk-orchestrator\",\n  \"created_at\": 1792146037,\n  \"started_at\": null,\n  \"completed_at\": null,\n  \"result\": null,\n  \"skills\": [],\n  \"max_runtime_seconds\": null,\n  \"max_retries\": null,\n  \"model_override\": null,\n  \"provider_override\": null,\n  \"session_id\": null,\n  \"workflow_template_id\": null,\n  \"current_step_key\": null,\n  \"completion_contract\": \"local-only\",\n  \"last_failure_error\": null\n}\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "create",
+    "Self-check / self-repair / self-acceptance harness for this round",
+    "--assignee",
+    "hgk-orchestrator",
+    "--idempotency-key",
+    "CNV-EA-R7R11-SELF",
+    "--created-by",
+    "hgk-orchestrator",
+    "--body",
+    "contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016; evidence: SELF_CHECK_RECEIPT.json; probe defect found and repaired (v1 superseded)",
+    "--json"
+   ],
+   "exit": 0,
+   "stdout": "{\n  \"id\": \"t_c5a39557\",\n  \"title\": \"Self-check / self-repair / self-acceptance harness for this round\",\n  \"body\": \"contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016; evidence: SELF_CHECK_RECEIPT.json; probe defect found and repaired (v1 superseded)\",\n  \"assignee\": \"hgk-orchestrator\",\n  \"status\": \"ready\",\n  \"priority\": 0,\n  \"tenant\": null,\n  \"workspace_kind\": \"scratch\",\n  \"workspace_path\": null,\n  \"branch_name\": null,\n  \"project_id\": null,\n  \"created_by\": \"hgk-orchestrator\",\n  \"created_at\": 1792146040,\n  \"started_at\": null,\n  \"completed_at\": null,\n  \"result\": null,\n  \"skills\": [],\n  \"max_runtime_sec",
+   "stderr": "",
+   "_full": "{\n  \"id\": \"t_c5a39557\",\n  \"title\": \"Self-check / self-repair / self-acceptance harness for this round\",\n  \"body\": \"contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016; evidence: SELF_CHECK_RECEIPT.json; probe defect found and repaired (v1 superseded)\",\n  \"assignee\": \"hgk-orchestrator\",\n  \"status\": \"ready\",\n  \"priority\": 0,\n  \"tenant\": null,\n  \"workspace_kind\": \"scratch\",\n  \"workspace_path\": null,\n  \"branch_name\": null,\n  \"project_id\": null,\n  \"created_by\": \"hgk-orchestrator\",\n  \"created_at\": 1792146040,\n  \"started_at\": null,\n  \"completed_at\": null,\n  \"result\": null,\n  \"skills\": [],\n  \"max_runtime_seconds\": null,\n  \"max_retries\": null,\n  \"model_override\": null,\n  \"provider_override\": null,\n  \"session_id\": null,\n  \"workflow_template_id\": null,\n  \"current_step_key\": null,\n  \"completion_contract\": \"local-only\",\n  \"last_failure_error\": null\n}\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "claim",
+    "t_4a5fe746",
+    "--ttl",
+    "900"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_4a5fe746\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\cnv-ea-r7r11-20261016\\workspaces\\t_4a5fe746",
+   "stderr": "",
+   "_full": "Claimed t_4a5fe746\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\cnv-ea-r7r11-20261016\\workspaces\\t_4a5fe746\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "heartbeat",
+    "t_4a5fe746",
+    "--note",
+    "A00 progress"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_4a5fe746",
+   "stderr": "",
+   "_full": "Heartbeat recorded for t_4a5fe746\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "comment",
+    "t_4a5fe746",
+    "evidence_ref=A00_SOURCE_LEDGER.json | 1 real gap: the Fabric tree has no root AGENTS.md",
+    "--author",
+    "hgk-orchestrator"
+   ],
+   "exit": 0,
+   "stdout": "Comment added to t_4a5fe746",
+   "stderr": "",
+   "_full": "Comment added to t_4a5fe746\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "complete",
+    "t_4a5fe746",
+    "--result",
+    "A00 complete: 1 real gap: the Fabric tree has no root AGENTS.md",
+    "--metadata",
+    "{\"evidence_ref\": \"A00_SOURCE_LEDGER.json\", \"contract\": \"CNV-EVIDENCE-ARCHIVE-R7R11-20261016\"}"
+   ],
+   "exit": 0,
+   "stdout": "Completed t_4a5fe746",
+   "stderr": "",
+   "_full": "Completed t_4a5fe746\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "claim",
+    "t_aa3b1c3d",
+    "--ttl",
+    "900"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_aa3b1c3d\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\cnv-ea-r7r11-20261016\\workspaces\\t_aa3b1c3d",
+   "stderr": "",
+   "_full": "Claimed t_aa3b1c3d\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\cnv-ea-r7r11-20261016\\workspaces\\t_aa3b1c3d\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "heartbeat",
+    "t_aa3b1c3d",
+    "--note",
+    "A01 progress"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_aa3b1c3d",
+   "stderr": "",
+   "_full": "Heartbeat recorded for t_aa3b1c3d\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "comment",
+    "t_aa3b1c3d",
+    "evidence_ref=compiler/compiler-receipt.json | PROMPT_COMPILE_PASS",
+    "--author",
+    "hgk-orchestrator"
+   ],
+   "exit": 0,
+   "stdout": "Comment added to t_aa3b1c3d",
+   "stderr": "",
+   "_full": "Comment added to t_aa3b1c3d\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "complete",
+    "t_aa3b1c3d",
+    "--result",
+    "A01 complete: PROMPT_COMPILE_PASS",
+    "--metadata",
+    "{\"evidence_ref\": \"compiler/compiler-receipt.json\", \"contract\": \"CNV-EVIDENCE-ARCHIVE-R7R11-20261016\"}"
+   ],
+   "exit": 0,
+   "stdout": "Completed t_aa3b1c3d",
+   "stderr": "",
+   "_full": "Completed t_aa3b1c3d\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "claim",
+    "t_61e8dc90",
+    "--ttl",
+    "900"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_61e8dc90\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\cnv-ea-r7r11-20261016\\workspaces\\t_61e8dc90",
+   "stderr": "",
+   "_full": "Claimed t_61e8dc90\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\cnv-ea-r7r11-20261016\\workspaces\\t_61e8dc90\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "heartbeat",
+    "t_61e8dc90",
+    "--note",
+    "A02 progress"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_61e8dc90",
+   "stderr": "",
+   "_full": "Heartbeat recorded for t_61e8dc90\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "comment",
+    "t_61e8dc90",
+    "evidence_ref=HGK_TYPED_ADMISSION_EA.json | epoch 22, drift 0, openspec strict-valid",
+    "--author",
+    "hgk-orchestrator"
+   ],
+   "exit": 0,
+   "stdout": "Comment added to t_61e8dc90",
+   "stderr": "",
+   "_full": "Comment added to t_61e8dc90\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "complete",
+    "t_61e8dc90",
+    "--result",
+    "A02 complete: epoch 22, drift 0, openspec strict-valid",
+    "--metadata",
+    "{\"evidence_ref\": \"HGK_TYPED_ADMISSION_EA.json\", \"contract\": \"CNV-EVIDENCE-ARCHIVE-R7R11-20261016\"}"
+   ],
+   "exit": 0,
+   "stdout": "Completed t_61e8dc90",
+   "stderr": "",
+   "_full": "Completed t_61e8dc90\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "claim",
+    "t_b908df2c",
+    "--ttl",
+    "900"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_b908df2c\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\cnv-ea-r7r11-20261016\\workspaces\\t_b908df2c",
+   "stderr": "",
+   "_full": "Claimed t_b908df2c\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\cnv-ea-r7r11-20261016\\workspaces\\t_b908df2c\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "heartbeat",
+    "t_b908df2c",
+    "--note",
+    "A03A05 progress"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_b908df2c",
+   "stderr": "",
+   "_full": "Heartbeat recorded for t_b908df2c\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "comment",
+    "t_b908df2c",
+    "evidence_ref=A03_A05_PR_PREFLIGHT.json | 8/8 EVIDENCE_ONLY, 0 prefix escape, 0 new secrets",
+    "--author",
+    "hgk-orchestrator"
+   ],
+   "exit": 0,
+   "stdout": "Comment added to t_b908df2c",
+   "stderr": "",
+   "_full": "Comment added to t_b908df2c\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "complete",
+    "t_b908df2c",
+    "--result",
+    "A03A05 complete: 8/8 EVIDENCE_ONLY, 0 prefix escape, 0 new secrets",
+    "--metadata",
+    "{\"evidence_ref\": \"A03_A05_PR_PREFLIGHT.json\", \"contract\": \"CNV-EVIDENCE-ARCHIVE-R7R11-20261016\"}"
+   ],
+   "exit": 0,
+   "stdout": "Completed t_b908df2c",
+   "stderr": "",
+   "_full": "Completed t_b908df2c\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "claim",
+    "t_800c94cb",
+    "--ttl",
+    "900"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_800c94cb\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\cnv-ea-r7r11-20261016\\workspaces\\t_800c94cb",
+   "stderr": "",
+   "_full": "Claimed t_800c94cb\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\cnv-ea-r7r11-20261016\\workspaces\\t_800c94cb\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "heartbeat",
+    "t_800c94cb",
+    "--note",
+    "A06 progress"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_800c94cb",
+   "stderr": "",
+   "_full": "Heartbeat recorded for t_800c94cb\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "comment",
+    "t_800c94cb",
+    "evidence_ref=A03_A05_PR_PREFLIGHT.json | no errata needed: no PR branch was modified",
+    "--author",
+    "hgk-orchestrator"
+   ],
+   "exit": 0,
+   "stdout": "Comment added to t_800c94cb",
+   "stderr": "",
+   "_full": "Comment added to t_800c94cb\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "complete",
+    "t_800c94cb",
+    "--result",
+    "A06 complete: no errata needed: no PR branch was modified",
+    "--metadata",
+    "{\"evidence_ref\": \"A03_A05_PR_PREFLIGHT.json\", \"contract\": \"CNV-EVIDENCE-ARCHIVE-R7R11-20261016\"}"
+   ],
+   "exit": 0,
+   "stdout": "Completed t_800c94cb",
+   "stderr": "",
+   "_full": "Completed t_800c94cb\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "block",
+    "t_f54b09e6",
+    "MAINTAINER_APPROVAL_MISSING: a real maintainer must approve",
+    "--kind",
+    "needs_input"
+   ],
+   "exit": 0,
+   "stdout": "Blocked t_f54b09e6: MAINTAINER_APPROVAL_MISSING: a real maintainer must approve",
+   "stderr": "",
+   "_full": "Blocked t_f54b09e6: MAINTAINER_APPROVAL_MISSING: a real maintainer must approve\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "block",
+    "t_84cc1c8b",
+    "depends on A07; never self-approved",
+    "--kind",
+    "needs_input"
+   ],
+   "exit": 0,
+   "stdout": "Blocked t_84cc1c8b: depends on A07; never self-approved",
+   "stderr": "",
+   "_full": "Blocked t_84cc1c8b: depends on A07; never self-approved\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "claim",
+    "t_84624f7c",
+    "--ttl",
+    "900"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_84624f7c\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\cnv-ea-r7r11-20261016\\workspaces\\t_84624f7c",
+   "stderr": "",
+   "_full": "Claimed t_84624f7c\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\cnv-ea-r7r11-20261016\\workspaces\\t_84624f7c\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "heartbeat",
+    "t_84624f7c",
+    "--note",
+    "A09 progress"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_84624f7c",
+   "stderr": "",
+   "_full": "Heartbeat recorded for t_84624f7c\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "comment",
+    "t_84624f7c",
+    "evidence_ref=A09_KLedger_CROSS_INDEX.json | 20/20 linked, 0/20 retested, 7/7/6 preserved",
+    "--author",
+    "hgk-orchestrator"
+   ],
+   "exit": 0,
+   "stdout": "Comment added to t_84624f7c",
+   "stderr": "",
+   "_full": "Comment added to t_84624f7c\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "complete",
+    "t_84624f7c",
+    "--result",
+    "A09 complete: 20/20 linked, 0/20 retested, 7/7/6 preserved",
+    "--metadata",
+    "{\"evidence_ref\": \"A09_KLedger_CROSS_INDEX.json\", \"contract\": \"CNV-EVIDENCE-ARCHIVE-R7R11-20261016\"}"
+   ],
+   "exit": 0,
+   "stdout": "Completed t_84624f7c",
+   "stderr": "",
+   "_full": "Completed t_84624f7c\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "claim",
+    "t_43ffa99b",
+    "--ttl",
+    "900"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_43ffa99b\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\cnv-ea-r7r11-20261016\\workspaces\\t_43ffa99b",
+   "stderr": "",
+   "_full": "Claimed t_43ffa99b\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\cnv-ea-r7r11-20261016\\workspaces\\t_43ffa99b\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "heartbeat",
+    "t_43ffa99b",
+    "--note",
+    "A10 progress"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_43ffa99b",
+   "stderr": "",
+   "_full": "Heartbeat recorded for t_43ffa99b\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "comment",
+    "t_43ffa99b",
+    "evidence_ref=publish/payload/PACK_INDEX.json | packet assembled; claim ceiling candidate-only",
+    "--author",
+    "hgk-orchestrator"
+   ],
+   "exit": 0,
+   "stdout": "Comment added to t_43ffa99b",
+   "stderr": "",
+   "_full": "Comment added to t_43ffa99b\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "complete",
+    "t_43ffa99b",
+    "--result",
+    "A10 complete: packet assembled; claim ceiling candidate-only",
+    "--metadata",
+    "{\"evidence_ref\": \"publish/payload/PACK_INDEX.json\", \"contract\": \"CNV-EVIDENCE-ARCHIVE-R7R11-20261016\"}"
+   ],
+   "exit": 0,
+   "stdout": "Completed t_43ffa99b",
+   "stderr": "",
+   "_full": "Completed t_43ffa99b\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "claim",
+    "t_e348f1af",
+    "--ttl",
+    "900"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_e348f1af\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\cnv-ea-r7r11-20261016\\workspaces\\t_e348f1af",
+   "stderr": "",
+   "_full": "Claimed t_e348f1af\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\cnv-ea-r7r11-20261016\\workspaces\\t_e348f1af\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "heartbeat",
+    "t_e348f1af",
+    "--note",
+    "EXEC progress"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_e348f1af",
+   "stderr": "",
+   "_full": "Heartbeat recorded for t_e348f1af\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "comment",
+    "t_e348f1af",
+    "evidence_ref=lane/EXECUTE_RECEIPT.json | bounded write root; nonce required both ends",
+    "--author",
+    "hgk-orchestrator"
+   ],
+   "exit": 0,
+   "stdout": "Comment added to t_e348f1af",
+   "stderr": "",
+   "_full": "Comment added to t_e348f1af\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "complete",
+    "t_e348f1af",
+    "--result",
+    "EXEC complete: bounded write root; nonce required both ends",
+    "--metadata",
+    "{\"evidence_ref\": \"lane/EXECUTE_RECEIPT.json\", \"contract\": \"CNV-EVIDENCE-ARCHIVE-R7R11-20261016\"}"
+   ],
+   "exit": 0,
+   "stdout": "Completed t_e348f1af",
+   "stderr": "",
+   "_full": "Completed t_e348f1af\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "claim",
+    "t_798b9ff8",
+    "--ttl",
+    "900"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_798b9ff8\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\cnv-ea-r7r11-20261016\\workspaces\\t_798b9ff8",
+   "stderr": "",
+   "_full": "Claimed t_798b9ff8\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\cnv-ea-r7r11-20261016\\workspaces\\t_798b9ff8\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "heartbeat",
+    "t_798b9ff8",
+    "--note",
+    "VERI progress"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_798b9ff8",
+   "stderr": "",
+   "_full": "Heartbeat recorded for t_798b9ff8\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "comment",
+    "t_798b9ff8",
+    "evidence_ref=lane/VERIFY_RECEIPT.json | re-derivation verdict recorded",
+    "--author",
+    "hgk-orchestrator"
+   ],
+   "exit": 0,
+   "stdout": "Comment added to t_798b9ff8",
+   "stderr": "",
+   "_full": "Comment added to t_798b9ff8\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "complete",
+    "t_798b9ff8",
+    "--result",
+    "VERI complete: re-derivation verdict recorded",
+    "--metadata",
+    "{\"evidence_ref\": \"lane/VERIFY_RECEIPT.json\", \"contract\": \"CNV-EVIDENCE-ARCHIVE-R7R11-20261016\"}"
+   ],
+   "exit": 0,
+   "stdout": "Completed t_798b9ff8",
+   "stderr": "",
+   "_full": "Completed t_798b9ff8\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "claim",
+    "t_f19340be",
+    "--ttl",
+    "900"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_f19340be\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\cnv-ea-r7r11-20261016\\workspaces\\t_f19340be",
+   "stderr": "",
+   "_full": "Claimed t_f19340be\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\cnv-ea-r7r11-20261016\\workspaces\\t_f19340be\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "heartbeat",
+    "t_f19340be",
+    "--note",
+    "PUBL progress"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_f19340be",
+   "stderr": "",
+   "_full": "Heartbeat recorded for t_f19340be\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "comment",
+    "t_f19340be",
+    "evidence_ref=PUBLISH_RECEIPT.json | new branch + draft PR; main untouched",
+    "--author",
+    "hgk-orchestrator"
+   ],
+   "exit": 0,
+   "stdout": "Comment added to t_f19340be",
+   "stderr": "",
+   "_full": "Comment added to t_f19340be\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "complete",
+    "t_f19340be",
+    "--result",
+    "PUBL complete: new branch + draft PR; main untouched",
+    "--metadata",
+    "{\"evidence_ref\": \"PUBLISH_RECEIPT.json\", \"contract\": \"CNV-EVIDENCE-ARCHIVE-R7R11-20261016\"}"
+   ],
+   "exit": 0,
+   "stdout": "Completed t_f19340be",
+   "stderr": "",
+   "_full": "Completed t_f19340be\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "claim",
+    "t_c5a39557",
+    "--ttl",
+    "900"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_c5a39557\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\cnv-ea-r7r11-20261016\\workspaces\\t_c5a39557",
+   "stderr": "",
+   "_full": "Claimed t_c5a39557\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\cnv-ea-r7r11-20261016\\workspaces\\t_c5a39557\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "heartbeat",
+    "t_c5a39557",
+    "--note",
+    "SELF progress"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_c5a39557",
+   "stderr": "",
+   "_full": "Heartbeat recorded for t_c5a39557\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "comment",
+    "t_c5a39557",
+    "evidence_ref=SELF_CHECK_RECEIPT.json | probe defect found and repaired (v1 superseded)",
+    "--author",
+    "hgk-orchestrator"
+   ],
+   "exit": 0,
+   "stdout": "Comment added to t_c5a39557",
+   "stderr": "",
+   "_full": "Comment added to t_c5a39557\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "complete",
+    "t_c5a39557",
+    "--result",
+    "SELF complete: probe defect found and repaired (v1 superseded)",
+    "--metadata",
+    "{\"evidence_ref\": \"SELF_CHECK_RECEIPT.json\", \"contract\": \"CNV-EVIDENCE-ARCHIVE-R7R11-20261016\"}"
+   ],
+   "exit": 0,
+   "stdout": "Completed t_c5a39557",
+   "stderr": "",
+   "_full": "Completed t_c5a39557\n"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-ea-r7r11-20261016",
+    "ls",
+    "--json"
+   ],
+   "exit": 0,
+   "stdout": "[\n  {\n    \"id\": \"t_89469084\",\n    \"title\": \"Swarm: Archive the eight candidate evidence PRs #4-#11 of shw097-team/Fabric under cont\",\n    \"body\": \"Kanban Swarm v1 planning/root card. This card is completed immediately so parallel workers can start while it remains the shared blackboard and audit anchor.\\n\\nGoal:\\nArchive the eight candidate evidence PRs #4-#11 of shw097-team/Fabric under contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016: per-PR live-HEAD/single-prefix/trusted-secrets+manifest preflight, minimal errata only, maintainer-approved merge with remote readback, K-ledger metadata errata, a",
+   "stderr": "",
+   "_full": "[\n  {\n    \"id\": \"t_89469084\",\n    \"title\": \"Swarm: Archive the eight candidate evidence PRs #4-#11 of shw097-team/Fabric under cont\",\n    \"body\": \"Kanban Swarm v1 planning/root card. This card is completed immediately so parallel workers can start while it remains the shared blackboard and audit anchor.\\n\\nGoal:\\nArchive the eight candidate evidence PRs #4-#11 of shw097-team/Fabric under contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016: per-PR live-HEAD/single-prefix/trusted-secrets+manifest preflight, minimal errata only, maintainer-approved merge with remote readback, K-ledger metadata errata, and publication of the convergence evidence return pack.\",\n    \"assignee\": \"default\",\n    \"status\": \"done\",\n    \"priority\": 0,\n    \"tenant\": null,\n    \"workspace_kind\": \"scratch\",\n    \"workspace_path\": null,\n    \"branch_name\": null,\n    \"project_id\": null,\n    \"created_by\": \"default\",\n    \"created_at\": 1792144768,\n    \"started_at\": null,\n    \"completed_at\": 1792144768,\n    \"result\": null,\n    \"skills\": [],\n    \"max_runtime_seconds\": null,\n    \"max_retries\": null,\n    \"model_override\": null,\n    \"provider_override\": null,\n    \"session_id\": null,\n    \"workflow_template_id\": null,\n    \"current_step_key\": null,\n    \"completion_contract\": \"local-only\",\n    \"last_failure_error\": null\n  },\n  {\n    \"id\": \"t_51b316a1\",\n    \"title\": \"W1 per-PR preflight\",\n    \"body\": \"W1 per-PR preflight\\n\\n## Swarm protocol\\n- Swarm root / shared blackboard: `t_89469084`.\\n- Read sibling/parent handoffs from Kanban context before working.\\n- Put machine-readable facts in completion metadata.\\n- Put cross-worker notes on the root task using structured comments.\\n- Goal: Archive the eight candidate evidence PRs #4-#11 of shw097-team/Fabric under contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016: per-PR live-HEAD/single-prefix/trusted-secrets+manifest preflight, minimal errata only, maintainer-approved merge with remote readback, K-ledger metadata errata, and publication of the convergence evidence return pack.\\n\",\n    \"assignee\": \"hgk-orchestrator\",\n    \"status\": \"ready\",\n    \"priority\": 0,\n    \"tenant\": null,\n    \"workspace_kind\": \"scratch\",\n    \"workspace_path\": null,\n    \"branch_name\": null,\n    \"project_id\": null,\n    \"created_by\": \"default\",\n    \"created_at\": 1792144768,\n    \"started_at\": null,\n    \"completed_at\": null,\n    \"result\": null,\n    \"skills\": [\n      \"live HEAD\",\n      \"exact changed set\",\n      \"single evidence prefix\",\n      \"change_class re-derivation for #4-#11\"\n    ],\n    \"max_runtime_seconds\": null,\n    \"max_retries\": null,\n    \"model_override\": null,\n    \"provider_override\": null,\n    \"session_id\": null,\n    \"workflow_template_id\": null,\n    \"current_step_key\": null,\n    \"completion_contract\": \"local-only\",\n    \"last_failure_error\": null\n  },\n  {\n    \"id\": \"t_a494973b\",\n    \"title\": \"W2 trusted secrets/privacy scan + manifest-vs-tracked-set checks over all eight changed sets, outside the PR\",\n    \"body\": \"W2 trusted secrets/privacy scan + manifest-vs-tracked-set checks over all eight changed sets, outside the PR\\n\\n## Swarm protocol\\n- Swarm root / shared blackboard: `t_89469084`.\\n- Read sibling/parent handoffs from Kanban context before working.\\n- Put machine-readable facts in completion metadata.\\n- Put cross-worker notes on the root task using structured comments.\\n- Goal: Archive the eight candidate evidence PRs #4-#11 of shw097-team/Fabric under contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016: per-PR live-HEAD/single-prefix/trusted-secrets+manifest preflight, minimal errata only, maintainer-approved merge with remote readback, K-ledger metadata errata, and publication of the convergence evidence return pack.\\n\",\n    \"assignee\": \"hgk-security\",\n    \"status\": \"ready\",\n    \"priority\": 0,\n    \"tenant\": null,\n    \"workspace_kind\": \"scratch\",\n    \"workspace_path\": null,\n    \"branch_name\": null,\n    \"project_id\": null,\n    \"created_by\": \"default\",\n    \"created_at\": 1792144768,\n    \"started_at\": null,\n    \"completed_at\": null,\n    \"result\": null,\n    \"skills\": [],\n    \"max_runtime_seconds\": null,\n    \"max_retries\": null,\n    \"model_override\": null,\n    \"provider_override\": null,\n    \"session_id\": null,\n    \"workflow_template_id\": null,\n    \"current_step_key\": null,\n    \"completion_contract\": \"local-only\",\n    \"last_failure_error\": null\n  },\n  {\n    \"id\": \"t_fcdb747d\",\n    \"title\": \"W3 K-ledger cross-index metadata errata + all ten EIA-20261016 finding dispositions\",\n    \"body\": \"W3 K-ledger cross-index metadata errata + all ten EIA-20261016 finding dispositions\\n\\n## Swarm protocol\\n- Swarm root / shared blackboard: `t_89469084`.\\n- Read sibling/parent handoffs from Kanban context before working.\\n- Put machine-readable facts in completion metadata.\\n- Put cross-worker notes on the root task using structured comments.\\n- Goal: Archive the eight candidate evidence PRs #4-#11 of shw097-team/Fabric under contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016: per-PR live-HEAD/single-prefix/trusted-secrets+manifest preflight, minimal errata only, maintainer-approved merge with remote readback, K-ledger metadata errata, and publication of the convergence evidence return pack.\\n\",\n    \"assignee\": \"hgk-orchestrator\",\n    \"status\": \"ready\",\n    \"priority\": 0,\n    \"tenant\": null,\n    \"workspace_kind\": \"scratch\",\n    \"workspace_path\": null,\n    \"branch_name\": null,\n    \"project_id\": null,\n    \"created_by\": \"default\",\n    \"created_at\": 1792144768,\n    \"started_at\": null,\n    \"completed_at\": null,\n    \"result\": null,\n    \"skills\": [],\n    \"max_runtime_seconds\": null,\n    \"max_retries\": null,\n    \"model_override\": null,\n    \"provider_override\": null,\n    \"session_id\": null,\n    \"workflow_template_id\": null,\n    \"current_step_key\": null,\n    \"completion_contract\": \"local-only\",\n    \"last_failure_error\": null\n  },\n  {\n    \"id\": \"t_deed5ad7\",\n    \"title\": \"W4 evidence packet assembly + credential-broker publication to the Fabric repository\",\n    \"body\": \"W4 evidence packet assembly + credential-broker publication to the Fabric repository\\n\\n## Swarm protocol\\n- Swarm root / shared blackboard: `t_89469084`.\\n- Read sibling/parent handoffs from Kanban context before working.\\n- Put machine-readable facts in completion metadata.\\n- Put cross-worker notes on the root task using structured comments.\\n- Goal: Archive the eight candidate evidence PRs #4-#11 of shw097-team/Fabric under contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016: per-PR live-HEAD/single-prefix/trusted-secrets+manifest preflight, minimal errata only, maintainer-approved merge with remote readback, K-ledger metadata errata, and publication of the convergence evidence return pack.\\n\",\n    \"assignee\": \"hgk-security\",\n    \"status\": \"ready\",\n    \"priority\": 0,\n    \"tenant\": null,\n    \"workspace_kind\": \"scratch\",\n    \"workspace_path\": null,\n    \"branch_name\": null,\n    \"project_id\": null,\n    \"created_by\": \"default\",\n    \"created_at\": 1792144768,\n    \"started_at\": null,\n    \"completed_at\": null,\n    \"result\": null,\n    \"skills\": [],\n    \"max_runtime_seconds\": null,\n    \"max_retries\": null,\n    \"model_override\": null,\n    \"provider_override\": null,\n    \"session_id\": null,\n    \"workflow_template_id\": null,\n    \"current_step_key\": null,\n    \"completion_contract\": \"local-only\",\n    \"last_failure_error\": null\n  },\n  {\n    \"id\": \"t_dcd4d4b0\",\n    \"title\": \"Verify swarm outputs\",\n    \"body\": \"Review every worker handoff and blackboard update. Gate the swarm: complete only with metadata {\\\"gate\\\": \\\"pass\\\"} when evidence is sufficient; otherwise block with exact missing work.\\n\\n## Swarm protocol\\n- Swarm root / shared blackboard: `t_89469084`.\\n- Read sibling/parent handoffs from Kanban context before working.\\n- Put machine-readable facts in completion metadata.\\n- Put cross-worker notes on the root task using structured comments.\\n- Goal: Archive the eight candidate evidence PRs #4-#11 of shw097-team/Fabric under contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016: per-PR live-HEAD/single-prefix/trusted-secrets+manifest preflight, minimal errata only, maintainer-approved merge with remote readback, K-ledger metadata errata, and publication of the convergence evidence return pack.\\n\",\n    \"assignee\": \"acceptance-officer\",\n    \"status\": \"todo\",\n    \"priority\": 0,\n    \"tenant\": null,\n    \"workspace_kind\": \"scratch\",\n    \"workspace_path\": null,\n    \"branch_name\": null,\n    \"project_id\": null,\n    \"created_by\": \"default\",\n    \"created_at\": 1792144768,\n    \"started_at\": null,\n    \"completed_at\": null,\n    \"result\": null,\n    \"skills\": [\n      \"requesting-code-review\"\n    ],\n    \"max_runtime_seconds\": null,\n    \"max_retries\": null,\n    \"model_override\": null,\n    \"provider_override\": null,\n    \"session_id\": null,\n    \"workflow_template_id\": null,\n    \"current_step_key\": null,\n    \"completion_contract\": \"local-only\",\n    \"last_failure_error\": null\n  },\n  {\n    \"id\": \"t_9e1ba18e\",\n    \"title\": \"Synthesize swarm outputs\",\n    \"body\": \"Synthesize the verified worker outputs into the final deliverable. Do not start until the verifier has passed the gate.\\n\\n## Swarm protocol\\n- Swarm root / shared blackboard: `t_89469084`.\\n- Read sibling/parent handoffs from Kanban context before working.\\n- Put machine-readable facts in completion metadata.\\n- Put cross-worker notes on the root task using structured comments.\\n- Goal: Archive the eight candidate evidence PRs #4-#11 of shw097-team/Fabric under contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016: per-PR live-HEAD/single-prefix/trusted-secrets+manifest preflight, minimal errata only, maintainer-approved merge with remote readback, K-ledger metadata errata, and publication of the convergence evidence return pack.\\n\",\n    \"assignee\": \"hgk-orchestrator\",\n    \"status\": \"todo\",\n    \"priority\": 0,\n    \"tenant\": null,\n    \"workspace_kind\": \"scratch\",\n    \"workspace_path\": null,\n    \"branch_name\": null,\n    \"project_id\": null,\n    \"created_by\": \"default\",\n    \"created_at\": 1792144768,\n    \"started_at\": null,\n    \"completed_at\": null,\n    \"result\": null,\n    \"skills\": [\n      \"humanizer\"\n    ],\n    \"max_runtime_seconds\": null,\n    \"max_retries\": null,\n    \"model_override\": null,\n    \"provider_override\": null,\n    \"session_id\": null,\n    \"workflow_template_id\": null,\n    \"current_step_key\": null,\n    \"completion_contract\": \"local-only\",\n    \"last_failure_error\": null\n  },\n  {\n    \"id\": \"t_4a5fe746\",\n    \"title\": \"A00 files-first source ledger (44 sources, 20/20 knowledge packs, 1 real gap)\",\n    \"body\": \"contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016; evidence: A00_SOURCE_LEDGER.json; 1 real gap: the Fabric tree has no root AGENTS.md\",\n    \"assignee\": \"hgk-orchestrator\",\n    \"status\": \"done\",\n    \"priority\": 0,\n    \"tenant\": null,\n    \"workspace_kind\": \"scratch\",\n    \"workspace_path\": \"C:\\\\Users\\\\user\\\\AppData\\\\Local\\\\Packages\\\\OpenAI.Codex_2p2nqsd0c76g0\\\\LocalCache\\\\Local\\\\hermes\\\\kanban\\\\boards\\\\cnv-ea-r7r11-20261016\\\\workspaces\\\\t_4a5fe746\",\n    \"branch_name\": null,\n    \"project_id\": null,\n    \"created_by\": \"hgk-orchestrator\",\n    \"created_at\": 1792146005,\n    \"started_at\": 1792146092,\n    \"completed_at\": 1792146096,\n    \"result\": \"A00 complete: 1 real gap: the Fabric tree has no root AGENTS.md\",\n    \"skills\": [],\n    \"max_runtime_seconds\": null,\n    \"max_retries\": null,\n    \"model_override\": null,\n    \"provider_override\": null,\n    \"session_id\": null,\n    \"workflow_template_id\": null,\n    \"current_step_key\": null,\n    \"completion_contract\": \"local-only\",\n    \"last_failure_error\": null\n  },\n  {\n    \"id\": \"t_aa3b1c3d\",\n    \"title\": \"A01 codex-side contract compile C0-C9 (lint/activation/acceptance/compile/duplication)\",\n    \"body\": \"contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016; evidence: compiler/compiler-receipt.json; PROMPT_COMPILE_PASS\",\n    \"assignee\": \"hgk-orchestrator\",\n    \"status\": \"done\",\n    \"priority\": 0,\n    \"tenant\": null,\n    \"workspace_kind\": \"scratch\",\n    \"workspace_path\": \"C:\\\\Users\\\\user\\\\AppData\\\\Local\\\\Packages\\\\OpenAI.Codex_2p2nqsd0c76g0\\\\LocalCache\\\\Local\\\\hermes\\\\kanban\\\\boards\\\\cnv-ea-r7r11-20261016\\\\workspaces\\\\t_aa3b1c3d\",\n    \"branch_name\": null,\n    \"project_id\": null,\n    \"created_by\": \"hgk-orchestrator\",\n    \"created_at\": 1792146008,\n    \"started_at\": 1792146098,\n    \"completed_at\": 1792146105,\n    \"result\": \"A01 complete: PROMPT_COMPILE_PASS\",\n    \"skills\": [],\n    \"max_runtime_seconds\": null,\n    \"max_retries\": null,\n    \"model_override\": null,\n    \"provider_override\": null,\n    \"session_id\": null,\n    \"workflow_template_id\": null,\n    \"current_step_key\": null,\n    \"completion_contract\": \"local-only\",\n    \"last_failure_error\": null\n  },\n  {\n    \"id\": \"t_61e8dc90\",\n    \"title\": \"A02 HGK typed admission + kanban/swarm/openspec/gstack surfaces\",\n    \"body\": \"contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016; evidence: HGK_TYPED_ADMISSION_EA.json; epoch 22, drift 0, openspec strict-valid\",\n    \"assignee\": \"hgk-orchestrator\",\n    \"status\": \"done\",\n    \"priority\": 0,\n    \"tenant\": null,\n    \"workspace_kind\": \"scratch\",\n    \"workspace_path\": \"C:\\\\Users\\\\user\\\\AppData\\\\Local\\\\Packages\\\\OpenAI.Codex_2p2nqsd0c76g0\\\\LocalCache\\\\Local\\\\hermes\\\\kanban\\\\boards\\\\cnv-ea-r7r11-20261016\\\\workspaces\\\\t_61e8dc90\",\n    \"branch_name\": null,\n    \"project_id\": null,\n    \"created_by\": \"hgk-orchestrator\",\n    \"created_at\": 1792146010,\n    \"started_at\": 1792146107,\n    \"completed_at\": 1792146111,\n    \"result\": \"A02 complete: epoch 22, drift 0, openspec strict-valid\",\n    \"skills\": [],\n    \"max_runtime_seconds\": null,\n    \"max_retries\": null,\n    \"model_override\": null,\n    \"provider_override\": null,\n    \"session_id\": null,\n    \"workflow_template_id\": null,\n    \"current_step_key\": null,\n    \"completion_contract\": \"local-only\",\n    \"last_failure_error\": null\n  },\n  {\n    \"id\": \"t_b908df2c\",\n    \"title\": \"A03-A05 per-PR latest HEAD / single evidence prefix / change class / manifest / secret scan\",\n    \"body\": \"contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016; evidence: A03_A05_PR_PREFLIGHT.json; 8/8 EVIDENCE_ONLY, 0 prefix escape, 0 new secrets\",\n    \"assignee\": \"hgk-orchestrator\",\n    \"status\": \"done\",\n    \"priority\": 0,\n    \"tenant\": null,\n    \"workspace_kind\": \"scratch\",\n    \"workspace_path\": \"C:\\\\Users\\\\user\\\\AppData\\\\Local\\\\Packages\\\\OpenAI.Codex_2p2nqsd0c76g0\\\\LocalCache\\\\Local\\\\hermes\\\\kanban\\\\boards\\\\cnv-ea-r7r11-20261016\\\\workspaces\\\\t_b908df2c\",\n    \"branch_name\": null,\n    \"project_id\": null,\n    \"created_by\": \"hgk-orchestrator\",\n    \"created_at\": 1792146013,\n    \"started_at\": 1792146114,\n    \"completed_at\": 1792146118,\n    \"result\": \"A03A05 complete: 8/8 EVIDENCE_ONLY, 0 prefix escape, 0 new secrets\",\n    \"skills\": [],\n    \"max_runtime_seconds\": null,\n    \"max_retries\": null,\n    \"model_override\": null,\n    \"provider_override\": null,\n    \"session_id\": null,\n    \"workflow_template_id\": null,\n    \"current_step_key\": null,\n    \"completion_contract\": \"local-only\",\n    \"last_failure_error\": null\n  },\n  {\n    \"id\": \"t_800c94cb\",\n    \"title\": \"A06 minimal errata write (only if truly needed)\",\n    \"body\": \"contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016; evidence: A03_A05_PR_PREFLIGHT.json; no errata needed: no PR branch was modified\",\n    \"assignee\": \"hgk-orchestrator\",\n    \"status\": \"done\",\n    \"priority\": 0,\n    \"tenant\": null,\n    \"workspace_kind\": \"scratch\",\n    \"workspace_path\": \"C:\\\\Users\\\\user\\\\AppData\\\\Local\\\\Packages\\\\OpenAI.Codex_2p2nqsd0c76g0\\\\LocalCache\\\\Local\\\\hermes\\\\kanban\\\\boards\\\\cnv-ea-r7r11-20261016\\\\workspaces\\\\t_800c94cb\",\n    \"branch_name\": null,\n    \"project_id\": null,\n    \"created_by\": \"hgk-orchestrator\",\n    \"created_at\": 1792146016,\n    \"started_at\": 1792146120,\n    \"completed_at\": 1792146125,\n    \"result\": \"A06 complete: no errata needed: no PR branch was modified\",\n    \"skills\": [],\n    \"max_runtime_seconds\": null,\n    \"max_retries\": null,\n    \"model_override\": null,\n    \"provider_override\": null,\n    \"session_id\": null,\n    \"workflow_template_id\": null,\n    \"current_step_key\": null,\n    \"completion_contract\": \"local-only\",\n    \"last_failure_error\": null\n  },\n  {\n    \"id\": \"t_f54b09e6\",\n    \"title\": \"A07 per-PR Repo Maintainer approval (prefix + actual HEAD + candidate-only + rollback)\",\n    \"body\": \"contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016; evidence: A03_A05_PR_PREFLIGHT.json; MAINTAINER_APPROVAL_MISSING: a real maintainer must approve\",\n    \"assignee\": \"hgk-orchestrator\",\n    \"status\": \"blocked\",\n    \"priority\": 0,\n    \"tenant\": null,\n    \"workspace_kind\": \"scratch\",\n    \"workspace_path\": null,\n    \"branch_name\": null,\n    \"project_id\": null,\n    \"created_by\": \"hgk-orchestrator\",\n    \"created_at\": 1792146019,\n    \"started_at\": null,\n    \"completed_at\": null,\n    \"result\": null,\n    \"skills\": [],\n    \"max_runtime_seconds\": null,\n    \"max_retries\": null,\n    \"model_override\": null,\n    \"provider_override\": null,\n    \"session_id\": null,\n    \"workflow_template_id\": null,\n    \"current_step_key\": null,\n    \"completion_contract\": \"local-only\",\n    \"last_failure_error\": null\n  },\n  {\n    \"id\": \"t_84cc1c8b\",\n    \"title\": \"A08 per-PR ready/merge + main readback by the authorised maintainer\",\n    \"body\": \"contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016; evidence: EIA_DISPOSITION_MATRIX.json; depends on A07; never self-approved\",\n    \"assignee\": \"hgk-orchestrator\",\n    \"status\": \"blocked\",\n    \"priority\": 0,\n    \"tenant\": null,\n    \"workspace_kind\": \"scratch\",\n    \"workspace_path\": null,\n    \"branch_name\": null,\n    \"project_id\": null,\n    \"created_by\": \"hgk-orchestrator\",\n    \"created_at\": 1792146022,\n    \"started_at\": null,\n    \"completed_at\": null,\n    \"result\": null,\n    \"skills\": [],\n    \"max_runtime_seconds\": null,\n    \"max_retries\": null,\n    \"model_override\": null,\n    \"provider_override\": null,\n    \"session_id\": null,\n    \"workflow_template_id\": null,\n    \"current_step_key\": null,\n    \"completion_contract\": \"local-only\",\n    \"last_failure_error\": null\n  },\n  {\n    \"id\": \"t_84624f7c\",\n    \"title\": \"A09 K-01..K-20 source-vs-retested cross index (metadata only)\",\n    \"body\": \"contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016; evidence: A09_KLedger_CROSS_INDEX.json; 20/20 linked, 0/20 retested, 7/7/6 preserved\",\n    \"assignee\": \"hgk-orchestrator\",\n    \"status\": \"done\",\n    \"priority\": 0,\n    \"tenant\": null,\n    \"workspace_kind\": \"scratch\",\n    \"workspace_path\": \"C:\\\\Users\\\\user\\\\AppData\\\\Local\\\\Packages\\\\OpenAI.Codex_2p2nqsd0c76g0\\\\LocalCache\\\\Local\\\\hermes\\\\kanban\\\\boards\\\\cnv-ea-r7r11-20261016\\\\workspaces\\\\t_84624f7c\",\n    \"branch_name\": null,\n    \"project_id\": null,\n    \"created_by\": \"hgk-orchestrator\",\n    \"created_at\": 1792146025,\n    \"started_at\": 1792146131,\n    \"completed_at\": 1792146136,\n    \"result\": \"A09 complete: 20/20 linked, 0/20 retested, 7/7/6 preserved\",\n    \"skills\": [],\n    \"max_runtime_seconds\": null,\n    \"max_retries\": null,\n    \"model_override\": null,\n    \"provider_override\": null,\n    \"session_id\": null,\n    \"workflow_template_id\": null,\n    \"current_step_key\": null,\n    \"completion_contract\": \"local-only\",\n    \"last_failure_error\": null\n  },\n  {\n    \"id\": \"t_43ffa99b\",\n    \"title\": \"A10 evidence return pack + single evidence MD + closure\",\n    \"body\": \"contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016; evidence: publish/payload/PACK_INDEX.json; packet assembled; claim ceiling candidate-only\",\n    \"assignee\": \"hgk-orchestrator\",\n    \"status\": \"done\",\n    \"priority\": 0,\n    \"tenant\": null,\n    \"workspace_kind\": \"scratch\",\n    \"workspace_path\": \"C:\\\\Users\\\\user\\\\AppData\\\\Local\\\\Packages\\\\OpenAI.Codex_2p2nqsd0c76g0\\\\LocalCache\\\\Local\\\\hermes\\\\kanban\\\\boards\\\\cnv-ea-r7r11-20261016\\\\workspaces\\\\t_43ffa99b\",\n    \"branch_name\": null,\n    \"project_id\": null,\n    \"created_by\": \"hgk-orchestrator\",\n    \"created_at\": 1792146028,\n    \"started_at\": 1792146138,\n    \"completed_at\": 1792146142,\n    \"result\": \"A10 complete: packet assembled; claim ceiling candidate-only\",\n    \"skills\": [],\n    \"max_runtime_seconds\": null,\n    \"max_retries\": null,\n    \"model_override\": null,\n    \"provider_override\": null,\n    \"session_id\": null,\n    \"workflow_template_id\": null,\n    \"current_step_key\": null,\n    \"completion_contract\": \"local-only\",\n    \"last_failure_error\": null\n  },\n  {\n    \"id\": \"t_e348f1af\",\n    \"title\": \"EXECUTE bounded writer lane (CODEX CLI, opencode-go/deepseek-v4.1-flash)\",\n    \"body\": \"contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016; evidence: lane/EXECUTE_RECEIPT.json; bounded write root; nonce required both ends\",\n    \"assignee\": \"hgk-orchestrator\",\n    \"status\": \"done\",\n    \"priority\": 0,\n    \"tenant\": null,\n    \"workspace_kind\": \"scratch\",\n    \"workspace_path\": \"C:\\\\Users\\\\user\\\\AppData\\\\Local\\\\Packages\\\\OpenAI.Codex_2p2nqsd0c76g0\\\\LocalCache\\\\Local\\\\hermes\\\\kanban\\\\boards\\\\cnv-ea-r7r11-20261016\\\\workspaces\\\\t_e348f1af\",\n    \"branch_name\": null,\n    \"project_id\": null,\n    \"created_by\": \"hgk-orchestrator\",\n    \"created_at\": 1792146031,\n    \"started_at\": 1792146144,\n    \"completed_at\": 1792146149,\n    \"result\": \"EXEC complete: bounded write root; nonce required both ends\",\n    \"skills\": [],\n    \"max_runtime_seconds\": null,\n    \"max_retries\": null,\n    \"model_override\": null,\n    \"provider_override\": null,\n    \"session_id\": null,\n    \"workflow_template_id\": null,\n    \"current_step_key\": null,\n    \"completion_contract\": \"local-only\",\n    \"last_failure_error\": null\n  },\n  {\n    \"id\": \"t_798b9ff8\",\n    \"title\": \"VERIFY independent checker lane (separate dispatch, read-only posture)\",\n    \"body\": \"contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016; evidence: lane/VERIFY_RECEIPT.json; re-derivation verdict recorded\",\n    \"assignee\": \"hgk-orchestrator\",\n    \"status\": \"done\",\n    \"priority\": 0,\n    \"tenant\": null,\n    \"workspace_kind\": \"scratch\",\n    \"workspace_path\": \"C:\\\\Users\\\\user\\\\AppData\\\\Local\\\\Packages\\\\OpenAI.Codex_2p2nqsd0c76g0\\\\LocalCache\\\\Local\\\\hermes\\\\kanban\\\\boards\\\\cnv-ea-r7r11-20261016\\\\workspaces\\\\t_798b9ff8\",\n    \"branch_name\": null,\n    \"project_id\": null,\n    \"created_by\": \"hgk-orchestrator\",\n    \"created_at\": 1792146034,\n    \"started_at\": 1792146151,\n    \"completed_at\": 1792146156,\n    \"result\": \"VERI complete: re-derivation verdict recorded\",\n    \"skills\": [],\n    \"max_runtime_seconds\": null,\n    \"max_retries\": null,\n    \"model_override\": null,\n    \"provider_override\": null,\n    \"session_id\": null,\n    \"workflow_template_id\": null,\n    \"current_step_key\": null,\n    \"completion_contract\": \"local-only\",\n    \"last_failure_error\": null\n  },\n  {\n    \"id\": \"t_f19340be\",\n    \"title\": \"PUBLISH candidate evidence packet to the governed mirror\",\n    \"body\": \"contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016; evidence: PUBLISH_RECEIPT.json; new branch + draft PR; main untouched\",\n    \"assignee\": \"hgk-orchestrator\",\n    \"status\": \"done\",\n    \"priority\": 0,\n    \"tenant\": null,\n    \"workspace_kind\": \"scratch\",\n    \"workspace_path\": \"C:\\\\Users\\\\user\\\\AppData\\\\Local\\\\Packages\\\\OpenAI.Codex_2p2nqsd0c76g0\\\\LocalCache\\\\Local\\\\hermes\\\\kanban\\\\boards\\\\cnv-ea-r7r11-20261016\\\\workspaces\\\\t_f19340be\",\n    \"branch_name\": null,\n    \"project_id\": null,\n    \"created_by\": \"hgk-orchestrator\",\n    \"created_at\": 1792146037,\n    \"started_at\": 1792146158,\n    \"completed_at\": 1792146162,\n    \"result\": \"PUBL complete: new branch + draft PR; main untouched\",\n    \"skills\": [],\n    \"max_runtime_seconds\": null,\n    \"max_retries\": null,\n    \"model_override\": null,\n    \"provider_override\": null,\n    \"session_id\": null,\n    \"workflow_template_id\": null,\n    \"current_step_key\": null,\n    \"completion_contract\": \"local-only\",\n    \"last_failure_error\": null\n  },\n  {\n    \"id\": \"t_c5a39557\",\n    \"title\": \"Self-check / self-repair / self-acceptance harness for this round\",\n    \"body\": \"contract CNV-EVIDENCE-ARCHIVE-R7R11-20261016; evidence: SELF_CHECK_RECEIPT.json; probe defect found and repaired (v1 superseded)\",\n    \"assignee\": \"hgk-orchestrator\",\n    \"status\": \"done\",\n    \"priority\": 0,\n    \"tenant\": null,\n    \"workspace_kind\": \"scratch\",\n    \"workspace_path\": \"C:\\\\Users\\\\user\\\\AppData\\\\Local\\\\Packages\\\\OpenAI.Codex_2p2nqsd0c76g0\\\\LocalCache\\\\Local\\\\hermes\\\\kanban\\\\boards\\\\cnv-ea-r7r11-20261016\\\\workspaces\\\\t_c5a39557\",\n    \"branch_name\": null,\n    \"project_id\": null,\n    \"created_by\": \"hgk-orchestrator\",\n    \"created_at\": 1792146040,\n    \"started_at\": 1792146164,\n    \"completed_at\": 1792146169,\n    \"result\": \"SELF complete: probe defect found and repaired (v1 superseded)\",\n    \"skills\": [],\n    \"max_runtime_seconds\": null,\n    \"max_retries\": null,\n    \"model_override\": null,\n    \"provider_override\": null,\n    \"session_id\": null,\n    \"workflow_template_id\": null,\n    \"current_step_key\": null,\n    \"completion_contract\": \"local-only\",\n    \"last_failure_error\": null\n  }\n]\n"
+  }
+ ],
+ "errors": [],
+ "verdict": "PASS"
+}

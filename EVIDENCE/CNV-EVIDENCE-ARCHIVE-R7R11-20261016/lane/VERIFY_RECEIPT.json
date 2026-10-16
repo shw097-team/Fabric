@@ -1,0 +1,155 @@
+{
+  "schema": "HGK-LANE-RESOLUTION/1",
+  "lane": "VERIFY_SECURITY",
+  "role": "checker",
+  "role_binding_source": null,
+  "engine": "codex-cli",
+  "codex_executable": "C:\\Users\\user\\AppData\\Local\\OpenAI\\Codex\\bin\\e78bad9887fa50cf\\codex.exe",
+  "codex_home": "C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\codex-hermes",
+  "relay_base": "http://127.0.0.1:10101/v1",
+  "codex_home_is_declared_lane_home": true,
+  "human_home_transport_acknowledged": false,
+  "skipped_arms": [
+    {
+      "rank": 4,
+      "arm": "nvidia/deepseek-ai/deepseek-v4.1-flash",
+      "reason": "UNREACHABLE_MEASURED_20261011"
+    }
+  ],
+  "transport": "opencodex relay via per-invocation -c openai_base_url (no config mutation)",
+  "transport_target": "http://127.0.0.1:10101/v1",
+  "front_door_port": null,
+  "front_door_note": "the lane-scoped pool door (10103 VERIFY_SECURITY / 10105 EXECUTE) carries the hop and ledgers every decision; the sealed single-model 10100 door is unchanged and unused; None here means direct to the relay on 10101",
+  "sandbox": "workspace-write",
+  "sandbox_by_role_default": "read-only",
+  "sandbox_escalation_authorised": true,
+  "cwd": "C:/Projects/Agent_Workspace/_handover/CNV-EVIDENCE-ARCHIVE-R7R11-20261016",
+  "side_effect_note": "no write access granted by the sandbox mode",
+  "receipt_binding": "usage rows appended after this attempt started (byte offset bound)",
+  "pool": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\lane-route-slots.candidate.json",
+  "candidates_considered": [
+    1
+  ],
+  "mode": "forced_rank",
+  "unguarded_escalation_acknowledged": false,
+  "inject_429_first": false,
+  "identity_gate": {
+    "state": "enforced",
+    "lane_home": "C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\codex-hermes",
+    "relay_home": "C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\opencodex-hermes",
+    "arms": [
+      {
+        "rank": 1,
+        "provider": "opencode-go",
+        "model": "deepseek-v4.1-flash",
+        "requirement": "none",
+        "ok": true,
+        "detail": "key-auth arm: no human-attended identity"
+      }
+    ],
+    "degraded": false,
+    "required_arm": "opencode-go/deepseek-v4.1-flash"
+  },
+  "authorization": {
+    "checked": false
+  },
+  "subject_mutation": {
+    "files_before": 5,
+    "files_after": 5,
+    "added": [],
+    "removed": [],
+    "changed": [],
+    "mutated": false,
+    "mutated_known": true,
+    "inconclusive": false,
+    "verdict": "CLEAN",
+    "rule": "removed/changed => verdict void; added is recorded, not fatal; an empty side => INCONCLUSIVE (never a clean verdict from nothing)",
+    "guard_roots": [
+      "C:/Projects/Agent_Workspace/_handover/CNV-EVIDENCE-ARCHIVE-R7R11-20261016/packet",
+      "C:/Projects/Agent_Workspace/_handover/CNV-EVIDENCE-ARCHIVE-R7R11-20261016/A03_A05_PR_PREFLIGHT.json",
+      "C:/Projects/Agent_Workspace/_handover/CNV-EVIDENCE-ARCHIVE-R7R11-20261016/A09_KLedger_CROSS_INDEX.json",
+      "C:/Projects/Agent_Workspace/_handover/CNV-EVIDENCE-ARCHIVE-R7R11-20261016/EIA_DISPOSITION_MATRIX.json"
+    ],
+    "subject_digest_sha256_before": "29985c065822abbc158ebb057b43fa43c8334894c39da6373ec82e3c3c194774",
+    "subject_digest_sha256_after": "29985c065822abbc158ebb057b43fa43c8334894c39da6373ec82e3c3c194774"
+  },
+  "attempt_log_dir": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\cnv-ea-r7r11-20261016\\VERIFY_SECURITY\\attempt-1-20261016T102316Z",
+  "output_dir_policy": {
+    "mode": "derived",
+    "derived": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\cnv-ea-r7r11-20261016\\VERIFY_SECURITY\\attempt-1-20261016T102316Z",
+    "attempt_number": 1,
+    "attempt_marker": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\cnv-ea-r7r11-20261016\\VERIFY_SECURITY\\attempt-1-20261016T102316Z\\attempt.marker.json"
+  },
+  "repair_precondition": {
+    "checked": false
+  },
+  "remote_write_precheck": {
+    "mode": "DETECTION_ONLY",
+    "ran": true,
+    "brief": "C:/Projects/Agent_Workspace/_handover/CNV-EVIDENCE-ARCHIVE-R7R11-20261016/lane/VERIFY_BRIEF.md",
+    "markers": [],
+    "publication_wo": null,
+    "would_refuse": false
+  },
+  "attempts": [
+    {
+      "rank": 1,
+      "provider": "opencode-go",
+      "model": "deepseek-v4.1-flash",
+      "transport_model": "opencode-go/deepseek-v4.1-flash",
+      "sandbox": "workspace-write",
+      "reasoning_effort": null,
+      "exit": 0,
+      "timed_out": false,
+      "seconds": 133.53,
+      "nonce_present": true,
+      "nonce_present_raw_stdout": true,
+      "nonce_source": "item.completed/agent_message",
+      "usage_rows_after_offset": 18,
+      "usage_offset": 27320639,
+      "usage_provider": "opencode-go",
+      "usage_model": "deepseek-v4.1-flash",
+      "usage_status": 200,
+      "usage_receipt_ok": true,
+      "usage_receipt_reason": "",
+      "usage_ledger_rewritten": false,
+      "usage_rows_shape_invalid": 0,
+      "usage_rows_undecodable": 0,
+      "carrier_lines_undecodable": 0,
+      "carrier_lines_surrogate": 0,
+      "credential_posture": {
+        "verdict": "INCONCLUSIVE",
+        "decision": "WARN_CONTINUE",
+        "reason": "helper-only verdict (no child env asserted): helper_resolution_reset=PASS; helper_non_interactive=UNKNOWN",
+        "prompt_capable_helper": null,
+        "origin": null,
+        "git_terminal_prompt": "0"
+      },
+      "attempt_log_dir": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\cnv-ea-r7r11-20261016\\VERIFY_SECURITY\\attempt-1-20261016T102316Z",
+      "stdout_byte_exact": true,
+      "stdout_path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\cnv-ea-r7r11-20261016\\VERIFY_SECURITY\\attempt-1-20261016T102316Z\\attempt-2920-1792146196-1-stdout.txt",
+      "stdout_bytes": 204626,
+      "stdout_sha256": "72d6931e8a398ff48fc89b24b50bfd4123e8652ab2dace31df930b652db3e652",
+      "stderr_byte_exact": true,
+      "stderr_path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\cnv-ea-r7r11-20261016\\VERIFY_SECURITY\\attempt-1-20261016T102316Z\\attempt-2920-1792146196-1-stderr.txt",
+      "stderr_bytes": 220,
+      "stderr_sha256": "3217c6b76e35f02e94c381e1708fd978bc477c3489201810faa75495d3fa824e",
+      "stdout_tail": "urrence of `PASS` is `PROMPT_COMPILE_PASS` — a compiler-level verdict, not a subject acceptance, so it does not contradict the round's NOT_RUN / NOT_ACCEPTED / NOT_RECERTIFIED / FAIL_CLOSED lattice.\\n\\nCNVEA-VERIFY-NONCE-2b8d44\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":632263,\"cached_input_tokens\":568960,\"cache_write_input_tokens\":0,\"output_tokens\":15063,\"reasoning_output_tokens\":9867}}\n",
+      "stderr_tail": "Reading additional input from stdin...\n2026-10-16T10:23:17.315478Z ERROR codex_api::endpoint::responses_websocket: failed to connect to websocket: HTTP error: 426 Upgrade Required, url: ws://127.0.0.1:10101/v1/responses\n"
+    }
+  ],
+  "used_rank": 1,
+  "used_transport_model": "opencode-go/deepseek-v4.1-flash",
+  "used_seconds": 133.53,
+  "generated_utc": "2026-10-16T10:25:30.831996+00:00",
+  "claim_ceiling": "a pass here proves the Codex-CLI lane served this turn through the relay with a matching usage receipt; it is not an acceptance of any subject",
+  "ok": true,
+  "completion_evidence": {
+    "checked": false
+  },
+  "usage_receipt_ok": true,
+  "usage_rows_shape_invalid": 0,
+  "usage_rows_undecodable": 0,
+  "required_arm": "opencode-go/deepseek-v4.1-flash",
+  "served_arm": "opencode-go/deepseek-v4.1-flash"
+}

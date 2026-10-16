@@ -1,0 +1,79 @@
+{
+ "schema": "CNV-EVIDENCE-ARCHIVE-R7R11/SWARM-INDEPENDENT-REVIEWS/1",
+ "generated_utc": "2026-10-16T10:49:22.490527+00:00",
+ "how_these_were_produced": "three parallel sub-agent lanes on opencode-go/glm-5.3-flash, each given a different adversarial question and no access to this round's conclusions beyond the artifact paths; every lane was instructed to work read-only and to report disagreement rather than converge",
+ "model": "opencode-go/glm-5.3-flash",
+ "lanes": [
+  {
+   "lane": "L1-independent-re-derivation",
+   "question": "re-derive per-PR changed counts, prefix containment, mode distribution and the hard secret finding from the mirror clone",
+   "verdict": "AGREE",
+   "agreed_on": [
+    "all 8 changed counts (306/359/74/120/131/69/350/77) and head SHAs",
+    "zero prefix escape and zero paths outside EVIDENCE/ for all 8",
+    "all changed paths mode 100644; no symlink (120000) or submodule (160000)",
+    "hard finding offset/len/sha256-prefix and its byte-identical pre-existence on origin/main"
+   ],
+   "findings": [
+    {
+     "id": "E1",
+     "class": "RECEIPT_CITATION_INCOMPLETE",
+     "detail": "receipt lists one pre-existing location; there are two"
+    }
+   ],
+   "transcript": "hermes/cache/delegation/live/deleg_a2ef7e8d/task-0.log"
+  },
+  {
+   "lane": "L2-governance-chain-coherence",
+   "question": "audit the governance-chain receipts for digest integrity and internal coherence",
+   "verdict": "AGREE",
+   "agreed_on": [
+    "compiler receipt, prompt contract, HGK admission, A00 ledger, R2 surfaces and A09 cross-index all coherent",
+    "A00 'exactly one real gap' holds; KP19 alias counted once",
+    "A09 numbers reproduce exactly (20 rows / 20 linked / 0 retested / 7-7-6 status split)",
+    "no verdict field in any receipt exceeds the declared claim ceiling"
+   ],
+   "findings": [
+    {
+     "id": "E2",
+     "class": "MUTABLE_LIVE_OBJECT_HASHED",
+     "detail": "SPINE-DB row carries a sha256 snapshot of a live mutable SQLite spine; hash has since moved"
+    }
+   ],
+   "transcript": "hermes/cache/delegation/live/deleg_a2ef7e8d/task-1.log"
+  },
+  {
+   "lane": "L3-overclaim-and-vacuity-hunt",
+   "question": "hunt for overclaiming, false-green and vacuous probes across every artifact",
+   "verdict": "NO_OVERCLAIM_FOUND",
+   "agreed_on": [
+    "no verdict-bearing field exceeds CANDIDATE_EVIDENCE_ARCHIVED_ONLY",
+    "all 8 rows keep maintainer_approval/merge_sha/readback_sha null",
+    "the single PASS token is the contract-mandated compiler verdict; PER_PR_TABLE has zero",
+    "scanner self-test is non-vacuous (negative control present, fires on live data)",
+    "v1 superseded receipt proves the change-class gate can fail",
+    "8 manifests recomputed and matched"
+   ],
+   "findings": [
+    {
+     "id": "E3",
+     "class": "BRANCH_TIP_NOT_SELF_BINDING",
+     "detail": "publish receipt binds only its own commit; the tip advanced afterwards"
+    },
+    {
+     "id": "E4",
+     "class": "HARDCODED_SUBFIELD",
+     "detail": "a09 source_linked is set per parsed row and cannot fail alone"
+    },
+    {
+     "id": "E5",
+     "class": "FIELD_NAME_MISNOMER",
+     "detail": "changed_executable_files holds 100644 paths"
+    }
+   ],
+   "transcript": "hermes/cache/delegation/live/deleg_a2ef7e8d/task-2.log"
+  }
+ ],
+ "swarm_disagreement_with_round": "none of the three lanes contradicted a round claim; one lane (L3) independently reproduced the independent CODEX checker's PASS-substring observation and reached the same narrowed conclusion",
+ "files_created_in_evidence_tree_by_lanes": 0
+}
