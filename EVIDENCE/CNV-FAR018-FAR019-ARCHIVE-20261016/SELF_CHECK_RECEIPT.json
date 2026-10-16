@@ -1,7 +1,7 @@
 {
  "schema": "CNV-ARCHIVE-SELF-CHECK/1",
  "task_id": "CNV-FAR018-FAR019-ARCHIVE-20261016",
- "generated_utc": "2026-10-16T14:20:28.176560+00:00",
+ "generated_utc": "2026-10-16T14:21:24.593340+00:00",
  "claim_ceiling": "LOCAL; machine gate only — not an acceptance, approval or Gate",
  "checks": [
   {
@@ -41,8 +41,8 @@
   },
   {
    "id": "C08",
-   "verdict": "FAIL",
-   "detail": "readback verdict=None files=None mism=0 missing=0"
+   "verdict": "PASS",
+   "detail": "readback verdict=PASS files=25 mism=0 missing=0"
   },
   {
    "id": "C09",
@@ -56,8 +56,8 @@
   },
   {
    "id": "C11",
-   "verdict": "FAIL",
-   "detail": "publish verdict=None pr=None"
+   "verdict": "PASS",
+   "detail": "publish verdict=PUBLISHED pr=https://github.com/shw097-team/Fabric/pull/15"
   },
   {
    "id": "C12",
@@ -65,29 +65,14 @@
    "detail": "main tip=bcd91043b89b equals PR14 merge commit=- (False)"
   }
  ],
- "passed": 7,
+ "passed": 9,
  "total": 12,
  "verdict": "PARTIAL",
  "mutations": {
   "count": 12,
-  "detected": 10,
-  "not_detected": [
-   {
-    "mutation": "M09",
-    "target": "C08",
-    "where": "readback mismatches",
-    "result": "NOT_DETECTED",
-    "observed": null
-   },
-   {
-    "mutation": "M12",
-    "target": "C11",
-    "where": "publish failed",
-    "result": "NOT_DETECTED",
-    "observed": null
-   }
-  ],
-  "all_detected": false
+  "detected": 12,
+  "not_detected": [],
+  "all_detected": true
  },
  "live_evidence": {
   "main_sha": "bcd91043b89b69c9d2f08309e46e31898ac87d89",

@@ -183,6 +183,8 @@ receipt = {"schema": "CNV-ARCHIVE-SELF-CHECK/1", "task_id": ROUND, "generated_ut
 
 # ---------------------------------------------------------------- errata
 a08, a09 = DATA["A08_MERGE_RECEIPT.json"], DATA["A09_RETURN_PACKS.json"]
+adm = DATA["HGK_TYPED_ADMISSION_ARCHIVE.json"]
+rep = DATA["compiler/out/compiler-report.json"]
 ERRATA = f"""# ERRATA AND FINDINGS — {ROUND}
 
 Every item below was produced by THIS round's own execution.  Nothing here is repaired silently: the
