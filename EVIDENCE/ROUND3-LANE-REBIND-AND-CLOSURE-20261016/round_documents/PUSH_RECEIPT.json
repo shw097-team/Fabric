@@ -16,7 +16,7 @@
     {
       "step": "status_before",
       "rc": 0,
-      "stdout": "M EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/PACKET_MANIFEST.json\n M EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/GATE_REPORT.json\n M EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/under_governance/GATE_REPORT.json\n?? evidence/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/PUSH_RECEIPT.json\n?? fabric-autonomous-research/\n?? stage/",
+      "stdout": "/PUSH_RECEIPT.json\n M EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/ROUND_CLOSURE.json\n M EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/under_governance/FROZEN_MANIFEST.json\n M EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/under_governance/GATE_REPORT.json\n M EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/under_governance/ROUND_CLOSURE.json\n?? evidence/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/PUBLICATION_RECEIPT.json\n?? evidence/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/record_publication_round3.py\n?? fabric-autonomous-research/\n?? stage/",
       "stderr": ""
     },
     {
@@ -28,25 +28,25 @@
     {
       "step": "staged_list",
       "rc": 0,
-      "stdout": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/PACKET_MANIFEST.json\nEVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/GATE_REPORT.json\nEVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/PUSH_RECEIPT.json\nEVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/under_governance/GATE_REPORT.json",
+      "stdout": "NCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/PUBLICATION_RECEIPT.json\nEVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/PUSH_RECEIPT.json\nEVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/ROUND_CLOSURE.json\nEVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/record_publication_round3.py\nEVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/under_governance/FROZEN_MANIFEST.json\nEVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/under_governance/GATE_REPORT.json\nEVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/under_governance/ROUND_CLOSURE.json",
       "stderr": ""
     },
     {
       "step": "commit",
       "rc": 0,
-      "stdout": "[pub/round3-lane-rebind-and-closure-20261016 916eea2] ROUND3-LANE-REBIND-AND-CLOSURE-20261016: three lanes rebound to the 2026-10-16 owner order, SoD re-declared (SOD006-C3), guard/registry agreement restored (R10) — candidate only [addendum: remote readback, the final closure revision and the re-frozen manifest]\n 4 files changed, 66 insertions(+), 9 deletions(-)\n create mode 100644 EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/PUSH_RECEIPT.json",
+      "stdout": "[pub/round3-lane-rebind-and-closure-20261016 abc6ef3] ROUND3-LANE-REBIND-AND-CLOSURE-20261016: three lanes rebound to the 2026-10-16 owner order, SoD re-declared (SOD006-C3), guard/registry agreement restored (R10) — candidate only [addendum: remote readback, the final closure revision and the re-frozen manifest]\n 10 files changed, 193 insertions(+), 58 deletions(-)\n create mode 100644 EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/PUBLICATION_RECEIPT.json\n create mode 100644 EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/record_publication_round3.py",
       "stderr": ""
     },
     {
       "step": "push",
       "rc": 0,
       "stdout": "",
-      "stderr": "To https://github.com/shw097-team/Fabric.git\n   808d79e..916eea2  HEAD -> pub/round3-lane-rebind-and-closure-20261016"
+      "stderr": "To https://github.com/shw097-team/Fabric.git\n   916eea2..abc6ef3  HEAD -> pub/round3-lane-rebind-and-closure-20261016"
     }
   ],
-  "staged_count": 4,
+  "staged_count": 10,
   "staged_outside_packet": [],
-  "local_head": "916eea2cf08989768d96c66cad4ac015486f4fbf",
+  "local_head": "abc6ef3a7361413507e074f16020a5806b9446a7",
   "token_leaked_into_captured_output": false,
   "push_ok": true
 }

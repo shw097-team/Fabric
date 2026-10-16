@@ -55,5 +55,8 @@ Landed and measured in the working tree:
 
 * Round: `C:\Projects\Agent_Workspace\HG-KSEOS\var\ROUND3-LANE-REBIND-AND-CLOSURE-20261016\`
 * Packet for the external verifier: `EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/` in the Fabric clone,
-  published on branch `pub/round3-lane-rebind-and-closure-20261016`.
+  published on branch `pub/round3-lane-rebind-and-closure-20261016` as pull request #10
+(https://github.com/shw097-team/Fabric/pull/10 — open, unmerged; merging to main is the OWNER's decision).
+`PUBLICATION_RECEIPT.json` and the closure's `publication` block carry the measured remote/local agreement;
+the packet's own `under_governance/CHECKPOINT.md` copy is the pre-publication revision of this file.
 * Preimages for rollback: `preimages/` in the round directory (proven by digest).
