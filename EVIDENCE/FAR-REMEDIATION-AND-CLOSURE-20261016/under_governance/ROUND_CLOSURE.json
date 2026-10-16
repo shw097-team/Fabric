@@ -1,7 +1,7 @@
 {
   "schema": "HGK-ROUND-CLOSURE/1",
   "round": "FAR-REMEDIATION-AND-CLOSURE-20261016",
-  "at_utc": "2026-10-16T05:21:55.324753+00:00",
+  "at_utc": "2026-10-16T05:27:19.255802+00:00",
   "core_big_goal": "Under the current Fabric governance contract, with HG-KSEOS as the only control plane and the canonical Hermes bound as its governed Runtime/Orchestration plane: use FAR over every residual, gap, owner-decision item, session closure and repository publication; rule the best low-friction, high-necessity, non-over-engineered engineering option; EXECUTE that ruling; then close, hand over and publish the implementation and evidence to github.com/shw097-team/Fabric.",
   "lane_model_selection_evidence": {
     "PLAN_in_hermes": {
@@ -785,7 +785,13 @@
       "id": "SC-10",
       "what": "a RE-RUN OF AN IDEMPOTENT SCRIPT DESTROYED A DISCLOSURE. apply_R2_promote.py records why the 114 MB per-file enumeration was compacted inside the receipt it writes, and that script was re-invoked later in the round (a re-run finds the files already identical and writes no bytes). The re-run REWROTE the same receipt file and could not re-enter the compaction branch, because the large file was already gone -- so R2_PROMOTION_RECEIPT.json.enumeration_compacted now reads null, the only in-packet reason the enumeration is absent was lost, and EVIDENCE_PROMOTION_SCOPE.md still pointed a reader at the deleted file (\"Every file is individually listed in the JSON\"). Found only because a late sub-agent notification prompted a check of what the child had actually written.",
       "found_by": "orchestrator check prompted by the late delegation notification for deleg_3dc8f237",
-      "corrected_in": "ADDITIVE ONLY: evidence/EVIDENCE_PROMOTION_SCOPE_COMPACTION_NOTE.md restores the disclosure and names the defect; no frozen artifact was rewritten. Generalised rules: a receipt a re-runnable script overwrites is not a receipt (append a revision instead), and a publication gate should extract every artifact filename the round cites and fail on any that is absent from the packet"
+      "corrected_in": "ADDITIVE ONLY: evidence/EVIDENCE_PROMOTION_SCOPE_COMPACTION_NOTE.md restores the disclosure and names the defect; no frozen artifact was rewritten. Generalised rules: a receipt a re-runnable script overwrites is not a receipt (append a revision instead), and a publication gate should extract every artifact filename fail on any that is absent from the packet"
+    },
+    {
+      "id": "SC-11",
+      "what": "THE FROZEN SUBJECT CONTAINED A FILE THE ROUND'S OWN PUBLISH TOOLING REWRITES. push_round2.py rewrites PUSH_RECEIPT.json at the end of every push, and that file had been frozen as a round document -- so the freeze taken before a push failed its own recomputation after it: an EQUAL aggregate with the single mismatching item PUSH_RECEIPT.json. This is the same class as SC-10, on my own tooling.",
+      "found_by": "gate_round2.py G2 (aggregate equal, one item mismatched) during the publication addendum for the corrected checkpoint digests",
+      "corrected_in": "PUSH_RECEIPT.json added, with its reason, to the freeze exclusion set beside FROZEN_MANIFEST.json and GATE_REPORT.json; the subject was re-frozen as a new revision and the packet rebuilt. Generalised rule: freeze only bytes that NO tool in the round rewrites after the freeze -- anything else ships in the packet but is disclosed as SHIPPED-BUT-NOT-FROZEN"
     }
   ],
   "claim_ceiling": "CANDIDATE_ONLY. Everything here was measured on this host by this session. Applying a ruling is not accepting it: nothing is accepted, and the checker verdict is advisory. hgk_canonical_acceptance: NOT_PERFORMED.",

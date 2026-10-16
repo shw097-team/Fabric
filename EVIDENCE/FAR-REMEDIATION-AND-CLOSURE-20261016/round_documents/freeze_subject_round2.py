@@ -48,7 +48,11 @@ for rel in PRODUCT:
     items.append(entry('product.before', R / (rel + SUF)))
 
 docs = 0
-SELF_REF = {'FROZEN_MANIFEST.json', 'GATE_REPORT.json'}
+SELF_REF = {'FROZEN_MANIFEST.json', 'GATE_REPORT.json', 'PUSH_RECEIPT.json'}  # PUSH_RECEIPT.json is
+# rewritten by push_round2.py at the END of every push, so a freeze taken before a push fails its own
+# recomputation after it (measured: equal aggregate, single mismatching item). Freeze only bytes that no tool
+# in the round rewrites after the freeze; PUSH_RECEIPT.json stays shipped in the packet, disclosed as
+# SHIPPED-BUT-NOT-FROZEN. This is SC-11.
 for p in sorted(O.iterdir()):
     # The round's OWN helper scripts (*.py) are deliberately NOT in the frozen set. The freeze is the
     # subject the round's CLAIMS rest on, and a helper is edited legitimately between runs -- freezing it

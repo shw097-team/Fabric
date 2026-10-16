@@ -16,7 +16,7 @@
     {
       "step": "status_before",
       "rc": 0,
-      "stdout": "RE-20261016/round_documents/ROUND_CLOSURE.json\n M EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/verify_remote.py\n M EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/under_governance/FROZEN_MANIFEST.json\n M EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/under_governance/ROUND_CLOSURE.json\n?? evidence/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/PUBLICATION_RECEIPT.json\n?? evidence/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/PUSH_RECEIPT.json\n?? evidence/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/REMOTE_READBACK.json\n?? fabric-autonomous-research/\n?? stage/",
+      "stdout": "016/round_documents/make_closure_round2.py\n M EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/push_round2.py\n M EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/under_governance/FROZEN_MANIFEST.json\n M EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/under_governance/GATE_REPORT.json\n M EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/under_governance/ROUND_CLOSURE.json\n?? evidence/FAR-REMEDIATION-AND-CLOSURE-20261016/evidence/EVIDENCE_PROMOTION_SCOPE_COMPACTION_NOTE.md\n?? evidence/FAR-REMEDIATION-AND-CLOSURE-20261016/under_governance/CHECKPOINT.md\n?? fabric-autonomous-research/\n?? stage/",
       "stderr": ""
     },
     {
@@ -28,25 +28,25 @@
     {
       "step": "staged_list",
       "rc": 0,
-      "stdout": "nts/FROZEN_MANIFEST.json\nEVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/PUBLICATION_RECEIPT.json\nEVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/PUSH_RECEIPT.json\nEVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/REMOTE_READBACK.json\nEVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/ROUND_CLOSURE.json\nEVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/verify_remote.py\nEVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/under_governance/FROZEN_MANIFEST.json\nEVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/under_governance/ROUND_CLOSURE.json",
+      "stdout": "/round_documents/PUSH_RECEIPT.json\nEVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/ROUND_CLOSURE.json\nEVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/make_closure_round2.py\nEVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/push_round2.py\nEVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/under_governance/CHECKPOINT.md\nEVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/under_governance/FROZEN_MANIFEST.json\nEVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/under_governance/GATE_REPORT.json\nEVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/under_governance/ROUND_CLOSURE.json",
       "stderr": ""
     },
     {
       "step": "commit",
       "rc": 0,
-      "stdout": "diation-and-closure-20261016 06da16f] FAR-REMEDIATION-AND-CLOSURE-20261016: F1 closed, verified candidate promoted, R7 defect class named (candidate only) [addendum: remote readback, the final closure revision and the re-frozen manifest]\n 9 files changed, 385 insertions(+), 51 deletions(-)\n create mode 100644 EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/PUBLICATION_RECEIPT.json\n create mode 100644 EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/PUSH_RECEIPT.json\n create mode 100644 EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/REMOTE_READBACK.json",
+      "stdout": "[pub/far-remediation-and-closure-20261016 9bed179] FAR-REMEDIATION-AND-CLOSURE-20261016: F1 closed, verified candidate promoted, R7 defect class named (candidate only) [addendum: remote readback, the final closure revision and the re-frozen manifest]\n 12 files changed, 286 insertions(+), 64 deletions(-)\n create mode 100644 EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/evidence/EVIDENCE_PROMOTION_SCOPE_COMPACTION_NOTE.md\n create mode 100644 EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/under_governance/CHECKPOINT.md",
       "stderr": ""
     },
     {
       "step": "push",
       "rc": 0,
       "stdout": "",
-      "stderr": "To https://github.com/shw097-team/Fabric.git\n   b4595e6..06da16f  HEAD -> pub/far-remediation-and-closure-20261016"
+      "stderr": "To https://github.com/shw097-team/Fabric.git\n   06da16f..9bed179  HEAD -> pub/far-remediation-and-closure-20261016"
     }
   ],
-  "staged_count": 9,
+  "staged_count": 12,
   "staged_outside_packet": [],
-  "local_head": "06da16f1ab5de2b221e6328fb007e2d4a198c212",
+  "local_head": "9bed179c66802d6c32a105d3815187a52dbac20d",
   "token_leaked_into_captured_output": false,
   "push_ok": true
 }

@@ -27,10 +27,17 @@ then a governed self-study / self-learning / self-iteration / self-evolution pas
 
 ## 3. What changed in the canonical tree
 
-- `config/lane-routing-registry.yaml` (`a0d811c4…` → `109bcf8a…`) and `config/model-lane-assignment.json`
-  (`d41f8f8b…` → `21513be1…`): R1 rebind, R3 SoD reclassification to `OWNER_ORDERED_IN_FORCE`, `epoch` 21,
-  coupled `source_of_routes{revision,sha256}` re-pinned, PLAN fallbacks ordered `[GLM, DeepSeek]` exactly as
-  the conformance case asserts. Before/after copies preserved.
+- `config/lane-routing-registry.yaml` and `config/model-lane-assignment.json`: R1 rebind, R3 SoD
+  reclassification to `OWNER_ORDERED_IN_FORCE`, `epoch` 21, coupled `source_of_routes{revision,sha256}`
+  re-pinned, PLAN fallbacks ordered `[GLM, DeepSeek]` exactly as the conformance case asserts. Before/after
+  copies preserved. **These digests have TWO STAGES, and only the second one is the live state.** The first
+  application (`apply_R1_R3.py`) left registry `109bcf8a…` / site `21513be1…`; the repair pass
+  (`apply_R1_R3_fix1.py`, which corrected 4 `test_lane_guard` regressions this round had introduced) superseded
+  both with registry `38f0436b…` / site `e7be2dea…`. The second pair is what `ROUND_CLOSURE.json` records under
+  `after_completion` and what a verifier measures in the canonical files today; quote the pair by stage and
+  never present the intermediate one as "the" after. **This paragraph is itself a correction**: its first
+  published revision named only the intermediate pair as the after-value — a mislabel an external verifier
+  would hit — so it was corrected in a publication addendum rather than left standing.
 - **Four product files promoted** (byte-identical to the frozen candidate) — see `R2_PROMOTION_RECEIPT.json`.
 - Everything else in the round is candidate-only or round-local.
 

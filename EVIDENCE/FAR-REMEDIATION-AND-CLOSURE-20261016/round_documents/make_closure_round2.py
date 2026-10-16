@@ -242,7 +242,20 @@ doc = {
                          'disclosure and names the defect; no frozen artifact was rewritten. Generalised '
                          'rules: a receipt a re-runnable script overwrites is not a receipt (append a '
                          'revision instead), and a publication gate should extract every artifact filename '
-                         'the round cites and fail on any that is absent from the packet'}],
+                         'fail on any that is absent from the packet'},
+        {'id': 'SC-11', 'what': 'THE FROZEN SUBJECT CONTAINED A FILE THE ROUND\'S OWN PUBLISH TOOLING REWRITES. '
+                                'push_round2.py rewrites PUSH_RECEIPT.json at the end of every push, and that '
+                                'file had been frozen as a round document -- so the freeze taken before a push '
+                                'failed its own recomputation after it: an EQUAL aggregate with the single '
+                                'mismatching item PUSH_RECEIPT.json. This is the same class as SC-10, on my '
+                                'own tooling.',
+         'found_by': 'gate_round2.py G2 (aggregate equal, one item mismatched) during the publication '
+                     'addendum for the corrected checkpoint digests',
+         'corrected_in': 'PUSH_RECEIPT.json added, with its reason, to the freeze exclusion set beside '
+                         'FROZEN_MANIFEST.json and GATE_REPORT.json; the subject was re-frozen as a new '
+                         'revision and the packet rebuilt. Generalised rule: freeze only bytes that NO tool '
+                         'in the round rewrites after the freeze -- anything else ships in the packet but is '
+                         'disclosed as SHIPPED-BUT-NOT-FROZEN'}],
     'claim_ceiling': (
         'CANDIDATE_ONLY. Everything here was measured on this host by this session. Applying a ruling is not '
         'accepting it: nothing is accepted, and the checker verdict is advisory. hgk_canonical_acceptance: '

@@ -1,10 +1,10 @@
 {
   "schema": "HGK-FROZEN-SUBJECT-MANIFEST/2",
   "round": "FAR-REMEDIATION-AND-CLOSURE-20261016",
-  "revision": 6,
-  "supersedes": "frozen/FROZEN_MANIFEST.rev5.SUPERSEDED.json",
+  "revision": 7,
+  "supersedes": "frozen/FROZEN_MANIFEST.rev6.SUPERSEDED.json",
   "freeze_policy": "freeze last, before each consumption; retain every revision",
-  "frozen_utc": "2026-10-16T05:21:55.492515+00:00",
+  "frozen_utc": "2026-10-16T05:27:19.403616+00:00",
   "subject_definition": "the canonical change in both states (config pair, four product files) plus the round documents, the evidence sub-tree and the lane receipts",
   "excluded": [
     "candidate/ (live writer workspace)",
@@ -14,9 +14,9 @@
     "the round's own helper scripts (*.py at the round root): edited legitimately between runs, their integrity asserted by the packet manifest rather than by this freeze",
     "FROZEN_MANIFEST.json and GATE_REPORT.json: SELF-REFERENCE. A manifest cannot bind its own bytes (it would only ever record the previous revision) and the gate rewrites its own report on every run while also being what verifies this file, which makes the pair mutually unverifiable. Both are published and hashed by the packet manifest instead"
   ],
-  "item_count": 67,
-  "round_document_count": 27,
-  "aggregate_sha256": "6fdda13e3e6a2da527ad4f75e98151edb98f607f53cba55304d748eef6b63f25",
+  "item_count": 66,
+  "round_document_count": 26,
+  "aggregate_sha256": "3663c01b70c7d341ef3c328bd383d24c2d7d079de89b04e8322c5e202f6b1148",
   "items": [
     {
       "label": "config.after",
@@ -195,13 +195,6 @@
     },
     {
       "label": "round_document",
-      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/PUSH_RECEIPT.json",
-      "exists": true,
-      "bytes": 2927,
-      "sha256": "469c2b11cd54d146a635f844b63ad8e271763ddcc27b0dd1329e5748d9e8d648"
-    },
-    {
-      "label": "round_document",
       "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/R1_R3_APPLY_RECEIPT.attempt1_ROLLED_BACK.json",
       "exists": true,
       "bytes": 4274,
@@ -267,8 +260,8 @@
       "label": "round_document",
       "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/ROUND_CLOSURE.json",
       "exists": true,
-      "bytes": 70882,
-      "sha256": "90808a28d72990f0129c711cc6fbf7f4426d02c49c1b8a043cf6621392152b63"
+      "bytes": 71841,
+      "sha256": "0596ec6b8919bd071dd7bfd3699f3cc1b4532af57c09aca7774e369ea42580de"
     },
     {
       "label": "round_document",

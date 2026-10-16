@@ -5,14 +5,16 @@
     "G1_all_json_parses": {
       "ok": true,
       "failures": [],
-      "counted": 106
+      "counted": 107
     },
     "G2_frozen_subject_recomputes": {
-      "ok": true,
-      "recorded": "ba0cade2e6eaf10393486ab4e38c7254965bacea4899d5011e667bb22fffd25e",
-      "recomputed": "ba0cade2e6eaf10393486ab4e38c7254965bacea4899d5011e667bb22fffd25e",
-      "mismatched_items": [],
-      "items": 66
+      "ok": false,
+      "recorded": "6fdda13e3e6a2da527ad4f75e98151edb98f607f53cba55304d748eef6b63f25",
+      "recomputed": "6fdda13e3e6a2da527ad4f75e98151edb98f607f53cba55304d748eef6b63f25",
+      "mismatched_items": [
+        "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/PUSH_RECEIPT.json"
+      ],
+      "items": 67
     },
     "G3_no_credential_material": {
       "ok": true,
@@ -36,7 +38,7 @@
     },
     "G6_packet_hygiene": {
       "ok": true,
-      "packet_files": 129,
+      "packet_files": 131,
       "oversize": [],
       "litter": []
     },
@@ -47,5 +49,5 @@
       "note": "counts are compared, not wording: the closure may rephrase a ledgered item but may not drop it"
     }
   },
-  "verdict": "GATE_PASS"
+  "verdict": "GATE_REFUSE"
 }
