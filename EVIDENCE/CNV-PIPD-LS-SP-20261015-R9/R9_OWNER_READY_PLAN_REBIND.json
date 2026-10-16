@@ -2,7 +2,7 @@
  "schema": "CNV-PIPD-LS-SP-20261015-R9/OWNER-READY/PLAN-ROUTE-REBIND/1",
  "produced_utc": "2026-10-16T04:22:54.159929+00:00",
  "title": "One-action owner record: reconcile the PLAN lane route with the 2026-10-16 mandate (the stack already knows this as F1-PLAN-ROUTE-ROW-OUTLIER)",
- "status": "PREPARED_NOT_APPLIED",
+ "status": "APPLIED_BY_ANOTHER_ACT_NOT_BY_THIS_ROUND",
  "why_not_applied": "a canonical lane-chain rebind is a control-plane governance mutation; the registry's own text puts it outside a product/evidence round's authorisation, and the doc research confirms it needs owner-approved scope + an admitted WorkOrder + a separate DOC05 admission",
  "the_conflict": [
   {
@@ -78,7 +78,8 @@
   "engineering_necessity": "high - the mandate's plan/model assignment is the round's operating contract and the current canonical row contradicts it",
   "feasibility": "high - the target values already exist verbatim in the candidate pool and in the file's own revision-18 note; the drift checker enumerates the bindings that must move",
   "over_engineering_risk": "low - no new mechanism; one file pair plus their coupled declarations",
-  "rollback": "restore config/*.bak-* preimage copies taken before the edit; the registry is versioned by epoch, so the revert is a further, recorded revision"
+  "rollback": "restore config/*.bak-* preimage copies taken before the edit; the registry is versioned by epoch, so the revert is a further, recorded revision",
+  "outcome": "CLOSED_ELSEWHERE: the one-action item is no longer open; this round's contribution reduced to the re-measurement and the residue note"
  },
  "authority_needed": [
   "owner approval of scope",
@@ -92,5 +93,27 @@
   "reading": "the rebind this record prepares is NOT a new ask: it is an existing, unapplied proposal whose target values match the 2026-10-16 mandate exactly. The contribution of this round is (a) the re-measurement showing the 429 exhaustion basis for the intervening GLM rebind no longer holds and (b) the note that the same proposal carries R2 (canonical promotion of the product candidate) and R3 (SOD006-C2 reclassification).",
   "consequence": "do not duplicate; close it by applying that proposal under its own authorisation, or fold both into one owner authorisation"
  },
- "cap_note": "this record does not authorise the rebind; the existing proposal also does not self-apply. The pending act is the owner's."
+ "cap_note": "this record does not authorise the rebind; the existing proposal also does not self-apply. The pending act is the owner's.",
+ "remeasured_2026_10_16_1258": {
+  "PLAN": {
+   "provider": "openai-codex",
+   "model": "gpt-6.1-sol",
+   "reasoning_effort": "medium",
+   "auth": "openai_oauth",
+   "admission_status": "ADMITTED",
+   "selection_authority": "owner-order-20261016-plan-model-rebind-gpt61-sol"
+  },
+  "VERIFY_SECURITY": {
+   "provider": "openai-codex",
+   "model": "gpt-6.1-sol",
+   "reasoning_effort": "medium",
+   "auth": "openai_oauth",
+   "admission_status": "UNPROVEN"
+  },
+  "registry_epoch": 21,
+  "assignment_revision": 21,
+  "check_drift": [],
+  "registry_file_mtime": "2026-10-16 12:36:30",
+  "reading": "the prepared target values were applied verbatim by an act outside this round; the residue is the VERIFY_SECURITY admission_status UNPROVEN, which is a separate status and is not upgraded here"
+ }
 }

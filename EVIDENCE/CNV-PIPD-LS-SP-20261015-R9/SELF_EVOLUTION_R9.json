@@ -57,6 +57,18 @@
    "statement": "The blocked slim candidate was blocked by exactly two lost live reference texts; restoring them makes all six harness checks pass with 112 references accounted and none lost.",
    "evidence": "C6 FAIL->PASS; 89 byte-identical + 23 fully embedded; main file 21026 bytes",
    "ceiling": "scratch experiment"
+  },
+  {
+   "id": "RS-08",
+   "statement": "A checker whose own guard forbids git writes cannot re-run a test fixture that creates a git repository: the round's named acceptance pair is then UNVERIFIABLE from the checker's seat even though the product is fine.",
+   "evidence": "the checker's RuntimeError R9V_FORBIDDEN_GIT_WRITE plus its disclosed adapted fixture (2 test methods passing)",
+   "ceiling": "local"
+  },
+  {
+   "id": "RS-09",
+   "statement": "The dispatcher's nonce gate can report ERR_NO_ARM_EMITTED_NONCE for a turn that DID emit the nonce into its own artifacts; and the receipt's used_* fields stay null, so the arm must be read from attempts[].",
+   "evidence": "R9 VERIFY_SECURITY receipt: nonce_absent_arms=['openai-codex/gpt-6.1-sol'] while R9_VERIFY/R9V_DONE contains R9V-CHECKER-NONCE-5c1d84; attempts[0] rank 1 openai-codex/gpt-6.1-sol",
+   "ceiling": "receipt-bound"
   }
  ],
  "learning": [
@@ -89,6 +101,21 @@
    "id": "LN-06",
    "lesson": "Measure a skill's size with the GOVERNED measure (LF-normalized len) and report bytes alongside it; a byte threshold is not the platform's threshold.",
    "applies_to": "hermes-agent-skill-authoring / skill pipelines"
+  },
+  {
+   "id": "LN-07",
+   "lesson": "Before dispatching a checker to re-run a test pair, check whether those fixtures spawn a git repository or write outside an allowed root; if they do, either allow the specific verb or state in the brief that the pair will be UNVERIFIABLE and why — otherwise the checker burns its budget proving it cannot run them.",
+   "applies_to": "hgk-kanban-and-lane-routing / checker briefs"
+  },
+  {
+   "id": "LN-08",
+   "lesson": "Verify the paths a brief hands to a checker actually exist before dispatch; a path typo costs a claim's verifiability (the checker correctly refused to substitute silently).",
+   "applies_to": "checker brief authoring"
+  },
+  {
+   "id": "LN-09",
+   "lesson": "Re-measure a control-plane value immediately before writing it into a record: the registry can change between measurement and publication (measured here: the PLAN route was rebound mid-round).",
+   "applies_to": "governance records / lane routing"
   }
  ],
  "iteration": [
@@ -116,6 +143,16 @@
    "id": "IT-05",
    "change": "For a claimed defect, name the exact fix surface (file + anchor) and the negative control that must still fail-closed; a repair without a negative control cannot be distinguished from a relaxation.",
    "trigger": "RS-01"
+  },
+  {
+   "id": "IT-06",
+   "change": "Give the checker brief an explicit, narrow allowance for fixture-created git repositories (or name the pair as expected-UNVERIFIABLE), instead of a blanket no-git rule that voids the acceptance evidence.",
+   "trigger": "RS-08"
+  },
+  {
+   "id": "IT-07",
+   "change": "Have a lane write a machine-readable NONCE file as well as the prose, and have the dispatcher read that file — the nonce gate currently misses a nonce that IS emitted.",
+   "trigger": "RS-09"
   }
  ],
  "evolution": [
@@ -167,12 +204,27 @@
    "owner": "Skill Owner",
    "gate": "both figures present in the receipt",
    "falsification": "a receipt reporting bytes only"
+  },
+  {
+   "id": "EV-08",
+   "proposal": "Make the dispatcher's nonce gate read the lane's artifact root (a DONE/nonce file) in addition to the transcript, so a completion attestation is not lost to buffering.",
+   "owner": "control-plane owner (dispatcher)",
+   "gate": "a turn that writes its nonce file but whose transcript is truncated still gets a receipt with a served arm",
+   "falsification": "a post-change receipt with nonce_absent_arms for a turn that wrote its nonce file"
+  },
+  {
+   "id": "EV-09",
+   "proposal": "Bound checker briefs by PATH existence checks: a brief-authoring step that asserts every referenced path exists before dispatch.",
+   "owner": "round owner",
+   "gate": "no dispatched brief names a non-existent path",
+   "falsification": "a checker reporting REQUESTED_PATH_ABSENT for a path the brief named"
   }
  ],
  "not_claimed": [
   "no acceptance, no Gate PASS, no AO verdict, no release",
   "no independence established between PLAN and VERIFY while both may run on the same model family",
   "no claim that the two repaired artifacts are canonical",
-  "no claim that the owner gates listed above are satisfied"
+  "no claim that the owner gates listed above are satisfied",
+  "no process purity for the checker's first test invocation (it self-reported a temp-boundary breach)"
  ]
 }

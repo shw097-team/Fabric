@@ -50,7 +50,22 @@
    "verbatim": "a canonical registry mutation requires owner-approved scope + an admitted WorkOrder + a separate DOC05 admission",
    "measurement": "the PLAN route rebind was NOT applied; it is prepared and already proposed in openspec change hgk-far-remediation-20261016 (R1)",
    "verdict": "OWNER_GATED_NOT_APPLIED"
+  },
+  {
+   "clause": "canonical PLAN route",
+   "verbatim": "the registry's own selection_authority is now owner-order-20261016-plan-model-rebind-gpt61-sol",
+   "measurement": "re-measured 2026-10-16 ~12:58: routes[].PLAN = openai-codex/gpt-6.1-sol (medium, OAuth, admission ADMITTED); VERIFY_SECURITY = openai-codex/gpt-6.1-sol (medium, OAuth, admission UNPROVEN); check_drift []; registry epoch 21; assignment revision 21",
+   "verdict": "REBOUND_ELSEWHERE",
+   "note": "the rebind this round had prepared was APPLIED by another act at 2026-10-16T12:36:30 local (file mtime), matching the prepared target values exactly. This round neither applied nor claims it."
   }
  ],
- "claim_ceiling": "LOCAL / candidate-only. Alignment means the measured facts are consistent with the quoted clauses; it is not an acceptance, a Gate PASS or a release decision, and the external report's FAIL_CLOSED production decision is unaffected."
+ "claim_ceiling": "LOCAL / candidate-only. Alignment means the measured facts are consistent with the quoted clauses; it is not an acceptance, a Gate PASS or a release decision, and the external report's FAIL_CLOSED production decision is unaffected.",
+ "corrections": [
+  {
+   "id": "R9-F10",
+   "what": "the package byte count recorded earlier in this round (2580690) was wrong; the file measures 2689181 bytes with the approved sha256 unchanged",
+   "found_by": "the independent VERIFY lane (its disagreement code PKG_RECORDED_BYTE_COUNT_WRONG) and re-measured by the orchestrator",
+   "status": "CORRECTED"
+  }
+ ]
 }

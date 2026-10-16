@@ -15,7 +15,7 @@ HERMES = Path('C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/L
 LIVE = HERMES / 'skills/software-development/hgk-governed-execution'
 TEMP = OUT / 'tmp'
 TEMP.mkdir(exist_ok=True)
-os.environ.update(PYTHONDONTWRITEBYTECODE='1', TEMP=str(TEMP), TMP=str(TEMP), PYTEST_ADDOPTS='-p no:cacheprovider')
+os.environ.update(PYTHONDONTWRITEBYTECODE='1', TEMP=str(TEMP), TMP=str(TEMP), TMPDIR=str(TEMP), PYTEST_ADDOPTS='-p no:cacheprovider')
 DATA = {}
 
 def save(name, value):

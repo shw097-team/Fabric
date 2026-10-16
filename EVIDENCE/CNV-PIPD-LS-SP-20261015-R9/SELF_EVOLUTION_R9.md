@@ -1,29 +1,26 @@
 # R9-0 self-research / self-learning / self-iteration / self-evolution
 
-Governed by HG-KSEOS AGENTS.md and the PKG v2.0.0 anchor. Claim ceiling **LOCAL / candidate-only**: this is not an acceptance, a Gate PASS or a release.
+Governed by HG-KSEOS AGENTS.md and the PKG v2.0.0 anchor. Claim ceiling **LOCAL / candidate-only**.
 
 ## Research (measured this round)
 - **RS-01** The R8-0 hardening failed on main for a caller-shape reason, not a contract contradiction: validate_bundle() fails closed when the caller supplies no frozen context although the bundle carries the atoms, and derive_frozen_context() assumed a mapping where the newer fixture supplies a string.
   - evidence: 2 passed / 629 deselected after the 2-hunk adaptation (orchestrator re-run, 20.26s; lane run 18.49s) against 2 failed pre-edit; M04/M06/M16 all observed=REJECT
-  - ceiling: local
 - **RS-02** The R8 VERIFY/SECURITY verdict was served by that lane's rank-2 fallback (opencode-go/glm-5.3-flash); the mandated rank-1 arm was absent from the lane's live identity gate, not merely unpinned.
   - evidence: dispatch receipt attempts[0] rank=2 provider=opencode-go model=glm-5.3-flash + identity_gate.arms[] listing only rank 2
-  - ceiling: receipt-bound
 - **RS-03** A drift-clean registry is not a mandate-conformant one: check_drift compares routes against their own projections, so both can agree on a value the owner's pool and mandate disagree with.
   - evidence: check_drift(registry=load_registry()) -> [] while routes[].PLAN=opencode-go/glm-5.3-flash and the pool rank 1 = openai-codex/gpt-6.1-sol
-  - ceiling: local
 - **RS-04** The stack had already registered the PLAN row conflict as F1-PLAN-ROUTE-ROW-OUTLIER and left it unrepaired for lack of authorisation; and the same rebind is already proposed in openspec change hgk-far-remediation-20261016 (R1).
   - evidence: quoted registry finding text + the proposal's ChangeSet R1 wording
-  - ceiling: local
 - **RS-05** No governing document states a skill main-file size cap; the real limit is the platform constant MAX_SKILL_CONTENT_CHARS (100000) enforced on the LF-normalized len(), and the byte and raw-CRLF measures both misjudge it.
   - evidence: 0 PKG occurrences of 100000; tools/skill_manager_tool.py:111/:192/:488; the stack's SKILLCAP-20261007 research naming 996, 105116 and 101219 as the three confusable figures
-  - ceiling: local
 - **RS-06** The PKG's 10/6 partition is by piece/marker, not by slice count: ACC-RQ06 names AVR/10-piece and HGK/6-piece reconstruction; the HGK entry map carries exactly 6 slices whose 6 dest ranges verify, and the AVR candidate carries 10 SKCV-SLICE markers.
   - evidence: ACC-RQ06.child_obligations verbatim + measured slice/marker counts
-  - ceiling: local
 - **RS-07** The blocked slim candidate was blocked by exactly two lost live reference texts; restoring them makes all six harness checks pass with 112 references accounted and none lost.
   - evidence: C6 FAIL->PASS; 89 byte-identical + 23 fully embedded; main file 21026 bytes
-  - ceiling: scratch experiment
+- **RS-08** A checker whose own guard forbids git writes cannot re-run a test fixture that creates a git repository: the round's named acceptance pair is then UNVERIFIABLE from the checker's seat even though the product is fine.
+  - evidence: the checker's RuntimeError R9V_FORBIDDEN_GIT_WRITE plus its disclosed adapted fixture (2 test methods passing)
+- **RS-09** The dispatcher's nonce gate can report ERR_NO_ARM_EMITTED_NONCE for a turn that DID emit the nonce into its own artifacts; and the receipt's used_* fields stay null, so the arm must be read from attempts[].
+  - evidence: R9 VERIFY_SECURITY receipt: nonce_absent_arms=['openai-codex/gpt-6.1-sol'] while R9_VERIFY/R9V_DONE contains R9V-CHECKER-NONCE-5c1d84; attempts[0] rank 1 openai-codex/gpt-6.1-sol
 
 ## Learning (rules to carry forward)
 - **LN-01** Arm attribution survives a nonce failure: read attempts[] (rank/provider/model/exit/seconds/nonce_present) before writing any 'the served arm is unprovable' finding — the nonce gates completion attestation, not attribution.
@@ -38,15 +35,23 @@ Governed by HG-KSEOS AGENTS.md and the PKG v2.0.0 anchor. Claim ceiling **LOCAL 
   - applies to: adversarial-verification-rounds / round records
 - **LN-06** Measure a skill's size with the GOVERNED measure (LF-normalized len) and report bytes alongside it; a byte threshold is not the platform's threshold.
   - applies to: hermes-agent-skill-authoring / skill pipelines
+- **LN-07** Before dispatching a checker to re-run a test pair, check whether those fixtures spawn a git repository or write outside an allowed root; if they do, either allow the specific verb or state in the brief that the pair will be UNVERIFIABLE and why — otherwise the checker burns its budget proving it cannot run them.
+  - applies to: hgk-kanban-and-lane-routing / checker briefs
+- **LN-08** Verify the paths a brief hands to a checker actually exist before dispatch; a path typo costs a claim's verifiability (the checker correctly refused to substitute silently).
+  - applies to: checker brief authoring
+- **LN-09** Re-measure a control-plane value immediately before writing it into a record: the registry can change between measurement and publication (measured here: the PLAN route was rebound mid-round).
+  - applies to: governance records / lane routing
 
-## Iteration (what this round would do differently)
+## Iteration
 - **IT-01** Bind the checker lane's rank explicitly and assert required==served on both WRITER and CHECKER turns (this round's WRITER receipt satisfied rank 1; the R8 CHECKER did not and was not caught).  _(trigger: RS-02)_
 - **IT-02** Run the 2x2 baseline matrix (clean base vs changed tree on the SAME two named tests) before attributing any failure to a change; re-validated this round.  _(trigger: RS-01)_
 - **IT-03** Serialize long lanes: one sealed lane at a time, because the second dispatch shares the relay and the budget; queue the next brief instead of fanning two writers out.  _(trigger: observed contention risk)_
 - **IT-04** Reuse the proven guarded-apply mechanism (pre-image + receipt + rollback drill + post-apply re-measure) for every canonical apply instead of authoring a new one.  _(trigger: RS-07)_
 - **IT-05** For a claimed defect, name the exact fix surface (file + anchor) and the negative control that must still fail-closed; a repair without a negative control cannot be distinguished from a relaxation.  _(trigger: RS-01)_
+- **IT-06** Give the checker brief an explicit, narrow allowance for fixture-created git repositories (or name the pair as expected-UNVERIFIABLE), instead of a blanket no-git rule that voids the acceptance evidence.  _(trigger: RS-08)_
+- **IT-07** Have a lane write a machine-readable NONCE file as well as the prose, and have the dispatcher read that file — the nonce gate currently misses a nonce that IS emitted.  _(trigger: RS-09)_
 
-## Evolution proposals (each with an owner, a gate and a falsification condition)
+## Evolution proposals
 - **EV-01** Populate used_rank / served_arm in a dispatch receipt even when the nonce gate fails, or document attempts[] as the attribution contract.
   - owner: control-plane owner (dispatcher)
   - gate: a receipt from a nonce-absent turn still names the served arm
@@ -75,9 +80,18 @@ Governed by HG-KSEOS AGENTS.md and the PKG v2.0.0 anchor. Claim ceiling **LOCAL 
   - owner: Skill Owner
   - gate: both figures present in the receipt
   - falsification: a receipt reporting bytes only
+- **EV-08** Make the dispatcher's nonce gate read the lane's artifact root (a DONE/nonce file) in addition to the transcript, so a completion attestation is not lost to buffering.
+  - owner: control-plane owner (dispatcher)
+  - gate: a turn that writes its nonce file but whose transcript is truncated still gets a receipt with a served arm
+  - falsification: a post-change receipt with nonce_absent_arms for a turn that wrote its nonce file
+- **EV-09** Bound checker briefs by PATH existence checks: a brief-authoring step that asserts every referenced path exists before dispatch.
+  - owner: round owner
+  - gate: no dispatched brief names a non-existent path
+  - falsification: a checker reporting REQUESTED_PATH_ABSENT for a path the brief named
 
 ## Not claimed
 - no acceptance, no Gate PASS, no AO verdict, no release
 - no independence established between PLAN and VERIFY while both may run on the same model family
 - no claim that the two repaired artifacts are canonical
 - no claim that the owner gates listed above are satisfied
+- no process purity for the checker's first test invocation (it self-reported a temp-boundary breach)

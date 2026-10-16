@@ -2,8 +2,11 @@ import importlib.util
 import subprocess
 import sys
 import unittest
+import tempfile
 from pathlib import Path
 
+OUT = Path(__file__).resolve().parent
+tempfile.tempdir = str(OUT / 'tmp')
 ROOT = Path('C:/Projects/Agent_Workspace/PIPD/worktrees/r8-wt')
 sys.path.insert(0, str(ROOT / 'src'))
 original_run = subprocess.run

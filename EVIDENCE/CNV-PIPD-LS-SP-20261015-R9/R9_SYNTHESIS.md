@@ -30,6 +30,21 @@ FAR run `FAR-20261016-012-r9-residual-closure` (route `FAR_ROUTE_NATIVE_ARIS`) Â
   honouring `--live`), `R9-F7` (the FAR repair's live-reference denominator was one file short), `R9-F8` (the
   round's dispatch wrapper pinned the checker to its backup arm, so the mandated rank-1 checker never ran).
 
+## Corrections the independent checker forced on this round
+
+- **Package byte count**: recorded 2,580,690; the file measures **2,689,181** (sha256 unchanged). Corrected in three
+  artifacts (R9-F10).
+- **The PLAN route is no longer the one this round measured**: it was rebound to `openai-codex/gpt-6.1-sol` by an
+  act **outside** this round at 2026-10-16T12:36:30 (epoch 21). The prepared handover is therefore already applied;
+  this round neither performed nor claims it (R9-F12).
+- **Two defects in this round's own verifier brief**: it named a FAR path that does not exist (`FABRIC/` segment)
+  and asked for an `evidence_ref` column the FAR contract does not define. The checker refused to substitute
+  silently; the brief is kept with the note rather than rewritten.
+- **Precision on the diff**: the `r8-wt` delta against `dba4b19` includes `cli.py` and `pipeline.py` from the R8-0
+  hardening; only this round's two guard blocks are confined to `validate.py`.
+- **The checker's own nonconformance**, self-reported: its first test invocation wrote fixtures under the default
+  TEMP instead of its write root. Recorded verbatim; no process-purity claim is made for that run.
+
 ## Verification status
 
 - Every decisive claim was **re-derived by the orchestrator**, not accepted from a child's summary: the 2Ã—2
@@ -38,6 +53,12 @@ FAR run `FAR-20261016-012-r9-residual-closure` (route `FAR_ROUTE_NATIVE_ARIS`) Â
 - The independent VERIFY/SECURITY lane runs with the **mandated arm pinned at rank 1**
   (`dispatch_r9.py --force-rank 1 --require-arm openai-codex/gpt-6.1-sol`); if that arm is unavailable the
   dispatcher fail-closes rather than silently serving the backup, which is how the R8 provenance defect arose.
+- The independent checker's **overall is UNVERIFIABLE**: 2 of its 7 claims are CONFIRMED and 4 findings forced
+  corrections here; it could not re-run the round's named two-test pair because that fixture creates a git
+  repository and its own guard forbids git writes (it ran a disclosed adapted fixture instead), and it could not
+  attribute its own serving arm at verdict time. Nothing is upgraded on the strength of its 4 confirmations.
+- The R9 checker turn was served by **rank 1 `openai-codex/gpt-6.1-sol`** (768.19 s), i.e. the mandated checker
+  actually ran this round's verification, unlike R8 where the wrapper pinned the backup arm.
 - A green harness is a **machine gate**: it is not an acceptance and it does not clear the 221 planned cases,
   the eight Gates, Fresh G1 or the external report's `FAIL_CLOSED` production decision.
 

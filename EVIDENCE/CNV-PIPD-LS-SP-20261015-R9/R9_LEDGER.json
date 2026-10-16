@@ -1,6 +1,6 @@
 {
  "schema": "CNV-PIPD-LS-SP-20261015-R9/LEDGER/1",
- "produced_utc": "2026-10-16T04:42:12.710389+00:00",
+ "produced_utc": "2026-10-16T04:59:58.094070+00:00",
  "mission": "CNV-PIPD-LS-SP-20261015",
  "changeset": "R9-0-FAR-RESIDUAL-CLOSURE",
  "hgk_project": "CNV-R9-FARCLOSURE",
@@ -19,12 +19,6 @@
    "note": "already registered as F1-PLAN-ROUTE-ROW-OUTLIER and already proposed as hgk-far-remediation-20261016 R1"
   },
   {
-   "id": "R9-B3",
-   "item": "the R8 VERIFY turn was served by its lane's rank-2 fallback, not the mandated rank-1 checker",
-   "state": "RECORDED",
-   "note": "permitted by the standing failover rule; provenance corrected"
-  },
-  {
    "id": "R9-B4",
    "item": "checker write-root isolation cannot be closed with a single Windows identity",
    "state": "OWNER_GATED"
@@ -38,6 +32,18 @@
    "id": "R9-B6",
    "item": "221 acceptance cases, eight Gates, Fresh G1",
    "state": "NOT_RUN_LOCALLY"
+  },
+  {
+   "id": "R9-B3",
+   "item": "the R8 verify turn was served by the round's pinned backup arm, not the mandated rank-1 checker",
+   "state": "RESOLVED_FOR_R9",
+   "resolution": "corrected in dispatch_r9.py; the R9 VERIFY turn was served by rank 1 openai-codex/gpt-6.1-sol (identity_gate listed only rank 1; attempt 768.19s). The R8 verdict's measurements stand with corrected provenance."
+  },
+  {
+   "id": "R9-B7",
+   "item": "the independent VERIFY lane returned overall UNVERIFIABLE (2 of 7 claims CONFIRMED, 4 material corrections against this round's artifacts, 2 items unverifiable from the checker's seat)",
+   "state": "ADJUDICATED",
+   "resolution": "every disagreement adjudicated in R9_VERIFY/R9_VERDICT_ADJUDICATION.json: 4 defects corrected (package byte count; the stale PLAN-route claim; two defects in this round's own verifier brief), 1 explained (pre-apply total), and the checker's own procedural breach recorded"
   }
  ],
  "findings": [
@@ -72,6 +78,22 @@
   {
    "id": "R9-F8",
    "what": "the round's own dispatch wrapper pinned VERIFY_SECURITY to --force-rank 2 (opencode-go/glm-5.3-flash), so the mandated rank-1 checker was never attempted; corrected in dispatch_r9.py with the predecessor backed up"
+  },
+  {
+   "id": "R9-F9",
+   "what": "the independent checker's verdict is UNVERIFIABLE overall: it could not re-run the round's named two-test pair because that fixture creates a git repository, which its own no-git-write guard forbids; it ran a disclosed adapted fixture (both original test methods passing) instead"
+  },
+  {
+   "id": "R9-F10",
+   "what": "this round recorded the package byte count as 2580690; the file measures 2689181 bytes (the approved sha256 was unaffected). Found by the checker, corrected in three artifacts"
+  },
+  {
+   "id": "R9-F11",
+   "what": "the nonce gate reported ERR_NO_ARM_EMITTED_NONCE for the R9 checker turn even though that turn DID emit its nonce into its own verdict artifacts and DONE file; the dispatcher's detection did not see it"
+  },
+  {
+   "id": "R9-F12",
+   "what": "the canonical PLAN route was rebound to openai-codex/gpt-6.1-sol by an act outside this round at 2026-10-16T12:36:30 (registry epoch 21), i.e. the owner action this round had prepared is already applied; VERIFY_SECURITY admission_status remains UNPROVEN"
   }
  ],
  "incidents": [
@@ -135,5 +157,34 @@
   "post_apply_gate": "C1-C6 all PASS (both the lane and the orchestrator)",
   "loader_row": "hgk-governed-execution | software-development | local | local | enabled",
   "rollback": "pre-image at WS_B/preimage; drill OK on a copy (31 restored sha matches, tree identical)"
+ },
+ "verification": {
+  "independent_checker": {
+   "nonce": "R9V-CHECKER-NONCE-5c1d84",
+   "served_arm": "rank 1 openai-codex/gpt-6.1-sol (768.19s)",
+   "overall": "UNVERIFIABLE",
+   "confirmed": [
+    "the successor candidate passes C1-C6 against the explicitly passed live tree",
+    "the live tree carries the applied slim main file and the restored reference; all 111 candidate files have byte-identical counterparts",
+    "the package digest matches the approved digest; no size cap in the package; ACC-RQ06 names AVR/10-piece and HGK/6-piece",
+    "drift [] and the PLAN/VERIFY routes agree with the mandate"
+   ],
+   "adjudication": "R9_VERIFY/R9_VERDICT_ADJUDICATION.json",
+   "checker_self_reported_breach": "CHECKER_TEMP_WRITE_BOUNDARY_BREACH (recorded, not discarded)"
+  },
+  "orchestrator_re_derivations": [
+   "2x2 failure matrix",
+   "the two-test acceptance pair",
+   "M04/M06/M16 refusals",
+   "C6 loss and the successor measurement",
+   "check_drift",
+   "the package digest and the three confusable size figures",
+   "the harness subject_live defect",
+   "the canonical tree state and loader row"
+  ],
+  "not_established": [
+   "an unmodified two-test re-run by the checker",
+   "any acceptance, Gate PASS, AO verdict or release"
+  ]
  }
 }
