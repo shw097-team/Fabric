@@ -1,0 +1,33 @@
+{
+  "schema": "HGK-PUBLICATION-RECEIPT/1",
+  "round": "ROUND3-LANE-REBIND-AND-CLOSURE-20261016",
+  "repo": "shw097-team/Fabric",
+  "pull_request": {
+    "number": 10,
+    "html_url": "https://github.com/shw097-team/Fabric/pull/10",
+    "state": "open",
+    "base": "main",
+    "head_ref": "pub/round3-lane-rebind-and-closure-20261016",
+    "changed_files": 347,
+    "mergeable_state": "clean"
+  },
+  "measured_by": "verify_remote.py 10 (HTTP 200 on the PR; branch sha and packet manifest git blob compared against the local clone)",
+  "remote_local_agreement": {
+    "pr_head_sha_at_creation": "808d79e436b4266914c2a8dab7b17bd0a0300bbe",
+    "remote_branch_sha": "808d79e436b4266914c2a8dab7b17bd0a0300bbe",
+    "local_head_sha": "808d79e436b4266914c2a8dab7b17bd0a0300bbe",
+    "sha_match": true,
+    "packet_manifest_git_blob": "02046d148b4cb12c08fdc7ff32aeee919ccd4d7a",
+    "manifest_byte_identical": true
+  },
+  "later_commits_on_the_branch": {
+    "additive_update": true,
+    "local_head_at_receipt_time": "916eea2cf08989768d96c66cad4ac015486f4fbf",
+    "reason": "the packet was rebuilt to carry the push receipt and the PASS gate report; a receipt describing a moving ref would be the SC-11 defect, so the creation-time facts are labelled as such"
+  },
+  "not_claimed": [
+    "no merge — merging to main is the owner's decision",
+    "no external acceptance: this receipt records publication, not review",
+    "the checker verdict is advisory and comes from a checker sharing the writer's model"
+  ]
+}

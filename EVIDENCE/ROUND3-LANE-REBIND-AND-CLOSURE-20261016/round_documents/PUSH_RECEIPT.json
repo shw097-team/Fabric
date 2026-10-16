@@ -2,21 +2,21 @@
   "branch": "pub/round3-lane-rebind-and-closure-20261016",
   "steps": [
     {
+      "step": "verify_branch",
+      "rc": 0,
+      "stdout": "pub/round3-lane-rebind-and-closure-20261016",
+      "stderr": ""
+    },
+    {
       "step": "fetch",
       "rc": 0,
       "stdout": "",
       "stderr": ""
     },
     {
-      "step": "checkout",
-      "rc": 0,
-      "stdout": "branch 'pub/round3-lane-rebind-and-closure-20261016' set up to track 'origin/main'.",
-      "stderr": "Switched to a new branch 'pub/round3-lane-rebind-and-closure-20261016'"
-    },
-    {
       "step": "status_before",
       "rc": 0,
-      "stdout": "?? evidence/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/\n?? fabric-autonomous-research/\n?? stage/",
+      "stdout": "M EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/PACKET_MANIFEST.json\n M EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/GATE_REPORT.json\n M EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/under_governance/GATE_REPORT.json\n?? evidence/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/PUSH_RECEIPT.json\n?? fabric-autonomous-research/\n?? stage/",
       "stderr": ""
     },
     {
@@ -28,25 +28,25 @@
     {
       "step": "staged_list",
       "rc": 0,
-      "stdout": "ne.py\nEVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/verify_remote.py\nEVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/verify_remote_round3.py\nEVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/write_closure_round3.py\nEVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/under_governance/CHECKPOINT.md\nEVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/under_governance/FROZEN_MANIFEST.json\nEVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/under_governance/GATE_REPORT.json\nEVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/under_governance/ROUND_CLOSURE.json",
+      "stdout": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/PACKET_MANIFEST.json\nEVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/GATE_REPORT.json\nEVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/PUSH_RECEIPT.json\nEVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/under_governance/GATE_REPORT.json",
       "stderr": ""
     },
     {
       "step": "commit",
       "rc": 0,
-      "stdout": "ND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/verify_remote_round3.py\n create mode 100644 EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/write_closure_round3.py\n create mode 100644 EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/under_governance/CHECKPOINT.md\n create mode 100644 EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/under_governance/FROZEN_MANIFEST.json\n create mode 100644 EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/under_governance/GATE_REPORT.json\n create mode 100644 EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/under_governance/ROUND_CLOSURE.json",
+      "stdout": "[pub/round3-lane-rebind-and-closure-20261016 916eea2] ROUND3-LANE-REBIND-AND-CLOSURE-20261016: three lanes rebound to the 2026-10-16 owner order, SoD re-declared (SOD006-C3), guard/registry agreement restored (R10) — candidate only [addendum: remote readback, the final closure revision and the re-frozen manifest]\n 4 files changed, 66 insertions(+), 9 deletions(-)\n create mode 100644 EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/PUSH_RECEIPT.json",
       "stderr": ""
     },
     {
       "step": "push",
       "rc": 0,
       "stdout": "",
-      "stderr": "remote: \nremote: Create a pull request for 'pub/round3-lane-rebind-and-closure-20261016' on GitHub by visiting:        \nremote:      https://github.com/shw097-team/Fabric/pull/new/pub/round3-lane-rebind-and-closure-20261016        \nremote: \nTo https://github.com/shw097-team/Fabric.git\n * [new branch]      HEAD -> pub/round3-lane-rebind-and-closure-20261016"
+      "stderr": "To https://github.com/shw097-team/Fabric.git\n   808d79e..916eea2  HEAD -> pub/round3-lane-rebind-and-closure-20261016"
     }
   ],
-  "staged_count": 347,
+  "staged_count": 4,
   "staged_outside_packet": [],
-  "local_head": "808d79e436b4266914c2a8dab7b17bd0a0300bbe",
+  "local_head": "916eea2cf08989768d96c66cad4ac015486f4fbf",
   "token_leaked_into_captured_output": false,
   "push_ok": true
 }

@@ -1,10 +1,10 @@
 {
   "schema": "HGK-FROZEN-SUBJECT-MANIFEST/2",
   "round": "ROUND3-LANE-REBIND-AND-CLOSURE-20261016",
-  "revision": 2,
-  "supersedes": "frozen/FROZEN_MANIFEST.rev1.SUPERSEDED.json",
+  "revision": 3,
+  "supersedes": "frozen/FROZEN_MANIFEST.rev2.SUPERSEDED.json",
   "freeze_policy": "freeze last, before each consumption; retain every revision",
-  "frozen_utc": "2026-10-16T07:00:36.969937+00:00",
+  "frozen_utc": "2026-10-16T07:02:06.797948+00:00",
   "subject_definition": "the canonical change in both states (config pair, four product files) plus the round documents, the evidence sub-tree and the lane receipts",
   "excluded": [
     "candidate/ (live writer workspace)",
@@ -14,9 +14,9 @@
     "the round's own helper scripts (*.py at the round root): edited legitimately between runs, their integrity asserted by the packet manifest rather than by this freeze",
     "FROZEN_MANIFEST.json and GATE_REPORT.json: SELF-REFERENCE. A manifest cannot bind its own bytes (it would only ever record the previous revision) and the gate rewrites its own report on every run while also being what verifies this file, which makes the pair mutually unverifiable. Both are published and hashed by the packet manifest instead"
   ],
-  "item_count": 65,
-  "round_document_count": 19,
-  "aggregate_sha256": "1511502d6bf98f72fa9e2d381c33273ad2678a5dace49d688fd5db6f4254cb04",
+  "item_count": 66,
+  "round_document_count": 20,
+  "aggregate_sha256": "d15daeab94aaf15d3817eec0cff89571bdc0ec2bbff9f08d115925c93a0f1cf5",
   "items": [
     {
       "label": "config.after",
@@ -160,6 +160,13 @@
     },
     {
       "label": "round_document",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/PUBLICATION_RECEIPT.json",
+      "exists": true,
+      "bytes": 1542,
+      "sha256": "6cb06d48e513381a87cbb737d8f7db31181952aab8cbad75b6c7d06163f04c1f"
+    },
+    {
+      "label": "round_document",
       "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/R1_R2_R3_APPLY_RECEIPT.json",
       "exists": true,
       "bytes": 2070,
@@ -197,8 +204,8 @@
       "label": "round_document",
       "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/ROUND_CLOSURE.json",
       "exists": true,
-      "bytes": 23150,
-      "sha256": "f3c946317814402eb91424408b2c707f70688d61909487b94886bc0ca13e8520"
+      "bytes": 23587,
+      "sha256": "3852024a3c7850f6bbdd1ebce4bd5b3ad4a32583b5af462729014ef6255e2c13"
     },
     {
       "label": "round_document",
