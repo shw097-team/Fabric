@@ -1,0 +1,444 @@
+{
+ "schema": "CNV-HYGIENE/KANBAN-SWARM/1",
+ "board": "cnv-hygiene-readme-closure",
+ "calls": [
+  {
+   "args": [
+    "boards",
+    "create",
+    "cnv-hygiene-readme-closure",
+    "--name"
+   ],
+   "rc": 0,
+   "err": ""
+  },
+  {
+   "args": [
+    "create",
+    "[K01] A00 hygiene audit (local + remote + leftovers)",
+    "--idempotency-key",
+    "cnv-hygiene-readme-closure-K01"
+   ],
+   "rc": 0,
+   "err": ""
+  },
+  {
+   "args": [
+    "create",
+    "[K02] FAR deviation study and engineering ruling",
+    "--idempotency-key",
+    "cnv-hygiene-readme-closure-K02"
+   ],
+   "rc": 0,
+   "err": ""
+  },
+  {
+   "args": [
+    "create",
+    "[K03] HGK typed admission (CNV-HYGIENE-FAR-RULING, WO-TS-RULING-01..06)",
+    "--idempotency-key",
+    "cnv-hygiene-readme-closure-K03"
+   ],
+   "rc": 0,
+   "err": ""
+  },
+  {
+   "args": [
+    "create",
+    "[K04] OPENSPEC change strict-valid",
+    "--idempotency-key",
+    "cnv-hygiene-readme-closure-K04"
+   ],
+   "rc": 0,
+   "err": ""
+  },
+  {
+   "args": [
+    "create",
+    "[K05] GSTACK named-method route check",
+    "--idempotency-key",
+    "cnv-hygiene-readme-closure-K05"
+   ],
+   "rc": 0,
+   "err": ""
+  },
+  {
+   "args": [
+    "create",
+    "[K06] SWARM graph for the parallel workstreams",
+    "--idempotency-key",
+    "cnv-hygiene-readme-closure-K06"
+   ],
+   "rc": 0,
+   "err": ""
+  },
+  {
+   "args": [
+    "create",
+    "[K07] Bounded writer lane: homepage update draft",
+    "--idempotency-key",
+    "cnv-hygiene-readme-closure-K07"
+   ],
+   "rc": 0,
+   "err": ""
+  },
+  {
+   "args": [
+    "create",
+    "[K08] Read-only verdict on the homepage draft",
+    "--idempotency-key",
+    "cnv-hygiene-readme-closure-K08"
+   ],
+   "rc": 0,
+   "err": ""
+  },
+  {
+   "args": [
+    "create",
+    "[K09] Remote branch hygiene on 14 verified-merged branches",
+    "--idempotency-key",
+    "cnv-hygiene-readme-closure-K09"
+   ],
+   "rc": 0,
+   "err": ""
+  },
+  {
+   "args": [
+    "create",
+    "[K10] Round evidence published through a branch and pull request",
+    "--idempotency-key",
+    "cnv-hygiene-readme-closure-K10"
+   ],
+   "rc": 0,
+   "err": ""
+  },
+  {
+   "args": [
+    "create",
+    "[K11] Per-blob readback against the remote tree",
+    "--idempotency-key",
+    "cnv-hygiene-readme-closure-K11"
+   ],
+   "rc": 0,
+   "err": ""
+  },
+  {
+   "args": [
+    "create",
+    "[K12] Self-check with injected mutations",
+    "--idempotency-key",
+    "cnv-hygiene-readme-closure-K12"
+   ],
+   "rc": 0,
+   "err": ""
+  },
+  {
+   "args": [
+    "create",
+    "[K13] Session closure and handover document",
+    "--idempotency-key",
+    "cnv-hygiene-readme-closure-K13"
+   ],
+   "rc": 0,
+   "err": ""
+  },
+  {
+   "args": [
+    "create",
+    "[K14] Governed self-evolution record",
+    "--idempotency-key",
+    "cnv-hygiene-readme-closure-K14"
+   ],
+   "rc": 0,
+   "err": ""
+  },
+  {
+   "args": [
+    "claim",
+    "t_be3c2b03"
+   ],
+   "rc": 1,
+   "err": "cannot claim t_be3c2b03: status=done lock=(none)"
+  },
+  {
+   "args": [
+    "complete",
+    "t_be3c2b03",
+    "--result",
+    "done: A00 hygiene audit (local + remote + leftovers)"
+   ],
+   "rc": 1,
+   "err": "cannot complete t_be3c2b03 (unknown id or terminal state)"
+  },
+  {
+   "args": [
+    "claim",
+    "t_a1c7776e"
+   ],
+   "rc": 1,
+   "err": "cannot claim t_a1c7776e: status=done lock=(none)"
+  },
+  {
+   "args": [
+    "complete",
+    "t_a1c7776e",
+    "--result",
+    "done: FAR deviation study and engineering ruling"
+   ],
+   "rc": 1,
+   "err": "cannot complete t_a1c7776e (unknown id or terminal state)"
+  },
+  {
+   "args": [
+    "claim",
+    "t_3dba3fdf"
+   ],
+   "rc": 1,
+   "err": "cannot claim t_3dba3fdf: status=done lock=(none)"
+  },
+  {
+   "args": [
+    "complete",
+    "t_3dba3fdf",
+    "--result",
+    "done: HGK typed admission (CNV-HYGIENE-FAR-RULING, WO-TS-RULING-01..06)"
+   ],
+   "rc": 1,
+   "err": "cannot complete t_3dba3fdf (unknown id or terminal state)"
+  },
+  {
+   "args": [
+    "claim",
+    "t_2c5fec38"
+   ],
+   "rc": 1,
+   "err": "cannot claim t_2c5fec38: status=done lock=(none)"
+  },
+  {
+   "args": [
+    "complete",
+    "t_2c5fec38",
+    "--result",
+    "done: OPENSPEC change strict-valid"
+   ],
+   "rc": 1,
+   "err": "cannot complete t_2c5fec38 (unknown id or terminal state)"
+  },
+  {
+   "args": [
+    "claim",
+    "t_91d7e1c8"
+   ],
+   "rc": 1,
+   "err": "cannot claim t_91d7e1c8: status=done lock=(none)"
+  },
+  {
+   "args": [
+    "complete",
+    "t_91d7e1c8",
+    "--result",
+    "done: GSTACK named-method route check"
+   ],
+   "rc": 1,
+   "err": "cannot complete t_91d7e1c8 (unknown id or terminal state)"
+  },
+  {
+   "args": [
+    "claim",
+    "t_504f55c5"
+   ],
+   "rc": 1,
+   "err": "cannot claim t_504f55c5: status=done lock=(none)"
+  },
+  {
+   "args": [
+    "complete",
+    "t_504f55c5",
+    "--result",
+    "done: SWARM graph for the parallel workstreams"
+   ],
+   "rc": 1,
+   "err": "cannot complete t_504f55c5 (unknown id or terminal state)"
+  },
+  {
+   "args": [
+    "claim",
+    "t_64a4c199"
+   ],
+   "rc": 1,
+   "err": "cannot claim t_64a4c199: status=running lock=DESKTOP-57EO414:12212"
+  },
+  {
+   "args": [
+    "claim",
+    "t_c96e81d7"
+   ],
+   "rc": 1,
+   "err": "cannot claim t_c96e81d7: status=running lock=DESKTOP-57EO414:10460"
+  },
+  {
+   "args": [
+    "claim",
+    "t_a952ac67"
+   ],
+   "rc": 1,
+   "err": "cannot claim t_a952ac67: status=done lock=(none)"
+  },
+  {
+   "args": [
+    "claim",
+    "t_5a1a03a3"
+   ],
+   "rc": 1,
+   "err": "cannot claim t_5a1a03a3: status=running lock=DESKTOP-57EO414:16368"
+  },
+  {
+   "args": [
+    "claim",
+    "t_81b0a638"
+   ],
+   "rc": 1,
+   "err": "cannot claim t_81b0a638: status=running lock=DESKTOP-57EO414:224"
+  },
+  {
+   "args": [
+    "claim",
+    "t_60611adb"
+   ],
+   "rc": 1,
+   "err": "cannot claim t_60611adb: status=running lock=DESKTOP-57EO414:16516"
+  },
+  {
+   "args": [
+    "claim",
+    "t_b586e608"
+   ],
+   "rc": 1,
+   "err": "cannot claim t_b586e608: status=running lock=DESKTOP-57EO414:13500"
+  },
+  {
+   "args": [
+    "claim",
+    "t_a5335142"
+   ],
+   "rc": 1,
+   "err": "cannot claim t_a5335142: status=running lock=DESKTOP-57EO414:7016"
+  },
+  {
+   "args": [
+    "create",
+    "[OG1] OWNER: pull request #15 disposition (merge or return)",
+    "--idempotency-key",
+    "cnv-hygiene-readme-closure-OG1"
+   ],
+   "rc": 0,
+   "err": ""
+  },
+  {
+   "args": [
+    "block",
+    "t_e9ab4bfe",
+    "OWNER: pull request #15 disposition (merge or return)",
+    "--kind"
+   ],
+   "rc": 1,
+   "err": "cannot block t_e9ab4bfe"
+  },
+  {
+   "args": [
+    "create",
+    "[OG2] OWNER: destructive local cleanup (DB copies, worktrees)",
+    "--idempotency-key",
+    "cnv-hygiene-readme-closure-OG2"
+   ],
+   "rc": 0,
+   "err": ""
+  },
+  {
+   "args": [
+    "block",
+    "t_78c92bbb",
+    "OWNER: destructive local cleanup (DB copies, worktrees)",
+    "--kind"
+   ],
+   "rc": 1,
+   "err": "cannot block t_78c92bbb"
+  },
+  {
+   "args": [
+    "create",
+    "[OG3] OWNER: LICENSE selection for the repository",
+    "--idempotency-key",
+    "cnv-hygiene-readme-closure-OG3"
+   ],
+   "rc": 0,
+   "err": ""
+  },
+  {
+   "args": [
+    "block",
+    "t_3978208e",
+    "OWNER: LICENSE selection for the repository",
+    "--kind"
+   ],
+   "rc": 1,
+   "err": "cannot block t_3978208e"
+  },
+  {
+   "args": [
+    "swarm",
+    "FAR hygiene round: homepage update, branch hygiene, session closure",
+    "--worker",
+    "default:homepage fact set and draft"
+   ],
+   "rc": 0,
+   "err": ""
+  },
+  {
+   "args": [
+    "ls",
+    "--json"
+   ],
+   "rc": 0,
+   "err": ""
+  }
+ ],
+ "board_create": {
+  "rc": 0,
+  "out": "g0\\LocalCache\\Local\\hermes\\kanban\\boards\\cnv-hygiene-readme-closure\\kanban.db\n  Use `hermes kanban boards switch cnv-hygiene-readme-closure` to make it current.",
+  "err": ""
+ },
+ "swarm": {
+  "rc": 0,
+  "out": "{\n  \"root_id\": \"t_02df625d\",\n  \"worker_ids\": [\n    \"t_b15c94c4\",\n    \"t_9d040328\",\n    \"t_70b26f04\"\n  ],\n  \"verifier_id\": \"t_8c599228\",\n  \"synthesizer_id\": \"t_8c018b56\"\n}",
+  "err": ""
+ },
+ "cards": {
+  "K01": "t_be3c2b03",
+  "K02": "t_a1c7776e",
+  "K03": "t_3dba3fdf",
+  "K04": "t_2c5fec38",
+  "K05": "t_91d7e1c8",
+  "K06": "t_504f55c5",
+  "K07": "t_64a4c199",
+  "K08": "t_c96e81d7",
+  "K09": "t_a952ac67",
+  "K10": "t_5a1a03a3",
+  "K11": "t_81b0a638",
+  "K12": "t_60611adb",
+  "K13": "t_b586e608",
+  "K14": "t_a5335142",
+  "OG1": "t_e9ab4bfe",
+  "OG2": "t_78c92bbb",
+  "OG3": "t_3978208e"
+ },
+ "histogram": {
+  "done": 9,
+  "running": 7,
+  "blocked": 3,
+  "ready": 6,
+  "todo": 4
+ },
+ "card_count": 29,
+ "call_count": 43
+}
