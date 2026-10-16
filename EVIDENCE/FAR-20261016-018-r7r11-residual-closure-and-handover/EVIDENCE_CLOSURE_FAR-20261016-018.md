@@ -1,6 +1,6 @@
 # EVIDENCE CLOSURE — FAR-20261016-018 (R7～R11 殘留結案與移交)
 
-generated_utc: 2026-10-16T11:31:34.281351+00:00
+generated_utc: 2026-10-16T11:33:45.644608+00:00
 
 ## 0. Claim ceiling and binding
 
@@ -120,7 +120,7 @@ resume：讀 `RESIDUAL_REGISTER.json` 取殘留與 owner，讀 `HANDOVER_FAR018.
 | `prompt-contract.json` | 62492 | `70b227969c3e35f4527d5113…` |
 | `RESIDUAL_REGISTER.json` | 5018 | `dfb44d55eb4598e030aea86e…` |
 | `ROUTE_CHECK.json` | 4755 | `d999906a2535c38d21f1b375…` |
-| `SELF_CHECK_RECEIPT.json` | 3610 | `299fae6b318f0bc851163cb6…` |
+| `SELF_CHECK_RECEIPT.json` | 3610 | `841a3c0421d8876a76892757…` |
 | `SELF_EVOLUTION_RECORD.json` | 2752 | `7107be8eb64a0d58ca4498d3…` |
 | `skill_entry_map_install_receipt.json` | 1618 | `792360db4e09ab7cfa86a5f6…` |
 | `W1_RESIDUAL_UNIVERSE.json` | 185506 | `5493d4abee20b68d6ac8c3a8…` |
@@ -134,4 +134,6 @@ resume：讀 `RESIDUAL_REGISTER.json` 取殘留與 owner，讀 `HANDOVER_FAR018.
 | `writer/regen_entry_map.py` | 8839 | `dbc69152bd1d579f33c5f582…` |
 | `writer/self_check_v2.py` | 8786 | `81f27680f220f1dcd52ce3dc…` |
 | `writer/WRITER_MANIFEST.json` | 4627 | `584445a0313b16df78b4e0bf…` |
+
+`PACK_INDEX.json` is not listed above and does not list itself: a file cannot contain its own digest. Its digest is carried by `PUBLISH_RECEIPT.json`, `REMOTE_READBACK_VERIFY.json` and `PUBLICATION_ADDENDUM.json` instead. (A self-row was tried in the first publication attempt and failed a live remote readback with exactly one mismatch — recorded, not hidden.)
 

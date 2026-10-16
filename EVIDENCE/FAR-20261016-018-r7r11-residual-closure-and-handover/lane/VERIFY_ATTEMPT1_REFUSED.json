@@ -1,0 +1,24 @@
+{
+ "schema": "HGK-LANE-RESOLUTION/1",
+ "ok": false,
+ "lane": "VERIFY_SECURITY",
+ "code": "ERR_GUARD_ROOT_MISSING",
+ "detail": "guard root(s) do not resolve for this process: ['C:/Projects/Agent_Workspace/_handover/FAR-20261016-018-r7r11-residual-closure-and-handover/RESIDUAL_REGISTER.json']",
+ "guard_roots": [
+  ".../FAR_RULING.md",
+  ".../RESIDUAL_REGISTER.json",
+  ".../W1_RESIDUAL_UNIVERSE.json",
+  ".../writer/checker_isolation_probe.py",
+  ".../writer/self_check_v2.py",
+  ".../writer/entry_map.json",
+  ".../lane/EXECUTE_RECEIPT.json",
+  "C:/Projects/Agent_Workspace/_handover/CNV-EVIDENCE-ARCHIVE-R7R11-20261016/self_check.py"
+ ],
+ "say": "a vacuous guard would report a clean subject; refusing instead",
+ "codex_home": "C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\codex-hermes",
+ "codex_home_is_declared_lane_home": true,
+ "generated_utc": "2026-10-16T11:25:33.246467+00:00",
+ "provenance": "REFUSED FIRST dispatch of the VERIFY lane, transcribed verbatim from that dispatch's output; guard_roots abbreviated with '...' for the shared prefix. Preserved because the successful retry overwrote lane/VERIFY_RECEIPT.json at turn end.",
+ "root_cause": "the orchestrator guarded a file it had not generated yet (RESIDUAL_REGISTER.json); the guard correctly refused rather than reporting a vacuous clean subject",
+ "remediation_applied": "build_register.py was run, then the lane was re-dispatched; the second attempt served the required arm openai-codex/gpt-6.1-sol"
+}

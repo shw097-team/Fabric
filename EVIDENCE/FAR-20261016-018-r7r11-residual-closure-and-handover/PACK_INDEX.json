@@ -1,7 +1,16 @@
 {
  "schema": "FAR-20261016-018/PACK-INDEX/1",
- "generated_utc": "2026-10-16T11:31:34.420407+00:00",
- "note": "the closure MD cannot contain its own hash; it is indexed here, and this index is the file that carries its digest",
+ "generated_utc": "2026-10-16T11:33:45.772630+00:00",
+ "note": "the closure MD cannot contain its own hash (it is indexed here); PACK_INDEX.json is excluded from its own listing for the same reason — its digest is carried by the publish/readback receipts",
+ "self_excluded": {
+  "path": "PACK_INDEX.json",
+  "reason": "an index cannot contain its own digest; a row for itself would be stale by construction and failed a live remote readback",
+  "its_digest_is_carried_by": [
+   "PUBLISH_RECEIPT.json",
+   "REMOTE_READBACK_VERIFY.json",
+   "publish/payload/PUBLICATION_ADDENDUM.json"
+  ]
+ },
  "files": [
   {
    "path": ".gitattributes",
@@ -50,8 +59,8 @@
   },
   {
    "path": "EVIDENCE_CLOSURE_FAR-20261016-018.md",
-   "bytes": 8645,
-   "sha256": "351352a09d767b08c178a3958a9b2727012123e7934885eddfd7d3a866b4113c"
+   "bytes": 9012,
+   "sha256": "d62317364b936751b549b9e3e53c74103483993a7163377a62e8afaa6a1ebce8"
   },
   {
    "path": "FAR_RULING.md",
@@ -104,11 +113,6 @@
    "sha256": "c86bad758da2e32fdbe881736702e2c0046b198d12974b1c37c02b343560ce15"
   },
   {
-   "path": "PACK_INDEX.json",
-   "bytes": 5606,
-   "sha256": "a72c42956c3f6c8499c4178530bade2389ea46801baf62509c633f01412469ef"
-  },
-  {
    "path": "prompt-contract.json",
    "bytes": 62492,
    "sha256": "70b227969c3e35f4527d511303d3bc60951b91f6d57d533b4ee284926d215d7c"
@@ -126,7 +130,7 @@
   {
    "path": "SELF_CHECK_RECEIPT.json",
    "bytes": 3610,
-   "sha256": "299fae6b318f0bc851163cb6e659ffa19d828e3ce65aaa3dae29dac5048c9dc8"
+   "sha256": "841a3c0421d8876a7689275765d636100b0d1c6e25c7e5e35e6598656f135834"
   },
   {
    "path": "SELF_EVOLUTION_RECORD.json",
@@ -194,5 +198,6 @@
    "sha256": "584445a0313b16df78b4e0bfd98656e4ad5c071e6fd8714e6a5947d9b52e375c"
   }
  ],
- "file_count": 38
+ "file_count": 37,
+ "payload_files_total": 38
 }
