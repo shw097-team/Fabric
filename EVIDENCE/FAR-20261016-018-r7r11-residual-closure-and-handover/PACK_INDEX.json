@@ -1,6 +1,6 @@
 {
  "schema": "FAR-20261016-018/PACK-INDEX/1",
- "generated_utc": "2026-10-16T11:33:45.772630+00:00",
+ "generated_utc": "2026-10-16T11:36:32.637134+00:00",
  "note": "the closure MD cannot contain its own hash (it is indexed here); PACK_INDEX.json is excluded from its own listing for the same reason — its digest is carried by the publish/readback receipts",
  "self_excluded": {
   "path": "PACK_INDEX.json",
@@ -11,11 +11,37 @@
    "publish/payload/PUBLICATION_ADDENDUM.json"
   ]
  },
+ "not_listed_by_design": {
+  "reason": "every file below is a receipt ABOUT this commit or about a later commit, so it cannot be listed with a digest that the commit itself fixes. Their digests live in REMOTE_READBACK_VERIFY.json / PUBLISH_FOLLOWUP_*.json, produced after the commit.",
+  "files": [
+   "PACK_INDEX.json",
+   "PUBLISH_RECEIPT.json",
+   "REMOTE_READBACK_VERIFY.json",
+   "POST_PUBLICATION_ADDENDUM.md",
+   "PUBLISH_FOLLOWUP_CORRECT.json",
+   "PUBLISH_FOLLOWUP_FINAL.json"
+  ]
+ },
  "files": [
   {
    "path": ".gitattributes",
    "bytes": 9,
    "sha256": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992"
+  },
+  {
+   "path": "ADJUDICATION_AND_LIMITATIONS.json",
+   "bytes": 8216,
+   "sha256": "268aff186ecc2ee9685f48b917cbea9ff7796007bc1716df6bfbf5100ecb880d"
+  },
+  {
+   "path": "build_pack.py",
+   "bytes": 13003,
+   "sha256": "60b7ef33bf88925911112ca0163801e79977231fc16084c444612df757c43426"
+  },
+  {
+   "path": "build_register.py",
+   "bytes": 5712,
+   "sha256": "3378bff28c20e11e5dabfde30664398621a9a32227029d85ac3e80952c229eed"
   },
   {
    "path": "compiler/acceptance.stdout.txt",
@@ -58,9 +84,29 @@
    "sha256": "9b718dd02a8f35fb25777044885eb03314962cb7b4035722e623c1f0648548f3"
   },
   {
+   "path": "emit_closure.py",
+   "bytes": 15409,
+   "sha256": "329f61c1d6ab0953b34b22f7c77bab08c0874828168be3dc799038fa17a8a669"
+  },
+  {
    "path": "EVIDENCE_CLOSURE_FAR-20261016-018.md",
-   "bytes": 9012,
-   "sha256": "d62317364b936751b549b9e3e53c74103483993a7163377a62e8afaa6a1ebce8"
+   "bytes": 9878,
+   "sha256": "eb8d0ea48ef3a10c7052101ead36e8190cfea0d5b2334f446c5a446396f35b84"
+  },
+  {
+   "path": "far018_admission.py",
+   "bytes": 9523,
+   "sha256": "a716fe8605558e169502d2d02748c33ab4291c910ec0c8a016e5d05406f1976f"
+  },
+  {
+   "path": "far018_contract.py",
+   "bytes": 12687,
+   "sha256": "fe53812c4a2dc8cedc5793663fedd80ce707a541bee3d16d32bc01dca2076dc4"
+  },
+  {
+   "path": "far018_kanban.py",
+   "bytes": 5258,
+   "sha256": "9501634e716b1541441329cd066ea86103e48aeeaf6829133721ecd2ccc93ef4"
   },
   {
    "path": "FAR_RULING.md",
@@ -98,6 +144,11 @@
    "sha256": "bd3522f43c241bfe4e9b7c1839cc2b5106cdc35a14aedee2293afb6c7083234e"
   },
   {
+   "path": "lane/VERIFY_ATTEMPT1_REFUSED.json",
+   "bytes": 1494,
+   "sha256": "696d0d3ed6b8b0244c0b3d6056ff517d31044bdb4365aad4a490af80fe785f04"
+  },
+  {
    "path": "lane/VERIFY_BRIEF.md",
    "bytes": 5277,
    "sha256": "f3c4afa927b232b0cfccbcc9d414165b1c62989452f978253ae03f4066b60243"
@@ -113,9 +164,24 @@
    "sha256": "c86bad758da2e32fdbe881736702e2c0046b198d12974b1c37c02b343560ce15"
   },
   {
+   "path": "persist_firstfail.py",
+   "bytes": 2966,
+   "sha256": "2f2be9c4dddb3542ad56f2bd84dacb87eb259a79150ddd5c9313fe9184ab6a4c"
+  },
+  {
    "path": "prompt-contract.json",
    "bytes": 62492,
    "sha256": "70b227969c3e35f4527d511303d3bc60951b91f6d57d533b4ee284926d215d7c"
+  },
+  {
+   "path": "publish_followup2.py",
+   "bytes": 8124,
+   "sha256": "a55574ad8199435fce23527f8e6828ac96414d2737d5da4a8255292f0d725842"
+  },
+  {
+   "path": "recon_route.py",
+   "bytes": 4620,
+   "sha256": "dc7884a29d1b84367fe3022a9dd977c22568c1299fa789f1c3a99d8de72e8f1d"
   },
   {
    "path": "RESIDUAL_REGISTER.json",
@@ -128,9 +194,14 @@
    "sha256": "d999906a2535c38d21f1b37543589fd431377c658bd933f4275c7fd99c28191c"
   },
   {
+   "path": "self_check.py",
+   "bytes": 12997,
+   "sha256": "75ce1af810cd746b09e998e2cccab1fe03986427c8476352d0ec9cca38428333"
+  },
+  {
    "path": "SELF_CHECK_RECEIPT.json",
    "bytes": 3610,
-   "sha256": "841a3c0421d8876a7689275765d636100b0d1c6e25c7e5e35e6598656f135834"
+   "sha256": "b22f6f498d3f4c34d291a8425393e81409a783017d45ddfb98046c907aa7c7ab"
   },
   {
    "path": "SELF_EVOLUTION_RECORD.json",
@@ -141,6 +212,11 @@
    "path": "skill_entry_map_install_receipt.json",
    "bytes": 1618,
    "sha256": "792360db4e09ab7cfa86a5f6ff8a729614d7736cdc5b0a0a3fd5fd17377a0caa"
+  },
+  {
+   "path": "verify_pack_local.py",
+   "bytes": 1113,
+   "sha256": "95ff86a232d9ee5f3280bf4a5bfb15f948f5d9d4958efc31d705902b8327fb26"
   },
   {
    "path": "W1_RESIDUAL_UNIVERSE.json",
@@ -198,6 +274,6 @@
    "sha256": "584445a0313b16df78b4e0bfd98656e4ad5c071e6fd8714e6a5947d9b52e375c"
   }
  ],
- "file_count": 37,
- "payload_files_total": 38
+ "file_count": 50,
+ "payload_files_total": 51
 }
