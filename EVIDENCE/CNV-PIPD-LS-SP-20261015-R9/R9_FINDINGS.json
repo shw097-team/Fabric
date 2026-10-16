@@ -1,0 +1,59 @@
+{
+ "schema": "CNV-PIPD-LS-SP-20261015-R9/FINDINGS/1",
+ "produced_utc": "2026-10-16T04:12:09.711269+00:00",
+ "admission": {
+  "project_id": "CNV-R9-FARCLOSURE",
+  "state": "WORKORDERS_ADMITTED",
+  "workorders": [
+   "WO-TS-FARCLOSURE-01",
+   "WO-TS-FARCLOSURE-02",
+   "WO-TS-FARCLOSURE-03",
+   "WO-TS-FARCLOSURE-04",
+   "WO-TS-FARCLOSURE-05",
+   "WO-TS-FARCLOSURE-06"
+  ],
+  "sources_present": 16,
+  "sources_missing": [],
+  "checkpoint": "CK-FARCLOSURE-C00D42D8",
+  "evidence": "HGK_TYPED_ADMISSION_R9.json"
+ },
+ "findings": [
+  {
+   "id": "R9-F1",
+   "severity": "medium",
+   "title": "taskspec id derivation collides across projects that share a final dash segment",
+   "detail": "lifecycle.plan() derives spec ids as f\"TS-{project_id.split('-')[-1]}-{i:02d}\". Project CNV-R9-RESIDUAL-CLOSURE therefore derived TS-CLOSURE-01.., the SAME ids the R8 project CNV-R8-SKILL-SLIM-EIA-CLOSURE had already created, so admit_workorders() died with sqlite3.IntegrityError: UNIQUE constraint failed: taskspecs.taskspec_id (spine.py:277) BEFORE any WorkOrder existed.",
+   "consequence": "the project stays in PLAN_READY with zero taskspecs and cannot ever admit workorders under its own id, because every retry re-derives the same colliding ids; the only recovery is a different project id",
+   "measured_evidence": {
+    "attempt_1_script": "hgk_admission_r9_attempt1_projectid_collision.py",
+    "error": "sqlite3.IntegrityError: UNIQUE constraint failed: taskspecs.taskspec_id",
+    "raised_at": "src/hg_kseos/spine.py:277 via lifecycle.py:369 admit_workorders",
+    "colliding_rows": "TS-CLOSURE-01..04 (owned by the R8 project)",
+    "code_locator": "src/hg_kseos/lifecycle.py plan(): spec_id = f\"TS-{project_id.split('-')[-1]}-{i:02d}\""
+   },
+   "disclosure": "project CNV-R9-RESIDUAL-CLOSURE remains in the spine at PLAN_READY, 0 taskspecs, 0 workorders, and is left in place (no SQL, no state-column writes). It is disclosed here and joins the pre-existing PLAN_READY residue class recorded as BLK-R7-08 (CNV-R6R7-ARCHIVE-REPAIR-R6ARC, CNV-R6R7-ARCHIVE-REPAIR-R7, CNV-R6R7-EVIDENCE-ARCHIVE-REPAIR-20261015).",
+   "not_claimed": "the same mechanism is NOT established as the cause of those three pre-existing residues - their final segments differ from one another, so their stranding has a different or additional cause which this round did not measure",
+   "remediation_options": [
+    {
+     "option": "A (executed)",
+     "change": "admit under a project id whose final dash segment is globally unique (CNV-R9-FARCLOSURE)",
+     "friction": "none; no code change",
+     "authority": "within HGK admission, no owner act needed"
+    },
+    {
+     "option": "B (proposed, owner-gated)",
+     "change": "make the derivation collision-proof in the control plane, e.g. namespace the spec id by the full project id or a project hash",
+     "friction": "low - one expression in lifecycle.plan(); needs an HGK control-plane WorkOrder",
+     "authority": "HGK Lifecycle Owner"
+    },
+    {
+     "option": "C (proposed, optional)",
+     "change": "recover or explicitly retire the stranded PLAN_READY projects via typed APIs if the lifecycle offers them; otherwise record them as accepted residue",
+     "friction": "low-medium",
+     "authority": "HGK Lifecycle Owner"
+    }
+   ]
+  }
+ ],
+ "claim_ceiling": "LOCAL / candidate-only; a defect report, not an authority to edit the lifecycle"
+}

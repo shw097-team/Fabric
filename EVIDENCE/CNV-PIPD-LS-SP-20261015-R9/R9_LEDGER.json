@@ -1,0 +1,119 @@
+{
+ "schema": "CNV-PIPD-LS-SP-20261015-R9/LEDGER/1",
+ "produced_utc": "2026-10-16T04:32:56.798797+00:00",
+ "mission": "CNV-PIPD-LS-SP-20261015",
+ "changeset": "R9-0-FAR-RESIDUAL-CLOSURE",
+ "hgk_project": "CNV-R9-FARCLOSURE",
+ "claim_ceiling": "LOCAL / candidate-only",
+ "blockers": [
+  {
+   "id": "R9-B1",
+   "item": "the first repaired candidate fails the round's own C6 gate (one live reference absent: product-branch-write-set-gates.md, 4986 B)",
+   "state": "RESOLVED_BY_SUCCESSOR",
+   "resolution": "CANDIDATE_V2 restores the file verbatim; C1-C6 all PASS (orchestrator run)"
+  },
+  {
+   "id": "R9-B2",
+   "item": "the canonical PLAN route row disagrees with the owner mandate and with the file's own sod_invariants/pool",
+   "state": "OWNER_GATED",
+   "note": "already registered as F1-PLAN-ROUTE-ROW-OUTLIER and already proposed as hgk-far-remediation-20261016 R1"
+  },
+  {
+   "id": "R9-B3",
+   "item": "the R8 VERIFY turn was served by its lane's rank-2 fallback, not the mandated rank-1 checker",
+   "state": "RECORDED",
+   "note": "permitted by the standing failover rule; provenance corrected"
+  },
+  {
+   "id": "R9-B4",
+   "item": "checker write-root isolation cannot be closed with a single Windows identity",
+   "state": "OWNER_GATED"
+  },
+  {
+   "id": "R9-B5",
+   "item": "HGK lifecycle taskspec-id collision strands a second project in PLAN_READY",
+   "state": "WORKAROUND_APPLIED"
+  },
+  {
+   "id": "R9-B6",
+   "item": "221 acceptance cases, eight Gates, Fresh G1",
+   "state": "NOT_RUN_LOCALLY"
+  }
+ ],
+ "findings": [
+  {
+   "id": "R9-F1",
+   "what": "lifecycle.plan() derives TS-<final dash segment>-NN so two projects sharing a final segment collide on a UNIQUE constraint (spine.py:277); the loser strands in PLAN_READY with 0 taskspec"
+  },
+  {
+   "id": "R9-F2",
+   "what": "the R8 DRIFT_VALUE claim does not reproduce: check_drift(registry=load_registry()) -> []"
+  },
+  {
+   "id": "R9-F3",
+   "what": "R8-F4's 100000-byte cap has no governing clause; the platform limit is MAX_SKILL_CONTENT_CHARS on the LF-normalized len()"
+  },
+  {
+   "id": "R9-F4",
+   "what": "R8-F7 resolved by ACC-RQ06's own wording (AVR/10-piece + HGK/6-piece)"
+  },
+  {
+   "id": "R9-F5",
+   "what": "the R8 VERIFY verdict's provenance: rank-2 fallback served it"
+  },
+  {
+   "id": "R9-F6",
+   "what": "the C1-C6 harness serialises subject_live before honouring --live (report-only defect)"
+  },
+  {
+   "id": "R9-F7",
+   "what": "the FAR repair measurement used a live reference denominator of 112 vs the canonical 113, so one absent live reference was not reported"
+  }
+ ],
+ "incidents": [
+  {
+   "id": "INC-R9-01",
+   "what": "a first candidate apply was refused by the round's own gate; no canonical byte changed",
+   "state": "recorded; successor measured"
+  },
+  {
+   "id": "INC-R9-02",
+   "what": "a 2400s EXECUTE lane's budget was consumed by a full-suite run before its closing receipt",
+   "state": "non-fatal; receipt recovered"
+  }
+ ],
+ "side_effects_disclosed": [
+  {
+   "id": "SE-01",
+   "what": "worktree C:/Projects/Agent_Workspace/PIPD/worktrees/r8-wt carries an uncommitted candidate edit to validate.py (2 hunks)",
+   "who": "the bounded-writer lane"
+  },
+  {
+   "id": "SE-02",
+   "what": "a successor candidate tree CANDIDATE_V2 was authored under the round root by the orchestrator (additive, byte-identical to live)",
+   "who": "the orchestrator"
+  },
+  {
+   "id": "SE-03",
+   "what": "the round root gained WS_A/, WS_B/, the FAR artifact set, three owner-ready records, the PKG alignment record and the openspec change",
+   "who": "the orchestrator"
+  },
+  {
+   "id": "SE-04",
+   "what": "no canonical skill byte was changed (the apply is refused/pending as recorded)",
+   "who": "n/a"
+  },
+  {
+   "id": "SE-05",
+   "what": "no git write, no remote write, no credential read occurred in this round's lanes",
+   "who": "n/a"
+  }
+ ],
+ "open_owner_actions": [
+  "rebind the canonical PLAN route (already proposed)",
+  "decide the checker identity / governed write root",
+  "decide the successor candidate's canonical apply",
+  "fix the lifecycle taskspec-id derivation",
+  "decide the 221-case applicability owner and source #6's status"
+ ]
+}

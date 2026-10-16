@@ -1,0 +1,78 @@
+{
+ "schema": "CNV-PIPD-LS-SP-20261015-R9/OWNER-READY/TF-06-ARM-ATTRIBUTION/1",
+ "produced_utc": "2026-10-16T04:23:16.282530+00:00",
+ "title": "TF-06 closed with a corrected reading: the served arm IS recoverable; the missing nonce voids completion attestation, not attribution",
+ "status": "CLOSED_WITH_CORRECTION_PLUS_ONE_OPTIONAL_CONTROL_PLANE_IMPROVEMENT",
+ "measurement": {
+  "surface": "_handover/CNV-PIPD-LS-SP-20261015/lane_runs/*dispatch_receipt*.json + *.attempts.ndjson",
+  "fields_present": [
+   "lane",
+   "role",
+   "ok",
+   "code",
+   "usage_receipt_ok",
+   "nonce_absent_arms",
+   "identity_gate.arms[]",
+   "attempts[].rank",
+   "attempts[].provider",
+   "attempts[].model",
+   "attempts[].exit",
+   "attempts[].seconds",
+   "attempts[].nonce_present"
+  ],
+  "fields_absent_after_the_nonce_gate": [
+   "served_arm",
+   "used_rank",
+   "used_transport_model"
+  ],
+  "measured_rows": [
+   {
+    "round": "R8",
+    "lane": "EXECUTE",
+    "attempt": {
+     "rank": 1,
+     "provider": "opencode-go",
+     "model": "deepseek-v4.1-flash",
+     "exit": 0,
+     "seconds": 1553.8,
+     "nonce_present": false
+    },
+    "reading": "served by the mandated rank-1 arm"
+   },
+   {
+    "round": "R8",
+    "lane": "VERIFY_SECURITY",
+    "attempt": {
+     "rank": 2,
+     "provider": "opencode-go",
+     "model": "glm-5.3-flash",
+     "exit": 0,
+     "seconds": 669.63,
+     "nonce_present": false
+    },
+    "identity_gate_arms": "only rank 2 was present in that lane's live pool",
+    "reading": "served by the DECLARED fallback, not the mandated rank-1 checker"
+   }
+  ]
+ },
+ "corrections_issued": [
+  {
+   "target": "the R8 round record (TF-06 stated the served arm could not be proven)",
+   "correction": "the served arm is recoverable from attempts[]; for the R8 VERIFY turn it was the lane's rank-2 fallback opencode-go/glm-5.3-flash",
+   "effect": "the R8 verifier verdict's measurements stand, but its provenance is the fallback arm: under the owner's standing failover rule that is permitted and must be stated, and the verdict is not from the model the mandate names"
+  },
+  {
+   "target": "the R8-F6 finding",
+   "correction": "the claimed DRIFT_VALUE does not reproduce: check_drift(registry=load_registry()) returns [] on the canonical registry today"
+  }
+ ],
+ "why_the_nonce_matters": "the nonce is what makes a turn's COMPLETION attestable to the dispatcher; without it ok=false and the used_* fields stay null, so a reader who trusts only those fields sees 'no arm'. The attempt record below them is the attribution surface.",
+ "optional_control_plane_improvement": {
+  "change": "populate used_rank/served_arm from the selected attempt record even when the nonce gate fails (or document attempts[] as the attribution contract)",
+  "friction": "low - one assignment in the receipt builder near the nonce gate",
+  "authority": "control-plane change, needs a WorkOrder; NOT needed to close TF-06 as recorded here",
+  "benefit": "removes the recurring false 'unprovable arm' reading in every future round"
+ },
+ "round_2_effect": "the R9 VERIFY dispatch should pin the mandated arm explicitly (--require-arm plus a rank binding) so a fallback cannot silently serve a verification turn; if rank 1 is unavailable this round, that is a model-availability finding to record rather than a reason to re-dispatch the same way",
+ "claim_ceiling": "LOCAL / candidate-only; an attribution correction, not an acceptance of anything"
+}

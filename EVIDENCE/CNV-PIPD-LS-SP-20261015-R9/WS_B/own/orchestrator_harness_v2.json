@@ -1,0 +1,75 @@
+{
+ "schema": "CNV-PIPD-LS-SP-20261015-R8/WS-A-SKILL-SLIM-REGRESSION/1",
+ "subject_candidate": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R9\\CANDIDATE_V2",
+ "subject_live": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\skills\\software-development\\adversarial-verification-rounds",
+ "claim_ceiling": "LOCAL / candidate-only; a machine gate, not an acceptance",
+ "checks": {
+  "C1_capacity": {
+   "verdict": "PASS",
+   "live_bytes": 105116,
+   "candidate_bytes": 21026,
+   "cap_bytes": 100000,
+   "live_over_cap": true,
+   "detail": "candidate main file within the recorded cap",
+   "references_count": 92,
+   "references_soft_cap": 60,
+   "references_over_soft_cap": true
+  },
+  "C2_loader_shape": {
+   "verdict": "PASS",
+   "frontmatter_at_byte_0": true,
+   "slice_markers_present": 0,
+   "marker_samples": [],
+   "candidate_name": "hgk-governed-execution",
+   "live_name": "hgk-governed-execution",
+   "candidate_description": "Use for governed cross-stack acceptance under HG-KSEOS.",
+   "detail": "frontmatter parses and identity matches the live skill"
+  },
+  "C3_link_intake": {
+   "verdict": "PASS",
+   "links": 11,
+   "missing": []
+  },
+  "C4_lossless": {
+   "verdict": "PASS",
+   "note": "only files carrying an 'absorbed ->' marker are treated as stubs; other small files are ordinary references",
+   "absorbed_stubs": 0,
+   "sha_mismatch": [],
+   "offset_mismatch": [],
+   "unreached_stub": [],
+   "small_reference_not_stub": [
+    "codex-canary-powershell.md",
+    "codex-lane-log-liveness-markers.md",
+    "codex-sealed-lane-windows.md",
+    "codex-workspace-write.md",
+    "external-acceptance-single-md-closure.md",
+    "external-challenge-evidence-closure-far.md",
+    "external-challenge-review-closure.md",
+    "external-single-md-mandatory-route.md",
+    "external-submission-gates.md"
+   ],
+   "live_lines_gt40": 1058,
+   "lost_lines": 0,
+   "lost_samples": [],
+   "stub_rows": []
+  },
+  "C6_reference_coverage": {
+   "verdict": "PASS",
+   "live_references": 113,
+   "byte_identical": 90,
+   "absorbed_but_present_verbatim": 23,
+   "lost": 0,
+   "lost_rows": [],
+   "note": "a reference may be merged into a topic file, but its bytes must then appear verbatim in the corpus; deliberate deletions are not allowed by this gate"
+  },
+  "C5_controls": {
+   "verdict": "PASS",
+   "frontmatter_stripped": true,
+   "loss_detector_positive": true,
+   "offset_detector_positive": true,
+   "sha_detector_positive": true
+  },
+  "overall": "PASS"
+ },
+ "verdict": "PASS"
+}

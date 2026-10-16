@@ -1,0 +1,32 @@
+{
+ "schema": "CNV-PIPD-LS-SP-20261015-R9/OWNER-READY/CHECKER-WRITE-ROOT/1",
+ "produced_utc": "2026-10-16T04:23:16.282530+00:00",
+ "title": "EIA-R6-03 one-action record: the checker write-root isolation cannot be closed by the agent alone",
+ "measured_state": {
+  "finding": "the guarded subject carries no deny ACE (Authenticated Users inherit Modify); any ordinary process running as the current identity can write into it",
+  "mechanism_proof": "a (DENY)(W) ACE on a scratch directory blocked a write (rc=1, Permission denied) and was removable with /remove:d - the mechanism works and is reversible",
+  "structural_limit": "one Windows identity cannot separate maker from checker at the OS level: the same account owns both the write and the denial, so it can always lift its own ACE"
+ },
+ "options": [
+  {
+   "option": "A",
+   "change": "create a second, lower-privileged identity for checker lanes and grant it read on the subject + write on a governed OUT-dir only",
+   "friction": "medium - needs an account and a per-run ACL application; highest real isolation",
+   "owner": "host/identity owner"
+  },
+  {
+   "option": "B",
+   "change": "keep one identity and define the checker's write root as a governed path OUTSIDE every guarded subject, with the harness refusing an out-dir that resolves inside a subject",
+   "friction": "low - procedural; already practised by the R8 verifier (it wrote only into R8_VERIFY/)",
+   "residual": "a snapshot guard sees only the END state, so CLEAN means 'nothing survived', not 'nothing was written'"
+  },
+  {
+   "option": "C",
+   "change": "accept the residual and record it",
+   "friction": "none",
+   "residual": "process/lane separation only; the maker could in principle write into the subject while a checker turn is open"
+  }
+ ],
+ "recommendation": "B now (it is the low-friction, already-demonstrated shape) + A as the owner's decision when a second identity is acceptable; C is what the stack has today and must not be described as isolation",
+ "claim_ceiling": "LOCAL / candidate-only; a prepared owner decision, not an applied control"
+}

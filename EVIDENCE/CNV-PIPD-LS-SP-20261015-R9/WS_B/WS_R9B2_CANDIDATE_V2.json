@@ -1,0 +1,40 @@
+{
+ "schema": "CNV-PIPD-LS-SP-20261015-R9/CANDIDATE-SUCCESSOR/1",
+ "produced_utc": "2026-10-16T04:32:33.328006+00:00",
+ "subject": "CANDIDATE_V2 = FAR/ws3/repaired_candidate + one restored live reference",
+ "reason": "the FAR child's repair measurement used a live reference denominator of 112 files and reported 0 lost; the canonical live tree carries 113. The 113th, references/product-branch-write-set-gates.md (4986 bytes, sha256 e59968d8fb23f18a...), was absent from the candidate and is present nowhere in its corpus.",
+ "two_independent_measurements_agreeing": [
+  {
+   "by": "the bounded-writer lane (12:29, WS_B/harness_candidate_vs_canonical.json)",
+   "result": "C6 FAIL, live_references 113, lost 1 = product-branch-write-set-gates.md, overall FAIL"
+  },
+  {
+   "by": "the orchestrator (WS_B/own/orchestrator_harness.json)",
+   "result": "C6 FAIL, live_references 113, lost 1 = the same file, overall FAIL"
+  }
+ ],
+ "correction_applied": {
+  "action": "copy the live file verbatim into the candidate successor",
+  "applied_by": "the orchestrator (DISCLOSED: not the bounded-writer lane; the edit is additive and byte-identical to live)",
+  "before_sha256": "absent",
+  "after_sha256": "e59968d8fb23f18a9feb7aec70938942bc26e32a41eafcbf96fe06a88f2d550f",
+  "live_sha256": "e59968d8fb23f18a9feb7aec70938942bc26e32a41eafcbf96fe06a88f2d550f"
+ },
+ "post_correction_measurement": {
+  "harness": "the round's own C1-C6 harness, run by the orchestrator with explicit --subject/--live paths",
+  "verdicts": {
+   "C1_capacity": "PASS",
+   "C2_loader_shape": "PASS",
+   "C3_link_intake": "PASS",
+   "C4_lossless": "PASS",
+   "C6_reference_coverage": "PASS",
+   "C5_controls": "PASS",
+   "overall": "PASS"
+  },
+  "overall": "PASS",
+  "raw": "WS_B/own/orchestrator_harness_v2.json"
+ },
+ "note_on_the_missing_file": "the file's own header states it could not be linked from SKILL.md because that file was already over the 100000-character limit. Slimming the main file to 21026 bytes removes that pressure, which is the same pressure openspec change skill-mainfile-cap-remediation describes.",
+ "applier_defect_found": "the harness writes its recorded subject_live field BEFORE honouring the --live argument (main() serialises str(LIVE) while check() is what re-binds the module global), so a receipt can name the wrong live tree while the CHECKS used the right one. The checks in both runs used the passed tree; the field is the defect. Report the flag-value pair, not the field.",
+ "claim_ceiling": "LOCAL / candidate-only; a machine gate pass, not an acceptance"
+}

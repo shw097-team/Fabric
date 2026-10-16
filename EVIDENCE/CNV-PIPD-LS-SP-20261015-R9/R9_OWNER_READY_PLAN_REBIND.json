@@ -1,0 +1,96 @@
+{
+ "schema": "CNV-PIPD-LS-SP-20261015-R9/OWNER-READY/PLAN-ROUTE-REBIND/1",
+ "produced_utc": "2026-10-16T04:22:54.159929+00:00",
+ "title": "One-action owner record: reconcile the PLAN lane route with the 2026-10-16 mandate (the stack already knows this as F1-PLAN-ROUTE-ROW-OUTLIER)",
+ "status": "PREPARED_NOT_APPLIED",
+ "why_not_applied": "a canonical lane-chain rebind is a control-plane governance mutation; the registry's own text puts it outside a product/evidence round's authorisation, and the doc research confirms it needs owner-approved scope + an admitted WorkOrder + a separate DOC05 admission",
+ "the_conflict": [
+  {
+   "surface": "config/lane-routing-registry.yaml routes[].PLAN",
+   "value": "provider opencode-go / model glm-5.3-flash / effort medium",
+   "authority": "selection_authority: owner-order-20261015-plan-model-rebind-glm",
+   "quoted_comment": "Owner order 2026-10-15 (this session, epoch 19): PLAN & Orchestrator rebound to GLM-5.3-Flash(GO) because the OpenAI OAuth GPT arm is exhausted (status=429, credential-pool rotation logged)"
+  },
+  {
+   "surface": "the same file's own sod_invariants SOD006-C2 + its revision-18 note",
+   "value": "round FAR-LANE-ROUTE-REBIND-20261015 re-points PLAN and VERIFY_SECURITY to the same default arm openai-codex/gpt-6.1-sol, medium",
+   "authority": "owner order 2026-10-15, lane chain rebind"
+  },
+  {
+   "surface": "config/lane-route-slots.candidate.json rev 9",
+   "value": "PLAN rank1 = openai-codex/gpt-6.1-sol (medium); GLM at rank2",
+   "authority": "owner order 2026-10-15 (declared_by)"
+  },
+  {
+   "surface": "the 2026-10-16 mandate (this round)",
+   "value": "PLAN & Orchestrator inside Hermes = GPT 6.1 SOL-MEDIUM (OpenAI OAuth)",
+   "authority": "owner mandate, most recent expression of intent"
+  }
+ ],
+ "already_registered_by_the_stack": {
+  "finding_id": "F1-PLAN-ROUTE-ROW-OUTLIER",
+  "quote_verbatim": "test_registry_and_projection_shape (routes[].PLAN is the ONE surface disagreeing with the pool, this file's own sod_invariants, the conformance test and the owner mandate -- recorded as the named open finding F1-PLAN-ROUTE-ROW-OUTLIER, NOT repaired here because a lane-chain rebind is outside this round's authorisation)",
+  "evidence_dir": "HG-KSEOS/var/LANE-RELIABILITY-CLOSURE-20261016/",
+  "consequence": "this round is not the first to observe it; the contribution here is a fresh measurement of the exhaustion basis and a prepared edit list"
+ },
+ "the_basis_for_the_GLM_rebind_has_lapsed": {
+  "claim": "the 2026-10-15 rebind was justified by openai-codex OAuth exhaustion (429 at 2026-10-15T19:00:30 local)",
+  "measurement_this_round": [
+   "3 delegated research children ran to completion on model=gpt-6.1-sol (364.53s, api_calls 14/25/13), reported by the delegation layer",
+   "a one-shot through HERMES_HOME=profiles/hgk-governed returned PROBE_OK and its own state.db recorded a NEW session row with model=gpt-6.1-sol",
+   "config delegation = provider openai-codex / model gpt-6.1-sol (live read)"
+  ],
+  "reading": "the OAuth GPT arm is serving today; the exhaustion reason does not hold at 2026-10-16, so the mandate's PLAN binding is servable",
+  "not_claimed": "this does not prove the arm's quota headroom or that it will serve for the whole round; a 429 later would legitimately fall back again and must be recorded as a switch"
+ },
+ "prepared_edit_list": {
+  "note": "exact procedure in the lane-chain-rebind reference of the hgk-kanban-and-lane-routing skill: after editing, run check_drift + the repo's own conformance test (tests/test_lane_policy.py) and expect the PLAN projection bindings to drive a pointer rewrite loop",
+  "files": [
+   "config/lane-routing-registry.yaml",
+   "config/model-lane-assignment.json"
+  ],
+  "route_row": [
+   "routes[].PLAN.provider -> openai-codex",
+   "routes[].PLAN.model -> gpt-6.1-sol",
+   "routes[].PLAN.canonical_identity -> gpt-6.1-sol",
+   "routes[].PLAN.auth -> openai_oauth",
+   "routes[].PLAN.oauth -> true",
+   "routes[].PLAN.reasoning_effort -> medium (unchanged)",
+   "routes[].PLAN.selection_authority -> the 2026-10-16 mandate record"
+  ],
+  "projection_bindings_to_move": [
+   "/lane_chains/PLAN/0/model (glm-5.3-flash -> gpt-6.1-sol)",
+   "/lane_chains/PLAN/0/provider (opencode-go -> openai-codex)",
+   "/sod/verify_vs_plan_model_separation",
+   "/sod/provider_separation_status",
+   "/sod_across_all_arms/verifier_models[*] if the PLAN arm is included",
+   "/effective_wiring/main_agent/* if the owner also re-points the interactive plane"
+  ],
+  "coupled_declarations": [
+   "registry epoch MUST advance",
+   "source_of_routes digest/revision repin",
+   "model-lane-assignment.json registry_epoch",
+   "every affected projections[].bindings[] pointer AND expected string"
+  ],
+  "expected_residual": "after the rebind PLAN == VERIFY_SECURITY on gpt-6.1-sol (the SOD006-C2 owner-declared residual), so model-axis independence between planning and checking stays ABSENT by owner design; only process/lane/evidence-path separation remains"
+ },
+ "friction_assessment": {
+  "engineering_necessity": "high - the mandate's plan/model assignment is the round's operating contract and the current canonical row contradicts it",
+  "feasibility": "high - the target values already exist verbatim in the candidate pool and in the file's own revision-18 note; the drift checker enumerates the bindings that must move",
+  "over_engineering_risk": "low - no new mechanism; one file pair plus their coupled declarations",
+  "rollback": "restore config/*.bak-* preimage copies taken before the edit; the registry is versioned by epoch, so the revert is a further, recorded revision"
+ },
+ "authority_needed": [
+  "owner approval of scope",
+  "an admitted HGK WorkOrder",
+  "a separate DOC05 admission (per the governing-document research)"
+ ],
+ "claim_ceiling": "LOCAL / candidate-only; a prepared owner action, not an applied change and not an authority to apply it",
+ "already_proposed_elsewhere": {
+  "proposal": "HG-KSEOS/openspec/changes/hgk-far-remediation-20261016/ (proposal.md, ChangeSet R1)",
+  "quote_verbatim": "R1 — PLAN route row rebind. config/lane-routing-registry.yaml routes[].PLAN moves from opencode-go/glm-5.3-flash to openai-codex/gpt-6.1-sol (medium, OAuth), under the owner order in force for this session, and the stale usable_now: QUOTA_429_2026-10-15 marker is replaced by this session's measurement. Registry epoch advances 20 -> 21.",
+  "reading": "the rebind this record prepares is NOT a new ask: it is an existing, unapplied proposal whose target values match the 2026-10-16 mandate exactly. The contribution of this round is (a) the re-measurement showing the 429 exhaustion basis for the intervening GLM rebind no longer holds and (b) the note that the same proposal carries R2 (canonical promotion of the product candidate) and R3 (SOD006-C2 reclassification).",
+  "consequence": "do not duplicate; close it by applying that proposal under its own authorisation, or fold both into one owner authorisation"
+ },
+ "cap_note": "this record does not authorise the rebind; the existing proposal also does not self-apply. The pending act is the owner's."
+}
