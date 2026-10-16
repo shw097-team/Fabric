@@ -1,297 +1,104 @@
 {
  "schema": "FAR-20261019/PACK-INDEX/1",
- "generated_utc": "2026-10-16T12:45:33.027724+00:00",
+ "generated_utc": "2026-10-16T12:45:50.323657+00:00",
  "round": "FAR-20261019-owner-authorized-closure",
  "repo": "shw097-team/Fabric",
  "branch": "evidence/far-019-owner-auth-closure",
  "prefix": "EVIDENCE/FAR-20261019-owner-authorized-closure",
- "note": "second revision: the first index was built from the receipts stage alone and left the payload files unlisted; this one is built by reading the branch tree itself, so it describes the pack as it actually is",
- "file_count": 69,
+ "file_count": 17,
  "self_excluded": {
   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/PACK_INDEX.json",
-  "reason": "a file cannot carry its own digest; its digest is carried by the post-publication receipt"
+  "reason": "a file cannot carry its own digest; this index's digest is carried by the post-publication receipt (REMOTE_READBACK_VERIFY_019.json)"
  },
  "not_listed_by_design": [
-  "EVIDENCE/FAR-20261019-owner-authorized-closure/PUBLISH_RECEIPT_019_payload.json",
-  "EVIDENCE/FAR-20261019-owner-authorized-closure/PUBLISH_RECEIPT_019_receipts.json",
+  "EVIDENCE/FAR-20261019-owner-authorized-closure/PUBLISH_RECEIPT_019.json",
   "EVIDENCE/FAR-20261019-owner-authorized-closure/REMOTE_READBACK_VERIFY_019.json"
  ],
  "entries": [
   {
-   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/A4_A5_REPO_ACTS.json",
-   "git_blob_id": "56a8b2bd0b33d050c76225e01fb8f8d60405ed77"
+   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/compiler/out/thin-prompt.md",
+   "bytes": 14509,
+   "sha256": "7de3167cc17dd7912c7ac92340e36d16b9d319c74f78b4f787f17b86f2accb1d"
   },
   {
    "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/ERRATA_AND_FINDINGS_019.md",
-   "git_blob_id": "1468ac34b2fda557dc05e4ae9c03a83ef96f9d39"
-  },
-  {
-   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/ERRATA_CURRENTNESS_019.json",
-   "git_blob_id": "812daabf017cb042bc2ed92d2d52c6c1ebd163bf"
+   "bytes": 9087,
+   "sha256": "5181edf99c530017019e805316c2785a4347e1ff6dc982a95ab29d6cccb1374e"
   },
   {
    "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/EVIDENCE_CLOSURE_FAR-20261019.md",
-   "git_blob_id": "cacf2e1533b3330cb4ee08b6492fbee9bde9340c"
+   "bytes": 811,
+   "sha256": "560689c9285ed3ffb5f8abcb278c29ddbaa33ed061c837648e50b6699472ae93"
   },
   {
    "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/FAR_RULING_019.md",
-   "git_blob_id": "17648f3b9399b326b67aa9007837cf8a0a8a1bcd"
+   "bytes": 8680,
+   "sha256": "87cfcd6c758361e1ee1a7b25c856df60a2263f937a6b454b562ec6525f068872"
   },
   {
    "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/HANDOVER_FAR019.md",
-   "git_blob_id": "eb27a96cf22daa6a5ad1c0db0aa8948de5fb370f"
-  },
-  {
-   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/HGK_TYPED_ADMISSION_FAR019.json",
-   "git_blob_id": "8a1a7952efa134e30e49ec99715811aa69b60780"
-  },
-  {
-   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/HGK_WORKORDER_RESULTS_AND_DELIVERY_019.json",
-   "git_blob_id": "6f31a2a8673ce9b6635f4b2a2d74565027237a76"
-  },
-  {
-   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/KANBAN_LIFECYCLE_RECEIPT.json",
-   "git_blob_id": "91db400e1bc0c115365d84c241bac033b952b1f7"
-  },
-  {
-   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/KANBAN_PREV_CLOSEOUT.json",
-   "git_blob_id": "c9810fa4dcb41b85959da21982ac24b0ba50c53b"
-  },
-  {
-   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/OWNER_ACTION_ITEMS_019.md",
-   "git_blob_id": "36406122358c9a71e1778b97da8f89b7cd4ace80"
-  },
-  {
-   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/OWNER_ORDER_MODEL_SWITCH.json",
-   "git_blob_id": "86b11a3fb61f40864f210f5f6cd4fddb70150626"
-  },
-  {
-   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/PREFIX_REPAIR_019.json",
-   "git_blob_id": "becaeeed72c84ba107b52d28bb9618a825e66ef6"
-  },
-  {
-   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/PUBLISH_RECEIPT_019_payload.json",
-   "git_blob_id": "7902beb9337a3d71dbc5f8b5bff2e10b0ae42462"
-  },
-  {
-   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/RC0_LOCAL_RECON.json",
-   "git_blob_id": "f2847ce9965be8e493ae71919375efd94bb710eb"
-  },
-  {
-   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/RC1_OPEN_ITEM_UNIVERSE.json",
-   "git_blob_id": "1dfd777806317dae7eb8148d561121667eaed9ee"
-  },
-  {
-   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/ROUTE_CHECK.json",
-   "git_blob_id": "8bcde111c321420dc598e649816056385057ca5c"
-  },
-  {
-   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/TIER_A_EXECUTION.json",
-   "git_blob_id": "df5a289e104cd05094d972f9b97fc9a98e194651"
-  },
-  {
-   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/a1_a3_execute.py",
-   "git_blob_id": "7901a6b16e17b370c80a5b2761bb8d48b162793e"
-  },
-  {
-   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/a2_kanban_closeout.py",
-   "git_blob_id": "1f13b3e17c4eb92206a16f088ba969b0c7289a9a"
-  },
-  {
-   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/a4_a5_repo_acts.py",
-   "git_blob_id": "5224eefa59e94f3e4ea4c3f90f23c4bdaff5a0f0"
-  },
-  {
-   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/compiler/acceptance.stdout.txt",
-   "git_blob_id": "186cc5a294db325295eb77a726551f980cebea9d"
-  },
-  {
-   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/compiler/activation.stdout.txt",
-   "git_blob_id": "186cc5a294db325295eb77a726551f980cebea9d"
-  },
-  {
-   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/compiler/compile.stdout.txt",
-   "git_blob_id": "22ba988e9806724cd46442b1eed20ab0307a7be6"
-  },
-  {
-   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/compiler/duplication.stdout.txt",
-   "git_blob_id": "6b03995e7b91c16898de69a5fdd7dff579d5054f"
-  },
-  {
-   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/compiler/hash.stdout.txt",
-   "git_blob_id": "caac5cf6f45dc7521d73319d715fbe7c85239dab"
-  },
-  {
-   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/compiler/lint.stdout.txt",
-   "git_blob_id": "186cc5a294db325295eb77a726551f980cebea9d"
-  },
-  {
-   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/compiler/out/compiler-receipt.json",
-   "git_blob_id": "354383603c3dd0d60cdfd378fda92aeb445052cf"
-  },
-  {
-   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/compiler/out/compiler-report.json",
-   "git_blob_id": "e7e88daf1a772c142546556ae7ee4f604945d1e2"
-  },
-  {
-   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/compiler/out/thin-prompt.md",
-   "git_blob_id": "06493c71623f823803edac5db97c4331a9de046a"
-  },
-  {
-   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/config-hermes-codex-lane.pre-A1.json",
-   "git_blob_id": "8139977b8a20e918e39bd27ec316287fac2cad5f"
-  },
-  {
-   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/emit_closure_019.py",
-   "git_blob_id": "93ee7c4453e93c9eb3239d194115102b5db111ca"
-  },
-  {
-   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/far019_admission.py",
-   "git_blob_id": "477a9d6e8bb15f7fc0a065a6324932cebf44c66a"
-  },
-  {
-   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/far019_contract.py",
-   "git_blob_id": "cbb18dadb31e860e5ef374d78a79a6cf23448103"
-  },
-  {
-   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/far019_kanban.py",
-   "git_blob_id": "5c54eb8786918907a5e53529368b2ee3ef026255"
-  },
-  {
-   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/far019_lineage.py",
-   "git_blob_id": "9a429a1642531f962a7ee4c24022be2099dcf194"
-  },
-  {
-   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/far019_recon.py",
-   "git_blob_id": "14101bb23fdb61d4a8681817d6f171be34aaf1cd"
-  },
-  {
-   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/far019_route.py",
-   "git_blob_id": "e04a5e8e7d5498de9dc0c71f2afa1aaa04c93cc3"
+   "bytes": 1041,
+   "sha256": "0b6e7a6ab7343e607c3d1e0028fb2debcd517901c8ed34698b569946919f5bf3"
   },
   {
    "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/lane/EXECUTE_ATTEMPT1_REFUSED.json",
-   "git_blob_id": "da3d27dc4e250237fd68f3f1ee14713a1ebb976f"
+   "bytes": 1026,
+   "sha256": "3b36bb775a9b2c977e2f35b63cc5030cb06231d9fff9eec4df7acd7a42b63453"
   },
   {
    "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/lane/EXECUTE_ATTEMPT2_REFUSED.json",
-   "git_blob_id": "cc33b6e1dd4eedf29d6dca8628fa745fdcb69e0f"
+   "bytes": 884,
+   "sha256": "009d6d0065e3b079c7770061a119326084c8d312c7319b4aeff2bf85630c2474"
   },
   {
    "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/lane/EXECUTE_BRIEF.md",
-   "git_blob_id": "f0852c073ed8237792088219357a5287308a9967"
+   "bytes": 4396,
+   "sha256": "dba8d02f375d982ebd739825429aa5ef118222387b0384f0393a1354242a6a9c"
   },
   {
    "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/lane/EXECUTE_RECEIPT.json",
-   "git_blob_id": "8a568b1f5f4f502b2159f5995591868be880d861"
+   "bytes": 7088,
+   "sha256": "7c5c25c4e9a020ce3d3ba23766432e12fdc2c6e5f046be1fa047ed0be06dd60d"
   },
   {
    "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/lane/EXECUTE_RECEIPT.json.attempts.ndjson",
-   "git_blob_id": "9a6f36c25cec44513a3a09ccac480dc001cd0944"
+   "bytes": 2652,
+   "sha256": "ca0279deedc16a8c282f998b8418dcf48e86116b46dbcabb641a2ebbbbaa8357"
   },
   {
    "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/lane/VERIFY_BRIEF.md",
-   "git_blob_id": "547d891ab0833361b99c53c75cca792106b023f3"
+   "bytes": 5379,
+   "sha256": "c98f3288cd9e865a6532ae3c6d820a5c3c830d21e362f1c0885aaeabe636f71f"
   },
   {
    "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/lane/VERIFY_RECEIPT.json",
-   "git_blob_id": "4fca38a8f7e5b78b57f19092c03819ffac10c96d"
+   "bytes": 6943,
+   "sha256": "59d9175ba9913be1122014f4d412cb2d7e99055329631c185927d4801e1ad6f2"
   },
   {
    "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/lane/VERIFY_RECEIPT.json.attempts.ndjson",
-   "git_blob_id": "c51e3036f79006ed263a35a2b5cc00534558934c"
+   "bytes": 2581,
+   "sha256": "2012b8631c059f1078e051a150454c066065bbc982e2f44c7124083efc7c0d02"
   },
   {
    "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/lane/VERIFY_REPORT.json",
-   "git_blob_id": "97cfe4eadae6907a2b5abd2c3d80051d30775b51"
+   "bytes": 409,
+   "sha256": "69713737f9715ab672d2dcf3c7201d91c1a412451eae30df0d18d887d7c64a55"
   },
   {
-   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/prompt-contract.json",
-   "git_blob_id": "f6b61ea9e3d66274d405b67e867f2508dd1914ca"
-  },
-  {
-   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/publish_019.py",
-   "git_blob_id": "d410cc4fe5e8e020f9e9e10621c93b9235e8cd3c"
-  },
-  {
-   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/republish_fix_prefix.py",
-   "git_blob_id": "ccbdca328a23c2e1c4debd82313de3c0ceabfb4f"
+   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/OWNER_ACTION_ITEMS_019.md",
+   "bytes": 5167,
+   "sha256": "a9c61f809295e4601f26fafaa2c3d73e91ae6cb29b9d067d5dff5ef48e7571c3"
   },
   {
    "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/subject/FAR_RULING_019.md",
-   "git_blob_id": "ef1a27f17529d0dbab5608d85d0df004e4802f68"
-  },
-  {
-   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/subject/HGK_TYPED_ADMISSION_FAR019.json",
-   "git_blob_id": "8a1a7952efa134e30e49ec99715811aa69b60780"
-  },
-  {
-   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/subject/RC1_OPEN_ITEM_UNIVERSE.json",
-   "git_blob_id": "1dfd777806317dae7eb8148d561121667eaed9ee"
+   "bytes": 8048,
+   "sha256": "6ab72b445f10084efd1e5b726451fe2da36688c7a32842f8c9edccca0acd9aff"
   },
   {
    "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/subject/SUBJECT.md",
-   "git_blob_id": "266c4e1c8ec1c3be02d23deddfa353ad01808a66"
-  },
-  {
-   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/subject/prompt-contract.json",
-   "git_blob_id": "f6b61ea9e3d66274d405b67e867f2508dd1914ca"
-  },
-  {
-   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/writer/fda_guard_hook.candidate.py",
-   "git_blob_id": "7e71440f7f129c456e6a5be67c302158fa27c432"
-  },
-  {
-   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/writer/guard_predicate_candidate.patch",
-   "git_blob_id": "54cfad7dc4830720231956336ab80d69475be445"
-  },
-  {
-   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/writer/hgk-lane-dispatch.candidate.py",
-   "git_blob_id": "6d1d06031d50d881308e583bf6f78dbb9c1d6663"
-  },
-  {
-   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/writer/nonvacuity_regression.py",
-   "git_blob_id": "55d0497863ba04f2ce0418e0fca281cd1b8bccf3"
-  },
-  {
-   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/writer/publish_broker.candidate.py",
-   "git_blob_id": "4574667f5e0db6471bb5a843f6a5c8ce1c30f71d"
-  },
-  {
-   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/writer/publisher_arg_guard.patch",
-   "git_blob_id": "746a052cbf679530312150e04232e4dd2a8d6cc0"
-  },
-  {
-   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/writer/publisher_arg_guard_test.py",
-   "git_blob_id": "e67c7c4d42da5bfc7420f29f1a2018be37faa6db"
-  },
-  {
-   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/writer/receipt_attempt_numbering.patch",
-   "git_blob_id": "b76ee8d52b67fd9c32970759704a83f921442ff5"
-  },
-  {
-   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/writer/receipt_attempt_numbering_test.py",
-   "git_blob_id": "80c869c65056cfadcf2411967184746fa2bc7c64"
-  },
-  {
-   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/writer/t2_src/CROSS_INDEX_V2.json",
-   "git_blob_id": "f86053c07cac6eefc761d0a9ad29ac2050a4a52a"
-  },
-  {
-   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/writer/t2_src/METADATA_SEMANTICS_V2.json",
-   "git_blob_id": "12583bbbc1ebff868972323de5dd541e09c57121"
-  },
-  {
-   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/writer/t2_src/cross_index_v2.py",
-   "git_blob_id": "fa67f1c413a88022056710549bb30ab7bc054fb1"
-  },
-  {
-   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/writer/t2_src/metadata_semantics.py",
-   "git_blob_id": "eb53f09750b906cd520515a33617b7fbfa462ace"
-  },
-  {
-   "path": "EVIDENCE/FAR-20261019-owner-authorized-closure/writer/t2_src/self_check_v2.py",
-   "git_blob_id": "8b1e7550ef4197ca6adb31a06c7e31af271d3f10"
+   "bytes": 314,
+   "sha256": "fc49b62dd2dd90b63266acae47318a669ca6712b31d1e552ae6113886b902787"
   }
  ]
 }
