@@ -1,0 +1,129 @@
+{
+  "schema": "CNV-PIPD-LS-SP-20261015-R7/MISSION-PLAN-SPEC-CHECKLIST/1",
+  "round": "R7-0",
+  "changeset": "R7-0-VALIDATOR-AND-CHECKER-ISOLATION",
+  "mission_id": "CNV-PIPD-LS-SP-20261015",
+  "generated_local": "2026-10-15T21:00:06+08:00",
+  "master_objective": {
+    "id": "MO-CNV-001",
+    "status": "NOT_ACHIEVED",
+    "carried": "R7-01..R7-09 分批；本輪只做 P0 slice"
+  },
+  "round_objective": {
+    "id": "MO-R7-0",
+    "text": "依 FAR run FAR-20261015-010 的裁決，執行兩個 P0 工程項：validator 硬化（M04/M06/M16 必拒收）與 checker 寫入根隔離，並把 R6R7 closure 收據以新前綴發布進 REPO，供外部驗收官再次驗收。"
+  },
+  "spec": {
+    "lanes": {
+      "plan_orchestrator": "Hermes, opencode-go/glm-5.3-flash",
+      "execute": "Codex CLI, opencode-go/deepseek-v4.1-flash",
+      "verify_security": "Codex CLI, opencode-go/glm-5.3-flash"
+    },
+    "authorized_prefix": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/**",
+    "frozen_prefix": "EVIDENCE/CNV-PIPD-LS-SP-20261015/** (merged at main b8ff8104; must stay byte-stable)",
+    "product_writeset": "C:/Projects/Agent_Workspace/PIPD/src/pipd_ls_sp/** (bound validator + its call面)",
+    "authority": "HGK admission 後才動工；maker != checker != AO；不自我驗收",
+    "claim_ceiling": "LOCAL / candidate-only"
+  },
+  "execution_list": [
+    {
+      "id": "AR-R7-01",
+      "task": "FAR 研究：三題裁決與執行方案",
+      "state": "DONE",
+      "evidence": [
+        "Fabric/fabric-autonomous-research/runs/FAR-20261015-010-r6r7-closure-and-r7-slice/ (16 artifacts)"
+      ]
+    },
+    {
+      "id": "AR-R7-02",
+      "task": "HGK typed admission（新專案、新 REQ/TS/WO）",
+      "state": "DONE",
+      "evidence": [
+        "HGK_TYPED_ADMISSION_R7.json",
+        "project CNV-R7-VALIDATOR-HARDEN-R7VH"
+      ]
+    },
+    {
+      "id": "AR-R7-03",
+      "task": "EXECUTE lane：validator 硬化 + checker 隔離 wrapper + 證據",
+      "state": "RUNNING"
+    },
+    {
+      "id": "AR-R7-04",
+      "task": "VERIFY lane：獨立重跑 M01..M18、diff 審查、fail-closed 與 denial 檢查",
+      "state": "PENDING"
+    },
+    {
+      "id": "AR-R7-05",
+      "task": "新前綴 packet 建立（R6R7 closure + FAR + R7 證據）",
+      "state": "PENDING"
+    },
+    {
+      "id": "AR-R7-06",
+      "task": "M2 式受信任範圍＋秘密掃描（新 prefix）",
+      "state": "PENDING"
+    },
+    {
+      "id": "AR-R7-07",
+      "task": "推送新分支 + Draft PR + 提交後外部讀回",
+      "state": "PENDING"
+    },
+    {
+      "id": "AR-R7-08",
+      "task": "return pack 與 R7-01..09 移交",
+      "state": "PENDING"
+    }
+  ],
+  "check_list": [
+    {
+      "id": "Q-R7-01",
+      "check": "writer 重跑：M04/M06/M16 → REJECT；原 7 個維持 REJECT；8 個維持 NOT_RUN",
+      "state": "PENDING"
+    },
+    {
+      "id": "Q-R7-02",
+      "check": "checker 獨立重跑同一 driver（不得沿用 writer 的 JSON）",
+      "state": "PENDING"
+    },
+    {
+      "id": "Q-R7-03",
+      "check": "diff 未弱化既有 predicate、validation 路徑無 LLM/網路",
+      "state": "PENDING"
+    },
+    {
+      "id": "Q-R7-04",
+      "check": "frozen context 缺失時 fail-closed（不得靜默 PASS）",
+      "state": "PENDING"
+    },
+    {
+      "id": "Q-R7-05",
+      "check": "未篡改的正例仍 PASS（regression）",
+      "state": "PENDING"
+    },
+    {
+      "id": "Q-R7-06",
+      "check": "已合併 R6R7 封存未被觸碰（blob id 比對）",
+      "state": "PENDING"
+    },
+    {
+      "id": "Q-R7-07",
+      "check": "checker 對 candidate root 的寫入被拒；未被拒則記 ACL_UNENFORCEABLE",
+      "state": "PENDING"
+    },
+    {
+      "id": "Q-R7-08",
+      "check": "新 prefix 集合等價 + 秘密掃描 + 提交後外部讀回",
+      "state": "PENDING"
+    }
+  ],
+  "not_in_scope": [
+    "R7-01/04/05/06/07/08/09 的執行（立 TaskSpec 移交）",
+    "Fresh G1 / DOC-05 / AO / Release（人力閘門）",
+    "221 cases / G-A..G-H / AUD-24 全量（需先適用性簽核）"
+  ],
+  "round_side_effects_to_disclose": [
+    "dispatcher 對 lane brief 之 marker 偵測拒絕了兩次派送（誤判：brief 內文的禁止語 'git push'、'publish' 被視為遠端寫入標記）→ 改寫 brief 文字後派送成功；lane_runs 已留 attempt1/attempt2 收據",
+    "FAR router 選 NATIVE_WITH_SELECTED_ARIS（challenger=aris/research-review）；未實際呼叫 ARIS 供應商，僅記錄 route 決策"
+  ],
+  "claim_ceiling": "LOCAL_ORCHESTRATION"
+}

@@ -1,0 +1,77 @@
+{
+  "schema": "CNV-PIPD-LS-SP-20261015/M2-TRUSTED-SCOPE-SECRETS/1",
+  "tool": {
+    "id": "m2_scan.py",
+    "version": "1.0.0",
+    "source_sha256": "acc2f08d92c9e72973ef3b51bf64c7beb8b7fc530c39132ac4766d0ed1f29951",
+    "executes_packet_content": false,
+    "note": "reads git objects only; never imports or runs anything from the packet"
+  },
+  "scanned": {
+    "repo_worktree": "C:/Projects/wt-cnv-r6",
+    "rev_input": "HEAD",
+    "rev_resolved": "a10f7bea645792048e3415443d417ffa3c2ac890",
+    "approved_prefix": "EVIDENCE/CNV-PIPD-LS-SP-20261015/",
+    "blobs_scanned": 581,
+    "bytes_scanned": 11096870,
+    "scan_digest_sha256": "cc7021f06c55e766069414168a5ce343c7a1247e052c6583c8e537d93a0dd619"
+  },
+  "scope": {
+    "out_of_prefix_or_traversal": [],
+    "symlinks": [],
+    "executable_bit_blobs": {
+      "count": 0,
+      "paths_sample": [],
+      "note": "archive artifacts with the executable bit are not executed by this tooling and must not be executed by consumers"
+    }
+  },
+  "secret_scan": {
+    "hard_patterns": [
+      "aws_access_key_id",
+      "aws_secret_access_key",
+      "github_pat_classic",
+      "github_pat_fine_grained",
+      "private_key_block",
+      "slack_token",
+      "openai_style_key",
+      "url_with_credentials"
+    ],
+    "soft_patterns": [
+      "secret_word_assignment",
+      "nonce_or_receipt_word"
+    ],
+    "hard_findings": [],
+    "soft_candidates": [
+      {
+        "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015/M2_TRUSTED_SCOPE_SECRETS.json",
+        "pattern": "secret_word_assignment",
+        "count": 2
+      },
+      {
+        "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015/R6_CHECKER/COPIES/probes/R6_CHECKER_checkpoint_drill_raw.json",
+        "pattern": "secret_word_assignment",
+        "count": 2858
+      },
+      {
+        "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015/R6_CHECKER/COPIES/probes/RUNNERS/probe_spine_lifecycle.py",
+        "pattern": "secret_word_assignment",
+        "count": 1
+      },
+      {
+        "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015/R6_DELIVERY/RUNNERS/probe_spine_lifecycle.py",
+        "pattern": "secret_word_assignment",
+        "count": 1
+      }
+    ],
+    "credential_shaped_names": [],
+    "operator_token": {
+      "token_file_present": true,
+      "token_value_sha256_prefix": "26e205f4bb03",
+      "occurrences_in_packet": 0,
+      "credential_file_name_mentions": 5,
+      "value_never_printed": true
+    }
+  },
+  "verdict": "PASS",
+  "claim_ceiling": "LOCAL_TRUSTED_SCAN (tool-side scan of published blobs; not an AO verdict)"
+}

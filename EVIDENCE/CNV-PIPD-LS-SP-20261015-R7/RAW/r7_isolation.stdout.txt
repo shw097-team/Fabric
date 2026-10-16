@@ -1,0 +1,257 @@
+{
+ "schema": "CNV-PIPD-LS-SP-20261015-R7/ISOLATION-PROOF/1",
+ "denial_fixture": {
+  "schema": "pipd-checker-isolation-denial-fixture/1",
+  "candidate_root": "C:\\Users\\user\\AppData\\Local\\Temp\\pipd-candidate-sandbox-giitnom6",
+  "subject_file": "C:\\Users\\user\\AppData\\Local\\Temp\\pipd-candidate-sandbox-giitnom6\\SUBJECT.json",
+  "subject_created_by_fixture": false,
+  "subject_sha256_before": "90ebd28429510a31d40791ead4406af297d98ee034dda1c46970c6d1478ad301",
+  "subject_sha256_after": "90ebd28429510a31d40791ead4406af297d98ee034dda1c46970c6d1478ad301",
+  "subject_unchanged": true,
+  "user": "user",
+  "before": {
+   "wrote_new_file": true,
+   "new_file_detail": "wrote and removed .pipd_write_probe.tmp",
+   "modified_existing_file": true,
+   "modify_detail": "appended and restored a byte"
+  },
+  "deny_ace": {
+   "operation": "deny_write_tree",
+   "targets": 5,
+   "failed": 0,
+   "commands": [
+    {
+     "command": [
+      "icacls",
+      "C:\\Users\\user\\AppData\\Local\\Temp\\pipd-candidate-sandbox-giitnom6\\src\\candidate.py",
+      "/deny",
+      "user:(WD,AD)"
+     ],
+     "exit": 0,
+     "stdout": "processed file: C:\\Users\\user\\AppData\\Local\\Temp\\pipd-candidate-sandbox-giitnom6\\src\\candidate.py\nSuccessfully processed 1 files; Failed processing 0 files",
+     "stderr": ""
+    },
+    {
+     "command": [
+      "icacls",
+      "C:\\Users\\user\\AppData\\Local\\Temp\\pipd-candidate-sandbox-giitnom6\\SUBJECT.json",
+      "/deny",
+      "user:(WD,AD)"
+     ],
+     "exit": 0,
+     "stdout": "processed file: C:\\Users\\user\\AppData\\Local\\Temp\\pipd-candidate-sandbox-giitnom6\\SUBJECT.json\nSuccessfully processed 1 files; Failed processing 0 files",
+     "stderr": ""
+    },
+    {
+     "command": [
+      "icacls",
+      "C:\\Users\\user\\AppData\\Local\\Temp\\pipd-candidate-sandbox-giitnom6\\README.md",
+      "/deny",
+      "user:(WD,AD)"
+     ],
+     "exit": 0,
+     "stdout": "processed file: C:\\Users\\user\\AppData\\Local\\Temp\\pipd-candidate-sandbox-giitnom6\\README.md\nSuccessfully processed 1 files; Failed processing 0 files",
+     "stderr": ""
+    },
+    {
+     "command": [
+      "icacls",
+      "C:\\Users\\user\\AppData\\Local\\Temp\\pipd-candidate-sandbox-giitnom6\\src",
+      "/deny",
+      "user:(WD,AD)"
+     ],
+     "exit": 0,
+     "stdout": "processed file: C:\\Users\\user\\AppData\\Local\\Temp\\pipd-candidate-sandbox-giitnom6\\src\nSuccessfully processed 1 files; Failed processing 0 files",
+     "stderr": ""
+    },
+    {
+     "command": [
+      "icacls",
+      "C:\\Users\\user\\AppData\\Local\\Temp\\pipd-candidate-sandbox-giitnom6",
+      "/deny",
+      "user:(WD,AD)"
+     ],
+     "exit": 0,
+     "stdout": "processed file: C:\\Users\\user\\AppData\\Local\\Temp\\pipd-candidate-sandbox-giitnom6\nSuccessfully processed 1 files; Failed processing 0 files",
+     "stderr": ""
+    }
+   ],
+   "command": [
+    "icacls",
+    "<tree, files+dirs+root>",
+    "/deny",
+    "user:(WD,AD)"
+   ],
+   "exit": 0,
+   "stderr": ""
+  },
+  "after": {
+   "wrote_new_file": false,
+   "new_file_detail": "PermissionError: [Errno 13] Permission denied: 'C:\\\\Users\\\\user\\\\AppData\\\\Local\\\\Temp\\\\pipd-candidate-sandbox-giitnom6\\\\.pipd_write_probe.tmp'",
+   "modified_existing_file": false,
+   "modify_detail": "PermissionError: [Errno 13] Permission denied: 'C:\\\\Users\\\\user\\\\AppData\\\\Local\\\\Temp\\\\pipd-candidate-sandbox-giitnom6\\\\SUBJECT.json'",
+   "read_subject": true,
+   "read_detail": "read 26 bytes"
+  },
+  "before_read": {
+   "read_subject": true,
+   "detail": "read 26 bytes"
+  },
+  "read_preserved": true,
+  "remove_deny_ace": {
+   "operation": "remove_deny_tree",
+   "targets": 5,
+   "failed": 0,
+   "commands": [
+    {
+     "command": [
+      "icacls",
+      "C:\\Users\\user\\AppData\\Local\\Temp\\pipd-candidate-sandbox-giitnom6",
+      "/remove:d",
+      "user"
+     ],
+     "exit": 0,
+     "stdout": "processed file: C:\\Users\\user\\AppData\\Local\\Temp\\pipd-candidate-sandbox-giitnom6\nSuccessfully processed 1 files; Failed processing 0 files",
+     "stderr": ""
+    },
+    {
+     "command": [
+      "icacls",
+      "C:\\Users\\user\\AppData\\Local\\Temp\\pipd-candidate-sandbox-giitnom6\\src",
+      "/remove:d",
+      "user"
+     ],
+     "exit": 0,
+     "stdout": "processed file: C:\\Users\\user\\AppData\\Local\\Temp\\pipd-candidate-sandbox-giitnom6\\src\nSuccessfully processed 1 files; Failed processing 0 files",
+     "stderr": ""
+    },
+    {
+     "command": [
+      "icacls",
+      "C:\\Users\\user\\AppData\\Local\\Temp\\pipd-candidate-sandbox-giitnom6\\README.md",
+      "/remove:d",
+      "user"
+     ],
+     "exit": 0,
+     "stdout": "processed file: C:\\Users\\user\\AppData\\Local\\Temp\\pipd-candidate-sandbox-giitnom6\\README.md\nSuccessfully processed 1 files; Failed processing 0 files",
+     "stderr": ""
+    },
+    {
+     "command": [
+      "icacls",
+      "C:\\Users\\user\\AppData\\Local\\Temp\\pipd-candidate-sandbox-giitnom6\\SUBJECT.json",
+      "/remove:d",
+      "user"
+     ],
+     "exit": 0,
+     "stdout": "processed file: C:\\Users\\user\\AppData\\Local\\Temp\\pipd-candidate-sandbox-giitnom6\\SUBJECT.json\nSuccessfully processed 1 files; Failed processing 0 files",
+     "stderr": ""
+    },
+    {
+     "command": [
+      "icacls",
+      "C:\\Users\\user\\AppData\\Local\\Temp\\pipd-candidate-sandbox-giitnom6\\src\\candidate.py",
+      "/remove:d",
+      "user"
+     ],
+     "exit": 0,
+     "stdout": "processed file: C:\\Users\\user\\AppData\\Local\\Temp\\pipd-candidate-sandbox-giitnom6\\src\\candidate.py\nSuccessfully processed 1 files; Failed processing 0 files",
+     "stderr": ""
+    }
+   ],
+   "exit": 0
+  },
+  "restored": {
+   "wrote": true,
+   "detail": "wrote and removed .pipd_write_probe.tmp"
+  },
+  "enforcement": "ENFORCED",
+  "verdict": "DENIED"
+ },
+ "copy_based_review": {
+  "prepare": {
+   "mode": "COPY_BASED_WORKAROUND",
+   "candidate_root": "C:\\Users\\user\\AppData\\Local\\Temp\\pipd-candidate-sandbox-giitnom6",
+   "review_root": "C:\\Users\\user\\AppData\\Local\\Temp\\pipd-iso-review-bmtueuwq\\subject",
+   "scratch_root": "C:\\Users\\user\\AppData\\Local\\Temp\\pipd-iso-review-bmtueuwq\\scratch",
+   "enforcement": "ENFORCED",
+   "note": "checker reviews the read-only copy at review_root and writes only under scratch_root; the live candidate root was read, never written"
+  },
+  "deny_ace_exit": 0,
+  "write_into_review_copy": {
+   "wrote": false,
+   "detail": "PermissionError: [Errno 13] Permission denied: 'C:\\\\Users\\\\user\\\\AppData\\\\Local\\\\Temp\\\\pipd-iso-review-bmtueuwq\\\\subject\\\\src\\\\candidate.py'"
+  },
+  "write_into_scratch": {
+   "wrote": true,
+   "detail": "wrote 3 bytes to checker_notes.txt"
+  },
+  "release": {
+   "removed_deny": {
+    "operation": "remove_deny_tree",
+    "targets": 5,
+    "failed": 0,
+    "commands": [
+     {
+      "command": [
+       "icacls",
+       "C:\\Users\\user\\AppData\\Local\\Temp\\pipd-iso-review-bmtueuwq\\subject",
+       "/remove:d",
+       "user"
+      ],
+      "exit": 0,
+      "stdout": "processed file: C:\\Users\\user\\AppData\\Local\\Temp\\pipd-iso-review-bmtueuwq\\subject\nSuccessfully processed 1 files; Failed processing 0 files",
+      "stderr": ""
+     },
+     {
+      "command": [
+       "icacls",
+       "C:\\Users\\user\\AppData\\Local\\Temp\\pipd-iso-review-bmtueuwq\\subject\\src",
+       "/remove:d",
+       "user"
+      ],
+      "exit": 0,
+      "stdout": "processed file: C:\\Users\\user\\AppData\\Local\\Temp\\pipd-iso-review-bmtueuwq\\subject\\src\nSuccessfully processed 1 files; Failed processing 0 files",
+      "stderr": ""
+     },
+     {
+      "command": [
+       "icacls",
+       "C:\\Users\\user\\AppData\\Local\\Temp\\pipd-iso-review-bmtueuwq\\subject\\README.md",
+       "/remove:d",
+       "user"
+      ],
+      "exit": 0,
+      "stdout": "processed file: C:\\Users\\user\\AppData\\Local\\Temp\\pipd-iso-review-bmtueuwq\\subject\\README.md\nSuccessfully processed 1 files; Failed processing 0 files",
+      "stderr": ""
+     },
+     {
+      "command": [
+       "icacls",
+       "C:\\Users\\user\\AppData\\Local\\Temp\\pipd-iso-review-bmtueuwq\\subject\\SUBJECT.json",
+       "/remove:d",
+       "user"
+      ],
+      "exit": 0,
+      "stdout": "processed file: C:\\Users\\user\\AppData\\Local\\Temp\\pipd-iso-review-bmtueuwq\\subject\\SUBJECT.json\nSuccessfully processed 1 files; Failed processing 0 files",
+      "stderr": ""
+     },
+     {
+      "command": [
+       "icacls",
+       "C:\\Users\\user\\AppData\\Local\\Temp\\pipd-iso-review-bmtueuwq\\subject\\src\\candidate.py",
+       "/remove:d",
+       "user"
+      ],
+      "exit": 0,
+      "stdout": "processed file: C:\\Users\\user\\AppData\\Local\\Temp\\pipd-iso-review-bmtueuwq\\subject\\src\\candidate.py\nSuccessfully processed 1 files; Failed processing 0 files",
+      "stderr": ""
+     }
+    ],
+    "exit": 0
+   },
+   "deleted_copy": "C:\\Users\\user\\AppData\\Local\\Temp\\pipd-iso-review-bmtueuwq\\subject"
+  },
+  "verdict": "DENIED"
+ }
+}

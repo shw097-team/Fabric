@@ -1,0 +1,31 @@
+schema: LOGICAL_FAR_PROPOSED_EVOLUTION_V1
+candidate_only: true
+{
+  "change_set": "R7-0-VALIDATOR-AND-CHECKER-ISOLATION",
+  "workorders_proposed": [
+    {
+      "id": "WO-R7-VALHARD",
+      "writer": "Codex CLI EXECUTE lane (opencode-go/deepseek-v4.1-flash)",
+      "scope": "PIPD bound validator: reject M04/M06/M16 tamper classes",
+      "writeset": "C:/Projects/Agent_Workspace/PIPD/src/pipd_ls_sp/** + R7-0 handover evidence",
+      "evidence": [
+        "R7_MUTATIONS_18_RERUN.json",
+        "R7_WRITE_SET.json",
+        "R7_WRITER_RECEIPT.json",
+        "raw stdout"
+      ]
+    },
+    {
+      "id": "WO-R7-CHECKDENY",
+      "writer": "HGK runner configuration (no product change)",
+      "scope": "checker write root isolation + denial fixture",
+      "evidence": [
+        "R7_CHECKER_DENIAL.json"
+      ]
+    }
+  ],
+  "checker_route": "Codex CLI VERIFY/SECURITY lane (opencode-go/glm-5.3-flash), independent",
+  "publication": "new branch + Draft PR, prefix EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/",
+  "rollback": "revert the PR merge commit or drop the branch; product change reverted in its own worktree",
+  "claim_ceiling": "LOCAL / candidate-only"
+}

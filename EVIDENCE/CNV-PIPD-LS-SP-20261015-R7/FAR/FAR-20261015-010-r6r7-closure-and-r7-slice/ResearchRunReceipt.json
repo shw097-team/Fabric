@@ -1,0 +1,108 @@
+{
+  "schema": "FAR-RESEARCH-RUN-RECEIPT/1",
+  "run_id": "FAR-20261015-010-r6r7-closure-and-r7-slice",
+  "route": {
+    "task_class": "RESEARCH_LITERATURE_REPO",
+    "decision": "NATIVE_WITH_SELECTED_ARIS",
+    "reason_code": "FAR_ROUTE_NATIVE_ARIS",
+    "primary": "fabric-autoresearch-native",
+    "challenger": "aris",
+    "providers_eligible": [
+      "native",
+      "prime"
+    ],
+    "block_reason": null,
+    "degrade_note": null,
+    "methods": [
+      "research-lit",
+      "novelty-check",
+      "research-review"
+    ],
+    "challenger_method": "research-review"
+  },
+  "artifacts": [
+    {
+      "path": "CandidateResearch.yaml",
+      "bytes": 4554,
+      "sha256": "b3c0a40807ec7f33270273b561cd44052ae4507e9b6a6fa5372a6e8c84a0fb35"
+    },
+    {
+      "path": "ClaimLedger.tsv",
+      "bytes": 1585,
+      "sha256": "71d8f7c4a277ef48ae6ea3476ccc6126303ba899a7294047077457328a47d436"
+    },
+    {
+      "path": "ContradictionLedger.tsv",
+      "bytes": 518,
+      "sha256": "f352cc38de24acff792e8a932a133596cb24c0c3c22dfbd3bc7e81d81ec2a58b"
+    },
+    {
+      "path": "DisagreementLedger.tsv",
+      "bytes": 166,
+      "sha256": "0ba736451fb46e56476213dc863ab311874d006f989004453d9526c3feb68796"
+    },
+    {
+      "path": "ExperimentPlan.yaml",
+      "bytes": 354,
+      "sha256": "61769d8adb9943dbcca311239350741ed0658f69410a3d648e9345f82a0b65af"
+    },
+    {
+      "path": "HypothesisLedger.tsv",
+      "bytes": 207,
+      "sha256": "f4ef1e1106e74f540490ff6662585b29a2f89eb0a0167ec41c37a90316549b93"
+    },
+    {
+      "path": "OpenQuestionLedger.tsv",
+      "bytes": 504,
+      "sha256": "9615b6302f9ad848a31f5c41ed985fb5b933065735cb246afacaea929e2cb7ea"
+    },
+    {
+      "path": "ProposedEvolution.yaml",
+      "bytes": 1190,
+      "sha256": "cd406705cefd0c960e6958c2985c1d88ad13abb6de4ba05cbcb7c8b0f4519d03"
+    },
+    {
+      "path": "RejectedAlternativeLedger.tsv",
+      "bytes": 653,
+      "sha256": "b8db1798db0939661252a4b3f5211f0451954ce60d9ef80da503b3d2e40ddea9"
+    },
+    {
+      "path": "ResearchHandoff.yaml",
+      "bytes": 309,
+      "sha256": "78951f46e0206601c9a5f7d1da4b5f038842293fd144e947683f35cb6f66d194"
+    },
+    {
+      "path": "ResearchPlan.yaml",
+      "bytes": 1133,
+      "sha256": "7f92fce9f298f297b2ead77455279175011f720579795039b1f5eed90e2262ee"
+    },
+    {
+      "path": "ResearchRequest.yaml",
+      "bytes": 821,
+      "sha256": "9212721c8e0e6d1541ad3ff0534b1d27c82041bcf6b912501ab4de78a4f5fd76"
+    },
+    {
+      "path": "ResearchSourceDenominator.tsv",
+      "bytes": 1827,
+      "sha256": "8883b8fabdc94050edd4070a711f1172d30bf94e8a1d5011beab2b49de7e4145"
+    },
+    {
+      "path": "ResearchSynthesis.md",
+      "bytes": 2192,
+      "sha256": "e58a800d4f51aa66b8f6274fad46460c37f3ef97101e96cbf2525d2ee9cb7006"
+    },
+    {
+      "path": "SourceDispositionLedger.tsv",
+      "bytes": 455,
+      "sha256": "305e7e2e176fe5f25b033a7d8f91e3457c14adfec86f262c1cffe980c996b835"
+    },
+    {
+      "path": "SourceSnapshotLedger.tsv",
+      "bytes": 1034,
+      "sha256": "d9e9156cea4b222ae2af502cf5ee543469d60a724ff48316fd87ea4dedb9b523"
+    }
+  ],
+  "verdict": "PARTIAL",
+  "claim_ceiling": "LOCAL / candidate-only",
+  "note": "candidate research product for the owner; never an acceptance"
+}

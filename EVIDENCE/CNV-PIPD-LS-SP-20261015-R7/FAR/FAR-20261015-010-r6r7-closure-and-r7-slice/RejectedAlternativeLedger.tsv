@@ -1,0 +1,6 @@
+id	alternative	reason_rejected
+RA-01	把三個收據直接 push 進已合併的 EVIDENCE/CNV-PIPD-LS-SP-20261015/	破壞已綁定的 byte-stable 封存與既有外部讀回
+RA-02	建立第二控制平面／新 DB／常駐 CI 服務來承載 R7 驗證	過度工程，且 EIA §7 已明確 N/A 否決
+RA-03	本輪一次跑完 221 live + G-A..H + AUD-24	高成本、低邊際價值；在適用性簽核前結果不可信
+RA-04	由 maker 自行重跑並自簽 R7 修正的驗收	違反 SoD；EIA §8 要求 maker ≠ checker
+RA-05	把 checker 隔離僅以 lane 名稱／模型名稱完成	EIA §4.2 已證否；必須以檔案系統層拒絕為證據

@@ -1,0 +1,30 @@
+{
+  "schema": "CNV-PIPD-LS-SP-20261015/MAINTAINER-PREFIX-APPROVAL/1",
+  "status": "REQUESTED_PENDING_OWNER_SIGNATURE",
+  "approval_kind": "ONE_TIME_PREFIX_APPROVAL_FOR_THIS_PR",
+  "requested_from": "Fabric repository Maintainer / Owner (human)",
+  "requested_by": "HGK narrow-repair orchestration (maker side; NOT an approval authority)",
+  "subject": {
+    "repo": "shw097-team/Fabric",
+    "pr": 3,
+    "branch": "evidence/cnv-pipd-ls-sp-20261015-r6",
+    "base": "266f8d65cf9b21c3b37c1c243946a5c828cf973b",
+    "head_observed_at_request": "e6a5ce5899edb62e37c2fb9bd340b43673903141",
+    "head_at_approval": "TO_BE_FILLED_FROM_POST_COMMIT_READBACK",
+    "approved_paths": [
+      "EVIDENCE/CNV-PIPD-LS-SP-20261015/**"
+    ],
+    "candidate_only": true,
+    "production_effect": "none",
+    "embedded_scripts": "present as archive artifacts; MUST NOT be executed",
+    "rollback": "maintainer-authorized `git revert <merge-commit>` or a new PR; never force-push main"
+  },
+  "explicitly_not_granted_by_this_file": [
+    "AO / Release authority",
+    "runtime or production promotion",
+    "permission to modify product paths",
+    "permission to auto-execute packet content"
+  ],
+  "proposal_note": "APPROVAL-LIST-PROPOSAL on main stays a PROPOSAL; this request is a separate, single-PR, single-prefix approval. The maker cannot sign it, and this round does not mark the PR ready or merge it.",
+  "claim_ceiling": "LOCAL_ORCHESTRATION"
+}

@@ -1,0 +1,11 @@
+POSITIVE validate_pi verdict: PASS checked: 10 findings: 0
+M16 (with frozen ctx) verdict: FAIL | first_fail: TraceLink: content_hash does not match the record body (body edited without re-issuing identity)
+M16 (no frozen ctx) verdict: FAIL | first_fail: TraceLink: content_hash does not match the record body (body edited without re-issuing identity)
+M16 positive verdict: PASS | first_fail: NONE
+M06 (with frozen ctx) verdict: FAIL | first_fail: RequirementAtom: content_hash does not match the record body (body edited without re-issuing identity)
+M06 (no frozen ctx) verdict: FAIL | first_fail: RequirementAtom: content_hash does not match the record body (body edited without re-issuing identity)
+M06 positive verdict: PASS | first_fail: NONE
+M04 (with frozen ctx) verdict: FAIL | first_fail: ProfileBinding: content_hash does not match the record body (body edited without re-issuing identity)
+M04 (no frozen ctx) verdict: FAIL | first_fail: ProfileBinding: content_hash does not match the record body (body edited without re-issuing identity)
+M04 positive (ASSURED intact) verdict: PASS | first_fail: NONE
+PROFILE-unknown fail-closed verdict: FAIL | first_fail: ProfileBinding: content_hash does not match the record body (body edited without re-issuing identity)

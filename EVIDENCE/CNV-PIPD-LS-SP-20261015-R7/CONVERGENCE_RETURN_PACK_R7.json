@@ -1,0 +1,92 @@
+{
+  "schema": "CNV-PIPD-LS-SP-20261015-R7/CONVERGENCE-RETURN-PACK/1",
+  "mission": "CNV-PIPD-LS-SP-20261015",
+  "changeset": "R7-0-VALIDATOR-AND-CHECKER-ISOLATION",
+  "generated_utc": "2026-10-15T15:51:44+00:00",
+  "authority": "HG-KSEOS (control plane); HG-KSEOS remains the only work-order/evidence plane. This packet is a projection for external inspection.",
+  "external_verdicts_unchanged": {
+    "scope_verdict": "PARTIAL_CHALLENGE",
+    "full_convergence_verdict": "TEMP_CLOSED_CHALLENGE",
+    "production_decision": "FAIL_CLOSED",
+    "canonical_acceptance": "NOT_ISSUED",
+    "merge_decision": "CONDITIONAL_APPROVE_AFTER_MINIMAL_METADATA_AND_SCOPE_CHECKS"
+  },
+  "claim_ceiling": "LOCAL / candidate-only; this round issues no verdict, no approval, no Gate PASS",
+  "eia_r6_findings_disposition": [
+    {
+      "id": "EIA-R6-01 (M1 publication set)",
+      "status": "CLOSED_IN_R6R7",
+      "evidence": "PACKET_MANIFEST.json /2 delivered-set in EVIDENCE/CNV-PIPD-LS-SP-20261015/** (merged, main b8ff8104)"
+    },
+    {
+      "id": "EIA-R6-02 (M2 trusted scope + secret scan)",
+      "status": "CLOSED_IN_R6R7__REPEATED_FOR_R7",
+      "evidence": "R6R7_CLOSURE/R6R7_M2_SCAN_AT_FINAL_HEAD.json; M2_TRUSTED_SCOPE_SECRETS_R7.json (PASS: 210 blobs, 0 violations, 0 secrets, credential value 0 occurrences)"
+    },
+    {
+      "id": "EIA-R6-03 (checker able to write the candidate root)",
+      "status": "MEASURED_WITH_PHASED_EVIDENCE",
+      "evidence": "RAW/isolation_selftest.stdout.txt + RAW/r7_isolation.stdout.txt (write succeeds -> deny ACE -> denied -> ACL restored); checker reproduced it in R7_CHECKER_ATTEMPT2/RAW/ck_isolation.stdout.txt (re-cited in the authoritative attempt 3). Residual: enforcement is host-dependent (icacls) and a non-Windows or non-ACL host must record ACL_UNENFORCEABLE rather than pass."
+    },
+    {
+      "id": "EIA-R6-04 (M3 maintainer authorization + merge)",
+      "status": "CLOSED_IN_R6R7",
+      "evidence": "R6R7_CLOSURE/M3_MAINTAINER_APPROVAL.json + M3_MAINTAINER_APPROVAL_REQUEST.json; merge commit b8ff8104 on main; readback R6R7_CLOSURE/R6R7_POST_COMMIT_READBACK.json"
+    },
+    {
+      "id": "EIA-R6-05..09 (residual scope/coverage challenges)",
+      "status": "PARTIALLY_ADDRESSED__REMAINDER_OPEN",
+      "evidence": "R6R7_CLOSURE/R7_BLOCKERS_AND_TASKS.json (R7-01..R7-09) and FAR/FAR-20261015-010-* (adjudication: denominator work is sequenced behind an applicability sign-off; human gates stay human)"
+    }
+  ],
+  "r7_0_engineering_result": {
+    "claim": "the PIPD bound validator now rejects the three blind-spot mutations",
+    "maker": "R7_MUTATIONS_18_RERUN.json (executed 10, detected 10, not_detected 0, not_run 8) + R7_WRITER_RECEIPT.json",
+    "checker": "R7_CHECKER/R7_CHECKER_VERDICT.json (CHECKER-VERDICT/3): M04/M06/M16 REJECT with named mechanisms, seven prior detections unchanged, eight NOT_RUN, no weakening, isolation phased raw, suite 7 failed/319 passed identical on both trees (CONFIRMED_PRE_EXISTING)",
+    "verdict": "PENDING_OWNER",
+    "first_fail": null,
+    "maker_artifact_warning": "R7_WRITER_RECEIPT.json is a maker self-report; R7_WRITER_RECEIPT.json.self_check_note and R7_NON_CLAIMS.md state the ceiling"
+  },
+  "artifacts": {
+    "validator_diff": "R7_VALIDATOR_DIFF.patch",
+    "write_set": "R7_WRITE_SET.json",
+    "hardening_analysis": "R7_VALIDATOR_HARDENING.md",
+    "checker_disposition": "R7_CHECKER_DISPOSITION.md",
+    "side_effects_and_incidents": "R7_SIDE_EFFECTS.json",
+    "tooling_findings": "R7_TOOLING_FINDINGS.json",
+    "restore_record": "R6_DELIVERY_RAW_RESTORE.json",
+    "evidence_scope": "EVIDENCE_SCOPE.md",
+    "acceptor_guide": "R7_EXTERNAL_ACCEPTOR_GUIDE.md",
+    "non_claims": "R7_NON_CLAIMS.md",
+    "baseline_main": "R7_BASELINE_MAIN.json",
+    "round_plan": "MISSION_PLAN_SPEC_CHECKLIST_R7.json",
+    "hgk_admission": "HGK_TYPED_ADMISSION_R7.json"
+  },
+  "verification_commands": [
+    "python m2_scan.py --rev <branch-head> --worktree <packet-worktree> --out <file> --prefix EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/",
+    "python -m pytest tests -q   # in the product tree: expect 7 failed / 319 passed / 2 skipped, identical pre/post change",
+    "git hash-object --no-filters <file>  # compare with the remote tree entry; do not use text filters on evidence bytes"
+  ],
+  "open_items_not_closed_here": [
+    "Fresh G1",
+    "DOC-05 admission",
+    "AO / Release",
+    "221 acceptance cases",
+    "Gates G-A..G-H",
+    "AUD-24 (0/24)",
+    "18 PI / 10 PD / 64+129 trace denominator",
+    "five effect planes",
+    "PKG source #6 (FAIL_CLOSED, not byte-reconstructible)",
+    "20 KP *-R04 polarity defect (isolated)",
+    "4 open R6 WorkOrders",
+    "HGK residue: 3 PLAN_READY projects from failed admissions",
+    "checker-authorized write-root isolation is host-dependent"
+  ],
+  "files_published_with_sha256": {
+    "R7_CHECKER_VERDICT.json": "46d25d4c7e744ab6f378a65b7229d221aba15e67ccc65a3a691e20ca441884c3",
+    "R7_MUTATIONS_18_RERUN.json": "2d886383e6d6f6f88fc4c7676e9aeefeb360542746cbc9eb4e47315611020a66",
+    "R7_WRITER_RECEIPT.json": "72be0064944d308d50b5bcba7100f8a2ff2277ce2d57f38f62b9a8a0dc08030b",
+    "R7_VALIDATOR_DIFF.patch": "6dbf5367f7f44b794ce6885ac2faf7fbcc7eea4533193eca46e2a85b9ec634d8",
+    "M2_TRUSTED_SCOPE_SECRETS_R7.json": "a65389b166024c768bc5cbbf8c6b2966b1e30c84219aa7227dee7f4c2453e300"
+  }
+}

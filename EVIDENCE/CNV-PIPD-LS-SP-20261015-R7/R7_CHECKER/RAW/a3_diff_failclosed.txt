@@ -1,0 +1,9 @@
+13:+        # validator fails closed (UNBOUND_FROZEN_CONTEXT) instead of silently passing.
+106:+    fails closed with an explicit ``UNBOUND_FROZEN_CONTEXT`` finding instead of silently passing.
+136:+        # discharged, so the validator fails closed rather than passing an unverifiable reference.
+145:+                    out.append("TraceLink: UNBOUND_FROZEN_CONTEXT: "
+184:+        # validator FAILS CLOSED with UNBOUND_FROZEN_CONTEXT instead of silently passing - a missing
+192:+            out.append(f"ProfileBinding: UNBOUND_FROZEN_CONTEXT: profile {profile!r} has no frozen "
+208:+                out.append(f"ProfileBinding: UNBOUND_FROZEN_CONTEXT: profile {profile!r} absent "
+251:+    validator's fail-closed branch for that binding still fires.
+

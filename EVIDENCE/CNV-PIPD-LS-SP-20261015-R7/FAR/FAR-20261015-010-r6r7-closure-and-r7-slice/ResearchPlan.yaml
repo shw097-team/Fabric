@@ -1,0 +1,11 @@
+schema: LOGICAL_FAR_RESEARCH_PLAN_V1
+subquestions: ["哪些未閉合項必須現在工程化", "R7 是否開跑、以何種 slice", "workspace-only 收據是否需入 REPO"]
+claim_classes: ["engineering_necessity", "authority_gate", "denominator_sequencing", "reproducibility"]
+source_classes: ["pkg_authority", "prompt_brief", "external_review", "repo_evidence", "hgk_machine_truth"]
+query_strategy: ["唯讀定位既有 artifact 與原始碼", "以 R6 原始紀錄交叉比對 EIA 裁決", "以 HGK machine truth 驗證准入與車道"]
+candidate_methods_providers: ["fabric-autoresearch-native", "aris"]
+challenge_trigger: ["challenge_required=True → 對每個建議提出對立論證並記錄處置"]
+experiment_trigger: ["不需要新的世界效應實驗；以既有 R6 原始紀錄 + 重跑 mutation driver 為實驗面"]
+stop_criteria: ["三題皆有可執行結論且每一建議有成本/風險/最小修補"]
+abstain_criteria: ["若 bound validator 位址不可唯讀確認 → 對 R7-02 宣告 ABSTAIN 並改立 OpenQuestion"]
+budget_allocation: {"read_only_sources": 8, "lane_runs": "writer 1 + checker 1"}

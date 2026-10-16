@@ -1,0 +1,46 @@
+claim_ceiling: LOCAL / candidate-only
+== R7-0 selfcheck started at 2026-10-15T16:08:02+00:00 ==
+       guard probes: outside-write-refused=True | git-push-refused=True | rev-parse-allowed=True (offline, no effects)
+
+== FULL CHECKS ==
+[1] local branch == remote branch head
+       command: git -C C:/Projects/wt-cnv-r7 rev-parse HEAD  |  API /repos/.../branches/{branch}
+       local=7d610e5821b6eddd3969cd537f05efe81fdd54b6 | remote=7d610e5821b6eddd3969cd537f05efe81fdd54b6 | local record head_after_r7=7d610e5821b6eddd3969cd537f05efe81fdd54b6
+       result: PASS
+[2] blob inventory under EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/ (--no-filters bytes)
+       command: GET repos/.../git/trees/{head}?recursive=1  x  local walk blob-id rehash
+       remote=212 blobs | local files=212 | MISSING=0 | LOCAL_ONLY=0 | MISMATCHES=0
+       result: PASS
+[3] packet manifest reconciliation
+       command: GET repos/.../contents/PACKET_MANIFEST.json (raw bytes -> sha256) + blob count from [2]
+       file_count=212 | tracked_file_count=212 | local_only_excluded=0 | tracked_inventory=212
+       c1 tracked==live blobs (212==212): True
+       c2 file_count - tracked == len(local_only_excluded) (212-212==0): True
+       manifest bytes sha256=c5fc66e4dd22470c... matches expected (c5fc66e4...): True
+       result: PASS
+[4] merged archive untouched @ main
+       command: GET repos/.../branches/main + GET git/trees/{main}?recursive=1 + GET contents EVIDENCE/CNV-PIPD-LS-SP-20261015/PACKET_MANIFEST.json (raw -> sha256)
+       main=b8ff81043e47 | expected=b8ff81043e47 | c1: True
+       frozen blobs=581 | expected=581 | c2: True
+       manifest sha256=27ba42f7cb32d9f4... | expected=27ba42f7... | c3: True
+       result: PASS
+[5] M2 trusted-scope/secrets record
+       command: read M2_TRUSTED_SCOPE_SECRETS_R7.json locally (sha256=a65389b166024c76...) | parse
+       verdict=PASS | scope violations (out_of_prefix=0 + symlinks=0 + exec_bit=0)=0
+       hard secret findings=0 | scan_digest=e4f913244cd649c4...
+       result: PASS
+[6] checker attempt-3 verdict parse
+       command: parse R7_CHECKER_ATTEMPT3/R7_CHECKER_VERDICT.json locally (no network)
+       schema=CNV-PIPD-LS-SP-20261015-R7/CHECKER-VERDICT/3 (expected CNV-PIPD-LS-SP-20261015-R7/CHECKER-VERDICT/3): True
+       overall_verdict=PENDING_OWNER in {PENDING_OWNER, CHALLENGED}: True
+       items=6 ids=['1', '2', '3', '4', '5', '6'] | all item verdicts in allowed set: True | first_fail=None
+       result: PASS
+
+== VERDICT ==
+1=PASS 2=PASS 3=PASS 4=PASS 5=PASS 6=PASS
+OVERALL_SELFCHECK_VERDICT: PASS
+
+REPAIR MODE NOTE: repairs touched only these files (if any): 
+
+claim_ceiling: LOCAL / candidate-only. No acceptance, approval, Gate PASS, merge authorisation, or production effect is claimed. Unverifiable claims (provider/model attestation, upstream CI, the 221-case acceptance, voided attempt-1 evidence) remain explicitly unverifiable and are not upgraded.
+== R7-0 selfcheck complete ==

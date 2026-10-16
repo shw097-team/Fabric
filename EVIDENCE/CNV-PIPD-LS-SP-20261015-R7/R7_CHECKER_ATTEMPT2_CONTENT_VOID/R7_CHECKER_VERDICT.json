@@ -1,0 +1,88 @@
+{
+  "schema": "CNV-PIPD-LS-SP-20261015-R7/CHECKER-VERDICT/2",
+  "changeset": "R7-0-VALIDATOR-AND-CHECKER-ISOLATION",
+  "attempt": 2,
+  "checker_lane": "VERIFY/SECURITY",
+  "provider_model_claimed": "opencode-go/glm-5.3-flash",
+  "producer": "Codex CLI bounded checker VERIFY/SECURITY lane",
+  "boundary_violations": [],
+  "first_fail": null,
+  "claim_ceiling": "LOCAL / candidate-only; verdict is a candidate for the Owner, never an acceptance, approval or merge authorisation",
+  "overall_verdict": "PENDING_OWNER",
+  "items": [
+    {
+      "id": "1",
+      "claim": "Mutation re-run: M04, M06 and M16 now REJECT; the seven previously detected mutations still REJECT; the eight never-executed mutations remain NOT_RUN.",
+      "method": "Copied R6_DELIVERY into MUTCOPY under my own write root with paths redirected to a copy of the changed product tree; ran probe_mutations.py for m01,m03,m04,m05,m06,m11,m12,m14,m16,m18 and confirmed m02,m07,m08,m09,m10,m13,m15,m17 have no constructible code path on this host; read each stdout verdict.",
+      "evidence_path": "R7_CHECKER_ATTEMPT2/RAW/ck_m04.stdout.txt",
+      "verdict": "CONFIRMED",
+      "note": "M04/M06/M16 observed REJECT where baseline MUTATIONS_18.json recorded ACCEPT; M01/M03/M05/M11/M12/M14/M18 still REJECT with unchanged signatures; M02/M07/M08/M09/M10/M13/M15/M17 stay NOT_RUN. Raw mutations receipts for my copy live under MUTCOPY/R6_DELIVERY/RAW/."
+    },
+    {
+      "id": "2",
+      "claim": "R7_VALIDATOR_DIFF.patch creates no weakening: no existing predicate is deleted or loosened, new predicates are reachable from public entry points, and missing/ambiguous frozen context fails closed.",
+      "method": "Regenerated the writer's own unified diff from the changed product copy in my write root (git diff of cli.py, pipeline.py, validate.py) and compared it line-by-line to R7_VALIDATOR_DIFF.patch (diffcount 0 after normalising index lines); inspected each changed block for removed or conditionally bypassed predicates and traced the new pipeline through the cli.run validate entry.",
+      "evidence_path": "R7_CHECKER_ATTEMPT2/INPUTS/R7_VALIDATOR_DIFF.patch",
+      "verdict": "CONFIRMED",
+      "note": "DIGEST_BOUND extends RELEASE_BOUND to three additional record families; the self-digest predicate becomes strictly wider. frozen_context=None now triggers UNBOUND_FROZEN_CONTEXT rather than a silent pass; unknown profiles refuse the same way."
+    },
+    {
+      "id": "3",
+      "claim": "Blind-spot specifics: M04 profile-downgrade, M06 oracle-expected and M16 trace digest are rejected for the intended mechanism, even when the identity digest is resealed.",
+      "method": "Adapted the writer's probe_r7_strong.py to import my own checkproduct/PIPD copy (path-corrected) and ran it inside my write root; read all four outcomes.",
+      "evidence_path": "R7_CHECKER_ATTEMPT2/RAW/ck_probe_r7_strong.stdout.txt",
+      "verdict": "CONFIRMED",
+      "note": "M16-strong: TraceLink to_hash fails against the frozen subject-digest map. M06-strong: oracle.expected=999 contradicts clause polarity MUST->required. M04-strong: assurance weaker than the frozen requirement for ASSURED. PROFILE-unknown still fails closed UNBOUND_FROZEN_CONTEXT."
+    },
+    {
+      "id": "4",
+      "claim": "New checks are deterministic: no network, clock, randomness or model call in the changed validation path.",
+      "method": "Selected-String scan of the three touched product files for network/clock/randomness/model-related imports and calls; read the changed validate.py, pipeline.py and cli.py logic under my own copy.",
+      "evidence_path": "R7_CHECKER_ATTEMPT2/RAW/ck_probe_r7_strong.stdout.txt",
+      "verdict": "CONFIRMED",
+      "note": "derive_frozen_context builds its maps purely from caller-held PI data; the only os.environ use in these three files is the pre-existing allowed-roots path, untouched by this change."
+    },
+    {
+      "id": "5",
+      "claim": "Archive integrity at main: 581 blob ids under EVIDENCE/CNV-PIPD-LS-SP-20261015/**, PACKET_MANIFEST.json sha256 matches the frozen value, and all 14 restored R6_DELIVERY files byte-match the merged bytes.",
+      "method": "git clone --bare --depth 1 of Fabric into my own write root (checkproduct/fabric_probe.git); ls-tree traversal of HEAD:EVIDENCE/CNV-PIPD-LS-SP-20261015; cat-file extraction and sha256 for PACKET_MANIFEST.json and for each of the 14 restored R6_DELIVERY files listed in R6_DELIVERY_RAW_RESTORE.json.",
+      "evidence_path": "R7_CHECKER_ATTEMPT2/RAW/ck_github_PACKET_MANIFEST.json",
+      "verdict": "CONFIRMED",
+      "note": "main = b8ff81043e47e4b652522be34444bf52fcf4d65e; 581 blobs under the EVIDENCE prefix; PACKET_MANIFEST.json blob sha256 = 27ba42f7cb32d9f490d8897ef0205b0b70cd13bb2b7bc6344e717e5bffbd118b; 14/14 restored files byte-identical to merged bytes (zero drift)."
+    },
+    {
+      "id": "6",
+      "claim": "Checker write-root isolation is enforced: write-before-deny succeeds, write-after-deny is denied, and the ACL is removable/restorable afterwards.",
+      "method": "Ran the writer's run_r7_isolation.py from my own temp directory against a candidate/ subject dir; parsed verdict, icacls receipts and phase results.",
+      "evidence_path": "R7_CHECKER_ATTEMPT2/RAW/ck_isolation.stdout.txt",
+      "verdict": "CONFIRMED",
+      "note": "verdict=DENIED, 13/13 icacls invocations exit 0, write-before-ACE succeeds, write-after-ACE raises PermissionError, and the ACE is removed/restorable at the end."
+    },
+    {
+      "id": "7",
+      "claim": "Product suite 7 failed / 319 passed / 2 skipped / 34 subtests: all 7 failures pre-existing, not change-induced.",
+      "method": "Ran python -m pytest tests -q on my own copy of the changed product tree and again on my own copy of the pre-change snapshot (pre/); compared FAILED lines and counts.",
+      "evidence_path": "R7_CHECKER_ATTEMPT2/RAW/r7_changed_pytest.stdout.txt",
+      "verdict": "CONFIRMED_PRE_EXISTING",
+      "note": "Same 7 failures on both trees: 4 in test_publication_projection.py and 3 in test_tooling_executes.py, identical failure signatures. The r5-s4-candidate marker-ref absence reproduces on both. Evidence pair: r7_changed_pytest.stdout.txt vs r7_pre_pytest.stdout.txt."
+    }
+  ],
+  "unverifiable_claims": [
+    {
+      "claim": "Provider/model attestation for 'opencode-go/glm-5.3-flash' (CHECKER lane) and for the writer's reported 'opencode-go/deepseek-v4.1-flash'.",
+      "why": "Model attribution rests on the lane brief plus recorded usage rows; the writer's own honest_limits and TF-06 in R7_TOOLING_FINDINGS.json confirm no nonce-based provider attestation exists for any arm on this run."
+    },
+    {
+      "claim": "Upstream CI status of the merged Fabric packet (GitHub Actions or other external CI).",
+      "why": "No CI status endpoint was queried; lane scope is blob-level git probes only."
+    },
+    {
+      "claim": "The 221 acceptance cases and any Gate PASS.",
+      "why": "Explicitly out of scope per lane constraint; not run or claimed here."
+    },
+    {
+      "claim": "Attempt-1 (voided) checker evidence in R7_CHECKER/.",
+      "why": "Read only as prior-work sanity reference; no verdict row cites it as primary evidence because attempt 1 was voided (ERR_CHECKER_MUTATED_SUBJECT) and my own output supersedes it."
+    }
+  ]
+}

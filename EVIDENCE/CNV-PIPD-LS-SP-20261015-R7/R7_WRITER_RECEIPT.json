@@ -1,0 +1,290 @@
+{
+ "schema": "CNV-PIPD-LS-SP-20261015-R7/WRITER-RECEIPT/1",
+ "changeset": "R7-0-VALIDATOR-AND-CHECKER-ISOLATION",
+ "lane": "EXECUTE",
+ "provider_model_claimed": "opencode-go/deepseek-v4.1-flash",
+ "producer": "Codex CLI bounded writer, EXECUTE lane (opencode-go/deepseek-v4.1-flash)",
+ "generated_utc": "2026-10-15T13:52:54.239793+00:00",
+ "attempt": {
+  "this_attempt": 3,
+  "brief": "WRITER_BRIEF_R7_attempt3.md (narrow)",
+  "predecessor": "attempt 2, same EXECUTE lane (opencode-go/deepseek-v4.1-flash), produced the R7-0 work and then ended at the lane wall-clock limit while running the product test suite",
+  "scope_of_this_attempt": "Job 1 (finish/record the regression run) and Job 2 (write this receipt). No product code was changed by this attempt.",
+  "claim_ceiling": "LOCAL / candidate-only; the maker does not issue verdicts"
+ },
+ "claim_ceiling": "LOCAL / candidate-only; the maker does not issue verdicts",
+ "self_check_note": "Everything under acceptance_self_check is the MAKER's own check of the maker's own work. It is NOT a verification and must not be read as a checker verdict or a Gate PASS. The VERIFY lane owns verification.",
+ "input_digests": {
+  "note": "sha256 of the writer brief(s) executed, the R6 baseline mutations record, and each pre-change product file the change was built on (snapshotted in RAW/pre_change/ by attempt 2).",
+  "writer_brief_attempt3": {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\WRITER_BRIEF_R7_attempt3.md",
+   "bytes": 2635,
+   "sha256": "fff3d439a74a5a7b12c2267de1b6646248e37c76e0a4d164440d64325e227fc3"
+  },
+  "writer_brief_r7_original": {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\WRITER_BRIEF_R7.md",
+   "bytes": 5142,
+   "sha256": "63e8e6a3f27c0e0a0987bee898551ee436c85778da7a158f41c448d6e12661d1"
+  },
+  "baseline_r6_delivery_mutations_18": {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\MUTATIONS_18.json",
+   "bytes": 9973,
+   "sha256": "52907b15819e0a6352262dd846086890324fc3a106c3968b9effa2ef38fe3087",
+   "role": "R6 raw failure baseline: executed 10, detected 7, not_detected 3 (M04, M06, M16). This is the acceptance input for the three blind spots."
+  },
+  "pre_change_product_files": [
+   {
+    "path": "C:\\Projects\\Agent_Workspace\\PIPD\\src\\pipd_ls_sp\\validate.py",
+    "pre_change_snapshot": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\RAW\\pre_change\\validate.py",
+    "bytes": 8248,
+    "pre_change_sha256": "f3da9e413cda1c7d7dedf763c29372c07c8e4d493ef0b02d8040589cfb2b561a"
+   },
+   {
+    "path": "C:\\Projects\\Agent_Workspace\\PIPD\\src\\pipd_ls_sp\\pipeline.py",
+    "pre_change_snapshot": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\RAW\\pre_change\\pipeline.py",
+    "bytes": 20192,
+    "pre_change_sha256": "620a5f4f03458697d2af20d75632488df44b0f6a375741d84baf59d2b8c7be44"
+   },
+   {
+    "path": "C:\\Projects\\Agent_Workspace\\PIPD\\src\\pipd_ls_sp\\cli.py",
+    "pre_change_snapshot": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\RAW\\pre_change\\cli.py",
+    "bytes": 17609,
+    "pre_change_sha256": "29470f7f77214beadeaea095b1c651a5e76ec6437c0c0d16fdd481f0bce5774d"
+   }
+  ]
+ },
+ "commands_run": [
+  {
+   "id": "probe_hashcheck",
+   "purpose": "hash-rule probe (pre-change): confirm content_hash == canonical body hash",
+   "command": "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe RAW/probe_hashcheck.py",
+   "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7",
+   "exit_code": 0,
+   "raw_stdout": "RAW/probe_hashcheck.stdout.txt",
+   "attempt": 2
+  },
+  {
+   "id": "probe_r7_validator",
+   "purpose": "direct probe: three blind spots + positives + fail-closed",
+   "command": "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe RAW/probe_r7_validator.py",
+   "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7",
+   "exit_code": 0,
+   "raw_stdout": "RAW/probe_r7_validator.stdout.txt",
+   "attempt": 2
+  },
+  {
+   "id": "probe_r7_strong",
+   "purpose": "strong attacker probe (identity re-issued; frozen-reference layer + fail-closed)",
+   "command": "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe RAW/probe_r7_strong.py",
+   "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7",
+   "exit_code": 0,
+   "raw_stdout": "RAW/probe_r7_strong.stdout.txt",
+   "attempt": 2
+  },
+  {
+   "id": "pytest_targeted",
+   "purpose": "targeted regression tests (positive slices + typed errors)",
+   "command": "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe -m pytest tests/test_s1_lite_slice.py tests/test_negative_and_rollback.py tests/test_technology_admission.py tests/test_tqaep_design_positive.py tests/test_cli_typed_errors.py -q",
+   "cwd": "C:\\Projects\\Agent_Workspace\\PIPD",
+   "exit_code": 0,
+   "raw_stdout": "RAW/r7_pytest_targeted.stdout.txt",
+   "result": "44 passed, 3 subtests passed in 7.40s",
+   "attempt": 2
+  },
+  {
+   "id": "pytest_full_attempt2",
+   "purpose": "full test suite (regression sweep) - attempt 2",
+   "command": "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe -m pytest tests -q",
+   "cwd": "C:\\Projects\\Agent_Workspace\\PIPD",
+   "exit_code": "PYTEST_INCOMPLETE",
+   "raw_stdout": "RAW/r7_pytest_full.stdout.txt (this file was TRUNCATED at ~38% by attempt 2; it was OVERWRITTEN by pytest_full_attempt3 below and no longer holds this run)",
+   "failure": "attempt 2 ended at the lane wall-clock limit while this suite was running; the process was killed, so no exit code and no completion line exist for this run. The truncated output stopped at the two lines: '.....................................s.......................... [ 19%]' and '............................................................... [ 38%]' (last complete line = the [ 38%] progress line). Recorded as PYTEST_INCOMPLETE - NOT a pass.",
+   "attempt": 2
+  },
+  {
+   "id": "run_r7_mutations",
+   "purpose": "R7 re-run of the existing MUTATIONS_18 driver (RAW redirected to R7/RAW)",
+   "command": "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe run_r7_mutations.py",
+   "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7",
+   "exit_code": 0,
+   "raw_stdout": "RAW/r7_run_mutations.stdout.txt",
+   "result": "executed=10 detected=10 not_detected=0 not_run=8",
+   "attempt": 2
+  },
+  {
+   "id": "run_r7_isolation",
+   "purpose": "checker write-root isolation proof (OS deny-write denial fixture + copy-based review)",
+   "command": "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe run_r7_isolation.py",
+   "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7",
+   "exit_code": 0,
+   "raw_stdout": "RAW/r7_isolation.stdout.txt",
+   "result": "ENFORCED / DENIED (append + new-file refused via icacls deny WD,AD; read preserved)",
+   "attempt": 2
+  },
+  {
+   "id": "make_diff",
+   "purpose": "unified diff generation (git diff --no-index, PIPD tree)",
+   "command": "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe RAW/_make_diff.py",
+   "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7",
+   "exit_code": 0,
+   "raw_stdout": "RAW/r7_make_diff.stdout.txt",
+   "result": "git diff exit=1 (1 == differences, expected); wrote R7_VALIDATOR_DIFF.patch",
+   "attempt": 2
+  },
+  {
+   "id": "pytest_full_attempt3",
+   "purpose": "full test suite (regression sweep) - attempt 3, run to completion and written to the RAW file",
+   "command": "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe -m pytest tests -q",
+   "cwd": "C:\\Projects\\Agent_Workspace\\PIPD",
+   "exit_code": 1,
+   "raw_stdout": "RAW/r7_pytest_full.stdout.txt",
+   "result": "7 failed, 319 passed, 2 skipped, 34 subtests passed in 376.00s (0:06:16)",
+   "raw_stdout_sha256": "1377e587b8d8a7f55f6ca42ec77080a5d7b7b4bf55e377b574126e7380dd57eb",
+   "raw_stdout_bytes": 42677,
+   "attempt": 3
+  }
+ ],
+ "job1_regression_result": {
+  "artifact": "RAW/r7_pytest_full.stdout.txt",
+  "command_in_raw_header": "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe -m pytest tests -q",
+  "exit_code": 1,
+  "summary_line": "7 failed, 319 passed, 2 skipped, 34 subtests passed in 376.00s (0:06:16)",
+  "completed": true,
+  "reported_as": "FAIL (completed, non-zero exit). This is the product test suite result after the change. It is NOT reported as a pass.",
+  "failures": [
+   "tests/test_publication_projection.py::CliSmoke::test_write_then_check_exits_zero",
+   "tests/test_publication_projection.py::CurrentTreeCoverage::test_attestation_build_then_verify_exits_zero",
+   "tests/test_publication_projection.py::CurrentTreeCoverage::test_check_always_prints_current_tree_coverage",
+   "tests/test_publication_projection.py::CurrentTreeCoverage::test_current_check_fails_while_any_current_product_path_is_uncovered",
+   "tests/test_tooling_executes.py::TestToolingExecutes::test_cli_smoke_runs",
+   "tests/test_tooling_executes.py::TestToolingExecutes::test_export_manifest_has_no_vcs_paths",
+   "tests/test_tooling_executes.py::TestToolingExecutes::test_tracked_file_metric_excludes_vcs_internals"
+  ],
+  "failure_character": "Pre-existing / environmental, unrelated to the R7-0 validation change. Three of the seven fail with {'verdict':'FAIL','reason':\"cannot resolve ref 'r5-s4-candidate' in C:/Projects/Agent_Workspace/PIPD/.git\"} (the tree has drifted so that git ref no longer resolves); the remainder fail inside shutil.copytree over the dirty tree (Windows [Errno 22]/[WinError 1920] on venv junctions under .hgk/rounds/...) or on dirty-tree tracked-file counts, before any PIPD validation code runs. None of the 7 imports or exercises the changed validation path (src/pipd_ls_sp/validate.py hardening). The maker did not independently re-run these 7 against the pre-change snapshot in this attempt (see honest_limits)."
+ },
+ "products": {
+  "changed_product_files": [
+   {
+    "path": "C:\\Projects\\Agent_Workspace\\PIPD\\src\\pipd_ls_sp\\validate.py",
+    "bytes": 18422,
+    "sha256": "5a298eb50685a9e3185c21dd15560d1a77601ee871b58cbc3dba0df7c746e701",
+    "pre_change_sha256": "f3da9e413cda1c7d7dedf763c29372c07c8e4d493ef0b02d8040589cfb2b561a",
+    "changed_by": "attempt 2"
+   },
+   {
+    "path": "C:\\Projects\\Agent_Workspace\\PIPD\\src\\pipd_ls_sp\\pipeline.py",
+    "bytes": 22461,
+    "sha256": "844bc5433252b2dc2327bb8c03297106489fdc1b8a35285da231a76f2909445f",
+    "pre_change_sha256": "620a5f4f03458697d2af20d75632488df44b0f6a375741d84baf59d2b8c7be44",
+    "changed_by": "attempt 2"
+   },
+   {
+    "path": "C:\\Projects\\Agent_Workspace\\PIPD\\src\\pipd_ls_sp\\cli.py",
+    "bytes": 18147,
+    "sha256": "eb7c54293862129d27423617c7f7dcc6410bff1b38d54589e58180f6db4af86c",
+    "pre_change_sha256": "29470f7f77214beadeaea095b1c651a5e76ec6437c0c0d16fdd481f0bce5774d",
+    "changed_by": "attempt 2"
+   }
+  ],
+  "note_on_product_hashes": "The three current product files carry the values attempt 2 recorded in R7_WRITE_SET.json. This attempt re-verified the on-disk sha256 and bytes and they match, so no product code was touched by attempt 3.",
+  "unified_diff": {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\R7_VALIDATOR_DIFF.patch",
+   "bytes": 17645,
+   "sha256": "6dbf5367f7f44b794ce6885ac2faf7fbcc7eea4533193eca46e2a85b9ec634d8"
+  },
+  "round_artifacts_produced": [
+   {"path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\R7_VALIDATOR_HARDENING.md", "bytes": 7155, "sha256": "772b0d8c290b69b298fcad883b3d4af3b0b453b34c2b8e0afa8a83fb8a7f7c77"},
+   {"path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\R7_MUTATIONS_18_RERUN.json", "bytes": 14497, "sha256": "2d886383e6d6f6f88fc4c7676e9aeefeb360542746cbc9eb4e47315611020a66"},
+   {"path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\R7_WRITE_SET.json", "bytes": 16945, "sha256": "1f779dc9dd1522bd997c9a65211e3844d4c189f8ea7b581cbbc535b6becd48df"},
+   {"path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\R7_VALIDATOR_DIFF.patch", "bytes": 17645, "sha256": "6dbf5367f7f44b794ce6885ac2faf7fbcc7eea4533193eca46e2a85b9ec634d8"},
+   {"path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\R7_TOOLING_FINDINGS.json", "bytes": 4627, "sha256": "84a9ceb4375b6f9471f10a613f26cf4c81b5e37cb3ee2f7737fecf80b76e3036"},
+   {"path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\R7_BASELINE_MAIN.json", "bytes": 741, "sha256": "129ae15a7bb1a521c18e896bd3eaae441b2312740423f3d08a7f7f23ed81b72e"},
+   {"path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\CHECKER_BRIEF_R7.md", "bytes": 4227, "sha256": "a25419c5a972b90880ae4d4e2560182abe866f2a530c59d2a7630a8678c895bc"},
+   {"path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\checker_write_root_isolation.py", "bytes": 13446, "sha256": "8c33cacd55ba403f78408ef17a0b9dbb56b24907c6aaa09fed0ad3551c671bec"},
+   {"path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\run_r7_mutations.py", "bytes": 5098, "sha256": "cc3cc8f81d5b59612dff660f626b906b8786866c4bf695f703c90c82ce4a1861"},
+   {"path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\run_r7_isolation.py", "bytes": 3662, "sha256": "84481542d1441ba5d1877f6d05635a1cc1e03ab3585b9e2f02f316a2604dd70a"},
+   {"path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\hgk_admission_r7.py", "bytes": 7035, "sha256": "f874f68ec43574bb776a5ba3fda866178b029a0fecea16534893a4faa72b5516"},
+   {"path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\HGK_TYPED_ADMISSION_R7.json", "bytes": 4484, "sha256": "d28475e5599ca8f9e6702bbdeafba69e18ee2f9f20b35cdac6ba917f90848f57"},
+   {"path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\MISSION_PLAN_SPEC_CHECKLIST_R7.json", "bytes": 4662, "sha256": "34d1f4f96c26b465b457551966cbf762792671c6bfd428d188aac2811ba3ede8"},
+   {"path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\publish_r7.py", "bytes": 14765, "sha256": "238c4d3ea3d8327274ce625ec656d14aff799d011c383058cd8843f4f6eb19a6"},
+   {"path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\r7_pub_records.py", "bytes": 9266, "sha256": "c9470c0382db00a2228ce5bf54c28637b1690357bde0a4772508f9dc0326cda6"}
+  ],
+  "raw_evidence": {
+   "root": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\RAW\\",
+   "enumerated_in": "R7_WRITE_SET.json (created_round_files, sha256: 1f779dc9dd1522bd997c9a65211e3844d4c189f8ea7b581cbbc535b6becd48df)",
+   "note": "Attempt 3 added/overwrote exactly one RAW file: RAW/r7_pytest_full.stdout.txt (now sha256 1377e587b8d8a7f55f6ca42ec77080a5d7b7b4bf55e377b574126e7380dd57eb, 42677 bytes), replacing attempt 2's truncated copy. No other RAW file was modified."
+  }
+ },
+ "acceptance_self_check": {
+  "disclaimer": "MAKER's own check, NOT a verification. The maker does not issue verdicts; the VERIFY lane owns independent verification. Observed outcomes are read from the RAW receipts below and are not reconstructed.",
+  "blind_spots": [
+   {
+    "mutation_id": "M04",
+    "mutation": "ProfileBinding assurance downgraded ASSURED -> LITE",
+    "expected": "REJECT",
+    "observed": "REJECT",
+    "validator_verdict": "FAIL",
+    "first_fail": "ProfileBinding: content_hash does not match the record body (body edited without re-issuing identity)",
+    "raw_receipt_path": "RAW/r7_mut_m04.stdout.txt",
+    "raw_receipt_sha256": "d3f0cce7b9b99b7f8c4004935143708276eba09941c370f77ba5776cc6e58a1e",
+    "baseline_r6": "not detected (validator PASS) - see input_digests.baseline_r6_delivery_mutations_18",
+    "strong_attacker_receipt": "RAW/probe_r7_strong.stdout.txt (resealed identity still refused by the frozen-requirement layer)"
+   },
+   {
+    "mutation_id": "M06",
+    "mutation": "domain oracle expected changed to 999",
+    "expected": "REJECT",
+    "observed": "REJECT",
+    "validator_verdict": "FAIL",
+    "first_fail": "RequirementAtom: content_hash does not match the record body (body edited without re-issuing identity)",
+    "raw_receipt_path": "RAW/r7_mut_m06.stdout.txt",
+    "raw_receipt_sha256": "3a931125a3d65477f18c3b00ab8a4614a05e7fc0ef99bb9f6634cb3936d33a0a",
+    "baseline_r6": "not detected (validator PASS) - see input_digests.baseline_r6_delivery_mutations_18",
+    "strong_attacker_receipt": "RAW/probe_r7_strong.stdout.txt (resealed identity still refused by clause-polarity binding)"
+   },
+   {
+    "mutation_id": "M16",
+    "mutation": "trace atom digest mismatched",
+    "expected": "REJECT",
+    "observed": "REJECT",
+    "validator_verdict": "FAIL",
+    "first_fail": "TraceLink: content_hash does not match the record body (body edited without re-issuing identity)",
+    "raw_receipt_path": "RAW/r7_mut_m16.stdout.txt",
+    "raw_receipt_sha256": "fbc61ac45cbf8eddde6859b0ddce68eb2382ed0c778e44e0ff3a527623e8c3fa",
+    "baseline_r6": "not detected (validator PASS) - see input_digests.baseline_r6_delivery_mutations_18",
+    "strong_attacker_receipt": "RAW/probe_r7_strong.stdout.txt (resealed identity refused by frozen trace-endpoint map; with no frozen map the link fails closed UNBOUND_FROZEN_CONTEXT)"
+   }
+  ],
+  "regression_preserved": {
+   "note": "The 7 mutations detected at R6 stay detected, and the 8 NOT_RUN stay NOT_RUN. MAKER's own check.",
+   "still_reject": ["M01", "M03", "M05", "M11", "M12", "M14", "M18"],
+   "still_not_run": ["M02", "M07", "M08", "M09", "M10", "M13", "M15", "M17"],
+   "raw_receipt_path": "RAW/r7_run_mutations.stdout.txt",
+   "round_artifact": "R7_MUTATIONS_18_RERUN.json"
+  },
+  "secondary_deliverable_checker_isolation": {
+   "attribution": "MAKER's own check, NOT a verification.",
+   "observed": "ENFORCED / DENIED",
+   "detail": "icacls /deny user:(WD,AD) applied (exit 0, 0 failed) to candidate files+dirs+root; the denial fixture's post-deny write attempt (new file and append to existing) raised PermissionError [Errno 13]; read preserved; deny ACE removed cleanly afterwards. A copy-based review variant also refuses writes into the review copy while the scratch root stays writable.",
+   "raw_receipt_path": "RAW/r7_isolation.stdout.txt",
+   "raw_receipt_sha256": "9026f9b3202616f128a6a73d881fc9c485227e43b37fa87d3fb806e3d647a0d2"
+  }
+ },
+ "honest_limits": [
+  "Attempt 2 ended at the lane's wall-clock limit. It produced the R7-0 work (three product files changed, mutation re-run, isolation proof, diff) and then was killed while the full product test suite (pytest tests -q) was still running at ~38%. No exit code and no completion line exist for that run. The truncated file was overwritten by attempt 3 rather than summarised, so the RAW now holds a complete run.",
+  "The product test suite result is reported in Job 1 only, and it is a FAIL: 7 failed, 319 passed, 2 skipped, 34 subtests passed (exit 1). It is NOT reported as a pass. The 7 failures are pre-existing/environmental (unresolvable git ref 'r5-s4-candidate', Windows shutil.copytree [Errno 22]/[WinError 1920] on venv junctions under .hgk/rounds, dirty-tree tracked-file counts).",
+  "The maker did NOT independently reproduce the 7 failures against the restored pre-change snapshot in this attempt. The claim that those failures are pre-existing rests on attempt 2's note in RAW/_gen_receipt.py ('the SAME 7 failures reproduce with the pre-change sources restored from RAW/pre_change') and on the failure content itself (none of the 7 imports or exercises the changed validation path). Treat that attribution as asserted-by-predecessor, not re-proved here.",
+  "The 8 mutations M02, M07, M08, M09, M10, M13, M15, M17 remain NOT_RUN, for the reasons recorded in R7_MUTATIONS_18_RERUN.json (their frozen source bytes are not reachable on this host). They are not fabricated as executed or detected.",
+  "The maker cannot independently observe the upstream provider attestation for the served model. 'opencode-go/deepseek-v4.1-flash' is reported from the lane brief and this lane's admission record, not re-proved by this writer.",
+  "The acceptance_self_check above is the MAKER's own check of the maker's own work. It is not a verification, not a checker verdict, and not a Gate PASS. The VERIFY lane owns verification.",
+  "OS ACL enforcement of the checker write-root isolation was exercised on this (non-elevated) user account on this host; a different account or filesystem could yield ACL_UNENFORCEABLE, in which case the wrapper records it verbatim instead of claiming isolation.",
+  "This attempt changed no product code and issued no git write. The PIPD product tree already carried uncommitted changes (M src/pipd_ls_sp/{cli,pipeline,validate}.py among others) when this attempt started; this attempt left them exactly as found.",
+  "Attempt 3 added/overwrote exactly one RAW file (RAW/r7_pytest_full.stdout.txt). It did not modify EVIDENCE/**, the HG-KSEOS Shared Spine, or any product file."
+ ],
+ "machine_identity": {
+  "host": "Windows / PowerShell",
+  "python": "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe (Python 3.11.9)",
+  "product_under_test": "C:/Projects/Agent_Workspace/PIPD/src/pipd_ls_sp",
+  "round_root": "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015-R7"
+ }
+}

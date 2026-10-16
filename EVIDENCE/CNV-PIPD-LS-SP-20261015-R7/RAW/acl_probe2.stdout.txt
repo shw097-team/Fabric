@@ -1,0 +1,26 @@
+DIR=C:\Users\user\AppData\Local\Temp\acltest2-c346cecc  PERM=user:(W)
+FILE-DENY processed file: C:\Users\user\AppData\Local\Temp\acltest2-c346cecc\sub\nested.txt
+FILE-DENY Successfully processed 1 files; Failed processing 0 files
+FILE-DENY processed file: C:\Users\user\AppData\Local\Temp\acltest2-c346cecc\subject.txt
+FILE-DENY Successfully processed 1 files; Failed processing 0 files
+DIR-DENY processed file: C:\Users\user\AppData\Local\Temp\acltest2-c346cecc\sub
+DIR-DENY Successfully processed 1 files; Failed processing 0 files
+ROOT-DENY processed file: C:\Users\user\AppData\Local\Temp\acltest2-c346cecc
+ROOT-DENY Successfully processed 1 files; Failed processing 0 files
+--- attempt new file ---
+NEW_DENIED: System.UnauthorizedAccessException
+--- attempt append pre-existing file ---
+APPEND_DENIED: System.UnauthorizedAccessException
+--- attempt append nested file ---
+NESTED_APPEND_DENIED: System.UnauthorizedAccessException
+ROOT-UNDENY processed file: C:\Users\user\AppData\Local\Temp\acltest2-c346cecc
+ROOT-UNDENY Successfully processed 1 files; Failed processing 0 files
+DIR-UNDENY processed file: C:\Users\user\AppData\Local\Temp\acltest2-c346cecc\sub
+DIR-UNDENY Successfully processed 1 files; Failed processing 0 files
+FILE-UNDENY processed file: C:\Users\user\AppData\Local\Temp\acltest2-c346cecc\sub\nested.txt
+FILE-UNDENY Successfully processed 1 files; Failed processing 0 files
+FILE-UNDENY processed file: C:\Users\user\AppData\Local\Temp\acltest2-c346cecc\subject.txt
+FILE-UNDENY Successfully processed 1 files; Failed processing 0 files
+--- attempt append after cleanup ---
+APPEND_OK_AFTER_CLEANUP
+DONE

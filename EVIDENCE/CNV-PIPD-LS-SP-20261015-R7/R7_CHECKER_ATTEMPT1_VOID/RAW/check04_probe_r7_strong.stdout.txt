@@ -1,0 +1,7 @@
+M16-strong (resealed, with frozen ctx) verdict: FAIL | first_fail: TraceLink: to_hash does not match the frozen digest of 'ATOM-dc321657c643a928' (recorded ffffffffffff, frozen dc321657c643)
+M16-strong (resealed, no frozen ctx) verdict: FAIL | first_fail: TraceLink: UNBOUND_FROZEN_CONTEXT: from_hash cannot be verified against a frozen subject->digest map (frozen context not supplied); binding is unproven, not a pass
+M06-strong (resealed, with frozen ctx) verdict: FAIL | first_fail: RequirementAtom: oracle.expected 999 contradicts clause polarity 'MUST' (must be 'required')
+M06-strong (resealed, no frozen ctx) verdict: FAIL | first_fail: RequirementAtom: oracle.expected 999 contradicts clause polarity 'MUST' (must be 'required')
+M04-strong (resealed, with frozen ctx) verdict: FAIL | first_fail: ProfileBinding: assurance ['deterministic_validator'] is weaker than the frozen requirement for ASSURED (missing ['negative_security', 'adversarial', 'independent_checker'])
+M04-strong (resealed, no frozen ctx) verdict: FAIL | first_fail: ProfileBinding: assurance ['deterministic_validator'] is weaker than the frozen requirement for ASSURED (missing ['negative_security', 'adversarial', 'independent_checker'])
+PROFILE-unknown (resealed) verdict: FAIL | first_fail: ProfileBinding: UNBOUND_FROZEN_CONTEXT: profile 'MYSTERY' has no frozen requirement (unknown profile); assurance cannot be verified, not a pass

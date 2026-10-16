@@ -1,0 +1,400 @@
+{
+ "schema": "CNV-PIPD-LS-SP-20261015-R7/WRITE-SET/1",
+ "changeset": "R7-0-VALIDATOR-AND-CHECKER-ISOLATION",
+ "producer": "Codex CLI bounded writer EXECUTE lane (opencode-go/deepseek-v4.1-flash)",
+ "product_writeset": "C:/Projects/Agent_Workspace/PIPD/src/pipd_ls_sp/**",
+ "round_output_dir": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7",
+ "note": "product files carry pre_change_sha256 from RAW/pre_change snapshots; round artifacts and RAW evidence are newly created by this writer. Nothing under EVIDENCE/CNV-PIPD-LS-SP-20261015/** and no Fabric repo file was written.",
+ "changed_product_files": [
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\PIPD\\src\\pipd_ls_sp\\validate.py",
+   "bytes": 18422,
+   "sha256": "5a298eb50685a9e3185c21dd15560d1a77601ee871b58cbc3dba0df7c746e701",
+   "pre_change_sha256": "f3da9e413cda1c7d7dedf763c29372c07c8e4d493ef0b02d8040589cfb2b561a"
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\PIPD\\src\\pipd_ls_sp\\pipeline.py",
+   "bytes": 22461,
+   "sha256": "844bc5433252b2dc2327bb8c03297106489fdc1b8a35285da231a76f2909445f",
+   "pre_change_sha256": "620a5f4f03458697d2af20d75632488df44b0f6a375741d84baf59d2b8c7be44"
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\PIPD\\src\\pipd_ls_sp\\cli.py",
+   "bytes": 18147,
+   "sha256": "eb7c54293862129d27423617c7f7dcc6410bff1b38d54589e58180f6db4af86c",
+   "pre_change_sha256": "29470f7f77214beadeaea095b1c651a5e76ec6437c0c0d16fdd481f0bce5774d"
+  }
+ ],
+ "created_round_files": [
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\CHECKER_BRIEF_R7.md",
+   "bytes": 4227,
+   "sha256": "a25419c5a972b90880ae4d4e2560182abe866f2a530c59d2a7630a8678c895bc",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\checker_write_root_isolation.py",
+   "bytes": 13446,
+   "sha256": "8c33cacd55ba403f78408ef17a0b9dbb56b24907c6aaa09fed0ad3551c671bec",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\hgk_admission_r7.py",
+   "bytes": 7035,
+   "sha256": "f874f68ec43574bb776a5ba3fda866178b029a0fecea16534893a4faa72b5516",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\HGK_TYPED_ADMISSION_R7.json",
+   "bytes": 4484,
+   "sha256": "d28475e5599ca8f9e6702bbdeafba69e18ee2f9f20b35cdac6ba917f90848f57",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\MISSION_PLAN_SPEC_CHECKLIST_R7.json",
+   "bytes": 4662,
+   "sha256": "34d1f4f96c26b465b457551966cbf762792671c6bfd428d188aac2811ba3ede8",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\publish_r7.py",
+   "bytes": 14765,
+   "sha256": "238c4d3ea3d8327274ce625ec656d14aff799d011c383058cd8843f4f6eb19a6",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\R7_BASELINE_MAIN.json",
+   "bytes": 741,
+   "sha256": "129ae15a7bb1a521c18e896bd3eaae441b2312740423f3d08a7f7f23ed81b72e",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\R7_MUTATIONS_18_RERUN.json",
+   "bytes": 14497,
+   "sha256": "2d886383e6d6f6f88fc4c7676e9aeefeb360542746cbc9eb4e47315611020a66",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\r7_pub_records.py",
+   "bytes": 9266,
+   "sha256": "c9470c0382db00a2228ce5bf54c28637b1690357bde0a4772508f9dc0326cda6",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\R7_TOOLING_FINDINGS.json",
+   "bytes": 4627,
+   "sha256": "84a9ceb4375b6f9471f10a613f26cf4c81b5e37cb3ee2f7737fecf80b76e3036",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\R7_VALIDATOR_DIFF.patch",
+   "bytes": 17645,
+   "sha256": "6dbf5367f7f44b794ce6885ac2faf7fbcc7eea4533193eca46e2a85b9ec634d8",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\RAW\\_cleanup_r7.py",
+   "bytes": 890,
+   "sha256": "72f18cf593034d0ff6c7583de89e9e63edd9f3d0619ea0ef1f6c9310ae9afd81",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\RAW\\_gen_writeset.py",
+   "bytes": 2256,
+   "sha256": "320353da1989fed7ff75dd8209b08060929835eee85ee17b3d5a29c2660f28d7",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\RAW\\_make_diff.py",
+   "bytes": 1990,
+   "sha256": "8e2a8f94b02fcbb7b2d5e2ae930a575854632bf15d0e447cd9f1d7f39e8f2afb",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\RAW\\acl_probe2.ps1",
+   "bytes": 2478,
+   "sha256": "d2ad870f9fd474a093286d612dabbff370ac9c87e460a0afccb589c97b0f785d",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\RAW\\acl_probe2.stdout.txt",
+   "bytes": 1651,
+   "sha256": "fb353dbe3a83acb89202718bef5d93d453760364fb355afce14d51133c6395d9",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\RAW\\acl_writeonly_probe.py",
+   "bytes": 1956,
+   "sha256": "138f2b909e1c93375867cfb19815f899b40a0de20ba432ba6ff1c44fd11cf2bc",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\RAW\\acl_writeonly_probe.stdout.txt",
+   "bytes": 782,
+   "sha256": "498a0010210546e71e78897f001910779d527c1aa1d92f950e3d74b3b309520b",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\RAW\\isolation_selftest.stdout.txt",
+   "bytes": 3365,
+   "sha256": "96544b5c7759ffe0cf84f1dc9ce5f0c763d4faec24ecaea4cd50c6c861d2eba7",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\RAW\\probe_hashcheck.py",
+   "bytes": 1420,
+   "sha256": "44d7e6475d9d88af4f9009ba481ffbbaa7a0b91e3ec53d5e3863c7102c2f58ef",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\RAW\\probe_hashcheck.stdout.txt",
+   "bytes": 936,
+   "sha256": "0198c0d5e5f017c9cdb84aa154eca6bc62bb647ec2ba6a2536739f2863a4eebe",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\RAW\\probe_r7_strong.py",
+   "bytes": 3420,
+   "sha256": "5b524bf6d6037dbc99ef7494c1133a3e980cd95ba6be912799b18ce168373610",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\RAW\\probe_r7_strong.stdout.txt",
+   "bytes": 1424,
+   "sha256": "f778889483b944322649862cc6bb24f3d955400b2585547539fa785480b81d5e",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\RAW\\probe_r7_validator.py",
+   "bytes": 3747,
+   "sha256": "43f321c7304ae6a3afcdab9701adc2278c077dbf6441cc87d122f9f47ceef6a2",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\RAW\\probe_r7_validator.stdout.txt",
+   "bytes": 1281,
+   "sha256": "6fb126d154685b4279409a89d4d064c7ea34ccec47abcdfc8f65bd1ebe077c3a",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\RAW\\r7_isolation.stdout.txt",
+   "bytes": 9217,
+   "sha256": "9026f9b3202616f128a6a73d881fc9c485227e43b37fa87d3fb806e3d647a0d2",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\RAW\\r7_make_diff.stdout.txt",
+   "bytes": 898,
+   "sha256": "716a886c74366c3f8e74f75c707d50dab23a8d9ae61a854ff23a37bb6d0d3e64",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\RAW\\r7_mut_m01.json",
+   "bytes": 790,
+   "sha256": "c8ac8c0c06abed11da7e0a94004d97cf807bd1a27a8caa22bd637f06f4c9b382",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\RAW\\r7_mut_m01.stderr.txt",
+   "bytes": 0,
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\RAW\\r7_mut_m01.stdout.txt",
+   "bytes": 310,
+   "sha256": "1b45ee368dfb4f37bf75091153a989b4eb79fa378e3c57eb39181dec1e417649",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\RAW\\r7_mut_m03.json",
+   "bytes": 790,
+   "sha256": "1ad6e07d6835231a53144e507b3d5ccc41f88a6a91a99efbb4fa5c7a28b0a76c",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\RAW\\r7_mut_m03.stderr.txt",
+   "bytes": 0,
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\RAW\\r7_mut_m03.stdout.txt",
+   "bytes": 223,
+   "sha256": "f6ec455bf1f74c8a6a31b7280c4e599e33dacd6d2dfbd28fdb1fff0dcaeae755",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\RAW\\r7_mut_m04.json",
+   "bytes": 790,
+   "sha256": "9177ff2bae45a6d43530fa07922144ecafeef1af472ffcf1cc2a011126e6fe85",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\RAW\\r7_mut_m04.stderr.txt",
+   "bytes": 0,
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\RAW\\r7_mut_m04.stdout.txt",
+   "bytes": 324,
+   "sha256": "d3f0cce7b9b99b7f8c4004935143708276eba09941c370f77ba5776cc6e58a1e",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\RAW\\r7_mut_m05.json",
+   "bytes": 790,
+   "sha256": "15b4a96e24f61faac789ce173730b89e87a19e43ca7cf1b109c29b10cc3ac6fa",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\RAW\\r7_mut_m05.stderr.txt",
+   "bytes": 0,
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\RAW\\r7_mut_m05.stdout.txt",
+   "bytes": 282,
+   "sha256": "07738d7798c58e31ba041ddf036d98289ad9bf1f12940c57b29fdbf17d9e250a",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\RAW\\r7_mut_m06.json",
+   "bytes": 790,
+   "sha256": "8c021dcc7cf8a6795b5ed2f2b5e3714a6f71d419a78af99dddadce8410f1973b",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\RAW\\r7_mut_m06.stderr.txt",
+   "bytes": 0,
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\RAW\\r7_mut_m06.stdout.txt",
+   "bytes": 313,
+   "sha256": "3a931125a3d65477f18c3b00ab8a4614a05e7fc0ef99bb9f6634cb3936d33a0a",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\RAW\\r7_mut_m11.json",
+   "bytes": 790,
+   "sha256": "25396251ade654b8826d3141489e1f82c14425822ce86898498e99c7ec50f96b",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\RAW\\r7_mut_m11.stderr.txt",
+   "bytes": 0,
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\RAW\\r7_mut_m11.stdout.txt",
+   "bytes": 349,
+   "sha256": "5d1245d9b0439f2ad7e7b21cc382a7d3f1d5b2c07d0c078acf60818bc4e01eab",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\RAW\\r7_mut_m12.json",
+   "bytes": 790,
+   "sha256": "6ccab8a141da95eef24ba37bb9c1453f503c083271b7d54b476cc8a935f63315",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\RAW\\r7_mut_m12.stderr.txt",
+   "bytes": 0,
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\RAW\\r7_mut_m12.stdout.txt",
+   "bytes": 347,
+   "sha256": "77da6db08b202710831fbf730355ca6caaa69d217fa49f01b9d51d24da4155a2",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\RAW\\r7_mut_m14.json",
+   "bytes": 790,
+   "sha256": "a49fbd0cb2ff025e5159c541ad4b05b2e4696dc125cc0baa65682311ed7bd9f9",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\RAW\\r7_mut_m14.stderr.txt",
+   "bytes": 0,
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\RAW\\r7_mut_m14.stdout.txt",
+   "bytes": 226,
+   "sha256": "637bcc6e48037417093720f6c3b1fd5dad72f246c4e6d8b5adad5e288bc48572",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\RAW\\r7_mut_m16.json",
+   "bytes": 790,
+   "sha256": "7b7a7df9c7bdec4d9c6f15801e2e04ca94bb3659be81d9b93ba4ea21f2400a28",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\RAW\\r7_mut_m16.stderr.txt",
+   "bytes": 0,
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\RAW\\r7_mut_m16.stdout.txt",
+   "bytes": 298,
+   "sha256": "fbc61ac45cbf8eddde6859b0ddce68eb2382ed0c778e44e0ff3a527623e8c3fa",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\RAW\\r7_mut_m18.json",
+   "bytes": 790,
+   "sha256": "73c17a6f0d4c86e55cec5d761f8c0109d16eec6184bcbae392e10e96abaf348b",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\RAW\\r7_mut_m18.stderr.txt",
+   "bytes": 0,
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\RAW\\r7_mut_m18.stdout.txt",
+   "bytes": 303,
+   "sha256": "a6e7bc35ca1add82c6035c94f9697425b58074869a1f3fd95b838ce5cc1946e9",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\RAW\\r7_run_mutations.stdout.txt",
+   "bytes": 419,
+   "sha256": "825c80be6a711560cd6364f09ece4107b96bb934b990c164b5639cb7448cc8e1",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\run_r7_isolation.py",
+   "bytes": 3662,
+   "sha256": "84481542d1441ba5d1877f6d05635a1cc1e03ab3585b9e2f02f316a2604dd70a",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\run_r7_mutations.py",
+   "bytes": 5098,
+   "sha256": "cc3cc8f81d5b59612dff660f626b906b8786866c4bf695f703c90c82ce4a1861",
+   "pre_change_sha256": null
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\WRITER_BRIEF_R7.md",
+   "bytes": 5142,
+   "sha256": "63e8e6a3f27c0e0a0987bee898551ee436c85778da7a158f41c448d6e12661d1",
+   "pre_change_sha256": null
+  }
+ ],
+ "totals": {
+  "changed_product_files": 3,
+  "created_round_files": 61
+ }
+}
