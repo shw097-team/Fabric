@@ -1,0 +1,235 @@
+{
+ "schema": "CNV-HYGIENE-FAR-RULING/1",
+ "task_id": "CNV-HYGIENE-README-CLOSURE-20261016",
+ "method": "FAR deviation study against the measured audit, the upper blueprint control package and the external acceptance report",
+ "inputs": {
+  "audit": "A00_HYGIENE_AUDIT.json",
+  "audit_findings": 13,
+  "remote_main": "bcd91043b89b69c9d2f08309e46e31898ac87d89",
+  "repo_blobs": 4145
+ },
+ "ruled_this_round": [
+  "R1",
+  "R5",
+  "R7",
+  "R8",
+  "R9"
+ ],
+ "deferred_or_owner_gated": [
+  {
+   "id": "R2",
+   "disposition": "CONSIDERED_AND_REJECTED",
+   "title": "不新增第二個 root 入口文件（不加 MAIN.md）"
+  },
+  {
+   "id": "R3",
+   "disposition": "OWNER_GATED",
+   "title": "本輪不新增 LICENSE 檔案"
+  },
+  {
+   "id": "R4",
+   "disposition": "DEFERRED_ALIGNED_WITH_EIA_019_10",
+   "title": "本輪不建立 .github/workflows"
+  },
+  {
+   "id": "R6",
+   "disposition": "OWNER_GATED_WITH_TABLE",
+   "title": "本機破壞性清理（DB 副本、worktree、junk dirs）列 owner-gated，不在本輪執行"
+  },
+  {
+   "id": "R10",
+   "disposition": "OWNER_GATED",
+   "title": "PR #15 的處置保留給 owner（不自行合併）"
+  },
+  {
+   "id": "R11",
+   "disposition": "CONSIDERED_AND_REJECTED",
+   "title": "不改 repo metadata（topics／homepage）"
+  }
+ ],
+ "options": [
+  {
+   "id": "R1",
+   "subject": "REPO_HOMEPAGE_README",
+   "title": "重寫 root README.md 成為外部入口（單一檔）",
+   "answers": [
+    "HY-01",
+    "HY-02"
+   ],
+   "measured": "root 只有 README.md(4732 B) 與 .gitignore；README 早於現行治理契約，無 evidence 前綴地圖、無 claim ceiling、無 PR 索引、無非宣稱區",
+   "action": "以受治理 bounded writer 車道重寫 /README.md：repo 定位（HG-KSEOS 為唯一控制平面、Hermes 為受治理 Runtime/Orchestration Plane）、EVIDENCE 前綴地圖、PR #3..#15 索引與 merge SHA、外部團隊閱讀順序、以及明確非宣稱框（NO_VERDICTS_FOUND／TIMEOUT／同模型軸／candidate-only／無 LICENSE／無 CI）。",
+   "friction": "LOW",
+   "feasibility": "HIGH",
+   "necessity": "HIGH",
+   "why": "外部工程團隊的參照入口就是 repo 首頁；目前首頁讀不出治理結構與宣稱上限，正是驗收報告要求『不得以合併代替 AO/production』時最容易被誤讀的一頁。一個檔案、無新架構。",
+   "executed_this_round": true,
+   "rollback": "以 revert 本輪 PR 的該檔 commit 還原（原 README 的 blob sha 9dd1946c3a7c9c76089c814b7ec75c46ab1210b2 已記錄）"
+  },
+  {
+   "id": "R2",
+   "subject": "REPO_HOMEPAGE_MAIN",
+   "title": "不新增第二個 root 入口文件（不加 MAIN.md）",
+   "answers": [
+    "HY-02"
+   ],
+   "measured": "root 目前只有 .gitignore 與 README.md；repo metadata 顯示 default_branch=main、has_wiki=false、has_pages=false、topics=[]、homepage=null",
+   "action": "維持單一入口：README.md 即首頁索引，不建立 MAIN.md 或第二套索引架構。",
+   "friction": "NONE",
+   "feasibility": "HIGH",
+   "necessity": "HIGH",
+   "why": "報告 §8 與 KP 反覆要求『不得建立第二個控制平面／第二套 manifest 架構』。新增 MAIN.md 會製造與 HG-KSEOS canonical 文件競爭的第二份目錄，屬於過度工程化。",
+   "executed_this_round": false,
+   "disposition": "CONSIDERED_AND_REJECTED"
+  },
+  {
+   "id": "R3",
+   "subject": "REPO_LICENSE",
+   "title": "本輪不新增 LICENSE 檔案",
+   "answers": [
+    "HY-01"
+   ],
+   "measured": "GET /license 回報無授權檔（root 僅 .gitignore、README.md）",
+   "action": "不代替 owner 決定授權條款；列為 owner-gated 決策，附最小動作（新增 LICENSE + 於 README 標示）。",
+   "friction": "LOW",
+   "feasibility": "HIGH",
+   "necessity": "MEDIUM",
+   "why": "授權是 owner/法務決定，不是工程衛生裁決；擅自選定條款會創造本輪無權承擔的外部承諾。",
+   "executed_this_round": false,
+   "disposition": "OWNER_GATED"
+  },
+  {
+   "id": "R4",
+   "subject": "REPO_CI",
+   "title": "本輪不建立 .github/workflows",
+   "answers": [
+    "HY-03"
+   ],
+   "measured": "repo tree 內 0 個 workflow 檔；報告 EIA-019-10 已將『無 GitHub CI status』列為 NON_BLOCKING_OBSERVATION 並說『不可聲稱 CI PASS』",
+   "action": "維持無 CI；不新增 workflow。若未來要自動發布，另立窄 Gate 與變更類別。",
+   "friction": "LOW",
+   "feasibility": "HIGH",
+   "necessity": "LOW",
+   "why": "新增 workflow 會改變本輪變更類別並引入自動執行面，正是報告禁止『未審 hook/workflow』的方向；驗收報告本身只要求揭露，不要求補 CI。",
+   "executed_this_round": false,
+   "disposition": "DEFERRED_ALIGNED_WITH_EIA_019_10"
+  },
+  {
+   "id": "R5",
+   "subject": "REPO_HYGIENE_BRANCHES",
+   "title": "逐一驗證後刪除已合併的遠端 evidence/pub/docs 分支",
+   "answers": [
+    "HY-04"
+   ],
+   "measured": "17 個遠端分支中，11 個 evidence/* 分支的 PR 已合併（#3..#14），另有 pub/*、docs/* 分支；唯一未合併的是本輪之前的 evidence/cnv-far018-far019-archive（PR #15 仍 open）",
+   "action": "對每個分支先以 /pulls?state=all&head= 驗證其 PR 已 merged；已合併者記錄 tip SHA 後刪除 ref（可逆：以 SHA 重建 ref）；PR 仍 open 或無 PR 者一律保留。",
+   "friction": "LOW",
+   "feasibility": "HIGH",
+   "necessity": "HIGH",
+   "why": "分支清單是外部團隊最先看到的『未完成訊號』；11 個已完成分支留在遠端會讓已結案的 archive 階段看起來仍在進行。刪除不影響 main 的證據（合併提交已在 main），且每筆都有 SHA 可還原。",
+   "executed_this_round": true,
+   "rollback": "POST /git/refs 以記錄的 tip SHA 重建該分支"
+  },
+  {
+   "id": "R6",
+   "subject": "LOCAL_HYGIENE_DESTRUCTIVE",
+   "title": "本機破壞性清理（DB 副本、worktree、junk dirs）列 owner-gated，不在本輪執行",
+   "answers": [
+    "HY-07-hgk_control",
+    "HY-08-hgk_control",
+    "HY-09-hgk_control",
+    "HY-07-fabric_clone",
+    "HY-09-fabric_clone"
+   ],
+   "measured": "HG-KSEOS：283 筆 dirty、20 個 worktree、var 下 4 份約 823 MB 與 1 份約 793 MB spine DB 副本、多份 297-334 MB 巢狀 codex.exe、1 個 326 MB 安裝檔；Fabric clone 在舊分支、8 個 worktree、5 個 >5 MB 檔（含重複 vendored PDF）",
+   "action": "只產出 owner-gated 候選表（路徑、大小、為何具破壞性、精確且安全的最小指令），不執行任何刪除。",
+   "friction": "LOW",
+   "feasibility": "HIGH",
+   "necessity": "MEDIUM",
+   "why": "spine DB 副本與 worktree 是本會話各輪的證據與回復點；本輪授權範圍是 REPO 與 session 結案，不包含刪除本機證據。破壞性動作留給 owner 是誠實的邊界，而非推託。",
+   "executed_this_round": false,
+   "disposition": "OWNER_GATED_WITH_TABLE"
+  },
+  {
+   "id": "R7",
+   "subject": "LOCAL_HYGIENE_NONDESTRUCTIVE",
+   "title": "非破壞性衛生：自我修補譜系合併 + 16 個 handover 目錄索引",
+   "answers": [
+    "HY-10",
+    "HY-11"
+   ],
+   "measured": "上一輪遺留 ['fix_self_check_defects.py'] 等 3 支修補腳本；_handover 下累積 16 個輪次目錄且無索引",
+   "action": "① 產出一份 SELF_CHECK_REPAIR_LOG.md 記錄三次 harness 修補的譜系（保留原腳本為證據，不刪）；② 產出 _handover/INDEX.md 列出 16 個輪次目錄、其 verdict 與 claim ceiling 與該讀什麼。",
+   "friction": "LOW",
+   "feasibility": "HIGH",
+   "necessity": "HIGH",
+   "why": "移交品質取決於『下一個人知道去哪裡讀什麼』；這是本輪任務明文要求的結案/移交事項，且完全不動既有證據檔。",
+   "executed_this_round": true,
+   "rollback": "刪除本輪新增的兩個 md 即可；不觸及任何既有檔"
+  },
+  {
+   "id": "R8",
+   "subject": "GOVERNANCE_TRACE",
+   "title": "以 errata 記錄已發布 OpenSpec 變更記錄中未回填的 `[ ]`（不重寫歷史）",
+   "answers": [
+    "HY-10"
+   ],
+   "measured": "上一輪發布的 openspec_change/tasks.md 內 3.3/3.4/4.1/4.2 四項在交付時仍為 `[ ]`，實際工作已完成",
+   "action": "在本輪 ERRATA 具名記錄（計畫清單未在證據 commit 前回填＝痕跡與事實不符），並確保本輪的 OpenSpec 記錄在發布前 0 個殘留 `[ ]`。",
+   "friction": "LOW",
+   "feasibility": "HIGH",
+   "necessity": "HIGH",
+   "why": "治理可信度建立在痕跡與事實一致；已發布的變更記錄屬不可改寫證據，正確處置是 errata 而非回改。",
+   "executed_this_round": true,
+   "rollback": "errata 為新增檔，刪除即回復"
+  },
+  {
+   "id": "R9",
+   "subject": "SESSION_CLOSURE",
+   "title": "產出 session 結案與移交文件 + resume pointer",
+   "answers": [
+    "HY-11"
+   ],
+   "measured": "本會話已完成 FAR-018／FAR-019／archive 三輪；archive 輪 verdict=ARCHIVE_MERGED_READBACK_PASS （逐支）、self-check 12/12、PR #15 仍 open",
+   "action": "HANDOVER_SESSION_20261016.md：逐輪 verdict 與 claim ceiling、未宣稱清單、open items 與 owner、resume pointer（控制平面、輪次目錄、可直接沿用的 id）、以及不可重做的事項。",
+   "friction": "LOW",
+   "feasibility": "HIGH",
+   "necessity": "HIGH",
+   "why": "任務明文要求『對本 SESSION 進行結案/移送的相關事項』研究；沒有移交文件的結案等於下一輪必須重新推導全部狀態。",
+   "executed_this_round": true,
+   "rollback": "文件為新增檔"
+  },
+  {
+   "id": "R10",
+   "subject": "SESSION_CLOSURE",
+   "title": "PR #15 的處置保留給 owner（不自行合併）",
+   "answers": [
+    "HY-05"
+   ],
+   "measured": "PR #15 為本會話 archive 輪的返證包（31 檔、非 draft、branch tip a22ad7e17559），未合併",
+   "action": "只提出建議與理由，不合併：由 owner 決定以一般 merge 收入 main 或退回。",
+   "friction": "NONE",
+   "feasibility": "HIGH",
+   "necessity": "HIGH",
+   "why": "合併自己輪次的返證包等於自我接受；報告 §7 明示 maker 不得自簽 AO/Release。",
+   "executed_this_round": false,
+   "disposition": "OWNER_GATED"
+  },
+  {
+   "id": "R11",
+   "subject": "REPO_METADATA",
+   "title": "不改 repo metadata（topics／homepage）",
+   "answers": [
+    "HY-01"
+   ],
+   "measured": "topics=[]、homepage=null、description 已準確描述治理定位",
+   "action": "不動。",
+   "friction": "LOW",
+   "feasibility": "HIGH",
+   "necessity": "LOW",
+   "why": "上級文件未要求，且 metadata 變更不在本輪變更類別的證據面內；非必要不做（避免非必要表面變動）。",
+   "executed_this_round": false,
+   "disposition": "CONSIDERED_AND_REJECTED"
+  }
+ ],
+ "claim_ceiling": "LOCAL — this ruling is an engineering decision record; it is not an acceptance, not an approval and not a Gate"
+}
