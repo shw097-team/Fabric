@@ -24,6 +24,7 @@ COPY = [
     "SELF_CHECK_RECEIPT.json", "SELF_EVOLUTION_RECORD.json", "HANDOVER_FAR018.md",
     "isolation_probe_receipt.json", "skill_entry_map_install_receipt.json",
     "ADJUDICATION_AND_LIMITATIONS.json",
+    "HGK_WORKORDER_RESULTS_AND_DELIVERY.json",
     "lane/VERIFY_ATTEMPT1_REFUSED.json",
     # the round's own harness: published so an external team can re-derive, not just read
     "self_check.py", "build_pack.py", "build_register.py", "emit_closure.py", "verify_pack_local.py",

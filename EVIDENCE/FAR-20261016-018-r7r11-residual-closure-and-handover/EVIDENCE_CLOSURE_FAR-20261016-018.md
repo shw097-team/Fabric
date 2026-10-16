@@ -1,6 +1,6 @@
 # EVIDENCE CLOSURE — FAR-20261016-018 (R7～R11 殘留結案與移交)
 
-generated_utc: 2026-10-16T11:36:32.431537+00:00
+generated_utc: 2026-10-16T11:40:26.678555+00:00
 
 ## 0. Claim ceiling and binding
 
@@ -100,7 +100,7 @@ resume：讀 `RESIDUAL_REGISTER.json` 取殘留與 owner，讀 `HANDOVER_FAR018.
 |---|---|---|
 | `.gitattributes` | 9 | `8b9c3028d6467ff3be7c7931…` |
 | `ADJUDICATION_AND_LIMITATIONS.json` | 8216 | `268aff186ecc2ee9685f48b9…` |
-| `build_pack.py` | 13003 | `60b7ef33bf88925911112ca0…` |
+| `build_pack.py` | 13050 | `04b712ca73a4cfb546d88c93…` |
 | `build_register.py` | 5712 | `3378bff28c20e11e5dabfde3…` |
 | `compiler/acceptance.stdout.txt` | 80 | `9b718dd02a8f35fb25777044…` |
 | `compiler/activation.stdout.txt` | 80 | `9b718dd02a8f35fb25777044…` |
@@ -117,6 +117,7 @@ resume：讀 `RESIDUAL_REGISTER.json` 取殘留與 owner，讀 `HANDOVER_FAR018.
 | `FAR_RULING.md` | 7231 | `5b5d58470337c25b7a00f644…` |
 | `HANDOVER_FAR018.md` | 3059 | `b2bb76092785af350185552f…` |
 | `HGK_TYPED_ADMISSION_FAR018.json` | 6229 | `fdad8e5da19f7d2460e2f126…` |
+| `HGK_WORKORDER_RESULTS_AND_DELIVERY.json` | 5337 | `c273bdd94a8a722b4a18f441…` |
 | `isolation_probe_receipt.json` | 4782 | `ecd040dd9980472b820acef0…` |
 | `KANBAN_LIFECYCLE_RECEIPT.json` | 28833 | `38df5f0d7d0ca970791b8b0f…` |
 | `lane/EXECUTE_BRIEF.md` | 7480 | `45d772536d2ad08b0edbae16…` |
@@ -132,7 +133,7 @@ resume：讀 `RESIDUAL_REGISTER.json` 取殘留與 owner，讀 `HANDOVER_FAR018.
 | `RESIDUAL_REGISTER.json` | 5018 | `dfb44d55eb4598e030aea86e…` |
 | `ROUTE_CHECK.json` | 4755 | `d999906a2535c38d21f1b375…` |
 | `self_check.py` | 12997 | `75ce1af810cd746b09e998e2…` |
-| `SELF_CHECK_RECEIPT.json` | 3610 | `b22f6f498d3f4c34d291a842…` |
+| `SELF_CHECK_RECEIPT.json` | 3610 | `6ef3355594bf27d77ecdb43c…` |
 | `SELF_EVOLUTION_RECORD.json` | 2752 | `7107be8eb64a0d58ca4498d3…` |
 | `skill_entry_map_install_receipt.json` | 1618 | `792360db4e09ab7cfa86a5f6…` |
 | `verify_pack_local.py` | 1113 | `95ff86a232d9ee5f3280bf4a…` |
