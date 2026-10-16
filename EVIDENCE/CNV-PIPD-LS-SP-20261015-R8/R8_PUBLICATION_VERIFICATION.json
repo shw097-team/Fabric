@@ -7,30 +7,88 @@
  "local_head": "47174a726d72e2f1a3e0845ac81ce6b0cb011b63",
  "remote_head": "47174a726d72e2f1a3e0845ac81ce6b0cb011b63",
  "head_match": true,
- "remote_blobs_under_prefix": 337,
+ "remote_blobs_under_prefix": 358,
  "blob_mismatches": 0,
  "method": "every published blob's git object id compared against the local file's recomputed blob id (independent of the publishing script); plus the tree API for the prefix count",
  "m2_scan": {
+  "schema": "CNV-PIPD-LS-SP-20261015/M2-TRUSTED-SCOPE-SECRETS/1",
+  "tool": {
+   "id": "m2_scan.py",
+   "version": "1.0.0",
+   "source_sha256": "acc2f08d92c9e72973ef3b51bf64c7beb8b7fc530c39132ac4766d0ed1f29951",
+   "executes_packet_content": false,
+   "note": "reads git objects only; never imports or runs anything from the packet"
+  },
+  "scanned": {
+   "repo_worktree": "C:\\Projects\\wt-cnv-r8",
+   "rev_input": "b46b16e84d0b5980a1bdeeec7516bb6eafc1defa",
+   "rev_resolved": "b46b16e84d0b5980a1bdeeec7516bb6eafc1defa",
+   "approved_prefix": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/",
+   "blobs_scanned": 358,
+   "bytes_scanned": 5111006,
+   "scan_digest_sha256": "b93ec9e3f64a53aa800a13806e1a80d67fbfb6cdd95e7ab961f65dd9c2141993"
+  },
+  "scope": {
+   "out_of_prefix_or_traversal": [],
+   "symlinks": [],
+   "executable_bit_blobs": {
+    "count": 0,
+    "paths_sample": [],
+    "note": "archive artifacts with the executable bit are not executed by this tooling and must not be executed by consumers"
+   }
+  },
+  "secret_scan": {
+   "hard_patterns": [
+    "aws_access_key_id",
+    "aws_secret_access_key",
+    "github_pat_classic",
+    "github_pat_fine_grained",
+    "private_key_block",
+    "slack_token",
+    "openai_style_key",
+    "url_with_credentials"
+   ],
+   "soft_patterns": [
+    "secret_word_assignment",
+    "nonce_or_receipt_word"
+   ],
+   "hard_findings": [],
+   "soft_candidates": [
+    {
+     "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/WS_G/GSTACK_R8_RECEIPT.md",
+     "pattern": "nonce_or_receipt_word",
+     "count": 1
+    },
+    {
+     "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/WS_G/commands.json",
+     "pattern": "nonce_or_receipt_word",
+     "count": 1
+    },
+    {
+     "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/WS_G/supplement-launch.raw.log",
+     "pattern": "nonce_or_receipt_word",
+     "count": 1
+    }
+   ],
+   "credential_shaped_names": [],
+   "operator_token": {
+    "token_file_present": true,
+    "token_value_sha256_prefix": "26e205f4bb03",
+    "occurrences_in_packet": 0,
+    "credential_file_name_mentions": 4,
+    "value_never_printed": true
+   }
+  },
   "verdict": "PASS",
-  "blobs": null,
-  "bytes": null,
-  "scope_violations": null,
-  "hard_secrets": null,
-  "soft_candidates": null,
-  "executables": null,
-  "token_occurrences": null,
   "claim_ceiling": "LOCAL_TRUSTED_SCAN (tool-side scan of published blobs; not an AO verdict)"
  },
  "manifest_set_state": {
-  "declared_tracked": 335,
-  "published_blobs": 337,
-  "declared_all_are_published": true,
-  "undeclared_published": [
-   "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/.gitattributes",
-   "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/PACKET_MANIFEST.json"
-  ],
-  "note": "the manifest is computed before it and .gitattributes are written, so the first commit cannot list itself; a further prepare run (planned after the verifier verdict lands) recomputes the manifest over the then-current tree and closes the set exactly. This recursion is stated rather than papered over.",
-  "excluded_scratch_paths_recorded": 17
+  "declared_tracked": 358,
+  "published_blobs": 358,
+  "set_equal": true,
+  "not_declared_but_published": [],
+  "declared_but_missing": [],
+  "note": "the recursion is now closed: the manifest was recomputed over a tree that already carried the previous manifest and .gitattributes, so declared == published exactly, with no exceptions to explain away"
  },
  "pull_request": {
   "number": 5,
@@ -85,5 +143,9 @@
   "EIA-R6-01/02 errata text (publication-side)",
   "EIA-R6-03 identity/sandbox change (owner-gated)",
   "BLK-R8-WS2 main-divergence adaptation (R9-0)"
- ]
+ ],
+ "final_local_head": "b46b16e84d0b5980a1bdeeec7516bb6eafc1defa",
+ "final_remote_head": "b46b16e84d0b5980a1bdeeec7516bb6eafc1defa",
+ "first_commit_note": "the earlier commit 47174a726d72e2f1a3e0845ac81ce6b0cb011b63 published 337 blobs against 335 declared; that 2-item gap (manifest + .gitattributes) is closed by this final commit",
+ "final_checked_utc": "2026-10-16T03:52:00.049923+00:00"
 }
