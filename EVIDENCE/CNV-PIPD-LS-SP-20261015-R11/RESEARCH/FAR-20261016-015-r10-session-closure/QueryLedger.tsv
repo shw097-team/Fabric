@@ -1,0 +1,6 @@
+query_id	subquestion_id	route	query_or_lookup	timestamp	result_count	selected_source_ids	failure_code	cost
+Q1	WS1	local_read	read the two tasks.md row sets	2026-10-16T05:48:04.418913+00:00	36	S05,S06	-	0
+Q2	WS1	project_api	lane_policy.load_registry + route_for_lane + check_drift + check_sod	2026-10-16T05:48:04.418913+00:00	5	S03,S04	-	0
+Q3	WS2	filesystem	tree compare candidate vs canonical skills	2026-10-16T05:48:04.418913+00:00	11	S07,S08,S09	-	0
+Q4	WS3	source_read	read the two wrappers + the dispatcher nonce gate	2026-10-16T05:48:04.418913+00:00	4	S10	-	0
+Q5	orchestrator	reproduction	re-run the repaired path against the round-before's real receipt	2026-10-16T05:48:04.418913+00:00	8	S09	-	0

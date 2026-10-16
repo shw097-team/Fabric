@@ -1,0 +1,131 @@
+{
+  "CONVERGENCE_RETURN_PACK": {
+    "mission_id": "CNV-PIPD-LS-SP-20261015",
+    "changeset": "NARROW_REPAIR",
+    "contract_id": "CNV-R6-EVIDENCE-ARCHIVE-NARROW-REPAIR-20261015",
+    "generated_local": "2026-10-15T20:42:43+08:00",
+    "round": "R6R7",
+    "compiler": {
+      "verdict": "PROMPT_COMPILE_PASS",
+      "stages": [
+        "lint",
+        "activation",
+        "acceptance",
+        "compile"
+      ],
+      "exit_codes": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "contract_sha256": "e8a34e2f3ecbeec96499096c9463eafc895e912ea1e0e22a0c126551463a8f97",
+      "receipt_ref": "R6R7_COMPILED_OUT/compiler-receipt.json",
+      "rendered_prompt_ref": "R6R7_COMPILED_OUT/thin-prompt.md",
+      "rendered_chars": 9904
+    },
+    "source": {
+      "pkg_sha256": "96d9d564286743e17550ccef15b9952347901eb77168f930376938893cff9c3f",
+      "report_id": "EIA-FABRIC-CONVERGENCE-R6-20261015",
+      "report_sha256_verified_against_brief": true,
+      "brief_sha256": "b8526954b4ce9e0f70a387d19ebd5345e9a4bcd58686a9395b30e07537d1704d"
+    },
+    "hgk": {
+      "control_plane": "HG-KSEOS",
+      "project_id": "CNV-R6R7-ARCHIVE-REPAIR-R6ARC2",
+      "state": "WORKORDERS_ADMITTED",
+      "requirement": "REQ-CNV-R6R7-ARCHIVE-REPAIR-R6ARC2-PLAN (FROZEN)",
+      "taskspecs": [
+        "TS-R6ARC2-01",
+        "TS-R6ARC2-02",
+        "TS-R6ARC2-03"
+      ],
+      "workorders": [
+        "WO-TS-R6ARC2-01",
+        "WO-TS-R6ARC2-02",
+        "WO-TS-R6ARC2-03"
+      ],
+      "workorder_state": "CREATED (open; no verdict recorded)",
+      "checkpoint_ref": "CK-R6ARC2-7287CDD0",
+      "checkpoint_state_digest": "a9f8ab8c27a3df340cb90430a81872458b3b896a5db75cb13d373b619f41c667",
+      "admission_findings": [
+        "taskspec id = last dash-segment of project_id -> cross-project UNIQUE collisions (three attempts)",
+        "workorder admission resolves git HEAD from the ambient cwd, not target_root"
+      ]
+    },
+    "github": {
+      "repo": "shw097-team/Fabric",
+      "pr": 3,
+      "draft": true,
+      "state": "open",
+      "base_sha": "266f8d65cf9b21c3b37c1c243946a5c828cf973b",
+      "before_head": "e6a5ce5899edb62e37c2fb9bd340b43673903141",
+      "after_head": "a10f7bea645792048e3415443d417ffa3c2ac890",
+      "changed_paths_total": 581,
+      "delta": {
+        "added": 14,
+        "modified": 2,
+        "deleted": 0
+      },
+      "forced_push": false,
+      "local_main_touched": false,
+      "publication_authority": "PENDING_MAINTAINER_PREFIX_APPROVAL",
+      "token_value": "NEVER_EXPORT"
+    },
+    "merge_checks": {
+      "M1": "VERIFIED (manifest tracked_inventory 581 == remote tree 581, set difference 0; superseded values marked historical)",
+      "M2": "VERIFIED (m2_scan.py v1.0.0 out-of-packet: 581/581 blobs, 0 scope escapes, 0 hard secrets, 0 credential occurrences; 581/581 blob ids recomputed)",
+      "M3": "NOT_VERIFIED (human maintainer signature required; request filed, maker may not sign)"
+    },
+    "findings": {
+      "EIA_R6_total": 9,
+      "fixed_this_round": [
+        "EIA-R6-01",
+        "EIA-R6-02"
+      ],
+      "in_progress_this_round": [
+        "EIA-R6-06"
+      ],
+      "isolated": [
+        "EIA-R6-08"
+      ],
+      "tracked": [
+        "EIA-R6-09"
+      ],
+      "deferred_r7": [
+        "EIA-R6-03",
+        "EIA-R6-04",
+        "EIA-R6-05",
+        "EIA-R6-07"
+      ],
+      "audit24_current": "NOT_REVALIDATED",
+      "blockers": [
+        "BLK-R7-01..08 (see R7_BLOCKERS_AND_TASKS.json)"
+      ]
+    },
+    "deferred_runtime": {
+      "M04": "OPEN_AS_RECORDED",
+      "M06": "OPEN_AS_RECORDED",
+      "M16": "OPEN_AS_RECORDED",
+      "checker_acl": "UNVERIFIED",
+      "fresh_g1": "UNVERIFIED",
+      "live221": "NOT_VERIFIED",
+      "gates_A_to_H": "NOT_VERIFIED",
+      "ao": "NOT_ISSUED"
+    },
+    "evidence": {
+      "manifest_ref": "EVIDENCE/CNV-PIPD-LS-SP-20261015/PACKET_MANIFEST.json @a10f7bea (sha256 27ba42f7cb32d9f490d8897ef0205b0b70cd13bb2b7bc6344e717e5bffbd118b)",
+      "scope_scan_ref": "EVIDENCE/CNV-PIPD-LS-SP-20261015/M2_TRUSTED_SCOPE_SECRETS.json (phase A) + R6R7_M2_SCAN_AT_FINAL_HEAD.json (final head, workspace)",
+      "maintainer_approval_ref": null,
+      "remote_readback_ref": "https://github.com/shw097-team/Fabric/pull/3#issuecomment-6192297748 and R6R7_POST_COMMIT_READBACK.json",
+      "rollback_ref": "maintainer-authorized git revert of the merge commit, or close the PR; never force-push main",
+      "checkpoint_ref": "CK-R6ARC2-7287CDD0"
+    },
+    "first_fail_code": null,
+    "smallest_next_repair": "M3: obtain the maintainer's single-prefix approval (human). Then R7-02 validator hardening (M04/M06/M16 must REJECT) and R7-03 checker OS-ACL.",
+    "archive_verdict": "ARCHIVE_PUBLISHED_CANDIDATE (M1+M2 complete and independently re-checkable; M3 pending a human)",
+    "full_convergence_verdict": "TEMP_CLOSED_CHALLENGE",
+    "production_verdict": "FAIL_CLOSED",
+    "claim_ceiling": "LOCAL / candidate-only. Not an AO verdict; closes no acceptance case."
+  }
+}

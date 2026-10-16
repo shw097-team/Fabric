@@ -1,0 +1,18 @@
+schema: FAR-ARTIFACT/ProposedEvolution/1
+run_id: FAR-20261016-015-r10-session-closure
+proposals:
+  - id: EV-R10-01
+    proposal: have the canonical dispatcher accept a nonce-artifact root and read the lane's own DONE/nonce file
+    owner: control-plane owner
+    gate: a turn whose nonce exists only in its artifact root still yields a served arm
+    falsification: a receipt with nonce_absent_arms for a turn whose artifact root carried the nonce
+  - id: EV-R10-02
+    proposal: one immutable receipt path per TURN (role+turn+UTC) in the canonical dispatcher itself
+    owner: control-plane owner
+    gate: two same-role turns leave two receipts
+    falsification: any two turns of one role sharing one receipt path
+  - id: EV-R10-03
+    proposal: a cross-field agreement gate over the registry's own prose and structured declarations
+    owner: governance owner
+    gate: the PLAN/VERIFY SoD collision cannot coexist with a clean check_drift
+    falsification: a registry that reads drift=[] while check_sod reports VIOLATION for a declared-distinct pair

@@ -1,0 +1,69 @@
+{
+ "schema": "CNV-PIPD-LS-SP-20261015-R11/VERDICT-ADJUDICATION/1",
+ "produced_utc": "2026-10-16T07:13:16.515109+00:00",
+ "checker_run": {
+  "route": "lane dispatch on the mandated arm through the REUSED successor wrapper (R10 tooling)",
+  "served_arm": {
+   "rank": 1,
+   "provider": "opencode-go",
+   "model": "deepseek-v4.1-flash",
+   "exit": 0,
+   "seconds": 543.73,
+   "stdout_bytes": 305481
+  },
+  "pool_receipt": "REAL: this turn produced a pool receipt whose required_arm == served_arm == opencode-go/deepseek-v4.1-flash (in R10 the same lane had fail-closed ERR_LANE_REQUIRED_ARM_ABSENT; the registry moved to epoch 22 in between, so the pool now contains the mandated arm)",
+  "dispatcher_code_vs_truth": "the dispatcher reported ERR_NO_ARM_EMITTED_NONCE (exit 3); the round's wrapper attestation reported NONCE_PRESENT_DESPITE_DISPATCHER_CODE, locating the nonce in three places including the lane's own 305,481-byte stdout and R11_VERIFY/R11V_DONE - i.e. the R10 repair corrected a LIVE false negative on a real lane turn",
+  "route_history_in_this_round": [
+   "attempt A: refused ERR_LANE_REMOTE_WRITE_NOT_AUTHORIZED - the brief contained the word 'published', which the dispatcher's marker gate reads as a remote-write marker. This was THIS ROUND'S OWN error: the marker scan printed the offending line and the dispatch was issued anyway.",
+   "attempt B after rewording (scan clean): served, as above"
+  ],
+  "independence": "NONE at model level - the checker ran the same arm the order binds the writer to; its verdict is advisory evidence and upgrades nothing"
+ },
+ "verdict": {
+  "file": "R11_VERIFY/R11_VERDICT.json",
+  "overall": "PARTIALLY_VERIFIED",
+  "confirmed": 4,
+  "refuted": 3,
+  "internal_inconsistency_noted": "its own prose says '5 CONFIRMED / 2 REFUTED' while its claims list is 4 CONFIRMED and 3 REFUTED; recorded as a defect in the verdict's summary line, not silently reconciled"
+ },
+ "accepted_and_corrected": [
+  {
+   "code": "C2_INVENTORY_STALE",
+   "checker_measure": "live: 25 records (a peer added hgk-round3-lane-rebind-20261016 at ~14:30), 223 done / 364 open; the round's snapshot said 24 / 183 done / 371 open, and its own record's rows read 0/18 while live 14/10",
+   "action": "CORRECTED: the inventory TSV, the manifest, HANDOVER_R11.md and the ledger were regenerated from a LIVE re-count (25 / 223 / 364) with the peer addition noted"
+  },
+  {
+   "code": "C3_SELFCHECK_UNDERCOUNT",
+   "checker_measure": "the self-check's regex enumerated 11 references and claimed none failed; an independent enumeration finds 14-15 with at least one non-resolving",
+   "action": "CORRECTED: SELF-CHECK v3 enumerates both absolute-path and placeholder forms; it now reports 15 refs and 0 non-resolving, and its note records that v2 was wrong"
+  },
+  {
+   "code": "C4_WR6_LOCATOR_WRONG",
+   "checker_measure": "the locator named for the version mismatch does not exist; no hermes.json under the Hermes home",
+   "action": "CORRECTED, and the item itself RE-ESTABLISHED: measured HG-KSEOS/config/hermes.json DOES declare \"version\": \"0.20.0\" (nested, missed by two of this round's own probe drafts) while the source reports 0.21.5; WR-6 stays with the corrected locator and both wrong drafts are disclosed"
+  },
+  {
+   "code": "C5_WR2_ARITHMETIC",
+   "checker_measure": "ws3's TSV holds 15 rows (12 dangling + 3 planned); the handover's '12 plus 10 more plus 3' did not match",
+   "action": "CORRECTED: WR-2 now quotes the TSV's own counts (15 rows)"
+  },
+  {
+   "code": "FAR_WS2_ROWS_BECAME_STALE",
+   "checker_measure": "ws2's rows RES-R11-01/02 (stub file, empty open_items) were true when measured and false after this round fixed them",
+   "action": "RECORDED, NOT REWRITTEN: a research product is not silently edited; the handover's correction note says the two rows are stale-by-repair"
+  },
+  {
+   "code": "INJECTION_OBSERVED",
+   "checker_measure": "the checker reports a prompt-injection attempt styled as a system_warning embedded in tool output",
+   "action": "RECORDED as ledger finding R11-F5; no instruction from tool output was obeyed"
+  }
+ ],
+ "what_stands_confirmed": [
+  "C1: the anchors (package 2,689,181 bytes + sha256, EIA 33,616 bytes + sha256 and its three verdict tokens) and the handover's path set resolve",
+  "C5: the dangling card defect is exact (entry_map.json named at SKILL.md lines 66/71, 0 files named that way exist) and ws3's TSV is faithful",
+  "C6: claim discipline holds - no acceptance/Gate PASS/AO verdict/release/product claim, and the same-arm residual is stated rather than hidden",
+  "C7: the guard subject is untouched (300 files, 1,102,562 bytes, newest mtime 2026-10-15 23:30:47, zero files inside the R11 window)",
+  "OD-6 (VERIFY engine hermes vs order's Codex CLI) and the hgk-far-remediation row were both independently confirmed open by the checker"
+ ],
+ "claim_ceiling": "LOCAL / candidate-only; the checker's verdict is advisory evidence, is NOT model-independent, and upgrades nothing"
+}

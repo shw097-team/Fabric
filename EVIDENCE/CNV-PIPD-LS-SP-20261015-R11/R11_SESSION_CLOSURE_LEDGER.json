@@ -1,0 +1,140 @@
+{
+ "schema": "CNV-PIPD-LS-SP-20261015-R11/SESSION-CLOSURE-LEDGER/1",
+ "produced_utc": "2026-10-16T06:30:44.369427+00:00",
+ "round": "R11-0",
+ "changeset": "R11-0-SESSION-HANDOVER",
+ "hgk_project": "CNV-R11-HANDOVER",
+ "board": {
+  "slug": "r11-session-handover-20261016",
+  "root": "t_ca2c3c71",
+  "workers": [
+   "t_deedfc1b",
+   "t_a3314756",
+   "t_a69640dd",
+   "t_a0840557"
+  ],
+  "verifier": "t_c9ac2164",
+  "synthesizer": "t_a8cef856"
+ },
+ "findings": [
+  {
+   "id": "R11-F1",
+   "what": "Every one of the 25 openspec change records under HG-KSEOS carries unchecked rows (live: 223 done / 364 open); a peer round added one record mid-round",
+   "state": "MEASURED",
+   "owner": "owner / next session"
+  },
+  {
+   "id": "R11-F2",
+   "what": "The previous round's own check forced four corrections that are visible in its artefacts; a handover that quoted the round without that adjudication file would propagate withdrawn claims",
+   "state": "MEASURED",
+   "owner": "-"
+  },
+  {
+   "id": "R11-F3",
+   "what": "A lane's POOL is a separate surface from the registry: a mandated arm can be reachable provider-direct while absent from the pool (fail-closed ERR_LANE_REQUIRED_ARM_ABSENT)",
+   "state": "MEASURED (previous round, re-usable)",
+   "owner": "control-plane owner"
+  },
+  {
+   "id": "R11-F4",
+   "what": "The governed skill names entry_map.json at lines 66/71 and the file does not exist in its own directory (dangling load path)",
+   "state": "MEASURED",
+   "owner": "skill owner"
+  },
+  {
+   "id": "R11-F5",
+   "what": "A prompt-injection attempt styled as a `system_warning` was embedded in tool output during this round and was ignored by the checker; no instruction from tool output was obeyed",
+   "state": "OBSERVED (reported by the round's checker)",
+   "owner": "-"
+  }
+ ],
+ "side_effects_disclosed": [
+  {
+   "what": "wrote the R11 round root and the openspec change hgk-r11-session-handover-20261016 (proposal.md + specs/session-handover/spec.md + tasks.md)",
+   "why": "the round's own records",
+   "readback": "openspec validate --strict = valid"
+  },
+  {
+   "what": "created kanban board r11-session-handover-20261016 and a swarm graph (7 cards)",
+   "why": "mandate requires KANBAN/SWARM",
+   "readback": "kanban list shows root + 4 workers + verifier + synthesizer"
+  },
+  {
+   "what": "wrote FAR run artifacts and carried the previous round's FAR research into the packet verbatim (18 files)",
+   "why": "research must be externally readable, not summarised",
+   "readback": "packet manifest will list each carried file with a sha256"
+  },
+  {
+   "what": "read the previous round's artefacts, the openspec records, the skills tree and the Fabric checkout (all read-only)",
+   "why": "handover must be measured",
+   "readback": "no write outside the R11 root and the openspec change dir"
+  },
+  {
+   "what": "did NOT touch the guard subject, the published R6..R10 packets, the lane registry/slots, or any peer working tree",
+   "why": "constraints",
+   "readback": "guard subject count/mtime re-measured by the round and by ws3"
+  },
+  {
+   "what": "the round's self-check v2 was WRONG (under-counted path references) and its first inventory snapshot was stale; both were corrected after independent review and the corrections are disclosed, not silently rewritten",
+   "why": "evidence discipline",
+   "readback": "SELFCHECK_R11.json schema .../3 and the correction note in HANDOVER_R11.md §7"
+  }
+ ],
+ "blockers": [
+  {
+   "id": "BL-1",
+   "what": "human gates (Fresh G1, DOC-05 effect admission, owner/AO/release)",
+   "owner": "human owner"
+  },
+  {
+   "id": "BL-2",
+   "what": "external acceptance officer has accepted no packet (scope PARTIAL_CHALLENGE)",
+   "owner": "external officer"
+  },
+  {
+   "id": "BL-3",
+   "what": "package source #6 FAIL_CLOSED",
+   "owner": "authority"
+  },
+  {
+   "id": "BL-4",
+   "what": "peer round holds the local Fabric checkout on an in-flight branch",
+   "owner": "coordination"
+  }
+ ],
+ "claim_ceiling": "LOCAL / candidate-only",
+ "publication": {
+  "status": "PUBLISHED_candidate_evidence_first_cut",
+  "branch": "evidence/cnv-pipd-ls-sp-20261015-r11",
+  "head_first_cut": "51c804ad172b9eb8b5cbc838b362cd1757625bff",
+  "m2": {
+   "verdict": "PASS",
+   "blobs": 75,
+   "bytes": 423623,
+   "hard_secrets": 0,
+   "soft_candidates": 0,
+   "scope_violations": 0,
+   "executables": 0,
+   "token_occurrences": 0
+  },
+  "readback": {
+   "match": true,
+   "remote_blobs": 75,
+   "blob_mismatches": 0
+  },
+  "pr": {
+   "number": 11,
+   "draft": true,
+   "base": "main",
+   "url": "https://github.com/shw097-team/Fabric/pull/11"
+  },
+  "external_readback_via_api": {
+   "pr_head_matches": true,
+   "main": "b8ff81043e47 UNCHANGED",
+   "r9": "5cd47cea UNCHANGED",
+   "r10": "34d57124 UNCHANGED"
+  },
+  "defect_found_by_the_round_itself": "the first cut MISSED SELF_EVOLUTION_R11.md/.json: they were written after prepare staged the packet (MANIFEST local=73). Disclosed, re-cut and re-pushed (the PR is a draft, so its head moves with the branch).",
+  "claim_ceiling": "LOCAL/candidate-only - the bytes landing and a clean secret gate are all this proves; not an acceptance, Gate PASS, AO verdict or release"
+ }
+}

@@ -1,0 +1,69 @@
+{
+ "schema": "HGK-LANE-NONCE-ATTESTATION/1",
+ "generated_utc": "2026-10-16T07:10:53.831794+00:00",
+ "lane": "VERIFY_SECURITY",
+ "dispatcher_code": "ERR_NO_ARM_EMITTED_NONCE",
+ "dispatcher_claim": {
+  "code": "ERR_NO_ARM_EMITTED_NONCE",
+  "used_rank": null,
+  "used_transport_model": null,
+  "nonce_absent_arms": [
+   "opencode-go/deepseek-v4.1-flash"
+  ]
+ },
+ "expected_nonce_derived_from": "the dispatched brief text",
+ "expected_nonce_present_in_brief": true,
+ "expected_nonce_sha256_prefix": "e176feb14a7b5330",
+ "arms_from_attempts": [
+  {
+   "rank": 1,
+   "provider": "opencode-go",
+   "model": "deepseek-v4.1-flash",
+   "exit": 0,
+   "seconds": 543.73,
+   "nonce_present_as_reported": false,
+   "nonce_source_as_reported": "item.completed/agent_message",
+   "timed_out": false,
+   "stdout_bytes": 305481
+  }
+ ],
+ "surfaces_scanned_from_receipt": [
+  "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\CNV-PIPD-LS-SP-20261015-R10\\VERIFY_SECURITY\\attempt-1-20261016T070149Z\\attempt-23040-1792134109-1-stdout.txt",
+  "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\CNV-PIPD-LS-SP-20261015-R10\\VERIFY_SECURITY\\attempt-1-20261016T070149Z\\attempt-23040-1792134109-1-stderr.txt"
+ ],
+ "artifact_roots_declared": [
+  "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015-R11/R11_VERIFY"
+ ],
+ "artifact_root_files": 18,
+ "nonce_found_in": [
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\CNV-PIPD-LS-SP-20261015-R10\\VERIFY_SECURITY\\attempt-1-20261016T070149Z\\attempt-23040-1792134109-1-stdout.txt",
+   "bytes": 305481,
+   "sha256": "74329496b38da8044ea8cc59e60743d5f59e64ac84a822ff9e4703a7460b9bd2"
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R11\\R11_VERIFY\\R11V_DONE",
+   "bytes": 25,
+   "sha256": "e176feb14a7b53309d2516e257226a31d18e413d50ccd008eb1807b6adcdc064"
+  },
+  {
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R11\\R11_VERIFY\\raw\\10_verifier_brief.md",
+   "bytes": 3673,
+   "sha256": "8391df3f30efea0856c2923120f649e6afb14a826c45899cb84d9a0033a67d00"
+  }
+ ],
+ "verdict": "NONCE_PRESENT_DESPITE_DISPATCHER_CODE",
+ "claim_ceiling": "an attestation here corrects the RECORD of whether the lane emitted the nonce; it is not an acceptance, not a model attestation by the provider, and it does not upgrade any round claim",
+ "snapshot": {
+  "snapshot_dir": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R11\\lane_receipts",
+  "copied": [
+   {
+    "from": "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/lane_runs/VERIFY_SECURITY_turn1_20261016T070148Z_dispatch_receipt.json",
+    "to": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R11\\lane_receipts\\VERIFY_SECURITY_turn1_20261016T070148Z_dispatch_receipt.json",
+    "bytes": 7444,
+    "sha256": "dfb6e39dc16b766cd5e7988038bf6a7aa38466e07ecb161dfede4cd08fc4bb9b"
+   }
+  ]
+ },
+ "receipt_path": "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/lane_runs/VERIFY_SECURITY_turn1_20261016T070148Z_dispatch_receipt.json"
+}

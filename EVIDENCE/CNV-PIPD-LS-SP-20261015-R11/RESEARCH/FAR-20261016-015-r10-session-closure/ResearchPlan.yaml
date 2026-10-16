@@ -1,0 +1,19 @@
+schema: FAR-ARTIFACT/ResearchPlan/1
+run_id: FAR-20261016-015-r10-session-closure
+route: FAR_ROUTE_NATIVE_ARIS
+route_bound_from: FABRIC/fabric-autonomous-research/governance/FAR_CAPABILITY_MATRIX.yaml
+swarm_split:
+  - id: WS1
+    question: adjudicate every open row of the two stale change records against freshly measured reality
+    write_root: C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015-R10/FAR/ws1/
+  - id: WS2
+    question: inventory candidate-versus-landed skills, and specify what a closure/handover package must contain
+    write_root: C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015-R10/FAR/ws2/
+  - id: WS3
+    question: specify the exact minimal repair for the two measured wrapper defects
+    write_root: C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015-R10/FAR/ws3/
+children_arm: opencode-go/glm-5.3-flash (inherited from delegation.model)
+orchestrator_arm: opencode-go/glm-5.3-flash (this session's own agent model, measured)
+independence_note: >-
+  The round's checker is bound to the SAME arm as the writer, so model-axis independence is ABSENT for the
+  verification of this round; process/lane separation plus a re-derivation duty is what remains.

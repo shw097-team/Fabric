@@ -1,0 +1,5 @@
+alternative_id	alternative	rejection_reason	evidence_refs
+A1	perform the cap remediation's mechanical split anyway	over-engineering: the target is 21026 bytes against a 100000-character cap	S06,S07
+A2	edit the two other rounds' tasks.md files to tick the adjudicated rows	those records belong to their rounds and a peer round is actively publishing one of them; this round delivers an adjudication artifact instead	S05,S06
+A3	patch HG-KSEOS/scripts/hgk-lane-dispatch.py from this round	control-plane change outside a product round's write set	S10
+A4	self-apply the lane rebind to the registry	canonical control-plane mutation; owner act	S03

@@ -1,0 +1,446 @@
+{
+ "schema": "CNV-PIPD-LS-SP-20261015-R11/RESUME-MANIFEST/1",
+ "produced_utc": "2026-10-16T06:28:54.495964+00:00",
+ "how_to_resume": [
+  "1) read HANDOVER_R11.md top to bottom",
+  "2) read the anchors in `anchors` below (package = sole authority)",
+  "3) pick an item from `open_items` (each has ONE next action)",
+  "4) before any lane dispatch, pre-flight the lane POOL, not just the registry",
+  "5) keep the claim ceiling LOCAL/candidate-only until an EXTERNAL officer accepts"
+ ],
+ "anchors": {
+  "package": {
+   "path": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md",
+   "bytes": 2689181,
+   "sha256": "96d9d564286743e17550ccef15b9952347901eb77168f930376938893cff9c3f",
+   "role": "SOLE AUTHORITY"
+  },
+  "eia_report": {
+   "path": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_Convergence_External_Independent_Acceptance_Report_20261015.md",
+   "bytes": 33616,
+   "sha256": "10caf4dbdb1993cd46ff2c50394dd01dfd5f34d635816f95e3d2e5ab6c566206",
+   "verdicts": {
+    "scope": "PARTIAL_CHALLENGE",
+    "production": "FAIL_CLOSED",
+    "merge": "CONDITIONAL_APPROVE_AFTER_MINIMAL_METADATA_AND_SCOPE_CHECKS"
+   }
+  },
+  "rules": {
+   "path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\AGENTS.md",
+   "bytes": 14055
+  },
+  "claim_ceiling": "LOCAL / candidate-only"
+ },
+ "entry_points": {
+  "handover_doc": "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015-R11/HANDOVER_R11.md",
+  "round_roots": {
+   "R6_R7": "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015",
+   "R8": "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015-R8",
+   "R9": ".../CNV-PIPD-LS-SP-20261015-R9",
+   "R10": ".../CNV-PIPD-LS-SP-20261015-R10",
+   "R11": ".../CNV-PIPD-LS-SP-20261015-R11"
+  },
+  "guard_subject": "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/R6_DELIVERY/ (HANDS-OFF, 300 files, byte-verbatim)",
+  "spine_db": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\shared-spine\\hg-kseos.db",
+  "lane_registry": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\lane-routing-registry.yaml (UNTRACKED local control-plane state)",
+  "lane_slots": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\lane-route-slots.candidate.json (UNTRACKED)",
+  "dispatchers": {
+   "r9": ".../CNV-PIPD-LS-SP-20261015-R9/dispatch_r9.py",
+   "r10_successor": ".../CNV-PIPD-LS-SP-20261015-R10/tooling/dispatch_r10.py (per-turn receipts + nonce attestation)"
+  },
+  "credential_path": "C:/Projects/Agent_Workspace/API KEY/GITHUB-REPO_SHW097-4.txt (NAME ONLY - never print, never put in argv/URL)",
+  "hermes_home": "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes",
+  "far_products": {
+   "ws1": "R11/FAR/ws1/",
+   "ws2": "R11/FAR/ws2/",
+   "ws3": "R11/FAR/ws3/"
+  }
+ },
+ "skills_to_load_first": [
+  "hgk-lifecycle-admission (typed admission)",
+  "hgk-kanban-and-lane-routing (lanes, pool vs registry, Codex CLI relay)",
+  "hgk-governed-execution (governance-grade execution rules)",
+  "governed-write-admission",
+  "remote-repo-publication (packet publish + API readback)"
+ ],
+ "protected_and_forbidden": [
+  "no write to the guard subject R6_DELIVERY/",
+  "no rewrite of published EVIDENCE/** in R6..R10 packets",
+  "no force-push; branch off origin/main in a NEW worktree",
+  "never edit the lane registry/slots to make your own dispatch succeed",
+  "no credential value in argv/URL/log/artifact",
+  "peer in-flight branches are READ-ONLY (do not switch/clean their checkout)"
+ ],
+ "open_items_source": "FAR ws2 resume_items.tsv (18 rows), re-derivable from the round roots; every row carries a locator and a measurement",
+ "open_items": [
+  {
+   "id": "RES-R11-01",
+   "item": "R11 board evidence stub R11_BOARD_EVIDENCE.txt still carries empty fields (root= W1= ... SYNTH=) while the sibling JSON has the real ids - the txt is the file later rounds will grep",
+   "class": "HOUSEKEEPING",
+   "owner": "R11 orchestrator",
+   "next_action": "Delete or overwrite R11_BOARD_EVIDENCE.txt with the ids from R11_BOARD_EVIDENCE.json",
+   "locators": "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015-R11/R11_BOARD_EVIDENCE.txt (39 bytes, sha256 prefix 151c227ba9b9f455) vs R11_BOARD_EVIDENCE.json (root t_ca2c3c71)",
+   "evidence": "Measured: cat of the 39-byte file shows 'root= W1= W2= W3= W4= VERIFIER= SYNTH='; JSON sibling measured non-empty 200 B"
+  },
+  {
+   "id": "RES-R11-02",
+   "item": "RESUME_MANIFEST.json 'open_items' array is EMPTY although its own header promises items with class/owner/one_action/locator/evidence - the manifest a new session would consume first is hollow",
+   "class": "WORK_REMAINING",
+   "owner": "R11 orchestrator",
+   "next_action": "Populate open_items[] from this ws2 resume_items.tsv (merge, do not duplicate measurement work)",
+   "locators": "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015-R11/RESUME_MANIFEST.json:70",
+   "evidence": "Measured: json read shows open_items[] of length 0 with the literal note 'populated from the round's FAR research'"
+  },
+  {
+   "id": "RES-R11-03",
+   "item": "R11 board cards W1-W4 (kanban r11-session-handover-20261016) all sit in 'ready' and the verifier/synthesizer in 'todo' - the round's 4 worker streams have not started",
+   "class": "WORK_REMAINING",
+   "owner": "R11 orchestrator",
+   "next_action": "Drive card t_deedfc1b (W1 inventory) from 'ready' to a worker run",
+   "locators": "Kanban db <HERMES_HOME>/kanban/boards/r11-session-handover-20261016/kanban.db + ids in R11_BOARD_EVIDENCE.json",
+   "evidence": "Measured: sqlite select status,count(*) -> 7 cards: done 1 (root), ready 4, todo 2"
+  },
+  {
+   "id": "RES-REG-01",
+   "item": "Owner lane rebind orders CONFLICT is resolved but replaced by a NEW SoD violation: the 'same maker/checker arm' order now makes EXECUTE and VERIFY_SECURITY both opencode-go/deepseek-v4.1-flash (R10-F2 moved pair)",
+   "class": "OWNER_DECISION",
+   "owner": "human owner",
+   "next_action": "Rise one owner decision: record EXECUTE/VERIFY_SECURITY same-arm pair as an OPEN declared_conflicts entry in the registry (owner-order-20261016-lane-rebind-plan-glm-verify-deepseek)",
+   "locators": "C:/Projects/Agent_Workspace/HG-KSEOS/config/lane-routing-registry.yaml (UNTRACKED); measured via PYTHONPATH=src ./.venv/Scripts/python.exe -c 'from hg_kseos import lane_policy as L; ...'",
+   "evidence": "Measured fresh: epoch 22, check_sod(EXECUTE,VERIFY_SECURITY) '(False, SOD_VIOLATION maker_model=deepseek-v4.1-flash == checker_model=deepseek-v4.1-flash)'; registry sha256 02481992df124ca4..., mtime 14:13:29"
+  },
+  {
+   "id": "RES-REG-02",
+   "item": "Both EXECUTE and VERIFY_SECURITY admission_status remain UNPROVEN at epoch 22 (no measured serving evidence recorded for the new arms)",
+   "class": "OWNER_DECISION",
+   "owner": "human owner",
+   "next_action": "Set admission_status from a measured serving turn, or leave UNPROVEN by explicit decision (never declare)",
+   "locators": "registry routes[].EXECUTE / routes[].VERIFY_SECURITY (same reader command as RES-REG-01)",
+   "evidence": "Measured: route dumps show 'admission_status: UNPROVEN' for both lanes; EXECUTE admission_evidence field absent"
+  },
+  {
+   "id": "RES-DISP-01",
+   "item": "Mandated VERIFY/SECURITY arm (deepseek-v4.1-flash) absent from that lane's LIVE POOL: dispatch fail-closed ERR_LANE_REQUIRED_ARM_ABSENT and R10's rerun had to go provider-direct (declaring/pooled/reachable are three surfaces)",
+   "class": "OWNER_DECISION",
+   "owner": "control-plane owner",
+   "next_action": "Patch the lane pool (lane-route-slots.candidate.json) so the mandated arm is pooled - or re-mandate an arm the pool already contains",
+   "locators": "C:/Projects/Agent_Workspace/HG-KSEOS/config/lane-route-slots.candidate.json + R10 lane_receipts/VERIFY_SECURITY_turn1_20261016T054613Z_nonce_attestation.json",
+   "evidence": "Measured from R10 artifacts: dispatcher_code=ERR_LANE_REQUIRED_ARM_ABSENT, verdict NO_ATTEMPTS_RECORDED, identity_gate lists only rank1 gpt-6.1-sol; not re-dispatched this session"
+  },
+  {
+   "id": "RES-DISP-02",
+   "item": "Dispatcher-side repairs (immutable per-turn receipt paths + nonce gate reading the lane's artifact root) exist only in round-local successors; canonical hgk-lane-dispatch.py is unpatched, so any other round re-hits provenance loss (11 attempt-1 turns shared 2 paths in one session)",
+   "class": "WORK_REMAINING",
+   "owner": "control-plane owner",
+   "next_action": "Apply the successor wrapper's two repairs into the canonical dispatcher under a guarded apply",
+   "locators": "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015-R10/tooling/dispatch_r10.py (12497 B, sha256 prefix a308b1cea808; 8/8 pytest re-run this session) + README_R10_TOOLING.md",
+   "evidence": "Measured: pytest fresh rerun '8 passed in 0.09s'; canonical dispatcher not touched by any round through R10"
+  },
+  {
+   "id": "RES-SKILL-01",
+   "item": "hgk-governed-execution/SKILL.md names entry_map.json at lines 66 and 71 as its OWN load/stop path (ERR_ENTRY_MAP_*), but no such file exists in the live skill directory - the skill's pointer set is broken and any round following that instruction stops",
+   "class": "WORK_REMAINING",
+   "owner": "skill owner (canonical tree)",
+   "next_action": "Create the missing entry_map.json (or patch the SKILL.md lines 66/71 to point at the real index) under a guarded apply",
+   "locators": "C:<HERMES_HOME>/skills/software-development/hgk-governed-execution/SKILL.md (21026 B) + find <skill dir> -name entry_map.json",
+   "evidence": "Measured: grep finds 2 refs (lines 66, 71); find returns 0 files"
+  },
+  {
+   "id": "RES-SKILL-02",
+   "item": "82 of 123 files under hgk-governed-execution/references are absent from the skill's own support-files-index.md (cold-start canary fails silently; index drift grew since R10's 73-of-112 snapshot)",
+   "class": "WORK_REMAINING",
+   "owner": "skill owner (canonical tree)",
+   "next_action": "Run one index pass: regenerate support-files-index.md from the live references/ tree",
+   "locators": "C:<HERMES_HOME>/skills/software-development/hgk-governed-execution/references/support-files-index.md",
+   "evidence": "Measured now: 123 recursive files, 41 listed, 82 unlisted (python name-substring match)"
+  },
+  {
+   "id": "RES-OSPEC-01",
+   "item": "Two openspec records fail the project's own --strict gate: hgk-plan-plane-rebind-20261015 (no specs/ deltas) and sod-independent-verify-enforcement (spec at wrong path shape) - both carry open rows (5 and 2) and neither can be validated as-is",
+   "class": "WORK_REMAINING",
+   "owner": "HG-KSEOS openspec owner",
+   "next_action": "Fix sod-independent-verify-enforcement: move specs/authority.md under specs/<capability>/spec.md with delta headers",
+   "locators": "H:/HG-KSEOS/openspec/changes/sod-independent-verify-enforcement/ + command 'npx --no-install openspec validate <id> --strict'",
+   "evidence": "Measured: strict run exit 1 for both; dir listing shows no specs/ in hgk-plan-plane-rebind, authority.md misplaced in the other"
+  },
+  {
+   "id": "RES-B1",
+   "item": "221 acceptance cases, 8 Gates (A-H), Fresh G1 re-cert, DOC-05 effect admission: NOT_RUN locally across all rounds; EIA P0 items block any formal runtime admission",
+   "class": "BLOCKER",
+   "owner": "human owner",
+   "next_action": "Convene the owner decision: which subset of the 221-case plan is REQUIRED for the next formal Gate, per EIA risk-tiering (report line 113)",
+   "locators": "EIA report <HERMES_HOME>/attachments/Fabric_Convergence_External_Independent_Acceptance_Report_20261015.md lines 77-122,134; R6_DELIVERY/GATES_A_TO_H.json + REQ_TRACE_221.json",
+   "evidence": "Measured from EIA text: GATES_A_TO_H '8 Gate NOT_RUN', REQ_TRACE_221 '221 cases BLOCKED_NOT_RUN'; Fresh G1 declared 0.20.0 vs observed 0.21.5 (G-B HOLD)"
+  },
+  {
+   "id": "RES-B2",
+   "item": "Single Windows identity cannot separate maker from checker at OS level (EIA-R6-03): checker write-root isolation and candidate read-only ACL unimplementable on this host",
+   "class": "BLOCKER",
+   "owner": "infra owner / human owner",
+   "next_action": "Enable a second OS identity (or VM boundary) for the checker seat, then rerun the 299-SHA readback",
+   "locators": "EIA report EIA-R6-03 row (line 151); R7 checker_write_root_isolation.py",
+   "evidence": "Measured: EIA lists EIA-R6-03 EVIDENCE_GAP/HIGH 'SoD / R6 Checker Receipt' blocking formal acceptance; no second local identity provisioned (single user home in use)"
+  },
+  {
+   "id": "RES-PUB-01",
+   "item": "R10 packet rows 5.2/5.3 in hgk-r10-session-closure-20261016/tasks.md still unticked although the appended round-outcome records push+readback (0 mismatches) and Draft PR #9 as done - record is stale vs the ledger",
+   "class": "HOUSEKEEPING",
+   "owner": "R9/R10 record owner (next editing round)",
+   "next_action": "Tick tasks.md rows 5.2 and 5.3 in a round that owns that file, citing SESSION_LEDGER_R10.json publication block",
+   "locators": "H:/HG-KSEOS/openspec/changes/hgk-r10-session-closure-20261016/tasks.md lines 53-54 + R10/SESSION_LEDGER_R10.json publication{}",
+   "evidence": "Measured: grep '^\\- \\[ \\]' returns rows 5.2, 5.3, 6.1, 7.1, 7.2; ledger records PR#9 open/mergeable and remote_head==local_head"
+  },
+  {
+   "id": "RES-PUB-02",
+   "item": "R11 publication lane (tasks 5.1-5.4) not started: no packet prepared/pushed/PR for the R11 handover to Fabric; R11 task 2.3 FAR run artifacts also absent from Fabric/runs (only R10's run dir exists)",
+   "class": "WORK_REMAINING",
+   "owner": "R11 W4 (hgk-security seat)",
+   "next_action": "Run publish successor 'prepare' stage (copy publish_r10.py, retarget to R11, cut worktree off origin/main)",
+   "locators": "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015-R10/publish_r10.py (prepare stage) + Fabric/fabric-autonomous-research/runs/",
+   "evidence": "Measured: Fabric/runs contains FAR-20261016-015-r10-session-closure only; no R11 packet dir/manifest exists at the R11 root"
+  },
+  {
+   "id": "RES-PEER-01",
+   "item": "Fabric shared checkout sits on PEER branch pub/far-remediation-and-closure-20261016 with 2 untracked entries; PIPD worktree r8-wt carries 3 uncommitted modified files (232+ insertions) from the R9 bounded-writer lane",
+   "class": "RISK",
+   "owner": "peer round owner (do not touch)",
+   "next_action": "Do nothing until the peer round closes; re-verify branch/diff AFTER the peer publishes",
+   "locators": "git -C C:/Projects/Agent_Workspace/Fabric branch --show-current && git status --porcelain",
+   "evidence": "Measured this session: branch pub/far-remediation-and-closure-20261016, 2 untracked; r8-wt diff --stat 3 files 232 insertions 6 deletions"
+  },
+  {
+   "id": "RES-KANBAN-01",
+   "item": "Residue kanban boards hold open cards predating R11 (far-remediation-and-closure: 5 open; lane-reliability-closure: 5 open; hgk-solution-apply: 44 open; hgk-sod-fix1: 4 boards all-blocked; far-strict-declaration: 7 open)",
+   "class": "HOUSEKEEPING",
+   "owner": "HG-KSEOS board owners",
+   "next_action": "Pick ONE residual board and drive its first 'ready' card to an outcome (board far-remediation-and-closure card t_4b2e6346)",
+   "locators": "<HERMES_HOME>/kanban/boards/<board>/kanban.db (sqlite: select id,status,title from tasks)",
+   "evidence": "Measured: status counts per board (far-remediation 1 done/5 open; lane-reliability 1/5; solution-apply 14 done/44 open; sod-fix1 gates 7+3+4+5 blocked; strict-decl 7 open)"
+  },
+  {
+   "id": "RES-SPINE-01",
+   "item": "R11 spine admission completed but ALL 6 workorders still state=CREATED and acceptance ACC-REQ-CNV-R11-HANDOVER-PLAN verdict=NOT_RUN - the trusted denominator exists with zero progress",
+   "class": "WORK_REMAINING",
+   "owner": "R11 orchestrator",
+   "next_action": "Record result for WO-TS-HANDOVER-01 (source discovery) into the spine via the typed transition",
+   "locators": "H:/HG-KSEOS/var/shared-spine/hg-kseos.db (workorders table) + R11/HGK_TYPED_ADMISSION_R11.json",
+   "evidence": "Measured: sqlite select on workorders -> 6 rows all CREATED; acceptances -> 1 row NOT_RUN; overall spine has 392 CREATED workorders"
+  },
+  {
+   "id": "RES-FAR-01",
+   "item": "R10 FAR run receipt status RESEARCH_PARTIAL with 5 open owner questions (OQ-01..OQ-05) in OpenQuestionLedger.tsv - OQ-01/02/05 required_for_decision=YES",
+   "class": "OWNER_DECISION",
+   "owner": "human owner",
+   "next_action": "Answer OQ-01 (which PLAN arm stands - now mooted by the 14:13 rebind, confirm) and OQ-05 (221-case gate timing) in one owner order",
+   "locators": "C:/Projects/Agent_Workspace/Fabric/fabric-autonomous-research/runs/FAR-20261016-015-r10-session-closure/OpenQuestionLedger.tsv",
+   "evidence": "Measured: 6-line TSV with 5 questions, 3 marked required_for_decision YES; note OQ-01's premise is superseded by the 14:13 registry epoch-22 rebind measured this session"
+  }
+ ],
+ "open_records_measured_this_round": [
+  {
+   "change": "gcm-noninteractive-default-containment",
+   "tasks_done": 36,
+   "tasks_open": 8
+  },
+  {
+   "change": "hermes-incident-2026-10-05-repair",
+   "tasks_done": 0,
+   "tasks_open": 35
+  },
+  {
+   "change": "hgk-checker-upgrade-adapter",
+   "tasks_done": 0,
+   "tasks_open": 23
+  },
+  {
+   "change": "hgk-far-remediation-20261016",
+   "tasks_done": 0,
+   "tasks_open": 25
+  },
+  {
+   "change": "hgk-lane-brief-and-guard-hardening-20261015",
+   "tasks_done": 0,
+   "tasks_open": 22
+  },
+  {
+   "change": "hgk-lane-reliability-closure-20261016",
+   "tasks_done": 5,
+   "tasks_open": 16
+  },
+  {
+   "change": "hgk-plan-plane-rebind-20261015",
+   "tasks_done": 3,
+   "tasks_open": 5
+  },
+  {
+   "change": "hgk-r10-session-closure-20261016",
+   "tasks_done": 25,
+   "tasks_open": 5
+  },
+  {
+   "change": "hgk-r11-session-handover-20261016",
+   "tasks_done": 14,
+   "tasks_open": 10
+  },
+  {
+   "change": "hgk-r8-eia-closure-skill-slim-20261016",
+   "tasks_done": 0,
+   "tasks_open": 22
+  },
+  {
+   "change": "hgk-r9-far-residual-closure-20261016",
+   "tasks_done": 20,
+   "tasks_open": 5
+  },
+  {
+   "change": "hgk-round3-lane-rebind-20261016",
+   "tasks_done": 26,
+   "tasks_open": 1
+  },
+  {
+   "change": "hgk-skill-convergence-20261014",
+   "tasks_done": 3,
+   "tasks_open": 13
+  },
+  {
+   "change": "lane-health-repair-20261011",
+   "tasks_done": 30,
+   "tasks_open": 4
+  },
+  {
+   "change": "lane-mandate-rebinding-and-d01-revocation",
+   "tasks_done": 11,
+   "tasks_open": 27
+  },
+  {
+   "change": "lane-model-chain-rebind-20261015",
+   "tasks_done": 0,
+   "tasks_open": 13
+  },
+  {
+   "change": "lane-sod-enforcement",
+   "tasks_done": 0,
+   "tasks_open": 27
+  },
+  {
+   "change": "lane-supervisor-windowless-convergence",
+   "tasks_done": 12,
+   "tasks_open": 1
+  },
+  {
+   "change": "lane-toolchain-identity-and-failure-classification",
+   "tasks_done": 18,
+   "tasks_open": 9
+  },
+  {
+   "change": "lane-verify-dual-routing-and-plan-high",
+   "tasks_done": 5,
+   "tasks_open": 23
+  },
+  {
+   "change": "lane-verify-routing-remediation",
+   "tasks_done": 0,
+   "tasks_open": 14
+  },
+  {
+   "change": "skill-mainfile-cap-remediation",
+   "tasks_done": 0,
+   "tasks_open": 11
+  },
+  {
+   "change": "sod-independent-verify-enforcement",
+   "tasks_done": 3,
+   "tasks_open": 2
+  },
+  {
+   "change": "strict-declaration-20261011",
+   "tasks_done": 5,
+   "tasks_open": 17
+  },
+  {
+   "change": "verification-artifact-contract",
+   "tasks_done": 7,
+   "tasks_open": 26
+  }
+ ],
+ "open_records_summary": {
+  "records": 25,
+  "with_open_rows": 25,
+  "total_done_rows": 223,
+  "total_open_rows": 364,
+  "correction": "first snapshot said 24 records / 183 done / 371 open; live re-count after independent review: 25 / 223 / 364 (a peer round added hgk-round3-lane-rebind-20261016 at ~14:30 and this round's own record advanced)"
+ },
+ "resume_recipes": {
+  "hgk_admission": "cd C:/Projects/Agent_Workspace/HG-KSEOS && ./.venv/Scripts/python.exe <R>/hgk_admission_r1x.py   (copy the previous round's harness; change PROJECT_ID + paths)",
+  "board": "hermes kanban boards list  |  hermes kanban swarm \"<goal>\" --worker ... --verifier ... --synthesizer ...  |  hermes kanban list",
+  "openspec": "cd C:/Projects/Agent_Workspace/HG-KSEOS/openspec && openspec validate <change> --strict   (delta spec MUST live at changes/<change>/specs/<capability>/spec.md, plus proposal.md)",
+  "lane_dispatch": "cd C:/Projects/Agent_Workspace/HG-KSEOS && ./.venv/Scripts/python.exe <R>/tooling/dispatch_r10.py <LANE> <BRIEF> <turn> <timeout> --artifacts <dir>   (PRE-FLIGHT the pool: a mandated arm absent from the pool fail-closes ERR_LANE_REQUIRED_ARM_ABSENT - then run the model provider-direct through the same relay, disclosed)",
+  "publish": "cd <round root> && python publish_r1x.py prepare|m2|push|readback|pr   (successor of publish_r10.py; worktree off origin/main; token via credential helper only)"
+ },
+ "claim_ceiling": "LOCAL / candidate-only",
+ "not_claimed": [
+  "no acceptance",
+  "no Gate PASS",
+  "no AO verdict",
+  "no release",
+  "no product behaviour"
+ ],
+ "registry_snapshot_measured": {
+  "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\lane-routing-registry.yaml",
+  "bytes": 47224,
+  "sha256": "02481992df124ca4f83b655b4583fc2053ecebbbb3125702ab28e39d0c35ea70",
+  "epoch": 22,
+  "check_drift": [],
+  "check_sod": {
+   "PLAN_vs_VERIFY_SECURITY": "SOD_OK",
+   "EXECUTE_vs_VERIFY_SECURITY": "SOD_OK (declared owner-ordered exclusion)"
+  },
+  "routes": {
+   "PLAN": {
+    "provider": "opencode-go",
+    "model": "glm-5.3-flash",
+    "engine": "hermes",
+    "admission_status": "ADMITTED"
+   },
+   "EXECUTE": {
+    "provider": "opencode-go",
+    "model": "deepseek-v4.1-flash",
+    "engine": "codex-cli",
+    "admission_status": "UNPROVEN"
+   },
+   "VERIFY_SECURITY": {
+    "provider": "opencode-go",
+    "model": "deepseek-v4.1-flash",
+    "engine": "hermes",
+    "admission_status": "UNPROVEN"
+   }
+  },
+  "note": "measured by this round with the project's own reader; a registry snapshot is NOT versioned state (the file is untracked)"
+ },
+ "open_records_dispositions": {
+  "CLOSE_CANDIDATE": 7,
+  "CONTINUE": 9,
+  "OWNER_DECISION": 5,
+  "HISTORICAL": 4,
+  "records": 25,
+  "strict_pass": 23,
+  "strict_fail": 2,
+  "ticked_of_total": "223/587",
+  "detail_file": "FAR/ws1/open_records_inventory.tsv"
+ },
+ "integrity_audit": {
+  "locators_checked": 21,
+  "missing": 0,
+  "dangling_pointers": 12,
+  "planned_but_unbuilt": 3,
+  "guard_subject_files": 300,
+  "detail_file": "FAR/ws3/integrity_audit.json",
+  "dangling_file": "FAR/ws3/dangling_pointers.tsv"
+ },
+ "far_research": {
+  "run": "R11/FAR (in-round run; the Fabric research home's runs 013/014 were taken by peer rounds, so this round's products live here and are published with the packet)",
+  "ws1": "open-record triage (25 rows)",
+  "ws2": "resume item set (18 rows) + resume_bootstrap.md",
+  "ws3": "integrity audit + dangling pointers"
+ }
+}
