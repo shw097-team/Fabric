@@ -1,0 +1,746 @@
+{
+  "schema": "WS1-RAW-MEASUREMENTS/1",
+  "generated_at_local": "2026-10-16 13:37:05.203209",
+  "measurements": [
+    {
+      "id": "HASH_REGISTRY",
+      "command": "sha256sum config/lane-routing-registry.yaml (python hashlib)",
+      "raw_output": "38f0436b9bde0599a1c3d5b8b928950450f570548380a90079ca06ff0aba38d2",
+      "note": ""
+    },
+    {
+      "id": "HASH_ASSIGNMENT",
+      "command": "sha256sum config/model-lane-assignment.json",
+      "raw_output": "e7be2dea36874f169e0cddc61ecb77102402218a2e05136878a097462e7664df",
+      "note": ""
+    },
+    {
+      "id": "HASH_REGISTRY_BAK_FARR",
+      "command": "sha256 of backup lane-routing-registry.yaml.bak-far-remediation-20261016 (pre-R1 image)",
+      "raw_output": "a0d811c48f6063b06af0688a16dd644bc1537651c75a8341795110253362c0b2",
+      "note": ""
+    },
+    {
+      "id": "HASH_DISPATCH_LIVE",
+      "command": "sha256sum scripts/hgk-lane-dispatch.py",
+      "raw_output": "e53776af9094958527938dd12140eba159a454489147ab0e7a75742346b4de72",
+      "note": ""
+    },
+    {
+      "id": "REGISTRY_EPOCH",
+      "command": "grep '^epoch:' on lane-routing-registry.yaml",
+      "raw_output": "21",
+      "note": "re-derived; the original print anchored ^ without re.M"
+    },
+    {
+      "id": "REGISTRY_SCHEMA",
+      "command": "grep '^schema:' on lane-routing-registry.yaml",
+      "raw_output": "HGK-LANE-ROUTING-REGISTRY/1",
+      "note": "re-derived; the original print anchored ^ without re.M"
+    },
+    {
+      "id": "REGISTRY_STATUS",
+      "command": "grep '^status:' on lane-routing-registry.yaml",
+      "raw_output": "CANDIDATE",
+      "note": "re-derived; the original print anchored ^ without re.M"
+    },
+    {
+      "id": "REGISTRY_CLAIM_CEILING",
+      "command": "grep '^claim_ceiling:' on lane-routing-registry.yaml",
+      "raw_output": "CANDIDATE_ONLY",
+      "note": "re-derived; the original print anchored ^ without re.M"
+    },
+    {
+      "id": "SOURCE_OF_ROUTES_REVISION",
+      "command": "grep revision inside source_of_routes block",
+      "raw_output": "21",
+      "note": "re-derived; the original print anchored ^ without re.M"
+    },
+    {
+      "id": "SOURCE_OF_ROUTES_SHA",
+      "command": "grep sha inside source_of_routes block",
+      "raw_output": "e7be2dea36874f169e0cddc61ecb77102402218a2e05136878a097462e7664df",
+      "note": "re-derived; the original print anchored ^ without re.M"
+    },
+    {
+      "id": "PLAN_PROVIDER",
+      "command": "routes[].PLAN.provider",
+      "raw_output": "openai-codex",
+      "note": ""
+    },
+    {
+      "id": "PLAN_MODEL",
+      "command": "routes[].PLAN.model",
+      "raw_output": "gpt-6.1-sol",
+      "note": ""
+    },
+    {
+      "id": "PLAN_REASONING_EFFORT",
+      "command": "routes[].PLAN.reasoning_effort",
+      "raw_output": "medium",
+      "note": ""
+    },
+    {
+      "id": "PLAN_SELECTION_AUTHORITY",
+      "command": "routes[].PLAN.selection_authority",
+      "raw_output": "owner-order-20261016-plan-model-rebind-gpt61-sol",
+      "note": ""
+    },
+    {
+      "id": "PLAN_ADMISSION_STATUS",
+      "command": "routes[].PLAN.admission_status",
+      "raw_output": "ADMITTED",
+      "note": ""
+    },
+    {
+      "id": "EXECUTE_PROVIDER",
+      "command": "routes[].EXECUTE.provider",
+      "raw_output": "opencode-go",
+      "note": ""
+    },
+    {
+      "id": "EXECUTE_MODEL",
+      "command": "routes[].EXECUTE.model",
+      "raw_output": "deepseek-v4.1-flash",
+      "note": ""
+    },
+    {
+      "id": "EXECUTE_SELECTION_AUTHORITY",
+      "command": "routes[].EXECUTE.selection_authority",
+      "raw_output": "owner-order-20261015-lane-model-chain-rebind",
+      "note": ""
+    },
+    {
+      "id": "EXECUTE_ADMISSION_STATUS",
+      "command": "routes[].EXECUTE.admission_status",
+      "raw_output": "UNPROVEN",
+      "note": ""
+    },
+    {
+      "id": "VERIFY_PROVIDER",
+      "command": "routes[].VERIFY_SECURITY.provider",
+      "raw_output": "openai-codex",
+      "note": ""
+    },
+    {
+      "id": "VERIFY_MODEL",
+      "command": "routes[].VERIFY_SECURITY.model",
+      "raw_output": "gpt-6.1-sol",
+      "note": ""
+    },
+    {
+      "id": "VERIFY_REASONING_EFFORT",
+      "command": "routes[].VERIFY_SECURITY.reasoning_effort",
+      "raw_output": "medium",
+      "note": ""
+    },
+    {
+      "id": "VERIFY_SELECTION_AUTHORITY",
+      "command": "routes[].VERIFY_SECURITY.selection_authority",
+      "raw_output": "owner-order-20261015-lane-model-chain-rebind",
+      "note": ""
+    },
+    {
+      "id": "VERIFY_ADMISSION_STATUS",
+      "command": "routes[].VERIFY_SECURITY.admission_status",
+      "raw_output": "UNPROVEN",
+      "note": ""
+    },
+    {
+      "id": "SOD006_C1_STATUS",
+      "command": "declared_conflicts[SOD006-C1].status",
+      "raw_output": "SUPERSEDED",
+      "note": ""
+    },
+    {
+      "id": "SOD006_C2_STATUS",
+      "command": "declared_conflicts[SOD006-C2].status",
+      "raw_output": "OWNER_ORDERED_IN_FORCE",
+      "note": ""
+    },
+    {
+      "id": "SOD006_C2_RECONCILIATION",
+      "command": "declared_conflicts[SOD006-C2].reconciliation present",
+      "raw_output": "present",
+      "note": ""
+    },
+    {
+      "id": "SOD006_C2_INDEPENDENCE",
+      "command": "declared_conflicts[SOD006-C2] remaining independence named in note",
+      "raw_output": "PROCESS/LANE/EVIDENCE-PATH independence all named",
+      "note": ""
+    },
+    {
+      "id": "SOD_APPLY_01_STATUS",
+      "command": "declared_conflicts[SOD-APPLY-01].status",
+      "raw_output": "OPEN",
+      "note": ""
+    },
+    {
+      "id": "ASG_QUOTA_MARKER",
+      "command": "model-lane-assignment.json /assignment/0/non_default_alternates/0/usable_now",
+      "raw_output": "QUOTA_429_2026-10-15",
+      "note": ""
+    },
+    {
+      "id": "ASG_HTTP400_MARKER",
+      "command": "/lane_chains/EXECUTE/3/usable_now",
+      "raw_output": "BACKEND_HTTP_400_UNSUPPORTED_ON_CURRENT_CLI_ACCOUNT",
+      "note": ""
+    },
+    {
+      "id": "ASG_REVISION",
+      "command": "json $.revision of model-lane-assignment.json",
+      "raw_output": 21,
+      "note": ""
+    },
+    {
+      "id": "ASG_REGISTRY_EPOCH",
+      "command": "json $.registry_epoch",
+      "raw_output": 21,
+      "note": ""
+    },
+    {
+      "id": "ASG_DECLARED_AT",
+      "command": "json $.declared_at_utc",
+      "raw_output": "2026-10-15T11:25:47.689574Z",
+      "note": ""
+    },
+    {
+      "id": "CHECK_DRIFT_LIVE",
+      "command": "PYTHONPATH=src <venv-python> -c 'from hg_kseos import lane_policy; lane_policy.check_drift()'",
+      "raw_output": "exit=0\nout=b'n= 0\\r\\n'",
+      "note": ""
+    },
+    {
+      "id": "TEST_LANE_POLICY_FULL",
+      "command": "C:/Projects/Agent_Workspace/HG-KSEOS/.venv/Scripts/python.exe -m pytest tests/test_lane_policy.py -q",
+      "raw_output": "exit=0\nout=...                                                    [100%]\n3 passed, 90 subtests passed in 8.17s\n",
+      "note": ""
+    },
+    {
+      "id": "SKILL_MD_RAW_BYTES",
+      "command": "python: len(open(SKILL.md,'rb').read())",
+      "raw_output": 21026,
+      "note": ""
+    },
+    {
+      "id": "SKILL_MD_RAW_CHARS",
+      "command": "python: len(decoded text)",
+      "raw_output": 19918,
+      "note": ""
+    },
+    {
+      "id": "SKILL_MD_LF_CHARS",
+      "command": "python: len(text with CRLF->LF)",
+      "raw_output": 19658,
+      "note": ""
+    },
+    {
+      "id": "SKILL_MD_SHA256",
+      "command": "sha256sum SKILL.md",
+      "raw_output": "60a4d9b3c79fc9e72cd82d587fc8a0c3d2513ac4a2b74ecb3040fb587450d960",
+      "note": ""
+    },
+    {
+      "id": "SKILL_GUARD_POST",
+      "command": "<venv-python> scripts/skill_guard.py <skill_dir> post",
+      "raw_output": "exit=0\nout==== SKILL-GUARD POST: hgk-governed-execution ===\n  size=19658B refs=7 sections=5\nRESULT: PASS",
+      "note": ""
+    },
+    {
+      "id": "SKILL_GUARD_PRE",
+      "command": "<venv-python> scripts/skill_guard.py <skill_dir> pre",
+      "raw_output": "exit=0\nout==== SKILL-GUARD PRE: hgk-governed-execution ===\n  size=19658B refs=7 sections=5\nRESULT: PASS",
+      "note": ""
+    },
+    {
+      "id": "CAP_CONSTANT_CODE",
+      "command": "skill_manager_tool.py lines 109-112 (verbatim)",
+      "raw_output": "MAX_NAME_LENGTH = 64\nMAX_DESCRIPTION_LENGTH = 1024\nMAX_SKILL_CONTENT_CHARS = 100_000   # ~36k tokens at 2.75 chars/token\nMAX_SKILL_FILE_BYTES = 1_048_576    # 1 MiB per supporting file",
+      "note": ""
+    },
+    {
+      "id": "CAP_GATE_FUNC",
+      "command": "skill_manager_tool.py lines 192-198 _validate_content_size (verbatim)",
+      "raw_output": "def _validate_content_size(content: str, label: str = \"SKILL.md\") -> Optional[str]:\n    if len(content) > MAX_SKILL_CONTENT_CHARS:\n        return (\n            f\"{label} content is {len(content):,} characters (limit: {MAX_SKILL_CONTENT_CHARS:,}). \"\n            f\"Consider splitting into a smaller SKILL.md with supporting files in references/ \"\n            f\"or templates/.\")\n    return None",
+      "note": ""
+    },
+    {
+      "id": "CAP_CITE_PATH",
+      "command": "file/line evidence",
+      "raw_output": "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/hermes-agent/tools/skill_manager_tool.py:111 MAX_SKILL_CONTENT_CHARS=100_000 (character cap); :112 MAX_SKILL_FILE_BYTES=1_048_576 (supporting-file byte cap); :193 _validate_content_size checks len(content); :488 patch reads target with read_text(encoding='utf-8'); :499 validates new content after patch",
+      "note": ""
+    },
+    {
+      "id": "CAP_UNIT",
+      "command": "unit of the cap",
+      "raw_output": "characters (len() of the text the patch path receives from read_text); CRLF collapses to \n so LF-normalized char count is governing; a byte-scored checker will disagree with the gate",
+      "note": ""
+    },
+    {
+      "id": "LF_HEADROOM_NOW",
+      "command": "100000 - LF-normalized len(SKILL.md)",
+      "raw_output": 80342,
+      "note": ""
+    },
+    {
+      "id": "R2_RECEIPT_PATH",
+      "command": "$ ls var/FAR-REMEDIATION-AND-CLOSURE-20261016/R2_PROMOTION_RECEIPT.json",
+      "raw_output": "PRESENT, size 51238 bytes",
+      "note": ""
+    },
+    {
+      "id": "R2_FILES_ROWS",
+      "command": "jq `.files[] | {rel, candidate_sha256, canonical_sha256_before, canonical_sha256_after, action, byte_identical_to_candidate, backup}` R2_PROMOTION_RECEIPT.json",
+      "raw_output": "[\n {\n  \"rel\": \"scripts/runtime_role_binding_assert.py\",\n  \"candidate_sha256\": \"6fa7ed6b6ea983e154a6a2a0b70a250baa6bbc65742a2a82425ce9a2f5fcacd2\",\n  \"canonical_sha256_before\": \"63d004ade7ff65e16589e76572db33880b459141461beead764ea2f4a3015031\",\n  \"canonical_sha256_after\": \"6fa7ed6b6ea983e154a6a2a0b70a250baa6bbc65742a2a82425ce9a2f5fcacd2\",\n  \"action\": \"PROMOTED\",\n  \"byte_identical_to_candidate\": true,\n  \"backup\": \"C:\\\\Projects\\\\Agent_Workspace\\\\HG-KSEOS\\\\scripts\\\\runtime_role_binding_assert.py.bak-far-remediation-20261016\"\n },\n {\n  \"rel\": \"scripts/hgk-governed-runtime-controller.py\",\n  \"candidate_sha256\": \"5b744de7c4e30240ae92421c2e7220efa5dfca02d88d85f2264bc921ad849412\",\n  \"canonical_sha256_before\": \"67e79c52e6dd5d1d0d1d44e5dc625afe955efc1bef2aa40028e98c1f139bda90\",\n  \"canonical_sha256_after\": \"5b744de7c4e30240ae92421c2e7220efa5dfca02d88d85f2264bc921ad849412\",\n  \"action\": \"PROMOTED\",\n  \"byte_identical_to_candidate\": true,\n  \"backup\": \"C:\\\\Projects\\\\Agent_Workspace\\\\HG-KSEOS\\\\scripts\\\\hgk-governed-runtime-controller.py.bak-far-remediation-20261016\"\n },\n {\n  \"rel\": \"tests/test_governed_runtime_controller.py\",\n  \"candidate_sha256\": \"fdf1dbc251eee5e78d9c5db91f2a0ebf18c30c2daa43a66f62b3cde5bf26d521\",\n  \"canonical_sha256_before\": \"db0e37ae86fc23a8674e6b788ef3665cc2953c65c0ee4a880c4979c6ef0e0467\",\n  \"canonical_sha256_after\": \"fdf1dbc251eee5e78d9c5db91f2a0ebf18c30c2daa43a66f62b3cde5bf26d521\",\n  \"action\": \"PROMOTED\",\n  \"byte_identical_to_candidate\": true,\n  \"backup\": \"C:\\\\Projects\\\\Agent_Workspace\\\\HG-KSEOS\\\\tests\\\\test_governed_runtime_controller.py.bak-far-remediation-20261016\"\n },\n {\n  \"rel\": \"tests/test_lane_effort_enforcement.py\",\n  \"candidate_sha256\": \"18742bf07b4055ae44733829d9817787a12d3c9140536689c574223e5356e333\",\n  \"canonical_sha256_before\": null,\n  \"canonical_sha256_after\": \"18742bf07b4055ae44733829d9817787a12d3c9140536689c574223e5356e333\",\n  \"action\": \"PROMOTED\",\n  \"byte_identical_to_candidate\": true,\n  \"backup\": null\n }\n]",
+      "note": ""
+    },
+    {
+      "id": "R2_WORKORDER_NOTE",
+      "command": "jq .workorder_note R2_PROMOTION_RECEIPT.json",
+      "raw_output": "InvariantViolation: ERR_WORKORDER_REQUIRES_DRAFT_TASKSPEC",
+      "note": ""
+    },
+    {
+      "id": "R2_POST_PROMOTION_GIT_STATUS_SAMPLE",
+      "command": "jq .post_promotion_changed_vs_baseline[0:8] R2_PROMOTION_RECEIPT.json",
+      "raw_output": "[\"M AGENTS.md\", \" M README.md\", \" M config/hermes.json\", \" M config/project.json\", \" M \\\"docs/HG-KSEOS\\\\344\\\\275\\\\277\\\\347\\\\224\\\\250\\\\350\\\\252\\\\252\\\\346\\\\230\\\\216\\\\346\\\\226\\\\207\\\\346\\\\252\\\\224.md\\\"\", \"A  scripts/gcm-containment/README.md\", \"A  scripts/gcm-containment/apply_gitconfig_default.py\", \"A  scripts/gcm-containment/credential_preflight.py\"]",
+      "note": ""
+    },
+    {
+      "id": "R2_PROMOTED_FILES_LIVE_DIGESTS",
+      "command": "sha256sum of each promoted canonical file (measured now)",
+      "raw_output": "{\n \"scripts/runtime_role_binding_assert.py\": {\n  \"live\": \"6fa7ed6b6ea983e154a6a2a0b70a250baa6bbc65742a2a82425ce9a2f5fcacd2\",\n  \"matches_receipt_candidate\": true\n },\n \"scripts/hgk-governed-runtime-controller.py\": {\n  \"live\": \"5b744de7c4e30240ae92421c2e7220efa5dfca02d88d85f2264bc921ad849412\",\n  \"matches_receipt_candidate\": true\n },\n \"tests/test_governed_runtime_controller.py\": {\n  \"live\": \"fdf1dbc251eee5e78d9c5db91f2a0ebf18c30c2daa43a66f62b3cde5bf26d521\",\n  \"matches_receipt_candidate\": true\n },\n \"tests/test_lane_effort_enforcement.py\": {\n  \"live\": \"18742bf07b4055ae44733829d9817787a12d3c9140536689c574223e5356e333\",\n  \"matches_receipt_candidate\": true\n }\n}",
+      "note": ""
+    },
+    {
+      "id": "R2_BACKUPS_EXIST",
+      "command": "$ ls <promoted>.bak-far-remediation-20261016 for each",
+      "raw_output": "{\"scripts/runtime_role_binding_assert.py\": true, \"scripts/hgk-governed-runtime-controller.py\": true, \"tests/test_governed_runtime_controller.py\": true, \"tests/test_lane_effort_enforcement.py\": false}",
+      "note": ""
+    },
+    {
+      "id": "R5_TURN_SHAPE_GREP",
+      "command": "grep -c 'turn_shape|turn-shape|edit_only' scripts/hgk-lane-dispatch.py",
+      "raw_output": 0,
+      "note": ""
+    },
+    {
+      "id": "R5_TURN_SHAPE_NOTE",
+      "command": "note from round record",
+      "raw_output": "turn-shape flag ABSENT in live scripts/hgk-lane-dispatch.py (frozen round copy has same sha e53776af...). ROUND_CLOSURE.json detection D13 = NOT_DELIVERED; canonical_mutations.R5_dispatcher_turn_shape = 'NOT LANDED - the bounded-writer turn did not return a change within its window'.",
+      "note": ""
+    },
+    {
+      "id": "ROUND_CLOSURE_DETECTION_LIST",
+      "command": "jq .detection_list ROUND_CLOSURE.json (status of each D01..D16)",
+      "raw_output": "{\n \"D01\": \"PASS_CARRY_FORWARD_PLUS_DECLARATION\",\n \"D02\": \"PASS_CARRY_FORWARD\",\n \"D03\": \"PASS\",\n \"D04\": \"PASS_AFTER_R1\",\n \"D05\": \"PASS_AFTER_COMPLETION\",\n \"D06\": \"PASS\",\n \"D07\": \"PASS\",\n \"D08\": \"PASS\",\n \"D09\": \"PASS\",\n \"D10\": \"PASS\",\n \"D11\": \"PASS\",\n \"D12\": \"PASS\",\n \"D13\": \"NOT_DELIVERED\",\n \"D14\": \"DONE\",\n \"D15\": \"PASS_MIXED\",\n \"D16\": \"DONE\"\n}",
+      "note": ""
+    },
+    {
+      "id": "ROUND_CLOSURE_TALLY",
+      "command": "jq .detection_tally ROUND_CLOSURE.json",
+      "raw_output": "{\"total\": 16, \"by_status\": {\"DONE\": 2, \"NOT_DELIVERED\": 1, \"PASS\": 8, \"PASS_AFTER_COMPLETION\": 1, \"PASS_AFTER_R1\": 1, \"PASS_CARRY_FORWARD\": 1, \"PASS_CARRY_FORWARD_PLUS_DECLARATION\": 1, \"PASS_MIXED\": 1}, \"not_delivered\": [\"D13\"], \"pending\": []}",
+      "note": ""
+    },
+    {
+      "id": "PUBLICATION_RECEIPT",
+      "command": "jq .publication ROUND_CLOSURE.json",
+      "raw_output": "{\"schema\": \"HGK-PUBLICATION-RECEIPT/1\", \"round\": \"FAR-REMEDIATION-AND-CLOSURE-20261016\", \"session\": \"20261016_104922_d455e7\", \"repository\": \"shw097-team/Fabric\", \"branch\": \"pub/far-remediation-and-closure-20261016\", \"base_branch\": \"main\", \"commit\": \"b4595e66f9f6ccc81432372cbc701009a4929ab2\", \"pull_request\": {\"number\": 8, \"state\": \"open\", \"url\": \"https://github.com/shw097-team/Fabric/pull/8\", \"mergeable_state\": \"clean\"}, \"packet\": {\"path\": \"EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016\", \"local_files\": 126, \"local_bytes_human\": \"3.3M\", \"changed_files_reported_by_api\": 126, \"manifest_local_sha256\": \"475aa6c01b079709de59073d6bb147f0f1f0d0476ad5815bcfba25e100b48540\", \"manifest_remote_git_blob\": \"0700ed8908d23ef211bb244c060dfb9896c3f6c1\", \"manifest_local_git_blob\": \"0700ed8908d23ef211bb244c060dfb9896c3f6c1\", \"manifest_byte_identical\": true}, \"gate\": {\"report\": \"GATE_REPORT.json\", \"verdict\": \"GATE_PASS\", \"checks\": 7, \"embedded_copy_identical_to_local\": true, \"embedded_local_sha256_prefix\": \"28b4b3a20550bba9\"}, \"verification_method\": \"GitHub REST API readback: PR fields, branch head sha, remote tree listing, and a git blob-id comparison of PACKET_MANIFEST.json on both sides (the LOCAL git branch can be empty when it trails the merged remote, so blob ids are the authoritative comparison).\", \"sha_match\": true, \"force_push_used\": false, \"main_merged\": false, \"side_effects_disclosed\": [\"A new branch and a new pull request exist on the remote repository; main was NOT touched, NOT merged ",
+      "note": ""
+    },
+    {
+      "id": "REMOTE_READBACK",
+      "command": "cat REMOTE_READBACK.json",
+      "raw_output": "{\n \"pull_request\": {\n  \"http\": 200,\n  \"number\": 8,\n  \"state\": \"open\",\n  \"head_sha\": \"b4595e66f9f6ccc81432372cbc701009a4929ab2\",\n  \"head_ref\": \"pub/far-remediation-and-closure-20261016\",\n  \"base_ref\": \"main\",\n  \"commits\": 1,\n  \"changed_files\": 126,\n  \"mergeable_state\": \"clean\",\n  \"html_url\": \"https://github.com/shw097-team/Fabric/pull/8\"\n },\n \"remote_branch_sha\": \"b4595e66f9f6ccc81432372cbc701009a4929ab2\",\n \"local_head_sha\": \"b4595e66f9f6ccc81432372cbc701009a4929ab2\",\n \"sha_match\": true,\n \"remote_packet_files\": 160,\n \"remote_manifest_present\": true,\n \"manifest_remote_git_blob\": \"0700ed8908d23ef211bb244c060dfb9896c3f6c1\",\n \"manifest_local_git_blob\": \"0700ed8908d23ef211bb244c060dfb9896c3f6c1\",\n \"manifest_byte_identical\": true,\n \"manifest_local_sha256\": \"475aa6c01b079709de59073d6bb147f0f1f0d0476ad5815bcfba25e100b48540\"\n}\n",
+      "note": ""
+    },
+    {
+      "id": "SELF_EVOLUTION_HEADER",
+      "command": "head -c 1200 SELF_EVOLUTION.md",
+      "raw_output": "# SELF-RESEARCH / SELF-LEARNING / SELF-ITERATION / SELF-EVOLUTION\n\nRound `FAR-REMEDIATION-AND-CLOSURE-20261016`, session `20261016_104922_d455e7`.\nGoverned by the Fabric contract: candidacy only, no self-acceptance, every claim carries its ceiling.\n\n## 1. Self-research — what was found that was not being looked for\n\nThe round's mandate was to FAR the residuals. Four findings came out of MEASURING what had to change,\nnot out of auditing, and three of them were not on any previous ledger:\n\n| # | Finding | How it surfaced | Ledger status before |\n|---|---|---|---|\n| R7a | `config/model-lane-assignment.json` declared VERIFY_SECURITY's default arm as `gpt-6.1-sol` in its lane chain and as `glm-5.3-flash` in three sibling prose fields — **and `check_drift` reported zero fatal findings in that state** | reading every PLAN/VERIFY declaration surface before editing, because one route row could not be changed safely without knowing what else named it | not on the ledger |\n| R7b | the registry's `source_of_routes{revision, sha256}` pins the SITE's bytes and revision, and the registry `epoch` is coupled to the site `revision`; neither is drift-checked | the existing lane-guard test failed 4 wa",
+      "note": ""
+    },
+    {
+      "id": "REFERENCES_DIR_COUNT",
+      "command": "ls references/ | wc -l",
+      "raw_output": 113,
+      "note": ""
+    },
+    {
+      "id": "REFERENCES_TOPICS_DIR",
+      "command": "ls references/topics/",
+      "raw_output": "[\"codex-lane-execution-and-workspace-write.md\", \"construction-wave-and-remaining-procedures.md\", \"external-evidence-closure.md\", \"lane-bootstrap-and-guard-notes.md\"]",
+      "note": ""
+    },
+    {
+      "id": "SKILL_MD_REFERENCES_MENTIONED",
+      "command": "grep -o 'references/[^ )`]*' SKILL.md | sort -u",
+      "raw_output": "[\"references/FDA_ROUTE_REGISTRY.json\", \"references/capc-contract-building.md\", \"references/cross-session-integrity.md\", \"references/daytrading-t0-axis-authoritative-chain.md\", \"references/fda_guard_hook.py\", \"references/fda_guard_mint.py\", \"references/final-closure-resume.md\", \"references/order-completion-audit.md\", \"references/self-verifying-probe-authoring.md\", \"references/sqs-data-plane-verification.md\", \"references/topics/construction-wave-and-remaining-procedures.md\"]",
+      "note": ""
+    },
+    {
+      "id": "SKILL_MD_DANGLING_REFS",
+      "command": "for each mentioned ref, file-existence check",
+      "raw_output": "0 dangling",
+      "note": ""
+    },
+    {
+      "id": "SKILL_MD_HAS_AVR_POINTER",
+      "command": "grep adversarial-verification-rounds SKILL.md",
+      "raw_output": "false (ABSENT)",
+      "note": ""
+    },
+    {
+      "id": "AVR_FILE_IN_INDEX",
+      "command": "grep adversarial-verification-rounds references/support-files-index.md",
+      "raw_output": "false (ABSENT)",
+      "note": ""
+    },
+    {
+      "id": "SUPPORT_INDEX_COVERAGE",
+      "command": "count of disk reference files NOT mentioned in support-files-index.md",
+      "raw_output": "{\"disk_files\": 112, \"listed\": 39, \"not_listed\": 73, \"not_listed_sample\": [\"FDA_ROUTE_REGISTRY.json\", \"a-verdict-experimentspec-contract-verification.md\", \"acceptance-mirror-publication.md\", \"adversarial-verification-rounds.md\", \"artefact-disposal-and-cwd-locks.md\", \"browser-account-automation-under-guard.md\", \"bundle-specification-discipline.md\", \"candidate-apply-gates.md\", \"codex-lane-log-liveness-markers.md\", \"codex-sealed-lane-windows.md\"]}",
+      "note": ""
+    },
+    {
+      "id": "PLATFORM_REGROWTH_GUARD_GREP",
+      "command": "grep -i 'regrowth|ceiling' tools/skill_*.py agent/skill_*.py in hermes-agent",
+      "raw_output": "no hits",
+      "note": ""
+    },
+    {
+      "id": "CONFIG_SKILL_CAP_HOOK",
+      "command": "grep -i skill.*cap/ceiling/limit config.yaml",
+      "raw_output": "[]",
+      "note": ""
+    },
+    {
+      "id": "HANDLING_ROUTE_CEILING_EXISTS",
+      "command": "grep 'ceiling' references/oversized-skill-handling-route.md",
+      "raw_output": "no explicit declared regrowth ceiling — the route has a hard split route at >100k but no separate future-round regrowth guard",
+      "note": ""
+    },
+    {
+      "id": "SKILL_GUARD_SIZE_RULE",
+      "command": "sed -n 28-31p scripts/skill_guard.py",
+      "raw_output": "'SIZE {size}B > 100k limit — split+route required, do NOT slim by hand' — checks size>100_000 and raises a BLOCKED result; that IS a repeat-check mechanism but not a separately declared future-round regrowth guard",
+      "note": ""
+    },
+    {
+      "id": "SKILL_MD_ROUTING_MAP_HEADER",
+      "command": "grep -n 'Entry routing map' SKILL.md",
+      "raw_output": "'## Entry routing map (SKCV-20261014 extraction - refusal-first)' at line 55 of the live SKILL.md",
+      "note": ""
+    },
+    {
+      "id": "SKILL_MD_POINTER_LINE",
+      "command": "sed -n 55-70p SKILL.md (routing map table)",
+      "raw_output": "the routing map table names 'references/topics/construction-wave-and-remaining-procedures.md' for skill routing and step details; pointer includes an ERR_ENTRY_MAP_* STOP rule. However the SKILL.md text REFERENCES entry_map.json ('a digest disagrees with entry_map.json') while no entry_map.json exists in the live skill directory (present only in the round sandbox var/.../candidates/hgk/scratch/sandbox/entry_map.json)",
+      "note": ""
+    },
+    {
+      "id": "ENTRY_MAP_IN_LIVE_SKILL",
+      "command": "ls skill_root/entry_map.json",
+      "raw_output": "ABSENT",
+      "note": ""
+    },
+    {
+      "id": "ENTRY_MAP_IN_SANDBOX",
+      "command": "$ var/SKILL-CONVERGENCE-20261014/candidates/hgk/scratch/sandbox/entry_map.json exists?",
+      "raw_output": "PRESENT size=3458 sha=320c81fb399a66c2b24423ff7373dc5705b2d16686d77ff6e033c81f08dd7685",
+      "note": ""
+    },
+    {
+      "id": "CANDIDATE_ROUND_LANDED",
+      "command": "candidates/hgk/phase3/phase2/phase1 results + CLOSURE_MANIFEST",
+      "raw_output": "The SKCV round's closure manifest records the hgk slices and lane digests; the live SKILL.md sha 60a4d9b3... equals the recorded 'main' digest in candidate/hgk/phase1_result.json (19918 chars), so the SKCV extraction is the state on disk today; the round's own record claims the extraction landed as pivoted slices at particular byte_offsets inside references/topics/construction-wave-and-remaining-procedures.md",
+      "note": ""
+    },
+    {
+      "id": "SKCV_ENTRY_SLICES_REMATERIALIZED",
+      "command": "re-derive each slice from the round's entry_map.json (6 slices), compare sha256 of live region to map",
+      "raw_output": "[\n {\n  \"slice\": 0,\n  \"dest\": \"skill/SKILL.md\",\n  \"offset\": 0,\n  \"sha_match\": true\n },\n {\n  \"slice\": 1,\n  \"dest\": \"skill/references/topics/construction-wave-and-remaining-procedures.md\",\n  \"offset\": 112,\n  \"sha_match\": true\n },\n {\n  \"slice\": 2,\n  \"dest\": \"skill/SKILL.md\",\n  \"offset\": 4846,\n  \"sha_match\": true\n },\n {\n  \"slice\": 3,\n  \"dest\": \"skill/references/topics/construction-wave-and-remaining-procedures.md\",\n  \"offset\": 8290,\n  \"sha_match\": true\n },\n {\n  \"slice\": 4,\n  \"dest\": \"skill/SKILL.md\",\n  \"offset\": 15605,\n  \"sha_match\": true\n },\n {\n  \"slice\": 5,\n  \"dest\": \"skill/references/topics/construction-wave-and-remaining-procedures.md\",\n  \"offset\": 83961,\n  \"sha_match\": true\n }\n]\nALL SLICES BYTE-MATCH LIVE: True",
+      "note": ""
+    },
+    {
+      "id": "PRE_SPLIT_ORIGINAL",
+      "command": "sha256sum var/a2/SKILL_md_pre_split_original_reconstructed.md",
+      "raw_output": "sha256 25c8c24464ffcfc223d2b43c015aa9ae25b5c0326a96e9e1512f7b282ebe... (prefix, recorded 2026-08-15)",
+      "note": ""
+    },
+    {
+      "id": "LANE_ROUTE_SLOTS_PLAN_RANK1",
+      "command": "jq lanes[]=PLAN.ordered_pool[0:3] config/lane-route-slots.candidate.json",
+      "raw_output": "rank1 openai-codex/gpt-6.1-sol medium openai_oauth DEFAULT; rank2 opencode-go/glm-5.3-flash fallback1; rank3 opencode-go/deepseek-v4.1-flash fallback2 DISPATHABLE note 'weekly-429 was a stale-credential fault on the relay path; after the credential fix this arm serves in about 1 s'",
+      "note": ""
+    },
+    {
+      "id": "MTIME_config_lane-routing-registry.yaml",
+      "command": "os.stat(config/lane-routing-registry.yaml).st_mtime",
+      "raw_output": "2026-10-16 12:36:30.262170",
+      "note": "local-time mtime"
+    },
+    {
+      "id": "MTIME_config_model-lane-assignment.json",
+      "command": "os.stat(config/model-lane-assignment.json).st_mtime",
+      "raw_output": "2026-10-16 12:36:30.289685",
+      "note": "local-time mtime"
+    }
+  ],
+  "adjudication_basis": [
+    {
+      "source_change": "hgk-far-remediation-20261016",
+      "row_id": "1",
+      "verdict": "DONE_MEASURED",
+      "evidence_locator": "var/FAR-REMEDIATION-AND-CLOSURE-20261016/admission.json (+ admit_round.py)",
+      "note": "Round admission artifact exists; admission.json 3563B sha256 ee07cc8f... measured (only presence + parse verified; not re-run through the HGK Spine itself)."
+    },
+    {
+      "source_change": "hgk-far-remediation-20261016",
+      "row_id": "2",
+      "verdict": "DONE_MEASURED",
+      "evidence_locator": "var/FAR-REMEDIATION-AND-CLOSURE-20261016/admission.json (workorders), R1_R3_COMPLETION_RECEIPT.json",
+      "note": "WorkOrder records exist under the round dir; presence measured, not re-admitted."
+    },
+    {
+      "source_change": "hgk-far-remediation-20261016",
+      "row_id": "3",
+      "verdict": "DONE_MEASURED",
+      "evidence_locator": "var/FAR-REMEDIATION-AND-CLOSURE-20261016/KANBAN_SWARM_GRAPH.json",
+      "note": "Board far-remediation-and-closure-20261016 at <HERMES_HOME>/kanban/boards/... kanban.db; swarm ids recorded in the artifact (presence + parse measured)."
+    },
+    {
+      "source_change": "hgk-far-remediation-20261016",
+      "row_id": "4",
+      "verdict": "NOT_OWED",
+      "evidence_locator": "openspec CLI availability not verified; no measurement command recorded",
+      "note": "'--strict' CLI validation of THIS change record could NOT be measured by this worker (no openspec binary probe succeeded). Row cannot be scored DONE_MEASURED; scored per the open task's own claim-ceiling as unverified."
+    },
+    {
+      "source_change": "hgk-far-remediation-20261016",
+      "row_id": "5",
+      "verdict": "DONE_MEASURED",
+      "evidence_locator": "config/lane-routing-registry.yaml.bak-far-remediation-20261016 (sha256 a0d811c48f6063b0...)",
+      "note": "Pre-R1 registry bytes backed up beside the change and digest-measured; backup sha agrees with FROZEN_MANIFEST.json's config.before entry."
+    },
+    {
+      "source_change": "hgk-far-remediation-20261016",
+      "row_id": "6",
+      "verdict": "DONE_MEASURED",
+      "evidence_locator": "config/lane-routing-registry.yaml routes[].PLAN provider/model/effort/selection_authority (python re.search on the YAML)",
+      "note": "routes[].PLAN.provider=openai-codex, model=gpt-6.1-sol, reasoning_effort=medium, selection_authority=owner-order-20261016-plan-model-rebind-gpt61-sol — matches row 6's requested rebind to openai-codex/gpt-6.1-sol medium with the in-force order as selection_authority."
+    },
+    {
+      "source_change": "hgk-far-remediation-20261016",
+      "row_id": "7",
+      "verdict": "DONE_MEASURED",
+      "evidence_locator": "model-lane-assignment.json /assignment/0/non_default_alternates[0].usable_now and registry routes[].PLAN.prior_revision_note",
+      "note": "Stale usable_now=QUOTA_429_2026-10-15 marker is retained as a dated prior-revision note rather than deleted; current value not replaced silently. Both the registry prior_revision_note and the assignment's kept marker were measured in place."
+    },
+    {
+      "source_change": "hgk-far-remediation-20261016",
+      "row_id": "8",
+      "verdict": "DONE_MEASURED",
+      "evidence_locator": "config/lane-routing-registry.yaml routes[].PLAN.admission_status + admission_evidence",
+      "note": "admission_status=ADMITTED (not UNPROVEN), with admission_evidence text naming the 2026-10-16 serving probes. R6 rows' admission_status on EXECUTE/VERIFY still UNPROVEN, which those rows do not require."
+    },
+    {
+      "source_change": "hgk-far-remediation-20261016",
+      "row_id": "9",
+      "verdict": "DONE_MEASURED",
+      "evidence_locator": "config/lane-routing-registry.yaml declared_conflicts[SOD006-C2]",
+      "note": "status=OWNER_ORDERED_IN_FORCE (changed from OPEN_OWNER_ORDERED), reconciliation block present, and remaining PROCESS/LANE/EVIDENCE-PATH independence all named in the note."
+    },
+    {
+      "source_change": "hgk-far-remediation-20261016",
+      "row_id": "10",
+      "verdict": "DONE_MEASURED",
+      "evidence_locator": "config/lane-routing-registry.yaml epoch: 21 (top of file + assignment.registry_epoch=21)",
+      "note": "epoch 20->21 measured; reason recorded in the epoch-21 provenance comment naming the rebind order and the falsified 429 premise."
+    },
+    {
+      "source_change": "hgk-far-remediation-20261016",
+      "row_id": "11",
+      "verdict": "DONE_MEASURED",
+      "evidence_locator": "python hashlib sha256(config/lane-routing-registry.yaml) + PYTHONPATH=src venv-python check_drift()",
+      "note": "sha256 38f0436b9bde0599... recorded (this workstream re-measured), and lane_policy.check_drift() returned 0 findings (exit 0) on the live tree."
+    },
+    {
+      "source_change": "hgk-far-remediation-20261016",
+      "row_id": "12",
+      "verdict": "DONE_MEASURED",
+      "evidence_locator": "var/FAR-REMEDIATION-AND-CLOSURE-20261016/R2_PROMOTION_RECEIPT.json .files",
+      "note": "PROMOTE set is 4 files taken from the measured candidate-vs-canonical diff (R2_FILES_ROWS); the set is enumerated and digested rather than asserted from memory."
+    },
+    {
+      "source_change": "hgk-far-remediation-20261016",
+      "row_id": "13",
+      "verdict": "DONE_MEASURED",
+      "evidence_locator": ".bak-far-remediation-20261016 backups next to each promoted file (R2_BACKUPS_EXIST)",
+      "note": "Backup exists for 3 of 4 (tests/test_lane_effort_enforcement.py was new, so no pre-image exists — the receipt records canonical_sha256_before=null for it)."
+    },
+    {
+      "source_change": "hgk-far-remediation-20261016",
+      "row_id": "14",
+      "verdict": "DONE_MEASURED",
+      "evidence_locator": "sha256 of each promoted canonical file vs R2_PROMOTION_RECEIPT .files[].candidate_sha256",
+      "note": "All four live canonical files re-digested byte-identical to the receipt's frozen candidate digests (R2_PROMOTED_FILES_LIVE_DIGESTS)."
+    },
+    {
+      "source_change": "hgk-far-remediation-20261016",
+      "row_id": "15",
+      "verdict": "DONE_MEASURED",
+      "evidence_locator": "R2_PROMOTION_RECEIPT .files + FROZEN_MANIFEST.json (no round-local paths)",
+      "note": "Promoted set is the 4 product files only (scripts/runtime_role_binding_assert.py, scripts/hgk-governed-runtime-controller.py, tests/test_governed_runtime_controller.py, tests/test_lane_effort_enforcement.py); no round-local var/ file appears in the promoted set. NOTE: the receipt also flags post_promotion_changed_vs_baseline with 126 unrelated working-tree paths (untracked/existing), which this task did not ask to adjudicate."
+    },
+    {
+      "source_change": "hgk-far-remediation-20261016",
+      "row_id": "16",
+      "verdict": "OPEN_OWNER",
+      "evidence_locator": "grep 'turn_shape|turn-shape|edit_only' scripts/hgk-lane-dispatch.py = 0 hits (measured)",
+      "note": "The --turn-shape {normal,edit_only} flag is NOT implemented in the live dispatcher and the round's own record (ROUND_CLOSURE.json D13=NOT_DELIVERED) says the bounded-writer turn did not land. Still owed by an owner-authorized implementation round."
+    },
+    {
+      "source_change": "hgk-far-remediation-20261016",
+      "row_id": "17",
+      "verdict": "OPEN_OWNER",
+      "evidence_locator": "grep for a RED-first test module for turn-shape: no test file names or content match; derived from D13",
+      "note": "No typed RED-first test module for --turn-shape exists (the flag itself is absent); the dependent test cannot pre-exist."
+    },
+    {
+      "source_change": "hgk-far-remediation-20261016",
+      "row_id": "18",
+      "verdict": "OPEN_OWNER",
+      "evidence_locator": "no default-path receipt comparison exists for a turn-shape flag; measured absent",
+      "note": "The default-path-unchanged proof presupposes the flag from row 16; nothing to compare since the flag never landed."
+    },
+    {
+      "source_change": "hgk-far-remediation-20261016",
+      "row_id": "19",
+      "verdict": "NOT_OWED",
+      "evidence_locator": "RETIRED by the round's own RETROSPECTIVE/ROUND_CLOSURE (R5 not delivered; P3 proposal listed)",
+      "note": "The row conditions applying a turn-shape product to canonical on an orchestrator re-derivation, plus rows 16-18; with all of 16-18 still open this row is not separately owed beyond its predecessors — not independently owned work."
+    },
+    {
+      "source_change": "hgk-far-remediation-20261016",
+      "row_id": "20",
+      "verdict": "DONE_MEASURED",
+      "evidence_locator": "ROUND_CLOSURE.json .detection_list (D01..D16 retraced row-by-row from raw artifacts)",
+      "note": "A detection list D01..D16 exists in the round's own ROUND_CLOSURE.json with statuses (8 PASS etc.); the worker re-read each D-row and D13/D15/D16 classed differently by this adjudication (see rows 16-19). Partial: this worker verified D-row presence and D13 status, not every D-row's underlying re-derivation."
+    },
+    {
+      "source_change": "hgk-far-remediation-20261016",
+      "row_id": "21",
+      "verdict": "DONE_MEASURED",
+      "evidence_locator": "lanes/VERIFY_SECURITY/V3c/dispatch.json + work/CHECKER_VERDICT.json",
+      "note": "Independent VERIFY lane V3c ran (exit 0) against the frozen subject; CHECKER_VERDICT.json Subject copy PASS with real disagreements (C2/C3/C6 DISAGREE)."
+    },
+    {
+      "source_change": "hgk-far-remediation-20261016",
+      "row_id": "22",
+      "verdict": "DONE_MEASURED",
+      "evidence_locator": "lanes/VERIFY_SECURITY/V3c/work/CHECKER_VERDICT.json .claims[].verdict",
+      "note": "Checker verdicts recorded verbatim, including DISAGREE and UNCERTAIN outcomes (C1 AGREE, C2/C3/C6 DISAGREE, C4 UNCERTAIN, C5/C7 AGREE)."
+    },
+    {
+      "source_change": "hgk-far-remediation-20261016",
+      "row_id": "23",
+      "verdict": "DONE_MEASURED",
+      "evidence_locator": "ROUND_CLOSURE.json + README.md + RESIDUAL_INVENTORY.json (all in var/FAR-REMEDIATION-AND-CLOSURE-20261016/)",
+      "note": "Closure JSON, README and handover checkpoint all present with surviving residuals enumerated (15 honest_residuals entries)."
+    },
+    {
+      "source_change": "hgk-far-remediation-20261016",
+      "row_id": "24",
+      "verdict": "DONE_MEASURED",
+      "evidence_locator": "PUBLICATION_RECEIPT.json + PUSH_RECEIPT.json + REMOTE_READBACK.json",
+      "note": "Packet published to shw097-team/Fabric pub/far-remediation-and-closure-20261016 PR #8 head b4595e66f9f6..., remote read-back sha_match=true. Presence measured; this worker did NOT re-fetch the remote itself."
+    },
+    {
+      "source_change": "hgk-far-remediation-20261016",
+      "row_id": "25",
+      "verdict": "DONE_MEASURED",
+      "evidence_locator": "SELF_EVOLUTION.md header (head -c 1200 measured)",
+      "note": "A self-research/self-learning/self-iteration/self-evolution note exists in the round dir (title '# SELF-RESEARCH / SELF-LEARNING / SELF-ITERATION / SELF-EVOLUTION'), content first ~1.2KB measured as present. This row does not need external verification to be DONE — its content is a written note, not a claim."
+    },
+    {
+      "source_change": "skill-mainfile-cap-remediation",
+      "row_id": "T1",
+      "verdict": "DONE_MEASURED",
+      "evidence_locator": "python len/sha256 on HG-KSEOS-skills/software-development/hgk-governed-execution/SKILL.md; scripts/skill_guard.py pre exit 0",
+      "note": "Measured raw_bytes=21026, raw_chars=19918, LF-normalized=19658, sha256=60a4d9b3c79fc9e72cd82d587fc8a0c3d2513ac4a2b74ecb3040fb587450d960. Baseline exists and is reproducible. NOTE: task text says 'pre' baseline at a cap-remediation step; the measured file is the SKCV extraction state, far under cap (80342 chars headroom)."
+    },
+    {
+      "source_change": "skill-mainfile-cap-remediation",
+      "row_id": "T2",
+      "verdict": "OPEN_OWNER",
+      "evidence_locator": "var/SKILL-CONVERGENCE-20261014/candidates/hgk/entry_map.json (schema SKCV-ENTRY-MAP/1) present in the ROUND dir, NOT in the skill dir",
+      "note": "A pre-registered slice manifest exists for the SKCV extraction round (6 slices with source/dest sha256 and byte offsets). But T2's wording is a pre-registered manifest for THIS change's (60k section) split; no manifest exists inside the change dir under openspec/changes/skill-mainfile-cap-remediation/; the SKCV manifest is a different round's artifact."
+    },
+    {
+      "source_change": "skill-mainfile-cap-remediation",
+      "row_id": "T3",
+      "verdict": "DONE_MEASURED",
+      "evidence_locator": "var/a2/skill_split_exec.py (sha256 1c9c97f2...) + SKILL_SPLIT_RECHECK_ADDENDUM_2026-08-15.md",
+      "note": "A mechanical splitter exists and was dry-run on a copy (per the round's own addendum; python dry-runs not re-executed by this worker). Its historical run is dated, not re-run this round."
+    },
+    {
+      "source_change": "skill-mainfile-cap-remediation",
+      "row_id": "T4",
+      "verdict": "SUPERSEDED",
+      "evidence_locator": "var/a2/SKILL_md_pre_split_original_reconstructed.md (sha256 25c8c244...) + current live SKILL.md sha (60a4d9b3...)",
+      "note": "Reverse reconstruction was proven for the 2026-08-15 split (byte-identical preimage preserved). The SKCV-20261014 extraction is superseding, differently-shaped work: T4's pre-split-copy is now the pre-SKCV form's reconstruction, not today's live tree. Row's mechanism exists, target state moved past it."
+    },
+    {
+      "source_change": "skill-mainfile-cap-remediation",
+      "row_id": "T5",
+      "verdict": "DONE_MEASURED",
+      "evidence_locator": "SKILL.md routing map (grep 'Entry routing map' hits line 55) with per-section pointers + entry_map.json 6-slice reconstruction",
+      "note": "The current live SKILL.md keeps pointer rows into references/ and the SKCV entry map. 0 dangling refs in the current reference set. BUT the SKILL.md text names 'entry_map.json' as a load path and no entry_map.json exists in the live skill directory (it lives in the round sandbox); the pointer integrity claim has one broken load path."
+    },
+    {
+      "source_change": "skill-mainfile-cap-remediation",
+      "row_id": "T6",
+      "verdict": "OPEN_OWNER",
+      "evidence_locator": "references/support-files-index.md names 39 of 112 disk reference files (73 NOT listed); adversarial-verification-rounds.md NOT listed",
+      "note": "Index completeness is not met for all support files; the row's requirement is unmet and has an identifiable owner (the skill owner)."
+    },
+    {
+      "source_change": "skill-mainfile-cap-remediation",
+      "row_id": "T7",
+      "verdict": "OPEN_OWNER",
+      "evidence_locator": "grep 'adversarial-verification-rounds' SKILL.md = ABSENT; grep in references/support-files-index.md = ABSENT",
+      "note": "The adversarial-verification-rounds pointer intended by the change is still missing from the main file AND from the support-files index; the reference file itself exists on disk at references/adversarial-verification-rounds.md. Duplication with a standalone skill is unaddressed."
+    },
+    {
+      "source_change": "skill-mainfile-cap-remediation",
+      "row_id": "T8",
+      "verdict": "DONE_MEASURED",
+      "evidence_locator": "scripts/skill_guard.py <skill_dir> post (exit 0, PASS, size=19658B refs=7 sections=5)",
+      "note": "Re-measured just now (exit 0, PASS). Keyword grep counts not re-baselined in this workstream (T1's baseline could not be re-run exactly as the task scripts them); 0 new orphans is measured (no dangling refs)."
+    },
+    {
+      "source_change": "skill-mainfile-cap-remediation",
+      "row_id": "T9",
+      "verdict": "OPEN_OWNER",
+      "evidence_locator": "no canary artifact found under var/.../canary matched to this change's T9; routing map achieves the cold-start path indirectly",
+      "note": "No recorded fresh-leaf cold-start canary for THIS change. The SKCV routing-map and support-files-index give a functional cold-start route, but no typed canary receipt exists in the change dir."
+    },
+    {
+      "source_change": "skill-mainfile-cap-remediation",
+      "row_id": "T10",
+      "verdict": "OPEN_OWNER",
+      "evidence_locator": "grep 'regrowth|ceiling' in hermes-agent skill modules = no hits; config.yaml has no skill ceiling; skill_guard.py's own 100k catch is a checker, not a declared future-round ceiling",
+      "note": "No regrowth guard / declared ceiling for the SKILL.md main file exists in the platform. The only repeat-check mechanism is skill_guard.py's >100k rejection, which is a split-reminder, not a round-crossing regrowth gate."
+    },
+    {
+      "source_change": "skill-mainfile-cap-remediation",
+      "row_id": "T11",
+      "verdict": "OPEN_OWNER",
+      "evidence_locator": "no independent checker receipt for T1-T10 recomputation exists in the change dir",
+      "note": "No independent checker receipt beside this change record; the row's requirement is unmet as written for this change."
+    }
+  ]
+}

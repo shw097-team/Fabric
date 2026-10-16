@@ -1,0 +1,97 @@
+{
+  "schema": "WS3-REPAIR-SPEC/1",
+  "defect1": {
+    "defect_id": "DEFECT-1-RECEIPT-PATH-COLLISION",
+    "change_sites": [
+      {
+        "file": "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/dispatch_r6.py",
+        "func": "main()",
+        "lines": [
+          56,
+          57
+        ]
+      },
+      {
+        "file": "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015-R9/dispatch_r9.py",
+        "func": "main()",
+        "lines": [
+          63,
+          64
+        ]
+      }
+    ],
+    "before": [
+      "\"--json-out\", f\"{LANE_RUNS}/{lane}_dispatch_receipt_attempt{attempt}.json\",",
+      "\"--attempt-log-dir\", f\"{LANE_RUNS}/{lane}_logs_attempt{attempt}\","
+    ],
+    "after": [
+      "TURN_ID = _dt.datetime.now(datetime.timezone.utc).strftime(\"%Y%m%dT%H%M%SZ\") + \"_\" + str(round_name)",
+      "json_out = f\"{HANDOVER}/lane_runs/{lane}_turn{TURN_ID}_attempt{attempt}_dispatch_receipt.json\"",
+      "trail_dir = f\"{HANDOVER}/lane_runs/{lane}_turn{TURN_ID}_attempt{attempt}_logs\"",
+      "\"--json-out\", json_out,",
+      "\"--attempt-log-dir\", trail_dir,"
+    ],
+    "post_run_copy_after": [
+      "line 70 (r6) / line 77 (r9), after '=== DISPATCHER EXIT' print: shutil.copy2(json_out, HANDOVER/name) and shutil.copytree(trail_dir, HANDOVER/name, dirs_exist_ok=True)"
+    ],
+    "immutable_key": "lane + turn index + UTC stamp + round name",
+    "test_note": "two sequential same-lane same-attempt runs must produce distinct json_out names and both snapshots must survive under HANDOVER."
+  },
+  "defect2": {
+    "defect_id": "DEFECT-2-NONCE-GATE-MISSES-ARTIFACT-ROOT",
+    "change_sites": [
+      {
+        "file": "C:/Projects/Agent_Workspace/Projects/Agent_Workspace/HG-KSEOS/scripts/hgk-lane-dispatch.py",
+        "func": "run_candidate()",
+        "lines": [
+          1188,
+          1189
+        ]
+      },
+      {
+        "file": "C:/Projects/Agent_Workspace/Projects/Agent_Workspace/HG-KSEOS/scripts/hgk-lane-dispatch.py",
+        "func": "(attempt dict)",
+        "lines": [
+          1266,
+          1267
+        ]
+      },
+      {
+        "file": "C:/Projects/Agent_Workspace/Projects/Agent_Workspace/HG-KSEOS/scripts/hgk-lane-dispatch.py",
+        "func": "(receipt fields)",
+        "lines": [
+          2203,
+          2205
+        ]
+      },
+      {
+        "file": "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/dispatch_r6.py",
+        "func": "main()",
+        "lines": [
+          55,
+          56
+        ]
+      },
+      {
+        "file": "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015-R9/dispatch_r9.py",
+        "func": "main()",
+        "lines": [
+          62,
+          63
+        ]
+      }
+    ],
+    "before_gate": "nonce_ok = nonce_in_agent_message(out_b, args.nonce) and nonce_raw",
+    "after_gate": "if not nonce_ok: nonce_artifact_files = [str(c) for c in Path(args.nonce_artifact_root).glob('**/*DONE*') + Path(args.nonce_artifact_root).glob('**/*.nonce') if args.nonce in c.read_text(encoding='utf-8', errors='strict')]\nnonce_ok = nonce_ok or bool(nonce_artifact_files)",
+    "receipt_fields_that_change": [
+      "used_rank",
+      "used_transport_model",
+      "used_seconds",
+      "served_arm",
+      "ok",
+      "code"
+    ],
+    "additive_per_attempt_field": "nonce_artifact_files",
+    "test_note": "a restroom turn with NO nonce in stdout but with the exact nonce in a *_DONE or *.nonce file under --nonce-artifact-root must read nonce_present=true, used_rank/served_arm non-null, ok=true; every negative control (unset root, mismatching file, surrogate-encoded file, attempt.marker.json not chased) stays false."
+  }
+}

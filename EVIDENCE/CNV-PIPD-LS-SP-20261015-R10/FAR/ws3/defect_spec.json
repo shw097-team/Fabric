@@ -1,0 +1,50 @@
+{
+  "defects": [
+    {
+      "id": "DEFECT-1-RECEIPT-PATH-COLLISION",
+      "file": "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/dispatch_r6.py (lines 56-57) and C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015-R9/dispatch_r9.py (lines 63-64)",
+      "function": "main()",
+      "quoted_code": "\"--json-out\", f\"{LANE_RUNS}/{lane}_dispatch_receipt_attempt{attempt}.json\",\n\"--attempt-log-dir\", f\"{LANE_RUNS}/{lane}_logs_attempt{attempt}\",",
+      "observed_failure": "The receipt/attempt-log path depends only on LANE_RUNS + lane + attempt argv. Five distinct EXECUTE rank-1 turns (run_ids 2140-1792049969, 4640-1792119447, 2480-1792119780, 5316-1792124385, 1972-1792124816) all landed on the one path lane_runs/EXECUTE_dispatch_receipt_attempt1.json; the file now on disk (7701 bytes, mtime 2026-10-16 12:40:52 +0800) carries only the LAST turn; the four earlier turns' ok/code/used_rank/used_seconds/attempts[] records at that path are gone (surviving only as append-only .attempts.ndjson rows with no final code). Same shape for VERIFY_SECURITY_dispatch_receipt_attempt1.json (3 checker turns, only run_id 1188-1792125708 survives) and ...attempt2.json (2 turns, only run_id 21748-1792074089 survives).",
+      "repair": "Make the receipt and attempt-log paths immutable per turn: derive turn_id = lane + turn index + UTC stamp (including the round already available as round_name) inside main(), pass it into both --json-out and --attempt-log-dir, and copy both files into the round root (HANDOVER) immediately after subprocess.run returns, so a later turn can never erase an earlier turn's evidence. Change is wrapper-only; no dispatcher change needed.",
+      "before": "\"--json-out\", f\"{LANE_RUNS}/{lane}_dispatch_receipt_attempt{attempt}.json\",\n\"--attempt-log-dir\", f\"{LANE_RUNS}/{lane}_logs_attempt{attempt}\",",
+      "after": "TURN_ID = _dt.datetime.now(datetime.timezone.utc).strftime(\"%Y%m%dT%H%M%SZ\") + \"_\" + str(round_name)\njson_out = f\"{HANDOVER}/lane_runs/{lane}_turn{TURN_ID}_attempt{attempt}_dispatch_receipt.json\"\ntrail_dir = f\"{HANDOVER}/lane_runs/{lane}_turn{TURN_ID}_attempt{attempt}_logs\"\ncmd = [...same as before but with \"--json-out\", json_out and \"--attempt-log-dir\", trail_dir...]\n# after subprocess.run returns and after the existing EXIT print (dispatch_r6.py:70 / r9:77):\nimport shutil\nif Path(json_out).is_file():\n    Path(HANDOVER).mkdir(parents=True, exist_ok=True)\n    shutil.copy2(json_out, Path(HANDOVER) / Path(json_out).name)\nif Path(trail_dir).is_dir():\n    shutil.copytree(trail_dir, Path(HANDOVER) / Path(trail_dir).name, dirs_exist_ok=True)",
+      "test_must_assert": [
+        "Two sequential same-lane same-attempt wrapper runs produce two DISTINCT --json-out basenames, each with its own used_rank/ok/code/used_seconds/attempts[0].run_id.",
+        "After the second turn returns, both turns' round-root snapshots exist under HANDOVER and turn 1's snapshot still contains turn 1's run_id.",
+        "Negative control: pre-creating the same TURN_ID path makes the dispatcher refuse loudly (ERR_LANE_OUTPUT_DIR_EXISTS); the harness never silently reuses.",
+        "The per-turn attempts.ndjson trail lives in the per-turn ..._logs dir, not a shared per-lane file."
+      ],
+      "local_fixture_possible": true,
+      "fixture": "Copy the wrapper to a scratch dir, stub subprocess.run (or make PY/DISP a tiny fake writer that emits a receipt with a distinguishing run_id), invoke main() twice with the same lane/attempt argv; assert distinct json_out paths and both snapshots surviving; re-run unpatched as the negative control to show the collision."
+    },
+    {
+      "id": "DEFECT-2-NONCE-GATE-MISSES-ARTIFACT-ROOT",
+      "file": "C:/Projects/Agent_Workspace/HG-KSEOS/scripts/hgk-lane-dispatch.py (lines 1179-1188 the stdout-only carrier; lines 1055-1058 failure_disposition; lines 2130-2139 used = att; lines 2203-2205 used_rank/used_transport_model/used_seconds; line 2234 served_arm) + wrapper flag addition in dispatch_r6.py/dispatch_r9.py",
+      "function": "run_candidate() for the gate; main-loop at 2130 and receipt assembly at 2203 for the fields",
+      "quoted_code": "    nonce_bytes = args.nonce.encode(\"utf-8\")\n    nonce_raw = nonce_bytes in out_b\n    ...\n    nonce_ok = nonce_in_agent_message(out_b, args.nonce) and nonce_raw\n...\n    answered = [a for a in attempts if a.get(\"exit\") == 0 and a.get(\"usage_receipt_ok\")]\n    if answered and not any(a.get(\"nonce_present\") for a in answered):\n        return {\"code\": \"ERR_NO_ARM_EMITTED_NONCE\", ...}\n...\n        if att.get(\"exit\") == 0 and att.get(\"nonce_present\") and att.get(\"usage_receipt_ok\"):\n            ...\n            if _ce is None:\n                used = att\n                break",
+      "surfaces_read": "ONLY the child's stdout bytes (out_b): (a) raw substring nonce.encode('utf-8') in out_b and (b) nonce_in_agent_message, which looks only at item.completed/agent_message JSON carrier texts. stderr is persisted but not searched. The lane's artifact root (e.g. ...-R9/R9_VERIFY/ containing R9V_DONE == 'R9V-CHECKER-NONCE-5c1d84\\n', R9_VERDICT.md and R9_VERDICT.json all ending in the same nonce) is NOT read at all.",
+      "observed_failure": "Head of VERIFY_SECURITY_dispatch_receipt_attempt1.json (mtime 2026-10-16 12:54:37 +0800): attempts[0] rank=1 openai-codex/gpt-6.1-sol nonce_present=false, used_rank/used_transport_model/used_seconds null, ok=false, code=ERR_NO_ARM_EMITTED_NONCE, nonce_absent_arms=[openai-codex/gpt-6.1-sol] — while the lane's own artifacts (R9V_DONE file, and the attempt stdout at .../CNV-PIPD-LS-SP-20261015-R9/VERIFY_SECURITY/attempt-1-20261016T044148Z/attempt-1188-1792125708-1-stdout.txt line 4 carrying item.completed/agent_message R9V-CHECKER-NONCE-5c1d84) all carry the mandated nonce. The dispatcher's session_evolution manifest already named this gap (SELF_EVOLUTION_R9.md RS-09 / IT-07 / EV-08).",
+      "repair": "Add an explicit --nonce-artifact-root input in the wrappers pointing at the lane's own output root for the turn, and in run_candidate() fall back to reading *_DONE / *.nonce files under that root (exact UTF-8 substring match, fail-closed on decode errors) before declaring nonce_present false; record nonce_artifact_files additively on the attempt used for the nonce read and let the receipt's used_rank/used_transport_model/used_seconds/served_arm/ok/code reflect the artifact-root hit.",
+      "before": "nonce_bytes = args.nonce.encode(\"utf-8\")\nnonce_raw = nonce_bytes in out_b\n...\nnonce_ok = nonce_in_agent_message(out_b, args.nonce) and nonce_raw\n# wrappers do not pass any nonce_artifact_root flag",
+      "after": "# (dispatch_r6.py/dispatch_r9.py, beside --output-root)\n'--nonce-artifact-root', f'{HANDOVER}/R9_VERIFY',\n# (hgk-lane-dispatch.py, run_candidate(), immediately after l.1188)\nnonce_artifact_files = []\nif not nonce_ok:\n    art_root = getattr(args, \"nonce_artifact_root\", None)\n    if art_root:\n        for cand in Path(art_root).glob(\"**/*DONE*\") + glob(\"**/*.nonce\"):\n            try:\n                if args.nonce in cand.read_text(encoding=\"utf-8\", errors=\"strict\"):\n                    nonce_artifact_files.append(str(cand))\n            except (OSError, UnicodeDecodeError):\n                continue\n    nonce_ok = bool(nonce_artifact_files)\n# attempt dict (l.1266ff): add \"nonce_artifact_files\": nonce_artifact_files,\n# receipt fields (l.2203-2205, 2234): used_rank/used_transport_model/used_seconds/served_arm\n#   become non-null when any attempt's nonce_ok went true via artifact files;",
+      "receipt_fields_that_change": [
+        "used_rank (null -> serving attempt's rank)",
+        "used_transport_model (null -> e.g. openai-codex/gpt-6.1-sol)",
+        "used_seconds (null -> serving attempt's seconds)",
+        "served_arm (absent/null -> openai-codex/gpt-6.1-sol)",
+        "ok (false -> true) and code (ERR_NO_ARM_EMITTED_NONCE -> no error code)",
+        "nonce_absent_arms (removed from the top-level receipt in the pass case); additive per-attempt field nonce_artifact_files is recorded"
+      ],
+      "test_must_assert": [
+        "Fixture attempt whose stdout has no item.completed/agent_message nonce carrier but whose --nonce-artifact-root has a *_DONE or *.nonce file carrying the exact nonce must yield nonce_present=true, a named nonce_artifact_files entry, and non-null used_rank/used_transport_model/used_seconds/served_arm plus ok=true.",
+        "Negative control: artifact root unset or absent -> nonce_present stays false and ERR_NO_ARM_EMITTED_NONCE still emits with nonce_absent_arms.",
+        "Negative control: a DONE/.nonce file whose bytes do NOT contain the exact nonce -> nonce_present stays false, nonce_artifact_files stays [].",
+        "Negative control: a file carrying a non-UTF-8/surrogate encoding of the nonce -> still false (no U+FFFD or replace-manufactured match; mirrors the H1 constraint elsewhere in the same file).",
+        "Attribution contract: with the artifact-root hit, attempts[0].rank/provider/model/exit/seconds and the receipt's used_*/served_arm must agree."
+      ],
+      "local_fixture_possible": true,
+      "fixture": "Pure filesystem + string-match pytest of the patched run_candidate: craft a tmp/artifacts dir holding R9V_DONE, a *.nonce, a decoy_DONE, and a decoy.nonce, each either matching or not matching a fixture nonce; stub subprocess.run to emit a canned stdout blob with no nonce carrier; call run_candidate with the crafted argparse args. No relay, no network, no live lane needed."
+    }
+  ]
+}
