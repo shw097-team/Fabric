@@ -1,0 +1,110 @@
+{
+ "schema": "CNV-EVIDENCE-ARCHIVE-R7R11/SELF-EVOLUTION/1",
+ "contract_id": "CNV-EVIDENCE-ARCHIVE-R7R11-20261016",
+ "generated_utc": "2026-10-16T10:24:53.581550+00:00",
+ "claim_ceiling": "CANDIDATE_SELF_EVOLUTION - candidate, not accepted; no capability is promoted by this record",
+ "self_research": [
+  {
+   "question": "does the declared CODEX CLI lane toolchain still bind on this host?",
+   "method": "T1 `hgk-lane-toolchain.py --resolve` against the canonical declaration, then against a measured round-local copy",
+   "answer": "NO for the canonical declaration: it pins a version-hashed directory that an app update replaced, so T1 reported ERR_LANE_TOOLCHAIN_BINARY_MISSING while a working CLI existed elsewhere on the host. The live binary is version 0.163.0-alpha.10.2 / sha256 9ecb9df2...",
+   "artifact": "lane/declaration_ea.json"
+  },
+  {
+   "question": "is the lane transport actually usable for the mandated arms?",
+   "method": "a throwaway EXECUTE probe prompt on the sealed lane with --require-arm",
+   "answer": "YES: rank 1 opencode-go/deepseek-v4.1-flash served the turn, exit 0, usage receipt ok. The T2 preflight alone is NOT sufficient evidence of transport: it drives the lane home's own config and reported a 401 against the vendor endpoint while the dispatcher path worked.",
+   "artifact": "lane/PROBE_EXECUTE_RECEIPT.json, lane/T2_PREFLIGHT_EXECUTE.json"
+  },
+  {
+   "question": "what does the K-01..K-20 ledger's mapped=false actually mean?",
+   "method": "re-derivation of both the frozen ledger text and the R6 crosswalk rows",
+   "answer": "worked as designed: 20/20 rows are source-linked and 0/20 were independently re-tested in the same round. `mapped` conflates the two; both metrics are now carried separately.",
+   "artifact": "A09_KLedger_CROSS_INDEX.json"
+  }
+ ],
+ "self_learning": [
+  {
+   "lesson": "A declared toolchain path can go stale in place, and a fail-closed gate will then report a MISSING binary rather than a MOVED one. Resolve the executable by glob and re-declare it in a ROUND-LOCAL copy; never edit the canonical declaration from inside a candidate round.",
+   "evidence": "lane/T2_PREFLIGHT_EXECUTE.json vs lane/declaration_ea.json (canonical_previous recorded)"
+  },
+  {
+   "lesson": "A lane probe that does not ASK the model for the nonce produces ERR_NO_ARM_EMITTED_NONCE even when the required arm served the turn with exit 0 and a valid usage receipt. The verdict token and the arm attribution are different questions.",
+   "evidence": "lane/PROBE_EXECUTE_RECEIPT.json (attempts[0] model=deepseek-v4.1-flash, nonce_present=false)"
+  },
+  {
+   "lesson": "`--guard-subject` must not cover the directory the dispatcher writes `--json-out` into, or the receipt's own write VOIDs the very verdict it records. Guard the artifacts; keep the receipt outside the guard.",
+   "evidence": "the VERIFY dispatch guards packet/ and the three receipt artifacts while writing its receipt to lane/"
+  },
+  {
+   "lesson": "A forbidden-path probe written as 'the path contains any of these substrings' is wrong: an evidence directory legitimately named product/ or credential/ inside the allowed prefix then reports a forbidden surface. The rule must be about WHERE the path resolves (outside the allowed prefix / outside EVIDENCE entirely) plus the git mode of changed paths.",
+   "evidence": "A03_A05_PR_PREFLIGHT.probe_v1_superseded.json vs A03_A05_PR_PREFLIGHT.json"
+  },
+  {
+   "lesson": "A secret_assignment-style rule fires on `token = <expression>` in guard code that reasons ABOUT tokens, so it is a systematic false-positive class on security code. Store a MASKED enclosing line at scan time so each hit can be adjudicated by rule later without re-reading the blob and without ever reproducing a value.",
+   "evidence": "PR10_SECRET_ADJUDICATION.json (5 code-identifier, 2 test-fixture, 2 archived-capture)"
+  },
+  {
+   "lesson": "Admission is not execution: a board can be created and look busy while nothing was ever claimed or completed. Read the board histogram back after driving it.",
+   "evidence": "KANBAN_LIFECYCLE_RECEIPT.json (60 CLI calls, histogram {done:12, blocked:2})"
+  },
+  {
+   "lesson": "Truncating a CLI's stdout for a receipt BEFORE parsing it silently breaks the parse. Parse the full payload, trim only the stored copy.",
+   "evidence": "the first kanban driver run: 13 successful creates, 13 unresolved ids, empty board"
+  }
+ ],
+ "self_iteration": [
+  {
+   "change": "narrowed the forbidden-path rule and added a per-changed-path git-mode check",
+   "reason": "the v1 rule produced two false forbidden surfaces (PR #8, PR #10)",
+   "evidence": "A03_A05_PR_PREFLIGHT.json (probe_v1_defect field) + the superseded v1 output kept on disk"
+  },
+  {
+   "change": "rotated the lane child executable to the glob-resolved binary via the documented operator seam, with a round-local declaration carrying the measured version and digest",
+   "reason": "the canonical declaration is stale on this host",
+   "evidence": "lane/declaration_ea.json (_round_local_override + canonical_previous)"
+  },
+  {
+   "change": "drove the round's cards through create -> claim -> heartbeat -> comment -> complete / block",
+   "reason": "admission alone is not governed execution",
+   "evidence": "KANBAN_LIFECYCLE_RECEIPT.json"
+  },
+  {
+   "change": "authorised no self-approval: A07 (maintainer approval) and A08 (merge + readback) were BLOCKED with a typed reason instead of being closed",
+   "reason": "the maker must not sign the maintainer gate",
+   "evidence": "KANBAN_LIFECYCLE_RECEIPT.json histogram {blocked: 2}"
+  }
+ ],
+ "self_evolution": [
+  {
+   "durable_change": "skill: hgk-governed-execution - new reference on CODEX lane dispatch and probe pitfalls, and a pointer to it from the skill's when-to-use list",
+   "landed_in": "skill_manage (references/codex-lane-dispatch-and-probe-pitfalls.md + SKILL.md pointer)",
+   "applies_to": "any future round that dispatches the CODEX CLI lanes"
+  },
+  {
+   "durable_change": "reusable round tooling kept in this round's directory (source ledger, contract builder, preflight, cross-index, adjudicator, pack assembler, self-check)",
+   "landed_in": "_handover/CNV-EVIDENCE-ARCHIVE-R7R11-20261016/*.py",
+   "applies_to": "the next archival round can start from a corrected preflight instead of the v1 rule"
+  },
+  {
+   "durable_change": "the round's own honesty defaults: NOT_RUN is never rendered as PASS; unknown fremains null; a same-arm maker/checker pair is declared rather than hidden",
+   "landed_in": "the packet's claim lattice + this record",
+   "applies_to": "the claim-scope discipline of every subsequent round"
+  }
+ ],
+ "not_evolved_deliberately": [
+  "No canonical HG-KSEOS config, lane registry, policy or workflow was edited by this round.",
+  "No capability was promoted: the validator, the checker isolation and the runtime re-certification remain open, and production stays FAIL_CLOSED.",
+  "No new scheduler, reducer, database or publishing service was created to make this round easier.",
+  "Memory was deliberately not grown: the lessons above are round/procedure-scoped, so they belong in the skill where they load only when relevant, not in always-injected memory."
+ ],
+ "nonclaims": [
+  "This record is self-authored (maker-side). It is not an independent acceptance and confers no authority.",
+  "The skill patch is a candidate durable change; it is not validated by an external reviewer."
+ ],
+ "evidence_bound": {
+  "unresolved_evidence_refs": [],
+  "verdict": "PASS"
+ },
+ "verdict": "PASS"
+}

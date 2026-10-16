@@ -1,0 +1,318 @@
+{
+ "schema": "CNV-EVIDENCE-ARCHIVE-R7R11/K-LEDGER-CROSS-INDEX/1",
+ "contract_id": "CNV-EVIDENCE-ARCHIVE-R7R11-20261016",
+ "task": "A09",
+ "check": "Q09",
+ "producer": "PLAN-side local tool (deterministic re-derivation)",
+ "generated_utc": "2026-10-16T10:12:17.292148+00:00",
+ "inputs": {
+  "K_LEDGER_CROSSWALK.json": "69af3c0b25ed4b1dc077931b1077e1927c7074aac05b0f41df16247da1915c4e",
+  "KNOWN-FINDINGS.md": "6a2c13114af540c655376af0e3628e9e4f6ca5ea941a2dfeac6b437e8eb16d5a"
+ },
+ "counts": {
+  "ledger_rows_parsed": 20,
+  "source_linked": 20,
+  "same_run_retested": 0,
+  "source_missing": 0,
+  "baseline_status_counts": {
+   "RESOLVED": 7,
+   "PARTIAL": 7,
+   "OWNER": 6
+  }
+ },
+ "field_semantics_erratum": {
+  "defect": "the R6 crosswalk key `mapped` reads mapped=false / unmapped_count=20 for all rows, which reads as 'source mapping missing' but actually means 'no same-run independent re-verification receipt bound'.",
+  "corrected_reading": "these are two DISTINCT metrics; carry both, never collapse them.",
+  "metrics": [
+   "source_linked (ID/name/status present in the frozen ledger)",
+   "same_run_retested (an independent re-verification in the same round)"
+  ]
+ },
+ "header_typo_erratum": {
+  "file": "KNOWN-FINDINGS.md",
+  "claim": "states 'Three values only' and then lists four",
+  "values_listed": [
+   "RESOLVED",
+   "PARTIAL",
+   "OWNER",
+   "WITHDRAWN"
+  ],
+  "disposition": "documented as a governance text typo; the ledger content is unaffected",
+  "verbatim": "Three values only: `RESOLVED` (a named artifact closes it), `PARTIAL` (remaining gap stated),"
+ },
+ "rows": [
+  {
+   "k_id": "K-01",
+   "finding": "a wholesale repository rewrite was refused as over-engineered",
+   "source_status_at_baseline": "RESOLVED",
+   "source_evidence_verbatim": "`EVIDENCE/repo-hygiene-20261013/REPO-ASSESSMENT-ENGINEERING-EVALUATION.md`; the refusal is recorded as a scope rejection",
+   "source_linked": true,
+   "source_linked_evidence": "KNOWN-FINDINGS.md#K-01 + K_LEDGER_CROSSWALK.json.rows[K-01]",
+   "same_run_retested": false,
+   "same_run_retested_reason": "no local re-verification receipt bound to this K entry in this lane",
+   "new_round_observed_status": "NOT_RUN",
+   "candidate_remediation_status": "CANDIDATE_ONLY_NOT_OWNER_ACCEPTED",
+   "last_checked_at": "2026-10-16T10:15:00Z"
+  },
+  {
+   "k_id": "K-02",
+   "finding": "the owner requirement was not closed by ready-made readiness artifacts",
+   "source_status_at_baseline": "PARTIAL",
+   "source_evidence_verbatim": "`INTEGRATION/` readiness set published; closure still needs owner-class evidence (K-06, K-07)",
+   "source_linked": true,
+   "source_linked_evidence": "KNOWN-FINDINGS.md#K-02 + K_LEDGER_CROSSWALK.json.rows[K-02]",
+   "same_run_retested": false,
+   "same_run_retested_reason": "no local re-verification receipt bound to this K entry in this lane",
+   "new_round_observed_status": "NOT_RUN",
+   "candidate_remediation_status": "CANDIDATE_ONLY_NOT_OWNER_ACCEPTED",
+   "last_checked_at": "2026-10-16T10:15:00Z"
+  },
+  {
+   "k_id": "K-03",
+   "finding": "generated files and shortcuts polluting the payload",
+   "source_status_at_baseline": "RESOLVED",
+   "source_evidence_verbatim": "`EVIDENCE/repo-hygiene-20261013/REPO-HYGIENE-REPORT.md`: `*.pyc` 127 -> 0, `*.lnk` 1 -> 0",
+   "source_linked": true,
+   "source_linked_evidence": "KNOWN-FINDINGS.md#K-03 + K_LEDGER_CROSSWALK.json.rows[K-03]",
+   "same_run_retested": false,
+   "same_run_retested_reason": "no local re-verification receipt bound to this K entry in this lane",
+   "new_round_observed_status": "NOT_RUN",
+   "candidate_remediation_status": "CANDIDATE_ONLY_NOT_OWNER_ACCEPTED",
+   "last_checked_at": "2026-10-16T10:15:00Z"
+  },
+  {
+   "k_id": "K-04",
+   "finding": "a declared exclusion contradicted what was published",
+   "source_status_at_baseline": "RESOLVED",
+   "source_evidence_verbatim": "`MANIFEST.json` schema v2 `exceptions[]`: declaration reconciled, runtime subtree named, nothing deleted",
+   "source_linked": true,
+   "source_linked_evidence": "KNOWN-FINDINGS.md#K-04 + K_LEDGER_CROSSWALK.json.rows[K-04]",
+   "same_run_retested": false,
+   "same_run_retested_reason": "no local re-verification receipt bound to this K entry in this lane",
+   "new_round_observed_status": "NOT_RUN",
+   "candidate_remediation_status": "CANDIDATE_ONLY_NOT_OWNER_ACCEPTED",
+   "last_checked_at": "2026-10-16T10:15:00Z"
+  },
+  {
+   "k_id": "K-05",
+   "finding": "publication procedure not reproducible (no in-repo builder)",
+   "source_status_at_baseline": "PARTIAL",
+   "source_evidence_verbatim": "`SOURCE-PROJECTION.md` records the procedure; the builder itself is gated on the approval list (see `APPROVAL-LIST-PROPOSAL.md`)",
+   "source_linked": true,
+   "source_linked_evidence": "KNOWN-FINDINGS.md#K-05 + K_LEDGER_CROSSWALK.json.rows[K-05]",
+   "same_run_retested": false,
+   "same_run_retested_reason": "no local re-verification receipt bound to this K entry in this lane",
+   "new_round_observed_status": "NOT_RUN",
+   "candidate_remediation_status": "CANDIDATE_ONLY_NOT_OWNER_ACCEPTED",
+   "last_checked_at": "2026-10-16T10:15:00Z"
+  },
+  {
+   "k_id": "K-06",
+   "finding": "the canonical runtime binding baseline is uncertified (declared 0.20.0 / 3c27eb62 vs installed v0.21.5)",
+   "source_status_at_baseline": "OWNER",
+   "source_evidence_verbatim": "needs a fresh G1 re-certification by the Human Policy Owner",
+   "source_linked": true,
+   "source_linked_evidence": "KNOWN-FINDINGS.md#K-06 + K_LEDGER_CROSSWALK.json.rows[K-06]",
+   "same_run_retested": false,
+   "same_run_retested_reason": "no local re-verification receipt bound to this K entry in this lane",
+   "new_round_observed_status": "NOT_RUN",
+   "candidate_remediation_status": "CANDIDATE_ONLY_NOT_OWNER_ACCEPTED",
+   "last_checked_at": "2026-10-16T10:15:00Z"
+  },
+  {
+   "k_id": "K-07",
+   "finding": "subject baselines are not certified in this mirror",
+   "source_status_at_baseline": "OWNER",
+   "source_evidence_verbatim": "needs the Acceptance Officer; planners must treat the declared baseline as the planning assumption and the installed version mismatch as an explicit risk",
+   "source_linked": true,
+   "source_linked_evidence": "KNOWN-FINDINGS.md#K-07 + K_LEDGER_CROSSWALK.json.rows[K-07]",
+   "same_run_retested": false,
+   "same_run_retested_reason": "no local re-verification receipt bound to this K entry in this lane",
+   "new_round_observed_status": "NOT_RUN",
+   "candidate_remediation_status": "CANDIDATE_ONLY_NOT_OWNER_ACCEPTED",
+   "last_checked_at": "2026-10-16T10:15:00Z"
+  },
+  {
+   "k_id": "K-08",
+   "finding": "no independent digest recomputation is possible in a tool-less checker lane",
+   "source_status_at_baseline": "OWNER",
+   "source_evidence_verbatim": "needs an owner-designated read-tool verification lane",
+   "source_linked": true,
+   "source_linked_evidence": "KNOWN-FINDINGS.md#K-08 + K_LEDGER_CROSSWALK.json.rows[K-08]",
+   "same_run_retested": false,
+   "same_run_retested_reason": "no local re-verification receipt bound to this K entry in this lane",
+   "new_round_observed_status": "NOT_RUN",
+   "candidate_remediation_status": "CANDIDATE_ONLY_NOT_OWNER_ACCEPTED",
+   "last_checked_at": "2026-10-16T10:15:00Z"
+  },
+  {
+   "k_id": "K-09",
+   "finding": "no tamper-evident commitment binds oracle time to dispatch time",
+   "source_status_at_baseline": "OWNER",
+   "source_evidence_verbatim": "file mtimes are only an ordering witness; a hash-chain is new machinery the owner must choose",
+   "source_linked": true,
+   "source_linked_evidence": "KNOWN-FINDINGS.md#K-09 + K_LEDGER_CROSSWALK.json.rows[K-09]",
+   "same_run_retested": false,
+   "same_run_retested_reason": "no local re-verification receipt bound to this K entry in this lane",
+   "new_round_observed_status": "NOT_RUN",
+   "candidate_remediation_status": "CANDIDATE_ONLY_NOT_OWNER_ACCEPTED",
+   "last_checked_at": "2026-10-16T10:15:00Z"
+  },
+  {
+   "k_id": "K-10",
+   "finding": "the mandated checker arm was absent from the sealed lane pool, so checks ran provider-direct with no pool ledger",
+   "source_status_at_baseline": "OWNER",
+   "source_evidence_verbatim": "route-registry change is owner-gated; each affected run is disclosed in its receipt",
+   "source_linked": true,
+   "source_linked_evidence": "KNOWN-FINDINGS.md#K-10 + K_LEDGER_CROSSWALK.json.rows[K-10]",
+   "same_run_retested": false,
+   "same_run_retested_reason": "no local re-verification receipt bound to this K entry in this lane",
+   "new_round_observed_status": "NOT_RUN",
+   "candidate_remediation_status": "CANDIDATE_ONLY_NOT_OWNER_ACCEPTED",
+   "last_checked_at": "2026-10-16T10:15:00Z"
+  },
+  {
+   "k_id": "K-11",
+   "finding": "long prompts passed as a single argv element produced no artifact on the PLAN lane",
+   "source_status_at_baseline": "PARTIAL",
+   "source_evidence_verbatim": "rule recorded in `LANE-INVOCATION-NOTES.md`; a long-prompt run by file is the confirming test and has not been executed",
+   "source_linked": true,
+   "source_linked_evidence": "KNOWN-FINDINGS.md#K-11 + K_LEDGER_CROSSWALK.json.rows[K-11]",
+   "same_run_retested": false,
+   "same_run_retested_reason": "no local re-verification receipt bound to this K entry in this lane",
+   "new_round_observed_status": "NOT_RUN",
+   "candidate_remediation_status": "CANDIDATE_ONLY_NOT_OWNER_ACCEPTED",
+   "last_checked_at": "2026-10-16T10:15:00Z"
+  },
+  {
+   "k_id": "K-12",
+   "finding": "carried-forward findings from earlier rounds were never triaged individually",
+   "source_status_at_baseline": "RESOLVED",
+   "source_evidence_verbatim": "this ledger; each row names its artifact or its remaining gap",
+   "source_linked": true,
+   "source_linked_evidence": "KNOWN-FINDINGS.md#K-12 + K_LEDGER_CROSSWALK.json.rows[K-12]",
+   "same_run_retested": false,
+   "same_run_retested_reason": "no local re-verification receipt bound to this K entry in this lane",
+   "new_round_observed_status": "NOT_RUN",
+   "candidate_remediation_status": "CANDIDATE_ONLY_NOT_OWNER_ACCEPTED",
+   "last_checked_at": "2026-10-16T10:15:00Z"
+  },
+  {
+   "k_id": "K-13",
+   "finding": "the local Fabric tree has no remote linkage, so a round's Fabric-side work can be committed and still never reach this mirror",
+   "source_status_at_baseline": "OWNER",
+   "source_evidence_verbatim": "`EVIDENCE/SKILL-CONVERGENCE-20261014/PUBLICATION-RECORD.md` section C: the round's hygiene work was local-only until this change-set projected it; the remote linkage itself stays the owner's open item (`MANIFEST.json` `pending`)",
+   "source_linked": true,
+   "source_linked_evidence": "KNOWN-FINDINGS.md#K-13 + K_LEDGER_CROSSWALK.json.rows[K-13]",
+   "same_run_retested": false,
+   "same_run_retested_reason": "no local re-verification receipt bound to this K entry in this lane",
+   "new_round_observed_status": "NOT_RUN",
+   "candidate_remediation_status": "CANDIDATE_ONLY_NOT_OWNER_ACCEPTED",
+   "last_checked_at": "2026-10-16T10:15:00Z"
+  },
+  {
+   "k_id": "K-14",
+   "finding": "a closure text described the Fabric front page as upgraded when it had only been committed",
+   "source_status_at_baseline": "RESOLVED",
+   "source_evidence_verbatim": "corrected in the publication record; the round section is added by this change-set",
+   "source_linked": true,
+   "source_linked_evidence": "KNOWN-FINDINGS.md#K-14 + K_LEDGER_CROSSWALK.json.rows[K-14]",
+   "same_run_retested": false,
+   "same_run_retested_reason": "no local re-verification receipt bound to this K entry in this lane",
+   "new_round_observed_status": "NOT_RUN",
+   "candidate_remediation_status": "CANDIDATE_ONLY_NOT_OWNER_ACCEPTED",
+   "last_checked_at": "2026-10-16T10:15:00Z"
+  },
+  {
+   "k_id": "K-15",
+   "finding": "a publication manifest can list a file the commit silently drops, because the host repo's own ignore rules apply",
+   "source_status_at_baseline": "RESOLVED",
+   "source_evidence_verbatim": "the commit-byte read-back refused to claim reproducibility and the packet was renamed; the rule is recorded in the `remote-repo-publication` skill",
+   "source_linked": true,
+   "source_linked_evidence": "KNOWN-FINDINGS.md#K-15 + K_LEDGER_CROSSWALK.json.rows[K-15]",
+   "same_run_retested": false,
+   "same_run_retested_reason": "no local re-verification receipt bound to this K entry in this lane",
+   "new_round_observed_status": "NOT_RUN",
+   "candidate_remediation_status": "CANDIDATE_ONLY_NOT_OWNER_ACCEPTED",
+   "last_checked_at": "2026-10-16T10:15:00Z"
+  },
+  {
+   "k_id": "K-16",
+   "finding": "the reference population still exceeds the linter's warning line (94 files against 60)",
+   "source_status_at_baseline": "PARTIAL",
+   "source_evidence_verbatim": "only a 14-file pilot group was merged this round; the remaining topic groups are unmerged",
+   "source_linked": true,
+   "source_linked_evidence": "KNOWN-FINDINGS.md#K-16 + K_LEDGER_CROSSWALK.json.rows[K-16]",
+   "same_run_retested": false,
+   "same_run_retested_reason": "no local re-verification receipt bound to this K entry in this lane",
+   "new_round_observed_status": "NOT_RUN",
+   "candidate_remediation_status": "CANDIDATE_ONLY_NOT_OWNER_ACCEPTED",
+   "last_checked_at": "2026-10-16T10:15:00Z"
+  },
+  {
+   "k_id": "K-17",
+   "finding": "the control plane's timeout path discards partial captures",
+   "source_status_at_baseline": "PARTIAL",
+   "source_evidence_verbatim": "a candidate patch exists (2,621 bytes) and is **not** landed; landing needs its own admission and governed change-set",
+   "source_linked": true,
+   "source_linked_evidence": "KNOWN-FINDINGS.md#K-17 + K_LEDGER_CROSSWALK.json.rows[K-17]",
+   "same_run_retested": false,
+   "same_run_retested_reason": "no local re-verification receipt bound to this K entry in this lane",
+   "new_round_observed_status": "NOT_RUN",
+   "candidate_remediation_status": "CANDIDATE_ONLY_NOT_OWNER_ACCEPTED",
+   "last_checked_at": "2026-10-16T10:15:00Z"
+  },
+  {
+   "k_id": "K-18",
+   "finding": "this round's lane failures (12 timeouts, 2 nonce-less dispatches, 1 contaminated verdict, 1 empty answer)",
+   "source_status_at_baseline": "PARTIAL",
+   "source_evidence_verbatim": "none repaired; the timeout class was root-caused and the lane budget raised, and every failure is retained in the round record",
+   "source_linked": true,
+   "source_linked_evidence": "KNOWN-FINDINGS.md#K-18 + K_LEDGER_CROSSWALK.json.rows[K-18]",
+   "same_run_retested": false,
+   "same_run_retested_reason": "no local re-verification receipt bound to this K entry in this lane",
+   "new_round_observed_status": "NOT_RUN",
+   "candidate_remediation_status": "CANDIDATE_ONLY_NOT_OWNER_ACCEPTED",
+   "last_checked_at": "2026-10-16T10:15:00Z"
+  },
+  {
+   "k_id": "K-19",
+   "finding": "the guarded apply path has only ever run against fixtures",
+   "source_status_at_baseline": "PARTIAL",
+   "source_evidence_verbatim": "no real write was executed; the subject stays candidate-only",
+   "source_linked": true,
+   "source_linked_evidence": "KNOWN-FINDINGS.md#K-19 + K_LEDGER_CROSSWALK.json.rows[K-19]",
+   "same_run_retested": false,
+   "same_run_retested_reason": "no local re-verification receipt bound to this K entry in this lane",
+   "new_round_observed_status": "NOT_RUN",
+   "candidate_remediation_status": "CANDIDATE_ONLY_NOT_OWNER_ACCEPTED",
+   "last_checked_at": "2026-10-16T10:15:00Z"
+  },
+  {
+   "k_id": "K-20",
+   "finding": "the round's return packet was first pushed to a repository the owner had not named for it",
+   "source_status_at_baseline": "RESOLVED",
+   "source_evidence_verbatim": "`EVIDENCE/SKILL-CONVERGENCE-20261014/PUBLICATION-RECORD.md` section A: the packet was republished byte-identically to this repository's branch `evidence/skill-convergence-20261014-full-packet` and the other repository's branch was deleted (its `main` never moved); the deleted tip is recoverable from this branch",
+   "source_linked": true,
+   "source_linked_evidence": "KNOWN-FINDINGS.md#K-20 + K_LEDGER_CROSSWALK.json.rows[K-20]",
+   "same_run_retested": false,
+   "same_run_retested_reason": "no local re-verification receipt bound to this K entry in this lane",
+   "new_round_observed_status": "NOT_RUN",
+   "candidate_remediation_status": "CANDIDATE_ONLY_NOT_OWNER_ACCEPTED",
+   "last_checked_at": "2026-10-16T10:15:00Z"
+  }
+ ],
+ "nonclaims": [
+  "NO K-ID is closed, re-opened or re-statused by this artifact; source_status_at_baseline is a copy.",
+  "NO experiment was re-run: same_run_retested is false for all 20 by construction, not by failure.",
+  "This is a metadata cross index only; it is not an owner acceptance and not a runtime claim."
+ ],
+ "claim_ceiling": "CANDIDATE_METADATA_ERRATUM_ONLY",
+ "errors": [],
+ "verdict": "PASS",
+ "self_test": {
+  "counts_asserted_in_artifact": true,
+  "aborts_on_drift": true,
+  "eia_reading_agreement_checked": true
+ }
+}

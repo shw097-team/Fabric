@@ -1,0 +1,201 @@
+{
+ "schema": "CNV-EVIDENCE-ARCHIVE-R7R11/VERIFY-DISAGREEMENT-ADJUDICATION/2",
+ "generated_utc": "2026-10-16T10:26:48.459060+00:00",
+ "checker_verdict_summary": {
+  "V1": "AGREE",
+  "V2": "AGREE",
+  "V3": "AGREE",
+  "V4": "DISAGREE",
+  "V5": "AGREE",
+  "V6": "AGREE",
+  "overall": "DISAGREE"
+ },
+ "checker_disagreement_verbatim": "V4(d): the substring 'PASS' occurs once in RETURN_PACK.json in the verdict-named field compiler.verdict == 'PROMPT_COMPILE_PASS', so the claim of zero occurrences in verdict-bearing fields does not hold as literally stated; V4(a)(b)(c) are confirmed.",
+ "root_cause": "the BRIEF's V4(d) instruction was over-broad: it forbade the substring PASS in any verdict-bearing field, but the governing contract's own A01 gate REQUIRES a PROMPT_COMPILE_PASS receipt, so the instruction contradicted the contract.",
+ "disposition": "BRIEF_DEFECT_NOT_PACKET_OVERCLAIM - the packet content is unchanged; the claim is narrowed to the subject axis, which is what the contract actually constrains",
+ "narrowed_claim": "(N1) no subject-axis field carries an acceptance token and every lattice field equals its mandated value; (N2) every other PASS token is a gate/check/integrity verdict of this round's own artifacts or prose about a risk; (N3) every merge/readback/approval field is null and every row status is ARCHIVE_EVIDENCE_CANDIDATE_READY.",
+ "pass_bearing_token_count": 27,
+ "pass_bearing_token_classes": {
+  "GATE_OR_CHECK_VERDICT": 22,
+  "PROSE_DESCRIBING_A_RISK_OR_GATE": 1,
+  "PROSE_WITH_NEGATION": 4
+ },
+ "pass_bearing_tokens": [
+  {
+   "file": "preflight",
+   "field": "scanner_self_test.self_test",
+   "value": "PASS",
+   "class": "GATE_OR_CHECK_VERDICT"
+  },
+  {
+   "file": "preflight",
+   "field": "prs.4.preflight_verdict",
+   "value": "PASS",
+   "class": "GATE_OR_CHECK_VERDICT"
+  },
+  {
+   "file": "preflight",
+   "field": "prs.5.preflight_verdict",
+   "value": "PASS",
+   "class": "GATE_OR_CHECK_VERDICT"
+  },
+  {
+   "file": "preflight",
+   "field": "prs.6.preflight_verdict",
+   "value": "PASS",
+   "class": "GATE_OR_CHECK_VERDICT"
+  },
+  {
+   "file": "preflight",
+   "field": "prs.7.preflight_verdict",
+   "value": "PASS",
+   "class": "GATE_OR_CHECK_VERDICT"
+  },
+  {
+   "file": "preflight",
+   "field": "prs.8.preflight_verdict",
+   "value": "PASS",
+   "class": "GATE_OR_CHECK_VERDICT"
+  },
+  {
+   "file": "preflight",
+   "field": "prs.9.preflight_verdict",
+   "value": "PASS",
+   "class": "GATE_OR_CHECK_VERDICT"
+  },
+  {
+   "file": "preflight",
+   "field": "prs.10.preflight_verdict",
+   "value": "PASS",
+   "class": "GATE_OR_CHECK_VERDICT"
+  },
+  {
+   "file": "preflight",
+   "field": "prs.11.preflight_verdict",
+   "value": "PASS",
+   "class": "GATE_OR_CHECK_VERDICT"
+  },
+  {
+   "file": "preflight",
+   "field": "summary.4.verdict",
+   "value": "PASS",
+   "class": "GATE_OR_CHECK_VERDICT"
+  },
+  {
+   "file": "preflight",
+   "field": "summary.5.verdict",
+   "value": "PASS",
+   "class": "GATE_OR_CHECK_VERDICT"
+  },
+  {
+   "file": "preflight",
+   "field": "summary.6.verdict",
+   "value": "PASS",
+   "class": "GATE_OR_CHECK_VERDICT"
+  },
+  {
+   "file": "preflight",
+   "field": "summary.7.verdict",
+   "value": "PASS",
+   "class": "GATE_OR_CHECK_VERDICT"
+  },
+  {
+   "file": "preflight",
+   "field": "summary.8.verdict",
+   "value": "PASS",
+   "class": "GATE_OR_CHECK_VERDICT"
+  },
+  {
+   "file": "preflight",
+   "field": "summary.9.verdict",
+   "value": "PASS",
+   "class": "GATE_OR_CHECK_VERDICT"
+  },
+  {
+   "file": "preflight",
+   "field": "summary.10.verdict",
+   "value": "PASS",
+   "class": "GATE_OR_CHECK_VERDICT"
+  },
+  {
+   "file": "preflight",
+   "field": "summary.11.verdict",
+   "value": "PASS",
+   "class": "GATE_OR_CHECK_VERDICT"
+  },
+  {
+   "file": "eia",
+   "field": "rows[1].risk_if_misused",
+   "value": "HIGH as an independent PASS",
+   "class": "PROSE_DESCRIBING_A_RISK_OR_GATE"
+  },
+  {
+   "file": "eia",
+   "field": "rows[1].blocking_boundary",
+   "value": "any formal Independent PASS / formal release (NOT this evidence archive)",
+   "class": "PROSE_WITH_NEGATION"
+  },
+  {
+   "file": "eia",
+   "field": "rows[7].first_fail_if_attempted_now",
+   "value": "NOT_RUN is not PASS; the planning count is not a run result",
+   "class": "PROSE_WITH_NEGATION"
+  },
+  {
+   "file": "eia",
+   "field": "rows[9].first_fail_if_attempted_now",
+   "value": "R9's overall=UNVERIFIABLE must not be rounded up to PASS",
+   "class": "PROSE_WITH_NEGATION"
+  },
+  {
+   "file": "eia",
+   "field": "verdict",
+   "value": "PASS",
+   "class": "GATE_OR_CHECK_VERDICT"
+  },
+  {
+   "file": "kledger",
+   "field": "verdict",
+   "value": "PASS",
+   "class": "GATE_OR_CHECK_VERDICT"
+  },
+  {
+   "file": "kanban",
+   "field": "verdict",
+   "value": "PASS",
+   "class": "GATE_OR_CHECK_VERDICT"
+  },
+  {
+   "file": "self_evolution",
+   "field": "self_evolution[2].durable_change",
+   "value": "the round's own honesty defaults: NOT_RUN is never rendered as PASS; unknown fremains null; a same-arm maker/checker pai",
+   "class": "PROSE_WITH_NEGATION"
+  },
+  {
+   "file": "self_evolution",
+   "field": "evidence_bound.verdict",
+   "value": "PASS",
+   "class": "GATE_OR_CHECK_VERDICT"
+  },
+  {
+   "file": "self_evolution",
+   "field": "verdict",
+   "value": "PASS",
+   "class": "GATE_OR_CHECK_VERDICT"
+  }
+ ],
+ "subject_axis_violations": [],
+ "checks": {
+  "N1_lattice_exact": true,
+  "N1_N2_no_subject_acceptance": true,
+  "N3_no_merge_claim": true,
+  "N2_every_token_classified": true
+ },
+ "known_limitations": [
+  "prose classification uses a negation/NOT_RUN marker inside the same string; a PASS inside a sentence without one is reported UNCLASSIFIED and fails the probe",
+  "this probe reads the packet's JSON only; it does not re-derive the packet's numbers, which the independent checker did under V1/V2/V5"
+ ],
+ "errors": [],
+ "verdict": "PASS",
+ "claim_ceiling": "ADJUDICATION_OF_A_CHECKER_DISAGREEMENT_ONLY"
+}

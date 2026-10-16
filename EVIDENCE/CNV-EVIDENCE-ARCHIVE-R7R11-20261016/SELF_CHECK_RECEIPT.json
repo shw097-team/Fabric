@@ -1,0 +1,124 @@
+{
+ "schema": "CNV-EVIDENCE-ARCHIVE-R7R11/SELF-CHECK/1",
+ "generated_utc": "2026-10-16T10:29:01.647558+00:00",
+ "checks": [
+  {
+   "id": "S1",
+   "what": "prompt-contract compiler verdict",
+   "verdict": "PASS",
+   "detail": "verdict=PROMPT_COMPILE_PASS contract_sha=77b1183ad898"
+  },
+  {
+   "id": "S2",
+   "what": "per-PR preflight (8 PRs, EVIDENCE_ONLY, counts match API, no escape, no new secret)",
+   "verdict": "PASS",
+   "detail": "prs=8 evidence_only=8 count_mismatch=0 escapes=0 new_hard_secrets=0"
+  },
+  {
+   "id": "S2b",
+   "what": "secret scanner non-vacuity (positive control detected, clean control clean)",
+   "verdict": "PASS",
+   "detail": "pos=4 clean=0 PASS"
+  },
+  {
+   "id": "S3",
+   "what": "per-PR evidence manifest + digests present",
+   "verdict": "PASS",
+   "detail": "manifest_entries=[306, 359, 74, 120]..."
+  },
+  {
+   "id": "S4",
+   "what": "secret-shape findings adjudicated with a rule, none unresolved",
+   "verdict": "PASS",
+   "detail": "findings=9 unresolved=0 real_leaked=0"
+  },
+  {
+   "id": "S5",
+   "what": "K-ledger 20/20 linked, 0/20 same-run retested, baseline 7/7/6 preserved",
+   "verdict": "PASS",
+   "detail": "linked=20 retested=0 baseline={'RESOLVED': 7, 'PARTIAL': 7, 'OWNER': 6}"
+  },
+  {
+   "id": "S6",
+   "what": "EIA-01..10 all disposed with a named owner and an oracle",
+   "verdict": "PASS",
+   "detail": "rows=10 deferred=8 closed=1"
+  },
+  {
+   "id": "S7",
+   "what": "no merge/approval/readback claim in the packet",
+   "verdict": "PASS",
+   "detail": "violations=[] archive=TEMP_CLOSED production=FAIL_CLOSED"
+  },
+  {
+   "id": "S7b",
+   "what": "claim lattice is the honest one (validator/checker/runtime/221/gates)",
+   "verdict": "PASS",
+   "detail": "{\"r7_02_validator\": \"CANDIDATE_REPAIRED_NOT_RELEASED\", \"r7_03_checker_acl\": \"NOT_ACCEPTED\", \"r7_04_g1\": \"NOT_RECERTIFIED\", \"live221\": \"NOT_VERIFIED\", \"gates_A_H"
+  },
+  {
+   "id": "S8",
+   "what": "EXECUTE and VERIFY both served by the mandated arm with a nonce",
+   "verdict": "PASS",
+   "detail": "execute_ok=True verify_ok=True verify_code=None"
+  },
+  {
+   "id": "S8b",
+   "what": "same-arm EXECUTE/VERIFY pair is disclosed (model-axis diversity ABSENT by owner order)",
+   "verdict": "PASS",
+   "detail": "declared in this receipt and in the evidence MD: the mandated scheme puts both lanes on deepseek-v4.1-flash, so axis diversity is absent by construction; the compensating controls are separate dispatch, separate roles, a non-mutation guard and no self-approval"
+  },
+  {
+   "id": "S9",
+   "what": "kanban board driven through a real lifecycle (not just admitted)",
+   "verdict": "PASS",
+   "detail": "calls=60 histogram={'done': 12, 'ready': 4, 'todo': 2, 'blocked': 2}"
+  },
+  {
+   "id": "S10",
+   "what": "self-repair is evidence-bound (v1 probe superseded, corrected rule in the replacement)",
+   "verdict": "PASS",
+   "detail": "superseded_json=True superseded_dir=True correction_note=v1 matched these substrings ANYWHERE in a path, so an evidence directory literally named 'product' or 'credential' insid"
+  },
+  {
+   "id": "S11",
+   "what": "rollback pointer present per PR",
+   "verdict": "PASS",
+   "detail": "with_pointer=8/8"
+  },
+  {
+   "id": "S11b",
+   "what": "the independent checker's DISAGREE is adjudicated and the narrowed claim re-proved",
+   "verdict": "PASS",
+   "detail": "verdict=PASS tokens=27 subject_axis_violations=0"
+  },
+  {
+   "id": "S12",
+   "what": "publication readback bound to the remote (branch ref sha == commit sha)",
+   "verdict": "NOT_RUN",
+   "detail": "NOT_RUN - publication has not happened yet"
+  }
+ ],
+ "summary": {
+  "total": 16,
+  "pass": 15,
+  "fail": 0,
+  "not_run": 1
+ },
+ "self_repairs": [
+  {
+   "defect": "the v1 forbidden-path rule matched forbidden substrings ANYWHERE in a path, so an evidence directory literally named `product` or `credential` inside the PR's own prefix was reported as a forbidden surface (PR #8, PR #10).",
+   "detected_by": "the maker re-read its own per-PR output before accepting it",
+   "repair": "rule narrowed to 'leaves EVIDENCE/ entirely' plus a per-changed-path git-mode check; v1 output preserved as A03_A05_PR_PREFLIGHT.probe_v1_superseded.json",
+   "post_repair": "8/8 PASS with 0 forbidden surfaces and 0 escapes"
+  },
+  {
+   "defect": "the kanban driver truncated a CLI stdout for the receipt BEFORE parsing it as JSON, so 13 created cards resolved to no id and the board stayed empty.",
+   "detected_by": "board readback came back empty immediately after 13 successful creates",
+   "repair": "parse the full payload, trim only the stored copy",
+   "post_repair": "13 cards -> 12 done / 2 blocked, 60 CLI calls, histogram read back"
+  }
+ ],
+ "claim_ceiling": "SELF_CHECK_IS_MAKER_SIDE - it is not an independent acceptance",
+ "verdict": "PASS"
+}

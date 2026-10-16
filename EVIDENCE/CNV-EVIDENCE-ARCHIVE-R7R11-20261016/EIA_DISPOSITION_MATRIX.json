@@ -1,0 +1,273 @@
+{
+ "schema": "CNV-EVIDENCE-ARCHIVE-R7R11/EIA-DISPOSITION-MATRIX/1",
+ "contract_id": "CNV-EVIDENCE-ARCHIVE-R7R11-20261016",
+ "review_id": "EIA-FABRIC-CNV-R7-R11-20261016",
+ "generated_utc": "2026-10-16T10:14:24.157834+00:00",
+ "checks": [
+  "Q10",
+  "Q11"
+ ],
+ "counts": {
+  "findings": 10,
+  "by_disposition": {
+   "DEFER": 8,
+   "CONDITIONAL": 1,
+   "CLOSED_THIS_ROUND_METADATA_ONLY": 1
+  },
+  "closed_this_round": 1,
+  "deferred": 8,
+  "conditional": 1
+ },
+ "mandated_metric_sets_are_tracking_only": {
+  "pi": 18,
+  "pd": 10,
+  "parent": 64,
+  "child": 129,
+  "legacy_tests": 28,
+  "test_contract_identities": 221,
+  "hostile_mutations": 18,
+  "aud_findings": 24,
+  "gates": 8
+ },
+ "rows": [
+  {
+   "id": "EIA-20261016-01",
+   "class": "CONFIRMED_DEFECT",
+   "risk_if_misused": "HIGH as a safety gate",
+   "subject": "validator false green",
+   "disposition": "DEFER",
+   "priority": "P0",
+   "next_task_spec": "R7-02-CODE-PROMOTE",
+   "owner": "PIPD DOC07 Validator / code Owner",
+   "blocking_boundary": "the next formal validator release (NOT this evidence archive)",
+   "acceptance_oracle": [
+    "M04/M06/M16 must REJECT against the actual deployable SHA/source pin",
+    "a legitimate positive case must still pass",
+    "a negative test that RECOMPUTES its own content_hash must still fail against the owner-frozen external canonical digest (same-package self-hash is not a trust anchor)",
+    "the two R8-introduced regressions must stay fixed",
+    "the original fixture must be re-runnable by an independent checker"
+   ],
+   "admission_requirement": "WorkOrder pinned to the real PIPD canonical commit + the frozen external digest/Oracle",
+   "not_required": [
+    "rewriting the compiler",
+    "re-running all 221 cases"
+   ],
+   "first_fail_if_attempted_now": "no source pin exists in this round",
+   "real_evidence_this_round": "the R7/R8/R9 candidate receipts only; R9 independent verdict overall=UNVERIFIABLE"
+  },
+  {
+   "id": "EIA-20261016-02",
+   "class": "CONFIRMED_DEFECT",
+   "risk_if_misused": "HIGH as an independent PASS",
+   "subject": "checker wrote 13 RAW files into the subject root, then restored",
+   "disposition": "DEFER",
+   "priority": "P0",
+   "next_task_spec": "R7-03-ISOLATE",
+   "owner": "HGK Checker Harness Owner",
+   "blocking_boundary": "any formal Independent PASS / formal release (NOT this evidence archive)",
+   "acceptance_oracle": [
+    "the checker's actual OS identity is DENIED a write to the candidate root",
+    "an independent RAW write root exists and is used",
+    "a denied-write probe plus a during-turn trace is retained",
+    "candidate pre/post bytes are unchanged",
+    "the checker runs as an independent process role"
+   ],
+   "admission_requirement": "WorkOrder naming the harness, the restore path and the writer/checker SoD",
+   "not_required": [
+    "new virtualization or a replacement verifier platform"
+   ],
+   "first_fail_if_attempted_now": "no ACL was applied to any live checker identity this round",
+   "real_evidence_this_round": "end-state 300/300 match only; end-of-turn digest equality cannot see write-then-restore"
+  },
+  {
+   "id": "EIA-20261016-03",
+   "class": "EVIDENCE_GAP",
+   "risk_if_misused": "HIGH at runtime actor approval",
+   "subject": "G1 not fresh; declared 0.20.0 vs observed 0.21.5",
+   "disposition": "DEFER",
+   "priority": "P0",
+   "next_task_spec": "R7-04-RUNTIME-BIND",
+   "owner": "Human Policy Owner / Hermes Owner",
+   "blocking_boundary": "any runtime world effect",
+   "acceptance_oracle": [
+    "one owner-signed Fresh G1 against the FINALLY EFFECTIVE binary hash/version",
+    "the live model/route registry epoch and the required==served arm recorded",
+    "WorkOrder + RepoContext currentness recorded",
+    "a same-model EXECUTE/VERIFY pair is declared as same-model, never as cross-model"
+   ],
+   "admission_requirement": "Owner-signed G1 record; this round may only record the observed epoch",
+   "not_required": [
+    "re-certifying on every evidence-only PR"
+   ],
+   "first_fail_if_attempted_now": "no owner signature exists in this round",
+   "real_evidence_this_round": "lane registry epoch 22 read back with zero drift; that is an observation, not a G1"
+  },
+  {
+   "id": "EIA-20261016-04",
+   "class": "EVIDENCE_GAP",
+   "risk_if_misused": "HIGH on an uncertain write",
+   "subject": "timeout partial capture, nonce, unknown-effect retry",
+   "disposition": "DEFER",
+   "priority": "P0",
+   "next_task_spec": "R7-04-DISPATCH-HARDEN",
+   "owner": "HGK Dispatcher Owner",
+   "blocking_boundary": "any formal dispatch that can produce a world effect",
+   "acceptance_oracle": [
+    "two timeout fixtures with partial stdout/stderr captured byte-exact",
+    "nonce and usage recorded in the same run",
+    "child-process cleanup proven",
+    "an unknown write effect is NOT auto-retried; pre/post/rollback recorded"
+   ],
+   "admission_requirement": "WorkOrder for the canonical dispatcher patch (not landed in this round)",
+   "not_required": [
+    "a performance matrix"
+   ],
+   "first_fail_if_attempted_now": "the canonical nonce/immutable-receipt patch is still unlanded",
+   "real_evidence_this_round": "this round's own lane receipts did record partial streams byte-exact for a clean exit"
+  },
+  {
+   "id": "EIA-20261016-05",
+   "class": "EVIDENCE_GAP",
+   "risk_if_misused": "MEDIUM, conditional",
+   "subject": "long prompt via argv produced no artifact (K-11)",
+   "disposition": "CONDITIONAL",
+   "priority": "P1",
+   "next_task_spec": "K11-LONG-PROMPT-FILE-ROUTE",
+   "owner": "Hermes Lane Owner",
+   "blocking_boundary": "the first task that actually enables the long-prompt route",
+   "acceptance_oracle": [
+    "a short and a long fixture both exercised",
+    "file/stdin transport with a matching SHA",
+    "exit code and response readback recorded"
+   ],
+   "admission_requirement": "WorkOrder for the route being enabled",
+   "not_required": [
+    "running it for a pure evidence-archive PR"
+   ],
+   "first_fail_if_attempted_now": "no same-route successful receipt exists",
+   "real_evidence_this_round": "this round deliberately passed long instructions BY FILE PATH, not as one argv element"
+  },
+  {
+   "id": "EIA-20261016-06",
+   "class": "NON_BLOCKING_OBSERVATION",
+   "risk_if_misused": "LOW",
+   "subject": "20 K-IDs read as UNMAPPED, which means 0/20 same-run re-verified - not 20 missing sources",
+   "disposition": "CLOSED_THIS_ROUND_METADATA_ONLY",
+   "priority": "P1",
+   "next_task_spec": "K-LEDGER-SEMANTICS",
+   "owner": "Evidence / HGK Ledger Maintainer",
+   "blocking_boundary": "does not block this archive",
+   "acceptance_oracle": [
+    "source_linked and same_run_retested carried as two distinct fields",
+    "20/20 K-IDs source-linked; 0/20 same-run retested stated separately",
+    "the historical 7 RESOLVED / 7 PARTIAL / 6 OWNER snapshot is unchanged",
+    "the 'Three values only' four-value header typo is noted, not fixed silently"
+   ],
+   "admission_requirement": "none - new metadata only",
+   "not_required": [
+    "re-running the 20 experiments",
+    "force-closing any K-ID"
+   ],
+   "first_fail_if_attempted_now": null,
+   "real_evidence_this_round": "A09_KLedger_CROSS_INDEX.json (20 rows, 20 linked, 0 retested, 7/7/6 preserved)"
+  },
+  {
+   "id": "EIA-20261016-07",
+   "class": "EVIDENCE_GAP",
+   "risk_if_misused": "LOW for archive",
+   "subject": "slimmed skills installed and loader-visible, but entry_map.json is a dangling reference",
+   "disposition": "DEFER",
+   "priority": "P1",
+   "next_task_spec": "HGK-SKILL-DANGLING-REF",
+   "owner": "Skill Owner",
+   "blocking_boundary": "before any workflow that actually depends on that reference is enabled",
+   "acceptance_oracle": [
+    "the entry_map.json reference is minimally repaired or removed",
+    "one real trigger, one non-trigger, one nested-reference and one forbidden-write denial smoke test per skill, with loader traces"
+   ],
+   "admission_requirement": "WorkOrder for the skill entry point",
+   "not_required": [
+    "re-slimming either skill",
+    "treating a reference count above 60 as a hard gate"
+   ],
+   "first_fail_if_attempted_now": "no loader trace exists in this round",
+   "real_evidence_this_round": "no skill file was touched by this round"
+  },
+  {
+   "id": "EIA-20261016-08",
+   "class": "EVIDENCE_GAP",
+   "risk_if_misused": "HIGH for full convergence",
+   "subject": "221 planning cases and the eight gates have no authorised complete run",
+   "disposition": "DEFER",
+   "priority": "P2",
+   "next_task_spec": "FULL-221-TQAEP-APPLICABILITY",
+   "owner": "PIPD DOC04/DOC07 + each domain Gate Owner + AO",
+   "blocking_boundary": "a formal full-Convergence or production claim",
+   "acceptance_oracle": [
+    "an applicability matrix giving a mandatory subset and an Owner-approved N/A reason for every one of the 221 identities",
+    "G-A..H each with current raw pass evidence",
+    "24 AUD findings and 18 mutants with negative and regression outcomes",
+    "an AO verdict"
+   ],
+   "admission_requirement": "a real convergence release work package",
+   "not_required": [
+    "blocking the evidence archive on it that is still open"
+   ],
+   "first_fail_if_attempted_now": "NOT_RUN is not PASS; the planning count is not a run result",
+   "real_evidence_this_round": "nothing was run; the round records NOT_RUN explicitly"
+  },
+  {
+   "id": "EIA-20261016-09",
+   "class": "NON_BLOCKING_OBSERVATION",
+   "risk_if_misused": "LOW",
+   "subject": "governance debt: superseded source #6, 20 KP R04 polarity conflicts, >60 reference soft warning",
+   "disposition": "DEFER",
+   "priority": "P2",
+   "next_task_spec": "KP-R04-POLARITY-AND-SOURCE-STATUS",
+   "owner": "Authority / KP Policy Owner",
+   "blocking_boundary": "before any automatic ingest of those rules as enforcement, and before a full PI_READY claim",
+   "acceptance_oracle": [
+    "each of the 20 R04 MUST-NOT lines is reconciled with counterexample tests",
+    "source #6 is declared active or historical by its owner",
+    "reference counts above 60 stay a soft warning, not a hard gate"
+   ],
+   "admission_requirement": "Owner-signed policy text change",
+   "not_required": [
+    "holding this archive for it"
+   ],
+   "first_fail_if_attempted_now": "unresolved polarity would create a false deny gate if ingested unadjudicated",
+   "real_evidence_this_round": "the polarity conflict is recorded as a policy-owner debt, not acted on"
+  },
+  {
+   "id": "EIA-20261016-10",
+   "class": "EVIDENCE_GAP",
+   "risk_if_misused": "MEDIUM for a code release",
+   "subject": "R9 maker 611 passed, but the independent checker could not re-run the original fixture",
+   "disposition": "DEFER",
+   "priority": "P0",
+   "next_task_spec": "R7-02-CODE-PROMOTE (same gate as EIA-01)",
+   "owner": "PIPD Maintainer / Independent Checker",
+   "blocking_boundary": "before the validator code is merged or released",
+   "acceptance_oracle": [
+    "the actual PIPD canonical HEAD and diff are pinned",
+    "the two original regressions and the three mutants are re-run",
+    "the rehashed-forgery negative is re-run",
+    "an independent checker re-runs the original fixture"
+   ],
+   "admission_requirement": "WorkOrder naming the canonical tree and the checker's permissions",
+   "not_required": [
+    "re-running the whole suite on every archive PR"
+   ],
+   "first_fail_if_attempted_now": "R9's overall=UNVERIFIABLE must not be rounded up to PASS",
+   "real_evidence_this_round": "the maker-side full-suite receipt is quoted as maker-side only"
+  }
+ ],
+ "nonclaims": [
+  "Every DEFER/CONDITIONAL row is a routing decision to another owner, not an execution performed here.",
+  "No row is closed except EIA-06, which is metadata-only and whose artifact this round produced.",
+  "The mandated metric sets are planning/tracking denominators; their presence is not a run result."
+ ],
+ "claim_ceiling": "CANDIDATE_DISPOSITION_ROUTING_ONLY",
+ "errors": [],
+ "verdict": "PASS"
+}

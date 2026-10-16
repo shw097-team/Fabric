@@ -1,0 +1,334 @@
+{
+  "contract_id": "CNV-EVIDENCE-ARCHIVE-R7R11-20261016",
+  "task": "R2 surfaces readback",
+  "read_only": true,
+  "child_processes_spawned": 0,
+  "model_calls": 0,
+  "lane_registry": {
+    "epoch": 22,
+    "status": "CANDIDATE",
+    "source_of_routes": {
+      "path": "config/model-lane-assignment.json",
+      "revision": 22,
+      "sha256": "78a0eb2eabfecaa4d4d80660438505418724499aeaaac656f3d47631a3effa15"
+    },
+    "registry_path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS/config/lane-routing-registry.yaml",
+    "routes": {
+      "PLAN": {
+        "lane": "PLAN",
+        "model": "glm-5.3-flash",
+        "provider": "opencode-go",
+        "engine": "hermes",
+        "reasoning_effort": "medium",
+        "fallbacks": [
+          {
+            "provider": "openai-codex",
+            "model": "gpt-6.1-sol",
+            "canonical_identity": "gpt-6.1-sol",
+            "auth": "openai_oauth",
+            "oauth": true
+          },
+          {
+            "provider": "opencode-go",
+            "model": "deepseek-v4.1-flash",
+            "canonical_identity": "deepseek-v4.1-flash",
+            "auth": "env_ref:OPENCODE_GO_API_KEY",
+            "oauth": false
+          }
+        ],
+        "arms": [
+          {
+            "arm": "primary",
+            "provider": "opencode-go",
+            "model": "glm-5.3-flash",
+            "canonical_identity": "glm-5.3-flash",
+            "auth": "env_ref:OPENCODE_GO_API_KEY",
+            "oauth": false,
+            "reasoning_effort": "medium",
+            "default": true,
+            "automatic_selection": true
+          },
+          {
+            "arm": "fallback1",
+            "provider": "openai-codex",
+            "model": "gpt-6.1-sol",
+            "canonical_identity": "gpt-6.1-sol",
+            "auth": "openai_oauth",
+            "oauth": true,
+            "reasoning_effort": "medium",
+            "default": false,
+            "automatic_selection": false,
+            "prior_revision_note": "Rank-1 default of epochs 19-21 under owner orders 2026-10-15 and 2026-10-16; demoted to a NON-DEFAULT operator-selectable alternate by the 2026-10-16 owner order that makes GLM the PLAN default. The 429 recorded against this arm on 2026-10-15 was measured FALSE on 2026-10-16. History preserved rather than deleted."
+          },
+          {
+            "arm": "fallback2",
+            "provider": "opencode-go",
+            "model": "deepseek-v4.1-flash",
+            "canonical_identity": "deepseek-v4.1-flash",
+            "auth": "env_ref:OPENCODE_GO_API_KEY",
+            "oauth": false,
+            "default": false,
+            "automatic_selection": true
+          }
+        ]
+      },
+      "EXECUTE": {
+        "lane": "EXECUTE",
+        "model": "deepseek-v4.1-flash",
+        "provider": "opencode-go",
+        "engine": "codex-cli",
+        "fallbacks": [
+          {
+            "provider": "openai-codex",
+            "model": "gpt-6-luna",
+            "canonical_identity": "gpt-6-luna",
+            "auth": "openai_oauth",
+            "oauth": true
+          },
+          {
+            "provider": "nvidia",
+            "model": "deepseek-ai/deepseek-v4.1-flash",
+            "canonical_identity": "deepseek-v4.1-flash",
+            "auth": "env_ref:NVIDIA_API_KEY",
+            "oauth": false
+          }
+        ],
+        "arms": [
+          {
+            "arm": "fallback1_operator_selectable",
+            "provider": "openai-codex",
+            "model": "gpt-6-luna",
+            "canonical_identity": "gpt-6-luna",
+            "engine": "codex-cli",
+            "transport": "codex-native-oauth",
+            "auth": "openai_oauth",
+            "oauth": true,
+            "automatic_selection": false,
+            "default": false,
+            "admission_status": "UNPROVEN",
+            "note_preexisting": "HTTP_400_UNSUPPORTED_ON_CURRENT_CLI_ACCOUNT backend probe; UNPROVEN admission"
+          },
+          {
+            "arm": "fallback2_auto",
+            "provider": "nvidia",
+            "model": "deepseek-ai/deepseek-v4.1-flash",
+            "canonical_identity": "deepseek-v4.1-flash",
+            "engine": "codex-cli",
+            "auth": "env_ref:NVIDIA_API_KEY",
+            "oauth": false,
+            "default": false,
+            "automatic_selection": true,
+            "note_preexisting": "nvidia provider namespace not loaded into running relay; needs owner-approved relay restart"
+          }
+        ]
+      },
+      "VERIFY_SECURITY": {
+        "lane": "VERIFY_SECURITY",
+        "model": "deepseek-v4.1-flash",
+        "provider": "opencode-go",
+        "engine": "hermes",
+        "reasoning_effort": "medium",
+        "fallbacks": [
+          {
+            "provider": "openai-codex",
+            "model": "gpt-6.1-sol",
+            "canonical_identity": "gpt-6.1-sol",
+            "auth": "openai_oauth",
+            "oauth": true
+          },
+          {
+            "provider": "opencode-go",
+            "model": "glm-5.3-flash",
+            "canonical_identity": "glm-5.3-flash",
+            "auth": "env_ref:OPENCODE_GO_API_KEY",
+            "oauth": false
+          }
+        ],
+        "arms": [
+          {
+            "arm": "A",
+            "model": "deepseek-v4.1-flash",
+            "provider": "opencode-go",
+            "canonical_identity": "deepseek-v4.1-flash",
+            "auth": "env_ref:OPENCODE_GO_API_KEY",
+            "oauth": false,
+            "co_equal": false,
+            "role": "primary",
+            "default": true,
+            "automatic_selection": true
+          },
+          {
+            "arm": "B",
+            "model": "gpt-6.1-sol",
+            "provider": "openai-codex",
+            "canonical_identity": "gpt-6.1-sol",
+            "auth": "openai_oauth",
+            "oauth": true,
+            "reasoning_effort": "medium",
+            "co_equal": false,
+            "role": "fallback1_operator_selectable",
+            "default": false,
+            "automatic_selection": false,
+            "prior_revision_note": "Primary arm A of every earlier revision (owner orders 2026-10-15 and 2026-10-16); demoted to a NON-DEFAULT operator-selectable alternate by the 2026-10-16 owner order that makes deepseek-v4.1-flash the checker. History preserved rather than deleted."
+          },
+          {
+            "arm": "C",
+            "model": "glm-5.3-flash",
+            "provider": "opencode-go",
+            "canonical_identity": "glm-5.3-flash",
+            "auth": "env_ref:OPENCODE_GO_API_KEY",
+            "oauth": false,
+            "reasoning_effort": "medium",
+            "co_equal": false,
+            "role": "fallback2",
+            "default": false,
+            "automatic_selection": true
+          }
+        ]
+      }
+    },
+    "sod": {
+      "PLAN_vs_VERIFY_SECURITY": {
+        "ok": true,
+        "reason": "SOD_OK glm-5.3-flash != deepseek-v4.1-flash"
+      },
+      "EXECUTE_vs_VERIFY_SECURITY": {
+        "ok": false,
+        "reason": "SOD_VIOLATION maker_model=deepseek-v4.1-flash == checker_model=deepseek-v4.1-flash"
+      }
+    },
+    "drift": {
+      "count": 0,
+      "fatal": false,
+      "findings": []
+    }
+  },
+  "gstack_named_methods": {
+    "snapshot_keys": [
+      "gstack.cso",
+      "gstack.office-hours",
+      "gstack.plan-eng-review",
+      "gstack.qa",
+      "gstack.retro",
+      "gstack.review",
+      "gstack.ship",
+      "openspec",
+      "spec_kit"
+    ],
+    "snapshot_summary": {
+      "openspec": 8,
+      "gstack.plan-eng-review": 8,
+      "gstack.review": 8,
+      "gstack.qa": 8,
+      "gstack.cso": 8,
+      "gstack.ship": 8,
+      "gstack.office-hours": 8,
+      "gstack.retro": 8,
+      "spec_kit": 8
+    },
+    "route": {
+      "flow": "cnv_evidence_archive_round",
+      "provider": null,
+      "state": null,
+      "fallback": null,
+      "final_authority": true,
+      "route": "NATIVE"
+    },
+    "activation_invariants": {
+      "canonical_flow_named_method_without_runtime_or_certified_substitute": 0,
+      "active_named_method_missing_identity": 0,
+      "active_named_method_missing_pin": 0,
+      "active_named_method_missing_install": 0,
+      "active_named_method_missing_binding": 0,
+      "active_named_method_missing_doctor": 0,
+      "active_named_method_missing_pilot": 0,
+      "active_named_method_missing_independent_cert": 0,
+      "active_named_method_silent_fallback": 0,
+      "named_method_fake_invocation": 0,
+      "named_method_silent_fallback": 0,
+      "dual_spec_owner": 0,
+      "second_orchestrator": 0,
+      "release_authority_escape": 0
+    },
+    "invariant_envelope": {
+      "canonical_flow_named_method_without_runtime_or_certified_substitute": 0,
+      "active_named_method_missing_identity": 0,
+      "active_named_method_missing_pin": 0,
+      "active_named_method_missing_install": 0,
+      "active_named_method_missing_binding": 0,
+      "active_named_method_missing_doctor": 0,
+      "active_named_method_missing_pilot": 0,
+      "active_named_method_missing_independent_cert": 0,
+      "active_named_method_silent_fallback": 0,
+      "named_method_fake_invocation": 0,
+      "named_method_silent_fallback": 0,
+      "dual_spec_owner": 0,
+      "second_orchestrator": 0,
+      "release_authority_escape": 0
+    }
+  },
+  "kanban": {
+    "board": "cnv-ea-r7r11-20261016",
+    "db": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\cnv-ea-r7r11-20261016\\kanban.db",
+    "db_bytes": 126976,
+    "import_unix": null,
+    "tasks": [
+      {
+        "id": "t_51b316a1",
+        "title": "W1 per-PR preflight",
+        "status": "ready",
+        "assignee": "hgk-orchestrator",
+        "worker_pid": null,
+        "priority": 0
+      },
+      {
+        "id": "t_89469084",
+        "title": "Swarm: Archive the eight candidate evidence PRs #4-#11 of shw097-team/Fabric under cont",
+        "status": "done",
+        "assignee": "default",
+        "worker_pid": null,
+        "priority": 0
+      },
+      {
+        "id": "t_9e1ba18e",
+        "title": "Synthesize swarm outputs",
+        "status": "todo",
+        "assignee": "hgk-orchestrator",
+        "worker_pid": null,
+        "priority": 0
+      },
+      {
+        "id": "t_a494973b",
+        "title": "W2 trusted secrets/privacy scan + manifest-vs-tracked-set checks over all eight changed sets, outside the PR",
+        "status": "ready",
+        "assignee": "hgk-security",
+        "worker_pid": null,
+        "priority": 0
+      },
+      {
+        "id": "t_dcd4d4b0",
+        "title": "Verify swarm outputs",
+        "status": "todo",
+        "assignee": "acceptance-officer",
+        "worker_pid": null,
+        "priority": 0
+      },
+      {
+        "id": "t_deed5ad7",
+        "title": "W4 evidence packet assembly + credential-broker publication to the Fabric repository",
+        "status": "ready",
+        "assignee": "hgk-security",
+        "worker_pid": null,
+        "priority": 0
+      },
+      {
+        "id": "t_fcdb747d",
+        "title": "W3 K-ledger cross-index metadata errata + all ten EIA-20261016 finding dispositions",
+        "status": "ready",
+        "assignee": "hgk-orchestrator",
+        "worker_pid": null,
+        "priority": 0
+      }
+    ]
+  }
+}
