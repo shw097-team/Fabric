@@ -1,0 +1,31 @@
+{
+  "apply": true,
+  "edits": [
+    {
+      "where": "registry source_of_routes revision+sha256",
+      "old_head": "source_of_routes:\n  path: config/model-lane-assignment.json\n"
+    },
+    {
+      "where": "registry projections /registry_epoch + /revision",
+      "old_head": "      - {pointer: /registry_epoch, expected: 20}\n      - {po"
+    },
+    {
+      "where": "registry projection-group note",
+      "old_head": "    note: canonical policy revision 19 (owner PLAN rebind 20"
+    }
+  ],
+  "site_sha_before": "21513be1476aed2fd824d746caccbd0623d29846be992dcf57b3a4eb16e1f928",
+  "site_sha_after": "e7be2dea36874f169e0cddc61ecb77102402218a2e05136878a097462e7664df",
+  "registry_sha_before": "109bcf8a5eed210b669bb1dc2876c142d68b9737dcc2fd0efcd7ddedd1746431",
+  "registry_sha_after": "38f0436b9bde0599a1c3d5b8b928950450f570548380a90079ca06ff0aba38d2",
+  "lane_guard_suite": {
+    "exit": 0,
+    "ran": "Ran 11 tests in 9.457s",
+    "verdict": "OK",
+    "failed": []
+  },
+  "guard_probe": [
+    "exit_code = 0 | status = ADMIT"
+  ],
+  "check_drift": "{\"n\": 0, \"fatal\": []}"
+}

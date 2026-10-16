@@ -1,0 +1,465 @@
+{
+  "schema": "HGK-FROZEN-SUBJECT-MANIFEST/2",
+  "round": "FAR-REMEDIATION-AND-CLOSURE-20261016",
+  "revision": 4,
+  "supersedes": "frozen/FROZEN_MANIFEST.rev3.SUPERSEDED.json",
+  "freeze_policy": "freeze last, before each consumption; retain every revision",
+  "frozen_utc": "2026-10-16T05:16:16.067220+00:00",
+  "subject_definition": "the canonical change in both states (config pair, four product files) plus the round documents, the evidence sub-tree and the lane receipts",
+  "excluded": [
+    "candidate/ (live writer workspace)",
+    "frozen/ (derived from A)",
+    "the compacted per-file enumeration (replaced by its summary)",
+    "subject/ (the VERIFY lane reference tree: a byte-identical copy of the repository, digested in SUBJECT_TREE_DIGEST.json and excluded from the packet)",
+    "the round's own helper scripts (*.py at the round root): edited legitimately between runs, their integrity asserted by the packet manifest rather than by this freeze",
+    "FROZEN_MANIFEST.json and GATE_REPORT.json: SELF-REFERENCE. A manifest cannot bind its own bytes (it would only ever record the previous revision) and the gate rewrites its own report on every run while also being what verifies this file, which makes the pair mutually unverifiable. Both are published and hashed by the packet manifest instead"
+  ],
+  "item_count": 63,
+  "round_document_count": 24,
+  "aggregate_sha256": "d680d7a47bb4353f005f3f417bb3e2b34548705ea73ef9d1e0364108907a826c",
+  "items": [
+    {
+      "label": "config.after",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/config/lane-routing-registry.yaml",
+      "exists": true,
+      "bytes": 42948,
+      "sha256": "38f0436b9bde0599a1c3d5b8b928950450f570548380a90079ca06ff0aba38d2"
+    },
+    {
+      "label": "config.before",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/config/lane-routing-registry.yaml.bak-far-remediation-20261016",
+      "exists": true,
+      "bytes": 39125,
+      "sha256": "a0d811c48f6063b06af0688a16dd644bc1537651c75a8341795110253362c0b2"
+    },
+    {
+      "label": "config.after",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/config/model-lane-assignment.json",
+      "exists": true,
+      "bytes": 47218,
+      "sha256": "e7be2dea36874f169e0cddc61ecb77102402218a2e05136878a097462e7664df"
+    },
+    {
+      "label": "config.before",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/config/model-lane-assignment.json.bak-far-remediation-20261016",
+      "exists": true,
+      "bytes": 44021,
+      "sha256": "d41f8f8bff41d4338a4b85dab7a60bd2c9c23b2f5f39c8c008e89bf82587bd36"
+    },
+    {
+      "label": "product.after",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/scripts/runtime_role_binding_assert.py",
+      "exists": true,
+      "bytes": 16665,
+      "sha256": "6fa7ed6b6ea983e154a6a2a0b70a250baa6bbc65742a2a82425ce9a2f5fcacd2"
+    },
+    {
+      "label": "product.before",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/scripts/runtime_role_binding_assert.py.bak-far-remediation-20261016",
+      "exists": true,
+      "bytes": 12845,
+      "sha256": "63d004ade7ff65e16589e76572db33880b459141461beead764ea2f4a3015031"
+    },
+    {
+      "label": "product.after",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/scripts/hgk-governed-runtime-controller.py",
+      "exists": true,
+      "bytes": 12289,
+      "sha256": "5b744de7c4e30240ae92421c2e7220efa5dfca02d88d85f2264bc921ad849412"
+    },
+    {
+      "label": "product.before",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/scripts/hgk-governed-runtime-controller.py.bak-far-remediation-20261016",
+      "exists": true,
+      "bytes": 10949,
+      "sha256": "67e79c52e6dd5d1d0d1d44e5dc625afe955efc1bef2aa40028e98c1f139bda90"
+    },
+    {
+      "label": "product.after",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/tests/test_governed_runtime_controller.py",
+      "exists": true,
+      "bytes": 15687,
+      "sha256": "fdf1dbc251eee5e78d9c5db91f2a0ebf18c30c2daa43a66f62b3cde5bf26d521"
+    },
+    {
+      "label": "product.before",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/tests/test_governed_runtime_controller.py.bak-far-remediation-20261016",
+      "exists": true,
+      "bytes": 12945,
+      "sha256": "db0e37ae86fc23a8674e6b788ef3665cc2953c65c0ee4a880c4979c6ef0e0467"
+    },
+    {
+      "label": "product.after",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/tests/test_lane_effort_enforcement.py",
+      "exists": true,
+      "bytes": 5161,
+      "sha256": "18742bf07b4055ae44733829d9817787a12d3c9140536689c574223e5356e333"
+    },
+    {
+      "label": "product.before",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/tests/test_lane_effort_enforcement.py.bak-far-remediation-20261016",
+      "exists": false,
+      "bytes": null,
+      "sha256": null
+    },
+    {
+      "label": "round_document",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/admission.json",
+      "exists": true,
+      "bytes": 3563,
+      "sha256": "ee07cc8f8a98f78e54dbdebf0d92f4a12e4820c9092e890c350569fe2962e0e9"
+    },
+    {
+      "label": "round_document",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/BUILD_R5_SPEC.md",
+      "exists": true,
+      "bytes": 4354,
+      "sha256": "423fd70ac4e05f4c94bf3c2feec3d84a997e087bada847fdc1182844facf1068"
+    },
+    {
+      "label": "round_document",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/BUILD_R5B_SPEC.md",
+      "exists": true,
+      "bytes": 5154,
+      "sha256": "2fc6d47eca171cac4dfe562ab74d9fefc9687644f64020d08a8b52febecd702b"
+    },
+    {
+      "label": "round_document",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/CHECKER_BRIEF.md",
+      "exists": true,
+      "bytes": 6421,
+      "sha256": "44360ecc2810fe0061888b587b03b36d44ed9ff1465d833589e83ac273bcdcfe"
+    },
+    {
+      "label": "round_document",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/FAR_RULING.md",
+      "exists": true,
+      "bytes": 12330,
+      "sha256": "3c312018666d3b5423a8ee6296438c30d1f7e1b39cff421bdae3718e970280e6"
+    },
+    {
+      "label": "round_document",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/FINDINGS_R7_CROSS_FIELD_DECLARATION.md",
+      "exists": true,
+      "bytes": 4135,
+      "sha256": "d05f4d7323be151f31eab977d122a421832eb754956273bee4b2cacf06947ea2"
+    },
+    {
+      "label": "round_document",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/FINDINGS_SELF_CORRECTIONS.md",
+      "exists": true,
+      "bytes": 5781,
+      "sha256": "ad97f6a573f161551b19f7b5514cdcd0e5239f9852cc750f48198b319d05d7b2"
+    },
+    {
+      "label": "round_document",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/FINDINGS_V3C_INDEPENDENT_VERDICT.md",
+      "exists": true,
+      "bytes": 7721,
+      "sha256": "633d6eea6f8e5a3fd8bb040bcf403066e9aea9db2e88e6f8960b43f387dbb471"
+    },
+    {
+      "label": "round_document",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/GSTACK_READBACK.json",
+      "exists": true,
+      "bytes": 3209,
+      "sha256": "651ce769aafd723a332d55fa58a978451dea4a418e6084d4d3d761524f899216"
+    },
+    {
+      "label": "round_document",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/KANBAN_SWARM_GRAPH.json",
+      "exists": true,
+      "bytes": 2515,
+      "sha256": "e207a168e574d689ec7e46bb55f4209c230b7167460f7ced51cf716b13a3ba7e"
+    },
+    {
+      "label": "round_document",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/PLAN.md",
+      "exists": true,
+      "bytes": 7191,
+      "sha256": "cf16aa1c8f6864cf57d5fc2514e44bd6512bd55328824b485a7139b061555e42"
+    },
+    {
+      "label": "round_document",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/PLAN_LANE_AVAILABILITY.json",
+      "exists": true,
+      "bytes": 9706,
+      "sha256": "873d5e640aa9bb6bca5c5cb136ee214d9b27b35348e1bbeeb33d91a1f778a532"
+    },
+    {
+      "label": "round_document",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/R1_R3_APPLY_RECEIPT.attempt1_ROLLED_BACK.json",
+      "exists": true,
+      "bytes": 4274,
+      "sha256": "59eb6fe97728cbac0c24e3b764d93627b248b8e12214a326ce98f3ba07d47de7"
+    },
+    {
+      "label": "round_document",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/R1_R3_APPLY_RECEIPT.json",
+      "exists": true,
+      "bytes": 3345,
+      "sha256": "ff23363d397808b523895239200ba36d64c5dffdfa771fa5225323c3717605f8"
+    },
+    {
+      "label": "round_document",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/R1_R3_COMPLETION_RECEIPT.json",
+      "exists": true,
+      "bytes": 1115,
+      "sha256": "08e8930cd993487466e447dd3c828473cb54898302f3b0c766bf0770684bd339"
+    },
+    {
+      "label": "round_document",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/R2_PROMOTION_RECEIPT.json",
+      "exists": true,
+      "bytes": 51238,
+      "sha256": "45813946e010ac4e553bad4ac46feca66672f6bba21536d376c93fac9beded23"
+    },
+    {
+      "label": "round_document",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/README.md",
+      "exists": true,
+      "bytes": 11379,
+      "sha256": "e2d2ac3c0e3e3505723f122b5e8b96d9b745b5a0af74a2273ec5fb00b0a942da"
+    },
+    {
+      "label": "round_document",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/RESIDUAL_INVENTORY.json",
+      "exists": true,
+      "bytes": 17323,
+      "sha256": "0ae6984dc1bd277cc08df4b8db815d345fec20779d9ad7cf5569aab82eddc198"
+    },
+    {
+      "label": "round_document",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/RETROSPECTIVE.md",
+      "exists": true,
+      "bytes": 4045,
+      "sha256": "f0131cc0a7d64bb0df1a6619d4dc5de223a200cecd57c87ed87c8dae25b5f9b0"
+    },
+    {
+      "label": "round_document",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/role_mandate.json",
+      "exists": true,
+      "bytes": 3672,
+      "sha256": "3a2e26da8e86344e9dbea6e9c07cf6fa26925552a0950799da5474d6c5036fbe"
+    },
+    {
+      "label": "round_document",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/ROUND_CLOSURE.json",
+      "exists": true,
+      "bytes": 64216,
+      "sha256": "51cd51b0a0568bd23279c9a09a4cfa09324a2b900ba48f73cbc8e74609cf485c"
+    },
+    {
+      "label": "round_document",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/SELF_EVOLUTION.md",
+      "exists": true,
+      "bytes": 6471,
+      "sha256": "450aed0b9a709d072572fa4c2a2a4fcdb321838d09c01896988e320ce0e85ef7"
+    },
+    {
+      "label": "round_document",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/SPINE_STATE_READBACK.json",
+      "exists": true,
+      "bytes": 30179,
+      "sha256": "ac66102a50505949cba99f618fe813a944146be385b47376b1afc281547746ef"
+    },
+    {
+      "label": "round_document",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/SUBJECT_TREE_DIGEST.json",
+      "exists": true,
+      "bytes": 1113,
+      "sha256": "3247a9707cfb7dde65eacc502d76b62bb5ce5612b2a84729f529b543c1063d4a"
+    },
+    {
+      "label": "evidence",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/evidence/CHECKER_V3B_REFUSAL_IS_EVIDENCE.md",
+      "exists": true,
+      "bytes": 3613,
+      "sha256": "bcc47e4bce749480ac5f6ca2866edf906953d083299e4ef4ba74a1160cadee58"
+    },
+    {
+      "label": "evidence",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/evidence/EVIDENCE_E11_PRECONDITION.md",
+      "exists": true,
+      "bytes": 62132,
+      "sha256": "b3faa22a7e7411cad53b5d373df1e220d51f0d06e751be7bc622e328c9a837e3"
+    },
+    {
+      "label": "evidence",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/evidence/EVIDENCE_MECHANISMS_AUDIT.md",
+      "exists": true,
+      "bytes": 33923,
+      "sha256": "7c7b9504775595531c55688c5ea39878d06b108170c3a3b5426bec22bf38ffff"
+    },
+    {
+      "label": "evidence",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/evidence/EVIDENCE_PROMOTION_SCOPE.md",
+      "exists": true,
+      "bytes": 4963,
+      "sha256": "0095c54ca8db9d1451dfb05debb8971cd2c8819c7292b7c0806342c3d0c16459"
+    },
+    {
+      "label": "evidence",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/evidence/EVIDENCE_PROMOTION_SCOPE.summary.json",
+      "exists": true,
+      "bytes": 11108,
+      "sha256": "cbfc80e2bd8a2bce7f36d3244ebddaafee71b40790b149c1d9de21193d80dba4"
+    },
+    {
+      "label": "evidence",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/evidence/WHOLE_TREE_POST.txt",
+      "exists": true,
+      "bytes": 1246,
+      "sha256": "a989447bd90ad0b09c7458dafdc6cc3b8cecce5da7c29794d77b678d8ab893e3"
+    },
+    {
+      "label": "evidence",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/evidence/WHOLE_TREE_PRE.txt",
+      "exists": true,
+      "bytes": 1373,
+      "sha256": "7963c03b0725049c5dba964278f9d59703a6db485e62fd52a1d5d6946cbdefd3"
+    },
+    {
+      "label": "lane_receipt",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/EXECUTE/R5/invocation.json",
+      "exists": true,
+      "bytes": 6769,
+      "sha256": "f4225f1525dcc6ac0953918ea11c6b947083f086dadbb2f34369dfebfed23c0d"
+    },
+    {
+      "label": "lane_receipt",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/EXECUTE/R5/TERMINATION.json",
+      "exists": true,
+      "bytes": 3703,
+      "sha256": "10e575c5b81078a30e8b9329ded276ea247f62db28dee5db52a7eaf0f6237f64"
+    },
+    {
+      "label": "lane_receipt",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/EXECUTE/R5/work/candidate_tree_at_termination.txt",
+      "exists": true,
+      "bytes": 1313,
+      "sha256": "1f4522919dab715451da598a110fcda3c1c38f0501208db43c40c44537c3bb00"
+    },
+    {
+      "label": "lane_receipt",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/EXECUTE/R5b/invocation.json",
+      "exists": true,
+      "bytes": 7591,
+      "sha256": "6c6ebb928aa4194b4b41837394dcf6a06d3eac6df9afb62a0fe5e6adef09f5ca"
+    },
+    {
+      "label": "lane_receipt",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/EXECUTE/R5b/TERMINATION.json",
+      "exists": true,
+      "bytes": 3201,
+      "sha256": "524a00535a762b35029ee889e4bd58e86bb19f83a03d313732ac6c562fe1baad"
+    },
+    {
+      "label": "lane_receipt",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/EXECUTE/R5b/work/candidate_tree_at_termination.txt",
+      "exists": true,
+      "bytes": 223,
+      "sha256": "f2251c78b10f99ffb36f1afe90c1ad1dfa87ea1b7d71ee5939f7e93349a900d0"
+    },
+    {
+      "label": "lane_receipt",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY/V3b/dispatch.json",
+      "exists": true,
+      "bytes": 6725,
+      "sha256": "6f3506d7f11f5caa00d78581d08eb911a68ea07d993719faa331513f476b3c37"
+    },
+    {
+      "label": "lane_receipt",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY/V3b/dispatch.json.attempts.ndjson",
+      "exists": true,
+      "bytes": 2500,
+      "sha256": "f4c4b33d0e4b2ce326c0223c0e5bcf9396ec5b440d355587dedba5b15b32c659"
+    },
+    {
+      "label": "lane_receipt",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY/V3b/exit.json",
+      "exists": true,
+      "bytes": 54,
+      "sha256": "ea6557f4f1395095f6544440d1dcb919ec40f2098b8d435ced549e6d6e2a7f00"
+    },
+    {
+      "label": "lane_receipt",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY/V3b/invocation.json",
+      "exists": true,
+      "bytes": 8274,
+      "sha256": "ab53481f584e1304c67c2597da96a2cff75617a2f103d2c49753d4a67689c9f7"
+    },
+    {
+      "label": "lane_receipt",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY/V3b/stderr.txt",
+      "exists": true,
+      "bytes": 668,
+      "sha256": "eda398778ce094db59e563ffeea6987ef831564ae44aa7e81a1e264126800547"
+    },
+    {
+      "label": "lane_receipt",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY/V3b/stdout.txt",
+      "exists": true,
+      "bytes": 6727,
+      "sha256": "f44ab9536159e92885860869eb89978358676481c2c36b7e0bffcf52e0baa789"
+    },
+    {
+      "label": "lane_receipt",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY/V3b/work/CHECKER_VERDICT.json",
+      "exists": true,
+      "bytes": 4929,
+      "sha256": "3b1a7944a5cb2f55826f38a12f87121cff090d54731f1a7ba25e12d2775397b8"
+    },
+    {
+      "label": "lane_receipt",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY/V3c/dispatch.json",
+      "exists": true,
+      "bytes": 6727,
+      "sha256": "6e0a357297d633ec44af3cdf84590d697463f13697cf5b16bf5be7edc0a951e1"
+    },
+    {
+      "label": "lane_receipt",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY/V3c/dispatch.json.attempts.ndjson",
+      "exists": true,
+      "bytes": 2503,
+      "sha256": "e54ede39322650648864721424ac97c07df82705044ec8d3635288448923191f"
+    },
+    {
+      "label": "lane_receipt",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY/V3c/exit.json",
+      "exists": true,
+      "bytes": 54,
+      "sha256": "70d38a3804435fe7b38f0bfd63cdcd1083858a2752bb48463d92aa29c684a8bc"
+    },
+    {
+      "label": "lane_receipt",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY/V3c/invocation.json",
+      "exists": true,
+      "bytes": 9773,
+      "sha256": "55d800ed5ce3af8cefd041c9de7e0e3259f8acd1f67ecfb5f2051352fc638381"
+    },
+    {
+      "label": "lane_receipt",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY/V3c/stderr.txt",
+      "exists": true,
+      "bytes": 668,
+      "sha256": "eda398778ce094db59e563ffeea6987ef831564ae44aa7e81a1e264126800547"
+    },
+    {
+      "label": "lane_receipt",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY/V3c/stdout.txt",
+      "exists": true,
+      "bytes": 6729,
+      "sha256": "6fb937699fbb5d149350abefa085928b6d812df3033ecba41d9323e74ae3eb49"
+    },
+    {
+      "label": "lane_receipt",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY/V3c/work/CHECKER_VERDICT.json",
+      "exists": true,
+      "bytes": 10536,
+      "sha256": "134a1951427549a4edfc53155e459f5fadf11b2eb4bb4c69ea3fbff86e71557e"
+    }
+  ],
+  "how_to_recheck": "recompute sha256 per item and the aggregate over \"label|path|sha256\\n\" in the recorded order; a mismatch means the subject moved after the freeze",
+  "claim_ceiling": "The frozen subject, nothing more. Freezing is not accepting; the checker's verdict remains advisory and hgk_canonical_acceptance stays NOT_PERFORMED."
+}

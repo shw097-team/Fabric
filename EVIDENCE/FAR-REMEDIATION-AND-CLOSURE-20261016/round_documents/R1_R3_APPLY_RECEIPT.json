@@ -1,0 +1,89 @@
+{
+  "workorder": "WO-FAR-REMEDIATION-AND-CLOSURE-20261016-R1",
+  "edits": [
+    {
+      "id": "A1",
+      "what": "registry: routes[].PLAN provider/model/auth/oauth/authority",
+      "occurrences_replaced": 1
+    },
+    {
+      "id": "A2",
+      "what": "registry: routes[].PLAN arms (gpt -> primary, glm -> rotation alternate, 429 kept as history)",
+      "occurrences_replaced": 1
+    },
+    {
+      "id": "A3",
+      "what": "registry: routes[].PLAN fallbacks + admission_status (UNPROVEN -> measured)",
+      "occurrences_replaced": 1
+    },
+    {
+      "id": "A4",
+      "what": "registry: epoch 20 -> 21 with the reason recorded",
+      "occurrences_replaced": 1
+    },
+    {
+      "id": "A5",
+      "what": "registry: SOD006-C2 OPEN_OWNER_ORDERED -> OWNER_ORDERED_IN_FORCE + surviving independence",
+      "occurrences_replaced": 1
+    }
+  ],
+  "dry_run": false,
+  "workorder_note": "spine registration raised IntegrityError: UNIQUE constraint failed: requirements.requirement_id (the change proceeds; the WorkOrder is recorded here either way)",
+  "site_roundtrip_formatting_stable": false,
+  "site_edits": [
+    "lane_chains.PLAN[0] -> openai-codex/gpt-6.1-sol primary",
+    "lane_chains.PLAN[2] -> opencode-go/glm-5.3-flash rotation alternate (was the 429-parked gpt arm)",
+    "sod.plan_lane -> the 2026-10-16 order"
+  ],
+  "site_prose_pointers_updated": [
+    "/lane_chains/PLAN/0/model",
+    "/lane_chains/PLAN/0/provider",
+    "/sod/maker_self_acceptance",
+    "/sod/plan_lane",
+    "/sod/provider_separation",
+    "/sod/provider_separation_status",
+    "/sod/verify_security_arm_A",
+    "/sod/verify_security_default_arm",
+    "/sod/verify_security_lane",
+    "/sod/verify_vs_plan_model_separation"
+  ],
+  "registry_pins": {
+    "/sod/plan_lane": true,
+    "/sod/verify_security_lane": true,
+    "/sod/verify_security_arm_A": false,
+    "/sod/verify_security_default_arm": true,
+    "/sod/verify_vs_plan_model_separation": true,
+    "/sod/provider_separation": false,
+    "/sod/maker_self_acceptance": true,
+    "/lane_chains/PLAN/0/model": true,
+    "/lane_chains/PLAN/0/provider": true,
+    "/sod/provider_separation_status": true
+  },
+  "registry_pointers_without_a_pin": [
+    "/sod/provider_separation",
+    "/sod/verify_security_arm_A"
+  ],
+  "sha256": {
+    "registry": {
+      "before": "a0d811c48f6063b06af0688a16dd644bc1537651c75a8341795110253362c0b2",
+      "after": "109bcf8a5eed210b669bb1dc2876c142d68b9737dcc2fd0efcd7ddedd1746431"
+    },
+    "site": {
+      "before": "d41f8f8bff41d4338a4b85dab7a60bd2c9c23b2f5f39c8c008e89bf82587bd36",
+      "after": "21513be1476aed2fd824d746caccbd0623d29846be992dcf57b3a4eb16e1f928"
+    }
+  },
+  "backups": [
+    "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\lane-routing-registry.yaml.bak-far-remediation-20261016",
+    "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\model-lane-assignment.json.bak-far-remediation-20261016"
+  ],
+  "check_drift": {
+    "n": 0,
+    "fatal": [],
+    "warn": []
+  },
+  "conformance_case": {
+    "exit": 0,
+    "tail": "test_registry_and_projection_shape (tests.test_lane_policy.TestLanePolicyConformance.test_registry_and_projection_shape) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.136s\n\nOK"
+  }
+}

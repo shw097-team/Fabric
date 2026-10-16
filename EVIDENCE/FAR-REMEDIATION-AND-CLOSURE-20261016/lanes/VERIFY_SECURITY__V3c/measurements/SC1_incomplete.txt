@@ -1,0 +1,48 @@
+test_admit_with_receipt_evidence (tests.test_lane_guard.TestLaneGuard.test_admit_with_receipt_evidence) ... FAIL
+test_sod_same_model_is_refused (tests.test_lane_guard.TestLaneGuard.test_sod_same_model_is_refused) ... ok
+test_v1_stale_source_pin_is_refused (tests.test_lane_guard.TestLaneGuard.test_v1_stale_source_pin_is_refused) ... ok
+test_v3_bare_admitted_string_is_not_admissible (tests.test_lane_guard.TestLaneGuard.test_v3_bare_admitted_string_is_not_admissible) ... FAIL
+test_v4_omitted_provider_is_not_a_wildcard (tests.test_lane_guard.TestLaneGuard.test_v4_omitted_provider_is_not_a_wildcard) ... FAIL
+test_v4_provider_mismatch_is_refused (tests.test_lane_guard.TestLaneGuard.test_v4_provider_mismatch_is_refused) ... FAIL
+test_v5_reasoning_effort_survives_projection (tests.test_lane_guard.TestLaneGuard.test_v5_reasoning_effort_survives_projection) ... ok
+test_v6_expected_epoch_is_an_assertion_not_an_override (tests.test_lane_guard.TestLaneGuard.test_v6_expected_epoch_is_an_assertion_not_an_override) ... ok
+test_drift_injection_subcases (tests.test_lane_policy.TestLanePolicyConformance.test_drift_injection_subcases) ... ok
+test_registry_and_projection_shape (tests.test_lane_policy.TestLanePolicyConformance.test_registry_and_projection_shape) ... ok
+test_sod_and_admission_policy (tests.test_lane_policy.TestLanePolicyConformance.test_sod_and_admission_policy) ... ok
+
+======================================================================
+FAIL: test_admit_with_receipt_evidence (tests.test_lane_guard.TestLaneGuard.test_admit_with_receipt_evidence)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\TEST_RESULTS\incomplete_tree\tests\test_lane_guard.py", line 65, in test_admit_with_receipt_evidence
+    self.assertEqual(v["exit_code"], 0, v["errors"])
+AssertionError: 4 != 0 : ['ERR_LANE_SOURCE_STALE']
+
+======================================================================
+FAIL: test_v3_bare_admitted_string_is_not_admissible (tests.test_lane_guard.TestLaneGuard.test_v3_bare_admitted_string_is_not_admissible)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\TEST_RESULTS\incomplete_tree\tests\test_lane_guard.py", line 70, in test_v3_bare_admitted_string_is_not_admissible
+    self.assertEqual(v["exit_code"], 3)
+AssertionError: 4 != 3
+
+======================================================================
+FAIL: test_v4_omitted_provider_is_not_a_wildcard (tests.test_lane_guard.TestLaneGuard.test_v4_omitted_provider_is_not_a_wildcard)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\TEST_RESULTS\incomplete_tree\tests\test_lane_guard.py", line 85, in test_v4_omitted_provider_is_not_a_wildcard
+    self.assertEqual(v["exit_code"], 3)
+AssertionError: 4 != 3
+
+======================================================================
+FAIL: test_v4_provider_mismatch_is_refused (tests.test_lane_guard.TestLaneGuard.test_v4_provider_mismatch_is_refused)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\TEST_RESULTS\incomplete_tree\tests\test_lane_guard.py", line 77, in test_v4_provider_mismatch_is_refused
+    self.assertEqual(v["exit_code"], 3)
+AssertionError: 4 != 3
+
+----------------------------------------------------------------------
+Ran 11 tests in 9.144s
+
+FAILED (failures=4)

@@ -1,0 +1,305 @@
+{
+  "db": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\shared-spine\\hg-kseos.db",
+  "existing_before": {
+    "requirements": [
+      {
+        "requirement_id": "REQ-FAR-REMEDIATION-AND-CLOSURE-20261016-EXECUTE",
+        "project_id": "HGK-P0",
+        "source_locator": "owner-order:20261016_104922_d455e7:far-remediation",
+        "wording": "Owner order 2026-10-16 (round 2): study every residual with FAR and then EXECUTE the ruling. Bounded writer, EDIT-ONLY turn: implement R5 of FAR_RULING.md in scripts/hgk-lane-dispatch.py - add an OPTIONAL --turn-shape {normal,edit_only} whose edit_only value prepends a fixed HARD RULES block to the lane prompt (no process enumeration, nothing interactive, writes first, no test suite runs) and records the shape actually used in dispatch.json. ADDITIVE ONLY: no existing flag may change meaning, and the default must behave exactly as before. Add a typed RED-first test module for it. Do not run any suite; the orchestrator owns the oracle. No other change.",
+        "priority": "P0",
+        "state": "FROZEN",
+        "version": 1,
+        "acceptance_id": "ACC-REQ-FAR-REMEDIATION-AND-CLOSURE-20261016-EXECUTE",
+        "rollback_pointer": "RB-REQ-FAR-REMEDIATION-AND-CLOSURE-20261016-EXECUTE",
+        "created_at": "2026-10-16T04:16:31.818558Z",
+        "updated_at": "2026-10-16T04:16:31.952901Z"
+      },
+      {
+        "requirement_id": "REQ-FAR-REMEDIATION-AND-CLOSURE-20261016-VERIFY_SECURITY",
+        "project_id": "HGK-P0",
+        "source_locator": "owner-order:20261016_104922_d455e7:far-remediation",
+        "wording": "Owner order 2026-10-16 (round 2): study every residual with FAR and then EXECUTE the ruling. Independent VERIFY_ONLY challenge of this round's frozen subject: re-derive the registry rebind (R1), the promoted product files (R2) and the dispatcher turn-shape change (R5) from the artifacts themselves, and report typed DISAGREEMENT or UNCERTAINTY where it cannot. No repair, no acceptance authority.",
+        "priority": "P0",
+        "state": "FROZEN",
+        "version": 1,
+        "acceptance_id": "ACC-REQ-FAR-REMEDIATION-AND-CLOSURE-20261016-VERIFY_SECURITY",
+        "rollback_pointer": "RB-REQ-FAR-REMEDIATION-AND-CLOSURE-20261016-VERIFY_SECURITY",
+        "created_at": "2026-10-16T04:16:32.737370Z",
+        "updated_at": "2026-10-16T04:16:33.174566Z"
+      },
+      {
+        "requirement_id": "REQ-FAR-REMEDIATION-AND-CLOSURE-20261016-R1",
+        "project_id": "HGK-P0",
+        "source_locator": "owner-order:20261016_104922_d455e7:far-remediation",
+        "wording": "R1/R3 of FAR_RULING.md: rebind routes[].PLAN and the coupled PLAN declaration surfaces to the owner-ordered arm openai-codex/gpt-6.1-sol (medium, OAuth) under authority owner-order-20261016-plan-model-rebind-gpt61-sol, replace the stale usable_now 429 marker with this session's measurement, advance the registry epoch 20 -> 21, and reclassify declared_conflicts[SOD006-C2] to OWNER_ORDERED_IN_FORCE.",
+        "priority": "P0",
+        "state": "FROZEN",
+        "version": 1,
+        "acceptance_id": "ACC-REQ-FAR-REMEDIATION-AND-CLOSURE-20261016-R1",
+        "rollback_pointer": "RB-REQ-FAR-REMEDIATION-AND-CLOSURE-20261016-R1",
+        "created_at": "2026-10-16T04:24:48.301164Z",
+        "updated_at": "2026-10-16T04:24:48.366747Z"
+      }
+    ],
+    "taskspecs": [
+      {
+        "taskspec_id": "TS-FAR-REMEDIATION-AND-CLOSURE-20261016-EXECUTE",
+        "requirement_id": "REQ-FAR-REMEDIATION-AND-CLOSURE-20261016-EXECUTE",
+        "objective": "Owner order 2026-10-16 (round 2): study every residual with FAR and then EXECUTE the ruling. Bounded writer, EDIT-ONLY turn: implement R5 of FAR_RULING.md in scripts/hgk-lane-dispatch.py - add an OPTIONAL --turn-shape {normal,edit_only} whose edit_only value prepends a fixed HARD RULES block to the lane prompt (no process enumeration, nothing interactive, writes first, no test suite runs) and records the shape actually used in dispatch.json. ADDITIVE ONLY: no existing flag may change meaning, and the default must behave exactly as before. Add a typed RED-first test module for it. Do not run any suite; the orchestrator owns the oracle. No other change.",
+        "owner": "hermes-plan-orchestrator",
+        "writable_root": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\FAR-REMEDIATION-AND-CLOSURE-20261016\\candidate",
+        "permissions_json": "{\"claim_ceiling\":\"CANDIDATE_ONLY. These permissions authorise a bounded writer turn and an independent read-only checker turn; they assert no acceptance and no promotion\",\"forbidden\":[\"credentials\",\"network except the existing local model transport\",\"any git write command\",\"sending anything to an outside host\",\"merge\",\"release\",\"RP002 Stage3\",\"service restart\",\"resolving acceptance\",\"promotion\"],\"phase_gate\":\"the orchestrator re-derives the named acceptance command itself; a writer green run and a checker verdict are both CLAIMS and neither is acceptance\",\"role_binding\":{\"base_head\":\"903e47cddeceb40cb8f5f5793105533b3988a463\",\"expiry\":\"2026-10-17T00:00:00+00:00\",\"mandate_digest\":\"sha256:3a2e26da8e86344e9dbea6e9c07cf6fa26925552a0950799da5474d6c5036fbe\",\"roles\":{\"EXECUTE\":{\"model\":\"deepseek-v4.1-flash\",\"provider\":\"opencode-go\",\"rank\":1,\"surface\":\"CODEX\"},\"PLAN\":{\"model\":\"gpt-6.1-sol\",\"provider\":\"openai-codex\",\"rank\":1,\"reasoning_effort\":\"medium\",\"surface\":\"Hermes-internal\"},\"VERIFY_SECURITY\":{\"model\":\"gpt-6.1-sol\",\"provider\":\"openai-codex\",\"rank\":1,\"reasoning_effort\":\"medium\",\"surface\":\"CODEX\"}},\"round\":\"FAR-REMEDIATION-AND-CLOSURE-20261016\",\"schema\":\"HGK-ROLE-BINDING/1\",\"scope\":[\"scripts/runtime_role_binding_assert.py\",\"HG-KSEOS\"],\"session\":\"20261016_104922_d455e7\",\"subject\":\"HG-KSEOS lane-enforcement controls\",\"workorder\":\"WO-FAR-REMEDIATION-AND-CLOSURE-20261016-EXECUTE\"},\"round\":\"FAR-REMEDIATION-AND-CLOSURE-20261016\",\"sandbox\":\"workspace-write with the native Windows sandbox; the writer edits ONLY the four files named in writeset, plus its own TEST_RESULTS scratch\",\"session\":\"20261016_104922_d455e7\",\"write_root\":\"C:\\\\Projects\\\\Agent_Workspace\\\\HG-KSEOS\\\\var\\\\FAR-REMEDIATION-AND-CLOSURE-20261016\\\\candidate\",\"writeset\":[\"scripts/runtime_role_binding_assert.py\",\"scripts/hgk-governed-runtime-controller.py\",\"tests/test_governed_runtime_controller.py\",\"tests/test_lane_effort_enforcement.py\"]}",
+        "tests_json": "[\"the lane's own named acceptance command, re-run by the orchestrator\",\"typed refusal codes quoted verbatim\",\"subject digest recomputation before and after the turn\"]",
+        "rollback_pointer": "RB-TS-FAR-REMEDIATION-AND-CLOSURE-20261016-EXECUTE",
+        "evidence_plan": "raw lane stdout + dispatch receipt + the frozen candidate digest manifest; rollback = no canonical write happened during the lane turn",
+        "state": "ADMITTED",
+        "version": 1,
+        "created_at": "2026-10-16T04:16:32.333714Z",
+        "updated_at": "2026-10-16T04:16:32.547632Z"
+      },
+      {
+        "taskspec_id": "TS-FAR-REMEDIATION-AND-CLOSURE-20261016-VERIFY_SECURITY",
+        "requirement_id": "REQ-FAR-REMEDIATION-AND-CLOSURE-20261016-VERIFY_SECURITY",
+        "objective": "Owner order 2026-10-16 (round 2): study every residual with FAR and then EXECUTE the ruling. Independent VERIFY_ONLY challenge of this round's frozen subject: re-derive the registry rebind (R1), the promoted product files (R2) and the dispatcher turn-shape change (R5) from the artifacts themselves, and report typed DISAGREEMENT or UNCERTAINTY where it cannot. No repair, no acceptance authority.",
+        "owner": "hermes-plan-orchestrator",
+        "writable_root": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\FAR-REMEDIATION-AND-CLOSURE-20261016\\checker",
+        "permissions_json": "{\"claim_ceiling\":\"CANDIDATE_ONLY. These permissions authorise a bounded writer turn and an independent read-only checker turn; they assert no acceptance and no promotion\",\"forbidden\":[\"credentials\",\"network except the existing local model transport\",\"any git write command\",\"sending anything to an outside host\",\"merge\",\"release\",\"RP002 Stage3\",\"service restart\",\"resolving acceptance\",\"promotion\"],\"phase_gate\":\"the orchestrator re-derives the named acceptance command itself; a writer green run and a checker verdict are both CLAIMS and neither is acceptance\",\"role_binding\":{\"base_head\":\"903e47cddeceb40cb8f5f5793105533b3988a463\",\"expiry\":\"2026-10-17T00:00:00+00:00\",\"mandate_digest\":\"sha256:3a2e26da8e86344e9dbea6e9c07cf6fa26925552a0950799da5474d6c5036fbe\",\"roles\":{\"EXECUTE\":{\"model\":\"deepseek-v4.1-flash\",\"provider\":\"opencode-go\",\"rank\":1,\"surface\":\"CODEX\"},\"PLAN\":{\"model\":\"gpt-6.1-sol\",\"provider\":\"openai-codex\",\"rank\":1,\"reasoning_effort\":\"medium\",\"surface\":\"Hermes-internal\"},\"VERIFY_SECURITY\":{\"model\":\"gpt-6.1-sol\",\"provider\":\"openai-codex\",\"rank\":1,\"reasoning_effort\":\"medium\",\"surface\":\"CODEX\"}},\"round\":\"FAR-REMEDIATION-AND-CLOSURE-20261016\",\"schema\":\"HGK-ROLE-BINDING/1\",\"scope\":[\"HG-KSEOS\"],\"session\":\"20261016_104922_d455e7\",\"subject\":\"HG-KSEOS lane-enforcement controls\",\"workorder\":\"WO-FAR-REMEDIATION-AND-CLOSURE-20261016-VERIFY_SECURITY\"},\"round\":\"FAR-REMEDIATION-AND-CLOSURE-20261016\",\"sandbox\":\"workspace-write with the native Windows sandbox; the writer edits ONLY the four files named in writeset, plus its own TEST_RESULTS scratch\",\"session\":\"20261016_104922_d455e7\",\"write_root\":\"C:\\\\Projects\\\\Agent_Workspace\\\\HG-KSEOS\\\\var\\\\FAR-REMEDIATION-AND-CLOSURE-20261016\\\\checker\",\"writeset\":[\"checker/work/** (verdict JSON only; the frozen candidate is read-only)\"]}",
+        "tests_json": "[\"the lane's own named acceptance command, re-run by the orchestrator\",\"typed refusal codes quoted verbatim\",\"subject digest recomputation before and after the turn\"]",
+        "rollback_pointer": "RB-TS-FAR-REMEDIATION-AND-CLOSURE-20261016-VERIFY_SECURITY",
+        "evidence_plan": "raw lane stdout + dispatch receipt + the frozen candidate digest manifest; rollback = no canonical write happened during the lane turn",
+        "state": "ADMITTED",
+        "version": 1,
+        "created_at": "2026-10-16T04:16:33.366668Z",
+        "updated_at": "2026-10-16T04:16:33.417196Z"
+      },
+      {
+        "taskspec_id": "TS-FAR-REMEDIATION-AND-CLOSURE-20261016-R1",
+        "requirement_id": "REQ-FAR-REMEDIATION-AND-CLOSURE-20261016-R1",
+        "objective": "R1/R3 of FAR_RULING.md: rebind routes[].PLAN and the coupled PLAN declaration surfaces to the owner-ordered arm openai-codex/gpt-6.1-sol (medium, OAuth) under authority owner-order-20261016-plan-model-rebind-gpt61-sol, replace the stale usable_now 429 marker with this session's measurement, advance the registry epoch 20 -> 21, and reclassify declared_conflicts[SOD006-C2] to OWNER_ORDERED_IN_FORCE.",
+        "owner": "hermes-plan-orchestrator",
+        "writable_root": "C:\\Projects\\Agent_Workspace\\HG-KSEOS",
+        "permissions_json": "{\"canonical_config_edit\":true,\"writer\":\"hermes-plan-orchestrator\"}",
+        "tests_json": "[\"check_drift(registry) == []\",\"test_lane_policy conformance case passes\"]",
+        "rollback_pointer": "RB-TS-FAR-REMEDIATION-AND-CLOSURE-20261016-R1",
+        "evidence_plan": "before/after sha256 of both config files + .bak copies on disk",
+        "state": "ADMITTED",
+        "version": 1,
+        "created_at": "2026-10-16T04:24:48.410308Z",
+        "updated_at": "2026-10-16T04:24:48.436316Z"
+      }
+    ],
+    "workorders": [
+      {
+        "workorder_id": "WO-FAR-REMEDIATION-AND-CLOSURE-20261016-EXECUTE",
+        "taskspec_id": "TS-FAR-REMEDIATION-AND-CLOSURE-20261016-EXECUTE",
+        "writer": "codex",
+        "worktree": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\FAR-REMEDIATION-AND-CLOSURE-20261016\\candidate",
+        "base_head": "903e47cddeceb40cb8f5f5793105533b3988a463",
+        "state": "CREATED",
+        "result_json": null,
+        "rollback_pointer": "RB-WO-FAR-REMEDIATION-AND-CLOSURE-20261016-EXECUTE",
+        "created_at": "2026-10-16T04:16:32.547632Z",
+        "updated_at": "2026-10-16T04:16:32.547632Z"
+      },
+      {
+        "workorder_id": "WO-FAR-REMEDIATION-AND-CLOSURE-20261016-VERIFY_SECURITY",
+        "taskspec_id": "TS-FAR-REMEDIATION-AND-CLOSURE-20261016-VERIFY_SECURITY",
+        "writer": "codex-cli-independent-gpt",
+        "worktree": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\FAR-REMEDIATION-AND-CLOSURE-20261016\\checker",
+        "base_head": "903e47cddeceb40cb8f5f5793105533b3988a463",
+        "state": "CREATED",
+        "result_json": null,
+        "rollback_pointer": "RB-WO-FAR-REMEDIATION-AND-CLOSURE-20261016-VERIFY_SECURITY",
+        "created_at": "2026-10-16T04:16:33.417196Z",
+        "updated_at": "2026-10-16T04:16:33.417196Z"
+      },
+      {
+        "workorder_id": "WO-FAR-REMEDIATION-AND-CLOSURE-20261016-R1",
+        "taskspec_id": "TS-FAR-REMEDIATION-AND-CLOSURE-20261016-R1",
+        "writer": "hermes-plan-orchestrator",
+        "worktree": "C:\\Projects\\Agent_Workspace\\HG-KSEOS",
+        "base_head": "903e47cddeceb40cb8f5f5793105533b3988a463",
+        "state": "CREATED",
+        "result_json": null,
+        "rollback_pointer": "RB-WO-FAR-REMEDIATION-AND-CLOSURE-20261016-R1",
+        "created_at": "2026-10-16T04:24:48.436316Z",
+        "updated_at": "2026-10-16T04:24:48.436316Z"
+      }
+    ]
+  },
+  "created": [
+    "REQ-FAR-REMEDIATION-AND-CLOSURE-20261016-R2",
+    "TS-FAR-REMEDIATION-AND-CLOSURE-20261016-R2",
+    "WO-FAR-REMEDIATION-AND-CLOSURE-20261016-R2"
+  ],
+  "errors": [],
+  "existing_after": {
+    "requirements": [
+      {
+        "requirement_id": "REQ-FAR-REMEDIATION-AND-CLOSURE-20261016-EXECUTE",
+        "project_id": "HGK-P0",
+        "source_locator": "owner-order:20261016_104922_d455e7:far-remediation",
+        "wording": "Owner order 2026-10-16 (round 2): study every residual with FAR and then EXECUTE the ruling. Bounded writer, EDIT-ONLY turn: implement R5 of FAR_RULING.md in scripts/hgk-lane-dispatch.py - add an OPTIONAL --turn-shape {normal,edit_only} whose edit_only value prepends a fixed HARD RULES block to the lane prompt (no process enumeration, nothing interactive, writes first, no test suite runs) and records the shape actually used in dispatch.json. ADDITIVE ONLY: no existing flag may change meaning, and the default must behave exactly as before. Add a typed RED-first test module for it. Do not run any suite; the orchestrator owns the oracle. No other change.",
+        "priority": "P0",
+        "state": "FROZEN",
+        "version": 1,
+        "acceptance_id": "ACC-REQ-FAR-REMEDIATION-AND-CLOSURE-20261016-EXECUTE",
+        "rollback_pointer": "RB-REQ-FAR-REMEDIATION-AND-CLOSURE-20261016-EXECUTE",
+        "created_at": "2026-10-16T04:16:31.818558Z",
+        "updated_at": "2026-10-16T04:16:31.952901Z"
+      },
+      {
+        "requirement_id": "REQ-FAR-REMEDIATION-AND-CLOSURE-20261016-VERIFY_SECURITY",
+        "project_id": "HGK-P0",
+        "source_locator": "owner-order:20261016_104922_d455e7:far-remediation",
+        "wording": "Owner order 2026-10-16 (round 2): study every residual with FAR and then EXECUTE the ruling. Independent VERIFY_ONLY challenge of this round's frozen subject: re-derive the registry rebind (R1), the promoted product files (R2) and the dispatcher turn-shape change (R5) from the artifacts themselves, and report typed DISAGREEMENT or UNCERTAINTY where it cannot. No repair, no acceptance authority.",
+        "priority": "P0",
+        "state": "FROZEN",
+        "version": 1,
+        "acceptance_id": "ACC-REQ-FAR-REMEDIATION-AND-CLOSURE-20261016-VERIFY_SECURITY",
+        "rollback_pointer": "RB-REQ-FAR-REMEDIATION-AND-CLOSURE-20261016-VERIFY_SECURITY",
+        "created_at": "2026-10-16T04:16:32.737370Z",
+        "updated_at": "2026-10-16T04:16:33.174566Z"
+      },
+      {
+        "requirement_id": "REQ-FAR-REMEDIATION-AND-CLOSURE-20261016-R1",
+        "project_id": "HGK-P0",
+        "source_locator": "owner-order:20261016_104922_d455e7:far-remediation",
+        "wording": "R1/R3 of FAR_RULING.md: rebind routes[].PLAN and the coupled PLAN declaration surfaces to the owner-ordered arm openai-codex/gpt-6.1-sol (medium, OAuth) under authority owner-order-20261016-plan-model-rebind-gpt61-sol, replace the stale usable_now 429 marker with this session's measurement, advance the registry epoch 20 -> 21, and reclassify declared_conflicts[SOD006-C2] to OWNER_ORDERED_IN_FORCE.",
+        "priority": "P0",
+        "state": "FROZEN",
+        "version": 1,
+        "acceptance_id": "ACC-REQ-FAR-REMEDIATION-AND-CLOSURE-20261016-R1",
+        "rollback_pointer": "RB-REQ-FAR-REMEDIATION-AND-CLOSURE-20261016-R1",
+        "created_at": "2026-10-16T04:24:48.301164Z",
+        "updated_at": "2026-10-16T04:24:48.366747Z"
+      },
+      {
+        "requirement_id": "REQ-FAR-REMEDIATION-AND-CLOSURE-20261016-R2",
+        "project_id": "HGK-P0",
+        "source_locator": "owner-order:20261016_104922_d455e7:far-remediation",
+        "wording": "R2 of FAR_RULING.md: promote the four product files that the measured candidate-vs-canonical enumeration identified (PROMOTE set), each byte-identical to the frozen candidate, with per-file backups and an orchestrator-side oracle re-run. The candidate config files are stale (revision 19 vs canonical 20/21) and are retained, not promoted.",
+        "priority": "P0",
+        "state": "FROZEN",
+        "version": 1,
+        "acceptance_id": "ACC-REQ-FAR-REMEDIATION-AND-CLOSURE-20261016-R2",
+        "rollback_pointer": "RB-REQ-FAR-REMEDIATION-AND-CLOSURE-20261016-R2",
+        "created_at": "2026-10-16T04:28:31.246421Z",
+        "updated_at": "2026-10-16T04:28:31.272436Z"
+      }
+    ],
+    "taskspecs": [
+      {
+        "taskspec_id": "TS-FAR-REMEDIATION-AND-CLOSURE-20261016-EXECUTE",
+        "requirement_id": "REQ-FAR-REMEDIATION-AND-CLOSURE-20261016-EXECUTE",
+        "objective": "Owner order 2026-10-16 (round 2): study every residual with FAR and then EXECUTE the ruling. Bounded writer, EDIT-ONLY turn: implement R5 of FAR_RULING.md in scripts/hgk-lane-dispatch.py - add an OPTIONAL --turn-shape {normal,edit_only} whose edit_only value prepends a fixed HARD RULES block to the lane prompt (no process enumeration, nothing interactive, writes first, no test suite runs) and records the shape actually used in dispatch.json. ADDITIVE ONLY: no existing flag may change meaning, and the default must behave exactly as before. Add a typed RED-first test module for it. Do not run any suite; the orchestrator owns the oracle. No other change.",
+        "owner": "hermes-plan-orchestrator",
+        "writable_root": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\FAR-REMEDIATION-AND-CLOSURE-20261016\\candidate",
+        "permissions_json": "{\"claim_ceiling\":\"CANDIDATE_ONLY. These permissions authorise a bounded writer turn and an independent read-only checker turn; they assert no acceptance and no promotion\",\"forbidden\":[\"credentials\",\"network except the existing local model transport\",\"any git write command\",\"sending anything to an outside host\",\"merge\",\"release\",\"RP002 Stage3\",\"service restart\",\"resolving acceptance\",\"promotion\"],\"phase_gate\":\"the orchestrator re-derives the named acceptance command itself; a writer green run and a checker verdict are both CLAIMS and neither is acceptance\",\"role_binding\":{\"base_head\":\"903e47cddeceb40cb8f5f5793105533b3988a463\",\"expiry\":\"2026-10-17T00:00:00+00:00\",\"mandate_digest\":\"sha256:3a2e26da8e86344e9dbea6e9c07cf6fa26925552a0950799da5474d6c5036fbe\",\"roles\":{\"EXECUTE\":{\"model\":\"deepseek-v4.1-flash\",\"provider\":\"opencode-go\",\"rank\":1,\"surface\":\"CODEX\"},\"PLAN\":{\"model\":\"gpt-6.1-sol\",\"provider\":\"openai-codex\",\"rank\":1,\"reasoning_effort\":\"medium\",\"surface\":\"Hermes-internal\"},\"VERIFY_SECURITY\":{\"model\":\"gpt-6.1-sol\",\"provider\":\"openai-codex\",\"rank\":1,\"reasoning_effort\":\"medium\",\"surface\":\"CODEX\"}},\"round\":\"FAR-REMEDIATION-AND-CLOSURE-20261016\",\"schema\":\"HGK-ROLE-BINDING/1\",\"scope\":[\"scripts/runtime_role_binding_assert.py\",\"HG-KSEOS\"],\"session\":\"20261016_104922_d455e7\",\"subject\":\"HG-KSEOS lane-enforcement controls\",\"workorder\":\"WO-FAR-REMEDIATION-AND-CLOSURE-20261016-EXECUTE\"},\"round\":\"FAR-REMEDIATION-AND-CLOSURE-20261016\",\"sandbox\":\"workspace-write with the native Windows sandbox; the writer edits ONLY the four files named in writeset, plus its own TEST_RESULTS scratch\",\"session\":\"20261016_104922_d455e7\",\"write_root\":\"C:\\\\Projects\\\\Agent_Workspace\\\\HG-KSEOS\\\\var\\\\FAR-REMEDIATION-AND-CLOSURE-20261016\\\\candidate\",\"writeset\":[\"scripts/runtime_role_binding_assert.py\",\"scripts/hgk-governed-runtime-controller.py\",\"tests/test_governed_runtime_controller.py\",\"tests/test_lane_effort_enforcement.py\"]}",
+        "tests_json": "[\"the lane's own named acceptance command, re-run by the orchestrator\",\"typed refusal codes quoted verbatim\",\"subject digest recomputation before and after the turn\"]",
+        "rollback_pointer": "RB-TS-FAR-REMEDIATION-AND-CLOSURE-20261016-EXECUTE",
+        "evidence_plan": "raw lane stdout + dispatch receipt + the frozen candidate digest manifest; rollback = no canonical write happened during the lane turn",
+        "state": "ADMITTED",
+        "version": 1,
+        "created_at": "2026-10-16T04:16:32.333714Z",
+        "updated_at": "2026-10-16T04:16:32.547632Z"
+      },
+      {
+        "taskspec_id": "TS-FAR-REMEDIATION-AND-CLOSURE-20261016-VERIFY_SECURITY",
+        "requirement_id": "REQ-FAR-REMEDIATION-AND-CLOSURE-20261016-VERIFY_SECURITY",
+        "objective": "Owner order 2026-10-16 (round 2): study every residual with FAR and then EXECUTE the ruling. Independent VERIFY_ONLY challenge of this round's frozen subject: re-derive the registry rebind (R1), the promoted product files (R2) and the dispatcher turn-shape change (R5) from the artifacts themselves, and report typed DISAGREEMENT or UNCERTAINTY where it cannot. No repair, no acceptance authority.",
+        "owner": "hermes-plan-orchestrator",
+        "writable_root": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\FAR-REMEDIATION-AND-CLOSURE-20261016\\checker",
+        "permissions_json": "{\"claim_ceiling\":\"CANDIDATE_ONLY. These permissions authorise a bounded writer turn and an independent read-only checker turn; they assert no acceptance and no promotion\",\"forbidden\":[\"credentials\",\"network except the existing local model transport\",\"any git write command\",\"sending anything to an outside host\",\"merge\",\"release\",\"RP002 Stage3\",\"service restart\",\"resolving acceptance\",\"promotion\"],\"phase_gate\":\"the orchestrator re-derives the named acceptance command itself; a writer green run and a checker verdict are both CLAIMS and neither is acceptance\",\"role_binding\":{\"base_head\":\"903e47cddeceb40cb8f5f5793105533b3988a463\",\"expiry\":\"2026-10-17T00:00:00+00:00\",\"mandate_digest\":\"sha256:3a2e26da8e86344e9dbea6e9c07cf6fa26925552a0950799da5474d6c5036fbe\",\"roles\":{\"EXECUTE\":{\"model\":\"deepseek-v4.1-flash\",\"provider\":\"opencode-go\",\"rank\":1,\"surface\":\"CODEX\"},\"PLAN\":{\"model\":\"gpt-6.1-sol\",\"provider\":\"openai-codex\",\"rank\":1,\"reasoning_effort\":\"medium\",\"surface\":\"Hermes-internal\"},\"VERIFY_SECURITY\":{\"model\":\"gpt-6.1-sol\",\"provider\":\"openai-codex\",\"rank\":1,\"reasoning_effort\":\"medium\",\"surface\":\"CODEX\"}},\"round\":\"FAR-REMEDIATION-AND-CLOSURE-20261016\",\"schema\":\"HGK-ROLE-BINDING/1\",\"scope\":[\"HG-KSEOS\"],\"session\":\"20261016_104922_d455e7\",\"subject\":\"HG-KSEOS lane-enforcement controls\",\"workorder\":\"WO-FAR-REMEDIATION-AND-CLOSURE-20261016-VERIFY_SECURITY\"},\"round\":\"FAR-REMEDIATION-AND-CLOSURE-20261016\",\"sandbox\":\"workspace-write with the native Windows sandbox; the writer edits ONLY the four files named in writeset, plus its own TEST_RESULTS scratch\",\"session\":\"20261016_104922_d455e7\",\"write_root\":\"C:\\\\Projects\\\\Agent_Workspace\\\\HG-KSEOS\\\\var\\\\FAR-REMEDIATION-AND-CLOSURE-20261016\\\\checker\",\"writeset\":[\"checker/work/** (verdict JSON only; the frozen candidate is read-only)\"]}",
+        "tests_json": "[\"the lane's own named acceptance command, re-run by the orchestrator\",\"typed refusal codes quoted verbatim\",\"subject digest recomputation before and after the turn\"]",
+        "rollback_pointer": "RB-TS-FAR-REMEDIATION-AND-CLOSURE-20261016-VERIFY_SECURITY",
+        "evidence_plan": "raw lane stdout + dispatch receipt + the frozen candidate digest manifest; rollback = no canonical write happened during the lane turn",
+        "state": "ADMITTED",
+        "version": 1,
+        "created_at": "2026-10-16T04:16:33.366668Z",
+        "updated_at": "2026-10-16T04:16:33.417196Z"
+      },
+      {
+        "taskspec_id": "TS-FAR-REMEDIATION-AND-CLOSURE-20261016-R1",
+        "requirement_id": "REQ-FAR-REMEDIATION-AND-CLOSURE-20261016-R1",
+        "objective": "R1/R3 of FAR_RULING.md: rebind routes[].PLAN and the coupled PLAN declaration surfaces to the owner-ordered arm openai-codex/gpt-6.1-sol (medium, OAuth) under authority owner-order-20261016-plan-model-rebind-gpt61-sol, replace the stale usable_now 429 marker with this session's measurement, advance the registry epoch 20 -> 21, and reclassify declared_conflicts[SOD006-C2] to OWNER_ORDERED_IN_FORCE.",
+        "owner": "hermes-plan-orchestrator",
+        "writable_root": "C:\\Projects\\Agent_Workspace\\HG-KSEOS",
+        "permissions_json": "{\"canonical_config_edit\":true,\"writer\":\"hermes-plan-orchestrator\"}",
+        "tests_json": "[\"check_drift(registry) == []\",\"test_lane_policy conformance case passes\"]",
+        "rollback_pointer": "RB-TS-FAR-REMEDIATION-AND-CLOSURE-20261016-R1",
+        "evidence_plan": "before/after sha256 of both config files + .bak copies on disk",
+        "state": "ADMITTED",
+        "version": 1,
+        "created_at": "2026-10-16T04:24:48.410308Z",
+        "updated_at": "2026-10-16T04:24:48.436316Z"
+      },
+      {
+        "taskspec_id": "TS-FAR-REMEDIATION-AND-CLOSURE-20261016-R2",
+        "requirement_id": "REQ-FAR-REMEDIATION-AND-CLOSURE-20261016-R2",
+        "objective": "R2 of FAR_RULING.md: promote the four product files that the measured candidate-vs-canonical enumeration identified (PROMOTE set), each byte-identical to the frozen candidate, with per-file backups and an orchestrator-side oracle re-run. The candidate config files are stale (revision 19 vs canonical 20/21) and are retained, not promoted.",
+        "owner": "hermes-plan-orchestrator",
+        "writable_root": "C:\\Projects\\Agent_Workspace\\HG-KSEOS",
+        "permissions_json": "{\"canonical_product_edit\":true,\"writer\":\"hermes-plan-orchestrator\"}",
+        "tests_json": "[\"promoted sha256 == frozen candidate sha256\",\"oracle: tests.test_lane_effort_enforcement + tests.test_governed_runtime_controller\"]",
+        "rollback_pointer": "RB-TS-FAR-REMEDIATION-AND-CLOSURE-20261016-R2",
+        "evidence_plan": "R2_PROMOTION_RECEIPT.json + .bak copies on disk",
+        "state": "ADMITTED",
+        "version": 1,
+        "created_at": "2026-10-16T04:28:31.286482Z",
+        "updated_at": "2026-10-16T04:28:31.310003Z"
+      }
+    ],
+    "workorders": [
+      {
+        "workorder_id": "WO-FAR-REMEDIATION-AND-CLOSURE-20261016-EXECUTE",
+        "taskspec_id": "TS-FAR-REMEDIATION-AND-CLOSURE-20261016-EXECUTE",
+        "writer": "codex",
+        "worktree": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\FAR-REMEDIATION-AND-CLOSURE-20261016\\candidate",
+        "base_head": "903e47cddeceb40cb8f5f5793105533b3988a463",
+        "state": "CREATED",
+        "result_json": null,
+        "rollback_pointer": "RB-WO-FAR-REMEDIATION-AND-CLOSURE-20261016-EXECUTE",
+        "created_at": "2026-10-16T04:16:32.547632Z",
+        "updated_at": "2026-10-16T04:16:32.547632Z"
+      },
+      {
+        "workorder_id": "WO-FAR-REMEDIATION-AND-CLOSURE-20261016-VERIFY_SECURITY",
+        "taskspec_id": "TS-FAR-REMEDIATION-AND-CLOSURE-20261016-VERIFY_SECURITY",
+        "writer": "codex-cli-independent-gpt",
+        "worktree": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\FAR-REMEDIATION-AND-CLOSURE-20261016\\checker",
+        "base_head": "903e47cddeceb40cb8f5f5793105533b3988a463",
+        "state": "CREATED",
+        "result_json": null,
+        "rollback_pointer": "RB-WO-FAR-REMEDIATION-AND-CLOSURE-20261016-VERIFY_SECURITY",
+        "created_at": "2026-10-16T04:16:33.417196Z",
+        "updated_at": "2026-10-16T04:16:33.417196Z"
+      },
+      {
+        "workorder_id": "WO-FAR-REMEDIATION-AND-CLOSURE-20261016-R1",
+        "taskspec_id": "TS-FAR-REMEDIATION-AND-CLOSURE-20261016-R1",
+        "writer": "hermes-plan-orchestrator",
+        "worktree": "C:\\Projects\\Agent_Workspace\\HG-KSEOS",
+        "base_head": "903e47cddeceb40cb8f5f5793105533b3988a463",
+        "state": "CREATED",
+        "result_json": null,
+        "rollback_pointer": "RB-WO-FAR-REMEDIATION-AND-CLOSURE-20261016-R1",
+        "created_at": "2026-10-16T04:24:48.436316Z",
+        "updated_at": "2026-10-16T04:24:48.436316Z"
+      },
+      {
+        "workorder_id": "WO-FAR-REMEDIATION-AND-CLOSURE-20261016-R2",
+        "taskspec_id": "TS-FAR-REMEDIATION-AND-CLOSURE-20261016-R2",
+        "writer": "hermes-plan-orchestrator",
+        "worktree": "C:\\Projects\\Agent_Workspace\\HG-KSEOS",
+        "base_head": "903e47cddeceb40cb8f5f5793105533b3988a463",
+        "state": "CREATED",
+        "result_json": null,
+        "rollback_pointer": "RB-WO-FAR-REMEDIATION-AND-CLOSURE-20261016-R2",
+        "created_at": "2026-10-16T04:28:31.310003Z",
+        "updated_at": "2026-10-16T04:28:31.310003Z"
+      }
+    ]
+  }
+}

@@ -1,0 +1,627 @@
+{
+  "SC4": [
+    {
+      "pointer": "/sod/plan_lane",
+      "text": "opencode-go / glm-5.3-flash (medium) — owner order 2026-10-15; prior openai-codex/gpt-6.1-sol arm retained as a non-default alternate (QUOTA_429)",
+      "old_parser": "gpt-6.1-sol",
+      "fixed_parser": "glm-5.3-flash"
+    },
+    {
+      "pointer": "/sod/verify_security_lane",
+      "text": "DEFAULT primary arm A = opencode-go / glm-5.3-flash; NON-DEFAULT operator-selectable alternate arm B = openai-codex / gpt-6.1-sol (OpenAI OAuth)",
+      "old_parser": "gpt-6.1-sol",
+      "fixed_parser": "glm-5.3-flash"
+    },
+    {
+      "pointer": "/sod/verify_security_default_arm",
+      "text": "A = opencode-go / glm-5.3-flash (env_ref:OPENCODE_GO_API_KEY; medium)",
+      "old_parser": "glm-5.3-flash",
+      "fixed_parser": "glm-5.3-flash"
+    },
+    {
+      "pointer": "/sod/verify_security_arm_A",
+      "text": "opencode-go / glm-5.3-flash (primary unspecified default; medium)",
+      "old_parser": "glm-5.3-flash",
+      "fixed_parser": "glm-5.3-flash"
+    }
+  ],
+  "routes": [
+    {
+      "lane": "PLAN",
+      "provider": "openai-codex",
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "medium",
+      "auth": "openai_oauth",
+      "oauth": true,
+      "fallback": null,
+      "fallbacks": [
+        {
+          "provider": "opencode-go",
+          "model": "glm-5.3-flash",
+          "canonical_identity": "glm-5.3-flash",
+          "auth": "env_ref:OPENCODE_GO_API_KEY",
+          "oauth": false
+        },
+        {
+          "provider": "opencode-go",
+          "model": "deepseek-v4.1-flash",
+          "canonical_identity": "deepseek-v4.1-flash",
+          "auth": "env_ref:OPENCODE_GO_API_KEY",
+          "oauth": false
+        }
+      ],
+      "arms": [
+        {
+          "arm": "primary",
+          "provider": "openai-codex",
+          "model": "gpt-6.1-sol",
+          "canonical_identity": "gpt-6.1-sol",
+          "auth": "openai_oauth",
+          "oauth": true,
+          "reasoning_effort": "medium",
+          "default": true
+        },
+        {
+          "arm": "fallback1",
+          "provider": "opencode-go",
+          "model": "glm-5.3-flash",
+          "canonical_identity": "glm-5.3-flash",
+          "auth": "env_ref:OPENCODE_GO_API_KEY",
+          "oauth": false,
+          "reasoning_effort": "medium",
+          "default": false,
+          "automatic_selection": true,
+          "prior_revision_note": "Default arm of epochs 19-20 under owner-order-20261015-plan-model-rebind-glm, chosen because the OpenAI OAuth arm measured status=429 on 2026-10-15. That premise was measured FALSE on 2026-10-16 and the order was superseded; the arm is now fallback1 in the owner chain and is never the rank-1 default. History preserved rather than deleted."
+        },
+        {
+          "arm": "fallback2",
+          "provider": "opencode-go",
+          "model": "deepseek-v4.1-flash",
+          "canonical_identity": "deepseek-v4.1-flash",
+          "auth": "env_ref:OPENCODE_GO_API_KEY",
+          "oauth": false,
+          "default": false,
+          "automatic_selection": true
+        }
+      ]
+    },
+    {
+      "lane": "EXECUTE",
+      "provider": "opencode-go",
+      "model": "deepseek-v4.1-flash",
+      "reasoning_effort": null,
+      "auth": "env_ref:OPENCODE_GO_API_KEY",
+      "oauth": false,
+      "fallback": null,
+      "fallbacks": [
+        {
+          "provider": "openai-codex",
+          "model": "gpt-6-luna",
+          "canonical_identity": "gpt-6-luna",
+          "auth": "openai_oauth",
+          "oauth": true
+        },
+        {
+          "provider": "nvidia",
+          "model": "deepseek-ai/deepseek-v4.1-flash",
+          "canonical_identity": "deepseek-v4.1-flash",
+          "auth": "env_ref:NVIDIA_API_KEY",
+          "oauth": false
+        }
+      ],
+      "arms": [
+        {
+          "arm": "fallback1_operator_selectable",
+          "provider": "openai-codex",
+          "model": "gpt-6-luna",
+          "canonical_identity": "gpt-6-luna",
+          "engine": "codex-cli",
+          "transport": "codex-native-oauth",
+          "auth": "openai_oauth",
+          "oauth": true,
+          "automatic_selection": false,
+          "default": false,
+          "admission_status": "UNPROVEN",
+          "note_preexisting": "HTTP_400_UNSUPPORTED_ON_CURRENT_CLI_ACCOUNT backend probe; UNPROVEN admission"
+        },
+        {
+          "arm": "fallback2_auto",
+          "provider": "nvidia",
+          "model": "deepseek-ai/deepseek-v4.1-flash",
+          "canonical_identity": "deepseek-v4.1-flash",
+          "engine": "codex-cli",
+          "auth": "env_ref:NVIDIA_API_KEY",
+          "oauth": false,
+          "default": false,
+          "automatic_selection": true,
+          "note_preexisting": "nvidia provider namespace not loaded into running relay; needs owner-approved relay restart"
+        }
+      ]
+    },
+    {
+      "lane": "VERIFY_SECURITY",
+      "provider": "openai-codex",
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "medium",
+      "auth": "openai_oauth",
+      "oauth": true,
+      "fallback": null,
+      "fallbacks": [
+        {
+          "provider": "opencode-go",
+          "model": "glm-5.3-flash",
+          "canonical_identity": "glm-5.3-flash",
+          "auth": "env_ref:OPENCODE_GO_API_KEY",
+          "oauth": false
+        },
+        {
+          "provider": "opencode-go",
+          "model": "deepseek-v4.1-flash",
+          "canonical_identity": "deepseek-v4.1-flash",
+          "auth": "env_ref:OPENCODE_GO_API_KEY",
+          "oauth": false
+        }
+      ],
+      "arms": [
+        {
+          "arm": "A",
+          "model": "gpt-6.1-sol",
+          "provider": "openai-codex",
+          "canonical_identity": "gpt-6.1-sol",
+          "auth": "openai_oauth",
+          "oauth": true,
+          "reasoning_effort": "medium",
+          "co_equal": false,
+          "role": "primary",
+          "default": true
+        },
+        {
+          "arm": "B",
+          "model": "glm-5.3-flash",
+          "provider": "opencode-go",
+          "canonical_identity": "glm-5.3-flash",
+          "auth": "env_ref:OPENCODE_GO_API_KEY",
+          "oauth": false,
+          "reasoning_effort": "medium",
+          "co_equal": false,
+          "role": "fallback1_operator_selectable",
+          "default": false,
+          "automatic_selection": true
+        },
+        {
+          "arm": "C",
+          "model": "deepseek-v4.1-flash",
+          "provider": "opencode-go",
+          "canonical_identity": "deepseek-v4.1-flash",
+          "auth": "env_ref:OPENCODE_GO_API_KEY",
+          "oauth": false,
+          "co_equal": false,
+          "role": "fallback2_operator_selectable",
+          "default": false,
+          "automatic_selection": true
+        }
+      ]
+    }
+  ],
+  "site_chains": {
+    "PLAN": [
+      {
+        "model": "gpt-6.1-sol",
+        "provider": "openai-codex",
+        "reasoning_effort": "medium",
+        "role": "primary",
+        "default": true,
+        "arm": "A"
+      },
+      {
+        "model": "deepseek-v4.1-flash",
+        "provider": "opencode-go",
+        "role": "fallback1",
+        "default": false,
+        "automatic_selection": true
+      },
+      {
+        "model": "glm-5.3-flash",
+        "provider": "opencode-go",
+        "reasoning_effort": "medium",
+        "role": "rotation_alternate",
+        "default": false,
+        "arm": "A",
+        "automatic_selection": false,
+        "prior_revision_note": "default arm of epochs 19-20 under owner-order-20261015-plan-model-rebind-glm; premise (429 on the OpenAI OAuth arm) measured false 2026-10-16"
+      }
+    ],
+    "EXECUTE": [
+      {
+        "model": "deepseek-v4.1-flash",
+        "provider": "opencode-go",
+        "reasoning_effort": null
+      },
+      {
+        "model": "gpt-6-luna",
+        "provider": "openai-codex",
+        "transport": "codex-native-oauth",
+        "automatic_selection": false,
+        "default": false
+      },
+      {
+        "model": "deepseek-ai/deepseek-v4.1-flash",
+        "provider": "nvidia"
+      },
+      {
+        "arm": "owner_selectable_additional",
+        "model": "gpt-6-luna",
+        "provider": "openai-codex",
+        "engine": "codex-cli",
+        "transport": "codex-native-oauth",
+        "auth": "openai_oauth",
+        "automatic_selection": false,
+        "default": false,
+        "usable_now": "BACKEND_HTTP_400_UNSUPPORTED_ON_CURRENT_CLI_ACCOUNT",
+        "admission_status": "UNPROVEN",
+        "authorization_basis": "WO-PIPD-R5-EXECUTE-LUNA-ROUTE-20261009"
+      }
+    ],
+    "VERIFY_SECURITY": [
+      {
+        "role": "primary",
+        "model": "gpt-6.1-sol",
+        "provider": "openai-codex",
+        "reasoning_effort": "medium",
+        "default": true,
+        "arm": "A"
+      },
+      {
+        "role": "fallback1",
+        "model": "glm-5.3-flash",
+        "provider": "opencode-go",
+        "default": false,
+        "automatic_selection": true,
+        "arm": "B",
+        "reasoning_effort": "medium"
+      },
+      {
+        "role": "fallback2",
+        "model": "deepseek-v4.1-flash",
+        "provider": "opencode-go",
+        "default": false,
+        "automatic_selection": true
+      }
+    ],
+    "VERIFY_SECURITY_previous_revision_8": [
+      {
+        "arm": "primary",
+        "model": "z-ai/glm-5.3-flash",
+        "provider": "nvidia",
+        "auth": "NVIDIA NIM key",
+        "usable_now": "LIVE_BY_DIRECT_PROBE_ONLY",
+        "evidence": "HTTP 200 in 1.7 s (receipts/verify_flash_arm_probe.json) — superseded: live by probe did not mean usable as a lane",
+        "retired": true,
+        "retired_note": "RETIRED - no longer part of the current route; the current VERIFY default is arm B."
+      },
+      {
+        "arm": "fallback_1",
+        "model": "glm-5.3-flash",
+        "provider": "opencode-go",
+        "auth": "OPENCODE_GO_API_KEY",
+        "usable_now": "LIVE",
+        "evidence": "hermes one-shot returned FLASH_FB_OK in 5 s"
+      }
+    ],
+    "VERIFY_SECURITY_previous_revision_5": [
+      {
+        "arm": "primary",
+        "model": "z-ai/glm-5.3",
+        "provider": "nvidia",
+        "usable_now": "DEAD"
+      },
+      {
+        "arm": "fallback_1",
+        "model": "glm-5.3",
+        "provider": "opencode-go",
+        "usable_now": "LIVE"
+      }
+    ],
+    "VERIFY_SECURITY_previous_revision_17": [
+      {
+        "model": "glm-5.3-flash",
+        "provider": "opencode-go"
+      },
+      {
+        "model": "gpt-6.1-sol",
+        "provider": "openai-codex"
+      }
+    ],
+    "PLAN_previous_revision_18": [
+      {
+        "model": "gpt-6.1-sol",
+        "provider": "openai-codex",
+        "reasoning_effort": "medium"
+      },
+      {
+        "model": "glm-5.3-flash",
+        "provider": "opencode-go"
+      },
+      {
+        "model": "deepseek-v4.1-flash",
+        "provider": "opencode-go"
+      }
+    ]
+  },
+  "site_sod": {
+    "plan_lane": "openai-codex / gpt-6.1-sol (medium, OpenAI OAuth) — owner order 2026-10-16 (round FAR-REMEDIATION-AND-CLOSURE-20261016); supersedes the 2026-10-15 GLM rebind, whose stated premise (a 429 on the OpenAI OAuth arm) was measured false on 2026-10-16. GLM-5.3-Flash is retained as a rotation alternate, never auto-selected.",
+    "execute_lane": "opencode-go / deepseek-v4.1-flash (Codex CLI worker)",
+    "verify_security_lane": "DEFAULT primary arm A = openai-codex / gpt-6.1-sol (OpenAI OAuth); NON-DEFAULT operator-selectable alternate arm B = opencode-go / glm-5.3-flash. CORRECTED in round FAR-REMEDIATION-AND-CLOSURE-20261016: this field and its siblings declared arm A as opencode-go/glm-5.3-flash while lane_chains.VERIFY_SECURITY[0] — and this registry's own projections on that pointer — declared arm A as openai-codex/gpt-6.1-sol. The lane chain is what the dispatch path reads; the prose now matches it.",
+    "verify_security_arm_A": "openai-codex / gpt-6.1-sol (primary; medium)",
+    "verify_security_default_arm": "A = openai-codex / gpt-6.1-sol (OpenAI OAuth; medium)",
+    "verify_security_selection": "owner adjudication; unset -> default arm A; arm B is a non-default operator-selectable alternate, never auto-selected",
+    "verify_vs_execute_model_separation": "PASS on BOTH arms - glm-5.3-flash and gpt-6.1-sol are both different model families from deepseek-v4.1-flash.",
+    "verify_vs_plan_model_separation": "NONE on the model axis, by owner order: PLAN and VERIFY_SECURITY default arm A are BOTH openai-codex/gpt-6.1-sol (SOD006-C2, now OWNER_ORDERED_IN_FORCE). What remains is PROCESS, LANE and EVIDENCE-PATH independence, plus the no-self-acceptance rule. EXECUTE deepseek-v4.1-flash is a distinct model family from both.",
+    "provider_separation": "PARTIAL - PLAN and VERIFY default arm A both sit on openai-codex by owner order; EXECUTE stays on opencode-go. Model-axis separation between EXECUTE and each of them HOLDS (deepseek-v4.1-flash != gpt-6.1-sol). Provider separation is not required (invariants.provider_separation_required=false). Recorded as an accepted risk.",
+    "maker_self_acceptance": "PREVENTED at dispatch on every arm: no single call ever verifies its own output. Model-identity separation is deliberately NOT present between PLAN and VERIFY arm A (the same model by owner order, SOD006-C2 OWNER_ORDERED_IN_FORCE); EXECUTE vs VERIFY remains a distinct model family. PLAN and EXECUTE do not share a token, so SOD-APPLY-01 stays a historical record.",
+    "lane_deviation_recorded": {
+      "kanban_card": "t_152ba41c (LR-AO)",
+      "assigned": "openai-codex / gpt-6.1-sol",
+      "declared_lane": "VERIFY_SECURITY listed ACCEPTANCE, whose assigned model was then glm-5.3",
+      "status": "SUPERSEDED_HISTORICAL - describes an earlier revision, not the current route",
+      "deviation_note": "Historical: the acceptance card had been seeded on the PLAN model in an earlier revision; the VERIFY route is now the dual arm A/B route."
+    },
+    "verify_security_reasoning_effort": "medium",
+    "plan_reasoning_effort": "medium",
+    "provider_separation_status": "PARTIAL - PLAN and VERIFY default arm A both sit on openai-codex by owner order; EXECUTE stays on opencode-go. Model-axis separation between EXECUTE and each of them HOLDS (deepseek-v4.1-flash != gpt-6.1-sol). Provider separation is not required (invariants.provider_separation_required=false). Recorded as an accepted risk."
+  },
+  "pins": {
+    "source_of_routes": {
+      "path": "config/model-lane-assignment.json",
+      "revision": 21,
+      "sha256": "e7be2dea36874f169e0cddc61ecb77102402218a2e05136878a097462e7664df"
+    },
+    "site_revision": 21,
+    "site_registry_epoch": 21,
+    "sha256": "e7be2dea36874f169e0cddc61ecb77102402218a2e05136878a097462e7664df"
+  },
+  "SC1_reconstructed": {
+    "site_sha256": "21513be1476aed2fd824d746caccbd0623d29846be992dcf57b3a4eb16e1f928",
+    "registry_sha256": "109bcf8a5eed210b669bb1dc2876c142d68b9737dcc2fd0efcd7ddedd1746431",
+    "matches_recorded_before": true,
+    "exit": 1,
+    "names": [
+      "test_admit_with_receipt_evidence (tests.test_lane_guard.TestLaneGuard.test_admit_with_receipt_evidence)",
+      "test_v3_bare_admitted_string_is_not_admissible (tests.test_lane_guard.TestLaneGuard.test_v3_bare_admitted_string_is_not_admissible)",
+      "test_v4_omitted_provider_is_not_a_wildcard (tests.test_lane_guard.TestLaneGuard.test_v4_omitted_provider_is_not_a_wildcard)",
+      "test_v4_provider_mismatch_is_refused (tests.test_lane_guard.TestLaneGuard.test_v4_provider_mismatch_is_refused)"
+    ],
+    "status": [
+      "Ran 11 tests in 9.144s",
+      "FAILED (failures=4)"
+    ],
+    "drift": []
+  },
+  "R5": {
+    "canonical_flag": false,
+    "copy_flag": false,
+    "mentions": [
+      {
+        "path": "BUILD_R5_SPEC.md",
+        "line": 25,
+        "text": "   ap.add_argument(\"--turn-shape\", choices=(\"normal\", \"edit_only\"), default=\"normal\","
+      },
+      {
+        "path": "BUILD_R5_SPEC.md",
+        "line": 40,
+        "text": "   effective_prompt = (HARD_RULES_EDIT_ONLY + \"\\n\\n\" + args.prompt) if args.turn_shape == \"edit_only\" else args.prompt"
+      },
+      {
+        "path": "BUILD_R5_SPEC.md",
+        "line": 47,
+        "text": "   to `--json-out`): add the key `turn_shape` with the value actually used, and `turn_shape_prompt_chars`"
+      },
+      {
+        "path": "BUILD_R5_SPEC.md",
+        "line": 53,
+        "text": "New file `candidate/tests/test_lane_turn_shape.py`. It must:"
+      },
+      {
+        "path": "BUILD_R5_SPEC.md",
+        "line": 55,
+        "text": "- assert that with `--turn-shape normal` (and when the flag is omitted) the effective prompt equals the"
+      },
+      {
+        "path": "BUILD_R5_SPEC.md",
+        "line": 56,
+        "text": "  prompt argument exactly, and `turn_shape == \"normal\"`, `turn_shape_prompt_chars == 0`;"
+      },
+      {
+        "path": "BUILD_R5B_SPEC.md",
+        "line": 19,
+        "text": "- write `tests/test_lane_turn_shape.py` → i.e. a NEW file at `<root>/tests/test_lane_turn_shape.py`"
+      },
+      {
+        "path": "BUILD_R5B_SPEC.md",
+        "line": 43,
+        "text": "   ap.add_argument(\"--turn-shape\", choices=(\"normal\", \"edit_only\"), default=\"normal\","
+      },
+      {
+        "path": "BUILD_R5B_SPEC.md",
+        "line": 59,
+        "text": "   effective_prompt = (HARD_RULES_EDIT_ONLY + \"\\n\\n\" + args.prompt) if args.turn_shape == \"edit_only\" else args.prompt"
+      },
+      {
+        "path": "BUILD_R5B_SPEC.md",
+        "line": 65,
+        "text": "   `--json-out`): add `turn_shape` with the value actually used, and `turn_shape_prompt_chars` with the"
+      },
+      {
+        "path": "BUILD_R5B_SPEC.md",
+        "line": 70,
+        "text": "New file `tests/test_lane_turn_shape.py`, which must:"
+      },
+      {
+        "path": "BUILD_R5B_SPEC.md",
+        "line": 72,
+        "text": "- assert that with `--turn-shape normal` — and when the flag is omitted — the effective prompt equals the"
+      },
+      {
+        "path": "BUILD_R5B_SPEC.md",
+        "line": 73,
+        "text": "  prompt argument exactly, with `turn_shape == \"normal\"` and `turn_shape_prompt_chars == 0`;"
+      },
+      {
+        "path": "CHECKER_BRIEF.md",
+        "line": 87,
+        "text": "**C7 — the R5 item is honestly reported as NOT delivered.** No turn-shape flag should exist in"
+      },
+      {
+        "path": "FAR_RULING.md",
+        "line": 152,
+        "text": "新增一個**可選**的 `--turn-shape {normal,edit_only}`，`edit_only` 時在 prompt 前插入固定的 HARD RULES"
+      },
+      {
+        "path": "FAR_RULING.md",
+        "line": 188,
+        "text": "| E6 | **R5**：EXECUTE 車道（edit-only）實作 `--turn-shape`；本回合即為其首次使用驗證 | `WO-FAR-20261016-R5` | `git checkout` 該檔 |"
+      },
+      {
+        "path": "KANBAN_SWARM_GRAPH.json",
+        "line": 15,
+        "text": "    \"goal\": \"Execute the FAR ruling for FAR-REMEDIATION-AND-CLOSURE-20261016: rebind the PLAN route row to the owner-ordered arm (R1), reclassify the declared SoD conflict (R3), promote the verified candidate product files with the oracle orchestrator-side (R2), implement the additive dispatcher turn-shape flag via the EXECUTE lane in an edit-only turn (R5), then independently verify, close and publish\","
+      },
+      {
+        "path": "KANBAN_SWARM_GRAPH.json",
+        "line": 24,
+        "text": "      \"R5 dispatcher turn-shape (EXECUTE lane, edit-only)\""
+      },
+      {
+        "path": "PLAN.md",
+        "line": 30,
+        "text": "unpromoted verified change, an owner-ordered model overlap, an environment-limited test, a turn-shape"
+      },
+      {
+        "path": "R2_PROMOTION_RECEIPT.json",
+        "line": 349,
+        "text": "          \"wording\": \"Owner order 2026-10-16 (round 2): study every residual with FAR and then EXECUTE the ruling. Bounded writer, EDIT-ONLY turn: implement R5 of FAR_RULING.md in scripts/hgk-lane-dispatch.py - add an OPTIONAL --turn-shape {normal,edit_only} whose edit_only value prepends a fixed HARD RULES block to the lane prompt (no process enumeration, nothing interactive, writes first, no test suite runs) and records the shape actually used in dispatch.json. ADDITIVE ONLY: no existing flag may change meaning, and the default must behave exactly as before. Add a typed RED-first test module for it. Do not run any suite; the orchestrator owns the oracle. No other change.\","
+      },
+      {
+        "path": "R2_PROMOTION_RECEIPT.json",
+        "line": 362,
+        "text": "          \"wording\": \"Owner order 2026-10-16 (round 2): study every residual with FAR and then EXECUTE the ruling. Independent VERIFY_ONLY challenge of this round's frozen subject: re-derive the registry rebind (R1), the promoted product files (R2) and the dispatcher turn-shape change (R5) from the artifacts themselves, and report typed DISAGREEMENT or UNCERTAINTY where it cannot. No repair, no acceptance authority.\","
+      },
+      {
+        "path": "R2_PROMOTION_RECEIPT.json",
+        "line": 389,
+        "text": "          \"objective\": \"Owner order 2026-10-16 (round 2): study every residual with FAR and then EXECUTE the ruling. Bounded writer, EDIT-ONLY turn: implement R5 of FAR_RULING.md in scripts/hgk-lane-dispatch.py - add an OPTIONAL --turn-shape {normal,edit_only} whose edit_only value prepends a fixed HARD RULES block to the lane prompt (no process enumeration, nothing interactive, writes first, no test suite runs) and records the shape actually used in dispatch.json. ADDITIVE ONLY: no existing flag may change meaning, and the default must behave exactly as before. Add a typed RED-first test module for it. Do not run any suite; the orchestrator owns the oracle. No other change.\","
+      },
+      {
+        "path": "R2_PROMOTION_RECEIPT.json",
+        "line": 404,
+        "text": "          \"objective\": \"Owner order 2026-10-16 (round 2): study every residual with FAR and then EXECUTE the ruling. Independent VERIFY_ONLY challenge of this round's frozen subject: re-derive the registry rebind (R1), the promoted product files (R2) and the dispatcher turn-shape change (R5) from the artifacts themselves, and report typed DISAGREEMENT or UNCERTAINTY where it cannot. No repair, no acceptance authority.\","
+      },
+      {
+        "path": "R2_PROMOTION_RECEIPT.json",
+        "line": 483,
+        "text": "          \"wording\": \"Owner order 2026-10-16 (round 2): study every residual with FAR and then EXECUTE the ruling. Bounded writer, EDIT-ONLY turn: implement R5 of FAR_RULING.md in scripts/hgk-lane-dispatch.py - add an OPTIONAL --turn-shape {normal,edit_only} whose edit_only value prepends a fixed HARD RULES block to the lane prompt (no process enumeration, nothing interactive, writes first, no test suite runs) and records the shape actually used in dispatch.json. ADDITIVE ONLY: no existing flag may change meaning, and the default must behave exactly as before. Add a typed RED-first test module for it. Do not run any suite; the orchestrator owns the oracle. No other change.\","
+      },
+      {
+        "path": "R2_PROMOTION_RECEIPT.json",
+        "line": 496,
+        "text": "          \"wording\": \"Owner order 2026-10-16 (round 2): study every residual with FAR and then EXECUTE the ruling. Independent VERIFY_ONLY challenge of this round's frozen subject: re-derive the registry rebind (R1), the promoted product files (R2) and the dispatcher turn-shape change (R5) from the artifacts themselves, and report typed DISAGREEMENT or UNCERTAINTY where it cannot. No repair, no acceptance authority.\","
+      },
+      {
+        "path": "R2_PROMOTION_RECEIPT.json",
+        "line": 536,
+        "text": "          \"objective\": \"Owner order 2026-10-16 (round 2): study every residual with FAR and then EXECUTE the ruling. Bounded writer, EDIT-ONLY turn: implement R5 of FAR_RULING.md in scripts/hgk-lane-dispatch.py - add an OPTIONAL --turn-shape {normal,edit_only} whose edit_only value prepends a fixed HARD RULES block to the lane prompt (no process enumeration, nothing interactive, writes first, no test suite runs) and records the shape actually used in dispatch.json. ADDITIVE ONLY: no existing flag may change meaning, and the default must behave exactly as before. Add a typed RED-first test module for it. Do not run any suite; the orchestrator owns the oracle. No other change.\","
+      },
+      {
+        "path": "R2_PROMOTION_RECEIPT.json",
+        "line": 551,
+        "text": "          \"objective\": \"Owner order 2026-10-16 (round 2): study every residual with FAR and then EXECUTE the ruling. Independent VERIFY_ONLY challenge of this round's frozen subject: re-derive the registry rebind (R1), the promoted product files (R2) and the dispatcher turn-shape change (R5) from the artifacts themselves, and report typed DISAGREEMENT or UNCERTAINTY where it cannot. No repair, no acceptance authority.\","
+      },
+      {
+        "path": "README.md",
+        "line": 34,
+        "text": "**R5, the `--turn-shape edit_only` flag in `scripts/hgk-lane-dispatch.py`: NOT delivered.** The bounded"
+      },
+      {
+        "path": "RETROSPECTIVE.md",
+        "line": 19,
+        "text": "- **R5, the turn-shape flag.** The bounded writer did not return within its window. The cause of the second"
+      },
+      {
+        "path": "RETROSPECTIVE.md",
+        "line": 29,
+        "text": "| P3 | `--turn-shape {normal,edit_only}` in `scripts/hgk-lane-dispatch.py` | four bounded-writer turns across two rounds, two wedges; the fix is additive and already specified in this round's brief | small, additive; two of its three call sites are one-line | low, if the default path is proven unchanged by a receipt comparison |"
+      },
+      {
+        "path": "ROUND_CLOSURE.json",
+        "line": 42,
+        "text": "      \"stage\": \"see canonical_mutations.R5_dispatcher_turn_shape and lanes/EXECUTE/R5/\""
+      },
+      {
+        "path": "ROUND_CLOSURE.json",
+        "line": 312,
+        "text": "      \"expected\": \"the R5 turn-shape ruling is delivered by the bounded writer\","
+      },
+      {
+        "path": "ROUND_CLOSURE.json",
+        "line": 314,
+        "text": "      \"observed\": \"NOT LANDED — the bounded-writer turn did not return a change within its window; see the lane termination record. The ruling item stays open and appears in honest_residuals.\""
+      },
+      {
+        "path": "ROUND_CLOSURE.json",
+        "line": 522,
+        "text": "    \"R5_dispatcher_turn_shape\": \"NOT LANDED — the bounded-writer turn did not return a change within its window; see the lane termination record. The ruling item stays open and appears in honest_residuals.\","
+      },
+      {
+        "path": "ROUND_CLOSURE.json",
+        "line": 717,
+        "text": "    \"R5 NOT DELIVERED: the bounded-writer turn did not return within its window, so the turn-shape flag is NOT implemented in scripts/hgk-lane-dispatch.py. The previous round's single most valuable reliability lever therefore remains unencoded in the product, and it is recorded as open rather than claimed. Its lane record and termination evidence are in lanes/EXECUTE/R5/.\","
+      },
+      {
+        "path": "SELF_EVOLUTION.md",
+        "line": 57,
+        "text": "3. **`--turn-shape edit_only` in the dispatcher** (the item this round tried and did not deliver). The"
+      },
+      {
+        "path": "SPINE_STATE_READBACK.json",
+        "line": 9,
+        "text": "        \"wording\": \"Owner order 2026-10-16 (round 2): study every residual with FAR and then EXECUTE the ruling. Bounded writer, EDIT-ONLY turn: implement R5 of FAR_RULING.md in scripts/hgk-lane-dispatch.py - add an OPTIONAL --turn-shape {normal,edit_only} whose edit_only value prepends a fixed HARD RULES block to the lane prompt (no process enumeration, nothing interactive, writes first, no test suite runs) and records the shape actually used in dispatch.json. ADDITIVE ONLY: no existing flag may change meaning, and the default must behave exactly as before. Add a typed RED-first test module for it. Do not run any suite; the orchestrator owns the oracle. No other change.\","
+      },
+      {
+        "path": "SPINE_STATE_READBACK.json",
+        "line": 22,
+        "text": "        \"wording\": \"Owner order 2026-10-16 (round 2): study every residual with FAR and then EXECUTE the ruling. Independent VERIFY_ONLY challenge of this round's frozen subject: re-derive the registry rebind (R1), the promoted product files (R2) and the dispatcher turn-shape change (R5) from the artifacts themselves, and report typed DISAGREEMENT or UNCERTAINTY where it cannot. No repair, no acceptance authority.\","
+      },
+      {
+        "path": "SPINE_STATE_READBACK.json",
+        "line": 49,
+        "text": "        \"objective\": \"Owner order 2026-10-16 (round 2): study every residual with FAR and then EXECUTE the ruling. Bounded writer, EDIT-ONLY turn: implement R5 of FAR_RULING.md in scripts/hgk-lane-dispatch.py - add an OPTIONAL --turn-shape {normal,edit_only} whose edit_only value prepends a fixed HARD RULES block to the lane prompt (no process enumeration, nothing interactive, writes first, no test suite runs) and records the shape actually used in dispatch.json. ADDITIVE ONLY: no existing flag may change meaning, and the default must behave exactly as before. Add a typed RED-first test module for it. Do not run any suite; the orchestrator owns the oracle. No other change.\","
+      },
+      {
+        "path": "SPINE_STATE_READBACK.json",
+        "line": 64,
+        "text": "        \"objective\": \"Owner order 2026-10-16 (round 2): study every residual with FAR and then EXECUTE the ruling. Independent VERIFY_ONLY challenge of this round's frozen subject: re-derive the registry rebind (R1), the promoted product files (R2) and the dispatcher turn-shape change (R5) from the artifacts themselves, and report typed DISAGREEMENT or UNCERTAINTY where it cannot. No repair, no acceptance authority.\","
+      },
+      {
+        "path": "SPINE_STATE_READBACK.json",
+        "line": 143,
+        "text": "        \"wording\": \"Owner order 2026-10-16 (round 2): study every residual with FAR and then EXECUTE the ruling. Bounded writer, EDIT-ONLY turn: implement R5 of FAR_RULING.md in scripts/hgk-lane-dispatch.py - add an OPTIONAL --turn-shape {normal,edit_only} whose edit_only value prepends a fixed HARD RULES block to the lane prompt (no process enumeration, nothing interactive, writes first, no test suite runs) and records the shape actually used in dispatch.json. ADDITIVE ONLY: no existing flag may change meaning, and the default must behave exactly as before. Add a typed RED-first test module for it. Do not run any suite; the orchestrator owns the oracle. No other change.\","
+      },
+      {
+        "path": "SPINE_STATE_READBACK.json",
+        "line": 156,
+        "text": "        \"wording\": \"Owner order 2026-10-16 (round 2): study every residual with FAR and then EXECUTE the ruling. Independent VERIFY_ONLY challenge of this round's frozen subject: re-derive the registry rebind (R1), the promoted product files (R2) and the dispatcher turn-shape change (R5) from the artifacts themselves, and report typed DISAGREEMENT or UNCERTAINTY where it cannot. No repair, no acceptance authority.\","
+      },
+      {
+        "path": "SPINE_STATE_READBACK.json",
+        "line": 196,
+        "text": "        \"objective\": \"Owner order 2026-10-16 (round 2): study every residual with FAR and then EXECUTE the ruling. Bounded writer, EDIT-ONLY turn: implement R5 of FAR_RULING.md in scripts/hgk-lane-dispatch.py - add an OPTIONAL --turn-shape {normal,edit_only} whose edit_only value prepends a fixed HARD RULES block to the lane prompt (no process enumeration, nothing interactive, writes first, no test suite runs) and records the shape actually used in dispatch.json. ADDITIVE ONLY: no existing flag may change meaning, and the default must behave exactly as before. Add a typed RED-first test module for it. Do not run any suite; the orchestrator owns the oracle. No other change.\","
+      },
+      {
+        "path": "SPINE_STATE_READBACK.json",
+        "line": 211,
+        "text": "        \"objective\": \"Owner order 2026-10-16 (round 2): study every residual with FAR and then EXECUTE the ruling. Independent VERIFY_ONLY challenge of this round's frozen subject: re-derive the registry rebind (R1), the promoted product files (R2) and the dispatcher turn-shape change (R5) from the artifacts themselves, and report typed DISAGREEMENT or UNCERTAINTY where it cannot. No repair, no acceptance authority.\","
+      }
+    ]
+  },
+  "promoter_source": "\"\"\"R2 — promote the verified candidate product files to the canonical tree.\n\nThe PROMOTE set is taken from the MEASURED enumeration (var/.../evidence/EVIDENCE_PROMOTION_SCOPE.json,\nproduced by a read-only walk over both trees), never from memory. Four files, and nothing else:\n\n  scripts/runtime_role_binding_assert.py        (the M03 effort axis)\n  scripts/hgk-governed-runtime-controller.py    (the absent-session-id outage)\n  tests/test_governed_runtime_controller.py     (its typed tests)\n  tests/test_lane_effort_enforcement.py         (its typed tests; NEW file)\n\nTwo candidate config files were also modified relative to canonical but are STALE (revision 19 vs the\ncanonical 20, now 21) — retaining canonical there is the measured decision, recorded rather than acted on.\n\nThis is an APPLY under the owner's authorisation to execute the ruling. It is NOT an acceptance: the\noracle (the two test modules) is re-run by the orchestrator, and external acceptance stays NOT_PERFORMED.\n\nWorkOrder: WO-FAR-REMEDIATION-AND-CLOSURE-20261016-R2.\n\"\"\"\nimport hashlib\nimport json\nimport pathlib\nimport shutil\nimport subprocess\nimport sys\n\nR = pathlib.Path('C:/Projects/Agent_Workspace/HG-KSEOS')\nO = R / 'var/FAR-REMEDIATION-AND-CLOSURE-20261016'\nCAND = R / 'var/LANE-RELIABILITY-CLOSURE-20261016/candidate'\nPY = 'C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe'\nSUFFIX = '.bak-far-remediation-20261016'\nAPPLY = '--apply' in sys.argv\nBIG = O / 'evidence/EVIDENCE_PROMOTION_SCOPE.json'\n\nREL = ['scripts/runtime_role_binding_assert.py',\n       'scripts/hgk-governed-runtime-controller.py',\n       'tests/test_governed_runtime_controller.py',\n       'tests/test_lane_effort_enforcement.py']\n\n\ndef sha(p):\n    return hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()\n\n\nlog = {'workorder': 'WO-FAR-REMEDIATION-AND-CLOSURE-20261016-R2', 'apply': APPLY, 'files': []}\n\n# ---------------------------------------------------------------- shrink the 114 MB enumeration\nif BIG.is_file() and BIG.stat().st_size > 8_000_000:\n    big = json.loads(BIG.read_text(encoding='utf-8'))\n    summary = {'schema': big.get('schema'), 'generated_for_round': big.get('generated_for_round'),\n               'counts': big.get('notes', {}).get('counts'),\n               'promote': big.get('promote'),\n               'needs_owner_decision_count': len(big.get('needs_owner_decision', [])),\n               'do_not_promote_count': len(big.get('do_not_promote', [])),\n               'completeness': big.get('notes', {}).get('completeness'),\n               'exactness_claim': big.get('notes', {}).get('exactness_claim')}\n    (O / 'evidence/EVIDENCE_PROMOTION_SCOPE.summary.json').write_text(\n        json.dumps(summary, ensure_ascii=False, indent=2), encoding='utf-8')\n    log['enumeration_compacted'] = {'original_bytes': BIG.stat().st_size,\n                                    'kept': 'EVIDENCE_PROMOTION_SCOPE.md + .summary.json',\n                                    'dropped_because': 'a 114 MB per-file listing cannot be published; every '\n                                                       'classification count and the PROMOTE set are retained'}\n    del big\n    BIG.unlink()\n\n# ---------------------------------------------------------------- promote\nfor rel in REL:\n    src = CAND / rel\n    dst = R / rel\n    rec = {'rel': rel, 'candidate_exists': src.is_file(), 'canonical_existed': dst.is_file()}\n    if not src.is_file():\n        rec['action'] = 'SKIPPED: candidate file missing'\n        log['files'].append(rec)\n        continue\n    rec['candidate_sha256'] = sha(src)\n    rec['canonical_sha256_before'] = sha(dst) if dst.is_file() else None\n    if rec['canonical_sha256_before'] == rec['candidate_sha256']:\n        rec['action'] = 'ALREADY_IDENTICAL (no write)'\n        log['files'].append(rec)\n        continue\n    if APPLY:\n        if dst.is_file():\n            b = pathlib.Path(str(dst) + SUFFIX)\n            if not b.is_file():\n                shutil.copy2(dst, b)\n            rec['backup'] = str(b)\n        dst.parent.mkdir(parents=True, exist_ok=True)\n        shutil.copy2(src, dst)\n    rec['canonical_sha256_after'] = sha(dst) if dst.is_file() else None\n    rec['action'] = 'PROMOTED' if APPLY else 'WOULD_PROMOTE (dry run)'\n    rec['byte_identical_to_candidate'] = rec['canonical_sha256_after'] == rec['candidate_sha256']\n    log['files'].append(rec)\n\n# ---------------------------------------------------------------- the oracle, re-derived here\nif APPLY:\n    sys.path.insert(0, str(R / 'src'))\n    try:\n        from hg_kseos.spine import SharedSpine  # noqa: E402\n        sp = SharedSpine(R / 'var/shared-spine/hg-kseos.db')\n        head = subprocess.run(['git', '-C', 'C:/Projects/Agent_Workspace/HG-KSEOS', 'rev-parse', 'HEAD'],\n                              capture_output=True, text=True).stdout.strip()\n        sp.create_workorder('WO-FAR-REMEDIATION-AND-CLOSURE-20261016-R2',\n                            'TS-FAR-REMEDIATION-AND-CLOSURE-20261016-R2', 'hermes-plan-orchestrator', R, head)\n        log['workorder_created'] = True\n    except Exception as exc:\n        log['workorder_note'] = '%s: %s' % (type(exc).__name__, exc)\n\n    for mod in ('tests.test_lane_effort_enforcement', 'tests.test_governed_runtime_controller'):\n        pr = subprocess.run([PY, '-B', '-m', 'unittest', mod, '-v'], cwd=str(R),\n                            capture_output=True, text=True, timeout=900)\n        tail = (pr.stdout + pr.stderr).strip().splitlines()\n        log.setdefault('oracle', {})[mod] = {\n            'exit': pr.returncode,\n            'ran': next((l for l in tail if l.startswith('Ran ')), ''),\n            'verdict': tail[-1] if tail else '',\n            'failed_lines': [l for l in tail if l.startswith('FAIL:') or l.startswith('ERROR:')]}\n    # did anything else in the tree move?\n    log['post_promotion_changed_vs_baseline'] = subprocess.run(\n        ['git', '-C', 'C:/Projects/Agent_Workspace/HG-KSEOS', 'status', '--porcelain'],\n        capture_output=True, text=True).stdout.strip().splitlines()\n\n(O / 'R2_PROMOTION_RECEIPT.json').write_text(json.dumps(log, ensure_ascii=False, indent=2), encoding='utf-8')\nprint(json.dumps(log, ensure_ascii=False, indent=1))\n"
+}

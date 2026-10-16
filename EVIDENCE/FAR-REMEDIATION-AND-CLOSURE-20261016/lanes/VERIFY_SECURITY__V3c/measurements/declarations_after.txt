@@ -1,0 +1,75 @@
+{
+ "label": "after",
+ "path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\FAR-REMEDIATION-AND-CLOSURE-20261016\\lanes\\VERIFY_SECURITY\\V3c\\work\\subject\\config\\model-lane-assignment.json",
+ "findings": [
+  {
+   "pointer": "/sod/plan_lane",
+   "lane": "PLAN",
+   "chain_default": "openai-codex/gpt-6.1-sol",
+   "claimed_default": "gpt-6.1-sol",
+   "parsed_via": "first model token",
+   "verdict": "AGREES"
+  },
+  {
+   "pointer": "/sod/verify_security_lane",
+   "lane": "VERIFY_SECURITY",
+   "chain_default": "openai-codex/gpt-6.1-sol",
+   "claimed_default": "gpt-6.1-sol",
+   "parsed_via": "default primary arm a =",
+   "verdict": "AGREES"
+  },
+  {
+   "pointer": "/sod/verify_security_default_arm",
+   "lane": "VERIFY_SECURITY",
+   "chain_default": "openai-codex/gpt-6.1-sol",
+   "claimed_default": "gpt-6.1-sol",
+   "parsed_via": "a = ",
+   "verdict": "AGREES"
+  },
+  {
+   "pointer": "/sod/verify_security_arm_A",
+   "lane": "VERIFY_SECURITY",
+   "chain_default": "openai-codex/gpt-6.1-sol",
+   "claimed_default": "gpt-6.1-sol",
+   "parsed_via": "first model token",
+   "verdict": "AGREES"
+  }
+ ],
+ "info": [
+  {
+   "pointer": "/sod/verify_vs_plan_model_separation",
+   "model_tokens_present": [
+    "deepseek-v4.1-flash",
+    "gpt-6.1-sol"
+   ],
+   "rule": "multi-lane prose: listed, not strictly judged"
+  },
+  {
+   "pointer": "/sod/provider_separation",
+   "model_tokens_present": [
+    "deepseek-v4.1-flash",
+    "gpt-6.1-sol"
+   ],
+   "rule": "multi-lane prose: listed, not strictly judged"
+  },
+  {
+   "pointer": "/sod/provider_separation_status",
+   "model_tokens_present": [
+    "deepseek-v4.1-flash",
+    "gpt-6.1-sol"
+   ],
+   "rule": "multi-lane prose: listed, not strictly judged"
+  },
+  {
+   "pointer": "/sod/maker_self_acceptance",
+   "model_tokens_present": [],
+   "rule": "multi-lane prose: listed, not strictly judged"
+  }
+ ],
+ "contradictions": 0
+}
+/sod/plan_lane                             PLAN             chain=openai-codex/gpt-6.1-sol     claimed=gpt-6.1-sol        AGREES
+/sod/verify_security_lane                  VERIFY_SECURITY  chain=openai-codex/gpt-6.1-sol     claimed=gpt-6.1-sol        AGREES
+/sod/verify_security_default_arm           VERIFY_SECURITY  chain=openai-codex/gpt-6.1-sol     claimed=gpt-6.1-sol        AGREES
+/sod/verify_security_arm_A                 VERIFY_SECURITY  chain=openai-codex/gpt-6.1-sol     claimed=gpt-6.1-sol        AGREES
+CONTRADICTIONS = 0

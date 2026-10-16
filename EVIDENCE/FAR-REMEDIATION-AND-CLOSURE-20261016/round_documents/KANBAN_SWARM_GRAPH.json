@@ -1,0 +1,34 @@
+{
+  "schema": "HGK-KANBAN-SWARM-GRAPH/1",
+  "round": "FAR-REMEDIATION-AND-CLOSURE-20261016",
+  "at": "2026-10-16",
+  "surface": "hermes kanban (HERMES_HOME/kanban/boards/<slug>/kanban.db)",
+  "board": {
+    "slug": "far-remediation-and-closure-20261016",
+    "name": "FAR remediation and closure 2026-10-16",
+    "db": "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/kanban/boards/far-remediation-and-closure-20261016/kanban.db",
+    "default_workdir": "C:/Projects/Agent_Workspace/HG-KSEOS",
+    "created_by": "hermes_cli.main kanban boards create"
+  },
+  "swarm": {
+    "builder": "hermes_cli.main kanban --board <slug> swarm (root + N workers + one verifier + one synthesizer, wired into the DAG)",
+    "goal": "Execute the FAR ruling for FAR-REMEDIATION-AND-CLOSURE-20261016: rebind the PLAN route row to the owner-ordered arm (R1), reclassify the declared SoD conflict (R3), promote the verified candidate product files with the oracle orchestrator-side (R2), implement the additive dispatcher turn-shape flag via the EXECUTE lane in an edit-only turn (R5), then independently verify, close and publish",
+    "root": "t_a9c7ba57",
+    "workers": ["t_4b2e6346", "t_8c746031", "t_5becbacc"],
+    "verifier": "t_8a2b2337",
+    "synthesizer": "t_412e1da1",
+    "assignee_profile": "hgk-governed",
+    "worker_titles": [
+      "R1-R3 registry ruling applied under WorkOrder",
+      "R2 promotion of the verified candidate product set",
+      "R5 dispatcher turn-shape (EXECUTE lane, edit-only)"
+    ]
+  },
+  "what_kanban_swarm_openspec_are_not": [
+    "They are ORCHESTRATION surfaces (task graph, change record, board), NOT model routers: creating them routes no model and selects no arm.",
+    "Which model serves which role is fixed by the lane binding (the governed profile for the in-Hermes PLAN plane; scripts/hgk-lane-dispatch.py --require-arm --force-rank for the CODEX CLI lanes), independently of these surfaces.",
+    "GSTACK has no separate implementation in this repository; it is reported as a named-method / role-map readback, never as an enabled component."
+  ],
+  "dispatch_note": "Cards are recorded graph evidence. The arms this round actually consumes are proven by the CODEX CLI dispatch receipts (required_arm == served_arm) and by the governed profile's own session rows, not by these card ids.",
+  "claim_ceiling": "A card id is not a run. This artifact records the graph and its builders; it asserts nothing about the model that served any turn."
+}

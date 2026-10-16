@@ -1,0 +1,645 @@
+{
+  "schema": "FAR-REMEDIATION-AND-CLOSURE-20261016/PACKET-MANIFEST/1",
+  "round": "FAR-REMEDIATION-AND-CLOSURE-20261016",
+  "at_utc": "2026-10-16T05:17:26.954735+00:00",
+  "collection_rule": "every file in the round directory by suffix, plus the evidence/, lanes/, candidate/ and openspec/ sub-trees, plus the handover checkpoint; no hand-maintained list",
+  "section_counts": {
+    "round_documents": 51,
+    "evidence": 7,
+    "implementation_files": 15,
+    "writer_output": 1,
+    "lane_files": 47,
+    "openspec_and_governance": 6
+  },
+  "publish_claim": "the DELIVERED set is every file under EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/. Bytes are stored verbatim (-text). An external acceptor can recompute each sha256 below from the delivered blob.",
+  "files": [
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/.gitattributes",
+      "bytes": 349,
+      "sha256": "5680ae1059ee850d6725a035ad05bede7f2f298dbbe923f8f4b0c6a9d709b443"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/evidence/CHECKER_V3B_REFUSAL_IS_EVIDENCE.md",
+      "bytes": 3613,
+      "sha256": "bcc47e4bce749480ac5f6ca2866edf906953d083299e4ef4ba74a1160cadee58"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/evidence/EVIDENCE_E11_PRECONDITION.md",
+      "bytes": 62132,
+      "sha256": "b3faa22a7e7411cad53b5d373df1e220d51f0d06e751be7bc622e328c9a837e3"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/evidence/EVIDENCE_MECHANISMS_AUDIT.md",
+      "bytes": 33923,
+      "sha256": "7c7b9504775595531c55688c5ea39878d06b108170c3a3b5426bec22bf38ffff"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/evidence/EVIDENCE_PROMOTION_SCOPE.md",
+      "bytes": 4963,
+      "sha256": "0095c54ca8db9d1451dfb05debb8971cd2c8819c7292b7c0806342c3d0c16459"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/evidence/EVIDENCE_PROMOTION_SCOPE.summary.json",
+      "bytes": 11108,
+      "sha256": "cbfc80e2bd8a2bce7f36d3244ebddaafee71b40790b149c1d9de21193d80dba4"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/evidence/WHOLE_TREE_POST.txt",
+      "bytes": 1246,
+      "sha256": "a989447bd90ad0b09c7458dafdc6cc3b8cecce5da7c29794d77b678d8ab893e3"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/evidence/WHOLE_TREE_PRE.txt",
+      "bytes": 1373,
+      "sha256": "7963c03b0725049c5dba964278f9d59703a6db485e62fd52a1d5d6946cbdefd3"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/implementation/config/after/config/lane-routing-registry.yaml",
+      "bytes": 42948,
+      "sha256": "38f0436b9bde0599a1c3d5b8b928950450f570548380a90079ca06ff0aba38d2"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/implementation/config/after/config/model-lane-assignment.json",
+      "bytes": 47218,
+      "sha256": "e7be2dea36874f169e0cddc61ecb77102402218a2e05136878a097462e7664df"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/implementation/config/before/config/lane-routing-registry.yaml",
+      "bytes": 39125,
+      "sha256": "a0d811c48f6063b06af0688a16dd644bc1537651c75a8341795110253362c0b2"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/implementation/config/before/config/model-lane-assignment.json",
+      "bytes": 44021,
+      "sha256": "d41f8f8bff41d4338a4b85dab7a60bd2c9c23b2f5f39c8c008e89bf82587bd36"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/implementation/product/after/scripts/hgk-governed-runtime-controller.py",
+      "bytes": 12289,
+      "sha256": "5b744de7c4e30240ae92421c2e7220efa5dfca02d88d85f2264bc921ad849412"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/implementation/product/after/scripts/runtime_role_binding_assert.py",
+      "bytes": 16665,
+      "sha256": "6fa7ed6b6ea983e154a6a2a0b70a250baa6bbc65742a2a82425ce9a2f5fcacd2"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/implementation/product/after/tests/test_governed_runtime_controller.py",
+      "bytes": 15687,
+      "sha256": "fdf1dbc251eee5e78d9c5db91f2a0ebf18c30c2daa43a66f62b3cde5bf26d521"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/implementation/product/after/tests/test_lane_effort_enforcement.py",
+      "bytes": 5161,
+      "sha256": "18742bf07b4055ae44733829d9817787a12d3c9140536689c574223e5356e333"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/implementation/product/before/scripts/hgk-governed-runtime-controller.py",
+      "bytes": 10949,
+      "sha256": "67e79c52e6dd5d1d0d1d44e5dc625afe955efc1bef2aa40028e98c1f139bda90"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/implementation/product/before/scripts/runtime_role_binding_assert.py",
+      "bytes": 12845,
+      "sha256": "63d004ade7ff65e16589e76572db33880b459141461beead764ea2f4a3015031"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/implementation/product/before/tests/test_governed_runtime_controller.py",
+      "bytes": 12945,
+      "sha256": "db0e37ae86fc23a8674e6b788ef3665cc2953c65c0ee4a880c4979c6ef0e0467"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/implementation/writer_output/scripts/hgk-lane-dispatch.py",
+      "bytes": 141826,
+      "sha256": "e53776af9094958527938dd12140eba159a454489147ab0e7a75742346b4de72"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/IMPLEMENTATION_DIFFS.json",
+      "bytes": 128071,
+      "sha256": "b888fc089f3c94952c1f9d805657904b379e578ebcc3c251ca7346607b421bb7"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/EXECUTE__R5/invocation.json",
+      "bytes": 6769,
+      "sha256": "f4225f1525dcc6ac0953918ea11c6b947083f086dadbb2f34369dfebfed23c0d"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/EXECUTE__R5/TERMINATION.json",
+      "bytes": 3703,
+      "sha256": "10e575c5b81078a30e8b9329ded276ea247f62db28dee5db52a7eaf0f6237f64"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/EXECUTE__R5/work/candidate_tree_at_termination.txt",
+      "bytes": 1313,
+      "sha256": "1f4522919dab715451da598a110fcda3c1c38f0501208db43c40c44537c3bb00"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/EXECUTE__R5b/invocation.json",
+      "bytes": 7591,
+      "sha256": "6c6ebb928aa4194b4b41837394dcf6a06d3eac6df9afb62a0fe5e6adef09f5ca"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/EXECUTE__R5b/TERMINATION.json",
+      "bytes": 3201,
+      "sha256": "524a00535a762b35029ee889e4bd58e86bb19f83a03d313732ac6c562fe1baad"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/EXECUTE__R5b/work/candidate_tree_at_termination.txt",
+      "bytes": 223,
+      "sha256": "f2251c78b10f99ffb36f1afe90c1ad1dfa87ea1b7d71ee5939f7e93349a900d0"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V3b/dispatch.json",
+      "bytes": 6725,
+      "sha256": "6f3506d7f11f5caa00d78581d08eb911a68ea07d993719faa331513f476b3c37"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V3b/dispatch.json.attempts.ndjson",
+      "bytes": 2500,
+      "sha256": "f4c4b33d0e4b2ce326c0223c0e5bcf9396ec5b440d355587dedba5b15b32c659"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V3b/exit.json",
+      "bytes": 54,
+      "sha256": "ea6557f4f1395095f6544440d1dcb919ec40f2098b8d435ced549e6d6e2a7f00"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V3b/invocation.json",
+      "bytes": 8274,
+      "sha256": "ab53481f584e1304c67c2597da96a2cff75617a2f103d2c49753d4a67689c9f7"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V3b/measurements/assert_binding.py",
+      "bytes": 1720,
+      "sha256": "19ad20790f7b59a1b66374711c05956de3a7382d4a5d4d3e1cfe0e0043a1feb3"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V3b/measurements/binding_gate.json",
+      "bytes": 5954,
+      "sha256": "17d53c1e16e7feea2d38f63944510004fc04171e0c39ff0f28a112bbbbde095e"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V3b/measurements/digest_check.json",
+      "bytes": 24323,
+      "sha256": "683490d4a4433eac00440de4b1dee11474b90af68f68ba736d7b253d17778b1a"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V3b/measurements/inspect_subject.py",
+      "bytes": 2352,
+      "sha256": "0733f9521c2b2a54d65962a6488b59cdbfa3e7dbe60475b9d307c53b66ea236e"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V3b/raw/attempt-6352-1792126271-1-stderr.txt",
+      "bytes": 220,
+      "sha256": "b29ab5a8c7660cd90dea9c04c4f79a1a3422aecb5084039796c4dacc7ecff194"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V3b/raw/attempt-6352-1792126271-1-stdout.txt",
+      "bytes": 130140,
+      "sha256": "50a573914286b6926421e10324f2ac2ceca9816753893c361adff091fe1e8d24"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V3b/stderr.txt",
+      "bytes": 668,
+      "sha256": "eda398778ce094db59e563ffeea6987ef831564ae44aa7e81a1e264126800547"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V3b/stdout.txt",
+      "bytes": 6727,
+      "sha256": "f44ab9536159e92885860869eb89978358676481c2c36b7e0bffcf52e0baa789"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V3b/work/CHECKER_VERDICT.json",
+      "bytes": 4929,
+      "sha256": "3b1a7944a5cb2f55826f38a12f87121cff090d54731f1a7ba25e12d2775397b8"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V3c/dispatch.json",
+      "bytes": 6727,
+      "sha256": "6e0a357297d633ec44af3cdf84590d697463f13697cf5b16bf5be7edc0a951e1"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V3c/dispatch.json.attempts.ndjson",
+      "bytes": 2503,
+      "sha256": "e54ede39322650648864721424ac97c07df82705044ec8d3635288448923191f"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V3c/exit.json",
+      "bytes": 54,
+      "sha256": "70d38a3804435fe7b38f0bfd63cdcd1083858a2752bb48463d92aa29c684a8bc"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V3c/invocation.json",
+      "bytes": 9773,
+      "sha256": "55d800ed5ce3af8cefd041c9de7e0e3259f8acd1f67ecfb5f2051352fc638381"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V3c/measurements/challenge_details.py",
+      "bytes": 5327,
+      "sha256": "c48517014f8e67bfd16ea8b542beae0b123d85cf795eac4d479e5d88b7eebe83"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V3c/measurements/declarations_after.txt",
+      "bytes": 2484,
+      "sha256": "11faaff4bc6ed378973e07f255a803d709f8eaa51c92695a5cd0932a7f8d25cf"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V3c/measurements/declarations_before.txt",
+      "bytes": 2615,
+      "sha256": "5c7e0d6d014294c222e38207b5b0811d7fa9fad19a17b2be38c80cf8b8a729f1"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V3c/measurements/derived.json",
+      "bytes": 63787,
+      "sha256": "94c371249ab0742cc47edeeefca7c1868c48c4d8fefb7b910e18d48765f933bd"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V3c/measurements/details.json",
+      "bytes": 39500,
+      "sha256": "4f6db7dfa3b712a517fb5b5be0fe4db5e02eb2487c8ef53d38cb3400ec530b31"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V3c/measurements/final_checks.json",
+      "bytes": 22939,
+      "sha256": "eca9e2a9632923d58de7deeaa06f6d40dd6c8ea9cb272f6ef5f708a03691c963"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V3c/measurements/final_checks.py",
+      "bytes": 3007,
+      "sha256": "a1e770f7e0e1022ae8dcfeb42dc29ebf2c765fd671082bbd529f755d5001c0c8"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V3c/measurements/lane_guard_after.txt",
+      "bytes": 1125,
+      "sha256": "5078193ced6a9f279e27fda169ec777ddef146a86b1d63516b6ff6bc11040b46"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V3c/measurements/recheck_suites.py",
+      "bytes": 1516,
+      "sha256": "031f167562ac47fdadc0979ef9b50c45e75ab30eafdd2fddc811028684bcc487"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V3c/measurements/SC1_incomplete.txt",
+      "bytes": 3951,
+      "sha256": "0b3b2a6d34bdd1219616985148b52c4f7352839f0ff4d0c45828d078b8b48f7f"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V3c/measurements/shape_after.txt",
+      "bytes": 231,
+      "sha256": "cfb7a2f836666a627941f0dfd75308ce41d9841ec6b56c8cb4f8b8944a5215bf"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V3c/measurements/shape_before.txt",
+      "bytes": 1122,
+      "sha256": "a2ba440915399a04b0439f280e7fadb00a1986d1dc629f5a266f4e9674c23aae"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V3c/measurements/validate_verdict.py",
+      "bytes": 1423,
+      "sha256": "6391850f49f414ee2b76afc3009655e4d1837fb38315b82ca9dcd9d475900aef"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V3c/measurements/verify_driver.py",
+      "bytes": 6790,
+      "sha256": "c9adfde67f6a4be53ff32f91850bc134a158580f309155f0c3086976d9e76666"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V3c/measurements/whole_after.txt",
+      "bytes": 192658,
+      "sha256": "b0b4d0adcd291570bb346c3d3ff680c9de8a4138e2c639842d3ee41eb0e9c5fa"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V3c/measurements/whole_before.txt",
+      "bytes": 255932,
+      "sha256": "4f630cfaf4d6bf8e34d8159c50839dd82948418b194cdba8690b7bdd7e6fcdc6"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V3c/measurements/whole_with_path.json",
+      "bytes": 16613,
+      "sha256": "0cf9910c0f9f19137a51e374e688960c229e2eae7b7138d2693033e40c4a2b4c"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V3c/measurements/whole_with_path_after.txt",
+      "bytes": 197666,
+      "sha256": "2ca75b70f4a23ab9ba59018cfadc3133d183dc7387c27ba405c7ec4b369be138"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V3c/measurements/whole_with_path_before.txt",
+      "bytes": 198168,
+      "sha256": "930df0868850b2c88e6b29297bfbbbb87a3956c0fe1d74df5b8b7d96079942a6"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V3c/raw/attempt-18648-1792126658-1-stderr.txt",
+      "bytes": 220,
+      "sha256": "b7d8e4a4152562514525fa396aef2c45ee4685c49b75f7551beaf87a402501c8"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V3c/raw/attempt-18648-1792126658-1-stdout.txt",
+      "bytes": 498825,
+      "sha256": "01ef510d47eb4015b1c98331d8f8a78357d2768ec23ffd35ce9539d2f6bcf6aa"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V3c/stderr.txt",
+      "bytes": 668,
+      "sha256": "eda398778ce094db59e563ffeea6987ef831564ae44aa7e81a1e264126800547"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V3c/stdout.txt",
+      "bytes": 6729,
+      "sha256": "6fb937699fbb5d149350abefa085928b6d812df3033ecba41d9323e74ae3eb49"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V3c/work/CHECKER_VERDICT.json",
+      "bytes": 10536,
+      "sha256": "134a1951427549a4edfc53155e459f5fadf11b2eb4bb4c69ea3fbff86e71557e"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/openspec/proposal.md",
+      "bytes": 2435,
+      "sha256": "381e1f0f5ddb8624f5152289d556e877bf05bd5dedcc5bde5414cd631baf1a2f"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/openspec/specs/lane-governance-gates/spec.md",
+      "bytes": 3339,
+      "sha256": "eda06dc0952d731237b7b1cf3648e89e488adfc8ce3b3ece3e2d24e55eea6c57"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/openspec/tasks.md",
+      "bytes": 2731,
+      "sha256": "fbb15385c56dbbef947da7dc3b223082fd8d3bfe41b442dbb618a43d9897de4b"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/admission.json",
+      "bytes": 3563,
+      "sha256": "ee07cc8f8a98f78e54dbdebf0d92f4a12e4820c9092e890c350569fe2962e0e9"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/admit_round.py",
+      "bytes": 8527,
+      "sha256": "52c8d943eeee87c1a79aba1e559762287348719da65c9a74bdb0bda543bb5b56"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/annotate_selfcheck.py",
+      "bytes": 8619,
+      "sha256": "d6d6867acb804882128204177ea5bc0dd5325414b29ad37ad3c12da9e8e90fbe"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/apply_R1_R3.py",
+      "bytes": 22490,
+      "sha256": "44c312494448b201fe3090a8692b1cba6e4235b4df8d9bcaf823fd06b8e11f3c"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/apply_R1_R3_fix1.py",
+      "bytes": 6367,
+      "sha256": "46193be9a367041a903a94587eeccf7ce0772862c0e3b5b1a797332e99c58a87"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/apply_R2_promote.py",
+      "bytes": 6181,
+      "sha256": "ca4d1927d0705c28aea7f02c19041b4a5261dbdd3f5f339cd59e21055869d9c8"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/build_inventory.py",
+      "bytes": 8014,
+      "sha256": "ab1449a05ff80a6b5997a8c0bb2d760177c0b560948ab564bc82fa4af67db9f9"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/BUILD_R5_SPEC.md",
+      "bytes": 4354,
+      "sha256": "423fd70ac4e05f4c94bf3c2feec3d84a997e087bada847fdc1182844facf1068"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/BUILD_R5B_SPEC.md",
+      "bytes": 5154,
+      "sha256": "2fc6d47eca171cac4dfe562ab74d9fefc9687644f64020d08a8b52febecd702b"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/check_declaration_agreement.py",
+      "bytes": 4247,
+      "sha256": "9fdef1d88df4745caa9c146d31a980649bb3e1021594b4c64d9ef59469dc3c24"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/CHECKER_BRIEF.md",
+      "bytes": 6421,
+      "sha256": "44360ecc2810fe0061888b587b03b36d44ed9ff1465d833589e83ac273bcdcfe"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/digest_subject.py",
+      "bytes": 1852,
+      "sha256": "0f7f7e228d7abed2373e78e243af372fd9837fb93d44d5c5689e462cbdcc1838"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/extract_verdicts.py",
+      "bytes": 2787,
+      "sha256": "a71d7a7747ad9d85971fc5e11faf29e1da496f8eeaf85fab320e0e251059cfe3"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/FAR_RULING.md",
+      "bytes": 12330,
+      "sha256": "3c312018666d3b5423a8ee6296438c30d1f7e1b39cff421bdae3718e970280e6"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/FINDINGS_R7_CROSS_FIELD_DECLARATION.md",
+      "bytes": 4135,
+      "sha256": "d05f4d7323be151f31eab977d122a421832eb754956273bee4b2cacf06947ea2"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/FINDINGS_SELF_CORRECTIONS.md",
+      "bytes": 5781,
+      "sha256": "ad97f6a573f161551b19f7b5514cdcd0e5239f9852cc750f48198b319d05d7b2"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/FINDINGS_V3C_INDEPENDENT_VERDICT.md",
+      "bytes": 7721,
+      "sha256": "633d6eea6f8e5a3fd8bb040bcf403066e9aea9db2e88e6f8960b43f387dbb471"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/freeze_candidate.py",
+      "bytes": 2318,
+      "sha256": "1c8c7b150635658e24e72d18dca1663e4a1baecc44a3716e39e57da381812797"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/freeze_subject_round2.py",
+      "bytes": 7394,
+      "sha256": "9d56ed6b534870764c69759f6a4cefc92dc75e50854fd0a46a552ec4757bd5b6"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/FROZEN_MANIFEST.json",
+      "bytes": 20769,
+      "sha256": "69baacb9033253e404dd608855e6b31f5a1be75f8725fb8c1f9328e2ce56140a"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/GATE_REPORT.json",
+      "bytes": 1349,
+      "sha256": "28b4b3a20550bba99a4a08fd16f7e0c4f07f33075bb98593f4b4f1de90c6c459"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/gate_round2.py",
+      "bytes": 9781,
+      "sha256": "f93c226288cdd556f0afc24291720cf25a299faa5dbacb78e3938abc6d64878c"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/GSTACK_READBACK.json",
+      "bytes": 3209,
+      "sha256": "651ce769aafd723a332d55fa58a978451dea4a418e6084d4d3d761524f899216"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/KANBAN_SWARM_GRAPH.json",
+      "bytes": 2515,
+      "sha256": "e207a168e574d689ec7e46bb55f4209c230b7167460f7ced51cf716b13a3ba7e"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/make_closure.py",
+      "bytes": 22301,
+      "sha256": "07e26295bb73c6bdce02b1cded71efff234965ff580ed5fd2a73f01dd5ed045b"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/make_closure_round2.py",
+      "bytes": 28709,
+      "sha256": "b47b8c43250044b4d8fe5ca7394e96777664d293665da7cc43cc005e0a704f2a"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/make_pr.py",
+      "bytes": 5835,
+      "sha256": "450188da6edec17df7b265b40567403cb7c86403d1c29d2c67f06c50fda9e742"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/make_pr_round2.py",
+      "bytes": 6120,
+      "sha256": "794c2f94144405210cda36cce9db3d29b435a13d2a0633c751c2d4eab08666fd"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/packet_gate.py",
+      "bytes": 6432,
+      "sha256": "3c57cfbb92a07e515d4e31f8ea1609824b838c90101aa93391b60d28b33c696c"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/PLAN.md",
+      "bytes": 7191,
+      "sha256": "cf16aa1c8f6864cf57d5fc2514e44bd6512bd55328824b485a7139b061555e42"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/PLAN_LANE_AVAILABILITY.json",
+      "bytes": 9706,
+      "sha256": "873d5e640aa9bb6bca5c5cb136ee214d9b27b35348e1bbeeb33d91a1f778a532"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/probe_lane_guard_exit4.py",
+      "bytes": 2070,
+      "sha256": "a978c45d25cad5d019ed5b5b75f9de0ac05b8c491aed9feacd0e300971ae7179"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/probe_round.py",
+      "bytes": 10062,
+      "sha256": "c5f67ca9d414ab265cd6458306a2cb25e0c1b9508d57ca00b5d2c3334e06765f"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/publish_packet.py",
+      "bytes": 8455,
+      "sha256": "7b9471c470c730b8470a22f58c33d92f1022037abdee8b0e2dc879e92f250f23"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/publish_packet_round2.py",
+      "bytes": 9898,
+      "sha256": "fd544a87e763d8a51dca837e5282479e698a6facaf07e7599036b9dcbcdccef2"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/push_round2.py",
+      "bytes": 5135,
+      "sha256": "3402b4a67a10db98c37c78720b50c0b43458a3c22954268b0141a79c95ccfdd9"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/R1_R3_APPLY_RECEIPT.attempt1_ROLLED_BACK.json",
+      "bytes": 4274,
+      "sha256": "59eb6fe97728cbac0c24e3b764d93627b248b8e12214a326ce98f3ba07d47de7"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/R1_R3_APPLY_RECEIPT.json",
+      "bytes": 3345,
+      "sha256": "ff23363d397808b523895239200ba36d64c5dffdfa771fa5225323c3717605f8"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/R1_R3_COMPLETION_RECEIPT.json",
+      "bytes": 1115,
+      "sha256": "08e8930cd993487466e447dd3c828473cb54898302f3b0c766bf0770684bd339"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/R2_PROMOTION_RECEIPT.json",
+      "bytes": 51238,
+      "sha256": "45813946e010ac4e553bad4ac46feca66672f6bba21536d376c93fac9beded23"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/README.md",
+      "bytes": 11379,
+      "sha256": "e2d2ac3c0e3e3505723f122b5e8b96d9b745b5a0af74a2273ec5fb00b0a942da"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/remedy_spine_workorders.py",
+      "bytes": 5273,
+      "sha256": "a00d67e9ffefc885a251454d24d37ca0b4c5d4a800020eeb51fa6bcdea7e9ea5"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/RESIDUAL_INVENTORY.json",
+      "bytes": 17323,
+      "sha256": "0ae6984dc1bd277cc08df4b8db815d345fec20779d9ad7cf5569aab82eddc198"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/RETROSPECTIVE.md",
+      "bytes": 4045,
+      "sha256": "f0131cc0a7d64bb0df1a6619d4dc5de223a200cecd57c87ed87c8dae25b5f9b0"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/role_mandate.json",
+      "bytes": 3672,
+      "sha256": "3a2e26da8e86344e9dbea6e9c07cf6fa26925552a0950799da5474d6c5036fbe"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/ROUND_CLOSURE.json",
+      "bytes": 64216,
+      "sha256": "51cd51b0a0568bd23279c9a09a4cfa09324a2b900ba48f73cbc8e74609cf485c"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/run_lane.py",
+      "bytes": 7183,
+      "sha256": "0edaf4aec61b35a1fc3cd621840f542cebeffdfed7fc1ff704bfceb01d47c083"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/SELF_EVOLUTION.md",
+      "bytes": 6471,
+      "sha256": "450aed0b9a709d072572fa4c2a2a4fcdb321838d09c01896988e320ce0e85ef7"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/SPINE_STATE_READBACK.json",
+      "bytes": 30179,
+      "sha256": "ac66102a50505949cba99f618fe813a944146be385b47376b1afc281547746ef"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/SUBJECT_TREE_DIGEST.json",
+      "bytes": 1113,
+      "sha256": "3247a9707cfb7dde65eacc502d76b62bb5ce5612b2a84729f529b543c1063d4a"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/verify_remote.py",
+      "bytes": 4254,
+      "sha256": "2f82e9ef93c14a1c6f383657bec0ee8db158492e5c1b55fe492493a0406cee2c"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/under_governance/FROZEN_MANIFEST.json",
+      "bytes": 20769,
+      "sha256": "69baacb9033253e404dd608855e6b31f5a1be75f8725fb8c1f9328e2ce56140a"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/under_governance/GATE_REPORT.json",
+      "bytes": 1349,
+      "sha256": "28b4b3a20550bba99a4a08fd16f7e0c4f07f33075bb98593f4b4f1de90c6c459"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/under_governance/ROUND_CLOSURE.json",
+      "bytes": 64216,
+      "sha256": "51cd51b0a0568bd23279c9a09a4cfa09324a2b900ba48f73cbc8e74609cf485c"
+    }
+  ],
+  "file_count": 125,
+  "canonical_acceptance": "NOT_PERFORMED",
+  "claim_ceiling": "CANDIDATE_ONLY. This packet is evidence for an external acceptance officer; it resolves nothing, and any checker verdict inside it is advisory."
+}

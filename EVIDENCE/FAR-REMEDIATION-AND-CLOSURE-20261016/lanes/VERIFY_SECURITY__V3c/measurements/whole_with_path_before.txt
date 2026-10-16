@@ -1,0 +1,1340 @@
+test_legal_fail_resolution_is_recorded_too (tests.test_acceptance_resolution.Class1LegalResolution.test_legal_fail_resolution_is_recorded_too) ... ok
+test_legal_pass_resolution (tests.test_acceptance_resolution.Class1LegalResolution.test_legal_pass_resolution) ... ok
+test_fail_is_not_pass (tests.test_acceptance_resolution.Class2NonPassSemantics.test_fail_is_not_pass) ... ok
+test_transition_table_has_no_verdict_alias (tests.test_acceptance_resolution.Class2NonPassSemantics.test_transition_table_has_no_verdict_alias) ... ok
+test_illegal_verdict_refused (tests.test_acceptance_resolution.Class3EvidenceBindingFailClosed.test_illegal_verdict_refused) ... ok
+test_missing_evidence_ref_refused (tests.test_acceptance_resolution.Class3EvidenceBindingFailClosed.test_missing_evidence_ref_refused) ... ok
+test_missing_requirement_id_refused (tests.test_acceptance_resolution.Class3EvidenceBindingFailClosed.test_missing_requirement_id_refused) ... ok
+test_unknown_acceptance_refused (tests.test_acceptance_resolution.Class3EvidenceBindingFailClosed.test_unknown_acceptance_refused) ... ok
+test_unregistered_evidence_refused (tests.test_acceptance_resolution.Class3EvidenceBindingFailClosed.test_unregistered_evidence_refused) ... ok
+test_wrong_subject_requirement_refused (tests.test_acceptance_resolution.Class3EvidenceBindingFailClosed.test_wrong_subject_requirement_refused) ... ok
+test_replay_returns_original_event (tests.test_acceptance_resolution.Class4ReplayIdempotent.test_replay_returns_original_event) ... ok
+test_key_reused_for_another_acceptance_fails_closed (tests.test_acceptance_resolution.Class4bIdempotencyNamespace.test_key_reused_for_another_acceptance_fails_closed) ... ok
+test_key_spent_on_a_requirement_event_is_not_inherited (tests.test_acceptance_resolution.Class4cIdempotencyEntityTypeCollision.test_key_spent_on_a_requirement_event_is_not_inherited)
+A GENUINE entity_id collision: a requirement literally named like our acceptance_id emits a ... ok
+test_replay_cannot_bypass_the_requirement_check (tests.test_acceptance_resolution.Class4cIdempotencyEntityTypeCollision.test_replay_cannot_bypass_the_requirement_check) ... ok
+test_replay_still_requires_registered_evidence (tests.test_acceptance_resolution.Class4cIdempotencyEntityTypeCollision.test_replay_still_requires_registered_evidence) ... ok
+test_replay_still_works_for_its_own_acceptance (tests.test_acceptance_resolution.Class4cIdempotencyEntityTypeCollision.test_replay_still_works_for_its_own_acceptance) ... ok
+test_unleased_replay_is_refused (tests.test_acceptance_resolution.Class4cIdempotencyEntityTypeCollision.test_unleased_replay_is_refused)
+The replay path is held to the same discipline as the first write: no lease, no replay. ... ok
+test_conflicting_re_resolution_rejected (tests.test_acceptance_resolution.Class5StaleConflictingRejected.test_conflicting_re_resolution_rejected) ... ok
+test_lease_is_required (tests.test_acceptance_resolution.Class5StaleConflictingRejected.test_lease_is_required) ... ok
+test_stale_expected_version_rejected (tests.test_acceptance_resolution.Class5StaleConflictingRejected.test_stale_expected_version_rejected) ... ok
+test_atomicity_under_illegal_transition (tests.test_acceptance_resolution.Class6TransactionAtomicity.test_atomicity_under_illegal_transition) ... ok
+test_failure_AFTER_the_update_rolls_the_row_back (tests.test_acceptance_resolution.Class6TransactionAtomicity.test_failure_AFTER_the_update_rolls_the_row_back)
+The real atomicity test: make the canonical-event INSERT fail AFTER the UPDATE has run, ... ok
+test_foreign_idempotency_key_is_refused_not_inherited (tests.test_acceptance_resolution.Class6TransactionAtomicity.test_foreign_idempotency_key_is_refused_not_inherited)
+Historical defect: a key spent on ANOTHER subject silently returned that subject's event and ... ok
+test_full_typed_closure_chain (tests.test_acceptance_resolution.Class7ScratchProjectTypedClosure.test_full_typed_closure_chain) ... ok
+tests.test_acceptance_runner (unittest.loader._FailedTest.tests.test_acceptance_runner) ... ERROR
+test_acyclic_dag_and_join (tests.test_agents_providers.AgentTests.test_acyclic_dag_and_join) ... ok
+test_checker_write_scope_rejected (tests.test_agents_providers.AgentTests.test_checker_write_scope_rejected) ... ok
+test_cycle_rejected (tests.test_agents_providers.AgentTests.test_cycle_rejected) ... ok
+test_join_propagates_nack (tests.test_agents_providers.AgentTests.test_join_propagates_nack) ... ok
+test_shared_writer_root_rejected (tests.test_agents_providers.AgentTests.test_shared_writer_root_rejected) ... ok
+test_lifecycle_requires_evidence (tests.test_agents_providers.ProviderTests.test_lifecycle_requires_evidence) ... ok
+test_lifecycle_skip_rejected (tests.test_agents_providers.ProviderTests.test_lifecycle_skip_rejected) ... ok
+test_xor_database_constraint (tests.test_agents_providers.ProviderTests.test_xor_database_constraint) ... ok
+test_instruction_precedence_and_stale_override (tests.test_assurance.AssuranceTests.test_instruction_precedence_and_stale_override) ... ok
+test_mcp_revision_negotiation (tests.test_assurance.AssuranceTests.test_mcp_revision_negotiation) ... ok
+test_permission_mode_and_unicode_space_path (tests.test_assurance.AssuranceTests.test_permission_mode_and_unicode_space_path) ... ok
+test_receiver_packet_capability_and_nack (tests.test_assurance.AssuranceTests.test_receiver_packet_capability_and_nack) ... ok
+test_regression_release_drift_and_archive_failure (tests.test_assurance.AssuranceTests.test_regression_release_drift_and_archive_failure) ... ok
+test_rollback_prompt_veto_provider_and_token (tests.test_assurance.AssuranceTests.test_rollback_prompt_veto_provider_and_token) ... ok
+test_sbom_and_migration_reconciliation (tests.test_assurance.AssuranceTests.test_sbom_and_migration_reconciliation) ... ok
+test_skill_collision_implicit_and_clean_removal (tests.test_assurance.AssuranceTests.test_skill_collision_implicit_and_clean_removal) ... ok
+test_stale_base_and_deterministic_oracle (tests.test_assurance.AssuranceTests.test_stale_base_and_deterministic_oracle) ... ok
+test_telemetry_privacy_and_budget (tests.test_assurance.AssuranceTests.test_telemetry_privacy_and_budget) ... ok
+test_evolution_status_cli (tests.test_autonomy_evolution.CliEntrypointTests.test_evolution_status_cli) ... ok
+test_project_start_cli (tests.test_autonomy_evolution.CliEntrypointTests.test_project_start_cli) ... FAIL
+test_authority_mutation_blocked (tests.test_autonomy_evolution.EvolutionTests.test_authority_mutation_blocked) ... ok
+test_candidate_full_pipeline (tests.test_autonomy_evolution.EvolutionTests.test_candidate_full_pipeline) ... ok
+test_constitutional_never_auto_promotes (tests.test_autonomy_evolution.EvolutionTests.test_constitutional_never_auto_promotes) ... ok
+test_evaluator_tamper_blocked (tests.test_autonomy_evolution.EvolutionTests.test_evaluator_tamper_blocked) ... ok
+test_failed_candidate_rollback_no_contamination (tests.test_autonomy_evolution.EvolutionTests.test_failed_candidate_rollback_no_contamination) ... ok
+test_fit_gap_reuse_first (tests.test_autonomy_evolution.EvolutionTests.test_fit_gap_reuse_first) ... ok
+test_high_risk_requires_human_gate (tests.test_autonomy_evolution.EvolutionTests.test_high_risk_requires_human_gate) ... ok
+test_maker_cannot_be_checker (tests.test_autonomy_evolution.EvolutionTests.test_maker_cannot_be_checker) ... ok
+test_recurrence_triggers_candidate (tests.test_autonomy_evolution.EvolutionTests.test_recurrence_triggers_candidate) ... ok
+test_single_failure_not_learned (tests.test_autonomy_evolution.EvolutionTests.test_single_failure_not_learned) ... ok
+test_checkpoint_resume_idempotent (tests.test_autonomy_evolution.LifecycleIntegrationTests.test_checkpoint_resume_idempotent) ... ok
+test_intake_hashes_sources (tests.test_autonomy_evolution.LifecycleIntegrationTests.test_intake_hashes_sources) ... ok
+test_workorders_admitted_via_spine (tests.test_autonomy_evolution.LifecycleIntegrationTests.test_workorders_admitted_via_spine) ... ok
+test_full_forward_path (tests.test_autonomy_evolution.LifecycleStateMachineTests.test_full_forward_path) ... ok
+test_illegal_transition_rejected (tests.test_autonomy_evolution.LifecycleStateMachineTests.test_illegal_transition_rejected) ... ok
+test_repair_loop (tests.test_autonomy_evolution.LifecycleStateMachineTests.test_repair_loop) ... ok
+test_states_defined (tests.test_autonomy_evolution.LifecycleStateMachineTests.test_states_defined) ... ok
+test_canonical_layout_uses_one_path_binding (tests.test_bootstrap.BootstrapWorkspaceBindingTests.test_canonical_layout_uses_one_path_binding) ... ok
+test_canonical_mode_is_admitted_by_shared_spine_schema (tests.test_bootstrap.BootstrapWorkspaceBindingTests.test_canonical_mode_is_admitted_by_shared_spine_schema) ... ok
+test_companion_layout_preserves_source_and_maker_roles (tests.test_bootstrap.BootstrapWorkspaceBindingTests.test_companion_layout_preserves_source_and_maker_roles) ... ok
+tests.test_c2_case_run (unittest.loader._FailedTest.tests.test_c2_case_run) ... ERROR
+test_all_materialized_controls_have_effective_contracts (tests.test_controls_observability_repo.ControlValidationTests.test_all_materialized_controls_have_effective_contracts) ... ERROR
+test_skill_without_stop_contract_is_rejected (tests.test_controls_observability_repo.ControlValidationTests.test_skill_without_stop_contract_is_rejected) ... ok
+test_structured_log_and_no_progress_watchdog (tests.test_controls_observability_repo.ObservabilityTests.test_structured_log_and_no_progress_watchdog) ... ok
+test_ast_symbols_dependencies_and_diff_budget (tests.test_controls_observability_repo.RepoIntelligenceTests.test_ast_symbols_dependencies_and_diff_budget) ... ok
+test_active_deferred_contradiction_fails (tests.test_coverage_reducer.CoverageReducerTests.test_active_deferred_contradiction_fails) ... ok
+test_all_green_passes (tests.test_coverage_reducer.CoverageReducerTests.test_all_green_passes) ... ok
+test_deferred_cannot_be_blank (tests.test_coverage_reducer.CoverageReducerTests.test_deferred_cannot_be_blank) ... ok
+test_deferred_not_impersonated_as_runtime (tests.test_coverage_reducer.CoverageReducerTests.test_deferred_not_impersonated_as_runtime) ... ok
+test_forbidden_domain_status_fails_closed (tests.test_coverage_reducer.CoverageReducerTests.test_forbidden_domain_status_fails_closed) ... ok
+test_missing_field_rejected (tests.test_coverage_reducer.CoverageReducerTests.test_missing_field_rejected) ... ok
+test_openai_fallback_fails_closed (tests.test_coverage_reducer.CoverageReducerTests.test_openai_fallback_fails_closed) ... ok
+test_owner_mismatch_fails (tests.test_coverage_reducer.CoverageReducerTests.test_owner_mismatch_fails) ... ok
+test_owner_not_source_validated_fails (tests.test_coverage_reducer.CoverageReducerTests.test_owner_not_source_validated_fails) ... ok
+test_requirement_domain_mapping_incomplete_fails (tests.test_coverage_reducer.CoverageReducerTests.test_requirement_domain_mapping_incomplete_fails) ... ok
+test_route_mismatch_fails_closed (tests.test_coverage_reducer.CoverageReducerTests.test_route_mismatch_fails_closed) ... ok
+test_runtime_pass_missing_evidence_fails (tests.test_coverage_reducer.CoverageReducerTests.test_runtime_pass_missing_evidence_fails) ... ok
+test_subcapability_incomplete_fails (tests.test_coverage_reducer.CoverageReducerTests.test_subcapability_incomplete_fails) ... ok
+test_trace_binding_incomplete_fails (tests.test_coverage_reducer.CoverageReducerTests.test_trace_binding_incomplete_fails) ... ok
+test_tst_not_independent_fails_closed (tests.test_coverage_reducer.CoverageReducerTests.test_tst_not_independent_fails_closed) ... ok
+test_unsupported_disposition_fails (tests.test_coverage_reducer.CoverageReducerTests.test_unsupported_disposition_fails) ... ok
+test_cjk_goal_derives_core_tasks (tests.test_cs_a_gate_repair.D1CJKGoalPlanningTests.test_cjk_goal_derives_core_tasks)
+D1: 中文 goal 必須產出 core implementation + acceptance tasks. ... ok
+test_english_goal_regression (tests.test_cs_a_gate_repair.D1CJKGoalPlanningTests.test_english_goal_regression)
+English goals still derive the original task families. ... ok
+test_existing_req_001_collision_avoided (tests.test_cs_a_gate_repair.D2ProjectScopedRequirementTests.test_existing_req_001_collision_avoided)
+D2: pre-existing REQ-001 must not corrupt admission of a new project. ... ok
+test_requirement_id_is_project_scoped (tests.test_cs_a_gate_repair.D2ProjectScopedRequirementTests.test_requirement_id_is_project_scoped)
+D2: requirement ID must embed the full project id, not a tail fragment. ... ok
+test_start_creates_project_row (tests.test_cs_a_gate_repair.D3OwnershipFKTests.test_start_creates_project_row)
+D3: lifecycle start must create the projects row (FK precondition). ... ok
+test_delivered_allowed_when_workorders_terminal (tests.test_cs_a_gate_repair.D4PendingWorkCannotDeliverTests.test_delivered_allowed_when_workorders_terminal)
+D4: all workorders terminal -> DELIVERED legal. ... ok
+test_delivered_rejected_when_workorders_open (tests.test_cs_a_gate_repair.D4PendingWorkCannotDeliverTests.test_delivered_rejected_when_workorders_open)
+D4: DELIVERED transition must fail while required workorders are open. ... ok
+test_start_to_admit_no_spine_workaround (tests.test_cs_a_gate_repair.D5OrdinaryUserFlowTests.test_start_to_admit_no_spine_workaround)
+D5: ordinary-user CLI flow (start -> plan/admit) without direct spine API. ... FAIL
+test_denominator_cli (tests.test_cs_a_gate_repair.D6DenominatorTests.test_denominator_cli)
+CLI project denominator entrypoint exists (help surface). ... ok
+test_denominator_materializes_full_project (tests.test_cs_a_gate_repair.D6DenominatorTests.test_denominator_materializes_full_project)
+FULL_PROJECT_DENOMINATOR: requirements/taskspecs/workorders/acceptances/capabilities. ... ok
+test_requirement_to_evidence_to_rollback_slice (tests.test_e2e_vertical_slice.VerticalSliceTests.test_requirement_to_evidence_to_rollback_slice) ... ok
+test_stale_capsule_rejected (tests.test_evo004_dogfood.AtomicCandidateTests.test_stale_capsule_rejected) ... ok
+test_all_embedded_pass (tests.test_evo004_dogfood.NEG13EmbeddingTests.test_all_embedded_pass) ... ok
+test_external_only_capsules_fail (tests.test_evo004_dogfood.NEG13EmbeddingTests.test_external_only_capsules_fail) ... ok
+test_no_capsules_in_md_fails (tests.test_evo004_dogfood.NEG13EmbeddingTests.test_no_capsules_in_md_fails) ... ok
+test_all_families_present_pass (tests.test_evo004_dogfood.NEG14CorpusTests.test_all_families_present_pass) ... ok
+test_missing_required_family_fails (tests.test_evo004_dogfood.NEG14CorpusTests.test_missing_required_family_fails) ... ok
+test_tiny_fixture_not_corpus (tests.test_evo004_dogfood.NEG14CorpusTests.test_tiny_fixture_not_corpus) ... ok
+test_dropped_requires_supersession (tests.test_evo004_meta_gates.G1MonotonicTests.test_dropped_requires_supersession) ... ok
+test_inherited_set_retained (tests.test_evo004_meta_gates.G1MonotonicTests.test_inherited_set_retained) ... ok
+test_negative_fixtures_covered (tests.test_evo004_meta_gates.G1MonotonicTests.test_negative_fixtures_covered) ... ok
+test_defect_class_promotion (tests.test_evo004_meta_gates.G2MetaLearningTests.test_defect_class_promotion) ... ok
+test_invariant_registry (tests.test_evo004_meta_gates.G2MetaLearningTests.test_invariant_registry) ... ok
+test_capsule_required_fields (tests.test_evo004_meta_gates.G3EvidenceCapsuleTests.test_capsule_required_fields) ... ok
+test_reducer_predicates (tests.test_evo004_meta_gates.G3EvidenceCapsuleTests.test_reducer_predicates) ... ok
+test_duplicate_truth_fields_rejected (tests.test_evo005_evidence_graph.EvidenceGraphTests.test_duplicate_truth_fields_rejected) ... ok
+test_graph_root_digest_deterministic (tests.test_evo005_evidence_graph.EvidenceGraphTests.test_graph_root_digest_deterministic) ... ok
+test_join_queries (tests.test_evo005_evidence_graph.EvidenceGraphTests.test_join_queries) ... ok
+test_no_runner_verdict_authority (tests.test_evo005_evidence_graph.EvidenceGraphTests.test_no_runner_verdict_authority) ... ok
+test_register_artifact_digest_once (tests.test_evo005_evidence_graph.EvidenceGraphTests.test_register_artifact_digest_once) ... ok
+test_changed_digest_new_version (tests.test_evo005_graph_freeze.ArtifactIdentityTests.test_changed_digest_new_version) ... ok
+test_duplicate_path_digest_conflict_rejected (tests.test_evo005_graph_freeze.ArtifactIdentityTests.test_duplicate_path_digest_conflict_rejected) ... ok
+test_same_path_digest_same_id (tests.test_evo005_graph_freeze.ArtifactIdentityTests.test_same_path_digest_same_id) ... ok
+test_append_after_freeze_rejected (tests.test_evo005_graph_freeze.GraphLifecycleTests.test_append_after_freeze_rejected) ... ok
+test_generation_id (tests.test_evo005_graph_freeze.GraphLifecycleTests.test_generation_id) ... ok
+test_lifecycle_open_finalizing_frozen (tests.test_evo005_graph_freeze.GraphLifecycleTests.test_lifecycle_open_finalizing_frozen) ... ok
+test_one_final_root_per_generation (tests.test_evo005_graph_freeze.GraphLifecycleTests.test_one_final_root_per_generation) ... ok
+test_conflicting_provider_pin_is_refused (tests.test_execute_luna_route.ExecuteLunaRoute.test_conflicting_provider_pin_is_refused) ... ok
+test_default_remains_original_route (tests.test_execute_luna_route.ExecuteLunaRoute.test_default_remains_original_route) ... ok
+test_mixed_chain_is_refused (tests.test_execute_luna_route.ExecuteLunaRoute.test_mixed_chain_is_refused) ... ok
+test_oauth_additional_route_is_resolved (tests.test_execute_luna_route.ExecuteLunaRoute.test_oauth_additional_route_is_resolved) ... ok
+test_older_model_is_not_aliased (tests.test_execute_luna_route.ExecuteLunaRoute.test_older_model_is_not_aliased) ... ok
+test_primary_can_still_be_selected (tests.test_execute_luna_route.ExecuteLunaRoute.test_primary_can_still_be_selected) ... ok
+test_provider_qualified_oauth_route (tests.test_execute_luna_route.ExecuteLunaRoute.test_provider_qualified_oauth_route) ... ok
+test_unadmitted_oauth_writer_is_refused (tests.test_execute_luna_route.ExecuteLunaRoute.test_unadmitted_oauth_writer_is_refused) ... ok
+test_unknown_model_is_refused (tests.test_execute_luna_route.ExecuteLunaRoute.test_unknown_model_is_refused) ... ok
+test_wrong_provider_is_refused (tests.test_execute_luna_route.ExecuteLunaRoute.test_wrong_provider_is_refused) ... ok
+test_launcher_live_startopencodex_will_reach_the_relay_branch (tests.test_far_lane_fix_20261015.TestP0BLauncherActionScope.test_launcher_live_startopencodex_will_reach_the_relay_branch) ... ok
+test_launcher_splits_codex_dependent_actions (tests.test_far_lane_fix_20261015.TestP0BLauncherActionScope.test_launcher_splits_codex_dependent_actions) ... ok
+test_current_pin_verifies (tests.test_far_lane_fix_20261015.TestP0PinAssert.test_current_pin_verifies) ... FAIL
+test_digest_mismatch_is_typed_not_a_spawn (tests.test_far_lane_fix_20261015.TestP0PinAssert.test_digest_mismatch_is_typed_not_a_spawn) ... ERROR
+test_stale_absent_binary_refuses_Typed (tests.test_far_lane_fix_20261015.TestP0PinAssert.test_stale_absent_binary_refuses_Typed) ... ok
+test_timeout_preserves_partial_streams_and_stays_fail (tests.test_far_lane_fix_20261015.TestP1BTimeoutCapture.test_timeout_preserves_partial_streams_and_stays_fail) ... WARN_LANE_CREDENTIAL_POSTURE_INCONCLUSIVE: the credential-posture detector could not reach a verdict (helper-only verdict (no child env asserted): helper_resolution_reset=PASS; helper_non_interactive=UNKNOWN); continuing -- the user-scope git default (L1) remains the structural control and this gate is the second layer. Inconclusive is NOT a pass.
+WARN_LANE_CREDENTIAL_POSTURE_INCONCLUSIVE: credential posture could not be decided (helper-only verdict (no child env asserted): helper_resolution_reset=PASS; helper_non_interactive=UNKNOWN); CONTINUING (a detector fault must not become a lane outage; L1 remains the structural control; INCONCLUSIVE is NOT a pass).
+ok
+test_inactive_lane_refuses (tests.test_far_lane_fix_20261015.TestP1MandateConsumer.test_inactive_lane_refuses) ... ok
+test_missing_file_refuses (tests.test_far_lane_fix_20261015.TestP1MandateConsumer.test_missing_file_refuses) ... ok
+test_owner_order_mandate_resolves (tests.test_far_lane_fix_20261015.TestP1MandateConsumer.test_owner_order_mandate_resolves) ... FAIL
+test_verify_security_mandate_resolves (tests.test_far_lane_fix_20261015.TestP1MandateConsumer.test_verify_security_mandate_resolves) ... FAIL
+test_wrong_model_in_pool_refuses (tests.test_far_lane_fix_20261015.TestP1MandateConsumer.test_wrong_model_in_pool_refuses) ... FAIL
+test_fixture_a_end_to_end_against_real_validator (tests.test_final_md_section_u_semantics.FinalMdSectionUSemanticTests.test_fixture_a_end_to_end_against_real_validator)
+End-to-end: the real validator binary must FAIL on a PENDING-in-Section-U MD. ... ok
+test_fixture_a_stale_pending_fails (tests.test_final_md_section_u_semantics.FinalMdSectionUSemanticTests.test_fixture_a_stale_pending_fails)
+Acceptance FINAL ACCEPTED/35 vs MD PENDING/34 -> FAIL. ... ok
+test_fixture_b_stale_task_id_fails (tests.test_final_md_section_u_semantics.FinalMdSectionUSemanticTests.test_fixture_b_stale_task_id_fails)
+Acceptance task-009 vs MD task-008 -> FAIL. ... ok
+test_fixture_c_stale_obsidian_state_fails (tests.test_final_md_section_u_semantics.FinalMdSectionUSemanticTests.test_fixture_c_stale_obsidian_state_fails)
+Acceptance installed=true vs MD OPTIONAL_NOT_ACTIVE -> FAIL. ... ok
+test_fixture_d_consistent_passes (tests.test_final_md_section_u_semantics.FinalMdSectionUSemanticTests.test_fixture_d_consistent_passes)
+All consistent -> PASS (no violations). ... ok
+test_source_valid_not_applicable_is_terminal (tests.test_g0_rbwi_source_bound.RbwiSourceBoundTests.test_source_valid_not_applicable_is_terminal) ... ok
+test_source_valid_not_required_is_terminal (tests.test_g0_rbwi_source_bound.RbwiSourceBoundTests.test_source_valid_not_required_is_terminal) ... ok
+test_temp_closed_still_blocks (tests.test_g0_rbwi_source_bound.RbwiSourceBoundTests.test_temp_closed_still_blocks) ... ok
+test_sweep_classifies_auto_local (tests.test_g0_wave3_controls.G0CompletionSweepTests.test_sweep_classifies_auto_local) ... ok
+test_sweep_detects_unadmitted_required_scope (tests.test_g0_wave3_controls.G0CompletionSweepTests.test_sweep_detects_unadmitted_required_scope)
+After all workorders VERIFIED, sweep must still detect ... ok
+test_denominator_exposes_open_scope_signal (tests.test_g0_wave3_controls.G0ContinuationTests.test_denominator_exposes_open_scope_signal)
+A project with no workorders but required scope must flag ... ok
+test_required_scope_without_workorders_fails_closed (tests.test_g0_wave3_controls.G0ContinuationTests.test_required_scope_without_workorders_fails_closed)
+If required local scope > 0 but workorders == 0 the project must ... ok
+test_expand_denominator_absorbs_new_requirement (tests.test_g0_wave3_controls.G0DynamicDenominatorTests.test_expand_denominator_absorbs_new_requirement)
+admit_requirement expands Requirement->TaskSpec->WorkOrder chain. ... ok
+test_composite_cannot_pass_above_required_child (tests.test_g0_wave3_controls.G0RbwiCompositeTests.test_composite_cannot_pass_above_required_child) ... ok
+test_composite_pass_only_when_all_required_terminal (tests.test_g0_wave3_controls.G0RbwiCompositeTests.test_composite_pass_only_when_all_required_terminal) ... ok
+test_neg_maker_dotdot_escape_to_protected_denied (tests.test_governed_runtime_controller.GovernedRuntimeController.test_neg_maker_dotdot_escape_to_protected_denied)
+`outside/../protected/x.py` normalizes INTO the protected root and must be denied. ... ok
+test_neg_maker_execute_code_relative_from_parent_cwd_denied (tests.test_governed_runtime_controller.GovernedRuntimeController.test_neg_maker_execute_code_relative_from_parent_cwd_denied)
+Same for inline code: an unresolvable write from the root's parent must fail CLOSED. ... ok
+test_neg_maker_execute_code_under_protected_cwd_denied (tests.test_governed_runtime_controller.GovernedRuntimeController.test_neg_maker_execute_code_under_protected_cwd_denied)
+Inline code from a protected cwd is likewise unresolvable and must fail CLOSED. ... ok
+test_neg_maker_relative_path_under_protected_cwd_denied (tests.test_governed_runtime_controller.GovernedRuntimeController.test_neg_maker_relative_path_under_protected_cwd_denied)
+A relative target written from a protected cwd resolves INTO the protected root. ... ok
+test_neg_maker_terminal_mentioning_protected_root_denied (tests.test_governed_runtime_controller.GovernedRuntimeController.test_neg_maker_terminal_mentioning_protected_root_denied) ... ok
+test_neg_maker_terminal_relative_from_parent_cwd_denied (tests.test_governed_runtime_controller.GovernedRuntimeController.test_neg_maker_terminal_relative_from_parent_cwd_denied)
+Free text cannot be path-resolved: a relative destination reaches the root from its PARENT. ... ok
+test_neg_maker_terminal_relative_write_under_protected_cwd_denied (tests.test_governed_runtime_controller.GovernedRuntimeController.test_neg_maker_terminal_relative_write_under_protected_cwd_denied)
+A free-text shell write from a protected cwd cannot be path-resolved; it must fail CLOSED. ... ok
+test_neg_maker_write_inside_protected_denied (tests.test_governed_runtime_controller.GovernedRuntimeController.test_neg_maker_write_inside_protected_denied) ... ok
+test_neg_malformed_stdin_nonzero_and_not_bare_allow (tests.test_governed_runtime_controller.GovernedRuntimeController.test_neg_malformed_stdin_nonzero_and_not_bare_allow) ... ok
+test_pos_absent_session_id_free_text_is_answered_not_an_outage (tests.test_governed_runtime_controller.GovernedRuntimeController.test_pos_absent_session_id_free_text_is_answered_not_an_outage)
+The unresolvable free-text class is answered the same way, not turned into a refusal. ... ok
+test_pos_absent_session_id_is_answered_not_an_outage (tests.test_governed_runtime_controller.GovernedRuntimeController.test_pos_absent_session_id_is_answered_not_an_outage)
+CONTROLLER-ABSENT-SESSION-ID-FAILCLOSED: a blank session id must be ANSWERED. ... ok
+test_pos_checker_write_allowed (tests.test_governed_runtime_controller.GovernedRuntimeController.test_pos_checker_write_allowed) ... ok
+test_pos_non_governed_session_write_allowed (tests.test_governed_runtime_controller.GovernedRuntimeController.test_pos_non_governed_session_write_allowed) ... ok
+test_pos_null_session_id_is_answered_not_an_outage (tests.test_governed_runtime_controller.GovernedRuntimeController.test_pos_null_session_id_is_answered_not_an_outage) ... ok
+test_pos_ordinary_read_allowed (tests.test_governed_runtime_controller.GovernedRuntimeController.test_pos_ordinary_read_allowed) ... ok
+test_pos_write_outside_protected_allowed (tests.test_governed_runtime_controller.GovernedRuntimeController.test_pos_write_outside_protected_allowed) ... ok
+test_advances_only_to_doctor_pass_and_is_idempotent (tests.test_hermes_qualification.HermesQualificationTests.test_advances_only_to_doctor_pass_and_is_idempotent) ... ok
+test_current_integrated_target_qualifies (tests.test_hlpe.HLPEBindingTests.test_current_integrated_target_qualifies) ... ok
+test_wrong_head_is_rejected (tests.test_hlpe.HLPEBindingTests.test_wrong_head_is_rejected) ... ok
+test_clean_candidate_promotes_with_citation (tests.test_knowledge.KnowledgeTests.test_clean_candidate_promotes_with_citation) ... ok
+test_expired_memory_is_not_active (tests.test_knowledge.KnowledgeTests.test_expired_memory_is_not_active) ... ok
+test_incorrect_citation_and_revoked_memory_are_rejected (tests.test_knowledge.KnowledgeTests.test_incorrect_citation_and_revoked_memory_are_rejected) ... ok
+test_injection_is_quarantined (tests.test_knowledge.KnowledgeTests.test_injection_is_quarantined) ... ok
+test_pii_memory_requires_explicit_admission (tests.test_knowledge.KnowledgeTests.test_pii_memory_requires_explicit_admission) ... ok
+test_rebuild_preserves_active_docs (tests.test_knowledge.KnowledgeTests.test_rebuild_preserves_active_docs) ... ok
+test_self_approval_rejected (tests.test_knowledge.KnowledgeTests.test_self_approval_rejected) ... ok
+test_typed_graph_drop_and_rebuild (tests.test_knowledge.KnowledgeTests.test_typed_graph_drop_and_rebuild) ... ok
+test_unsupported_query_abstains (tests.test_knowledge.KnowledgeTests.test_unsupported_query_abstains) ... ok
+test_withdrawal_removes_derived_retrieval (tests.test_knowledge.KnowledgeTests.test_withdrawal_removes_derived_retrieval) ... ok
+test_allow_pii_still_permits_pii_content (tests.test_knowledge_memory_poison.MemoryPoisonGuardTests.test_allow_pii_still_permits_pii_content) ... ok
+test_clean_memory_persists_and_is_recalled (tests.test_knowledge_memory_poison.MemoryPoisonGuardTests.test_clean_memory_persists_and_is_recalled) ... ok
+test_injected_memory_raises_poisoned_and_is_not_persisted (tests.test_knowledge_memory_poison.MemoryPoisonGuardTests.test_injected_memory_raises_poisoned_and_is_not_persisted) ... ok
+test_pii_memory_still_raises_without_admission (tests.test_knowledge_memory_poison.MemoryPoisonGuardTests.test_pii_memory_still_raises_without_admission) ... ok
+test_secret_pattern_memory_raises_poisoned (tests.test_knowledge_memory_poison.MemoryPoisonGuardTests.test_secret_pattern_memory_raises_poisoned) ... ok
+test_promote_with_empty_evidence_raises (tests.test_knowledge_promotion_gate.PromotionEvidenceGateTests.test_promote_with_empty_evidence_raises) ... ok
+test_promote_with_evidence_succeeds (tests.test_knowledge_promotion_gate.PromotionEvidenceGateTests.test_promote_with_evidence_succeeds) ... ok
+test_promote_with_whitespace_evidence_raises (tests.test_knowledge_promotion_gate.PromotionEvidenceGateTests.test_promote_with_whitespace_evidence_raises) ... ok
+test_self_approval_still_blocked (tests.test_knowledge_promotion_gate.PromotionEvidenceGateTests.test_self_approval_still_blocked) ... ok
+test_full_stdout_is_written_with_bytes_and_digest (tests.test_lane_dispatch_ao_guard.AttemptPersistence.test_full_stdout_is_written_with_bytes_and_digest) ... ok
+test_no_log_dir_returns_a_placeholder_and_writes_nothing (tests.test_lane_dispatch_ao_guard.AttemptPersistence.test_no_log_dir_returns_a_placeholder_and_writes_nothing) ... ok
+test_all_timed_out_is_named (tests.test_lane_dispatch_ao_guard.C1FailureDisposition.test_all_timed_out_is_named) ... ok
+test_answered_but_no_nonce_is_named (tests.test_lane_dispatch_ao_guard.C1FailureDisposition.test_answered_but_no_nonce_is_named) ... ok
+test_end_to_end_no_nonce_run_reads_the_new_code (tests.test_lane_dispatch_ao_guard.C1FailureDisposition.test_end_to_end_no_nonce_run_reads_the_new_code)
+A stub that answers with usage but emits no nonce -> ERR_NO_ARM_EMITTED_NONCE, ok:false. ... ERROR
+test_fallback_boundary_is_the_generic_code (tests.test_lane_dispatch_ao_guard.C1FailureDisposition.test_fallback_boundary_is_the_generic_code) ... ok
+test_all_arms_skipped_reports_the_skip_list_and_fails_closed (tests.test_lane_dispatch_ao_guard.C2DispatchableConsumer.test_all_arms_skipped_reports_the_skip_list_and_fails_closed)
+The skip must not crash the no-candidates path: it reports the skipped arms and refuses. ... FAIL
+test_declared_dispatchable_arm_is_never_skipped (tests.test_lane_dispatch_ao_guard.C2DispatchableConsumer.test_declared_dispatchable_arm_is_never_skipped) ... ERROR
+test_declared_not_dispatchable_arm_is_skipped_with_no_spawn (tests.test_lane_dispatch_ao_guard.C2DispatchableConsumer.test_declared_not_dispatchable_arm_is_skipped_with_no_spawn) ... ERROR
+test_force_rank_reaches_a_skipped_rank (tests.test_lane_dispatch_ao_guard.C2DispatchableConsumer.test_force_rank_reaches_a_skipped_rank) ... ERROR
+test_helper_rule (tests.test_lane_dispatch_ao_guard.C2DispatchableConsumer.test_helper_rule) ... ok
+test_declared_isolated_lane_home_is_never_refused (tests.test_lane_dispatch_ao_guard.C3LaneHomeIsolation.test_declared_isolated_lane_home_is_never_refused)
+The module's own declared lane home is always accepted, whatever it holds. ... ok
+test_flag_acknowledges_and_records_then_proceeds (tests.test_lane_dispatch_ao_guard.C3LaneHomeIsolation.test_flag_acknowledges_and_records_then_proceeds) ... ok
+test_helper_classification (tests.test_lane_dispatch_ao_guard.C3LaneHomeIsolation.test_helper_classification) ... ok
+test_non_isolated_home_without_flag_refuses_with_exit_4_and_zero_attempts (tests.test_lane_dispatch_ao_guard.C3LaneHomeIsolation.test_non_isolated_home_without_flag_refuses_with_exit_4_and_zero_attempts) ... ok
+test_E11a_a_conforming_attempt_stands (tests.test_lane_dispatch_ao_guard.DeterministicGuardNegative.test_E11a_a_conforming_attempt_stands) ... FAIL
+test_E11b_mutation_voids_a_would_have_passed_attempt (tests.test_lane_dispatch_ao_guard.DeterministicGuardNegative.test_E11b_mutation_voids_a_would_have_passed_attempt) ... FAIL
+test_E11c_removal_voids_a_would_have_passed_attempt (tests.test_lane_dispatch_ao_guard.DeterministicGuardNegative.test_E11c_removal_voids_a_would_have_passed_attempt) ... FAIL
+test_E11d_an_added_file_is_recorded_but_not_fatal (tests.test_lane_dispatch_ao_guard.DeterministicGuardNegative.test_E11d_an_added_file_is_recorded_but_not_fatal) ... FAIL
+test_all_arms_refused_refuses_wholesale_with_no_spawn (tests.test_lane_dispatch_ao_guard.GateEndToEndRefusal.test_all_arms_refused_refuses_wholesale_with_no_spawn) ... FAIL
+test_guard_root_that_does_not_resolve_is_refused (tests.test_lane_dispatch_ao_guard.GateEndToEndRefusal.test_guard_root_that_does_not_resolve_is_refused)
+MEASURED (probe E5b): an unresolvable guard root produced a zero-file snapshot and the ... FAIL
+test_healthy_relay_home_lets_the_oauth_arm_survive_the_gate (tests.test_lane_dispatch_ao_guard.GateEndToEndRefusal.test_healthy_relay_home_lets_the_oauth_arm_survive_the_gate)
+No spawn: the gate decision is asserted directly, the same function the e2e path calls. ... ok
+test_required_arm_absent_from_the_pool_is_typed (tests.test_lane_dispatch_ao_guard.GateEndToEndRefusal.test_required_arm_absent_from_the_pool_is_typed) ... FAIL
+test_required_arm_refused_fails_closed_instead_of_degrading (tests.test_lane_dispatch_ao_guard.GateEndToEndRefusal.test_required_arm_refused_fails_closed_instead_of_degrading) ... FAIL
+test_cli_login_arm_passes_with_tokens_present (tests.test_lane_dispatch_ao_guard.GateIdentityRequirement.test_cli_login_arm_passes_with_tokens_present) ... ok
+test_declared_cli_login_arm_is_refused_without_a_credential (tests.test_lane_dispatch_ao_guard.GateIdentityRequirement.test_declared_cli_login_arm_is_refused_without_a_credential) ... ok
+test_declared_requirement_wins_over_the_provider_default (tests.test_lane_dispatch_ao_guard.GateIdentityRequirement.test_declared_requirement_wins_over_the_provider_default) ... ok
+test_expired_access_token_is_not_a_failure (tests.test_lane_dispatch_ao_guard.GateIdentityRequirement.test_expired_access_token_is_not_a_failure)
+Boundary: only the ABSENCE of refresh material is a failure, never expiry. ... ok
+test_key_arm_needs_no_human_even_with_an_empty_lane_home (tests.test_lane_dispatch_ao_guard.GateIdentityRequirement.test_key_arm_needs_no_human_even_with_an_empty_lane_home)
+Locks the corrected belief: the lane home being `Not logged in` must NOT refuse a key arm. ... ok
+test_oauth_arm_is_refused_when_the_relay_credential_is_absent (tests.test_lane_dispatch_ao_guard.GateIdentityRequirement.test_oauth_arm_is_refused_when_the_relay_credential_is_absent) ... ok
+test_oauth_arm_needs_the_relay_pool_not_the_lane_home (tests.test_lane_dispatch_ao_guard.GateIdentityRequirement.test_oauth_arm_needs_the_relay_pool_not_the_lane_home)
+Locks the measured mechanism: an arm routed via the relay consumes the RELAY credential. ... ok
+test_oauth_arm_passes_when_the_relay_credential_can_refresh (tests.test_lane_dispatch_ao_guard.GateIdentityRequirement.test_oauth_arm_passes_when_the_relay_credential_can_refresh) ... ok
+test_unknown_requirement_is_typed_not_ignored (tests.test_lane_dispatch_ao_guard.GateIdentityRequirement.test_unknown_requirement_is_typed_not_ignored)
+A typo in the pool artifact must refuse, never silently pass. ... ok
+test_F1_no_identity_gate_does_not_switch_off_require_arm (tests.test_lane_dispatch_ao_guard.HostileReviewRegression.test_F1_no_identity_gate_does_not_switch_off_require_arm)
+The require-arm block was nested inside `if not args.no_identity_gate`, so one flag turned ... FAIL
+test_F2_a_declared_cli_login_requirement_is_honoured_end_to_end (tests.test_lane_dispatch_ao_guard.HostileReviewRegression.test_F2_a_declared_cli_login_requirement_is_honoured_end_to_end)
+First version dropped identity_requirement when building entries, so the pool's declaration ... FAIL
+test_F2_a_misspelled_requirement_is_refused_end_to_end (tests.test_lane_dispatch_ao_guard.HostileReviewRegression.test_F2_a_misspelled_requirement_is_refused_end_to_end) ... FAIL
+test_F3_an_empty_cli_credential_is_not_a_login (tests.test_lane_dispatch_ao_guard.HostileReviewRegression.test_F3_an_empty_cli_credential_is_not_a_login) ... ok
+test_F3_null_or_empty_refresh_material_is_not_healthy (tests.test_lane_dispatch_ao_guard.HostileReviewRegression.test_F3_null_or_empty_refresh_material_is_not_healthy)
+The probe was a substring test: `"refreshToken" in raw` passed on null, empty and ... ok
+test_F4_an_escalated_lane_without_a_guard_is_refused (tests.test_lane_dispatch_ao_guard.HostileReviewRegression.test_F4_an_escalated_lane_without_a_guard_is_refused)
+danger-full-access has no sandbox root, so an unguarded escalated checker was unbounded ... ok
+test_F6_a_guard_root_containing_harness_output_is_refused (tests.test_lane_dispatch_ao_guard.HostileReviewRegression.test_F6_a_guard_root_containing_harness_output_is_refused)
+If the harness's own writes land inside a guard root they register as subject changes. ... FAIL
+test_F7_non_utf8_bytes_are_persisted_exactly (tests.test_lane_dispatch_ao_guard.HostileReviewRegression.test_F7_non_utf8_bytes_are_persisted_exactly)
+text=True + errors="replace" destroyed bytes BEFORE the file was written, so ... ok
+test_F8_attempt_logs_do_not_collide_across_runs (tests.test_lane_dispatch_ao_guard.HostileReviewRegression.test_F8_attempt_logs_do_not_collide_across_runs)
+Same rank + same log dir used to overwrite the previous run's whole log. ... ok
+test_F9_a_negative_max_candidates_is_a_typed_refusal (tests.test_lane_dispatch_ao_guard.HostileReviewRegression.test_F9_a_negative_max_candidates_is_a_typed_refusal)
+It used to empty the candidate list and crash the gate with IndexError (exit 1). ... ok
+test_changed_file_voids_and_added_file_does_not (tests.test_lane_dispatch_ao_guard.NonMutationGuard.test_changed_file_voids_and_added_file_does_not) ... ok
+test_removal_voids_the_verdict (tests.test_lane_dispatch_ao_guard.NonMutationGuard.test_removal_voids_the_verdict) ... ok
+test_snapshot_covers_nested_files_and_a_bare_file_root (tests.test_lane_dispatch_ao_guard.NonMutationGuard.test_snapshot_covers_nested_files_and_a_bare_file_root) ... ok
+test_snapshot_digest_is_stable_and_content_sensitive (tests.test_lane_dispatch_ao_guard.NonMutationGuard.test_snapshot_digest_is_stable_and_content_sensitive) ... ok
+test_blank_nonce_refuses_pre_spawn_with_a_typed_code (tests.test_lane_dispatch_ao_guard.R2Repair.test_blank_nonce_refuses_pre_spawn_with_a_typed_code) ... ok
+test_blank_nonce_stub_would_have_been_a_false_green (tests.test_lane_dispatch_ao_guard.R2Repair.test_blank_nonce_stub_would_have_been_a_false_green)
+The checker's constructed false green: an empty nonce made the substring test vacuously ... ok
+test_dispatchable_false_without_feasibility_still_carries_a_reason (tests.test_lane_dispatch_ao_guard.R2Repair.test_dispatchable_false_without_feasibility_still_carries_a_reason) ... ERROR
+test_guard_refusal_receipt_also_carries_both_home_fields (tests.test_lane_dispatch_ao_guard.R2Repair.test_guard_refusal_receipt_also_carries_both_home_fields) ... FAIL
+test_non_blank_nonce_still_behaves_as_before (tests.test_lane_dispatch_ao_guard.R2Repair.test_non_blank_nonce_still_behaves_as_before)
+The nonce mechanism is NOT redesigned: a non-blank nonce that the arm fails to emit still ... ERROR
+test_refusal_receipt_carries_both_home_fields (tests.test_lane_dispatch_ao_guard.R2Repair.test_refusal_receipt_carries_both_home_fields) ... FAIL
+test_relative_codex_home_is_recorded_resolved (tests.test_lane_dispatch_ao_guard.R2Repair.test_relative_codex_home_is_recorded_resolved) ... ok
+test_G1_a_real_string_carrier_still_passes (tests.test_lane_dispatch_ao_guard.R3Repair.test_G1_a_real_string_carrier_still_passes) ... ok
+test_G1_non_string_text_is_not_searchable (tests.test_lane_dispatch_ao_guard.R3Repair.test_G1_non_string_text_is_not_searchable) ... ok
+test_G1_null_text_child_cannot_pass_with_nonce_None_end_to_end (tests.test_lane_dispatch_ao_guard.R3Repair.test_G1_null_text_child_cannot_pass_with_nonce_None_end_to_end) ... ERROR
+test_G1_null_text_is_not_searchable (tests.test_lane_dispatch_ao_guard.R3Repair.test_G1_null_text_is_not_searchable)
+`str(None)` turned a JSON null into the string 'None' and 'satisfied' --nonce None. ... ok
+test_G1_object_text_child_cannot_pass_with_nonce_None_end_to_end (tests.test_lane_dispatch_ao_guard.R3Repair.test_G1_object_text_child_cannot_pass_with_nonce_None_end_to_end) ... ERROR
+test_G1_the_two_nonce_signals_agree_and_the_normal_case_still_passes (tests.test_lane_dispatch_ao_guard.R3Repair.test_G1_the_two_nonce_signals_agree_and_the_normal_case_still_passes) ... ERROR
+test_G2_empty_feasibility_shapes_still_yield_a_real_reason (tests.test_lane_dispatch_ao_guard.R3Repair.test_G2_empty_feasibility_shapes_still_yield_a_real_reason) ... ERROR
+test_G2_skip_reason_helper_shapes (tests.test_lane_dispatch_ao_guard.R3Repair.test_G2_skip_reason_helper_shapes) ... ok
+test_G3_added_file_does_not_void_but_changed_and_removed_do (tests.test_lane_dispatch_ao_guard.R3Repair.test_G3_added_file_does_not_void_but_changed_and_removed_do) ... FAIL
+test_G3_empty_guard_root_refuses_pre_spawn (tests.test_lane_dispatch_ao_guard.R3Repair.test_G3_empty_guard_root_refuses_pre_spawn) ... FAIL
+test_G3_non_empty_guard_root_still_snapshots_and_compares (tests.test_lane_dispatch_ao_guard.R3Repair.test_G3_non_empty_guard_root_still_snapshots_and_compares) ... FAIL
+test_H1_boundary_a_real_U_FFFD_carrier_still_matches (tests.test_lane_dispatch_ao_guard.R4Repair.test_H1_boundary_a_real_U_FFFD_carrier_still_matches)
+The byte check is not over-strict: an actually-emitted U+FFFD (EF BF BD) still matches. ... ok
+test_H1_negative_a_0xFF_carrier_cannot_satisfy_U_FFFD_end_to_end (tests.test_lane_dispatch_ao_guard.R4Repair.test_H1_negative_a_0xFF_carrier_cannot_satisfy_U_FFFD_end_to_end) ... ok
+test_H1_positive_an_ordinary_carrier_with_the_real_nonce_still_passes (tests.test_lane_dispatch_ao_guard.R4Repair.test_H1_positive_an_ordinary_carrier_with_the_real_nonce_still_passes) ... ok
+test_H1_unit_a_substituted_character_is_not_the_nonce (tests.test_lane_dispatch_ao_guard.R4Repair.test_H1_unit_a_substituted_character_is_not_the_nonce)
+S3: a carrier line that is not strictly UTF-8-decodable is NOT a row, so neither a ... ok
+test_H2_negative_a_fractional_status_is_not_a_usage_receipt (tests.test_lane_dispatch_ao_guard.R4Repair.test_H2_negative_a_fractional_status_is_not_a_usage_receipt) ... ok
+test_H2_positive_an_integer_200_is_still_a_receipt (tests.test_lane_dispatch_ao_guard.R4Repair.test_H2_positive_an_integer_200_is_still_a_receipt) ... ok
+test_H2_unit_status_shapes (tests.test_lane_dispatch_ao_guard.R4Repair.test_H2_unit_status_shapes) ... ok
+test_H3_negative_a_truncated_ledger_cannot_revive_a_stale_row (tests.test_lane_dispatch_ao_guard.R4Repair.test_H3_negative_a_truncated_ledger_cannot_revive_a_stale_row) ... ok
+test_H3_positive_an_appended_row_still_binds (tests.test_lane_dispatch_ao_guard.R4Repair.test_H3_positive_an_appended_row_still_binds) ... ok
+test_H3_unit_a_shrunken_ledger_yields_no_rows (tests.test_lane_dispatch_ao_guard.R4Repair.test_H3_unit_a_shrunken_ledger_yields_no_rows) ... ok
+test_H4_boundary_a_measured_removal_still_voids (tests.test_lane_dispatch_ao_guard.R4Repair.test_H4_boundary_a_measured_removal_still_voids)
+An empty `after` that follows a real removal is VOID, not INCONCLUSIVE. ... ok
+test_H4_negative_an_empty_root_is_refused_even_with_a_non_empty_sibling (tests.test_lane_dispatch_ao_guard.R4Repair.test_H4_negative_an_empty_root_is_refused_even_with_a_non_empty_sibling) ... FAIL
+test_H4_positive_two_non_empty_roots_still_compare (tests.test_lane_dispatch_ao_guard.R4Repair.test_H4_positive_two_non_empty_roots_still_compare) ... ERROR
+test_H4_unit_an_empty_comparison_is_inconclusive (tests.test_lane_dispatch_ao_guard.R4Repair.test_H4_unit_an_empty_comparison_is_inconclusive) ... ok
+test_H5_negative_a_wrong_shaped_carrier_produces_a_typed_receipt (tests.test_lane_dispatch_ao_guard.R4Repair.test_H5_negative_a_wrong_shaped_carrier_produces_a_typed_receipt) ... ok
+test_H5_positive_a_well_shaped_carrier_still_passes (tests.test_lane_dispatch_ao_guard.R4Repair.test_H5_positive_a_well_shaped_carrier_still_passes) ... ok
+test_H5_unit_a_wrong_shaped_carrier_yields_no_text_and_no_crash (tests.test_lane_dispatch_ao_guard.R4Repair.test_H5_unit_a_wrong_shaped_carrier_yields_no_text_and_no_crash) ... ok
+test_I1_negative_the_reviewers_shift_and_copy_cannot_yield_a_valid_receipt (tests.test_lane_dispatch_ao_guard.R5Repair.test_I1_negative_the_reviewers_shift_and_copy_cannot_yield_a_valid_receipt)
+The exact control: seed a 255-byte ledger with an earlier matching row plus filler, then ... ok
+test_I1_positive_an_ordinary_append_still_yields_a_valid_receipt (tests.test_lane_dispatch_ao_guard.R5Repair.test_I1_positive_an_ordinary_append_still_yields_a_valid_receipt) ... ok
+test_I1_unit_prefix_digest_is_content_sensitive (tests.test_lane_dispatch_ao_guard.R5Repair.test_I1_unit_prefix_digest_is_content_sensitive) ... ok
+test_I2_negative_every_wrong_shaped_row_yields_a_receipt_and_is_counted (tests.test_lane_dispatch_ao_guard.R5Repair.test_I2_negative_every_wrong_shaped_row_yields_a_receipt_and_is_counted)
+The reviewer supplied rows shaped as a nonempty array, `true`, a string and an integer: ... ok
+test_I2_positive_a_well_shaped_row_is_still_a_receipt (tests.test_lane_dispatch_ao_guard.R5Repair.test_I2_positive_a_well_shaped_row_is_still_a_receipt) ... ok
+test_I2_unit_row_shape_guard (tests.test_lane_dispatch_ao_guard.R5Repair.test_I2_unit_row_shape_guard) ... ok
+test_I3_boundary_a_wrong_shaped_carrier_with_no_valid_receipt_does_not (tests.test_lane_dispatch_ao_guard.R5Repair.test_I3_boundary_a_wrong_shaped_carrier_with_no_valid_receipt_does_not)
+A wrong-shaped carrier with NO valid usage receipt must NOT read ERR_NO_ARM_EMITTED_NONCE, ... ok
+test_I3_negative_the_reviewers_exact_control_reads_the_C1_classification (tests.test_lane_dispatch_ao_guard.R5Repair.test_I3_negative_the_reviewers_exact_control_reads_the_C1_classification)
+Wrong-shaped carrier (`item:true`) + a separately verified matching integer-200 usage row + ... ok
+test_I3_positive_a_conforming_turn_is_unaffected (tests.test_lane_dispatch_ao_guard.R5Repair.test_I3_positive_a_conforming_turn_is_unaffected) ... ok
+test_I3_unit_nonced_absent_classification_precedes_the_shape_code (tests.test_lane_dispatch_ao_guard.R5Repair.test_I3_unit_nonced_absent_classification_precedes_the_shape_code)
+Direct on failure_disposition: an answered attempt with a wrong-shaped carrier and no nonce ... ok
+test_J1_negative_an_invalid_utf8_ledger_line_is_never_a_receipt (tests.test_lane_dispatch_ao_guard.R6Repair.test_J1_negative_an_invalid_utf8_ledger_line_is_never_a_receipt)
+The reviewer's exact control: the ONLY appended row is invalid UTF-8, so strict decoding ... ok
+test_J1_positive_a_valid_utf8_row_is_still_a_receipt (tests.test_lane_dispatch_ao_guard.R6Repair.test_J1_positive_a_valid_utf8_row_is_still_a_receipt) ... ok
+test_J1_unit_an_undecodable_line_is_skipped_and_counted (tests.test_lane_dispatch_ao_guard.R6Repair.test_J1_unit_an_undecodable_line_is_skipped_and_counted) ... ok
+test_J2_negative_an_unfinished_prefix_is_not_a_receipt (tests.test_lane_dispatch_ao_guard.R6Repair.test_J2_negative_an_unfinished_prefix_is_not_a_receipt)
+The reviewer initialized the ledger with exactly `b'{"unfinished":'` (no newline), then the ... ok
+test_J2_positive_a_complete_line_after_a_newline_still_binds (tests.test_lane_dispatch_ao_guard.R6Repair.test_J2_positive_a_complete_line_after_a_newline_still_binds) ... ok
+test_J2_unit_an_unterminated_tail_is_not_a_line (tests.test_lane_dispatch_ao_guard.R6Repair.test_J2_unit_an_unterminated_tail_is_not_a_line) ... ok
+test_J2_unit_offset_inside_a_line_yields_no_rows (tests.test_lane_dispatch_ao_guard.R6Repair.test_J2_unit_offset_inside_a_line_yields_no_rows) ... ok
+test_J3_negative_a_json_integer_model_never_matches_a_string_model (tests.test_lane_dispatch_ao_guard.R6Repair.test_J3_negative_a_json_integer_model_never_matches_a_string_model) ... ok
+test_J3_unit_type_mismatch_is_rejected (tests.test_lane_dispatch_ao_guard.R6Repair.test_J3_unit_type_mismatch_is_rejected) ... ok
+test_J4_positive_a_conforming_turn_still_reports_ok (tests.test_lane_dispatch_ao_guard.R6Repair.test_J4_positive_a_conforming_turn_still_reports_ok) ... ok
+test_J4_unit_acceptable_turn_and_no_nonce_is_the_C1_code (tests.test_lane_dispatch_ao_guard.R6Repair.test_J4_unit_acceptable_turn_and_no_nonce_is_the_C1_code) ... ok
+test_J4_unit_no_acceptable_turn_is_always_the_generic_code (tests.test_lane_dispatch_ao_guard.R6Repair.test_J4_unit_no_acceptable_turn_is_always_the_generic_code) ... ok
+test_S1_a_missing_key_keeps_the_MALFORMED_code_not_the_type_code (tests.test_lane_dispatch_ao_guard.R7StrictDeclaration.test_S1_a_missing_key_keeps_the_MALFORMED_code_not_the_type_code) ... ok
+test_S1_negative_a_present_but_non_string_optional_field_is_a_TYPE_refusal (tests.test_lane_dispatch_ao_guard.R7StrictDeclaration.test_S1_negative_a_present_but_non_string_optional_field_is_a_TYPE_refusal) ... ok
+test_S1_negative_a_wrongly_typed_provider_or_model_is_a_TYPE_refusal (tests.test_lane_dispatch_ao_guard.R7StrictDeclaration.test_S1_negative_a_wrongly_typed_provider_or_model_is_a_TYPE_refusal) ... ok
+test_S1_negative_a_wrongly_typed_rank_is_a_TYPE_refusal (tests.test_lane_dispatch_ao_guard.R7StrictDeclaration.test_S1_negative_a_wrongly_typed_rank_is_a_TYPE_refusal) ... ok
+test_S1_positive_a_well_typed_pool_takes_the_identical_path (tests.test_lane_dispatch_ao_guard.R7StrictDeclaration.test_S1_positive_a_well_typed_pool_takes_the_identical_path) ... ok
+test_S1_unit_the_type_guard_excludes_bool_from_int (tests.test_lane_dispatch_ao_guard.R7StrictDeclaration.test_S1_unit_the_type_guard_excludes_bool_from_int) ... ok
+test_S2_negative_a_boolean_rank_pool_is_refused_with_no_attempt (tests.test_lane_dispatch_ao_guard.R7StrictDeclaration.test_S2_negative_a_boolean_rank_pool_is_refused_with_no_attempt) ... ok
+test_S2_negative_a_fractional_rank_pool_is_refused_with_no_attempt (tests.test_lane_dispatch_ao_guard.R7StrictDeclaration.test_S2_negative_a_fractional_rank_pool_is_refused_with_no_attempt) ... ok
+test_S2_positive_an_integer_rank_pool_still_dispatches (tests.test_lane_dispatch_ao_guard.R7StrictDeclaration.test_S2_positive_an_integer_rank_pool_still_dispatches) ... ok
+test_S3_negative_a_u2028_terminated_carrier_does_not_succeed (tests.test_lane_dispatch_ao_guard.R7StrictDeclaration.test_S3_negative_a_u2028_terminated_carrier_does_not_succeed) ... ok
+test_S3_negative_an_invalid_utf8_carrier_line_is_counted_and_does_not_succeed (tests.test_lane_dispatch_ao_guard.R7StrictDeclaration.test_S3_negative_an_invalid_utf8_carrier_line_is_counted_and_does_not_succeed) ... ok
+test_S3_negative_an_unterminated_carrier_does_not_succeed (tests.test_lane_dispatch_ao_guard.R7StrictDeclaration.test_S3_negative_an_unterminated_carrier_does_not_succeed) ... ok
+test_S3_positive_lf_and_crlf_carriers_both_succeed (tests.test_lane_dispatch_ao_guard.R7StrictDeclaration.test_S3_positive_lf_and_crlf_carriers_both_succeed) ... ok
+test_S3_unit_a_u2028_separator_does_not_invent_a_line_boundary (tests.test_lane_dispatch_ao_guard.R7StrictDeclaration.test_S3_unit_a_u2028_separator_does_not_invent_a_line_boundary) ... ok
+test_S3_unit_crlf_is_terminated_and_one_cr_is_stripped (tests.test_lane_dispatch_ao_guard.R7StrictDeclaration.test_S3_unit_crlf_is_terminated_and_one_cr_is_stripped) ... ok
+test_S3_unit_invalid_utf8_line_is_dropped_and_counted (tests.test_lane_dispatch_ao_guard.R7StrictDeclaration.test_S3_unit_invalid_utf8_line_is_dropped_and_counted) ... ok
+test_S3_unit_the_non_string_argument_is_rejected_not_silently_accepted (tests.test_lane_dispatch_ao_guard.R7StrictDeclaration.test_S3_unit_the_non_string_argument_is_rejected_not_silently_accepted) ... ok
+test_S3_unit_unterminated_tail_is_not_a_row (tests.test_lane_dispatch_ao_guard.R7StrictDeclaration.test_S3_unit_unterminated_tail_is_not_a_row) ... ok
+test_T1_T2_T3_positive_lf_crlf_and_ordinary_json_whitespace_still_succeed (tests.test_lane_dispatch_ao_guard.R8StrictDeclarationPass2.test_T1_T2_T3_positive_lf_crlf_and_ordinary_json_whitespace_still_succeed) ... ok
+test_T1_negative_a_leading_nel_carrier_does_not_succeed (tests.test_lane_dispatch_ao_guard.R8StrictDeclarationPass2.test_T1_negative_a_leading_nel_carrier_does_not_succeed) ... ok
+test_T1_negative_a_trailing_u2028_carrier_does_not_succeed (tests.test_lane_dispatch_ao_guard.R8StrictDeclarationPass2.test_T1_negative_a_trailing_u2028_carrier_does_not_succeed) ... ok
+test_T1_negative_a_trailing_vertical_tab_carrier_does_not_succeed (tests.test_lane_dispatch_ao_guard.R8StrictDeclarationPass2.test_T1_negative_a_trailing_vertical_tab_carrier_does_not_succeed) ... ok
+test_T1_unit_an_empty_line_is_dropped_without_any_strip (tests.test_lane_dispatch_ao_guard.R8StrictDeclarationPass2.test_T1_unit_an_empty_line_is_dropped_without_any_strip) ... ok
+test_T1_unit_only_one_trailing_cr_is_removed (tests.test_lane_dispatch_ao_guard.R8StrictDeclarationPass2.test_T1_unit_only_one_trailing_cr_is_removed) ... ok
+test_T1_unit_the_line_is_not_stripped (tests.test_lane_dispatch_ao_guard.R8StrictDeclarationPass2.test_T1_unit_the_line_is_not_stripped) ... ok
+test_T2_negative_a_naN_payload_does_not_succeed (tests.test_lane_dispatch_ao_guard.R8StrictDeclarationPass2.test_T2_negative_a_naN_payload_does_not_succeed) ... ok
+test_T2_unit_naN_infinity_minus_infinity_raise (tests.test_lane_dispatch_ao_guard.R8StrictDeclarationPass2.test_T2_unit_naN_infinity_minus_infinity_raise) ... ok
+test_T2_unit_the_resolver_strict_parse_also_rejects_them (tests.test_lane_dispatch_ao_guard.R8StrictDeclarationPass2.test_T2_unit_the_resolver_strict_parse_also_rejects_them) ... ok
+test_T3_negative_an_escaped_surrogate_carrier_does_not_succeed_and_is_counted (tests.test_lane_dispatch_ao_guard.R8StrictDeclarationPass2.test_T3_negative_an_escaped_surrogate_carrier_does_not_succeed_and_is_counted) ... ok
+test_T3_unit_a_surrogate_escaped_carrier_yields_no_text_and_is_counted (tests.test_lane_dispatch_ao_guard.R8StrictDeclarationPass2.test_T3_unit_a_surrogate_escaped_carrier_yields_no_text_and_is_counted) ... ok
+test_T3_unit_has_surrogate (tests.test_lane_dispatch_ao_guard.R8StrictDeclarationPass2.test_T3_unit_has_surrogate) ... ok
+test_T3_unit_the_resolver_rejects_a_declared_surrogate_string (tests.test_lane_dispatch_ao_guard.R8StrictDeclarationPass2.test_T3_unit_the_resolver_rejects_a_declared_surrogate_string) ... ok
+test_neg_effort_mismatch_is_refused (tests.test_lane_effort_enforcement.LaneEffortEnforcement.test_neg_effort_mismatch_is_refused) ... ok
+test_neg_mandate_effort_absent_from_pool_is_refused (tests.test_lane_effort_enforcement.LaneEffortEnforcement.test_neg_mandate_effort_absent_from_pool_is_refused) ... ok
+test_neg_served_effort_mismatch_is_refused (tests.test_lane_effort_enforcement.LaneEffortEnforcement.test_neg_served_effort_mismatch_is_refused) ... ok
+test_neg_served_effort_without_a_mandate_effort_is_unverifiable (tests.test_lane_effort_enforcement.LaneEffortEnforcement.test_neg_served_effort_without_a_mandate_effort_is_unverifiable) ... ok
+test_pos_lane_without_a_declared_effort_stays_a_pass_through (tests.test_lane_effort_enforcement.LaneEffortEnforcement.test_pos_lane_without_a_declared_effort_stays_a_pass_through)
+The EXECUTE shape: a lane whose mandate names no effort is not silently failed. ... ok
+test_pos_matching_effort_passes (tests.test_lane_effort_enforcement.LaneEffortEnforcement.test_pos_matching_effort_passes)
+POSITIVE CONTROL: the same fixture the negatives use must SUCCEED. ... ok
+test_admit_with_receipt_evidence (tests.test_lane_guard.TestLaneGuard.test_admit_with_receipt_evidence) ... ok
+test_sod_same_model_is_refused (tests.test_lane_guard.TestLaneGuard.test_sod_same_model_is_refused) ... ok
+test_v1_stale_source_pin_is_refused (tests.test_lane_guard.TestLaneGuard.test_v1_stale_source_pin_is_refused) ... ok
+test_v3_bare_admitted_string_is_not_admissible (tests.test_lane_guard.TestLaneGuard.test_v3_bare_admitted_string_is_not_admissible) ... ok
+test_v4_omitted_provider_is_not_a_wildcard (tests.test_lane_guard.TestLaneGuard.test_v4_omitted_provider_is_not_a_wildcard) ... ok
+test_v4_provider_mismatch_is_refused (tests.test_lane_guard.TestLaneGuard.test_v4_provider_mismatch_is_refused) ... ok
+test_v5_reasoning_effort_survives_projection (tests.test_lane_guard.TestLaneGuard.test_v5_reasoning_effort_survives_projection) ... ok
+test_v6_expected_epoch_is_an_assertion_not_an_override (tests.test_lane_guard.TestLaneGuard.test_v6_expected_epoch_is_an_assertion_not_an_override) ... ok
+test_drift_injection_subcases (tests.test_lane_policy.TestLanePolicyConformance.test_drift_injection_subcases) ... ok
+test_registry_and_projection_shape (tests.test_lane_policy.TestLanePolicyConformance.test_registry_and_projection_shape) ... FAIL
+test_sod_and_admission_policy (tests.test_lane_policy.TestLanePolicyConformance.test_sod_and_admission_policy) ... ok
+test_absent_binding_allows (tests.test_mandatory_tool_guard.GuardFailClosed.test_absent_binding_allows) ... ok
+test_allow_action_is_the_only_allow (tests.test_mandatory_tool_guard.GuardFailClosed.test_allow_action_is_the_only_allow) ... ok
+test_config_error_refuses (tests.test_mandatory_tool_guard.GuardFailClosed.test_config_error_refuses) ... ok
+test_configured_profile_always_consults_the_controller (tests.test_mandatory_tool_guard.GuardFailClosed.test_configured_profile_always_consults_the_controller) ... ok
+test_controller_exception_refuses (tests.test_mandatory_tool_guard.GuardFailClosed.test_controller_exception_refuses) ... ok
+test_controller_malformed_json_refuses (tests.test_mandatory_tool_guard.GuardFailClosed.test_controller_malformed_json_refuses) ... ok
+test_controller_non_object_json_refuses (tests.test_mandatory_tool_guard.GuardFailClosed.test_controller_non_object_json_refuses) ... ok
+test_controller_nonzero_exit_refuses (tests.test_mandatory_tool_guard.GuardFailClosed.test_controller_nonzero_exit_refuses) ... ok
+test_controller_silent_refuses (tests.test_mandatory_tool_guard.GuardFailClosed.test_controller_silent_refuses)
+Exit 0 with empty stdout is NOT an allow. ... ok
+test_controller_timeout_refuses (tests.test_mandatory_tool_guard.GuardFailClosed.test_controller_timeout_refuses) ... ok
+test_deny_action_returns_a_named_block (tests.test_mandatory_tool_guard.GuardFailClosed.test_deny_action_returns_a_named_block) ... ok
+test_empty_protected_roots_refuses (tests.test_mandatory_tool_guard.GuardFailClosed.test_empty_protected_roots_refuses) ... ok
+test_missing_controller_command_refuses (tests.test_mandatory_tool_guard.GuardFailClosed.test_missing_controller_command_refuses) ... ok
+test_non_list_protected_roots_refuses (tests.test_mandatory_tool_guard.GuardFailClosed.test_non_list_protected_roots_refuses) ... ok
+test_non_mapping_binding_refuses (tests.test_mandatory_tool_guard.GuardFailClosed.test_non_mapping_binding_refuses) ... ok
+test_non_positive_timeout_refuses (tests.test_mandatory_tool_guard.GuardFailClosed.test_non_positive_timeout_refuses) ... ok
+test_relative_protected_root_refuses (tests.test_mandatory_tool_guard.GuardFailClosed.test_relative_protected_root_refuses) ... ok
+test_timeout_above_ceiling_refuses (tests.test_mandatory_tool_guard.GuardFailClosed.test_timeout_above_ceiling_refuses) ... ok
+test_unknown_action_refuses (tests.test_mandatory_tool_guard.GuardFailClosed.test_unknown_action_refuses) ... ok
+test_argv_require_arm_conflicting_with_mandate_refused_no_spawn (tests.test_matrix_d_full.M06.test_argv_require_arm_conflicting_with_mandate_refused_no_spawn) ... ok
+test_omitted_require_arm_cannot_escape_mandate (tests.test_matrix_d_full.M07.test_omitted_require_arm_cannot_escape_mandate) ... ok
+test_wrong_force_rank_refused (tests.test_matrix_d_full.M07.test_wrong_force_rank_refused) ... ok
+test_foreign_surface_usage_receipt_cannot_complete (tests.test_matrix_d_full.M08.test_foreign_surface_usage_receipt_cannot_complete) ... ok
+test_mandated_surface_usage_receipt_completes_control (tests.test_matrix_d_full.M08.test_mandated_surface_usage_receipt_completes_control)
+CONTROL for the case above: with the MANDATED surface (same fixture, same nonce echo) the ... ok
+test_complete_evidence_is_zero (tests.test_named_methods.ActivationInvariantTests.test_complete_evidence_is_zero) ... ok
+test_missing_evidence_fails_closed (tests.test_named_methods.ActivationInvariantTests.test_missing_evidence_fails_closed) ... ok
+test_nonzero_dual_spec_owner_fails_closed (tests.test_named_methods.ReducerGateTests.test_nonzero_dual_spec_owner_fails_closed) ... ok
+test_nonzero_missing_pilot_fails_closed (tests.test_named_methods.ReducerGateTests.test_nonzero_missing_pilot_fails_closed) ... ok
+test_nonzero_release_authority_escape_fails_closed (tests.test_named_methods.ReducerGateTests.test_nonzero_release_authority_escape_fails_closed) ... ok
+test_nonzero_silent_fallback_fails_closed (tests.test_named_methods.ReducerGateTests.test_nonzero_silent_fallback_fails_closed) ... ok
+test_zero_invariants_pass (tests.test_named_methods.ReducerGateTests.test_zero_invariants_pass) ... ok
+test_active_selected_requires_runtime (tests.test_named_methods.RegistryTests.test_active_selected_requires_runtime) ... ok
+test_openspec_and_gstack_registered (tests.test_named_methods.RegistryTests.test_openspec_and_gstack_registered) ... ok
+test_openspec_xor_spec_kit (tests.test_named_methods.RegistryTests.test_openspec_xor_spec_kit) ... ok
+test_ship_is_advisory_only (tests.test_named_methods.RegistryTests.test_ship_is_advisory_only) ... ok
+test_ambiguity_routes_to_office_hours (tests.test_named_methods.RouterTests.test_ambiguity_routes_to_office_hours) ... ok
+test_brownfield_routes_to_openspec (tests.test_named_methods.RouterTests.test_brownfield_routes_to_openspec) ... ok
+test_code_review_routes_to_review (tests.test_named_methods.RouterTests.test_code_review_routes_to_review) ... ok
+test_deselected_brownfield_degrades (tests.test_named_methods.RouterTests.test_deselected_brownfield_degrades) ... ok
+test_greenfield_is_xor_not_openspec (tests.test_named_methods.RouterTests.test_greenfield_is_xor_not_openspec) ... ok
+test_no_llm_guessing (tests.test_named_methods.RouterTests.test_no_llm_guessing) ... ok
+test_plan_routes_to_plan_eng_review (tests.test_named_methods.RouterTests.test_plan_routes_to_plan_eng_review) ... ok
+test_qa_routes_to_qa (tests.test_named_methods.RouterTests.test_qa_routes_to_qa) ... ok
+test_release_is_advisory_not_authority (tests.test_named_methods.RouterTests.test_release_is_advisory_not_authority) ... ok
+test_retro_routes_to_retro (tests.test_named_methods.RouterTests.test_retro_routes_to_retro) ... ok
+test_security_routes_to_cso (tests.test_named_methods.RouterTests.test_security_routes_to_cso) ... ok
+test_unknown_flow_is_native (tests.test_named_methods.RouterTests.test_unknown_flow_is_native) ... ok
+test_guard_is_not_alias_blind (tests.test_ordering_oracle.TestNoWallClockOrderingSites.test_guard_is_not_alias_blind)
+Regression: the guard must flag a QUALIFIED wall-clock ordering site (ORDER BY v.created_at), ... ok
+test_no_order_by_created_at_in_control_plane (tests.test_ordering_oracle.TestNoWallClockOrderingSites.test_no_order_by_created_at_in_control_plane) ... ok
+test_rowid_convention_is_present (tests.test_ordering_oracle.TestNoWallClockOrderingSites.test_rowid_convention_is_present)
+The guard is only meaningful if the codebase actually uses rowid for ordering. ... ok
+test_ordering_keys_diverge_on_distinct_timestamps (tests.test_ordering_oracle.TestRowidOrderIsDeterministicAndWallClockIsNot.test_ordering_keys_diverge_on_distinct_timestamps)
+NON-TAUTOLOGICAL divergence proof (previous collision fixture was tautological - it only ... ok
+test_rowid_order_is_total (tests.test_ordering_oracle.TestRowidOrderIsDeterministicAndWallClockIsNot.test_rowid_order_is_total) ... ok
+tests.test_package_local (unittest.loader._FailedTest.tests.test_package_local) ... ERROR
+test_backup_restore_readback (tests.test_recovery_release.RecoveryReleaseTests.test_backup_restore_readback) ... ok
+test_release_reducer_fails_closed (tests.test_recovery_release.RecoveryReleaseTests.test_release_reducer_fails_closed) ... ok
+test_release_reducer_pass (tests.test_recovery_release.RecoveryReleaseTests.test_release_reducer_pass) ... ok
+test_restore_does_not_overwrite (tests.test_recovery_release.RecoveryReleaseTests.test_restore_does_not_overwrite) ... ok
+test_tampered_backup_rejected (tests.test_recovery_release.RecoveryReleaseTests.test_tampered_backup_rejected) ... ok
+test_negative_wrong_digest_refuses (tests.test_role_binding_enforcement.CompletionEvidenceVerification.test_negative_wrong_digest_refuses) ... ok
+test_negative_zero_deliverable_with_receipt_in_raw_refuses (tests.test_role_binding_enforcement.CompletionEvidenceVerification.test_negative_zero_deliverable_with_receipt_in_raw_refuses) ... ok
+test_positive_receipt_real_deliverable_correct_digest_is_allowed (tests.test_role_binding_enforcement.CompletionEvidenceVerification.test_positive_receipt_real_deliverable_correct_digest_is_allowed) ... ok
+test_negative_receipt_but_missing_deliverable_is_not_selected (tests.test_role_binding_enforcement.DispatcherCompletionEvidence.test_negative_receipt_but_missing_deliverable_is_not_selected) ... ok
+test_positive_real_deliverable_correct_digest_is_selected (tests.test_role_binding_enforcement.DispatcherCompletionEvidence.test_positive_real_deliverable_correct_digest_is_selected) ... ok
+test_prespawn_expired_binding_refused (tests.test_role_binding_enforcement.DispatcherPreSpawn.test_prespawn_expired_binding_refused) ... ok
+test_prespawn_require_arm_mismatch_refused_no_spawn (tests.test_role_binding_enforcement.DispatcherPreSpawn.test_prespawn_require_arm_mismatch_refused_no_spawn) ... ok
+test_prespawn_require_arm_omission_derives_mandatory_arm (tests.test_role_binding_enforcement.DispatcherPreSpawn.test_prespawn_require_arm_omission_derives_mandatory_arm)
+A bound round with no --require-arm must STILL force the binding's arm/rank. ... ok
+test_negative_bad_expiry (tests.test_role_binding_enforcement.PureValidator.test_negative_bad_expiry) ... ok
+test_negative_each_missing_field_refuses (tests.test_role_binding_enforcement.PureValidator.test_negative_each_missing_field_refuses) ... ok
+test_negative_evidence_bad_guards (tests.test_role_binding_enforcement.PureValidator.test_negative_evidence_bad_guards) ... ok
+test_negative_no_empty_input_pass (tests.test_role_binding_enforcement.PureValidator.test_negative_no_empty_input_pass) ... ok
+test_negative_wrong_session_round_wo_subject_surface (tests.test_role_binding_enforcement.PureValidator.test_negative_wrong_session_round_wo_subject_surface) ... ok
+test_positive_resolves_arm_and_rank_from_same_binding (tests.test_role_binding_enforcement.PureValidator.test_positive_resolves_arm_and_rank_from_same_binding) ... ok
+test_negative_blank_session_is_a_typed_refusal (tests.test_role_binding_enforcement.SessionBindingLookup.test_negative_blank_session_is_a_typed_refusal) ... ok
+test_negative_different_session_workorder_is_not_returned_for_s (tests.test_role_binding_enforcement.SessionBindingLookup.test_negative_different_session_workorder_is_not_returned_for_s) ... ok
+test_negative_missing_spine_is_a_typed_refusal (tests.test_role_binding_enforcement.SessionBindingLookup.test_negative_missing_spine_is_a_typed_refusal) ... ok
+test_negative_two_live_workorders_same_session_refuse_no_pick (tests.test_role_binding_enforcement.SessionBindingLookup.test_negative_two_live_workorders_same_session_refuse_no_pick) ... ok
+test_negative_unknown_session_returns_none_no_exception (tests.test_role_binding_enforcement.SessionBindingLookup.test_negative_unknown_session_returns_none_no_exception) ... ok
+test_positive_single_live_match_returns_wo_and_binding_with_matching_digest (tests.test_role_binding_enforcement.SessionBindingLookup.test_positive_single_live_match_returns_wo_and_binding_with_matching_digest) ... ok
+test_legacy_non_governed_row_unchanged (tests.test_role_binding_enforcement.SpineConsumer.test_legacy_non_governed_row_unchanged) ... ok
+test_negative_bound_wo_refuses_empty_evidence (tests.test_role_binding_enforcement.SpineConsumer.test_negative_bound_wo_refuses_empty_evidence) ... ok
+test_negative_bound_wo_refuses_replayed_foreign_receipt (tests.test_role_binding_enforcement.SpineConsumer.test_negative_bound_wo_refuses_replayed_foreign_receipt) ... ok
+test_negative_self_checker_and_no_delivery (tests.test_role_binding_enforcement.SpineConsumer.test_negative_self_checker_and_no_delivery) ... ok
+test_positive_bound_wo_verified_with_exact_evidence (tests.test_role_binding_enforcement.SpineConsumer.test_positive_bound_wo_verified_with_exact_evidence) ... ok
+test_dry_run_writes_receipt_not_effect (tests.test_security_harness.SecurityHarnessTests.test_dry_run_writes_receipt_not_effect) ... ok
+test_incomplete_harness_contract_rejected (tests.test_security_harness.SecurityHarnessTests.test_incomplete_harness_contract_rejected) ... ok
+test_mcp_tool_description_poisoning_rejected (tests.test_security_harness.SecurityHarnessTests.test_mcp_tool_description_poisoning_rejected) ... ok
+test_network_not_admitted (tests.test_security_harness.SecurityHarnessTests.test_network_not_admitted) ... ok
+test_path_traversal_rejected (tests.test_security_harness.SecurityHarnessTests.test_path_traversal_rejected) ... ok
+test_privilege_escalation_rejected (tests.test_security_harness.SecurityHarnessTests.test_privilege_escalation_rejected) ... ok
+test_prompt_injection_in_metadata_rejected (tests.test_security_harness.SecurityHarnessTests.test_prompt_injection_in_metadata_rejected) ... ok
+test_secret_detection_and_redaction (tests.test_security_harness.SecurityHarnessTests.test_secret_detection_and_redaction) ... ok
+test_supply_chain_pin_mismatch_rejected (tests.test_security_harness.SecurityHarnessTests.test_supply_chain_pin_mismatch_rejected) ... ok
+test_windows_reserved_name_rejected (tests.test_security_harness.SecurityHarnessTests.test_windows_reserved_name_rejected) ... ok
+test_blank_actor_fails_closed (tests.test_source_repoint.SourceRepointTests.test_blank_actor_fails_closed) ... ok
+test_content_drift_fails_closed (tests.test_source_repoint.SourceRepointTests.test_content_drift_fails_closed) ... ok
+test_missing_target_file_fails_closed (tests.test_source_repoint.SourceRepointTests.test_missing_target_file_fails_closed) ... ok
+test_repoint_is_idempotent_on_identical_replay (tests.test_source_repoint.SourceRepointTests.test_repoint_is_idempotent_on_identical_replay) ... ok
+test_repoint_updates_pointer_and_emits_event (tests.test_source_repoint.SourceRepointTests.test_repoint_updates_pointer_and_emits_event) ... ok
+test_unknown_source_fails_closed (tests.test_source_repoint.SourceRepointTests.test_unknown_source_fails_closed) ... ok
+test_unregistered_evidence_fails_closed (tests.test_source_repoint.SourceRepointTests.test_unregistered_evidence_fails_closed) ... ok
+test_withdrawn_source_fails_closed (tests.test_source_repoint.SourceRepointTests.test_withdrawn_source_fails_closed) ... ok
+test_critical_requirement_field_is_mandatory (tests.test_spine.SharedSpineTests.test_critical_requirement_field_is_mandatory) ... ok
+test_dual_writer_is_rejected (tests.test_spine.SharedSpineTests.test_dual_writer_is_rejected) ... ok
+test_illegal_transition_is_rejected (tests.test_spine.SharedSpineTests.test_illegal_transition_is_rejected) ... ok
+test_stale_version_is_rejected (tests.test_spine.SharedSpineTests.test_stale_version_is_rejected) ... ok
+test_taskspec_materializes_after_freeze (tests.test_spine.SharedSpineTests.test_taskspec_materializes_after_freeze) ... ok
+test_taskspec_requires_frozen_requirement (tests.test_spine.SharedSpineTests.test_taskspec_requires_frozen_requirement) ... ok
+test_transition_and_idempotent_replay (tests.test_spine.SharedSpineTests.test_transition_and_idempotent_replay) ... ok
+test_tt_open_and_close (tests.test_spine.SharedSpineTests.test_tt_open_and_close) ... ok
+test_wrong_lease_token_is_rejected (tests.test_spine.SharedSpineTests.test_wrong_lease_token_is_rejected) ... ok
+test_apl05_requires_real_execution_receipt (tests.test_task012_semantic_closure.CurrentIdentityTests.test_apl05_requires_real_execution_receipt) ... ok
+test_current_changeset_task_is_015 (tests.test_task012_semantic_closure.CurrentIdentityTests.test_current_changeset_task_is_015)
+F3/F4 regression: the acceptance must carry the CURRENT changeset ... ok
+test_final_md_task011_currentness (tests.test_task012_semantic_closure.CurrentIdentityTests.test_final_md_task011_currentness) ... ok
+test_ge11_requires_explicit_terminal (tests.test_task012_semantic_closure.CurrentIdentityTests.test_ge11_requires_explicit_terminal) ... ok
+test_promotion_policy_requires_source_locator (tests.test_task012_semantic_closure.CurrentIdentityTests.test_promotion_policy_requires_source_locator) ... ok
+test_required_task011_invariants_complete (tests.test_task012_semantic_closure.CurrentIdentityTests.test_required_task011_invariants_complete) ... ok
+test_user_guide_currentness_scan (tests.test_task012_semantic_closure.CurrentIdentityTests.test_user_guide_currentness_scan) ... ok
+test_acceptance_json_uses_evaluations (tests.test_task012_semantic_closure.PredicateSemanticsTests.test_acceptance_json_uses_evaluations) ... ok
+test_false_expected_false_renders_pass (tests.test_task012_semantic_closure.PredicateSemanticsTests.test_false_expected_false_renders_pass) ... ok
+test_final_accepted_requires_zero_failed_evaluations (tests.test_task012_semantic_closure.PredicateSemanticsTests.test_final_accepted_requires_zero_failed_evaluations) ... ok
+test_no_truthiness_fail_in_report (tests.test_task012_semantic_closure.PredicateSemanticsTests.test_no_truthiness_fail_in_report) ... ok
+test_nonzero_expected_zero_renders_fail (tests.test_task012_semantic_closure.PredicateSemanticsTests.test_nonzero_expected_zero_renders_fail) ... ok
+test_report_fail_count_matches_evaluations (tests.test_task012_semantic_closure.PredicateSemanticsTests.test_report_fail_count_matches_evaluations) ... ok
+test_true_expected_true_renders_pass (tests.test_task012_semantic_closure.PredicateSemanticsTests.test_true_expected_true_renders_pass) ... ok
+test_zero_expected_zero_renders_pass (tests.test_task012_semantic_closure.PredicateSemanticsTests.test_zero_expected_zero_renders_pass) ... ok
+test_cov_11_06_source_text_unchanged (tests.test_task013_hermes_v020_closure.Gate0PolicySemanticsTests.test_cov_11_06_source_text_unchanged) ... ERROR
+test_section_w_cites_cov_11_06_and_human_policy_owner (tests.test_task013_hermes_v020_closure.Gate0PolicySemanticsTests.test_section_w_cites_cov_11_06_and_human_policy_owner) ... ok
+test_section_w_consistent_with_section_y (tests.test_task013_hermes_v020_closure.Gate0PolicySemanticsTests.test_section_w_consistent_with_section_y) ... ok
+test_section_w_no_stale_auto_tiering (tests.test_task013_hermes_v020_closure.Gate0PolicySemanticsTests.test_section_w_no_stale_auto_tiering) ... ok
+test_all_thirteen_evidence_artifacts_exist (tests.test_task013_hermes_v020_closure.V020EvidencePresenceTests.test_all_thirteen_evidence_artifacts_exist) ... ok
+test_approvals_explicit_fail_closed (tests.test_task013_hermes_v020_closure.V020EvidencePresenceTests.test_approvals_explicit_fail_closed) ... ok
+test_identity_exact (tests.test_task013_hermes_v020_closure.V020EvidencePresenceTests.test_identity_exact) ... ok
+test_independent_acceptance_pass (tests.test_task013_hermes_v020_closure.V020EvidencePresenceTests.test_independent_acceptance_pass) ... ok
+test_provider_route_preserved (tests.test_task013_hermes_v020_closure.V020EvidencePresenceTests.test_provider_route_preserved) ... ok
+test_reuse_matrix_zero_duplicates (tests.test_task013_hermes_v020_closure.V020EvidencePresenceTests.test_reuse_matrix_zero_duplicates) ... ok
+test_windows_qualification_all_gates_pass (tests.test_task013_hermes_v020_closure.V020EvidencePresenceTests.test_windows_qualification_all_gates_pass) ... ok
+test_canonical_live_readback (tests.test_task014_named_method_closure.CanonicalRuntimeTests.test_canonical_live_readback) ... ok
+test_config_resolves_scheme_b_appdata_runtime (tests.test_task014_named_method_closure.CanonicalRuntimeTests.test_config_resolves_scheme_b_appdata_runtime) ... FAIL
+test_final_md_raw_byte_fields (tests.test_task014_named_method_closure.CanonicalRuntimeTests.test_final_md_raw_byte_fields) ... ok
+test_activation_contract_zero_invariants (tests.test_task014_named_method_closure.NamedMethodEvidenceTests.test_activation_contract_zero_invariants) ... ok
+test_gstack_identity_exact (tests.test_task014_named_method_closure.NamedMethodEvidenceTests.test_gstack_identity_exact) ... ok
+test_gstack_ship_advisory_only (tests.test_task014_named_method_closure.NamedMethodEvidenceTests.test_gstack_ship_advisory_only) ... ok
+test_independent_acceptances_pass (tests.test_task014_named_method_closure.NamedMethodEvidenceTests.test_independent_acceptances_pass) ... ok
+test_openspec_identity_exact (tests.test_task014_named_method_closure.NamedMethodEvidenceTests.test_openspec_identity_exact) ... ok
+test_openspec_xor_and_boundaries (tests.test_task014_named_method_closure.NamedMethodEvidenceTests.test_openspec_xor_and_boundaries) ... ok
+test_self_bootstrap_no_authority_mutation (tests.test_task014_named_method_closure.NamedMethodEvidenceTests.test_self_bootstrap_no_authority_mutation) ... ok
+test_external_acceptance_current_identity (tests.test_task014_named_method_closure.SingleCurrentTests.test_external_acceptance_current_identity) ... ok
+test_no_stale_task013_as_current (tests.test_task014_named_method_closure.SingleCurrentTests.test_no_stale_task013_as_current) ... ok
+test_single_current_identity (tests.test_task014_named_method_closure.SingleCurrentTests.test_single_current_identity) ... ok
+test_ab_status_and_counts_match_acceptance (tests.test_task015_coherence_closure.G1FinalMdProjectionTests.test_ab_status_and_counts_match_acceptance) ... ok
+test_no_stale_acceptance_counts_in_final_md (tests.test_task015_coherence_closure.G1FinalMdProjectionTests.test_no_stale_acceptance_counts_in_final_md) ... ok
+test_denominator_head_matches_git (tests.test_task015_coherence_closure.G2DenominatorTests.test_denominator_head_matches_git) ... FAIL
+test_denominator_schema_and_task_binding (tests.test_task015_coherence_closure.G2DenominatorTests.test_denominator_schema_and_task_binding) ... ok
+test_no_known_duplicates (tests.test_task015_coherence_closure.G3UniqueHardCheckTests.test_no_known_duplicates) ... ok
+test_unique_ids (tests.test_task015_coherence_closure.G3UniqueHardCheckTests.test_unique_ids) ... ok
+test_current_receipt_lineage (tests.test_task015_coherence_closure.G4Tst092LineageTests.test_current_receipt_lineage) ... ok
+test_historical_receipt_restored_immutable (tests.test_task015_coherence_closure.G4Tst092LineageTests.test_historical_receipt_restored_immutable) ... ok
+test_acceptance_binds_manifest (tests.test_task015_coherence_closure.G5InputManifestTests.test_acceptance_binds_manifest) ... ok
+test_manifest_complete_and_hashes_match (tests.test_task015_coherence_closure.G5InputManifestTests.test_manifest_complete_and_hashes_match) ... ok
+test_acceptance_coherence_predicates (tests.test_task015_coherence_closure.G6CrossArtifactTests.test_acceptance_coherence_predicates) ... ok
+test_cross_artifact_checker_pass (tests.test_task015_coherence_closure.G6CrossArtifactTests.test_cross_artifact_checker_pass) ... ok
+test_coherence_baseline_records_gaps (tests.test_task015_coherence_closure.GuideAndDeterminismTests.test_coherence_baseline_records_gaps) ... ok
+test_determinism_acceptance (tests.test_task015_coherence_closure.GuideAndDeterminismTests.test_determinism_acceptance) ... ok
+test_final_md_guide_projection_matches_actual_guide (tests.test_task015_coherence_closure.GuideAndDeterminismTests.test_final_md_guide_projection_matches_actual_guide) ... FAIL
+test_guide_current_claim_is_task015 (tests.test_task015_coherence_closure.GuideAndDeterminismTests.test_guide_current_claim_is_task015) ... FAIL
+test_guide_maker_root_zero_and_stale_zero (tests.test_task015_coherence_closure.GuideAndDeterminismTests.test_guide_maker_root_zero_and_stale_zero) ... ok
+test_guide_validator_pass (tests.test_task015_coherence_closure.GuideAndDeterminismTests.test_guide_validator_pass) ... ok
+test_authority_mutation_fails (tests.test_user_experience_reducer.UserExperienceReducerTests.test_authority_mutation_fails) ... ok
+test_auto_route_fail (tests.test_user_experience_reducer.UserExperienceReducerTests.test_auto_route_fail) ... ok
+test_autonomy_entrypoint_missing_fails (tests.test_user_experience_reducer.UserExperienceReducerTests.test_autonomy_entrypoint_missing_fails) ... ok
+test_classification_contradiction_fails (tests.test_user_experience_reducer.UserExperienceReducerTests.test_classification_contradiction_fails) ... ok
+test_coverage_reducer_not_pass_fails (tests.test_user_experience_reducer.UserExperienceReducerTests.test_coverage_reducer_not_pass_fails) ... ok
+test_crosswalk_mismatch_fails (tests.test_user_experience_reducer.UserExperienceReducerTests.test_crosswalk_mismatch_fails) ... ok
+test_disposition_conflict_fails (tests.test_user_experience_reducer.UserExperienceReducerTests.test_disposition_conflict_fails) ... ok
+test_evolution_loop_fails (tests.test_user_experience_reducer.UserExperienceReducerTests.test_evolution_loop_fails) ... ok
+test_external_gpt_required_fails (tests.test_user_experience_reducer.UserExperienceReducerTests.test_external_gpt_required_fails) ... ok
+test_full_pass (tests.test_user_experience_reducer.UserExperienceReducerTests.test_full_pass) ... ok
+test_independent_evidence_missing_fails (tests.test_user_experience_reducer.UserExperienceReducerTests.test_independent_evidence_missing_fails) ... ok
+test_integration_fail_fails (tests.test_user_experience_reducer.UserExperienceReducerTests.test_integration_fail_fails) ... ok
+test_llmwiki_unknown_features_fails (tests.test_user_experience_reducer.UserExperienceReducerTests.test_llmwiki_unknown_features_fails) ... ok
+test_missing_field_rejected (tests.test_user_experience_reducer.UserExperienceReducerTests.test_missing_field_rejected) ... ok
+test_negative_tests_incomplete_fails (tests.test_user_experience_reducer.UserExperienceReducerTests.test_negative_tests_incomplete_fails) ... ok
+test_obsidian_not_installed_fails (tests.test_user_experience_reducer.UserExperienceReducerTests.test_obsidian_not_installed_fails) ... ok
+test_open_p0_journey_fails (tests.test_user_experience_reducer.UserExperienceReducerTests.test_open_p0_journey_fails) ... ok
+test_raw_evidence_missing_fails (tests.test_user_experience_reducer.UserExperienceReducerTests.test_raw_evidence_missing_fails) ... ok
+test_self_promotion_fails (tests.test_user_experience_reducer.UserExperienceReducerTests.test_self_promotion_fails) ... ok
+test_source_family_scan_incomplete_fails (tests.test_user_experience_reducer.UserExperienceReducerTests.test_source_family_scan_incomplete_fails) ... ok
+test_unnecessary_hitl_fails (tests.test_user_experience_reducer.UserExperienceReducerTests.test_unnecessary_hitl_fails) ... ok
+test_user_guide_stale_fails (tests.test_user_experience_reducer.UserExperienceReducerTests.test_user_guide_stale_fails) ... ok
+test_vertical_slice_incomplete_fails (tests.test_user_experience_reducer.UserExperienceReducerTests.test_vertical_slice_incomplete_fails) ... ok
+
+======================================================================
+ERROR: tests.test_acceptance_runner (unittest.loader._FailedTest.tests.test_acceptance_runner)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: tests.test_acceptance_runner
+Traceback (most recent call last):
+  File "C:\Users\user\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\hermes\hermes-agent\.hermes-runtime\python\cpython-3.11.17-windows-x86_64-none\Lib\unittest\loader.py", line 419, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\hermes\hermes-agent\.hermes-runtime\python\cpython-3.11.17-windows-x86_64-none\Lib\unittest\loader.py", line 362, in _get_module_from_name
+    __import__(name)
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\tests\test_acceptance_runner.py", line 11, in <module>
+    import run_acceptance
+ModuleNotFoundError: No module named 'run_acceptance'
+
+
+======================================================================
+ERROR: tests.test_c2_case_run (unittest.loader._FailedTest.tests.test_c2_case_run)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: tests.test_c2_case_run
+Traceback (most recent call last):
+  File "C:\Users\user\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\hermes\hermes-agent\.hermes-runtime\python\cpython-3.11.17-windows-x86_64-none\Lib\unittest\loader.py", line 419, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\hermes\hermes-agent\.hermes-runtime\python\cpython-3.11.17-windows-x86_64-none\Lib\unittest\loader.py", line 362, in _get_module_from_name
+    __import__(name)
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\tests\test_c2_case_run.py", line 15, in <module>
+    import run_acceptance  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'run_acceptance'
+
+
+======================================================================
+ERROR: test_all_materialized_controls_have_effective_contracts (tests.test_controls_observability_repo.ControlValidationTests.test_all_materialized_controls_have_effective_contracts)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\tests\test_controls_observability_repo.py", line 19, in test_all_materialized_controls_have_effective_contracts
+    result = validate_controls(ROOT / "control")
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\src\hg_kseos\control_validation.py", line 36, in validate_controls
+    root = control_root.resolve(strict=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\hermes\hermes-agent\.hermes-runtime\python\cpython-3.11.17-windows-x86_64-none\Lib\pathlib.py", line 993, in resolve
+    s = os.path.realpath(self, strict=strict)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen ntpath>", line 664, in realpath
+FileNotFoundError: [WinError 2] 系統找不到指定的檔案。: 'C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\FAR-REMEDIATION-AND-CLOSURE-20261016\\lanes\\VERIFY_SECURITY\\V3c\\work\\pre\\control'
+
+======================================================================
+ERROR: test_digest_mismatch_is_typed_not_a_spawn (tests.test_far_lane_fix_20261015.TestP0PinAssert.test_digest_mismatch_is_typed_not_a_spawn)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\tests\test_far_lane_fix_20261015.py", line 77, in test_digest_mismatch_is_typed_not_a_spawn
+    tc = json.loads((O / "sources" / "task_local_toolchain.json").read_text())
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\hermes\hermes-agent\.hermes-runtime\python\cpython-3.11.17-windows-x86_64-none\Lib\pathlib.py", line 1058, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\hermes\hermes-agent\.hermes-runtime\python\cpython-3.11.17-windows-x86_64-none\Lib\pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\FAR-REMEDIATION-AND-CLOSURE-20261016\\lanes\\VERIFY_SECURITY\\V3c\\work\\pre\\var\\FAR-LANE-REUSE-RCA-20261015\\sources\\task_local_toolchain.json'
+
+======================================================================
+ERROR: test_end_to_end_no_nonce_run_reads_the_new_code (tests.test_lane_dispatch_ao_guard.C1FailureDisposition.test_end_to_end_no_nonce_run_reads_the_new_code)
+A stub that answers with usage but emits no nonce -> ERR_NO_ARM_EMITTED_NONCE, ok:false.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\tests\test_lane_dispatch_ao_guard.py", line 548, in test_end_to_end_no_nonce_run_reads_the_new_code
+    self.assertFalse(rec["ok"])
+                     ~~~^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+
+======================================================================
+ERROR: test_declared_dispatchable_arm_is_never_skipped (tests.test_lane_dispatch_ao_guard.C2DispatchableConsumer.test_declared_dispatchable_arm_is_never_skipped)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\tests\test_lane_dispatch_ao_guard.py", line 605, in test_declared_dispatchable_arm_is_never_skipped
+    self.assertEqual(rec["skipped_arms"], [], p.stdout + p.stderr)
+                     ~~~^^^^^^^^^^^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+
+======================================================================
+ERROR: test_declared_not_dispatchable_arm_is_skipped_with_no_spawn (tests.test_lane_dispatch_ao_guard.C2DispatchableConsumer.test_declared_not_dispatchable_arm_is_skipped_with_no_spawn)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\tests\test_lane_dispatch_ao_guard.py", line 579, in test_declared_not_dispatchable_arm_is_skipped_with_no_spawn
+    self.assertEqual(rec["skipped_arms"],
+                     ~~~^^^^^^^^^^^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+
+======================================================================
+ERROR: test_force_rank_reaches_a_skipped_rank (tests.test_lane_dispatch_ao_guard.C2DispatchableConsumer.test_force_rank_reaches_a_skipped_rank)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\tests\test_lane_dispatch_ao_guard.py", line 594, in test_force_rank_reaches_a_skipped_rank
+    self.assertEqual([a["rank"] for a in rec["attempts"]], [2], p.stdout + p.stderr)
+                                         ~~~^^^^^^^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+
+======================================================================
+ERROR: test_dispatchable_false_without_feasibility_still_carries_a_reason (tests.test_lane_dispatch_ao_guard.R2Repair.test_dispatchable_false_without_feasibility_still_carries_a_reason)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\tests\test_lane_dispatch_ao_guard.py", line 689, in test_dispatchable_false_without_feasibility_still_carries_a_reason
+    self.assertEqual(len(rec["skipped_arms"]), 1, p.stdout + p.stderr)
+                         ~~~^^^^^^^^^^^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+
+======================================================================
+ERROR: test_non_blank_nonce_still_behaves_as_before (tests.test_lane_dispatch_ao_guard.R2Repair.test_non_blank_nonce_still_behaves_as_before)
+The nonce mechanism is NOT redesigned: a non-blank nonce that the arm fails to emit still
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\tests\test_lane_dispatch_ao_guard.py", line 781, in test_non_blank_nonce_still_behaves_as_before
+    self.assertFalse(rec["ok"])
+                     ~~~^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+
+======================================================================
+ERROR: test_G1_null_text_child_cannot_pass_with_nonce_None_end_to_end (tests.test_lane_dispatch_ao_guard.R3Repair.test_G1_null_text_child_cannot_pass_with_nonce_None_end_to_end)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\tests\test_lane_dispatch_ao_guard.py", line 854, in test_G1_null_text_child_cannot_pass_with_nonce_None_end_to_end
+    self.assertFalse(rec["ok"], p.stdout + p.stderr)
+                     ~~~^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+
+======================================================================
+ERROR: test_G1_object_text_child_cannot_pass_with_nonce_None_end_to_end (tests.test_lane_dispatch_ao_guard.R3Repair.test_G1_object_text_child_cannot_pass_with_nonce_None_end_to_end)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\tests\test_lane_dispatch_ao_guard.py", line 869, in test_G1_object_text_child_cannot_pass_with_nonce_None_end_to_end
+    self.assertFalse(rec["ok"], p.stdout + p.stderr)
+                     ~~~^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+
+======================================================================
+ERROR: test_G1_the_two_nonce_signals_agree_and_the_normal_case_still_passes (tests.test_lane_dispatch_ao_guard.R3Repair.test_G1_the_two_nonce_signals_agree_and_the_normal_case_still_passes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\tests\test_lane_dispatch_ao_guard.py", line 879, in test_G1_the_two_nonce_signals_agree_and_the_normal_case_still_passes
+    self.assertTrue(rec["ok"], p.stdout + p.stderr)
+                    ~~~^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+
+======================================================================
+ERROR: test_G2_empty_feasibility_shapes_still_yield_a_real_reason (tests.test_lane_dispatch_ao_guard.R3Repair.test_G2_empty_feasibility_shapes_still_yield_a_real_reason)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\tests\test_lane_dispatch_ao_guard.py", line 904, in test_G2_empty_feasibility_shapes_still_yield_a_real_reason
+    sk = [s for s in (rec.get("skipped_arms") or []) if s.get("rank") == 1]
+                      ^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'get'
+
+======================================================================
+ERROR: test_H4_positive_two_non_empty_roots_still_compare (tests.test_lane_dispatch_ao_guard.R4Repair.test_H4_positive_two_non_empty_roots_still_compare)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\tests\test_lane_dispatch_ao_guard.py", line 1151, in test_H4_positive_two_non_empty_roots_still_compare
+    self.assertTrue(rec["ok"], p.stdout + p.stderr)
+                    ~~~^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+
+======================================================================
+ERROR: tests.test_package_local (unittest.loader._FailedTest.tests.test_package_local)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: tests.test_package_local
+Traceback (most recent call last):
+  File "C:\Users\user\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\hermes\hermes-agent\.hermes-runtime\python\cpython-3.11.17-windows-x86_64-none\Lib\unittest\loader.py", line 419, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\hermes\hermes-agent\.hermes-runtime\python\cpython-3.11.17-windows-x86_64-none\Lib\unittest\loader.py", line 362, in _get_module_from_name
+    __import__(name)
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\tests\test_package_local.py", line 14, in <module>
+    SPEC.loader.exec_module(PACKAGE_LOCAL)
+  File "<frozen importlib._bootstrap_external>", line 936, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1073, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1130, in get_data
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\FAR-REMEDIATION-AND-CLOSURE-20261016\\lanes\\VERIFY_SECURITY\\V3c\\work\\pre\\tools\\package_local.py'
+
+
+======================================================================
+ERROR: test_cov_11_06_source_text_unchanged (tests.test_task013_hermes_v020_closure.Gate0PolicySemanticsTests.test_cov_11_06_source_text_unchanged)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\tests\test_task013_hermes_v020_closure.py", line 71, in test_cov_11_06_source_text_unchanged
+    group01 = next(corpus.glob("*Group-01_Authority_Source_Requirements.md"))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+StopIteration
+
+======================================================================
+FAIL: test_project_start_cli (tests.test_autonomy_evolution.CliEntrypointTests.test_project_start_cli)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\tests\test_autonomy_evolution.py", line 289, in test_project_start_cli
+    self.assertEqual(r.returncode, 0, r.stderr[-300:])
+AssertionError: 1 != 0 :          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\src\hg_kseos\lifecycle.py", line 119, in start
+    conn.execute(
+sqlite3.OperationalError: attempt to write a readonly database
+
+
+======================================================================
+FAIL: test_start_to_admit_no_spine_workaround (tests.test_cs_a_gate_repair.D5OrdinaryUserFlowTests.test_start_to_admit_no_spine_workaround)
+D5: ordinary-user CLI flow (start -> plan/admit) without direct spine API.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\tests\test_cs_a_gate_repair.py", line 188, in test_start_to_admit_no_spine_workaround
+    self.assertEqual(r.returncode, 0, r.stderr[-300:])
+AssertionError: 1 != 0 : y", line 201, in run
+    return lc.start(req, project_id=args.project_id)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\src\hg_kseos\lifecycle.py", line 119, in start
+    conn.execute(
+sqlite3.OperationalError: attempt to write a readonly database
+
+
+======================================================================
+FAIL: test_current_pin_verifies (tests.test_far_lane_fix_20261015.TestP0PinAssert.test_current_pin_verifies)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\tests\test_far_lane_fix_20261015.py", line 71, in test_current_pin_verifies
+    self.assertEqual(r.returncode, 0, r.stdout or r.stderr)
+AssertionError: 2 != 0 : {
+  "declaration_path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\FAR-REMEDIATION-AND-CLOSURE-20261016\\lanes\\VERIFY_SECURITY\\V3c\\work\\pre\\var\\FAR-LANE-REUSE-RCA-20261015\\sources\\task_local_toolchain.json",
+  "declared_path": null,
+  "declared_version": null,
+  "declared_sha256": null,
+  "path": null,
+  "version": null,
+  "sha256": null,
+  "ok": false,
+  "error": "ERR_LANE_TOOLCHAIN_DECLARATION_MISSING",
+  "detail": "declaration file not found: C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\FAR-REMEDIATION-AND-CLOSURE-20261016\\lanes\\VERIFY_SECURITY\\V3c\\work\\pre\\var\\FAR-LANE-REUSE-RCA-20261015\\sources\\task_local_toolchain.json"
+}
+
+
+======================================================================
+FAIL: test_owner_order_mandate_resolves (tests.test_far_lane_fix_20261015.TestP1MandateConsumer.test_owner_order_mandate_resolves)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\tests\test_far_lane_fix_20261015.py", line 148, in test_owner_order_mandate_resolves
+    self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+AssertionError: 4 != 0 : {"ok": false, "code": "ERR_MANDATE_ARM_UNRESOLVED", "detail": {"stage": "toolchain_declaration", "exit": 2, "stderr_tail": "ERR_LANE_TOOLCHAIN_DECLARATION_MISSING: declaration file not found: C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\FAR-REMEDIATION-AND-CLOSURE-20261016\\lanes\\VERIFY_SECURITY\\V3c\\work\\pre\\var\\FAR-LANE-REUSE-RCA-20261015\\sources\\task_local_toolchain.json"}}
+
+
+======================================================================
+FAIL: test_verify_security_mandate_resolves (tests.test_far_lane_fix_20261015.TestP1MandateConsumer.test_verify_security_mandate_resolves)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\tests\test_far_lane_fix_20261015.py", line 159, in test_verify_security_mandate_resolves
+    self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+AssertionError: 4 != 0 : {"ok": false, "code": "ERR_MANDATE_ARM_UNRESOLVED", "detail": {"stage": "toolchain_declaration", "exit": 2, "stderr_tail": "ERR_LANE_TOOLCHAIN_DECLARATION_MISSING: declaration file not found: C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\FAR-REMEDIATION-AND-CLOSURE-20261016\\lanes\\VERIFY_SECURITY\\V3c\\work\\pre\\var\\FAR-LANE-REUSE-RCA-20261015\\sources\\task_local_toolchain.json"}}
+
+
+======================================================================
+FAIL: test_wrong_model_in_pool_refuses (tests.test_far_lane_fix_20261015.TestP1MandateConsumer.test_wrong_model_in_pool_refuses)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\tests\test_far_lane_fix_20261015.py", line 170, in test_wrong_model_in_pool_refuses
+    self.assertEqual(r.returncode, 5)
+AssertionError: 4 != 5
+
+======================================================================
+FAIL: test_all_arms_skipped_reports_the_skip_list_and_fails_closed (tests.test_lane_dispatch_ao_guard.C2DispatchableConsumer.test_all_arms_skipped_reports_the_skip_list_and_fails_closed)
+The skip must not crash the no-candidates path: it reports the skipped arms and refuses.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\tests\test_lane_dispatch_ao_guard.py", line 615, in test_all_arms_skipped_reports_the_skip_list_and_fails_closed
+    self.assertEqual(p.returncode, 4, p.stdout + p.stderr)
+AssertionError: 1 != 4 : Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\scripts\hgk-lane-dispatch.py", line 2275, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\scripts\hgk-lane-dispatch.py", line 1730, in main
+    _txt = _cfg.read_text(encoding="utf-8", errors="replace")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\hermes\hermes-agent\.hermes-runtime\python\cpython-3.11.17-windows-x86_64-none\Lib\pathlib.py", line 1058, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\hermes\hermes-agent\.hermes-runtime\python\cpython-3.11.17-windows-x86_64-none\Lib\pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: 'C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\codex-hermes\\config.toml'
+
+
+======================================================================
+FAIL: test_E11a_a_conforming_attempt_stands (tests.test_lane_dispatch_ao_guard.DeterministicGuardNegative.test_E11a_a_conforming_attempt_stands)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\tests\test_lane_dispatch_ao_guard.py", line 420, in test_E11a_a_conforming_attempt_stands
+    rc, r = self._case("clean")
+            ^^^^^^^^^^^^^^^^^^^
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\tests\test_lane_dispatch_ao_guard.py", line 416, in _case
+    self.assertTrue(json_out.is_file(), p.stdout + p.stderr)
+AssertionError: False is not true : Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\scripts\hgk-lane-dispatch.py", line 2275, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\scripts\hgk-lane-dispatch.py", line 1730, in main
+    _txt = _cfg.read_text(encoding="utf-8", errors="replace")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\hermes\hermes-agent\.hermes-runtime\python\cpython-3.11.17-windows-x86_64-none\Lib\pathlib.py", line 1058, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\hermes\hermes-agent\.hermes-runtime\python\cpython-3.11.17-windows-x86_64-none\Lib\pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: 'C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\codex-hermes\\config.toml'
+
+
+======================================================================
+FAIL: test_E11b_mutation_voids_a_would_have_passed_attempt (tests.test_lane_dispatch_ao_guard.DeterministicGuardNegative.test_E11b_mutation_voids_a_would_have_passed_attempt)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\tests\test_lane_dispatch_ao_guard.py", line 427, in test_E11b_mutation_voids_a_would_have_passed_attempt
+    rc, r = self._case("mutate")
+            ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\tests\test_lane_dispatch_ao_guard.py", line 416, in _case
+    self.assertTrue(json_out.is_file(), p.stdout + p.stderr)
+AssertionError: False is not true : Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\scripts\hgk-lane-dispatch.py", line 2275, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\scripts\hgk-lane-dispatch.py", line 1730, in main
+    _txt = _cfg.read_text(encoding="utf-8", errors="replace")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\hermes\hermes-agent\.hermes-runtime\python\cpython-3.11.17-windows-x86_64-none\Lib\pathlib.py", line 1058, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\hermes\hermes-agent\.hermes-runtime\python\cpython-3.11.17-windows-x86_64-none\Lib\pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: 'C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\codex-hermes\\config.toml'
+
+
+======================================================================
+FAIL: test_E11c_removal_voids_a_would_have_passed_attempt (tests.test_lane_dispatch_ao_guard.DeterministicGuardNegative.test_E11c_removal_voids_a_would_have_passed_attempt)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\tests\test_lane_dispatch_ao_guard.py", line 437, in test_E11c_removal_voids_a_would_have_passed_attempt
+    rc, r = self._case("remove")
+            ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\tests\test_lane_dispatch_ao_guard.py", line 416, in _case
+    self.assertTrue(json_out.is_file(), p.stdout + p.stderr)
+AssertionError: False is not true : Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\scripts\hgk-lane-dispatch.py", line 2275, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\scripts\hgk-lane-dispatch.py", line 1730, in main
+    _txt = _cfg.read_text(encoding="utf-8", errors="replace")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\hermes\hermes-agent\.hermes-runtime\python\cpython-3.11.17-windows-x86_64-none\Lib\pathlib.py", line 1058, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\hermes\hermes-agent\.hermes-runtime\python\cpython-3.11.17-windows-x86_64-none\Lib\pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: 'C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\codex-hermes\\config.toml'
+
+
+======================================================================
+FAIL: test_E11d_an_added_file_is_recorded_but_not_fatal (tests.test_lane_dispatch_ao_guard.DeterministicGuardNegative.test_E11d_an_added_file_is_recorded_but_not_fatal)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\tests\test_lane_dispatch_ao_guard.py", line 443, in test_E11d_an_added_file_is_recorded_but_not_fatal
+    rc, r = self._case("create", subject="dir")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\tests\test_lane_dispatch_ao_guard.py", line 416, in _case
+    self.assertTrue(json_out.is_file(), p.stdout + p.stderr)
+AssertionError: False is not true : Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\scripts\hgk-lane-dispatch.py", line 2275, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\scripts\hgk-lane-dispatch.py", line 1730, in main
+    _txt = _cfg.read_text(encoding="utf-8", errors="replace")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\hermes\hermes-agent\.hermes-runtime\python\cpython-3.11.17-windows-x86_64-none\Lib\pathlib.py", line 1058, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\hermes\hermes-agent\.hermes-runtime\python\cpython-3.11.17-windows-x86_64-none\Lib\pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: 'C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\codex-hermes\\config.toml'
+
+
+======================================================================
+FAIL: test_all_arms_refused_refuses_wholesale_with_no_spawn (tests.test_lane_dispatch_ao_guard.GateEndToEndRefusal.test_all_arms_refused_refuses_wholesale_with_no_spawn)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\tests\test_lane_dispatch_ao_guard.py", line 219, in test_all_arms_refused_refuses_wholesale_with_no_spawn
+    self.assertEqual(p.returncode, 4, p.stdout + p.stderr)
+AssertionError: 1 != 4 : Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\scripts\hgk-lane-dispatch.py", line 2275, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\scripts\hgk-lane-dispatch.py", line 1730, in main
+    _txt = _cfg.read_text(encoding="utf-8", errors="replace")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\hermes\hermes-agent\.hermes-runtime\python\cpython-3.11.17-windows-x86_64-none\Lib\pathlib.py", line 1058, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\hermes\hermes-agent\.hermes-runtime\python\cpython-3.11.17-windows-x86_64-none\Lib\pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: 'C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\codex-hermes\\config.toml'
+
+
+======================================================================
+FAIL: test_guard_root_that_does_not_resolve_is_refused (tests.test_lane_dispatch_ao_guard.GateEndToEndRefusal.test_guard_root_that_does_not_resolve_is_refused)
+MEASURED (probe E5b): an unresolvable guard root produced a zero-file snapshot and the
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\tests\test_lane_dispatch_ao_guard.py", line 198, in test_guard_root_that_does_not_resolve_is_refused
+    self.assertEqual(p.returncode, 4, p.stdout + p.stderr)
+AssertionError: 1 != 4 : Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\scripts\hgk-lane-dispatch.py", line 2275, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\scripts\hgk-lane-dispatch.py", line 1730, in main
+    _txt = _cfg.read_text(encoding="utf-8", errors="replace")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\hermes\hermes-agent\.hermes-runtime\python\cpython-3.11.17-windows-x86_64-none\Lib\pathlib.py", line 1058, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\hermes\hermes-agent\.hermes-runtime\python\cpython-3.11.17-windows-x86_64-none\Lib\pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: 'C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\codex-hermes\\config.toml'
+
+
+======================================================================
+FAIL: test_required_arm_absent_from_the_pool_is_typed (tests.test_lane_dispatch_ao_guard.GateEndToEndRefusal.test_required_arm_absent_from_the_pool_is_typed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\tests\test_lane_dispatch_ao_guard.py", line 191, in test_required_arm_absent_from_the_pool_is_typed
+    self.assertEqual(p.returncode, 4, p.stdout + p.stderr)
+AssertionError: 1 != 4 : Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\scripts\hgk-lane-dispatch.py", line 2275, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\scripts\hgk-lane-dispatch.py", line 1730, in main
+    _txt = _cfg.read_text(encoding="utf-8", errors="replace")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\hermes\hermes-agent\.hermes-runtime\python\cpython-3.11.17-windows-x86_64-none\Lib\pathlib.py", line 1058, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\hermes\hermes-agent\.hermes-runtime\python\cpython-3.11.17-windows-x86_64-none\Lib\pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: 'C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\codex-hermes\\config.toml'
+
+
+======================================================================
+FAIL: test_required_arm_refused_fails_closed_instead_of_degrading (tests.test_lane_dispatch_ao_guard.GateEndToEndRefusal.test_required_arm_refused_fails_closed_instead_of_degrading)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\tests\test_lane_dispatch_ao_guard.py", line 182, in test_required_arm_refused_fails_closed_instead_of_degrading
+    self.assertEqual(p.returncode, 4, p.stdout + p.stderr)
+AssertionError: 1 != 4 : Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\scripts\hgk-lane-dispatch.py", line 2275, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\scripts\hgk-lane-dispatch.py", line 1730, in main
+    _txt = _cfg.read_text(encoding="utf-8", errors="replace")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\hermes\hermes-agent\.hermes-runtime\python\cpython-3.11.17-windows-x86_64-none\Lib\pathlib.py", line 1058, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\hermes\hermes-agent\.hermes-runtime\python\cpython-3.11.17-windows-x86_64-none\Lib\pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: 'C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\codex-hermes\\config.toml'
+
+
+======================================================================
+FAIL: test_F1_no_identity_gate_does_not_switch_off_require_arm (tests.test_lane_dispatch_ao_guard.HostileReviewRegression.test_F1_no_identity_gate_does_not_switch_off_require_arm)
+The require-arm block was nested inside `if not args.no_identity_gate`, so one flag turned
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\tests\test_lane_dispatch_ao_guard.py", line 294, in test_F1_no_identity_gate_does_not_switch_off_require_arm
+    self.assertEqual(p.returncode, 4, p.stdout + p.stderr)
+AssertionError: 1 != 4 : Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\scripts\hgk-lane-dispatch.py", line 2275, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\scripts\hgk-lane-dispatch.py", line 1730, in main
+    _txt = _cfg.read_text(encoding="utf-8", errors="replace")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\hermes\hermes-agent\.hermes-runtime\python\cpython-3.11.17-windows-x86_64-none\Lib\pathlib.py", line 1058, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\hermes\hermes-agent\.hermes-runtime\python\cpython-3.11.17-windows-x86_64-none\Lib\pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: 'C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\codex-hermes\\config.toml'
+
+
+======================================================================
+FAIL: test_F2_a_declared_cli_login_requirement_is_honoured_end_to_end (tests.test_lane_dispatch_ao_guard.HostileReviewRegression.test_F2_a_declared_cli_login_requirement_is_honoured_end_to_end)
+First version dropped identity_requirement when building entries, so the pool's declaration
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\tests\test_lane_dispatch_ao_guard.py", line 279, in test_F2_a_declared_cli_login_requirement_is_honoured_end_to_end
+    self.assertEqual(p.returncode, 4, p.stdout + p.stderr)
+AssertionError: 1 != 4 : Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\scripts\hgk-lane-dispatch.py", line 2275, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\scripts\hgk-lane-dispatch.py", line 1730, in main
+    _txt = _cfg.read_text(encoding="utf-8", errors="replace")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\hermes\hermes-agent\.hermes-runtime\python\cpython-3.11.17-windows-x86_64-none\Lib\pathlib.py", line 1058, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\hermes\hermes-agent\.hermes-runtime\python\cpython-3.11.17-windows-x86_64-none\Lib\pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: 'C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\codex-hermes\\config.toml'
+
+
+======================================================================
+FAIL: test_F2_a_misspelled_requirement_is_refused_end_to_end (tests.test_lane_dispatch_ao_guard.HostileReviewRegression.test_F2_a_misspelled_requirement_is_refused_end_to_end)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\tests\test_lane_dispatch_ao_guard.py", line 287, in test_F2_a_misspelled_requirement_is_refused_end_to_end
+    self.assertEqual(p.returncode, 4, p.stdout + p.stderr)
+AssertionError: 1 != 4 : Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\scripts\hgk-lane-dispatch.py", line 2275, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\scripts\hgk-lane-dispatch.py", line 1730, in main
+    _txt = _cfg.read_text(encoding="utf-8", errors="replace")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\hermes\hermes-agent\.hermes-runtime\python\cpython-3.11.17-windows-x86_64-none\Lib\pathlib.py", line 1058, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\hermes\hermes-agent\.hermes-runtime\python\cpython-3.11.17-windows-x86_64-none\Lib\pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: 'C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\codex-hermes\\config.toml'
+
+
+======================================================================
+FAIL: test_F6_a_guard_root_containing_harness_output_is_refused (tests.test_lane_dispatch_ao_guard.HostileReviewRegression.test_F6_a_guard_root_containing_harness_output_is_refused)
+If the harness's own writes land inside a guard root they register as subject changes.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\tests\test_lane_dispatch_ao_guard.py", line 309, in test_F6_a_guard_root_containing_harness_output_is_refused
+    self.assertEqual(p.returncode, 4, p.stdout + p.stderr)
+AssertionError: 1 != 4 : Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\scripts\hgk-lane-dispatch.py", line 2275, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\scripts\hgk-lane-dispatch.py", line 1730, in main
+    _txt = _cfg.read_text(encoding="utf-8", errors="replace")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\hermes\hermes-agent\.hermes-runtime\python\cpython-3.11.17-windows-x86_64-none\Lib\pathlib.py", line 1058, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\hermes\hermes-agent\.hermes-runtime\python\cpython-3.11.17-windows-x86_64-none\Lib\pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: 'C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\codex-hermes\\config.toml'
+
+
+======================================================================
+FAIL: test_guard_refusal_receipt_also_carries_both_home_fields (tests.test_lane_dispatch_ao_guard.R2Repair.test_guard_refusal_receipt_also_carries_both_home_fields)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\tests\test_lane_dispatch_ao_guard.py", line 711, in test_guard_refusal_receipt_also_carries_both_home_fields
+    self.assertEqual(p.returncode, 4, p.stdout + p.stderr)
+AssertionError: 1 != 4 : Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\scripts\hgk-lane-dispatch.py", line 2275, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\scripts\hgk-lane-dispatch.py", line 1730, in main
+    _txt = _cfg.read_text(encoding="utf-8", errors="replace")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\hermes\hermes-agent\.hermes-runtime\python\cpython-3.11.17-windows-x86_64-none\Lib\pathlib.py", line 1058, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\hermes\hermes-agent\.hermes-runtime\python\cpython-3.11.17-windows-x86_64-none\Lib\pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: 'C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\codex-hermes\\config.toml'
+
+
+======================================================================
+FAIL: test_refusal_receipt_carries_both_home_fields (tests.test_lane_dispatch_ao_guard.R2Repair.test_refusal_receipt_carries_both_home_fields)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\tests\test_lane_dispatch_ao_guard.py", line 700, in test_refusal_receipt_carries_both_home_fields
+    self.assertEqual(p.returncode, 4, p.stdout + p.stderr)
+AssertionError: 1 != 4 : Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\scripts\hgk-lane-dispatch.py", line 2275, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\scripts\hgk-lane-dispatch.py", line 1730, in main
+    _txt = _cfg.read_text(encoding="utf-8", errors="replace")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\hermes\hermes-agent\.hermes-runtime\python\cpython-3.11.17-windows-x86_64-none\Lib\pathlib.py", line 1058, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\hermes\hermes-agent\.hermes-runtime\python\cpython-3.11.17-windows-x86_64-none\Lib\pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: 'C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\codex-hermes\\config.toml'
+
+
+======================================================================
+FAIL: test_G3_added_file_does_not_void_but_changed_and_removed_do (tests.test_lane_dispatch_ao_guard.R3Repair.test_G3_added_file_does_not_void_but_changed_and_removed_do)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\tests\test_lane_dispatch_ao_guard.py", line 932, in test_G3_added_file_does_not_void_but_changed_and_removed_do
+    self.assertEqual(rc_add, 0, r_add)
+AssertionError: 1 != 0
+
+======================================================================
+FAIL: test_G3_empty_guard_root_refuses_pre_spawn (tests.test_lane_dispatch_ao_guard.R3Repair.test_G3_empty_guard_root_refuses_pre_spawn)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\tests\test_lane_dispatch_ao_guard.py", line 917, in test_G3_empty_guard_root_refuses_pre_spawn
+    self.assertEqual(p.returncode, 4, p.stdout + p.stderr)
+AssertionError: 1 != 4 : Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\scripts\hgk-lane-dispatch.py", line 2275, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\scripts\hgk-lane-dispatch.py", line 1730, in main
+    _txt = _cfg.read_text(encoding="utf-8", errors="replace")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\hermes\hermes-agent\.hermes-runtime\python\cpython-3.11.17-windows-x86_64-none\Lib\pathlib.py", line 1058, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\hermes\hermes-agent\.hermes-runtime\python\cpython-3.11.17-windows-x86_64-none\Lib\pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: 'C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\codex-hermes\\config.toml'
+
+
+======================================================================
+FAIL: test_G3_non_empty_guard_root_still_snapshots_and_compares (tests.test_lane_dispatch_ao_guard.R3Repair.test_G3_non_empty_guard_root_still_snapshots_and_compares)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\tests\test_lane_dispatch_ao_guard.py", line 925, in test_G3_non_empty_guard_root_still_snapshots_and_compares
+    self.assertEqual(rc, 0, r)
+AssertionError: 1 != 0
+
+======================================================================
+FAIL: test_H4_negative_an_empty_root_is_refused_even_with_a_non_empty_sibling (tests.test_lane_dispatch_ao_guard.R4Repair.test_H4_negative_an_empty_root_is_refused_even_with_a_non_empty_sibling)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\tests\test_lane_dispatch_ao_guard.py", line 1134, in test_H4_negative_an_empty_root_is_refused_even_with_a_non_empty_sibling
+    self.assertEqual(p.returncode, 4, p.stdout + p.stderr)
+AssertionError: 1 != 4 : Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\scripts\hgk-lane-dispatch.py", line 2275, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\scripts\hgk-lane-dispatch.py", line 1730, in main
+    _txt = _cfg.read_text(encoding="utf-8", errors="replace")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\hermes\hermes-agent\.hermes-runtime\python\cpython-3.11.17-windows-x86_64-none\Lib\pathlib.py", line 1058, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\hermes\hermes-agent\.hermes-runtime\python\cpython-3.11.17-windows-x86_64-none\Lib\pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: 'C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\codex-hermes\\config.toml'
+
+
+======================================================================
+FAIL: test_registry_and_projection_shape (tests.test_lane_policy.TestLanePolicyConformance.test_registry_and_projection_shape)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\tests\test_lane_policy.py", line 109, in test_registry_and_projection_shape
+    self.assertEqual((route["provider"], route["model"]), owner_chain[lane][0],
+AssertionError: Tuples differ: ('opencode-go', 'glm-5.3-flash') != ('openai-codex', 'gpt-6.1-sol')
+
+First differing element 0:
+'opencode-go'
+'openai-codex'
+
+- ('opencode-go', 'glm-5.3-flash')
++ ('openai-codex', 'gpt-6.1-sol') : PLAN rank-1 default must be owner-declared
+
+======================================================================
+FAIL: test_config_resolves_scheme_b_appdata_runtime (tests.test_task014_named_method_closure.CanonicalRuntimeTests.test_config_resolves_scheme_b_appdata_runtime)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\tests\test_task014_named_method_closure.py", line 81, in test_config_resolves_scheme_b_appdata_runtime
+    self.assertEqual(cfg["canonical_hermes_home"], r"C:\Users\user\AppData\Local\hermes")
+AssertionError: 'C:\\[24 chars]cal\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\Loc[18 chars]rmes' != 'C:\\[24 chars]cal\\hermes'
+- C:\Users\user\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\hermes
++ C:\Users\user\AppData\Local\hermes
+
+
+======================================================================
+FAIL: test_denominator_head_matches_git (tests.test_task015_coherence_closure.G2DenominatorTests.test_denominator_head_matches_git)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\tests\test_task015_coherence_closure.py", line 55, in test_denominator_head_matches_git
+    self.assertEqual(td["head"], head)
+AssertionError: '22e21f0340501caf4ff0dbd67663faf49f521b03' != '903e47cddeceb40cb8f5f5793105533b3988a463'
+- 22e21f0340501caf4ff0dbd67663faf49f521b03
++ 903e47cddeceb40cb8f5f5793105533b3988a463
+
+
+======================================================================
+FAIL: test_final_md_guide_projection_matches_actual_guide (tests.test_task015_coherence_closure.GuideAndDeterminismTests.test_final_md_guide_projection_matches_actual_guide)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\tests\test_task015_coherence_closure.py", line 167, in test_final_md_guide_projection_matches_actual_guide
+    self.assertIn(hashlib.sha256(guide).hexdigest(), ab)
+AssertionError: 'caf0c4ff7748cebca25f27a4be4be3547ac77263d1d02ea4ffd5128d03053c92' not found in ' — CURRENT\n\n> This is the ONLY current identity section of this document. Sections A–AA\n> are historical accepted lineage (E10 → Task-014) and MUST NOT be read as\n> current.\n\n**Current changeset**: `HGK-CS-A-APL-FULL-PROJECT-GATE-REPAIR-001`（Task-011/012/013/014 = historical accepted lineage）。\n\n**Exact final HEAD**: `22e21f0340501caf4ff0dbd67663faf49f521b03`\n**Git status**: CLEAN（checked at generation time）\n**Package**: `var/releases/HG-KSEOS_LOCAL_CANDIDATE.zip`\n**Package bytes**: 26720161\n**Package SHA-256 (full 64 chars)**: `69162fcb66aab6ed23dbd7e15bd861f41c117748c15d43e2568a8f415e21fdd1`\n**Payload files**: 420\n**TST-092 current receipt**（Task-015 lineage）: `evidence/wave-18/TST-092_TASK014_FINAL_COHERENCE_INDEPENDENT_READBACK.json` → INDEPENDENT_CASE_PASS；same_head=True、same_package=True、historical_receipts_immutable=true\n\n**Current repository test discovery**（fresh machine recount, schema HGK-CURRENT-TEST-DENOMINATOR/2）:\n- files=32, cases discovered=274, run=274, passed=274, failures=0, errors=0, skipped=0, exit=0；current_task_match=true、head_match=true\n\n**Current Hermes**（canonical live activation）:\n- version=0.20.0, tag=v2026.8.3, commit=3c27eb6234bf91b8ceee9e9071591b31e9b148cb\n- canonical executable=`var\\hermes-v020\\venv\\Scripts\\hermes.exe`（`HGK-HERMES-BINDING/2`, ACTIVE_SELECTED_CERTIFIED）；hermes-core.ps1 PASS；project/kanban/Codex smokes PASS\n- v0.18.2（9de9c25f / v2026.7.7.2）= rollback baseline（保留）\n\n**Current OpenSpec**: version=1.8.0（tag v1.8.0、release commit d57889664…、MIT）— `CERTIFIED_ACTIVE_BROWNFIELD`（Hermes effective-load PASS；brownfield E2E PASS；negative/security PASS；fallback/rollback PASS；independent PASS）\n\n**Current gstack**: version=1.61.0.0、commit=94993f74012782fd94416dd44b8314f6363a13a4（MIT、bun）— `CERTIFIED_ACTIVE_SELECTED_SLICES`：office-hours/plan-eng-review/review/qa/cso/ship/retro（advisory only；Hermes effective-load PASS；selected E2E PASS；fail-open regression PASS；ship final_authority=false；fallback/rollback PASS；independent PASS）\n\n**Named-method router**: deterministic registry；brownfield→openspec、greenfield→XOR_GREENFIELD、plan/review/qa/security/release/ambiguity/retro→gstack slices（native fallbacks）；fake_invocation=0、silent_fallback=0、dual_spec_owner=0、second_orchestrator=0、release_authority_escape=0。\n\n**Current External Acceptance**（machine-projected — no hardcoded counts）:\n- schema `HGK-EXTERNAL-FINAL-ACCEPTANCE/3`；status = `HG-KSEOS_LOCAL_DELIVERY_PASS - EXTERNAL FINAL ACCEPTED`（core，不含 6 個 final-MD cross predicates；full rows=161、unique=161）\n- hard_check_total=155、pass=155、fail=0\n- hard_check_row_total=161、unique_id_total=161、duplicate_id_count=0\n- current_changeset_task_id=`HGK-CS-A-APL-FULL-PROJECT-GATE-REPAIR-001`；candidate HEAD=`22e21f0340501caf4ff0dbd67663faf49f521b03`；package=`69162fcb66aab6ed…`\n- input manifest: `evidence/review/HG-KSEOS_EXTERNAL_ACCEPTANCE_INPUT_MANIFEST.json` sha256=0455a5bf9989bb52…\n- test denominator、TST-092 receipt、reducers 均為 acceptance input（exact SHA 見 input manifest）\n\n**Current reducers**:\n- CoverageReducer v2: `HG-KSEOS_LOCAL_DELIVERY_PASS`（reasons=[]）\n- UserExperienceReducer v1: `HG-KSEOS_USER_EXPECTED_CAPABILITY_EXPERIENCE_PASS`（reasons=[]）\n\n**Blocking TT**: 0\u3000**Production**: `NOT_CLAIMED`\n\n**Current User Guide**（F4 projection）:\n- path = `docs/HG-KSEOS使用說明文檔.md`\n- bytes = 20452；sha256 = `a8540246bc8680676557239536d8c79f8b9283eb7b68f1b2c4c2a1a5af9e925e`\n- validator = PASS（36 checks）\n- quick_start=True、autonomous_lifecycle=True、governed_evolution=True、hermes_v020=True、kanban_goal=True、openspec=True、gstack=True、named_method_router=True、fallback_rollback=True、commands_verified=True、stale_current_claim_count=0\n\n**Promotion gate（COV-11-06）**: 既有 certified named-method routes 維持 current local runtime（Task-014 A0 conditional authorization + independent verifier 記錄於歷史證據）；本輪為 evidence/docs closure，無新 promotion。Production `NOT_CLAIMED`。\n\n'
+
+======================================================================
+FAIL: test_guide_current_claim_is_task015 (tests.test_task015_coherence_closure.GuideAndDeterminismTests.test_guide_current_claim_is_task015)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\pre\tests\test_task015_coherence_closure.py", line 172, in test_guide_current_claim_is_task015
+    self.assertIn("Current changeset = **Task-015**", guide)
+AssertionError: 'Current changeset = **Task-015**' not found in '---\ndocument_title: HG-KSEOS 使用說明文檔\ndocument_version: v2026.08.13-r1\nupdated_at: 2026-08-13\nproduct_scope: HG-KSEOS local P0 / RP-002 v2.0 (HGK-REFERENCE-PROJECT-002)\ncurrent_status: Stage-2 externally accepted (RP-002); next gate SQP1 NOT_AUTHORIZED\nauthority_note: operational projection; normative truth lives in Master/Stage contracts/current machine truth\n---\n\n# HG-KSEOS 使用說明文檔\n\n> 本文是 **projection / operational manual**，不是 authority / policy source / requirement source。\n> 權威來源依 Master/Stage contracts 與 current machine truth：RP-002 master（sha `3bc4ad6c…`）、Stage-2 r2（`66c4f708…`）、subject（`946de0d7…`）、`Fabric\\stage\\RP002-STAGE-HGK\\` 內 seal / handoff / receipts。\n> **Current claim**: RP-002 v2.0 **Stage-2 externally accepted**（`Fabric\\stage\\RP002-STAGE-HGK\\EXTERNAL_ACCEPTANCE_RECEIPT_STAGE2.yaml`，`PASS_CHALLENGE` / `GRANTED`）。Next gate = **SQP1（NOT_AUTHORIZED）**；本文件任務**不執行 Stage-3 / SQP1**。Production / live / remote 一律 `NOT_CLAIMED`。\n> 歷史 local delivery lineage（Task-011..015、A-3 delta 等）保留為 accepted historical lineage，見 §33 Changelog / Historical Baselines。\n\n---\n\n# Part 0 — RP-002 v2.0 更新總覽（v2026.08.13-r1）\n\n本節收斂 RP-002 v2.0 Stage-2 之後的 currentness delta；細部見對應章節。\n\n1. **Canonical identity / root**：`C:\\Projects\\Agent_Workspace\\HG-KSEOS` 仍是唯一 canonical local root（writable root）；`C:\\Projects\\Agent_Workspace\\Fabric` 是 governance/assurance/interop/knowledge contract surface（唯讀契約面，不是第二 root）。\n2. **HGK remains governance/control plane after self-hosting**：RP-002 Stage-2 self-hosting 後，HG-KSEOS 仍是唯一 governance / normative control plane（WorkOrder admission、SharedSpine、reducers、acceptance、release）。Fabric 不建立第二 control plane；Hermes/Codex 仍是 bounded capabilities。\n3. **Hermes governed binding + role separation**：`config/hermes.json`（`HGK-HERMES-BINDING/2`，`ACTIVE_SELECTED_REINSTALL_BASELINE`）綁定 Hermes v0.20.0 / `v2026.8.3` / `3c27eb62…`。Hermes = runtime/orchestrator；HGK = normative；Hermes runtime state ≠ HGK normative state（§11）。\n4. **Normal lifecycle**：goal/source → source admission → Requirement（freeze）→ TaskSpec → WorkOrder → ExecutionBinding → Profile → Hermes → Codex/tests/evidence → independent acceptance（§7）。\n5. **Deterministic Direct/Kanban/Swarm selection**：user 正常不選擇 lane；router 依 task shape 決定（`ROUTE_DIRECT_ATOMIC` / `ROUTE_KANBAN_DURABLE` / `ROUTE_KANBAN_CROSS_ROLE` / `ROUTE_SWARM_PARALLEL` / `ROUTE_CODEX_TRACKED`）。Kanban = durable / project-scoped；Swarm = on demand（§8、§20、§31）。\n6. **H1 Profile/TEAM/Stack + 5 stable P0 Profiles**：`hgk-orchestrator`、`hgk-coding-factory`、`hgk-engineering-reviewer`、`hgk-qa`、`hgk-security`；`ROLE ≠ PROFILE ≠ WORKER`（§9、§31）。\n7. **O1 commander vs officer SoD**：`construction-commander`（dist `e682655a…`）vs `acceptance-officer`（dist `1404bb48…`）身份與 distribution digest 皆 distinct；officer `VERIFY_ONLY`，禁止 candidate write / WorkOrder create / repair / promotion / release（§31）。\n8. **B1 project-scoped Kanban + canonical ExecutionBinding**：board `RP002-FABRIC-BOOTSTRAP`；binding `BIND-RP2-S2-001`（schema `RP002-EXECUTION-BINDING/2`）含 workorder、profile、delegation、lease `LS-RP2-S2-001`、budget、idempotency、workspace、candidate write-set、worker PID/heartbeat/log（§31）。\n9. **F0 actual Fabric policy consumption**：6-step trace（frozen policy → HGK route/SharedSpine → admission decision → WorkOrder/Binding → Hermes dispatch → evidence）；`yaml_presence_alone: NOT_ACCEPTED`（§31）。\n10. **CF1 repaired & externally accepted**：`mcp-contextforge-gateway` v1.0.7 @ commit `4092d336…`、Apache-2.0、註冊 `CF-REG-RP2-S2-001`、OASF `oasf-record/1`；401 auth-negative + authenticated positive discovery；舊 degraded state（`CF1_QUALIFICATION.json` PASS_WITH_DEGRADED_CONTEXTFORGE）僅為歷史（§31）。\n11. **F1 same-subject promotion + self-hosted normal path**：`TX-RP2-S2-F1-002-REPAIRED`（`d6ebaa13…`）同 subject 綁定 ContextForge lineage；normal path = `WORKORDER → EXECUTION_BINDING → PROFILE → KANBAN`；legacy bypass = `BREAK_GLASS_ONLY`、open breakglass = 0（§31）。\n12. **KG1 namespaces/ACL/provenance/promotion/revoke/provider state**：`hgk.candidate.*` / `hgk.approved.*` / `hgk.revoked.*` / `fabric.*` / `assurance.*` / `sqs.*`（stage2 read-only）/ `shared.approved.*`；agent write = candidate only；promotion = owner/gate only；revoke = tombstone；Qdrant/Neo4j default-off（§23、§31）。\n13. **Knowledge Workbench / 知識庫**：`C:\\Projects\\Agent_Workspace\\知識庫` Obsidian = human view（derived）；LLM Wiki / RAG / KG = derived；agent 產出 = candidate，approved 需 gate（§23）。\n14. **Fabric relationship + evidence locations**：Fabric = contract surface；證據根 = `C:\\Projects\\Agent_Workspace\\Fabric\\stage\\RP002-STAGE-HGK\\`（seal/handoff/receipts）與 `C:\\Projects\\Agent_Workspace\\Fabric\\evidence\\review\\`（external bundle，`104d4cf2…` mirror equal）（§31）。\n15. **Governed self-evolution bounded**：promotion 需 evidence-backed gap + sandbox/eval/holdout + independent verification + Human Policy Owner gate（COV-11-06）；`UNBOUNDED_SELF_MODIFICATION=0`（§9）。\n16. **Prompt Compiler C0-C9**：一個 contract 一個 ChangeSet；`PROMPT_COMPILE_PASS ≠ RUNTIME_READY ≠ EXTERNAL_ACCEPTANCE`（§31）。\n17. **Ordinary-user no-brain entry**：最少輸入 = `goal` + `source_paths` + `target_root`；其餘自動推導（§5）。\n18. **Rollback/checkpoint/resume**：checkpoint 為 normative checkpoint；`project resume <id>` 從 checkpoint 繼續；rollback 依 pointer（§6、§21、§29）。\n19. **Current status**：Stage-2 externally accepted；next gate `SQP1`（NOT_AUTHORIZED）；Stage-3 contract `NOT_YET_COMPILED`；**本文件任務未執行 Stage-3**（§2、§31、§32）。\n20. **Nonclaims**：production / live / remote 一律 `NOT_CLAIMED`；`sqs_live_trading: NOT_AUTHORIZED`（§32）。\n21. **Commands（語法已確認）**：`doctor`、`project start|status|resume|checkpoint|advance|intake|denominator`、`evolution status|signal|candidate`（§4、§6、§30）。\n22. **Troubleshooting**：見 §31（readback、checkpoint、finding closure、Fabric evidence paths）。\n23. **Changelog**：§33（歷史 lineage 與本版變更）。\n\n---\n\n# Part I — 5 分鐘開始\n\n## 1. HG-KSEOS 是什麼\n\nHG-KSEOS 是受治理的多閘門本機交付系統：把「使用者目標 → 來源 → 需求 → 設計 → 計畫 → WorkOrder → ExecutionBinding → Profile → Hermes/Codex 實作 → 測試 → 修補 → 獨立驗收 → reducers → local delivery」整條鏈路自動化，並以 immutable evidence、independent checker 與 fail-closed 閘門維持可稽核性。RP-002 v2.0 之後，HG-KSEOS 同時是 **Fabric contract surface 的實際消費者**（F0 policy consumption）。\n\n## 2. 目前狀態\n\n- **Current claim**: RP-002 v2.0 **Stage-2 externally accepted**（`Fabric\\stage\\RP002-STAGE-HGK\\EXTERNAL_ACCEPTANCE_RECEIPT_STAGE2.yaml`；external verdict `PASS_CHALLENGE`、meta acceptance `GRANTED`）。claim ceiling = `RP002_STAGE2_LOCAL_ACCEPTANCE_PASS_REPAIRED_CANDIDATE` + external PASS。\n- **Next gate**: `SQP1`（NOT_AUTHORIZED）；Stage-3 contract `NOT_YET_COMPILED`；resume token `RESUME:RP002_STAGE3_SQP1_ENTRY`。**本文件任務不執行 SQP1 / Stage-3。**\n- **Hermes**: v0.20.0（tag `v2026.8.3`、commit `3c27eb6234bf91b8ceee9e9071591b31e9b148cb`）binding status = fresh-read `config/hermes.json`（current = `ACTIVE_SELECTED_REINSTALL_BASELINE`）；provider `opencode-go`、model `deepseek-v4-flash`。\n- **HGK HEAD**: `22e21f0340501caf4ff0dbd67663faf49f521b03`（external review bundle 記錄）。\n- **Named methods**: OpenSpec `CERTIFIED_ACTIVE_BROWNFIELD`；gstack `CERTIFIED_ACTIVE_SELECTED_SLICES`（`S2_ROUTER_EVIDENCE.json`）。\n- **Production**: `NOT_CLAIMED`（Local Delivery / Stage-2 PASS ≠ Production Authorized）。\n\n## 3. Canonical Root\n\n`C:\\Projects\\Agent_Workspace\\HG-KSEOS` 是唯一 canonical local root（writable root）。Source/Authority、Shared Spine、RBWI/WP、WorkOrder、AGENTS/SKILLS、Harness/Loop、證據與 reducers 皆在此 root。Obsidian vault、LLM Wiki 產出、RAG/KG 皆為 derived/candidate。\n\n`C:\\Projects\\Agent_Workspace\\Fabric` = RP-002 的 governance/assurance/interop/knowledge contract surface（policy、contracts、assurance packs、profiles、stage evidence）；HGK 任務以 consumption trace 消費它（§31 F0），Fabric 不建立第二 control plane。\n\n## 4. 啟動與健康檢查\n\n```text\npowershell -NoProfile -ExecutionPolicy Bypass -File .\\scripts\\doctor.ps1     # blocking 為空且 verdict=PASS 才是健康\n$env:PYTHONPATH=\'C:\\Projects\\Agent_Workspace\\HG-KSEOS\\src\'\n\'.venv\\Scripts\\python.exe\' -m hg_kseos --root \'C:\\Projects\\Agent_Workspace\\HG-KSEOS\' doctor   # module form = python -m hg_kseos（已驗證）\n```\n\n## 5. 建立新專案（最少輸入；ordinary-user no-brain entry）\n\n```text\n$env:PYTHONPATH=\'C:\\Projects\\Agent_Workspace\\HG-KSEOS\\src\'\n\'.venv\\Scripts\\python.exe\' -m hg_kseos --root \'C:\\Projects\\Agent_Workspace\\HG-KSEOS\' project start --goal "<目標>" --source <路徑> --target-root <目標目錄>\n```\n\n最少輸入：`goal`、`source_paths`、`target_root`。其餘欄位自動推導；user 正常不需要選擇 lane / Agent / Skill / RAG / KG。\n\n## 6. 查看狀態 / Resume / Checkpoint / Stop\n\n```text\n$env:PYTHONPATH=\'C:\\Projects\\Agent_Workspace\\HG-KSEOS\\src\'\n\'.venv\\Scripts\\python.exe\' -m hg_kseos --root \'C:\\Projects\\Agent_Workspace\\HG-KSEOS\' project status <project_id>\n\'.venv\\Scripts\\python.exe\' -m hg_kseos --root \'C:\\Projects\\Agent_Workspace\\HG-KSEOS\' project resume <project_id>      # 中斷後從 checkpoint 恢復\n\'.venv\\Scripts\\python.exe\' -m hg_kseos --root \'C:\\Projects\\Agent_Workspace\\HG-KSEOS\' project checkpoint <project_id>  # 寫入 normative checkpoint\n\'.venv\\Scripts\\python.exe\' -m hg_kseos --root \'C:\\Projects\\Agent_Workspace\\HG-KSEOS\' evolution status                 # evolution 訊號/候選\n```\n\nStop：完成後由 reducers 收尾；attempt budget 耗盡會 `FAILED + STOP_ESCALATE`（不無限遞迴）。rollback 依 WorkOrder `rollback_pointer` / `SUPERSEDED_ARTIFACTS.yaml` 還原，不做整輪重做。\n\n---\n\n# Part II — 一條龍 Autonomous Project Lifecycle\n\n## 7. 流程（RP-002 v2.0 normal lifecycle）\n\n```text\nUser goal / source\n→ Source Discovery → Source Admission → Intent → Requirements（freeze）→ Design → Plan → TaskSpec\n→ WorkOrder（writer=codex）→ ExecutionBinding → Profile 分派\n→ Hermes runtime → Codex implementation → tests → repair → independent acceptance（officer VERIFY_ONLY）\n→ reducers → local delivery\n```\n\n- **external GPT 不是 normal lifecycle dependency**。\n- User 不需要手動選 Agent / Skill / RAG / KG / lane。\n- normal unnecessary HITL = 0。\n- 高風險 / authority / credential 才 HITL（見 §8）。\n\n## 8. Automatic vs HITL + deterministic routing\n\n```text\nTask routing / Memory / RAG / KG / Skill selection / WorkOrder planning\nrepair / tests / independent checker / candidate evolution     AUTO\ncredential / destructive action / constitutional / production  HITL\n```\n\n**Lane 選擇是 deterministic 的，user 正常不選**：HGK router 依任務形狀決定（reason code 記入 WorkOrder / evidence）：\n\n```text\nROUTE_DIRECT_ATOMIC      small atomic task → Direct（bounded execution，不強迫 card）\nROUTE_KANBAN_DURABLE     durable / long persistent objective → Hermes Kanban（project-scoped）\nROUTE_KANBAN_CROSS_ROLE  cross-role / restart-surviving → Hermes Kanban（dependency graph）\nROUTE_SWARM_PARALLEL     independent parallel lane → Swarm（on demand）\nROUTE_CODEX_TRACKED      tracked implementation / narrow repair → Codex\n```\n\nLane ≠ execution method；KANBAN/SWARM/GSTACK/OPENSPEC/CODEX execution surfaces 仍須 raw evidence + independent checker（AGENTS.md default-on）。\n\n## 9. Governed Evolution\n\n```text\nobserve → gap → FIT-GAP → candidate → sandbox → tests/negative/security/holdout/NRTV\n→ independent checker → policy gate → canary / rollback\n```\n\nHuman 角色 = **Authority / Policy Gate**，不是逐步操作員。COV-11-06：promotion 需要 independent verifier + Human Policy Owner（source-resolved）；不存在「LOW risk 一律自動 promote」。`UNBOUNDED_SELF_MODIFICATION=0`；self-evolution 僅限 evidence-backed gap，且需 sandbox / eval / holdout / independent verification / promotion / canary / rollback 完整循環。\n\n## 10. Self-Repair（兩層，不重複）\n\n- **Hermes tool self-recovery**：terminal retry/truncation readback、write_file on-disk verify、patch already-applied no-op、search near-miss、failure hints、iteration budget。\n- **HG-KSEOS product-level self-repair**：failed acceptance、requirement mismatch、security regression、architecture defect → repair WorkOrder → 獨立 recheck。\n- Hermes 負責 runtime 摩擦修復；HG-KSEOS 負責產品規範性修復。\n\n---\n\n# Part III — Hermes v0.20 Runtime（governed binding）\n\n## 11. 身份與所有權\n\n- **版本**: `0.20.0` / tag `v2026.8.3` / commit `3c27eb6234bf91b8ceee9e9071591b31e9b148cb`（exact-tag 三者對齊；禁止 floating latest / `hermes update`）。\n- **Canonical executable**: `C:\\Users\\user\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\hermes.exe`（config/hermes.json `HGK-HERMES-BINDING/2`，`ACTIVE_SELECTED_REINSTALL_BASELINE`；`scripts\\hermes-core.ps1` PASS）。\n- **Canonical HERMES_HOME**: `C:\\Users\\user\\AppData\\Local\\hermes`（Scheme B 單一 runtime）。\n- **Provider/model**: `opencode-go` / `deepseek-v4-flash`（base `https://opencode.ai/zen/go/v1`；憑證 `OPENCODE_GO_API_KEY` env-ref，不寫入 evidence）。\n- **Governed binding / role separation**：Hermes = runtime / orchestrator（Kanban、/goal、SessionDB、checkpoint、tool recovery、compression、approvals）；HGK = normative plane；Hermes 不自行 promote、不當 release authority、其 runtime state ≠ HGK normative state。RP-002 Stage-2 實證：`B1_WORKER.log`（PID 10772）+ board `RP002-FABRIC-BOOTSTRAP` task `t_c69537e5`（F0 trace step 5）。\n\n### 11.1 Codex Desktop / Hermes provider lane 隔離\n\n- Human-operated Codex Desktop 只使用 `C:\\Users\\user\\.codex`；該設定是受保護的 first-party OpenAI/ChatGPT lane，不得用編輯 `config.toml` 切換到 OpenCodex。\n- Hermes Codex CLI 只使用 `%LOCALAPPDATA%\\HG-KSEOS\\codex-hermes` 與 `%LOCALAPPDATA%\\HG-KSEOS\\opencodex-hermes`。由 `scripts\\start-hgk-hermes.ps1` 對自己的 process tree 注入 `CODEX_HOME` / `OPENCODEX_HOME`；禁止 `setx` 或其他全域設定。\n- 驗證：`powershell -NoProfile -ExecutionPolicy Bypass -File .\\scripts\\start-hgk-hermes.ps1 -Action Verify`。\n- 啟動：先以 `-Action StartOpenCodex` 啟動隔離 transport，再以 `-Action Hermes` 啟動 canonical Hermes。缺少 credential、錯誤 home、OpenCodex health failure 都 fail closed，不得 fallback 到 OpenAI。\n- Rollback：還原或移除本 ChangeSet 新增的 launcher/binding/doc 段落；只在確認沒有 lane process 使用時移除 receipt 列出的 `%LOCALAPPDATA%\\HG-KSEOS\\codex-hermes`、`opencodex-hermes` 與固定 runtime 副本。不得刪除整個 `%LOCALAPPDATA%\\HG-KSEOS`，且不得觸碰 `C:\\Users\\user\\.codex`。\n\n責任劃分：\n\n```text\nHG-KSEOS = governance / normative plane（authority、WorkOrder admission、evidence、checker、reducers、release）\nHermes   = runtime orchestration plane（Kanban、/goal、SessionDB、checkpoint、tool recovery、compression、approvals）\nCodex    = bounded coding executor\nOpenCodex = transport（ocx start --port 10100 後 codex 路由才可用）\nOpenCode Go / DeepSeek = provider / model\nFabric   = governance/assurance/interop/knowledge contract surface（被 HGK 消費）\n```\n\nRollback baseline：v0.18.2（tag `v2026.7.7.2`、commit `9de9c25f…`）保留為 sealed rollback baseline（RECOVERY_ONLY）。\n\n## 12. Kanban 何時用\n\n```text\nsmall atomic task                    → direct/bounded execution（不強迫 card）\nlong persistent objective            → Hermes /goal\ndurable / cross-role / restart-surviving → Hermes Kanban（project-scoped）\nparallel dependent tasks             → Kanban dependency graph\n```\n\n**Hermes runtime state ≠ HGK normative project state**：\n\n```text\nHGK WORKORDERS_ADMITTED → Kanban ready\nHGK EXECUTING           → Kanban running\nHGK BLOCKED_HITL        → Kanban blocked + governance reason\nHGK REPAIRING           → repair/retry task\nHGK RELEASE_REDUCING    → HGK owns（Kanban 不擁有）\nHGK DELIVERED           → HGK owns（Kanban 不擁有）\n```\n\nHG-KSEOS WorkOrder → Hermes Kanban 為 thin adapter：Shared Spine 只存 workorder_id / pointer / normative state。RP-002 Stage-2：board `RP002-FABRIC-BOOTSTRAP` 為 project-scoped 實例（B1）。\n\n## 13. `/goal` 何時用\n\n- long-running WorkOrder → 把 WorkOrder contract 投影成 goal completion contract（outcome / verification / constraints / boundaries / stop_when）。\n- **`/goal done` ≠ HG-KSEOS PASS**：goal judge 只是 runtime stop helper；final acceptance 仍須 raw evidence → independent checker → reducers → release。\n\n## 14. Runtime checkpoint vs Normative checkpoint\n\n- **Hermes 保存**: session、goal、worker、Kanban runtime、runtime checkpoint。\n- **HG-KSEOS 保存**: project normative state、authority refs、WorkOrder IDs、session/Kanban refs、source/evidence hashes、release state、rollback pointer。\n- 兩者不是鏡像；Shared Spine 只存 pointer/ref。\n\n## 15. Tool recovery / Compression / Approvals\n\n- Tool self-recovery 由 Hermes v0.20 提供（reuse binding matrix：duplicates=0，HG-KSEOS 無重複 wrapper）。\n- Context compression 使用 Hermes v0.20（enabled；HG-KSEOS Memory/RAG/SourceUnit 不因 compression 刪除）。\n- Approvals：`approvals.mode: manual`（fail-closed；不得以 `off` 作正常 profile）；`rm -rf` 等危險 pattern 觸發 `pending_approval`；Windows-native path guard 由 HGK security 層保留。\n\n## 16. Skills 治理邊界\n\n- Hermes 負責 skill file 機制 / loading / invocation / curator（archive-only，永不 promote）。\n- HG-KSEOS 負責 candidate admission、FIT-GAP、sandbox、negative/security、holdout、NRTV、independent checker、promotion policy、COV-11-06 Human Policy Owner gate、rollback acceptance。\n\n---\n\n# Part IV — Named Methods（OpenSpec / gstack）\n\n## 17. OpenSpec（brownfield spec projection）\n\n- **身份**: `@fission-ai/openspec@1.8.0`（tag `v1.8.0`、release commit `d57889664…`、MIT、Node >=20.19）— `CERTIFIED_ACTIVE_BROWNFIELD`（`S2_ROUTER_EVIDENCE.json`）。\n- **角色**: `BROWNFIELD_ENGINEERING_DEFINITION_ADAPTER`。不是 Root SSOT、不是 release authority、不是 primary writer（Codex CLI 仍為 bounded writer）。\n- 使用上游官方 Hermes skills-only 整合（`.hermes/skills/openspec-*/SKILL.md`，`skills.external_dirs` 載入）。\n- **流程**: brownfield 需求 → deterministic route → OpenSpec explore/propose → spec delta → HGK Requirement/ADR/WorkOrder mapping → Hermes/Codex 實作 → tests → OpenSpec validate/archive → HGK final acceptance。\n\n## 18. Spec Kit XOR\n\n- `brownfield → OpenSpec active`；`greenfield → Spec Kit/native profile`。禁止雙 spec owner。\n- tool unavailable → 顯式 `DEGRADED` / native fallback；禁止 silent imitation。\n\n## 19. gstack（selected advisory slices）\n\n- **身份**: `garrytan/gstack@1.61.0.0`（commit `94993f74012782fd94416dd44b8314f6363a13a4`、MIT、bun）— `CERTIFIED_ACTIVE_SELECTED_SLICES`。\n- **Selected slices（advisory only）**: `office-hours`、`plan-eng-review`、`review`、`qa`、`cso`、`ship`（`final_authority=false`）、`retro`。\n- 生成：`bun run gen:skill-docs --host hermes`（54 skills，flat `gstack-*`）；`setup --host hermes` exit 0 ≠ certified（需 effective-load + real invocation）。\n- 已知 pinned host-generation gap（已記錄 + thin adapter）：`gstack-review` 需要 `.hermes/skills/review/*`，generator 未生成 → adapter 把 repo `review/` 拷入 project `.hermes/skills/review/`。\n- **邊界**: gstack ship ≠ ReleaseReducer；gstack review ≠ independent checker；gstack cso ≠ HGK security authority；gstack office-hours ≠ product authority。輸出 = EvidenceCandidate / advisory。\n\n## 20. Named-Method Router（deterministic）\n\n```text\nbrownfield/migration → openspec\ngreenfield           → XOR_GREENFIELD / native\nplan                 → gstack.plan-eng-review（selected）\nimplementation done  → gstack.review\nQA required          → gstack.qa\nsecurity-sensitive   → gstack.cso\nrelease readiness    → gstack.ship（advisory only）\nhigh-impact ambiguity→ gstack.office-hours\nretro                → gstack.retro\n其餘                 → native\n```\n\n- 決定來自 registry lookup + router（`S2_ROUTER_EVIDENCE.json`），**不是 LLM 猜測**。\n- **fake invocation = prohibited**；**silent fallback = prohibited**（unavailable → 顯式 DEGRADED + certified native fallback，EvidenceEnvelope 記錄）。\n\n## 21. Fallback / Rollback（真實存在的程序）\n\n- Hermes v0.20 rollback baseline：v0.18.2（還原 config executable + hermes-core.ps1 驗證）。\n- OpenSpec disable → native PRW fallback（移除 external_dirs 綁定 + fixture skill projection；canonical Requirement/ADR/WorkOrder 不刪）。\n- gstack disable → native review/QA/security/release advisory。\n- Provider failure → route DEGRADED + native fallback。\n- Checkpoint/resume、package rollback：見 §Part VI 與 scripts（backup/restore-drill）。\n- RP-002 rollback pointer：`Fabric\\stage\\RP002-STAGE-HGK\\SUPERSEDED_ARTIFACTS.yaml`（被取代工件 preserved unchanged）。\n\n---\n\n# Part V — Governance & Knowledge\n\n## 22. 權威與治理\n\n- 權威順序依 source-freeze 工件；低權威來源不得覆寫高權威規則。Fabric contracts（`Fabric\\control\\*`）經 consumption trace 被消費（F0）。\n- Canonical database: `var/shared-spine/hg-kseos.db`（單一 writer 契約）。\n- 同 rank 衝突 → Conflict/TT，不靜默合併。\n\n## 23. Knowledge Workbench（Obsidian + LLM Wiki + RAG/KG；KG1 governed）\n\n- **Canonical source** = Git Markdown / Source Ledger / Shared Spine / Fabric contracts（frozen）。canonical ≠ RAG/KG/wiki。\n- **Obsidian / 知識庫** = human workbench（`C:\\Projects\\Agent_Workspace\\知識庫`，derived human view）；**LLM Wiki** = derived compiler（`atomicstrata/llm-wiki-compiler` v1.1.0，npm pin，isolated prefix `var/workbench/llm-wiki`）；**RAG/KG** = retrieval/reasoning surfaces（SQLite/FTS5 local-first）。\n- **KG1 namespace model**（`Fabric\\stage\\RP002-STAGE-HGK\\KG1\\KG1_NAMESPACE_MODEL.json`）：`hgk.candidate.*`（agent write）、`hgk.approved.*`（promotion-gate write）、`hgk.revoked.*`（revocation-gate write + tombstone）、`fabric.*`、`assurance.*`、`sqs.*`（stage2 read-only）、`shared.approved.*`。\n- **KG1 規則**：agent_write = candidate only；promotion = owner/gate only（agent 禁止 self-promote）；forget = tombstone + audit receipt；revoked/stale excluded；cross-stack export = explicit promotion（`KG1\\ACCEPTANCE_RECEIPT_KG1.yaml` runtime evidence：K-001 candidate→approved→revoked + tombstone）。\n- **KG1 provider state**（`KG1_PROVIDER_LEDGER.json`）：SQLite/FTS5 P0 REUSE（active）、HGK Memory P0 REUSE（candidate ≠ truth）、Qdrant/Neo4j default-off（not-installed）、pgvector conditional、Cognee P1 shadow。\n- AI 編譯路徑（`llmwiki compile/refresh/query`）需要 ANTHROPIC credential → `EXTERNAL_CREDENTIAL_GATED`。\n- GraphRAG / vector backend = `DEFERRED_SOURCE_BACKED`（本輪不啟用）。\n- 編輯流向：filesystem/Git diff → candidate → 驗證/admission → rebuild；不得直接成為 authority。\n\n## 24. 安全邊界\n\n禁止：寫入來源、越出 WorkOrder admitted write-set / target-root / isolated worktree boundary、路徑穿越、reparse point、未授權網路、秘密讀取、遠端發佈、部署、production mutation。所有高風險擴權維持 HITL。證據不得保存 token/key 值。ContextForge secret policy = env-var `REFERENCE_ONLY`（`__REPLACE_ME__` fail-closed）。\n\n---\n\n# Part VI — Evidence / Acceptance / Release\n\n## 25. 如何判斷 current candidate 是否可交付\n\n依序檢查：\n\n```text\nfresh test denominator（current task/head 綁定；schema HGK-CURRENT-TEST-DENOMINATOR/2）\nCoverageReducer v2 decision\nUserExperienceReducer v1 decision\nTST-092 independent receipt（current Task 命名 + same HEAD/package）\nExternal Acceptance（unique hard-check IDs 全 PASS、duplicates=0）\nFinal Evidence（single current identity；status/counts 與 acceptance machine 一致）\nblocking TT = 0\n```\n\n**ad-hoc verification ≠ canonical suite green**：前者是針對變更行為的聚焦檢查，後者是 fresh discovery 的完整套件結果。\n\n## 26. Hard-Check denominator 語意\n\nExternal Acceptance 的 hard-check denominator 按 **unique predicate ID** 計數；duplicate ID 本身是 fail-closed defect（`hard_check_row_total == hard_check_unique_id_total` 且 `duplicate_hard_check_id_count == 0`）。數量本身不是品質；不保證任何固定數字。\n\n## 27. Evidence lineage\n\n- Task-011/012/013/014/015 = historical accepted lineage（不可覆寫；TST-092 historical receipts immutable）。\n- current closure = current candidate only（RP-002 Stage-2 externally accepted 為 current）。\n- 舊 HEAD/package 保留在 Changelog / Historical Baselines，不得在普通使用章節稱 current。\n\n## 28. Package / Release\n\n- `scripts\\package.ps1`（或 `tools/package_local.py`）產生 deterministic local ZIP + exact-set readback + manifest。\n- TST-092 以獨立 checker 在 same-HEAD/same-package 上 INDEPENDENT_CASE_PASS。\n- blocking TT、過期/scope-mismatch evidence、exact-set mismatch → FAIL/TEMP_CLOSED。LLM judge 不能覆寫 deterministic oracle。\n\n## 29. 備份 / 還原\n\n`scripts\\backup.ps1`（不可覆寫 SQLite backup + SHA-256 manifest，`var/backups/`）；`scripts\\restore-drill.ps1`（寫入 `worktrees/restore-drill/`，驗證 hash/integrity/schema/counts/RTO）。TT ledger：更新 `source-freeze/TT_LEDGER.csv` 後 `scripts\\reconcile-tt.ps1`。\n\n---\n\n## 28a. Canonical acceptance resolver 與 ordering oracle（current）\n\n**28a.1 Acceptance transition（唯一入口）**\n- `SharedSpine.resolve_acceptance(...)` ＋ `TRANSITIONS[\'acceptance\']` 是 acceptance 的唯一 canonical transition 入口；由 SharedSpine / domain owner 執行。\n- 保證：canonical event / audit trace 保留；subject / evidence binding fail-closed；stale / conflicting 拒絕；identical replay idempotent；transaction atomic。\n- **consumer 不得以直接 SQL bypass domain API**；spine 自身的 repository / transaction 實作可依既有架構使用內部 persistence SQL。\n- 複核入口：`tests/test_acceptance_resolution.py`。\n\n**28a.2 Ordering oracle**\n- 排序一律用隱式 `rowid`（單調插入序），**不得用 wall-clock `created_at`**（秒級精度，同秒即任意）。\n- 已修正四處：checkpoint 的 current-workorder 選擇（＝ admission 序）、近期 transitions、memory 記錄、qualified 形式。\n- 複核入口：`tests/test_ordering_oracle.py`。\n\n## 28b. 獨立 Checker 升級（advisory，candidate；本節依 owner 指示於 cutover 前登錄）\n\n> **狀態**：candidate。cutover gate 為 `TEMP_CLOSED/UNVERIFIED`，**非** accepted / released；`hgk_canonical_acceptance: NOT_PERFORMED`。\n> **標記**：`NEW_R2 = hgk-checker-upgrade-adapter v2026.10.09-r2`｜`OLD_BASELINE_DIGEST = 77afad7edce341c7779bee9920bd0e1b90e963d5496da654269e64b3b2e58bed`（source ZIP）｜`ROLLBACK_POINTER = docs/checker-upgrade-20261009/ROLLBACK.md`\n\n### 28b.1 這是什麼\nHG-KSEOS 可派送一條**獨立 checker lane**：Codex CLI → loopback bridge（Responses→Chat Completions）→ 與 maker **不同**的模型，產出 **advisory verdict**。它補的是「maker 不能自我驗收」的那一段。\n\n### 28b.2 不可越界的 ceiling\n- checker verdict **永遠不是 OracleReceipt**，也**不是** canonical acceptance status。\n- runtime 只能經由帶明確 advisory ceiling 的 **named method** 消費它；**不得**由它產生任何 canonical token（`PASS` / `PARTIAL` / `FAIL` / `TEMP_CLOSED` / `INDEPENDENT_PASS` / `RELEASED` / `PRODUCTION_VERIFIED`）。\n- watchdog 的暫停一律是 advisory request（`WATCHDOG_ADVISORY_ONLY`）；**恢復 canonical 狀態一律需 operator 決定**。\n\n### 28b.3 fail-closed 行為（皆已測）\n拒絕聲稱 canonical token 的 binding、拒絕非 candidate binding、拒絕逸出 advisory enum 的 verdict、拒絕 digest 與 intake 不一致的 verdict；corrupt state 一律 fail-closed，不得靜默略過。\n\n### 28b.4 落點與如何驗證\n- 套件：`src/hg_kseos/checker_bridge/`（`binding.py` / `runner.py` / `watchdog.py` / `verdict.py` / `integration.py` / `advisory_verdict.schema.json`）。\n- 接線：`named_methods.py` 的一個 named method + `cli.py` 的一個子命令 + `integration.py`（runtime 消費側）。\n- 設定：`config/checker/checker-binding.candidate.json`（`status: CANDIDATE_NOT_ADMITTED`）、`config/checker/monitor-policy.json`。\n- 驗證命令（套件）：\n  `PYTHONPATH=src .venv\\Scripts\\python.exe -B -m unittest discover -s tests/checker_bridge -t . -p "test*.py"`\n  → 113 tests, OK（skipped=1）。\n- 連線資格（loopback-only、正向）：`scripts/checker_bridge_qualify.py`。\n\n### 28b.5 上限揭露（不可略讀）\n- **cutover 未發生**。規格 §15 的切換批准條件有多項未達（無 canonical v2 binding、無受信任簽章 payload、無 Go upstream route-attestation、無 ACL/egress/proc-tree 負向矩陣、無 live supervisor ack、無 Golden/Holdout、**Shadow A/B 未跑**、無 authorized OracleReceipt、未做回滾演練）→ 依規則維持 `TEMP_CLOSED/UNVERIFIED`。\n- **symlink fixture** 是在可建立 symlink 的平台上證明（本機 Developer Mode 關閉、junction 實測**不能**替代），屬跨平台替代證據。\n- **寫入拒絕僅為 DETECTION**，非 OS ACL 邊界（read-only 屬性同使用者可清除）。\n- **模型獨立性**：當指定 checker 模型與 maker 相同時，該 lane 的獨立性僅為 **PROCESS-only**；模型多樣性由第二條（GLM）lane 提供。\n- 完整整理：`evidence/checker-upgrade-20261009/IMPLEMENTATION_SUMMARY.md`。\n\n### 28b.6 延後項\n規格 §9.3 的**兩份 User Guide currentness 編輯**在 cutover 正式接受後才進行（附 `NEW_R2` 與 rollback pointer）。本節依 owner 指示登錄於 cutover 前，並已明確標示候選與未接受狀態；正式 currentness patch 仍待 cutover。\n\n## 28c. AO lane 獨立性與 required-arm（current；已實作、已獨立驗收）\n\n> Round `FAR-AO-INDEPENDENCE-20261010`（2026-10-10）\u3000|\u3000`REQ-AO-INDEP-012` → **ACCEPTED**（v4）\u3000|\u3000`ACC-AO-INDEP-012` → **PASS**\n\n### 28c.1 這是什麼\n\nAO / VERIFY / SECURITY lane 的派送器（`scripts/hgk-lane-dispatch.py`）新增一組機制，使「獨立查核」**可被證明**，而不是只在外觀上獨立。核心：**被點名的 arm 必須實際服務該回合**；**不健康即 fail-closed**；**受檢主體被改動則該回合 verdict 自我作廢**；**回合原始 bytes 落檔且可被第三方重算**。\n\n### 28c.2 四個關鍵行為\n\n| 行為 | 觸發 | 結果 |\n|---|---|---|\n| 身分／健康閘門（spawn **前**） | relay arm 憑證不可 refresh | `exit 4` / `ERR_RELAY_OAUTH_NEEDS_REAUTH`，**不 spawn**、**不**改跑別的 arm |\n| required **必須被服務** | `--require-arm` 且閘門放行但由別的 arm 服務 | `exit 3` / `ERR_REQUIRED_ARM_NOT_SERVED` |\n| 守衛根缺失 | `--guard-subject` 指向不存在路徑 | `exit 4` / `ERR_GUARD_ROOT_MISSING`，`attempts=0` |\n| 受檢主體被改動 | 回合中 `removed`/`changed` | 該回合 verdict **作廢**（`ERR_CHECKER_MUTATED_SUBJECT`）；`added` 記錄但不致命 |\n\n**要確保用到某個模型，必須同時釘 rank**：`--force-rank <n> --require-arm <provider>/<model>`。\n\n### 28c.3 無模型的確定性負測\n\n`--codex-executable` 可把 checked child 換成 `tests/fixtures/stub_lane_child.py`：stub 會提供兩個受理條件（`nonce` 與匹配用量列，用量寫入 **scratch 帳本**），因此「突變／刪除 → 作廢」是**本應通過**的回合被守衛作廢。此路徑**不耗模型額度**，可作為日常回歸。\n\n### 28c.4 實測（core goal：無人窗口 `gpt-6.1-sol`）\n\n`required_arm == served_arm == openai-codex/gpt-6.1-sol`、`exit 0`、`usage 200`、`nonce` present、`stdout_byte_exact=true`。lane home **無 `auth.json`**、`--ask-for-approval never`、經 relay URL 取得 arm——**沒有開任何互動視窗**。\n\n### 28c.5 上限（不可略讀）\n\n- **process-only 獨立性**：三條 lane 同模型（owner D-3 裁決）→ maker==checker 在構造上可達，**不得**宣稱模型多樣性。\n- 守衛是**偵測非阻止**；瞬時改寫／還原偵測不到；守衛根以外未量測；F10 / F13 未關閉。\n- AO / checker verdict 一律 **ADVISORY**；**promotion ≠ acceptance**。\n- 專用 relay-pool 帳號 `(ii)` **撤銷為 NOT APPLICABLE**（owner 僅一個帳號）；殘餘為**共用失效域**。\n- 完整證據：`evidence/FAR-AO-INDEPENDENCE-20261010/`。\n\n# Part VII — RP-002 v2.0 現況、Diagnostics & Troubleshooting\n\n## 30. Diagnostics（實際存在、語法已確認命令）\n\n```text\n$env:PYTHONPATH=\'C:\\Projects\\Agent_Workspace\\HG-KSEOS\\src\'\n\'.venv\\Scripts\\python.exe\' -m hg_kseos --root \'C:\\Projects\\Agent_Workspace\\HG-KSEOS\' doctor\n\'.venv\\Scripts\\python.exe\' -m hg_kseos --root \'C:\\Projects\\Agent_Workspace\\HG-KSEOS\' project start|status <id>|resume <id>|checkpoint <id>|advance <id>|intake <id>|denominator <id>\n\'.venv\\Scripts\\python.exe\' -m hg_kseos --root \'C:\\Projects\\Agent_Workspace\\HG-KSEOS\' evolution status|signal --project-id <id>|candidate --project-id <id>\npowershell -File .\\scripts\\doctor.ps1 | hermes-core.ps1 | sbom.ps1 | test.ps1 | package.ps1 | backup.ps1 | restore-drill.ps1\nhermes doctor / hermes --version            # canonical v0.20 executable\nopenspec doctor                             # 於 OpenSpec fixture root\nbun run gen:skill-docs --host hermes        # gstack 重新生成 Hermes skills\nocx status / ocx start --port 10100         # OpenCodex transport\npowershell -File .\\scripts\\start-hgk-hermes.ps1 -Action Verify   # lane 隔離驗證\n```\n\n## 31. RP-002 v2.0 現況 / 知識狀態 / Fabric 關係 / Troubleshooting\n\n### 31a. RP-002 v2.0 Stage-2（current）\n\n- Stage-2 seal（repaired）：`Fabric\\stage\\RP002-STAGE-HGK\\STAGE-2-SEAL-REPAIRED.yaml`（`12da14ac…`）；gates K1/D1/C1/H1/O1/B1/F0/CF1/F1/KG1 全 PASS。\n- External acceptance：`EXTERNAL_ACCEPTANCE_RECEIPT_STAGE2.yaml`（`EXT-ACC-RP2-S2-20260813`，`PASS_CHALLENGE` / `GRANTED`）。\n- Handoff：`STAGE2_TO_STAGE3_HANDOFF_REPAIRED.yaml`（`93a7da26…`；stage_from RP002-STAGE-HGK → stage_to RP002-STAGE-SQS；`STOP_FOR_EXTERNAL_GPT_REVIEW_BEFORE_STAGE3` 已解除為 VALID_FOR_NEXT_STAGE_ENTRY）。\n- Resume checkpoint：`RESUME_CHECKPOINT_STAGE3_ENTRY.yaml`（current_gate SQP1 NOT_AUTHORIZED；stage3_contract NOT_YET_COMPILED；next_allowed_action COMPILE_STAGE3_CONTRACT_ONLY；resume token `RESUME:RP002_STAGE3_SQP1_ENTRY`）。\n- Finding closure：`S2R_FINDING_CLOSURE.yaml`（S2-EXT-001/002/003 CLOSED_LOCAL；blocking_tt_cr=0；open_breakglass=0；unauthorized_side_effects=0；live_broker_writes=0）。\n- Superseded：`SUPERSEDED_ARTIFACTS.yaml`（prior CF1 receipt、prior F1 tx `149a137e…`、prior seal `14726894…`、prior handoff、prior review bundle — preserved unchanged）。\n\n### 31b. H1 / O1 / B1 / F0 / CF1 / F1 / KG1 重點（evidence-backed）\n\n- **H1**：5 persistent P0 profiles（hgk-orchestrator / hgk-coding-factory / hgk-engineering-reviewer / hgk-qa / hgk-security）；`ROLE ≠ PROFILE ≠ WORKER`；TEAM/Stack artifacts（`HGK\\TEAM.md`、`HGK_STACK_MANIFEST.yaml`、gstack snapshot 19 roles 0 missing）。\n- **O1**：commander（`e682655a…`）vs officer（`1404bb48…`）identity + digest distinct；officer VERIFY_ONLY；SOD `Fabric\\control\\SOD_POLICY.yaml`；acceptance packs 8/8；`default_l2_checker_after_o1: acceptance-officer`。\n- **B1**：board `RP002-FABRIC-BOOTSTRAP`、task `t_c69537e5`、binding `BIND-RP2-S2-001`（RP002-EXECUTION-BINDING/2 canonical）；worker PID 10772；`B1_WORKER.log`；lease `LS-RP2-S2-001`；idempotency `RP2-S2-B1-RUN-001`；workspace `Fabric\\stage\\RP002-STAGE-HGK\\B1`；`worker_exit_zero_is_pass: false`。\n- **F0**：6-step policy consumption trace；consumed = CHANGE_CLASS_ROUTER / SOD / ACCEPTANCE / KNOWLEDGE policy；`yaml_presence_alone: NOT_ACCEPTED`。\n- **CF1**：mcp-contextforge-gateway 1.0.7 @ `4092d336…`、Apache-2.0、`CF-REG-RP2-S2-001`；runtime health 200、openapi/admin 401；auth-negative + authenticated positive discovery；OASF `oasf-record/1`（`OASF-REC-RP2-S2-001`）；**舊 degraded state 是 history only**。\n- **F1**：`TX-RP2-S2-F1-002-REPAIRED`（`d6ebaa13…`）同 subject promotion；normal path `WORKORDER→EXECUTION_BINDING→PROFILE→KANBAN`（canary 4 proven instances）；legacy bypass = BREAK_GLASS_ONLY。\n- **KG1**：knowledge governance ACTIVE；namespaces/ACL/provenance/promotion/revoke/provider state（§23）。\n\n### 31c. Fabric relationship + evidence locations\n\n- Fabric = contract surface；HGK 消費方式見 §31b F0 trace；consumer 實作 = `Fabric\\fabric\\consumers\\hgk_policy_consumer.py`。\n- **Evidence 根**：`C:\\Projects\\Agent_Workspace\\Fabric\\stage\\RP002-STAGE-HGK\\`（seal/handoff/receipts）與 `C:\\Projects\\Agent_Workspace\\Fabric\\evidence\\review\\`（external bundle `RP002_STAGE-2_KG1_EVIDENCE_FOR_EXTERNAL_REVIEW.md` sha `104d4cf2…`，Fabric/HGK mirror byte-identical；`RP002_STAGE-2_EXTERNAL_BUNDLE_HASHES.json`）。\n- Master/stage 對照：`Fabric\\rp002\\RP002_STAGE_CROSSWALK.yaml`；gate 詞彙：`Fabric\\rp002\\RP002_GATE_CATALOG.yaml`（`KBN1`/`FG1` 為歷史名，不執行）。\n\n### 31d. Troubleshooting（readback 導向）\n\n- **status 顯示 NOT_AUTHORIZED / SQP1** → 讀 `Fabric\\stage\\RP002-STAGE-HGK\\RESUME_CHECKPOINT_STAGE3_ENTRY.yaml`；不得自行執行 Stage-3。\n- **hash 對不上** → 以 `Fabric\\evidence\\review\\RP002_STAGE-2_EXTERNAL_BUNDLE_HASHES.json` + 各 receipt 的 raw refs 重讀；以檔案為準。\n- **finding open / 修復疑慮** → 讀 `S2R_FINDING_CLOSURE.yaml` 的 evidence refs 與 `SUPERSEDED_ARTIFACTS.yaml` 的 disposition。\n- **policy 是否被消費** → 檢查 consumption trace（F0 模板）；檔案存在 ≠ 被消費。\n- **worker 失聯** → claim TTL + heartbeat 檢查；過期無 heartbeat → 可重新指派；沒有 ghost worker。\n- **中斷恢復** → `project resume <project_id>`（§6）；checkpoint 為 normative checkpoint。\n\n## 32. Production Boundary\n\n**Local Delivery PASS ≠ Production Authorized**。目前 `PRODUCTION = NOT_CLAIMED`：本文件與所有 evidence 只代表 local delivery / Stage-2 狀態；未宣稱 remote CI / deploy / production 完成。`sqs_live_trading: NOT_AUTHORIZED`、`remote_deployment: NOT_CLAIMED`、`production_autonomy: NOT_CLAIMED`（external receipt non_claims）。\n\n## 33. Changelog / Historical Baselines\n\n**engineering-base delta（current）**：兩項受治理 ChangeSet 已實作、測試並經獨立驗收——\n- `HGK-EBC-ACCEPTANCE-RESOLUTION-001`：canonical acceptance resolver（`resolve_acceptance` ＋ `TRANSITIONS[\'acceptance\']`；consumer 禁直接 SQL；fail-closed / idempotent / atomic）。\n- `HGK-EBC-ORDERING-ORACLE-001`：排序 oracle 由 wall-clock 改為隱式 `rowid`（4 站點）；guard `tests/test_ordering_oracle.py`。\n兩者皆附 rollback 路徑與獨立 checker 結果；**不宣稱 production / release，也不構成第二個 control plane**。\n\n\n\n**v2026.10.15-r1（lane 三鏈重線 + per-turn 模型可調性機制化）**：owner 指定 chains 落地：PLAN/VERIFY 默認 `openai-codex/gpt-6.1-sol`（medium，OAuth）→ 後備 `opencode-go/glm-5.3-flash`→`opencode-go/deepseek-v4.1-flash`；EXECUTE 默認 `opencode-go/deepseek-v4.1-flash` → 後備 `openai-codex/gpt-6-luna`→`nvidia/deepseek-ai/deepseek-v4.1-flash`（registry `epoch 17→18`；前輪 gpt-* exclusion 資料式失效）。Per-turn 可調性：回合 role_mandate 新增 `chain[]` 欄，`runtime_role_binding_assert.py` 在分派前 fail-closed（缺 arm → typed `ERR_MANDATE_ARM_UNRESOLVED` stage=chain/coach exit 6）；dispatcher 端 `--require-arm`+`--force-rank` 收據綁 `require_arm==served_arm`。測試 **158/158 OK**（`tests.test_lane_dispatch_ao_guard` 136＋`lane_guard` 8＋`lane_policy` 3＋`far_lane_fix` 11）；真實車道 E2E receipts：EXECUTE（默認 DS，22.7s ok）＋VERIFY（per-turn 後備1 GLM，24.7s ok，guard CLEAN）。**上限**：`CANDIDATE_ONLY`；**canonical acceptance 走獨立 checker 判決（advisory）**；owner-gated 未決：canonical binary pin 刷新、NVIDIA provider 於 relay 一次重啟激活、gpt-6-luna live admission 證明。證據：`evidence/FAR-LANE-ROUTE-REBIND-20261015/`（變更/收據/移交包）。\n\n**v2026.10.13-r1（lane 重綁 + W3 落地 + F18 修正）**：owner 裁決的 lane 重綁（PLAN → `opencode-go/deepseek-v4.1-flash`）與 SoD 編碼對齊（嚴格對 `EXECUTE/PLAN` 改為**記錄**＋具名補償控制，非改模型）；W3 工具鏈落地（`scripts/hgk-lane-*.py`、`tests/w3_solution/**`，suite **39/39**）；獨立 checker lane 判決 **`PARTIAL`**（R8：rollback 未重新鍵結）；宣告-實況漂移 F18 修正（registry `epoch 16→17`，site state → `CLOSED_FIX_APPLIED_TO_LIVE_SRC`，附擾動陰性對照）。**上限**：`CANDIDATE_ONLY`、**owner acceptance `NOT_RUN`**、本回合 checker 與 maker/executor 同模型（task-scoped，不得宣稱模型多樣性）。新增 README §2d；文件面更新研究見 `var/far-doc-update-20261013/`（Option A「回合紀錄收束」）。\n\n**v2026.10.10-r1（AO lane 獨立性）**：`FAR-AO-INDEPENDENCE-20261010` — 派送器加入 spawn 前 fail-closed 身分閘門、`--require-arm` 必須**被服務**、非變異守衛條件必備（含守衛根缺失拒絕）、回合原始 bytes 保真落檔、`--codex-executable` 確定性負測接縫；**無人窗口 `gpt-6.1-sol` 實測通過**（E12）；`REQ-AO-INDEP-012` **ACCEPTED** / `ACC-AO-INDEP-012` **PASS**（獨立 checker lane，5 筆 canonical events）。新增 User Guide §28c。上限：process-only 獨立性、偵測非阻止、AO verdict 一律 advisory。`(ii)` 專用帳號撤銷為 NOT APPLICABLE（owner 僅一帳號）。\n\n**v2026.08.13-r1（本版）**：RP-002 v2.0 更新總覽（Part 0）；current claim 更新為 Stage-2 externally accepted；next gate SQP1 NOT_AUTHORIZED；Fabric relationship + evidence locations（§31c）；troubleshooting（§31d）；命令語法確認（§30）。\n\n**Historical lineage（stale companion / bootstrap-only 語意，僅歷史參考，非 current）**：\n\n- 早期施工歷史（companion / maker root / task-007..010 / Task-011 / Task-012 / Task-013 old seal / Task-014 old seal / Task-015）一律屬歷史，已由後續 sealed changeset 取代；TST-092 historical receipts（E08..E12、TASK013、HANDOFF、FINAL 等）immutable。各歷史 seal 的 HEAD/package 見對應 evidence/wave-* 工件。\n- **2026-08-11 RP-001 milestone**：`HGK-REFERENCE-PROJECT-001` 已 **MILESTONE_CLOSED**（WAVE1-WAVE5 + EVO-003/004/005：15/15 WO、211/211 SQS tests、274/274 HGK suite、161/161 acceptance、EVO-005F frozen graph）。此後 SQS 任務走 normal operational loop（`execute → test → repair → continue`）。\n- **2026-08-12 A-3 operability delta**：`WO-HGK-A3-001`（v2026.08.12-r2）README / User Guide / Skill steering hardening；claim ceiling = `HGK_SQS_A3_OPERABILITY_STEERING_READY`（never production / live / remote）。\n- **Hermes reinstall handoff（historical）**：`C:\\Projects\\Agent_Workspace\\Fabric\\evidence\\review\\RP002_PRE_HERMES_REINSTALL_HANDOFF.md` / `RP002_POST_HERMES_REINSTALL_HANDOFF.md` 屬 pre/post reinstall 歷史；current binding 以 `config/hermes.json` fresh-read 為準。\n- **RP-002 早期狀態**：`Fabric\\rp002\\CHECKPOINT.json`（CP-003，D1→C1）為 Stage-2 早期 checkpoint，屬歷史；current 以 Stage-2 seal / external receipt 為準。Knowledge K1/KG1 已於 Stage-2 完成治理（§23/§31b），不再 DEFERRED。\n'
+
+----------------------------------------------------------------------
+Ran 540 tests in 118.140s
+
+FAILED (failures=30, errors=17)
