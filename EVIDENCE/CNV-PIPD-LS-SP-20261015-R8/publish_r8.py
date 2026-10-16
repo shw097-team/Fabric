@@ -236,43 +236,35 @@ def readback() -> int:
 
 
 def pr() -> int:
+    # NOTE (self-repair): the R7 version of this function wrote a masked literal into the curl config, so the
+    # request went out unauthenticated ("Bad credentials"). Use the API directly with the token in a header;
+    # the value is never printed, never placed on argv, and never written into the packet.
     tk = TOKEN_FILE.read_text(encoding="utf-8").strip()
+    if tk.lower().startswith("token"):
+        tk = tk.split(":", 1)[1].strip()
+    tk = "".join(tk.split())
+    from urllib.request import Request, urlopen
+    import urllib.error
     body = ("Candidate-only evidence packet for the R8-0 ChangeSet of mission CNV-PIPD-LS-SP-20261015.\n\n"
             "- Scope: `EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/**` only. The merged R6 archive "
             "(`EVIDENCE/CNV-PIPD-LS-SP-20261015/**`) and the R7 packet (`…-R7/**`) are untouched.\n"
-            "- Admitted as HGK project `CNV-R8-SKILL-SLIM-EIA-CLOSURE` (4 WorkOrders).\n"
-            "- Contents: skill-slim regression harness + per-candidate verdicts + guarded apply record; R8-0 rebase "
-            "of the validator hardening onto `main` with all 18 mutations re-measured; checker write-root isolation "
-            "evidence (absence + proven deny-ACE mechanism + proposal only); EIA-R6-01..09 reconciliation; "
-            "guarded-subject byte-exactness proof against the merged packet.\n"
+            "- Admitted as HGK project `CNV-R8-SKILL-SLIM-EIA-CLOSURE`.\n"
             "- Claim ceiling LOCAL / candidate-only: no acceptance, no approval, no Gate PASS, no production effect; "
             "archived scripts are evidence copies and must not be executed.\n"
             "- Rollback: drop the branch or `git revert` the merge commit; never force-push main.")
-    payload = {"title": "evidence(CNV-PIPD-LS-SP-20261015-R8): skill-slim regression+apply, R8-0 rebase on main, checker isolation, EIA closure",
-               "head": BRANCH, "base": "main", "draft": True, "body": body}
-    with tempfile.NamedTemporaryFile("w", suffix=".curlrc", delete=False, encoding="utf-8") as fh:
-        fh.write('header = "Authorization: Bearer ***"\nheader = "Accept: application/vnd.github+json"\n'
-                 'header = "X-GitHub-Api-Version: 2022-11-28"\n')
-        cfg = fh.name
-    pj = tempfile.NamedTemporaryFile("w", suffix=".json", delete=False, encoding="utf-8")
-    pj.write(json.dumps(payload))
-    pj.close()
+    payload = json.dumps({"title": "evidence(CNV-PIPD-LS-SP-20261015-R8): skill-slim regression+apply, R8-0 rebuild on main, checker isolation, EIA closure",
+                          "head": BRANCH, "base": "main", "draft": True, "body": body}).encode()
+    req = Request("https://api.github.com/repos/shw097-team/Fabric/pulls", data=payload, method="POST",
+                  headers={"Authorization": "Bearer " + tk, "Accept": "application/vnd.github+json",
+                           "Content-Type": "application/json", "User-Agent": "hgk-r8"})
     try:
-        r = subprocess.run(["curl", "-s", "-K", cfg, "-X", "POST", "-d", "@" + pj.name,
-                            "https://api.github.com/repos/shw097-team/Fabric/pulls"],
-                           capture_output=True, text=True)
-    finally:
-        for f in (cfg, pj.name):
-            try:
-                os.unlink(f)
-            except OSError:
-                pass
-    try:
-        d = json.loads(r.stdout)
+        with urlopen(req, timeout=60) as f:
+            d = json.load(f)
         print(json.dumps({"number": d.get("number"), "url": d.get("html_url"), "draft": d.get("draft"),
-                          "error": d.get("errors") or d.get("message")}, ensure_ascii=False))
-    except Exception:
-        print(r.stdout[:600])
+                          "head": d.get("head", {}).get("sha")}, ensure_ascii=False))
+    except urllib.error.HTTPError as e:
+        print("HTTP", e.code, e.read().decode()[:300])
+        return 1
     return 0
 
 

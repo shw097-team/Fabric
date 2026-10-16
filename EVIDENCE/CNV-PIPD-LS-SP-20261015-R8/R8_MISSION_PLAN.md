@@ -38,16 +38,17 @@ root `t_4fc7d040` → workers `t_22bcbca7` (WS-A), `t_a715589a` (WS-B), `t_a5fb3
 `t_2caa0523` (WS-E), verifier `t_50cadaf6`, synthesizer `t_0ee9d4ea`.
 
 ## 5. Workstreams
-| id | workstream | producer | status at writing |
+| id | workstream | producer | status |
 |---|---|---|---|
-| WS-A | skill-slim regression detection + guarded apply | ORCHESTRATOR (harness) → EXECUTE lane (repair+apply) | harness done (AVR FAIL / HGK PASS); lane running |
-| WS-B | R8-0 rebuild of the R7-0 hardening on `main` + 18-mutation re-measurement | EXECUTE lane | rebased patch produced; suite + mutations running |
+| WS-A | skill-slim regression detection + guarded apply | ORCHESTRATOR (harness) → EXECUTE lane (repair+apply) | **done** — AVR repaired, landed, verified lossless (6/6 gate); HGK candidate BLOCKED (2 lost references) |
+| WS-B | R8-0 rebuild of the R7-0 hardening on `main` + 18-mutation re-measurement | EXECUTE lane | **done** — 10/10 detected on `main`, M04/M06/M16 REJECT; 2 new main-divergence failures recorded |
 | WS-C | checker write-root isolation (EIA-R6-03) | ORCHESTRATOR (raw OS probe) | **done** — evidence-of-absence + mechanism proven + proposal only |
 | WS-D | EIA-R6-01..09 counterexample-first reconciliation | ORCHESTRATOR | **done** — see `WS_D/EIA_R6_RECONCILIATION.json` |
-| WS-F | OpenSpec change proposal for R8 | sub-agent (PLAN model) | running |
-| WS-G | GSTACK named-method / role-map readback | sub-agent (PLAN model) | running |
-| WS-H | self-check harness repair (TF-10) | sub-agent (PLAN model) | running |
-| WS-E | evidence pack + publication to Fabric | ORCHESTRATOR (`publish_r8.py`) | harness ready, awaiting the round artifacts |
+| WS-F | OpenSpec change proposal for R8 | sub-agent (PLAN model) | **done** — strictly valid (`npx openspec validate --strict`, exit 0); 7 req / 20 scenarios / 22 unchecked tasks |
+| WS-G | GSTACK named-method / role-map readback | sub-agent (PLAN model) | **done** — 7/19 role-keyed, registry/mandate drift and a self-contradictory VERIFY assignment recorded (R8-F6) |
+| WS-H | self-check harness repair (TF-10) | sub-agent (PLAN model) | **done** — derived expectations, negative controls kept; `1=FAIL 2=PASS 3=PASS 4=FAIL 5=PASS 6=PASS` at head `04a1e118` |
+| WS-E | evidence pack + publication to Fabric | ORCHESTRATOR (`publish_r8.py`) | prepared (335 tracked files, M2 PASS); remote readback pending |
+| WS-V | independent verification of WS-A/WS-B | VERIFY_SECURITY lane (`gpt-6.1-sol`) | running |
 
 ## 6. Side effects disclosed (canonical, this round)
 1. `config.yaml` `delegation.provider/model` changed to `openai-codex/gpt-6.1-sol` (sha `dfdb3575…` → `7029050c…`);

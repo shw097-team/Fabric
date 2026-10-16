@@ -1,7 +1,13 @@
 {
   "schema": "CNV-PIPD-LS-SP-20261015-R8/PACKET-MANIFEST/1",
-  "publish_claim": "the DELIVERED set is tracked_inventory (335 paths); the local inventory is 335 paths, of which 0 are excluded by the repository's own ignore rules and are NOT published; 17 further paths under the round root are excluded as lane scratch and are listed here",
+  "publish_claim": "the DELIVERED set is tracked_inventory (358 paths); the local inventory is 358 paths, of which 0 are excluded by the repository's own ignore rules and are NOT published; 17 further paths under the round root are excluded as lane scratch and are listed here",
   "files": [
+    {
+      "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/.gitattributes",
+      "bytes": 72,
+      "sha256": "2b425ed864efb70a12b44d101050d15478a1ea5cea4590bdd60ab0abac3c80d6",
+      "tracked": true
+    },
     {
       "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/hgk_admission_r8.py",
       "bytes": 8075,
@@ -18,6 +24,24 @@
       "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/m2_scan.py",
       "bytes": 7983,
       "sha256": "acc2f08d92c9e72973ef3b51bf64c7beb8b7fc530c39132ac4766d0ed1f29951",
+      "tracked": true
+    },
+    {
+      "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/M2_TRUSTED_SCOPE_SECRETS_R8.json",
+      "bytes": 2388,
+      "sha256": "22c02746557a0b18990e7e4b12f19933e1a66a576f8eaaaa48ba06ea795ea51f",
+      "tracked": true
+    },
+    {
+      "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/PACKET_MANIFEST.json",
+      "bytes": 117399,
+      "sha256": "d4b5e60751a064881b5376b94e1f59590046a7e274a23e0fbe28d24e412dc129",
+      "tracked": true
+    },
+    {
+      "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/PKG_ALIGNMENT_R8.json",
+      "bytes": 4791,
+      "sha256": "170dde26f1475ea0fd199ccdaf958b3c5fb8379fb613c88a6d58a33be82742fd",
       "tracked": true
     },
     {
@@ -52,20 +76,128 @@
     },
     {
       "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/publish_r8.py",
-      "bytes": 14846,
-      "sha256": "2ed448486e24e0001251bd81b2265be7cc615e3aecf1cb2b88709ad96ee75545",
+      "bytes": 14500,
+      "sha256": "87bea3d75d36635c6e63db0bed72cd2b02de7d5445c0ad0dadf661e319333052",
+      "tracked": true
+    },
+    {
+      "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/R8_LEDGER.json",
+      "bytes": 9068,
+      "sha256": "8cfcc39b9e2de01a7d09b287106a9d7d35c89eac0deb1ad1ae637c45db072c07",
       "tracked": true
     },
     {
       "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/R8_MISSION_PLAN.md",
-      "bytes": 6133,
-      "sha256": "0ba7127f97a548db86deaa9aa50098853b46ed5a19bf939e1943933fa314b62b",
+      "bytes": 6671,
+      "sha256": "8e6fcc0b71d590ef3a73b49432be076d5a86ea342dfca083c4bc08a0be9c32ff",
+      "tracked": true
+    },
+    {
+      "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/R8_PUBLICATION_VERIFICATION.json",
+      "bytes": 3725,
+      "sha256": "7b4e2c3024764bb3b9f96da86e8e31bc5d3ab8a7f4f622c951310e70c7621ccd",
       "tracked": true
     },
     {
       "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/R8_VERIFIER_BRIEF_WSAB.md",
       "bytes": 5199,
       "sha256": "5f00c64289ddcf033b077de0717ea2b33791959b247876b57aca639cdfdc5beb",
+      "tracked": true
+    },
+    {
+      "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/R8_VERIFY/R8_VERIFY_RECEIPT.md",
+      "bytes": 6913,
+      "sha256": "fe9738ee19ace3f388029fa7d0dde92db1d76d2971bdb6a4636a538a1fc97010",
+      "tracked": true
+    },
+    {
+      "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/R8_VERIFY/R8_VERIFY_VERDICT.json",
+      "bytes": 4976,
+      "sha256": "d5da438faf7f17033ea9727d15b61c76f8ca9a67ef4a185321578cd5ab860406",
+      "tracked": true
+    },
+    {
+      "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/R8_VERIFY/r8_wt.diff",
+      "bytes": 18543,
+      "sha256": "fb57f5fdd11802026bb20982fc06870975b308ac308aaa16bf2e200f0aa62b3b",
+      "tracked": true
+    },
+    {
+      "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/R8_VERIFY/random_ws_a_harness.json",
+      "bytes": 3697,
+      "sha256": "38d0f63abe8bbc75f7e1fd5c584fae90935bfe3a08990d18b332b85d6fba3acf",
+      "tracked": true
+    },
+    {
+      "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/R8_VERIFY/verify_m04.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tracked": true
+    },
+    {
+      "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/R8_VERIFY/verify_m04.stdout.txt",
+      "bytes": 324,
+      "sha256": "d3f0cce7b9b99b7f8c4004935143708276eba09941c370f77ba5776cc6e58a1e",
+      "tracked": true
+    },
+    {
+      "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/R8_VERIFY/verify_m06.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tracked": true
+    },
+    {
+      "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/R8_VERIFY/verify_m06.stdout.txt",
+      "bytes": 313,
+      "sha256": "3a931125a3d65477f18c3b00ab8a4614a05e7fc0ef99bb9f6634cb3936d33a0a",
+      "tracked": true
+    },
+    {
+      "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/R8_VERIFY/verify_m16.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tracked": true
+    },
+    {
+      "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/R8_VERIFY/verify_m16.stdout.txt",
+      "bytes": 298,
+      "sha256": "fbc61ac45cbf8eddde6859b0ddce68eb2382ed0c778e44e0ff3a527623e8c3fa",
+      "tracked": true
+    },
+    {
+      "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/R8_VERIFY/ws_a_hgk_harness_rederived.json",
+      "bytes": 2972,
+      "sha256": "cb19405bfaf953d28b01802b415305413c9e23dced711e4d78de8ebbdeae9ef9",
+      "tracked": true
+    },
+    {
+      "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/R8_VERIFY/ws_a_receipt_recompute.json",
+      "bytes": 21196,
+      "sha256": "e66362179b266ce292f9db5d69f36638218bb6d32f1013dd4a7bfbdef04d27fb",
+      "tracked": true
+    },
+    {
+      "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/R8_VERIFY/ws_a_tree_inventory.json",
+      "bytes": 9276,
+      "sha256": "d7c80a863c1b297c12a2dba2f5d6964cecfe68fed71d14ee21258699c19abbeb",
+      "tracked": true
+    },
+    {
+      "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/R8_VERIFY/WS_B_3_ATTRIBUTION_ERRATA.json",
+      "bytes": 3640,
+      "sha256": "10dfe4a0e25a642f5347c973e23d31915bc29961be1e5c6b4944c98ec818e5fe",
+      "tracked": true
+    },
+    {
+      "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/SELF_EVOLUTION_R8.json",
+      "bytes": 13466,
+      "sha256": "89c1fa7aecb7a43211d0c4f8d5a1886f7f3b37d71f29aef763476fd447bc162c",
+      "tracked": true
+    },
+    {
+      "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/SELF_EVOLUTION_R8.md",
+      "bytes": 7300,
+      "sha256": "8b7aef25a9e211a6773588d4f5c0c2c3792d70f91ee8c8388fab6ec3bfcb9a96",
       "tracked": true
     },
     {
@@ -270,6 +402,12 @@
       "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/WS_A/live_preimage_snapshot.txt",
       "bytes": 3167,
       "sha256": "2bd0901a1d4931fcca71e676a92123ff3db21c76a70d6afa5f34a5f671ee41e8",
+      "tracked": true
+    },
+    {
+      "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/WS_A/loader_parity_raw.txt",
+      "bytes": 1987,
+      "sha256": "d9646bf1b10d49cbbd36f52d9ed5b886a6a5c648c96048b57d5570b8a06a76a0",
       "tracked": true
     },
     {
@@ -2013,18 +2151,40 @@
       "tracked": true
     }
   ],
-  "file_count": 335,
-  "tracked_file_count": 335,
-  "local_inventory_count": 335,
+  "file_count": 358,
+  "tracked_file_count": 358,
+  "local_inventory_count": 358,
   "tracked_inventory": [
+    "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/.gitattributes",
     "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/HGK_TYPED_ADMISSION_R8.json",
+    "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/M2_TRUSTED_SCOPE_SECRETS_R8.json",
+    "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/PACKET_MANIFEST.json",
+    "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/PKG_ALIGNMENT_R8.json",
     "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/PREVIOUS_ROUNDS/CONVERGENCE_RETURN_PACK_R6R7.json",
     "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/PREVIOUS_ROUNDS/M3_MAINTAINER_APPROVAL.json",
     "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/PREVIOUS_ROUNDS/R6R7_M2_SCAN_AT_FINAL_HEAD.json",
     "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/PREVIOUS_ROUNDS/R6R7_MERGE_AND_CLOSURE.json",
     "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/PREVIOUS_ROUNDS/R6R7_POST_COMMIT_READBACK.json",
+    "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/R8_LEDGER.json",
     "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/R8_MISSION_PLAN.md",
+    "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/R8_PUBLICATION_VERIFICATION.json",
     "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/R8_VERIFIER_BRIEF_WSAB.md",
+    "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/R8_VERIFY/R8_VERIFY_RECEIPT.md",
+    "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/R8_VERIFY/R8_VERIFY_VERDICT.json",
+    "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/R8_VERIFY/WS_B_3_ATTRIBUTION_ERRATA.json",
+    "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/R8_VERIFY/r8_wt.diff",
+    "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/R8_VERIFY/random_ws_a_harness.json",
+    "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/R8_VERIFY/verify_m04.stderr.txt",
+    "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/R8_VERIFY/verify_m04.stdout.txt",
+    "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/R8_VERIFY/verify_m06.stderr.txt",
+    "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/R8_VERIFY/verify_m06.stdout.txt",
+    "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/R8_VERIFY/verify_m16.stderr.txt",
+    "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/R8_VERIFY/verify_m16.stdout.txt",
+    "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/R8_VERIFY/ws_a_hgk_harness_rederived.json",
+    "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/R8_VERIFY/ws_a_receipt_recompute.json",
+    "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/R8_VERIFY/ws_a_tree_inventory.json",
+    "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/SELF_EVOLUTION_R8.json",
+    "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/SELF_EVOLUTION_R8.md",
     "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/WS_A/WS_A_HGK_APPLY_DECISION.json",
     "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/WS_A/WS_A_INDEPENDENT_RECHECK.json",
     "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/WS_A/WS_A_RECEIPT.md",
@@ -2062,6 +2222,7 @@
     "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/WS_A/baseline_witness.json",
     "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/WS_A/live_postimage_snapshot.txt",
     "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/WS_A/live_preimage_snapshot.txt",
+    "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/WS_A/loader_parity_raw.txt",
     "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/WS_A/repaired_candidate/SKILL.md",
     "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/WS_A/repaired_candidate/references/attacking-a-gate-implementation.md",
     "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/WS_A/repaired_candidate/references/checker-binding-and-false-defect-signals.md",

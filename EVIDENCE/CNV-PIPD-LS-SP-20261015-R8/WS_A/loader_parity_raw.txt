@@ -1,0 +1,35 @@
+LOADER-PARITY RAW LOG — what each section proves and what it does not
+round CNV-PIPD-LS-SP-20261015 / R8-0 · produced by the in-Hermes orchestrator on 2026-10-16
+
+Section 1 (skills list row): the REAL Hermes skill loader parsed the post-apply SKILL.md, registered the identity
+and marks the skill local/enabled. This is the navigation datum at local scope.
+Section 2 (skills inspect): that subcommand resolves against installable sources (hub/registry), NOT against the
+local tree, so 'not found' here is NOT evidence that the local skill failed to load. Recorded to prevent a false red.
+Section 3 (skills list-modified): lists user-modified BUNDLED skills; this skill is local, so its absence is expected.
+
+NOT ESTABLISHED HERE: the PKG's trusted observation (live runner UNBOUND_OWNER_PIN_REQUIRED), live trigger/non-trigger
+behaviour, negative state transitions (staged/installed/retired, TOCTOU). Those stay with the Skill Owner under an owner pin.
+====================================================================================================
+
+### 1) loader listing row (parsed frontmatter identity)
+│ llm-wiki               │ research             │ builtin │ builtin │ enabled │
+│ adversarial-verificat… │ software-development │ local   │ local   │ enabled │
+│ canonical-change-land… │ software-development │ local   │ local   │ enabled │
+
+### 2) hermes skills inspect adversarial-verification-rounds
+Resolving 'adversarial-verification-rounds'...
+Error: No skill named 'adversarial-verification-rounds' found in any source.
+
+
+### 3) hermes skills list-modified (does the loader see a local modification?)
+
+3 user-modified bundled skill(s) (kept as-is by `hermes update`):
+  ~ codex
+  ~ computer-use
+  ~ hermes-agent
+
+See changes:   hermes skills diff <name>
+Resume updates: hermes skills reset <name>          (keep your copy, 
+re-baseline)
+Revert to stock: hermes skills reset <name> --restore
+

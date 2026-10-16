@@ -1,0 +1,234 @@
+{
+ "schema": "CNV-PIPD-LS-SP-20261015-R8/GOVERNED-SELF-EVOLUTION/1",
+ "produced_utc": "2026-10-16T03:38:19.521675+00:00",
+ "authority": [
+  "Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md v2.0.0",
+  "HG-KSEOS/AGENTS.md (control plane rules)",
+  "Fabric_Convergence_External_Independent_Acceptance_Report_20261015.md"
+ ],
+ "scope": "A governed retrospective over the R6 -> R8 span of mission CNV-PIPD-LS-SP-20261015. It records what was investigated, what the loop learned about itself, what was actually changed in the process artifacts, and what must change with an owner and a gate. It is NOT an acceptance, an approval, a policy change or a promotion.",
+ "claim_ceiling": "LOCAL / candidate-only; every item below is falsifiable by the evidence path it cites",
+ "self_research": [
+  {
+   "id": "SR-1",
+   "question": "Which of the nine external findings still hold against live state?",
+   "method": "counterexample-first re-run of each finding's own check (GitHub tree/manifest set diffs, ACL read, mutation re-measurement, library scan)",
+   "result": "06 closed locally (maintainer authorisation executed, main b8ff8104); 01/02 narrowed to two identified unshipped cache paths; 03 root cause found (no deny ACE; Authenticated Users inherit Modify); 04 counterexamples closed on main (M04/M06/M16 REJECT); 05/07/08 confirmed owner/authority-gated; 09 measured and in treatment.",
+   "evidence": "WS_D/EIA_R6_RECONCILIATION.json"
+  },
+  {
+   "id": "SR-2",
+   "question": "Does the guarded subject still equal what was published?",
+   "method": "per-file git-blob sha1 comparison against the merged packet tree at b8ff8104 (300 files)",
+   "result": "300/300 byte-exact, 0 mismatches, 0 missing",
+   "evidence": "WS_D/GUARDED_SUBJECT_BYTE_EXACTNESS.json"
+  },
+  {
+   "id": "SR-3",
+   "question": "Are the R6 packet's declared and shipped sets equal?",
+   "method": "tree API blob set vs PACKET_MANIFEST.json files[] set",
+   "result": "NOT equal: 583 declared vs 581 shipped; the two extras are __pycache__ .pyc paths - the count mismatch has a single identified cause instead of being an unknown",
+   "evidence": "WS_D/EIA_R6_RECONCILIATION.json"
+  },
+  {
+   "id": "SR-4",
+   "question": "Do the slimmed skill candidates actually preserve content?",
+   "method": "six-check regression gate incl. reference-coverage (bytes present verbatim anywhere in the corpus)",
+   "result": "AVR candidate needed repair (10 slice markers; 1 stale absorbed reference) then landed and verified lossless; HGK candidate is NOT landable (2 reference texts do not survive: lane-conformance-gate.md absent, step-verify-only-lane.md rewritten with the remainder absent)",
+   "evidence": "WS_A_REGRESSION_AVR.json, WS_A_REGRESSION_HGK.json, WS_A/WS_A_HGK_APPLY_DECISION.json"
+  },
+  {
+   "id": "SR-5",
+   "question": "Is there any OS-level protection on the guarded subject?",
+   "method": "effective ACL read + deny-ACE mechanism proof on scratch",
+   "result": "No deny ACE exists; the mechanism works and is reversible, but with one shared Windows identity it can only enforce immutability, not maker/checker separation",
+   "evidence": "WS_C/CHECKER_WRITE_ROOT_ISOLATION_EVIDENCE.json"
+  },
+  {
+   "id": "SR-6",
+   "question": "Does the hardening port cleanly onto main?",
+   "method": "rebuild on dba4b19, run the suite and all 18 mutations",
+   "result": "counterexamples closed on main (10/10 detected, M04/M06/M16 REJECT, 8 NOT_RUN re-judged) BUT the port introduces 2 main-divergence failures, one of which is an unhandled crash (derive_frozen_context, 'str' has no 'get') - new blocking findings, not fixed and not hidden",
+   "evidence": "WS_B/WS_B_RECEIPT.md, WS_B/R8_MUTATIONS_18_ON_MAIN.json"
+  },
+  {
+   "id": "SR-7",
+   "question": "What do the control-plane planes actually bind to?",
+   "method": "read the lane pool, the governed profile and the delegation config",
+   "result": "lane pool rank 1 for PLAN and VERIFY is the same model (gpt-6.1-sol); EXECUTE is deepseek-v4.1-flash; the governed profile binds PLAN as declared; PLAN and VERIFY therefore share a model axis by owner design",
+   "evidence": "R8_MISSION_PLAN.md section 2, WS_G/GSTACK_R8_ROLEMAP.json"
+  }
+ ],
+ "self_learning": [
+  {
+   "id": "SL-1",
+   "lesson": "A checklist that only compares declared counts can pass while content is silently dropped. Losslessness must be tested by byte presence, not by file counts or sha tables.",
+   "trigger": "the HGK candidate passed my first harness version and failed only after the reference-coverage check was added",
+   "fix": "C6_reference_coverage added to the harness; both candidates re-judged; the previously 'PASS' verdict was withdrawn",
+   "status": "APPLIED"
+  },
+  {
+   "id": "SL-2",
+   "lesson": "An expectation hardcoded at build time turns into a false red as soon as the subject evolves; the right response is to derive the expectation, never to delete the assertion.",
+   "trigger": "TF-10 in the R7 self-check harness",
+   "fix": "harness repaired to resolve expectations from HEAD, git inventory, committed manifest and runtime discovery, with the negative control retained and 7 regression tests",
+   "status": "APPLIED"
+  },
+  {
+   "id": "SL-3",
+   "lesson": "A post-apply losslessness proof must be run against the PRE-image, not against the applied tree: comparing the applied tree with itself makes every absorbed reference look stale.",
+   "trigger": "my first post-apply run reported 6 false sha mismatches",
+   "fix": "re-ran with subject = live tree and live = WS_A/apply/preimage; PASS with 0 lost lines and 0 lost references",
+   "status": "APPLIED"
+  },
+  {
+   "id": "SL-4",
+   "lesson": "When the lane cannot evidence which model arm served a turn, the products may still be verifiable - but the attribution claim must be dropped, not softened.",
+   "trigger": "dispatcher EXIT 3 / no nonce emitted for the EXECUTE arm on this round's writer lanes",
+   "fix": "recorded as an unproven attribution in the WS-A recheck and in the ledger; the finding stays open for the tooling owner",
+   "status": "RECORDED_OPEN"
+  },
+  {
+   "id": "SL-5",
+   "lesson": "A guard that blocks the agent's own write is a feature: the correct response is to ask the owner, then use the sanctioned authorization path - never to rephrase the payload to slip past it.",
+   "trigger": "two sub-agent receipts were refused by the pre-tool guard",
+   "fix": "asked the owner; the owner authorised the sanctioned, time-boxed path; receipts written afterwards with their provenance disclosed",
+   "status": "APPLIED"
+  },
+  {
+   "id": "SL-6",
+   "lesson": "Publishing must state what it deliberately excluded, not only what it included; 'nothing missing' is not the same claim as 'nothing dropped silently'.",
+   "trigger": "the R6 manifest mismatch and cache files in a live skill tree",
+   "fix": "the R8 publication manifest now records excluded_scratch[] with a reason per path",
+   "status": "APPLIED"
+  },
+  {
+   "observation": "A checker reproduced the counts correctly but inverted the cause; the orchestrator's own re-measurement caught it.",
+   "rule": "Re-measure a checker's causal attributions, not only its numbers - narrative clauses in a verdict are claims.",
+   "evidence": "R8_VERIFY/WS_B_3_ATTRIBUTION_ERRATA.json",
+   "id": "L7"
+  }
+ ],
+ "self_iteration": [
+  {
+   "id": "SI-1",
+   "artifact": "skill-slim regression harness",
+   "change": "added C6 (reference coverage) and fixed stub classification so that marker-less short files are not mis-read as absorbed stubs",
+   "files": [
+    "ws_a_skill_slim_regression.py"
+   ],
+   "gate": "machine check, negative controls retained"
+  },
+  {
+   "id": "SI-2",
+   "artifact": "round self-check harness",
+   "change": "expectations derived at run time; negative controls and 7 regression tests retained",
+   "files": [
+    "WS_H/round_selfcheck_r8.py",
+    "WS_H/test_tf10.py"
+   ]
+  },
+  {
+   "id": "SI-3",
+   "artifact": "publication harness",
+   "change": "re-parameterised for a new prefix/branch and an explicit exclusion ledger in the manifest",
+   "files": [
+    "publish_r8.py"
+   ]
+  },
+  {
+   "id": "SI-4",
+   "artifact": "process artifacts",
+   "change": "verifier briefs now pin the checker's write root outside every subject; board cards carry instrument-readable evidence strings; the round plan records canonical side effects",
+   "files": [
+    "R8_VERIFIER_BRIEF_WSAB.md",
+    "R8_MISSION_PLAN.md"
+   ]
+  },
+  {
+   "id": "SI-5",
+   "artifact": "openspec proposal",
+   "change": "the round's contracts (cap, loader parity, soft-warning-only reference threshold, guarded apply, rebase requirement, owner gates) are now expressible as a validated change proposal",
+   "files": [
+    "HG-KSEOS/openspec/changes/hgk-r8-eia-closure-skill-slim-20261016/"
+   ]
+  },
+  {
+   "id": "I6",
+   "change": "added a clean-baseline worktree step (detached at the base commit) to the verification protocol before any porting claim is filed",
+   "gate": "verification protocol",
+   "status": "applied this round when the disagreement surfaced",
+   "evidence": "C:/Projects/wt-r8-cleanmain + the 2x2 matrix"
+  }
+ ],
+ "self_evolution": [
+  {
+   "id": "SE-1",
+   "proposal": "Give the checker a distinct OS identity or a scoped sandbox so that maker/checker separation is enforced rather than documented.",
+   "owner": "HGK Checker Harness Owner",
+   "gate": "owner authorisation for an identity/ACL change; no agent self-grant",
+   "why": "with one shared identity the strongest available control is immutability of the subject",
+   "evidence": "WS_C/CHECKER_WRITE_ROOT_ISOLATION_EVIDENCE.json"
+  },
+  {
+   "id": "SE-2",
+   "proposal": "Make lane arm attribution a first-class receipt field and fail the receipt closed when no arm emits its nonce.",
+   "owner": "HGK lane/dispatcher owner",
+   "gate": "tooling change under HGK admission; must not become a lane outage",
+   "why": "products were verifiable while attribution was not; the claim ceiling should degrade automatically",
+   "evidence": "tooling finding TF-06 (8 occurrences this mission)"
+  },
+  {
+   "id": "SE-3",
+   "proposal": "Adapt the R7-0 hardening to main's newer contracts before it can ship: restore fail-open behaviour only where the frozen context is legitimately absent, and fix derive_frozen_context's handling of a string-typed field.",
+   "owner": "DOC-07 Oracle/Validator Owner",
+   "gate": "new ChangeSet (R9-0) with its own admission, checker and mutation set",
+   "why": "the port closes the counterexamples but introduces 2 main-divergence failures, one a crash path",
+   "evidence": "WS_B/WS_B_RECEIPT.md sections 4.2 and 5.2"
+  },
+  {
+   "id": "SE-4",
+   "proposal": "Repair the HGK skill-slim candidate instead of applying it: restore the two lost reference texts, drop cache files from the apply set, then re-run the gate.",
+   "owner": "Skill Owner",
+   "gate": "guarded apply with pre-image and rollback, as used for the AVR skill",
+   "why": "applying it as-is would delete instructional content",
+   "evidence": "WS_A/WS_A_HGK_APPLY_DECISION.json"
+  },
+  {
+   "id": "SE-5",
+   "proposal": "Issue the versioned R6 publication errata naming the two unshipped cache paths and the stale counts, without rewriting the merged packet.",
+   "owner": "Fabric publication owner",
+   "gate": "publication step authority",
+   "why": "it converts an unexplained count mismatch into a recorded, reproducible difference",
+   "evidence": "WS_D/EIA_R6_RECONCILIATION.json (EIA-R6-01/02)"
+  },
+  {
+   "id": "SE-6",
+   "proposal": "Keep the >60-reference condition as a warning and treat the over-cap main files as a queue item, not a hard gate.",
+   "owner": "Skill Owner",
+   "gate": "none (already the external ruling)",
+   "why": "2 main files exceed 100,000 bytes and one skill has 118 references; raising the cap or splitting mechanically without the losslessness gate would trade a warning for silent loss",
+   "evidence": "WS_A_LIBRARY_SCAN.json"
+  },
+  {
+   "id": "SE-7",
+   "proposal": "Keep the residual SoD disclosure standing: PLAN and VERIFY are served by the same model family on this lane by owner decision, so independence rests on process, lane, receipt and write-root separation - and on the OS identity once SE-1 lands.",
+   "owner": "Owner (SoD scheme owner)",
+   "gate": "owner decision; agents must not silently 'fix' the scheme",
+   "why": "claiming model-axis independence would be false",
+   "evidence": "R8_MISSION_PLAN.md section 2, WS_G/GSTACK_R8_ROLEMAP.json"
+  }
+ ],
+ "falsifiers": {
+  "SR-2": "any file under the guarded subject whose git-blob sha1 differs from the merged packet tree",
+  "SR-4": "a live reference whose bytes cannot be found in the applied corpus",
+  "SR-6": "a mutation row on main that returns ACCEPT where REJECT is required, or a suite run without the two recorded failures",
+  "SE-1": "an ordinary process (same identity) writing into the guarded subject and succeeding - which is exactly today's observed state"
+ },
+ "non_claims": [
+  "not an acceptance, approval, Gate PASS, or production statement",
+  "no verdict is upgraded by this artifact",
+  "no authority is created: every SE item names an owner and a gate",
+  "the retrospective is authored by the orchestrator that ran the round; it is not an independent review of itself"
+ ]
+}

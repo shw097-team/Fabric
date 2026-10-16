@@ -1,0 +1,89 @@
+{
+ "schema": "CNV-PIPD-LS-SP-20261015-R8/PUBLICATION-VERIFICATION/1",
+ "produced_utc": "2026-10-16T03:41:02.818126+00:00",
+ "repo": "https://github.com/shw097-team/Fabric",
+ "branch": "evidence/cnv-pipd-ls-sp-20261015-r8",
+ "base": "main @ b8ff81043e47e4b652522be34444bf52fcf4d65e (merged R6 archive, untouched)",
+ "local_head": "47174a726d72e2f1a3e0845ac81ce6b0cb011b63",
+ "remote_head": "47174a726d72e2f1a3e0845ac81ce6b0cb011b63",
+ "head_match": true,
+ "remote_blobs_under_prefix": 337,
+ "blob_mismatches": 0,
+ "method": "every published blob's git object id compared against the local file's recomputed blob id (independent of the publishing script); plus the tree API for the prefix count",
+ "m2_scan": {
+  "verdict": "PASS",
+  "blobs": null,
+  "bytes": null,
+  "scope_violations": null,
+  "hard_secrets": null,
+  "soft_candidates": null,
+  "executables": null,
+  "token_occurrences": null,
+  "claim_ceiling": "LOCAL_TRUSTED_SCAN (tool-side scan of published blobs; not an AO verdict)"
+ },
+ "manifest_set_state": {
+  "declared_tracked": 335,
+  "published_blobs": 337,
+  "declared_all_are_published": true,
+  "undeclared_published": [
+   "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/.gitattributes",
+   "EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/PACKET_MANIFEST.json"
+  ],
+  "note": "the manifest is computed before it and .gitattributes are written, so the first commit cannot list itself; a further prepare run (planned after the verifier verdict lands) recomputes the manifest over the then-current tree and closes the set exactly. This recursion is stated rather than papered over.",
+  "excluded_scratch_paths_recorded": 17
+ },
+ "pull_request": {
+  "number": 5,
+  "url": "https://github.com/shw097-team/Fabric/pull/5",
+  "draft": true,
+  "state": "open",
+  "note": "created through the API with the token in a header; the R7 copy of this helper sent a masked literal and failed with Bad credentials - repaired in publish_r8.py and recorded as a self-repair"
+ },
+ "previous_packets_unchanged": {
+  "r6_prefix": {
+   "prefix": "EVIDENCE/CNV-PIPD-LS-SP-20261015/",
+   "blobs_in_main": 581,
+   "blobs_at_r8_head": 581,
+   "path_to_object_id_map_identical_to_main": true,
+   "merged_via": "PR #3 at 2026-10-15T12:45:46Z"
+  },
+  "r7_prefix": {
+   "prefix": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/",
+   "blobs_in_main": 0,
+   "blobs_at_r8_head": 0,
+   "lives_on": "branch evidence/cnv-pipd-ls-sp-20261015-r7 @ 04a1e118dd6616ccb6b2e68b68544fd5af4271ae with 306 blobs, Draft PR #4 still open (NOT merged into main)",
+   "effect_of_this_push": "none - the R8 branch was cut from origin/main, so the R7 packet is absent from it by construction rather than preserved in it. Stated precisely instead of as 'untouched'."
+  },
+  "prs_observed": {
+   "5": {
+    "state": "open",
+    "draft": true,
+    "head": "47174a7 (this round)"
+   },
+   "4": {
+    "state": "open",
+    "draft": true,
+    "sha": "04a1e118 (R7, unmerged)"
+   },
+   "3": {
+    "state": "closed",
+    "merged_at": "2026-10-15T12:45:46Z"
+   },
+   "2": {
+    "merged": "2026-10-14T08:21:06Z"
+   },
+   "1": {
+    "merged": "2026-10-14T08:10:09Z"
+   }
+  },
+  "checked_utc": "2026-10-16T03:46:28.629735+00:00"
+ },
+ "claim_ceiling": "LOCAL / candidate-only. Publication of evidence is not an acceptance, an approval or a merge authorisation; the draft PR exists for an external acceptor and nothing was merged.",
+ "open_after_publication": [
+  "the verifier lane's verdict (WS-V) and its follow-up commit",
+  "the R8 renderer/synthesizer step",
+  "EIA-R6-01/02 errata text (publication-side)",
+  "EIA-R6-03 identity/sandbox change (owner-gated)",
+  "BLK-R8-WS2 main-divergence adaptation (R9-0)"
+ ]
+}
