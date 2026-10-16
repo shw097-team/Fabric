@@ -1,7 +1,7 @@
 {
  "schema": "CNV-ARCHIVE-A08-MERGE-RECEIPT/1",
  "task_id": "CNV-FAR018-FAR019-ARCHIVE-20261016",
- "generated_utc": "2026-10-16T14:19:50.856005+00:00",
+ "generated_utc": "2026-10-16T14:22:59.427396+00:00",
  "mode": "APPLY",
  "repo": "shw097-team/Fabric",
  "token": {
@@ -29,7 +29,8 @@
     {
      "step": "merge",
      "result": "SKIPPED_ALREADY_MERGED",
-     "merge_commit_sha": "6c25bbe8cf14af544c79b36c4b9c0e84778690b1"
+     "merge_commit_sha": "6c25bbe8cf14af544c79b36c4b9c0e84778690b1",
+     "note": "merge sha read from the LIVE PR, not carried from a first-run artifact"
     },
     {
      "step": "main_readback",
@@ -37,11 +38,12 @@
      "prefix_blobs_in_main": 33,
      "expected_prefix_blobs": 33,
      "readback_verdict": "PASS",
-     "rollback_pointer": null
+     "rollback_pointer": "git revert 6c25bbe8cf14af544c79b36c4b9c0e84778690b1"
     }
    ],
    "head_at_approval": "0a30e5a8f636c4e310958778491bf4154e7caf1e",
    "head_at_merge": "0a30e5a8f636c4e310958778491bf4154e7caf1e",
+   "merge_commit_sha": "6c25bbe8cf14af544c79b36c4b9c0e84778690b1",
    "status": "ALREADY_MERGED_READBACK_ONLY",
    "main_after": "bcd91043b89b69c9d2f08309e46e31898ac87d89",
    "readback": {
@@ -49,7 +51,7 @@
     "prefix_blobs_in_main": 33,
     "expected_prefix_blobs": 33,
     "readback_verdict": "PASS",
-    "rollback_pointer": null
+    "rollback_pointer": "git revert 6c25bbe8cf14af544c79b36c4b9c0e84778690b1"
    }
   },
   "13": {
@@ -70,7 +72,8 @@
     {
      "step": "merge",
      "result": "SKIPPED_ALREADY_MERGED",
-     "merge_commit_sha": "603cb0cb39275b351dd4f5312c723977de2a1349"
+     "merge_commit_sha": "603cb0cb39275b351dd4f5312c723977de2a1349",
+     "note": "merge sha read from the LIVE PR, not carried from a first-run artifact"
     },
     {
      "step": "main_readback",
@@ -78,11 +81,12 @@
      "prefix_blobs_in_main": 55,
      "expected_prefix_blobs": 55,
      "readback_verdict": "PASS",
-     "rollback_pointer": null
+     "rollback_pointer": "git revert 603cb0cb39275b351dd4f5312c723977de2a1349"
     }
    ],
    "head_at_approval": "0fc70f2f050119ada63cad7b4e641c21fdb37fa5",
    "head_at_merge": "0fc70f2f050119ada63cad7b4e641c21fdb37fa5",
+   "merge_commit_sha": "603cb0cb39275b351dd4f5312c723977de2a1349",
    "status": "ALREADY_MERGED_READBACK_ONLY",
    "main_after": "bcd91043b89b69c9d2f08309e46e31898ac87d89",
    "readback": {
@@ -90,7 +94,7 @@
     "prefix_blobs_in_main": 55,
     "expected_prefix_blobs": 55,
     "readback_verdict": "PASS",
-    "rollback_pointer": null
+    "rollback_pointer": "git revert 603cb0cb39275b351dd4f5312c723977de2a1349"
    }
   },
   "14": {
@@ -111,7 +115,8 @@
     {
      "step": "merge",
      "result": "SKIPPED_ALREADY_MERGED",
-     "merge_commit_sha": "bcd91043b89b69c9d2f08309e46e31898ac87d89"
+     "merge_commit_sha": "bcd91043b89b69c9d2f08309e46e31898ac87d89",
+     "note": "merge sha read from the LIVE PR, not carried from a first-run artifact"
     },
     {
      "step": "main_readback",
@@ -119,11 +124,12 @@
      "prefix_blobs_in_main": 83,
      "expected_prefix_blobs": 83,
      "readback_verdict": "PASS",
-     "rollback_pointer": null
+     "rollback_pointer": "git revert bcd91043b89b69c9d2f08309e46e31898ac87d89"
     }
    ],
    "head_at_approval": "b33b122053d53520809e87674784279097673fc0",
    "head_at_merge": "b33b122053d53520809e87674784279097673fc0",
+   "merge_commit_sha": "bcd91043b89b69c9d2f08309e46e31898ac87d89",
    "status": "ALREADY_MERGED_READBACK_ONLY",
    "main_after": "bcd91043b89b69c9d2f08309e46e31898ac87d89",
    "readback": {
@@ -131,7 +137,7 @@
     "prefix_blobs_in_main": 83,
     "expected_prefix_blobs": 83,
     "readback_verdict": "PASS",
-    "rollback_pointer": null
+    "rollback_pointer": "git revert bcd91043b89b69c9d2f08309e46e31898ac87d89"
    }
   }
  },

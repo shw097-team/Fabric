@@ -64,7 +64,9 @@ DATA = {k: load(k) for k in ("A00_SOURCE_REGISTER.json", "A03_GITHUB_FREEZE.json
                              "HGK_TYPED_ADMISSION_ARCHIVE.json", "ORCHESTRATION_SURFACES.json",
                              "KANBAN_LIFECYCLE_RECEIPT.json", "PUBLISH_RECEIPT_ARCHIVE.json",
                              "REMOTE_READBACK_ARCHIVE.json", "compiler/out/compiler-report.json",
-                             "compiler/hash.stdout.txt")}
+                             "compiler/hash.stdout.txt", "compiler/lint.stdout.txt",
+                             "compiler/activation.stdout.txt", "compiler/acceptance.stdout.txt",
+                             "compiler/compile.stdout.txt", "compiler/duplication.stdout.txt")}
 KB_DIR = Path("C:/Projects/Agent_Workspace/知識庫/工程基座/"
               "GPTs_GENIEMAKER_開發實作+驗收指導官_KP_Builder_ReleasePack_v2026.06.03-r2/KnowledgePack")
 KB_DIR = Path("C:/Projects/Agent_Workspace/知識庫/工程基座/"
@@ -81,16 +83,23 @@ def checks(d, live, main_paths, recent, kb_dir):
     out.append(("C01", a00 and a00.get("knowledge_20_present") == 20 and a00.get("knowledge_20_count") == 20
                 and kb_present >= 20, "knowledge base 20/20 declared=%s live_on_disk=%s"
                 % (a00 and a00.get("knowledge_20_present"), kb_present)))
+    verbs = {}
+    for v in ("lint", "activation", "acceptance", "compile"):
+        # the loader already json.loads() every receipt, so t is the verb dict itself.
+        t = d.get("compiler/%s.stdout.txt" % v)
+        verbs[v] = t.get("verdict") if isinstance(t, dict) else None
     out.append(("C02", rep.get("verdict") == "PROMPT_COMPILE_PASS" and rep.get("error_count") == 0
-                and str(d["compiler/hash.stdout.txt"]).strip() == rep.get("contract_sha256"),
-                "compiler verdict=%s errors=%s contract_sha=%s" % (rep.get("verdict"), rep.get("error_count"),
-                                                                   str(rep.get("contract_sha256"))[:12])))
+                and len(verbs) == 4 and all(x == "PROMPT_COMPILE_PASS" for x in verbs.values()),
+                "report=%s errors=%s verbs=%s report_digest=%s file_digest=%s"
+                % (rep.get("verdict"), rep.get("error_count"), verbs, str(rep.get("contract_sha256"))[:10],
+                   str(d["compiler/hash.stdout.txt"]).strip()[:10])))
     out.append(("C03", adm.get("verdict") == "ADMISSION_OK" and adm.get("final_state") == "WORKORDERS_ADMITTED",
                 "admission verdict=%s state=%s project=%s" % (adm.get("verdict"), adm.get("final_state"),
                                                               adm.get("project_id"))))
     merged = {n: (live.get(n) or {}) for n in (12, 13, 14)}
-    c4_ok = all(merged[n].get("merged") is True and merged[n].get("merge_commit_sha")
-                == a08["prs"][str(n)].get("merge_commit_sha") for n in (12, 13, 14))
+    c4_shas = {n: a08["prs"][str(n)].get("merge_commit_sha") for n in (12, 13, 14)}
+    c4_ok = (all(merged[n].get("merged") is True for n in (12, 13, 14))
+             and all(c4_shas[n] and merged[n].get("merge_commit_sha") == c4_shas[n] for n in (12, 13, 14)))
     out.append(("C04", c4_ok, "live merged=%s vs receipt sha=%s"
                 % ({n: merged[n].get("merged") for n in (12, 13, 14)},
                    {n: (a08["prs"][str(n)].get("merge_commit_sha") or "-")[:8] for n in (12, 13, 14)})))
@@ -114,9 +123,9 @@ def checks(d, live, main_paths, recent, kb_dir):
                 % ((rb or {}).get("verdict"), (rb or {}).get("count"), len((rb or {}).get("mismatches", [])),
                    len((rb or {}).get("missing", [])))))
     mshas = [a08["prs"][str(n)].get("merge_commit_sha") for n in (12, 13, 14)]
-    out.append(("C09", all(s in recent for s in mshas if s),
-                "merge commits visible in main's recent history: %s"
-                % {s[:8]: (s in recent) for s in mshas if s}))
+    c09 = len(mshas) == 3 and all(mshas) and all(s in recent for s in mshas)
+    out.append(("C09", c09, "merge commits in main's recent history: %s (non_null=%d)"
+                % ({str(s)[:8]: (s in recent) for s in mshas}, len([s for s in mshas if s]))))
     c10 = all(a09["pr_outcomes"][i]["head_at_approval"] == HEADS[n] for i, n in enumerate((12, 13, 14)))
     out.append(("C10", c10, "approved heads match the order's frozen heads"))
     pk = load("PACK_INDEX.json")
@@ -128,7 +137,7 @@ def checks(d, live, main_paths, recent, kb_dir):
     MAIN_EQ = (a08["prs"]["14"].get("merge_commit_sha") == MAIN_TIP)
     out.append(("C12", bool(main_paths) and MAIN_EQ,
                 "main tip=%s equals PR14 merge commit=%s (%s)" % (str(MAIN_TIP)[:12],
-                                                                  a08["prs"]["14"].get("merge_commit_sha", "-")[:12],
+                                                                  (a08["prs"]["14"].get("merge_commit_sha") or "-")[:12],
                                                                   MAIN_EQ)))
     return out
 
@@ -154,6 +163,15 @@ MUTATIONS = [
     ("M10", "C09", "A08 merge sha not in main", lambda d: d["A08_MERGE_RECEIPT.json"]["prs"]["12"].update({"merge_commit_sha": "f" * 40})),
     ("M11", "C10", "approved head drift", lambda d: d["A09_RETURN_PACKS.json"]["pr_outcomes"][2].update({"head_at_approval": "0" * 40})),
     ("M12", "C11", "publish failed", lambda d: d["PUBLISH_RECEIPT_ARCHIVE.json"].update({"verdict": "FAIL_REF"})),
+    ("M13", "C04", "drop a merge sha from the receipt",
+     lambda d: d["A08_MERGE_RECEIPT.json"]["prs"]["12"].update({"merge_commit_sha": None})),
+    ("M14", "C09", "erase all merge shas",
+     lambda d: [d["A08_MERGE_RECEIPT.json"]["prs"][str(n)].update({"merge_commit_sha": None}) for n in (12, 13, 14)]),
+    ("M15", "C02", "a compiler verb stops passing",
+     lambda d: d.update({"compiler/lint.stdout.txt": json.dumps({"verdict": "PROMPT_COMPILE_BLOCKED",
+                                                                 "error_count": 2})})),
+    ("M16", "C12", "main tip is not the PR14 merge commit",
+     lambda d: d["A08_MERGE_RECEIPT.json"]["prs"]["14"].update({"merge_commit_sha": "a" * 40})),
 ]
 detected, not_detected = [], []
 for mid, target, where, mutate in MUTATIONS:
@@ -162,12 +180,12 @@ for mid, target, where, mutate in MUTATIONS:
         mutate(dd)
         res = {c[0]: c[1] for c in checks(dd, LIVE, MAIN_PATHS, RECENT, KB_DIR)}
     except Exception as e:  # noqa: BLE001
-        res = {"__error": type(e).__name__}
+        res = {"__error": type(e).__name__ + ": " + str(e)[:160]}
     if res.get(target) is False:
         detected.append({"mutation": mid, "target": target, "where": where, "result": "DETECTED"})
     else:
         not_detected.append({"mutation": mid, "target": target, "where": where, "result": "NOT_DETECTED",
-                             "observed": res.get(target)})
+                             "observed": res.get(target), "error": res.get("__error")})
 
 passed = sum(1 for _, ok, _ in BASE if ok)
 receipt = {"schema": "CNV-ARCHIVE-SELF-CHECK/1", "task_id": ROUND, "generated_utc": GEN,

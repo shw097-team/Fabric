@@ -108,7 +108,9 @@ for n in (12, 13, 14):
     rec["head_at_merge"] = live_head
 
     if pr.get("merged") is True:
-        step("merge", result="SKIPPED_ALREADY_MERGED", merge_commit_sha=pr.get("merge_commit_sha"))
+        rec["merge_commit_sha"] = pr.get("merge_commit_sha")
+        step("merge", result="SKIPPED_ALREADY_MERGED", merge_commit_sha=rec["merge_commit_sha"],
+             note="merge sha read from the LIVE PR, not carried from a first-run artifact")
         rec["status"] = "ALREADY_MERGED_READBACK_ONLY"
     elif st != 200:
         step("merge", result="HOLD_API_ERROR", code=st, body=pr)

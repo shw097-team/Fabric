@@ -18,9 +18,9 @@ DOC-05 effect admission and NOT a production release.
 
 | PR | URL | Approved head | Merge commit | Merged | main readback | Rollback |
 |---|---|---|---|---|---|---|
-| #12 | [https://github.com/shw097-team/Fabric/pull/12](https://github.com/shw097-team/Fabric/pull/12) | `0a30e5a8f636` | `-` | merged | PASS | `-` |
-| #13 | [https://github.com/shw097-team/Fabric/pull/13](https://github.com/shw097-team/Fabric/pull/13) | `0fc70f2f0501` | `-` | merged | PASS | `-` |
-| #14 | [https://github.com/shw097-team/Fabric/pull/14](https://github.com/shw097-team/Fabric/pull/14) | `b33b122053d5` | `-` | merged | PASS | `-` |
+| #12 | [https://github.com/shw097-team/Fabric/pull/12](https://github.com/shw097-team/Fabric/pull/12) | `0a30e5a8f636` | `6c25bbe8cf14af544c79b36c4b9c0e84778690b1` | merged | PASS | `git revert 6c25bbe8cf14af544c79b36c4b9c0e84778690b1` |
+| #13 | [https://github.com/shw097-team/Fabric/pull/13](https://github.com/shw097-team/Fabric/pull/13) | `0fc70f2f0501` | `603cb0cb39275b351dd4f5312c723977de2a1349` | merged | PASS | `git revert 603cb0cb39275b351dd4f5312c723977de2a1349` |
+| #14 | [https://github.com/shw097-team/Fabric/pull/14](https://github.com/shw097-team/Fabric/pull/14) | `b33b122053d5` | `bcd91043b89b69c9d2f08309e46e31898ac87d89` | merged | PASS | `git revert bcd91043b89b69c9d2f08309e46e31898ac87d89` |
 
 ## Gates actually run
 
@@ -31,8 +31,8 @@ DOC-05 effect admission and NOT a production release.
 | Scope / mode preflight (A03) | Q03 PASS ×3, Q04 PASS ×3 | `A03_GITHUB_FREEZE.json` |
 | Trusted secrets scan (A05) | `PASS`; positive control fired 6 rule families, clean control 0 hits | `A05_SECRET_SCAN.json` |
 | Per-PR merge + readback (A08) | `ARCHIVE_MERGED_READBACK_PASS` | `A08_MERGE_RECEIPT.json` |
-| Publish + per-blob readback (A07) | `PUBLISHED` / `PASS` | `PUBLISH_RECEIPT_ARCHIVE.json`, `REMOTE_READBACK_ARCHIVE.json` |
-| Self-check harness | 9/12 checks; 12/12 injected mutations detected | `SELF_CHECK_RECEIPT.json` |
+| Publish + per-blob readback (A07) | `PUBLISHED_NO_PR` / `PASS` | `PUBLISH_RECEIPT_ARCHIVE.json`, `REMOTE_READBACK_ARCHIVE.json` |
+| Self-check harness | 12/12 checks; 16/16 injected mutations detected | `SELF_CHECK_RECEIPT.json` |
 | OpenSpec change | valid (`--strict`, login shell) | `ORCHESTRATION_SURFACES.json` |
 | Kanban | 18 cards / 71 CLI calls | `KANBAN_LIFECYCLE_RECEIPT.json` |
 
