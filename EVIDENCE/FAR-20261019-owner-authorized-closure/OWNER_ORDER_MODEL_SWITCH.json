@@ -1,0 +1,30 @@
+{
+ "schema": "FAR-20261019/OWNER-ORDER-MODEL-SWITCH/1",
+ "generated_utc": "2026-10-16T12:45:00+00:00",
+ "authority": "owner order, sole owner of Fabric & HG-KSEOS, this session, delivered mid-round as an out-of-band instruction",
+ "order_text_verbatim": "因為GPT的配額即將耗盡，你必須把「PLAN & Orchestrator在HERMES內執行，PLAN & Orchestrator模型」&「Independent Acceptance Officer / VERIFY / SECURITY，轉交CODEX CLI 執行，checker model」車道，更換成「DeepSeek V4.1 Flash(OPENCODE GO)」模型。",
+ "order_text_translation": "Because the GPT quota is about to run out, you must switch the PLAN & Orchestrator lane (running inside Hermes) and the Independent Acceptance Officer / VERIFY / SECURITY lane (dispatched through the CODEX CLI, checker model) to the DeepSeek V4.1 Flash (OPENCODE GO) model.",
+ "applies_to": {
+  "PLAN_AND_ORCHESTRATOR_in_hermes": {"was": "openai-codex/gpt-6.1-sol (OpenAI OAuth)", "now": "opencode-go/deepseek-v4.1-flash"},
+  "VERIFY_SECURITY_codex_cli_checker": {"was": "openai-codex/gpt-6.1-sol (OpenAI OAuth), pinned rank 2 arm B", "now": "opencode-go/deepseek-v4.1-flash, rank 1 arm A"}
+ },
+ "observed_facts": {
+  "session_model_actually_running_the_plan_lane": "deepseek-v4.1-flash via opencode-go",
+  "note": "the Hermes session that runs PLAN & Orchestrator was already executing on opencode-go/deepseek-v4.1-flash, so the PLAN half of the order is satisfied by measurement, not by a change"
+ },
+ "consequence_that_must_be_disclosed": {
+  "id": "SOD006-C3",
+  "state": "OWNER_ORDERED_IN_FORCE",
+  "effect": "the EXECUTE writer and the VERIFY_SECURITY checker now run on the SAME model (opencode-go/deepseek-v4.1-flash)",
+  "what_remains": ["process independence", "lane independence", "evidence-path independence", "the no-self-acceptance rule (no single call ever verifies its own output)"],
+  "what_is_lost": ["model-axis independence between maker and checker"],
+  "claim_consequence": "the VERIFY verdict for this round must NOT be described as cross-model, and no model-diversity claim may be made for it anywhere in the pack",
+  "precedent": "canonical revision 22 already declares this exact combination as an accepted, owner-ordered risk; the registry's default VERIFY_SECURITY arm A is the writer's own model"
+ },
+ "round_effects": [
+  "the VERIFY lane is dispatched with --force-rank 1 --require-arm opencode-go/deepseek-v4.1-flash",
+  "VERIFY_BRIEF.md is rewritten so the checker is told explicitly that it is NOT on a different model axis, and that its verdict therefore rests on lane/process/evidence independence only",
+  "the adjudication, the single evidence MD and the handover each carry the declared conflict and the claim consequence",
+  "the two recon lanes (W1, W2) ran on openai-codex/gpt-6.1-sol before this order; they are recon, not acceptance, and one of them may be truncated by the same quota exhaustion — any resulting gap is reported, not papered over"
+ ]
+}

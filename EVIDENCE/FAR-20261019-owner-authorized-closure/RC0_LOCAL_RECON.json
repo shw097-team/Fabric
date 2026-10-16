@@ -1,0 +1,351 @@
+{
+ "schema": "FAR-20261019/LOCAL-RECON/1",
+ "token_value_exported": false,
+ "canonical_lane_pin": {
+  "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\hermes-codex-lane.json",
+  "sha256": "2da6b69fcce3681f6f8cedc43270b54ba449d0a22f21b1b714a007df2dbf96b4",
+  "declared_codex_executable": "C:\\Users\\user\\AppData\\Local\\OpenAI\\Codex\\bin\\9614f1d9b40d9c4f\\codex.exe",
+  "declared_exists": false,
+  "top_level_keys": [
+   "codex_distribution_layout",
+   "codex_executable",
+   "codex_sha256",
+   "codex_version",
+   "credential_env",
+   "credential_resolution",
+   "credential_source_file",
+   "default_execute_route",
+   "execute_additional_routes",
+   "execute_fallbacks_out_of_lane",
+   "execute_fallbacks_out_of_lane_reason",
+   "execute_frontdoor",
+   "execute_frontdoor_host",
+   "execute_frontdoor_port",
+   "execute_frontdoor_python",
+   "execute_lane_child_models",
+   "execute_route_contract",
+   "far_exec_identity_002",
+   "hermes_codex_home",
+   "hermes_executable",
+   "hermes_home",
+   "hermes_opencodex_home",
+   "hermes_python",
+   "hermes_source",
+   "human_codex_config",
+   "human_codex_home",
+   "lane_dispatch_note",
+   "lane_dispatch_script",
+   "model",
+   "model_fallbacks",
+   "model_fallbacks_previous",
+   "model_fallbacks_rationale",
+   "model_routing_change",
+   "openai_fallback",
+   "opencode_go_session_header",
+   "opencodex_port",
+   "opencodex_root",
+   "opencodex_version",
+   "provider",
+   "relay_service_note",
+   "round_rebinding_note",
+   "schema",
+   "scope",
+   "sod_note",
+   "status",
+   "task_id"
+  ]
+ },
+ "live_codex_binaries": [
+  {
+   "path": "C:\\Users\\user/AppData/Local/OpenAI/Codex/bin\\e78bad9887fa50cf\\codex.exe",
+   "bytes": 341312816,
+   "mtime": 1792118619.6585364
+  }
+ ],
+ "guard_assets": [
+  {
+   "file": "FDA_ROUTE_REGISTRY.json",
+   "lines": 74,
+   "predicate_hits": []
+  },
+  {
+   "file": "browser-account-automation-under-guard.md",
+   "lines": 112,
+   "predicate_hits": [
+    "10:route id. A live token is minted only from a **user message** containing both an intent verb and the"
+   ]
+  },
+  {
+   "file": "daytrading-t0-axis-authoritative-chain.md",
+   "lines": 89,
+   "predicate_hits": [
+    "24:S1_CONTROLLED_WINDOW→MIDDAY_REASSESSMENT→S2_CONTROLLED_WINDOW→NEW_INTENT_CUTOFF→MANAGE_ONLY/CONVERGENCE→",
+    "45:其他分數補償；QUALIFIED 只進 RiskAuthorization 不直接建 OrderIntent。",
+    "64:L259-273；「TradeHypothesis 是研究假說，不是 SetupDecision/RiskAuthorization/OrderIntent」L3078）。",
+    "85:send-disabled OrderIntent，fail-closed；交易日內禁止改方法/風險（EmergencyRisk 除外）。"
+   ]
+  },
+  {
+   "file": "fda-authorization-gate.md",
+   "lines": 69,
+   "predicate_hits": [
+    "35:- an **intent verb** — 用 / 使用 / 操作 / 操控 / 執行 / 開啟 / 啟用 / 允許 / 授權 / 可以 / 批准 /",
+    "49:## The gate matches substrings, not intent",
+    "51:The hook scans the tool-call arguments for marker strings: the plane's short name, `XQ`, `var/fda`,",
+    "62:marker to slip past the gate. That is lowering a security control — refuse it and report instead,",
+    "63:even when the underlying intent is benign."
+   ]
+  },
+  {
+   "file": "fda-authorization-guardrail-design.md",
+   "lines": 124,
+   "predicate_hits": [
+    "93:保守雙條件 regex（防誤放）：**意圖動詞**（用/操作/操控/開/執行/跑/建/啟用/允許/"
+   ]
+  },
+  {
+   "file": "fda-guard-behavior-and-authorization.md",
+   "lines": 42,
+   "predicate_hits": [
+    "8:- `write_file`, `patch`, `execute_code`, `delegate_task`: gated when the **args text** contains a marker",
+    "12:- `terminal`: gated only on its own narrower marker list — `fda_run`, `fda_preflight`, `screen_state_check`,",
+    "22:contains an intent verb (授權/允許/可以/使用/執行/啟用/approve/use/run/authorize/allow) **and** an FDA target",
+    "40:message actually satisfied the mint hook's intent+target pair."
+   ]
+  },
+  {
+   "file": "fda-guardrail-implementation-2026-08-15.md",
+   "lines": 98,
+   "predicate_hits": []
+  },
+  {
+   "file": "fda-guardrail-operations.md",
+   "lines": 39,
+   "predicate_hits": [
+    "11:2. 實測 marker 命令（含 `var/fda` 字樣）是否被擋"
+   ]
+  },
+  {
+   "file": "fda-guardrail-research-2026-08-15.md",
+   "lines": 77,
+   "predicate_hits": []
+  },
+  {
+   "file": "fda-guardrail-runtime-notes.md",
+   "lines": 106,
+   "predicate_hits": [
+    "54:- mint：`references/fda_guard_mint.py`（pre_llm_call，雙條件 regex：意圖動詞 ∧ FDA 目標詞；寫 `~/.hermes/var/fda-auth/<session_id>.json`",
+    "83:是全新 process → hooks 會載入。設計陷阱：測 **BLOCK 路徑**的 prompt 不能含意圖動詞（use/run/用/執行…），",
+    "87:3. **「目前 process 是否已載入 hooks」的快速驗證**：跑一個含 marker 的無害指令（如 `ls .../var/fda`），"
+   ]
+  },
+  {
+   "file": "fda_guard_hook.py",
+   "lines": 361,
+   "predicate_hits": [
+    "34:TERMINAL_MARKERS = [",
+    "46:TOOLCALL_MARKERS = [",
+    "54:SCRIPT_PATH_MARKERS = [",
+    "155:if any(marker.lower() in lowered for marker in SCRIPT_PATH_MARKERS):",
+    "167:return any(marker.lower() in normalized for marker in TERMINAL_MARKERS)",
+    "183:if any(marker.lower() in lowered for marker in TOOLCALL_MARKERS):"
+   ]
+  },
+  {
+   "file": "fda_guard_mint.py",
+   "lines": 163,
+   "predicate_hits": [
+    "14:# Intent verbs (unicode-escaped, verbatim per spec).",
+    "15:INTENT_VERBS = [",
+    "48:INTENT_RE = re.compile(\"|\".join(INTENT_VERBS), re.IGNORECASE)",
+    "145:if INTENT_RE.search(combined) is None:"
+   ]
+  },
+  {
+   "file": "fda_script_guard.py",
+   "lines": 158,
+   "predicate_hits": []
+  },
+  {
+   "file": "guard-false-positives.md",
+   "lines": 59,
+   "predicate_hits": [
+    "1:# Guard false positives: the marker substring matches inside innocent payloads",
+    "3:The pre-tool guard for this stack is fail-closed and matches its marker list",
+    "6:marker is the three-letter one spelled **F, D, A**; the terminal tool has a *different,",
+    "9:three-letter marker is **not** present.",
+    "17:- a **hex digest** that happens to contain the marker, e.g. a sha256 whose digits include",
+    "20:- the word itself inside prose that is *describing the guard* (writing \"the marker is X\""
+   ]
+  },
+  {
+   "file": "hgk-ssot-authority-determination.md",
+   "lines": 124,
+   "predicate_hits": [
+    "42:pinned external artifacts — NOT governed SSOTs of HGK. HGK owns design intent + contracts + evidence,",
+    "101:session-env leak — see `delegation-marker-env-leak.md` for the mechanism), the compliant split is",
+    "112:marker + readback), but per §6.4 it must NOT be claimed as an OS process sandbox, and it is NOT a"
+   ]
+  },
+  {
+   "file": "landing-authored-suites.md",
+   "lines": 78,
+   "predicate_hits": []
+  },
+  {
+   "file": "self-verifying-probe-authoring.md",
+   "lines": 150,
+   "predicate_hits": []
+  },
+  {
+   "file": "shared-core-change-set-authorization.md",
+   "lines": 130,
+   "predicate_hits": [
+    "8:## 0. Trigger",
+    "10:A read-only diagnosis shows the project's closure predicate is structurally unreachable through the",
+    "73:1. legal transition + valid evidence, and the readback predicate reflects it"
+   ]
+  },
+  {
+   "file": "validator-authoring-lessons.md",
+   "lines": 99,
+   "predicate_hits": [
+    "4:predicates over the HG-KSEOS control plane, delivering the ChangeSet that implemented them, and having",
+    "9:A predicate that silently returns `[]` on an unrunnable input (empty descriptor list, absent selector,",
+    "11:whole control silently no-ops. Give every predicate an explicit \"inputs unresolvable → NOT_APPLICABLE\"",
+    "12:branch, and make the test class assert it. An independent checker showed only 1 of 7 predicates in a",
+    "15:## L13 — Adversarially test each predicate for OVER-BREADTH on legitimate artifacts",
+    "17:A predicate that catches the defect it was written for but ALSO fires on legitimate artifacts is worse"
+   ]
+  }
+ ],
+ "references_count": 109,
+ "knowledge_pack_dirs_sample": [],
+ "must_not_files": [
+  {
+   "file": "C:/Projects/Agent_Workspace/知識庫\\SWOF-F\\GENIE\\GENIE_實作前開發系列文檔\\【1】GENIE-LAMP ACF\\GENIE-LAMP_ACF_DOC\\GENIE-LAMP_ACF_DOC-10.md",
+   "count": 30
+  },
+  {
+   "file": "C:/Projects/Agent_Workspace/知識庫\\SWOF-F\\GENIE\\GENIE_v3.0_資料庫\\【1】GENIE_v2.0升級資料\\【2】GENIE-MAKER\\GENIE-MAKER_技術資料庫\\【1】GPTs_GENIEMAKER\\【3】GPTs_GENIEMAKER_開發實作+驗收指揮官_DOC-00-19\\GPTs_GENIEMAKER_開發實作+驗收指揮官_DOC-06_KnowledgePack_Upload20_Blueprint_v2026.06.03-r2.md",
+   "count": 21
+  },
+  {
+   "file": "C:/Projects/Agent_Workspace/知識庫\\SQS\\【3】TW-ICT_FSDT-Stack_專業技術文檔\\TW-ICT_FSDT-Stack_專業技術文檔_DOC-10_2026-07-31_r2.md",
+   "count": 14
+  },
+  {
+   "file": "C:/Projects/Agent_Workspace/知識庫\\SQS\\SWOF_SQS-THC_PIPD-LS-PKG\\OLD\\SWOF_SQS-THC_PIPD-LS-PKG_相關要求驗收標準檢測交付_SPEC_LEDGER_DELIVER.md",
+   "count": 11
+  },
+  {
+   "file": "C:/Projects/Agent_Workspace/知識庫\\SQS\\SWOF_SQS-THC_PIPD-LS-PKG\\P0\\SWOF_SQS-THC_PIPD-LS-PKG_相關要求驗收標準檢測交付_SPEC_LEDGER_DELIVER_r2.md",
+   "count": 11
+  },
+  {
+   "file": "C:/Projects/Agent_Workspace/知識庫\\SWOF-F\\HG-KSEOS\\HG-KSEOS資料庫\\【3】SDLC_PRWS\\【2】SDLC_PRW_HLPE\\HLPE\\HLPE_主平台三域_藍圖\\HLPE_主平台三域_藍圖_v2.0_r2.md",
+   "count": 10
+  },
+  {
+   "file": "C:/Projects/Agent_Workspace/知識庫\\SWOF-F\\GENIE\\GENIE_實作前開發系列文檔\\【0】GENIE全產品\\GENIE系列全產品_實作前開發系列文檔\\GENIE系列全產品_DOC-08.md",
+   "count": 6
+  },
+  {
+   "file": "C:/Projects/Agent_Workspace/知識庫\\SQS\\【7】SWOF_SQS-THC升級規劃\\SWOF_SQS-THC升級規劃_10\\SWOF_SQS-THC升級規劃_vol-08.md",
+   "count": 4
+  }
+ ],
+ "open_prs": [
+  {
+   "number": 13,
+   "title": "[FAR-20261016-018-r7r11-residual-closure-and-handover] candidate evidence archiv",
+   "draft": true,
+   "head": "0fc70f2f0501",
+   "base": "312baa0ee2aa",
+   "changed_files": null,
+   "mergeable": null,
+   "mergeable_state": null,
+   "user": "shw097"
+  },
+  {
+   "number": 12,
+   "title": "[CNV-EVIDENCE-ARCHIVE-R7R11-20261016] candidate evidence archive (candidate-only",
+   "draft": true,
+   "head": "0a30e5a8f636",
+   "base": "b8ff81043e47",
+   "changed_files": null,
+   "mergeable": null,
+   "mergeable_state": null,
+   "user": "shw097"
+  },
+  {
+   "number": 10,
+   "title": "ROUND3-LANE-REBIND-AND-CLOSURE-20261016: lanes rebound to the owner order, guard",
+   "draft": false,
+   "head": "4695e0cf870f",
+   "base": "b8ff81043e47",
+   "changed_files": null,
+   "mergeable": null,
+   "mergeable_state": null,
+   "user": "shw097"
+  },
+  {
+   "number": 8,
+   "title": "FAR-REMEDIATION-AND-CLOSURE-20261016: F1 closed, candidate promoted, R7 class na",
+   "draft": false,
+   "head": "5ae6f37d305f",
+   "base": "b8ff81043e47",
+   "changed_files": null,
+   "mergeable": null,
+   "mergeable_state": null,
+   "user": "shw097"
+  },
+  {
+   "number": 6,
+   "title": "LANE-RELIABILITY-CLOSURE-20261016: three-lane usability and reliability (candida",
+   "draft": false,
+   "head": "0cb59d904224",
+   "base": "b8ff81043e47",
+   "changed_files": null,
+   "mergeable": null,
+   "mergeable_state": null,
+   "user": "shw097"
+  }
+ ],
+ "main_sha": "312baa0ee2aa591000959cc878bb978a31c89796",
+ "peer_pr_detail": {
+  "6": {
+   "status": 200,
+   "state": "open",
+   "draft": false,
+   "mergeable": true,
+   "mergeable_state": "clean",
+   "head": "0cb59d904224",
+   "base": "b8ff81043e47",
+   "changed_files": 74,
+   "title": "LANE-RELIABILITY-CLOSURE-20261016: three-lane usability and reliabilit"
+  },
+  "8": {
+   "status": 200,
+   "state": "open",
+   "draft": false,
+   "mergeable": true,
+   "mergeable_state": "clean",
+   "head": "5ae6f37d305f",
+   "base": "b8ff81043e47",
+   "changed_files": 131,
+   "title": "FAR-REMEDIATION-AND-CLOSURE-20261016: F1 closed, candidate promoted, R"
+  },
+  "10": {
+   "status": 200,
+   "state": "open",
+   "draft": false,
+   "mergeable": true,
+   "mergeable_state": "clean",
+   "head": "4695e0cf870f",
+   "base": "b8ff81043e47",
+   "changed_files": 350,
+   "title": "ROUND3-LANE-REBIND-AND-CLOSURE-20261016: lanes rebound to the owner or"
+  }
+ }
+}

@@ -1,0 +1,21 @@
+{
+ "schema": "FAR-20261019/SELF-EVOLUTION/1",
+ "generated_utc": "2026-10-16T12:45:37.194201+00:00",
+ "lessons": [
+  {
+   "lesson": "A guard root must not contain the harness's own output, and an empty guard root is refused rather than certified — both measured live as ERR_GUARD_ROOT_CONTAINS_HARNESS_OUTPUT and ERR_GUARD_ROOT_EMPTY.",
+   "landed_in": "hgk-governed-execution/references/codex-lane-dispatch-and-probe-pitfalls.md"
+  },
+  {
+   "lesson": "The contract source scan needs exactly one entry per required family; a second entry in a family is duplicate=True and an extra key is PL-SCHEMA.",
+   "landed_in": "hgk-governed-execution/references/round-self-critique-and-lineage-gates.md"
+  },
+  {
+   "lesson": "TaskSpec ids derive from the project id's last segment, so two rounds sharing a last segment collide; choose a unique tail before the first admission attempt.",
+   "landed_in": "hgk-governed-execution/references/round-self-critique-and-lineage-gates.md"
+  }
+ ],
+ "not_landed": [
+  "the 109-file skill reference spread (advisory finding, plan only)"
+ ]
+}

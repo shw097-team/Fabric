@@ -1,0 +1,47 @@
+{
+ "schema": "FAR-20261019/TIER-A-EXECUTION/1",
+ "generated_utc": "2026-10-16T12:01:52.567733+00:00",
+ "steps": [
+  {
+   "id": "A1",
+   "action": "canonical Codex executable pin repair",
+   "declared_key": "codex_executable",
+   "declared_path": "C:\\Users\\user\\AppData\\Local\\OpenAI\\Codex\\bin\\9614f1d9b40d9c4f\\codex.exe",
+   "declared_exists": false,
+   "live_binary_candidates": [
+    {
+     "path": "C:/Users/user/AppData/Local/OpenAI/Codex/bin\\e78bad9887fa50cf\\codex.exe",
+     "bytes": 341312816,
+     "mtime": "2026-10-16T10:43:39.658536",
+     "sha256": "9ecb9df2ecafcc00542ef0966c6f1737..."
+    }
+   ],
+   "chosen_live_binary": "C:\\Users\\user\\AppData\\Local\\OpenAI\\Codex\\bin\\e78bad9887fa50cf\\codex.exe",
+   "backup": {
+    "path": "C:\\Projects\\Agent_Workspace\\_handover\\FAR-20261019-owner-authorized-closure\\config-hermes-codex-lane.pre-A1.json",
+    "sha256": "2da6b69fcce3681f6f8cedc43270b54ba449d0a22f21b1b714a007df2dbf96b4",
+    "bytes": 11101
+   },
+   "config_sha256_before": "2da6b69fcce3681f6f8cedc43270b54ba449d0a22f21b1b714a007df2dbf96b4",
+   "lines_changed": {
+    "indices": [
+     8
+    ],
+    "count": 1,
+    "before": " \"codex_executable\": \"C:\\\\Users\\\\user\\\\AppData\\\\Local\\\\OpenAI\\\\Codex\\\\bin\\\\9614f1d9b40d9c4f\\\\codex.exe\",",
+    "after": " \"codex_executable\": \"C:\\\\Users\\\\user\\\\AppData\\\\Local\\\\OpenAI\\\\Codex\\\\bin\\\\e78bad9887fa50cf\\\\codex.exe\","
+   },
+   "config_sha256_after": "acdaddbee0a949792c06768c2bc25bfbaa6e01d59070ad8d2d3dd82cca4e835f",
+   "reread_value": "C:\\Users\\user\\AppData\\Local\\OpenAI\\Codex\\bin\\e78bad9887fa50cf\\codex.exe",
+   "reread_exists": true,
+   "keys_unchanged": true,
+   "verdict": "REPAIRED_AND_READBACK_OK",
+   "probe_candidates": []
+  },
+  {
+   "id": "A3",
+   "verdict": "ERRATUM_RECORDED",
+   "file": "C:\\Projects\\Agent_Workspace\\_handover\\FAR-20261019-owner-authorized-closure\\ERRATA_CURRENTNESS_019.json"
+  }
+ ]
+}

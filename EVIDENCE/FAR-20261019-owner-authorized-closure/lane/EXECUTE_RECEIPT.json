@@ -1,0 +1,150 @@
+{
+  "schema": "HGK-LANE-RESOLUTION/1",
+  "lane": "EXECUTE",
+  "role": "writer",
+  "role_binding_source": null,
+  "engine": "codex-cli",
+  "codex_executable": "C:\\Users\\user\\AppData\\Local\\OpenAI\\Codex\\bin\\e78bad9887fa50cf\\codex.exe",
+  "codex_home": "C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\codex-hermes",
+  "relay_base": "http://127.0.0.1:10101/v1",
+  "codex_home_is_declared_lane_home": true,
+  "human_home_transport_acknowledged": false,
+  "skipped_arms": [
+    {
+      "rank": 3,
+      "arm": "nvidia/deepseek-ai/deepseek-v4.1-flash",
+      "reason": "UNREACHABLE_MEASURED_20261011"
+    }
+  ],
+  "transport": "opencodex relay via per-invocation -c openai_base_url (no config mutation)",
+  "transport_target": "http://127.0.0.1:10101/v1",
+  "front_door_port": null,
+  "front_door_note": "the lane-scoped pool door (10103 VERIFY_SECURITY / 10105 EXECUTE) carries the hop and ledgers every decision; the sealed single-model 10100 door is unchanged and unused; None here means direct to the relay on 10101",
+  "sandbox": "danger-full-access",
+  "sandbox_by_role_default": "danger-full-access",
+  "sandbox_escalation_authorised": false,
+  "cwd": "C:/Projects/Agent_Workspace/_handover/FAR-20261019-owner-authorized-closure",
+  "side_effect_note": "danger-full-access has NO sandbox root: any absolute path is writable, so a read-only subject must be a frozen copy checked afterwards by digest",
+  "receipt_binding": "usage rows appended after this attempt started (byte offset bound)",
+  "pool": "config/lane-route-slots.candidate.json",
+  "candidates_considered": [
+    1
+  ],
+  "mode": "forced_rank",
+  "unguarded_escalation_acknowledged": false,
+  "inject_429_first": false,
+  "identity_gate": {
+    "state": "enforced",
+    "lane_home": "C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\codex-hermes",
+    "relay_home": "C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\opencodex-hermes",
+    "arms": [
+      {
+        "rank": 1,
+        "provider": "opencode-go",
+        "model": "deepseek-v4.1-flash",
+        "requirement": "none",
+        "ok": true,
+        "detail": "key-auth arm: no human-attended identity"
+      }
+    ],
+    "degraded": false,
+    "required_arm": "opencode-go/deepseek-v4.1-flash"
+  },
+  "authorization": {
+    "checked": false
+  },
+  "subject_mutation": {
+    "files_before": 5,
+    "files_after": 5,
+    "added": [],
+    "removed": [],
+    "changed": [],
+    "mutated": false,
+    "mutated_known": true,
+    "inconclusive": false,
+    "verdict": "CLEAN",
+    "rule": "removed/changed => verdict void; added is recorded, not fatal; an empty side => INCONCLUSIVE (never a clean verdict from nothing)",
+    "guard_roots": [
+      "C:/Projects/Agent_Workspace/_handover/FAR-20261019-owner-authorized-closure/subject"
+    ],
+    "subject_digest_sha256_before": "f00217351e47ba081240a94a1dd4d795aaab319930d860546b9ca866681b0754",
+    "subject_digest_sha256_after": "f00217351e47ba081240a94a1dd4d795aaab319930d860546b9ca866681b0754"
+  },
+  "attempt_log_dir": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\far-019\\EXECUTE\\attempt-3-20261016T120703Z",
+  "output_dir_policy": {
+    "mode": "derived",
+    "derived": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\far-019\\EXECUTE\\attempt-3-20261016T120703Z",
+    "attempt_number": 3,
+    "attempt_marker": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\far-019\\EXECUTE\\attempt-3-20261016T120703Z\\attempt.marker.json"
+  },
+  "repair_precondition": {
+    "checked": false
+  },
+  "remote_write_precheck": {
+    "mode": "DETECTION_ONLY",
+    "ran": false
+  },
+  "attempts": [
+    {
+      "rank": 1,
+      "provider": "opencode-go",
+      "model": "deepseek-v4.1-flash",
+      "transport_model": "opencode-go/deepseek-v4.1-flash",
+      "sandbox": "danger-full-access",
+      "reasoning_effort": null,
+      "exit": "TIMEOUT",
+      "timed_out": true,
+      "seconds": 1500.03,
+      "nonce_present": false,
+      "nonce_present_raw_stdout": true,
+      "nonce_source": "item.completed/agent_message",
+      "usage_rows_after_offset": 128,
+      "usage_offset": 27725319,
+      "usage_provider": "opencode-go",
+      "usage_model": "deepseek-v4.1-flash",
+      "usage_status": 200,
+      "usage_receipt_ok": true,
+      "usage_receipt_reason": "",
+      "usage_ledger_rewritten": false,
+      "usage_rows_shape_invalid": 0,
+      "usage_rows_undecodable": 0,
+      "carrier_lines_undecodable": 0,
+      "carrier_lines_surrogate": 0,
+      "credential_posture": {
+        "verdict": "INCONCLUSIVE",
+        "decision": "WARN_CONTINUE",
+        "reason": "helper-only verdict (no child env asserted): helper_resolution_reset=PASS; helper_non_interactive=UNKNOWN",
+        "prompt_capable_helper": null,
+        "origin": null,
+        "git_terminal_prompt": "0"
+      },
+      "attempt_log_dir": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\far-019\\EXECUTE\\attempt-3-20261016T120703Z",
+      "stdout_byte_exact": true,
+      "stdout_path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\far-019\\EXECUTE\\attempt-3-20261016T120703Z\\attempt-21360-1792152423-1-stdout.txt",
+      "stdout_bytes": 1211368,
+      "stdout_sha256": "f8f553cdd966d53f496bbc11a29f7ad9f971ff070fe5404387e2d62ba4cfb973",
+      "stderr_byte_exact": true,
+      "stderr_path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\far-019\\EXECUTE\\attempt-3-20261016T120703Z\\attempt-21360-1792152423-1-stderr.txt",
+      "stderr_bytes": 4516,
+      "stderr_sha256": "8b24a120242c28e0c13851b9f362f1b6f6494da9cc088ca8111a41cab48dfdce",
+      "stdout_tail": "n False\\r\\n+        # B7: a marker only gates when the content would EXECUTE a plane script. An\\r\\n+        # artifact that merely ENUMERATES filename markers is not a plane operation\\r\\n+        # (the D0 false positive): no execution verb, so not blocked.\\r\\n+        return marker_present and _content_is_execution(lowered)\\r\\n \\r\\n     return False\\r\\n \\r\\n\",\"exit_code\":0,\"status\":\"completed\"}}\n",
+      "stderr_tail": "closure\\\\\\\\\\\\\\\\writer\\\\\\\\\\\\\\\\_patchcheck_t1\\\\\\\\\\\\\\\" -Force; Write-Output \\\\\\\\\\\\\\\"DONE\\\\\\\\\\\\\\\"; Test-Path \\\\\\\\\\\\\\\"C:\\\\\\\\\\\\\\\\Projects\\\\\\\\\\\\\\\\Agent_Workspace\\\\\\\\\\\\\\\\_handover\\\\\\\\\\\\\\\\FAR-20261019-owner-authorized-closure\\\\\\\\\\\\\\\\writer\\\\\\\\\\\\\\\\_patchcheck_t1\\\\\\\\\\\\\\\"\\\\\\\"` rejected: blocked by policy\\\")\" }\n"
+    }
+  ],
+  "used_rank": null,
+  "used_transport_model": null,
+  "used_seconds": null,
+  "generated_utc": "2026-10-16T12:32:04.040963+00:00",
+  "claim_ceiling": "a pass here proves the Codex-CLI lane served this turn through the relay with a matching usage receipt; it is not an acceptance of any subject",
+  "ok": false,
+  "completion_evidence": {
+    "checked": false
+  },
+  "usage_receipt_ok": false,
+  "usage_rows_shape_invalid": 0,
+  "usage_rows_undecodable": 0,
+  "code": "ERR_LANE_ALL_ROUTES_EXHAUSTED",
+  "timed_out_arms": [
+    "opencode-go/deepseek-v4.1-flash"
+  ]
+}

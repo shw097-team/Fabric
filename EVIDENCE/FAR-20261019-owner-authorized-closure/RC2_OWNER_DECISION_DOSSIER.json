@@ -1,0 +1,41 @@
+{
+ "schema": "FAR-20261019/RC2-OWNER-DECISION-DOSSIER/1",
+ "status": "PARTIAL_RECOVERY",
+ "generated_utc": "2026-10-16T13:05:00+00:00",
+ "lane": "independent leaf lane W2 (openai-codex/gpt-6.1-sol), dispatched 19:48, finished 20:11, 1379.48s, 47 api calls",
+ "what_happened": [
+  "The lane completed its MEASUREMENT phase and printed per-item summaries, then was refused at the WRITE step by the guarded write tool: 'FDA 需明確授權…請暫停任務並主動詢問用戶（條件3 HITL）'. It did not bypass the guard and reported the refusal — correct behaviour, and the same refusal class the previous round hit on this same kind of artifact.",
+  "The lane's live transcript is SUMMARISED, not raw: the block that carried the 52 per-item summaries is truncated at OG3 with a '…(+6210 chars)' marker. The full dossier therefore does NOT exist anywhere on disk.",
+  "Consequence recorded honestly: the 52 entries cannot be recovered verbatim. What follows is exactly what the lane itself put on the record, marked as quotation, plus the two summary lines that survived the truncation. Nothing here is reconstructed by inference."
+ ],
+ "recovered_summary_lines_verbatim": [
+  "OG1 | PLAUSIBLE | #6/#8/#10 open, non-draft, mergeable=true/clean; checks=0; no merge attempted",
+  "OG2 | REQUIRES-EXTERNAL-ACTOR | different repo pinned; local validator dirty; owner+external Oracle+independent fixture owed"
+ ],
+ "lane_findings_verbatim": {
+  "OG1": "#6/#8/#10 are open, non-draft, `mergeable=true`, `clean`; complete file counts verified: 74/131/350. Merge permission remains unproven.",
+  "OG4": "Path-only repair is unsafe; version and hash also changed. Proposed triplet passed the production resolver in memory; canonical configuration remains untouched.",
+  "OG6": "Two enabled sandbox identities exist. A usable checker launch and non-liftable boundary are not demonstrated.",
+  "OG8": "Actual predicate code and reproduced false positive captured; proposed two-condition repair and bypass risks documented.",
+  "also_reported": "Twenty KP polarity conflicts, final-runtime certification gaps, and separate PIPD promotion prerequisites are recorded. A ninth item was raised: 'effective-runtime declaration and CLI launcher coherence' - the configured Hermes CLI shim exits 1 with a uv trampoline failure to canonicalize the script path, to be diagnosed rather than worked around."
+ },
+ "cross_check_against_this_rounds_execution": [
+  {"lane_finding": "OG4 path-only repair is unsafe", "what_this_round_did": "A1 repaired the PATH ONLY at first", "outcome": "the pinned checker independently returned V1 AGREE with a P1 finding - stale codex_version/codex_sha256 made the gate fail closed with ERR_LANE_TOOLCHAIN_VERSION_MISMATCH; repaired in A1b and re-verified with hgk-lane-toolchain.py (ok: true)", "disclosure": "the lane predicted this failure before it happened, and the maker acted against the available measurement because the lane's output had not been read yet. The end state is correct; the process was slower than the evidence allowed. Recorded rather than smoothed over."},
+  {"lane_finding": "OG1 mergeable=true/clean, merge permission unproven", "what_this_round_did": "A4 merged all three at their pinned heads under the owner's authorisation", "outcome": "CONFIRMED: merges succeeded, each merge commit carries the pinned head as a parent, main advanced 312baa0e -> 5541ed99 -> 5790e2cf -> 1807680e", "disclosure": "the lane's file counts (74/131/350) are the independent figure for the same three pull requests; taken at 19:48-20:11, i.e. before the merges"},
+  {"lane_finding": "OG6 two enabled sandbox identities exist; a usable checker launch is NOT demonstrated", "what_this_round_did": "the VERIFY lane ran under its default read-only posture; no second-identity checker was attempted", "outcome": "OG6 remains OPEN, but its shape is now narrower and clearer than the previous round stated: what is missing is not merely a second identity in the abstract - two enabled sandbox identities are present on this host - but a demonstrated launch of a checker under one of them, plus evidence that the boundary it creates cannot be lifted by the identity that applies it", "correction_to_earlier_wording": "an earlier statement in this round said only one interactive OS identity exists; both statements hold and they are about different things - one INTERACTIVE identity, two ENABLED SANDBOX identities. The corrected form is used from here on."}
+ ],
+ "could_not_recover": [
+  "the 52 per-item dossier entries with their raw commands and raw outputs (transcript truncated)",
+  "the lane's proposed two-condition guard predicate repair text and its documented bypass risks (referenced by the lane, not present in the transcript)",
+  "the enclosed twenty KP polarity conflicts with their counterexamples (same reason)"
+ ],
+ "residual_item_created": {
+  "id": "RC2-W2-DOSSIER-PARTIAL",
+  "kind": "GAP",
+  "severity": "P2",
+  "title": "the independent owner-decision dossier exists only as the lane's prose findings, not as the measured artifact it was asked to produce",
+  "minimal_action_form": "Re-dispatch the dossier lane with a destination the guard accepts (a path whose authorization the round already holds, or a stdout-only delivery format), and require it to print each entry as one parseable line as it goes, so a refusal or a truncation cannot destroy the whole artifact."
+ },
+ "claim_ceiling": "PARTIAL_RECOVERY of one independent lane's findings; no acceptance, release or production claim",
+ "no_writes_to": ["any canonical artifact", "the shared spine", "any repository", "any Kanban board", "any ACL"]
+}

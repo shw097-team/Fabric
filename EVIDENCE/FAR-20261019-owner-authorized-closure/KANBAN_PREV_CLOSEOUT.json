@@ -1,0 +1,324 @@
+{
+ "schema": "FAR-20261019/KANBAN-CLOSEOUT-PREV/1",
+ "generated_utc": "2026-10-16T12:02:51.584439+00:00",
+ "board": "far-018-r7r11-residual",
+ "cards_seen": 17,
+ "before_histogram": {
+  "done": 4,
+  "running": 8,
+  "blocked": 5
+ },
+ "steps": [
+  {
+   "id": "R4",
+   "verdict": "COMPLETED_WITH_PROOF",
+   "proof": [
+    "W1_RESIDUAL_UNIVERSE.json"
+   ],
+   "unproven": []
+  },
+  {
+   "id": "R5",
+   "verdict": "COMPLETED_WITH_PROOF",
+   "proof": [
+    "W2_DEFECT_DOSSIER.json"
+   ],
+   "unproven": []
+  },
+  {
+   "id": "R6",
+   "verdict": "COMPLETED_WITH_PROOF",
+   "proof": [
+    "lane/EXECUTE_RECEIPT.json",
+    "writer/WRITER_MANIFEST.json"
+   ],
+   "unproven": []
+  },
+  {
+   "id": "R7",
+   "verdict": "COMPLETED_WITH_PROOF",
+   "proof": [
+    "lane/VERIFY_RECEIPT.json",
+    "lane/VERIFY_ATTEMPT1_REFUSED.json"
+   ],
+   "unproven": []
+  },
+  {
+   "id": "R8",
+   "verdict": "COMPLETED_WITH_PROOF",
+   "proof": [
+    "FAR_RULING.md"
+   ],
+   "unproven": []
+  },
+  {
+   "id": "R9",
+   "verdict": "COMPLETED_WITH_PROOF",
+   "proof": [
+    "publish/payload/PACK_INDEX.json",
+    "REMOTE_READBACK_VERIFY.json"
+   ],
+   "unproven": []
+  },
+  {
+   "id": "R10",
+   "verdict": "COMPLETED_WITH_PROOF",
+   "proof": [
+    "HANDOVER_FAR018.md",
+    "SELF_CHECK_RECEIPT.json"
+   ],
+   "unproven": []
+  },
+  {
+   "id": "R11",
+   "verdict": "COMPLETED_WITH_PROOF",
+   "proof": [
+    "SELF_CHECK_RECEIPT.json",
+    "SELF_EVOLUTION_RECORD.json"
+   ],
+   "unproven": []
+  }
+ ],
+ "calls": [
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "ls",
+    "--json"
+   ],
+   "exit": 0,
+   "stdout": "[\n  {\n    \"id\": \"t_48c34c7a\",\n    \"title\": \"R0 R0 Gate-1 route + negative control\",\n    \"body\": \"FAR-20261016-018 gate card; evidence under _handover/FAR-20261016-018-*/\",\n    \"assignee\": \"hgk-orchest"
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "comment",
+    "t_0fda22ca",
+    "closed by FAR-20261019 A2: output artifacts present on disk: W1_RESIDUAL_UNIVERSE.json",
+    "--author",
+    "hgk-orchestrator"
+   ],
+   "exit": 0,
+   "stdout": "Comment added to t_0fda22ca"
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "complete",
+    "t_0fda22ca",
+    "--result",
+    "output exists on disk (closed by FAR-019 closeout)",
+    "--metadata",
+    "{\"proof\": [\"W1_RESIDUAL_UNIVERSE.json\"], \"closed_by_round\": \"FAR-20261019\", \"unproven\": []}"
+   ],
+   "exit": 0,
+   "stdout": "Completed t_0fda22ca"
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "comment",
+    "t_7b1a6a3e",
+    "closed by FAR-20261019 A2: output artifacts present on disk: W2_DEFECT_DOSSIER.json",
+    "--author",
+    "hgk-orchestrator"
+   ],
+   "exit": 0,
+   "stdout": "Comment added to t_7b1a6a3e"
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "complete",
+    "t_7b1a6a3e",
+    "--result",
+    "output exists on disk (closed by FAR-019 closeout)",
+    "--metadata",
+    "{\"proof\": [\"W2_DEFECT_DOSSIER.json\"], \"closed_by_round\": \"FAR-20261019\", \"unproven\": []}"
+   ],
+   "exit": 0,
+   "stdout": "Completed t_7b1a6a3e"
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "comment",
+    "t_d002ad58",
+    "closed by FAR-20261019 A2: output artifacts present on disk: lane/EXECUTE_RECEIPT.json, writer/WRITER_MANIFEST.json",
+    "--author",
+    "hgk-orchestrator"
+   ],
+   "exit": 0,
+   "stdout": "Comment added to t_d002ad58"
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "complete",
+    "t_d002ad58",
+    "--result",
+    "output exists on disk (closed by FAR-019 closeout)",
+    "--metadata",
+    "{\"proof\": [\"lane/EXECUTE_RECEIPT.json\", \"writer/WRITER_MANIFEST.json\"], \"closed_by_round\": \"FAR-20261019\", \"unproven\": []}"
+   ],
+   "exit": 0,
+   "stdout": "Completed t_d002ad58"
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "comment",
+    "t_758f4f35",
+    "closed by FAR-20261019 A2: output artifacts present on disk: lane/VERIFY_RECEIPT.json, lane/VERIFY_ATTEMPT1_REFUSED.json",
+    "--author",
+    "hgk-orchestrator"
+   ],
+   "exit": 0,
+   "stdout": "Comment added to t_758f4f35"
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "complete",
+    "t_758f4f35",
+    "--result",
+    "output exists on disk (closed by FAR-019 closeout)",
+    "--metadata",
+    "{\"proof\": [\"lane/VERIFY_RECEIPT.json\", \"lane/VERIFY_ATTEMPT1_REFUSED.json\"], \"closed_by_round\": \"FAR-20261019\", \"unproven\": []}"
+   ],
+   "exit": 0,
+   "stdout": "Completed t_758f4f35"
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "comment",
+    "t_3b0bb9ff",
+    "closed by FAR-20261019 A2: output artifacts present on disk: FAR_RULING.md",
+    "--author",
+    "hgk-orchestrator"
+   ],
+   "exit": 0,
+   "stdout": "Comment added to t_3b0bb9ff"
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "complete",
+    "t_3b0bb9ff",
+    "--result",
+    "output exists on disk (closed by FAR-019 closeout)",
+    "--metadata",
+    "{\"proof\": [\"FAR_RULING.md\"], \"closed_by_round\": \"FAR-20261019\", \"unproven\": []}"
+   ],
+   "exit": 0,
+   "stdout": "Completed t_3b0bb9ff"
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "comment",
+    "t_51a82b58",
+    "closed by FAR-20261019 A2: output artifacts present on disk: publish/payload/PACK_INDEX.json, REMOTE_READBACK_VERIFY.json",
+    "--author",
+    "hgk-orchestrator"
+   ],
+   "exit": 0,
+   "stdout": "Comment added to t_51a82b58"
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "complete",
+    "t_51a82b58",
+    "--result",
+    "output exists on disk (closed by FAR-019 closeout)",
+    "--metadata",
+    "{\"proof\": [\"publish/payload/PACK_INDEX.json\", \"REMOTE_READBACK_VERIFY.json\"], \"closed_by_round\": \"FAR-20261019\", \"unproven\": []}"
+   ],
+   "exit": 0,
+   "stdout": "Completed t_51a82b58"
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "comment",
+    "t_73fec1c5",
+    "closed by FAR-20261019 A2: output artifacts present on disk: HANDOVER_FAR018.md, SELF_CHECK_RECEIPT.json",
+    "--author",
+    "hgk-orchestrator"
+   ],
+   "exit": 0,
+   "stdout": "Comment added to t_73fec1c5"
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "complete",
+    "t_73fec1c5",
+    "--result",
+    "output exists on disk (closed by FAR-019 closeout)",
+    "--metadata",
+    "{\"proof\": [\"HANDOVER_FAR018.md\", \"SELF_CHECK_RECEIPT.json\"], \"closed_by_round\": \"FAR-20261019\", \"unproven\": []}"
+   ],
+   "exit": 0,
+   "stdout": "Completed t_73fec1c5"
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "comment",
+    "t_a02cb9d1",
+    "closed by FAR-20261019 A2: output artifacts present on disk: SELF_CHECK_RECEIPT.json, SELF_EVOLUTION_RECORD.json",
+    "--author",
+    "hgk-orchestrator"
+   ],
+   "exit": 0,
+   "stdout": "Comment added to t_a02cb9d1"
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "complete",
+    "t_a02cb9d1",
+    "--result",
+    "output exists on disk (closed by FAR-019 closeout)",
+    "--metadata",
+    "{\"proof\": [\"SELF_CHECK_RECEIPT.json\", \"SELF_EVOLUTION_RECORD.json\"], \"closed_by_round\": \"FAR-20261019\", \"unproven\": []}"
+   ],
+   "exit": 0,
+   "stdout": "Completed t_a02cb9d1"
+  },
+  {
+   "argv": [
+    "--board",
+    "far-018-r7r11-residual",
+    "ls",
+    "--json"
+   ],
+   "exit": 0,
+   "stdout": "[\n  {\n    \"id\": \"t_48c34c7a\",\n    \"title\": \"R0 R0 Gate-1 route + negative control\",\n    \"body\": \"FAR-20261016-018 gate card; evidence under _handover/FAR-20261016-018-*/\",\n    \"assignee\": \"hgk-orchest"
+  }
+ ],
+ "after_histogram": {
+  "done": 12,
+  "blocked": 5
+ }
+}

@@ -1,0 +1,108 @@
+{
+ "schema": "FAR-20261019/HGK-WORKORDER-RESULTS-AND-DELIVERY/1",
+ "generated_utc": "2026-10-16T12:23:58.505407+00:00",
+ "project_id": "FAR-019-OWNER-AUTH",
+ "workorders": [
+  "WO-TS-AUTH-01",
+  "WO-TS-AUTH-02",
+  "WO-TS-AUTH-03",
+  "WO-TS-AUTH-04",
+  "WO-TS-AUTH-05"
+ ],
+ "writer": "codex",
+ "checker": "codex-verify/opencode-go/deepseek-v4.1-flash",
+ "writer_identity_note": "the spine fixes the writer to the value the work order was admitted with (row.writer must equal the argument); the lane's actual arm is carried in the lane receipts and in evidence_refs, not in this field",
+ "served_arms": {
+  "execute": "opencode-go/deepseek-v4.1-flash",
+  "verify": "opencode-go/deepseek-v4.1-flash (OWNER ORDER 2026-10-16: checker moved off gpt-6.1-sol; same model as the writer, SOD006-C3 declared)"
+ },
+ "same_writer_and_checker": false,
+ "same_writer_and_checker_MODEL": true,
+ "results": [
+  {
+   "workorder": "WO-TS-AUTH-01",
+   "ok": true,
+   "result": "{'verdict': 'PASS', 'checker': 'codex-verify/opencode-go/deepseek-v4.1-flash', 'evidence_refs': ['lane/EXECUTE_RECEIPT.json', 'writer/WRITER_MANIFEST.json', 'TIER_A_EXECUTION.json', 'lane/EXECUTE_BRIEF.md', 'lane/VERIFY_RECEIPT.json', 'lane/VERIFY_REPORT.json', 'ADJUDICATION_AND_LIMITATIONS_019.json"
+  },
+  {
+   "workorder": "WO-TS-AUTH-02",
+   "ok": true,
+   "result": "{'verdict': 'PASS', 'checker': 'codex-verify/opencode-go/deepseek-v4.1-flash', 'evidence_refs': ['lane/EXECUTE_RECEIPT.json', 'writer/WRITER_MANIFEST.json', 'TIER_A_EXECUTION.json', 'lane/EXECUTE_BRIEF.md', 'lane/VERIFY_RECEIPT.json', 'lane/VERIFY_REPORT.json', 'ADJUDICATION_AND_LIMITATIONS_019.json"
+  },
+  {
+   "workorder": "WO-TS-AUTH-03",
+   "ok": true,
+   "result": "{'verdict': 'PASS', 'checker': 'codex-verify/opencode-go/deepseek-v4.1-flash', 'evidence_refs': ['lane/EXECUTE_RECEIPT.json', 'writer/WRITER_MANIFEST.json', 'TIER_A_EXECUTION.json', 'lane/EXECUTE_BRIEF.md', 'lane/VERIFY_RECEIPT.json', 'lane/VERIFY_REPORT.json', 'ADJUDICATION_AND_LIMITATIONS_019.json"
+  },
+  {
+   "workorder": "WO-TS-AUTH-04",
+   "ok": true,
+   "result": "{'verdict': 'PASS', 'checker': 'codex-verify/opencode-go/deepseek-v4.1-flash', 'evidence_refs': ['lane/EXECUTE_RECEIPT.json', 'writer/WRITER_MANIFEST.json', 'TIER_A_EXECUTION.json', 'lane/EXECUTE_BRIEF.md', 'lane/VERIFY_RECEIPT.json', 'lane/VERIFY_REPORT.json', 'ADJUDICATION_AND_LIMITATIONS_019.json"
+  },
+  {
+   "workorder": "WO-TS-AUTH-05",
+   "ok": true,
+   "result": "{'verdict': 'PASS', 'checker': 'codex-verify/opencode-go/deepseek-v4.1-flash', 'evidence_refs': ['lane/EXECUTE_RECEIPT.json', 'writer/WRITER_MANIFEST.json', 'TIER_A_EXECUTION.json', 'lane/EXECUTE_BRIEF.md', 'lane/VERIFY_RECEIPT.json', 'lane/VERIFY_REPORT.json', 'ADJUDICATION_AND_LIMITATIONS_019.json"
+  }
+ ],
+ "delivery": {
+  "method": "transition(trigger=DELIVER)",
+  "ok": false,
+  "error": "LifecycleError: ERR_ILLEGAL_TRANSITION EVOLUTION_REVIEW->DELIVERED",
+  "interpretation": "delivery is not reachable from the round's own state; the intermediate states encode release/evolution authority this round does not hold, so delivery stays owner-gated"
+ },
+ "claim_ceiling": "LOCAL",
+ "signature_unavailable": "AttributeError: 'ProjectLifecycleController' object has no attribute 'record_workorder_result'",
+ "record_signature": null,
+ "transitions": [
+  {
+   "to": "EXECUTING",
+   "trigger": "ROUND_EXECUTED",
+   "ok": true,
+   "result": "{'project_id': 'FAR-019-OWNER-AUTH', 'run_id': 'RUN-1C824AB2', 'state': 'EXECUTING', 'goal_hash': 'c2be274a97851ab6d223915c2bf1f39fdec501476c8ffbaf2851f6c3d0612409', 'source_count': 15, 'current_workorder': None, 'last_checkpoint': 'CK-AUTH-83593C9D', 'attempt_budget': 3, 'attempts_used': 0, 'repair"
+  },
+  {
+   "to": "VERIFYING",
+   "trigger": "ROUND_VERIFIED",
+   "ok": true,
+   "result": "{'project_id': 'FAR-019-OWNER-AUTH', 'run_id': 'RUN-1C824AB2', 'state': 'VERIFYING', 'goal_hash': 'c2be274a97851ab6d223915c2bf1f39fdec501476c8ffbaf2851f6c3d0612409', 'source_count': 15, 'current_workorder': None, 'last_checkpoint': 'CK-AUTH-83593C9D', 'attempt_budget': 3, 'attempts_used': 0, 'repair"
+  },
+  {
+   "to": "EVOLUTION_REVIEW",
+   "trigger": "ROUND_EVOLUTION_REVIEW",
+   "ok": true,
+   "result": "{'project_id': 'FAR-019-OWNER-AUTH', 'run_id': 'RUN-1C824AB2', 'state': 'EVOLUTION_REVIEW', 'goal_hash': 'c2be274a97851ab6d223915c2bf1f39fdec501476c8ffbaf2851f6c3d0612409', 'source_count': 15, 'current_workorder': None, 'last_checkpoint': 'CK-AUTH-83593C9D', 'attempt_budget': 3, 'attempts_used': 0, "
+  }
+ ],
+ "denominator_after": {
+  "project_id": "FAR-019-OWNER-AUTH",
+  "state": "EVOLUTION_REVIEW",
+  "requirements_total": 1,
+  "requirements_frozen": 1,
+  "taskspecs_total": 5,
+  "workorders_total": 5,
+  "workorders_open": [],
+  "workorders_open_count": 0,
+  "acceptances_total": 1,
+  "acceptances_open": [
+   "ACC-REQ-FAR-019-OWNER-AUTH-PLAN"
+  ],
+  "acceptances_open_count": 1,
+  "required_active_capabilities": [
+   "openspec",
+   "gstack.plan-eng-review",
+   "gstack.review",
+   "gstack.qa",
+   "gstack.cso",
+   "gstack.ship",
+   "gstack.office-hours",
+   "gstack.retro"
+  ],
+  "required_active_capabilities_total": 8,
+  "required_active_capabilities_open": [],
+  "required_active_capabilities_open_count": 0,
+  "required_local_scope_open": 1,
+  "guard_required_workorders_terminal": false,
+  "denominator_available": true
+ }
+}

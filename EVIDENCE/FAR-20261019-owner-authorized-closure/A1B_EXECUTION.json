@@ -1,0 +1,21 @@
+{
+ "step": "A1b",
+ "action": "complete the canonical pin repair: version and sha256 fields the checker found stale",
+ "checker_finding": "V1 AGREE with P1: only codex_executable was repaired; stale codex_version/codex_sha256 make the gate fail closed with ERR_LANE_TOOLCHAIN_VERSION_MISMATCH",
+ "before": {
+  "codex_version": "0.162.0-alpha.17.2",
+  "codex_sha256": "e98c516f1c8935789aabe9122ee7e05ec4c3efd1ba6acf179242e031c495b99e",
+  "codex_executable": "C:\\Users\\user\\AppData\\Local\\OpenAI\\Codex\\bin\\e78bad9887fa50cf\\codex.exe"
+ },
+ "live_binary": "C:/Users/user/AppData/Local/OpenAI/Codex/bin/e78bad9887fa50cf/codex.exe",
+ "live_sha256": "9ecb9df2ecafcc00542ef0966c6f1737a81397dc9531b0a4b178238e2bf4a46d",
+ "live_version": "0.163.0-alpha.10.2",
+ "config_sha256_before": "7a661539b46baf07169abc70abe033e60894d0749bea1a401f0ca1c39bd71803",
+ "lines_changed": 2,
+ "after": {
+  "codex_version": "0.163.0-alpha.10.2",
+  "codex_sha256": "9ecb9df2ecafcc00542ef0966c6f1737a81397dc9531b0a4b178238e2bf4a46d"
+ },
+ "config_sha256_after": "f1a392e7d4029917eb2351192bccfbbe02f0d81f42e9d8dc558defb8b8e9167f",
+ "verdict": "REPAIRED_AND_READBACK_OK"
+}

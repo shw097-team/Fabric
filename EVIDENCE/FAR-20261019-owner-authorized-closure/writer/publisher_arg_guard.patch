@@ -1,0 +1,59 @@
+--- a/publish_broker.py
++++ b/publish_broker.py
+@@ -20,6 +20,27 @@
+ ROOT = Path("C:/Projects/Agent_Workspace/_handover/FAR-20261016-018-r7r11-residual-closure-and-handover")
+ PUB = ROOT / "publish"
+ API = "https://api.github.com"
++
++
++def parse_args(argv):
++    """FAR018-BROKER-ARGUMENT-SAFETY: parse BEFORE any credential read or API call.
++
++    The archived broker had no argument parser, so a `--help` probe took the
++    publishing main path and actually published. This guard makes the broker fail
++    closed on an unknown flag and treats `--help` as a pure probe, in BOTH cases
++    without reaching the network. The documented invocation is NO ARGUMENTS (the
++    payload is pinned by PUBLISH_MANIFEST.json); that invocation is unchanged.
++    """
++    import argparse
++    ap = argparse.ArgumentParser(
++        prog="publish_broker.py",
++        description=("Trusted local publishing broker. The documented invocation takes "
++                     "NO arguments: it publishes the payload pinned by PUBLISH_MANIFEST.json "
++                     "as one commit on a new branch. --help is a probe and never publishes."))
++    ap.add_argument("--dry-run", action="store_true",
++                    help="validate the manifest and prefix check, then exit without any "
++                         "credential read or network call")
++    return ap.parse_args(argv)
+ 
+ 
+ def token():
+@@ -49,7 +70,7 @@
+         return e.code, {"error": e.read().decode("utf-8", "replace")[:400]}
+ 
+ 
+-def main():
++def main(argv=None):
+     manifest_path = PUB / "PUBLISH_MANIFEST.json"
+     files = json.loads(manifest_path.read_text(encoding="utf-8"))["files"]
+     receipt = {"round": ROUND, "repo": REPO, "branch": BRANCH, "generated_utc":
+@@ -65,6 +86,12 @@
+     if bad or unsafe:
+         print(json.dumps({"first_fail": "PREFIX_ESCAPE", "paths": (bad + unsafe)[:5]}))
+         return 2
++
++    # A `--dry-run` probe stops here: the manifest and prefix check are validated, but no
++    # credential is read and no request is made. This is the safe way to probe the broker.
++    if getattr(main, "_dry_run", False):
++        print(json.dumps({"first_fail": None, "dry_run": True, "targets_checked": len(targets)}))
++        return 0
+ 
+     # --- scope probe: prove the credential only reaches the named repo, and record NOTHING secret --
+     st, repo = _req("GET", f"/repos/{REPO}")
+@@ -159,4 +186,6 @@
+ 
+ 
+ if __name__ == "__main__":
++    _ns = parse_args(sys.argv[1:])
++    main._dry_run = _ns.dry_run
+     sys.exit(main())

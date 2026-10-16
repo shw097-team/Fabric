@@ -1,0 +1,30 @@
+{
+ "schema": "FAR-20261019/ADJUDICATION-AND-LIMITATIONS/1",
+ "generated_utc": "2026-10-16T12:45:37.194201+00:00",
+ "claim_ceiling": "LOCAL",
+ "output_claim_ceiling": "LOCAL",
+ "runtime_release": "FAIL_CLOSED",
+ "canonical_AO_acceptance": "NOT_ISSUED",
+ "full_convergence_verdict": "TEMP_CLOSED_CHALLENGE",
+ "production_verdict": "FAIL_CLOSED",
+ "executed_under_authority": [
+  "A1 canonical pin repair",
+  "A2 previous-round card close-out",
+  "A3 currentness erratum",
+  "A4 peer chain merge at verified heads",
+  "A5 evidence PR promotion",
+  "A6/A7 delegated to the bounded writer lane"
+ ],
+ "limitations": [
+  "OWNER ORDER given mid-round (GPT quota exhaustion) moved the PLAN & Orchestrator lane and the VERIFY_SECURITY lane to opencode-go/deepseek-v4.1-flash. The writer and the checker therefore SHARE one model: model-axis independence is ABSENT (declared conflict SOD006-C3, owner-ordered) and is not claimed anywhere in this pack. Process, lane and evidence-path independence plus the no-self-acceptance rule are what remain.",
+  "Two orphan lifecycles (FAR-019-R7R11-RESIDUAL, FAR-019-OWNER-CLOSEOUT) remain at PLAN_READY; no governed abandonment path exists and the spine was not hand-edited.",
+  "The 60 owner-signature items are prepared, not executed.",
+  "The guard predicate and the publisher argument fix are candidates; the live guard is untouched.",
+  "The contract's duplication gate reports a non-trivial ratio because this round deliberately re-uses the previous round's scaffold; the measured value is in the compiler receipts."
+ ],
+ "not_claimed": [
+  "production promotion",
+  "external acceptance",
+  "convergence beyond TEMP_CLOSED_CHALLENGE"
+ ]
+}
