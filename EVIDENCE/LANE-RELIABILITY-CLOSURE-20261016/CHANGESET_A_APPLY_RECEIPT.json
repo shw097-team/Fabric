@@ -1,0 +1,54 @@
+{
+  "schema": "HGK-CHANGESET-A-APPLY-RECEIPT/1",
+  "round": "LANE-RELIABILITY-CLOSURE-20261016",
+  "applied_utc": "2026-10-16T03:28:17.633726+00:00",
+  "workorder": "WO-LANE-RELIABILITY-20261016-CHANGESET-A",
+  "requirement": "REQ-LANE-RELIABILITY-20261016-CHANGESET-A",
+  "taskspec": "TS-LANE-RELIABILITY-20261016-CHANGESET-A",
+  "admission_readback": {
+    "rs": "FROZEN",
+    "ts_": "ADMITTED",
+    "writable_root": "C:\\Projects\\Agent_Workspace\\HG-KSEOS",
+    "ws": "CREATED"
+  },
+  "base_head": "903e47cddeceb40cb8f5f5793105533b3988a463",
+  "writeset": [
+    "config/model-lane-assignment.json",
+    "config/lane-routing-registry.yaml"
+  ],
+  "files": {
+    "config/model-lane-assignment.json": {
+      "before_sha256": "6af264c9ffdb57113be769842ac1a8503eb472a3c55f1941ee42667078808753",
+      "after_sha256": "d41f8f8bff41d4338a4b85dab7a60bd2c9c23b2f5f39c8c008e89bf82587bd36",
+      "backup": "config\\model-lane-assignment.json.bak-lane-reliability-20261016",
+      "equals_staged": true
+    },
+    "config/lane-routing-registry.yaml": {
+      "before_sha256": "06a8d10aed3785a9fb015d76291c32ef26cc3d4b36c00eb8ec9f7860d6f550d2",
+      "after_sha256": "a0d811c48f6063b06af0688a16dd644bc1537651c75a8341795110253362c0b2",
+      "backup": "config\\lane-routing-registry.yaml.bak-lane-reliability-20261016",
+      "equals_staged": true
+    }
+  },
+  "registry_epoch_after": 20,
+  "source_of_routes_sha256_after": "d41f8f8bff41d4338a4b85dab7a60bd2c9c23b2f5f39c8c008e89bf82587bd36",
+  "canonical_drift_fatal": [],
+  "canonical_drift_all": [],
+  "conformance_exit": 1,
+  "conformance_tail": "nd_projection_shape (tests.test_lane_policy.TestLanePolicyConformance.test_registry_and_projection_shape)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Projects\\Agent_Workspace\\HG-KSEOS\\tests\\test_lane_policy.py\", line 109, in test_registry_and_projection_shape\n    self.assertEqual((route[\"provider\"], route[\"model\"]), owner_chain[lane][0],\nAssertionError: Tuples differ: ('opencode-go', 'glm-5.3-flash') != ('openai-codex', 'gpt-6.1-sol')\n\nFirst differing element 0:\n'opencode-go'\n'openai-codex'\n\n- ('opencode-go', 'glm-5.3-flash')\n+ ('openai-codex', 'gpt-6.1-sol') : PLAN rank-1 default must be owner-declared\n\n----------------------------------------------------------------------\nRan 3 tests in 10.237s\n\nFAILED (failures=1)\n",
+  "conformance_failure_is_the_recorded_F1": true,
+  "named_suite_exit": 1,
+  "named_suite_tail": ".F...............................................................................................................................................................................................................\n======================================================================\nFAIL: test_registry_and_projection_shape (tests.test_lane_policy.TestLanePolicyConformance.test_registry_and_projection_shape)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Projects\\Agent_Workspace\\HG-KSEOS\\tests\\test_lane_policy.py\", line 109, in test_registry_and_projection_shape\n    self.assertEqual((route[\"provider\"], route[\"model\"]), owner_chain[lane][0],\nAssertionError: Tuples differ: ('opencode-go', 'glm-5.3-flash') != ('openai-codex', 'gpt-6.1-sol')\n\nFirst differing element 0:\n'opencode-go'\n'openai-codex'\n\n- ('opencode-go', 'glm-5.3-flash')\n+ ('openai-codex', 'gpt-6.1-sol') : PLAN rank-1 default must be owner-declared\n\n----------------------------------------------------------------------\nRan 209 tests in 52.968s\n\nFAILED (failures=1)\n",
+  "rollback": [
+    "copy C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\model-lane-assignment.json.bak-lane-reliability-20261016 over C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\model-lane-assignment.json",
+    "copy C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\lane-routing-registry.yaml.bak-lane-reliability-20261016 over C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\lane-routing-registry.yaml"
+  ],
+  "side_effects_disclosed": [
+    "two canonical config files replaced (backups written)",
+    "spine rows added: 1 Requirement + 1 TaskSpec + 1 WorkOrder + 1 lease",
+    "no product code, no lane route, no chain order, no assigned arm changed",
+    "no git write command was run by this script"
+  ],
+  "canonical_acceptance": "NOT_PERFORMED",
+  "claim_ceiling": "CANDIDATE_ONLY. Zero drift and a green baseline are re-derived measurements, not acceptance; the conformance suite still carries the OPEN finding F1, which this round records and does not repair."
+}

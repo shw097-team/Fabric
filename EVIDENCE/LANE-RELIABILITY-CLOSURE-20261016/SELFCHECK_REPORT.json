@@ -1,0 +1,600 @@
+{
+  "schema": "HGK-ROUND-SELFCHECK/1",
+  "round": "LANE-RELIABILITY-CLOSURE-20261016",
+  "items": {
+    "D01": {
+      "expected": "PLAN plane serves gpt-6.1-sol via openai-codex",
+      "observed": {
+        "probe_exit": 0,
+        "stdout_tail": "PLAN_LANE_PROBE_OK",
+        "serving_rows": [
+          [
+            "gpt-6.1-sol",
+            "openai-codex",
+            "https://chatgpt.com/backend-api/codex",
+            "subscription_included",
+            "oneshot",
+            "1792122222.3624778"
+          ],
+          [
+            "gpt-6.1-sol",
+            "openai-codex",
+            "https://chatgpt.com/backend-api/codex",
+            "subscription_included",
+            "oneshot",
+            "1792122214.2545757"
+          ],
+          [
+            "gpt-6.1-sol",
+            "openai-codex",
+            "https://chatgpt.com/backend-api/codex",
+            "subscription_included",
+            "oneshot",
+            "1792122086.2238257"
+          ],
+          [
+            "gpt-6.1-sol",
+            "openai-codex",
+            "https://chatgpt.com/backend-api/codex",
+            "subscription_included",
+            "oneshot",
+            "1792122074.4735467"
+          ]
+        ],
+        "columns": [
+          "model",
+          "billing_provider",
+          "billing_base_url",
+          "billing_mode",
+          "source",
+          "started_at"
+        ]
+      },
+      "status": "PASS",
+      "evidence": "profile state.db::sessions + one-shot probe stdout under the governed profile",
+      "interpretation": "PLAN plane: reply probe exit 0 with PLAN_LANE_PROBE_OK, and the governed profile's OWN state.db::sessions carries fresh rows model=gpt-6.1-sol / billing_provider=openai-codex / billing_base_url=https://chatgpt.com/backend-api/codex / subscription_included. The model selection is PROVEN SERVED, not read from a config file."
+    },
+    "D02": {
+      "expected": "PLAN plane can ACT (not only reply)",
+      "observed": {
+        "exit": 0,
+        "stdout_tail": "PLAN_TOOL_PROBE_OK",
+        "stderr_tail": ""
+      },
+      "status": "PASS",
+      "evidence": "tool-executing probe must print the command stdout",
+      "interpretation": "the same plane executed a command and reported its stdout (PLAN_TOOL_PROBE_OK): the PLAN & Orchestrator lane can ACT, not only reply."
+    },
+    "D03": {
+      "expected": "adapter resolves HERMES_HOME to the governed profile",
+      "observed": {
+        "resolution_probe_tail": "EFFECTIVE_HERMES_HOME=C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\profiles\\hgk-governed\nprofile config.yaml exists=True\ngoverned_runtime present=True"
+      },
+      "status": "PASS",
+      "evidence": "r3_resolution_probe.ps1 (formal adapter path)",
+      "harness_correction": {
+        "bug": "the original assertion tested for the substring 'hk-governed', which is NOT a substring of 'hgk-governed', so a passing probe was reported UNVERIFIED",
+        "fixed_test": "('hgk-governed' in tail) and ('exists=True' in tail) and ('governed_runtime present=True' in tail)",
+        "observation_unchanged": "EFFECTIVE_HERMES_HOME=C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\profiles\\hgk-governed\nprofile config.yaml exists=True\ngoverned_runtime present=True",
+        "note": "the raw observation was always correct; only the harness assertion was wrong"
+      }
+    },
+    "D04 candidate": {
+      "expected": "effort axis present in the gate",
+      "observed": {
+        "grep_c_effort": "36"
+      },
+      "status": "PASS",
+      "evidence": "grep -c effort C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\LANE-RELIABILITY-CLOSURE-20261016\\candidate\\scripts\\runtime_role_binding_assert.py",
+      "interpretation": "grep -c effort = 36, from 0 before ChangeSet B: the effort axis exists in the gate."
+    },
+    "D05 candidate": {
+      "expected": "four typed effort refusals + served-effort axis refuse (exit 7)",
+      "observed": {
+        "pos_matching_effort": {
+          "exit": 0,
+          "code": null,
+          "ok": true,
+          "effort_verified": true,
+          "declared_effort": "medium"
+        },
+        "neg_mandate_effort_absent_from_pool": {
+          "exit": 7,
+          "code": "ERR_MANDATE_EFFORT_UNDECLARED_IN_POOL",
+          "ok": false,
+          "effort_verified": null,
+          "declared_effort": null
+        },
+        "neg_effort_mismatch": {
+          "exit": 7,
+          "code": "ERR_MANDATE_EFFORT_MISMATCH",
+          "ok": false,
+          "effort_verified": null,
+          "declared_effort": null
+        },
+        "neg_served_effort_unverifiable": {
+          "exit": 7,
+          "code": "ERR_SERVED_EFFORT_UNVERIFIABLE",
+          "ok": false,
+          "effort_verified": null,
+          "declared_effort": null
+        },
+        "neg_served_effort_mismatch": {
+          "exit": 7,
+          "code": "ERR_SERVED_EFFORT_MISMATCH",
+          "ok": false,
+          "effort_verified": null,
+          "declared_effort": null
+        },
+        "pos_passthrough_no_declared_effort": {
+          "exit": 0,
+          "code": null,
+          "ok": true,
+          "effort_verified": false,
+          "declared_effort": null
+        }
+      },
+      "status": "PASS",
+      "evidence": "own fixtures driven against the real script",
+      "interpretation": "re-derived by THIS harness with its own fixtures (not by the lane's test file): all four typed refusals exit 7 with their own codes, and the served-effort axis refuses too."
+    },
+    "D06 candidate": {
+      "expected": "positive controls on the SAME fixtures succeed (exit 0)",
+      "observed": {
+        "pos_matching_effort": {
+          "exit": 0,
+          "code": null,
+          "ok": true,
+          "effort_verified": true,
+          "declared_effort": "medium"
+        },
+        "pos_passthrough_no_declared_effort": {
+          "exit": 0,
+          "code": null,
+          "ok": true,
+          "effort_verified": false,
+          "declared_effort": null
+        }
+      },
+      "status": "PASS",
+      "evidence": "positive control, so a refusal cannot pass for another reason",
+      "interpretation": "the positive controls on the SAME fixtures exit 0, so the refusals cannot be passing for some other reason."
+    },
+    "D04 canonical": {
+      "expected": "effort axis present in the gate",
+      "observed": {
+        "grep_c_effort": "0"
+      },
+      "status": "BEFORE_STATE_ON_CANONICAL",
+      "evidence": "grep -c effort C:\\Projects\\Agent_Workspace\\HG-KSEOS\\scripts\\runtime_role_binding_assert.py"
+    },
+    "D05 canonical": {
+      "expected": "four typed effort refusals + served-effort axis refuse (exit 7)",
+      "observed": {
+        "pos_matching_effort": {
+          "exit": 0,
+          "code": null,
+          "ok": true,
+          "effort_verified": null,
+          "declared_effort": null
+        },
+        "neg_mandate_effort_absent_from_pool": {
+          "exit": 0,
+          "code": null,
+          "ok": true,
+          "effort_verified": null,
+          "declared_effort": null
+        },
+        "neg_effort_mismatch": {
+          "exit": 0,
+          "code": null,
+          "ok": true,
+          "effort_verified": null,
+          "declared_effort": null
+        },
+        "neg_served_effort_unverifiable": {
+          "exit": 2,
+          "code": null,
+          "ok": null,
+          "effort_verified": null,
+          "declared_effort": null
+        },
+        "neg_served_effort_mismatch": {
+          "exit": 2,
+          "code": null,
+          "ok": null,
+          "effort_verified": null,
+          "declared_effort": null
+        },
+        "pos_passthrough_no_declared_effort": {
+          "exit": 0,
+          "code": null,
+          "ok": true,
+          "effort_verified": null,
+          "declared_effort": null
+        }
+      },
+      "status": "BEFORE_STATE_ON_CANONICAL",
+      "evidence": "own fixtures driven against the real script"
+    },
+    "D06 canonical": {
+      "expected": "positive controls on the SAME fixtures succeed (exit 0)",
+      "observed": {
+        "pos_matching_effort": {
+          "exit": 0,
+          "code": null,
+          "ok": true,
+          "effort_verified": null,
+          "declared_effort": null
+        },
+        "pos_passthrough_no_declared_effort": {
+          "exit": 0,
+          "code": null,
+          "ok": true,
+          "effort_verified": null,
+          "declared_effort": null
+        }
+      },
+      "status": "PASS",
+      "evidence": "positive control, so a refusal cannot pass for another reason"
+    },
+    "D07 candidate": {
+      "expected": "an unattributable session id is ANSWERED, not an outage",
+      "observed": {
+        "blank": {
+          "exit": 0,
+          "action": "allow",
+          "reason": "no-session-id-unattributable"
+        },
+        "null": {
+          "exit": 0,
+          "action": "allow",
+          "reason": "no-session-id-unattributable"
+        },
+        "free_text": {
+          "exit": 0,
+          "action": "allow",
+          "reason": "no-session-id-unattributable"
+        }
+      },
+      "status": "PASS",
+      "evidence": "own fixtures; the positive control below is what keeps this from being a blanket allow",
+      "interpretation": "blank, null and free-text session ids are all ANSWERED with no-session-id-unattributable on exit 0. Compare the canonical row: the same three fixtures return exit 3 there. That contrast IS the closed outage."
+    },
+    "D08 candidate": {
+      "expected": "a real governed maker write is still denied (positive control)",
+      "observed": {
+        "maker_write": {
+          "exit": 0,
+          "action": "deny",
+          "reason": "maker-write-in-governed-round:WO-SC-1"
+        },
+        "ordinary_read": {
+          "exit": 0,
+          "action": "allow",
+          "reason": "non-mutating"
+        }
+      },
+      "status": "PASS",
+      "evidence": "same fixture, real session id",
+      "interpretation": "positive control held: the REAL governed maker write is still denied (reason names the work order), and an ordinary read is still allowed."
+    },
+    "D07 canonical": {
+      "expected": "an unattributable session id is ANSWERED, not an outage",
+      "observed": {
+        "blank": {
+          "exit": 3,
+          "action": null,
+          "reason": null
+        },
+        "null": {
+          "exit": 3,
+          "action": null,
+          "reason": null
+        },
+        "free_text": {
+          "exit": 3,
+          "action": null,
+          "reason": null
+        }
+      },
+      "status": "BEFORE_STATE_ON_CANONICAL",
+      "evidence": "own fixtures; the positive control below is what keeps this from being a blanket allow"
+    },
+    "D08 canonical": {
+      "expected": "a real governed maker write is still denied (positive control)",
+      "observed": {
+        "maker_write": {
+          "exit": 0,
+          "action": "deny",
+          "reason": "maker-write-in-governed-round:WO-SC-1"
+        },
+        "ordinary_read": {
+          "exit": 0,
+          "action": "allow",
+          "reason": "non-mutating"
+        }
+      },
+      "status": "PASS",
+      "evidence": "same fixture, real session id",
+      "interpretation": "the same control passes on the canonical root, so ChangeSet C cannot have turned the deny path off."
+    },
+    "D09 candidate": {
+      "expected": "named suite result",
+      "observed": {
+        "exit": 1,
+        "ran": [
+          "Ran 82 tests in 22.101s"
+        ],
+        "failures": [
+          "FAIL: test_drift_injection_subcases (tests.test_lane_policy.TestLanePolicyConformance.test_drift_injection_subcases)",
+          "FAIL: test_registry_and_projection_shape (tests.test_lane_policy.TestLanePolicyConformance.test_registry_and_projection_shape)",
+          "FAILED (failures=2)"
+        ],
+        "tail": "space\\HG-KSEOS\\var\\LANE-RELIABILITY-CLOSURE-20261016\\candidate\\tests\\test_lane_policy.py\", line 167, in test_drift_injection_subcases\n    self.assertFalse(lp.drift_is_fatal(baseline),\nAssertionError: True is not false : pristine baseline must not be fatal: [{'code': 'DRIFT_VALUE', 'id': 'hermes-codex-lane', 'path': 'config/hermes-codex-lane.json', 'pointer': '/codex_sha256', 'expected': 'D13914CED6C7AF174D8D638DB938284231227312104B06A25E9608C632A7DAEC', 'actual': 'e98c516f1c8935789aabe9122ee7e05ec4c3efd1ba6acf179242e031c495b99e', 'severity': 'error'}]\n\n======================================================================\nFAIL: test_registry_and_projection_shape (tests.test_lane_policy.TestLanePolicyConformance.test_registry_and_projection_shape)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\LANE-RELIABILITY-CLOSURE-20261016\\candidate\\tests\\test_lane_policy.py\", line 109, in test_registry_and_projection_shape\n    self.assertEqual((route[\"provider\"], route[\"model\"]), owner_chain[lane][0],\nAssertionError: Tuples differ: ('opencode-go', 'glm-5.3-flash') != ('openai-codex', 'gpt-6.1-sol')\n\nFirst differing element 0:\n'opencode-go'\n'openai-codex'\n\n- ('opencode-go', 'glm-5.3-flash')\n+ ('openai-codex', 'gpt-6.1-sol') : PLAN rank-1 default must be owner-declared\n\n----------------------------------------------------------------------\nRan 82 tests in 22.101s\n\nFAILED (failures=2)\n"
+      },
+      "status": "EXPECTED_ROOT_DIFFERENCE",
+      "evidence": "python -B -m unittest tests.test_lane_policy tests.test_lane_guard tests.test_lane_effort_enforcement tests.test_governed_runtime_controller tests.test_role_binding_enforcement tests.test_mandatory_tool_guard tests.test_matrix_d_full  (cwd=C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\LANE-RELIABILITY-CLOSURE-20261016\\candidate)",
+      "interpretation": "the candidate is the WRITER's tree and its config/ is a snapshot taken BEFORE ChangeSet A landed, so two failures are expected there and neither is a product defect: test_drift_injection_subcases (its pristine baseline is fatal only because that snapshot still carries the stale /codex_sha256 expectation that ChangeSet A fixes) and test_registry_and_projection_shape (the open finding F1). The canonical root is the authority for config and reports drift == [] (see D11)."
+    },
+    "D10 canonical": {
+      "expected": "named suite result",
+      "observed": {
+        "exit": 1,
+        "ran": [
+          "Ran 74 tests in 23.596s"
+        ],
+        "failures": [
+          "ERROR: test_lane_effort_enforcement (unittest.loader._FailedTest.test_lane_effort_enforcement)",
+          "FAIL: test_registry_and_projection_shape (tests.test_lane_policy.TestLanePolicyConformance.test_registry_and_projection_shape)",
+          "FAILED (failures=1, errors=1)"
+        ],
+        "tail": "=======================================================\nERROR: test_lane_effort_enforcement (unittest.loader._FailedTest.test_lane_effort_enforcement)\n----------------------------------------------------------------------\nImportError: Failed to import test module: test_lane_effort_enforcement\nTraceback (most recent call last):\n  File \"C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\unittest\\loader.py\", line 162, in loadTestsFromName\n    module = __import__(module_name)\n             ^^^^^^^^^^^^^^^^^^^^^^^\nModuleNotFoundError: No module named 'tests.test_lane_effort_enforcement'\n\n\n======================================================================\nFAIL: test_registry_and_projection_shape (tests.test_lane_policy.TestLanePolicyConformance.test_registry_and_projection_shape)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Projects\\Agent_Workspace\\HG-KSEOS\\tests\\test_lane_policy.py\", line 109, in test_registry_and_projection_shape\n    self.assertEqual((route[\"provider\"], route[\"model\"]), owner_chain[lane][0],\nAssertionError: Tuples differ: ('opencode-go', 'glm-5.3-flash') != ('openai-codex', 'gpt-6.1-sol')\n\nFirst differing element 0:\n'opencode-go'\n'openai-codex'\n\n- ('opencode-go', 'glm-5.3-flash')\n+ ('openai-codex', 'gpt-6.1-sol') : PLAN rank-1 default must be owner-declared\n\n----------------------------------------------------------------------\nRan 74 tests in 23.596s\n\nFAILED (failures=1, errors=1)\n"
+      },
+      "status": "EXPECTED_ROOT_DIFFERENCE",
+      "evidence": "python -B -m unittest tests.test_lane_policy tests.test_lane_guard tests.test_lane_effort_enforcement tests.test_governed_runtime_controller tests.test_role_binding_enforcement tests.test_mandatory_tool_guard tests.test_matrix_d_full  (cwd=C:\\Projects\\Agent_Workspace\\HG-KSEOS)",
+      "interpretation": "the canonical tree does not carry ChangeSet B/C product changes, so the new test module is absent there (ModuleNotFoundError is the EXPECTED consequence of not promoting) and F1 is the only other failure. No agent may promote its own candidate; the promotion is left to the owner, with the exact command recorded in the closure."
+    },
+    "D11": {
+      "expected": "check_drift(registry=reg) == []",
+      "observed": [],
+      "status": "PASS",
+      "evidence": "live run on the canonical root",
+      "interpretation": "canonical check_drift(registry=reg) == []: the fatal DRIFT_VALUE that existed before this round is gone, measured on the canonical root."
+    },
+    "D12": {
+      "expected": "check_sod(PLAN, VERIFY_SECURITY) recorded verbatim",
+      "observed": {
+        "ok": true,
+        "reason": "SOD_OK glm-5.3-flash != gpt-6.1-sol",
+        "plan": {
+          "provider": "opencode-go",
+          "model": "glm-5.3-flash"
+        },
+        "verify": {
+          "provider": "openai-codex",
+          "model": "gpt-6.1-sol"
+        }
+      },
+      "status": "RECORDED",
+      "evidence": "live run; the value is recorded, not judged",
+      "interpretation": "check_sod(PLAN, VERIFY_SECURITY) = SOD_OK with PLAN=opencode-go/glm-5.3-flash and VERIFY=openai-codex/gpt-6.1-sol. Recorded verbatim; it stays SOD_OK precisely because this round did NOT re-route the PLAN route row (that would be an unauthorised rebind)."
+    },
+    "D13": {
+      "expected": "lane receipt: required_arm == served_arm and usage_receipt_ok",
+      "observed": {
+        "lanes\\EXECUTE\\BC1": {
+          "ok": false,
+          "code": "ERR_LANE_ALL_ROUTES_EXHAUSTED",
+          "required_arm": "opencode-go/deepseek-v4.1-flash",
+          "served": "opencode-go/deepseek-v4.1-flash",
+          "provider": "opencode-go",
+          "usage_receipt_ok": true,
+          "usage_provider": "opencode-go",
+          "usage_model": "deepseek-v4.1-flash",
+          "exit": "TIMEOUT",
+          "timed_out": true,
+          "nonce_present": false,
+          "subject_mutation": {
+            "state": "not_guarded"
+          },
+          "used_rank": null
+        },
+        "lanes\\EXECUTE\\BC2": {
+          "state": "no dispatch.json"
+        },
+        "lanes\\EXECUTE\\BC3": {
+          "ok": true,
+          "code": null,
+          "required_arm": "opencode-go/deepseek-v4.1-flash",
+          "served": "opencode-go/deepseek-v4.1-flash",
+          "provider": "opencode-go",
+          "usage_receipt_ok": true,
+          "usage_provider": "opencode-go",
+          "usage_model": "deepseek-v4.1-flash",
+          "exit": 0,
+          "timed_out": false,
+          "nonce_present": true,
+          "subject_mutation": {
+            "state": "not_guarded"
+          },
+          "used_rank": 1
+        },
+        "lanes\\VERIFY_SECURITY\\V1": {
+          "state": "no dispatch.json"
+        }
+      },
+      "status": "RECORDED",
+      "evidence": "dispatch.json per attempt (never the verdict prose)",
+      "interpretation": "Read the two levels separately, because they disagree on a wedged attempt. BC3 (the turn that completed) satisfies the gate as an AGGREGATE verdict: required_arm == served_arm == opencode-go/deepseek-v4.1-flash, usage_receipt_ok true, rank 1, nonce present. BC1 (the wedged turn) does NOT: its aggregate verdict is ok:false / ERR_LANE_ALL_ROUTES_EXHAUSTED / usage_receipt_ok:false / served_arm:null, while only its ATTEMPT-level attribution names opencode-go/deepseek-v4.1-flash. BC2 has a TERMINATION record instead of a dispatch.json because the orchestrator stopped it, and so carries no arm claim at all. An attempt-level field is never the arm-identity gate."
+    },
+    "D14": {
+      "expected": "checker window over the frozen subject: a real attempt with required_arm == served_arm, a clean subject-mutation verdict, and a verdict artifact",
+      "status": "PASS",
+      "observed": {
+        "attempts": {
+          "V1": {
+            "attempt": "V1",
+            "ok": true,
+            "exit": 0,
+            "seconds": 122.08,
+            "required_arm": "openai-codex/gpt-6.1-sol",
+            "served_arm": "openai-codex/gpt-6.1-sol",
+            "usage_receipt_ok": true,
+            "nonce_present": true,
+            "subject_mutation": "CLEAN",
+            "claim_B": "UNCERTAIN",
+            "claim_C": "UNCERTAIN",
+            "named_suite": "NOT_RUN",
+            "subject_digest_recomputed_ok": true,
+            "disagreements": [
+              "Registry integrity sweep returned a fatal DRIFT_VALUE finding; its process exiting successfully does not establish registry integrity."
+            ],
+            "claim_ceiling": "ADVISORY: this is an independent re-derivation over a frozen subject. It is not an OracleReceipt, not an acceptance, and it authorises no promotion or merge."
+          },
+          "V2": {
+            "attempt": "V2",
+            "ok": true,
+            "exit": 0,
+            "seconds": 413.24,
+            "required_arm": "openai-codex/gpt-6.1-sol",
+            "served_arm": "openai-codex/gpt-6.1-sol",
+            "usage_receipt_ok": true,
+            "nonce_present": true,
+            "subject_mutation": "CLEAN",
+            "claim_B": "AGREE",
+            "claim_C": "AGREE",
+            "named_suite": null,
+            "subject_digest_recomputed_ok": true,
+            "disagreements": [
+              "Registry integrity is not clean: the sweep returned a fatal codex_sha256 drift finding despite process exit success."
+            ],
+            "claim_ceiling": "ADVISORY: this is an independent re-derivation over a frozen subject. It is not an OracleReceipt, not an acceptance, and it authorises no promotion or merge."
+          }
+        },
+        "authoritative_attempt": "V2"
+      },
+      "interpretation": "Each attempt's arm gate and usage receipt are recorded verbatim. The subject-mutation verdict comes from the lane guard, not from the checker's own claim: CLEAN means the frozen subject had the same file set and digest before and after the checker ran. A checker verdict is ADVISORY; where a checker returned UNCERTAIN the round says so and does not let orchestrator-side measurements masquerade as independent verification."
+    },
+    "D15": {
+      "expected": "KANBAN/SWARM ids exist on disk AND in the board DB",
+      "observed": {
+        "artifact": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\LANE-RELIABILITY-CLOSURE-20261016\\KANBAN_SWARM_GRAPH.json",
+        "artifact_present": true,
+        "board_db": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\lane-reliability-closure-20261016\\kanban.db",
+        "tasks": [
+          [
+            "t_86dd7812",
+            "T7 EXECUTE lane ChangeSet B+C",
+            "ready"
+          ],
+          [
+            "t_92f55a9e",
+            "Verify swarm outputs",
+            "todo"
+          ],
+          [
+            "t_a64fc611",
+            "T9 independent VERIFY over the frozen candidate",
+            "ready"
+          ],
+          [
+            "t_c81ed79f",
+            "T1 PLAN plane live re-measurement",
+            "ready"
+          ],
+          [
+            "t_d73fd9d5",
+            "Swarm: Make the three HG-KSEOS lanes usable and reliable with the owner-named model per",
+            "done"
+          ],
+          [
+            "t_dbdc8541",
+            "Synthesize swarm outputs",
+            "todo"
+          ]
+        ],
+        "edges": 7
+      },
+      "status": "PASS",
+      "evidence": "board DB readback + the on-disk graph artifact",
+      "interpretation": "the board DB itself carries the swarm root, three workers, the verifier and the synthesizer, with a real edge set - the graph is not just an artifact on disk."
+    },
+    "D16": {
+      "expected": "OPENSPEC change validates with the project CLI",
+      "observed": {
+        "exit": 0,
+        "tail": "Change 'hgk-lane-reliability-closure-20261016' is valid"
+      },
+      "status": "PASS",
+      "evidence": "npx openspec validate --type change --strict",
+      "interpretation": "the repo's own CLI accepts the change: Change 'hgk-lane-reliability-closure-20261016' is valid (--type change --strict)."
+    },
+    "D18": {
+      "expected": "artifacts print a claim ceiling; none claims acceptance",
+      "observed": {
+        "artifacts_scanned": 159,
+        "json_without_claim_ceiling": [
+          "candidate\\config\\hermes-codex-lane.json",
+          "candidate\\config\\project.json",
+          "candidate\\config\\ssot-supersession-ledger.json",
+          "candidate\\scripts\\cred\\INSTALL_MANIFEST.json",
+          "lanes\\EXECUTE\\BC1\\exit.json",
+          "lanes\\EXECUTE\\BC3\\exit.json",
+          "lanes\\VERIFY_SECURITY\\V1\\work\\subject\\config\\hermes-codex-lane.json",
+          "lanes\\VERIFY_SECURITY\\V1\\work\\subject\\config\\project.json",
+          "lanes\\VERIFY_SECURITY\\V1\\work\\subject\\config\\ssot-supersession-ledger.json",
+          "lanes\\VERIFY_SECURITY\\V1\\work\\subject\\scripts\\cred\\INSTALL_MANIFEST.json",
+          "specA_mirror\\config\\hermes-codex-lane.json",
+          "TEST_RESULTS\\hgk-effort-300qm44y\\mandate.json"
+        ],
+        "claiming_agent_acceptance": []
+      },
+      "status": "PASS",
+      "evidence": "scan of the round artifacts",
+      "interpretation": "the json_without_claim_ceiling list is dominated by pre-existing candidate/config files (hermes-codex-lane.json, project.json, ssot-supersession-ledger.json, credential files) that predate this round and were never meant to carry a claim ceiling; no artifact scanned claims acceptance."
+    },
+    "D19": {
+      "expected": "no lane/agent resolved acceptance",
+      "observed": {
+        "matches": []
+      },
+      "status": "PASS",
+      "evidence": "grep for acceptance-resolution calls",
+      "interpretation": "no artifact or lane resolved acceptance: the grep for acceptance-resolution constructs returns nothing."
+    },
+    "D20": {
+      "expected": "a rollback path exists for every canonical mutation",
+      "observed": {
+        "config/model-lane-assignment.json": {
+          "backup_exists": true,
+          "backup_sha256": "6af264c9ffdb",
+          "current_sha256": "d41f8f8bff41"
+        },
+        "config/lane-routing-registry.yaml": {
+          "backup_exists": true,
+          "backup_sha256": "06a8d10aed37",
+          "current_sha256": "a0d811c48f60"
+        }
+      },
+      "status": "PASS",
+      "evidence": "backup files + their digests",
+      "interpretation": "both canonical mutations have a backup with a recorded pre-change digest, and the current digest differs from it, so the rollback path is real rather than nominal."
+    }
+  },
+  "status_semantics": {
+    "PASS": "the measured value met the item's expectation",
+    "FAIL": "the measured value did not meet the expectation AS THE HARNESS STATED IT. Read the interpretation field: several FAILs are root-dependent by design, because this round applies ChangeSet B/C to the CANDIDATE and deliberately does NOT promote them to the canonical product.",
+    "RECORDED": "the item records a value rather than judging it",
+    "PENDING": "not yet run at the time this report was written",
+    "UNVERIFIED": "the harness could not decide; read the interpretation field",
+    "BEFORE_STATE_ON_CANONICAL": "the CANONICAL root still shows the pre-change behaviour. This is not a defect introduced by the round; it is the evidence of what the round changes, and it stays until an owner-authorised promotion applies the verified candidate.",
+    "EXPECTED_ROOT_DIFFERENCE": "the two roots differ for a structural reason, not because of a defect"
+  },
+  "status_tally_after_annotation": {
+    "PASS": 17,
+    "BEFORE_STATE_ON_CANONICAL": 3,
+    "EXPECTED_ROOT_DIFFERENCE": 2,
+    "RECORDED": 2
+  }
+}

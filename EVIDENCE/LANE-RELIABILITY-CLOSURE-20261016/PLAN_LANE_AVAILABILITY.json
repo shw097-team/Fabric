@@ -1,0 +1,197 @@
+{
+  "schema": "HGK-PLAN-LANE-AVAILABILITY/1",
+  "round": "LANE-RELIABILITY-CLOSURE-20261016",
+  "priority": "owner order this session: the PLAN & Orchestrator lane inside Hermes must be GPT 6.1 SOL-MEDIUM (OpenAI OAuth) and its model selection must be demonstrably usable",
+  "binding_surface": {
+    "surface": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\profiles\\hgk-governed\\config.yaml",
+    "rows": [
+      "governed_runtime:",
+      "protected_roots:",
+      "- C:/Projects/Agent_Workspace/HG-KSEOS",
+      "- C:/Projects/Agent_Workspace/Fabric",
+      "controller_command:",
+      "- C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+      "- C:/Projects/Agent_Workspace/HG-KSEOS/scripts/hgk-governed-runtime-controller.py",
+      "timeout_seconds: 10",
+      "model:",
+      "default: gpt-6.1-sol",
+      "provider: openai-codex",
+      "reasoning_effort: medium",
+      "_plane: PLAN & Orchestrator (in-Hermes) — main-agent binding, NOT the session picker"
+    ],
+    "why_this_surface": "per config/model-lane-assignment.json::effective_wiring.main_agent the in-Hermes PLAN & Orchestrator plane binds to config.yaml model.default + model.provider of the home the process runs under; the per-session picker and delegation.model are DIFFERENT surfaces",
+    "activation": {
+      "key": "config/hermes.json :: governed_hermes_home (R3, additive)",
+      "adapter_override": "scripts/hermes-core.ps1 prefers governed_hermes_home when declared; canonical_hermes_home is left UNCHANGED so un-governed consumers keep their binding"
+    }
+  },
+  "D03_resolution_probe": {
+    "argv": [
+      "pwsh",
+      "-NoProfile",
+      "-File",
+      "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\cache\\scratch\\r3_resolution_probe.ps1"
+    ],
+    "exit": 0,
+    "stdout_lines": [
+      "EFFECTIVE_HERMES_HOME=C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\profiles\\hgk-governed",
+      "profile config.yaml exists=True",
+      "governed_runtime present=True"
+    ]
+  },
+  "D01_profile_own_serving_rows": [
+    {
+      "session": "20261016_110220_18ddab",
+      "model": "gpt-6.1-sol",
+      "provider": "openai-codex",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "mode": "subscription_included",
+      "source": "oneshot",
+      "api_calls": 2,
+      "messages": 4,
+      "started_at": 1792119741.612826
+    },
+    {
+      "session": "20261016_110001_f0f27f",
+      "model": "gpt-6.1-sol",
+      "provider": "openai-codex",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "mode": "subscription_included",
+      "source": "oneshot",
+      "api_calls": 1,
+      "messages": 2,
+      "started_at": 1792119603.6035652
+    },
+    {
+      "session": "20261015_234843_3694c7",
+      "model": "gpt-6.1-sol",
+      "provider": "openai-codex",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "mode": "subscription_included",
+      "source": "oneshot",
+      "api_calls": 2,
+      "messages": 4,
+      "started_at": 1792079323.9957879
+    },
+    {
+      "session": "20261015_234348_11644b",
+      "model": "gpt-6.1-sol",
+      "provider": "openai-codex",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "mode": "subscription_included",
+      "source": "oneshot",
+      "api_calls": 1,
+      "messages": 2,
+      "started_at": 1792079029.8782353
+    }
+  ],
+  "D02_probe_transcripts": {
+    "reply_probe_stdout": "PLAN_LANE_PROBE_OK\n(exit 0; governed profile one-shot; argv: HERMES_HOME=<profiles/hgk-governed> hermes_cli.main -z \"Reply with exactly: PLAN_LANE_PROBE_OK\")\n",
+    "tool_probe_stdout": "PLAN_TOOL_PROBE_OK\n(exit 0; governed profile one-shot that RAN a shell command and echoed its stdout -- proves the PLAN plane can ACT, not only reply; guard allowed the tool call)\n"
+  },
+  "lane_dispatch_declaration_for_PLAN": {
+    "lane": "PLAN",
+    "role_group": "PLAN",
+    "lanes": [
+      "ARCH",
+      "HARD WORK",
+      "THREAT",
+      "EFFECT PLANNING",
+      "RESEARCH",
+      "SYNTHESIS",
+      "EVOLUTION"
+    ],
+    "engine": "hermes",
+    "provider": "opencode-go",
+    "model": "glm-5.3-flash",
+    "canonical_identity": "glm-5.3-flash",
+    "auth": "env_ref:OPENCODE_GO_API_KEY",
+    "oauth": false,
+    "reasoning_effort": "medium",
+    "selection_authority": "owner-order-20261015-plan-model-rebind-glm",
+    "arms": [
+      {
+        "arm": "primary",
+        "provider": "opencode-go",
+        "model": "glm-5.3-flash",
+        "canonical_identity": "glm-5.3-flash",
+        "auth": "env_ref:OPENCODE_GO_API_KEY",
+        "oauth": false,
+        "reasoning_effort": "medium",
+        "default": true
+      },
+      {
+        "arm": "fallback1",
+        "provider": "opencode-go",
+        "model": "deepseek-v4.1-flash",
+        "canonical_identity": "deepseek-v4.1-flash",
+        "auth": "env_ref:OPENCODE_GO_API_KEY",
+        "oauth": false,
+        "default": false,
+        "automatic_selection": true
+      },
+      {
+        "arm": "non_default_operator_selectable",
+        "provider": "openai-codex",
+        "model": "gpt-6.1-sol",
+        "canonical_identity": "gpt-6.1-sol",
+        "auth": "openai_oauth",
+        "oauth": true,
+        "reasoning_effort": "medium",
+        "default": false,
+        "automatic_selection": false,
+        "usable_now": "QUOTA_429_2026-10-15",
+        "note": "prior revision-18 default arm; retained, never auto-selected"
+      }
+    ],
+    "fallbacks": [
+      {
+        "provider": "opencode-go",
+        "model": "deepseek-v4.1-flash",
+        "canonical_identity": "deepseek-v4.1-flash",
+        "auth": "env_ref:OPENCODE_GO_API_KEY",
+        "oauth": false
+      },
+      {
+        "provider": "openai-codex",
+        "model": "gpt-6.1-sol",
+        "canonical_identity": "gpt-6.1-sol",
+        "auth": "openai_oauth",
+        "oauth": true
+      }
+    ],
+    "admission_status": "UNPROVEN"
+  },
+  "sod_plan_vs_verify": {
+    "ok": true,
+    "reason": "SOD_OK glm-5.3-flash != gpt-6.1-sol"
+  },
+  "drift_findings": [
+    {
+      "code": "DRIFT_VALUE",
+      "id": "hermes-codex-lane",
+      "path": "config/hermes-codex-lane.json",
+      "pointer": "/codex_sha256",
+      "expected": "D13914CED6C7AF174D8D638DB938284231227312104B06A25E9608C632A7DAEC",
+      "actual": "e98c516f1c8935789aabe9122ee7e05ec4c3efd1ba6acf179242e031c495b99e",
+      "severity": "error"
+    }
+  ],
+  "reliability_findings": [
+    {
+      "id": "PLAN-DECL-SURFACE-DIVERGENCE",
+      "state": "OPEN-THIS-ROUND -> ChangeSet A",
+      "what": "three declaration surfaces name the owner-mandated arm for the PLAN plane (round role_mandate.json = openai-codex/gpt-6.1-sol medium; config/lane-route-slots.candidate.json PLAN rank 1 = openai-codex/gpt-6.1-sol medium; profiles/hgk-governed/config.yaml = gpt-6.1-sol/openai-codex/medium) while config/model-lane-assignment.json revision 19 still declares the PLAN lane_group default as opencode-go/glm-5.3-flash and marks the GPT arm usable_now=QUOTA_429_2026-10-15. A reader of the two lane-dispatch surfaces therefore believes the PLAN lane runs GLM and that GPT is quota-dead.",
+      "measured_counter_evidence": "the GPT arm served a real PLAN-plane turn this round: profile state.db row above (model=gpt-6.1-sol, billing_provider=openai-codex, billing_base_url=https://chatgpt.com/backend-api/codex, source=oneshot) plus the probe stdout",
+      "why_not_a_registry_reroute": "PLAN is NOT dispatched through scripts/hgk-lane-dispatch.py (its gate_scope is the CODEX-CLI lanes EXECUTE/VERIFY_SECURITY), so the registry route is the LANE-DISPATCH declaration, not the serving surface of the in-Hermes PLAN plane; re-pointing it would also collapse the PLAN != VERIFY SoD pair that the conformance suite asserts. ChangeSet A is therefore ADDITIVE + a stale measured marker correction, not a re-route."
+    }
+  ],
+  "existing_drift_defect": [
+    {
+      "id": "REGISTRY-CODEX-SHA256-STALE-EXPECTATION",
+      "what": "registry projection binding config/hermes-codex-lane.json /codex_sha256 still expects the PRE-repair, wrong digest D13914CE...DAEC while the live config carries the MEASURED true e98c516f...b99e (the previous round repaired the E pin but did not propagate the new expectation to the registry), so check_drift reports one fatal DRIFT_VALUE today.",
+      "state": "fixed by ChangeSet A2 and re-measured"
+    }
+  ],
+  "claim_ceiling": "Availability is measured for the GOVERNED PLAN plane (governed profile + the formal adapter path). The interactive orchestrator session for this round is a DIFFERENT binding surface and is reported separately. Nothing here is acceptance, and no turn in this round resolves canonical acceptance."
+}

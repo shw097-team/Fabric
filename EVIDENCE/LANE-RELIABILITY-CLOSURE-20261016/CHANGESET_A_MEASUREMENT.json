@@ -1,0 +1,37 @@
+{
+  "schema": "HGK-CHANGESET-A-MEASUREMENT/1",
+  "round": "LANE-RELIABILITY-CLOSURE-20261016",
+  "mode": "MIRROR (canonical root untouched by this script)",
+  "scope_authorised": [
+    "A1: additive in_hermes_plan_orchestrator_plane + revision/registry_epoch 19->20",
+    "A2: registry epoch 19->20 + the two epoch bindings + /codex_sha256 -> measured live",
+    "A3: check_drift == [] and check_sod recorded verbatim"
+  ],
+  "scope_refused": "registry routes[] re-route -- a lane-chain rebind, excluded by PLAN.md section 2. The withdrawn draft (specA_mirror.WITHDRAWN_draft1.py) attempted it and was withdrawn before it touched any root.",
+  "defect_F2_repaired": "binding hermes-codex-lane /codex_sha256 expected the PRE-repair digest D13914CE...DAEC while the live config carries e98c516f1c8935789aabe9122ee7e05ec4c3efd1ba6acf179242e031c495b99e",
+  "defect_F1_recorded_not_repaired": "routes[].PLAN = opencode-go/glm-5.3-flash is the single outlier against pool rank-1, sod_invariants/SOD006-C2, the conformance test and the owner mandate; see FINDINGS_F1_PLAN_ROUTE_OUTLIER.md",
+  "pointer_rewrite_rounds": [
+    {
+      "fatal": 0,
+      "rewritten": []
+    }
+  ],
+  "final_drift_fatal": [],
+  "final_drift_all": [],
+  "plan_route_unchanged": {
+    "provider": "opencode-go",
+    "model": "glm-5.3-flash",
+    "reasoning_effort": "medium"
+  },
+  "sod_plan_vs_verify_after": {
+    "ok": true,
+    "reason": "SOD_OK glm-5.3-flash != gpt-6.1-sol",
+    "expected": "SOD_OK -- the lane-dispatch PLAN route is deliberately unchanged by this round"
+  },
+  "assignment_revision": 20,
+  "registry_epoch": 20,
+  "source_of_routes_sha256": "d41f8f8bff41d4338a4b85dab7a60bd2c9c23b2f5f39c8c008e89bf82587bd36",
+  "conformance_exit": 1,
+  "conformance_tail": "test_drift_injection_subcases (tests.test_lane_policy.TestLanePolicyConformance.test_drift_injection_subcases) ... ok\ntest_registry_and_projection_shape (tests.test_lane_policy.TestLanePolicyConformance.test_registry_and_projection_shape) ... FAIL\ntest_sod_and_admission_policy (tests.test_lane_policy.TestLanePolicyConformance.test_sod_and_admission_policy) ... ok\n\n======================================================================\nFAIL: test_registry_and_projection_shape (tests.test_lane_policy.TestLanePolicyConformance.test_registry_and_projection_shape)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Projects\\Agent_Workspace\\HG-KSEOS\\tests\\test_lane_policy.py\", line 109, in test_registry_and_projection_shape\n    self.assertEqual((route[\"provider\"], route[\"model\"]), owner_chain[lane][0],\nAssertionError: Tuples differ: ('opencode-go', 'glm-5.3-flash') != ('openai-codex', 'gpt-6.1-sol')\n\nFirst differing element 0:\n'opencode-go'\n'openai-codex'\n\n- ('opencode-go', 'glm-5.3-flash')\n+ ('openai-codex', 'gpt-6.1-sol') : PLAN rank-1 default must be owner-declared\n\n----------------------------------------------------------------------\nRan 3 tests in 10.885s\n\nFAILED (failures=1)\n",
+  "claim_ceiling": "MIRROR measurement only. It authorises the canonical apply only after the same commands are re-run on the canonical root. Nothing here is acceptance."
+}
