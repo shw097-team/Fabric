@@ -1,0 +1,99 @@
+{
+ "schema": "CNV-EVIDENCE-ARCHIVE-R7R11/ERRATA-AND-ADVISORIES/1",
+ "generated_utc": "2026-10-16T10:49:22.490527+00:00",
+ "why_additive": "the packet's first commit is a frozen snapshot; these corrections are added rather than applied by rewriting it, and none of them changes a round verdict",
+ "items": [
+  {
+   "id": "E1",
+   "class": "RECEIPT_CITATION_INCOMPLETE",
+   "severity": "MINOR",
+   "artifact": "A03_A05_PR_PREFLIGHT.json",
+   "field": "prs.10.scan.hard_findings[0].pre_existing_in_main_at",
+   "claim_as_published": "the hard finding's token pre-exists in origin/main at 1 location",
+   "corrected": "it pre-exists at 2 locations: HG-KSEOS/tests/test_knowledge_memory_poison.py and HG-KSEOS/tools/case_executors_depth.py",
+   "verified_by_round": true,
+   "verification": "scanned all origin/main blobs for the exact 39-byte token; 2 paths match",
+   "verdict_impact": "NONE - the ruling (the PR introduces no new secret) is unchanged and in fact strengthened",
+   "found_by": "swarm lane L1, re-verified by the orchestrator"
+  },
+  {
+   "id": "E2",
+   "class": "MUTABLE_LIVE_OBJECT_HASHED",
+   "severity": "ADVISORY",
+   "artifact": "A00_SOURCE_LEDGER.json",
+   "field": "rows[id=SPINE-DB].sha256 / status",
+   "detail": "records sha256 669dd361084067b3... with status READ_OK against var/shared-spine/hg-kseos.db, a live mutable spine DB whose hash is now 051cfba2fd5ada1c...; a legitimate registrar event wrote to it after the ledger pass",
+   "classification": "STALE_SNAPSHOT_OF_A_MUTABLE_SUBJECT - not corruption and not fabrication",
+   "verified_by_round": true,
+   "recommendation": "rows over mutable subjects should carry subject_mutability: MUTABLE_LIVE plus hashed_at, and must be excluded from any byte-exactness claim",
+   "verdict_impact": "NONE - no round claim rests on that hash",
+   "found_by": "swarm lane L2, re-verified by the orchestrator"
+  },
+  {
+   "id": "E3",
+   "class": "BRANCH_TIP_NOT_SELF_BINDING",
+   "severity": "ADVISORY",
+   "artifact": "publish/PUBLISH_RECEIPT.json",
+   "field": "readback.sha",
+   "detail": "the receipt truthfully binds its own commit; the branch tip then advanced twice (readback receipts, post-merge addendum)",
+   "rule_recorded": "any future 'this branch serves packet X' claim needs a fresh readback",
+   "handled_by": [
+    "REMOTE_READBACK_VERIFY.json",
+    "POST_MERGE_ADDENDUM_RECEIPT.json",
+    "BRANCH_TIP_READBACK.json"
+   ],
+   "verdict_impact": "NONE",
+   "found_by": "swarm lane L3"
+  },
+  {
+   "id": "E4",
+   "class": "HARDCODED_SUBFIELD",
+   "severity": "ADVISORY",
+   "artifact": "a09_kledger_cross_index.py",
+   "field": "line 77 source_linked",
+   "detail": "set True per parsed row, so that sub-field alone cannot fail",
+   "failable_assertions_around_it": [
+    "row count == 20",
+    "K-ID set == exact 20 IDs",
+    "baseline status split == 7/7/6",
+    "EIA matrix row count"
+   ],
+   "classification": "PUBLISHED_PRESENCE_INDICATOR, not a re-verification; the claim it supports is presence, and same_run_retested=0 is disclosed as by-construction",
+   "verdict_impact": "NONE",
+   "found_by": "swarm lane L3"
+  },
+  {
+   "id": "E5",
+   "class": "FIELD_NAME_MISNOMER",
+   "severity": "COSMETIC",
+   "artifact": "A03_A05_PR_PREFLIGHT.json",
+   "field": "prs.*.changed_executable_files",
+   "detail": "the field holds paths that are all mode 100644, i.e. not executable",
+   "correct_field_reading": "changed_path_mode_anomalies: [] and symlink_or_submodule: [] are the substantive fields and are correct",
+   "verdict_impact": "NONE",
+   "found_by": "swarm lane L1"
+  },
+  {
+   "id": "E6",
+   "class": "OFFSET_DEPENDS_ON_MATCHING_RULE",
+   "severity": "ADVISORY",
+   "artifact": "A03_A05_PR_PREFLIGHT.json",
+   "field": "prs.10.scan.hard_findings[0].offset",
+   "detail": "the recorded offset (1808) comes from this round's rule; an independent rule for the same token lands at 1765",
+   "classification": "rule-relative locator, not a precise position; safe for cross-checking only",
+   "verdict_impact": "NONE",
+   "found_by": "swarm lane L1 vs orchestrator re-check"
+  },
+  {
+   "id": "E7",
+   "class": "COUNT_AMBIGUITY",
+   "severity": "COSMETIC",
+   "artifact": "A00_SOURCE_LEDGER.json",
+   "field": "counts",
+   "detail": "46 rows total: READ_OK 44, DIR_PRESENT 1 (OLD-DIR), MISSING 1 (FABRIC-AGENTS). The round summary's phrase '44 sources' meant the READ_OK subset",
+   "verdict_impact": "NONE - the ledger's own counts object is authoritative and self-consistent",
+   "found_by": "orchestrator while reconciling the swarm report"
+  }
+ ],
+ "net_effect_on_round_verdicts": "no verdict changes: 8/8 EVIDENCE_ONLY preflight PASS, claim ceiling CANDIDATE_EVIDENCE_ARCHIVED_ONLY, archive TEMP_CLOSED, production FAIL_CLOSED all stand as published"
+}
