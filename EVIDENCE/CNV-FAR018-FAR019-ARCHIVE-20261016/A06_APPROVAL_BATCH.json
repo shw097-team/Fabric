@@ -1,0 +1,64 @@
+{
+ "schema": "CNV-ARCHIVE-A06-APPROVAL-BATCH/1",
+ "task_id": "CNV-FAR018-FAR019-ARCHIVE-20261016",
+ "generated_utc": "2026-10-16T14:19:50.856005+00:00",
+ "approver_identity": {
+  "login": "shw097",
+  "type": "User",
+  "repo_permissions": {
+   "admin": true,
+   "maintain": true,
+   "push": true,
+   "triage": true,
+   "pull": true
+  },
+  "permission_source": "live GET /repos/shw097-team/Fabric"
+ },
+ "authority": {
+  "order_contract_id": "CNV-FAR018-FAR019-ARCHIVE-20261016",
+  "review_id": "EIA-FABRIC-FAR018-FAR019-ARCHIVE-20261016",
+  "review_sha256": "1ba34b6fb79b490069d932adace647ef636a3e700142736d777f2961e7aa49e7",
+  "owner_instruction": "this session: execute the archive ruling directly and push the implementation and its evidence to the target repository",
+  "max_this_round_claim": "CANDIDATE_EVIDENCE_ARCHIVED_ONLY",
+  "model_go_is_not_approval": true
+ },
+ "batch_scope": "ONE bounded batch: the three frozen candidate-evidence heads below, normal merge only",
+ "prs": {
+  "12": {
+   "number": 12,
+   "url": "https://github.com/shw097-team/Fabric/pull/12",
+   "approved_head": "0a30e5a8f636c4e310958778491bf4154e7caf1e",
+   "allowed_prefix": "EVIDENCE/CNV-EVIDENCE-ARCHIVE-R7R11-20261016/",
+   "declared_scope": "evidence-only; archival scripts not autoexecuted; candidate-only; NO AO/Production; rollback via revert of the merge commit",
+   "declared_changed_files": 33,
+   "Q03": "PASS",
+   "Q04": "PASS",
+   "secrets_scan_verdict": "PASS",
+   "rollback": "git revert <merge_commit_sha> of this PR's merge"
+  },
+  "13": {
+   "number": 13,
+   "url": "https://github.com/shw097-team/Fabric/pull/13",
+   "approved_head": "0fc70f2f050119ada63cad7b4e641c21fdb37fa5",
+   "allowed_prefix": "EVIDENCE/FAR-20261016-018-r7r11-residual-closure-and-handover/",
+   "declared_scope": "evidence-only; archival scripts not autoexecuted; candidate-only; NO AO/Production; rollback via revert of the merge commit",
+   "declared_changed_files": 55,
+   "Q03": "PASS",
+   "Q04": "PASS",
+   "secrets_scan_verdict": "PASS",
+   "rollback": "git revert <merge_commit_sha> of this PR's merge"
+  },
+  "14": {
+   "number": 14,
+   "url": "https://github.com/shw097-team/Fabric/pull/14",
+   "approved_head": "b33b122053d53520809e87674784279097673fc0",
+   "allowed_prefix": "EVIDENCE/FAR-20261019-owner-authorized-closure/",
+   "declared_scope": "evidence-only; archival scripts not autoexecuted; candidate-only; NO AO/Production; rollback via revert of the merge commit",
+   "declared_changed_files": 83,
+   "Q03": "PASS",
+   "Q04": "PASS",
+   "secrets_scan_verdict": "PASS",
+   "rollback": "git revert <merge_commit_sha> of this PR's merge"
+  }
+ }
+}

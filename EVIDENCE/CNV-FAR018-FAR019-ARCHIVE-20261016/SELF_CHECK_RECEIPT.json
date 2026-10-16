@@ -1,0 +1,106 @@
+{
+ "schema": "CNV-ARCHIVE-SELF-CHECK/1",
+ "task_id": "CNV-FAR018-FAR019-ARCHIVE-20261016",
+ "generated_utc": "2026-10-16T14:20:28.176560+00:00",
+ "claim_ceiling": "LOCAL; machine gate only — not an acceptance, approval or Gate",
+ "checks": [
+  {
+   "id": "C01",
+   "verdict": "PASS",
+   "detail": "knowledge base 20/20 declared=20 live_on_disk=20"
+  },
+  {
+   "id": "C02",
+   "verdict": "FAIL",
+   "detail": "compiler verdict=PROMPT_COMPILE_PASS errors=0 contract_sha=b9be427e4d9c"
+  },
+  {
+   "id": "C03",
+   "verdict": "PASS",
+   "detail": "admission verdict=ADMISSION_OK state=WORKORDERS_ADMITTED project=CNV-ARCHIVE-THREE-PRS"
+  },
+  {
+   "id": "C04",
+   "verdict": "FAIL",
+   "detail": "live merged={12: True, 13: True, 14: True} vs receipt sha={12: '-', 13: '-', 14: '-'}"
+  },
+  {
+   "id": "C05",
+   "verdict": "PASS",
+   "detail": "prefix blobs in live main: {12: 33, 13: 55, 14: 83}"
+  },
+  {
+   "id": "C06",
+   "verdict": "PASS",
+   "detail": "scan non_vacuity=PASS clean_hits=0 exposed=0"
+  },
+  {
+   "id": "C07",
+   "verdict": "PASS",
+   "detail": "dispositions=12 unique=12"
+  },
+  {
+   "id": "C08",
+   "verdict": "FAIL",
+   "detail": "readback verdict=None files=None mism=0 missing=0"
+  },
+  {
+   "id": "C09",
+   "verdict": "PASS",
+   "detail": "merge commits visible in main's recent history: {}"
+  },
+  {
+   "id": "C10",
+   "verdict": "PASS",
+   "detail": "approved heads match the order's frozen heads"
+  },
+  {
+   "id": "C11",
+   "verdict": "FAIL",
+   "detail": "publish verdict=None pr=None"
+  },
+  {
+   "id": "C12",
+   "verdict": "FAIL",
+   "detail": "main tip=bcd91043b89b equals PR14 merge commit=- (False)"
+  }
+ ],
+ "passed": 7,
+ "total": 12,
+ "verdict": "PARTIAL",
+ "mutations": {
+  "count": 12,
+  "detected": 10,
+  "not_detected": [
+   {
+    "mutation": "M09",
+    "target": "C08",
+    "where": "readback mismatches",
+    "result": "NOT_DETECTED",
+    "observed": null
+   },
+   {
+    "mutation": "M12",
+    "target": "C11",
+    "where": "publish failed",
+    "result": "NOT_DETECTED",
+    "observed": null
+   }
+  ],
+  "all_detected": false
+ },
+ "live_evidence": {
+  "main_sha": "bcd91043b89b69c9d2f08309e46e31898ac87d89",
+  "pr_merged": {
+   "12": true,
+   "13": true,
+   "14": true
+  },
+  "pr_merge_commit": {
+   "12": "6c25bbe8cf14af544c79b36c4b9c0e84778690b1",
+   "13": "603cb0cb39275b351dd4f5312c723977de2a1349",
+   "14": "bcd91043b89b69c9d2f08309e46e31898ac87d89"
+  },
+  "main_blob_count": 4145
+ }
+}
