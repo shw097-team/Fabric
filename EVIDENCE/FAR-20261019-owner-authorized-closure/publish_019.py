@@ -68,9 +68,10 @@ if prev_tip:
     print("prev pack root histogram:", disc, "| prev tip", (prev_tip or "")[:8])
     if disc:
         top = disc[0][0]
-        # mirror: same root, this round's directory name inside it
-        prefix = f"{top}/FAR-20261019-owner-authorized-closure" if top.lower() != "evidence" \
-            else "evidence/FAR-20261019-owner-authorized-closure"
+        # Mirror the repository's own convention exactly, case included: the previous round's pack lives at
+        # EVIDENCE/<ROUND>, and forcing this to lower case created a case-duplicate directory that an
+        # external reviewer would not find where the convention says it should be.
+        prefix = f"{top}/FAR-20261019-owner-authorized-closure"
 
 files = []
 for p in sorted(ROUND.rglob("*")):
