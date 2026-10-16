@@ -1,0 +1,146 @@
+{
+ "schema": "FAR-20261016-018/SELF-CHECK/1",
+ "checks": [
+  {
+   "id": "S1",
+   "claim": "live named-method route discriminates the round's flow from a control",
+   "verdict": "PASS",
+   "evidence": "positive=NATIVE negative_control=GSTACK"
+  },
+  {
+   "id": "S2",
+   "claim": "contract compiled through all four CAPC gates",
+   "verdict": "PASS",
+   "evidence": "compiler verdict=PROMPT_COMPILE_PASS"
+  },
+  {
+   "id": "S3",
+   "claim": "typed admission admitted work orders for this round",
+   "verdict": "PASS",
+   "evidence": "verdict=ADMISSION_OK workorders_total=5 state=WORKORDERS_ADMITTED project=FAR-018-R7R11-RESIDUAL checkpoint=CK-RESIDUAL-0ACF3896"
+  },
+  {
+   "id": "S4",
+   "claim": "the board was driven, not merely created",
+   "verdict": "PASS",
+   "evidence": "cli_calls=67 cards=17 histogram={\"done\": 4, \"running\": 8, \"blocked\": 5}"
+  },
+  {
+   "id": "S5",
+   "claim": "the change is strict-valid in OpenSpec",
+   "verdict": "PASS",
+   "evidence": "Change 'hgk-far-018-r7r11-residual-closure' is valid"
+  },
+  {
+   "id": "S6",
+   "claim": "EXECUTE lane served the required arm and echoed the nonce",
+   "verdict": "PASS",
+   "evidence": "required=opencode-go/deepseek-v4.1-flash served=opencode-go/deepseek-v4.1-flash exit=0 nonce=True sec=804.28"
+  },
+  {
+   "id": "S7",
+   "claim": "VERIFY lane ran on a DIFFERENT model axis than the writer",
+   "verdict": "PASS",
+   "evidence": "writer=deepseek-v4.1-flash checker=gpt-6.1-sol axis_diverse=True nonce=True"
+  },
+  {
+   "id": "S8",
+   "claim": "the register's counts are self-consistent with its own input",
+   "verdict": "PASS",
+   "evidence": "recomputed=118 file_items=118 w1_self_report_total=118"
+  },
+  {
+   "id": "S9",
+   "claim": "every action the ruling calls executed left its artifact on disk",
+   "verdict": "PASS",
+   "evidence": "present=6/6 missing=[]"
+  },
+  {
+   "id": "S10",
+   "claim": "the non-achieved verdicts are still non-achieved",
+   "verdict": "PASS",
+   "evidence": "{\"full_convergence_verdict\": \"TEMP_CLOSED_CHALLENGE\", \"production_verdict\": \"FAIL_CLOSED\", \"canonical_AO_acceptance\": \"NOT_ISSUED\"}"
+  },
+  {
+   "id": "S11",
+   "claim": "no artifact asserts an unachieved outcome",
+   "verdict": "PASS",
+   "evidence": "scanned=54 hits=[]"
+  },
+  {
+   "id": "S12",
+   "claim": "no credential-shaped token in this round's own new bytes",
+   "verdict": "PASS",
+   "evidence": "hits=[]"
+  },
+  {
+   "id": "S13",
+   "claim": "the single evidence MD exists and its digest is carried by the index",
+   "verdict": "PASS",
+   "evidence": "indexed=True sha_match=True"
+  },
+  {
+   "id": "S14",
+   "claim": "the independent checker returned a verdict without disagreement left unaddressed",
+   "verdict": "PASS",
+   "evidence": "overall=PARTIAL disagreements=0 could_not_verify=3"
+  }
+ ],
+ "summary": {
+  "PASS": 14,
+  "FAIL": 0,
+  "NOT_RUN": 0,
+  "total": 14
+ },
+ "verdict": "PASS",
+ "negative_control": {
+  "mutations": 14,
+  "detected": 14,
+  "not_detected": [],
+  "per_mutation": {
+   "route": [
+    "S1"
+   ],
+   "contract": [
+    "S2"
+   ],
+   "admission": [
+    "S3"
+   ],
+   "kanban": [
+    "S4"
+   ],
+   "openspec": [
+    "S5"
+   ],
+   "execute": [
+    "S6"
+   ],
+   "axis": [
+    "S7"
+   ],
+   "register": [
+    "S8"
+   ],
+   "artifacts": [
+    "S9"
+   ],
+   "nonclaim": [
+    "S10"
+   ],
+   "overclaim": [
+    "S11"
+   ],
+   "secret": [
+    "S12"
+   ],
+   "md": [
+    "S13"
+   ],
+   "verdict": [
+    "S14"
+   ]
+  }
+ },
+ "claim_ceiling": "LOCAL"
+}

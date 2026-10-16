@@ -1,0 +1,76 @@
+{
+  "schema": "FAR018/WRITER-MANIFEST/1",
+  "round": "FAR-20261016-018",
+  "lane": "EXECUTE",
+  "role": "bounded writer",
+  "write_root": "C:/Projects/Agent_Workspace/_handover/FAR-20261016-018-r7r11-residual-closure-and-handover/writer/",
+  "python": "C:/Projects/Agent_Workspace/HG-KSEOS/.venv/Scripts/python.exe",
+  "note": "Each entry names the exact command run for mode, self-test/negative-control, and --help, with the observed exit code and PASS token line.",
+  "deliverables": [
+    {
+      "id": "A1",
+      "relative_path": "writer/checker_isolation_probe.py",
+      "bytes": 8368,
+      "sha256": "2147eccc4410f8f69a3d355cb8e58d3452cef25043bef9e5cc3db4362dc3040e",
+      "runs": [
+        {"mode": "run", "command": "python -B writer/checker_isolation_probe.py", "exit_code": 0, "token_line": "verdict: PASS (baseline write SUCCEED; write DENIED with raw PermissionError [Errno 13]; write SUCCEED after ACE removal; cleanup_verified true)"},
+        {"mode": "--help", "command": "python -B writer/checker_isolation_probe.py --help", "exit_code": 0, "token_line": null},
+        {"mode": "--self-test", "command": "python -B writer/checker_isolation_probe.py --self-test", "exit_code": 0, "token_line": "SELF_TEST=PASS"}
+      ]
+    },
+    {
+      "id": "A2",
+      "relative_path": "writer/self_check_v2.py",
+      "bytes": 8786,
+      "sha256": "81f27680f220f1dcd52ce3dc8db424b0ddd4883ac9b1a5e7e75807b024196d42",
+      "runs": [
+        {"mode": "run", "command": "python -B writer/self_check_v2.py", "exit_code": 0, "token_line": "S8B=PASS (unmodified verdict PASS, stripped verdict FAIL, non_vacuous true)"},
+        {"mode": "--help", "command": "python -B writer/self_check_v2.py --help", "exit_code": 0, "token_line": null},
+        {"mode": "--negative-control", "command": "python -B writer/self_check_v2.py --negative-control", "exit_code": 0, "token_line": "NEGATIVE_CONTROL=PASS"}
+      ]
+    },
+    {
+      "id": "A3",
+      "relative_path": "writer/regen_entry_map.py",
+      "bytes": 8839,
+      "sha256": "dbc69152bd1d579f33c5f582459fbd1371025f045f69eaa9d1f1496937417ce0",
+      "writes": "writer/entry_map.json",
+      "writes_bytes": 4427,
+      "writes_sha256": "dbd6f556e5bf9e743cc3c09368fedc5eb800862a0ac7aaf708ff9d5dd0bc8116",
+      "runs": [
+        {"mode": "run", "command": "python -B writer/regen_entry_map.py", "exit_code": 0, "token_line": "pointers_verified=5 pointers_total=5 coverage_status=PARTIAL"},
+        {"mode": "--help", "command": "python -B writer/regen_entry_map.py --help", "exit_code": 0, "token_line": null},
+        {"mode": "--self-test", "command": "python -B writer/regen_entry_map.py --self-test", "exit_code": 0, "token_line": "SELF_TEST=PASS"}
+      ]
+    },
+    {
+      "id": "A4",
+      "relative_path": "writer/metadata_semantics.py",
+      "bytes": 7676,
+      "sha256": "6df34a59c20e900421325b8ea62176dd94b24c637c28f318edb2abaeaba8d6c8",
+      "writes": "writer/METADATA_SEMANTICS_V2.json",
+      "writes_bytes": 34343,
+      "writes_sha256": "065249f3235658c3c01158af441c5e178c2dfe79fa2c17f1b74587c8c19d25e7",
+      "runs": [
+        {"mode": "run", "command": "python -B writer/metadata_semantics.py", "exit_code": 0, "token_line": "counts MUTABLE_LIVE=5 IMMUTABLE_FILE=41 byte_exactness_claim_true=41 input_unchanged=true"},
+        {"mode": "--help", "command": "python -B writer/metadata_semantics.py --help", "exit_code": 0, "token_line": null},
+        {"mode": "--self-test", "command": "python -B writer/metadata_semantics.py --self-test", "exit_code": 0, "token_line": "SELF_TEST=PASS"}
+      ]
+    },
+    {
+      "id": "A5",
+      "relative_path": "writer/cross_index_v2.py",
+      "bytes": 6413,
+      "sha256": "f10e6c16c2ee22f253e294276858d666e5b4abae217a43cdd602a44653a617f7",
+      "writes": "writer/CROSS_INDEX_V2.json",
+      "writes_bytes": 6701,
+      "writes_sha256": "25582fa269e487bf7e900376eeac50077a8ff7a44e6c150609592e05da69e53e",
+      "runs": [
+        {"mode": "run", "command": "python -B writer/cross_index_v2.py", "exit_code": 0, "token_line": "rows_checked=20 ids_expected=20 ids_found=20 missing_ids=[]"},
+        {"mode": "--help", "command": "python -B writer/cross_index_v2.py --help", "exit_code": 0, "token_line": null},
+        {"mode": "--self-test", "command": "python -B writer/cross_index_v2.py --self-test", "exit_code": 0, "token_line": "SELF_TEST=PASS"}
+      ]
+    }
+  ],
+  "claim_ceiling": "Reported only what the commands printed. No acceptance-report finding is claimed closed; no checker boundary is claimed immutable (A1 explicitly records the ACE-lift limit); nothing is claimed externally accepted."
+}
