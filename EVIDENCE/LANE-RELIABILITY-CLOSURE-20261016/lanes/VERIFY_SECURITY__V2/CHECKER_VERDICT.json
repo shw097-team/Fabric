@@ -1,0 +1,120 @@
+{
+  "schema": "HGK-CHECKER-VERDICT/1",
+  "lane": "VERIFY_SECURITY",
+  "arm": "openai-codex/gpt-6.1-sol",
+  "subject_path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\LANE-RELIABILITY-CLOSURE-20261016\\candidate",
+  "subject_copy_path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\LANE-RELIABILITY-CLOSURE-20261016\\lanes\\VERIFY_SECURITY\\V2\\work\\subject",
+  "subject_digest_recomputed_ok": true,
+  "subject_digest": "c2527970de76aa61879c92b925fe18afde2843328846ea97125cfdf2851b43f7",
+  "subject_file_count": 200,
+  "subject_integrity_notes": "Canonical subject and local copy matched the frozen manifest before and after testing. Aggregate uses manifest entry order; an initial case-sensitive lexical ordering produced a different aggregate, but every recorded file hash matched and the manifest-order aggregate matched.",
+  "claim_B": {
+    "verdict": "AGREE",
+    "cases": {
+      "1": {
+        "exit": 0,
+        "code": null,
+        "ok": true,
+        "effort_verified": true
+      },
+      "2": {
+        "exit": 7,
+        "code": "ERR_MANDATE_EFFORT_UNDECLARED_IN_POOL"
+      },
+      "3": {
+        "exit": 7,
+        "code": "ERR_MANDATE_EFFORT_MISMATCH"
+      },
+      "4": {
+        "exit": 7,
+        "code": "ERR_SERVED_EFFORT_UNVERIFIABLE"
+      },
+      "5": {
+        "exit": 7,
+        "code": "ERR_SERVED_EFFORT_MISMATCH"
+      },
+      "6": {
+        "exit": 0,
+        "code": null,
+        "ok": true,
+        "effort_verified": false
+      }
+    },
+    "precedence_probe": {
+      "exit": 7,
+      "code": "ERR_MANDATE_EFFORT_UNDECLARED_IN_POOL"
+    },
+    "notes": "Independent mandate/pool fixtures drove the production script as subprocesses. All requested assertions matched. Supplying served-effort medium does not bypass an absent pool effort. These are declaration checks, not proof of actual backend effort."
+  },
+  "claim_C": {
+    "verdict": "AGREE",
+    "cases": {
+      "1": {
+        "exit": 0,
+        "action": "allow",
+        "reason": "no-session-id-unattributable"
+      },
+      "2": {
+        "exit": 0,
+        "action": "allow",
+        "reason": "no-session-id-unattributable"
+      },
+      "3": {
+        "exit": 0,
+        "action": "allow",
+        "reason": "no-session-id-unattributable"
+      },
+      "4": {
+        "exit": 0,
+        "action": "deny",
+        "reason": "maker-write-in-governed-round:WO-INDEPENDENT-CHECKER-CONTROL"
+      },
+      "5": {
+        "exit": 0,
+        "action": "allow",
+        "reason": "non-mutating"
+      }
+    },
+    "notes": "Seeded a scratch Shared Spine through its typed API, with a frozen requirement, admitted TaskSpec and created WorkOrder. Binding lookup confirmed sess-maker was the EXECUTE maker. Production controller subprocesses matched every requested assertion. The unbound read case takes the non-mutating early return; it does not establish binding-lookup behavior for unbound writes."
+  },
+  "named_suite": {
+    "exit": 0,
+    "ran": "Ran 71 tests in 21.030s",
+    "failures": [],
+    "raw_tail": ".......................................................................\n----------------------------------------------------------------------\nRan 71 tests in 21.030s\n\nOK\n"
+  },
+  "registry_sweep": {
+    "exit": 0,
+    "fatal": [
+      {
+        "code": "DRIFT_VALUE",
+        "id": "hermes-codex-lane",
+        "path": "config/hermes-codex-lane.json",
+        "pointer": "/codex_sha256",
+        "expected": "D13914CED6C7AF174D8D638DB938284231227312104B06A25E9608C632A7DAEC",
+        "actual": "e98c516f1c8935789aabe9122ee7e05ec4c3efd1ba6acf179242e031c495b99e",
+        "severity": "error"
+      }
+    ],
+    "epoch": 19,
+    "plan_route": {
+      "provider": "opencode-go",
+      "model": "glm-5.3-flash"
+    },
+    "notes": "PLAN route reported without judgment, as instructed. Successful sweep process exit does not mean an empty fatal list."
+  },
+  "disagreements": [
+    "Registry integrity is not clean: the sweep returned a fatal codex_sha256 drift finding despite process exit success."
+  ],
+  "uncertainties": [],
+  "falsification_findings": [
+    {
+      "probe": "mandate medium, pool effort absent, served-effort medium",
+      "exit": 7,
+      "code": "ERR_MANDATE_EFFORT_UNDECLARED_IN_POOL",
+      "interpretation": "Missing pool effort is refused before served-effort comparison."
+    }
+  ],
+  "accepted": false,
+  "claim_ceiling": "ADVISORY: this is an independent re-derivation over a frozen subject. It is not an OracleReceipt, not an acceptance, and it authorises no promotion or merge."
+}

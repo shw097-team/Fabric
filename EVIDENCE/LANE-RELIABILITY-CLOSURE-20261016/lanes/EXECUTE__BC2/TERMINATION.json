@@ -1,0 +1,35 @@
+{
+  "schema": "HGK-LANE-ATTEMPT-TERMINATION/1",
+  "round": "LANE-RELIABILITY-CLOSURE-20261016",
+  "lane": "EXECUTE",
+  "attempt": "BC2",
+  "outcome": "TERMINATED_BY_ORCHESTRATOR_AFTER_MEASURED_WEDGE",
+  "attempt_started_local": "2026-10-16T11:29:58+08:00",
+  "attempt_terminated_local": "2026-10-16T11:38:15+08:00",
+  "terminated_pids": {"codex.exe": 14476, "hgk-lane-dispatch.py (python)": 20028, "run_lane.py (python)": 5416},
+  "kill_command": "Stop-Process -Id 14476,20028,5416 -Force  (PowerShell; taskkill //PID is mangled by MSYS and its error text reads like a missing process)",
+  "measurements_that_justified_termination": {
+    "child_process": "codex.exe pid 14476, spawned 2026-10-16T11:29:58, cmdline '--model opencode-go/deepseek-v4.1-flash --sandbox workspace-write --ask-for-approval never'",
+    "cpu_frozen": "6.61 s of CPU at two reads 20 s apart (no progress), WorkingSet64 126992384 -> 127012864 bytes",
+    "no_socket": "netstat -ano for pid 14476 returned no entries (CR stripped first, so this is not the anchored-grep false negative)",
+    "no_writes": "the only write in the whole attempt was candidate/tests/test_lane_effort_enforcement.py at 11:30:24; nothing afterwards for ~6 minutes",
+    "no_model_traffic": "the relay usage ledger's last rows for this lane's arm are at ~11:34:49 local; nothing newer",
+    "lane_spawn_was_healthy": "the dispatch identity gate reported rank-1 opencode-go/deepseek-v4.1-flash with requirement 'none' and ok true before the spawn"
+  },
+  "what_the_attempt_DID_land": {
+    "file": "var/LANE-RELIABILITY-CLOSURE-20261016/candidate/tests/test_lane_effort_enforcement.py",
+    "bytes": 5161,
+    "sha256_prefix": "18742bf07b4055ae44733829",
+    "verified_by_orchestrator": "compiles (py_compile) and declares exactly the 6 intended tests in class LaneEffortEnforcement; the ChangeSet-B hunks were NOT applied by this attempt"
+  },
+  "receipt_note": "The orchestrator stopped the dispatch and runner processes themselves, so this attempt has NO dispatch.json / exit.json: the runner never reached its own write-out. This record is the receipt, and the absence of the runner's file is recorded rather than papered over.",
+  "not_attributable_to_the_model_or_the_arm": "BC1 already proved the arm serves (usage_receipt_ok true, usage_provider opencode-go, usage_model deepseek-v4.1-flash). BC1 and BC2 share one failure shape: the turn writes its first file, then starts executing commands and stops making progress. That is a TURN-SHAPING defect, not a lane or model-selection defect.",
+  "hypothesis_tested_and_DISCARDED": {
+    "candidate": "runtime_role_binding_assert.py shells out to hgk-lane-toolchain.py --resolve (line 168-170) and an earlier resolve run had timed out at 240 s, so the in-turn test runs would hang",
+    "test": "direct timed runs with native paths: 'hgk-lane-toolchain.py --resolve --declaration config/hermes-codex-lane.json' -> exit 0 in 1 s; the assert script with a native fixture -> exit 0 in 1 s",
+    "verdict": "DISCARDED. The earlier 240 s timeout was not reproducible; the resolver is not the cause."
+  },
+  "remediation_applied_next": "attempt BC3 is EDIT-ONLY: the writer applies patches and stops; the orchestrator owns the test oracle and runs every suite outside the turn. Removing command execution from the turn removes the failure surface the two attempts shared.",
+  "third_party_processes_NOT_touched": "codex.exe pids 16656/17620 (desktop app) and pid 2544 (another project's lane, launched from a _handover/<other-round> wrapper) were left alone: the parent chains identify other owners.",
+  "claim_ceiling": "CANDIDATE_ONLY. This is an orchestrator-recorded termination of its OWN attempt with the measurements that justified it; it is evidence about lane-turn reliability and it is not an acceptance of anything."
+}

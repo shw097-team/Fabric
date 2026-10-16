@@ -1,0 +1,117 @@
+{
+  "schema": "HGK-CHECKER-VERDICT/1",
+  "lane": "VERIFY_SECURITY",
+  "arm": "openai-codex/gpt-6.1-sol",
+  "subject_path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\LANE-RELIABILITY-CLOSURE-20261016\\candidate",
+  "tested_copy_path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\LANE-RELIABILITY-CLOSURE-20261016\\lanes\\VERIFY_SECURITY\\V1\\work\\subject",
+  "subject_digest_recomputed_ok": true,
+  "subject_digest": "c2527970de76aa61879c92b925fe18afde2843328846ea97125cfdf2851b43f7",
+  "file_count": 200,
+  "digest_notes": "Frozen subject and copy both match the recorded aggregate using manifest order and independently using case-insensitive path sorting; no manifest file hashes differ. Case-sensitive sorting produces a different aggregate solely because of ordering.",
+  "claim_B": {
+    "verdict": "UNCERTAIN",
+    "cases": {
+      "1": {
+        "exit": null,
+        "code": null
+      },
+      "2": {
+        "exit": null,
+        "code": null
+      },
+      "3": {
+        "exit": null,
+        "code": null
+      },
+      "4": {
+        "exit": null,
+        "code": null
+      },
+      "5": {
+        "exit": null,
+        "code": null
+      },
+      "6": {
+        "exit": null,
+        "code": null
+      }
+    },
+    "precedence_probe": {
+      "exit": null,
+      "code": null
+    },
+    "notes": "Production source contains the effort checks, but no fixture subprocess cases were executed. Creating mandate/pool files conflicts with the explicit HARD RULE forbidding any file writes. Static inspection is not substituted for observed exits or refusal codes."
+  },
+  "claim_C": {
+    "verdict": "UNCERTAIN",
+    "cases": {
+      "1": {
+        "exit": 0,
+        "action": "allow",
+        "reason": "no-session-id-unattributable"
+      },
+      "2": {
+        "exit": 0,
+        "action": "allow",
+        "reason": "no-session-id-unattributable"
+      },
+      "3": {
+        "exit": 0,
+        "action": "allow",
+        "reason": "no-session-id-unattributable"
+      },
+      "4": {
+        "exit": null,
+        "action": null,
+        "reason": null
+      },
+      "5": {
+        "exit": 0,
+        "action": "allow",
+        "reason": "non-mutating"
+      }
+    },
+    "notes": "Actual JSON-stdin subprocess probes used the default protected root and a target inside the subject copy, without writing that target. They did not use the requested seeded Shared Spine or scratch hermes_home. The bound-maker denial positive control was not executed because seeding requires file writes. The observed allows therefore do not establish the full claim."
+  },
+  "named_suite": {
+    "exit": null,
+    "ran": null,
+    "failures": null,
+    "status": "NOT_RUN",
+    "raw_tail": null,
+    "notes": "The suite was not launched: inspected tests create temporary directories and write fixture files, contradicting the explicit no-file-write HARD RULE. No suite PASS or FAIL is claimed."
+  },
+  "registry_sweep": {
+    "exit": 0,
+    "fatal": [
+      {
+        "code": "DRIFT_VALUE",
+        "id": "hermes-codex-lane",
+        "path": "config/hermes-codex-lane.json",
+        "pointer": "/codex_sha256",
+        "expected": "D13914CED6C7AF174D8D638DB938284231227312104B06A25E9608C632A7DAEC",
+        "actual": "e98c516f1c8935789aabe9122ee7e05ec4c3efd1ba6acf179242e031c495b99e",
+        "severity": "error"
+      }
+    ],
+    "epoch": 19,
+    "plan_route": {
+      "provider": "opencode-go",
+      "model": "glm-5.3-flash"
+    }
+  },
+  "disagreements": [
+    "Registry integrity sweep returned a fatal DRIFT_VALUE finding; its process exiting successfully does not establish registry integrity."
+  ],
+  "uncertainties": [
+    "The brief simultaneously forbids all file writes and requires writing fixtures, a test driver, and a verdict file. The explicit HARD RULE was preserved: no files were written.",
+    "Claim B cases and precedence probe remain unexecuted.",
+    "Claim C lacks the seeded bound-maker denial positive control.",
+    "Named-suite results remain unverified."
+  ],
+  "falsification_findings": [
+    "The executed registry sweep returned a fatal toolchain digest mismatch."
+  ],
+  "accepted": false,
+  "claim_ceiling": "ADVISORY: this is an independent re-derivation over a frozen subject. It is not an OracleReceipt, not an acceptance, and it authorises no promotion or merge."
+}
