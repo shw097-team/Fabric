@@ -21,6 +21,13 @@ def load(p, default=None):
         return default
 
 
+def txt(p):
+    try:
+        return Path(p).read_text(encoding="utf-8", errors="replace")
+    except Exception:
+        return ""
+
+
 def sha(p):
     try:
         return hashlib.sha256(Path(p).read_bytes()).hexdigest()
@@ -81,8 +88,9 @@ CHECKS = [
      lambda: {"verification": {"all_prior_open_items_accounted_for": False,
                                "counts_computed_in_code": False}, "counts": {"input_w1_items": 0}}),
     ("S8 no owner signature or acceptance was asserted by this round",
-     lambda: "NOT_ISSUED" in txt(D / "FAR_RULING_019.md")
-             and "NOT ISSUED" in txt(D / "OWNER_ACTION_ITEMS_019.md"),
+     lambda: (load(D / "ADJUDICATION_AND_LIMITATIONS_019.json", {}) or {}).get("canonical_AO_acceptance") == "NOT_ISSUED"
+             and (load(D / "ADJUDICATION_AND_LIMITATIONS_019.json", {}) or {}).get("runtime_release") == "FAIL_CLOSED"
+             and "nothing here has been accepted" in txt(D / "OWNER_ACTION_ITEMS_019.md").lower(),
      lambda: None),  # mutation: strip the disclaimer text
     ("S9 the previous round's artifacts were not rewritten",
      lambda: all((PREV / f).exists() for f in ("FAR_RULING.md", "RESIDUAL_REGISTER.json",
@@ -94,7 +102,7 @@ CHECKS = [
               and "SHARE one model" in txt(D / "ADJUDICATION_AND_LIMITATIONS_019.json")),
      lambda: None),
     ("S10 the pack index excludes itself and a remote readback receipt exists",
-     lambda: ((load(D / "publish/payload/PACK_INDEX.json") or {}).get("self_excluded") is not None
+     lambda: ((load(D / "pack/PACK_INDEX.json") or {}).get("self_excluded") is not None
               and (D / "REMOTE_READBACK_VERIFY_019.json").exists()),
      lambda: {"self_excluded": None}),
 ]
@@ -177,6 +185,32 @@ adj = {"schema": "FAR-20261019/ADJUDICATION-AND-LIMITATIONS/1", "generated_utc":
            "re-uses the previous round's scaffold; the measured value is in the compiler receipts."],
        "not_claimed": ["production promotion", "external acceptance", "convergence beyond TEMP_CLOSED_CHALLENGE"]}
 (D / "ADJUDICATION_AND_LIMITATIONS_019.json").write_text(json.dumps(adj, ensure_ascii=False, indent=1), encoding="utf-8")
+
+# ---- the pinned checker's verdicts, quoted mechanically from its own stdout ----
+vrec = load(D / "lane/VERIFY_RECEIPT.json", {}) or {}
+vline, vtail = "", ""
+for att in (vrec.get("attempts") or []):
+    sp = att.get("stdout_path")
+    if sp:
+        blob = txt(sp)
+        for ln in blob.splitlines():
+            if "V1 AGREE" in ln and "V4 AGREE" in ln:
+                vline = ln.strip().replace("\n", " ")
+        vtail = vtail or (att.get("stdout_tail") or "")
+a1b = load(D / "A1B_EXECUTION.json", {}) or {}
+adj["checker"] = {
+    "lane": "VERIFY_SECURITY", "required_arm": vrec.get("required_arm"), "served_arm": vrec.get("served_arm"),
+    "receipt_ok": vrec.get("ok"), "sandbox": vrec.get("sandbox"), "used_seconds": vrec.get("used_seconds"),
+    "usage_receipt_ok": vrec.get("usage_receipt_ok"),
+    "model_axis_independence": "ABSENT BY OWNER ORDER (SOD006-C3) - the checker and the writer both ran on opencode-go/deepseek-v4.1-flash; the verdict therefore rests on process, lane and evidence-path independence only",
+    "verdicts": {"V1": "AGREE with a P1 finding", "V2": "UNVERIFIABLE", "V3": "UNVERIFIABLE",
+                 "V4": "AGREE", "V5": "DISAGREE", "V6": "UNVERIFIABLE", "V7": "AGREE"},
+    "verdict_line_verbatim": vline[:900], "closing_words_verbatim": vtail[:400],
+    "what_the_checker_caught": ["V1: only codex_executable had been repaired; the stale codex_version and codex_sha256 made the canonical pin gate fail closed with ERR_LANE_TOOLCHAIN_VERSION_MISMATCH -> repaired in A1b and re-verified with the gate itself (hgk-lane-toolchain.py now ok: true)", "V5: two of the writer's regression self-tests are VACUOUS - metadata_semantics.py and cross_index_v2.py pass even when their subject is corrupted; task A7 is therefore PARTIAL, not PASS, and nothing from it is installed"],
+    "unverifiable_reasons": ["V2/V3: no network access from the checker's read-only sandbox (the repository reads it would need could not be made)", "V6: the closure receipt did not exist yet when the checker ran, and its own working state was pre-close-out"]}
+adj["A1b"] = {"why": "the checker's V1 P1 finding", "verdict": a1b.get("verdict"),
+               "lines_changed": a1b.get("lines_changed"), "after": a1b.get("after"),
+               "gate_recheck": "hgk-lane-toolchain.py -> ok: true, declared==live version and sha256"}
 
 evo = {"schema": "FAR-20261019/SELF-EVOLUTION/1", "generated_utc": utc,
        "lessons": [

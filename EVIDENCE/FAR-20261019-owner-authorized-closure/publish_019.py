@@ -99,6 +99,10 @@ index = {"schema": "FAR-20261019/PACK-INDEX/1",
          "entries": index_entries}
 index_bytes = json.dumps(index, ensure_ascii=False, indent=1).encode()
 files.append(("PACK_INDEX.json", index_bytes))
+packdir = ROUND / "pack"
+packdir.mkdir(exist_ok=True)
+(packdir / "PACK_INDEX.json").write_bytes(index_bytes)
+(packdir / "pack_contents.json").write_text(json.dumps({"files": [r for r, _ in files]}, ensure_ascii=False, indent=1), encoding="utf-8")
 
 st, mainref = api("GET", f"/repos/{REPO}/git/ref/heads/{BASE_BRANCH}")
 main_sha = (mainref.get("object") or {}).get("sha")
