@@ -1,0 +1,1048 @@
+{
+  "named_tests_confined": {
+    "command": [
+      "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+      "-B",
+      "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R9\\R9_VERIFY\\safe_tests.py"
+    ],
+    "cwd": "C:\\Projects\\Agent_Workspace\\PIPD\\worktrees\\r8-wt",
+    "exit": 1,
+    "stdout": "",
+    "stderr": "setUpClass (test_s4ext_trace_closure.LegalTraceStillPassesTests) ... ERROR\ntest_cli_smoke_runs (test_tooling_executes.TestToolingExecutes.test_cli_smoke_runs)\nThe 13-command CLI surface must actually execute, not just import. ... ok\n\n======================================================================\nERROR: setUpClass (test_s4ext_trace_closure.LegalTraceStillPassesTests)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Projects\\Agent_Workspace\\PIPD\\worktrees\\r8-wt\\tests\\test_s4ext_trace_closure.py\", line 87, in setUpClass\n    _init_git_repo(cls.repo)\n  File \"C:\\Projects\\Agent_Workspace\\PIPD\\worktrees\\r8-wt\\tests\\test_s4ext_trace_closure.py\", line 60, in _init_git_repo\n    g(\"init\", \"-q\")\n  File \"C:\\Projects\\Agent_Workspace\\PIPD\\worktrees\\r8-wt\\tests\\test_s4ext_trace_closure.py\", line 56, in g\n    subprocess.run([\"git\", \"-C\", str(path).replace(\"\\\\\", \"/\"), *a],\n  File \"C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R9\\R9_VERIFY\\safe_tests.py\", line 19, in readonly_git_run\n    raise RuntimeError('R9V_FORBIDDEN_GIT_WRITE: ' + repr(command))\nRuntimeError: R9V_FORBIDDEN_GIT_WRITE: ['git', '-C', 'C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015-R9/R9_VERIFY/tmp/tmpso_m_3qp/repo', 'init', '-q']\n\n----------------------------------------------------------------------\nRan 1 test in 18.878s\n\nFAILED (errors=1)\n"
+  },
+  "adapted_fixture_tests": {
+    "command": [
+      "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+      "-B",
+      "-c",
+      "import runpy; source=open(r'C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R9\\R9_VERIFY\\safe_tests.py',encoding='utf-8').read(); source=source.replace('suite = unittest.TestSuite([',\"def filesystem_fixture(path):\\n    path.mkdir(parents=True, exist_ok=True)\\n    (path / 'README.md').write_text('seed\\\\n', encoding='utf-8')\\nmodules[0]._init_git_repo = filesystem_fixture\\nsuite = unittest.TestSuite([\"); exec(compile(source,r'C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R9\\R9_VERIFY\\safe_tests.py','exec'),{'__file__':r'C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R9\\R9_VERIFY\\safe_tests.py','__name__':'__main__'})"
+    ],
+    "cwd": "C:\\Projects\\Agent_Workspace\\PIPD\\worktrees\\r8-wt",
+    "exit": 0,
+    "stdout": "",
+    "stderr": "test_real_trace_link_is_legal_beside_its_endpoints (test_s4ext_trace_closure.LegalTraceStillPassesTests.test_real_trace_link_is_legal_beside_its_endpoints)\nA TraceLink bundled WITH the PI it points at resolves on both sides. ... ok\ntest_cli_smoke_runs (test_tooling_executes.TestToolingExecutes.test_cli_smoke_runs)\nThe 13-command CLI surface must actually execute, not just import. ... ok\n\n----------------------------------------------------------------------\nRan 2 tests in 17.784s\n\nOK\n"
+  },
+  "apply_receipt_comparison": {
+    "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R9\\WS_B\\APPLY_RECEIPT.json",
+    "applied": true,
+    "src": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R9\\FAR\\ws3\\repaired_candidate",
+    "recorded_dst_files_total": 127,
+    "actual_dst_files_total": 131,
+    "rows": [
+      {
+        "path": "SKILL.md",
+        "actual": "60a4d9b3c79fc9e72cd82d587fc8a0c3d2513ac4a2b74ecb3040fb587450d960",
+        "recorded_after": "60a4d9b3c79fc9e72cd82d587fc8a0c3d2513ac4a2b74ecb3040fb587450d960",
+        "match": true
+      },
+      {
+        "path": "references/codex-canary-powershell.md",
+        "actual": "eca46327744909e45d8bf81273df85dc8f78e764aceb231dd69f16ce4d35b62d",
+        "recorded_after": "eca46327744909e45d8bf81273df85dc8f78e764aceb231dd69f16ce4d35b62d",
+        "match": true
+      },
+      {
+        "path": "references/codex-lane-log-liveness-markers.md",
+        "actual": "a69c18acb734855e9e39f4dd64aace8ea14fd96581e36f896da8abb8fcaece45",
+        "recorded_after": "a69c18acb734855e9e39f4dd64aace8ea14fd96581e36f896da8abb8fcaece45",
+        "match": true
+      },
+      {
+        "path": "references/codex-sealed-lane-windows.md",
+        "actual": "d67e39b149150f831941d26dcb98b96df7dc6ce711f15aba9b80e7e22fb7918b",
+        "recorded_after": "d67e39b149150f831941d26dcb98b96df7dc6ce711f15aba9b80e7e22fb7918b",
+        "match": true
+      },
+      {
+        "path": "references/codex-workspace-write.md",
+        "actual": "bad62a779ef43877c4528a09b49983005c52b302a26ea0fe1acc40f952d23b3c",
+        "recorded_after": "bad62a779ef43877c4528a09b49983005c52b302a26ea0fe1acc40f952d23b3c",
+        "match": true
+      },
+      {
+        "path": "references/external-acceptance-single-md-closure.md",
+        "actual": "0ea33098e31835c6e8938ad6f27519d703282c87cce01762c07d20287406865f",
+        "recorded_after": "0ea33098e31835c6e8938ad6f27519d703282c87cce01762c07d20287406865f",
+        "match": true
+      },
+      {
+        "path": "references/external-challenge-evidence-closure-far.md",
+        "actual": "870c322cb5ef870e0594bf8dc5d02b6fb78e2d715745691feb970d1933572114",
+        "recorded_after": "870c322cb5ef870e0594bf8dc5d02b6fb78e2d715745691feb970d1933572114",
+        "match": true
+      },
+      {
+        "path": "references/external-challenge-review-closure.md",
+        "actual": "875d5d45b03c881c2b06afe3c279443e03fd13820cb4702fbbe5d1581f53ecdc",
+        "recorded_after": "875d5d45b03c881c2b06afe3c279443e03fd13820cb4702fbbe5d1581f53ecdc",
+        "match": true
+      },
+      {
+        "path": "references/external-single-md-mandatory-route.md",
+        "actual": "c68e52019cc65d61222aea114c39aa45190ddfc570a878a2c7ca881900883fd6",
+        "recorded_after": "c68e52019cc65d61222aea114c39aa45190ddfc570a878a2c7ca881900883fd6",
+        "match": true
+      },
+      {
+        "path": "references/external-submission-gates.md",
+        "actual": "c3eaf647d1c5f2e25ae075ac5ff096ff35a7ded26ebce33de912027a5016b83e",
+        "recorded_after": "c3eaf647d1c5f2e25ae075ac5ff096ff35a7ded26ebce33de912027a5016b83e",
+        "match": true
+      },
+      {
+        "path": "references/topics/codex-lane-execution-and-workspace-write.md",
+        "actual": "50bb3325e38d17e8f5b2cf7de7c9075441364cb775ebd29c6aee47801bd45b18",
+        "recorded_after": "50bb3325e38d17e8f5b2cf7de7c9075441364cb775ebd29c6aee47801bd45b18",
+        "match": true
+      },
+      {
+        "path": "references/topics/construction-wave-and-remaining-procedures.md",
+        "actual": "79b539d0065902a16e5a52b91ae89eb8c2bf6b6876c57b9c1008a9fe2a4fa5b3",
+        "recorded_after": "79b539d0065902a16e5a52b91ae89eb8c2bf6b6876c57b9c1008a9fe2a4fa5b3",
+        "match": true
+      },
+      {
+        "path": "references/topics/external-evidence-closure.md",
+        "actual": "c388431aac767a189627e318dbaa9a1bbed4f54d438ef99883811b387434cf66",
+        "recorded_after": "c388431aac767a189627e318dbaa9a1bbed4f54d438ef99883811b387434cf66",
+        "match": true
+      },
+      {
+        "path": "references/topics/lane-bootstrap-and-guard-notes.md",
+        "actual": "e95918620e2a979f2152b32a995df2c37271f7b935733b97ff9b5cd12a44d833",
+        "recorded_after": "e95918620e2a979f2152b32a995df2c37271f7b935733b97ff9b5cd12a44d833",
+        "match": true
+      },
+      {
+        "path": "references/__pycache__/fda_guard_hook.cpython-311.pyc",
+        "actual": "096208eb1b38e03ed778dcc8c60b456a8a7c9abb3ea555803ddc6065058bafd8",
+        "recorded_after": "096208eb1b38e03ed778dcc8c60b456a8a7c9abb3ea555803ddc6065058bafd8",
+        "match": true
+      },
+      {
+        "path": "references/__pycache__/fda_guard_hook.cpython-312.pyc",
+        "actual": "47b4516f355ea4eed776097e4adb271bf2b9c1aff31b970a1a214e05e889ada0",
+        "recorded_after": "47b4516f355ea4eed776097e4adb271bf2b9c1aff31b970a1a214e05e889ada0",
+        "match": true
+      },
+      {
+        "path": "references/__pycache__/fda_guard_mint.cpython-311.pyc",
+        "actual": "7cb7449ec51204761f2c9b8110f0cbd5e18fce94b79a23028f3f114299820bf2",
+        "recorded_after": "7cb7449ec51204761f2c9b8110f0cbd5e18fce94b79a23028f3f114299820bf2",
+        "match": true
+      },
+      {
+        "path": "references/__pycache__/fda_guard_mint.cpython-312.pyc",
+        "actual": "cce3271dc1604ee86e5428a6e2dbd69f6746f3e6432150e3f5da8a676205e777",
+        "recorded_after": "cce3271dc1604ee86e5428a6e2dbd69f6746f3e6432150e3f5da8a676205e777",
+        "match": true
+      },
+      {
+        "path": "references/__pycache__/fda_preflight.cpython-311.pyc",
+        "actual": "16a7b7890de9746d3f0d99408d373f4dd484ea98dbb46f6e31bac6ee3d5360d5",
+        "recorded_after": "16a7b7890de9746d3f0d99408d373f4dd484ea98dbb46f6e31bac6ee3d5360d5",
+        "match": true
+      },
+      {
+        "path": "references/__pycache__/fda_preflight.cpython-312.pyc",
+        "actual": "c83d339ad3e75fa6e5862fa1c953ab6e56f47ddfa8257d5ec65d1530b637e9ba",
+        "recorded_after": "c83d339ad3e75fa6e5862fa1c953ab6e56f47ddfa8257d5ec65d1530b637e9ba",
+        "match": true
+      },
+      {
+        "path": "references/artefact-disposal-and-cwd-locks.md",
+        "actual": "0f17fda9ab49dcb18093c85d2c222501937e521a40c4f25308c2a8375c9cbf27",
+        "recorded_after": "0f17fda9ab49dcb18093c85d2c222501937e521a40c4f25308c2a8375c9cbf27",
+        "match": true
+      },
+      {
+        "path": "references/bundle-specification-discipline.md",
+        "actual": "08335d04649e4f80dd93ff71c0df663be865c9efeee6b3f128aceaf1bb98a507",
+        "recorded_after": "08335d04649e4f80dd93ff71c0df663be865c9efeee6b3f128aceaf1bb98a507",
+        "match": true
+      },
+      {
+        "path": "references/candidate-apply-gates.md",
+        "actual": "396736cec9c1a1dc2e1e1f319dfd23abde607b4bce633524b033bb08c240fa3e",
+        "recorded_after": "396736cec9c1a1dc2e1e1f319dfd23abde607b4bce633524b033bb08c240fa3e",
+        "match": true
+      },
+      {
+        "path": "references/fabric-rule-to-code-gap-and-invariant-spoof.md",
+        "actual": "2e85122f34e5cef865655503a16ea240fb8f946aeb39eb78517f590b322fda16",
+        "recorded_after": "2e85122f34e5cef865655503a16ea240fb8f946aeb39eb78517f590b322fda16",
+        "match": true
+      },
+      {
+        "path": "references/fda-authorization-gate.md",
+        "actual": "5e752f2e94fa79686b89d95d0f05b62fe3272e38a54f8d0cc9c666400393df8d",
+        "recorded_after": "5e752f2e94fa79686b89d95d0f05b62fe3272e38a54f8d0cc9c666400393df8d",
+        "match": true
+      },
+      {
+        "path": "references/guard-false-positives.md",
+        "actual": "da5ffb69a886b5b65d4788c4239f3c8364d3c9f48fab819b68201074ed7d58ba",
+        "recorded_after": "da5ffb69a886b5b65d4788c4239f3c8364d3c9f48fab819b68201074ed7d58ba",
+        "match": true
+      },
+      {
+        "path": "references/independent-verifier-lane-pitfalls.md",
+        "actual": "889adc7dcdec37e63bf002a12f34daaaa4135fec8cb411b14b831ac74232e7cd",
+        "recorded_after": "889adc7dcdec37e63bf002a12f34daaaa4135fec8cb411b14b831ac74232e7cd",
+        "match": true
+      },
+      {
+        "path": "references/interrupted-lane-recovery-and-officer-invocation.md",
+        "actual": "7272c92ffcbafbb174df4b0517e0b8563aab9a9819979ac75dbe7fb9943c41aa",
+        "recorded_after": "7272c92ffcbafbb174df4b0517e0b8563aab9a9819979ac75dbe7fb9943c41aa",
+        "match": true
+      },
+      {
+        "path": "references/oneshot-lane-liveness-and-model-proof.md",
+        "actual": "c8a30f8ecc8cdd1b5e6cb8e427885f9c1fe35371c0e1fba4eab8792ed24f63c7",
+        "recorded_after": "c8a30f8ecc8cdd1b5e6cb8e427885f9c1fe35371c0e1fba4eab8792ed24f63c7",
+        "match": true
+      },
+      {
+        "path": "references/oversized-skill-split-notes.md",
+        "actual": "323b79c35933f18238d415fa2266ce51aebf9681fddda3434cc0a584c790a766",
+        "recorded_after": "323b79c35933f18238d415fa2266ce51aebf9681fddda3434cc0a584c790a766",
+        "match": true
+      },
+      {
+        "path": "references/plan-model-fallback.md",
+        "actual": "a1e32faff56f08c432edc40637f79f11fe7b9dbedf088c34aa42bc8e5c2f8dc9",
+        "recorded_after": "a1e32faff56f08c432edc40637f79f11fe7b9dbedf088c34aa42bc8e5c2f8dc9",
+        "match": true
+      },
+      {
+        "path": "references/product-branch-write-set-gates.md",
+        "actual": "e59968d8fb23f18a9feb7aec70938942bc26e32a41eafcbf96fe06a88f2d550f",
+        "recorded_after": "e59968d8fb23f18a9feb7aec70938942bc26e32a41eafcbf96fe06a88f2d550f",
+        "match": true
+      },
+      {
+        "path": "references/proportional-runtime-config-closure.md",
+        "actual": "f614c9335cb383851cc3369ecf24471d32b9b73eaefe1bcad21413c4d110108a",
+        "recorded_after": "f614c9335cb383851cc3369ecf24471d32b9b73eaefe1bcad21413c4d110108a",
+        "match": true
+      },
+      {
+        "path": "references/verify-lane-must-be-pinned-oneshot.md",
+        "actual": "d2f81f887e20683c63f3994a405c4c592e7f318fd9b1d1b5d1ed92e99e21d0d5",
+        "recorded_after": "d2f81f887e20683c63f3994a405c4c592e7f318fd9b1d1b5d1ed92e99e21d0d5",
+        "match": true
+      },
+      {
+        "path": "references/verifying-lane-declaration-changes.md",
+        "actual": "9c92778a39f959e1d61fe47c60af5afe671a8a119e8d289021cdac016060bab9",
+        "recorded_after": "9c92778a39f959e1d61fe47c60af5afe671a8a119e8d289021cdac016060bab9",
+        "match": true
+      }
+    ]
+  },
+  "preimage": {
+    "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R9\\WS_B\\preimage\\SKILL.md",
+    "exists": true,
+    "bytes": 105116,
+    "sha256": "174df0185026de09c673b92d1df5b8f01dcb35cf0cf7facbbdf095b368fdf9e4"
+  },
+  "reference_counts": {
+    "all_files": 123,
+    "excluding_pycache": 117,
+    "markdown": 110,
+    "excluded_pycache": [
+      "references\\__pycache__\\fda_guard_hook.cpython-311.pyc",
+      "references\\__pycache__\\fda_guard_hook.cpython-312.pyc",
+      "references\\__pycache__\\fda_guard_mint.cpython-311.pyc",
+      "references\\__pycache__\\fda_guard_mint.cpython-312.pyc",
+      "references\\__pycache__\\fda_preflight.cpython-311.pyc",
+      "references\\__pycache__\\fda_preflight.cpython-312.pyc"
+    ]
+  },
+  "tree_comparison": [],
+  "candidate_file_count": 111,
+  "rq06_quote": [
+    {
+      "line": 1585,
+      "text": "    }"
+    },
+    {
+      "line": 1586,
+      "text": "  },"
+    },
+    {
+      "line": 1587,
+      "text": "  {"
+    },
+    {
+      "line": 1588,
+      "text": "    \"acceptance\": {"
+    },
+    {
+      "line": 1589,
+      "text": "      \"criterion\": \"exact_equal_to_trusted_observation_after_replay\","
+    },
+    {
+      "line": 1590,
+      "text": "      \"expected\": \"BOTH_BYTE_EXACT_AND_LOADER_PARITY\","
+    },
+    {
+      "line": 1591,
+      "text": "      \"id\": \"ACC-RQ06\","
+    },
+    {
+      "line": 1592,
+      "text": "      \"negative\": \"BOTH_BYTE_EXACT_ONLY\","
+    },
+    {
+      "line": 1593,
+      "text": "      \"test_id\": \"AT-RQ06\""
+    },
+    {
+      "line": 1594,
+      "text": "    },"
+    },
+    {
+      "line": 1595,
+      "text": "    \"child_obligations\": ["
+    },
+    {
+      "line": 1596,
+      "text": "      \"AVR/main selection\","
+    },
+    {
+      "line": 1597,
+      "text": "      \"HGK/main selection\","
+    },
+    {
+      "line": 1598,
+      "text": "      \"AVR/10-piece byte reconstruction\","
+    },
+    {
+      "line": 1599,
+      "text": "      \"HGK/6-piece byte reconstruction\""
+    },
+    {
+      "line": 1600,
+      "text": "    ],"
+    },
+    {
+      "line": 55875,
+      "text": "    }"
+    },
+    {
+      "line": 55876,
+      "text": "  },"
+    },
+    {
+      "line": 55877,
+      "text": "  {"
+    },
+    {
+      "line": 55878,
+      "text": "    \"acceptance\": {"
+    },
+    {
+      "line": 55879,
+      "text": "      \"criterion\": \"exact_equal_to_trusted_observation_after_replay\","
+    },
+    {
+      "line": 55880,
+      "text": "      \"expected\": \"BOTH_BYTE_EXACT_AND_LOADER_PARITY\","
+    },
+    {
+      "line": 55881,
+      "text": "      \"id\": \"ACC-RQ06\","
+    },
+    {
+      "line": 55882,
+      "text": "      \"negative\": \"BOTH_BYTE_EXACT_ONLY\","
+    },
+    {
+      "line": 55883,
+      "text": "      \"test_id\": \"AT-RQ06\""
+    },
+    {
+      "line": 55884,
+      "text": "    },"
+    },
+    {
+      "line": 55885,
+      "text": "    \"child_obligations\": ["
+    },
+    {
+      "line": 55886,
+      "text": "      \"AVR/main selection\","
+    },
+    {
+      "line": 55887,
+      "text": "      \"HGK/main selection\","
+    },
+    {
+      "line": 55888,
+      "text": "      \"AVR/10-piece byte reconstruction\","
+    },
+    {
+      "line": 55889,
+      "text": "      \"HGK/6-piece byte reconstruction\""
+    },
+    {
+      "line": 55890,
+      "text": "    ],"
+    }
+  ],
+  "receipt_summary": [
+    {
+      "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\EXECUTE_dispatch_receipt_attempt1.json",
+      "code": "ERR_NO_ARM_EMITTED_NONCE",
+      "attempts": [
+        {
+          "rank": 1,
+          "provider": "opencode-go",
+          "model": "deepseek-v4.1-flash",
+          "exit": 0,
+          "seconds": 835.74,
+          "nonce_present": false,
+          "attempt_log_dir": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\CNV-PIPD-LS-SP-20261015-R6\\EXECUTE\\attempt-1-20261016T042656Z",
+          "usage_provider": "opencode-go",
+          "usage_model": "deepseek-v4.1-flash",
+          "usage_receipt_ok": true
+        }
+      ]
+    },
+    {
+      "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\EXECUTE_dispatch_receipt_attempt2.json",
+      "code": "ERR_LANE_ALL_ROUTES_EXHAUSTED",
+      "attempts": [
+        {
+          "rank": 1,
+          "provider": "opencode-go",
+          "model": "deepseek-v4.1-flash",
+          "exit": "TIMEOUT",
+          "seconds": 2700.03,
+          "nonce_present": false,
+          "attempt_log_dir": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\CNV-PIPD-LS-SP-20261015-R6\\EXECUTE\\attempt-2-20261015T125942Z",
+          "usage_provider": "opencode-go",
+          "usage_model": "deepseek-v4.1-flash",
+          "usage_receipt_ok": true
+        }
+      ]
+    },
+    {
+      "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\EXECUTE_dispatch_receipt_attempt3.json",
+      "code": "ERR_NO_ARM_EMITTED_NONCE",
+      "attempts": [
+        {
+          "rank": 1,
+          "provider": "opencode-go",
+          "model": "deepseek-v4.1-flash",
+          "exit": 0,
+          "seconds": 525.8,
+          "nonce_present": false,
+          "attempt_log_dir": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\CNV-PIPD-LS-SP-20261015-R6\\EXECUTE\\attempt-3-20261015T134510Z",
+          "usage_provider": "opencode-go",
+          "usage_model": "deepseek-v4.1-flash",
+          "usage_receipt_ok": true
+        }
+      ]
+    },
+    {
+      "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\VERIFY_SECURITY_dispatch_receipt_attempt1.json",
+      "code": "ERR_NO_ARM_EMITTED_NONCE",
+      "attempts": [
+        {
+          "rank": 2,
+          "provider": "opencode-go",
+          "model": "glm-5.3-flash",
+          "exit": 0,
+          "seconds": 669.63,
+          "nonce_present": false,
+          "attempt_log_dir": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\CNV-PIPD-LS-SP-20261015-R6\\VERIFY_SECURITY\\attempt-1-20261016T033706Z",
+          "usage_provider": "opencode-go",
+          "usage_model": "glm-5.3-flash",
+          "usage_receipt_ok": true
+        }
+      ]
+    },
+    {
+      "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\VERIFY_SECURITY_dispatch_receipt_attempt2.json",
+      "code": "ERR_CHECKER_MUTATED_SUBJECT",
+      "attempts": [
+        {
+          "rank": 2,
+          "provider": "opencode-go",
+          "model": "glm-5.3-flash",
+          "exit": "TIMEOUT",
+          "seconds": 3300.05,
+          "nonce_present": false,
+          "attempt_log_dir": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\CNV-PIPD-LS-SP-20261015-R6\\VERIFY_SECURITY\\attempt-2-20261015T142129Z",
+          "usage_provider": "opencode-go",
+          "usage_model": "glm-5.3-flash",
+          "usage_receipt_ok": true
+        }
+      ]
+    },
+    {
+      "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\VERIFY_SECURITY_dispatch_receipt_attempt3.json",
+      "code": "ERR_NO_ARM_EMITTED_NONCE",
+      "attempts": [
+        {
+          "rank": 2,
+          "provider": "opencode-go",
+          "model": "glm-5.3-flash",
+          "exit": 0,
+          "seconds": 1022.77,
+          "nonce_present": false,
+          "attempt_log_dir": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\CNV-PIPD-LS-SP-20261015-R6\\VERIFY_SECURITY\\attempt-3-20261015T151726Z",
+          "usage_provider": "opencode-go",
+          "usage_model": "glm-5.3-flash",
+          "usage_receipt_ok": true
+        }
+      ]
+    },
+    {
+      "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\VERIFY_SECURITY_dispatch_receipt_attempt4.json",
+      "code": "ERR_NO_ARM_EMITTED_NONCE",
+      "attempts": [
+        {
+          "rank": 2,
+          "provider": "opencode-go",
+          "model": "glm-5.3-flash",
+          "exit": 0,
+          "seconds": 1787.88,
+          "nonce_present": false,
+          "attempt_log_dir": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\CNV-PIPD-LS-SP-20261015-R6\\VERIFY_SECURITY\\attempt-4-20261015T161910Z",
+          "usage_provider": "opencode-go",
+          "usage_model": "glm-5.3-flash",
+          "usage_receipt_ok": true
+        }
+      ]
+    },
+    {
+      "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\VERIFY_SECURITY_dispatch_receipt_attempt5.json",
+      "code": "ERR_LANE_REMOTE_WRITE_NOT_AUTHORIZED",
+      "attempts": []
+    }
+  ],
+  "attempt_history": [
+    {
+      "at_utc": "2026-10-15T08:20:20.760378+00:00",
+      "run_id": "2140-1792049969",
+      "lane": "EXECUTE",
+      "rank": 1,
+      "provider": "opencode-go",
+      "model": "deepseek-v4.1-flash",
+      "exit": 0,
+      "seconds": 2450.82,
+      "nonce_present": false,
+      "attempt_log_dir": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\CNV-PIPD-LS-SP-20261015-R6\\EXECUTE\\attempt-1-20261015T073929Z",
+      "usage_provider": "opencode-go",
+      "usage_model": "deepseek-v4.1-flash",
+      "usage_receipt_ok": true,
+      "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\EXECUTE_dispatch_receipt_attempt1.json.attempts.ndjson",
+      "line": 1,
+      "code": null,
+      "code_status": "FINAL_RECEIPT_NOT_AVAILABLE_FOR_HISTORICAL_RUN"
+    },
+    {
+      "at_utc": "2026-10-16T03:15:15.265649+00:00",
+      "run_id": "4640-1792119447",
+      "lane": "EXECUTE",
+      "rank": 1,
+      "provider": "opencode-go",
+      "model": "deepseek-v4.1-flash",
+      "exit": 0,
+      "seconds": 1067.64,
+      "nonce_present": false,
+      "attempt_log_dir": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\CNV-PIPD-LS-SP-20261015-R6\\EXECUTE\\attempt-1-20261016T025727Z",
+      "usage_provider": "opencode-go",
+      "usage_model": "deepseek-v4.1-flash",
+      "usage_receipt_ok": true,
+      "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\EXECUTE_dispatch_receipt_attempt1.json.attempts.ndjson",
+      "line": 2,
+      "code": null,
+      "code_status": "FINAL_RECEIPT_NOT_AVAILABLE_FOR_HISTORICAL_RUN"
+    },
+    {
+      "at_utc": "2026-10-16T03:28:54.912512+00:00",
+      "run_id": "2480-1792119780",
+      "lane": "EXECUTE",
+      "rank": 1,
+      "provider": "opencode-go",
+      "model": "deepseek-v4.1-flash",
+      "exit": 0,
+      "seconds": 1553.8,
+      "nonce_present": false,
+      "attempt_log_dir": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\CNV-PIPD-LS-SP-20261015-R6\\EXECUTE\\attempt-1-20261016T030300Z",
+      "usage_provider": "opencode-go",
+      "usage_model": "deepseek-v4.1-flash",
+      "usage_receipt_ok": true,
+      "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\EXECUTE_dispatch_receipt_attempt1.json.attempts.ndjson",
+      "line": 3,
+      "code": null,
+      "code_status": "FINAL_RECEIPT_NOT_AVAILABLE_FOR_HISTORICAL_RUN"
+    },
+    {
+      "at_utc": "2026-10-16T04:25:50.274623+00:00",
+      "run_id": "5316-1792124385",
+      "lane": "EXECUTE",
+      "rank": 1,
+      "provider": "opencode-go",
+      "model": "deepseek-v4.1-flash",
+      "exit": 0,
+      "seconds": 364.5,
+      "nonce_present": false,
+      "attempt_log_dir": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\CNV-PIPD-LS-SP-20261015-R6\\EXECUTE\\attempt-1-20261016T041945Z",
+      "usage_provider": "opencode-go",
+      "usage_model": "deepseek-v4.1-flash",
+      "usage_receipt_ok": true,
+      "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\EXECUTE_dispatch_receipt_attempt1.json.attempts.ndjson",
+      "line": 4,
+      "code": null,
+      "code_status": "FINAL_RECEIPT_NOT_AVAILABLE_FOR_HISTORICAL_RUN"
+    },
+    {
+      "at_utc": "2026-10-16T04:40:52.352624+00:00",
+      "run_id": "1972-1792124816",
+      "lane": "EXECUTE",
+      "rank": 1,
+      "provider": "opencode-go",
+      "model": "deepseek-v4.1-flash",
+      "exit": 0,
+      "seconds": 835.74,
+      "nonce_present": false,
+      "attempt_log_dir": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\CNV-PIPD-LS-SP-20261015-R6\\EXECUTE\\attempt-1-20261016T042656Z",
+      "usage_provider": "opencode-go",
+      "usage_model": "deepseek-v4.1-flash",
+      "usage_receipt_ok": true,
+      "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\EXECUTE_dispatch_receipt_attempt1.json.attempts.ndjson",
+      "line": 5,
+      "code": "ERR_NO_ARM_EMITTED_NONCE",
+      "code_status": "CURRENT_FINAL_RECEIPT_MATCH"
+    },
+    {
+      "at_utc": "2026-10-15T13:44:43.239744+00:00",
+      "run_id": "13796-1792069182",
+      "lane": "EXECUTE",
+      "rank": 1,
+      "provider": "opencode-go",
+      "model": "deepseek-v4.1-flash",
+      "exit": "TIMEOUT",
+      "seconds": 2700.03,
+      "nonce_present": false,
+      "attempt_log_dir": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\CNV-PIPD-LS-SP-20261015-R6\\EXECUTE\\attempt-2-20261015T125942Z",
+      "usage_provider": "opencode-go",
+      "usage_model": "deepseek-v4.1-flash",
+      "usage_receipt_ok": true,
+      "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\EXECUTE_dispatch_receipt_attempt2.json.attempts.ndjson",
+      "line": 1,
+      "code": "ERR_LANE_ALL_ROUTES_EXHAUSTED",
+      "code_status": "CURRENT_FINAL_RECEIPT_MATCH"
+    },
+    {
+      "at_utc": "2026-10-15T13:53:57.116331+00:00",
+      "run_id": "6960-1792071910",
+      "lane": "EXECUTE",
+      "rank": 1,
+      "provider": "opencode-go",
+      "model": "deepseek-v4.1-flash",
+      "exit": 0,
+      "seconds": 525.8,
+      "nonce_present": false,
+      "attempt_log_dir": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\CNV-PIPD-LS-SP-20261015-R6\\EXECUTE\\attempt-3-20261015T134510Z",
+      "usage_provider": "opencode-go",
+      "usage_model": "deepseek-v4.1-flash",
+      "usage_receipt_ok": true,
+      "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\EXECUTE_dispatch_receipt_attempt3.json.attempts.ndjson",
+      "line": 1,
+      "code": "ERR_NO_ARM_EMITTED_NONCE",
+      "code_status": "CURRENT_FINAL_RECEIPT_MATCH"
+    },
+    {
+      "at_utc": "2026-10-15T14:17:23.912396+00:00",
+      "run_id": "10124-1792072488",
+      "lane": "VERIFY_SECURITY",
+      "rank": 2,
+      "provider": "opencode-go",
+      "model": "glm-5.3-flash",
+      "exit": 0,
+      "seconds": 1354.47,
+      "nonce_present": false,
+      "attempt_log_dir": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\CNV-PIPD-LS-SP-20261015-R6\\VERIFY_SECURITY\\attempt-1-20261015T135448Z",
+      "usage_provider": "opencode-go",
+      "usage_model": "glm-5.3-flash",
+      "usage_receipt_ok": true,
+      "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\VERIFY_SECURITY_dispatch_receipt_attempt1.json.attempts.ndjson",
+      "line": 1,
+      "code": null,
+      "code_status": "FINAL_RECEIPT_NOT_AVAILABLE_FOR_HISTORICAL_RUN"
+    },
+    {
+      "at_utc": "2026-10-16T03:48:16.912070+00:00",
+      "run_id": "2900-1792121826",
+      "lane": "VERIFY_SECURITY",
+      "rank": 2,
+      "provider": "opencode-go",
+      "model": "glm-5.3-flash",
+      "exit": 0,
+      "seconds": 669.63,
+      "nonce_present": false,
+      "attempt_log_dir": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\CNV-PIPD-LS-SP-20261015-R6\\VERIFY_SECURITY\\attempt-1-20261016T033706Z",
+      "usage_provider": "opencode-go",
+      "usage_model": "glm-5.3-flash",
+      "usage_receipt_ok": true,
+      "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\VERIFY_SECURITY_dispatch_receipt_attempt1.json.attempts.ndjson",
+      "line": 2,
+      "code": "ERR_NO_ARM_EMITTED_NONCE",
+      "code_status": "CURRENT_FINAL_RECEIPT_MATCH"
+    },
+    {
+      "at_utc": "2026-10-15T10:13:35.935356+00:00",
+      "run_id": "8844-1792058116",
+      "lane": "VERIFY_SECURITY",
+      "rank": 2,
+      "provider": "opencode-go",
+      "model": "glm-5.3-flash",
+      "exit": 0,
+      "seconds": 1098.55,
+      "nonce_present": false,
+      "attempt_log_dir": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\CNV-PIPD-LS-SP-20261015-R6\\VERIFY_SECURITY\\attempt-2-20261015T095516Z",
+      "usage_provider": "opencode-go",
+      "usage_model": "glm-5.3-flash",
+      "usage_receipt_ok": true,
+      "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\VERIFY_SECURITY_dispatch_receipt_attempt2.json.attempts.ndjson",
+      "line": 1,
+      "code": null,
+      "code_status": "FINAL_RECEIPT_NOT_AVAILABLE_FOR_HISTORICAL_RUN"
+    },
+    {
+      "at_utc": "2026-10-15T15:16:29.521138+00:00",
+      "run_id": "21748-1792074089",
+      "lane": "VERIFY_SECURITY",
+      "rank": 2,
+      "provider": "opencode-go",
+      "model": "glm-5.3-flash",
+      "exit": "TIMEOUT",
+      "seconds": 3300.05,
+      "nonce_present": false,
+      "attempt_log_dir": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\CNV-PIPD-LS-SP-20261015-R6\\VERIFY_SECURITY\\attempt-2-20261015T142129Z",
+      "usage_provider": "opencode-go",
+      "usage_model": "glm-5.3-flash",
+      "usage_receipt_ok": true,
+      "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\VERIFY_SECURITY_dispatch_receipt_attempt2.json.attempts.ndjson",
+      "line": 2,
+      "code": "ERR_CHECKER_MUTATED_SUBJECT",
+      "code_status": "CURRENT_FINAL_RECEIPT_MATCH"
+    },
+    {
+      "at_utc": "2026-10-15T10:28:59.426593+00:00",
+      "run_id": "21480-1792059540",
+      "lane": "VERIFY_SECURITY",
+      "rank": 2,
+      "provider": "opencode-go",
+      "model": "glm-5.3-flash",
+      "exit": 0,
+      "seconds": 598.4,
+      "nonce_present": false,
+      "attempt_log_dir": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\CNV-PIPD-LS-SP-20261015-R6\\VERIFY_SECURITY\\attempt-3-20261015T101900Z",
+      "usage_provider": "opencode-go",
+      "usage_model": "glm-5.3-flash",
+      "usage_receipt_ok": true,
+      "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\VERIFY_SECURITY_dispatch_receipt_attempt3.json.attempts.ndjson",
+      "line": 1,
+      "code": null,
+      "code_status": "FINAL_RECEIPT_NOT_AVAILABLE_FOR_HISTORICAL_RUN"
+    },
+    {
+      "at_utc": "2026-10-15T15:34:30.013277+00:00",
+      "run_id": "22084-1792077446",
+      "lane": "VERIFY_SECURITY",
+      "rank": 2,
+      "provider": "opencode-go",
+      "model": "glm-5.3-flash",
+      "exit": 0,
+      "seconds": 1022.77,
+      "nonce_present": false,
+      "attempt_log_dir": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\CNV-PIPD-LS-SP-20261015-R6\\VERIFY_SECURITY\\attempt-3-20261015T151726Z",
+      "usage_provider": "opencode-go",
+      "usage_model": "glm-5.3-flash",
+      "usage_receipt_ok": true,
+      "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\VERIFY_SECURITY_dispatch_receipt_attempt3.json.attempts.ndjson",
+      "line": 2,
+      "code": "ERR_NO_ARM_EMITTED_NONCE",
+      "code_status": "CURRENT_FINAL_RECEIPT_MATCH"
+    },
+    {
+      "at_utc": "2026-10-15T16:48:58.830002+00:00",
+      "run_id": "23092-1792081150",
+      "lane": "VERIFY_SECURITY",
+      "rank": 2,
+      "provider": "opencode-go",
+      "model": "glm-5.3-flash",
+      "exit": 0,
+      "seconds": 1787.88,
+      "nonce_present": false,
+      "attempt_log_dir": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\CNV-PIPD-LS-SP-20261015-R6\\VERIFY_SECURITY\\attempt-4-20261015T161910Z",
+      "usage_provider": "opencode-go",
+      "usage_model": "glm-5.3-flash",
+      "usage_receipt_ok": true,
+      "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\VERIFY_SECURITY_dispatch_receipt_attempt4.json.attempts.ndjson",
+      "line": 1,
+      "code": "ERR_NO_ARM_EMITTED_NONCE",
+      "code_status": "CURRENT_FINAL_RECEIPT_MATCH"
+    }
+  ],
+  "dispatch_pin_lines": {
+    "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R9\\dispatch_r9.py": [
+      {
+        "line": 4,
+        "text": "VERIFY_SECURITY to --force-rank 2 --require-arm opencode-go/glm-5.3-flash, so the mandated rank-1"
+      },
+      {
+        "line": 27,
+        "text": "    \"EXECUTE\": (\"--force-rank\", \"1\", \"--require-arm\", \"opencode-go/deepseek-v4.1-flash\"),"
+      },
+      {
+        "line": 29,
+        "text": "    \"VERIFY_SECURITY\": (\"--force-rank\", \"1\", \"--require-arm\", \"openai-codex/gpt-6.1-sol\"),"
+      },
+      {
+        "line": 56,
+        "text": "    round_name = \"CNV-PIPD-LS-SP-20261015-R9\""
+      }
+    ],
+    "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\dispatch_r6.py": [
+      {
+        "line": 21,
+        "text": "    \"EXECUTE\": (\"--force-rank\", \"1\", \"--require-arm\", \"opencode-go/deepseek-v4.1-flash\"),"
+      },
+      {
+        "line": 22,
+        "text": "    \"VERIFY_SECURITY\": (\"--force-rank\", \"2\", \"--require-arm\", \"opencode-go/glm-5.3-flash\"),"
+      },
+      {
+        "line": 49,
+        "text": "    round_name = \"CNV-PIPD-LS-SP-20261015-R6\""
+      }
+    ]
+  },
+  "r9_markers": [
+    {
+      "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\CNV-PIPD-LS-SP-20261015-R9\\VERIFY_SECURITY\\attempt-1-20261016T044148Z\\attempt.marker.json",
+      "record": {
+        "schema": "HGK-LANE-ATTEMPT-MARKER/1",
+        "round": "CNV-PIPD-LS-SP-20261015-R9",
+        "lane": "VERIFY_SECURITY",
+        "attempt": 1,
+        "dir": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\CNV-PIPD-LS-SP-20261015-R9\\VERIFY_SECURITY\\attempt-1-20261016T044148Z",
+        "pid": 1188,
+        "process_create_time": 1792125706.6101773,
+        "run_id": "1188-1792125708",
+        "nonce": "HGK_LANE_NONCE_OK",
+        "log_path": null,
+        "started_utc": "2026-10-16T04:41:48.517752+00:00"
+      }
+    }
+  ],
+  "source_locator_checks": [
+    {
+      "source_id": "SRC-01",
+      "recorded_locator": "attachments/Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md",
+      "resolved_paths": [
+        {
+          "path": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md",
+          "exists": true
+        }
+      ],
+      "empty_resolution": false
+    },
+    {
+      "source_id": "SRC-02",
+      "recorded_locator": "attachments/Fabric_Convergence_External_Independent_Acceptance_Report_20261015.md",
+      "resolved_paths": [
+        {
+          "path": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_Convergence_External_Independent_Acceptance_Report_20261015.md",
+          "exists": true
+        }
+      ],
+      "empty_resolution": false
+    },
+    {
+      "source_id": "SRC-03",
+      "recorded_locator": "attachments/Fabric_HG-KSEOS_Convergence_指揮薄PROMPT.md",
+      "resolved_paths": [
+        {
+          "path": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_指揮薄PROMPT.md",
+          "exists": true
+        }
+      ],
+      "empty_resolution": false
+    },
+    {
+      "source_id": "SRC-04",
+      "recorded_locator": "HG-KSEOS/AGENTS.md",
+      "resolved_paths": [
+        {
+          "path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\AGENTS.md",
+          "exists": true
+        }
+      ],
+      "empty_resolution": false
+    },
+    {
+      "source_id": "SRC-05",
+      "recorded_locator": "_handover/CNV-PIPD-LS-SP-20261015-R8/R8_LEDGER.json",
+      "resolved_paths": [
+        {
+          "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R8\\R8_LEDGER.json",
+          "exists": true
+        }
+      ],
+      "empty_resolution": false
+    },
+    {
+      "source_id": "SRC-06",
+      "recorded_locator": "_handover/CNV-PIPD-LS-SP-20261015-R8/R8_SYNTHESIS.md",
+      "resolved_paths": [
+        {
+          "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R8\\R8_SYNTHESIS.md",
+          "exists": true
+        }
+      ],
+      "empty_resolution": false
+    },
+    {
+      "source_id": "SRC-07",
+      "recorded_locator": "_handover/CNV-PIPD-LS-SP-20261015-R8/R8_VERIFY/R8_VERIFY_VERDICT.json",
+      "resolved_paths": [
+        {
+          "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R8\\R8_VERIFY\\R8_VERIFY_VERDICT.json",
+          "exists": true
+        }
+      ],
+      "empty_resolution": false
+    },
+    {
+      "source_id": "SRC-08",
+      "recorded_locator": "_handover/CNV-PIPD-LS-SP-20261015/lane_runs/*dispatch_receipt*.json",
+      "resolved_paths": [
+        {
+          "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\EXECUTE_dispatch_receipt_attempt1.json",
+          "exists": true
+        },
+        {
+          "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\EXECUTE_dispatch_receipt_attempt2.json",
+          "exists": true
+        },
+        {
+          "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\EXECUTE_dispatch_receipt_attempt3.json",
+          "exists": true
+        },
+        {
+          "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\VERIFY_SECURITY_dispatch_receipt_attempt1.json",
+          "exists": true
+        },
+        {
+          "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\VERIFY_SECURITY_dispatch_receipt_attempt2.json",
+          "exists": true
+        },
+        {
+          "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\VERIFY_SECURITY_dispatch_receipt_attempt3.json",
+          "exists": true
+        },
+        {
+          "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\VERIFY_SECURITY_dispatch_receipt_attempt4.json",
+          "exists": true
+        },
+        {
+          "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\VERIFY_SECURITY_dispatch_receipt_attempt5.json",
+          "exists": true
+        }
+      ],
+      "empty_resolution": false
+    },
+    {
+      "source_id": "SRC-09",
+      "recorded_locator": "PIPD/worktrees/r8-wt ; C:/Projects/wt-r8-cleanmain",
+      "resolved_paths": [
+        {
+          "path": "C:\\Projects\\Agent_Workspace\\PIPD\\worktrees\\r8-wt",
+          "exists": true
+        },
+        {
+          "path": "C:\\Projects\\wt-r8-cleanmain",
+          "exists": true
+        }
+      ],
+      "empty_resolution": false
+    },
+    {
+      "source_id": "SRC-10",
+      "recorded_locator": "HG-KSEOS/config/{lane-routing-registry.yaml,lane-route-slots.candidate.json,model-lane-assignment.json}",
+      "resolved_paths": [
+        {
+          "path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\lane-routing-registry.yaml",
+          "exists": true
+        },
+        {
+          "path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\lane-route-slots.candidate.json",
+          "exists": true
+        },
+        {
+          "path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\model-lane-assignment.json",
+          "exists": true
+        }
+      ],
+      "empty_resolution": false
+    },
+    {
+      "source_id": "SRC-11",
+      "recorded_locator": "Fabric/fabric-autonomous-research/runs/FAR-20261015-010,-011",
+      "resolved_paths": [
+        {
+          "path": "C:\\Projects\\Agent_Workspace\\Fabric\\fabric-autonomous-research\\runs\\FAR-20261015-010-r6r7-closure-and-r7-slice",
+          "exists": true
+        }
+      ],
+      "empty_resolution": false
+    },
+    {
+      "source_id": "SRC-12",
+      "recorded_locator": "Fabric/FABRIC/fabric-autonomous-research/{governance,research-product}",
+      "resolved_paths": [
+        {
+          "path": "C:\\Projects\\Agent_Workspace\\Fabric\\FABRIC\\fabric-autonomous-research\\governance",
+          "exists": true
+        },
+        {
+          "path": "C:\\Projects\\Agent_Workspace\\Fabric\\FABRIC\\fabric-autonomous-research\\research-product",
+          "exists": true
+        }
+      ],
+      "empty_resolution": false
+    },
+    {
+      "source_id": "SRC-13",
+      "recorded_locator": "HG-KSEOS/var/SKILL-CONVERGENCE-20261014/candidates/hgk/skill + _handover/...-R8/ws_a_skill_slim_regression.py",
+      "resolved_paths": [
+        {
+          "path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\SKILL-CONVERGENCE-20261014\\candidates\\hgk\\skill",
+          "exists": true
+        },
+        {
+          "path": "C:\\Projects\\Agent_Workspace\\_handover\\...-R8\\ws_a_skill_slim_regression.py",
+          "exists": false
+        }
+      ],
+      "empty_resolution": false
+    }
+  ],
+  "boundary_incident": {
+    "code": "CHECKER_TEMP_WRITE_BOUNDARY_BREACH",
+    "observed_from": "named_tests.json stderr",
+    "known_external_fixture": "C:/Users/user/AppData/Local/Temp/tmp3eedulc6/repo",
+    "currently_exists": false,
+    "explanation": "First named-test run initialized its fixtures under the interpreter default TEMP rather than R9_VERIFY/tmp. The trace fixture created its repo directory before the git-init call was blocked; the CLI smoke test also used the default temporary root. Those automatic temporary writes breached the requested write boundary. No Git write command was executed. Subsequent safe_tests.py forces tempfile.tempdir to R9_VERIFY/tmp. This verifier cannot claim full procedural compliance."
+  }
+}

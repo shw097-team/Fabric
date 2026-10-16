@@ -1,0 +1,91 @@
+{
+ "schema": "CNV-PIPD-LS-SP-20261015-R9/VERDICT-ADJUDICATION/1",
+ "produced_utc": "2026-10-16T04:59:29.058645+00:00",
+ "checker": {
+  "nonce": "R9V-CHECKER-NONCE-5c1d84",
+  "overall": "UNVERIFIABLE",
+  "overall_reason": "Claims 1, 6 and the current-turn part of 7 cannot be fully re-derived. Confirmed local measurements must not be promoted to acceptance. Separately, the first test invocation breached the temporary write boundary, so this checker run is procedurally nonconformant.",
+  "artifacts": [
+   "R9_VERIFY/R9_VERDICT.json",
+   "R9_VERIFY/R9_VERDICT.md",
+   "R9_VERIFY/R9V_DONE"
+  ],
+  "served_arm": "see the R9 VERIFY_SECURITY dispatch receipt (pinned rank 1 openai-codex/gpt-6.1-sol by the round's corrected wrapper)"
+ },
+ "adjudication_rule": "a checker disagreement is either (a) a defect in this round's artifacts -> corrected here, or (b) a checker-side limitation/constraint -> recorded, never used to claim a pass",
+ "accepted_and_corrected": [
+  {
+   "code": "PKG_RECORDED_BYTE_COUNT_WRONG",
+   "checker_measured": 2689181,
+   "this_round_had_recorded": 2580690,
+   "action": "CORRECTED in PKG_ALIGNMENT_R9.json, FAR/SourceSnapshotLedger.tsv and FAR/ResearchSourceDenominator.tsv; the approved sha256 was unaffected; logged as R9-F10"
+  },
+  {
+   "code": "STALE_FAR_PLAN_ROUTE_CLAIM",
+   "action": "CORRECTED: the canonical PLAN route was rebound to openai-codex/gpt-6.1-sol by an act outside this round at 2026-10-16T12:36:30 (epoch 21, selection_authority owner-order-20261016-plan-model-rebind-gpt61-sol, drift []); FAR/ClaimLedger.tsv CL-05, the contradiction ledger and R9_OWNER_READY_PLAN_REBIND.json were updated to the re-measurement; this round neither performed nor claims that rebind"
+  },
+  {
+   "code": "FAR_REQUESTED_PATH_ABSENT",
+   "action": "ACCEPTED as a defect in THIS ROUND'S verifier brief (it named .../Fabric/FABRIC/fabric-autonomous-research/runs/... while the tree is .../Fabric/fabric-autonomous-research/runs/...). The checker correctly refused to substitute silently and inventoried the real directory (21 artifacts). The brief is kept as-is with this note rather than rewritten, because the checker's refusal is the evidence."
+  },
+  {
+   "code": "FAR_EVIDENCE_REF_COLUMN_ABSENT",
+   "action": "ACCEPTED as a defect in THIS ROUND'S verifier brief: it asked the checker to resolve an evidence_ref column that the FAR contract does not define; the artifact uses the contract's own row_fields. Recorded as a brief defect."
+  },
+  {
+   "code": "APPLY_RECEIPT_TOTAL_STALE",
+   "action": "EXPLAINED, not a defect: the receipt records the PRE-APPLY total (127 files); the tree now holds 131 because the overlay ADDED four files and deleted none. All recorded after-digests match (the checker verified this itself)."
+  },
+  {
+   "code": "BASELINE_DIFF_NOT_SINGLE_FILE",
+   "action": "ACCEPTED as a precision correction: the r8-wt delta against dba4b19 includes cli.py and pipeline.py (the R8-0 hardening, pre-existing in that worktree). Only THIS ROUND's two guard blocks are confined to validate.py."
+  },
+  {
+   "code": "HARNESS_SUBJECT_LIVE_SERIALIZATION_DEFECT",
+   "action": "CONFIRMED BY BOTH PARTIES (this round's R9-F6); the checker independently reproduced that the checks used the passed live tree while the recorded field names another one"
+  }
+ ],
+ "checker_side_limitations_recorded": [
+  {
+   "code": "ORIGINAL_TEST_FIXTURE_REQUIRES_FORBIDDEN_GIT_WRITE",
+   "what": "the round's named legal-TraceLink fixture creates a git repository, so a checker running a no-git-write guard cannot reproduce the unmodified two-test pass; it ran a disclosed filesystem-fixture adaptation in which both original test methods passed",
+   "consequence": "the two-test pass stands on the orchestrator's and the writer's runs; the checker's own reproduction of that specific pair is UNVERIFIABLE from its seat. Recorded, not rounded up."
+  },
+  {
+   "code": "R9_FINAL_SERVING_RECEIPT_NOT_YET_PRESENT",
+   "what": "at verdict time the checker's own turn had no finalised receipt, so it could not attribute its own serving arm",
+   "consequence": "attribution for the R9 verify turn is read from the receipt after exit (this adjudication) rather than asserted by the checker"
+  },
+  {
+   "code": "HISTORICAL_CHECKER_ARM_DIFFERS_FROM_R9_PIN",
+   "what": "the historical turns were served by the arm the OLD wrapper pinned (rank 2 glm-5.3-flash), which is configuration, not a runtime fallback",
+   "consequence": "R9-F8 is stated precisely: the wrapper pinned the backup arm so the mandated rank-1 checker was never attempted; this round's wrapper pins rank 1"
+  }
+ ],
+ "checker_procedural_self_report": {
+  "verdict": "REFUTED",
+  "incident": "CHECKER_TEMP_WRITE_BOUNDARY_BREACH",
+  "what": "the checker's FIRST named-test invocation let its fixtures initialise under the interpreter default TEMP instead of its own write root; it caught this itself, switched to a pinned tempdir, and declared its own run procedurally nonconformant",
+  "no_git_write_executed": true,
+  "no_network_used": true,
+  "forbidden_report_contents_used": false,
+  "this_round_action": "recorded verbatim as a checker-side nonconformance; the verdict's content is not discarded, but no claim of process purity is made for it either"
+ },
+ "standing": {
+  "confirmed_by_the_checker": [
+   "claim 2 (the successor candidate passes C1-C6 against the explicitly passed live tree)",
+   "claim 3 (the live tree carries the applied slim main file and the restored reference; all 111 candidate files have byte-identical counterparts)",
+   "claim 4 (the package digest equals the approved digest; no size cap in its bytes; ACC-RQ06 names AVR/10-piece and HGK/6-piece)",
+   "claim 5 (drift [] and the PLAN/VERIFY routes now agree with the mandate)"
+  ],
+  "not_established": [
+   "an unmodified two-test re-run by the checker",
+   "the checker's own serving arm at verdict time",
+   "any acceptance, Gate PASS, AO verdict or release"
+  ],
+  "claim_ceiling": "LOCAL / candidate-only; the checker's overall is UNVERIFIABLE and is reported as such — it does not upgrade anything"
+ },
+ "artifacts_referenced": {
+  "checker_verdict_sha256": "47e5b110b42c62b4843e6bb48080041d"
+ }
+}

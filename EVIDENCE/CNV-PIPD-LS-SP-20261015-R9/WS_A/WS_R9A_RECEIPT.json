@@ -1,0 +1,96 @@
+{
+  "nonce": "R9A-WSRITER-NONCE-7f3c1d",
+  "round": "CNV-PIPD-LS-SP-20261015",
+  "changeset": "R9-0",
+  "workstream": "WS-R9-A",
+  "role": "bounded writer (Codex CLI EXECUTE lane)",
+  "claim_ceiling": "LOCAL / candidate-only (a green run is not an acceptance and not a Gate PASS)",
+  "hgk_project": "CNV-R9-FARCLOSURE",
+  "work_order": "WO-TS-FARCLOSURE-04",
+  "authority": ["PKG v2.0.0", "EIA-R6-04", "BLK-R8-WS2-MAIN-DIVERGENCE"],
+  "worktree": "C:/Projects/Agent_Workspace/PIPD/worktrees/r8-wt",
+  "base_commit": "dba4b19456777d3b597fdf71480f6423dd974243",
+  "interpreter": "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+  "interpreter_version": "3.11.9",
+  "s0_answer": {
+    "question": "Does r8-wt still carry the R8-0 hardening (3 modified files) and do the two named tests still fail there?",
+    "answer": "YES",
+    "evidence": {
+      "git_status_short": [
+        " M src/pipd_ls_sp/cli.py",
+        " M src/pipd_ls_sp/pipeline.py",
+        " M src/pipd_ls_sp/validate.py"
+      ],
+      "pre_edit_two_tests": "2 failed, 629 deselected in 20.09s",
+      "test1_failure": "TraceLink: UNBOUND_FROZEN_CONTEXT for both endpoints",
+      "test2_failure": "cli_smoke.py exited 2"
+    },
+    "action": "proceeded to edit"
+  },
+  "write_set": {
+    "edited": ["src/pipd_ls_sp/validate.py"],
+    "regions": ["validate_bundle() frozen-context derivation hunk (lines 392-416)",
+                "derive_frozen_context() risk_guard guard hunk (lines 459-463)"],
+    "any_already_imported": true,
+    "any_import_line": "from typing import Any (line 9)"
+  },
+  "hunks_applied": {
+    "hunk_1_validate_bundle": {"lines_after_edit": "392-416"},
+    "hunk_2_derive_frozen_context": {"lines_after_edit": "459-463"}
+  },
+  "acceptance_commands": {
+    "cmd1_two_named_tests": {
+      "command": "python -m pytest tests -q -p no:cacheprovider -k \"test_real_trace_link_is_legal_beside_its_endpoints or test_cli_smoke_runs\"",
+      "cwd": "C:/Projects/Agent_Workspace/PIPD/worktrees/r8-wt",
+      "raw_output": "..                                                                       [100%]\n2 passed, 629 deselected in 18.49s",
+      "expected": "2 passed",
+      "result": "MATCH"
+    },
+    "cmd2_negative_control": {
+      "runner": "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015-R8/WS_B/RUNNERS/probe_mutations.py",
+      "invocation_shape": "python <R8/WS_B/RUNNERS/probe_mutations.py> <mode>  (cwd R8/WS_B); runner imports r8-wt/src",
+      "cases": {
+        "M04": {"expected": "REJECT", "observed": "REJECT", "validator_verdict": "FAIL",
+                "first_fail": "ProfileBinding: content_hash does not match the record body (body edited without re-issuing identity)"},
+        "M06": {"expected": "REJECT", "observed": "REJECT", "validator_verdict": "FAIL",
+                "first_fail": "RequirementAtom: content_hash does not match the record body (body edited without re-issuing identity)"},
+        "M16": {"expected": "REJECT", "observed": "REJECT", "validator_verdict": "FAIL",
+                "first_fail": "TraceLink: content_hash does not match the record body (body edited without re-issuing identity)"}
+      },
+      "expected": "observed=REJECT, validator_verdict=FAIL for each of M04/M06/M16",
+      "result": "MATCH",
+      "note": "probes only print to stdout; no JSON written into the worktree"
+    },
+    "cmd3_full_suite": {
+      "command": "python -m pytest tests -q -p no:cacheprovider",
+      "cwd": "C:/Projects/Agent_Workspace/PIPD/worktrees/r8-wt",
+      "raw_output": "611 passed, 20 skipped, 62 subtests passed in 190.94s (0:03:10)",
+      "exit_code": 0,
+      "result": "0 failed"
+    },
+    "cmd4_diff_stat": {
+      "command": "git -c core.pager=cat diff --stat (read-only)",
+      "cwd": "C:/Projects/Agent_Workspace/PIPD/worktrees/r8-wt",
+      "raw_output": " src/pipd_ls_sp/cli.py      |   8 +-\n src/pipd_ls_sp/pipeline.py |  39 +++++++++\n src/pipd_ls_sp/validate.py | 191 +++++++++++++++++++++++++++++++++++++++++++--\n 3 files changed, 232 insertions(+), 6 deletions(-)",
+      "expected": "pipeline.py unchanged by me; validate.py carrying exactly the two hunks",
+      "result": "MATCH",
+      "note": "validate.py grew 162 -> 191 insertions (+29 = the two hunks); cli.py/pipeline.py identical to pre-edit R8-0 state"
+    }
+  },
+  "did_not_run": [
+    "M01/M03/M05/M11/M12/M14/M18 mutation probes (not required by the brief; full MUTATIONS_18 not re-run)",
+    "any git write command (add/commit/branch/checkout/stash/reset)"
+  ],
+  "did_not_do": [
+    "edited any file other than src/pipd_ls_sp/validate.py",
+    "touched _handover/CNV-PIPD-LS-SP-20261015/R6_DELIVERY/**",
+    "touched C:/Projects/wt-r8-cleanmain",
+    "read or printed any credential file",
+    "sent anything to any outside host",
+    "weakened any check to make a test pass (negative control holds)"
+  ],
+  "scope_statement": "Do not claim the fix is correct beyond the commands above. Green here is LOCAL/candidate-only, not an acceptance and not a Gate PASS.",
+  "blockers": [],
+  "raw_md": "WS_A/WS_R9A_RAW.md",
+  "done_marker": "WS_A/WS_R9A_DONE"
+}

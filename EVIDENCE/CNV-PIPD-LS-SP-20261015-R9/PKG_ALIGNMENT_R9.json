@@ -1,0 +1,71 @@
+{
+ "schema": "CNV-PIPD-LS-SP-20261015-R9/PKG-ALIGNMENT/1",
+ "produced_utc": "2026-10-16T04:29:00.148088+00:00",
+ "authority": {
+  "path": "hermes/attachments/Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md",
+  "version": "v2.0.0",
+  "bytes": 2689181,
+  "sha256": "96d9d564286743e17550ccef15b9952347901eb77168f930376938893cff9c3f"
+ },
+ "external_report": {
+  "path": "hermes/attachments/Fabric_Convergence_External_Independent_Acceptance_Report_20261015.md",
+  "sha256": "10caf4dbdb1993cd46ff2c50394dd01dfd5f34d635816f95e3d2e5ab6c566206"
+ },
+ "binding_measurements": [
+  {
+   "clause": "ACC-RQ06.child_obligations",
+   "verbatim": "AVR/10-piece byte reconstruction | HGK/6-piece byte reconstruction",
+   "measurement": "HGK candidates/hgk skill entry_map.json carries exactly 6 slices and all 6 dest byte-ranges verify byte-for-byte; the AVR candidate carries 10 SKCV-SLICE markers (5 slices x BEGIN/END)",
+   "verdict": "CONFORMS_UNDER_MARKER_READING",
+   "note": "R8-F7 resolved: the PKG counts pieces/markers, not slices; no inconsistency remains"
+  },
+  {
+   "clause": "ACC-RQ06.acceptance",
+   "verbatim": "expected BOTH_BYTE_EXACT_AND_LOADER_PARITY ; negative BOTH_BYTE_EXACT_ONLY ; criterion exact_equal_to_trusted_observation_after_replay",
+   "measurement": "the stack's C1-C6 harness checks byte-exactness and reference losslessness for both candidates; the loader-parity leg of the R8 record was satisfied by the live skill listing, not by a replay against a pinned trusted observation",
+   "verdict": "PARTIAL",
+   "residual": "the 'exact_equal_to_trusted_observation_after_replay' criterion is not discharged by a listing; it needs the owner's pinned trusted observation"
+  },
+  {
+   "clause": "RQ08 thresholds (references>60)",
+   "verbatim": "a candidate exceeding 60 references may only raise a SOFT_WARNING",
+   "measurement": "the R9 harness keeps the 112 accounted references as data and raises no hard gate; no invented threshold was introduced",
+   "verdict": "CONFORMS"
+  },
+  {
+   "clause": "file-size limit",
+   "verbatim": "ABSENT - '100,000' and '100000' occur 0 times in PKG v2.0.0",
+   "measurement": "the real limit is the platform constant MAX_SKILL_CONTENT_CHARS = 100000 enforced on the LF-normalized len() (tools/skill_manager_tool.py:111/:192/:488), per the stack's SKILLCAP-20261007 research, which also warns that the disk-byte figure 105116 and the raw-CRLF figure 101219 misjudge it",
+   "verdict": "SELF_CORRECTED",
+   "note": "R8-F4 is recalibrated: no governance cap exists in the PKG; the governed measure is characters, and the R8 harness recorded bytes"
+  },
+  {
+   "clause": "repair of the two failing tests",
+   "verbatim": "the governing documents state no clause that forbids repairing them",
+   "measurement": "no clause found in either governed document; the general admitted-repair rules therefore apply, which is the authority this round executed under",
+   "verdict": "PERMITTED_UNDER_ADMITTED_REPAIR"
+  },
+  {
+   "clause": "canonical route/registry change",
+   "verbatim": "a canonical registry mutation requires owner-approved scope + an admitted WorkOrder + a separate DOC05 admission",
+   "measurement": "the PLAN route rebind was NOT applied; it is prepared and already proposed in openspec change hgk-far-remediation-20261016 (R1)",
+   "verdict": "OWNER_GATED_NOT_APPLIED"
+  },
+  {
+   "clause": "canonical PLAN route",
+   "verbatim": "the registry's own selection_authority is now owner-order-20261016-plan-model-rebind-gpt61-sol",
+   "measurement": "re-measured 2026-10-16 ~12:58: routes[].PLAN = openai-codex/gpt-6.1-sol (medium, OAuth, admission ADMITTED); VERIFY_SECURITY = openai-codex/gpt-6.1-sol (medium, OAuth, admission UNPROVEN); check_drift []; registry epoch 21; assignment revision 21",
+   "verdict": "REBOUND_ELSEWHERE",
+   "note": "the rebind this round had prepared was APPLIED by another act at 2026-10-16T12:36:30 local (file mtime), matching the prepared target values exactly. This round neither applied nor claims it."
+  }
+ ],
+ "claim_ceiling": "LOCAL / candidate-only. Alignment means the measured facts are consistent with the quoted clauses; it is not an acceptance, a Gate PASS or a release decision, and the external report's FAIL_CLOSED production decision is unaffected.",
+ "corrections": [
+  {
+   "id": "R9-F10",
+   "what": "the package byte count recorded earlier in this round (2580690) was wrong; the file measures 2689181 bytes with the approved sha256 unchanged",
+   "found_by": "the independent VERIFY lane (its disagreement code PKG_RECORDED_BYTE_COUNT_WRONG) and re-measured by the orchestrator",
+   "status": "CORRECTED"
+  }
+ ]
+}

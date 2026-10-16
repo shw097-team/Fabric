@@ -1,0 +1,2943 @@
+
+$ git --no-optional-locks status --short
+CWD=C:\Projects\Agent_Workspace\PIPD\worktrees\r8-wt
+STDOUT:
+ M src/pipd_ls_sp/cli.py
+ M src/pipd_ls_sp/pipeline.py
+ M src/pipd_ls_sp/validate.py
+
+STDERR:
+
+EXIT=0
+
+$ git rev-parse HEAD
+CWD=C:\Projects\Agent_Workspace\PIPD\worktrees\r8-wt
+STDOUT:
+dba4b19456777d3b597fdf71480f6423dd974243
+
+STDERR:
+
+EXIT=0
+
+$ git --no-optional-locks status --short
+CWD=C:\Projects\wt-r8-cleanmain
+STDOUT:
+
+STDERR:
+
+EXIT=0
+
+$ git rev-parse HEAD
+CWD=C:\Projects\wt-r8-cleanmain
+STDOUT:
+dba4b19456777d3b597fdf71480f6423dd974243
+
+STDERR:
+
+EXIT=0
+
+$ git diff --numstat
+CWD=C:\Projects\Agent_Workspace\PIPD\worktrees\r8-wt
+STDOUT:
+7	1	src/pipd_ls_sp/cli.py
+39	0	src/pipd_ls_sp/pipeline.py
+157	5	src/pipd_ls_sp/validate.py
+
+STDERR:
+
+EXIT=0
+
+$ git diff -- src/pipd_ls_sp/validate.py src/pipd_ls_sp/pipeline.py src/pipd_ls_sp/cli.py
+CWD=C:\Projects\Agent_Workspace\PIPD\worktrees\r8-wt
+STDOUT:
+diff --git a/src/pipd_ls_sp/cli.py b/src/pipd_ls_sp/cli.py
+index 4a2e13f..ba8a62d 100644
+--- a/src/pipd_ls_sp/cli.py
++++ b/src/pipd_ls_sp/cli.py
+@@ -168,7 +168,13 @@ def run(args: argparse.Namespace) -> dict:
+         # winning only when it actually contains registry.json. The chosen surface is
+         # reported so the operator can see which copy produced the verdict.
+         schemas_dir, mode, tried = registry.resolve_for_validate(root)
+-        out = validate.validate_bundle(bundle, schemas_dir)
++        # R7-0 wiring: derive a deterministic frozen context from an embedded PI package when the
++        # bundle carries one, so the trace-endpoint / oracle-expected / profile-assurance bindings
++        # are discharged against frozen references. With no source for a given binding the hardened
++        # validator fails closed (UNBOUND_FROZEN_CONTEXT) instead of silently passing.
++        source = bundle.get("PI-PKG") if isinstance(bundle.get("PI-PKG"), dict) else None
++        frozen = validate.derive_frozen_context(source)
++        out = validate.validate_bundle(bundle, schemas_dir, frozen)
+         out["schema_source"] = {"mode": mode,
+                                 "path": str(schemas_dir) if schemas_dir is not None else "",
+                                 "tried": tried}
+diff --git a/src/pipd_ls_sp/pipeline.py b/src/pipd_ls_sp/pipeline.py
+index 75799b7..76d1c20 100644
+--- a/src/pipd_ls_sp/pipeline.py
++++ b/src/pipd_ls_sp/pipeline.py
+@@ -204,6 +204,45 @@ def strip_sidecar(record: dict[str, Any]) -> dict[str, Any]:
+     return {k: v for k, v in record.items() if not k.startswith("_")}
+ 
+ 
++# ---------------------------------------------------------------- validation wiring (R7-0)
++def frozen_validation_context(pi: dict[str, Any]) -> dict[str, Any]:
++    """Deterministic frozen context (profile requirement, oracle expectations, trace endpoint
++    digests) derived from a PI package, for `validate.validate_bundle(..., frozen_context=...)`.
++
++    Every value is read from the record the caller already holds; no LLM, network or clock is
++    consulted. This is how the pipeline PASSES the frozen context the R7-0 validator binds to.
++    """
++    from . import validate as _validate
++    return _validate.derive_frozen_context(pi)
++
++
++def validate_pi(pi: dict[str, Any], schemas_dir: Path | None = None) -> dict[str, Any]:
++    """Validate a PI package - the PI-PKG record, its ProfileBinding, every RequirementAtom and
++    every TraceLink - against the frozen context derived from itself.
++
++    Deterministic only. This is the pipeline-level entrypoint that threads the optional frozen
++    context through to the hardened `semantic_invariants`, so the trace-digest / oracle-expected /
++    profile-assurance bindings are checked on the compiler's own output.
++    """
++    from . import validate as _validate
++    ctx = _validate.derive_frozen_context(pi)
++    findings: list[dict[str, str]] = list(
++        _validate.validate_bundle({"PI-PKG": strip_sidecar(pi)}, schemas_dir, ctx)["findings"])
++    ssc = pi.get("stable_semantic_contract") or {}
++    members: list[tuple[str, dict[str, Any]]] = []
++    if isinstance(ssc.get("profile_binding"), dict):
++        members.append(("ProfileBinding", ssc["profile_binding"]))
++    members += [("RequirementAtom", a) for a in (ssc.get("atoms") or []) if isinstance(a, dict)]
++    members += [("TraceLink", t) for t in (pi.get("trace") or []) if isinstance(t, dict)]
++    for contract, rec in members:
++        for f in _validate.validate_record(contract, rec, schemas_dir):
++            findings.append({"contract": contract, "kind": "SCHEMA", "detail": f})
++        for f in _validate.semantic_invariants(contract, rec, ctx):
++            findings.append({"contract": contract, "kind": "SEMANTIC", "detail": f})
++    return {"verdict": "PASS" if not findings else "FAIL",
++            "checked": 1 + len(members), "findings": findings}
++
++
+ # ---------------------------------------------------------------- PD
+ def bind_pd(pi: dict[str, Any], repo_context: dict[str, Any] | None) -> dict[str, Any]:
+     """Late-bind PD against a REAL repository context (R-AUD-009).
+diff --git a/src/pipd_ls_sp/validate.py b/src/pipd_ls_sp/validate.py
+index 7c3145c..81b443b 100644
+--- a/src/pipd_ls_sp/validate.py
++++ b/src/pipd_ls_sp/validate.py
+@@ -14,6 +14,17 @@ from .errors import ValidationFail
+ CLAIM_LADDER = ["PROMPT_COMPILE_PASS", "HGK_ADMITTED", "RUNTIME_READY", "LOCAL_QUALIFIED",
+                 "INDEPENDENT_PASS", "PUBLICATION_APPROVED", "RELEASED", "PRODUCTION_VERIFIED"]
+ RELEASE_BOUND = ("PI-PKG", "PD-PKG", "ECP", "TQAEP", "ConstructionContract")
++# R7-0 hardening (EIA-R6-04 / M16). The self-describing digest rule that the release-bound
++# families already enforce is extended to the identity-bearing sub-records whose body carries a
++# reference an attacker can swap without re-issuing identity: a RequirementAtom (`risk_guard`),
++# a ProfileBinding (`assurance`/`artifact_depth`) and a TraceLink (`to_hash`/`from_hash`). A body
++# edited without re-issuing identity (e.g. a TraceLink `to_hash` replaced by 64 f's) is refused.
++DIGEST_BOUND = RELEASE_BOUND + ("RequirementAtom", "ProfileBinding", "TraceLink")
++# The clause polarity -> oracle expected value is a FROZEN rule of the requirement compiler
++# (requirements.compile_requirements): a MUST clause expects the obligation to be `required`, a
++# MUST NOT clause expects it to be `forbidden`. Binding `oracle.expected` to it means an oracle
++# whose declared expectation contradicts its own clause polarity is a mismatch.
++POLARITY_EXPECTED = {"MUST": "required", "MUST NOT": "forbidden"}
+ 
+ # CE-2 refinement (checker counterexample CE-CODEX-TRACE-WIDENING). Two DISTINCT concepts that
+ # used to be conflated into one list: "fields excluded from the body hash" and "fields that are
+@@ -114,9 +125,20 @@ def _body_hash(record: dict[str, Any]) -> str:
+                                      separators=(",", ":")).encode()).hexdigest()
+ 
+ 
+-def semantic_invariants(contract: str, record: dict[str, Any]) -> list[str]:
+-    """Semantic invariants that a JSON Schema cannot express."""
++def semantic_invariants(contract: str, record: dict[str, Any],
++                        frozen_context: dict[str, Any] | None = None) -> list[str]:
++    """Semantic invariants that a JSON Schema cannot express.
++
++    ``frozen_context`` is an OPTIONAL, caller-supplied, deterministic read-only map of the frozen
++    references a record must be bound to (profile requirements, oracle expectations, trace
++    endpoint digests). It is never an LLM/network dependency: every value is data the caller already
++    holds. ``None`` means "not available": a contract whose binding REQUIRES frozen context then
++    fails closed with an explicit ``UNBOUND_FROZEN_CONTEXT`` finding instead of silently passing.
++    The argument is purely additive - with ``frozen_context=None`` every check that does not require
++    frozen context behaves exactly as before.
++    """
+     out: list[str] = []
++    fc = frozen_context or {}
+     ident = ("subject_id", "version", "content_hash", "schema_version")
+     for field in ident:
+         if field not in record:
+@@ -134,7 +156,11 @@ def semantic_invariants(contract: str, record: dict[str, Any]) -> list[str]:
+         out.append(f"{contract}: subject_id is implausibly short to be a content id")
+     if record.get("recomputed_body_hash_required") is True:
+         pass  # explicit opt-out is itself rejected below for release-bound families
+-    if contract in RELEASE_BOUND and ch and len(record) > 4:
++    if contract in DIGEST_BOUND and ch and len(record) > 4:
++        # R7-0 (M16/M06/M04): the record must remain self-consistent - a body edited in place
++        # without re-issuing identity (a swapped `to_hash`, a poisoned `oracle.expected`, a
++        # downgraded `assurance`) is refused here. This generalizes the release-bound rule to the
++        # identity-bearing sub-records; it strengthens, never weakens, the existing predicate.
+         if ch != _body_hash(record):
+             out.append(f"{contract}: content_hash does not match the record body "
+                        "(body edited without re-issuing identity)")
+@@ -190,6 +216,94 @@ def semantic_invariants(contract: str, record: dict[str, Any]) -> list[str]:
+         for side in ("from", "to"):
+             if not (record.get(f"{side}_type") and record.get(f"{side}_id")):
+                 out.append(f"TraceLink: {side} endpoint incomplete")
++        # R7-0 (M16): a trace link must bind each endpoint to the FROZEN digest of the atom it
++        # points at. A link whose `to_hash` was swapped (e.g. 64 f's) keeps its own content_hash
++        # intact, so the self-digest check above cannot see it - the reference must be resolved
++        # against the frozen subject->digest map. When that map is absent the binding cannot be
++        # discharged, so the validator fails closed rather than passing an unverifiable reference.
++        fc_endpoints = fc.get("trace_endpoint_hashes")
++        for side in ("from", "to"):
++            ref_id = record.get(f"{side}_id")
++            recorded = str(record.get(f"{side}_hash") or "")
++            if recorded and not HEX64.match(recorded):
++                out.append(f"TraceLink: {side}_hash must be a 64-char lowercase sha256 hex digest")
++            if fc_endpoints is None:
++                if ref_id and recorded:
++                    out.append("TraceLink: UNBOUND_FROZEN_CONTEXT: "
++                               f"{side}_hash cannot be verified against a frozen subject->digest "
++                               "map (frozen context not supplied); binding is unproven, not a pass")
++                continue
++            want = fc_endpoints.get(ref_id)
++            if want is None:
++                out.append(f"TraceLink: {side}_id {ref_id!r} is not present in the frozen "
++                           "context (endpoint has no frozen digest to bind to)")
++            elif recorded != want:
++                out.append(f"TraceLink: {side}_hash does not match the frozen digest of "
++                           f"{ref_id!r} (recorded {recorded[:12]}, frozen {str(want)[:12]})")
++    if contract == "RequirementAtom":
++        # R7-0 (M06): the oracle's `expected` value is not a free-standing number - it is DERIVED
++        # from the clause polarity (MUST -> required, MUST NOT -> forbidden). A value that
++        # contradicts the atom's own polarity (e.g. 999) is refused. When the frozen oracle
++        # expectation for this atom is available it must match too, so the value is bound to the
++        # frozen acceptance source rather than merely being present.
++        rg = record.get("risk_guard")
++        rg = rg if isinstance(rg, dict) else {}
++        oracle = rg.get("oracle")
++        oracle = oracle if isinstance(oracle, dict) else {}
++        expected = oracle.get("expected")
++        polarity = rg.get("polarity")
++        derived = POLARITY_EXPECTED.get(polarity)
++        if polarity is not None and polarity not in POLARITY_EXPECTED:
++            out.append(f"RequirementAtom: risk_guard.polarity must be MUST or MUST NOT, got {polarity!r}")
++        elif derived is not None and expected != derived:
++            out.append(f"RequirementAtom: oracle.expected {expected!r} contradicts clause polarity "
++                       f"{polarity!r} (must be {derived!r})")
++        fc_oracle = fc.get("oracle_expected")
++        if fc_oracle is not None:
++            bound = fc_oracle.get(record.get("req_id"))
++            if bound is not None and expected != bound:
++                out.append(f"RequirementAtom: oracle.expected {expected!r} does not match the frozen "
++                           f"acceptance expectation {bound!r} for {record.get('req_id')!r}")
++    if contract == "ProfileBinding":
++        # R7-0 (M04): a ProfileBinding must not assert an assurance/artifact_depth weaker than the
++        # FROZEN requirement for its profile. ASSURED->LITE is a downgrade that a maker cannot
++        # self-authorize. The frozen requirement is authoritative; if it is not available the
++        # validator FAILS CLOSED with UNBOUND_FROZEN_CONTEXT instead of silently passing - a missing
++        # binding is not a pass.
++        from .profiles import PROFILES
++        profile = str(record.get("profile") or "")
++        req = PROFILES.get(profile)
++        assurance = record.get("assurance")
++        depth = record.get("artifact_depth")
++        if req is None:
++            out.append(f"ProfileBinding: UNBOUND_FROZEN_CONTEXT: profile {profile!r} has no frozen "
++                       "requirement (unknown profile); assurance cannot be verified, not a pass")
++        else:
++            required_assurance = req["assurance"]
++            missing = [a for a in required_assurance
++                       if not (isinstance(assurance, list) and a in assurance)]
++            if missing:
++                out.append(f"ProfileBinding: assurance {assurance!r} is weaker than the frozen "
++                           f"requirement for {profile} (missing {missing})")
++            if depth != req["artifact_depth"]:
++                out.append(f"ProfileBinding: artifact_depth {depth!r} is weaker than the frozen "
++                           f"requirement {req['artifact_depth']!r} for {profile}")
++        fc_profile = fc.get("profile_requirement")
++        if fc_profile is not None:
++            bound = fc_profile.get(profile)
++            if bound is None:
++                out.append(f"ProfileBinding: UNBOUND_FROZEN_CONTEXT: profile {profile!r} absent "
++                           "from the supplied frozen profile requirement")
++            else:
++                b_assurance = bound.get("assurance") or []
++                b_missing = [a for a in b_assurance
++                             if not (isinstance(assurance, list) and a in assurance)]
++                if b_missing:
++                    out.append(f"ProfileBinding: assurance {assurance!r} is weaker than the supplied "
++                               f"frozen requirement for {profile} (missing {b_missing})")
++                if bound.get("artifact_depth") and depth != bound["artifact_depth"]:
++                    out.append(f"ProfileBinding: artifact_depth {depth!r} does not match the supplied "
++                               f"frozen requirement {bound['artifact_depth']!r} for {profile}")
+     return out
+ 
+ 
+@@ -266,7 +380,8 @@ def closure_findings(bundle: dict[str, dict[str, Any]]) -> dict[str, Any]:
+             "findings": [{"contract": "*", "kind": "CLOSURE", "detail": p} for p in problems]}
+ 
+ 
+-def validate_bundle(bundle: dict[str, dict[str, Any]], schemas_dir: Path | None = None) -> dict[str, Any]:
++def validate_bundle(bundle: dict[str, dict[str, Any]], schemas_dir: Path | None = None,
++                    frozen_context: dict[str, Any] | None = None) -> dict[str, Any]:
+     findings: list[dict[str, str]] = []
+     # C-4 repair: validate_bundle({}) used to return PASS with checked=0. An empty denominator is
+     # not a verification result.
+@@ -281,7 +396,7 @@ def validate_bundle(bundle: dict[str, dict[str, Any]], schemas_dir: Path | None
+             continue
+         for f in validate_record(contract, record, schemas_dir):
+             findings.append({"contract": contract, "kind": "SCHEMA", "detail": f})
+-        for f in semantic_invariants(contract, record):
++        for f in semantic_invariants(contract, record, frozen_context):
+             findings.append({"contract": contract, "kind": "SEMANTIC", "detail": f})
+     # TT-S4EXT-002: `pipd validate --bundle` used to stop at the per-record schema/semantic checks,
+     # so a bad endpoint hash, an orphan edge or a missing endpoint could still return PASS even
+@@ -292,3 +407,40 @@ def validate_bundle(bundle: dict[str, dict[str, Any]], schemas_dir: Path | None
+     findings.extend(closure["findings"])
+     return {"verdict": "PASS" if not findings else "FAIL",
+             "checked": len(bundle), "closure": closure["state"], "findings": findings}
++
++
++def derive_frozen_context(source: dict[str, Any] | None = None, *,
++                          trace_endpoint_hashes: dict[str, str] | None = None,
++                          profile_requirement: dict[str, Any] | None = None,
++                          oracle_expected: dict[str, str] | None = None) -> dict[str, Any]:
++    """Assemble a deterministic frozen context for ``validate_bundle``.
++
++    The pieces are all caller-held data; nothing here consults an LLM, the network or any clock.
++    A PI package carries its atoms and trace links, so when ``source`` is a PI package the
++    subject->digest endpoint map and the oracle-expected map are read straight from it. Profile
++    requirements come from the frozen ``profiles.PROFILES`` table by default. Only derivable
++    pieces are emitted: a map is omitted (rather than guessed) when its source is absent, so the
++    validator's fail-closed branch for that binding still fires.
++    """
++    from .profiles import PROFILES
++    ctx: dict[str, Any] = {}
++    endpoint_hashes = dict(trace_endpoint_hashes or {})
++    oracle_expected_map = dict(oracle_expected or {})
++    if isinstance(source, dict):
++        ssc = source.get("stable_semantic_contract") or {}
++        for atom in ssc.get("atoms") or []:
++            if atom.get("subject_id") and atom.get("content_hash"):
++                endpoint_hashes.setdefault(atom["subject_id"], atom["content_hash"])
++            oracle = ((atom.get("risk_guard") or {}).get("oracle") or {})
++            if atom.get("req_id") and oracle.get("expected") is not None:
++                oracle_expected_map.setdefault(atom["req_id"], oracle["expected"])
++        if source.get("subject_id") and source.get("content_hash"):
++            endpoint_hashes.setdefault(source["subject_id"], source["content_hash"])
++    if endpoint_hashes:
++        ctx["trace_endpoint_hashes"] = endpoint_hashes
++    if oracle_expected_map:
++        ctx["oracle_expected"] = oracle_expected_map
++    ctx["profile_requirement"] = profile_requirement or {
++        name: {"assurance": list(spec["assurance"]), "artifact_depth": spec["artifact_depth"]}
++        for name, spec in PROFILES.items()}
++    return ctx
+
+STDERR:
+
+EXIT=0
+
+SOURCE C:\Projects\wt-r8-cleanmain\src\pipd_ls_sp\validate.py
+1|"""Deterministic validation: schema + semantic invariants over the 19 families.
+2|
+3|Deterministic only: no LLM judge is consulted here (總藍圖 §5.9.1 responsibility split).
+4|"""
+5|from __future__ import annotations
+6|
+7|from pathlib import Path
+8|import re
+9|from typing import Any
+10|
+11|from . import registry
+12|from .errors import ValidationFail
+13|
+14|CLAIM_LADDER = ["PROMPT_COMPILE_PASS", "HGK_ADMITTED", "RUNTIME_READY", "LOCAL_QUALIFIED",
+15|                "INDEPENDENT_PASS", "PUBLICATION_APPROVED", "RELEASED", "PRODUCTION_VERIFIED"]
+16|RELEASE_BOUND = ("PI-PKG", "PD-PKG", "ECP", "TQAEP", "ConstructionContract")
+17|
+18|# CE-2 refinement (checker counterexample CE-CODEX-TRACE-WIDENING). Two DISTINCT concepts that
+19|# used to be conflated into one list: "fields excluded from the body hash" and "fields that are
+20|# not part of the record at all". They overlap only on `_profile_meta`.
+21|#
+22|# HASH_EXCLUDED_FIELDS -- the fields the body hash does NOT cover: the universal identity fields
+23|#   (recomputed after sealing), the derived `trace` relation (it carries the parent hash, so it
+24|#   cannot sit inside the hash it references) and the `_profile_meta` sidecar. This is the
+25|#   HASH-EXCLUSION set ONLY; it says nothing about which fields a schema declares. `_body_hash`
+26|#   and `pipeline._seal` both reference THIS object, so the hash and its recomputation stay one
+27|#   definition and cannot diverge.
+28|HASH_EXCLUDED_FIELDS = ("subject_id", "version", "content_hash", "schema_version", "trace",
+29|                        "_profile_meta")
+30|
+31|# NON_RECORD_SIDECARS -- the fields the pipeline emits for the operator/registry that NO schema
+32|#   declares at all. Today that is exactly `_profile_meta`. `validate_record` strips ONLY this
+33|#   set before the schema check, so a field that is hash-excluded but IS declared by the schema
+34|#   (the identity fields, or `trace` on PI-PKG) remains schema-enforced, and an undeclared
+35|#   `trace` on PD-PKG/ECP/TQAEP is again rejected by `additionalProperties: false`, exactly as
+
+SOURCE C:\Projects\wt-r8-cleanmain\src\pipd_ls_sp\validate.py
+205|    return []
+206|
+207|
+208|def closure_findings(bundle: dict[str, dict[str, Any]]) -> dict[str, Any]:
+209|    """Atomic graph closure over the bundle's trace edges (S4EXT-R1 TT-S4EXT-002 / F002).
+210|
+211|    ``state`` is one of:
+212|
+213|    * ``SCHEMA_ONLY`` - the bundle carries NO trace edge, so no graph relation exists to close.
+214|      This is a legal PARTIAL bundle (e.g. a scoped validate of LITE artifacts). It is labelled
+215|      explicitly so a caller can never read a schema-only result as a trace-closed one.
+216|    * ``FULL`` - every edge resolved: both endpoints exist inside the bundle and both recorded
+217|      hashes equal the real endpoint hashes.
+218|    * ``FAILED`` - at least one orphan endpoint or hash mismatch; a finding is emitted per problem.
+219|      A bundle in this state can never return PASS.
+220|
+221|    The closure REUSES ``pipeline.trace_closure`` (the C-10 repair that recomputes both sides of
+222|    every edge) rather than introducing a second trace engine.
+223|    """
+224|    records = {k: v for k, v in bundle.items() if isinstance(v, dict)}
+225|    edge_count = sum(len(trace_edges(r)) for r in records.values())
+226|    if edge_count == 0:
+227|        return {"state": "SCHEMA_ONLY", "edges": 0, "findings": []}
+228|    from . import pipeline  # local import: pipeline imports this module for the shared field lists
+229|    try:
+230|        report = pipeline.trace_closure(records)
+231|    except Exception as exc:  # fail closed: an unclosable graph is not a closed graph
+232|        return {"state": "FAILED", "edges": edge_count,
+233|                "findings": [{"contract": "*", "kind": "CLOSURE",
+234|                              "detail": f"trace closure could not be computed: {exc!r}"}]}
+235|    problems: list[str] = []
+236|    # S4EXT-R1 external-AO finding C3: a syntactically valid endpoint whose declared TYPE
+237|    # contradicts the family of the record its id actually resolves to must fail closed. Without
+238|    # this, "PD-PKG/from" could point at a PI-PKG record and still be reported as a closed graph.
+239|    family_of: dict[str, str] = {}
+240|    for name, rec in records.items():
+241|        fam = str(rec.get("schema_version") or "").split("@")[0] or name
+242|        if rec.get("subject_id"):
+243|            family_of[str(rec["subject_id"])] = fam
+244|        for atom in (rec.get("stable_semantic_contract", {}) or {}).get("atoms", []) or []:
+245|            if isinstance(atom, dict) and atom.get("subject_id"):
+246|                # an atom declares its OWN family (RequirementAtom@1), not the parent's
+247|                afam = str(atom.get("schema_version") or "").split("@")[0] or fam
+248|                family_of[str(atom["subject_id"])] = afam
+249|    for _name, rec in records.items():
+250|        for edge in trace_edges(rec):
+251|            for side in ("from", "to"):
+252|                declared = edge.get(f"{side}_type")
+253|                resolved = family_of.get(str(edge.get(f"{side}_id") or ""))
+254|                if declared and resolved and str(declared) != resolved:
+255|                    problems.append(
+256|                        "endpoint type contradicts the resolved record family: "
+257|                        f"{side}_type={declared} but {side}_id={edge.get(f'{side}_id')} "
+258|                        f"resolves to {resolved}")
+259|    for orphan in report.get("orphans") or []:
+260|        problems.append(f"orphan trace endpoint: {orphan} is not present in the bundle")
+261|    for bad in report.get("bad_hashes") or []:
+262|        problems.append(f"trace endpoint hash mismatch: {bad}")
+263|    if report.get("verdict") != "PASS" and not problems:
+264|        problems.append("trace closure did not reach PASS over the bundle")
+265|    return {"state": "FULL" if not problems else "FAILED", "edges": int(report.get("edges") or edge_count),
+266|            "findings": [{"contract": "*", "kind": "CLOSURE", "detail": p} for p in problems]}
+267|
+268|
+269|def validate_bundle(bundle: dict[str, dict[str, Any]], schemas_dir: Path | None = None) -> dict[str, Any]:
+270|    findings: list[dict[str, str]] = []
+271|    # C-4 repair: validate_bundle({}) used to return PASS with checked=0. An empty denominator is
+272|    # not a verification result.
+273|    if not bundle:
+274|        return {"verdict": "FAIL", "checked": 0, "closure": "SCHEMA_ONLY",
+275|                "findings": [{"contract": "*", "kind": "DENOMINATOR",
+276|                              "detail": "empty bundle: zero records checked cannot be a PASS"}]}
+277|    for contract, record in bundle.items():
+278|        if not isinstance(record, dict):
+279|            findings.append({"contract": contract, "kind": "SCHEMA",
+280|                             "detail": "record must be an object"})
+281|            continue
+282|        for f in validate_record(contract, record, schemas_dir):
+283|            findings.append({"contract": contract, "kind": "SCHEMA", "detail": f})
+284|        for f in semantic_invariants(contract, record):
+285|            findings.append({"contract": contract, "kind": "SEMANTIC", "detail": f})
+286|    # TT-S4EXT-002: `pipd validate --bundle` used to stop at the per-record schema/semantic checks,
+287|    # so a bad endpoint hash, an orphan edge or a missing endpoint could still return PASS even
+288|    # though pipeline.trace_closure() already knew how to refuse it. The closure is now part of the
+289|    # bundle verdict, and a bundle with no trace edge is labelled SCHEMA_ONLY rather than passed off
+290|    # as trace-closed.
+291|    closure = closure_findings(bundle)
+292|    findings.extend(closure["findings"])
+293|    return {"verdict": "PASS" if not findings else "FAIL",
+294|            "checked": len(bundle), "closure": closure["state"], "findings": findings}
+
+SOURCE C:\Projects\wt-r8-cleanmain\src\pipd_ls_sp\pipeline.py
+185|
+186|    Builders that add declared fields after _rec() must seal at the end, otherwise the hash does
+187|    not cover the body and validate.semantic_invariants correctly rejects the record.
+188|    """
+189|    # `trace` is a derived relation, not body content: it carries the parent hash, so it cannot be
+190|    # inside the hash it references. The validator excludes exactly the same key set
+191|    # (validate.HASH_EXCLUDED_FIELDS) - one definition, referenced in both places.
+192|    body = {k: v for k, v in rec.items() if k not in HASH_EXCLUDED_FIELDS}
+193|    digest = sha256_text(canonical_json(body))
+194|    rec["subject_id"] = f"{prefix}-{digest[:16]}"
+195|    rec["content_hash"] = digest
+196|    return rec
+197|
+198|
+199|def atoms_of(pi: dict[str, Any]) -> list[dict[str, Any]]:
+200|    return pi["stable_semantic_contract"]["atoms"]
+201|
+202|
+203|def strip_sidecar(record: dict[str, Any]) -> dict[str, Any]:
+204|    return {k: v for k, v in record.items() if not k.startswith("_")}
+205|
+206|
+207|# ---------------------------------------------------------------- PD
+208|def bind_pd(pi: dict[str, Any], repo_context: dict[str, Any] | None) -> dict[str, Any]:
+209|    """Late-bind PD against a REAL repository context (R-AUD-009).
+210|
+211|    head / branch / dirty / tracked_files / manifest / currentness are DERIVED from the host by
+212|    git/filesystem probes at bind time. Caller-supplied values are unverified claims: recorded,
+213|    never trusted. A stale or spoofed freshness claim is REFUSED (StaleProvider); a missing
+214|    RepoContext is REFUSED (RepoContextMissing) so no PREDEV_READY is ever emitted without one.
+215|    """
+216|    if not repo_context:
+217|        raise RepoContextMissing("PD late-binding requires a RepoContext (no PREDEV_READY without one)")
+218|    if not str(repo_context.get("root") or "").strip():
+219|        raise RepoContextMissing("RepoContext has no root to probe (no PREDEV_READY without one)")
+220|    root = Path(repo_context["root"])
+221|    if not root.exists():
+222|        raise RepoContextMissing(f"RepoContext root missing: {root}")
+223|    derived = repo_probe.derive_repo_context(root)
+224|    claims, evidence = repo_probe.claims_of(repo_context)
+225|    verified = repo_probe.verify_freshness_claims(claims, derived, evidence)
+226|    scope_check = repo_probe.resolve_writable_scope(
+227|        repo_context.get("writable_scope") or "src/**")
+228|    caller_claims = {k: {"value": v, "verified": bool(verified.get(k)),
+229|                         "matches_host": v == derived.get(k)}
+230|                     for k, v in claims.items()}
+231|    ctx = {"root": derived["root"], "probe": derived["probe"],
+232|           "degraded": derived["degraded"], "degraded_reason": derived["degraded_reason"],
+233|           "head": derived["head"], "branch": derived["branch"],
+234|           "dirty": derived["dirty"], "dirty_tracked": derived["dirty_tracked"],
+235|           "tracked_files": derived["tracked_files"],
+236|           "manifest_sha256": derived["manifest_sha256"],
+237|           "currentness_epoch": derived["currentness_epoch"],
+238|           "readiness": "PREDEV_READY",
+239|           "caller_claims": caller_claims}
+240|    payload = {"pi": pi["subject_id"], "repo": ctx}
+241|    pd = _rec("PD-PKG", "PD", payload)
+242|    pd["RepoContext"] = ctx
+243|    pd["currentness"] = {"state": "FRESH", "epoch": derived["currentness_epoch"],
+244|                         "derived_from": f"{derived['probe']}-probes at bind time",
+245|                         "claims_verified": sorted(verified)}
+
+SOURCE C:\Projects\wt-r8-cleanmain\src\pipd_ls_sp\cli.py
+150|                                   _read_json(args.pi, "PI package"))
+151|        if getattr(args, "explain", False):
+152|            out = dict(out); out.update(_explain("compile-ecp", out,
+153|                                                 {"idempotency": out.get("idempotency", {})}))
+154|        return out
+155|    if cmd == "compile-tqaep":
+156|        out = pipeline.compile_tqaep(_read_json(args.pi, "PI package"),
+157|                                     _read_json(args.ecp, "ECP"),
+158|                                     maker=args.maker, checker=args.checker,
+159|                                     checker_execution_receipt=args.checker_receipt)
+160|        if getattr(args, "explain", False):
+161|            out = dict(out); out.update(_explain("compile-tqaep", out,
+162|                                                 {"sod": (out.get("acceptance") or [{}])[0]}))
+163|        return out
+164|    if cmd == "validate":
+165|        bundle = _read_json(args.bundle, "validation bundle")
+166|        # CE-1: resolve schemas through the SAME registry chain `doctor` uses
+167|        # (OVERRIDE -> INSTALLED -> SOURCE), with a workspace-local `<root>/schemas`
+168|        # winning only when it actually contains registry.json. The chosen surface is
+169|        # reported so the operator can see which copy produced the verdict.
+170|        schemas_dir, mode, tried = registry.resolve_for_validate(root)
+171|        out = validate.validate_bundle(bundle, schemas_dir)
+172|        out["schema_source"] = {"mode": mode,
+173|                                "path": str(schemas_dir) if schemas_dir is not None else "",
+174|                                "tried": tried}
+175|        if schemas_dir is None:
+176|            out["verdict"] = "FAIL"
+177|            out.setdefault("findings", []).append(
+178|                {"contract": "*", "kind": "SCHEMA_RESOLUTION",
+179|                 "detail": "no schemas directory containing registry.json; tried: "
+180|                           + "; ".join(tried)})
+181|        if getattr(args, "explain", False):
+182|            out = dict(out); out.update(_explain("validate", out))
+183|        return out
+184|    if cmd == "doctor":
+185|        return workspace.doctor(root)
+186|    if cmd == "project":
+187|        from .projection import resolve_output_destination
+188|        out_omitted = args.out is None
+189|        target = args.out if not out_omitted else (root / "dist" / "web")
+190|        authorized = list(getattr(args, "allow_root", []) or [])
+
+SOURCE C:\Projects\Agent_Workspace\PIPD\worktrees\r8-wt\src\pipd_ls_sp\validate.py
+1|"""Deterministic validation: schema + semantic invariants over the 19 families.
+2|
+3|Deterministic only: no LLM judge is consulted here (總藍圖 §5.9.1 responsibility split).
+4|"""
+5|from __future__ import annotations
+6|
+7|from pathlib import Path
+8|import re
+9|from typing import Any
+10|
+11|from . import registry
+12|from .errors import ValidationFail
+13|
+14|CLAIM_LADDER = ["PROMPT_COMPILE_PASS", "HGK_ADMITTED", "RUNTIME_READY", "LOCAL_QUALIFIED",
+15|                "INDEPENDENT_PASS", "PUBLICATION_APPROVED", "RELEASED", "PRODUCTION_VERIFIED"]
+16|RELEASE_BOUND = ("PI-PKG", "PD-PKG", "ECP", "TQAEP", "ConstructionContract")
+17|# R7-0 hardening (EIA-R6-04 / M16). The self-describing digest rule that the release-bound
+18|# families already enforce is extended to the identity-bearing sub-records whose body carries a
+19|# reference an attacker can swap without re-issuing identity: a RequirementAtom (`risk_guard`),
+20|# a ProfileBinding (`assurance`/`artifact_depth`) and a TraceLink (`to_hash`/`from_hash`). A body
+21|# edited without re-issuing identity (e.g. a TraceLink `to_hash` replaced by 64 f's) is refused.
+22|DIGEST_BOUND = RELEASE_BOUND + ("RequirementAtom", "ProfileBinding", "TraceLink")
+23|# The clause polarity -> oracle expected value is a FROZEN rule of the requirement compiler
+24|# (requirements.compile_requirements): a MUST clause expects the obligation to be `required`, a
+25|# MUST NOT clause expects it to be `forbidden`. Binding `oracle.expected` to it means an oracle
+26|# whose declared expectation contradicts its own clause polarity is a mismatch.
+27|POLARITY_EXPECTED = {"MUST": "required", "MUST NOT": "forbidden"}
+28|
+29|# CE-2 refinement (checker counterexample CE-CODEX-TRACE-WIDENING). Two DISTINCT concepts that
+30|# used to be conflated into one list: "fields excluded from the body hash" and "fields that are
+31|# not part of the record at all". They overlap only on `_profile_meta`.
+32|#
+33|# HASH_EXCLUDED_FIELDS -- the fields the body hash does NOT cover: the universal identity fields
+34|#   (recomputed after sealing), the derived `trace` relation (it carries the parent hash, so it
+35|#   cannot sit inside the hash it references) and the `_profile_meta` sidecar. This is the
+
+SOURCE C:\Projects\Agent_Workspace\PIPD\worktrees\r8-wt\src\pipd_ls_sp\validate.py
+205|            out.append("WorkOrderCandidate: candidate_only must be fixed true (never runtime authority)")
+206|    if contract == "GENIEProjectionRef":
+207|        refs = record.get("target_refs")
+208|        want = ("ProductGraph", "Profile", "Bundle", "GENIEArtifact")
+209|        if not isinstance(refs, (list, dict)) or not all(
+210|                any(w in str(x) for x in (refs if isinstance(refs, list) else refs.keys())) for w in want):
+211|            out.append("GENIEProjectionRef: target_refs must cover ProductGraph/Profile/Bundle/GENIEArtifact")
+212|    if contract == "ExecutionBindingRef" and str(record.get("state", "")).upper() == "ACKED":
+213|        if not (record.get("receiver_binding_id") and record.get("receiver_binding_hash")):
+214|            out.append("ExecutionBindingRef: ACK requires a real HGK receiver binding id+hash")
+215|    if contract == "TraceLink":
+216|        for side in ("from", "to"):
+217|            if not (record.get(f"{side}_type") and record.get(f"{side}_id")):
+218|                out.append(f"TraceLink: {side} endpoint incomplete")
+219|        # R7-0 (M16): a trace link must bind each endpoint to the FROZEN digest of the atom it
+220|        # points at. A link whose `to_hash` was swapped (e.g. 64 f's) keeps its own content_hash
+221|        # intact, so the self-digest check above cannot see it - the reference must be resolved
+222|        # against the frozen subject->digest map. When that map is absent the binding cannot be
+223|        # discharged, so the validator fails closed rather than passing an unverifiable reference.
+224|        fc_endpoints = fc.get("trace_endpoint_hashes")
+225|        for side in ("from", "to"):
+226|            ref_id = record.get(f"{side}_id")
+227|            recorded = str(record.get(f"{side}_hash") or "")
+228|            if recorded and not HEX64.match(recorded):
+229|                out.append(f"TraceLink: {side}_hash must be a 64-char lowercase sha256 hex digest")
+230|            if fc_endpoints is None:
+231|                if ref_id and recorded:
+232|                    out.append("TraceLink: UNBOUND_FROZEN_CONTEXT: "
+233|                               f"{side}_hash cannot be verified against a frozen subject->digest "
+234|                               "map (frozen context not supplied); binding is unproven, not a pass")
+235|                continue
+236|            want = fc_endpoints.get(ref_id)
+237|            if want is None:
+238|                out.append(f"TraceLink: {side}_id {ref_id!r} is not present in the frozen "
+239|                           "context (endpoint has no frozen digest to bind to)")
+240|            elif recorded != want:
+241|                out.append(f"TraceLink: {side}_hash does not match the frozen digest of "
+242|                           f"{ref_id!r} (recorded {recorded[:12]}, frozen {str(want)[:12]})")
+243|    if contract == "RequirementAtom":
+244|        # R7-0 (M06): the oracle's `expected` value is not a free-standing number - it is DERIVED
+245|        # from the clause polarity (MUST -> required, MUST NOT -> forbidden). A value that
+246|        # contradicts the atom's own polarity (e.g. 999) is refused. When the frozen oracle
+247|        # expectation for this atom is available it must match too, so the value is bound to the
+248|        # frozen acceptance source rather than merely being present.
+249|        rg = record.get("risk_guard")
+250|        rg = rg if isinstance(rg, dict) else {}
+251|        oracle = rg.get("oracle")
+252|        oracle = oracle if isinstance(oracle, dict) else {}
+253|        expected = oracle.get("expected")
+254|        polarity = rg.get("polarity")
+255|        derived = POLARITY_EXPECTED.get(polarity)
+256|        if polarity is not None and polarity not in POLARITY_EXPECTED:
+257|            out.append(f"RequirementAtom: risk_guard.polarity must be MUST or MUST NOT, got {polarity!r}")
+258|        elif derived is not None and expected != derived:
+259|            out.append(f"RequirementAtom: oracle.expected {expected!r} contradicts clause polarity "
+260|                       f"{polarity!r} (must be {derived!r})")
+261|        fc_oracle = fc.get("oracle_expected")
+262|        if fc_oracle is not None:
+263|            bound = fc_oracle.get(record.get("req_id"))
+264|            if bound is not None and expected != bound:
+265|                out.append(f"RequirementAtom: oracle.expected {expected!r} does not match the frozen "
+266|                           f"acceptance expectation {bound!r} for {record.get('req_id')!r}")
+267|    if contract == "ProfileBinding":
+268|        # R7-0 (M04): a ProfileBinding must not assert an assurance/artifact_depth weaker than the
+269|        # FROZEN requirement for its profile. ASSURED->LITE is a downgrade that a maker cannot
+270|        # self-authorize. The frozen requirement is authoritative; if it is not available the
+271|        # validator FAILS CLOSED with UNBOUND_FROZEN_CONTEXT instead of silently passing - a missing
+272|        # binding is not a pass.
+273|        from .profiles import PROFILES
+274|        profile = str(record.get("profile") or "")
+275|        req = PROFILES.get(profile)
+276|        assurance = record.get("assurance")
+277|        depth = record.get("artifact_depth")
+278|        if req is None:
+279|            out.append(f"ProfileBinding: UNBOUND_FROZEN_CONTEXT: profile {profile!r} has no frozen "
+280|                       "requirement (unknown profile); assurance cannot be verified, not a pass")
+281|        else:
+282|            required_assurance = req["assurance"]
+283|            missing = [a for a in required_assurance
+284|                       if not (isinstance(assurance, list) and a in assurance)]
+285|            if missing:
+286|                out.append(f"ProfileBinding: assurance {assurance!r} is weaker than the frozen "
+287|                           f"requirement for {profile} (missing {missing})")
+288|            if depth != req["artifact_depth"]:
+289|                out.append(f"ProfileBinding: artifact_depth {depth!r} is weaker than the frozen "
+290|                           f"requirement {req['artifact_depth']!r} for {profile}")
+291|        fc_profile = fc.get("profile_requirement")
+292|        if fc_profile is not None:
+293|            bound = fc_profile.get(profile)
+294|            if bound is None:
+295|                out.append(f"ProfileBinding: UNBOUND_FROZEN_CONTEXT: profile {profile!r} absent "
+296|                           "from the supplied frozen profile requirement")
+297|            else:
+298|                b_assurance = bound.get("assurance") or []
+299|                b_missing = [a for a in b_assurance
+300|                             if not (isinstance(assurance, list) and a in assurance)]
+301|                if b_missing:
+302|                    out.append(f"ProfileBinding: assurance {assurance!r} is weaker than the supplied "
+303|                               f"frozen requirement for {profile} (missing {b_missing})")
+304|                if bound.get("artifact_depth") and depth != bound["artifact_depth"]:
+305|                    out.append(f"ProfileBinding: artifact_depth {depth!r} does not match the supplied "
+306|                               f"frozen requirement {bound['artifact_depth']!r} for {profile}")
+307|    return out
+308|
+309|
+310|def trace_edges(record: dict[str, Any]) -> list[dict[str, Any]]:
+311|    """The trace edges a single record carries (PI-PKG nests them; TraceLink is one edge)."""
+312|    if not isinstance(record, dict):
+313|        return []
+314|    trace = record.get("trace")
+315|    if isinstance(trace, list):
+316|        return [e for e in trace if isinstance(e, dict)]
+317|    if record.get("from_id") and record.get("to_id"):
+318|        return [record]
+319|    return []
+320|
+321|
+322|def closure_findings(bundle: dict[str, dict[str, Any]]) -> dict[str, Any]:
+323|    """Atomic graph closure over the bundle's trace edges (S4EXT-R1 TT-S4EXT-002 / F002).
+324|
+325|    ``state`` is one of:
+326|
+327|    * ``SCHEMA_ONLY`` - the bundle carries NO trace edge, so no graph relation exists to close.
+328|      This is a legal PARTIAL bundle (e.g. a scoped validate of LITE artifacts). It is labelled
+329|      explicitly so a caller can never read a schema-only result as a trace-closed one.
+330|    * ``FULL`` - every edge resolved: both endpoints exist inside the bundle and both recorded
+331|      hashes equal the real endpoint hashes.
+332|    * ``FAILED`` - at least one orphan endpoint or hash mismatch; a finding is emitted per problem.
+333|      A bundle in this state can never return PASS.
+334|
+335|    The closure REUSES ``pipeline.trace_closure`` (the C-10 repair that recomputes both sides of
+336|    every edge) rather than introducing a second trace engine.
+337|    """
+338|    records = {k: v for k, v in bundle.items() if isinstance(v, dict)}
+339|    edge_count = sum(len(trace_edges(r)) for r in records.values())
+340|    if edge_count == 0:
+341|        return {"state": "SCHEMA_ONLY", "edges": 0, "findings": []}
+342|    from . import pipeline  # local import: pipeline imports this module for the shared field lists
+343|    try:
+344|        report = pipeline.trace_closure(records)
+345|    except Exception as exc:  # fail closed: an unclosable graph is not a closed graph
+346|        return {"state": "FAILED", "edges": edge_count,
+347|                "findings": [{"contract": "*", "kind": "CLOSURE",
+348|                              "detail": f"trace closure could not be computed: {exc!r}"}]}
+349|    problems: list[str] = []
+350|    # S4EXT-R1 external-AO finding C3: a syntactically valid endpoint whose declared TYPE
+351|    # contradicts the family of the record its id actually resolves to must fail closed. Without
+352|    # this, "PD-PKG/from" could point at a PI-PKG record and still be reported as a closed graph.
+353|    family_of: dict[str, str] = {}
+354|    for name, rec in records.items():
+355|        fam = str(rec.get("schema_version") or "").split("@")[0] or name
+356|        if rec.get("subject_id"):
+357|            family_of[str(rec["subject_id"])] = fam
+358|        for atom in (rec.get("stable_semantic_contract", {}) or {}).get("atoms", []) or []:
+359|            if isinstance(atom, dict) and atom.get("subject_id"):
+360|                # an atom declares its OWN family (RequirementAtom@1), not the parent's
+361|                afam = str(atom.get("schema_version") or "").split("@")[0] or fam
+362|                family_of[str(atom["subject_id"])] = afam
+363|    for _name, rec in records.items():
+364|        for edge in trace_edges(rec):
+365|            for side in ("from", "to"):
+366|                declared = edge.get(f"{side}_type")
+367|                resolved = family_of.get(str(edge.get(f"{side}_id") or ""))
+368|                if declared and resolved and str(declared) != resolved:
+369|                    problems.append(
+370|                        "endpoint type contradicts the resolved record family: "
+371|                        f"{side}_type={declared} but {side}_id={edge.get(f'{side}_id')} "
+372|                        f"resolves to {resolved}")
+373|    for orphan in report.get("orphans") or []:
+374|        problems.append(f"orphan trace endpoint: {orphan} is not present in the bundle")
+375|    for bad in report.get("bad_hashes") or []:
+376|        problems.append(f"trace endpoint hash mismatch: {bad}")
+377|    if report.get("verdict") != "PASS" and not problems:
+378|        problems.append("trace closure did not reach PASS over the bundle")
+379|    return {"state": "FULL" if not problems else "FAILED", "edges": int(report.get("edges") or edge_count),
+380|            "findings": [{"contract": "*", "kind": "CLOSURE", "detail": p} for p in problems]}
+381|
+382|
+383|def validate_bundle(bundle: dict[str, dict[str, Any]], schemas_dir: Path | None = None,
+384|                    frozen_context: dict[str, Any] | None = None) -> dict[str, Any]:
+385|    findings: list[dict[str, str]] = []
+386|    # C-4 repair: validate_bundle({}) used to return PASS with checked=0. An empty denominator is
+387|    # not a verification result.
+388|    if not bundle:
+389|        return {"verdict": "FAIL", "checked": 0, "closure": "SCHEMA_ONLY",
+390|                "findings": [{"contract": "*", "kind": "DENOMINATOR",
+391|                              "detail": "empty bundle: zero records checked cannot be a PASS"}]}
+392|    for contract, record in bundle.items():
+393|        if not isinstance(record, dict):
+394|            findings.append({"contract": contract, "kind": "SCHEMA",
+395|                             "detail": "record must be an object"})
+396|            continue
+397|        for f in validate_record(contract, record, schemas_dir):
+398|            findings.append({"contract": contract, "kind": "SCHEMA", "detail": f})
+399|        for f in semantic_invariants(contract, record, frozen_context):
+400|            findings.append({"contract": contract, "kind": "SEMANTIC", "detail": f})
+401|    # TT-S4EXT-002: `pipd validate --bundle` used to stop at the per-record schema/semantic checks,
+402|    # so a bad endpoint hash, an orphan edge or a missing endpoint could still return PASS even
+403|    # though pipeline.trace_closure() already knew how to refuse it. The closure is now part of the
+404|    # bundle verdict, and a bundle with no trace edge is labelled SCHEMA_ONLY rather than passed off
+405|    # as trace-closed.
+406|    closure = closure_findings(bundle)
+407|    findings.extend(closure["findings"])
+408|    return {"verdict": "PASS" if not findings else "FAIL",
+409|            "checked": len(bundle), "closure": closure["state"], "findings": findings}
+410|
+411|
+412|def derive_frozen_context(source: dict[str, Any] | None = None, *,
+413|                          trace_endpoint_hashes: dict[str, str] | None = None,
+414|                          profile_requirement: dict[str, Any] | None = None,
+415|                          oracle_expected: dict[str, str] | None = None) -> dict[str, Any]:
+416|    """Assemble a deterministic frozen context for ``validate_bundle``.
+417|
+418|    The pieces are all caller-held data; nothing here consults an LLM, the network or any clock.
+419|    A PI package carries its atoms and trace links, so when ``source`` is a PI package the
+420|    subject->digest endpoint map and the oracle-expected map are read straight from it. Profile
+421|    requirements come from the frozen ``profiles.PROFILES`` table by default. Only derivable
+422|    pieces are emitted: a map is omitted (rather than guessed) when its source is absent, so the
+423|    validator's fail-closed branch for that binding still fires.
+424|    """
+425|    from .profiles import PROFILES
+426|    ctx: dict[str, Any] = {}
+427|    endpoint_hashes = dict(trace_endpoint_hashes or {})
+428|    oracle_expected_map = dict(oracle_expected or {})
+429|    if isinstance(source, dict):
+430|        ssc = source.get("stable_semantic_contract") or {}
+431|        for atom in ssc.get("atoms") or []:
+432|            if atom.get("subject_id") and atom.get("content_hash"):
+433|                endpoint_hashes.setdefault(atom["subject_id"], atom["content_hash"])
+434|            oracle = ((atom.get("risk_guard") or {}).get("oracle") or {})
+435|            if atom.get("req_id") and oracle.get("expected") is not None:
+436|                oracle_expected_map.setdefault(atom["req_id"], oracle["expected"])
+437|        if source.get("subject_id") and source.get("content_hash"):
+438|            endpoint_hashes.setdefault(source["subject_id"], source["content_hash"])
+439|    if endpoint_hashes:
+440|        ctx["trace_endpoint_hashes"] = endpoint_hashes
+441|    if oracle_expected_map:
+442|        ctx["oracle_expected"] = oracle_expected_map
+443|    ctx["profile_requirement"] = profile_requirement or {
+444|        name: {"assurance": list(spec["assurance"]), "artifact_depth": spec["artifact_depth"]}
+445|        for name, spec in PROFILES.items()}
+446|    return ctx
+
+SOURCE C:\Projects\Agent_Workspace\PIPD\worktrees\r8-wt\src\pipd_ls_sp\pipeline.py
+185|
+186|    Builders that add declared fields after _rec() must seal at the end, otherwise the hash does
+187|    not cover the body and validate.semantic_invariants correctly rejects the record.
+188|    """
+189|    # `trace` is a derived relation, not body content: it carries the parent hash, so it cannot be
+190|    # inside the hash it references. The validator excludes exactly the same key set
+191|    # (validate.HASH_EXCLUDED_FIELDS) - one definition, referenced in both places.
+192|    body = {k: v for k, v in rec.items() if k not in HASH_EXCLUDED_FIELDS}
+193|    digest = sha256_text(canonical_json(body))
+194|    rec["subject_id"] = f"{prefix}-{digest[:16]}"
+195|    rec["content_hash"] = digest
+196|    return rec
+197|
+198|
+199|def atoms_of(pi: dict[str, Any]) -> list[dict[str, Any]]:
+200|    return pi["stable_semantic_contract"]["atoms"]
+201|
+202|
+203|def strip_sidecar(record: dict[str, Any]) -> dict[str, Any]:
+204|    return {k: v for k, v in record.items() if not k.startswith("_")}
+205|
+206|
+207|# ---------------------------------------------------------------- validation wiring (R7-0)
+208|def frozen_validation_context(pi: dict[str, Any]) -> dict[str, Any]:
+209|    """Deterministic frozen context (profile requirement, oracle expectations, trace endpoint
+210|    digests) derived from a PI package, for `validate.validate_bundle(..., frozen_context=...)`.
+211|
+212|    Every value is read from the record the caller already holds; no LLM, network or clock is
+213|    consulted. This is how the pipeline PASSES the frozen context the R7-0 validator binds to.
+214|    """
+215|    from . import validate as _validate
+216|    return _validate.derive_frozen_context(pi)
+217|
+218|
+219|def validate_pi(pi: dict[str, Any], schemas_dir: Path | None = None) -> dict[str, Any]:
+220|    """Validate a PI package - the PI-PKG record, its ProfileBinding, every RequirementAtom and
+221|    every TraceLink - against the frozen context derived from itself.
+222|
+223|    Deterministic only. This is the pipeline-level entrypoint that threads the optional frozen
+224|    context through to the hardened `semantic_invariants`, so the trace-digest / oracle-expected /
+225|    profile-assurance bindings are checked on the compiler's own output.
+226|    """
+227|    from . import validate as _validate
+228|    ctx = _validate.derive_frozen_context(pi)
+229|    findings: list[dict[str, str]] = list(
+230|        _validate.validate_bundle({"PI-PKG": strip_sidecar(pi)}, schemas_dir, ctx)["findings"])
+231|    ssc = pi.get("stable_semantic_contract") or {}
+232|    members: list[tuple[str, dict[str, Any]]] = []
+233|    if isinstance(ssc.get("profile_binding"), dict):
+234|        members.append(("ProfileBinding", ssc["profile_binding"]))
+235|    members += [("RequirementAtom", a) for a in (ssc.get("atoms") or []) if isinstance(a, dict)]
+236|    members += [("TraceLink", t) for t in (pi.get("trace") or []) if isinstance(t, dict)]
+237|    for contract, rec in members:
+238|        for f in _validate.validate_record(contract, rec, schemas_dir):
+239|            findings.append({"contract": contract, "kind": "SCHEMA", "detail": f})
+240|        for f in _validate.semantic_invariants(contract, rec, ctx):
+241|            findings.append({"contract": contract, "kind": "SEMANTIC", "detail": f})
+242|    return {"verdict": "PASS" if not findings else "FAIL",
+243|            "checked": 1 + len(members), "findings": findings}
+244|
+245|
+
+SOURCE C:\Projects\Agent_Workspace\PIPD\worktrees\r8-wt\src\pipd_ls_sp\cli.py
+150|                                   _read_json(args.pi, "PI package"))
+151|        if getattr(args, "explain", False):
+152|            out = dict(out); out.update(_explain("compile-ecp", out,
+153|                                                 {"idempotency": out.get("idempotency", {})}))
+154|        return out
+155|    if cmd == "compile-tqaep":
+156|        out = pipeline.compile_tqaep(_read_json(args.pi, "PI package"),
+157|                                     _read_json(args.ecp, "ECP"),
+158|                                     maker=args.maker, checker=args.checker,
+159|                                     checker_execution_receipt=args.checker_receipt)
+160|        if getattr(args, "explain", False):
+161|            out = dict(out); out.update(_explain("compile-tqaep", out,
+162|                                                 {"sod": (out.get("acceptance") or [{}])[0]}))
+163|        return out
+164|    if cmd == "validate":
+165|        bundle = _read_json(args.bundle, "validation bundle")
+166|        # CE-1: resolve schemas through the SAME registry chain `doctor` uses
+167|        # (OVERRIDE -> INSTALLED -> SOURCE), with a workspace-local `<root>/schemas`
+168|        # winning only when it actually contains registry.json. The chosen surface is
+169|        # reported so the operator can see which copy produced the verdict.
+170|        schemas_dir, mode, tried = registry.resolve_for_validate(root)
+171|        # R7-0 wiring: derive a deterministic frozen context from an embedded PI package when the
+172|        # bundle carries one, so the trace-endpoint / oracle-expected / profile-assurance bindings
+173|        # are discharged against frozen references. With no source for a given binding the hardened
+174|        # validator fails closed (UNBOUND_FROZEN_CONTEXT) instead of silently passing.
+175|        source = bundle.get("PI-PKG") if isinstance(bundle.get("PI-PKG"), dict) else None
+176|        frozen = validate.derive_frozen_context(source)
+177|        out = validate.validate_bundle(bundle, schemas_dir, frozen)
+178|        out["schema_source"] = {"mode": mode,
+179|                                "path": str(schemas_dir) if schemas_dir is not None else "",
+180|                                "tried": tried}
+181|        if schemas_dir is None:
+182|            out["verdict"] = "FAIL"
+183|            out.setdefault("findings", []).append(
+184|                {"contract": "*", "kind": "SCHEMA_RESOLUTION",
+185|                 "detail": "no schemas directory containing registry.json; tried: "
+186|                           + "; ".join(tried)})
+187|        if getattr(args, "explain", False):
+188|            out = dict(out); out.update(_explain("validate", out))
+189|        return out
+190|    if cmd == "doctor":
+
+SOURCE C:\Projects\Agent_Workspace\PIPD\worktrees\r8-wt\tests\test_s4ext_trace_closure.py
+80|class LegalTraceStillPassesTests(unittest.TestCase):
+81|    """The repair must not narrow a legal chain (the report's 'no over-narrowing' rule)."""
+82|
+83|    @classmethod
+84|    def setUpClass(cls) -> None:
+85|        cls._tmp = tempfile.TemporaryDirectory()
+86|        cls.repo = Path(cls._tmp.name) / "repo"
+87|        _init_git_repo(cls.repo)
+88|        cls.bundle = _bundle(cls.repo)
+89|
+90|    @classmethod
+91|    def tearDownClass(cls) -> None:
+92|        cls._tmp.cleanup()
+93|
+94|    def test_full_chain_validates_and_closes(self) -> None:
+95|        res = validate.validate_bundle(self.bundle, SCHEMAS_DIR)
+96|        self.assertEqual(res["findings"], [], str(res["findings"])[:600])
+97|        self.assertEqual(res["verdict"], "PASS")
+98|        self.assertEqual(res["checked"], 4)
+99|        self.assertEqual(res["closure"], "FULL", "the real chain must reach full graph closure")
+100|        self.assertEqual(len(self.bundle["PI-PKG"]["trace"]),
+101|                         len(self.bundle["PI-PKG"]["stable_semantic_contract"]["atoms"]))
+102|
+103|    def test_single_pi_closes_against_its_own_atoms(self) -> None:
+104|        res = validate.validate_bundle({"PI-PKG": self.bundle["PI-PKG"]}, SCHEMAS_DIR)
+105|        self.assertEqual(res["verdict"], "PASS", str(res["findings"])[:400])
+106|        self.assertEqual(res["closure"], "FULL")
+107|
+108|    def test_real_trace_link_is_legal_beside_its_endpoints(self) -> None:
+109|        """A TraceLink bundled WITH the PI it points at resolves on both sides."""
+110|        link = self.bundle["PI-PKG"]["trace"][0]
+111|        res = validate.validate_bundle({"PI-PKG": self.bundle["PI-PKG"], "TraceLink": link},
+112|                                       SCHEMAS_DIR)
+113|        self.assertEqual(res["verdict"], "PASS", str(res["findings"])[:400])
+114|        self.assertEqual(res["closure"], "FULL")
+115|        self.assertEqual(validate.validate_record("TraceLink", link, SCHEMAS_DIR), [])
+116|        self.assertEqual(link["version"], "1", "the legacy version grammar must survive")
+
+SOURCE C:\Projects\Agent_Workspace\PIPD\worktrees\r8-wt\tests\test_tooling_executes.py
+59|    def test_cli_smoke_runs(self) -> None:
+60|        """The 13-command CLI surface must actually execute, not just import.
+61|
+62|        Run inside a throwaway copy of the repo: the runner writes .hgk/artifacts/cli/CLI_SMOKE.json
+63|        by design, and a test that rewrites tracked evidence makes "tree clean after a test run"
+64|        impossible. The copy has every artifact the runner reads, so nothing is skipped.
+65|        """
+66|        import os as _os
+67|        import shutil as _sh
+68|        import tempfile as _tf
+69|        with _tf.TemporaryDirectory() as tmp:
+70|            dst = Path(tmp) / "repo"
+71|            _sh.copytree(ROOT, dst, ignore=_sh.ignore_patterns(".git", "__pycache__", "*.db", "*.pyc"))
+72|            r = subprocess.run([sys.executable, "-B", "tools/cli_smoke.py"], cwd=str(dst),
+73|                               capture_output=True, text=True,
+74|                               env={**_os.environ, "PYTHONDONTWRITEBYTECODE": "1"})
+75|        self.assertEqual(r.returncode, 0,
+76|                         f"cli_smoke.py exited {r.returncode}\n{(r.stderr or r.stdout)[-800:]}")
+
+$ C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe -B -m pytest -p no:cacheprovider --basetemp C:\Projects\Agent_Workspace\_handover\CNV-PIPD-LS-SP-20261015-R9\FAR\ws2\pytest_temp tests/test_tooling_executes.py::TestToolingExecutes::test_cli_smoke_runs -vv --tb=long
+CWD=C:\Projects\Agent_Workspace\PIPD\worktrees\r8-wt
+STDOUT:
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.6.0 -- C:\Users\user\AppData\Local\Programs\Python\Python311\python.exe
+rootdir: C:\Projects\Agent_Workspace\PIPD\worktrees\r8-wt
+configfile: pyproject.toml
+plugins: anyio-4.13.0, platformdirs-4.13.0
+collecting ... collected 1 item
+
+tests/test_tooling_executes.py::TestToolingExecutes::test_cli_smoke_runs FAILED [100%]
+
+================================== FAILURES ===================================
+___________________ TestToolingExecutes.test_cli_smoke_runs ___________________
+
+self = <tests.test_tooling_executes.TestToolingExecutes testMethod=test_cli_smoke_runs>
+
+    def test_cli_smoke_runs(self) -> None:
+        """The 13-command CLI surface must actually execute, not just import.
+    
+        Run inside a throwaway copy of the repo: the runner writes .hgk/artifacts/cli/CLI_SMOKE.json
+        by design, and a test that rewrites tracked evidence makes "tree clean after a test run"
+        impossible. The copy has every artifact the runner reads, so nothing is skipped.
+        """
+        import os as _os
+        import shutil as _sh
+        import tempfile as _tf
+        with _tf.TemporaryDirectory() as tmp:
+            dst = Path(tmp) / "repo"
+            _sh.copytree(ROOT, dst, ignore=_sh.ignore_patterns(".git", "__pycache__", "*.db", "*.pyc"))
+            r = subprocess.run([sys.executable, "-B", "tools/cli_smoke.py"], cwd=str(dst),
+                               capture_output=True, text=True,
+                               env={**_os.environ, "PYTHONDONTWRITEBYTECODE": "1"})
+>       self.assertEqual(r.returncode, 0,
+                         f"cli_smoke.py exited {r.returncode}\n{(r.stderr or r.stdout)[-800:]}")
+E       AssertionError: 2 != 0 : cli_smoke.py exited 2
+E       {
+E        "commands_run": 13,
+E        "expected": 13,
+E        "nonzero_exit": 1,
+E        "verdicts": {
+E         "init": "PASS",
+E         "intake": "n/a",
+E         "profile": "n/a",
+E         "compile-pi": "n/a",
+E         "bind-pd": "n/a",
+E         "compile-ecp": "n/a",
+E         "compile-tqaep": "n/a",
+E         "validate": "n/a",
+E         "doctor": "PASS",
+E         "project": "PASS",
+E         "export": "PASS",
+E         "diff": "PASS",
+E         "repair": "n/a"
+E        }
+E       }
+
+tests\test_tooling_executes.py:75: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_tooling_executes.py::TestToolingExecutes::test_cli_smoke_runs - AssertionError: 2 != 0 : cli_smoke.py exited 2
+{
+ "commands_run": 13,
+ "expected": 13,
+ "nonzero_exit": 1,
+ "verdicts": {
+  "init": "PASS",
+  "intake": "n/a",
+  "profile": "n/a",
+  "compile-pi": "n/a",
+  "bind-pd": "n/a",
+  "compile-ecp": "n/a",
+  "compile-tqaep": "n/a",
+  "validate": "n/a",
+  "doctor": "PASS",
+  "project": "PASS",
+  "export": "PASS",
+  "diff": "PASS",
+  "repair": "n/a"
+ }
+}
+============================= 1 failed in 17.77s ==============================
+
+STDERR:
+
+EXIT=1
+
+$ C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe -B C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015-R8/WS_B/repro_frozen_crash.py
+CWD=C:\Projects\Agent_Workspace\PIPD\worktrees\r8-wt
+STDOUT:
+PI-PKG risk_guard type: str
+derive_frozen_context: RAISED
+
+STDERR:
+Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\_handover\CNV-PIPD-LS-SP-20261015-R8\WS_B\repro_frozen_crash.py", line 17, in <module>
+    validate.derive_frozen_context(pi)
+  File "C:\Projects\Agent_Workspace\PIPD\worktrees\r8-wt\src\pipd_ls_sp\validate.py", line 434, in derive_frozen_context
+    oracle = ((atom.get("risk_guard") or {}).get("oracle") or {})
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute 'get'
+
+EXIT=0
+
+$ C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe -B -c "import sys; from pathlib import Path; sys.path.insert(0,'tests'); import test_s4ext_trace_closure as t; t._init_git_repo=lambda p: None; t.LegalTraceStillPassesTests.setUpClass=classmethod(lambda cls: (setattr(cls,'repo',Path('C:/Projects/wt-r8-cleanmain')),setattr(cls,'bundle',t._bundle(cls.repo)))); t.LegalTraceStillPassesTests.tearDownClass=classmethod(lambda cls: None); import pytest; raise SystemExit(pytest.main(['-p','no:cacheprovider','--basetemp',r'C:\Projects\Agent_Workspace\_handover\CNV-PIPD-LS-SP-20261015-R9\FAR\ws2\pytest_trace_temp','tests/test_s4ext_trace_closure.py::LegalTraceStillPassesTests::test_real_trace_link_is_legal_beside_its_endpoints','-vv','--tb=long']))"
+CWD=C:\Projects\Agent_Workspace\PIPD\worktrees\r8-wt
+STDOUT:
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.6.0 -- C:\Users\user\AppData\Local\Programs\Python\Python311\python.exe
+rootdir: C:\Projects\Agent_Workspace\PIPD\worktrees\r8-wt
+configfile: pyproject.toml
+plugins: anyio-4.13.0, platformdirs-4.13.0
+collecting ... collected 1 item
+
+tests/test_s4ext_trace_closure.py::LegalTraceStillPassesTests::test_real_trace_link_is_legal_beside_its_endpoints FAILED [100%]
+
+================================== FAILURES ===================================
+_ LegalTraceStillPassesTests.test_real_trace_link_is_legal_beside_its_endpoints _
+
+self = <tests.test_s4ext_trace_closure.LegalTraceStillPassesTests testMethod=test_real_trace_link_is_legal_beside_its_endpoints>
+
+    def test_real_trace_link_is_legal_beside_its_endpoints(self) -> None:
+        """A TraceLink bundled WITH the PI it points at resolves on both sides."""
+        link = self.bundle["PI-PKG"]["trace"][0]
+        res = validate.validate_bundle({"PI-PKG": self.bundle["PI-PKG"], "TraceLink": link},
+                                       SCHEMAS_DIR)
+>       self.assertEqual(res["verdict"], "PASS", str(res["findings"])[:400])
+E       AssertionError: 'FAIL' != 'PASS'
+E       - FAIL
+E       + PASS
+E        : [{'contract': 'TraceLink', 'kind': 'SEMANTIC', 'detail': 'TraceLink: UNBOUND_FROZEN_CONTEXT: from_hash cannot be verified against a frozen subject->digest map (frozen context not supplied); binding is unproven, not a pass'}, {'contract': 'TraceLink', 'kind': 'SEMANTIC', 'detail': 'TraceLink: UNBOUND_FROZEN_CONTEXT: to_hash cannot be verified against a frozen subject->digest map (frozen context not
+
+tests\test_s4ext_trace_closure.py:113: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_s4ext_trace_closure.py::LegalTraceStillPassesTests::test_real_trace_link_is_legal_beside_its_endpoints - AssertionError: 'FAIL' != 'PASS'
+- FAIL
++ PASS
+ : [{'contract': 'TraceLink', 'kind': 'SEMANTIC', 'detail': 'TraceLink: UNBOUND_FROZEN_CONTEXT: from_hash cannot be verified against a frozen subject->digest map (frozen context not supplied); binding is unproven, not a pass'}, {'contract': 'TraceLink', 'kind': 'SEMANTIC', 'detail': 'TraceLink: UNBOUND_FROZEN_CONTEXT: to_hash cannot be verified against a frozen subject->digest map (frozen context not
+============================== 1 failed in 0.45s ==============================
+
+STDERR:
+
+EXIT=1
+
+SOURCE C:\Projects\Agent_Workspace\HG-KSEOS\scripts\hgk-lane-dispatch.py
+1015|    The oracle requires every receipt -- including every refusal path -- to record the resolved Codex
+1016|    home and whether it is the declared lane home. The value is RESOLVED (FIX 4) so a relative
+1017|    `--codex-home .` is recorded as an absolute path, and the same resolved form feeds the comparison
+1018|    against the declared lane home.
+1019|    """
+1020|    resolved = Path(args.codex_home).resolve()
+1021|    iso = lane_home_isolation(resolved, DEFAULT_LANE_HOME)
+1022|    return {"codex_home": str(resolved),
+1023|            "codex_home_is_declared_lane_home": iso["codex_home_is_declared_lane_home"]}
+1024|
+1025|
+1026|def nonce_is_blank(nonce) -> bool:
+1027|    """FIX 5: an absent or whitespace-only nonce certifies nothing -- the substring test in
+1028|    nonce_in_agent_message would be vacuously true, so `--nonce ""` must be REFUSED, not treated as
+1029|    "the check is disabled"."""
+1030|    return not isinstance(nonce, str) or nonce.strip() == ""
+1031|
+1032|
+1033|def failure_disposition(attempts: list) -> dict:
+1034|    """C1: the failure code for a run that produced no usable turn, without conflating conditions.
+1035|
+1036|    Kept additive: a run that answered (exit 0 + a valid usage receipt) but emitted no nonce reads
+1037|    ERR_NO_ARM_EMITTED_NONCE. EVERY case where no arm produced an acceptable turn -- including a run
+1038|    where every attempt timed out -- keeps the generic ERR_LANE_ALL_ROUTES_EXHAUSTED, per the frozen
+1039|    oracle. The timeout CASE is still MEASURED via `timed_out_arms` (an additive field), but the CODE
+1040|    is never ERR_ALL_ATTEMPTS_TIMED_OUT (that constant/branch is removed, not left dead). Returns
+1041|    receipt fields to merge.
+1042|
+1043|    I3 (pass-5): the FROZEN oracle's C1 classification TAKES PRECEDENCE. A turn with exit 0, a valid
+1044|    usage receipt and no nonce is ERR_NO_ARM_EMITTED_NONCE + nonce_absent_arms whatever the carrier
+1045|    shape was -- an invalid carrier merely means the TEXT is absent, which is exactly "emitted no
+1046|    nonce". A rewritten-ledger attempt zeroes its own `rec_ok`, so it never counts as `answered` here.
+1047|
+1048|    J4 (pass-6, code precedence): the top level emits ONLY a code derivable from the frozen
+1049|    requirement's table -- ERR_NO_ARM_EMITTED_NONCE when some arm produced an acceptable turn, else
+1050|    the generic ERR_LANE_ALL_ROUTES_EXHAUSTED. The pass-4 diagnostics (ERR_CARRIER_SHAPE_INVALID /
+1051|    ERR_USAGE_LEDGER_REWRITTEN) are NO LONGER top-level codes: they are per-attempt DETAIL fields
+1052|    (each attempt already carries `carrier_shape_invalid` / `usage_ledger_rewritten` and its own
+1053|    `usage_receipt_reason`), so a diagnostic can never outrank the requirement's classification.
+1054|    """
+1055|    answered = [a for a in attempts if a.get("exit") == 0 and a.get("usage_receipt_ok")]
+1056|    if answered and not any(a.get("nonce_present") for a in answered):
+1057|        return {"code": "ERR_NO_ARM_EMITTED_NONCE",
+1058|                "nonce_absent_arms": [f"{a.get('provider')}/{a.get('model')}" for a in answered]}
+1059|    fields: dict = {"code": "ERR_LANE_ALL_ROUTES_EXHAUSTED"}
+1060|    if attempts and all(a.get("exit") == "TIMEOUT" for a in attempts):
+1061|        fields["timed_out_arms"] = [f"{a.get('provider')}/{a.get('model')}" for a in attempts]
+1062|    return fields
+1063|
+1064|
+1065|def run_candidate(entry: dict, args, codex: str, lane_home: Path, attempt_log_dir=None,
+1066|                  run_id=None) -> dict:
+1067|    sandbox = args.sandbox or SANDBOX_BY_LANE.get(args.lane, "read-only")
+1068|    # PROBE/TEST SEAM: a .py child runs under this interpreter (Windows CreateProcess cannot launch a
+1069|    # .py/.bat directly). It exists so the non-mutation guard's VOID path can be exercised end-to-end
+1070|    # and deterministically, with no model in the loop; the extra codex argv is ignored by the stub.
+1071|    launcher = [sys.executable, str(codex)] if str(codex).endswith(".py") else [codex]
+1072|    cmd = launcher + ["--model", str(entry["transport_model"]),
+1073|           "--sandbox", sandbox, "--ask-for-approval", "never",
+1074|           "-c", f"openai_base_url={args.relay_base}",
+1075|           "--cd", str(args.cwd or ROOT)]
+
+SOURCE C:\Projects\Agent_Workspace\HG-KSEOS\scripts\hgk-lane-dispatch.py
+1140|    t0 = time.time()
+1141|    timed_out = False
+1142|    try:
+1143|        # stdin=DEVNULL matters: `codex exec` reads stdin ("Reading additional input from stdin...")
+1144|        # and blocks forever when the parent's stdin is an open pipe that never closes - which is
+1145|        # exactly what a background shell provides. The prompt travels as an argv argument, so the
+1146|        # child must simply see EOF.
+1147|        p = subprocess.run(cmd, capture_output=True, timeout=args.timeout, env=env,
+1148|                           stdin=subprocess.DEVNULL)
+1149|        rc = p.returncode
+1150|        out_b, err_b = p.stdout or b"", p.stderr or b""
+1151|        # decode ONLY for parsing/tails; the raw bytes are what gets persisted (see
+1152|        # persist_attempt_logs: text=True + errors="replace" loses bytes and translates newlines
+1153|        # BEFORE any file is written, which made "byte-identical" untrue).
+1154|        out = out_b.decode("utf-8", errors="replace")
+1155|        err = err_b.decode("utf-8", errors="replace")
+1156|    except subprocess.TimeoutExpired as exc:
+1157|        # P1-B TIMEOUT-CAPTURE (owner-ordered reuse of the Convergence candidate patch,
+1158|        # round FAR-LANE-REUSE-RCA-20261015): subprocess.TimeoutExpired carries whatever the
+1159|        # child already wrote to stdout/stderr before it was killed. The old branch forced
+1160|        # the streams to b"" / "", so a timed-out attempt was persisted with 0 bytes and an
+1161|        # empty tail and the child's diagnostics were lost -- the exact blindness that turned
+1162|        # "one stale binary pin" into "the whole lane looks broken". Preserve the bytes
+1163|        # already read; the timeout CLASSIFICATION is unchanged (exit "TIMEOUT", no nonce,
+1164|        # usage_receipt_ok=false) -- a timeout stays a FAIL, it just stops being silent.
+1165|        timed_out = True
+1166|        rc = "TIMEOUT"
+1167|        out_b = exc.stdout if isinstance(exc.stdout, bytes) else (exc.stdout or b"")
+1168|        err_b = exc.stderr if isinstance(exc.stderr, bytes) else (exc.stderr or b"")
+1169|        out = out_b.decode("utf-8", errors="replace")
+1170|        err = err_b.decode("utf-8", errors="replace")
+1171|    dur = round(time.time() - t0, 2)
+1172|    # H1 (pass-4 checker false green): the nonce verdict is decided on the PRESERVED BYTES.
+1173|    # `errors="replace"` manufactures U+FFFD (so a raw 0xFF "satisfied" a U+FFFD nonce), and the old
+1174|    # "raw stdout" check searched the DECODED string. The binding signal is now
+1175|    # `nonce.encode("utf-8") in raw_stdout_bytes`; the text is decoded with "surrogateescape" (which
+1176|    # never manufactures a character) for the carrier signal, and `nonce_present` requires BOTH. In
+1177|    # particular, a byte that is not valid UTF-8 becomes a lone surrogate, so a real U+FFFD nonce is
+1178|    # found only when the child actually emitted the three bytes EF BF BD.
+1179|    nonce_bytes = args.nonce.encode("utf-8")
+1180|    nonce_raw = nonce_bytes in out_b
+1181|    # S3: the carrier extraction reads the stream as COMPLETE, LF/CRLF-terminated, strictly-UTF-8
+1182|    # lines (never str.splitlines()); `nonce_in_agent_message` therefore accepts the PRESERVED BYTES
+1183|    # directly and cannot be satisfied by a split-invented, unterminated or invalid-UTF-8 fragment.
+1184|    # T3 (pass 2): reset the surrogate-skip counter immediately before the extraction that decides the
+1185|    # nonce, so the count recorded on this attempt describes exactly this turn's carrier read.
+1186|    reset_carrier_surrogate_count()
+1187|    nonce_ok = nonce_in_agent_message(out_b, args.nonce) and nonce_raw
+1188|    carrier_surrogate = carrier_surrogate_count()
+1189|
+1190|    # H5 (pass-4 checker) + S3: a wrongly-shaped carrier must produce a TYPED refusal rather than an
+1191|    # uncaught exception, and a line that is not strictly decodable is NOT a carrier at all -- it is
+1192|    # DROPPED and COUNTED (`carrier_lines_undecodable`), never turned into a surrogate or U+FFFD and
+1193|    # never treated as a wrong-shaped carrier. Shape validation never runs twice: it is the same
+1194|    # extraction the nonce verdict already performed.
+1195|    carrier_lines, carrier_undecodable = carrier_line_texts(out_b)
+1196|    carrier_shape_invalid = False
+1197|    for line in carrier_lines:
+1198|        if not line.startswith("{"):
+1199|            continue
+1200|        try:
+1201|            event = strict_json_loads(line)
+1202|        except Exception:
+1203|            continue
+1204|        if isinstance(event, dict) and event.get("type") == "item.completed" \
+1205|                and "item" in event and event.get("item") is not None and not isinstance(event.get("item"), dict):
+1206|            carrier_shape_invalid = True
+1207|            break
+1208|
+1209|    # H3 (pass-4) + I1 (pass-5): a ledger that SHRANK below the captured offset was rewritten/
+1210|    # truncated; a ledger whose pre-offset prefix is no longer byte-identical (even if it GREW) was
+1211|    # rewritten/shifted. Both reviving a stale row as this turn's receipt are forbidden. The content
+1212|    # check is the pass-5 generalization of the size check: `rewritten` is now true for a GROWING
+1213|    # ledger too, and there is NEVER a re-read/recompute of the offset to "recover".
+1214|    ledger_rewritten = False
+1215|    rewritten_note = None
+1216|    if usage_path.is_file():
+1217|        size_now = usage_path.stat().st_size
+1218|        if size_now < offset:
+1219|            ledger_rewritten = True
+1220|            rewritten_note = ("the usage ledger shrank below the captured offset; it was rewritten or "
+1221|                              "truncated, so no row can be bound to this attempt")
+1222|        elif usage_prefix_digest(usage_path, offset) != prefix_digest_before:
+1223|            ledger_rewritten = True
+1224|            rewritten_note = ("the usage ledger's pre-turn bytes [0:offset) are no longer byte-"
+1225|                              "identical: the ledger was rewritten (a pre-offset byte was shifted or "
+1226|                              "replaced), so a row appended past the offset cannot be bound to THIS "
+1227|                              "attempt; the file SIZE alone cannot see this")
+1228|    # J1/J2: parse the appended region as COMPLETE, line-boundary-anchored lines, strictly decoded.
+1229|    # `spans` holds only bytes that begin on a line boundary (when offset > 0) and end with a
+1230|    # terminator; `undecodable_count` counts appended lines that failed strict UTF-8 decoding and were
+1231|    # therefore skipped -- never substituted into a comparable value.
+1232|    spans = usage_spans_since(usage_path, offset)
+1233|    rows_all, undecodable_count = decode_usage_spans(spans)
+1234|    # I2: a row of ANY wrong shape (a nonempty array, a bare `true`, a string, an integer) must be
+1235|    # SKIPPED and COUNTED -- never handed to a `.get`-based parser that crashes the surface with no
+1236|    # receipt. The count is recorded on the attempt (`usage_rows_shape_invalid`) and read back into
+1237|    # the top-level receipt.
+1238|    rows = [r for r in rows_all if is_usage_row_shaped(r)]
+1239|    shape_invalid_count = len(rows_all) - len(rows)
+1240|    matched = None
+1241|    observed = None
+1242|    reject_reason = ""
+1243|    if ledger_rewritten:
+1244|        reject_reason = rewritten_note
+1245|    elif rows:
+1246|        observed = next(reversed(rows))
+1247|        matched = next((r for r in reversed(rows) if receipt_matches(entry, r)), None)
+1248|        if matched is None:
+1249|            reject_reason = receipt_reject_reason(entry, observed)
+1250|    else:
+1251|        reject_reason = "no usage row was appended after the attempt offset"
+1252|        if shape_invalid_count:
+1253|            reject_reason += (f"; {shape_invalid_count} appended row(s) had a non-object shape and "
+1254|                              f"were skipped (never treated as a receipt)")
+1255|    if undecodable_count:
+1256|        reject_reason += (f"; {undecodable_count} appended line(s) were not valid UTF-8 and were "
+1257|                          f"skipped (never substituted, never compared)")
+1258|    rec_ok = (matched is not None) and not ledger_rewritten
+1259|
+1260|    log_meta = persist_attempt_logs(attempt_log_dir, entry["rank"], out, err, run_id=run_id,
+1261|                                    out_bytes=out_b, err_bytes=err_b)
+1262|
+1263|    attempt = {"rank": entry["rank"], "provider": entry["provider"], "model": entry["model"],
+1264|            "transport_model": entry["transport_model"], "sandbox": sandbox,
+1265|            "reasoning_effort": entry.get("reasoning_effort"), "exit": rc, "timed_out": timed_out,
+1266|            "seconds": dur, "nonce_present": nonce_ok, "nonce_present_raw_stdout": nonce_raw,
+1267|            "nonce_source": "item.completed/agent_message",
+1268|            "usage_rows_after_offset": len(rows), "usage_offset": offset,
+1269|            "usage_provider": (matched or {}).get("provider"), "usage_model": (matched or {}).get("model"),
+1270|            # The observed (even if rejected) row's status is preserved so an operator sees WHY a
+1271|            # receipt was refused (H2: `status:200.9` must be visible, not silently dropped).
+1272|            "usage_status": (matched or observed or {}).get("status"), "usage_receipt_ok": rec_ok,
+1273|            "usage_receipt_reason": reject_reason,
+1274|            "usage_ledger_rewritten": ledger_rewritten,
+1275|            "usage_rows_shape_invalid": shape_invalid_count,
+1276|            "usage_rows_undecodable": undecodable_count,
+1277|            # S3: count of captured-stream lines that FAILED strict UTF-8 decoding and were skipped
+1278|            # (never substituted, never a carrier). Operator-visible so a dropped line is not silent.
+1279|            "carrier_lines_undecodable": carrier_undecodable,
+1280|            # T3 (pass 2): count of carrier texts SKIPPED for carrying a surrogate code point
+1281|            # (U+D800-U+DFFF). Such text never decides a verdict; the count keeps the skip visible.
+1282|            "carrier_lines_surrogate": carrier_surrogate,
+1283|            # (c) REQ-HGK-GCM-APPLY-002: the credential posture ACTUALLY in force for THIS attempt,
+1284|            # read back from the attempt record rather than asserted in prose. `git_terminal_prompt`
+1285|            # is read from the SAME env dict handed to the child, so it is evidence of what the child
+1286|            # received, not of what the source says.
+1287|            "credential_posture": posture_fields,
+1288|            **log_meta,
+1289|            "stdout_tail": out[-400:], "stderr_tail": err[-300:]}
+1290|    if carrier_shape_invalid:
+1291|        # J4 (pass-6): a wrong-shaped carrier is a DIAGNOSTIC about the TEXT, recorded as a per-
+1292|        # attempt DETAIL -- never as a top-level code. `failure_disposition` owns the top-level
+1293|        # precedence table (ERR_NO_ARM_EMITTED_NONCE vs the generic exhausted code); the shape detail
+1294|        # here, like `usage_ledger_rewritten` and `usage_receipt_reason`, is additive evidence an
+1295|        # operator reads. An invalid carrier means the TEXT is absent, which is exactly "emitted no
+1296|        # nonce", so it must neither overwrite the usage MEASUREMENT nor outrank C1.
+1297|        attempt["carrier_shape_invalid"] = True
+1298|        attempt["carrier_shape_invalid_detail"] = (
+1299|            "an item.completed carrier's `item` was present but not an object; its text can never be "
+1300|            "read, so the nonce/TEXT signal is absent (a diagnostic, not a top-level code)")
+1301|        attempt["nonce_present"] = False
+1302|        if ledger_rewritten:
+1303|            attempt["usage_receipt_ok"] = False
+1304|    return attempt
+1305|
+1306|
+1307|def _authorization_spine():
+1308|    """Open the canonical Shared Spine for the D4 single-use authorization claim.
+1309|
+1310|    Returns ``(spine, None)`` on success or ``(None, detail)`` when the Spine/claim helper cannot be
+1311|    reached. A caller MUST refuse when this returns a detail: an unacquirable boundary is a refusal,
+1312|    never a silent "no budget" pass.
+1313|    """
+1314|    if _authz is None:
+1315|        return None, "the authorization_claim helper could not be imported"
+1316|    try:
+1317|        SharedSpine = _authz._load_spine(ROOT)
+1318|        # An explicit override keeps the boundary testable against a throwaway Spine DB (and lets an
+1319|        # operator point the claim at an isolated DB); otherwise the canonical Shared Spine is used.
+1320|        db = Path(os.environ.get("HGK_SPINE_DB") or SPINE_DB)
+1321|        schema = Path(os.environ.get("HGK_SPINE_SCHEMA") or SPINE_SCHEMA)
+1322|        return SharedSpine(db, schema), None
+1323|    except Exception as exc:  # noqa: BLE001 - surface the reason; do not fall through to a pass
+1324|        return None, f"{type(exc).__name__}: {exc}"
+1325|
+1326|
+1327|def _resolve_completion_evidence(att, binding, root=None):
+1328|    """D2c: resolve the DELIVERABLE the WO binding declares and verify completion evidence.
+1329|
+1330|    Returns ``None`` when the turn may complete, else a named refusal string. Fail-closed: an attempt
+1331|    whose raw stdout proves a matching usage receipt but whose declared deliverable is missing, empty,
+1332|    or digest-mismatched is REFUSED -- the FAR finding is that a matching usage receipt is NOT work.
+1333|    ``binding`` is the validated role binding; ``binding["deliverable"]`` is
+1334|    ``{"path": <root-relative>, "sha256": <64-hex>}``. ``root`` is the admitted writable root.
+1335|    """
+1336|    spec = (binding or {}).get("deliverable") or {}
+1337|    rel = spec.get("path") if isinstance(spec, dict) else None
+1338|    claimed = spec.get("sha256") if isinstance(spec, dict) else None
+1339|    base = Path(root) if root else ROOT
+1340|    data = None
+1341|    if rel:
+1342|        p = (base / rel)
+1343|        try:
+1344|            if p.is_file():
+1345|                data = p.read_bytes()
+1346|        except OSError:
+1347|            data = None
+1348|    raw = b""
+1349|    if att.get("stdout_path"):
+1350|        try:
+
+SOURCE C:\Projects\Agent_Workspace\HG-KSEOS\scripts\hgk-lane-dispatch.py
+1350|        try:
+1351|            raw = Path(att["stdout_path"]).read_bytes()
+1352|        except OSError:
+1353|            raw = b""
+1354|    return _role_binding.verify_completion_evidence(
+1355|        raw_stdout=raw, deliverable_bytes=data,
+1356|        deliverable_digest_hex=claimed,
+1357|        binding={"workorder": (binding or {}).get("workorder"),
+1358|                 "session": (binding or {}).get("session"),
+1359|                 "subject": (binding or {}).get("subject")})
+1360|
+1361|
+1362|def main() -> int:
+1363|    ap = argparse.ArgumentParser(prog="hgk-lane-dispatch.py")
+1364|    ap.add_argument("--lane", required=True, help="PLAN | EXECUTE | VERIFY_SECURITY (validated in-contract)")
+1365|    ap.add_argument("--prompt", required=True)
+1366|    ap.add_argument("--nonce", default="HGK_LANE_NONCE_OK")
+1367|    ap.add_argument("--pool", default=str(DEFAULT_POOL))
+1368|    ap.add_argument("--codex-home", default=str(DEFAULT_LANE_HOME))
+1369|    ap.add_argument("--codex-executable", default=None,
+1370|                    help="PROBE/TEST SEAM: override the lane's child executable (a value ending in .py is "
+1371|                         "launched with this interpreter). Used to exercise the non-mutation guard's VOID "
+1372|                         "path deterministically with NO model in the loop. Default: config/hermes-codex-lane"
+1373|                         ".json. NOTE this widens what a caller can execute -- it is an operator tool.")
+1374|    ap.add_argument("--usage", default=str(DEFAULT_USAGE))
+1375|    ap.add_argument("--relay-base", default=DEFAULT_RELAY)
+1376|    ap.add_argument("--sandbox", default=None)
+1377|    ap.add_argument("--allow-sandbox-escalation", action="store_true",
+1378|                    help="required to use a sandbox stricter-than-role than the lane default")
+1379|    ap.add_argument("--cwd", default=None, help="workspace root for the Codex turn (default: the repo root)")
+1380|    ap.add_argument("--force-rank", type=int, default=None)
+1381|    ap.add_argument("--inject-429-first", action="store_true")
+1382|    ap.add_argument("--codex-arg", action="append", default=None,
+1383|                    help="extra raw argv tokens appended verbatim to the codex invocation (repeatable; "
+1384|                         "for bounded experiments such as -c prefer_websockets=false)")
+1385|    ap.add_argument("--max-candidates", type=int, default=0)
+1386|    ap.add_argument("--timeout", type=int, default=300)
+1387|    ap.add_argument("--json-out", default=None)
+1388|    ap.add_argument("--attempt-log-dir", default=None,
+1389|                    help="persist each attempt's FULL stdout/stderr here + hash it into the receipt "
+1390|                         "(the receipt's own tails are 400/300 chars and lose evidence)")
+1391|    ap.add_argument("--relay-home", default=None,
+1392|                    help="relay home holding the ChatGPT pool credential (default: %%LOCALAPPDATA%%\\HG-KSEOS\\opencodex-hermes)")
+1393|    ap.add_argument("--no-identity-gate", action="store_true",
+1394|                    help="skip the pre-spawn identity/health gate (bounded experiments only; recorded in the receipt)")
+1395|    ap.add_argument("--require-arm", default=None,
+1396|                    help="provider/model that MUST survive the gate; if it is refused the run fails closed "
+1397|                         "instead of silently degrading to another arm (owner ruling: keep the OAuth arm unattended)")
+1398|    ap.add_argument("--guard-subject", action="append", default=None,
+1399|                    help="file/dir whose digest must not change during the turn (repeatable). removed/changed "
+1400|                         "=> the verdict is VOID; this is what makes an escalated-sandbox checker safe")
+1401|    ap.add_argument("--allow-unguarded-escalation", action="store_true",
+1402|                    help="permit an escalated lane with no --guard-subject; the exception is recorded "
+1403|                         "in the receipt instead of being silently allowed")
+1404|    ap.add_argument("--allow-human-home-transport", action="store_true",
+1405|                    help="acknowledges that the run points --codex-home at a home holding a login, so "
+1406|                         "the key-auth arms' 'no human-attended identity' claim is NOT being made for "
+1407|                         "this run (without it, a non-isolated home refuses before any spawn)")
+1408|    ap.add_argument("--credential-posture-gate", default=None,
+1409|                    help="path to the GCM lane credential-posture gate "
+1410|                         "(default: scripts/gcm-containment/lane_credential_posture.py). Operator/test seam.")
+1411|    ap.add_argument("--credential-posture-gate-git", default=None,
+1412|                    help="TEST-ONLY seam: pass a git executable to the posture gate --git so a "
+1413|                         "nonexistent binary can exercise the INCONCLUSIVE branch with no window.")
+1414|    ap.add_argument("--credential-posture-gate-test-global", default=None,
+1415|                    help="TEST-ONLY seam: pass --test-global to the posture gate so FAIL/PASS are "
+1416|                         "driven with a scratch git global and NO real credential request (zero windows).")
+1417|    ap.add_argument("--round", default=None,
+1418|                    help="round name; when set, the lane output dir is derived as "
+1419|                         "var/<round>/<lane>/attempt-<n>-<utc-ts> (C1) instead of an arbitrary path")
+1420|    ap.add_argument("--attempt", type=int, default=None,
+1421|                    help="explicit attempt number for the derived output dir (default: derived from "
+1422|                         "the existing attempt markers under var/<round>/<lane>/)")
+1423|    ap.add_argument("--output-root", default=None,
+1424|                    help="override the directory that holds the round (default: <repo>/var)")
+1425|    ap.add_argument("--prior-attempt-dir", default=None,
+1426|                    help="the previous attempt's output dir; a repair/retry refuses to spawn while "
+1427|                         "that attempt's process is still alive or its log has no EXIT= marker (C3)")
+1428|    ap.add_argument("--prior-attempt-log", default=None,
+1429|                    help="the previous attempt's log file; the C3 terminal-marker check reads here")
+1430|    ap.add_argument("--prior-attempt-pid", type=int, default=None,
+1431|                    help="the previous attempt's OS pid (D5). Used when the prior dir has no attempt "
+1432|                         "marker; a real process-liveness check on this pid is MANDATORY or the "
+1433|                         "dispatch refuses. Never treated as a decorative marker.")
+1434|    ap.add_argument("--allow-unverified-prior-gone", action="store_true",
+1435|                    help="D5 escape hatch (recorded): proceed when the prior process liveness could "
+1436|                         "NOT be proven. Without it, 'cannot prove the prior pid is gone' is a REFUSAL, "
+1437|                         "not a pass. This exists only to drive a deterministic positive control.")
+1438|    ap.add_argument("--brief", default=None,
+1439|                    help="path to the lane BRIEF text; enables the DETECTION_ONLY remote-write "
+1440|                         "pre-check (C4). When unset, no brief-level detection runs.")
+1441|    ap.add_argument("--publication-workorder", default=None,
+1442|                    help="a publication WorkOrder reference; when present, a brief that carries "
+1443|                         "remote-write markers is authorized for this dispatch (C4)")
+1444|    ap.add_argument("--authorization-resource", default=None,
+1445|                    help="the single-use authorization resource id (D4). When set, the dispatcher "
+1446|                         "ACQUIRES this Spine lease before any spawn and CONSUMES it after a "
+1447|                         "successful spawn; a resource already consumed by a prior spawn is refused.")
+1448|    ap.add_argument("--authorization-ttl", type=int, default=900,
+1449|                    help="TTL (s) of the in-flight authorization window lease (D4; anti-deadlock bound)")
+1450|    ap.add_argument("--no-authorization-claim", action="store_true",
+1451|                    help="skip the D4 single-use authorization claim entirely (recorded in the "
+1452|                         "receipt; for tests/back-compat where no round budget is named)")
+1453|    ap.add_argument("--role-binding-file", default=None,
+1454|                    help="Tranche A/B: path to the persisted per-round role binding (carried by "
+1455|                         "TaskSpec permissions_json[role_binding]). When present, the lane's required "
+1456|                         "arm AND rank are DERIVED from this one document before spawn; a caller "
+1457|                         "--require-arm/--force-rank that contradicts it is refused. Requires "
+1458|                         "--round to cross-check the round.")
+1459|    ap.add_argument("--workorder", default=None,
+1460|                    help="the canonical WorkOrder whose persisted role_binding is the authority for a "
+1461|                         "bound (role-binding) dispatch. Required whenever a role binding is in play.")
+1462|    args = ap.parse_args()
+1463|
+1464|    # ---- Tranche A/B: resolve the persisted per-round role binding (pre-spawn, fail-closed) ------
+1465|    # The required ARM and RANK for this lane are DERIVED from the SAME persisted binding document, so
+1466|    # an outer check on arm A can never pair with an inner run on arm B. A caller whose explicit
+1467|    # --require-arm / --force-rank contradicts the binding is refused; an OMITTED one is DERIVED (the
+1468|    # binding is mandatory selection), never a silent fallback. Legacy rounds pass no binding file and
+1469|    # are unchanged.
+1470|    binding_fields: dict = {}
+
+RECEIPT_ARM_FIELDS {
+  "file": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R8\\R8_VERIFY\\R8_VERIFY_VERDICT.json",
+  "rows": []
+}
+
+RECEIPT_ARM_FIELDS {
+  "file": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R8\\R8_VERIFY\\random_ws_a_harness.json",
+  "rows": []
+}
+
+RECEIPT_ARM_FIELDS {
+  "file": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R8\\R8_VERIFY\\ws_a_hgk_harness_rederived.json",
+  "rows": []
+}
+
+RECEIPT_ARM_FIELDS {
+  "file": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R8\\R8_VERIFY\\ws_a_receipt_recompute.json",
+  "rows": []
+}
+
+RECEIPT_ARM_FIELDS {
+  "file": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R8\\R8_VERIFY\\ws_a_tree_inventory.json",
+  "rows": []
+}
+
+RECEIPT_ARM_FIELDS {
+  "file": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R8\\R8_VERIFY\\WS_B_3_ATTRIBUTION_ERRATA.json",
+  "rows": []
+}
+
+RECEIPT_ARM_FIELDS {
+  "file": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R8\\WS_A\\apply\\APPLY_RECEIPT.json",
+  "rows": []
+}
+
+RECEIPT_ARM_FIELDS {
+  "file": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R8\\WS_A\\sim\\APPLY_RECEIPT_dryrun.json",
+  "rows": []
+}
+
+RECEIPT_ARM_FIELDS {
+  "file": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R8\\WS_A\\sim\\drill_receipt.json",
+  "rows": []
+}
+
+RECEIPT_ARM_FIELDS {
+  "file": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R8\\WS_A\\sim\\drill_receipt_used.json",
+  "rows": []
+}
+
+SOURCE C:\Projects\Agent_Workspace\HG-KSEOS\config\lane-routing-registry.yaml
+1|# lane-routing-registry.yaml — HG-KSEOS single source of truth for model-lane routing.
+2|#
+3|# STATUS: CANDIDATE. This file is a candidate enforcement artifact produced by the EXECUTE
+4|# lane of governed round FAR-LANE-SOD-003 (writer=codex, model pin opencode-go/deepseek-v4.1-flash).
+5|# It is NOT accepted, NOT promoted, and NOT active. Nothing in the live Hermes install, the
+6|# canonical policy (config/model-lane-assignment.json), %LOCALAPPDATA%\HG-KSEOS, or the Shared
+7|# Spine has been changed by producing that ORIGINAL round's candidate.
+8|# Epoch 14 is a subsequent owner-directed configuration edit under
+9|# WO-PIPD-R5-EXECUTE-LUNA-ROUTE-20261009, authored by Hermes orchestration tools,
+10|# with typed SharedSpine admission. It is not a Codex-authored product repair,
+11|# not independent acceptance, and not proof of an admitted bounded writer.
+12|#
+13|# The routes below are transcribed from the `sod` block of config/model-lane-assignment.json.
+14|# The dispatchable source is revision 16 (sha256
+15|# 7c1fa5f25d67799f82650621b5194e8ac7a6739a219cf8bc5cf1ded379298d13). Revisions 8, 9 and 12 are HISTORY, never current:
+16|# revision 8 (sha256
+17|# e9480d1eb8cc10bfdd7187dd15e856eceaad47a6218ff041266d509c25317755) was the original
+18|# adoption source, and revision 9
+19|# (sha256 969af3036aeca8e71ab8281dfe8fb14cf63abcf298d75401c29d984cc974bede) was superseded on
+20|# 2026-10-07 when the orchestrator added the explicit per-lane reasoning_effort declaration at
+21|# the operator's instruction. The superseded pins are recorded under `history:` # never re-declared as current. The projections[] block
+22|# lists every live file and JSON pointer that must agree with these routes; check_drift() in
+23|# src/hg_kseos/lane_policy.py reads those live sites read-only and reports every disagreement as
+24|# a JSON pointer.
+25|# epoch 10 (2026-10-07): PLAN gains an explicit HIGH reasoning-effort declaration; VERIFY_SECURITY
+26|# becomes a two-arm co-equal operator-selected route with the OpenAI OAuth arm as the default.
+27|# epoch 11 (2026-10-07): the registry's own publication counter. `epoch` documents this registry's
+28|# route-shape generation, so it must advance whenever the registry's committed content changes.
+29|# TASK8 advanced `source_of_routes` (revision 10 -> 11 plus a new digest) and appended bindings
+30|# WITHOUT advancing `epoch`; epoch 11 records that committed generation and the revision-12
+31|# declaration repair (dual-arm cleanup, provider_separation_status, EXECUTE effort, and the
+32|# projection-drops-dual-arms gap).
+33|# epoch 11 (2026-10-07): repair round 2 — the arm-B exhaustive-declaration repair. Stale NVIDIA-era prose corrected, provider separation recorded as PARTIAL by operator mandate, the route-projection gap declared, the retired-slug occurrences labelled, and the epoch advanced because this file's own content changed.
+34|
+35|schema: HGK-LANE-ROUTING-REGISTRY/1
+36|status: CANDIDATE
+37|epoch: 20
+38|# epoch 20 (2026-10-16, round LANE-RELIABILITY-CLOSURE-20261016): the stale /codex_sha256
+39|# projection expectation (the PRE-repair digest D13914CE..., which made check_drift fatal even on a
+40|# pristine tree) was corrected to the MEASURED live value; the two bindings that pin /revision and
+41|# /registry_epoch followed the assignment to revision 20; and source_of_routes was re-pinned to
+42|# those bytes. NO lane route, chain order or assigned arm is changed by epoch 20.
+43|# epoch 19 (2026-10-15): owner PLAN rebind — rank-1 PLAN/Orchestrator becomes opencode-go/glm-5.3-flash
+44|# because the OpenAI OAuth GPT arm is exhausted (status=429, credential-pool rotation); the gpt-6.1-sol arm is
+45|# retained as a NON-DEFAULT operator-selectable alternate. EXECUTE and VERIFY_SECURITY routes are unchanged.
+46|# The PLAN == VERIFY-fallback1 model-identity overlap is RECORDED as SOD006-C3, not hidden and not enforced.
+47|# epoch 17 (2026-10-13): doc-update round FAR-DOC-UPDATE-20261013, Option A item A5 — the F18
+48|# smallest-repair (openspec tasks 2.3 + 2.5 of lane-mandate-rebinding-and-d01-revocation). The
+49|# declared state of wiring_feasibility.projection_drops_dual_arms is corrected to match reality:
+50|# the projection fix IS applied to live src (src/hg_kseos/lane_policy.py sha256 5384116F... —
+51|# _compact_route carries arms[] + selection_authority + selected_arm, measured raw output recorded
+52|# by var/far-doc-update-20261013/gates.py), so the site state moves from
+53|# FIX_READY_IN_CANDIDATE_PROJECTION_NOT_APPLIED_TO_LIVE_SRC to CLOSED_FIX_APPLIED_TO_LIVE_SRC and
+54|# this file's bindings[] pin is updated to match. Committed content changed, so the epoch advances.
+55|# epoch 16 (2026-10-12): W1 registry rebinding under owner adjudication 1 of round
+56|# HGK-SOLUTION-APPLY-20261012. PLAN is rebound to opencode-go/deepseek-v4.1-flash (the
+57|# former arm demoted to fallback_1); the VERIFY alternate arm is made operator-selectable and
+58|# projected; the gpt-* family is excluded for the round; and the projection-drops-dual-arms gap
+59|# is carried into the candidate projection fix. Committed content changed, so the epoch advances.
+60|# epoch 15 (2026-10-10): MEASURED transport-token constraints added (metadata resolution vs
+61|# routability per provider) + the C6 correlation keys; content changed, so the epoch advances.
+62|# epoch 14: explicit additional EXECUTE OAuth route; no automatic fallback or admission claim.
+63|# epoch 12: owner final route adjudication; superseded arm-B fallback encoding.
+64|# epoch 13: restore zero fallbacks; arm B is a demoted operator-selectable-only alternate, never auto-selected.
+65|
+66|authorization_basis: >-
+67|  REQ-FAR-LANE-SOD-003 / WO-LANE-ROUTE-001-EXECUTE (writer=codex). The route values are adopted
+68|  from the `sod` block of config/model-lane-assignment.json, dispatchable at revision 17. This
+69|  registry does not itself confer authority; activation requires an HGK-authorized generation
+70|  binding. Owner final route change authorized by WO-FAR-D1D2-FINAL-ROUTE-20261008 / REQ-FAR-D1D2-FINAL-20261008 (owner adjudication; events=947).
+71|
+72|source_of_routes:
+73|  path: config/model-lane-assignment.json
+74|  revision: 20
+75|  sha256: d41f8f8bff41d4338a4b85dab7a60bd2c9c23b2f5f39c8c008e89bf82587bd36
+76|
+77|# ---------------------------------------------------------------------------------------------------
+78|# transport_model_constraints (epoch 15) — MEASURED, not assumed. Two independent facts constrain the
+79|# token a lane may send to the Codex CLI:
+80|#   (a) codex resolves per-model metadata from the lane catalog BY SLUG;
+81|#   (b) a token that is not routable fails before metadata matters at all.
+82|# The two constraints do NOT agree for every arm, and where they conflict this registry records the
+83|# accepted trade-off instead of pretending it is resolved.
+84|transport_model_constraints:
+85|  rule_source: "measured 2026-10-10 (E4/E5b/E6/E7 + direct codex probes); evidence under evidence/review/"
+86|  metadata_lookup_key: catalog slug
+87|  claim_ceiling: >-
+88|    A successful lane turn proves the token is routable and dispatchable. It does NOT prove the model
+89|    ran with its catalog metadata (context window, reasoning levels, tool mode, apply_patch type).
+90|    Any statement about model capability stays at that ceiling.
+91|  opencode_go:
+92|    required_form: "provider-qualified slug (opencode-go/<model>)"
+93|    accepted_example: "opencode-go/deepseek-v4.1-flash"
+94|    bare_name: "routes, but codex prints 'Model metadata for <model> not found. Defaulting to fallback metadata'"
+95|    status: RESOLVED
+96|  nvidia:
+97|    required_form: "nvidia/<vendor>/<model> (slash form) — routable"
+98|    catalog_slug_form: "nvidia/<vendor>-<model> (hyphen form) — the catalog key"
+99|    catalog_slug_routable: false
+100|    observed_failure_on_catalog_slug: "426 Upgrade Required / Provider stream error: Invalid request"
+101|    accepted_trade_off: >-
+102|      Routability and metadata resolution CANNOT both be satisfied for this arm: the lane keeps the
+103|      routable slash form and ACCEPTS fallback metadata. This is a recorded limitation, not a defect
+104|      to be repaired by renaming the token.
+105|    status: ACCEPTED_LIMITATION
+106|  openai_codex:
+107|    required_form: "bare model id (gpt-6.1-sol, gpt-6-luna)"
+108|    rejected_form: "openai-codex/<model> — HTTP 400 (routed to the default provider)"
+109|    catalog_entry: absent
+110|    accepted_trade_off: >-
+111|      No catalog entry exists for these ids, so this arm also runs on fallback metadata. Authoring
+112|      catalog metadata for a model the catalog does not describe would be declaring capability facts
+113|      that were never measured; that is NOT authorised and is not done.
+114|    status: ACCEPTED_LIMITATION
+115|
+116|# C6 correlation contract (epoch 15) — closes the "a front-door decision cannot be joined to the
+117|# upstream spend row" gap by construction rather than by matching heuristics.
+118|# The relay persists sha256(<session header>)[:32] as its usage.jsonl `conversationId`, and its own
+119|# source documents that field as a log/usage correlation id only (opencodex 2.11.0
+120|# src/server/request-log-conversation.ts). The front door therefore strips any client session/thread
+121|# header, plants `session_id: hgkfd-<correlation_id>` on the upstream request, and records
+122|# `upstream_conversation_id` (the value the relay will write) plus `client_session_sha256` (the
+123|# digest of whatever the client sent) on every FORWARD row.
+124|correlation_contract:
+125|  ledger_key: upstream_conversation_id
+126|  relay_field: conversationId
+127|  derivation: "sha256('hgkfd-' + correlation_id)[:32]"
+128|  join_rule: "usage.jsonl.conversationId == ledger.upstream_conversation_id (per request), fallback == ledger.client_session_sha256 (per conversation)"
+129|  spoof_proof: "client-supplied session_id/session-id/x-session-id/thread-id are stripped before the value is set; measured E10: the client's value only ever appears as client_session_sha256"
+130|  verified: "E9 2026-10-10 — ledger row correlation_id 3e86af839cde421195fed70948a341e0 / upstream_conversation_id 548ef9e9d0996a690e0156e27a895dcd equals usage.jsonl requestId ocx-mv28ampx-57 conversationId (status 200, opencode-go/deepseek-v4.1-flash, 9871 tokens)"
+131|
+132|# canonical_identity is the normalized model token used by the maker!=checker comparison.
+133|# auth is a non-secret descriptor only; no credential value is ever stored or logged.
+134|routes:
+135|  - lane: PLAN
+136|    role_group: PLAN
+137|    lanes:
+138|      - ARCH
+139|      - HARD WORK
+140|      - THREAT
+141|      - EFFECT PLANNING
+142|      - RESEARCH
+143|      - SYNTHESIS
+144|      - EVOLUTION
+145|    engine: hermes
+146|    provider: opencode-go
+147|    model: glm-5.3-flash
+148|    canonical_identity: glm-5.3-flash
+149|    auth: env_ref:OPENCODE_GO_API_KEY
+150|    oauth: false
+151|    reasoning_effort: medium
+152|# Owner order 2026-10-15 (this session, epoch 19): PLAN & Orchestrator rebound to GLM-5.3-Flash(GO)
+153|    # because the OpenAI OAuth GPT arm is exhausted (status=429, credential-pool rotation logged).
+154|    # Rank-1 GLM-5.3-Flash (GO); fallback1 DeepSeek V4.1 Flash (GO); the GPT arm is retained as a
+155|    # NON-DEFAULT, non-automatic operator-selectable alternate. Per-session-round user re-selection
+156|    # remains first-class (role_mandate -> runtime_role_binding_assert).
+157|    selection_authority: owner-order-20261015-plan-model-rebind-glm
+158|    arms:
+159|      - arm: primary
+160|        provider: opencode-go
+161|        model: glm-5.3-flash
+162|        canonical_identity: glm-5.3-flash
+163|        auth: env_ref:OPENCODE_GO_API_KEY
+164|        oauth: false
+165|        reasoning_effort: medium
+166|        default: true
+167|      - arm: fallback1
+168|        provider: opencode-go
+169|        model: deepseek-v4.1-flash
+170|        canonical_identity: deepseek-v4.1-flash
+171|        auth: env_ref:OPENCODE_GO_API_KEY
+172|        oauth: false
+173|        default: false
+174|        automatic_selection: true
+175|      - arm: non_default_operator_selectable
+176|        provider: openai-codex
+177|        model: gpt-6.1-sol
+178|        canonical_identity: gpt-6.1-sol
+179|        auth: openai_oauth
+180|        oauth: true
+181|        reasoning_effort: medium
+182|        default: false
+183|        automatic_selection: false
+184|        usable_now: QUOTA_429_2026-10-15
+185|        note: prior revision-18 default arm; retained, never auto-selected
+186|    fallbacks:
+187|      - provider: opencode-go
+188|        model: deepseek-v4.1-flash
+189|        canonical_identity: deepseek-v4.1-flash
+190|        auth: env_ref:OPENCODE_GO_API_KEY
+191|        oauth: false
+192|      - provider: openai-codex
+193|        model: gpt-6.1-sol
+194|        canonical_identity: gpt-6.1-sol
+195|        auth: openai_oauth
+196|        oauth: true
+197|    admission_status: UNPROVEN
+198|
+199|  - lane: EXECUTE
+200|    role_group: EXECUTE
+201|    lanes:
+202|      - BULK BUILD
+203|      - BULK SECURITY TEST
+204|      - REPAIR
+205|      - BULK CODE
+206|      - HARNESS
+207|      - EVAL CODE
+208|      - BULK TRANSFORM
+209|    engine: codex-cli
+210|    provider: opencode-go
+211|    model: deepseek-v4.1-flash
+212|    canonical_identity: deepseek-v4.1-flash
+213|    auth: env_ref:OPENCODE_GO_API_KEY
+214|    oauth: false
+215|    # Owner order 2026-10-15 (round FAR-LANE-ROUTE-REBIND-20261015): chain re-bound.
+216|    # Default DeepSeek V4.1 Flash (GO); fallback1 GPT-6-luna (OpenAI OAuth); fallback2 NVIDIA DeepSeek.
+217|    # Per-session-round user re-selection is first-class (role_mandate -> runtime_role_binding_assert).
+218|    selection_authority: owner-order-20261015-lane-model-chain-rebind
+219|    arms:
+220|      - arm: fallback1_operator_selectable
+221|        provider: openai-codex
+222|        model: gpt-6-luna
+223|        canonical_identity: gpt-6-luna
+224|        engine: codex-cli
+225|        transport: codex-native-oauth
+226|        auth: openai_oauth
+227|        oauth: true
+228|        automatic_selection: false
+229|        default: false
+230|        admission_status: UNPROVEN
+231|        note_preexisting: HTTP_400_UNSUPPORTED_ON_CURRENT_CLI_ACCOUNT backend probe; UNPROVEN admission
+232|      - arm: fallback2_auto
+233|        provider: nvidia
+234|        model: deepseek-ai/deepseek-v4.1-flash
+235|        canonical_identity: deepseek-v4.1-flash
+236|        engine: codex-cli
+237|        auth: env_ref:NVIDIA_API_KEY
+238|        oauth: false
+239|        default: false
+240|        automatic_selection: true
+241|        note_preexisting: nvidia provider namespace not loaded into running relay; needs owner-approved relay restart
+242|    fallbacks:
+243|      - provider: openai-codex
+244|        model: gpt-6-luna
+245|        canonical_identity: gpt-6-luna
+246|        auth: openai_oauth
+247|        oauth: true
+248|      - provider: nvidia
+249|        model: deepseek-ai/deepseek-v4.1-flash
+250|        canonical_identity: deepseek-v4.1-flash
+251|        auth: env_ref:NVIDIA_API_KEY
+252|        oauth: false
+253|    admission_status: UNPROVEN
+254|
+255|  - lane: VERIFY_SECURITY
+256|    role_group: VERIFY_SECURITY
+257|    lanes:
+258|      - ACCEPTANCE
+259|      - SECURITY REVIEW
+260|      - VERIFY
+261|    engine: hermes
+262|    provider: openai-codex
+263|    model: gpt-6.1-sol
+264|    reasoning_effort: medium
+265|    canonical_identity: gpt-6.1-sol
+266|    auth: openai_oauth
+267|    oauth: true
+268|# Owner order 2026-10-15 (round FAR-LANE-ROUTE-REBIND-20261015): chain re-bound.
+269|    # Default GPT-6.1_SOL-medium (OpenAI OAuth); fallback1 GLM-5.3-Flash (GO); fallback2 DeepSeek (GO).
+270|    # Per-session-round user re-selection is first-class (role_mandate -> runtime_role_binding_assert).
+271|    selection_authority: owner-order-20261015-lane-model-chain-rebind
+272|    selected_arm: A
+273|    selected_arm_identity: gpt-6.1-sol
+274|    arms:
+275|      - arm: A
+276|        model: gpt-6.1-sol
+277|        provider: openai-codex
+278|        canonical_identity: gpt-6.1-sol
+279|        auth: openai_oauth
+280|        oauth: true
+281|        reasoning_effort: medium
+282|        co_equal: false
+283|        role: primary
+284|        default: true
+285|      - arm: B
+286|        model: glm-5.3-flash
+287|        provider: opencode-go
+288|        canonical_identity: glm-5.3-flash
+289|        auth: env_ref:OPENCODE_GO_API_KEY
+290|        oauth: false
+291|        reasoning_effort: medium
+292|        co_equal: false
+293|        role: fallback1_operator_selectable
+294|        default: false
+295|        automatic_selection: true
+296|      - arm: C
+297|        model: deepseek-v4.1-flash
+298|        provider: opencode-go
+299|        canonical_identity: deepseek-v4.1-flash
+300|        auth: env_ref:OPENCODE_GO_API_KEY
+301|        oauth: false
+302|        co_equal: false
+303|        role: fallback2_operator_selectable
+304|        default: false
+305|        automatic_selection: true
+306|    fallbacks:
+307|      - provider: opencode-go
+308|        model: glm-5.3-flash
+309|        canonical_identity: glm-5.3-flash
+310|        auth: env_ref:OPENCODE_GO_API_KEY
+311|        oauth: false
+312|      - provider: opencode-go
+313|        model: deepseek-v4.1-flash
+314|        canonical_identity: deepseek-v4.1-flash
+315|        auth: env_ref:OPENCODE_GO_API_KEY
+316|        oauth: false
+317|    admission_status: UNPROVEN
+318|
+319|invariants:
+320|  unknown_lane: DENY
+321|  maker_checker_distinct_model: true
+322|  provider_separation_required: false
+323|  de_modeled_allowed: false
+324|  per_lane_authority: HGK-ExecutionBinding-TaskSpec-role
+325|  global_overrides_permitted: false
+326|  # C4 (round HGK-SOLUTION-APPLY-20261012): a model family the owner excludes for a round
+327|  # cannot be restored by a registry default or an inherited child setting. The rule is
+328|  # enforced at candidate/src/hg_kseos/lane_policy.py::check_exclusions (which refuses
+329|  # with ERR_MODEL_FAMILY_EXCLUDED_ROUND) and is bound here by round_model_exclusions.
+330|  excluded_family_restore_forbidden: true
+331|
+332|round_model_exclusions:
+333|  rule_id: HGK-ROUND-MODEL-EXCLUSION-1
+334|  scope: this round only (FAR-LANE-ROUTE-REBIND-20261015)
+335|  excluded_model_prefixes: []
+336|  excluded_providers: []
+337|  why: no family exclusion for this round — owner order 2026-10-15 restores GPT-6.1-SOL as the
+338|    PLAN/VERIFY default arm (OpenAI OAuth) and GPT-6-luna as EXECUTE fallback1. The prior round's
+339|    gpt-* exclusion (HGK-SOLUTION-APPLY-20261012) lapses with its round; replacement is data-only
+340|    and check_exclusions remains round-scoped and fail-closed on empty provider/model.
+341|
+342|# sod_invariants (rebinding note): canonical_identity axis remains; identity-bearing axis kept;
+343|# provider_axis is recorded for honesty only (EXECUTE and VERIFY_SECURITY share opencode-go, so
+344|# provider separation does NOT hold and is explicitly NOT required).
+345|sod_invariants:
+346|  comparison_axis: canonical_identity
+347|  provider_axis_required: false
+348|  pairs:
+349|    - maker: EXECUTE
+350|      checker: VERIFY_SECURITY
+351|      distinct_required: true
+352|      note: EXECUTE opencode-go/deepseek-v4.1-flash vs VERIFY_SECURITY openai-codex/gpt-6.1-sol (owner
+353|        order 2026-10-15) — distinct model families on the default arms across every rank pair.
+354|    - maker: PLAN
+355|      checker: VERIFY_SECURITY
+356|      distinct_required: false
+357|      note: >-
+358|        Owner order 2026-10-15 (round FAR-LANE-ROUTE-REBIND-20261015) re-points BOTH lanes to the
+359|        same default arm openai-codex/gpt-6.1-sol (medium). The maker/checker sweep therefore runs
+360|        with distinct_required: false for this pair; the collision is recorded as SOD006-C2
+361|        (OPEN, owner-ordered, not agent-decided). EXECUTE-vs-VERIFY pair unchanged and still
+362|        distinct on the default arms (deepseek-v4.1-flash != gpt-6.1-sol).
+363|
+364|  declared_conflicts:
+365|    - id: SOD006-C1
+366|      pairs: [[PLAN, VERIFY_SECURITY]]
+367|      axis: canonical_identity
+368|      status: SUPERSEDED
+369|      resolution: WO-FAR-D1D2-FINAL-ROUTE-20261008 / REQ-FAR-D1D2-FINAL-20261008 (owner adjudication; events=947)
+370|      resolved_by_rebinding: owner adjudication 1 (round HGK-SOLUTION-APPLY-20261012); PLAN rebound to
+371|        opencode-go/deepseek-v4.1-flash so PLAN no longer collides with any VERIFY arm. Historical record preserved.
+372|    - id: SOD006-C2
+373|      pairs: [[PLAN, VERIFY_SECURITY]]
+374|      axis: canonical_identity
+375|      status: OPEN_OWNER_ORDERED
+376|      note: >-
+377|        Round FAR-LANE-ROUTE-REBIND-20261015: owner explicitly re-points PLAN and VERIFY_SECURITY
+378|        to the same default arm (openai-codex/gpt-6.1-sol, medium). Maker-and-checker on the same
+379|        model family is an accepted, owner-declared residual risk for this round; the dispatcher
+380|        still refuses any single call that would have the same arm self-verify its own output
+381|        (no self-acceptance), and EXECUTE-vs-VERIFY separation still holds.
+382|      reconciliation:
+383|        ruled_by: "owner order 2026-10-15, lane chain rebind (this round)"
+384|    - id: SOD-APPLY-01
+385|      pairs: [[EXECUTE, PLAN]]
+386|      axis: canonical_identity
+387|      status: OPEN
+388|      note: PLAN and EXECUTE were both rebound onto opencode-go/deepseek-v4.1-flash; they are both
+389|        maker/executor routes and never check each other, but the model-axis collision is recorded, not hidden.
+390|      reconciliation:
+391|        ruled_by: "owner adjudication, round HGK-SOLUTION-APPLY-20261012 (Option 1 step (a); AMENDMENT_03)"
+392|        decision_ref: FAR-RUN-W6-PLAN-SOD-020 / DEC-020-1
+393|        what: >-
+394|          the strict entry (maker EXECUTE, checker PLAN, distinct_required true) was REMOVED from
+395|          sod_invariants.pairs. The overlap remains RECORDED here rather than refused, which is what the
+396|          owner's own 2026-10-10 lane-route-slots declaration already says -- selection_semantics.sod is
+397|          "NOT enforced; identity overlaps are recorded as facts only, not as refusals", and
+398|          identity_overlaps_recorded_not_enforced lists this very identity.
+399|        why_not_a_model_change: >-
+400|          PLAN's binding (opencode-go/deepseek-v4.1-flash) is the owner's declared rank-1 DEFAULT for the
+401|          PLAN lane; moving it would have been rework and would have displaced the owner's own pool
+402|          declaration. The defect was the ENCODING, not the binding.
+403|        compensating_control:
+404|          - "structural: PLAN and EXECUTE are both maker/executor routes and never check each other; the acceptance/verification route is the dedicated VERIFY_SECURITY lane (arm A), the only lane that checks another lane's artifacts."
+405|          - "artifact-level: every checker lane writes through the C1 verdict-artifact contract (write-first, shape-validated, updated_by_checker), so a checker cannot pass by omission."
+406|          - "per-card: the reasoning pin of the checking lane is recorded per card."
+407|        residual: >-
+408|          with the model axis no longer enforced between the two maker/executor routes, the remaining
+409|          separation between them is ROLE and ARTIFACT, not model identity. Recorded as an accepted risk,
+410|          not as a passing invariant.
+411|
+412|# projections[] — every live site that must agree with routes above. Each projection has a path
+413|# (relative to the HG-KSEOS root) and bindings[] of (json_pointer, expected). check_drift() reads
+414|# each site read-only and returns one finding per mismatch, named by path + JSON pointer.
+415|#
+416|# debt[] entries are live sites that do NOT yet agree with the registry but are recorded as known
+417|# debt (e.g. the legacy AppData binding in config/hermes.json). They are reported by check_drift as
+418|# the typed code PROJECTION_DEBT (warn severity) rather than DRIFT_VALUE, so the drift gate stays a
+419|# truthful hard-fail on the reproducibility sites (registry source + sealed lane) while not
+420|# pretending the migration is already done. Debt is never a PASS proxy.
+421|projections:
+422|  - id: model-lane-assignment
+423|    path: config/model-lane-assignment.json
+424|    format: json
+425|    note: canonical policy revision 19 (owner PLAN rebind 2026-10-15) — PLAN rank-1 is opencode-go/glm-5.3-flash and the GPT arm is a non-default alternate; additional EXECUTE route is operator-selectable only; VERIFY arm selection is owner-adjudicated.
+426|    bindings:
+427|      - {pointer: /registry_epoch, expected: 20}
+428|      - {pointer: /revision, expected: 20}
+429|      - {pointer: /assignment/1/additional_routes/0/provider, expected: "openai-codex"}
+430|      - {pointer: /assignment/1/additional_routes/0/model, expected: "gpt-6-luna"}
+431|      - {pointer: /assignment/1/additional_routes/0/transport, expected: "codex-native-oauth"}
+432|      - {pointer: /assignment/1/additional_routes/0/automatic_selection, expected: false}
+433|      - {pointer: /assignment/1/additional_routes/0/default, expected: false}
+434|      - {pointer: /lane_chains/EXECUTE/3/provider, expected: "openai-codex"}
+435|      - {pointer: /lane_chains/EXECUTE/3/model, expected: "gpt-6-luna"}
+436|      - {pointer: /lane_chains/EXECUTE/3/automatic_selection, expected: false}
+437|      - {pointer: /assignment/2/supply_selector/arms/1/role, expected: "fallback1_operator_selectable"}
+438|      - {pointer: /assignment/2/supply_selector/arms/1/default, expected: false}
+439|      - {pointer: /assignment/2/supply_selector/arms/1/automatic_selection, expected: true}
+440|      - {pointer: /lane_chains/VERIFY_SECURITY/1/role, expected: "fallback1"}
+441|      - {pointer: /lane_chains/VERIFY_SECURITY/1/default, expected: false}
+442|      - {pointer: /lane_chains/VERIFY_SECURITY/1/automatic_selection, expected: true}
+443|      - {pointer: /sod/plan_lane, expected: "opencode-go / glm-5.3-flash (medium) — owner order 2026-10-15; prior openai-codex/gpt-6.1-sol arm retained as a non-default alternate (QUOTA_429)"}
+444|      - {pointer: /sod/execute_lane, expected: "opencode-go / deepseek-v4.1-flash (Codex CLI worker)"}
+445|      - {pointer: /sod/verify_security_lane, expected: "DEFAULT primary arm A = opencode-go / glm-5.3-flash; NON-DEFAULT operator-selectable alternate arm B = openai-codex / gpt-6.1-sol (OpenAI OAuth)"}
+446|      - {pointer: /sod/verify_security_default_arm, expected: "A = opencode-go / glm-5.3-flash (env_ref:OPENCODE_GO_API_KEY; medium)"}
+447|      - {pointer: /sod/maker_self_acceptance, expected: "PREVENTED at dispatch on every arm: no single call ever verifies its own output. After the 2026-10-15 owner PLAN rebind the model-identity separation is PARTIAL, not clean: PLAN glm-5.3-flash equals VERIFY fallback1 arm glm-5.3-flash (recorded SOD006-C3), while EXECUTE deepseek-v4.1-flash vs VERIFY default arm gpt-6.1-sol remains distinct; PLAN and EXECUTE no longer share a token, so SOD-APPLY-01 stays a historical record."}
+448|      - {pointer: /assignment/0/assigned_model, expected: "glm-5.3-flash"}
+449|      - {pointer: /assignment/0/assigned_provider, expected: "opencode-go"}
+450|      - {pointer: /assignment/1/assigned_model, expected: "deepseek-v4.1-flash"}
+451|      - {pointer: /assignment/1/assigned_provider, expected: "opencode-go"}
+452|      - {pointer: /assignment/2/assigned_model, expected: "glm-5.3-flash"}
+453|      - {pointer: /assignment/2/assigned_provider, expected: "opencode-go"}
+454|      - {pointer: /assignment/0/reasoning_effort, expected: "medium"}
+455|      - {pointer: /assignment/2/supply_selector/unspecified_default/provider, expected: "openai-codex"}
+456|      - {pointer: /assignment/2/supply_selector/arms/0/provider, expected: "openai-codex"}
+457|      - {pointer: /assignment/2/supply_selector/arms/1/provider, expected: "opencode-go"}
+458|      - {pointer: /sod/verify_vs_plan_model_separation, expected: "PARTIAL after the 2026-10-15 PLAN rebind: PLAN glm-5.3-flash vs VERIFY default primary arm gpt-6.1-sol stays distinct, but PLAN == VERIFY fallback1 arm glm-5.3-flash and that arm served the R6 checker turn — recorded as SOD006-C3."}
+459|      - {pointer: /effective_wiring/default_execute_route, expected: "CODEX_CLI_SEALED_LANE"}
+460|      - {pointer: /effective_wiring/main_agent/provider, expected: "opencode-go"}
+461|      - {pointer: /effective_wiring/main_agent/model, expected: "deepseek-v4.1-flash"}
+462|      - {pointer: /effective_wiring/main_agent/engine, expected: "hermes native loop"}
+463|      - {pointer: /effective_wiring/delegation.provider, expected: "opencode-go"}
+464|      - {pointer: /effective_wiring/delegation.model, expected: "glm-5.3-flash"}
+465|      - {pointer: /lane_chains/PLAN/0/model, expected: "glm-5.3-flash"}
+466|      - {pointer: /lane_chains/PLAN/0/provider, expected: "opencode-go"}
+467|      - {pointer: /lane_chains/EXECUTE/0/model, expected: "deepseek-v4.1-flash"}
+468|      - {pointer: /lane_chains/EXECUTE/0/provider, expected: "opencode-go"}
+469|      - {pointer: /lane_chains/VERIFY_SECURITY/0/model, expected: "gpt-6.1-sol"}
+470|      - {pointer: /lane_chains/VERIFY_SECURITY/0/provider, expected: "openai-codex"}
+471|      - {pointer: /lane_chains/VERIFY_SECURITY/0/arm, expected: "A"}
+472|      - {pointer: /lane_chains/VERIFY_SECURITY/1/model, expected: "glm-5.3-flash"}
+473|      - {pointer: /lane_chains/VERIFY_SECURITY/1/provider, expected: "opencode-go"}
+474|      - {pointer: /lane_chains/VERIFY_SECURITY/1/arm, expected: "B"}
+475|      - {pointer: /lane_chains/PLAN/0/reasoning_effort, expected: "medium"}
+476|      # reasoning_effort is a first-class routing field (V5): it must survive _compact_route and be
+477|      # drift-checked at every site where the canonical policy declares it, so a silent loss of the
+478|      # declaration is a hard finding rather than an invisible one.
+479|      - {pointer: /sod/verify_security_reasoning_effort, expected: "medium"}
+480|      - {pointer: /assignment/2/reasoning_effort, expected: "medium"}
+481|      - {pointer: /lane_chains/VERIFY_SECURITY/0/reasoning_effort, expected: "medium"}
+482|      - {pointer: /lane_chains/VERIFY_SECURITY/1/reasoning_effort, expected: "medium"}
+483|      - {pointer: /sod/plan_reasoning_effort, expected: "medium"}
+484|      - {pointer: /effective_wiring/plan_high/level, expected: "medium"}
+485|      - {pointer: /effective_wiring/auxiliary.kanban_decomposer/reasoning_effort, expected: "high"}
+486|      - {pointer: /effective_wiring/auxiliary.triage_specifier/reasoning_effort, expected: "high"}
+487|      - {pointer: /sod_conflicts/1/id, expected: "SOD006-C2"}
+488|      - {pointer: /sod/provider_separation_status, expected: "PARTIAL - PLAN, EXECUTE and VERIFY arm A all share opencode-go by owner rebinding. Model-axis separation between PLAN/EXECUTE and VERIFY arm A HOLDS (deepseek-v4.1-flash != glm-5.3-flash). Not a sod_conflict: the registry does not require provider separation (invariants.provider_separation_required=false). Recorded as an accepted risk."}
+489|      - {pointer: /sod_across_all_arms/verifier_models/0, expected: "glm-5.3-flash"}
+490|      - {pointer: /sod_across_all_arms/verifier_models/1, expected: "gpt-6.1-sol"}
+491|      - {pointer: /lane_chains/EXECUTE/0/reasoning_effort, expected: null}
+492|      - {pointer: /wiring_feasibility/projection_drops_dual_arms/state, expected: "CLOSED_FIX_APPLIED_TO_LIVE_SRC"}
+493|      - {pointer: /sod/plan_reasoning_effort, expected: "medium"}
+494|
+495|  - id: hermes-codex-lane
+496|    path: config/hermes-codex-lane.json
+497|    format: json
+498|    note: sealed EXECUTE lane binding; sealed-lane and isolation fields must remain exact preimages.
+499|    bindings:
+500|      - {pointer: /execute_additional_routes/0/provider, expected: "openai-codex"}
+501|      - {pointer: /execute_additional_routes/0/model, expected: "gpt-6-luna"}
+502|      - {pointer: /execute_additional_routes/0/transport, expected: "codex-native-oauth"}
+503|      - {pointer: /execute_additional_routes/0/automatic_selection, expected: false}
+504|      - {pointer: /execute_additional_routes/0/default, expected: false}
+505|      - {pointer: /execute_additional_routes/0/admission_status, expected: "UNPROVEN"}
+506|      - {pointer: /provider, expected: "opencode-go"}
+507|      - {pointer: /model, expected: "deepseek-v4.1-flash"}
+508|      - {pointer: /model_fallbacks/0, expected: "deepseek-v4.1-flash"}
+509|      - {pointer: /execute_lane_child_models/0, expected: "deepseek-v4.1-flash"}
+510|      - {pointer: /default_execute_route, expected: "CODEX_CLI_SEALED_LANE"}
+511|      - {pointer: /opencodex_port, expected: 10101}
+512|      - {pointer: /opencodex_version, expected: "2.11.0"}
+513|      - {pointer: /codex_version, expected: "0.162.0-alpha.17.2"}
+514|      - {pointer: /codex_sha256, expected: "e98c516f1c8935789aabe9122ee7e05ec4c3efd1ba6acf179242e031c495b99e"}
+515|      - {pointer: /credential_env, expected: "OPENCODE_GO_API_KEY"}
+516|      - {pointer: /openai_fallback, expected: false}
+517|      - {pointer: /scope, expected: "launcher-process-tree-only"}
+518|      - {pointer: /status, expected: "ACTIVE_FAIL_CLOSED"}
+519|      - {pointer: /task_id, expected: "HGK_CODEX_DESKTOP_HERMES_CLI_PROVIDER_LANE_ISOLATION_ONLY"}
+520|      - {pointer: /model_routing_change/new_model, expected: "deepseek-v4.1-flash"}
+521|      - {pointer: /opencode_go_session_header/required_header, expected: "x-opencode-session"}
+522|
+523|  - id: hermes-binding
+524|    path: config/hermes.json
+525|    format: json
+526|    note: >-
+527|      HGK-HERMES-BINDING/2. The binding/release identity is checked for presence only here; the
+528|      runtime path fields still name the pre-MSIX AppData install and an older model slug, which
+529|      are recorded as DEBT, not required to match.
+530|    bindings:
+531|      - {pointer: /schema, expected: "HGK-HERMES-BINDING/2"}
+532|    debt:
+533|      - {pointer: /install_root, expected: "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\hermes-agent"}
+534|      - {pointer: /canonical_hermes_home, expected: "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes"}
+535|      - {pointer: /provider_route/model, expected: "deepseek-v4.1-flash"}
+536|
+537|# non-authoritative observations — sites that are informational only and must NEVER be required to
+538|# match a route (RB-1: the live Hermes config.yaml is a shared application settings file, not HGK
+539|# routing policy). check_drift reads these read-only but never fails on them.
+540|observations:
+541|  - id: hermes-live-config-yaml
+542|    path: C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/config.yaml
+543|    note: >-
+544|      Shared Hermes application settings consumed by non-governed workstreams. Its delegation and
+545|      global fallback_providers are NON_AUTHORITATIVE for governed HGK calls. Recorded as
+546|      observation; drift here is never a hard failure.
+547|  - id: hermes-live-config-yaml-sod006
+548|    path: C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/config.yaml
+549|    note: >-
+550|      Historical read-back 2026-10-07: agent.reasoning_overrides = {gpt-6.1-sol: high};
+551|      delegation.provider = openai-codex; delegation.model = gpt-6.1-sol. Still NON_AUTHORITATIVE
+552|      for governed HGK calls (RB-1) - recorded so the declaration and the runtime can be compared.
+553|
+554|history:
+555|  - round: LANE-RELIABILITY-CLOSURE-20261016
+556|    at_utc: "2026-10-16"
+557|    epoch: 20
+558|    change: >-
+559|      ADDITIVE only. The registry binding /codex_sha256 was corrected from the PRE-repair digest
+560|      (D13914CE..., which made check_drift fatal even on a pristine tree) to the MEASURED live value;
+561|      the two bindings pinning /revision and /registry_epoch followed the assignment to revision 20;
+562|      source_of_routes was re-pinned to the assignment revision-20 bytes; and the in-Hermes PLAN &
+563|      Orchestrator plane binding is recorded in
+564|      config/model-lane-assignment.json::in_hermes_plan_orchestrator_plane. No lane route, chain order
+565|      or assigned arm is changed by this epoch.
+566|    why: >-
+567|      two canonical gates were RED on the tree before this round:
+568|      tests/test_lane_policy.py::test_drift_injection_subcases (its pristine baseline was fatal on the
+569|      stale /codex_sha256 expectation -- repaired here) and
+570|      ::test_registry_and_projection_shape (routes[].PLAN is the ONE surface disagreeing with the
+571|      pool, this file's own sod_invariants, the conformance test and the owner mandate -- recorded as
+572|      the named open finding F1-PLAN-ROUTE-ROW-OUTLIER, NOT repaired here because a lane-chain rebind
+573|      is outside this round's authorisation).
+574|    evidence: var/LANE-RELIABILITY-CLOSURE-20261016/
+575|  - path: config/model-lane-assignment.json
+576|    sha256: 6af264c9ffdb57113be769842ac1a8503eb472a3c55f1941ee42667078808753
+577|    revision: 19
+578|    classification: AUTHORISED_ROUND_REBINDING_NOT_ACTIVE
+579|    note: >-
+580|      Owner order 2026-10-15 (this session) — PLAN & Orchestrator rebound to opencode-go/glm-5.3-flash because the
+581|      OpenAI OAuth GPT arm is exhausted (credential pool marks openai-codex-oauth-1 exhausted status=429 and rotates;
+582|      measured 2026-10-15T19:00:30 local). The gpt-6.1-sol arm is retained as a NON-DEFAULT, non-automatic alternate.
+583|      EXECUTE and VERIFY_SECURITY routes are unchanged; the PLAN == VERIFY-fallback1 identity overlap is recorded as
+584|      SOD006-C3. Applied by agent orchestration under that explicit owner order — not independent verification, not
+585|      acceptance. Backup of the revision-18 preimage: config/model-lane-assignment.json.bak-planrebind-20261015T1940Z
+586|      (sha256 d89148b983319b91e86d0c4906f28b66dfce6d8ebdb0d61b94834de767c9e9c6 == the prior source_of_routes pin).
+587|  - path: config/lane-routing-registry.yaml
+588|    sha256:  86d09e93d0433d0cf47e08cd14a0312c45a81c0aa90a32189aa14409efb27ae8
+589|    revision: 18
+590|    change: >-
+591|      chain rebind per owner order 2026-10-15 (round FAR-LANE-ROUTE-REBIND-20261015): PLAN and
+592|      VERIFY default openai-codex/gpt-6.1-sol (medium, OAuth), fallbacks GLM(GO) then DeepSeek(GO);
+593|      EXECUTE default DeepSeek(GO), fallbacks GPT-6-luna(OAuth) then NVIDIA DeepSeek;
+594|      round_model_exclusions replaced (prior round lapsed); source pin refreshed.
+595|    model_lane_assignment_sha256: fd41e84340b71d2fcbd915a84a76746aa9ec694ec9a6e019c23417c83ec8502b
+596|  - path: config/model-lane-assignment.json
+597|    sha256: 51840ac9066ecf054c750ede67a7edf1be87c6851f8a5c8b11a00b9a75ee9886
+598|    revision: 17
+599|    classification: AUTHORISED_ROUND_REBINDING_NOT_ACTIVE
+600|    note: >-
+601|      Round HGK-SOLUTION-APPLY-20261012 (owner adjudication 1): PLAN rebound to
+602|      opencode-go/deepseek-v4.1-flash. source_of_routes advances to revision 17 = the rebound
+603|      candidate digest. This candidate registry file is NOT active; only candidate/apply_rebinding.py
+604|      (operator-gated) may publish it.
+605|  - path: var/far-lane-sod-003/backup/model-lane-assignment.rev8.json
+606|    sha256: e9480d1eb8cc10bfdd7187dd15e856eceaad47a6218ff041266d509c25317755
+607|    revision: 8
+608|    classification: IMMUTABLE_HISTORY_NOT_DISPATCHABLE
+609|    note: >-
+610|      revision-8 exact bytes. config/model-lane-assignment.json was advanced to revision 9 on
+611|      2026-10-07 (explicit reasoning_effort declaration), so the unchanged rev8 byte-preimage is
+612|      preserved as a round backup instead of in place. The sha256 above identifies those bytes; it
+613|      is never re-declared as current and never dispatchable.
+614|  - path: config/hermes-codex-lane.json
+615|    sha256: 212f5404c4791eeb
+616|    revision: 1
+617|    classification: AUTHORISED_PINNED_VALUE_CHANGE
+618|    note: >-
+619|      /codex_version and /codex_sha256 advanced from 0.147.0-alpha.6.5 / FB5C760E...C916 to
+620|      0.162.0-alpha.17.2 / D13914CE...DAEC on 2026-10-10, under the owner instruction to make the
+621|      3-lane pools dispatchable through the CODEX CLI. Reason: 0.147.0-alpha.6.5 ships codex.exe
+622|      ALONE, and a code-mode agent requires codex-code-mode-host.exe; its own run log shows
+623|      'failed to load models cache' and an exit 0 with zero artifacts. Evidence: the drift gate
+624|      flagged exactly these two pointers before this record was added (DRIFT_VALUE, severity
+625|      error), which confirms the gate, not a silent edit. Backups: config/hermes-codex-lane.json.bak-pool-far-*.
+626|
+627|claim_ceiling: CANDIDATE_ONLY
+
+SOURCE C:\Projects\Agent_Workspace\HG-KSEOS\config\model-lane-assignment.json
+1|{
+2| "artifact": "MODEL_LANE_ASSIGNMENT",
+3| "schema": "HGK-MODEL-LANE-ASSIGNMENT/1",
+4| "revision": 20,
+5| "declared_at_utc": "2026-10-15T11:25:47.689574Z",
+6| "declared_by": "Owner order 2026-10-15 (this session) — PLAN & Orchestrator rebound to opencode-go/glm-5.3-flash (GPT quota exhausted). Applied to the canonical assignment by agent orchestration under that explicit owner order; not an agent-originated route change. Prior revision-18 default arm (gpt-6.1-sol) is retained as a NON-DEFAULT, non-automatic alternate with usable_now=QUOTA_429_2026-10-15.",
+7| "authority_note": "Operator-declared routing policy. Not an authority source; the runtime wiring named in `effective_wiring` is the machine truth. The current revision is the top-level \"revision\" field; earlier revisions are recorded in the revision_*_reason fields and in this file's history sections.",
+8| "authorization_basis": "Owner user order 2026-10-15 (verbatim: PLAN & Orchestrator 模型改成使用 GLM-5.3-Flash(OPENCODE GO), 因為GPT配合耗盡). Recorded as a canonical control-plane advance; candidate-lifecycle only, no self-acceptance, no independent verification claimed.",
+9| "lane_registry_status": "NO_PRIOR_REGISTRY at first encoding (revision 1/2). This file remains the formal encoding.",
+10| "user_instruction_revision_2": "PLAN：GPT 6.1 SOL(OPEN AI OAuth) → EXECUTE：DeepSeek V4.1 Flash(OPENCODE GO) → VERIFY / SECURITY：GLM-5.3(默認NVIDIA NIM，備援OPENCODE GO)",
+11| "user_instruction_revision_1": "PLAN：GPT 6.1 SOL → EXECUTE：DeepSeek V4.1 Flash(OPENCODE GO) → VERIFY / SECURITY：GPT 6.1 SOL",
+12| "assignment": [
+13|  {
+14|   "lane_group": "PLAN",
+15|   "lanes": [
+16|    "ARCH",
+17|    "HARD WORK",
+18|    "THREAT",
+19|    "EFFECT PLANNING",
+20|    "RESEARCH",
+21|    "SYNTHESIS",
+22|    "EVOLUTION"
+23|   ],
+24|   "assigned_model": "glm-5.3-flash",
+25|   "assigned_provider": "opencode-go",
+26|   "reasoning_effort": "medium",
+27|   "supply": "OpenCode Go",
+28|   "rationale": "Revision 19 owner order 2026-10-15: rank-1 default is now opencode-go/glm-5.3-flash (medium) for the in-Hermes PLAN & Orchestrator plane; the GPT arm is exhausted and demoted to a non-default, non-automatic alternate. Prior rationale (revision 18 GPT-6.1_SOL default) preserved in revision_19_reason / rebind_note_revision_18.",
+29|   "non_default_alternates": [
+30|    {
+31|     "provider": "openai-codex",
+32|     "model": "gpt-6.1-sol",
+33|     "reasoning_effort": "medium",
+34|     "auth": "openai_oauth",
+35|     "oauth": true,
+36|     "default": false,
+37|     "automatic_selection": false,
+38|     "usable_now": "QUOTA_429_2026-10-15",
+39|     "note": "prior default arm, retained as an explicit operator-selectable alternate; not selected automatically"
+40|    }
+41|   ]
+42|  },
+43|  {
+44|   "lane_group": "EXECUTE",
+45|   "lanes": [
+46|    "BULK BUILD",
+47|    "BULK SECURITY TEST",
+48|    "REPAIR",
+49|    "BULK CODE",
+50|    "HARNESS",
+51|    "EVAL CODE",
+52|    "BULK TRANSFORM"
+53|   ],
+54|   "assigned_model": "deepseek-v4.1-flash",
+55|   "assigned_provider": "opencode-go",
+56|   "supply": "OpenCode Go",
+57|   "executor": "CODEX CLI (sealed HGK lane) — NOT the Hermes main loop",
+58|   "additional_routes": [
+59|    {
+60|     "provider": "openai-codex",
+61|     "model": "gpt-6-luna",
+62|     "engine": "codex-cli",
+63|     "transport": "codex-native-oauth",
+64|     "auth": "openai_oauth",
+65|     "oauth": true,
+66|     "default": false,
+67|     "automatic_selection": false,
+68|     "admission_status": "UNPROVEN",
+69|     "authorization_basis": "WO-PIPD-R5-EXECUTE-LUNA-ROUTE-20261009"
+70|    }
+71|   ],
+72|   "rationale": "Primary sealed lane remains deepseek-v4.1-flash/opencode-go. Owner authorizes an explicit gpt-6-luna/openai-codex native OAuth additional route under WO-PIPD-R5-EXECUTE-LUNA-ROUTE-20261009; not an automatic fallback, not backend-availability proof, bounded-writer admission remains required."
+73|  },
+74|  {
+75|   "lane_group": "VERIFY_SECURITY",
+76|   "lanes": [
+77|    "ACCEPTANCE",
+78|    "SECURITY REVIEW",
+79|    "VERIFY"
+80|   ],
+81|   "assigned_model": "glm-5.3-flash",
+82|   "assigned_provider": "opencode-go",
+83|   "reasoning_effort": "medium",
+84|   "supply": "DEFAULT primary arm A = OpenCode Go / glm-5.3-flash; arm B = OpenAI OAuth / gpt-6.1-sol is fallback only. Both arms are medium.",
+85|   "selection_authority": "owner adjudication; unspecified dispatch selects primary arm A; arm B is a non-default operator-selectable alternate, never auto-selected and remains forbidden for PLAN-made artifacts",
+86|   "supply_selector": {
+87|    "unspecified_default": {
+88|     "arm": "A",
+89|     "model": "gpt-6.1-sol",
+90|     "provider": "openai-codex",
+91|     "auth": "ChatGPT OAuth",
+92|     "reasoning_effort": "medium",
+93|     "canonical_identity": "gpt-6.1-sol",
+94|     "oauth": true
+95|    },
+96|    "arms": [
+97|     {
+98|      "arm": "A",
+99|      "model": "gpt-6.1-sol",
+100|      "provider": "openai-codex",
+101|      "auth": "ChatGPT OAuth",
+102|      "reasoning_effort": "medium",
+103|      "co_equal": false,
+104|      "role": "primary",
+105|      "canonical_identity": "gpt-6.1-sol",
+106|      "oauth": true,
+107|      "default": true
+108|     },
+109|     {
+110|      "arm": "B",
+111|      "model": "glm-5.3-flash",
+112|      "provider": "opencode-go",
+113|      "auth": "env_ref:OPENCODE_GO_API_KEY",
+114|      "reasoning_effort": "medium",
+115|      "co_equal": false,
+116|      "role": "fallback1_operator_selectable",
+117|      "canonical_identity": "glm-5.3-flash",
+118|      "oauth": false,
+119|      "default": false,
+120|      "automatic_selection": true
+121|     },
+122|     {
+123|      "arm": "C",
+124|      "model": "deepseek-v4.1-flash",
+125|      "provider": "opencode-go",
+126|      "auth": "env_ref:OPENCODE_GO_API_KEY",
+127|      "reasoning_effort": "medium",
+128|      "co_equal": false,
+129|      "role": "fallback2_operator_selectable",
+130|      "canonical_identity": "deepseek-v4.1-flash",
+131|      "oauth": false,
+132|      "default": false,
+133|      "automatic_selection": true
+134|     }
+135|    ],
+136|    "declared_only_vs_enforced": "Canonical route_for_lane resolves primary arm A (gpt-6.1-sol OAuth). Governed dispatch must pin the canonical lane route and check_sod; fallbacks allowed in ARM order; SOD rules still apply.",
+137|    "alternate_relationship": "Arm A is primary; B/C are ordered fallbacks, auto-reached only on typed refusal of earlier arms; never silently substituted before checking A."
+138|   },
+139|   "rationale": "Owner adjudication resolves default PLAN/VERIFY model collision: primary VERIFY arm A is glm-5.3-flash; arm B gpt-6.1-sol is fallback only and may not check a PLAN-made artifact. Provider separation is not required.",
+140|   "observed_state": "Arm A (opencode-go/glm-5.3-flash) completed a Hermes subagent turn in 158.9 s (FAR-LANE-VERIFY-002). Arm B (openai-codex/gpt-6.1-sol) is the model this round's PLAN lanes and every prior acceptance-officer lane ran on (e.g. deleg_dc8bcd60). Re-verified in this round by the two SWARM lanes.",
+141|   "canonical_identity": "glm-5.3-flash",
+142|   "auth": "env_ref:OPENCODE_GO_API_KEY",
+143|   "oauth": false
+144|  }
+145| ],
+146| "effective_wiring": {
+147|  "_note": "Corrected in revision 4 to match the runtime. Nothing below is aspirational.",
+148|  "default_execute_route": "CODEX_CLI_SEALED_LANE",
+149|  "execute_dispatch": "scripts/start-hgk-hermes.ps1 -Action Write, invoked with -ModelChain deepseek-v4.1-flash",
+150|  "hermes_model_codex_bin": "%LOCALAPPDATA%\\HG-KSEOS\\runtime\\codex-0.147.0-alpha.6.5\\codex.exe",
+151|  "hermes_model_openai_runtime": "NOT SET — deliberate. model.openai_runtime=codex_app_server is gated to provider in {openai, openai-codex} (hermes_cli/runtime_provider.py:95,284); for provider=opencode-go it is a no-op, proven by an isolated smoke that produced the answer with 0 sealed-lane usage rows. Setting it would also break SoD and remove delegate_task if the provider were ever switched.",
+152|  "main_agent": {
+153|   "provider": "opencode-go",
+154|   "model": "deepseek-v4.1-flash",
+155|   "engine": "hermes native loop",
+156|   "execute_handoff": "Codex CLI sealed lane (orchestration-layer dispatch)",
+157|   "config_default_model": "glm-5.3-flash (config.yaml model.default; takes effect for sessions started after the rebind)",
+158|   "observed_live_session_model": "deepseek-v4.1-flash (session pinned at its 12:59 start; measured in agent.log)"
+159|  },
+160|  "delegation.provider": "opencode-go",
+161|  "delegation.model": "glm-5.3-flash",
+162|  "delegation.applies_to": "EVERY ordinary delegate_task child, regardless of lane; the delegation block's provider/model/effort applies to ordinary PLAN and VERIFY children alike. Kanban card overrides are NOT read by delegate_task - they are read only by `hermes kanban dispatch`. This round's VERIFY lanes therefore inherited the orchestrator's effort rather than consuming their card pin.",
+163|  "agent.reasoning_overrides": {
+164|   "deepseek-v4.1-flash": "medium"
+165|  },
+166|  "reasoning_default_note": "PLAN reasoning_effort=medium at the lane declarations and agent.reasoning_overrides.deepseek-v4.1-flash. Auxiliary and MoA effort declarations are separate, non-PLAN consumers and remain unchanged. Per-task lane pins remain required for governed dispatch.",
+167|  "delegation_default_arm": "Observed shared delegation = opencode-go/deepseek-v4.1-flash (the rebound PLAN route and the EXECUTE route), NOT the canonical VERIFY unspecified default arm A (opencode-go/glm-5.3-flash). The former gpt-6.1-sol delegation default is RETIRED by owner adjudication 1.",
+168|  "auxiliary.kanban_decomposer": {
+169|   "provider": "openai-codex",
+170|   "model": "gpt-6.1-sol",
+171|   "reasoning_effort": "high"
+172|  },
+173|  "auxiliary.triage_specifier": {
+174|   "provider": "openai-codex",
+175|   "model": "gpt-6.1-sol",
+176|   "reasoning_effort": "high"
+177|  },
+178|  "enforcement_honesty": {
+179|   "base_url_retired": true,
+180|   "retired_value": "model.openai_runtime: codex_app_server / main_agent.engine: codex_app_server",
+181|   "reason": "falsified by finding F8"
+182|  },
+183|  "reasoning_default_coverage": {
+184|   "model_level_override_reaches": [
+185|    "the agent's own model at CLI/TUI/oneshot initialisation",
+186|    "cron jobs with no per-job pin",
+187|    "/model switch and fallback activation"
+188|   ],
+189|   "model_level_override_does_NOT_reach": [
+190|    "delegation children - child effort = delegation.reasoning_effort else the parent's resolved config (hermes-agent/tools/delegate_tool_config.py:562-575)",
+191|    "auxiliary tasks - auxiliary.<task>.reasoning_effort is read separately",
+192|    "MoA reference slots - per-slot only; auxiliary.moa_reference.reasoning_effort is explicitly ignored"
+193|   ],
+194|   "per_consumer_declarations": {
+195|    "auxiliary.kanban_decomposer.reasoning_effort": "high",
+196|    "auxiliary.triage_specifier.reasoning_effort": "high",
+197|    "moa.reference_models[0].reasoning_effort": "high",
+198|    "moa.presets.default.reference_models[0].reasoning_effort": "high",
+199|    "delegation.reasoning_effort": "ABSENT BY DECISION - see sod_conflicts[1] SOD006-C2"
+200|   },
+201|   "evidence": "var/far-lane-sod-006/receipts/step0b_plan_high_coverage_repair.json + step0b_readback.json"
+202|  },
+203|  "delegation.reasoning_effort": "ABSENT; PLAN and VERIFY lane effort declarations now both medium. Explicit per-task pins remain required; historical SOD006-C2 is retained pending separate closure.",
+204|  "kanban_card_default_finding": "A card with NULL model/provider pins uses the WORKER PROFILE default, not the registry route; VERIFY arm A (opencode-go/glm-5.3-flash) must be explicitly pinned for governed dispatch.",
+205|  "machine_enforced_per_lane_effort_surface": "kanban tasks.reasoning_effort -> hermes_cli/kanban_db_dispatch.py turns it into --reasoning <level> on the worker argv (line 2702). The only machine-enforced per-lane effort surface measured.",
+206|  "plan_high": {
+207|   "level": "medium",
+208|   "surfaces": [
+209|    "agent.reasoning_overrides.deepseek-v4.1-flash",
+210|    "assignment[0].reasoning_effort",
+211|    "sod.plan_reasoning_effort",
+212|    "lane_chains.PLAN[0].reasoning_effort",
+213|    "kanban per-task reasoning_effort pin"
+214|   ],
+215|   "not_covered": "Auxiliary and MoA consumers are not PLAN lane effort declarations; shared delegation still needs governed per-dispatch pins."
+216|  },
+217|  "delegation._changed_utc": "2026-10-15 (PLAN rebind: in-Hermes orchestration plane = GLM-5.3-Flash; live config.yaml read back)"
+218| },
+219| "sod": {
+220|  "plan_lane": "opencode-go / glm-5.3-flash (medium) — owner order 2026-10-15; prior openai-codex/gpt-6.1-sol arm retained as a non-default alternate (QUOTA_429)",
+221|  "execute_lane": "opencode-go / deepseek-v4.1-flash (Codex CLI worker)",
+222|  "verify_security_lane": "DEFAULT primary arm A = opencode-go / glm-5.3-flash; NON-DEFAULT operator-selectable alternate arm B = openai-codex / gpt-6.1-sol (OpenAI OAuth)",
+223|  "verify_security_arm_A": "opencode-go / glm-5.3-flash (primary unspecified default; medium)",
+224|  "verify_security_default_arm": "A = opencode-go / glm-5.3-flash (env_ref:OPENCODE_GO_API_KEY; medium)",
+225|  "verify_security_selection": "owner adjudication; unset -> default arm A; arm B is a non-default operator-selectable alternate, never auto-selected",
+226|  "verify_vs_execute_model_separation": "PASS on BOTH arms - glm-5.3-flash and gpt-6.1-sol are both different model families from deepseek-v4.1-flash.",
+227|  "verify_vs_plan_model_separation": "PARTIAL after the 2026-10-15 PLAN rebind: PLAN glm-5.3-flash vs VERIFY default primary arm gpt-6.1-sol stays distinct, but PLAN == VERIFY fallback1 arm glm-5.3-flash and that arm served the R6 checker turn — recorded as SOD006-C3.",
+228|  "provider_separation": "PARTIAL - PLAN, EXECUTE and primary VERIFY arm A now all sit on opencode-go; arm B openai-codex is a non-default operator-selectable alternate, never auto-selected. Provider separation is not required; model-axis separation holds on default routes.",
+229|  "maker_self_acceptance": "PREVENTED at dispatch on every arm: no single call ever verifies its own output. After the 2026-10-15 owner PLAN rebind the model-identity separation is PARTIAL, not clean: PLAN glm-5.3-flash equals VERIFY fallback1 arm glm-5.3-flash (recorded SOD006-C3), while EXECUTE deepseek-v4.1-flash vs VERIFY default arm gpt-6.1-sol remains distinct; PLAN and EXECUTE no longer share a token, so SOD-APPLY-01 stays a historical record.",
+230|  "lane_deviation_recorded": {
+231|   "kanban_card": "t_152ba41c (LR-AO)",
+232|   "assigned": "openai-codex / gpt-6.1-sol",
+233|   "declared_lane": "VERIFY_SECURITY listed ACCEPTANCE, whose assigned model was then glm-5.3",
+234|   "status": "SUPERSEDED_HISTORICAL - describes an earlier revision, not the current route",
+235|   "deviation_note": "Historical: the acceptance card had been seeded on the PLAN model in an earlier revision; the VERIFY route is now the dual arm A/B route."
+236|  },
+237|  "verify_security_reasoning_effort": "medium",
+238|  "plan_reasoning_effort": "medium",
+239|  "provider_separation_status": "PARTIAL - PLAN, EXECUTE and VERIFY arm A all share opencode-go by owner rebinding. Model-axis separation between PLAN/EXECUTE and VERIFY arm A HOLDS (deepseek-v4.1-flash != glm-5.3-flash). Not a sod_conflict: the registry does not require provider separation (invariants.provider_separation_required=false). Recorded as an accepted risk."
+240| },
+241| "claim_ceiling": "Owner-authorized canonical declarations applied; deterministic drift/route/SoD verification is not independent acceptance, promotion, production, or provider-liveness evidence. SOD006-C1 is resolved by owner adjudication; historical SOD006-C2 remains recorded. | Revision 19: an owner-ordered canonical declaration applied by agent orchestration under that order; it is not independent verification, not acceptance, and not model-liveness proof for the GLM arm.",
+242| "revision_4_reason": "Independent AO lane (deleg_dc8bcd60 task-1, verdict FAIL) found revision 3 overstated its own wiring: it declared model.openai_runtime=codex_app_server as effective for a provider where the source proves that key is a no-op, and it asserted provider separation that the declared fallback arm falsifies. Revision 4 states the mechanism that actually exists.",
+243| "independent_verification": {
+244|  "delegation_id": "deleg_dc8bcd60",
+245|  "lanes": {
+246|   "acceptance_officer": {
+247|    "model": "gpt-6.1-sol",
+248|    "provider": "openai-codex",
+249|    "verdict": "FAIL",
+250|    "api_calls": 13
+251|   },
+252|   "adversarial_challenger": {
+253|    "model": "gpt-6.1-sol",
+254|    "provider": "openai-codex",
+255|    "verdict": "UNSUPPORTED",
+256|    "api_calls": 4
+257|   }
+258|  },
+259|  "accepted_findings": [
+260|   "F7 independently confirmed live: opencode-go/glm-5.2, removed from the lane model lists, still returns 200 with usable content, so the lists are not an allowlist gate.",
+261|   "The singleton chain pin is invocation-specific; the launcher default chain is still three models.",
+262|   "The provider-separation PASS assertion was false on the fallback arm (corrected above).",
+263|   "Two receipt hash declarations were stale against current bytes (superseded by a later edit / append growth)."
+264|  ],
+265|  "not_accepted_as_evidence": "Coordinating cards are not acceptance: two of the ten done cards carry an explicit NOT COMPLETE result."
+266| },
+267| "revision_5_reason": "Operator amendment: every lane gets an ordered fallback chain. PLAN gains GLM-5.3 (NVIDIA then OPENCODE GO); EXECUTE gains DeepSeek V4.1 Flash (NVIDIA NIM) then GPT-6 Luna (OpenAI OAuth).",
+268| "lane_chains": {
+269|  "PLAN": [
+270|   {
+271|    "model": "glm-5.3-flash",
+272|    "provider": "opencode-go",
+273|    "reasoning_effort": "medium",
+274|    "role": "primary",
+275|    "default": true,
+276|    "arm": "A"
+277|   },
+278|   {
+279|    "model": "deepseek-v4.1-flash",
+280|    "provider": "opencode-go",
+281|    "role": "fallback1",
+282|    "default": false,
+283|    "automatic_selection": true
+284|   },
+285|   {
+286|    "model": "gpt-6.1-sol",
+287|    "provider": "openai-codex",
+288|    "reasoning_effort": "medium",
+289|    "role": "non_default_operator_selectable",
+290|    "default": false,
+291|    "automatic_selection": false,
+292|    "usable_now": "QUOTA_429_2026-10-15",
+293|    "note": "demoted from default by owner order 2026-10-15; retained, never auto-selected"
+294|   }
+295|  ],
+296|  "EXECUTE": [
+297|   {
+298|    "model": "deepseek-v4.1-flash",
+299|    "provider": "opencode-go",
+300|    "reasoning_effort": null
+301|   },
+302|   {
+303|    "model": "gpt-6-luna",
+304|    "provider": "openai-codex",
+305|    "transport": "codex-native-oauth",
+306|    "automatic_selection": false,
+307|    "default": false
+308|   },
+309|   {
+310|    "model": "deepseek-ai/deepseek-v4.1-flash",
+311|    "provider": "nvidia"
+312|   },
+313|   {
+314|    "arm": "owner_selectable_additional",
+315|    "model": "gpt-6-luna",
+316|    "provider": "openai-codex",
+317|    "engine": "codex-cli",
+318|    "transport": "codex-native-oauth",
+319|    "auth": "openai_oauth",
+320|    "automatic_selection": false,
+321|    "default": false,
+322|    "usable_now": "BACKEND_HTTP_400_UNSUPPORTED_ON_CURRENT_CLI_ACCOUNT",
+323|    "admission_status": "UNPROVEN",
+324|    "authorization_basis": "WO-PIPD-R5-EXECUTE-LUNA-ROUTE-20261009"
+325|   }
+326|  ],
+327|  "VERIFY_SECURITY": [
+328|   {
+329|    "role": "primary",
+330|    "model": "gpt-6.1-sol",
+331|    "provider": "openai-codex",
+332|    "reasoning_effort": "medium",
+333|    "default": true,
+334|    "arm": "A"
+335|   },
+336|   {
+337|    "role": "fallback1",
+338|    "model": "glm-5.3-flash",
+339|    "provider": "opencode-go",
+340|    "default": false,
+341|    "automatic_selection": true,
+342|    "arm": "B",
+343|    "reasoning_effort": "medium"
+344|   },
+345|   {
+346|    "role": "fallback2",
+347|    "model": "deepseek-v4.1-flash",
+348|    "provider": "opencode-go",
+349|    "default": false,
+350|    "automatic_selection": true
+351|   }
+352|  ],
+353|  "VERIFY_SECURITY_previous_revision_8": [
+354|   {
+355|    "arm": "primary",
+356|    "model": "z-ai/glm-5.3-flash",
+357|    "provider": "nvidia",
+358|    "auth": "NVIDIA NIM key",
+359|    "usable_now": "LIVE_BY_DIRECT_PROBE_ONLY",
+360|    "evidence": "HTTP 200 in 1.7 s (receipts/verify_flash_arm_probe.json) — superseded: live by probe did not mean usable as a lane",
+361|    "retired": true,
+362|    "retired_note": "RETIRED - no longer part of the current route; the current VERIFY default is arm B."
+363|   },
+364|   {
+365|    "arm": "fallback_1",
+366|    "model": "glm-5.3-flash",
+367|    "provider": "opencode-go",
+368|    "auth": "OPENCODE_GO_API_KEY",
+369|    "usable_now": "LIVE",
+370|    "evidence": "hermes one-shot returned FLASH_FB_OK in 5 s"
+371|   }
+372|  ],
+373|  "VERIFY_SECURITY_previous_revision_5": [
+374|   {
+375|    "arm": "primary",
+376|    "model": "z-ai/glm-5.3",
+377|    "provider": "nvidia",
+378|    "usable_now": "DEAD"
+379|   },
+380|   {
+381|    "arm": "fallback_1",
+382|    "model": "glm-5.3",
+383|    "provider": "opencode-go",
+384|    "usable_now": "LIVE"
+385|   }
+386|  ],
+387|  "VERIFY_SECURITY_previous_revision_17": [
+388|   {
+389|    "model": "glm-5.3-flash",
+390|    "provider": "opencode-go"
+391|   },
+392|   {
+393|    "model": "gpt-6.1-sol",
+394|    "provider": "openai-codex"
+395|   }
+396|  ],
+397|  "PLAN_previous_revision_18": [
+398|   {
+399|    "model": "gpt-6.1-sol",
+400|    "provider": "openai-codex",
+401|    "reasoning_effort": "medium"
+402|   },
+403|   {
+404|    "model": "glm-5.3-flash",
+405|    "provider": "opencode-go"
+406|   },
+407|   {
+408|    "model": "deepseek-v4.1-flash",
+409|    "provider": "opencode-go"
+410|   }
+411|  ]
+412| },
+413| "sod_across_all_arms": {
+414|  "executor_models": [
+415|   "deepseek-ai/deepseek-v4.1-flash",
+416|   "deepseek-v4.1-flash",
+417|   "gpt-6-luna"
+418|  ],
+419|  "verifier_models": [
+420|   "glm-5.3-flash",
+421|   "gpt-6.1-sol"
+422|  ],
+423|  "maker_checker_model_separation": "Against the rebond identity set (PLAN deepseek-v4.1-flash, EXECUTE deepseek-v4.1-flash, VERIFY arm A glm-5.3-flash, VERIFY arm B gpt-6.1-sol): every maker->checker pair across the VERIFY lane is DISTINCT (deepseek-v4.1-flash != glm-5.3-flash and != gpt-6.1-sol; and glm-5.3-flash != gpt-6.1-sol). The only remaining same-token pairing is PLAN<->EXECUTE, which are both makers/executors and never check each other; recorded as SOD-APPLY-01 OPEN. SOD006-C2 (delegation-surface effort) remains OPEN.",
+424|  "provider_separation_across_arms": "PARTIAL - provider separation is NOT required (invariants.provider_separation_required=false). It does NOT hold between PLAN (opencode-go), EXECUTE (opencode-go) and VERIFY arm A (opencode-go); it holds between those and arm B (openai-codex). Model-axis separation holds across all current arms.",
+425|  "new_cross_lane_coupling": "EXECUTE fallback_2 put the executor on openai-codex, the same provider as the PLAN primary; models still differ. Recorded as LOW risk, not a violation. (The fallback_2 model was the now-RETIRED gpt-6 Luna.)",
+426|  "note": "Adding fallbacks can only ever weaken separation, never strengthen it; every arm was checked rather than assuming the primary-arm result carries over.",
+427|  "verify_flash_vs_plan_glm": "PLAN fallback_1 is plain z-ai/glm-5.3 while VERIFY is glm-5.3-flash, so the planner fallback and the verifier are now different models too.",
+428|  "retired": true,
+429|  "retired_note": "RETIRED - no longer part of the current route; the current VERIFY default is arm B."
+430| },
+431| "wiring_feasibility": {
+432|  "per_lane_fallback_surface": "Hermes exposes ONE GLOBAL default `fallback_providers` chain (agent/auxiliary_client.py), PLUS an owner-scoped chain resolved per provider (hermes-agent/tools/delegate_tool_config.py:468-479), PLUS a per-call empty chain when the child is pinned (delegate_task accepts a per-call credentials_cfg carrying `fallback_providers: []`). Per-lane ordering is declared here. This round exercised NONE of them - it ran without failover.",
+433|  "sealed_lane_namespaces": [
+434|   "opencode-go"
+435|  ],
+436|  "consequence": "The two EXECUTE fallbacks are Hermes-side arms, not Codex-lane models. The Codex lane stays pinned to its single sanctioned model, which is what keeps requirement 2 intact.",
+437|  "projection_drops_dual_arms": {
+438|   "state": "CLOSED_FIX_APPLIED_TO_LIVE_SRC",
+439|   "closed_by": "round HGK-SOLUTION-APPLY-20261012; doc-update round FAR-DOC-UPDATE-20261013, Option A item A5 (F18 smallest-repair); openspec tasks 2.3 + 2.5 of lane-mandate-rebinding-and-d01-revocation",
+440|   "closed_evidence": "RUN, not asserted: the LIVE src/hg_kseos/lane_policy.py (sha256 5384116F2CD8568A26B9244CC11A206B25A2DCEC435E2D9E1BA8C4C6F0A089BB) :: _compact_route(VERIFY_SECURITY) now returns arms[] with 2 entries (glm-5.3-flash, gpt-6.1-sol), selection_authority='owner-adjudication-1-HGK-SOLUTION-APPLY-20261012' and selected_arm='A', with the primary lane/model unchanged; the raw output is reproducible via `PYTHONPATH=src python var/far-doc-update-20261013/gates.py`. The registry drift gate reports 0 findings on the closed state and exactly 1 DRIFT_VALUE on the same pointer when the state is perturbed (negative control), so the pin bites.",
+441|   "state_correction_note": "The `evidence` and `proposed_change` fields below are the HISTORICAL text of the round that declared the gap; they recorded the pre-application state (live src UNCHANGED at sha256 498AB9435A7D5F885416DC50AF62B3AD515517F8DA036A936FF84568FA7083BA, fix applied in the candidate only). That text is kept as history by task 2.3 and is no longer the current state.",
+442|   "evidence": "candidate/src/hg_kseos/lane_policy.py::_compact_route now carries arms[], selection_authority and selected_arm; exercised in candidate/_build/EXERCISE_PROJECTION.txt where the projected VERIFY_SECURITY route carries 2 arms + selection_authority + selected_arm. The live src/hg_kseos/lane_policy.py is UNCHANGED (sha256 498AB9435A7D5F885416DC50AF62B3AD515517F8DA036A936FF84568FA7083BA); the fix is applied only by candidate/apply_rebinding.py.",
+443|   "proposed_change": "extend _compact_route() to carry arms[] and selection_authority (and selected_arm); applied in the candidate copy only",
+444|   "adjudication_owner": "operator / Human Gate"
+445|  }
+446| },
+447| "revision_6_reason": "Operator amendment: VERIFY / SECURITY moves from GLM-5.3 to GLM-5.3-Flash with the same provider order (NVIDIA primary, OPENCODE GO fallback).",
+448| "verify_flash_side_effect": "HISTORICAL (FAR-LANE-SOD-005 probe): the Flash variant answered 200 in 1.7 s on the NVIDIA arm on which the non-Flash GLM-5.3 hung; the VERIFY fallback stayed OPENCODE GO and the model was preserved across the failover (flash on both arms). Not current lane liveness: the NVIDIA arm is retired from the current VERIFY route.",
+449| "revision_8_reason": "Operator instruction of 2026-10-07 (governed round FAR-LANE-VERIFY-002, REQ-FAR-LANE-VERIFY-002): change the VERIFY/SECURITY lane's GLM-5.3-Flash model supply from the NVIDIA NIM arm to the OPENCODE GO arm. Applied: verify_security_lane = opencode-go / glm-5.3-flash, and the NVIDIA arm is retained only as a declared secondary. The NVIDIA arm is recorded as measured UNABLE TO COMPLETE A HERMES SUBAGENT TURN in this round (two attempts, lanes/lane_v1_INTERRUPTED.json and lanes/lane_v1b_INTERRUPTED.json) while answering a direct completion in about 5 s, and a probe that reports an arm live is therefore not evidence that the arm can serve as a lane. This supersedes the revision-4 provider_separation prose that named nvidia as the primary arm. The change is a CANDIDATE, not accepted; the pre-change bytes are backed up beside the round at var/far-lane-verify-002/backup/model-lane-assignment.rev7.json and rollback is a byte-for-byte restore of that file.",
+450| "revision_7_reason": "Operator decision recorded. NO ROUTING CHANGE: PLAN keeps its primary (gpt-6.1-sol / OpenAI OAuth) and its declared fallback order.",
+451| "operator_decisions": [
+452|  {
+453|   "id": "OPD-002",
+454|   "decided_at_utc": "2026-10-07T02:00:53Z",
+455|   "question": "PLAN fallback_1 (z-ai/glm-5.3 / nvidia) measures DEAD — no response after 75 s. Replace it, drop it, or keep it?",
+456|   "options_offered": [
+457|    "swap to GLM-5.3-Flash on the z-ai NIM arm (measured LIVE at 1.7 s)",
+458|    "keep z-ai/glm-5.3 declared DEAD, fallback_2 carries the lane",
+459|    "swap to the retired openai-codex fallback model token",
+460|    "remove the PLAN fallbacks entirely"
+461|   ],
+462|   "decision": "KEEP z-ai/glm-5.3 declared DEAD; PLAN fallback_2 (opencode-go/glm-5.3, measured LIVE at 7 s) carries the lane in practice.",
+463|   "consequence": "A failover on the PLAN lane will first burn time on a dead arm before reaching fallback_2. Accepted knowingly by the operator."
+464|  }
+465| ],
+466| "accepted_risks": [
+467|  {
+468|   "id": "RISK-PLAN-FB1-DEAD",
+469|   "statement": "PLAN fallback_1 (z-ai/glm-5.3 / NVIDIA) is dead and is retained by operator decision.",
+470|   "measured": "NO_RESPONSE after 75 s; the same endpoint serves GLM-5.3-Flash on the z-ai NIM arm in 1.7 s and deepseek-ai/deepseek-v4.1-flash in 32.6 s on the same credential.",
+471|   "mitigation": "PLAN fallback_2 (opencode-go/glm-5.3) is LIVE and is the arm that actually takes over.",
+472|   "owner": "operator",
+473|   "review_trigger": "next provider catalogue change, or on any PLAN-lane failover"
+474|  }
+475| ],
+476| "revision_9_reason": "User instruction 2026-10-07: make the GLM-5.3-Flash VERIFY/SECURITY lane's reasoning effort explicitly medium. No max or high value existed anywhere on this host: the only reasoning setting is the global agent.reasoning_effort: medium in the live Hermes config, and this file previously carried no effort field at all. Revision 9 declares the lane default explicitly at every VERIFY_SECURITY site so it is drift-checkable instead of implicit.",
+477| "revision_10_reason": "Revision 10 encodes two operator clauses. (1) PLAN: every use of GPT 6.1 SOL (OpenAI OAuth) defaults to GPT 6.1 SOL -HIGH (OpenAI OAuth) - the lane's reasoning_effort is declared explicitly HIGH at every PLAN site, and the live Hermes runtime carries the model-level default agent.reasoning_overrides={gpt-6.1-sol: high}. (2) VERIFY / SECURITY: a user-instruction-selected dual model-AND-provider route - GLM-5.3-Flash (OpenCode Go) and GPT 6.1 SOL (OpenAI OAuth), both Medium - with GPT 6.1 SOL (OpenAI OAuth) as the unspecified default. The live wiring for both clauses is proved in var/far-lane-sod-006/receipts/step0_live_wiring.json (agent.reasoning_overrides set to {gpt-6.1-sol: high}; delegation.provider=openai-codex; delegation.model=gpt-6.1-sol; post_sha256 61024248670e09322e42e1f701e2a11640b5b74302653d26c9bb2b743783dc03).",
+478| "sod_conflicts": [
+479|  {
+480|   "id": "SOD006-C1",
+481|   "pairs": [
+482|    [
+483|     "PLAN",
+484|     "VERIFY_SECURITY"
+485|    ]
+486|   ],
+487|   "axis": "canonical_identity",
+488|   "statement": "Historical default arm B collided with PLAN on gpt-6.1-sol. Owner adjudication replaces the default with distinct arm A; arm B remains a colliding non-default alternate.",
+489|   "coherent_clause": "EXECUTE (deepseek-v4.1-flash) vs BOTH verify arms is distinct; a PLAN maker vs arm A (glm-5.3-flash) is distinct.",
+490|   "conflicting_clause": "PLAN maker vs VERIFY arm B is NOT distinct.",
+491|   "disposition": "Owner sets VERIFY primary/default to arm A and arm B to a non-default operator-selectable alternate; default PLAN vs VERIFY collision resolved. Historical collision record preserved.",
+492|   "required_control": "Canonical VERIFY dispatch defaults to arm A; non-default operator-selectable alternate arm B must still be refused for any PLAN-made artifact.",
+493|   "adjudication_owner": "operator / Human Policy Owner",
+494|   "status": "RESOLVED_BY_REBINDING",
+495|   "resolution": "WO-FAR-D1D2-FINAL-ROUTE-20261008 / REQ-FAR-D1D2-FINAL-20261008 (owner adjudication; events=947)",
+496|   "resolved_by_rebinding": "PLAN rebound to opencode-go/deepseek-v4.1-flash (owner adjudication 1, round HGK-SOLUTION-APPLY-20261012) so PLAN no longer collides with any VERIFY arm; historical conflict record preserved, not deleted."
+497|  },
+498|  {
+499|   "id": "SOD006-C2",
+500|   "pairs": [
+501|    [
+502|     "PLAN",
+503|     "VERIFY_SECURITY"
+504|    ]
+505|   ],
+506|   "axis": "reasoning_effort_on_the_delegation_surface",
+507|   "statement": "The delegation surface carries BOTH PLAN and VERIFY lanes. delegation.reasoning_effort is section-wide, so it cannot give PLAN=high and VERIFY=medium at the same time; a delegation child does not re-resolve effort for its own model (hermes-agent/tools/delegate_tool_config.py:562-575).",
+508|   "coherent_clause": "VERIFY arms at medium - run and preserved.",
+509|   "conflicting_clause": "PLAN=high on the DELEGATION surface is NOT delivered; those children inherit the orchestrator's resolved effort.",
+510|   "disposition": "DECLARED_AND_FROZEN_FOR_ADJUDICATION - implemented on every surface that has its own declaration, refused on the surface where it would break the other clause.",
+511|   "required_control": "dispatch VERIFY through the pinned path (kanban card model/provider + reasoning_effort=medium) so the worker argv carries an explicit effort; never rely on inheritance for a verification lane.",
+512|   "adjudication_owner": "operator / Human Policy Owner",
+513|   "status": "OPEN"
+514|  },
+515|  {
+516|   "id": "SOD-APPLY-01",
+517|   "pairs": [
+518|    [
+519|     "EXECUTE",
+520|     "PLAN"
+521|    ]
+522|   ],
+523|   "axis": "canonical_identity",
+524|   "statement": "PLAN and EXECUTE were rebound onto the SAME model token opencode-go/deepseek-v4.1-flash.",
+525|   "coherent_clause": "PLAN and EXECUTE are both maker/executor routes and never check each other; the VERIFY lane stays on glm-5.3-flash.",
+526|   "conflicting_clause": "A PLAN model and an EXECUTE model are no longer distinct on the model axis.",
+527|   "disposition": "DECLARED_AND_OPEN - recorded by owner adjudication 1 so the collision is visible; not silently closed.",
+528|   "required_control": "Any governed dispatch where a PLAN-made artifact is checked must use the VERIFY lane (glm-5.3-flash) and never EXECUTE as checker.",
+529|   "adjudication_owner": "operator / Human Policy Owner",
+530|   "status": "OPEN"
+531|  },
+532|  {
+533|   "id": "SOD006-C3",
+534|   "pairs": [
+535|    [
+536|     "PLAN",
+537|     "VERIFY_SECURITY"
+538|    ]
+539|   ],
+540|   "axis": "canonical_identity",
+541|   "status": "OPEN_OWNER_ORDERED",
+542|   "note": "Owner order 2026-10-15 moves PLAN onto opencode-go/glm-5.3-flash, which is also VERIFY_SECURITY's fallback1 arm (and the arm that actually served the R6 checker turn). Maker PLAN and checker VERIFY_SECURITY can therefore share a model identity when the verifier falls back to that arm. Recorded, not hidden; the dispatcher still refuses any single call that would have the same arm self-verify its own output, and the EXECUTE(v4.1-flash) vs VERIFY(glm-5.3-flash) pair remains distinct.",
+543|   "reconciliation": {
+544|    "ruled_by": "owner order 2026-10-15 (PLAN rebind, this session)"
+545|   }
+546|  }
+547| ],
+548| "revision_11_reason": "Revision 11 applies the authorised repair for the drift finding left open by revision 10: the PLAN primary lane-chain record gains the explicit reasoning_effort=high field that the registry binding /lane_chains/PLAN/0/reasoning_effort requires. It also closes the over-claim in reasoning_default_note: PLAN=HIGH is declared per consumer (reasoning_default_coverage), delegation.reasoning_effort is deliberately ABSENT as declared conflict SOD006-C2, and the kanban per-task pin is named as the only machine-enforced per-lane effort surface.",
+549| "revision_12_reason": "Revision 12 applies the arm-B exhaustive-declaration repair for revision 11: it corrects the stale provider-separation shape (E1/E2/E3), marks the historical lane-deviation object superseded (E4), rebuilds the across-arms identity aggregate for the current arms (E5/E6/E7), retags the FAR-LANE-SOD-005 flash probe as historical (E8), corrects the fallback-surface and delegation.applies_to claims (E9/E10), declares the EXECUTE lane's measured live effort without inventing an operator value (E11), and records the projection-drops-dual-arms gap as DECLARED_GAP_NOT_FIXED because src/** is out of scope (E12). sod_conflicts stays exactly SOD006-C1 and SOD006-C2, both OPEN. It also labelled the retired OpenAI Codex fallback token and the retired z-ai NVIDIA flash token at every remaining site as RETIRED history, so the stale-prose grep is clean without deleting the historical records.",
+550| "revision_13_reason": "Revision 13 repairs the round-2 over-correction: it restores the exact machine-readable retired identifiers at the three identifier sites from the rev11 byte-copy (recovering them from the backup rather than inventing them) and carries the retired semantics in additive retired/retired_note fields. It also closes the residual prose defects - the authority note's false self-revision clause, the operator-decision option and the revision_12_reason wording that spelled the retired tokens, and the registry header and digest - while this file's own revision is now the top-level revision field.",
+551| "revision_14_reason": "WO-FAR-D1D2-FINAL-ROUTE-20261008 / REQ-FAR-D1D2-FINAL-20261008 (owner adjudication; events=947); PLAN medium; VERIFY primary/default arm A and arm B fallback; affected projections synchronized; historical records preserved.",
+552| "registry_epoch": 20,
+553| "revision_16_reason": "WO-PIPD-R5-EXECUTE-LUNA-ROUTE-20261009: owner-requested additional explicit EXECUTE gpt-6-luna/openai-codex OAuth route. Preserve primary and historical retired entries; zero automatic fallbacks; local route resolution only, backend unsupported and bounded-writer admission not claimed.",
+554| "revision_15_reason": "Second canonical edit under WO-FAR-D1D2-FINAL-ROUTE-20261008 / REQ-FAR-D1D2-FINAL-20261008 (owner adjudication; events=947): preserve VERIFY primary/default arm A and PLAN medium; demote arm B to a non-default operator-selectable alternate, never auto-selected; restore every registry fallbacks list to []; advance registry epoch 12 -> 13 and declaration revision 14 -> 15; synchronize source digest and projection bindings without modifying candidate tests.",
+555| "round_authorization": {
+556|  "round": "HGK-SOLUTION-APPLY-20261012",
+557|  "adjudication": "1 - registry rebinding",
+558|  "source": "owner message 2026-10-12 (this round's mandate), admission/ADMISSION_RECORD.json -> owner_authorization",
+559|  "mandate": {
+560|   "PLAN": "opencode-go / deepseek-v4.1-flash",
+561|   "EXECUTE": "opencode-go / deepseek-v4.1-flash (unchanged)",
+562|   "VERIFY_SECURITY": "opencode-go / glm-5.3-flash (this round's mandated checker)"
+563|  },
+564|  "excluded_this_round": "gpt-* (owner: GPT quota nearly exhausted)"
+565| },
+566| "round_model_exclusions": {
+567|  "rule_id": "HGK-ROUND-MODEL-EXCLUSION-1",
+568|  "scope": "this round only (HGK-SOLUTION-APPLY-20261012)",
+569|  "excluded_model_prefixes": [
+570|   "gpt-"
+571|  ],
+572|  "excluded_providers": [
+573|   "openai-codex"
+574|  ],
+575|  "why": "The owner excludes the gpt-* family for this round (GPT quota nearly exhausted); the mandated checker is opencode-go/glm-5.3-flash.",
+576|  "families_the_owner_excludes_for_a_round_cannot_be_restored_by": [
+577|   "a registry default route (routes[].provider/model of any lane)",
+578|   "an inherited child setting (delegation.provider/model, agent.reasoning_overrides, additional_routes, supply_selector arms)"
+579|  ],
+580|  "enforced_at": "candidate/src/hg_kseos/lane_policy.py::check_exclusions(registry, round_id, provider, model) -> (ok, code); fails closed with ERR_MODEL_FAMILY_EXCLUDED_ROUND; the registry binds it via round_model_exclusions + invariants.excluded_family_restore_forbidden",
+581|  "refuses": "any resolved provider/model on a governed dispatch that matches round_model_exclusions -> ERR_MODEL_FAMILY_EXCLUDED_ROUND (a restore via default or inheritance is refused, not warned)"
+582| },
+583| "revision_17_reason": "Owner adjudication 1 (round HGK-SOLUTION-APPLY-20261012): PLAN rebound to opencode-go/deepseek-v4.1-flash, former PLAN arm demoted to fallback_1, VERIFY alternate arm made operator-selectable and projected, gpt-* excluded for the round, registry_epoch 14->16. Revision advanced 16->17. No live file was mutated by producing this candidate.",
+584| "assigned": true,
+585| "rebind_note_revision_18": "User re-selection per session round is a first-class contract: per-round role_mandate.json consumed by scripts/runtime_role_binding_assert.py (P1-A), plus require_arm==served_arm receipt check.",
+586| "revision_19_reason": "Owner order 2026-10-15 (this session): the in-Hermes PLAN & Orchestrator model is rebound from openai-codex/gpt-6.1-sol (medium, OpenAI OAuth) to opencode-go/glm-5.3-flash, because the GPT arm's credential pool is exhausted (measured: agent.log marks openai-codex-oauth-1 exhausted status=429 and rotates, 2026-10-15T19:00:30 local; agent.log session 20260930 idle since. EXECUTE stays opencode-go/deepseek-v4.1-flash and VERIFY_SECURITY keeps its own arm chain.",
+587| "revision_20_reason": "round LANE-RELIABILITY-CLOSURE-20261016 (owner order 2026-10-16): an ADDITIVE key `in_hermes_plan_orchestrator_plane` records the in-Hermes PLAN & Orchestrator PLANE binding surface explicitly -- this round's measured availability, the R3 activation key it rides on, the four surfaces that agree on it, the ONE surface that does not (F1, left unfixed as out of scope), and the superseded 2026-10-15 quota marker kept for audit. No lane route, no chain order and no assigned arm is changed by this revision.",
+588| "in_hermes_plan_orchestrator_plane": {
+589|  "declared_by": "round LANE-RELIABILITY-CLOSURE-20261016, owner order 2026-10-16: the PLAN & Orchestrator lane inside Hermes must be GPT 6.1 SOL-MEDIUM (OpenAI OAuth) and its model selection must be demonstrably usable",
+590|  "why_a_separate_key": "the `PLAN` lane_group row and `lane_chains.PLAN` below are the LANE-DISPATCH declaration. The in-Hermes PLAN & Orchestrator PLANE is a DIFFERENT binding surface and is not dispatched through scripts/hgk-lane-dispatch.py (whose gate_scope is the CODEX-CLI lanes EXECUTE / VERIFY_SECURITY). This key records the PLANE half explicitly, with its own measured evidence, so a reader never has to reconcile a lane row against a mandate.",
+591|  "binding_surface": {
+592|   "file": "<HERMES_HOME>/profiles/hgk-governed/config.yaml",
+593|   "keys": {
+594|    "model.default": "gpt-6.1-sol",
+595|    "model.provider": "openai-codex",
+596|    "reasoning_effort": "medium"
+597|   },
+598|   "activation": "config/hermes.json::governed_hermes_home (R3, ADDITIVE); scripts/hermes-core.ps1 prefers it when declared and leaves canonical_hermes_home UNCHANGED, so un-governed consumers keep their own binding",
+599|   "not_the_binding": [
+600|    "the per-session picker (state.db::sessions.model)",
+601|    "delegation.provider/model (subagent children)"
+602|   ]
+603|  },
+604|  "measured_available": {
+605|   "measured_at_local": "2026-10-16T11:00 local (this round)",
+606|   "reply_probe": "HERMES_HOME=<profiles/hgk-governed> hermes_cli.main -z \"Reply with exactly: PLAN_LANE_PROBE_OK\" -> exit 0, stdout PLAN_LANE_PROBE_OK",
+607|   "tool_probe": "HERMES_HOME=<profiles/hgk-governed> hermes_cli.main -z \"Run this shell command and report its exact stdout: echo PLAN_TOOL_PROBE_OK\" -> exit 0, PLAN_TOOL_PROBE_OK (the plane can ACT, not only reply)",
+608|   "serving_rows_source": "profiles/hgk-governed/state.db::sessions",
+609|   "serving_rows": "model=gpt-6.1-sol, billing_provider=openai-codex, billing_base_url=https://chatgpt.com/backend-api/codex, billing_mode=subscription_included, source=oneshot",
+610|   "resolution_probe": "pwsh -NoProfile -File r3_resolution_probe.ps1 -> EFFECTIVE_HERMES_HOME=<...>/profiles/hgk-governed; profile config.yaml exists=True; governed_runtime present=True",
+611|   "raw_evidence": "HG-KSEOS/var/LANE-RELIABILITY-CLOSURE-20261016/PLAN_LANE_AVAILABILITY.json"
+612|  },
+613|  "cross_surface_agreement_measured_this_round": {
+614|   "pool_rank1": "config/lane-route-slots.candidate.json -> PLAN ordered_pool rank 1 role DEFAULT = openai-codex/gpt-6.1-sol, reasoning_effort medium, auth openai_oauth (declared 2026-10-15 11:53 by the FAR-LANE-REPAIR-20261014 apply)",
+615|   "registry_sod": "config/lane-routing-registry.yaml -> sod_invariants.pairs PLAN vs VERIFY_SECURITY distinct_required=false + declared_conflicts[SOD006-C2] OPEN_OWNER_ORDERED naming this same arm",
+616|   "conformance_test": "tests/test_lane_policy.py owner chain -> PLAN rank-1 (openai-codex, gpt-6.1-sol)",
+617|   "owner_mandate": "var/LANE-RELIABILITY-CLOSURE-20261016/role_mandate.json -> PLAN gpt-6.1-sol medium",
+618|   "registry_route_row": "config/lane-routing-registry.yaml -> routes[].PLAN is the ONE outlier: opencode-go/glm-5.3-flash. Recorded as the named open finding F1-PLAN-ROUTE-ROW-OUTLIER and NOT re-routed by this round."
+619|  },
+620|  "stale_marker_corrected": "2026-10-15T19:00:30 local: the openai-codex OAuth arm was marked exhausted (status=429) and the credential pool rotated, and PLAN was demoted to GLM. Re-measured 2026-10-16 through the governed profile: the arm SERVES. The superseded measurement is retained rather than deleted from its original field, so the history stays auditable in both directions.",
+621|  "out_of_scope_findings": {
+622|   "F1-PLAN-ROUTE-ROW-OUTLIER": "routes[].PLAN disagrees with the pool, the registry SoD block, the conformance test and the owner mandate. Repairing it is a lane-chain REBIND, which this round's SPEC does not authorise; it is written up in var/LANE-RELIABILITY-CLOSURE-20261016/FINDINGS_F1_PLAN_ROUTE_OUTLIER.md with low-friction remediation options for the owner to order."
+623|  },
+624|  "claim_ceiling": "CANDIDATE_ONLY declaration. A binding is a declaration; the serving evidence is the profile's own session rows plus the probe stdout cited above, and it is NOT canonical acceptance."
+625| }
+626|}
+
+$ C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe -B -c "import sys,inspect;sys.path.insert(0,'src');from hg_kseos.lane_policy import check_drift,load_registry;print(inspect.getsource(load_registry));print(inspect.getsource(check_drift))"
+CWD=C:\Projects\Agent_Workspace\HG-KSEOS
+STDOUT:
+def load_registry(path: Path | None = None) -> dict[str, Any]:
+    """Load the single-source registry document."""
+    registry_path = Path(path) if path is not None else DEFAULT_REGISTRY
+    doc = load_site(registry_path)
+    if not isinstance(doc, dict) or doc.get("schema") != "HGK-LANE-ROUTING-REGISTRY/1":
+        raise ValueError(f"not a HGK-LANE-ROUTING-REGISTRY/1 document: {registry_path}")
+    return doc
+
+def check_drift(
+    registry_path: Path | None = None,
+    *,
+    root: Path | None = None,
+    registry: dict[str, Any] | None = None,
+) -> list[dict[str, Any]]:
+    """Compare live projection sites against the registry; return every disagreement.
+
+    Each finding is a dict: {code, path, pointer, expected, actual, severity, id}. Codes:
+      DRIFT_VALUE       active site disagrees with the registry        (severity: error)
+      COVERAGE_GAP      projection/site/pointer missing or unresolved (severity: error)
+      PROJECTION_DEBT   a recorded debt site still differs            (severity: warn)
+    An empty list means the active sites are conformant.
+    """
+    reg = registry if registry is not None else load_registry(registry_path)
+    reg_path = Path(registry_path) if registry_path is not None else DEFAULT_REGISTRY
+    base = Path(root) if root is not None else reg_path.parent.parent
+
+    findings: list[dict[str, Any]] = []
+    projections = reg.get("projections")
+    if not isinstance(projections, list) or not projections:
+        findings.append(_finding("COVERAGE_GAP", "-", "-", "non-empty projections[]", None, "error"))
+        return findings
+
+    for projection in projections:
+        site_path = projection.get("path")
+        pid = projection.get("id", site_path)
+        if not site_path:
+            findings.append(_finding("COVERAGE_GAP", str(pid), "-", "path", None, "error"))
+            continue
+        resolved = (base / site_path) if not Path(site_path).is_absolute() else Path(site_path)
+        if not resolved.exists():
+            findings.append(_finding("COVERAGE_GAP", str(site_path), "-", "file exists", None, "error"))
+            continue
+        try:
+            doc = load_site(resolved)
+        except Exception as exc:  # parse failure is a hard coverage gap
+            findings.append(_finding("COVERAGE_GAP", str(site_path), "-", "parseable", f"{type(exc).__name__}: {exc}", "error"))
+            continue
+
+        for binding in projection.get("bindings", []):
+            pointer = binding.get("pointer")
+            expected = binding.get("expected")
+            actual = _try_pointer(doc, pointer)
+            if actual is _MISSING:
+                findings.append(_finding("COVERAGE_GAP", site_path, pointer, expected, None, "error", pid))
+            elif actual != expected:
+                findings.append(_finding("DRIFT_VALUE", site_path, pointer, expected, actual, "error", pid))
+
+        for debt in projection.get("debt", []):
+            pointer = debt.get("pointer")
+            expected = debt.get("expected")
+            actual = _try_pointer(doc, pointer)
+            if actual is _MISSING or actual != expected:
+                findings.append(_finding("PROJECTION_DEBT", site_path, pointer, expected,
+                                         None if actual is _MISSING else actual, "warn", pid))
+
+    return findings
+
+
+STDERR:
+
+EXIT=0

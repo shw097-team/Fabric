@@ -1,0 +1,402 @@
+[
+  {
+    "id": "FAR-C001",
+    "residual_id": "BLK-R8-WS2-MAIN-DIVERGENCE",
+    "doc": "ALL_THREE_GOVERNING_DOCUMENTS",
+    "locator": "Full-text searches of the three named documents; search scope and terms in basis",
+    "quote_verbatim": "",
+    "requirement": "ABSENT — No clause specifically names, requires fixing, or forbids fixing tests/test_s4ext_trace_closure.py::LegalTraceStillPassesTests::test_real_trace_link_is_legal_beside_its_endpoints, tests/test_tooling_executes.py::TestToolingExecutes::test_cli_smoke_runs, or derive_frozen_context.",
+    "current_state_satisfies": "unknown",
+    "basis": "All three texts searched for test_real_trace_link_is_legal_beside_its_endpoints, test_cli_smoke_runs, derive_frozen_context, test_s4ext_trace_closure, test_tooling_executes: no occurrences. This is not a general prohibition on admitted repair."
+  },
+  {
+    "id": "FAR-C002",
+    "residual_id": "BLK-R8-WS2-MAIN-DIVERGENCE",
+    "doc": "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/attachments/Fabric_HG-KSEOS_Convergence_指揮薄PROMPT.md",
+    "locator": "physical UTF-8 lines 122-122; bytes [19606,19908) zero-based; nearest heading: # 6. Implementation／Qualification Gates｜全量任務與檢測清單",
+    "quote_verbatim": "**修補規則**：`reproduce → first-fail → RCA → smallest affected patch → focused+negative → regression → residue/rollback test → checker fresh recheck`。在同一 write-set 僅一 writer；高風險工作不得越權平行化；不在本 Subject 的已接受證據保持 immutable。",
+    "requirement": "For an admitted repair, follow reproduce/first-fail/RCA/smallest affected patch/focused+negative/regression/residue-or-rollback/fresh checker; one writer per write-set.",
+    "current_state_satisfies": "unknown",
+    "basis": "Reported failures do not establish whether this repair sequence occurred; clause is procedural, not a demand that these particular two tests be changed."
+  },
+  {
+    "id": "FAR-C003",
+    "residual_id": "BLK-R8-WS2-MAIN-DIVERGENCE",
+    "doc": "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/attachments/Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md",
+    "locator": "physical UTF-8 lines 39126-39134; bytes [1397239,1398164) zero-based; nearest heading: ## 11｜27 個自包含 Machine Slots／外部 pin 前都只屬候選",
+    "quote_verbatim": "    \"acceptance_close_predicate\": \"real run matrix exposes 1:1 raw receipts; 0 self-attested gates\",\n    \"audit_locator\": \"| AUD-P0-06 | BLOCKER | Only synthetic tests, missing real runners | PKG-07; RQ live_runner null 64/64, T real_runner null 28/28 | synthetic positive/negative equality is not behavioral verification | Pin executable + SHA+fixtures+backend; implement independent run traces for all 28 legacy tests and 129 obligations | real run matrix exposes 1:1 raw receipts; 0 self-attested gates | Assurance owner |\",\n    \"id\": \"AUD-P0-06\",\n    \"owner\": \"Assurance owner\",\n    \"priority\": \"P0\",\n    \"required_patch\": \"Pin executable + SHA+fixtures+backend; implement independent run traces for all 28 legacy tests and 129 obligations\",\n    \"root_cause\": \"synthetic positive/negative equality is not behavioral verification\",\n    \"severity\": \"BLOCKER\",\n    \"status\": \"LOCAL_DESIGN_REPAIR_ONLY_EXTERNAL_PROOF_PENDING\"",
+    "requirement": "AUD-P0-06 requires real 1:1 raw receipts and no self-attested gates, with pinned executable, SHA, fixtures and backend.",
+    "current_state_satisfies": "unknown",
+    "basis": "Governs validation evidence generally, not these two test names. Supplied AttributeError alone does not decide this broader predicate."
+  },
+  {
+    "id": "FAR-C004",
+    "residual_id": "BLK-R8-WS2-MAIN-DIVERGENCE",
+    "doc": "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/attachments/Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md",
+    "locator": "physical UTF-8 lines 46-46; bytes [5881,6734) zero-based; nearest heading: ## 4｜18 PI + 10 PD / 真實施工前置封鎖",
+    "quote_verbatim": "Slot 06 將 PI-01..18 的 v1.1 實質條文原文、完整 physical title、writer、Source/Version、typed ingress/egress、reject、相互依賴和 prose SHA 各自存成實體物件；Slot 07 的 PD-01..10 對應完整來源正文、RepoContext/WorkOrder/ECP/Admission 需求與缺值拒絕。**兩者均是 project contract projections，不是 vendor 正式 typed PI-PKG/PD-PKG 的回執。** 插件的 `PD-PKG` 禁止在 root/head/tracked_files/currentness/writable_scope 任何欄位缺值時發出；`**` 或 escape root 不合法，STALE 不可洗成 FRESH。`ConstructionContract` 包含 bounded expected changes/tests/evidence/rollback；`ECP` token-required、at-most-once、`max_retries=1`、`backoff=none`、residue scan、mandatory rollback pointer。DOC05 Admission 與 WorkOrder／ECP 分離，不得以 GitHub push permission 冒充。",
+    "requirement": "ConstructionContract must bound expected changes/tests/evidence/rollback; WorkOrder/ECP are separate from DOC05 Admission.",
+    "current_state_satisfies": "unknown",
+    "basis": "A test-repair permission cannot be inferred from a failure; no repair admission or exact allowed write-set was inspected."
+  },
+  {
+    "id": "FAR-C005",
+    "residual_id": "BLK-R8-WS2-MAIN-DIVERGENCE",
+    "doc": "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/attachments/Fabric_Convergence_External_Independent_Acceptance_Report_20261015.md",
+    "locator": "physical UTF-8 lines 152-152; bytes [20779,21106) zero-based; nearest heading: ## 8. 正式 Finding Register（按最早合法修復者分離）",
+    "quote_verbatim": "| EIA-R6-04 | `EVIDENCE_GAP` / HIGH（正式 Gate） | `ACC-RQ` mapped M04/M06/M16 / `MUTATIONS_18.json` | DOC-07 Oracle/Validator Owner | 覆蓋 ASSURED veto / oracle expected pin / trace digest；三個負測全 REJECT，做相鄰 positive/negative/regression；另 8 未跑走 applicability | 否（阻正式 acceptance） |",
+    "requirement": "For EIA-R6-04 validator counterexamples, require all three negative rejects plus adjacent positive/negative/regression; other unrun cases require applicability disposition.",
+    "current_state_satisfies": "unknown",
+    "basis": "This is the neighboring validator-hardening obligation, not an identification of the two reported failures with M04/M06/M16."
+  },
+  {
+    "id": "FAR-C006",
+    "residual_id": "EIA-R6-03",
+    "doc": "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/attachments/Fabric_Convergence_External_Independent_Acceptance_Report_20261015.md",
+    "locator": "physical UTF-8 lines 151-151; bytes [20425,20778) zero-based; nearest heading: ## 8. 正式 Finding Register（按最早合法修復者分離）",
+    "quote_verbatim": "| EIA-R6-03 | `EVIDENCE_GAP` / HIGH（正式安全） | `G-F / G-D` SoD / R6 Checker Receipt + orchestration reconciliation | HGK Checker Harness Owner | 再下一次正式 verifier 前讓 checker 只能在外部 temp write，candidate read-only ACL、故意寫入 DENY、rerun 299 SHA；對同 scope 影響回歸重跑 | 否（阻正式 acceptance） |",
+    "requirement": "Before the next formal verifier, checker writes only external temp; candidate is read-only with deliberate DENY test, 299 SHA rerun and same-scope regression.",
+    "current_state_satisfies": "no",
+    "basis": "On the supplied residual state, no OS-level write denial exists on the guarded subject. This is a conditional binding, not a host ACL rerun."
+  },
+  {
+    "id": "FAR-C007",
+    "residual_id": "EIA-R6-03",
+    "doc": "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/attachments/Fabric_Convergence_External_Independent_Acceptance_Report_20261015.md",
+    "locator": "physical UTF-8 lines 100-101; bytes [13181,13676) zero-based; nearest heading: ### 4.2 對 checker 權限問題的有界處理",
+    "quote_verbatim": "- 但權限防線曾失效是真的：模型／不同 lane 名稱 ≠ filesystem least-privilege；`danger-full-access` checker 不是高信任的只讀獨立驗收。\n- **修補優先級**：下個需要生成正式 acceptance 的 R7，在 runner 中禁止 checker 對 candidate root 寫入；將 verifier 複本／temp 狀態置於獨立 write root；用 OS ACL + denial test 先確認。**不要求撤銷 R6 的完整紀錄／重做 567 檔歸檔**；本輪只能承認 `PARTIAL_CHALLENGE`。",
+    "requirement": "Different lane names are not filesystem least privilege; formal acceptance requires separate verifier write root and OS ACL plus denial test.",
+    "current_state_satisfies": "no",
+    "basis": "The stated no-denial and single-identity state cannot substantiate this permission boundary; this research did not inspect OS ACLs."
+  },
+  {
+    "id": "FAR-C008",
+    "residual_id": "EIA-R6-03",
+    "doc": "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/attachments/Fabric_HG-KSEOS_Convergence_指揮薄PROMPT.md",
+    "locator": "physical UTF-8 lines 114-114; bytes [18629,18738) zero-based; nearest heading: # 6. Implementation／Qualification Gates｜全量任務與檢測清單",
+    "quote_verbatim": "| CK-16 | Maker≠Checker（身份、distribution、真 ACL）；officer VERIFY_ONLY；counterexample | G-F |",
+    "requirement": "Maker and checker must differ in identity, distribution and actual ACL; officer is VERIFY_ONLY; require counterexample evidence.",
+    "current_state_satisfies": "no",
+    "basis": "Supplied single-identity maker/checker conflicts with the explicit identity requirement."
+  },
+  {
+    "id": "FAR-C009",
+    "residual_id": "EIA-R6-03",
+    "doc": "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/attachments/Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md",
+    "locator": "physical UTF-8 lines 24-24; bytes [2042,2255) zero-based; nearest heading: ## 0｜Operator Router / 幕後授權與直接採用邊界",
+    "quote_verbatim": "控制平面唯一：HG-KSEOS；canonical Hermes 是其治理的執行面；Fabric repo 是對外 mirror、不是 production SSOT；Maker、Checker、AO、Release 的 owner/ACL 分權不可由角色字串冒充。",
+    "requirement": "HGK is the sole control plane; Maker/Checker/AO/Release owner and ACL segregation cannot be impersonated by role strings.",
+    "current_state_satisfies": "no",
+    "basis": "The supplied single-identity/no-OS-denial state does not supply the stated owner/ACL segregation."
+  },
+  {
+    "id": "FAR-C010",
+    "residual_id": "TF-06",
+    "doc": "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/attachments/Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md",
+    "locator": "physical UTF-8 lines 53-53; bytes [7589,7831) zero-based; nearest heading: ## 5｜八 Gates／非治理五消費面：真實功能性行為與可拒收 effect",
+    "quote_verbatim": "- Hermes：real pinned CLI/G1、required/served arm + sealed pool route, nonce/usage origin same run，stdin/file 及 timeout partial stdout/stderr raw bytes，kill child tree，uncertain write 禁重試；僅有「exit 0」不等於合格。",
+    "requirement": "Pinned real CLI/G1 must evidence required/served arms, sealed route and same-run nonce/usage; exit 0 alone is insufficient.",
+    "current_state_satisfies": "no",
+    "basis": "Supplied ERR_NO_ARM_EMITTED_NONCE and inability to evidence served arm do not satisfy same-run provenance."
+  },
+  {
+    "id": "FAR-C011",
+    "residual_id": "TF-06",
+    "doc": "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/attachments/Fabric_HG-KSEOS_Convergence_指揮薄PROMPT.md",
+    "locator": "physical UTF-8 lines 59-59; bytes [11780,12365) zero-based; nearest heading: # 5. Baseline／Reuse／Do-not-redo｜已驗收與漂移",
+    "quote_verbatim": "首先 fresh-read 現存兩個本地 Repo、Git HEAD／dirty tree／current files、`AGENTS.md`、`config/hermes.json`、`scripts/start-hgk-hermes.ps1`、Hermes `--version` 與 binary digest、sealed route、AO lane。歷史文件宣告 Hermes v0.20.0 `3c27eb62…`，GitHub `K-06` 指 installed v0.21.5：**只可由 Human Policy Owner 重認證 Fresh G1**，不得偷偷重裝／downgrade／floating update／靜默模型 fallback。所需 checker arm 必須在 spawn 前健康，且 `required_arm=served_arm`、同回合 model/route/usage/nonce；若不符不 spawn／不記 PASS。",
+    "requirement": "Owner must recertify Fresh G1; checker arm healthy before spawn; required_arm=served_arm plus same-turn model/route/usage/nonce, otherwise no spawn/no PASS.",
+    "current_state_satisfies": "no",
+    "basis": "The supplied served-arm evidence gap prevents the stated same-turn proof; not a claim that no model ran."
+  },
+  {
+    "id": "FAR-C012",
+    "residual_id": "TF-06",
+    "doc": "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/attachments/Fabric_Convergence_External_Independent_Acceptance_Report_20261015.md",
+    "locator": "physical UTF-8 lines 78-78; bytes [10315,10561) zero-based; nearest heading: ## 4. R6 執行與 Checker：採信與不採信的邊界",
+    "quote_verbatim": "| 本機 EXECUTE bounded writer | child exit0，但 dispatcher exit3、`ERR_NO_ARM_EMITTED_NONCE`；usage receipt 可交叉表明 served arm | Execution **不乾淨通過**；每次 runtime 要保留通道別 output、nonce/usage 與 fail state |",
+    "requirement": "Keep per-channel output, nonce/usage and fail state on each runtime; a child exit0 plus dispatcher exit3 is not clean execution.",
+    "current_state_satisfies": "no",
+    "basis": "Matches the supplied nonce-carrier failure class. EIA historical usage evidence does not establish the current turn served arm."
+  },
+  {
+    "id": "FAR-C013",
+    "residual_id": "R8-F6",
+    "doc": "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/attachments/Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md",
+    "locator": "physical UTF-8 lines 34-34; bytes [3333,3877) zero-based; nearest heading: ## 2｜Authority / Canonical DOC single writers／八項外掛 ABI",
+    "quote_verbatim": "PIPD_A2 標準及 DOC-00～DOC-09 各自單一 writer；DOC00 navigator、DOC01 state/claim/SoD、DOC02 PI/TechnologyAdmission、DOC03 PD/ECP preparation、DOC04 Trace/Evidence、DOC05 Receiver/Admission、DOC06 Profile safety veto、DOC07 oracles/conformance、DOC08 adapter/AI behavior、DOC09 CI/release；A1 與 A3 實體 MISSING，A2/DOC 不得替代其 authority。HGK Owner 才能核准真 RepoContext、effect scope、model route、AO/release。公開 GitHub main SHA pinned in slot 02 為 observation，不是 HGK 現場 currentness。",
+    "requirement": "Only HGK Owner may approve real RepoContext, effect scope, model route and AO/release.",
+    "current_state_satisfies": "unknown",
+    "basis": "General authority binding only. No owner approval/current route was independently read in this document-only task."
+  },
+  {
+    "id": "FAR-C014",
+    "residual_id": "R8-F6",
+    "doc": "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/attachments/Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md",
+    "locator": "physical UTF-8 lines 2231-2242; bytes [118597,118957) zero-based; nearest heading: ## 11｜27 個自包含 Machine Slots／外部 pin 前都只屬候選",
+    "quote_verbatim": "    \"acceptance\": {\n      \"criterion\": \"exact_equal_to_trusted_observation_after_replay\",\n      \"expected\": \"REQUIRED_EQ_SERVED_AND_MODEL_PINNED\",\n      \"id\": \"ACC-RQ18\",\n      \"negative\": \"REQUIRED_NE_SERVED\",\n      \"test_id\": \"AT-RQ18\"\n    },\n    \"child_obligations\": [\n      \"required arm\",\n      \"served arm\",\n      \"exact model/prompt/route policy\"\n    ],",
+    "requirement": "ACC-RQ18 requires required=served and model pinned, including exact model/prompt/route policy; mismatch is the negative.",
+    "current_state_satisfies": "unknown",
+    "basis": "Contradictory declarations cannot establish the served arm; they do not alone prove a runtime required/served mismatch."
+  },
+  {
+    "id": "FAR-C015",
+    "residual_id": "R8-F6",
+    "doc": "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/attachments/Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md",
+    "locator": "physical UTF-8 lines 2263-2274; bytes [119540,120170) zero-based; nearest heading: ## 11｜27 個自包含 Machine Slots／外部 pin 前都只屬候選",
+    "quote_verbatim": "    \"source_clause\": \"不任意換模型、required_arm 與 served_arm 一致〔U L1602〕\",\n    \"source_file_sha256\": \"15a8934934e85c771dfddb357f30599fcb90ec28b5577c38454b05832e674225\",\n    \"source_line\": 1904,\n    \"source_line_sha256\": \"1368279858bfcaacd71d5f8876da83d1a1794a462301bcf1936de9bf2b06ad0d\",\n    \"spec\": {\n      \"allowed\": \"REQUIRED_EQ_SERVED_AND_MODEL_PINNED\",\n      \"datatype\": \"string\",\n      \"ingress\": \"signed_route_receipt\",\n      \"output\": \"arm_provenance\",\n      \"process\": \"independent observation of arm_provenance\",\n      \"provenance\": \"RAW_RECEIPT_REQUIRED_FOR_LIVE\",\n      \"reject\": \"REQUIRED_NE_SERVED\"",
+    "requirement": "Do not arbitrarily change models; signed-route observation must evidence required/served equality and a pinned model.",
+    "current_state_satisfies": "unknown",
+    "basis": "No runtime signed route receipt inspected; these documents do not designate the reported provider/model as an exact registry value."
+  },
+  {
+    "id": "FAR-C016",
+    "residual_id": "R8-F6",
+    "doc": "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/attachments/Fabric_HG-KSEOS_Convergence_指揮薄PROMPT.md",
+    "locator": "physical UTF-8 lines 81-81; bytes [15177,15307) zero-based; nearest heading: # 6. Implementation／Qualification Gates｜全量任務與檢測清單",
+    "quote_verbatim": "| CNV-09 | WorkOrder／Binding／lease／budget／idempotency／DOC05 Admission | typed admitted WorkOrder／token，否則 HOLD |",
+    "requirement": "CNV-09 requires typed admitted WorkOrder/Binding/lease/budget/idempotency/DOC05 Admission, otherwise HOLD.",
+    "current_state_satisfies": "unknown",
+    "basis": "No write authorization is inferred. This clause does not name lane-routing-registry or grant a registry edit."
+  },
+  {
+    "id": "FAR-C017",
+    "residual_id": "R8-F6",
+    "doc": "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/attachments/Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md",
+    "locator": "physical UTF-8 lines 39137-39145; bytes [1398174,1399067) zero-based; nearest heading: ## 11｜27 個自包含 Machine Slots／外部 pin 前都只屬候選",
+    "quote_verbatim": "    \"acceptance_close_predicate\": \"PD binder emits PD-PKG; NO mutation until separate scoped ADMIT verified\",\n    \"audit_locator\": \"| AUD-P0-07 | BLOCKER | PD not late-bound / no runtime admission | PKG-04, 07_PD_CANONICAL_MAP; PKG-06 | No RepoContext, G1, frozen approvals, world effect receipts | Read-only HGK canonical RepoContext and owner G1; produce actual PD/WorkOrder/ECP/TQAEP, then separate DOC05 ADMIT | PD binder emits PD-PKG; NO mutation until separate scoped ADMIT verified | HGK Owner/AO |\",\n    \"id\": \"AUD-P0-07\",\n    \"owner\": \"HGK Owner/AO\",\n    \"priority\": \"P0\",\n    \"required_patch\": \"Read-only HGK canonical RepoContext and owner G1; produce actual PD/WorkOrder/ECP/TQAEP, then separate DOC05 ADMIT\",\n    \"root_cause\": \"No RepoContext, G1, frozen approvals, world effect receipts\",\n    \"severity\": \"BLOCKER\",\n    \"status\": \"LOCAL_DESIGN_REPAIR_ONLY_EXTERNAL_PROOF_PENDING\"",
+    "requirement": "AUD-P0-07 says no mutation until separate scoped ADMIT verified; actual PD/WorkOrder/ECP/TQAEP and owner G1 precede DOC05 Admission.",
+    "current_state_satisfies": "unknown",
+    "basis": "A canonical lane registry edit is a DEV/OPS mutation and is covered by this general rule; presence/absence of an appropriate actual WorkOrder was not measured."
+  },
+  {
+    "id": "FAR-C018",
+    "residual_id": "R8-F6",
+    "doc": "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/attachments/Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md",
+    "locator": "physical UTF-8 lines 44931-44931; bytes [1788254,1788827) zero-based; nearest heading: ## PKG-06｜DEV ECP／OPS ECP／SoD：受權執行的實用操作規格",
+    "quote_verbatim": "**DEV ECP plan**：先讀 hash/currentness 和 approved WorkOrder，拒絕 patch 超出 path allowlist。僅在 Owner actor 與 DOC05 separate `ADMIT` 實證通過時原子地寫有限程式/文件；每一步獨立讀回 bytes 及 side-effect root；timeout 不重送 effect；半途寫入→檢測 stale/residue→受權 rollback→重新讀回。**OPS ECP plan**：備份系統狀態 DB/symlink/ACL、關聯 health-check/DR、依有記錄的 stop/start + isolated probe 執行，任何 state drift 或 ACL deviation 必須停止、不得 fallback 另一具名 runtime。",
+    "requirement": "Retained PKG-06 DEV ECP plan requires approved WorkOrder and path allowlist, Owner actor and separate DOC05 ADMIT before bounded code/document write.",
+    "current_state_satisfies": "unknown",
+    "basis": "Located inside preserved legacy appendix (PKG §16), cited as retained supporting wording, not a new independent authority. It forbids unapproved mutation, not every control-plane edit categorically."
+  },
+  {
+    "id": "FAR-C019",
+    "residual_id": "R8-F6",
+    "doc": "ALL_THREE_GOVERNING_DOCUMENTS",
+    "locator": "Full-text searches of the three named documents; search scope and terms in basis",
+    "quote_verbatim": "",
+    "requirement": "ABSENT — No exact VERIFY_SECURITY provider/model, rank1, routes[0], model-lane-assignment.json selector, or registry-specific ban is specified.",
+    "current_state_satisfies": "unknown",
+    "basis": "All three full texts searched for VERIFY_SECURITY, opencode-go, lane-routing-registry, model-lane-assignment: no occurrences. General approved WorkOrder/Owner/ADMIT requirements above still govern a canonical mutation."
+  },
+  {
+    "id": "FAR-C020",
+    "residual_id": "R8-F7",
+    "doc": "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/attachments/Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md",
+    "locator": "physical UTF-8 lines 1588-1600; bytes [96505,96921) zero-based; nearest heading: ## 11｜27 個自包含 Machine Slots／外部 pin 前都只屬候選",
+    "quote_verbatim": "    \"acceptance\": {\n      \"criterion\": \"exact_equal_to_trusted_observation_after_replay\",\n      \"expected\": \"BOTH_BYTE_EXACT_AND_LOADER_PARITY\",\n      \"id\": \"ACC-RQ06\",\n      \"negative\": \"BOTH_BYTE_EXACT_ONLY\",\n      \"test_id\": \"AT-RQ06\"\n    },\n    \"child_obligations\": [\n      \"AVR/main selection\",\n      \"HGK/main selection\",\n      \"AVR/10-piece byte reconstruction\",\n      \"HGK/6-piece byte reconstruction\"\n    ],",
+    "requirement": "ACC-RQ06 requires BOTH_BYTE_EXACT_AND_LOADER_PARITY; its separate child obligations are AVR and HGK main selection, AVR 10-piece reconstruction and HGK 6-piece reconstruction.",
+    "current_state_satisfies": "no",
+    "basis": "If supplied AVR S1..S5 are the complete reconstructed set, 5 is not the named 10; HGK ids 0..5 match the count 6 only, not byte/loader proof."
+  },
+  {
+    "id": "FAR-C021",
+    "residual_id": "R8-F7",
+    "doc": "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/attachments/Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md",
+    "locator": "physical UTF-8 lines 1615-1625; bytes [97306,97852) zero-based; nearest heading: ## 11｜27 個自包含 Machine Slots／外部 pin 前都只屬候選",
+    "quote_verbatim": "    \"gate\": \"G-A\",\n    \"id\": \"RQ06\",\n    \"parent\": \"CNV-BP2-SECTION16\",\n    \"plugin_req_id\": \"REQ-INTENT\",\n    \"risk_guard\": \"T22 miswire / fake loader parity\",\n    \"scope\": \"OFFLINE_CONTRACT_FIXTURE_ONLY_LIVE_UNBOUND\",\n    \"source\": \"BP2\",\n    \"source_clause\": \"兩個 Skill 主檔 progressive disclosure〔U L182–200、L1494〕\",\n    \"source_file_sha256\": \"15a8934934e85c771dfddb357f30599fcb90ec28b5577c38454b05832e674225\",\n    \"source_line\": 1892,\n    \"source_line_sha256\": \"9ed50a9eed02e996ca444e82b353018392971bf227f1916638fe0a486cbc0902\",",
+    "requirement": "RQ06 belongs to G-A/CNV-BP2-SECTION16 and points to BP2 source clause and physical L1892 with source SHA.",
+    "current_state_satisfies": "unknown",
+    "basis": "This is a source locator and provenance assertion in PKG; external BP2/U original bytes were not independently loaded."
+  },
+  {
+    "id": "FAR-C022",
+    "residual_id": "R8-F7",
+    "doc": "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/attachments/Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md",
+    "locator": "physical UTF-8 lines 1909-1919; bytes [107530,107883) zero-based; nearest heading: ## 11｜27 個自包含 Machine Slots／外部 pin 前都只屬候選",
+    "quote_verbatim": "    \"acceptance\": {\n      \"criterion\": \"exact_equal_to_trusted_observation_after_replay\",\n      \"expected\": \"AVR10_HGK6_EXACT\",\n      \"id\": \"ACC-RQ12\",\n      \"negative\": \"SWAPPED_SLICE_ORDER\",\n      \"test_id\": \"AT-RQ12\"\n    },\n    \"child_obligations\": [\n      \"AVR full source SHA\",\n      \"HGK full source SHA\",\n      \"slice order and no drop/duplicate\"",
+    "requirement": "ACC-RQ12 expects AVR10_HGK6_EXACT, rejects swapped order, and requires full-source SHA for each skill plus no dropped/duplicated slices.",
+    "current_state_satisfies": "no",
+    "basis": "Supplied complete 5-slice AVR reconstruction does not establish AVR10; no full source digest/ordering proof was inspected."
+  },
+  {
+    "id": "FAR-C023",
+    "residual_id": "R8-F7",
+    "doc": "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/attachments/Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md",
+    "locator": "physical UTF-8 lines 6777-6785; bytes [269414,269825) zero-based; nearest heading: ## 11｜27 個自包含 Machine Slots／外部 pin 前都只屬候選",
+    "quote_verbatim": "    \"approval\": \"REQUIRED_BEFORE_EFFECT\",\n    \"id\": \"WP-04\",\n    \"mutate_repo\": false,\n    \"output_evidence\": \"byte parity + behavioral loader / ownership\",\n    \"owner\": \"Skill owner\",\n    \"precondition\": \"source bytes, 10/6 slice root\",\n    \"rollback\": \"git_restore_or_explicit_revert_of_approved_delta_and_state_restoration\",\n    \"status\": \"PLANNED_UNADMITTED\",\n    \"title\": \"Skill references / Curator stage\"",
+    "requirement": "WP-04 precondition is source bytes plus 10/6 slice root; owner is Skill owner, approval before effect, status planned/unadmitted.",
+    "current_state_satisfies": "unknown",
+    "basis": "PKG names a slice-root requirement but gives no concrete root path in this clause."
+  },
+  {
+    "id": "FAR-C024",
+    "residual_id": "R8-F7",
+    "doc": "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/attachments/Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md",
+    "locator": "physical UTF-8 lines 39247-39251; bytes [1407339,1407885) zero-based; nearest heading: ## 11｜27 個自包含 Machine Slots／外部 pin 前都只屬候選",
+    "quote_verbatim": "    \"acceptance_close_predicate\": \"byte exact 10/6 + loader parity + negative state transitions\",\n    \"audit_locator\": \"| AUD-P1-17 | HIGH | Skill/Curator implementation proof missing | PKG-05, RQ06-17, T01..06/T22 | preserved refs and counts do not imply selection/loader behavioral parity | Live trigger/non-trigger, pointer spans, nested resolves, staged/installed/retired state and TOCTOU | byte exact 10/6 + loader parity + negative state transitions | Skill Owner |\",\n    \"id\": \"AUD-P1-17\",\n    \"owner\": \"Skill Owner\",\n    \"priority\": \"P1\",",
+    "requirement": "AUD-P1-17 closure requires byte-exact 10/6, loader parity and negative state transitions.",
+    "current_state_satisfies": "no",
+    "basis": "Supplied five AVR slices do not satisfy the explicit count; count-six HGK alone does not prove the other conjuncts."
+  },
+  {
+    "id": "FAR-C025",
+    "residual_id": "R8-F7",
+    "doc": "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/attachments/Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md",
+    "locator": "physical UTF-8 lines 65353-65359; bytes [2682269,2682712) zero-based; nearest heading: # Stdlib-only, read-only. It intentionally cannot write to Fabric/HGK/Hermes.",
+    "quote_verbatim": "        # 10/6 slices, byte reconstruct: intact order good, transposition bad.\n        for count in (10,6):\n            chunks=[('slot'+str(i)).encode() for i in range(count)]\n            h=hashlib.sha256(b''.join(chunks)).digest()\n            assert h==hashlib.sha256(b''.join(chunks)).digest()\n            swapped=chunks.copy();swapped[0],swapped[1]=swapped[1],swapped[0]\n            assert h!=hashlib.sha256(b''.join(swapped)).digest();n+=1",
+    "requirement": "Retained illustrative offline code constructs 10 and 6 synthetic slot chunks and checks a swap changes the digest.",
+    "current_state_satisfies": "unknown",
+    "basis": "This is legacy embedded illustrative code, NOT a physical slice partition table or live proof. It was read, not executed."
+  },
+  {
+    "id": "FAR-C026",
+    "residual_id": "R8-F7",
+    "doc": "ALL_THREE_GOVERNING_DOCUMENTS",
+    "locator": "Full-text searches of the three named documents; search scope and terms in basis",
+    "quote_verbatim": "",
+    "requirement": "ABSENT — No concrete 10/6 partition table specifying physical slice filenames, start/end offsets and source-root mapping was found in these three files.",
+    "current_state_satisfies": "unknown",
+    "basis": "Searches covered 10/6 (15 PKG occurrences), 10／6, 10-piece, 6-piece, slice, chunks, pieces, slice-root/slice_root/slice root, partition, 分割, 分段, 切片, 分片 and BP2/CNV-BP2-SECTION16. PKG gives explicit count semantics, source anchors and a synthetic slot loop, but no concrete partition mapping."
+  },
+  {
+    "id": "FAR-C027",
+    "residual_id": "EIA-R6-05",
+    "doc": "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/attachments/Fabric_Convergence_External_Independent_Acceptance_Report_20261015.md",
+    "locator": "physical UTF-8 lines 153-153; bytes [21107,21423) zero-based; nearest heading: ## 8. 正式 Finding Register（按最早合法修復者分離）",
+    "quote_verbatim": "| EIA-R6-05 | `EVIDENCE_GAP` / HIGH（完整 Convergence） | `G-A..H` / `GATES_A_TO_H.json`、`REQ_TRACE_221.json` | 對應 HGK／各 Domain Gate Owner | 合法 RepoContext、Fresh G1、受權 WorkOrder+ECP/DOC05、獨立原始 receipt、適用 221 & negative，再做 AO verdict | 否（阻 Product/Production） |",
+    "requirement": "Full convergence requires lawful RepoContext, Fresh G1, authorized WorkOrder+ECP/DOC05, independent raw receipts, applicable 221 and negatives, then AO verdict.",
+    "current_state_satisfies": "no",
+    "basis": "Supplied residual says these remain owner-gated; this extraction supplies none of the missing authorization/evidence."
+  },
+  {
+    "id": "FAR-C028",
+    "residual_id": "EIA-R6-05",
+    "doc": "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/attachments/Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md",
+    "locator": "physical UTF-8 lines 50-50; bytes [6821,7330) zero-based; nearest heading: ## 5｜八 Gates／非治理五消費面：真實功能性行為與可拒收 effect",
+    "quote_verbatim": "G-A Skill references/readback、G-B G1 baseline/AO、G-C Hermes route/timeout、G-D trace/evidence、G-E FS/DB/API/Desktop effect/readback、G-F SoD/Owner approvals、G-G GitHub publication/secrets/ruleset、G-H release/handoff；gate runner/status 分別在 Slot 14 **NOT_RUN**。每個 gate 的 `input/source/runner SHA/prerequisite/fixtures/first failure/checker identity/raw receipt/owner` 當缺必要值必阻擋；不新增第二 governor、DB 或遙測服務。G-0/G-TECH/G-DOC 不得偽裝父 Gate。",
+    "requirement": "Eight gates require source/runner SHA, prerequisites, fixtures, first failure, checker identity, raw receipt and owner; missing required value blocks.",
+    "current_state_satisfies": "no",
+    "basis": "Owner-gated open evidence cannot be promoted to all-gates satisfied. Gate states were not re-executed."
+  },
+  {
+    "id": "FAR-C029",
+    "residual_id": "EIA-R6-05",
+    "doc": "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/attachments/Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md",
+    "locator": "physical UTF-8 lines 76-76; bytes [11684,12400) zero-based; nearest heading: ## 8｜Full SOP × Source Manifest 真值、所有阻塞的可解鎖條件",
+    "quote_verbatim": "缺口解鎖先後：`owner-signed A1/A3 + complete AuthorityBinding` → `vendor 8-schema semantic pipeline/intent hash` → `RepoContext canonical root/head/tracked/currentness` → `Hermes G1 fresh/route cert` → `ConstructionContract/DEV ECP/OPS ECP + DOC05 ACCEPT_ADMIT` → `221 test plans 的適用真 runner + independent raw receipt` → `owner-approved tech dispositions` → `8 gates actual registered reporter + AO acceptance` → `publication allowlist frozen/rulesets/committed readback` → `release authority`。任一缺漏繼續 `FAIL_CLOSED`，若來源、模型、版本、scope 改動則由 reverse graph **affected-only** 作狀態失效；不得把已過 gate 無條件轉移到新 subject。",
+    "requirement": "Unlock sequence includes owner source/authority, vendor pipeline, canonical RepoContext, Fresh G1, ECP/DOC05, applicable 221 independent receipts, actual gate reporters/AO and publication/release authority; gaps remain fail-closed.",
+    "current_state_satisfies": "no",
+    "basis": "Owner-gated outstanding items do not satisfy the complete sequence; no fresh gates were run."
+  },
+  {
+    "id": "FAR-C030",
+    "residual_id": "EIA-R6-05",
+    "doc": "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/attachments/Fabric_Convergence_External_Independent_Acceptance_Report_20261015.md",
+    "locator": "physical UTF-8 lines 113-113; bytes [15062,15374) zero-based; nearest heading: ## 5. OPS ECP / DEV ECP / TQAEP 完整交叉判讀",
+    "quote_verbatim": "本報告採**必要測試風險分級**：不要求每個文檔要求都用硬體 live effect 證明；但上位列管的 221 個 ID 必須有完整去向，適用者要真實 runner + 原始 evidence，不適用者須以已核定的理由、版本、權威聲明 N/A，不可借文件歸檔而自動標 PASS。",
+    "requirement": "All 221 IDs require a disposition; applicable cases need real runner/raw evidence, inapplicable need approved reason/version/authority for N/A; archive is not automatic PASS.",
+    "current_state_satisfies": "unknown",
+    "basis": "The supplied residual does not provide a complete current per-ID disposition matrix."
+  },
+  {
+    "id": "FAR-C031",
+    "residual_id": "EIA-R6-05",
+    "doc": "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/attachments/Fabric_Convergence_External_Independent_Acceptance_Report_20261015.md",
+    "locator": "physical UTF-8 lines 179-179; bytes [25421,25728) zero-based; nearest heading: ### 下次最小變更即可 MERGE 的條件——僅三個合併關卡",
+    "quote_verbatim": "**不在 merge 前要求**：Fresh G1、3 個 mutant fix、221 live tests、8 Gate PASS、完整 OPS ECP、Production Release、全量 references 重整、20 KP R04 重寫；這些在本輪因變更類型為 evidence-only 而不是影響 MAIN 產品行為，應保留明確 claim boundary 到下一階段。",
+    "requirement": "For the historical evidence-only merge, Fresh G1, mutant fixes, 221 live tests, eight Gate PASS and other listed runtime work are not merge prerequisites; retain next-stage claim boundary.",
+    "current_state_satisfies": "unknown",
+    "basis": "Change-class distinction only: does not waive full runtime requirements or establish this R9 scope is a new evidence-only merge."
+  },
+  {
+    "id": "FAR-C032",
+    "residual_id": "EIA-R6-07",
+    "doc": "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/attachments/Fabric_Convergence_External_Independent_Acceptance_Report_20261015.md",
+    "locator": "physical UTF-8 lines 155-155; bytes [21829,22167) zero-based; nearest heading: ## 8. 正式 Finding Register（按最早合法修復者分離）",
+    "quote_verbatim": "| EIA-R6-07 | `EVIDENCE_GAP` / MEDIUM（來源） | SourceFreeze / PKG v2.0.0 source #6 / `BLOCKERS_AND_RESUME.json` | PIPD Source/Authority Owner | 用 Owner 版控決定 active normative 素材 vs superseded history，保持缺失呈現，避免冒充 21/21；編譯狀態按 active denominator 重算 | 否（阻完整 PI/PD claim） |",
+    "requirement": "Source/Authority Owner uses version control to decide active normative versus superseded history; retain missingness and avoid 21/21 claim; recompute compile denominator from active set.",
+    "current_state_satisfies": "no",
+    "basis": "Supplied owner-gated undecided source #6 is not the required Owner decision; no decision inferred."
+  },
+  {
+    "id": "FAR-C033",
+    "residual_id": "EIA-R6-07",
+    "doc": "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/attachments/Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md",
+    "locator": "physical UTF-8 lines 74-74; bytes [11256,11682) zero-based; nearest heading: ## 8｜Full SOP × Source Manifest 真值、所有阻塞的可解鎖條件",
+    "quote_verbatim": "實體來源清單見 Slot 02，涵蓋**當次可讀**本案前版、v1.1、v2.0、鑑定、歷史 AUDIT 和標準 DOC 原始 bytes 的各 SHA。上一輪受審的 16 source entries，本輪已可讀到先前缺失的 v1.0.0 Blueprint 檔；但 A1/A3 高階權威原始 bytes 仍缺，因而 `SourceFreezeManifest` 不能被標成 canonical fully frozen。source marker 與 physical line 只在 exact SHA matching 時有效。",
+    "requirement": "Source manifest reflects physically readable bytes; missing A1/A3 prevent canonical full freeze; source markers/lines require exact SHA match.",
+    "current_state_satisfies": "unknown",
+    "basis": "This source-truth clause is general and does not itself resolve whether source #6 is active or historical."
+  },
+  {
+    "id": "FAR-C034",
+    "residual_id": "R8-F4",
+    "doc": "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/attachments/Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md",
+    "locator": "physical UTF-8 lines 1697-1706; bytes [100293,100611) zero-based; nearest heading: ## 11｜27 個自包含 Machine Slots／外部 pin 前都只屬候選",
+    "quote_verbatim": "    \"acceptance\": {\n      \"criterion\": \"exact_equal_to_trusted_observation_after_replay\",\n      \"expected\": \"SOFT_WARNING\",\n      \"id\": \"ACC-RQ08\",\n      \"negative\": \"HARD_BLOCK\",\n      \"test_id\": \"AT-RQ08\"\n    },\n    \"child_obligations\": [\n      \"reference 60 warning 不強制合併〔U L201–214、L1557〕\"\n    ],",
+    "requirement": "ACC-RQ08 expects SOFT_WARNING and rejects HARD_BLOCK; the 60-reference warning does not force merging.",
+    "current_state_satisfies": "yes",
+    "basis": "For classification only: reported 118 references exceed the warning threshold, but do not by themselves violate a hard gate. Whether a warning was actually emitted is unknown."
+  },
+  {
+    "id": "FAR-C035",
+    "residual_id": "R8-F4",
+    "doc": "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/attachments/Fabric_Convergence_External_Independent_Acceptance_Report_20261015.md",
+    "locator": "physical UTF-8 lines 137-137; bytes [18222,18638) zero-based; nearest heading: ## 7. 風險校準：什麼要現在修、什麼可以以後修",
+    "quote_verbatim": "| **P2（近期下一版本）** | 94 refs > 60 soft warning、剩餘 34 refs 的重整、source #6 舊版不可 byte-exact 取回、長 prompt filename route | 完整收斂改善和設計/功能 readiness；部分具體 future contract 仍 HOLD | 照 affected-only 路徑處理；**94>60 是 warning，按上位 `ACC-RQ08` 不得誤升硬 gate**；source #6 以 Owner 區分 active normative vs historical archive |",
+    "requirement": "94>60 was explicitly a soft warning and must not be elevated to hard gate under ACC-RQ08; measured affected-only reorganization remains separate.",
+    "current_state_satisfies": "yes",
+    "basis": "Same warning-only policy applies to threshold exceedance; the historical 94 count is not asserted to be current 118."
+  },
+  {
+    "id": "FAR-C036",
+    "residual_id": "R8-F4",
+    "doc": "ALL_THREE_GOVERNING_DOCUMENTS",
+    "locator": "Full-text searches of the three named documents; search scope and terms in basis",
+    "quote_verbatim": "",
+    "requirement": "ABSENT — A 100,000-byte main-file cap is not stated in these three governing documents.",
+    "current_state_satisfies": "unknown",
+    "basis": "All three searched for 100000, 100,000, 100_000, 100 000, 100.000, 100KB/100 KB/100KiB, 十萬/10萬 and main/主檔 with byte/cap/上限 wording. No cap clause found; cannot classify the two main files under that alleged cap from these sources."
+  },
+  {
+    "id": "FAR-C037",
+    "residual_id": "R8-F2",
+    "doc": "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/attachments/Fabric_Convergence_External_Independent_Acceptance_Report_20261015.md",
+    "locator": "physical UTF-8 lines 173-173; bytes [24279,24622) zero-based; nearest heading: ### 下次最小變更即可 MERGE 的條件——僅三個合併關卡",
+    "quote_verbatim": "**M1｜Manifest/Currentness（必做）**：`PACKET_MANIFEST.json` 的「欲發布」集合與最新 PR Git blobs 完整一致，記錄 local ignored 2；發布記錄以最新 HEAD（目前 `e6a5ce...`）說明舊 SHA/統計及 UTC 異常。要求 script/output 的 deterministic set diff = Ø；不需對未改過的候選碼重跑 221 項。",
+    "requirement": "Manifest desired published set must exactly equal latest PR Git blobs, record ignored two, and require deterministic set diff empty with latest HEAD/currentness.",
+    "current_state_satisfies": "no",
+    "basis": "Supplied 583 declared versus 581 shipped with two extra pyc paths is not equal if this manifest declares the shipped publication set; no artifact tree was independently enumerated."
+  },
+  {
+    "id": "FAR-C038",
+    "residual_id": "R8-F2",
+    "doc": "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/attachments/Fabric_Convergence_External_Independent_Acceptance_Report_20261015.md",
+    "locator": "physical UTF-8 lines 149-149; bytes [19748,20103) zero-based; nearest heading: ## 8. 正式 Finding Register（按最早合法修復者分離）",
+    "quote_verbatim": "| EIA-R6-01 | `CONFIRMED_DEFECT` / MEDIUM（**發布集合標示**） | `G-G` publication manifest equality / PR#3 Git tree + `PACKET_MANIFEST.json` | Fabric publication owner | 把 tracked 567 和 excluded 2 明列；以最新 HEAD 比對 set equality；只重測 publication manifest/path，其他歷史 raw 不回寫 | **條件性：修後可 merge** |",
+    "requirement": "EIA-R6-01 binds G-G publication manifest equality to exact tracked/excluded sets at latest HEAD, testing publication paths only.",
+    "current_state_satisfies": "no",
+    "basis": "Historical 569/567 counts are not current 583/581; governing property is equality and explicit excluded disposition, not those old constants."
+  },
+  {
+    "id": "FAR-C039",
+    "residual_id": "R8-F2",
+    "doc": "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/attachments/Fabric_HG-KSEOS_Convergence_指揮薄PROMPT.md",
+    "locator": "physical UTF-8 lines 116-116; bytes [18853,18974) zero-based; nearest heading: # 6. Implementation／Qualification Gates｜全量任務與檢測清單",
+    "quote_verbatim": "| CK-18 | GitHub credential exclusion／owner allowlist／branch protection／secrets／tree-vs-manifest readback | G-G |",
+    "requirement": "CK-18 requires credential exclusion, owner allowlist, branch protection, secrets and tree-vs-manifest readback under G-G.",
+    "current_state_satisfies": "no",
+    "basis": "On supplied mismatch, tree-vs-manifest equality is not established. This does not claim to evaluate the other CK-18 controls."
+  },
+  {
+    "id": "FAR-C040",
+    "residual_id": "R8-F2",
+    "doc": "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/attachments/Fabric_HG-KSEOS_Convergence_指揮薄PROMPT.md",
+    "locator": "physical UTF-8 lines 140-140; bytes [23052,23363) zero-based; nearest heading: # 8. Evidence／Independent Acceptance／Candidate Binding｜發布方案",
+    "quote_verbatim": "3. 對批准的 staged bytes 做 secrets／credential-shaped path／PII／`.env`／`API KEY`／`worktrees`／`.venv`／logs／runtime state／raw EE 等排除；Windows link／symlink／`.gitignore` 排除引起的缺檔必 NACK。例外 `DESKTOP/var-fda/**` 需 Owner 親自裁決 scope，不能默默發布。",
+    "requirement": "Staged approved bytes need exclusions; missing files caused by Windows link/symlink/.gitignore exclusions must NACK.",
+    "current_state_satisfies": "no",
+    "basis": "Supplied pycache manifest extras reproduce exclusion-related missingness if manifest represents publication inventory; local inventory separately labeled excluded would be a different scope."
+  }
+]

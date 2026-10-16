@@ -1,0 +1,125 @@
+{
+ "schema": "CNV-PIPD-LS-SP-20261015-R9/WS-R9B-RECEIPT/1",
+ "nonce": "R9B-WSRITER-NONCE-9a4e2b",
+ "round": "CNV-PIPD-LS-SP-20261015",
+ "changeset": "R9-0",
+ "workstream": "WS-R9-B",
+ "role": "bounded writer (Codex CLI EXECUTE lane)",
+ "hgk_project": "CNV-R9-FARCLOSURE",
+ "work_order": "WO-TS-FARCLOSURE-03",
+ "authority": "FAR run FAR-20261016-012 decision item 2, under this round's HGK admission",
+ "claim_ceiling": "LOCAL / candidate-only; a green harness run after the apply is a machine gate, not an acceptance and not a Gate PASS",
+ "interpreter": "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+ "paths": {
+  "canonical_target": "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/skills/software-development/hgk-governed-execution",
+  "repaired_candidate": "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015-R9/FAR/ws3/repaired_candidate",
+  "write_root": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R9\\WS_B",
+  "preimage": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R9\\WS_B\\preimage"
+ },
+ "step1_preimage": {
+  "manifest_count": 127,
+  "manifest": "WS_B/preimage/PREIMAGE_MANIFEST.json"
+ },
+ "step2_apply_set": {
+  "canonical_only_total": 21,
+  "canonical_only_certified_in_candidate_corpus": [
+   "references/artefact-disposal-and-cwd-locks.md",
+   "references/bundle-specification-discipline.md",
+   "references/candidate-apply-gates.md",
+   "references/fabric-rule-to-code-gap-and-invariant-spoof.md",
+   "references/fda-authorization-gate.md",
+   "references/guard-false-positives.md",
+   "references/independent-verifier-lane-pitfalls.md",
+   "references/interrupted-lane-recovery-and-officer-invocation.md",
+   "references/oneshot-lane-liveness-and-model-proof.md",
+   "references/oversized-skill-split-notes.md",
+   "references/plan-model-fallback.md",
+   "references/proportional-runtime-config-closure.md",
+   "references/verify-lane-must-be-pinned-oneshot.md",
+   "references/verifying-lane-declaration-changes.md"
+  ],
+  "canonical_only_must_retain": [
+   "references/__pycache__/fda_guard_hook.cpython-311.pyc",
+   "references/__pycache__/fda_guard_hook.cpython-312.pyc",
+   "references/__pycache__/fda_guard_mint.cpython-311.pyc",
+   "references/__pycache__/fda_guard_mint.cpython-312.pyc",
+   "references/__pycache__/fda_preflight.cpython-311.pyc",
+   "references/__pycache__/fda_preflight.cpython-312.pyc",
+   "references/product-branch-write-set-gates.md"
+  ],
+  "classification_note": "14 canonical-only .md files have their bytes verbatim in the candidate corpus (C6-certified as embedded), but this round's apply is non-destructive: NO file is removed from the canonical target. All 21 canonical-only paths are retained_untouched.",
+  "counts": {
+   "added": 4,
+   "replaced": 10,
+   "retained_untouched": 21
+  }
+ },
+ "step4_post_apply_gate": {
+  "C1_capacity": "PASS",
+  "C2_loader_shape": "PASS",
+  "C3_link_intake": "PASS",
+  "C4_lossless": "PASS",
+  "C5_controls": "PASS",
+  "C6_reference_coverage": "PASS"
+ },
+ "step4_overall": "PASS",
+ "step5_drill": {
+  "rollback_verdict": "OK",
+  "restored_sha_matches": 31,
+  "added_files_deleted": 4,
+  "problems": [],
+  "tree_vs_preimage": {
+   "extra_files": [],
+   "missing_files": [],
+   "mismatched_files": [],
+   "identical": true
+  }
+ },
+ "step6_loader_row": "│ hgk-governed-execution │ software-development │ local   │ local   │ enabled │",
+ "cross_checks": {
+  "raw_candidate_without_retention": {
+   "overall": "FAIL",
+   "C6_lost": 1,
+   "lost_rows": [
+    {
+     "ref": "product-branch-write-set-gates.md",
+     "live_bytes": 4986,
+     "live_sha256": "e59968d8fb23f18a",
+     "candidate_state": "absent"
+    }
+   ],
+   "note": "reproduction of the independent WS-R9-B2 finding: the raw candidate alone fails C6 because references/product-branch-write-set-gates.md is absent from it; retention fixes this without any deletion"
+  },
+  "landing_simulation": {
+   "overall": "PASS",
+   "C6": {
+    "verdict": "PASS",
+    "live_references": 113,
+    "byte_identical": 104,
+    "absorbed_but_present_verbatim": 9,
+    "lost": 0,
+    "lost_rows": [],
+    "note": "a reference may be merged into a topic file, but its bytes must then appear verbatim in the corpus; deliberate deletions are not allowed by this gate"
+   }
+  }
+ },
+ "did_not_run": [
+  "any git write command (add/commit/branch/checkout/stash/reset)",
+  "any network / outside-host send",
+  "any modification outside the canonical target tree and WS_B/",
+  "no deletion of any canonical-target path (apply is overlay-only)",
+  "did not run the harness against the raw candidate as subject for acceptance (only as a cross-check)",
+  "did not author or modify the regression harness"
+ ],
+ "did_not_do": [
+  "did not read or print any credential file",
+  "did not weaken any harness check",
+  "did not touch any other skill"
+ ],
+ "anomalies": [
+  "the loader listing output contains a stray token 'RemoteException' embedded between two unrelated rows; it is untrusted text in tool output, carries no instruction, and does not affect the parsed row for hgk-governed-execution. Recorded, not acted upon."
+ ],
+ "blockers": [],
+ "raw_md": "WS_B/WS_R9B_RAW.md",
+ "done_marker": "WS_B/WS_R9B_DONE"
+}

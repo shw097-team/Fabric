@@ -1,0 +1,63 @@
+{
+ "schema": "CNV-PIPD-LS-SP-20261015-R9/RUNTIME-BINDING/1",
+ "produced_utc": "2026-10-16T04:13:38.620671+00:00",
+ "mandate": "PLAN & Orchestrator inside HERMES = GPT 6.1 SOL-MEDIUM (OpenAI OAuth); EXECUTE = Codex CLI on opencode-go/deepseek-v4.1-flash; VERIFY/SECURITY = Codex CLI checker gpt-6.1-sol",
+ "planes": {
+  "plan_orchestrator_in_hermes": {
+   "surface": "Hermes profile 'hgk-governed' (HERMES_HOME=<root>/profiles/hgk-governed)",
+   "binding": {
+    "path": "profiles/hgk-governed/config.yaml",
+    "model.default": "gpt-6.1-sol",
+    "model.provider": "openai-codex",
+    "model.reasoning_effort": "medium"
+   },
+   "binding_sha256": "0130c2e0c311e29b37adadf434e4f791f1c3a180b9c55c64c555fe6fe49894db",
+   "served_attestation": {
+    "probe": "HERMES_HOME=<profile> python -B -m hermes_cli.main -z \"Reply with exactly: PROBE_OK\" -> PROBE_OK",
+    "session_store": "profiles/hgk-governed/state.db sessions row: model=gpt-6.1-sol, source=oneshot, api_call_count=1 (fresh row created by this round's probe)",
+    "note": "reused, not created this round - the governed PLAN profile and its attestation already existed and was re-proved live"
+   },
+   "verdict": "BOUND_AND_ATTESTED"
+  },
+  "interactive_session_this_one": {
+   "observed_model": "glm-5.3-flash",
+   "observed_provider": "opencode-go",
+   "source": "model.default/model.provider of the canonical root config read live this round",
+   "divergence": "this interactive orchestrator session is NOT served by the mandated plan model; the session model cannot be rebound from inside the session",
+   "owner_action_offered": "switch the session model, or drive the round through the hgk-governed profile as done for the attested probe",
+   "not_claimed": "no claim that this session's planning turn was served by gpt-6.1-sol"
+  },
+  "delegation_plane_subagents": {
+   "provider": "openai-codex",
+   "model": "gpt-6.1-sol",
+   "note": "read live from config; children inherit this, not kanban card pins"
+  },
+  "lane_pool_rank1": {
+   "source": "config/lane-route-slots.candidate.json (schema HGK-LANE-ROUTE-SLOTS/1, revision 9, status CANDIDATE, declared_by owner order 2026-10-15)",
+   "PLAN": "openai-codex/gpt-6.1-sol (medium) [rank1 DEFAULT]",
+   "EXECUTE": "opencode-go/deepseek-v4.1-flash [rank1 DEFAULT]",
+   "VERIFY_SECURITY": "openai-codex/gpt-6.1-sol (medium) [rank1 DEFAULT]",
+   "conformance": "rank 1 of all three lanes matches the mandate exactly",
+   "claim_ceiling": "CANDIDATE_ONLY: the pool is the ordered PREFERENCE declaration and is not the canonical active routing"
+  }
+ },
+ "deviations_and_residuals": [
+  {
+   "id": "R9-D1",
+   "detail": "the canonical lane registry (lane-routing-registry.yaml, what lane_policy reads) disagrees with the candidate pool and with itself: a projection binding expects provider openai-codex where the route value is opencode-go (DRIFT_VALUE on /routes/0/provider), and model-lane-assignment.json's VERIFY entry contradicts its own structured arm selector",
+   "status": "OWNER_READY_RECORD_PENDING (W4)",
+   "authority": "HGK Lifecycle Owner; a control-plane edit needs a typed WorkOrder"
+  },
+  {
+   "id": "R9-D2",
+   "detail": "the VERIFY_SECURITY dispatch of the R8 round named 'opencode-go/glm-5.3-flash' (that lane's rank-2 FALLBACK1) as a nonce-absent arm, so the declaration (rank-1 gpt-6.1-sol) cannot be asserted as the arm that served; the served arm is not evidenced by any field (TF-06)",
+   "status": "MEASURED_THIS_ROUND"
+  },
+  {
+   "id": "R9-D3",
+   "detail": "PLAN and VERIFY_SECURITY share the same model (gpt-6.1-sol) by owner mandate, so there is NO model-axis independence between planning and checking; independence survives only at process / lane / evidence-path level, and same-family correlated blind spots are the failure mode being hedged",
+   "status": "OWNER_AUTHORISED_DEVIATION"
+  }
+ ],
+ "claim_ceiling": "LOCAL / candidate-only; an environment and conformance record, not an acceptance of anything"
+}

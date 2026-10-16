@@ -1,0 +1,2620 @@
+{
+  "schema": "CNV-R9-FAR-WS2-TECH-FACTS/1",
+  "claim_ceiling": "LOCAL/candidate-only research; not acceptance; no fix implemented",
+  "A": {
+    "baseline": {
+      "hardened": "C:\\Projects\\Agent_Workspace\\PIPD\\worktrees\\r8-wt",
+      "clean": "C:\\Projects\\wt-r8-cleanmain",
+      "commit": "dba4b19456777d3b597fdf71480f6423dd974243",
+      "modified_files": [
+        "7\t1\tsrc/pipd_ls_sp/cli.py",
+        "39\t0\tsrc/pipd_ls_sp/pipeline.py",
+        "157\t5\tsrc/pipd_ls_sp/validate.py"
+      ],
+      "added": 203,
+      "removed": 6,
+      "hunks": 9
+    },
+    "trace_failure": {
+      "cause_one_sentence": "The legal test supplies a PI-PKG and its real TraceLink but no frozen_context, and hardened validate_bundle forwards None rather than deriving the available PI endpoint map, so semantic_invariants emits UNBOUND_FROZEN_CONTEXT for both hashes even though closure resolves both endpoints.",
+      "test": {
+        "path": "C:\\Projects\\Agent_Workspace\\PIPD\\worktrees\\r8-wt\\tests\\test_s4ext_trace_closure.py",
+        "start": 108,
+        "end": 116,
+        "quote": "108|    def test_real_trace_link_is_legal_beside_its_endpoints(self) -> None:\n109|        \"\"\"A TraceLink bundled WITH the PI it points at resolves on both sides.\"\"\"\n110|        link = self.bundle[\"PI-PKG\"][\"trace\"][0]\n111|        res = validate.validate_bundle({\"PI-PKG\": self.bundle[\"PI-PKG\"], \"TraceLink\": link},\n112|                                       SCHEMAS_DIR)\n113|        self.assertEqual(res[\"verdict\"], \"PASS\", str(res[\"findings\"])[:400])\n114|        self.assertEqual(res[\"closure\"], \"FULL\")\n115|        self.assertEqual(validate.validate_record(\"TraceLink\", link, SCHEMAS_DIR), [])\n116|        self.assertEqual(link[\"version\"], \"1\", \"the legacy version grammar must survive\")"
+      },
+      "clean_trace_rule": {
+        "path": "C:\\Projects\\wt-r8-cleanmain\\src\\pipd_ls_sp\\validate.py",
+        "start": 190,
+        "end": 195,
+        "quote": "190|        for side in (\"from\", \"to\"):\n191|            if not (record.get(f\"{side}_type\") and record.get(f\"{side}_id\")):\n192|                out.append(f\"TraceLink: {side} endpoint incomplete\")\n193|    return out\n194|\n195|"
+      },
+      "clean_bundle": {
+        "path": "C:\\Projects\\wt-r8-cleanmain\\src\\pipd_ls_sp\\validate.py",
+        "start": 266,
+        "end": 294,
+        "quote": "266|            \"findings\": [{\"contract\": \"*\", \"kind\": \"CLOSURE\", \"detail\": p} for p in problems]}\n267|\n268|\n269|def validate_bundle(bundle: dict[str, dict[str, Any]], schemas_dir: Path | None = None) -> dict[str, Any]:\n270|    findings: list[dict[str, str]] = []\n271|    # C-4 repair: validate_bundle({}) used to return PASS with checked=0. An empty denominator is\n272|    # not a verification result.\n273|    if not bundle:\n274|        return {\"verdict\": \"FAIL\", \"checked\": 0, \"closure\": \"SCHEMA_ONLY\",\n275|                \"findings\": [{\"contract\": \"*\", \"kind\": \"DENOMINATOR\",\n276|                              \"detail\": \"empty bundle: zero records checked cannot be a PASS\"}]}\n277|    for contract, record in bundle.items():\n278|        if not isinstance(record, dict):\n279|            findings.append({\"contract\": contract, \"kind\": \"SCHEMA\",\n280|                             \"detail\": \"record must be an object\"})\n281|            continue\n282|        for f in validate_record(contract, record, schemas_dir):\n283|            findings.append({\"contract\": contract, \"kind\": \"SCHEMA\", \"detail\": f})\n284|        for f in semantic_invariants(contract, record):\n285|            findings.append({\"contract\": contract, \"kind\": \"SEMANTIC\", \"detail\": f})\n286|    # TT-S4EXT-002: `pipd validate --bundle` used to stop at the per-record schema/semantic checks,\n287|    # so a bad endpoint hash, an orphan edge or a missing endpoint could still return PASS even\n288|    # though pipeline.trace_closure() already knew how to refuse it. The closure is now part of the\n289|    # bundle verdict, and a bundle with no trace edge is labelled SCHEMA_ONLY rather than passed off\n290|    # as trace-closed.\n291|    closure = closure_findings(bundle)\n292|    findings.extend(closure[\"findings\"])\n293|    return {\"verdict\": \"PASS\" if not findings else \"FAIL\",\n294|            \"checked\": len(bundle), \"closure\": closure[\"state\"], \"findings\": findings}"
+      },
+      "hardened_trace_rule": {
+        "path": "C:\\Projects\\Agent_Workspace\\PIPD\\worktrees\\r8-wt\\src\\pipd_ls_sp\\validate.py",
+        "start": 215,
+        "end": 242,
+        "quote": "215|    if contract == \"TraceLink\":\n216|        for side in (\"from\", \"to\"):\n217|            if not (record.get(f\"{side}_type\") and record.get(f\"{side}_id\")):\n218|                out.append(f\"TraceLink: {side} endpoint incomplete\")\n219|        # R7-0 (M16): a trace link must bind each endpoint to the FROZEN digest of the atom it\n220|        # points at. A link whose `to_hash` was swapped (e.g. 64 f's) keeps its own content_hash\n221|        # intact, so the self-digest check above cannot see it - the reference must be resolved\n222|        # against the frozen subject->digest map. When that map is absent the binding cannot be\n223|        # discharged, so the validator fails closed rather than passing an unverifiable reference.\n224|        fc_endpoints = fc.get(\"trace_endpoint_hashes\")\n225|        for side in (\"from\", \"to\"):\n226|            ref_id = record.get(f\"{side}_id\")\n227|            recorded = str(record.get(f\"{side}_hash\") or \"\")\n228|            if recorded and not HEX64.match(recorded):\n229|                out.append(f\"TraceLink: {side}_hash must be a 64-char lowercase sha256 hex digest\")\n230|            if fc_endpoints is None:\n231|                if ref_id and recorded:\n232|                    out.append(\"TraceLink: UNBOUND_FROZEN_CONTEXT: \"\n233|                               f\"{side}_hash cannot be verified against a frozen subject->digest \"\n234|                               \"map (frozen context not supplied); binding is unproven, not a pass\")\n235|                continue\n236|            want = fc_endpoints.get(ref_id)\n237|            if want is None:\n238|                out.append(f\"TraceLink: {side}_id {ref_id!r} is not present in the frozen \"\n239|                           \"context (endpoint has no frozen digest to bind to)\")\n240|            elif recorded != want:\n241|                out.append(f\"TraceLink: {side}_hash does not match the frozen digest of \"\n242|                           f\"{ref_id!r} (recorded {recorded[:12]}, frozen {str(want)[:12]})\")"
+      },
+      "hardened_bundle": {
+        "path": "C:\\Projects\\Agent_Workspace\\PIPD\\worktrees\\r8-wt\\src\\pipd_ls_sp\\validate.py",
+        "start": 383,
+        "end": 409,
+        "quote": "383|def validate_bundle(bundle: dict[str, dict[str, Any]], schemas_dir: Path | None = None,\n384|                    frozen_context: dict[str, Any] | None = None) -> dict[str, Any]:\n385|    findings: list[dict[str, str]] = []\n386|    # C-4 repair: validate_bundle({}) used to return PASS with checked=0. An empty denominator is\n387|    # not a verification result.\n388|    if not bundle:\n389|        return {\"verdict\": \"FAIL\", \"checked\": 0, \"closure\": \"SCHEMA_ONLY\",\n390|                \"findings\": [{\"contract\": \"*\", \"kind\": \"DENOMINATOR\",\n391|                              \"detail\": \"empty bundle: zero records checked cannot be a PASS\"}]}\n392|    for contract, record in bundle.items():\n393|        if not isinstance(record, dict):\n394|            findings.append({\"contract\": contract, \"kind\": \"SCHEMA\",\n395|                             \"detail\": \"record must be an object\"})\n396|            continue\n397|        for f in validate_record(contract, record, schemas_dir):\n398|            findings.append({\"contract\": contract, \"kind\": \"SCHEMA\", \"detail\": f})\n399|        for f in semantic_invariants(contract, record, frozen_context):\n400|            findings.append({\"contract\": contract, \"kind\": \"SEMANTIC\", \"detail\": f})\n401|    # TT-S4EXT-002: `pipd validate --bundle` used to stop at the per-record schema/semantic checks,\n402|    # so a bad endpoint hash, an orphan edge or a missing endpoint could still return PASS even\n403|    # though pipeline.trace_closure() already knew how to refuse it. The closure is now part of the\n404|    # bundle verdict, and a bundle with no trace edge is labelled SCHEMA_ONLY rather than passed off\n405|    # as trace-closed.\n406|    closure = closure_findings(bundle)\n407|    findings.extend(closure[\"findings\"])\n408|    return {\"verdict\": \"PASS\" if not findings else \"FAIL\",\n409|            \"checked\": len(bundle), \"closure\": closure[\"state\"], \"findings\": findings}"
+      },
+      "positive_control": {
+        "argv": [
+          "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+          "-B",
+          "-c",
+          "import sys,json;from pathlib import Path;sys.path.insert(0,'tests');import test_s4ext_trace_closure as t;pi=t._bundle(Path('C:/Projects/wt-r8-cleanmain'));obj=t.LegalTraceStillPassesTests('test_real_trace_link_is_legal_beside_its_endpoints');obj.bundle=pi;obj.test_real_trace_link_is_legal_beside_its_endpoints();print('UNCHANGED TEST METHOD PASS (existing clean repo as read-only fixture; no git init)')"
+        ],
+        "cwd": "C:\\Projects\\wt-r8-cleanmain",
+        "stdout": "UNCHANGED TEST METHOD PASS (existing clean repo as read-only fixture; no git init)\n",
+        "stderr": "",
+        "exit": 0
+      },
+      "reproduction": {
+        "argv": [
+          "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+          "-B",
+          "-c",
+          "import sys,json;from pathlib import Path;sys.path.insert(0,'tests');import test_s4ext_trace_closure as t;pi=t._bundle(Path('C:/Projects/wt-r8-cleanmain'));obj=t.LegalTraceStillPassesTests('test_real_trace_link_is_legal_beside_its_endpoints');obj.bundle=pi;obj.test_real_trace_link_is_legal_beside_its_endpoints();print('UNCHANGED TEST METHOD PASS (existing clean repo as read-only fixture; no git init)')"
+        ],
+        "cwd": "C:\\Projects\\Agent_Workspace\\PIPD\\worktrees\\r8-wt",
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"C:\\Projects\\Agent_Workspace\\PIPD\\worktrees\\r8-wt\\tests\\test_s4ext_trace_closure.py\", line 113, in test_real_trace_link_is_legal_beside_its_endpoints\n    self.assertEqual(res[\"verdict\"], \"PASS\", str(res[\"findings\"])[:400])\n  File \"C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\unittest\\case.py\", line 873, in assertEqual\n    assertion_func(first, second, msg=msg)\n  File \"C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\unittest\\case.py\", line 1253, in assertMultiLineEqual\n    self.fail(self._formatMessage(msg, standardMsg))\n  File \"C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\unittest\\case.py\", line 703, in fail\n    raise self.failureException(msg)\nAssertionError: 'FAIL' != 'PASS'\n- FAIL\n+ PASS\n : [{'contract': 'TraceLink', 'kind': 'SEMANTIC', 'detail': 'TraceLink: UNBOUND_FROZEN_CONTEXT: from_hash cannot be verified against a frozen subject->digest map (frozen context not supplied); binding is unproven, not a pass'}, {'contract': 'TraceLink', 'kind': 'SEMANTIC', 'detail': 'TraceLink: UNBOUND_FROZEN_CONTEXT: to_hash cannot be verified against a frozen subject->digest map (frozen context not\n",
+        "exit": 1
+      },
+      "fixture_scope": "Direct invocation runs the unchanged test method using a freshly compiled bundle bound to the existing clean repo; it omits git-initializing fixture setup. A prior pytest reproduction also ran (see issues)."
+    },
+    "crash": {
+      "cause_one_sentence": "CLI run passes the PI-PKG dictionary as source, but the checked-in s1 bundle contains a nonempty string at source[stable_semantic_contract][atoms][0][risk_guard], and derive_frozen_context line 434 invokes .get(oracle) on that string because or {} only guards falsy values, not non-dict values.",
+      "exact_argument": "The positional source argument is a dict, NOT a str; the nested atom[\"risk_guard\"] value becomes the receiver of .get(\"oracle\") and is str where a mapping is required.",
+      "caller": {
+        "path": "C:\\Projects\\Agent_Workspace\\PIPD\\worktrees\\r8-wt\\src\\pipd_ls_sp\\cli.py",
+        "start": 164,
+        "end": 177,
+        "quote": "164|    if cmd == \"validate\":\n165|        bundle = _read_json(args.bundle, \"validation bundle\")\n166|        # CE-1: resolve schemas through the SAME registry chain `doctor` uses\n167|        # (OVERRIDE -> INSTALLED -> SOURCE), with a workspace-local `<root>/schemas`\n168|        # winning only when it actually contains registry.json. The chosen surface is\n169|        # reported so the operator can see which copy produced the verdict.\n170|        schemas_dir, mode, tried = registry.resolve_for_validate(root)\n171|        # R7-0 wiring: derive a deterministic frozen context from an embedded PI package when the\n172|        # bundle carries one, so the trace-endpoint / oracle-expected / profile-assurance bindings\n173|        # are discharged against frozen references. With no source for a given binding the hardened\n174|        # validator fails closed (UNBOUND_FROZEN_CONTEXT) instead of silently passing.\n175|        source = bundle.get(\"PI-PKG\") if isinstance(bundle.get(\"PI-PKG\"), dict) else None\n176|        frozen = validate.derive_frozen_context(source)\n177|        out = validate.validate_bundle(bundle, schemas_dir, frozen)"
+      },
+      "function_complete": {
+        "path": "C:\\Projects\\Agent_Workspace\\PIPD\\worktrees\\r8-wt\\src\\pipd_ls_sp\\validate.py",
+        "start": 412,
+        "end": 446,
+        "quote": "412|def derive_frozen_context(source: dict[str, Any] | None = None, *,\n413|                          trace_endpoint_hashes: dict[str, str] | None = None,\n414|                          profile_requirement: dict[str, Any] | None = None,\n415|                          oracle_expected: dict[str, str] | None = None) -> dict[str, Any]:\n416|    \"\"\"Assemble a deterministic frozen context for ``validate_bundle``.\n417|\n418|    The pieces are all caller-held data; nothing here consults an LLM, the network or any clock.\n419|    A PI package carries its atoms and trace links, so when ``source`` is a PI package the\n420|    subject->digest endpoint map and the oracle-expected map are read straight from it. Profile\n421|    requirements come from the frozen ``profiles.PROFILES`` table by default. Only derivable\n422|    pieces are emitted: a map is omitted (rather than guessed) when its source is absent, so the\n423|    validator's fail-closed branch for that binding still fires.\n424|    \"\"\"\n425|    from .profiles import PROFILES\n426|    ctx: dict[str, Any] = {}\n427|    endpoint_hashes = dict(trace_endpoint_hashes or {})\n428|    oracle_expected_map = dict(oracle_expected or {})\n429|    if isinstance(source, dict):\n430|        ssc = source.get(\"stable_semantic_contract\") or {}\n431|        for atom in ssc.get(\"atoms\") or []:\n432|            if atom.get(\"subject_id\") and atom.get(\"content_hash\"):\n433|                endpoint_hashes.setdefault(atom[\"subject_id\"], atom[\"content_hash\"])\n434|            oracle = ((atom.get(\"risk_guard\") or {}).get(\"oracle\") or {})\n435|            if atom.get(\"req_id\") and oracle.get(\"expected\") is not None:\n436|                oracle_expected_map.setdefault(atom[\"req_id\"], oracle[\"expected\"])\n437|        if source.get(\"subject_id\") and source.get(\"content_hash\"):\n438|            endpoint_hashes.setdefault(source[\"subject_id\"], source[\"content_hash\"])\n439|    if endpoint_hashes:\n440|        ctx[\"trace_endpoint_hashes\"] = endpoint_hashes\n441|    if oracle_expected_map:\n442|        ctx[\"oracle_expected\"] = oracle_expected_map\n443|    ctx[\"profile_requirement\"] = profile_requirement or {\n444|        name: {\"assurance\": list(spec[\"assurance\"]), \"artifact_depth\": spec[\"artifact_depth\"]}\n445|        for name, spec in PROFILES.items()}\n446|    return ctx"
+      },
+      "other_callers": {
+        "path": "C:\\Projects\\Agent_Workspace\\PIPD\\worktrees\\r8-wt\\src\\pipd_ls_sp\\pipeline.py",
+        "start": 207,
+        "end": 240,
+        "quote": "207|# ---------------------------------------------------------------- validation wiring (R7-0)\n208|def frozen_validation_context(pi: dict[str, Any]) -> dict[str, Any]:\n209|    \"\"\"Deterministic frozen context (profile requirement, oracle expectations, trace endpoint\n210|    digests) derived from a PI package, for `validate.validate_bundle(..., frozen_context=...)`.\n211|\n212|    Every value is read from the record the caller already holds; no LLM, network or clock is\n213|    consulted. This is how the pipeline PASSES the frozen context the R7-0 validator binds to.\n214|    \"\"\"\n215|    from . import validate as _validate\n216|    return _validate.derive_frozen_context(pi)\n217|\n218|\n219|def validate_pi(pi: dict[str, Any], schemas_dir: Path | None = None) -> dict[str, Any]:\n220|    \"\"\"Validate a PI package - the PI-PKG record, its ProfileBinding, every RequirementAtom and\n221|    every TraceLink - against the frozen context derived from itself.\n222|\n223|    Deterministic only. This is the pipeline-level entrypoint that threads the optional frozen\n224|    context through to the hardened `semantic_invariants`, so the trace-digest / oracle-expected /\n225|    profile-assurance bindings are checked on the compiler's own output.\n226|    \"\"\"\n227|    from . import validate as _validate\n228|    ctx = _validate.derive_frozen_context(pi)\n229|    findings: list[dict[str, str]] = list(\n230|        _validate.validate_bundle({\"PI-PKG\": strip_sidecar(pi)}, schemas_dir, ctx)[\"findings\"])\n231|    ssc = pi.get(\"stable_semantic_contract\") or {}\n232|    members: list[tuple[str, dict[str, Any]]] = []\n233|    if isinstance(ssc.get(\"profile_binding\"), dict):\n234|        members.append((\"ProfileBinding\", ssc[\"profile_binding\"]))\n235|    members += [(\"RequirementAtom\", a) for a in (ssc.get(\"atoms\") or []) if isinstance(a, dict)]\n236|    members += [(\"TraceLink\", t) for t in (pi.get(\"trace\") or []) if isinstance(t, dict)]\n237|    for contract, rec in members:\n238|        for f in _validate.validate_record(contract, rec, schemas_dir):\n239|            findings.append({\"contract\": contract, \"kind\": \"SCHEMA\", \"detail\": f})\n240|        for f in _validate.semantic_invariants(contract, rec, ctx):"
+      },
+      "smoke_fixture_and_caller": {
+        "path": "C:\\Projects\\Agent_Workspace\\PIPD\\worktrees\\r8-wt\\tools\\cli_smoke.py",
+        "start": 31,
+        "end": 54,
+        "quote": "31|def main() -> int:\n32|    (ART / \"bundle.json\").write_text(json.dumps({\n33|        \"PI-PKG\": json.loads((ART / \"pi_pkg.json\").read_text(encoding=\"utf-8\")),\n34|        \"PD-PKG\": json.loads((ART / \"pd_pkg.json\").read_text(encoding=\"utf-8\")),\n35|        \"ECP\": json.loads((ART / \"ecp.json\").read_text(encoding=\"utf-8\")),\n36|        \"TQAEP\": json.loads((ART / \"tqaep.json\").read_text(encoding=\"utf-8\")),\n37|        \"ConstructionContract\": json.loads((ART / \"construction_contract.json\").read_text(encoding=\"utf-8\")),\n38|    }, ensure_ascii=False, indent=1), encoding=\"utf-8\", newline=\"\")\n39|    (ART / \"tmp_diff.json\").write_text(json.dumps({\"schema_version\": \"X@1\", \"verdict\": \"PASS\"}), encoding=\"utf-8\", newline=\"\")\n40|\n41|    plan = [\n42|        [\"init\"],\n43|        [\"intake\", \"--goal\", \"以治理控制平面實作 PIPD-LS-SP 系統並完成測試驗收與公開交付\",\n44|         \"--source\", str(ROOT), \"--constraint\", \"HGK-only control plane\",\n45|         \"--non-goal\", \"no second control plane\"],\n46|        [\"profile\", \"--profile\", \"STANDARD\", \"--axis\", \"intent\", \"--axis\", \"verification\"],\n47|        [\"compile-pi\", \"--intent\", str(ART / \"intent_card.json\"), \"--profile\", \"LITE\"],\n48|        [\"bind-pd\", \"--pi\", str(ART / \"pi_pkg.json\"), \"--repo-root\", str(ROOT), \"--head\", \"HEAD\"],\n49|        [\"compile-ecp\", \"--pd\", str(ART / \"pd_pkg.json\"), \"--pi\", str(ART / \"pi_pkg.json\")],\n50|        [\"compile-tqaep\", \"--pi\", str(ART / \"pi_pkg.json\"), \"--ecp\", str(ART / \"ecp.json\"),\n51|         \"--maker\", \"HERMES-MAKER\", \"--checker\", \"GLM-5.3-FLASH-AO-LANE\",\n52|         \"--checker-receipt\", \"deleg_5a26d6d5/lane-C\"],\n53|        [\"validate\", \"--bundle\", str(ART / \"bundle.json\")],\n54|        [\"doctor\"],"
+      },
+      "schema_legacy_shape": {
+        "path": "C:\\Projects\\Agent_Workspace\\PIPD\\worktrees\\r8-wt\\schemas\\RequirementAtom.schema.json",
+        "start": 15,
+        "end": 35,
+        "quote": "15|    \"req_id\",\n16|    \"source_clause\",\n17|    \"owner\",\n18|    \"acceptance_cue\",\n19|    \"risk_guard\",\n20|    \"subject_id\",\n21|    \"version\",\n22|    \"content_hash\",\n23|    \"schema_version\"\n24|  ],\n25|  \"properties\": {\n26|    \"req_id\": {},\n27|    \"source_clause\": {},\n28|    \"owner\": {},\n29|    \"acceptance_cue\": {},\n30|    \"risk_guard\": {},\n31|    \"subject_id\": {\n32|      \"type\": \"string\",\n33|      \"minLength\": 8,\n34|      \"maxLength\": 200\n35|    },"
+      },
+      "crash_raw": {
+        "argv": [
+          "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+          "-B",
+          "-c",
+          "import sys;sys.path.insert(0,'src');from pipd_ls_sp.cli import main;sys.argv=['pipd','--root','.','validate','--bundle','.hgk/artifacts/s1/bundle.json'];main()"
+        ],
+        "cwd": "C:\\Projects\\Agent_Workspace\\PIPD\\worktrees\\r8-wt",
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"C:\\Projects\\Agent_Workspace\\PIPD\\worktrees\\r8-wt\\src\\pipd_ls_sp\\cli.py\", line 331, in main\n    result = run(args)\n             ^^^^^^^^^\n  File \"C:\\Projects\\Agent_Workspace\\PIPD\\worktrees\\r8-wt\\src\\pipd_ls_sp\\cli.py\", line 176, in run\n    frozen = validate.derive_frozen_context(source)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Projects\\Agent_Workspace\\PIPD\\worktrees\\r8-wt\\src\\pipd_ls_sp\\validate.py\", line 434, in derive_frozen_context\n    oracle = ((atom.get(\"risk_guard\") or {}).get(\"oracle\") or {})\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'str' object has no attribute 'get'\n",
+        "exit": 1
+      },
+      "isolated_repro": {
+        "argv": [
+          "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+          "-B",
+          "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015-R8/WS_B/repro_frozen_crash.py"
+        ],
+        "cwd": "C:\\Projects\\Agent_Workspace\\PIPD\\worktrees\\r8-wt",
+        "exit": 0,
+        "stdout": "PI-PKG risk_guard type: str\nderive_frozen_context: RAISED\n",
+        "stderr": "Traceback (most recent call last):\n  File \"C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R8\\WS_B\\repro_frozen_crash.py\", line 17, in <module>\n    validate.derive_frozen_context(pi)\n  File \"C:\\Projects\\Agent_Workspace\\PIPD\\worktrees\\r8-wt\\src\\pipd_ls_sp\\validate.py\", line 434, in derive_frozen_context\n    oracle = ((atom.get(\"risk_guard\") or {}).get(\"oracle\") or {})\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'str' object has no attribute 'get'\n"
+      },
+      "smoke_test_raw": {
+        "argv": [
+          "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+          "-B",
+          "-m",
+          "pytest",
+          "-p",
+          "no:cacheprovider",
+          "--basetemp",
+          "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R9\\FAR\\ws2\\pytest_temp",
+          "tests/test_tooling_executes.py::TestToolingExecutes::test_cli_smoke_runs",
+          "-vv",
+          "--tb=long"
+        ],
+        "cwd": "C:\\Projects\\Agent_Workspace\\PIPD\\worktrees\\r8-wt",
+        "exit": 1,
+        "stdout": "============================= test session starts =============================\nplatform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.6.0 -- C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\python.exe\nrootdir: C:\\Projects\\Agent_Workspace\\PIPD\\worktrees\\r8-wt\nconfigfile: pyproject.toml\nplugins: anyio-4.13.0, platformdirs-4.13.0\ncollecting ... collected 1 item\n\ntests/test_tooling_executes.py::TestToolingExecutes::test_cli_smoke_runs FAILED [100%]\n\n================================== FAILURES ===================================\n___________________ TestToolingExecutes.test_cli_smoke_runs ___________________\n\nself = <tests.test_tooling_executes.TestToolingExecutes testMethod=test_cli_smoke_runs>\n\n    def test_cli_smoke_runs(self) -> None:\n        \"\"\"The 13-command CLI surface must actually execute, not just import.\n    \n        Run inside a throwaway copy of the repo: the runner writes .hgk/artifacts/cli/CLI_SMOKE.json\n        by design, and a test that rewrites tracked evidence makes \"tree clean after a test run\"\n        impossible. The copy has every artifact the runner reads, so nothing is skipped.\n        \"\"\"\n        import os as _os\n        import shutil as _sh\n        import tempfile as _tf\n        with _tf.TemporaryDirectory() as tmp:\n            dst = Path(tmp) / \"repo\"\n            _sh.copytree(ROOT, dst, ignore=_sh.ignore_patterns(\".git\", \"__pycache__\", \"*.db\", \"*.pyc\"))\n            r = subprocess.run([sys.executable, \"-B\", \"tools/cli_smoke.py\"], cwd=str(dst),\n                               capture_output=True, text=True,\n                               env={**_os.environ, \"PYTHONDONTWRITEBYTECODE\": \"1\"})\n>       self.assertEqual(r.returncode, 0,\n                         f\"cli_smoke.py exited {r.returncode}\\n{(r.stderr or r.stdout)[-800:]}\")\nE       AssertionError: 2 != 0 : cli_smoke.py exited 2\nE       {\nE        \"commands_run\": 13,\nE        \"expected\": 13,\nE        \"nonzero_exit\": 1,\nE        \"verdicts\": {\nE         \"init\": \"PASS\",\nE         \"intake\": \"n/a\",\nE         \"profile\": \"n/a\",\nE         \"compile-pi\": \"n/a\",\nE         \"bind-pd\": \"n/a\",\nE         \"compile-ecp\": \"n/a\",\nE         \"compile-tqaep\": \"n/a\",\nE         \"validate\": \"n/a\",\nE         \"doctor\": \"PASS\",\nE         \"project\": \"PASS\",\nE         \"export\": \"PASS\",\nE         \"diff\": \"PASS\",\nE         \"repair\": \"n/a\"\nE        }\nE       }\n\ntests\\test_tooling_executes.py:75: AssertionError\n=========================== short test summary info ===========================\nFAILED tests/test_tooling_executes.py::TestToolingExecutes::test_cli_smoke_runs - AssertionError: 2 != 0 : cli_smoke.py exited 2\n{\n \"commands_run\": 13,\n \"expected\": 13,\n \"nonzero_exit\": 1,\n \"verdicts\": {\n  \"init\": \"PASS\",\n  \"intake\": \"n/a\",\n  \"profile\": \"n/a\",\n  \"compile-pi\": \"n/a\",\n  \"bind-pd\": \"n/a\",\n  \"compile-ecp\": \"n/a\",\n  \"compile-tqaep\": \"n/a\",\n  \"validate\": \"n/a\",\n  \"doctor\": \"PASS\",\n  \"project\": \"PASS\",\n  \"export\": \"PASS\",\n  \"diff\": \"PASS\",\n  \"repair\": \"n/a\"\n }\n}\n============================= 1 failed in 17.77s ==============================\n",
+        "stderr": ""
+      }
+    },
+    "minimal_fix_surface": {
+      "file": "src/pipd_ls_sp/validate.py",
+      "functions": [
+        "validate_bundle",
+        "derive_frozen_context"
+      ],
+      "change_1": {
+        "location": "validate_bundle, between current lines 391 and 392 (before per-record semantic checks)",
+        "smallest_change": "If frozen_context is None AND bundle.get(\"PI-PKG\") is a dict, set frozen_context = derive_frozen_context(bundle[\"PI-PKG\"]). Do not replace any caller-supplied context, including explicit {}. Leave semantic_invariants fail-closed and closure_findings unchanged. No PI means no auto-binding; a lone TraceLink must still fail closed."
+      },
+      "change_2": {
+        "location": "derive_frozen_context, current line 434, before subsequent oracle.get calls at 435-436",
+        "smallest_change": "Replace the unsafe chain with rg = atom.get(\"risk_guard\"); oracle = rg.get(\"oracle\") if isinstance(rg, dict) else None; oracle = oracle if isinstance(oracle, dict) else {}. Keep endpoint collection at 432-433, the req_id/expected guard at 435-436, and explicit frozen map precedence (setdefault). A legacy string has no derivable oracle map entry; do not invent an expectation or discard endpoint bindings."
+      },
+      "no_change_needed": [
+        "src/pipd_ls_sp/pipeline.py",
+        "src/pipd_ls_sp/cli.py",
+        "semantic_invariants",
+        "DIGEST_BOUND",
+        "POLARITY_EXPECTED",
+        "ProfileBinding assurance checks",
+        "closure_findings"
+      ],
+      "hardening_preservation": "M04 and M06 still hit unchanged self-body digest checks plus unchanged assurance/polarity checks; M16 still hits unchanged self-body digest and endpoint mismatch/closure checks. The observed M16 runner validates a lone edge and thus additionally remains unbound. Never copy an edge from_hash/to_hash into the endpoint map to satisfy itself.",
+      "verification_limit": "This is the minimal inferred repair specification, not a post-fix pass claim: implementation and testing a changed implementation were explicitly prohibited. Both existing failures were reproduced, clean trace positive control passed, and unchanged hardened M04/M06/M16 were re-run and REJECTED."
+    },
+    "mutation_measurements": {
+      "m04": {
+        "argv": [
+          "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+          "-B",
+          "-c",
+          "import sys;from pathlib import Path;sys.path.insert(0,'C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015-R8/WS_B/RUNNERS');import probe_mutations as p;p.SRC=Path(r'C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R9\\FAR\\ws2\\mutation_source.md');sys.exit(p.m04_profile_downgrade())"
+        ],
+        "cwd": "C:\\Projects\\Agent_Workspace\\PIPD\\worktrees\\r8-wt",
+        "stdout": "{\n \"id\": \"M04\",\n \"mutation\": \"ProfileBinding assurance downgraded ASSURED->LITE\",\n \"expected\": \"REJECT\",\n \"observed\": \"REJECT\",\n \"validator_verdict\": \"FAIL\",\n \"first_fail\": \"ProfileBinding: content_hash does not match the record body (body edited without re-issuing identity)\",\n \"raw_receipt\": \"RAW/mut_m04.json\"\n}\n",
+        "stderr": "",
+        "exit": 0
+      },
+      "m06": {
+        "argv": [
+          "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+          "-B",
+          "-c",
+          "import sys;from pathlib import Path;sys.path.insert(0,'C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015-R8/WS_B/RUNNERS');import probe_mutations as p;p.SRC=Path(r'C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R9\\FAR\\ws2\\mutation_source.md');sys.exit(p.m06_domain_oracle_expected())"
+        ],
+        "cwd": "C:\\Projects\\Agent_Workspace\\PIPD\\worktrees\\r8-wt",
+        "stdout": "{\n \"id\": \"M06\",\n \"mutation\": \"domain oracle expected changed to 999\",\n \"expected\": \"REJECT\",\n \"observed\": \"REJECT\",\n \"validator_verdict\": \"FAIL\",\n \"first_fail\": \"RequirementAtom: content_hash does not match the record body (body edited without re-issuing identity)\",\n \"raw_receipt\": \"RAW/mut_m06.json\"\n}\n",
+        "stderr": "",
+        "exit": 0
+      },
+      "m16": {
+        "argv": [
+          "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+          "-B",
+          "-c",
+          "import sys;from pathlib import Path;sys.path.insert(0,'C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015-R8/WS_B/RUNNERS');import probe_mutations as p;p.SRC=Path(r'C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R9\\FAR\\ws2\\mutation_source.md');sys.exit(p.m16_trace_digest_mismatch())"
+        ],
+        "cwd": "C:\\Projects\\Agent_Workspace\\PIPD\\worktrees\\r8-wt",
+        "stdout": "{\n \"id\": \"M16\",\n \"mutation\": \"trace atom digest mismatched\",\n \"expected\": \"REJECT\",\n \"observed\": \"REJECT\",\n \"validator_verdict\": \"FAIL\",\n \"first_fail\": \"TraceLink: content_hash does not match the record body (body edited without re-issuing identity)\",\n \"raw_receipt\": \"RAW/mut_m16.json\"\n}\n",
+        "stderr": "",
+        "exit": 0
+      }
+    },
+    "product_diff_unchanged": true,
+    "clean_status_after": {
+      "argv": [
+        "git",
+        "--no-optional-locks",
+        "status",
+        "--short"
+      ],
+      "cwd": "C:\\Projects\\wt-r8-cleanmain",
+      "stdout": "",
+      "stderr": "",
+      "exit": 0
+    },
+    "hardened_status_after": {
+      "argv": [
+        "git",
+        "--no-optional-locks",
+        "status",
+        "--short"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\PIPD\\worktrees\\r8-wt",
+      "stdout": " M src/pipd_ls_sp/cli.py\n M src/pipd_ls_sp/pipeline.py\n M src/pipd_ls_sp/validate.py\n",
+      "stderr": "",
+      "exit": 0
+    }
+  },
+  "B": {
+    "requested_root_discovery": {
+      "receipt_json_matches": [
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R8\\R8_VERIFY\\ws_a_receipt_recompute.json",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R8\\WS_A\\apply\\APPLY_RECEIPT.json",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R8\\WS_A\\sim\\APPLY_RECEIPT_dryrun.json",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R8\\WS_A\\sim\\drill_receipt.json",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R8\\WS_A\\sim\\drill_receipt_used.json"
+      ],
+      "attempts_ndjson_matches": [],
+      "R8_VERIFY_files": [
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R8\\R8_VERIFY\\R8_VERIFY_RECEIPT.md",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R8\\R8_VERIFY\\R8_VERIFY_VERDICT.json",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R8\\R8_VERIFY\\r8_wt.diff",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R8\\R8_VERIFY\\random_ws_a_harness.json",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R8\\R8_VERIFY\\verify_m04.stderr.txt",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R8\\R8_VERIFY\\verify_m04.stdout.txt",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R8\\R8_VERIFY\\verify_m06.stderr.txt",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R8\\R8_VERIFY\\verify_m06.stdout.txt",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R8\\R8_VERIFY\\verify_m16.stderr.txt",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R8\\R8_VERIFY\\verify_m16.stdout.txt",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R8\\R8_VERIFY\\ws_a_hgk_harness_rederived.json",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R8\\R8_VERIFY\\ws_a_receipt_recompute.json",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R8\\R8_VERIFY\\ws_a_tree_inventory.json",
+        "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R8\\R8_VERIFY\\WS_B_3_ATTRIBUTION_ERRATA.json"
+      ],
+      "finding": "No dispatcher invocation receipt or attempts trail is stored in R8 itself. Recent R8 lane runs reused the ORIGINAL mission lane_runs location; append-only trail holds older and R8 runs under distinct run_id. The final attempt1 JSON files have October 16 timestamps and overwrite earlier same-name receipt files."
+    },
+    "actual_lane_receipt_root": "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/lane_runs",
+    "all_discovered_receipt_and_trail_rows": [
+      {
+        "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\EXECUTE_dispatch_receipt_attempt1.json",
+        "generated_utc": "2026-10-16T03:28:54.914511+00:00",
+        "run_id": null,
+        "fields": {
+          "ok": false,
+          "code": "ERR_NO_ARM_EMITTED_NONCE",
+          "required_arm": "<ABSENT>",
+          "served_arm": "<ABSENT>",
+          "used_rank": null,
+          "used_transport_model": null,
+          "usage_receipt_ok": true,
+          "nonce_present": "<ABSENT>",
+          "nonce_absent_arms": [
+            "opencode-go/deepseek-v4.1-flash"
+          ]
+        },
+        "attempts": [
+          {
+            "ok": "<ABSENT>",
+            "code": "<ABSENT>",
+            "required_arm": "<ABSENT>",
+            "served_arm": "<ABSENT>",
+            "used_rank": "<ABSENT>",
+            "used_transport_model": "<ABSENT>",
+            "usage_receipt_ok": true,
+            "nonce_present": false,
+            "nonce_absent_arms": "<ABSENT>",
+            "rank": 1,
+            "provider": "opencode-go",
+            "model": "deepseek-v4.1-flash",
+            "transport_model": "opencode-go/deepseek-v4.1-flash",
+            "exit": 0,
+            "usage_provider": "opencode-go",
+            "usage_model": "deepseek-v4.1-flash",
+            "usage_status": 200,
+            "usage_receipt_reason": ""
+          }
+        ]
+      },
+      {
+        "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\EXECUTE_dispatch_receipt_attempt1.json.attempts.ndjson",
+        "generated_utc": null,
+        "run_id": "2140-1792049969",
+        "fields": {
+          "ok": "<ABSENT>",
+          "code": "<ABSENT>",
+          "required_arm": "<ABSENT>",
+          "served_arm": "<ABSENT>",
+          "used_rank": "<ABSENT>",
+          "used_transport_model": "<ABSENT>",
+          "usage_receipt_ok": true,
+          "nonce_present": false,
+          "nonce_absent_arms": "<ABSENT>"
+        },
+        "attempts": [
+          {
+            "ok": "<ABSENT>",
+            "code": "<ABSENT>",
+            "required_arm": "<ABSENT>",
+            "served_arm": "<ABSENT>",
+            "used_rank": "<ABSENT>",
+            "used_transport_model": "<ABSENT>",
+            "usage_receipt_ok": true,
+            "nonce_present": false,
+            "nonce_absent_arms": "<ABSENT>",
+            "rank": 1,
+            "provider": "opencode-go",
+            "model": "deepseek-v4.1-flash",
+            "transport_model": "opencode-go/deepseek-v4.1-flash",
+            "exit": 0,
+            "usage_provider": "opencode-go",
+            "usage_model": "deepseek-v4.1-flash",
+            "usage_status": 200,
+            "usage_receipt_reason": ""
+          }
+        ]
+      },
+      {
+        "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\EXECUTE_dispatch_receipt_attempt1.json.attempts.ndjson",
+        "generated_utc": null,
+        "run_id": "4640-1792119447",
+        "fields": {
+          "ok": "<ABSENT>",
+          "code": "<ABSENT>",
+          "required_arm": "<ABSENT>",
+          "served_arm": "<ABSENT>",
+          "used_rank": "<ABSENT>",
+          "used_transport_model": "<ABSENT>",
+          "usage_receipt_ok": true,
+          "nonce_present": false,
+          "nonce_absent_arms": "<ABSENT>"
+        },
+        "attempts": [
+          {
+            "ok": "<ABSENT>",
+            "code": "<ABSENT>",
+            "required_arm": "<ABSENT>",
+            "served_arm": "<ABSENT>",
+            "used_rank": "<ABSENT>",
+            "used_transport_model": "<ABSENT>",
+            "usage_receipt_ok": true,
+            "nonce_present": false,
+            "nonce_absent_arms": "<ABSENT>",
+            "rank": 1,
+            "provider": "opencode-go",
+            "model": "deepseek-v4.1-flash",
+            "transport_model": "opencode-go/deepseek-v4.1-flash",
+            "exit": 0,
+            "usage_provider": "opencode-go",
+            "usage_model": "deepseek-v4.1-flash",
+            "usage_status": 200,
+            "usage_receipt_reason": ""
+          }
+        ]
+      },
+      {
+        "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\EXECUTE_dispatch_receipt_attempt1.json.attempts.ndjson",
+        "generated_utc": null,
+        "run_id": "2480-1792119780",
+        "fields": {
+          "ok": "<ABSENT>",
+          "code": "<ABSENT>",
+          "required_arm": "<ABSENT>",
+          "served_arm": "<ABSENT>",
+          "used_rank": "<ABSENT>",
+          "used_transport_model": "<ABSENT>",
+          "usage_receipt_ok": true,
+          "nonce_present": false,
+          "nonce_absent_arms": "<ABSENT>"
+        },
+        "attempts": [
+          {
+            "ok": "<ABSENT>",
+            "code": "<ABSENT>",
+            "required_arm": "<ABSENT>",
+            "served_arm": "<ABSENT>",
+            "used_rank": "<ABSENT>",
+            "used_transport_model": "<ABSENT>",
+            "usage_receipt_ok": true,
+            "nonce_present": false,
+            "nonce_absent_arms": "<ABSENT>",
+            "rank": 1,
+            "provider": "opencode-go",
+            "model": "deepseek-v4.1-flash",
+            "transport_model": "opencode-go/deepseek-v4.1-flash",
+            "exit": 0,
+            "usage_provider": "opencode-go",
+            "usage_model": "deepseek-v4.1-flash",
+            "usage_status": 200,
+            "usage_receipt_reason": ""
+          }
+        ]
+      },
+      {
+        "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\EXECUTE_dispatch_receipt_attempt2.json",
+        "generated_utc": "2026-10-15T13:44:43.260313+00:00",
+        "run_id": null,
+        "fields": {
+          "ok": false,
+          "code": "ERR_LANE_ALL_ROUTES_EXHAUSTED",
+          "required_arm": "<ABSENT>",
+          "served_arm": "<ABSENT>",
+          "used_rank": null,
+          "used_transport_model": null,
+          "usage_receipt_ok": false,
+          "nonce_present": "<ABSENT>",
+          "nonce_absent_arms": "<ABSENT>"
+        },
+        "attempts": [
+          {
+            "ok": "<ABSENT>",
+            "code": "<ABSENT>",
+            "required_arm": "<ABSENT>",
+            "served_arm": "<ABSENT>",
+            "used_rank": "<ABSENT>",
+            "used_transport_model": "<ABSENT>",
+            "usage_receipt_ok": true,
+            "nonce_present": false,
+            "nonce_absent_arms": "<ABSENT>",
+            "rank": 1,
+            "provider": "opencode-go",
+            "model": "deepseek-v4.1-flash",
+            "transport_model": "opencode-go/deepseek-v4.1-flash",
+            "exit": "TIMEOUT",
+            "usage_provider": "opencode-go",
+            "usage_model": "deepseek-v4.1-flash",
+            "usage_status": 200,
+            "usage_receipt_reason": ""
+          }
+        ]
+      },
+      {
+        "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\EXECUTE_dispatch_receipt_attempt2.json.attempts.ndjson",
+        "generated_utc": null,
+        "run_id": "13796-1792069182",
+        "fields": {
+          "ok": "<ABSENT>",
+          "code": "<ABSENT>",
+          "required_arm": "<ABSENT>",
+          "served_arm": "<ABSENT>",
+          "used_rank": "<ABSENT>",
+          "used_transport_model": "<ABSENT>",
+          "usage_receipt_ok": true,
+          "nonce_present": false,
+          "nonce_absent_arms": "<ABSENT>"
+        },
+        "attempts": [
+          {
+            "ok": "<ABSENT>",
+            "code": "<ABSENT>",
+            "required_arm": "<ABSENT>",
+            "served_arm": "<ABSENT>",
+            "used_rank": "<ABSENT>",
+            "used_transport_model": "<ABSENT>",
+            "usage_receipt_ok": true,
+            "nonce_present": false,
+            "nonce_absent_arms": "<ABSENT>",
+            "rank": 1,
+            "provider": "opencode-go",
+            "model": "deepseek-v4.1-flash",
+            "transport_model": "opencode-go/deepseek-v4.1-flash",
+            "exit": "TIMEOUT",
+            "usage_provider": "opencode-go",
+            "usage_model": "deepseek-v4.1-flash",
+            "usage_status": 200,
+            "usage_receipt_reason": ""
+          }
+        ]
+      },
+      {
+        "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\EXECUTE_dispatch_receipt_attempt3.json",
+        "generated_utc": "2026-10-15T13:53:57.119331+00:00",
+        "run_id": null,
+        "fields": {
+          "ok": false,
+          "code": "ERR_NO_ARM_EMITTED_NONCE",
+          "required_arm": "<ABSENT>",
+          "served_arm": "<ABSENT>",
+          "used_rank": null,
+          "used_transport_model": null,
+          "usage_receipt_ok": true,
+          "nonce_present": "<ABSENT>",
+          "nonce_absent_arms": [
+            "opencode-go/deepseek-v4.1-flash"
+          ]
+        },
+        "attempts": [
+          {
+            "ok": "<ABSENT>",
+            "code": "<ABSENT>",
+            "required_arm": "<ABSENT>",
+            "served_arm": "<ABSENT>",
+            "used_rank": "<ABSENT>",
+            "used_transport_model": "<ABSENT>",
+            "usage_receipt_ok": true,
+            "nonce_present": false,
+            "nonce_absent_arms": "<ABSENT>",
+            "rank": 1,
+            "provider": "opencode-go",
+            "model": "deepseek-v4.1-flash",
+            "transport_model": "opencode-go/deepseek-v4.1-flash",
+            "exit": 0,
+            "usage_provider": "opencode-go",
+            "usage_model": "deepseek-v4.1-flash",
+            "usage_status": 200,
+            "usage_receipt_reason": ""
+          }
+        ]
+      },
+      {
+        "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\EXECUTE_dispatch_receipt_attempt3.json.attempts.ndjson",
+        "generated_utc": null,
+        "run_id": "6960-1792071910",
+        "fields": {
+          "ok": "<ABSENT>",
+          "code": "<ABSENT>",
+          "required_arm": "<ABSENT>",
+          "served_arm": "<ABSENT>",
+          "used_rank": "<ABSENT>",
+          "used_transport_model": "<ABSENT>",
+          "usage_receipt_ok": true,
+          "nonce_present": false,
+          "nonce_absent_arms": "<ABSENT>"
+        },
+        "attempts": [
+          {
+            "ok": "<ABSENT>",
+            "code": "<ABSENT>",
+            "required_arm": "<ABSENT>",
+            "served_arm": "<ABSENT>",
+            "used_rank": "<ABSENT>",
+            "used_transport_model": "<ABSENT>",
+            "usage_receipt_ok": true,
+            "nonce_present": false,
+            "nonce_absent_arms": "<ABSENT>",
+            "rank": 1,
+            "provider": "opencode-go",
+            "model": "deepseek-v4.1-flash",
+            "transport_model": "opencode-go/deepseek-v4.1-flash",
+            "exit": 0,
+            "usage_provider": "opencode-go",
+            "usage_model": "deepseek-v4.1-flash",
+            "usage_status": 200,
+            "usage_receipt_reason": ""
+          }
+        ]
+      },
+      {
+        "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\VERIFY_SECURITY_dispatch_receipt_attempt1.json",
+        "generated_utc": "2026-10-16T03:48:17.068755+00:00",
+        "run_id": null,
+        "fields": {
+          "ok": false,
+          "code": "ERR_NO_ARM_EMITTED_NONCE",
+          "required_arm": "<ABSENT>",
+          "served_arm": "<ABSENT>",
+          "used_rank": null,
+          "used_transport_model": null,
+          "usage_receipt_ok": true,
+          "nonce_present": "<ABSENT>",
+          "nonce_absent_arms": [
+            "opencode-go/glm-5.3-flash"
+          ]
+        },
+        "attempts": [
+          {
+            "ok": "<ABSENT>",
+            "code": "<ABSENT>",
+            "required_arm": "<ABSENT>",
+            "served_arm": "<ABSENT>",
+            "used_rank": "<ABSENT>",
+            "used_transport_model": "<ABSENT>",
+            "usage_receipt_ok": true,
+            "nonce_present": false,
+            "nonce_absent_arms": "<ABSENT>",
+            "rank": 2,
+            "provider": "opencode-go",
+            "model": "glm-5.3-flash",
+            "transport_model": "opencode-go/glm-5.3-flash",
+            "exit": 0,
+            "usage_provider": "opencode-go",
+            "usage_model": "glm-5.3-flash",
+            "usage_status": 200,
+            "usage_receipt_reason": ""
+          }
+        ]
+      },
+      {
+        "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\VERIFY_SECURITY_dispatch_receipt_attempt1.json.attempts.ndjson",
+        "generated_utc": null,
+        "run_id": "10124-1792072488",
+        "fields": {
+          "ok": "<ABSENT>",
+          "code": "<ABSENT>",
+          "required_arm": "<ABSENT>",
+          "served_arm": "<ABSENT>",
+          "used_rank": "<ABSENT>",
+          "used_transport_model": "<ABSENT>",
+          "usage_receipt_ok": true,
+          "nonce_present": false,
+          "nonce_absent_arms": "<ABSENT>"
+        },
+        "attempts": [
+          {
+            "ok": "<ABSENT>",
+            "code": "<ABSENT>",
+            "required_arm": "<ABSENT>",
+            "served_arm": "<ABSENT>",
+            "used_rank": "<ABSENT>",
+            "used_transport_model": "<ABSENT>",
+            "usage_receipt_ok": true,
+            "nonce_present": false,
+            "nonce_absent_arms": "<ABSENT>",
+            "rank": 2,
+            "provider": "opencode-go",
+            "model": "glm-5.3-flash",
+            "transport_model": "opencode-go/glm-5.3-flash",
+            "exit": 0,
+            "usage_provider": "opencode-go",
+            "usage_model": "glm-5.3-flash",
+            "usage_status": 200,
+            "usage_receipt_reason": ""
+          }
+        ]
+      },
+      {
+        "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\VERIFY_SECURITY_dispatch_receipt_attempt1.json.attempts.ndjson",
+        "generated_utc": null,
+        "run_id": "2900-1792121826",
+        "fields": {
+          "ok": "<ABSENT>",
+          "code": "<ABSENT>",
+          "required_arm": "<ABSENT>",
+          "served_arm": "<ABSENT>",
+          "used_rank": "<ABSENT>",
+          "used_transport_model": "<ABSENT>",
+          "usage_receipt_ok": true,
+          "nonce_present": false,
+          "nonce_absent_arms": "<ABSENT>"
+        },
+        "attempts": [
+          {
+            "ok": "<ABSENT>",
+            "code": "<ABSENT>",
+            "required_arm": "<ABSENT>",
+            "served_arm": "<ABSENT>",
+            "used_rank": "<ABSENT>",
+            "used_transport_model": "<ABSENT>",
+            "usage_receipt_ok": true,
+            "nonce_present": false,
+            "nonce_absent_arms": "<ABSENT>",
+            "rank": 2,
+            "provider": "opencode-go",
+            "model": "glm-5.3-flash",
+            "transport_model": "opencode-go/glm-5.3-flash",
+            "exit": 0,
+            "usage_provider": "opencode-go",
+            "usage_model": "glm-5.3-flash",
+            "usage_status": 200,
+            "usage_receipt_reason": ""
+          }
+        ]
+      },
+      {
+        "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\VERIFY_SECURITY_dispatch_receipt_attempt2.json",
+        "generated_utc": "2026-10-15T15:16:29.721565+00:00",
+        "run_id": null,
+        "fields": {
+          "ok": false,
+          "code": "ERR_CHECKER_MUTATED_SUBJECT",
+          "required_arm": "<ABSENT>",
+          "served_arm": "<ABSENT>",
+          "used_rank": null,
+          "used_transport_model": null,
+          "usage_receipt_ok": false,
+          "nonce_present": "<ABSENT>",
+          "nonce_absent_arms": "<ABSENT>"
+        },
+        "attempts": [
+          {
+            "ok": "<ABSENT>",
+            "code": "<ABSENT>",
+            "required_arm": "<ABSENT>",
+            "served_arm": "<ABSENT>",
+            "used_rank": "<ABSENT>",
+            "used_transport_model": "<ABSENT>",
+            "usage_receipt_ok": true,
+            "nonce_present": false,
+            "nonce_absent_arms": "<ABSENT>",
+            "rank": 2,
+            "provider": "opencode-go",
+            "model": "glm-5.3-flash",
+            "transport_model": "opencode-go/glm-5.3-flash",
+            "exit": "TIMEOUT",
+            "usage_provider": "opencode-go",
+            "usage_model": "glm-5.3-flash",
+            "usage_status": 200,
+            "usage_receipt_reason": ""
+          }
+        ]
+      },
+      {
+        "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\VERIFY_SECURITY_dispatch_receipt_attempt2.json.attempts.ndjson",
+        "generated_utc": null,
+        "run_id": "8844-1792058116",
+        "fields": {
+          "ok": "<ABSENT>",
+          "code": "<ABSENT>",
+          "required_arm": "<ABSENT>",
+          "served_arm": "<ABSENT>",
+          "used_rank": "<ABSENT>",
+          "used_transport_model": "<ABSENT>",
+          "usage_receipt_ok": true,
+          "nonce_present": false,
+          "nonce_absent_arms": "<ABSENT>"
+        },
+        "attempts": [
+          {
+            "ok": "<ABSENT>",
+            "code": "<ABSENT>",
+            "required_arm": "<ABSENT>",
+            "served_arm": "<ABSENT>",
+            "used_rank": "<ABSENT>",
+            "used_transport_model": "<ABSENT>",
+            "usage_receipt_ok": true,
+            "nonce_present": false,
+            "nonce_absent_arms": "<ABSENT>",
+            "rank": 2,
+            "provider": "opencode-go",
+            "model": "glm-5.3-flash",
+            "transport_model": "opencode-go/glm-5.3-flash",
+            "exit": 0,
+            "usage_provider": "opencode-go",
+            "usage_model": "glm-5.3-flash",
+            "usage_status": 200,
+            "usage_receipt_reason": ""
+          }
+        ]
+      },
+      {
+        "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\VERIFY_SECURITY_dispatch_receipt_attempt2.json.attempts.ndjson",
+        "generated_utc": null,
+        "run_id": "21748-1792074089",
+        "fields": {
+          "ok": "<ABSENT>",
+          "code": "<ABSENT>",
+          "required_arm": "<ABSENT>",
+          "served_arm": "<ABSENT>",
+          "used_rank": "<ABSENT>",
+          "used_transport_model": "<ABSENT>",
+          "usage_receipt_ok": true,
+          "nonce_present": false,
+          "nonce_absent_arms": "<ABSENT>"
+        },
+        "attempts": [
+          {
+            "ok": "<ABSENT>",
+            "code": "<ABSENT>",
+            "required_arm": "<ABSENT>",
+            "served_arm": "<ABSENT>",
+            "used_rank": "<ABSENT>",
+            "used_transport_model": "<ABSENT>",
+            "usage_receipt_ok": true,
+            "nonce_present": false,
+            "nonce_absent_arms": "<ABSENT>",
+            "rank": 2,
+            "provider": "opencode-go",
+            "model": "glm-5.3-flash",
+            "transport_model": "opencode-go/glm-5.3-flash",
+            "exit": "TIMEOUT",
+            "usage_provider": "opencode-go",
+            "usage_model": "glm-5.3-flash",
+            "usage_status": 200,
+            "usage_receipt_reason": ""
+          }
+        ]
+      },
+      {
+        "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\VERIFY_SECURITY_dispatch_receipt_attempt3.json",
+        "generated_utc": "2026-10-15T15:34:30.183205+00:00",
+        "run_id": null,
+        "fields": {
+          "ok": false,
+          "code": "ERR_NO_ARM_EMITTED_NONCE",
+          "required_arm": "<ABSENT>",
+          "served_arm": "<ABSENT>",
+          "used_rank": null,
+          "used_transport_model": null,
+          "usage_receipt_ok": true,
+          "nonce_present": "<ABSENT>",
+          "nonce_absent_arms": [
+            "opencode-go/glm-5.3-flash"
+          ]
+        },
+        "attempts": [
+          {
+            "ok": "<ABSENT>",
+            "code": "<ABSENT>",
+            "required_arm": "<ABSENT>",
+            "served_arm": "<ABSENT>",
+            "used_rank": "<ABSENT>",
+            "used_transport_model": "<ABSENT>",
+            "usage_receipt_ok": true,
+            "nonce_present": false,
+            "nonce_absent_arms": "<ABSENT>",
+            "rank": 2,
+            "provider": "opencode-go",
+            "model": "glm-5.3-flash",
+            "transport_model": "opencode-go/glm-5.3-flash",
+            "exit": 0,
+            "usage_provider": "opencode-go",
+            "usage_model": "glm-5.3-flash",
+            "usage_status": 200,
+            "usage_receipt_reason": ""
+          }
+        ]
+      },
+      {
+        "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\VERIFY_SECURITY_dispatch_receipt_attempt3.json.attempts.ndjson",
+        "generated_utc": null,
+        "run_id": "21480-1792059540",
+        "fields": {
+          "ok": "<ABSENT>",
+          "code": "<ABSENT>",
+          "required_arm": "<ABSENT>",
+          "served_arm": "<ABSENT>",
+          "used_rank": "<ABSENT>",
+          "used_transport_model": "<ABSENT>",
+          "usage_receipt_ok": true,
+          "nonce_present": false,
+          "nonce_absent_arms": "<ABSENT>"
+        },
+        "attempts": [
+          {
+            "ok": "<ABSENT>",
+            "code": "<ABSENT>",
+            "required_arm": "<ABSENT>",
+            "served_arm": "<ABSENT>",
+            "used_rank": "<ABSENT>",
+            "used_transport_model": "<ABSENT>",
+            "usage_receipt_ok": true,
+            "nonce_present": false,
+            "nonce_absent_arms": "<ABSENT>",
+            "rank": 2,
+            "provider": "opencode-go",
+            "model": "glm-5.3-flash",
+            "transport_model": "opencode-go/glm-5.3-flash",
+            "exit": 0,
+            "usage_provider": "opencode-go",
+            "usage_model": "glm-5.3-flash",
+            "usage_status": 200,
+            "usage_receipt_reason": ""
+          }
+        ]
+      },
+      {
+        "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\VERIFY_SECURITY_dispatch_receipt_attempt3.json.attempts.ndjson",
+        "generated_utc": null,
+        "run_id": "22084-1792077446",
+        "fields": {
+          "ok": "<ABSENT>",
+          "code": "<ABSENT>",
+          "required_arm": "<ABSENT>",
+          "served_arm": "<ABSENT>",
+          "used_rank": "<ABSENT>",
+          "used_transport_model": "<ABSENT>",
+          "usage_receipt_ok": true,
+          "nonce_present": false,
+          "nonce_absent_arms": "<ABSENT>"
+        },
+        "attempts": [
+          {
+            "ok": "<ABSENT>",
+            "code": "<ABSENT>",
+            "required_arm": "<ABSENT>",
+            "served_arm": "<ABSENT>",
+            "used_rank": "<ABSENT>",
+            "used_transport_model": "<ABSENT>",
+            "usage_receipt_ok": true,
+            "nonce_present": false,
+            "nonce_absent_arms": "<ABSENT>",
+            "rank": 2,
+            "provider": "opencode-go",
+            "model": "glm-5.3-flash",
+            "transport_model": "opencode-go/glm-5.3-flash",
+            "exit": 0,
+            "usage_provider": "opencode-go",
+            "usage_model": "glm-5.3-flash",
+            "usage_status": 200,
+            "usage_receipt_reason": ""
+          }
+        ]
+      },
+      {
+        "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\VERIFY_SECURITY_dispatch_receipt_attempt4.json",
+        "generated_utc": "2026-10-15T16:48:58.995815+00:00",
+        "run_id": null,
+        "fields": {
+          "ok": false,
+          "code": "ERR_NO_ARM_EMITTED_NONCE",
+          "required_arm": "<ABSENT>",
+          "served_arm": "<ABSENT>",
+          "used_rank": null,
+          "used_transport_model": null,
+          "usage_receipt_ok": true,
+          "nonce_present": "<ABSENT>",
+          "nonce_absent_arms": [
+            "opencode-go/glm-5.3-flash"
+          ]
+        },
+        "attempts": [
+          {
+            "ok": "<ABSENT>",
+            "code": "<ABSENT>",
+            "required_arm": "<ABSENT>",
+            "served_arm": "<ABSENT>",
+            "used_rank": "<ABSENT>",
+            "used_transport_model": "<ABSENT>",
+            "usage_receipt_ok": true,
+            "nonce_present": false,
+            "nonce_absent_arms": "<ABSENT>",
+            "rank": 2,
+            "provider": "opencode-go",
+            "model": "glm-5.3-flash",
+            "transport_model": "opencode-go/glm-5.3-flash",
+            "exit": 0,
+            "usage_provider": "opencode-go",
+            "usage_model": "glm-5.3-flash",
+            "usage_status": 200,
+            "usage_receipt_reason": ""
+          }
+        ]
+      },
+      {
+        "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\VERIFY_SECURITY_dispatch_receipt_attempt4.json.attempts.ndjson",
+        "generated_utc": null,
+        "run_id": "23092-1792081150",
+        "fields": {
+          "ok": "<ABSENT>",
+          "code": "<ABSENT>",
+          "required_arm": "<ABSENT>",
+          "served_arm": "<ABSENT>",
+          "used_rank": "<ABSENT>",
+          "used_transport_model": "<ABSENT>",
+          "usage_receipt_ok": true,
+          "nonce_present": false,
+          "nonce_absent_arms": "<ABSENT>"
+        },
+        "attempts": [
+          {
+            "ok": "<ABSENT>",
+            "code": "<ABSENT>",
+            "required_arm": "<ABSENT>",
+            "served_arm": "<ABSENT>",
+            "used_rank": "<ABSENT>",
+            "used_transport_model": "<ABSENT>",
+            "usage_receipt_ok": true,
+            "nonce_present": false,
+            "nonce_absent_arms": "<ABSENT>",
+            "rank": 2,
+            "provider": "opencode-go",
+            "model": "glm-5.3-flash",
+            "transport_model": "opencode-go/glm-5.3-flash",
+            "exit": 0,
+            "usage_provider": "opencode-go",
+            "usage_model": "glm-5.3-flash",
+            "usage_status": 200,
+            "usage_receipt_reason": ""
+          }
+        ]
+      },
+      {
+        "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\VERIFY_SECURITY_dispatch_receipt_attempt5.json",
+        "generated_utc": "2026-10-15T16:53:09.867108+00:00",
+        "run_id": null,
+        "fields": {
+          "ok": false,
+          "code": "ERR_LANE_REMOTE_WRITE_NOT_AUTHORIZED",
+          "required_arm": "<ABSENT>",
+          "served_arm": "<ABSENT>",
+          "used_rank": "<ABSENT>",
+          "used_transport_model": "<ABSENT>",
+          "usage_receipt_ok": "<ABSENT>",
+          "nonce_present": "<ABSENT>",
+          "nonce_absent_arms": "<ABSENT>"
+        },
+        "attempts": []
+      }
+    ],
+    "raw_final_receipt_files": 8,
+    "raw_trail_rows": 12,
+    "recent_R8_final_receipts": [
+      {
+        "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\EXECUTE_dispatch_receipt_attempt1.json",
+        "generated_utc": "2026-10-16T03:28:54.914511+00:00",
+        "run_id": null,
+        "fields": {
+          "ok": false,
+          "code": "ERR_NO_ARM_EMITTED_NONCE",
+          "required_arm": "<ABSENT>",
+          "served_arm": "<ABSENT>",
+          "used_rank": null,
+          "used_transport_model": null,
+          "usage_receipt_ok": true,
+          "nonce_present": "<ABSENT>",
+          "nonce_absent_arms": [
+            "opencode-go/deepseek-v4.1-flash"
+          ]
+        },
+        "attempts": [
+          {
+            "ok": "<ABSENT>",
+            "code": "<ABSENT>",
+            "required_arm": "<ABSENT>",
+            "served_arm": "<ABSENT>",
+            "used_rank": "<ABSENT>",
+            "used_transport_model": "<ABSENT>",
+            "usage_receipt_ok": true,
+            "nonce_present": false,
+            "nonce_absent_arms": "<ABSENT>",
+            "rank": 1,
+            "provider": "opencode-go",
+            "model": "deepseek-v4.1-flash",
+            "transport_model": "opencode-go/deepseek-v4.1-flash",
+            "exit": 0,
+            "usage_provider": "opencode-go",
+            "usage_model": "deepseek-v4.1-flash",
+            "usage_status": 200,
+            "usage_receipt_reason": ""
+          }
+        ]
+      },
+      {
+        "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\VERIFY_SECURITY_dispatch_receipt_attempt1.json",
+        "generated_utc": "2026-10-16T03:48:17.068755+00:00",
+        "run_id": null,
+        "fields": {
+          "ok": false,
+          "code": "ERR_NO_ARM_EMITTED_NONCE",
+          "required_arm": "<ABSENT>",
+          "served_arm": "<ABSENT>",
+          "used_rank": null,
+          "used_transport_model": null,
+          "usage_receipt_ok": true,
+          "nonce_present": "<ABSENT>",
+          "nonce_absent_arms": [
+            "opencode-go/glm-5.3-flash"
+          ]
+        },
+        "attempts": [
+          {
+            "ok": "<ABSENT>",
+            "code": "<ABSENT>",
+            "required_arm": "<ABSENT>",
+            "served_arm": "<ABSENT>",
+            "used_rank": "<ABSENT>",
+            "used_transport_model": "<ABSENT>",
+            "usage_receipt_ok": true,
+            "nonce_present": false,
+            "nonce_absent_arms": "<ABSENT>",
+            "rank": 2,
+            "provider": "opencode-go",
+            "model": "glm-5.3-flash",
+            "transport_model": "opencode-go/glm-5.3-flash",
+            "exit": 0,
+            "usage_provider": "opencode-go",
+            "usage_model": "glm-5.3-flash",
+            "usage_status": 200,
+            "usage_receipt_reason": ""
+          }
+        ]
+      }
+    ],
+    "recent_R8_trail_run_ids": [
+      "4640-1792119447",
+      "2480-1792119780",
+      "2900-1792121826"
+    ],
+    "error_condition_source": {
+      "path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\scripts\\hgk-lane-dispatch.py",
+      "start": 1033,
+      "end": 1062,
+      "quote": "1033|def failure_disposition(attempts: list) -> dict:\n1034|    \"\"\"C1: the failure code for a run that produced no usable turn, without conflating conditions.\n1035|\n1036|    Kept additive: a run that answered (exit 0 + a valid usage receipt) but emitted no nonce reads\n1037|    ERR_NO_ARM_EMITTED_NONCE. EVERY case where no arm produced an acceptable turn -- including a run\n1038|    where every attempt timed out -- keeps the generic ERR_LANE_ALL_ROUTES_EXHAUSTED, per the frozen\n1039|    oracle. The timeout CASE is still MEASURED via `timed_out_arms` (an additive field), but the CODE\n1040|    is never ERR_ALL_ATTEMPTS_TIMED_OUT (that constant/branch is removed, not left dead). Returns\n1041|    receipt fields to merge.\n1042|\n1043|    I3 (pass-5): the FROZEN oracle's C1 classification TAKES PRECEDENCE. A turn with exit 0, a valid\n1044|    usage receipt and no nonce is ERR_NO_ARM_EMITTED_NONCE + nonce_absent_arms whatever the carrier\n1045|    shape was -- an invalid carrier merely means the TEXT is absent, which is exactly \"emitted no\n1046|    nonce\". A rewritten-ledger attempt zeroes its own `rec_ok`, so it never counts as `answered` here.\n1047|\n1048|    J4 (pass-6, code precedence): the top level emits ONLY a code derivable from the frozen\n1049|    requirement's table -- ERR_NO_ARM_EMITTED_NONCE when some arm produced an acceptable turn, else\n1050|    the generic ERR_LANE_ALL_ROUTES_EXHAUSTED. The pass-4 diagnostics (ERR_CARRIER_SHAPE_INVALID /\n1051|    ERR_USAGE_LEDGER_REWRITTEN) are NO LONGER top-level codes: they are per-attempt DETAIL fields\n1052|    (each attempt already carries `carrier_shape_invalid` / `usage_ledger_rewritten` and its own\n1053|    `usage_receipt_reason`), so a diagnostic can never outrank the requirement's classification.\n1054|    \"\"\"\n1055|    answered = [a for a in attempts if a.get(\"exit\") == 0 and a.get(\"usage_receipt_ok\")]\n1056|    if answered and not any(a.get(\"nonce_present\") for a in answered):\n1057|        return {\"code\": \"ERR_NO_ARM_EMITTED_NONCE\",\n1058|                \"nonce_absent_arms\": [f\"{a.get('provider')}/{a.get('model')}\" for a in answered]}\n1059|    fields: dict = {\"code\": \"ERR_LANE_ALL_ROUTES_EXHAUSTED\"}\n1060|    if attempts and all(a.get(\"exit\") == \"TIMEOUT\" for a in attempts):\n1061|        fields[\"timed_out_arms\"] = [f\"{a.get('provider')}/{a.get('model')}\" for a in attempts]\n1062|    return fields"
+    },
+    "where_error_is_surfaced": {
+      "path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\scripts\\hgk-lane-dispatch.py",
+      "start": 2226,
+      "end": 2235,
+      "quote": "2226|    if not receipt[\"ok\"]:\n2227|        # C1: the failure code no longer conflates two disjoint conditions. A run where arms answered\n2228|        # but none emitted the nonce reads differently from a run where every attempt timed out, and\n2229|        # only those fall back to the generic exhausted code.\n2230|        receipt.update(failure_disposition(attempts))\n2231|    if used is not None and args.require_arm:\n2232|        # Always record the pair positively, so a passing receipt also states WHICH arm served.\n2233|        receipt[\"required_arm\"] = str(args.require_arm)\n2234|        receipt[\"served_arm\"] = f\"{used['provider']}/{used['model']}\"\n2235|        if f\"{used['provider']}/{used['model']}\" != str(args.require_arm):"
+    },
+    "attempt_identity_fields_source": {
+      "path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\scripts\\hgk-lane-dispatch.py",
+      "start": 1263,
+      "end": 1276,
+      "quote": "1263|    attempt = {\"rank\": entry[\"rank\"], \"provider\": entry[\"provider\"], \"model\": entry[\"model\"],\n1264|            \"transport_model\": entry[\"transport_model\"], \"sandbox\": sandbox,\n1265|            \"reasoning_effort\": entry.get(\"reasoning_effort\"), \"exit\": rc, \"timed_out\": timed_out,\n1266|            \"seconds\": dur, \"nonce_present\": nonce_ok, \"nonce_present_raw_stdout\": nonce_raw,\n1267|            \"nonce_source\": \"item.completed/agent_message\",\n1268|            \"usage_rows_after_offset\": len(rows), \"usage_offset\": offset,\n1269|            \"usage_provider\": (matched or {}).get(\"provider\"), \"usage_model\": (matched or {}).get(\"model\"),\n1270|            # The observed (even if rejected) row's status is preserved so an operator sees WHY a\n1271|            # receipt was refused (H2: `status:200.9` must be visible, not silently dropped).\n1272|            \"usage_status\": (matched or observed or {}).get(\"status\"), \"usage_receipt_ok\": rec_ok,\n1273|            \"usage_receipt_reason\": reject_reason,\n1274|            \"usage_ledger_rewritten\": ledger_rewritten,\n1275|            \"usage_rows_shape_invalid\": shape_invalid_count,\n1276|            \"usage_rows_undecodable\": undecodable_count,"
+    },
+    "trail_and_usable_turn_gate": {
+      "path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\scripts\\hgk-lane-dispatch.py",
+      "start": 2123,
+      "end": 2138,
+      "quote": "2123|            attempts.append(att)\n2124|        if trail:\n2125|            trail.parent.mkdir(parents=True, exist_ok=True)\n2126|            with trail.open(\"a\", encoding=\"utf-8\") as fh:\n2127|                fh.write(json.dumps({\"run_id\": f\"{os.getpid()}-{run_started}\", \"at_utc\": datetime.now(UTC).isoformat(),\n2128|                                     \"lane\": args.lane, \"attempt_in_run\": len(attempts), **att},\n2129|                                    ensure_ascii=False, sort_keys=True) + \"\\n\")\n2130|        if att.get(\"exit\") == 0 and att.get(\"nonce_present\") and att.get(\"usage_receipt_ok\"):\n2131|            _ce = None\n2132|            if bound:\n2133|                _ce = _resolve_completion_evidence(att, validated_binding, root=args.cwd or ROOT)\n2134|                completion_evidence = {\"checked\": True, \"refusal\": _ce}\n2135|            else:\n2136|                completion_evidence = {\"checked\": False}\n2137|            if _ce is None:\n2138|                used = att"
+    },
+    "top_level_receipt_fields": {
+      "path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\scripts\\hgk-lane-dispatch.py",
+      "start": 2202,
+      "end": 2235,
+      "quote": "2202|        \"attempts\": attempts,\n2203|        \"used_rank\": used[\"rank\"] if used else None,\n2204|        \"used_transport_model\": used[\"transport_model\"] if used else None,\n2205|        \"used_seconds\": used[\"seconds\"] if used else None,\n2206|        \"generated_utc\": datetime.now(UTC).isoformat(),\n2207|        \"claim_ceiling\": \"a pass here proves the Codex-CLI lane served this turn through the relay with a matching usage receipt; it is not an acceptance of any subject\",\n2208|    }\n2209|    receipt[\"ok\"] = used is not None\n2210|    receipt[\"completion_evidence\"] = completion_evidence\n2211|    # I3 (pass-5): surface the USAGE MEASUREMENT at the top level too, taken from the serving attempt\n2212|    # (or the first attempt that answered when none served). A wrong-shaped CARRIER is a statement\n2213|    # about the TEXT, not about the usage row, so it must NOT overwrite this value -- the frozen C1\n2214|    # classification (exit 0 + valid usage + no nonce) reads exactly this.\n2215|    _serving = used if used is not None else next(\n2216|        (a for a in attempts if a.get(\"exit\") == 0), None)\n2217|    receipt[\"usage_receipt_ok\"] = bool(_serving.get(\"usage_receipt_ok\")) if _serving else False\n2218|    # I2 (pass-5): surface the wrong-shaped-row count on the receipt itself (in every case, not only\n2219|    # the failure path), so a skipped/counted bad row is operator-visible even on a passing turn.\n2220|    receipt[\"usage_rows_shape_invalid\"] = sum(\n2221|        int(a.get(\"usage_rows_shape_invalid\") or 0) for a in attempts)\n2222|    # J1 (pass-6): surface the undecodable-line count too, so a line dropped by strict UTF-8 decoding\n2223|    # is operator-visible (it can never be a receipt, and it was never substituted into one).\n2224|    receipt[\"usage_rows_undecodable\"] = sum(\n2225|        int(a.get(\"usage_rows_undecodable\") or 0) for a in attempts)\n2226|    if not receipt[\"ok\"]:\n2227|        # C1: the failure code no longer conflates two disjoint conditions. A run where arms answered\n2228|        # but none emitted the nonce reads differently from a run where every attempt timed out, and\n2229|        # only those fall back to the generic exhausted code.\n2230|        receipt.update(failure_disposition(attempts))\n2231|    if used is not None and args.require_arm:\n2232|        # Always record the pair positively, so a passing receipt also states WHICH arm served.\n2233|        receipt[\"required_arm\"] = str(args.require_arm)\n2234|        receipt[\"served_arm\"] = f\"{used['provider']}/{used['model']}\"\n2235|        if f\"{used['provider']}/{used['model']}\" != str(args.require_arm):"
+    },
+    "answer": "YES: answered-arm attribution is recoverable from attempts[].provider/model/transport_model, backed by attempts[].usage_provider/usage_model/usage_status=200 and usage_receipt_ok=true, and from nonce_absent_arms. Recent EXECUTE runs answered on opencode-go/deepseek-v4.1-flash rank 1; recent VERIFY answered on opencode-go/glm-5.3-flash rank 2. The missing nonce means the completion/nonce attestation failed, NOT that model identity fields are absent. Top-level served_arm is genuinely absent and used_rank/used_transport_model null because used is assigned only after exit==0 AND nonce_present AND usage_receipt_ok (and any completion gate). Never upgrade these runs to successful/accepted turns. This is relay-usage attribution, not independent provider-internals model attestation.",
+    "error_semantics": "ERR_NO_ARM_EMITTED_NONCE is returned (not raised as an exception) at 1057 by failure_disposition when at least one attempt has exit 0 and truthy usage_receipt_ok, and none of those answered attempts has nonce_present. The returned fields merge into receipt at 2230; failure receipt is written at 2269. Timeouts alone do not meet answered."
+  },
+  "C": {
+    "declared_values_complete": {
+      "registry_routes": [
+        {
+          "lane": "PLAN",
+          "role_group": "PLAN",
+          "lanes": [
+            "ARCH",
+            "HARD WORK",
+            "THREAT",
+            "EFFECT PLANNING",
+            "RESEARCH",
+            "SYNTHESIS",
+            "EVOLUTION"
+          ],
+          "engine": "hermes",
+          "provider": "opencode-go",
+          "model": "glm-5.3-flash",
+          "canonical_identity": "glm-5.3-flash",
+          "auth": "env_ref:OPENCODE_GO_API_KEY",
+          "oauth": false,
+          "reasoning_effort": "medium",
+          "selection_authority": "owner-order-20261015-plan-model-rebind-glm",
+          "arms": [
+            {
+              "arm": "primary",
+              "provider": "opencode-go",
+              "model": "glm-5.3-flash",
+              "canonical_identity": "glm-5.3-flash",
+              "auth": "env_ref:OPENCODE_GO_API_KEY",
+              "oauth": false,
+              "reasoning_effort": "medium",
+              "default": true
+            },
+            {
+              "arm": "fallback1",
+              "provider": "opencode-go",
+              "model": "deepseek-v4.1-flash",
+              "canonical_identity": "deepseek-v4.1-flash",
+              "auth": "env_ref:OPENCODE_GO_API_KEY",
+              "oauth": false,
+              "default": false,
+              "automatic_selection": true
+            },
+            {
+              "arm": "non_default_operator_selectable",
+              "provider": "openai-codex",
+              "model": "gpt-6.1-sol",
+              "canonical_identity": "gpt-6.1-sol",
+              "auth": "openai_oauth",
+              "oauth": true,
+              "reasoning_effort": "medium",
+              "default": false,
+              "automatic_selection": false,
+              "usable_now": "QUOTA_429_2026-10-15",
+              "note": "prior revision-18 default arm; retained, never auto-selected"
+            }
+          ],
+          "fallbacks": [
+            {
+              "provider": "opencode-go",
+              "model": "deepseek-v4.1-flash",
+              "canonical_identity": "deepseek-v4.1-flash",
+              "auth": "env_ref:OPENCODE_GO_API_KEY",
+              "oauth": false
+            },
+            {
+              "provider": "openai-codex",
+              "model": "gpt-6.1-sol",
+              "canonical_identity": "gpt-6.1-sol",
+              "auth": "openai_oauth",
+              "oauth": true
+            }
+          ],
+          "admission_status": "UNPROVEN"
+        },
+        {
+          "lane": "EXECUTE",
+          "role_group": "EXECUTE",
+          "lanes": [
+            "BULK BUILD",
+            "BULK SECURITY TEST",
+            "REPAIR",
+            "BULK CODE",
+            "HARNESS",
+            "EVAL CODE",
+            "BULK TRANSFORM"
+          ],
+          "engine": "codex-cli",
+          "provider": "opencode-go",
+          "model": "deepseek-v4.1-flash",
+          "canonical_identity": "deepseek-v4.1-flash",
+          "auth": "env_ref:OPENCODE_GO_API_KEY",
+          "oauth": false,
+          "selection_authority": "owner-order-20261015-lane-model-chain-rebind",
+          "arms": [
+            {
+              "arm": "fallback1_operator_selectable",
+              "provider": "openai-codex",
+              "model": "gpt-6-luna",
+              "canonical_identity": "gpt-6-luna",
+              "engine": "codex-cli",
+              "transport": "codex-native-oauth",
+              "auth": "openai_oauth",
+              "oauth": true,
+              "automatic_selection": false,
+              "default": false,
+              "admission_status": "UNPROVEN",
+              "note_preexisting": "HTTP_400_UNSUPPORTED_ON_CURRENT_CLI_ACCOUNT backend probe; UNPROVEN admission"
+            },
+            {
+              "arm": "fallback2_auto",
+              "provider": "nvidia",
+              "model": "deepseek-ai/deepseek-v4.1-flash",
+              "canonical_identity": "deepseek-v4.1-flash",
+              "engine": "codex-cli",
+              "auth": "env_ref:NVIDIA_API_KEY",
+              "oauth": false,
+              "default": false,
+              "automatic_selection": true,
+              "note_preexisting": "nvidia provider namespace not loaded into running relay; needs owner-approved relay restart"
+            }
+          ],
+          "fallbacks": [
+            {
+              "provider": "openai-codex",
+              "model": "gpt-6-luna",
+              "canonical_identity": "gpt-6-luna",
+              "auth": "openai_oauth",
+              "oauth": true
+            },
+            {
+              "provider": "nvidia",
+              "model": "deepseek-ai/deepseek-v4.1-flash",
+              "canonical_identity": "deepseek-v4.1-flash",
+              "auth": "env_ref:NVIDIA_API_KEY",
+              "oauth": false
+            }
+          ],
+          "admission_status": "UNPROVEN"
+        },
+        {
+          "lane": "VERIFY_SECURITY",
+          "role_group": "VERIFY_SECURITY",
+          "lanes": [
+            "ACCEPTANCE",
+            "SECURITY REVIEW",
+            "VERIFY"
+          ],
+          "engine": "hermes",
+          "provider": "openai-codex",
+          "model": "gpt-6.1-sol",
+          "reasoning_effort": "medium",
+          "canonical_identity": "gpt-6.1-sol",
+          "auth": "openai_oauth",
+          "oauth": true,
+          "selection_authority": "owner-order-20261015-lane-model-chain-rebind",
+          "selected_arm": "A",
+          "selected_arm_identity": "gpt-6.1-sol",
+          "arms": [
+            {
+              "arm": "A",
+              "model": "gpt-6.1-sol",
+              "provider": "openai-codex",
+              "canonical_identity": "gpt-6.1-sol",
+              "auth": "openai_oauth",
+              "oauth": true,
+              "reasoning_effort": "medium",
+              "co_equal": false,
+              "role": "primary",
+              "default": true
+            },
+            {
+              "arm": "B",
+              "model": "glm-5.3-flash",
+              "provider": "opencode-go",
+              "canonical_identity": "glm-5.3-flash",
+              "auth": "env_ref:OPENCODE_GO_API_KEY",
+              "oauth": false,
+              "reasoning_effort": "medium",
+              "co_equal": false,
+              "role": "fallback1_operator_selectable",
+              "default": false,
+              "automatic_selection": true
+            },
+            {
+              "arm": "C",
+              "model": "deepseek-v4.1-flash",
+              "provider": "opencode-go",
+              "canonical_identity": "deepseek-v4.1-flash",
+              "auth": "env_ref:OPENCODE_GO_API_KEY",
+              "oauth": false,
+              "co_equal": false,
+              "role": "fallback2_operator_selectable",
+              "default": false,
+              "automatic_selection": true
+            }
+          ],
+          "fallbacks": [
+            {
+              "provider": "opencode-go",
+              "model": "glm-5.3-flash",
+              "canonical_identity": "glm-5.3-flash",
+              "auth": "env_ref:OPENCODE_GO_API_KEY",
+              "oauth": false
+            },
+            {
+              "provider": "opencode-go",
+              "model": "deepseek-v4.1-flash",
+              "canonical_identity": "deepseek-v4.1-flash",
+              "auth": "env_ref:OPENCODE_GO_API_KEY",
+              "oauth": false
+            }
+          ],
+          "admission_status": "UNPROVEN"
+        }
+      ],
+      "assignment": [
+        {
+          "lane_group": "PLAN",
+          "lanes": [
+            "ARCH",
+            "HARD WORK",
+            "THREAT",
+            "EFFECT PLANNING",
+            "RESEARCH",
+            "SYNTHESIS",
+            "EVOLUTION"
+          ],
+          "assigned_model": "glm-5.3-flash",
+          "assigned_provider": "opencode-go",
+          "reasoning_effort": "medium",
+          "supply": "OpenCode Go",
+          "rationale": "Revision 19 owner order 2026-10-15: rank-1 default is now opencode-go/glm-5.3-flash (medium) for the in-Hermes PLAN & Orchestrator plane; the GPT arm is exhausted and demoted to a non-default, non-automatic alternate. Prior rationale (revision 18 GPT-6.1_SOL default) preserved in revision_19_reason / rebind_note_revision_18.",
+          "non_default_alternates": [
+            {
+              "provider": "openai-codex",
+              "model": "gpt-6.1-sol",
+              "reasoning_effort": "medium",
+              "auth": "openai_oauth",
+              "oauth": true,
+              "default": false,
+              "automatic_selection": false,
+              "usable_now": "QUOTA_429_2026-10-15",
+              "note": "prior default arm, retained as an explicit operator-selectable alternate; not selected automatically"
+            }
+          ]
+        },
+        {
+          "lane_group": "EXECUTE",
+          "lanes": [
+            "BULK BUILD",
+            "BULK SECURITY TEST",
+            "REPAIR",
+            "BULK CODE",
+            "HARNESS",
+            "EVAL CODE",
+            "BULK TRANSFORM"
+          ],
+          "assigned_model": "deepseek-v4.1-flash",
+          "assigned_provider": "opencode-go",
+          "supply": "OpenCode Go",
+          "executor": "CODEX CLI (sealed HGK lane) — NOT the Hermes main loop",
+          "additional_routes": [
+            {
+              "provider": "openai-codex",
+              "model": "gpt-6-luna",
+              "engine": "codex-cli",
+              "transport": "codex-native-oauth",
+              "auth": "openai_oauth",
+              "oauth": true,
+              "default": false,
+              "automatic_selection": false,
+              "admission_status": "UNPROVEN",
+              "authorization_basis": "WO-PIPD-R5-EXECUTE-LUNA-ROUTE-20261009"
+            }
+          ],
+          "rationale": "Primary sealed lane remains deepseek-v4.1-flash/opencode-go. Owner authorizes an explicit gpt-6-luna/openai-codex native OAuth additional route under WO-PIPD-R5-EXECUTE-LUNA-ROUTE-20261009; not an automatic fallback, not backend-availability proof, bounded-writer admission remains required."
+        },
+        {
+          "lane_group": "VERIFY_SECURITY",
+          "lanes": [
+            "ACCEPTANCE",
+            "SECURITY REVIEW",
+            "VERIFY"
+          ],
+          "assigned_model": "glm-5.3-flash",
+          "assigned_provider": "opencode-go",
+          "reasoning_effort": "medium",
+          "supply": "DEFAULT primary arm A = OpenCode Go / glm-5.3-flash; arm B = OpenAI OAuth / gpt-6.1-sol is fallback only. Both arms are medium.",
+          "selection_authority": "owner adjudication; unspecified dispatch selects primary arm A; arm B is a non-default operator-selectable alternate, never auto-selected and remains forbidden for PLAN-made artifacts",
+          "supply_selector": {
+            "unspecified_default": {
+              "arm": "A",
+              "model": "gpt-6.1-sol",
+              "provider": "openai-codex",
+              "auth": "ChatGPT OAuth",
+              "reasoning_effort": "medium",
+              "canonical_identity": "gpt-6.1-sol",
+              "oauth": true
+            },
+            "arms": [
+              {
+                "arm": "A",
+                "model": "gpt-6.1-sol",
+                "provider": "openai-codex",
+                "auth": "ChatGPT OAuth",
+                "reasoning_effort": "medium",
+                "co_equal": false,
+                "role": "primary",
+                "canonical_identity": "gpt-6.1-sol",
+                "oauth": true,
+                "default": true
+              },
+              {
+                "arm": "B",
+                "model": "glm-5.3-flash",
+                "provider": "opencode-go",
+                "auth": "env_ref:OPENCODE_GO_API_KEY",
+                "reasoning_effort": "medium",
+                "co_equal": false,
+                "role": "fallback1_operator_selectable",
+                "canonical_identity": "glm-5.3-flash",
+                "oauth": false,
+                "default": false,
+                "automatic_selection": true
+              },
+              {
+                "arm": "C",
+                "model": "deepseek-v4.1-flash",
+                "provider": "opencode-go",
+                "auth": "env_ref:OPENCODE_GO_API_KEY",
+                "reasoning_effort": "medium",
+                "co_equal": false,
+                "role": "fallback2_operator_selectable",
+                "canonical_identity": "deepseek-v4.1-flash",
+                "oauth": false,
+                "default": false,
+                "automatic_selection": true
+              }
+            ],
+            "declared_only_vs_enforced": "Canonical route_for_lane resolves primary arm A (gpt-6.1-sol OAuth). Governed dispatch must pin the canonical lane route and check_sod; fallbacks allowed in ARM order; SOD rules still apply.",
+            "alternate_relationship": "Arm A is primary; B/C are ordered fallbacks, auto-reached only on typed refusal of earlier arms; never silently substituted before checking A."
+          },
+          "rationale": "Owner adjudication resolves default PLAN/VERIFY model collision: primary VERIFY arm A is glm-5.3-flash; arm B gpt-6.1-sol is fallback only and may not check a PLAN-made artifact. Provider separation is not required.",
+          "observed_state": "Arm A (opencode-go/glm-5.3-flash) completed a Hermes subagent turn in 158.9 s (FAR-LANE-VERIFY-002). Arm B (openai-codex/gpt-6.1-sol) is the model this round's PLAN lanes and every prior acceptance-officer lane ran on (e.g. deleg_dc8bcd60). Re-verified in this round by the two SWARM lanes.",
+          "canonical_identity": "glm-5.3-flash",
+          "auth": "env_ref:OPENCODE_GO_API_KEY",
+          "oauth": false
+        }
+      ],
+      "lane_chains": {
+        "PLAN": [
+          {
+            "model": "glm-5.3-flash",
+            "provider": "opencode-go",
+            "reasoning_effort": "medium",
+            "role": "primary",
+            "default": true,
+            "arm": "A"
+          },
+          {
+            "model": "deepseek-v4.1-flash",
+            "provider": "opencode-go",
+            "role": "fallback1",
+            "default": false,
+            "automatic_selection": true
+          },
+          {
+            "model": "gpt-6.1-sol",
+            "provider": "openai-codex",
+            "reasoning_effort": "medium",
+            "role": "non_default_operator_selectable",
+            "default": false,
+            "automatic_selection": false,
+            "usable_now": "QUOTA_429_2026-10-15",
+            "note": "demoted from default by owner order 2026-10-15; retained, never auto-selected"
+          }
+        ],
+        "EXECUTE": [
+          {
+            "model": "deepseek-v4.1-flash",
+            "provider": "opencode-go",
+            "reasoning_effort": null
+          },
+          {
+            "model": "gpt-6-luna",
+            "provider": "openai-codex",
+            "transport": "codex-native-oauth",
+            "automatic_selection": false,
+            "default": false
+          },
+          {
+            "model": "deepseek-ai/deepseek-v4.1-flash",
+            "provider": "nvidia"
+          },
+          {
+            "arm": "owner_selectable_additional",
+            "model": "gpt-6-luna",
+            "provider": "openai-codex",
+            "engine": "codex-cli",
+            "transport": "codex-native-oauth",
+            "auth": "openai_oauth",
+            "automatic_selection": false,
+            "default": false,
+            "usable_now": "BACKEND_HTTP_400_UNSUPPORTED_ON_CURRENT_CLI_ACCOUNT",
+            "admission_status": "UNPROVEN",
+            "authorization_basis": "WO-PIPD-R5-EXECUTE-LUNA-ROUTE-20261009"
+          }
+        ],
+        "VERIFY_SECURITY": [
+          {
+            "role": "primary",
+            "model": "gpt-6.1-sol",
+            "provider": "openai-codex",
+            "reasoning_effort": "medium",
+            "default": true,
+            "arm": "A"
+          },
+          {
+            "role": "fallback1",
+            "model": "glm-5.3-flash",
+            "provider": "opencode-go",
+            "default": false,
+            "automatic_selection": true,
+            "arm": "B",
+            "reasoning_effort": "medium"
+          },
+          {
+            "role": "fallback2",
+            "model": "deepseek-v4.1-flash",
+            "provider": "opencode-go",
+            "default": false,
+            "automatic_selection": true
+          }
+        ]
+      },
+      "digest_bindings": [
+        {
+          "projection": "hermes-codex-lane",
+          "path": "config/hermes-codex-lane.json",
+          "pointer": "/codex_sha256",
+          "expected": "e98c516f1c8935789aabe9122ee7e05ec4c3efd1ba6acf179242e031c495b99e"
+        }
+      ]
+    },
+    "drift_raw": {
+      "argv": [
+        "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-c",
+        "import sys,json;sys.path.insert(0,'src');from hg_kseos.lane_policy import check_drift,load_registry;print(json.dumps(check_drift(registry=load_registry()),ensure_ascii=False,indent=2))"
+      ],
+      "cwd": "C:\\Projects\\Agent_Workspace\\HG-KSEOS",
+      "stdout": "[]\n",
+      "stderr": "",
+      "exit": 0
+    },
+    "drift_verdict": "[] (exit 0): no projection mismatch reported by the repository check_drift at measurement time.",
+    "digest_expected": "e98c516f1c8935789aabe9122ee7e05ec4c3efd1ba6acf179242e031c495b99e",
+    "projection": "hermes-codex-lane / config/hermes-codex-lane.json /codex_sha256",
+    "declaration_disagreement_not_covered_by_empty_drift": "Assignment VERIFY_SECURITY top-level assigned_provider/model is opencode-go/glm-5.3-flash while registry route, assignment supply_selector default A, and lane_chains VERIFY rank 1 name openai-codex/gpt-6.1-sol. Registry projection expectations explicitly pin both inconsistent surfaces, so empty check_drift does not prove internal semantic consistency or conformity to an external mandate. PLAN route remains opencode-go/glm-5.3-flash; EXECUTE reasoning_effort absent in route and assignment, null in lane_chains."
+  },
+  "issues": [
+    "No dispatcher receipt/trail was in the requested R8 subtree; expanded read-only discovery found reused original mission lane_runs paths, with append-only rows distinguishing runs.",
+    "The first pytest trace attempt intended to replace fixture setup but imported top-level test_s4ext_trace_closure while pytest collected tests.test_s4ext_trace_closure; therefore its fixture substitution did not take effect and the original helper performed git init/add/commit only in a disposable directory under ws2. This inadvertently violated the no-git-write-command constraint; no product/control-plane file was changed. Subsequent direct method clean/hardened reproductions omitted the git-initializing helper entirely.",
+    "A broad pathlib discovery of older handover trees hit WinError 1920 on a historical lib64 link; bounded search_files discovery succeeded instead.",
+    "No network used. No remediation implemented. No credential values printed. All authored files and test temporaries are under ws2. Interpreter actually reports Python 3.11.9 in pytest output, despite runtime generic toolchain description."
+  ],
+  "raw_logs": [
+    "measure_raw.log",
+    "more_raw.log",
+    "raw_command_outputs.log"
+  ],
+  "raw_measurements": {
+    "first": {
+      "hardened_status": {
+        "argv": [
+          "git",
+          "--no-optional-locks",
+          "status",
+          "--short"
+        ],
+        "cwd": "C:\\Projects\\Agent_Workspace\\PIPD\\worktrees\\r8-wt",
+        "exit": 0,
+        "stdout": " M src/pipd_ls_sp/cli.py\n M src/pipd_ls_sp/pipeline.py\n M src/pipd_ls_sp/validate.py\n",
+        "stderr": ""
+      },
+      "hardened_head": {
+        "argv": [
+          "git",
+          "rev-parse",
+          "HEAD"
+        ],
+        "cwd": "C:\\Projects\\Agent_Workspace\\PIPD\\worktrees\\r8-wt",
+        "exit": 0,
+        "stdout": "dba4b19456777d3b597fdf71480f6423dd974243\n",
+        "stderr": ""
+      },
+      "clean_status": {
+        "argv": [
+          "git",
+          "--no-optional-locks",
+          "status",
+          "--short"
+        ],
+        "cwd": "C:\\Projects\\wt-r8-cleanmain",
+        "exit": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      "clean_head": {
+        "argv": [
+          "git",
+          "rev-parse",
+          "HEAD"
+        ],
+        "cwd": "C:\\Projects\\wt-r8-cleanmain",
+        "exit": 0,
+        "stdout": "dba4b19456777d3b597fdf71480f6423dd974243\n",
+        "stderr": ""
+      },
+      "diff": {
+        "argv": [
+          "git",
+          "diff",
+          "--numstat"
+        ],
+        "cwd": "C:\\Projects\\Agent_Workspace\\PIPD\\worktrees\\r8-wt",
+        "exit": 0,
+        "stdout": "7\t1\tsrc/pipd_ls_sp/cli.py\n39\t0\tsrc/pipd_ls_sp/pipeline.py\n157\t5\tsrc/pipd_ls_sp/validate.py\n",
+        "stderr": ""
+      },
+      "patch": {
+        "argv": [
+          "git",
+          "diff",
+          "--",
+          "src/pipd_ls_sp/validate.py",
+          "src/pipd_ls_sp/pipeline.py",
+          "src/pipd_ls_sp/cli.py"
+        ],
+        "cwd": "C:\\Projects\\Agent_Workspace\\PIPD\\worktrees\\r8-wt",
+        "exit": 0,
+        "stdout": "diff --git a/src/pipd_ls_sp/cli.py b/src/pipd_ls_sp/cli.py\nindex 4a2e13f..ba8a62d 100644\n--- a/src/pipd_ls_sp/cli.py\n+++ b/src/pipd_ls_sp/cli.py\n@@ -168,7 +168,13 @@ def run(args: argparse.Namespace) -> dict:\n         # winning only when it actually contains registry.json. The chosen surface is\n         # reported so the operator can see which copy produced the verdict.\n         schemas_dir, mode, tried = registry.resolve_for_validate(root)\n-        out = validate.validate_bundle(bundle, schemas_dir)\n+        # R7-0 wiring: derive a deterministic frozen context from an embedded PI package when the\n+        # bundle carries one, so the trace-endpoint / oracle-expected / profile-assurance bindings\n+        # are discharged against frozen references. With no source for a given binding the hardened\n+        # validator fails closed (UNBOUND_FROZEN_CONTEXT) instead of silently passing.\n+        source = bundle.get(\"PI-PKG\") if isinstance(bundle.get(\"PI-PKG\"), dict) else None\n+        frozen = validate.derive_frozen_context(source)\n+        out = validate.validate_bundle(bundle, schemas_dir, frozen)\n         out[\"schema_source\"] = {\"mode\": mode,\n                                 \"path\": str(schemas_dir) if schemas_dir is not None else \"\",\n                                 \"tried\": tried}\ndiff --git a/src/pipd_ls_sp/pipeline.py b/src/pipd_ls_sp/pipeline.py\nindex 75799b7..76d1c20 100644\n--- a/src/pipd_ls_sp/pipeline.py\n+++ b/src/pipd_ls_sp/pipeline.py\n@@ -204,6 +204,45 @@ def strip_sidecar(record: dict[str, Any]) -> dict[str, Any]:\n     return {k: v for k, v in record.items() if not k.startswith(\"_\")}\n \n \n+# ---------------------------------------------------------------- validation wiring (R7-0)\n+def frozen_validation_context(pi: dict[str, Any]) -> dict[str, Any]:\n+    \"\"\"Deterministic frozen context (profile requirement, oracle expectations, trace endpoint\n+    digests) derived from a PI package, for `validate.validate_bundle(..., frozen_context=...)`.\n+\n+    Every value is read from the record the caller already holds; no LLM, network or clock is\n+    consulted. This is how the pipeline PASSES the frozen context the R7-0 validator binds to.\n+    \"\"\"\n+    from . import validate as _validate\n+    return _validate.derive_frozen_context(pi)\n+\n+\n+def validate_pi(pi: dict[str, Any], schemas_dir: Path | None = None) -> dict[str, Any]:\n+    \"\"\"Validate a PI package - the PI-PKG record, its ProfileBinding, every RequirementAtom and\n+    every TraceLink - against the frozen context derived from itself.\n+\n+    Deterministic only. This is the pipeline-level entrypoint that threads the optional frozen\n+    context through to the hardened `semantic_invariants`, so the trace-digest / oracle-expected /\n+    profile-assurance bindings are checked on the compiler's own output.\n+    \"\"\"\n+    from . import validate as _validate\n+    ctx = _validate.derive_frozen_context(pi)\n+    findings: list[dict[str, str]] = list(\n+        _validate.validate_bundle({\"PI-PKG\": strip_sidecar(pi)}, schemas_dir, ctx)[\"findings\"])\n+    ssc = pi.get(\"stable_semantic_contract\") or {}\n+    members: list[tuple[str, dict[str, Any]]] = []\n+    if isinstance(ssc.get(\"profile_binding\"), dict):\n+        members.append((\"ProfileBinding\", ssc[\"profile_binding\"]))\n+    members += [(\"RequirementAtom\", a) for a in (ssc.get(\"atoms\") or []) if isinstance(a, dict)]\n+    members += [(\"TraceLink\", t) for t in (pi.get(\"trace\") or []) if isinstance(t, dict)]\n+    for contract, rec in members:\n+        for f in _validate.validate_record(contract, rec, schemas_dir):\n+            findings.append({\"contract\": contract, \"kind\": \"SCHEMA\", \"detail\": f})\n+        for f in _validate.semantic_invariants(contract, rec, ctx):\n+            findings.append({\"contract\": contract, \"kind\": \"SEMANTIC\", \"detail\": f})\n+    return {\"verdict\": \"PASS\" if not findings else \"FAIL\",\n+            \"checked\": 1 + len(members), \"findings\": findings}\n+\n+\n # ---------------------------------------------------------------- PD\n def bind_pd(pi: dict[str, Any], repo_context: dict[str, Any] | None) -> dict[str, Any]:\n     \"\"\"Late-bind PD against a REAL repository context (R-AUD-009).\ndiff --git a/src/pipd_ls_sp/validate.py b/src/pipd_ls_sp/validate.py\nindex 7c3145c..81b443b 100644\n--- a/src/pipd_ls_sp/validate.py\n+++ b/src/pipd_ls_sp/validate.py\n@@ -14,6 +14,17 @@ from .errors import ValidationFail\n CLAIM_LADDER = [\"PROMPT_COMPILE_PASS\", \"HGK_ADMITTED\", \"RUNTIME_READY\", \"LOCAL_QUALIFIED\",\n                 \"INDEPENDENT_PASS\", \"PUBLICATION_APPROVED\", \"RELEASED\", \"PRODUCTION_VERIFIED\"]\n RELEASE_BOUND = (\"PI-PKG\", \"PD-PKG\", \"ECP\", \"TQAEP\", \"ConstructionContract\")\n+# R7-0 hardening (EIA-R6-04 / M16). The self-describing digest rule that the release-bound\n+# families already enforce is extended to the identity-bearing sub-records whose body carries a\n+# reference an attacker can swap without re-issuing identity: a RequirementAtom (`risk_guard`),\n+# a ProfileBinding (`assurance`/`artifact_depth`) and a TraceLink (`to_hash`/`from_hash`). A body\n+# edited without re-issuing identity (e.g. a TraceLink `to_hash` replaced by 64 f's) is refused.\n+DIGEST_BOUND = RELEASE_BOUND + (\"RequirementAtom\", \"ProfileBinding\", \"TraceLink\")\n+# The clause polarity -> oracle expected value is a FROZEN rule of the requirement compiler\n+# (requirements.compile_requirements): a MUST clause expects the obligation to be `required`, a\n+# MUST NOT clause expects it to be `forbidden`. Binding `oracle.expected` to it means an oracle\n+# whose declared expectation contradicts its own clause polarity is a mismatch.\n+POLARITY_EXPECTED = {\"MUST\": \"required\", \"MUST NOT\": \"forbidden\"}\n \n # CE-2 refinement (checker counterexample CE-CODEX-TRACE-WIDENING). Two DISTINCT concepts that\n # used to be conflated into one list: \"fields excluded from the body hash\" and \"fields that are\n@@ -114,9 +125,20 @@ def _body_hash(record: dict[str, Any]) -> str:\n                                      separators=(\",\", \":\")).encode()).hexdigest()\n \n \n-def semantic_invariants(contract: str, record: dict[str, Any]) -> list[str]:\n-    \"\"\"Semantic invariants that a JSON Schema cannot express.\"\"\"\n+def semantic_invariants(contract: str, record: dict[str, Any],\n+                        frozen_context: dict[str, Any] | None = None) -> list[str]:\n+    \"\"\"Semantic invariants that a JSON Schema cannot express.\n+\n+    ``frozen_context`` is an OPTIONAL, caller-supplied, deterministic read-only map of the frozen\n+    references a record must be bound to (profile requirements, oracle expectations, trace\n+    endpoint digests). It is never an LLM/network dependency: every value is data the caller already\n+    holds. ``None`` means \"not available\": a contract whose binding REQUIRES frozen context then\n+    fails closed with an explicit ``UNBOUND_FROZEN_CONTEXT`` finding instead of silently passing.\n+    The argument is purely additive - with ``frozen_context=None`` every check that does not require\n+    frozen context behaves exactly as before.\n+    \"\"\"\n     out: list[str] = []\n+    fc = frozen_context or {}\n     ident = (\"subject_id\", \"version\", \"content_hash\", \"schema_version\")\n     for field in ident:\n         if field not in record:\n@@ -134,7 +156,11 @@ def semantic_invariants(contract: str, record: dict[str, Any]) -> list[str]:\n         out.append(f\"{contract}: subject_id is implausibly short to be a content id\")\n     if record.get(\"recomputed_body_hash_required\") is True:\n         pass  # explicit opt-out is itself rejected below for release-bound families\n-    if contract in RELEASE_BOUND and ch and len(record) > 4:\n+    if contract in DIGEST_BOUND and ch and len(record) > 4:\n+        # R7-0 (M16/M06/M04): the record must remain self-consistent - a body edited in place\n+        # without re-issuing identity (a swapped `to_hash`, a poisoned `oracle.expected`, a\n+        # downgraded `assurance`) is refused here. This generalizes the release-bound rule to the\n+        # identity-bearing sub-records; it strengthens, never weakens, the existing predicate.\n         if ch != _body_hash(record):\n             out.append(f\"{contract}: content_hash does not match the record body \"\n                        \"(body edited without re-issuing identity)\")\n@@ -190,6 +216,94 @@ def semantic_invariants(contract: str, record: dict[str, Any]) -> list[str]:\n         for side in (\"from\", \"to\"):\n             if not (record.get(f\"{side}_type\") and record.get(f\"{side}_id\")):\n                 out.append(f\"TraceLink: {side} endpoint incomplete\")\n+        # R7-0 (M16): a trace link must bind each endpoint to the FROZEN digest of the atom it\n+        # points at. A link whose `to_hash` was swapped (e.g. 64 f's) keeps its own content_hash\n+        # intact, so the self-digest check above cannot see it - the reference must be resolved\n+        # against the frozen subject->digest map. When that map is absent the binding cannot be\n+        # discharged, so the validator fails closed rather than passing an unverifiable reference.\n+        fc_endpoints = fc.get(\"trace_endpoint_hashes\")\n+        for side in (\"from\", \"to\"):\n+            ref_id = record.get(f\"{side}_id\")\n+            recorded = str(record.get(f\"{side}_hash\") or \"\")\n+            if recorded and not HEX64.match(recorded):\n+                out.append(f\"TraceLink: {side}_hash must be a 64-char lowercase sha256 hex digest\")\n+            if fc_endpoints is None:\n+                if ref_id and recorded:\n+                    out.append(\"TraceLink: UNBOUND_FROZEN_CONTEXT: \"\n+                               f\"{side}_hash cannot be verified against a frozen subject->digest \"\n+                               \"map (frozen context not supplied); binding is unproven, not a pass\")\n+                continue\n+            want = fc_endpoints.get(ref_id)\n+            if want is None:\n+                out.append(f\"TraceLink: {side}_id {ref_id!r} is not present in the frozen \"\n+                           \"context (endpoint has no frozen digest to bind to)\")\n+            elif recorded != want:\n+                out.append(f\"TraceLink: {side}_hash does not match the frozen digest of \"\n+                           f\"{ref_id!r} (recorded {recorded[:12]}, frozen {str(want)[:12]})\")\n+    if contract == \"RequirementAtom\":\n+        # R7-0 (M06): the oracle's `expected` value is not a free-standing number - it is DERIVED\n+        # from the clause polarity (MUST -> required, MUST NOT -> forbidden). A value that\n+        # contradicts the atom's own polarity (e.g. 999) is refused. When the frozen oracle\n+        # expectation for this atom is available it must match too, so the value is bound to the\n+        # frozen acceptance source rather than merely being present.\n+        rg = record.get(\"risk_guard\")\n+        rg = rg if isinstance(rg, dict) else {}\n+        oracle = rg.get(\"oracle\")\n+        oracle = oracle if isinstance(oracle, dict) else {}\n+        expected = oracle.get(\"expected\")\n+        polarity = rg.get(\"polarity\")\n+        derived = POLARITY_EXPECTED.get(polarity)\n+        if polarity is not None and polarity not in POLARITY_EXPECTED:\n+            out.append(f\"RequirementAtom: risk_guard.polarity must be MUST or MUST NOT, got {polarity!r}\")\n+        elif derived is not None and expected != derived:\n+            out.append(f\"RequirementAtom: oracle.expected {expected!r} contradicts clause polarity \"\n+                       f\"{polarity!r} (must be {derived!r})\")\n+        fc_oracle = fc.get(\"oracle_expected\")\n+        if fc_oracle is not None:\n+            bound = fc_oracle.get(record.get(\"req_id\"))\n+            if bound is not None and expected != bound:\n+                out.append(f\"RequirementAtom: oracle.expected {expected!r} does not match the frozen \"\n+                           f\"acceptance expectation {bound!r} for {record.get('req_id')!r}\")\n+    if contract == \"ProfileBinding\":\n+        # R7-0 (M04): a ProfileBinding must not assert an assurance/artifact_depth weaker than the\n+        # FROZEN requirement for its profile. ASSURED->LITE is a downgrade that a maker cannot\n+        # self-authorize. The frozen requirement is authoritative; if it is not available the\n+        # validator FAILS CLOSED with UNBOUND_FROZEN_CONTEXT instead of silently passing - a missing\n+        # binding is not a pass.\n+        from .profiles import PROFILES\n+        profile = str(record.get(\"profile\") or \"\")\n+        req = PROFILES.get(profile)\n+        assurance = record.get(\"assurance\")\n+        depth = record.get(\"artifact_depth\")\n+        if req is None:\n+            out.append(f\"ProfileBinding: UNBOUND_FROZEN_CONTEXT: profile {profile!r} has no frozen \"\n+                       \"requirement (unknown profile); assurance cannot be verified, not a pass\")\n+        else:\n+            required_assurance = req[\"assurance\"]\n+            missing = [a for a in required_assurance\n+                       if not (isinstance(assurance, list) and a in assurance)]\n+            if missing:\n+                out.append(f\"ProfileBinding: assurance {assurance!r} is weaker than the frozen \"\n+                           f\"requirement for {profile} (missing {missing})\")\n+            if depth != req[\"artifact_depth\"]:\n+                out.append(f\"ProfileBinding: artifact_depth {depth!r} is weaker than the frozen \"\n+                           f\"requirement {req['artifact_depth']!r} for {profile}\")\n+        fc_profile = fc.get(\"profile_requirement\")\n+        if fc_profile is not None:\n+            bound = fc_profile.get(profile)\n+            if bound is None:\n+                out.append(f\"ProfileBinding: UNBOUND_FROZEN_CONTEXT: profile {profile!r} absent \"\n+                           \"from the supplied frozen profile requirement\")\n+            else:\n+                b_assurance = bound.get(\"assurance\") or []\n+                b_missing = [a for a in b_assurance\n+                             if not (isinstance(assurance, list) and a in assurance)]\n+                if b_missing:\n+                    out.append(f\"ProfileBinding: assurance {assurance!r} is weaker than the supplied \"\n+                               f\"frozen requirement for {profile} (missing {b_missing})\")\n+                if bound.get(\"artifact_depth\") and depth != bound[\"artifact_depth\"]:\n+                    out.append(f\"ProfileBinding: artifact_depth {depth!r} does not match the supplied \"\n+                               f\"frozen requirement {bound['artifact_depth']!r} for {profile}\")\n     return out\n \n \n@@ -266,7 +380,8 @@ def closure_findings(bundle: dict[str, dict[str, Any]]) -> dict[str, Any]:\n             \"findings\": [{\"contract\": \"*\", \"kind\": \"CLOSURE\", \"detail\": p} for p in problems]}\n \n \n-def validate_bundle(bundle: dict[str, dict[str, Any]], schemas_dir: Path | None = None) -> dict[str, Any]:\n+def validate_bundle(bundle: dict[str, dict[str, Any]], schemas_dir: Path | None = None,\n+                    frozen_context: dict[str, Any] | None = None) -> dict[str, Any]:\n     findings: list[dict[str, str]] = []\n     # C-4 repair: validate_bundle({}) used to return PASS with checked=0. An empty denominator is\n     # not a verification result.\n@@ -281,7 +396,7 @@ def validate_bundle(bundle: dict[str, dict[str, Any]], schemas_dir: Path | None\n             continue\n         for f in validate_record(contract, record, schemas_dir):\n             findings.append({\"contract\": contract, \"kind\": \"SCHEMA\", \"detail\": f})\n-        for f in semantic_invariants(contract, record):\n+        for f in semantic_invariants(contract, record, frozen_context):\n             findings.append({\"contract\": contract, \"kind\": \"SEMANTIC\", \"detail\": f})\n     # TT-S4EXT-002: `pipd validate --bundle` used to stop at the per-record schema/semantic checks,\n     # so a bad endpoint hash, an orphan edge or a missing endpoint could still return PASS even\n@@ -292,3 +407,40 @@ def validate_bundle(bundle: dict[str, dict[str, Any]], schemas_dir: Path | None\n     findings.extend(closure[\"findings\"])\n     return {\"verdict\": \"PASS\" if not findings else \"FAIL\",\n             \"checked\": len(bundle), \"closure\": closure[\"state\"], \"findings\": findings}\n+\n+\n+def derive_frozen_context(source: dict[str, Any] | None = None, *,\n+                          trace_endpoint_hashes: dict[str, str] | None = None,\n+                          profile_requirement: dict[str, Any] | None = None,\n+                          oracle_expected: dict[str, str] | None = None) -> dict[str, Any]:\n+    \"\"\"Assemble a deterministic frozen context for ``validate_bundle``.\n+\n+    The pieces are all caller-held data; nothing here consults an LLM, the network or any clock.\n+    A PI package carries its atoms and trace links, so when ``source`` is a PI package the\n+    subject->digest endpoint map and the oracle-expected map are read straight from it. Profile\n+    requirements come from the frozen ``profiles.PROFILES`` table by default. Only derivable\n+    pieces are emitted: a map is omitted (rather than guessed) when its source is absent, so the\n+    validator's fail-closed branch for that binding still fires.\n+    \"\"\"\n+    from .profiles import PROFILES\n+    ctx: dict[str, Any] = {}\n+    endpoint_hashes = dict(trace_endpoint_hashes or {})\n+    oracle_expected_map = dict(oracle_expected or {})\n+    if isinstance(source, dict):\n+        ssc = source.get(\"stable_semantic_contract\") or {}\n+        for atom in ssc.get(\"atoms\") or []:\n+            if atom.get(\"subject_id\") and atom.get(\"content_hash\"):\n+                endpoint_hashes.setdefault(atom[\"subject_id\"], atom[\"content_hash\"])\n+            oracle = ((atom.get(\"risk_guard\") or {}).get(\"oracle\") or {})\n+            if atom.get(\"req_id\") and oracle.get(\"expected\") is not None:\n+                oracle_expected_map.setdefault(atom[\"req_id\"], oracle[\"expected\"])\n+        if source.get(\"subject_id\") and source.get(\"content_hash\"):\n+            endpoint_hashes.setdefault(source[\"subject_id\"], source[\"content_hash\"])\n+    if endpoint_hashes:\n+        ctx[\"trace_endpoint_hashes\"] = endpoint_hashes\n+    if oracle_expected_map:\n+        ctx[\"oracle_expected\"] = oracle_expected_map\n+    ctx[\"profile_requirement\"] = profile_requirement or {\n+        name: {\"assurance\": list(spec[\"assurance\"]), \"artifact_depth\": spec[\"artifact_depth\"]}\n+        for name, spec in PROFILES.items()}\n+    return ctx\n",
+        "stderr": ""
+      },
+      "smoke_test": {
+        "argv": [
+          "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+          "-B",
+          "-m",
+          "pytest",
+          "-p",
+          "no:cacheprovider",
+          "--basetemp",
+          "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R9\\FAR\\ws2\\pytest_temp",
+          "tests/test_tooling_executes.py::TestToolingExecutes::test_cli_smoke_runs",
+          "-vv",
+          "--tb=long"
+        ],
+        "cwd": "C:\\Projects\\Agent_Workspace\\PIPD\\worktrees\\r8-wt",
+        "exit": 1,
+        "stdout": "============================= test session starts =============================\nplatform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.6.0 -- C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\python.exe\nrootdir: C:\\Projects\\Agent_Workspace\\PIPD\\worktrees\\r8-wt\nconfigfile: pyproject.toml\nplugins: anyio-4.13.0, platformdirs-4.13.0\ncollecting ... collected 1 item\n\ntests/test_tooling_executes.py::TestToolingExecutes::test_cli_smoke_runs FAILED [100%]\n\n================================== FAILURES ===================================\n___________________ TestToolingExecutes.test_cli_smoke_runs ___________________\n\nself = <tests.test_tooling_executes.TestToolingExecutes testMethod=test_cli_smoke_runs>\n\n    def test_cli_smoke_runs(self) -> None:\n        \"\"\"The 13-command CLI surface must actually execute, not just import.\n    \n        Run inside a throwaway copy of the repo: the runner writes .hgk/artifacts/cli/CLI_SMOKE.json\n        by design, and a test that rewrites tracked evidence makes \"tree clean after a test run\"\n        impossible. The copy has every artifact the runner reads, so nothing is skipped.\n        \"\"\"\n        import os as _os\n        import shutil as _sh\n        import tempfile as _tf\n        with _tf.TemporaryDirectory() as tmp:\n            dst = Path(tmp) / \"repo\"\n            _sh.copytree(ROOT, dst, ignore=_sh.ignore_patterns(\".git\", \"__pycache__\", \"*.db\", \"*.pyc\"))\n            r = subprocess.run([sys.executable, \"-B\", \"tools/cli_smoke.py\"], cwd=str(dst),\n                               capture_output=True, text=True,\n                               env={**_os.environ, \"PYTHONDONTWRITEBYTECODE\": \"1\"})\n>       self.assertEqual(r.returncode, 0,\n                         f\"cli_smoke.py exited {r.returncode}\\n{(r.stderr or r.stdout)[-800:]}\")\nE       AssertionError: 2 != 0 : cli_smoke.py exited 2\nE       {\nE        \"commands_run\": 13,\nE        \"expected\": 13,\nE        \"nonzero_exit\": 1,\nE        \"verdicts\": {\nE         \"init\": \"PASS\",\nE         \"intake\": \"n/a\",\nE         \"profile\": \"n/a\",\nE         \"compile-pi\": \"n/a\",\nE         \"bind-pd\": \"n/a\",\nE         \"compile-ecp\": \"n/a\",\nE         \"compile-tqaep\": \"n/a\",\nE         \"validate\": \"n/a\",\nE         \"doctor\": \"PASS\",\nE         \"project\": \"PASS\",\nE         \"export\": \"PASS\",\nE         \"diff\": \"PASS\",\nE         \"repair\": \"n/a\"\nE        }\nE       }\n\ntests\\test_tooling_executes.py:75: AssertionError\n=========================== short test summary info ===========================\nFAILED tests/test_tooling_executes.py::TestToolingExecutes::test_cli_smoke_runs - AssertionError: 2 != 0 : cli_smoke.py exited 2\n{\n \"commands_run\": 13,\n \"expected\": 13,\n \"nonzero_exit\": 1,\n \"verdicts\": {\n  \"init\": \"PASS\",\n  \"intake\": \"n/a\",\n  \"profile\": \"n/a\",\n  \"compile-pi\": \"n/a\",\n  \"bind-pd\": \"n/a\",\n  \"compile-ecp\": \"n/a\",\n  \"compile-tqaep\": \"n/a\",\n  \"validate\": \"n/a\",\n  \"doctor\": \"PASS\",\n  \"project\": \"PASS\",\n  \"export\": \"PASS\",\n  \"diff\": \"PASS\",\n  \"repair\": \"n/a\"\n }\n}\n============================= 1 failed in 17.77s ==============================\n",
+        "stderr": ""
+      },
+      "crash_repro": {
+        "argv": [
+          "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+          "-B",
+          "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015-R8/WS_B/repro_frozen_crash.py"
+        ],
+        "cwd": "C:\\Projects\\Agent_Workspace\\PIPD\\worktrees\\r8-wt",
+        "exit": 0,
+        "stdout": "PI-PKG risk_guard type: str\nderive_frozen_context: RAISED\n",
+        "stderr": "Traceback (most recent call last):\n  File \"C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R8\\WS_B\\repro_frozen_crash.py\", line 17, in <module>\n    validate.derive_frozen_context(pi)\n  File \"C:\\Projects\\Agent_Workspace\\PIPD\\worktrees\\r8-wt\\src\\pipd_ls_sp\\validate.py\", line 434, in derive_frozen_context\n    oracle = ((atom.get(\"risk_guard\") or {}).get(\"oracle\") or {})\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'str' object has no attribute 'get'\n"
+      },
+      "trace_test_fixture_readonly": {
+        "argv": [
+          "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+          "-B",
+          "-c",
+          "import sys; from pathlib import Path; sys.path.insert(0,'tests'); import test_s4ext_trace_closure as t; t._init_git_repo=lambda p: None; t.LegalTraceStillPassesTests.setUpClass=classmethod(lambda cls: (setattr(cls,'repo',Path('C:/Projects/wt-r8-cleanmain')),setattr(cls,'bundle',t._bundle(cls.repo)))); t.LegalTraceStillPassesTests.tearDownClass=classmethod(lambda cls: None); import pytest; raise SystemExit(pytest.main(['-p','no:cacheprovider','--basetemp',r'C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R9\\FAR\\ws2\\pytest_trace_temp','tests/test_s4ext_trace_closure.py::LegalTraceStillPassesTests::test_real_trace_link_is_legal_beside_its_endpoints','-vv','--tb=long']))"
+        ],
+        "cwd": "C:\\Projects\\Agent_Workspace\\PIPD\\worktrees\\r8-wt",
+        "exit": 1,
+        "stdout": "============================= test session starts =============================\nplatform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.6.0 -- C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\python.exe\nrootdir: C:\\Projects\\Agent_Workspace\\PIPD\\worktrees\\r8-wt\nconfigfile: pyproject.toml\nplugins: anyio-4.13.0, platformdirs-4.13.0\ncollecting ... collected 1 item\n\ntests/test_s4ext_trace_closure.py::LegalTraceStillPassesTests::test_real_trace_link_is_legal_beside_its_endpoints FAILED [100%]\n\n================================== FAILURES ===================================\n_ LegalTraceStillPassesTests.test_real_trace_link_is_legal_beside_its_endpoints _\n\nself = <tests.test_s4ext_trace_closure.LegalTraceStillPassesTests testMethod=test_real_trace_link_is_legal_beside_its_endpoints>\n\n    def test_real_trace_link_is_legal_beside_its_endpoints(self) -> None:\n        \"\"\"A TraceLink bundled WITH the PI it points at resolves on both sides.\"\"\"\n        link = self.bundle[\"PI-PKG\"][\"trace\"][0]\n        res = validate.validate_bundle({\"PI-PKG\": self.bundle[\"PI-PKG\"], \"TraceLink\": link},\n                                       SCHEMAS_DIR)\n>       self.assertEqual(res[\"verdict\"], \"PASS\", str(res[\"findings\"])[:400])\nE       AssertionError: 'FAIL' != 'PASS'\nE       - FAIL\nE       + PASS\nE        : [{'contract': 'TraceLink', 'kind': 'SEMANTIC', 'detail': 'TraceLink: UNBOUND_FROZEN_CONTEXT: from_hash cannot be verified against a frozen subject->digest map (frozen context not supplied); binding is unproven, not a pass'}, {'contract': 'TraceLink', 'kind': 'SEMANTIC', 'detail': 'TraceLink: UNBOUND_FROZEN_CONTEXT: to_hash cannot be verified against a frozen subject->digest map (frozen context not\n\ntests\\test_s4ext_trace_closure.py:113: AssertionError\n=========================== short test summary info ===========================\nFAILED tests/test_s4ext_trace_closure.py::LegalTraceStillPassesTests::test_real_trace_link_is_legal_beside_its_endpoints - AssertionError: 'FAIL' != 'PASS'\n- FAIL\n+ PASS\n : [{'contract': 'TraceLink', 'kind': 'SEMANTIC', 'detail': 'TraceLink: UNBOUND_FROZEN_CONTEXT: from_hash cannot be verified against a frozen subject->digest map (frozen context not supplied); binding is unproven, not a pass'}, {'contract': 'TraceLink', 'kind': 'SEMANTIC', 'detail': 'TraceLink: UNBOUND_FROZEN_CONTEXT: to_hash cannot be verified against a frozen subject->digest map (frozen context not\n============================== 1 failed in 0.45s ==============================\n",
+        "stderr": ""
+      },
+      "drift_source": {
+        "argv": [
+          "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+          "-B",
+          "-c",
+          "import sys,inspect;sys.path.insert(0,'src');from hg_kseos.lane_policy import check_drift,load_registry;print(inspect.getsource(load_registry));print(inspect.getsource(check_drift))"
+        ],
+        "cwd": "C:\\Projects\\Agent_Workspace\\HG-KSEOS",
+        "exit": 0,
+        "stdout": "def load_registry(path: Path | None = None) -> dict[str, Any]:\n    \"\"\"Load the single-source registry document.\"\"\"\n    registry_path = Path(path) if path is not None else DEFAULT_REGISTRY\n    doc = load_site(registry_path)\n    if not isinstance(doc, dict) or doc.get(\"schema\") != \"HGK-LANE-ROUTING-REGISTRY/1\":\n        raise ValueError(f\"not a HGK-LANE-ROUTING-REGISTRY/1 document: {registry_path}\")\n    return doc\n\ndef check_drift(\n    registry_path: Path | None = None,\n    *,\n    root: Path | None = None,\n    registry: dict[str, Any] | None = None,\n) -> list[dict[str, Any]]:\n    \"\"\"Compare live projection sites against the registry; return every disagreement.\n\n    Each finding is a dict: {code, path, pointer, expected, actual, severity, id}. Codes:\n      DRIFT_VALUE       active site disagrees with the registry        (severity: error)\n      COVERAGE_GAP      projection/site/pointer missing or unresolved (severity: error)\n      PROJECTION_DEBT   a recorded debt site still differs            (severity: warn)\n    An empty list means the active sites are conformant.\n    \"\"\"\n    reg = registry if registry is not None else load_registry(registry_path)\n    reg_path = Path(registry_path) if registry_path is not None else DEFAULT_REGISTRY\n    base = Path(root) if root is not None else reg_path.parent.parent\n\n    findings: list[dict[str, Any]] = []\n    projections = reg.get(\"projections\")\n    if not isinstance(projections, list) or not projections:\n        findings.append(_finding(\"COVERAGE_GAP\", \"-\", \"-\", \"non-empty projections[]\", None, \"error\"))\n        return findings\n\n    for projection in projections:\n        site_path = projection.get(\"path\")\n        pid = projection.get(\"id\", site_path)\n        if not site_path:\n            findings.append(_finding(\"COVERAGE_GAP\", str(pid), \"-\", \"path\", None, \"error\"))\n            continue\n        resolved = (base / site_path) if not Path(site_path).is_absolute() else Path(site_path)\n        if not resolved.exists():\n            findings.append(_finding(\"COVERAGE_GAP\", str(site_path), \"-\", \"file exists\", None, \"error\"))\n            continue\n        try:\n            doc = load_site(resolved)\n        except Exception as exc:  # parse failure is a hard coverage gap\n            findings.append(_finding(\"COVERAGE_GAP\", str(site_path), \"-\", \"parseable\", f\"{type(exc).__name__}: {exc}\", \"error\"))\n            continue\n\n        for binding in projection.get(\"bindings\", []):\n            pointer = binding.get(\"pointer\")\n            expected = binding.get(\"expected\")\n            actual = _try_pointer(doc, pointer)\n            if actual is _MISSING:\n                findings.append(_finding(\"COVERAGE_GAP\", site_path, pointer, expected, None, \"error\", pid))\n            elif actual != expected:\n                findings.append(_finding(\"DRIFT_VALUE\", site_path, pointer, expected, actual, \"error\", pid))\n\n        for debt in projection.get(\"debt\", []):\n            pointer = debt.get(\"pointer\")\n            expected = debt.get(\"expected\")\n            actual = _try_pointer(doc, pointer)\n            if actual is _MISSING or actual != expected:\n                findings.append(_finding(\"PROJECTION_DEBT\", site_path, pointer, expected,\n                                         None if actual is _MISSING else actual, \"warn\", pid))\n\n    return findings\n\n",
+        "stderr": ""
+      }
+    },
+    "second": {
+      "drift": {
+        "argv": [
+          "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\.venv\\Scripts\\python.exe",
+          "-B",
+          "-c",
+          "import sys,json;sys.path.insert(0,'src');from hg_kseos.lane_policy import check_drift,load_registry;print(json.dumps(check_drift(registry=load_registry()),ensure_ascii=False,indent=2))"
+        ],
+        "cwd": "C:\\Projects\\Agent_Workspace\\HG-KSEOS",
+        "stdout": "[]\n",
+        "stderr": "",
+        "exit": 0
+      },
+      "mission_receipts": [
+        {
+          "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\EXECUTE_dispatch_receipt_attempt1.json",
+          "generated_utc": "2026-10-16T03:28:54.914511+00:00",
+          "run_id": null,
+          "fields": {
+            "ok": false,
+            "code": "ERR_NO_ARM_EMITTED_NONCE",
+            "required_arm": "<ABSENT>",
+            "served_arm": "<ABSENT>",
+            "used_rank": null,
+            "used_transport_model": null,
+            "usage_receipt_ok": true,
+            "nonce_present": "<ABSENT>",
+            "nonce_absent_arms": [
+              "opencode-go/deepseek-v4.1-flash"
+            ]
+          },
+          "attempts": [
+            {
+              "ok": "<ABSENT>",
+              "code": "<ABSENT>",
+              "required_arm": "<ABSENT>",
+              "served_arm": "<ABSENT>",
+              "used_rank": "<ABSENT>",
+              "used_transport_model": "<ABSENT>",
+              "usage_receipt_ok": true,
+              "nonce_present": false,
+              "nonce_absent_arms": "<ABSENT>",
+              "rank": 1,
+              "provider": "opencode-go",
+              "model": "deepseek-v4.1-flash",
+              "transport_model": "opencode-go/deepseek-v4.1-flash",
+              "exit": 0,
+              "usage_provider": "opencode-go",
+              "usage_model": "deepseek-v4.1-flash",
+              "usage_status": 200,
+              "usage_receipt_reason": ""
+            }
+          ]
+        },
+        {
+          "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\EXECUTE_dispatch_receipt_attempt1.json.attempts.ndjson",
+          "generated_utc": null,
+          "run_id": "2140-1792049969",
+          "fields": {
+            "ok": "<ABSENT>",
+            "code": "<ABSENT>",
+            "required_arm": "<ABSENT>",
+            "served_arm": "<ABSENT>",
+            "used_rank": "<ABSENT>",
+            "used_transport_model": "<ABSENT>",
+            "usage_receipt_ok": true,
+            "nonce_present": false,
+            "nonce_absent_arms": "<ABSENT>"
+          },
+          "attempts": [
+            {
+              "ok": "<ABSENT>",
+              "code": "<ABSENT>",
+              "required_arm": "<ABSENT>",
+              "served_arm": "<ABSENT>",
+              "used_rank": "<ABSENT>",
+              "used_transport_model": "<ABSENT>",
+              "usage_receipt_ok": true,
+              "nonce_present": false,
+              "nonce_absent_arms": "<ABSENT>",
+              "rank": 1,
+              "provider": "opencode-go",
+              "model": "deepseek-v4.1-flash",
+              "transport_model": "opencode-go/deepseek-v4.1-flash",
+              "exit": 0,
+              "usage_provider": "opencode-go",
+              "usage_model": "deepseek-v4.1-flash",
+              "usage_status": 200,
+              "usage_receipt_reason": ""
+            }
+          ]
+        },
+        {
+          "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\EXECUTE_dispatch_receipt_attempt1.json.attempts.ndjson",
+          "generated_utc": null,
+          "run_id": "4640-1792119447",
+          "fields": {
+            "ok": "<ABSENT>",
+            "code": "<ABSENT>",
+            "required_arm": "<ABSENT>",
+            "served_arm": "<ABSENT>",
+            "used_rank": "<ABSENT>",
+            "used_transport_model": "<ABSENT>",
+            "usage_receipt_ok": true,
+            "nonce_present": false,
+            "nonce_absent_arms": "<ABSENT>"
+          },
+          "attempts": [
+            {
+              "ok": "<ABSENT>",
+              "code": "<ABSENT>",
+              "required_arm": "<ABSENT>",
+              "served_arm": "<ABSENT>",
+              "used_rank": "<ABSENT>",
+              "used_transport_model": "<ABSENT>",
+              "usage_receipt_ok": true,
+              "nonce_present": false,
+              "nonce_absent_arms": "<ABSENT>",
+              "rank": 1,
+              "provider": "opencode-go",
+              "model": "deepseek-v4.1-flash",
+              "transport_model": "opencode-go/deepseek-v4.1-flash",
+              "exit": 0,
+              "usage_provider": "opencode-go",
+              "usage_model": "deepseek-v4.1-flash",
+              "usage_status": 200,
+              "usage_receipt_reason": ""
+            }
+          ]
+        },
+        {
+          "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\EXECUTE_dispatch_receipt_attempt1.json.attempts.ndjson",
+          "generated_utc": null,
+          "run_id": "2480-1792119780",
+          "fields": {
+            "ok": "<ABSENT>",
+            "code": "<ABSENT>",
+            "required_arm": "<ABSENT>",
+            "served_arm": "<ABSENT>",
+            "used_rank": "<ABSENT>",
+            "used_transport_model": "<ABSENT>",
+            "usage_receipt_ok": true,
+            "nonce_present": false,
+            "nonce_absent_arms": "<ABSENT>"
+          },
+          "attempts": [
+            {
+              "ok": "<ABSENT>",
+              "code": "<ABSENT>",
+              "required_arm": "<ABSENT>",
+              "served_arm": "<ABSENT>",
+              "used_rank": "<ABSENT>",
+              "used_transport_model": "<ABSENT>",
+              "usage_receipt_ok": true,
+              "nonce_present": false,
+              "nonce_absent_arms": "<ABSENT>",
+              "rank": 1,
+              "provider": "opencode-go",
+              "model": "deepseek-v4.1-flash",
+              "transport_model": "opencode-go/deepseek-v4.1-flash",
+              "exit": 0,
+              "usage_provider": "opencode-go",
+              "usage_model": "deepseek-v4.1-flash",
+              "usage_status": 200,
+              "usage_receipt_reason": ""
+            }
+          ]
+        },
+        {
+          "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\EXECUTE_dispatch_receipt_attempt2.json",
+          "generated_utc": "2026-10-15T13:44:43.260313+00:00",
+          "run_id": null,
+          "fields": {
+            "ok": false,
+            "code": "ERR_LANE_ALL_ROUTES_EXHAUSTED",
+            "required_arm": "<ABSENT>",
+            "served_arm": "<ABSENT>",
+            "used_rank": null,
+            "used_transport_model": null,
+            "usage_receipt_ok": false,
+            "nonce_present": "<ABSENT>",
+            "nonce_absent_arms": "<ABSENT>"
+          },
+          "attempts": [
+            {
+              "ok": "<ABSENT>",
+              "code": "<ABSENT>",
+              "required_arm": "<ABSENT>",
+              "served_arm": "<ABSENT>",
+              "used_rank": "<ABSENT>",
+              "used_transport_model": "<ABSENT>",
+              "usage_receipt_ok": true,
+              "nonce_present": false,
+              "nonce_absent_arms": "<ABSENT>",
+              "rank": 1,
+              "provider": "opencode-go",
+              "model": "deepseek-v4.1-flash",
+              "transport_model": "opencode-go/deepseek-v4.1-flash",
+              "exit": "TIMEOUT",
+              "usage_provider": "opencode-go",
+              "usage_model": "deepseek-v4.1-flash",
+              "usage_status": 200,
+              "usage_receipt_reason": ""
+            }
+          ]
+        },
+        {
+          "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\EXECUTE_dispatch_receipt_attempt2.json.attempts.ndjson",
+          "generated_utc": null,
+          "run_id": "13796-1792069182",
+          "fields": {
+            "ok": "<ABSENT>",
+            "code": "<ABSENT>",
+            "required_arm": "<ABSENT>",
+            "served_arm": "<ABSENT>",
+            "used_rank": "<ABSENT>",
+            "used_transport_model": "<ABSENT>",
+            "usage_receipt_ok": true,
+            "nonce_present": false,
+            "nonce_absent_arms": "<ABSENT>"
+          },
+          "attempts": [
+            {
+              "ok": "<ABSENT>",
+              "code": "<ABSENT>",
+              "required_arm": "<ABSENT>",
+              "served_arm": "<ABSENT>",
+              "used_rank": "<ABSENT>",
+              "used_transport_model": "<ABSENT>",
+              "usage_receipt_ok": true,
+              "nonce_present": false,
+              "nonce_absent_arms": "<ABSENT>",
+              "rank": 1,
+              "provider": "opencode-go",
+              "model": "deepseek-v4.1-flash",
+              "transport_model": "opencode-go/deepseek-v4.1-flash",
+              "exit": "TIMEOUT",
+              "usage_provider": "opencode-go",
+              "usage_model": "deepseek-v4.1-flash",
+              "usage_status": 200,
+              "usage_receipt_reason": ""
+            }
+          ]
+        },
+        {
+          "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\EXECUTE_dispatch_receipt_attempt3.json",
+          "generated_utc": "2026-10-15T13:53:57.119331+00:00",
+          "run_id": null,
+          "fields": {
+            "ok": false,
+            "code": "ERR_NO_ARM_EMITTED_NONCE",
+            "required_arm": "<ABSENT>",
+            "served_arm": "<ABSENT>",
+            "used_rank": null,
+            "used_transport_model": null,
+            "usage_receipt_ok": true,
+            "nonce_present": "<ABSENT>",
+            "nonce_absent_arms": [
+              "opencode-go/deepseek-v4.1-flash"
+            ]
+          },
+          "attempts": [
+            {
+              "ok": "<ABSENT>",
+              "code": "<ABSENT>",
+              "required_arm": "<ABSENT>",
+              "served_arm": "<ABSENT>",
+              "used_rank": "<ABSENT>",
+              "used_transport_model": "<ABSENT>",
+              "usage_receipt_ok": true,
+              "nonce_present": false,
+              "nonce_absent_arms": "<ABSENT>",
+              "rank": 1,
+              "provider": "opencode-go",
+              "model": "deepseek-v4.1-flash",
+              "transport_model": "opencode-go/deepseek-v4.1-flash",
+              "exit": 0,
+              "usage_provider": "opencode-go",
+              "usage_model": "deepseek-v4.1-flash",
+              "usage_status": 200,
+              "usage_receipt_reason": ""
+            }
+          ]
+        },
+        {
+          "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\EXECUTE_dispatch_receipt_attempt3.json.attempts.ndjson",
+          "generated_utc": null,
+          "run_id": "6960-1792071910",
+          "fields": {
+            "ok": "<ABSENT>",
+            "code": "<ABSENT>",
+            "required_arm": "<ABSENT>",
+            "served_arm": "<ABSENT>",
+            "used_rank": "<ABSENT>",
+            "used_transport_model": "<ABSENT>",
+            "usage_receipt_ok": true,
+            "nonce_present": false,
+            "nonce_absent_arms": "<ABSENT>"
+          },
+          "attempts": [
+            {
+              "ok": "<ABSENT>",
+              "code": "<ABSENT>",
+              "required_arm": "<ABSENT>",
+              "served_arm": "<ABSENT>",
+              "used_rank": "<ABSENT>",
+              "used_transport_model": "<ABSENT>",
+              "usage_receipt_ok": true,
+              "nonce_present": false,
+              "nonce_absent_arms": "<ABSENT>",
+              "rank": 1,
+              "provider": "opencode-go",
+              "model": "deepseek-v4.1-flash",
+              "transport_model": "opencode-go/deepseek-v4.1-flash",
+              "exit": 0,
+              "usage_provider": "opencode-go",
+              "usage_model": "deepseek-v4.1-flash",
+              "usage_status": 200,
+              "usage_receipt_reason": ""
+            }
+          ]
+        },
+        {
+          "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\VERIFY_SECURITY_dispatch_receipt_attempt1.json",
+          "generated_utc": "2026-10-16T03:48:17.068755+00:00",
+          "run_id": null,
+          "fields": {
+            "ok": false,
+            "code": "ERR_NO_ARM_EMITTED_NONCE",
+            "required_arm": "<ABSENT>",
+            "served_arm": "<ABSENT>",
+            "used_rank": null,
+            "used_transport_model": null,
+            "usage_receipt_ok": true,
+            "nonce_present": "<ABSENT>",
+            "nonce_absent_arms": [
+              "opencode-go/glm-5.3-flash"
+            ]
+          },
+          "attempts": [
+            {
+              "ok": "<ABSENT>",
+              "code": "<ABSENT>",
+              "required_arm": "<ABSENT>",
+              "served_arm": "<ABSENT>",
+              "used_rank": "<ABSENT>",
+              "used_transport_model": "<ABSENT>",
+              "usage_receipt_ok": true,
+              "nonce_present": false,
+              "nonce_absent_arms": "<ABSENT>",
+              "rank": 2,
+              "provider": "opencode-go",
+              "model": "glm-5.3-flash",
+              "transport_model": "opencode-go/glm-5.3-flash",
+              "exit": 0,
+              "usage_provider": "opencode-go",
+              "usage_model": "glm-5.3-flash",
+              "usage_status": 200,
+              "usage_receipt_reason": ""
+            }
+          ]
+        },
+        {
+          "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\VERIFY_SECURITY_dispatch_receipt_attempt1.json.attempts.ndjson",
+          "generated_utc": null,
+          "run_id": "10124-1792072488",
+          "fields": {
+            "ok": "<ABSENT>",
+            "code": "<ABSENT>",
+            "required_arm": "<ABSENT>",
+            "served_arm": "<ABSENT>",
+            "used_rank": "<ABSENT>",
+            "used_transport_model": "<ABSENT>",
+            "usage_receipt_ok": true,
+            "nonce_present": false,
+            "nonce_absent_arms": "<ABSENT>"
+          },
+          "attempts": [
+            {
+              "ok": "<ABSENT>",
+              "code": "<ABSENT>",
+              "required_arm": "<ABSENT>",
+              "served_arm": "<ABSENT>",
+              "used_rank": "<ABSENT>",
+              "used_transport_model": "<ABSENT>",
+              "usage_receipt_ok": true,
+              "nonce_present": false,
+              "nonce_absent_arms": "<ABSENT>",
+              "rank": 2,
+              "provider": "opencode-go",
+              "model": "glm-5.3-flash",
+              "transport_model": "opencode-go/glm-5.3-flash",
+              "exit": 0,
+              "usage_provider": "opencode-go",
+              "usage_model": "glm-5.3-flash",
+              "usage_status": 200,
+              "usage_receipt_reason": ""
+            }
+          ]
+        },
+        {
+          "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\VERIFY_SECURITY_dispatch_receipt_attempt1.json.attempts.ndjson",
+          "generated_utc": null,
+          "run_id": "2900-1792121826",
+          "fields": {
+            "ok": "<ABSENT>",
+            "code": "<ABSENT>",
+            "required_arm": "<ABSENT>",
+            "served_arm": "<ABSENT>",
+            "used_rank": "<ABSENT>",
+            "used_transport_model": "<ABSENT>",
+            "usage_receipt_ok": true,
+            "nonce_present": false,
+            "nonce_absent_arms": "<ABSENT>"
+          },
+          "attempts": [
+            {
+              "ok": "<ABSENT>",
+              "code": "<ABSENT>",
+              "required_arm": "<ABSENT>",
+              "served_arm": "<ABSENT>",
+              "used_rank": "<ABSENT>",
+              "used_transport_model": "<ABSENT>",
+              "usage_receipt_ok": true,
+              "nonce_present": false,
+              "nonce_absent_arms": "<ABSENT>",
+              "rank": 2,
+              "provider": "opencode-go",
+              "model": "glm-5.3-flash",
+              "transport_model": "opencode-go/glm-5.3-flash",
+              "exit": 0,
+              "usage_provider": "opencode-go",
+              "usage_model": "glm-5.3-flash",
+              "usage_status": 200,
+              "usage_receipt_reason": ""
+            }
+          ]
+        },
+        {
+          "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\VERIFY_SECURITY_dispatch_receipt_attempt2.json",
+          "generated_utc": "2026-10-15T15:16:29.721565+00:00",
+          "run_id": null,
+          "fields": {
+            "ok": false,
+            "code": "ERR_CHECKER_MUTATED_SUBJECT",
+            "required_arm": "<ABSENT>",
+            "served_arm": "<ABSENT>",
+            "used_rank": null,
+            "used_transport_model": null,
+            "usage_receipt_ok": false,
+            "nonce_present": "<ABSENT>",
+            "nonce_absent_arms": "<ABSENT>"
+          },
+          "attempts": [
+            {
+              "ok": "<ABSENT>",
+              "code": "<ABSENT>",
+              "required_arm": "<ABSENT>",
+              "served_arm": "<ABSENT>",
+              "used_rank": "<ABSENT>",
+              "used_transport_model": "<ABSENT>",
+              "usage_receipt_ok": true,
+              "nonce_present": false,
+              "nonce_absent_arms": "<ABSENT>",
+              "rank": 2,
+              "provider": "opencode-go",
+              "model": "glm-5.3-flash",
+              "transport_model": "opencode-go/glm-5.3-flash",
+              "exit": "TIMEOUT",
+              "usage_provider": "opencode-go",
+              "usage_model": "glm-5.3-flash",
+              "usage_status": 200,
+              "usage_receipt_reason": ""
+            }
+          ]
+        },
+        {
+          "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\VERIFY_SECURITY_dispatch_receipt_attempt2.json.attempts.ndjson",
+          "generated_utc": null,
+          "run_id": "8844-1792058116",
+          "fields": {
+            "ok": "<ABSENT>",
+            "code": "<ABSENT>",
+            "required_arm": "<ABSENT>",
+            "served_arm": "<ABSENT>",
+            "used_rank": "<ABSENT>",
+            "used_transport_model": "<ABSENT>",
+            "usage_receipt_ok": true,
+            "nonce_present": false,
+            "nonce_absent_arms": "<ABSENT>"
+          },
+          "attempts": [
+            {
+              "ok": "<ABSENT>",
+              "code": "<ABSENT>",
+              "required_arm": "<ABSENT>",
+              "served_arm": "<ABSENT>",
+              "used_rank": "<ABSENT>",
+              "used_transport_model": "<ABSENT>",
+              "usage_receipt_ok": true,
+              "nonce_present": false,
+              "nonce_absent_arms": "<ABSENT>",
+              "rank": 2,
+              "provider": "opencode-go",
+              "model": "glm-5.3-flash",
+              "transport_model": "opencode-go/glm-5.3-flash",
+              "exit": 0,
+              "usage_provider": "opencode-go",
+              "usage_model": "glm-5.3-flash",
+              "usage_status": 200,
+              "usage_receipt_reason": ""
+            }
+          ]
+        },
+        {
+          "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\VERIFY_SECURITY_dispatch_receipt_attempt2.json.attempts.ndjson",
+          "generated_utc": null,
+          "run_id": "21748-1792074089",
+          "fields": {
+            "ok": "<ABSENT>",
+            "code": "<ABSENT>",
+            "required_arm": "<ABSENT>",
+            "served_arm": "<ABSENT>",
+            "used_rank": "<ABSENT>",
+            "used_transport_model": "<ABSENT>",
+            "usage_receipt_ok": true,
+            "nonce_present": false,
+            "nonce_absent_arms": "<ABSENT>"
+          },
+          "attempts": [
+            {
+              "ok": "<ABSENT>",
+              "code": "<ABSENT>",
+              "required_arm": "<ABSENT>",
+              "served_arm": "<ABSENT>",
+              "used_rank": "<ABSENT>",
+              "used_transport_model": "<ABSENT>",
+              "usage_receipt_ok": true,
+              "nonce_present": false,
+              "nonce_absent_arms": "<ABSENT>",
+              "rank": 2,
+              "provider": "opencode-go",
+              "model": "glm-5.3-flash",
+              "transport_model": "opencode-go/glm-5.3-flash",
+              "exit": "TIMEOUT",
+              "usage_provider": "opencode-go",
+              "usage_model": "glm-5.3-flash",
+              "usage_status": 200,
+              "usage_receipt_reason": ""
+            }
+          ]
+        },
+        {
+          "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\VERIFY_SECURITY_dispatch_receipt_attempt3.json",
+          "generated_utc": "2026-10-15T15:34:30.183205+00:00",
+          "run_id": null,
+          "fields": {
+            "ok": false,
+            "code": "ERR_NO_ARM_EMITTED_NONCE",
+            "required_arm": "<ABSENT>",
+            "served_arm": "<ABSENT>",
+            "used_rank": null,
+            "used_transport_model": null,
+            "usage_receipt_ok": true,
+            "nonce_present": "<ABSENT>",
+            "nonce_absent_arms": [
+              "opencode-go/glm-5.3-flash"
+            ]
+          },
+          "attempts": [
+            {
+              "ok": "<ABSENT>",
+              "code": "<ABSENT>",
+              "required_arm": "<ABSENT>",
+              "served_arm": "<ABSENT>",
+              "used_rank": "<ABSENT>",
+              "used_transport_model": "<ABSENT>",
+              "usage_receipt_ok": true,
+              "nonce_present": false,
+              "nonce_absent_arms": "<ABSENT>",
+              "rank": 2,
+              "provider": "opencode-go",
+              "model": "glm-5.3-flash",
+              "transport_model": "opencode-go/glm-5.3-flash",
+              "exit": 0,
+              "usage_provider": "opencode-go",
+              "usage_model": "glm-5.3-flash",
+              "usage_status": 200,
+              "usage_receipt_reason": ""
+            }
+          ]
+        },
+        {
+          "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\VERIFY_SECURITY_dispatch_receipt_attempt3.json.attempts.ndjson",
+          "generated_utc": null,
+          "run_id": "21480-1792059540",
+          "fields": {
+            "ok": "<ABSENT>",
+            "code": "<ABSENT>",
+            "required_arm": "<ABSENT>",
+            "served_arm": "<ABSENT>",
+            "used_rank": "<ABSENT>",
+            "used_transport_model": "<ABSENT>",
+            "usage_receipt_ok": true,
+            "nonce_present": false,
+            "nonce_absent_arms": "<ABSENT>"
+          },
+          "attempts": [
+            {
+              "ok": "<ABSENT>",
+              "code": "<ABSENT>",
+              "required_arm": "<ABSENT>",
+              "served_arm": "<ABSENT>",
+              "used_rank": "<ABSENT>",
+              "used_transport_model": "<ABSENT>",
+              "usage_receipt_ok": true,
+              "nonce_present": false,
+              "nonce_absent_arms": "<ABSENT>",
+              "rank": 2,
+              "provider": "opencode-go",
+              "model": "glm-5.3-flash",
+              "transport_model": "opencode-go/glm-5.3-flash",
+              "exit": 0,
+              "usage_provider": "opencode-go",
+              "usage_model": "glm-5.3-flash",
+              "usage_status": 200,
+              "usage_receipt_reason": ""
+            }
+          ]
+        },
+        {
+          "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\VERIFY_SECURITY_dispatch_receipt_attempt3.json.attempts.ndjson",
+          "generated_utc": null,
+          "run_id": "22084-1792077446",
+          "fields": {
+            "ok": "<ABSENT>",
+            "code": "<ABSENT>",
+            "required_arm": "<ABSENT>",
+            "served_arm": "<ABSENT>",
+            "used_rank": "<ABSENT>",
+            "used_transport_model": "<ABSENT>",
+            "usage_receipt_ok": true,
+            "nonce_present": false,
+            "nonce_absent_arms": "<ABSENT>"
+          },
+          "attempts": [
+            {
+              "ok": "<ABSENT>",
+              "code": "<ABSENT>",
+              "required_arm": "<ABSENT>",
+              "served_arm": "<ABSENT>",
+              "used_rank": "<ABSENT>",
+              "used_transport_model": "<ABSENT>",
+              "usage_receipt_ok": true,
+              "nonce_present": false,
+              "nonce_absent_arms": "<ABSENT>",
+              "rank": 2,
+              "provider": "opencode-go",
+              "model": "glm-5.3-flash",
+              "transport_model": "opencode-go/glm-5.3-flash",
+              "exit": 0,
+              "usage_provider": "opencode-go",
+              "usage_model": "glm-5.3-flash",
+              "usage_status": 200,
+              "usage_receipt_reason": ""
+            }
+          ]
+        },
+        {
+          "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\VERIFY_SECURITY_dispatch_receipt_attempt4.json",
+          "generated_utc": "2026-10-15T16:48:58.995815+00:00",
+          "run_id": null,
+          "fields": {
+            "ok": false,
+            "code": "ERR_NO_ARM_EMITTED_NONCE",
+            "required_arm": "<ABSENT>",
+            "served_arm": "<ABSENT>",
+            "used_rank": null,
+            "used_transport_model": null,
+            "usage_receipt_ok": true,
+            "nonce_present": "<ABSENT>",
+            "nonce_absent_arms": [
+              "opencode-go/glm-5.3-flash"
+            ]
+          },
+          "attempts": [
+            {
+              "ok": "<ABSENT>",
+              "code": "<ABSENT>",
+              "required_arm": "<ABSENT>",
+              "served_arm": "<ABSENT>",
+              "used_rank": "<ABSENT>",
+              "used_transport_model": "<ABSENT>",
+              "usage_receipt_ok": true,
+              "nonce_present": false,
+              "nonce_absent_arms": "<ABSENT>",
+              "rank": 2,
+              "provider": "opencode-go",
+              "model": "glm-5.3-flash",
+              "transport_model": "opencode-go/glm-5.3-flash",
+              "exit": 0,
+              "usage_provider": "opencode-go",
+              "usage_model": "glm-5.3-flash",
+              "usage_status": 200,
+              "usage_receipt_reason": ""
+            }
+          ]
+        },
+        {
+          "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\VERIFY_SECURITY_dispatch_receipt_attempt4.json.attempts.ndjson",
+          "generated_utc": null,
+          "run_id": "23092-1792081150",
+          "fields": {
+            "ok": "<ABSENT>",
+            "code": "<ABSENT>",
+            "required_arm": "<ABSENT>",
+            "served_arm": "<ABSENT>",
+            "used_rank": "<ABSENT>",
+            "used_transport_model": "<ABSENT>",
+            "usage_receipt_ok": true,
+            "nonce_present": false,
+            "nonce_absent_arms": "<ABSENT>"
+          },
+          "attempts": [
+            {
+              "ok": "<ABSENT>",
+              "code": "<ABSENT>",
+              "required_arm": "<ABSENT>",
+              "served_arm": "<ABSENT>",
+              "used_rank": "<ABSENT>",
+              "used_transport_model": "<ABSENT>",
+              "usage_receipt_ok": true,
+              "nonce_present": false,
+              "nonce_absent_arms": "<ABSENT>",
+              "rank": 2,
+              "provider": "opencode-go",
+              "model": "glm-5.3-flash",
+              "transport_model": "opencode-go/glm-5.3-flash",
+              "exit": 0,
+              "usage_provider": "opencode-go",
+              "usage_model": "glm-5.3-flash",
+              "usage_status": 200,
+              "usage_receipt_reason": ""
+            }
+          ]
+        },
+        {
+          "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\VERIFY_SECURITY_dispatch_receipt_attempt5.json",
+          "generated_utc": "2026-10-15T16:53:09.867108+00:00",
+          "run_id": null,
+          "fields": {
+            "ok": false,
+            "code": "ERR_LANE_REMOTE_WRITE_NOT_AUTHORIZED",
+            "required_arm": "<ABSENT>",
+            "served_arm": "<ABSENT>",
+            "used_rank": "<ABSENT>",
+            "used_transport_model": "<ABSENT>",
+            "usage_receipt_ok": "<ABSENT>",
+            "nonce_present": "<ABSENT>",
+            "nonce_absent_arms": "<ABSENT>"
+          },
+          "attempts": []
+        }
+      ],
+      "clean_trace_direct": {
+        "argv": [
+          "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+          "-B",
+          "-c",
+          "import sys,json;from pathlib import Path;sys.path.insert(0,'tests');import test_s4ext_trace_closure as t;pi=t._bundle(Path('C:/Projects/wt-r8-cleanmain'));obj=t.LegalTraceStillPassesTests('test_real_trace_link_is_legal_beside_its_endpoints');obj.bundle=pi;obj.test_real_trace_link_is_legal_beside_its_endpoints();print('UNCHANGED TEST METHOD PASS (existing clean repo as read-only fixture; no git init)')"
+        ],
+        "cwd": "C:\\Projects\\wt-r8-cleanmain",
+        "stdout": "UNCHANGED TEST METHOD PASS (existing clean repo as read-only fixture; no git init)\n",
+        "stderr": "",
+        "exit": 0
+      },
+      "hardened_trace_direct": {
+        "argv": [
+          "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+          "-B",
+          "-c",
+          "import sys,json;from pathlib import Path;sys.path.insert(0,'tests');import test_s4ext_trace_closure as t;pi=t._bundle(Path('C:/Projects/wt-r8-cleanmain'));obj=t.LegalTraceStillPassesTests('test_real_trace_link_is_legal_beside_its_endpoints');obj.bundle=pi;obj.test_real_trace_link_is_legal_beside_its_endpoints();print('UNCHANGED TEST METHOD PASS (existing clean repo as read-only fixture; no git init)')"
+        ],
+        "cwd": "C:\\Projects\\Agent_Workspace\\PIPD\\worktrees\\r8-wt",
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"C:\\Projects\\Agent_Workspace\\PIPD\\worktrees\\r8-wt\\tests\\test_s4ext_trace_closure.py\", line 113, in test_real_trace_link_is_legal_beside_its_endpoints\n    self.assertEqual(res[\"verdict\"], \"PASS\", str(res[\"findings\"])[:400])\n  File \"C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\unittest\\case.py\", line 873, in assertEqual\n    assertion_func(first, second, msg=msg)\n  File \"C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\unittest\\case.py\", line 1253, in assertMultiLineEqual\n    self.fail(self._formatMessage(msg, standardMsg))\n  File \"C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\unittest\\case.py\", line 703, in fail\n    raise self.failureException(msg)\nAssertionError: 'FAIL' != 'PASS'\n- FAIL\n+ PASS\n : [{'contract': 'TraceLink', 'kind': 'SEMANTIC', 'detail': 'TraceLink: UNBOUND_FROZEN_CONTEXT: from_hash cannot be verified against a frozen subject->digest map (frozen context not supplied); binding is unproven, not a pass'}, {'contract': 'TraceLink', 'kind': 'SEMANTIC', 'detail': 'TraceLink: UNBOUND_FROZEN_CONTEXT: to_hash cannot be verified against a frozen subject->digest map (frozen context not\n",
+        "exit": 1
+      },
+      "m04": {
+        "argv": [
+          "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+          "-B",
+          "-c",
+          "import sys;from pathlib import Path;sys.path.insert(0,'C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015-R8/WS_B/RUNNERS');import probe_mutations as p;p.SRC=Path(r'C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R9\\FAR\\ws2\\mutation_source.md');sys.exit(p.m04_profile_downgrade())"
+        ],
+        "cwd": "C:\\Projects\\Agent_Workspace\\PIPD\\worktrees\\r8-wt",
+        "stdout": "{\n \"id\": \"M04\",\n \"mutation\": \"ProfileBinding assurance downgraded ASSURED->LITE\",\n \"expected\": \"REJECT\",\n \"observed\": \"REJECT\",\n \"validator_verdict\": \"FAIL\",\n \"first_fail\": \"ProfileBinding: content_hash does not match the record body (body edited without re-issuing identity)\",\n \"raw_receipt\": \"RAW/mut_m04.json\"\n}\n",
+        "stderr": "",
+        "exit": 0
+      },
+      "m06": {
+        "argv": [
+          "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+          "-B",
+          "-c",
+          "import sys;from pathlib import Path;sys.path.insert(0,'C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015-R8/WS_B/RUNNERS');import probe_mutations as p;p.SRC=Path(r'C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R9\\FAR\\ws2\\mutation_source.md');sys.exit(p.m06_domain_oracle_expected())"
+        ],
+        "cwd": "C:\\Projects\\Agent_Workspace\\PIPD\\worktrees\\r8-wt",
+        "stdout": "{\n \"id\": \"M06\",\n \"mutation\": \"domain oracle expected changed to 999\",\n \"expected\": \"REJECT\",\n \"observed\": \"REJECT\",\n \"validator_verdict\": \"FAIL\",\n \"first_fail\": \"RequirementAtom: content_hash does not match the record body (body edited without re-issuing identity)\",\n \"raw_receipt\": \"RAW/mut_m06.json\"\n}\n",
+        "stderr": "",
+        "exit": 0
+      },
+      "m16": {
+        "argv": [
+          "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+          "-B",
+          "-c",
+          "import sys;from pathlib import Path;sys.path.insert(0,'C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015-R8/WS_B/RUNNERS');import probe_mutations as p;p.SRC=Path(r'C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R9\\FAR\\ws2\\mutation_source.md');sys.exit(p.m16_trace_digest_mismatch())"
+        ],
+        "cwd": "C:\\Projects\\Agent_Workspace\\PIPD\\worktrees\\r8-wt",
+        "stdout": "{\n \"id\": \"M16\",\n \"mutation\": \"trace atom digest mismatched\",\n \"expected\": \"REJECT\",\n \"observed\": \"REJECT\",\n \"validator_verdict\": \"FAIL\",\n \"first_fail\": \"TraceLink: content_hash does not match the record body (body edited without re-issuing identity)\",\n \"raw_receipt\": \"RAW/mut_m16.json\"\n}\n",
+        "stderr": "",
+        "exit": 0
+      },
+      "cli_validate_crash": {
+        "argv": [
+          "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+          "-B",
+          "-c",
+          "import sys;sys.path.insert(0,'src');from pipd_ls_sp.cli import main;sys.argv=['pipd','--root','.','validate','--bundle','.hgk/artifacts/s1/bundle.json'];main()"
+        ],
+        "cwd": "C:\\Projects\\Agent_Workspace\\PIPD\\worktrees\\r8-wt",
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"C:\\Projects\\Agent_Workspace\\PIPD\\worktrees\\r8-wt\\src\\pipd_ls_sp\\cli.py\", line 331, in main\n    result = run(args)\n             ^^^^^^^^^\n  File \"C:\\Projects\\Agent_Workspace\\PIPD\\worktrees\\r8-wt\\src\\pipd_ls_sp\\cli.py\", line 176, in run\n    frozen = validate.derive_frozen_context(source)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Projects\\Agent_Workspace\\PIPD\\worktrees\\r8-wt\\src\\pipd_ls_sp\\validate.py\", line 434, in derive_frozen_context\n    oracle = ((atom.get(\"risk_guard\") or {}).get(\"oracle\") or {})\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'str' object has no attribute 'get'\n",
+        "exit": 1
+      },
+      "hard_status_after": {
+        "argv": [
+          "git",
+          "--no-optional-locks",
+          "status",
+          "--short"
+        ],
+        "cwd": "C:\\Projects\\Agent_Workspace\\PIPD\\worktrees\\r8-wt",
+        "stdout": " M src/pipd_ls_sp/cli.py\n M src/pipd_ls_sp/pipeline.py\n M src/pipd_ls_sp/validate.py\n",
+        "stderr": "",
+        "exit": 0
+      },
+      "clean_status_after": {
+        "argv": [
+          "git",
+          "--no-optional-locks",
+          "status",
+          "--short"
+        ],
+        "cwd": "C:\\Projects\\wt-r8-cleanmain",
+        "stdout": "",
+        "stderr": "",
+        "exit": 0
+      },
+      "declared_routes": {
+        "argv": [
+          "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\.venv\\Scripts\\python.exe",
+          "-B",
+          "-c",
+          "import sys,json;sys.path.insert(0,'src');from hg_kseos.lane_policy import load_registry;r=load_registry();a=json.load(open('config/model-lane-assignment.json',encoding='utf-8'));print(json.dumps({'registry_routes':r['routes'],'assignment':a['assignment'],'lane_chains':{k:a['lane_chains'][k] for k in ['PLAN','EXECUTE','VERIFY_SECURITY']},'digest_bindings':[{'projection':p['id'],'path':p['path'],**b} for p in r['projections'] for b in p.get('bindings',[]) if any(s in b['pointer'].lower() for s in ['sha','digest'])]},ensure_ascii=False,indent=2))"
+        ],
+        "cwd": "C:\\Projects\\Agent_Workspace\\HG-KSEOS",
+        "stdout": "{\n  \"registry_routes\": [\n    {\n      \"lane\": \"PLAN\",\n      \"role_group\": \"PLAN\",\n      \"lanes\": [\n        \"ARCH\",\n        \"HARD WORK\",\n        \"THREAT\",\n        \"EFFECT PLANNING\",\n        \"RESEARCH\",\n        \"SYNTHESIS\",\n        \"EVOLUTION\"\n      ],\n      \"engine\": \"hermes\",\n      \"provider\": \"opencode-go\",\n      \"model\": \"glm-5.3-flash\",\n      \"canonical_identity\": \"glm-5.3-flash\",\n      \"auth\": \"env_ref:OPENCODE_GO_API_KEY\",\n      \"oauth\": false,\n      \"reasoning_effort\": \"medium\",\n      \"selection_authority\": \"owner-order-20261015-plan-model-rebind-glm\",\n      \"arms\": [\n        {\n          \"arm\": \"primary\",\n          \"provider\": \"opencode-go\",\n          \"model\": \"glm-5.3-flash\",\n          \"canonical_identity\": \"glm-5.3-flash\",\n          \"auth\": \"env_ref:OPENCODE_GO_API_KEY\",\n          \"oauth\": false,\n          \"reasoning_effort\": \"medium\",\n          \"default\": true\n        },\n        {\n          \"arm\": \"fallback1\",\n          \"provider\": \"opencode-go\",\n          \"model\": \"deepseek-v4.1-flash\",\n          \"canonical_identity\": \"deepseek-v4.1-flash\",\n          \"auth\": \"env_ref:OPENCODE_GO_API_KEY\",\n          \"oauth\": false,\n          \"default\": false,\n          \"automatic_selection\": true\n        },\n        {\n          \"arm\": \"non_default_operator_selectable\",\n          \"provider\": \"openai-codex\",\n          \"model\": \"gpt-6.1-sol\",\n          \"canonical_identity\": \"gpt-6.1-sol\",\n          \"auth\": \"openai_oauth\",\n          \"oauth\": true,\n          \"reasoning_effort\": \"medium\",\n          \"default\": false,\n          \"automatic_selection\": false,\n          \"usable_now\": \"QUOTA_429_2026-10-15\",\n          \"note\": \"prior revision-18 default arm; retained, never auto-selected\"\n        }\n      ],\n      \"fallbacks\": [\n        {\n          \"provider\": \"opencode-go\",\n          \"model\": \"deepseek-v4.1-flash\",\n          \"canonical_identity\": \"deepseek-v4.1-flash\",\n          \"auth\": \"env_ref:OPENCODE_GO_API_KEY\",\n          \"oauth\": false\n        },\n        {\n          \"provider\": \"openai-codex\",\n          \"model\": \"gpt-6.1-sol\",\n          \"canonical_identity\": \"gpt-6.1-sol\",\n          \"auth\": \"openai_oauth\",\n          \"oauth\": true\n        }\n      ],\n      \"admission_status\": \"UNPROVEN\"\n    },\n    {\n      \"lane\": \"EXECUTE\",\n      \"role_group\": \"EXECUTE\",\n      \"lanes\": [\n        \"BULK BUILD\",\n        \"BULK SECURITY TEST\",\n        \"REPAIR\",\n        \"BULK CODE\",\n        \"HARNESS\",\n        \"EVAL CODE\",\n        \"BULK TRANSFORM\"\n      ],\n      \"engine\": \"codex-cli\",\n      \"provider\": \"opencode-go\",\n      \"model\": \"deepseek-v4.1-flash\",\n      \"canonical_identity\": \"deepseek-v4.1-flash\",\n      \"auth\": \"env_ref:OPENCODE_GO_API_KEY\",\n      \"oauth\": false,\n      \"selection_authority\": \"owner-order-20261015-lane-model-chain-rebind\",\n      \"arms\": [\n        {\n          \"arm\": \"fallback1_operator_selectable\",\n          \"provider\": \"openai-codex\",\n          \"model\": \"gpt-6-luna\",\n          \"canonical_identity\": \"gpt-6-luna\",\n          \"engine\": \"codex-cli\",\n          \"transport\": \"codex-native-oauth\",\n          \"auth\": \"openai_oauth\",\n          \"oauth\": true,\n          \"automatic_selection\": false,\n          \"default\": false,\n          \"admission_status\": \"UNPROVEN\",\n          \"note_preexisting\": \"HTTP_400_UNSUPPORTED_ON_CURRENT_CLI_ACCOUNT backend probe; UNPROVEN admission\"\n        },\n        {\n          \"arm\": \"fallback2_auto\",\n          \"provider\": \"nvidia\",\n          \"model\": \"deepseek-ai/deepseek-v4.1-flash\",\n          \"canonical_identity\": \"deepseek-v4.1-flash\",\n          \"engine\": \"codex-cli\",\n          \"auth\": \"env_ref:NVIDIA_API_KEY\",\n          \"oauth\": false,\n          \"default\": false,\n          \"automatic_selection\": true,\n          \"note_preexisting\": \"nvidia provider namespace not loaded into running relay; needs owner-approved relay restart\"\n        }\n      ],\n      \"fallbacks\": [\n        {\n          \"provider\": \"openai-codex\",\n          \"model\": \"gpt-6-luna\",\n          \"canonical_identity\": \"gpt-6-luna\",\n          \"auth\": \"openai_oauth\",\n          \"oauth\": true\n        },\n        {\n          \"provider\": \"nvidia\",\n          \"model\": \"deepseek-ai/deepseek-v4.1-flash\",\n          \"canonical_identity\": \"deepseek-v4.1-flash\",\n          \"auth\": \"env_ref:NVIDIA_API_KEY\",\n          \"oauth\": false\n        }\n      ],\n      \"admission_status\": \"UNPROVEN\"\n    },\n    {\n      \"lane\": \"VERIFY_SECURITY\",\n      \"role_group\": \"VERIFY_SECURITY\",\n      \"lanes\": [\n        \"ACCEPTANCE\",\n        \"SECURITY REVIEW\",\n        \"VERIFY\"\n      ],\n      \"engine\": \"hermes\",\n      \"provider\": \"openai-codex\",\n      \"model\": \"gpt-6.1-sol\",\n      \"reasoning_effort\": \"medium\",\n      \"canonical_identity\": \"gpt-6.1-sol\",\n      \"auth\": \"openai_oauth\",\n      \"oauth\": true,\n      \"selection_authority\": \"owner-order-20261015-lane-model-chain-rebind\",\n      \"selected_arm\": \"A\",\n      \"selected_arm_identity\": \"gpt-6.1-sol\",\n      \"arms\": [\n        {\n          \"arm\": \"A\",\n          \"model\": \"gpt-6.1-sol\",\n          \"provider\": \"openai-codex\",\n          \"canonical_identity\": \"gpt-6.1-sol\",\n          \"auth\": \"openai_oauth\",\n          \"oauth\": true,\n          \"reasoning_effort\": \"medium\",\n          \"co_equal\": false,\n          \"role\": \"primary\",\n          \"default\": true\n        },\n        {\n          \"arm\": \"B\",\n          \"model\": \"glm-5.3-flash\",\n          \"provider\": \"opencode-go\",\n          \"canonical_identity\": \"glm-5.3-flash\",\n          \"auth\": \"env_ref:OPENCODE_GO_API_KEY\",\n          \"oauth\": false,\n          \"reasoning_effort\": \"medium\",\n          \"co_equal\": false,\n          \"role\": \"fallback1_operator_selectable\",\n          \"default\": false,\n          \"automatic_selection\": true\n        },\n        {\n          \"arm\": \"C\",\n          \"model\": \"deepseek-v4.1-flash\",\n          \"provider\": \"opencode-go\",\n          \"canonical_identity\": \"deepseek-v4.1-flash\",\n          \"auth\": \"env_ref:OPENCODE_GO_API_KEY\",\n          \"oauth\": false,\n          \"co_equal\": false,\n          \"role\": \"fallback2_operator_selectable\",\n          \"default\": false,\n          \"automatic_selection\": true\n        }\n      ],\n      \"fallbacks\": [\n        {\n          \"provider\": \"opencode-go\",\n          \"model\": \"glm-5.3-flash\",\n          \"canonical_identity\": \"glm-5.3-flash\",\n          \"auth\": \"env_ref:OPENCODE_GO_API_KEY\",\n          \"oauth\": false\n        },\n        {\n          \"provider\": \"opencode-go\",\n          \"model\": \"deepseek-v4.1-flash\",\n          \"canonical_identity\": \"deepseek-v4.1-flash\",\n          \"auth\": \"env_ref:OPENCODE_GO_API_KEY\",\n          \"oauth\": false\n        }\n      ],\n      \"admission_status\": \"UNPROVEN\"\n    }\n  ],\n  \"assignment\": [\n    {\n      \"lane_group\": \"PLAN\",\n      \"lanes\": [\n        \"ARCH\",\n        \"HARD WORK\",\n        \"THREAT\",\n        \"EFFECT PLANNING\",\n        \"RESEARCH\",\n        \"SYNTHESIS\",\n        \"EVOLUTION\"\n      ],\n      \"assigned_model\": \"glm-5.3-flash\",\n      \"assigned_provider\": \"opencode-go\",\n      \"reasoning_effort\": \"medium\",\n      \"supply\": \"OpenCode Go\",\n      \"rationale\": \"Revision 19 owner order 2026-10-15: rank-1 default is now opencode-go/glm-5.3-flash (medium) for the in-Hermes PLAN & Orchestrator plane; the GPT arm is exhausted and demoted to a non-default, non-automatic alternate. Prior rationale (revision 18 GPT-6.1_SOL default) preserved in revision_19_reason / rebind_note_revision_18.\",\n      \"non_default_alternates\": [\n        {\n          \"provider\": \"openai-codex\",\n          \"model\": \"gpt-6.1-sol\",\n          \"reasoning_effort\": \"medium\",\n          \"auth\": \"openai_oauth\",\n          \"oauth\": true,\n          \"default\": false,\n          \"automatic_selection\": false,\n          \"usable_now\": \"QUOTA_429_2026-10-15\",\n          \"note\": \"prior default arm, retained as an explicit operator-selectable alternate; not selected automatically\"\n        }\n      ]\n    },\n    {\n      \"lane_group\": \"EXECUTE\",\n      \"lanes\": [\n        \"BULK BUILD\",\n        \"BULK SECURITY TEST\",\n        \"REPAIR\",\n        \"BULK CODE\",\n        \"HARNESS\",\n        \"EVAL CODE\",\n        \"BULK TRANSFORM\"\n      ],\n      \"assigned_model\": \"deepseek-v4.1-flash\",\n      \"assigned_provider\": \"opencode-go\",\n      \"supply\": \"OpenCode Go\",\n      \"executor\": \"CODEX CLI (sealed HGK lane) — NOT the Hermes main loop\",\n      \"additional_routes\": [\n        {\n          \"provider\": \"openai-codex\",\n          \"model\": \"gpt-6-luna\",\n          \"engine\": \"codex-cli\",\n          \"transport\": \"codex-native-oauth\",\n          \"auth\": \"openai_oauth\",\n          \"oauth\": true,\n          \"default\": false,\n          \"automatic_selection\": false,\n          \"admission_status\": \"UNPROVEN\",\n          \"authorization_basis\": \"WO-PIPD-R5-EXECUTE-LUNA-ROUTE-20261009\"\n        }\n      ],\n      \"rationale\": \"Primary sealed lane remains deepseek-v4.1-flash/opencode-go. Owner authorizes an explicit gpt-6-luna/openai-codex native OAuth additional route under WO-PIPD-R5-EXECUTE-LUNA-ROUTE-20261009; not an automatic fallback, not backend-availability proof, bounded-writer admission remains required.\"\n    },\n    {\n      \"lane_group\": \"VERIFY_SECURITY\",\n      \"lanes\": [\n        \"ACCEPTANCE\",\n        \"SECURITY REVIEW\",\n        \"VERIFY\"\n      ],\n      \"assigned_model\": \"glm-5.3-flash\",\n      \"assigned_provider\": \"opencode-go\",\n      \"reasoning_effort\": \"medium\",\n      \"supply\": \"DEFAULT primary arm A = OpenCode Go / glm-5.3-flash; arm B = OpenAI OAuth / gpt-6.1-sol is fallback only. Both arms are medium.\",\n      \"selection_authority\": \"owner adjudication; unspecified dispatch selects primary arm A; arm B is a non-default operator-selectable alternate, never auto-selected and remains forbidden for PLAN-made artifacts\",\n      \"supply_selector\": {\n        \"unspecified_default\": {\n          \"arm\": \"A\",\n          \"model\": \"gpt-6.1-sol\",\n          \"provider\": \"openai-codex\",\n          \"auth\": \"ChatGPT OAuth\",\n          \"reasoning_effort\": \"medium\",\n          \"canonical_identity\": \"gpt-6.1-sol\",\n          \"oauth\": true\n        },\n        \"arms\": [\n          {\n            \"arm\": \"A\",\n            \"model\": \"gpt-6.1-sol\",\n            \"provider\": \"openai-codex\",\n            \"auth\": \"ChatGPT OAuth\",\n            \"reasoning_effort\": \"medium\",\n            \"co_equal\": false,\n            \"role\": \"primary\",\n            \"canonical_identity\": \"gpt-6.1-sol\",\n            \"oauth\": true,\n            \"default\": true\n          },\n          {\n            \"arm\": \"B\",\n            \"model\": \"glm-5.3-flash\",\n            \"provider\": \"opencode-go\",\n            \"auth\": \"env_ref:OPENCODE_GO_API_KEY\",\n            \"reasoning_effort\": \"medium\",\n            \"co_equal\": false,\n            \"role\": \"fallback1_operator_selectable\",\n            \"canonical_identity\": \"glm-5.3-flash\",\n            \"oauth\": false,\n            \"default\": false,\n            \"automatic_selection\": true\n          },\n          {\n            \"arm\": \"C\",\n            \"model\": \"deepseek-v4.1-flash\",\n            \"provider\": \"opencode-go\",\n            \"auth\": \"env_ref:OPENCODE_GO_API_KEY\",\n            \"reasoning_effort\": \"medium\",\n            \"co_equal\": false,\n            \"role\": \"fallback2_operator_selectable\",\n            \"canonical_identity\": \"deepseek-v4.1-flash\",\n            \"oauth\": false,\n            \"default\": false,\n            \"automatic_selection\": true\n          }\n        ],\n        \"declared_only_vs_enforced\": \"Canonical route_for_lane resolves primary arm A (gpt-6.1-sol OAuth). Governed dispatch must pin the canonical lane route and check_sod; fallbacks allowed in ARM order; SOD rules still apply.\",\n        \"alternate_relationship\": \"Arm A is primary; B/C are ordered fallbacks, auto-reached only on typed refusal of earlier arms; never silently substituted before checking A.\"\n      },\n      \"rationale\": \"Owner adjudication resolves default PLAN/VERIFY model collision: primary VERIFY arm A is glm-5.3-flash; arm B gpt-6.1-sol is fallback only and may not check a PLAN-made artifact. Provider separation is not required.\",\n      \"observed_state\": \"Arm A (opencode-go/glm-5.3-flash) completed a Hermes subagent turn in 158.9 s (FAR-LANE-VERIFY-002). Arm B (openai-codex/gpt-6.1-sol) is the model this round's PLAN lanes and every prior acceptance-officer lane ran on (e.g. deleg_dc8bcd60). Re-verified in this round by the two SWARM lanes.\",\n      \"canonical_identity\": \"glm-5.3-flash\",\n      \"auth\": \"env_ref:OPENCODE_GO_API_KEY\",\n      \"oauth\": false\n    }\n  ],\n  \"lane_chains\": {\n    \"PLAN\": [\n      {\n        \"model\": \"glm-5.3-flash\",\n        \"provider\": \"opencode-go\",\n        \"reasoning_effort\": \"medium\",\n        \"role\": \"primary\",\n        \"default\": true,\n        \"arm\": \"A\"\n      },\n      {\n        \"model\": \"deepseek-v4.1-flash\",\n        \"provider\": \"opencode-go\",\n        \"role\": \"fallback1\",\n        \"default\": false,\n        \"automatic_selection\": true\n      },\n      {\n        \"model\": \"gpt-6.1-sol\",\n        \"provider\": \"openai-codex\",\n        \"reasoning_effort\": \"medium\",\n        \"role\": \"non_default_operator_selectable\",\n        \"default\": false,\n        \"automatic_selection\": false,\n        \"usable_now\": \"QUOTA_429_2026-10-15\",\n        \"note\": \"demoted from default by owner order 2026-10-15; retained, never auto-selected\"\n      }\n    ],\n    \"EXECUTE\": [\n      {\n        \"model\": \"deepseek-v4.1-flash\",\n        \"provider\": \"opencode-go\",\n        \"reasoning_effort\": null\n      },\n      {\n        \"model\": \"gpt-6-luna\",\n        \"provider\": \"openai-codex\",\n        \"transport\": \"codex-native-oauth\",\n        \"automatic_selection\": false,\n        \"default\": false\n      },\n      {\n        \"model\": \"deepseek-ai/deepseek-v4.1-flash\",\n        \"provider\": \"nvidia\"\n      },\n      {\n        \"arm\": \"owner_selectable_additional\",\n        \"model\": \"gpt-6-luna\",\n        \"provider\": \"openai-codex\",\n        \"engine\": \"codex-cli\",\n        \"transport\": \"codex-native-oauth\",\n        \"auth\": \"openai_oauth\",\n        \"automatic_selection\": false,\n        \"default\": false,\n        \"usable_now\": \"BACKEND_HTTP_400_UNSUPPORTED_ON_CURRENT_CLI_ACCOUNT\",\n        \"admission_status\": \"UNPROVEN\",\n        \"authorization_basis\": \"WO-PIPD-R5-EXECUTE-LUNA-ROUTE-20261009\"\n      }\n    ],\n    \"VERIFY_SECURITY\": [\n      {\n        \"role\": \"primary\",\n        \"model\": \"gpt-6.1-sol\",\n        \"provider\": \"openai-codex\",\n        \"reasoning_effort\": \"medium\",\n        \"default\": true,\n        \"arm\": \"A\"\n      },\n      {\n        \"role\": \"fallback1\",\n        \"model\": \"glm-5.3-flash\",\n        \"provider\": \"opencode-go\",\n        \"default\": false,\n        \"automatic_selection\": true,\n        \"arm\": \"B\",\n        \"reasoning_effort\": \"medium\"\n      },\n      {\n        \"role\": \"fallback2\",\n        \"model\": \"deepseek-v4.1-flash\",\n        \"provider\": \"opencode-go\",\n        \"default\": false,\n        \"automatic_selection\": true\n      }\n    ]\n  },\n  \"digest_bindings\": [\n    {\n      \"projection\": \"hermes-codex-lane\",\n      \"path\": \"config/hermes-codex-lane.json\",\n      \"pointer\": \"/codex_sha256\",\n      \"expected\": \"e98c516f1c8935789aabe9122ee7e05ec4c3efd1ba6acf179242e031c495b99e\"\n    }\n  ]\n}\n",
+        "stderr": "",
+        "exit": 0
+      }
+    }
+  }
+}

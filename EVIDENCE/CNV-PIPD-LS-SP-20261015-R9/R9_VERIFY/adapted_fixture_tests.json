@@ -1,0 +1,12 @@
+{
+  "command": [
+    "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+    "-B",
+    "-c",
+    "import runpy; source=open(r'C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R9\\R9_VERIFY\\safe_tests.py',encoding='utf-8').read(); source=source.replace('suite = unittest.TestSuite([',\"def filesystem_fixture(path):\\n    path.mkdir(parents=True, exist_ok=True)\\n    (path / 'README.md').write_text('seed\\\\n', encoding='utf-8')\\nmodules[0]._init_git_repo = filesystem_fixture\\nsuite = unittest.TestSuite([\"); exec(compile(source,r'C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R9\\R9_VERIFY\\safe_tests.py','exec'),{'__file__':r'C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R9\\R9_VERIFY\\safe_tests.py','__name__':'__main__'})"
+  ],
+  "cwd": "C:\\Projects\\Agent_Workspace\\PIPD\\worktrees\\r8-wt",
+  "exit": 0,
+  "stdout": "",
+  "stderr": "test_real_trace_link_is_legal_beside_its_endpoints (test_s4ext_trace_closure.LegalTraceStillPassesTests.test_real_trace_link_is_legal_beside_its_endpoints)\nA TraceLink bundled WITH the PI it points at resolves on both sides. ... ok\ntest_cli_smoke_runs (test_tooling_executes.TestToolingExecutes.test_cli_smoke_runs)\nThe 13-command CLI surface must actually execute, not just import. ... ok\n\n----------------------------------------------------------------------\nRan 2 tests in 17.784s\n\nOK\n"
+}
