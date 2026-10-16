@@ -355,7 +355,7 @@
    }
   ]
  },
- "deliverable_ok": false,
+ "deliverable_ok": true,
  "openspec": {
   "shell": "bash -lc",
   "raw": "RC=0\n/bin/bash: line 1: cd: C:\\Projects\\Agent_Workspace\\HG-KSEOS: No such file or directory",
@@ -379,7 +379,130 @@
    "what": "openspec validation produced no output and rc=1 because the cd inside the login shell short-circuited, so the validator never ran",
    "caught_by": "empty output with a non-zero code, re-run with the true exit code captured",
    "fix": "re-ran in both shells with the exit code echoed"
+  },
+  {
+   "id": "D3",
+   "what": "the delivery threshold was written as 'at least 11 read-back blobs' while the pack has 10 phase-1 targets, so a perfect 10 of 10 still failed the flag",
+   "caught_by": "the failing-rows list was empty while the flag said otherwise",
+   "fix": "threshold corrected"
+  },
+  {
+   "id": "D4",
+   "what": "the self-check keyed read-back rows by file name, so PREFIX/README.md and the root README.md collapsed into one key and the denominator read 9 instead of 10",
+   "caught_by": "the check itself, on its second run",
+   "fix": "rows are keyed by full path"
+  },
+  {
+   "id": "D5",
+   "what": "the branch-hygiene check demanded the live branch set equal the kept set, but publishing this pack legitimately creates a branch, so a correct removal looked wrong",
+   "caught_by": "the check itself, on its second run",
+   "fix": "removed branches must be absent and kept branches must be present; extra branches are not a failure"
   }
  ],
- "branch_tip": "6c4ad82fa61b19da9fe0278c53ca1ded59adcda9"
+ "branch_tip": "6c4ad82fa61b19da9fe0278c53ca1ded59adcda9",
+ "phase2": {
+  "uploads": [
+   {
+    "path": "EVIDENCE/CNV-HYGIENE-README-CLOSURE-20261016/APPLY_RECEIPT.json",
+    "http": 201,
+    "kind": "create",
+    "commit": "91d04a02a3ad54e07b8ad8469a21304951645d47",
+    "error": null
+   },
+   {
+    "path": "EVIDENCE/CNV-HYGIENE-README-CLOSURE-20261016/SELF_CHECK_RECEIPT.json",
+    "http": 201,
+    "kind": "create",
+    "commit": "f4a0e2afa465c39cca7de905037448dba000fc9b",
+    "error": null
+   },
+   {
+    "path": "EVIDENCE/CNV-HYGIENE-README-CLOSURE-20261016/SELF_EVOLUTION_RECORD.json",
+    "http": 201,
+    "kind": "create",
+    "commit": "0dd24fe18bce9ee364c24e1440cf0186e1af085e",
+    "error": null
+   },
+   {
+    "path": "EVIDENCE/CNV-HYGIENE-README-CLOSURE-20261016/SESSION_CLOSURE_AND_HANDOVER.md",
+    "http": 201,
+    "kind": "create",
+    "commit": "97208eee13d82c5c9bd8876a9e441f720224bb31",
+    "error": null
+   },
+   {
+    "path": "EVIDENCE/CNV-HYGIENE-README-CLOSURE-20261016/ERRATA.md",
+    "http": 201,
+    "kind": "create",
+    "commit": "33562abe95e8f060aa0101f9297f33f1bce3eda0",
+    "error": null
+   },
+   {
+    "path": "EVIDENCE/CNV-HYGIENE-README-CLOSURE-20261016/SUBAGENT_BATCH.md",
+    "http": 201,
+    "kind": "create",
+    "commit": "473794ee0aba20403f273880f0717e1b0353eede",
+    "error": null
+   },
+   {
+    "path": "EVIDENCE/CNV-HYGIENE-README-CLOSURE-20261016/PACK_INDEX.json",
+    "http": 201,
+    "kind": "create",
+    "commit": "904e7c0ea29f1e108df3b1f49e0c4c7fbdf56009",
+    "error": null
+   }
+  ],
+  "readback": {
+   "checked": 7,
+   "matched": 7,
+   "rows": [
+    {
+     "path": "APPLY_RECEIPT.json",
+     "http": 200,
+     "bytes": 13409,
+     "match": true
+    },
+    {
+     "path": "SELF_CHECK_RECEIPT.json",
+     "http": 200,
+     "bytes": 2889,
+     "match": true
+    },
+    {
+     "path": "SELF_EVOLUTION_RECORD.json",
+     "http": 200,
+     "bytes": 3018,
+     "match": true
+    },
+    {
+     "path": "SESSION_CLOSURE_AND_HANDOVER.md",
+     "http": 200,
+     "bytes": 4961,
+     "match": true
+    },
+    {
+     "path": "ERRATA.md",
+     "http": 200,
+     "bytes": 2071,
+     "match": true
+    },
+    {
+     "path": "SUBAGENT_BATCH.md",
+     "http": 200,
+     "bytes": 1753,
+     "match": true
+    },
+    {
+     "path": "PACK_INDEX.json",
+     "http": 200,
+     "bytes": 3284,
+     "match": true
+    }
+   ]
+  }
+ },
+ "branch_tip_final": "904e7c0ea29f1e108df3b1f49e0c4c7fbdf56009",
+ "pull_request_url": "https://github.com/shw097-team/Fabric/pull/16",
+ "pack_complete": true,
+ "pack_complete_basis": "phase 1 10/10 and phase 2 7/7 blobs read back byte-identical from the branch"
 }
