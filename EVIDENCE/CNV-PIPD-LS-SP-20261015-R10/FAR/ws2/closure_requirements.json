@@ -1,0 +1,114 @@
+{
+  "schema": "CNV-PIPD-LS-SP-20261015-R10/FAR/ws2/CLOSURE-REQUIREMENTS/1",
+  "produced_utc": "2026-10-16T13:50:00+08:00",
+  "scope": "What a session closure / handover package for a CNV-PIPD-LS-SP governed round must contain. Every requirement is grounded in a precedent file (round roots R7, R8, R9) that demonstrably included it. Field names quoted as they appear in the precedent.",
+  "claim_ceiling_of_this_document": "LOCAL / candidate-only; a research record, not an acceptance.",
+  "required_items": [
+    {
+      "id": "CR-01",
+      "item": "Claim ceiling stated globally and per record",
+      "what": "Every closure artifact carries an explicit claim-ceiling string (e.g. 'LOCAL / candidate-only') stating no acceptance/Gate PASS/merge/release is claimed.",
+      "precedent_locator": "R9 round root: CNV-PIPD-LS-SP-20261015-R9/R9_LEDGER.json field 'claim_ceiling' (= 'LOCAL / candidate-only'); R7: CNV-PIPD-LS-SP-20261015-R7/HANDOVER_CHECKPOINT_20261016.md section header '**Claim ceiling:** `LOCAL / candidate-only`'; R8: R8_LEDGER.json 'claim_ceiling'; R10: R10/SESSION_LEDGER_R10.json 'claim_ceiling'."
+    },
+    {
+      "id": "CR-02",
+      "item": "Mission / changeset / project identity bindings",
+      "what": "Mission id, changeset id, HGK project id (and FAR run + board slug when used) at the top of the ledger and synthesis.",
+      "precedent_locator": "R9_LEDGER.json fields 'mission', 'changeset', 'hgk_project'; R9_SYNTHESIS.md header line 'mission ... changeset ... HGK project ... FAR run ... board'; R8_LEDGER.json 'round'/'project'; R7/CHECKPOINT_STATE_20261016.json 'mission'/'changeset'."
+    },
+    {
+      "id": "CR-03",
+      "item": "Blockers list with per-blocker state and OWNER",
+      "what": "Each blocker: id, item, state (e.g. OWNER_GATED / RESOLVED_AND_APPLIED / OPEN owner), owner (human owner / control-plane owner / named gate owner), and locator or evidence path.",
+      "precedent_locator": "R8_LEDGER.json 'blockers[]' entries carry id/severity/status/owner/action/evidence (e.g. EIA-R6-03 owner 'HGK Checker Harness Owner'); R10/SESSION_LEDGER_R10.json 'blockers_with_owners[]' carries id/item/owner/state/locator; R9_LEDGER.json 'blockers[]' id/item/state/resolution."
+    },
+    {
+      "id": "CR-04",
+      "item": "Incidents and tooling findings (voids, false greens, attribution failures)",
+      "what": "Timed incident list (what, handling, status) plus the round's tooling findings file, each with occurrence counts and whether fix needs authorisation.",
+      "precedent_locator": "R9_LEDGER.json 'incidents[]' (INC-R9-01 refuse-by-own-gate, INC-R9-02 budget overrun); R7/CHECKPOINT_STATE_20261016.json 'incidents[]' + 'tooling_findings' (TF-01..TF-10 with 'unfixed_needs_authorisation'); R8_LEDGER.json 'incidents[]' (INC-R8-01 owner authorisation, INC-R8-02 nonce absence)."
+    },
+    {
+      "id": "CR-05",
+      "item": "Side-effect inventory: EVERY external mutation, reversible or not",
+      "what": "Explicit list of each external change (canonical skill tree, registry/config, kanban board, worktrees, published branches, scratch), each with who made it, before/after where known, and reversibility (rollback mechanism + drilled status).",
+      "precedent_locator": "R9_LEDGER.json 'side_effects_disclosed[]' (SE-01..SE-06; SE-04 records the canonical hgk-governed-execution reduce with 'pre-image kept at WS_B/preimage (127 files) with a rehearsed rollback'); R8_LEDGER.json 'side_effects[]' each with 'reversible' field; R10/SESSION_LEDGER_R10.json 'side_effects_disclosed[]' (including the credential clause)."
+    },
+    {
+      "id": "CR-06",
+      "item": "Next actions with literal commands and expected outputs (resume playbook)",
+      "what": "A successor must be able to execute the next step by copy-paste: dispatch command line, attempt-number rules, guard-failure note, expected artifact paths.",
+      "precedent_locator": "R7/CHECKPOINT_STATE_20261016.json 'resume_playbook[]' steps 1-5 with 'cmd'/'expected'/'note'; R7/HANDOVER_CHECKPOINT_20261016.md section 6 'Open items and the exact next actions (resume playbook)' with the dispatch_r6.py command line; R9_SYNTHESIS.md '## Open owner actions' numbered 1-6 with OQ ids."
+    },
+    {
+      "id": "CR-07",
+      "item": "Model/lane binding in force, attested or explicitly NOT attested",
+      "what": "Per lane (PLAN / EXECUTE / VERIFY_SECURITY): mandated arm, registry/route values, epoch/revision, admission_status, served arm evidence (receipt attempts[]), and any SoD implication. Where the served arm could not be proven, say so instead of the mandate.",
+      "precedent_locator": "R9/R9_RUNTIME_BINDING.json 'mandate' + 'planes' (plan_orchestrator binding_sha256, served_attestation, lane_pool_rank1 with claim_ceiling 'CANDIDATE_ONLY') + 'deviations_and_residuals' R9-D2/D3; R10/SESSION_LEDGER_R10.json 'control_plane_in_force' (registry_epoch, routes[].admission_status, check_sod SOD_VIOLATION, CONFLICT_R10_F1); R7/HANDOVER_CHECKPOINT md sections naming the divergence; R8_LEDGER.json 'TF-06' entry ('attribution unproven')."
+    },
+    {
+      "id": "CR-08",
+      "item": "Credential-handling posture",
+      "what": "State that the credential is read from its file into memory by the publication script only, never printed, never in argv/URL/log/artifact; name required token scope; never echo a credential value.",
+      "precedent_locator": "R7/CHECKPOINT_STATE_20261016.json 'resume_preconditions' ('token file C:/Projects/Agent_Workspace/API KEY/GITHUB-REPO_SHW097-4.txt needs Contents:Read+write; never print it'); R7/HANDOVER_CHECKPOINT_20261016.md section 7 'Environment facts a fresh session needs' (Kerberos-free credential, value never printed, never in argv/URL/artifacts); R10/SESSION_LEDGER_R10.json 'side_effects_disclosed[]' credentials item ('never enters argv, a URL, a log or an artifact; no credential value was printed')."
+    },
+    {
+      "id": "CR-09",
+      "item": "Published / frozen state table with heads verified by readback",
+      "what": "Every published repo/branch/PR: ref, head sha, blob count, local==remote readback result, PR numbers and comment ids; frozen prefixes with manifest sha256.",
+      "precedent_locator": "R7/CHECKPOINT_STATE_20261016.json 'published' (fabric_r7_head f763c485..., blobs 302, 'branch_heads_reverified_by_api': true, 'checkpoint_commit' with readback 'local_head == remote_head, 0 blob mismatches'); R7/HANDOVER_CHECKPOINT_20261016.md section 2 table; R8/R8_PUBLICATION_VERIFICATION.json and R9/R9_PUBLICATION_VERIFICATION.json (publication readbacks)."
+    },
+    {
+      "id": "CR-10",
+      "item": "Verdict-state inventory: which verdicts are valid, which are self-report, which are missing",
+      "what": "Classify every verification: valid independent checker verdict (with nonce + served arm), maker self-report (explicitly NOT a verdict), orchestrator readings (explicitly not a verdict), missing verdicts (with the incident that voided them).",
+      "precedent_locator": "R7/CHECKPOINT_STATE_20261016.json 'verdicts' ('valid_checker_verdict': R7_CHECKER_ATTEMPT3/R7_CHECKER_VERDICT.json PENDING_OWNER; 'maker_selfreport': NOT an independent verdict; 'swarm_verifier_verdict': MISSING (INC-R7-03); 'orchestrator reading explicitly not a verdict'); R9_LEDGER.json 'verification' (independent_checker nonce R9V-CHECKER-NONCE-5c1d84, served_arm rank 1, overall UNVERIFIABLE, adjudication path R9_VERIFY/R9_VERDICT_ADJUDICATION.json, 'not_established' list)."
+    },
+    {
+      "id": "CR-11",
+      "item": "Environment facts a fresh session needs (paths, worktrees, quirks)",
+      "what": "Round artifact roots, worktree paths and branch names, lane home, relay port status, kanban invocation env (HERMES_HOME, PYTHONPATH), pre-existing dirty trees and divergent local refs with do-not-fix guidance.",
+      "precedent_locator": "R7/HANDOVER_CHECKPOINT_20261016.md section 7 'Environment facts a fresh session needs' (round roots, wt-cnv-r7/wt-pipd-r7, HGK lane home codex-hermes, relay 127.0.0.1:10101 HTTP 426 note, Fabric local main abb70eb... divergence 'treat origin/main as canonical and do not fix', dirty HG-KSEOS trees) mirrored in R7/CHECKPOINT_STATE_20261016.json 'resume_preconditions'."
+    },
+    {
+      "id": "CR-12",
+      "item": "Corrections-from-verification section (what the checker forced the round to correct)",
+      "what": "Every defect the independent checker found in the round's own artifacts, with the correction applied and where, including the checker's own self-reported breaches recorded verbatim.",
+      "precedent_locator": "R9_SYNTHESIS.md '## Corrections the independent checker forced on this round' (R9-F10 package byte count 2580690->2689181; R9-F12 mid-round rebind; two defects in the round's own verifier brief; checker's CHECKER_TEMP_WRITE_BOUNDARY_BREACH recorded) and R9_LEDGER.json blockers R9-B7 adjudication path."
+    },
+    {
+      "id": "CR-13",
+      "item": "Falsification conditions for the round's claims",
+      "what": "Explicit statements of what would refute each headline claim (recompute arithmetic, re-run mutations, re-run disputed tests, re-resolve manifest paths).",
+      "precedent_locator": "R8_SYNTHESIS.md '## 6. What would falsify this round's claims' (4 numbered falsifiers); SELF_EVOLUTION_R9.md 'Evolution proposals' entries each carry 'falsification' (e.g. EV-01 'a post-change receipt with a nonce failure and a null served arm')."
+    },
+    {
+      "id": "CR-14",
+      "item": "Honest not-done / honest partial list",
+      "what": "Explicit list of what was NOT done or NOT established, so a successor cannot read silence as completion (acceptance cases, gates, unresolved backlog, residual worktree edits).",
+      "precedent_locator": "R9_LEDGER.json 'verification.not_established[]' ('an unmodified two-test re-run by the checker', 'any acceptance, Gate PASS, AO verdict or release'); R8_SYNTHESIS.md '## 4. The honest partial (do not read this round as clean)' and item '7. Not done'; R7/HANDOVER_CHECKPOINT md section 8 'Honest one-paragraph summary for the next session'."
+    },
+    {
+      "id": "CR-15",
+      "item": "Current-facts re-verification discipline recorded",
+      "what": "Values measured live at closure time (branch_heads_reverified_by_api, loader row, registry readback), because control-plane values can change between measurement and handover (R9-F12 precedent).",
+      "precedent_locator": "R7/CHECKPOINT_STATE_20261016.json 'branch_heads_reverified_by_api': true; R9_LEDGER.json 'applied_state' (SKILL.md_sha256_prefix 60a4d9b3c79fc9e7, loader_row 'hgk-governed-execution | software-development | local | local | enabled') - re-verified this round (ws2 report) against the live tree; R9_SYNTHESIS.md finding 'the PLAN route ... rebind ... by an act outside this round' as the reason the discipline exists."
+    },
+    {
+      "id": "CR-16",
+      "item": "Checkpoint commit / publication of the handover itself",
+      "what": "The closure package becomes part of the published evidence (own commit/branch slot), so the successor reads the same bytes.",
+      "precedent_locator": "R7/CHECKPOINT_STATE_20261016.json 'checkpoint_commit' (branch evidence/cnv-pipd-ls-sp-20261015-r7, head 20446c06..., blobs 306, readback clean); R7/HANDOVER_CHECKPOINT_20261016.md section 9 'Checkpoint commit (added after this file was written)'; R10/SESSION_LEDGER_R10.json 'session.rounds_executed' shows the R10 evidence packet pattern continuing."
+    },
+    {
+      "id": "CR-17",
+      "item": "Candidate-vs-landed state (what this ws2 inventory establishes as a standing closure item)",
+      "what": "A closure package must state, for every candidate tree it leaves behind, whether it is already landed byte-identical, an identical subset, divergent, or a pre-image - so the successor knows what an apply would change. R8-F5 and R9-B1 are the precedents that made this item mandatory.",
+      "precedent_locator": "R9_LEDGER.json blocker R9-B1 (repaired candidate fails C6 gate on one live reference; resolved by overlay with zero deletions) and applied_state; R8_LEDGER.json finding R8-F5 ('the hgk-governed-execution slim candidate is NOT landable: two live reference texts do not survive'); R9/WS_B/CANDIDATE_V2_MANIFEST.json (candidate manifest with per-file digests); R9/WS_B/APPLY_RECEIPT.json (guarded-apply receipt with pre-image and rollback)."
+    }
+  ],
+  "package_manifest_shape_precedent": {
+    "note": "A handover package itself was a two-file artifact: one prose checkpoint, one machine state file, cross-referenced.",
+    "precedent_locator": "CNV-PIPD-LS-SP-20261015-R7: HANDOVER_CHECKPOINT_20261016.md (prose, sections 1-9) + CHECKPOINT_STATE_20261016.json (schema CNV-PIPD-LS-SP-20261015-R7/CHECKPOINT/1, 'reference_files' map naming every supporting artifact)."
+  }
+}

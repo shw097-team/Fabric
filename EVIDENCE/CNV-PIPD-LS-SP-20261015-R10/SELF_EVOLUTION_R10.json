@@ -1,0 +1,128 @@
+{
+ "schema": "CNV-PIPD-LS-SP-20261015-R10/SELF-EVOLUTION/1",
+ "produced_utc": "2026-10-16T05:49:43.246444+00:00",
+ "research": [
+  {
+   "id": "RS-10",
+   "statement": "A lane's pool is a THIRD surface: an arm can be named by the order, absent from the lane's pool, and still reachable provider-direct on the same relay.",
+   "evidence": "dispatch_r10.py VERIFY_SECURITY -> exit 4, code ERR_LANE_REQUIRED_ARM_ABSENT, identity_gate.arms=[rank1 openai-codex/gpt-6.1-sol], dispatcher text 'the required arm is not in this lane's pool'; the same model+provider returned PROBE_OK on a one-shot smoke probe",
+   "ceiling": "local"
+  },
+  {
+   "id": "RS-11",
+   "statement": "The dispatcher's nonce gate reads fewer surfaces than the receipt it writes: it parses transcript agent_message events while the same receipt records a stdout file (429,783 bytes) and a stdout_tail string that both contain the nonce.",
+   "evidence": "VERIFY_SECURITY_dispatch_receipt_attempt1.json: code ERR_NO_ARM_EMITTED_NONCE, nonce_present false, nonce_source item.completed/agent_message; the nonce appears in that receipt's own stdout_tail and in the recorded stdout_path",
+   "ceiling": "receipt-bound"
+  },
+  {
+   "id": "RS-12",
+   "statement": "A role-scoped receipt path destroyed provenance for 11 attempt-1 turns in one session (7 EXECUTE, 4 VERIFY_SECURITY), i.e. up to 9 receipts destroyed; the round first recorded 8 and an independent checker corrected the magnitude.",
+   "evidence": "the independent checker's raw listing (R10_VERIFY/raw/t1b_pytest_live.txt, t1c_turn_mapping.txt) plus the surviving file's mtime/content; the direction was already measured by this round, the magnitude was understated",
+   "ceiling": "local"
+  },
+  {
+   "id": "RS-13",
+   "statement": "check_drift == [] does NOT imply the registry is internally consistent: it compares each projection pointer with its own target, so a registry can read drift-free while check_sod reports SOD_VIOLATION for a declared-distinct pair (measured: PLAN and VERIFY_SECURITY both resolving to openai-codex/gpt-6.1-sol).",
+   "evidence": "lane_policy.check_drift(registry=reg) == [] and lane_policy.check_sod(PLAN,VERIFY_SECURITY) == (False,'SOD_VIOLATION maker_model=gpt-6.1-sol == checker_model=gpt-6.1-sol')",
+   "ceiling": "local"
+  },
+  {
+   "id": "RS-14",
+   "statement": "A 0-byte reading of a live file is a PROBE result, never a corruption finding - but the mechanism must not be guessed either. Measured: the file is 35739 bytes now; the tree's own write log shows NO write in the probe's read window and shows its current digest created at 13:35:06 by a DIFFERENT session, and the previous content digest (8af86f502767) has no copy on this host - so the past state is NOT re-measurable and this round's 'loader rewrite race' explanation is WITHDRAWN.",
+   "evidence": "refuted reading + corrected attribution; checker disagreements D3/D4 (R10_VERIFY/R10_VERDICT.json)",
+   "ceiling": "local"
+  },
+  {
+   "id": "RS-15",
+   "statement": "A change record is not updated by the act that performs its work: 20 rows of one record were fully DONE in the live system while the record read 0/25.",
+   "evidence": "the registry carries the rebind the record asks for (epoch 21, admission ADMITTED) while tasks.md was untouched",
+   "ceiling": "local"
+  }
+ ],
+ "learning": [
+  {
+   "id": "LN-10",
+   "lesson": "Before dispatching a mandated arm, read the LANE's own pool (or the dispatcher's identity_gate), not only the registry: an arm absent from the pool fail-closes as a routing absence, not a model outage.",
+   "applies_to": "lane dispatch"
+  },
+  {
+   "id": "LN-11",
+   "lesson": "Keep four attribution surfaces separate in every statement - declared (registry), pooled (identity_gate), reachable (provider-direct), served (attempts[]). Never let one stand for another.",
+   "applies_to": "lane model attribution"
+  },
+  {
+   "id": "LN-12",
+   "lesson": "Never edit the route registry or the lane slots so that your own dispatch can succeed; run the mandated model provider-direct and disclose the deviation, or fail closed and report.",
+   "applies_to": "lane routing governance"
+  },
+  {
+   "id": "LN-13",
+   "lesson": "Treat a change record as a CLAIM about state, not as state: measure the system before adjudicating a row, and never tick a row whose artifact you have not seen.",
+   "applies_to": "openspec / governance records"
+  },
+  {
+   "id": "LN-14",
+   "lesson": "A reader that confirms a value must be re-run twice, or hashed, when a loader is known to rewrite files: single reads can race a rewrite and manufacture a false alarm about the subject.",
+   "applies_to": "evidence measurement"
+  },
+  {
+   "id": "LN-15",
+   "lesson": "Publish the TESTED REVISION (bytes+sha256) with any test result; an artifact can change while it is being verified, and a verdict that names no revision cannot be reproduced.",
+   "applies_to": "tooling evidence / checker briefs"
+  },
+  {
+   "id": "LN-16",
+   "lesson": "When a claim about the PAST cannot be re-measured, say NOT RE-MEASURABLE and stop; do not supply a plausible mechanism (a loader race) that the write log does not support.",
+   "applies_to": "evidence discipline"
+  }
+ ],
+ "iteration": [
+  {
+   "id": "IT-08",
+   "change": "the round's successor wrapper writes immutable per-turn receipt/attempt-log paths, snapshots both into the round root, and emits an additive nonce attestation instead of trusting the dispatcher's code alone",
+   "trigger": "RS-11, RS-12",
+   "status": "EXECUTED-CANDIDATE (8 tests pass)"
+  },
+  {
+   "id": "IT-09",
+   "change": "pre-flight arm membership: a dispatcher should report the pool it will use BEFORE spending a lane turn, so an absent arm costs one quick refusal instead of a full dispatch budget",
+   "trigger": "RS-10",
+   "status": "PROPOSED"
+  }
+ ],
+ "evolution": [
+  {
+   "id": "EV-R10-01",
+   "proposal": "have the canonical dispatcher accept a nonce-artifact root and read the lane's own DONE/nonce file",
+   "owner": "control-plane owner",
+   "gate": "a turn whose nonce exists only in its artifact root still yields a served arm",
+   "falsification": "receipt with nonce_absent_arms for a turn whose artifact root carried the nonce"
+  },
+  {
+   "id": "EV-R10-02",
+   "proposal": "one immutable receipt path per TURN inside the canonical dispatcher (role+turn+UTC), and a snapshot into the round root",
+   "owner": "control-plane owner",
+   "gate": "two same-role turns leave two receipts",
+   "falsification": "two turns of one role sharing one receipt path"
+  },
+  {
+   "id": "EV-R10-03",
+   "proposal": "a cross-field agreement gate so a drift-free registry cannot also be SoD-inconsistent",
+   "owner": "governance owner",
+   "gate": "PLAN/VERIFY SOD_VIOLATION cannot coexist with a clean check_drift",
+   "falsification": "drift=[] with check_sod VIOLATION for a declared-distinct pair"
+  },
+  {
+   "id": "EV-R10-04",
+   "proposal": "make lane-pool membership a pre-dispatch check with its own typed refusal in the round wrapper",
+   "owner": "round owner",
+   "gate": "an absent mandated arm costs one refusal, not a dispatch",
+   "falsification": "a full-budget dispatch against an arm the pool does not contain"
+  }
+ ],
+ "not_claimed": [
+  "no acceptance, Gate PASS, AO verdict or release",
+  "the round's verification is NOT model-axis independent (writer and checker share the mandated arm)",
+  "no product behaviour is asserted by any repair here"
+ ]
+}

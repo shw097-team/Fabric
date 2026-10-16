@@ -1,0 +1,68 @@
+{
+ "schema": "CNV-PIPD-LS-SP-20261015-R10/VERDICT-ADJUDICATION/1",
+ "produced_utc": "2026-10-16T06:01:43.905074+00:00",
+ "checker": {
+  "artifact": "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015-R10/R10_VERIFY/R10_VERDICT.json",
+  "sha256": "23bc0dd0e9a13e80a1bf2c1a421ddeec330ab3233c7b0c8a7649a271ae4af370",
+  "overall": "PARTIALLY_VERIFIED",
+  "confirmed": 7,
+  "refuted": 1,
+  "unverifiable": 1,
+  "served_arm": {
+   "how": "provider-direct one-shot with the model pinned on argv (the mandated arm is absent from the lane pool)",
+   "model_evidence": "the runtime's own session store: sessions.id=20261016_134921_17f8c1, model=deepseek-v4.1-flash, source=oneshot, message_count=103, api_call_count=37",
+   "caveat": "no pool receipt exists for this turn; the arm is declared by the command line plus the session store, NOT by a dispatcher receipt"
+  },
+  "independence": "NONE at model level - the checker ran the SAME arm the writer was ordered onto; process/lane separation plus the re-derivation duty is all that remains"
+ },
+ "accepted_and_corrected": [
+  {
+   "code": "D1_COLLISION_COUNT_UNDERSTATED",
+   "checker_measure": "11 attempt-1 turns shared the two attempt-1 receipt paths (7 EXECUTE + 4 VERIFY_SECURITY), i.e. up to 9 receipts destroyed",
+   "this_round_had_recorded": "8 turns (5 EXECUTE + 3 VERIFY_SECURITY)",
+   "action": "CORRECTED in SELF_EVOLUTION_R10 RS-12 and in the ledger; the defect direction was right and the magnitude was understated"
+  },
+  {
+   "code": "D2_NONCE_MECHANISM_IMPRECISE",
+   "checker_measure": "the same receipt carries nonce_present_raw_stdout=true: the token WAS seen in raw stdout and the gate declined to accept it, so 'reads only agent_message events' misdescribes the code",
+   "action": "CORRECTED in tooling/README_R10_TOOLING.md: the gate requires the agent_message carrier AND raw stdout; the raw-stdout channel saw the token and the carrier channel did not"
+  },
+  {
+   "code": "D3_PROBE_EXPLANATION_WITHDRAWN",
+   "checker_measure": "the tree's own write log shows NO write to skills/hgk-lifecycle-admission/SKILL.md inside the probe's read window; that file's current digest was created at 13:35:06 by a DIFFERENT session, and the previous content digest 8af86f502767 has no copy on this host",
+   "this_round_had_claimed": "a 'loader rewrite race' explanation, plus a 'loaded successfully at 13:16' statement it could not corroborate from any artifact",
+   "action": "WITHDRAWN: the refutation of the 0-byte READING still stands (the file is 35739 bytes NOW and the round's decisive values do not depend on it), but the MECHANISM is withdrawn and the past state is recorded as NOT RE-MEASURABLE. The '13:16' sentence is withdrawn as uncorroborated by any artifact."
+  },
+  {
+   "code": "C8_SIDE_EFFECT_BLANKET_REFUTED",
+   "checker_measure": "the canonical skills tree's own log shows in-window rewrites, and WS2's measured value for hgk-kanban-and-lane-routing (86198 B) is stale (88115 B since 13:38:54)",
+   "action": "CORRECTED: the adjudication's blanket 'no content change detectable' is withdrawn and replaced by the measured facts plus an explicit attribution caveat - the rewrites were performed by sessions OTHER than this round, and whether they were owner-authorised is not determinable from artifacts this round may read"
+  },
+  {
+   "code": "C4A_ROW_T5_BROKEN_LOAD_PATH",
+   "checker_measure": "the live SKILL.md names entry_map.json at lines 66 and 71 and no entry_map.json exists in the live skill directory",
+   "action": "ACCEPTED and re-derived by the orchestrator: CORRECTED - row T5 cannot be DONE_MEASURED while its own pointer set has a broken load path; reclassified OPEN_OWNER with the locator"
+  },
+  {
+   "code": "C1_ARTIFACT_CHANGED_MID_VERIFICATION",
+   "checker_measure": "the wrapper under test changed at 13:50:22 (this round's own cosmetic snapshot de-duplication), so a verdict naming no revision is not reproducible",
+   "action": "ACCEPTED: the README now names the tested revision by bytes+sha256 and states that BOTH revisions pass; the change was this round's own disclosed fix"
+  },
+  {
+   "code": "C6_BRIEF_DEFECT_MANIFEST_PATH",
+   "checker_measure": "R10/PACKET_MANIFEST.json does not exist at the round root, so brief item 5 had no subject",
+   "action": "ACCEPTED as a defect in THIS ROUND'S brief: the manifest belongs to the packet worktree, not the round root"
+  }
+ ],
+ "what_stands_confirmed": [
+  "the two wrapper defects are real and their repairs are test-backed",
+  "the decisive control-plane values in the adjudication (epoch 21, the three routes, check_drift, check_sod VIOLATION) reproduce exactly",
+  "the routing finding F5/F6 and the wrapper's behaviour on a failed dispatch reproduce end to end",
+  "claim discipline: no record of this round reads as an acceptance, Gate PASS, AO verdict, release or product claim"
+ ],
+ "checker_procedural_self_report": {
+  "verified_by_me": "the checker reports no git command, no network write, and writes confined to its own root; it disclosed that the brief's exact pytest command maintains a pre-existing tooling/.pytest_cache",
+  "note": "the 13:50:30 cache update it could not attribute matches this round's own pytest re-run at that time"
+ },
+ "claim_ceiling": "LOCAL / candidate-only; the checker's verdict is advisory evidence, is NOT model-independent, and upgrades nothing"
+}

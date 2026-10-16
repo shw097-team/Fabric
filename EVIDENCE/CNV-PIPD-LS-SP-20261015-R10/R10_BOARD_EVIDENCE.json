@@ -1,0 +1,37 @@
+{
+ "schema": "CNV-PIPD-LS-SP-20261015-R10/BOARD-EVIDENCE/1",
+ "produced_utc": "2026-10-16T05:17:17.311086+00:00",
+ "kanban": {
+  "board": "r10-session-closure-20261016",
+  "db": "<HERMES_HOME>/kanban/boards/r10-session-closure-20261016/kanban.db",
+  "root": "t_e1589b33",
+  "workers": {
+   "W1_change_record_reconciliation": "t_2ad81f8b",
+   "W2_wrapper_self_repair": "t_074f3cab",
+   "W3_session_closure_handover": "t_df0f3a1a",
+   "W4_publication": "t_c58dc326"
+  },
+  "verifier": "t_f205c47e",
+  "synthesizer": "t_c671fbba"
+ },
+ "hgk_admission": {
+  "project_id": "CNV-R10-SESSCLOSE",
+  "changeset": "R10-0-SESSION-CLOSURE",
+  "workorders": [
+   "WO-TS-SESSCLOSE-01",
+   "WO-TS-SESSCLOSE-02",
+   "WO-TS-SESSCLOSE-03",
+   "WO-TS-SESSCLOSE-04",
+   "WO-TS-SESSCLOSE-05",
+   "WO-TS-SESSCLOSE-06"
+  ]
+ },
+ "openspec_change": "hgk-r10-session-closure-20261016",
+ "model_plan_declared": {
+  "PLAN_orchestrator": "opencode-go/glm-5.3-flash",
+  "EXECUTE": "opencode-go/deepseek-v4.1-flash",
+  "VERIFY_SECURITY": "opencode-go/deepseek-v4.1-flash",
+  "residual": "the mandate binds writer and checker to the SAME arm => model-axis independence ABSENT (process/lane separation only)"
+ },
+ "note": "board ids are written here because an id that lives only in chat prose cannot be re-verified later"
+}

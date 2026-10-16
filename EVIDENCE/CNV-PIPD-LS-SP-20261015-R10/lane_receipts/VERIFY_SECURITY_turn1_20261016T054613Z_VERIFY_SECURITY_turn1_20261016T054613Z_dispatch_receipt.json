@@ -1,0 +1,29 @@
+{
+  "schema": "HGK-LANE-RESOLUTION/1",
+  "ok": false,
+  "lane": "VERIFY_SECURITY",
+  "code": "ERR_LANE_REQUIRED_ARM_ABSENT",
+  "detail": "opencode-go/deepseek-v4.1-flash is not in the VERIFY_SECURITY pool",
+  "generated_utc": "2026-10-16T05:46:13.956998+00:00",
+  "required_arm": "opencode-go/deepseek-v4.1-flash",
+  "identity_gate": {
+    "state": "enforced",
+    "lane_home": "C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\codex-hermes",
+    "relay_home": "C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\opencodex-hermes",
+    "arms": [
+      {
+        "rank": 1,
+        "provider": "openai-codex",
+        "model": "gpt-6.1-sol",
+        "requirement": "relay_pool",
+        "ok": true,
+        "detail": "non-empty refreshable credential present in codex-accounts.json"
+      }
+    ],
+    "degraded": false,
+    "required_arm": "opencode-go/deepseek-v4.1-flash"
+  },
+  "say": "the required arm is not in this lane's pool",
+  "codex_home": "C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\codex-hermes",
+  "codex_home_is_declared_lane_home": true
+}

@@ -1,0 +1,319 @@
+{
+  "schema": "WS3-RECEIPT-PATHS/1",
+  "collision_defect_path_construction": {
+    "files": [
+      "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/dispatch_r6.py",
+      "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015-R9/dispatch_r9.py"
+    ],
+    "function": "main()",
+    "quoted_before": "        \"--json-out\", f\"{LANE_RUNS}/{lane}_dispatch_receipt_attempt{attempt}.json\",\n        \"--attempt-log-dir\", f\"{LANE_RUNS}/{lane}_logs_attempt{attempt}\",",
+    "r6_lines": "56-57",
+    "r9_lines": "63-64",
+    "inode_seen_per_turn": [
+      {
+        "path": "lane_runs/EXECUTE_dispatch_receipt_attempt1.json",
+        "turns_that_wrote_it_rank1_trail": [
+          {
+            "run_id": "2140-1792049969",
+            "at_utc": "2026-10-15T08:20:20.760378+00:00",
+            "stdout_bytes": 3541041
+          },
+          {
+            "run_id": "4640-1792119447",
+            "at_utc": "2026-10-16T03:15:15.265649+00:00",
+            "stdout_bytes": 563555
+          },
+          {
+            "run_id": "2480-1792119780",
+            "at_utc": "2026-10-16T03:28:54.912512+00:00",
+            "stdout_bytes": 803905
+          },
+          {
+            "run_id": "5316-1792124385",
+            "at_utc": "2026-10-16T04:25:50.274623+00:00",
+            "stdout_bytes": 113758
+          },
+          {
+            "run_id": "1972-1792124816",
+            "at_utc": "2026-10-16T04:40:52.352624+00:00",
+            "stdout_bytes": 322713
+          }
+        ]
+      },
+      {
+        "path": "lane_runs/VERIFY_SECURITY_dispatch_receipt_attempt1.json",
+        "turns_that_wrote_it_rank1_trail": [
+          {
+            "run_id": "10124-1792072488",
+            "at_utc": "2026-10-15T14:17:23.912396+00:00"
+          },
+          {
+            "run_id": "2900-1792121826",
+            "at_utc": "2026-10-16T03:48:16.912070+00:00",
+            "stdout_bytes": 406718
+          },
+          {
+            "run_id": "1188-1792125708",
+            "at_utc": "2026-10-16T04:54:37.119514+00:00",
+            "stdout_bytes": 429783
+          }
+        ]
+      }
+    ],
+    "now_on_disk_r6_exec_dirs": [
+      "attempt-1-20261015T073929Z",
+      "attempt-1-20261015T125607Z",
+      "attempt-1-20261015T125836Z",
+      "attempt-1-20261016T025727Z",
+      "attempt-1-20261016T030300Z",
+      "attempt-1-20261016T041945Z",
+      "attempt-1-20261016T042656Z",
+      "attempt-2-20261015T125942Z",
+      "attempt-3-20261015T134510Z"
+    ],
+    "note": "seven attempt-1-* dirs for EXECUTE and three + one (R9) for VERIFY_SECURITY rank-1 turns share ONE receipt path per lane+attempt; only the newest turn's JSON survives at the human-side path; earlier turns survive only as .attempts.ndjson rows (no final code field, no ok/used_rank)."
+  },
+  "lane_runs_listing_now": [
+    {
+      "dir": "CNV-PIPD-LS-SP-20261015-R6/",
+      "mtime": "2026-10-15T16:20:53.119651+08:00"
+    },
+    {
+      "dir": "CNV-PIPD-LS-SP-20261015-R9/",
+      "mtime": "2026-10-16T12:41:48.502046+08:00"
+    },
+    {
+      "name": "EXECUTE_dispatch_receipt_attempt1.json",
+      "bytes": 7701,
+      "mtime": "2026-10-16T12:40:52.373891+08:00"
+    },
+    {
+      "name": "EXECUTE_dispatch_receipt_attempt1.json.attempts.ndjson",
+      "bytes": 13415,
+      "mtime": "2026-10-16T12:40:52.352625+08:00"
+    },
+    {
+      "name": "EXECUTE_dispatch_receipt_attempt2.json",
+      "bytes": 7681,
+      "mtime": "2026-10-15T21:44:43.261315+08:00"
+    },
+    {
+      "name": "EXECUTE_dispatch_receipt_attempt2.json.attempts.ndjson",
+      "bytes": 2771,
+      "mtime": "2026-10-15T21:44:43.239745+08:00"
+    },
+    {
+      "name": "EXECUTE_dispatch_receipt_attempt3.json",
+      "bytes": 7516,
+      "mtime": "2026-10-15T21:53:57.119331+08:00"
+    },
+    {
+      "name": "EXECUTE_dispatch_receipt_attempt3.json.attempts.ndjson",
+      "bytes": 2599,
+      "mtime": "2026-10-15T21:53:57.116332+08:00"
+    },
+    {
+      "name": "VERIFY_SECURITY_dispatch_receipt_attempt1.json",
+      "bytes": 7413,
+      "mtime": "2026-10-16T12:54:37.321391+08:00"
+    },
+    {
+      "name": "VERIFY_SECURITY_dispatch_receipt_attempt1.json.attempts.ndjson",
+      "bytes": 8112,
+      "mtime": "2026-10-16T12:54:37.119515+08:00"
+    },
+    {
+      "name": "VERIFY_SECURITY_dispatch_receipt_attempt2.json",
+      "bytes": 7763,
+      "mtime": "2026-10-15T23:16:29.722571+08:00"
+    },
+    {
+      "name": "VERIFY_SECURITY_dispatch_receipt_attempt2.json.attempts.ndjson",
+      "bytes": 5521,
+      "mtime": "2026-10-15T23:16:29.522144+08:00"
+    },
+    {
+      "name": "VERIFY_SECURITY_dispatch_receipt_attempt3.json",
+      "bytes": 7326,
+      "mtime": "2026-10-15T23:34:30.183205+08:00"
+    },
+    {
+      "name": "VERIFY_SECURITY_dispatch_receipt_attempt3.json.attempts.ndjson",
+      "bytes": 5315,
+      "mtime": "2026-10-15T23:34:30.014278+08:00"
+    },
+    {
+      "name": "VERIFY_SECURITY_dispatch_receipt_attempt4.json",
+      "bytes": 7526,
+      "mtime": "2026-10-16T00:48:58.996813+08:00"
+    },
+    {
+      "name": "VERIFY_SECURITY_dispatch_receipt_attempt4.json.attempts.ndjson",
+      "bytes": 2740,
+      "mtime": "2026-10-16T00:48:58.830003+08:00"
+    },
+    {
+      "name": "VERIFY_SECURITY_dispatch_receipt_attempt5.json",
+      "bytes": 701,
+      "mtime": "2026-10-16T00:53:09.868109+08:00"
+    }
+  ],
+  "attempts_ndjson_current_lines": {
+    "CNV-PIPD-LS-SP-20261015-R6/EXECUTE": [
+      "attempt-1-20261015T073929Z",
+      "attempt-1-20261015T125607Z",
+      "attempt-1-20261015T125836Z",
+      "attempt-1-20261016T025727Z",
+      "attempt-1-20261016T030300Z",
+      "attempt-1-20261016T041945Z",
+      "attempt-1-20261016T042656Z",
+      "attempt-2-20261015T125942Z",
+      "attempt-3-20261015T134510Z"
+    ],
+    "CNV-PIPD-LS-SP-20261015-R6/VERIFY_SECURITY": [
+      "attempt-1-20261015T082053Z",
+      "attempt-1-20261015T135448Z",
+      "attempt-1-20261016T033706Z",
+      "attempt-2-20261015T095516Z",
+      "attempt-2-20261015T142129Z",
+      "attempt-3-20261015T101900Z",
+      "attempt-3-20261015T151726Z",
+      "attempt-4-20261015T161910Z",
+      "attempt-5-20261015T165309Z",
+      "attempt-6-20261015T165517Z"
+    ],
+    "CNV-PIPD-LS-SP-20261015-R9/VERIFY_SECURITY": [
+      "attempt-1-20261016T044148Z"
+    ]
+  },
+  "surviving_file_attribution": {
+    "EXECUTE_dispatch_receipt_attempt1.json": {
+      "lane": "EXECUTE",
+      "ok": false,
+      "code": "ERR_NO_ARM_EMITTED_NONCE",
+      "used_rank": null,
+      "used_transport_model": null,
+      "generated_utc": "2026-10-16T04:40:52.373890+00:00",
+      "serving_run_stdout_path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\CNV-PIPD-LS-SP-20261015-R6\\EXECUTE\\attempt-1-20261016T042656Z\\attempt-1972-1792124816-1-stdout.txt",
+      "serving_attempt_log_dir": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\CNV-PIPD-LS-SP-20261015-R6\\EXECUTE\\attempt-1-20261016T042656Z",
+      "serving_rank": 1,
+      "serving_provider": "opencode-go",
+      "serving_model": "deepseek-v4.1-flash",
+      "serving_exit": 0,
+      "serving_seconds": 835.74,
+      "serving_nonce_present": false
+    },
+    "EXECUTE_dispatch_receipt_attempt2.json": {
+      "lane": "EXECUTE",
+      "ok": false,
+      "code": "ERR_LANE_ALL_ROUTES_EXHAUSTED",
+      "used_rank": null,
+      "used_transport_model": null,
+      "generated_utc": "2026-10-15T13:44:43.260313+00:00",
+      "serving_run_stdout_path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\CNV-PIPD-LS-SP-20261015-R6\\EXECUTE\\attempt-2-20261015T125942Z\\attempt-13796-1792069182-1-stdout.txt",
+      "serving_attempt_log_dir": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\CNV-PIPD-LS-SP-20261015-R6\\EXECUTE\\attempt-2-20261015T125942Z",
+      "serving_rank": 1,
+      "serving_provider": "opencode-go",
+      "serving_model": "deepseek-v4.1-flash",
+      "serving_exit": "TIMEOUT",
+      "serving_seconds": 2700.03,
+      "serving_nonce_present": false
+    },
+    "EXECUTE_dispatch_receipt_attempt3.json": {
+      "lane": "EXECUTE",
+      "ok": false,
+      "code": "ERR_NO_ARM_EMITTED_NONCE",
+      "used_rank": null,
+      "used_transport_model": null,
+      "generated_utc": "2026-10-15T13:53:57.119331+00:00",
+      "serving_run_stdout_path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\CNV-PIPD-LS-SP-20261015-R6\\EXECUTE\\attempt-3-20261015T134510Z\\attempt-6960-1792071910-1-stdout.txt",
+      "serving_attempt_log_dir": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\CNV-PIPD-LS-SP-20261015-R6\\EXECUTE\\attempt-3-20261015T134510Z",
+      "serving_rank": 1,
+      "serving_provider": "opencode-go",
+      "serving_model": "deepseek-v4.1-flash",
+      "serving_exit": 0,
+      "serving_seconds": 525.8,
+      "serving_nonce_present": false
+    },
+    "VERIFY_SECURITY_dispatch_receipt_attempt1.json": {
+      "lane": "VERIFY_SECURITY",
+      "ok": false,
+      "code": "ERR_NO_ARM_EMITTED_NONCE",
+      "used_rank": null,
+      "used_transport_model": null,
+      "generated_utc": "2026-10-16T04:54:37.320390+00:00",
+      "serving_run_stdout_path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\CNV-PIPD-LS-SP-20261015-R9\\VERIFY_SECURITY\\attempt-1-20261016T044148Z\\attempt-1188-1792125708-1-stdout.txt",
+      "serving_attempt_log_dir": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\CNV-PIPD-LS-SP-20261015-R9\\VERIFY_SECURITY\\attempt-1-20261016T044148Z",
+      "serving_rank": 1,
+      "serving_provider": "openai-codex",
+      "serving_model": "gpt-6.1-sol",
+      "serving_exit": 0,
+      "serving_seconds": 768.19,
+      "serving_nonce_present": false
+    },
+    "VERIFY_SECURITY_dispatch_receipt_attempt2.json": {
+      "lane": "VERIFY_SECURITY",
+      "ok": false,
+      "code": "ERR_CHECKER_MUTATED_SUBJECT",
+      "used_rank": null,
+      "used_transport_model": null,
+      "generated_utc": "2026-10-15T15:16:29.721565+00:00",
+      "serving_run_stdout_path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\CNV-PIPD-LS-SP-20261015-R6\\VERIFY_SECURITY\\attempt-2-20261015T142129Z\\attempt-21748-1792074089-2-stdout.txt",
+      "serving_attempt_log_dir": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\CNV-PIPD-LS-SP-20261015-R6\\VERIFY_SECURITY\\attempt-2-20261015T142129Z",
+      "serving_rank": 2,
+      "serving_provider": "opencode-go",
+      "serving_model": "glm-5.3-flash",
+      "serving_exit": "TIMEOUT",
+      "serving_seconds": 3300.05,
+      "serving_nonce_present": false
+    },
+    "VERIFY_SECURITY_dispatch_receipt_attempt3.json": {
+      "lane": "VERIFY_SECURITY",
+      "ok": false,
+      "code": "ERR_NO_ARM_EMITTED_NONCE",
+      "used_rank": null,
+      "used_transport_model": null,
+      "generated_utc": "2026-10-15T15:34:30.183205+00:00",
+      "serving_run_stdout_path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\CNV-PIPD-LS-SP-20261015-R6\\VERIFY_SECURITY\\attempt-3-20261015T151726Z\\attempt-22084-1792077446-2-stdout.txt",
+      "serving_attempt_log_dir": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\CNV-PIPD-LS-SP-20261015-R6\\VERIFY_SECURITY\\attempt-3-20261015T151726Z",
+      "serving_rank": 2,
+      "serving_provider": "opencode-go",
+      "serving_model": "glm-5.3-flash",
+      "serving_exit": 0,
+      "serving_seconds": 1022.77,
+      "serving_nonce_present": false
+    },
+    "VERIFY_SECURITY_dispatch_receipt_attempt4.json": {
+      "lane": "VERIFY_SECURITY",
+      "ok": false,
+      "code": "ERR_NO_ARM_EMITTED_NONCE",
+      "used_rank": null,
+      "used_transport_model": null,
+      "generated_utc": "2026-10-15T16:48:58.995815+00:00",
+      "serving_run_stdout_path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\CNV-PIPD-LS-SP-20261015-R6\\VERIFY_SECURITY\\attempt-4-20261015T161910Z\\attempt-23092-1792081150-2-stdout.txt",
+      "serving_attempt_log_dir": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\CNV-PIPD-LS-SP-20261015-R6\\VERIFY_SECURITY\\attempt-4-20261015T161910Z",
+      "serving_rank": 2,
+      "serving_provider": "opencode-go",
+      "serving_model": "glm-5.3-flash",
+      "serving_exit": 0,
+      "serving_seconds": 1787.88,
+      "serving_nonce_present": false
+    },
+    "VERIFY_SECURITY_dispatch_receipt_attempt5.json": {
+      "lane": "VERIFY_SECURITY",
+      "ok": false,
+      "code": "ERR_LANE_REMOTE_WRITE_NOT_AUTHORIZED",
+      "used_rank": null,
+      "used_transport_model": null,
+      "generated_utc": "2026-10-15T16:53:09.867108+00:00",
+      "serving_run_stdout_path": null,
+      "serving_attempt_log_dir": null,
+      "serving_rank": null,
+      "serving_provider": null,
+      "serving_model": null,
+      "serving_exit": null,
+      "serving_seconds": null,
+      "serving_nonce_present": null
+    }
+  }
+}

@@ -1,0 +1,12 @@
+### T2b: is the attestation's expected-nonce digest the brief's nonce?
+sha256(nonce) prefix = d9cd7c3990001b29
+attestation recorded   = d9cd7c3990001b29
+match = True
+
+### T5e: M2 secret-scan verdict (values never printed)
+verdict         : PASS
+claim_ceiling   : LOCAL_TRUSTED_SCAN (tool-side scan of published blobs; not an AO verdict)
+hard_findings   : 0
+soft_candidates : 1
+operator_token  : {'token_file_present': True, 'token_value_sha256_prefix': '26e205f4bb03', 'occurrences_in_packet': 0, 'credential_file_name_mentions': 6, 'value_never_printed': True}
+scanned blobs   : 40 bytes: 389235

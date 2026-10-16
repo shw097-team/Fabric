@@ -1,0 +1,964 @@
+total ledger records: 871
+actors: {'curator': 700, 'agent': 171}
+actions: {'create': 13, 'write_file': 144, 'patch': 712, 'remove_file': 2}
+
+=== skill: hgk-lifecycle-admission ===
+ ts=2026-10-08T23:05:13.599288+00:00 actor=curator  action=create      file=-                                session=20261008_215654_03c9fa
+     before=[]
+     after =[('SKILL.md', 'd4ff05616fb3')]
+ ts=2026-10-08T23:05:13.655803+00:00 actor=curator  action=write_file  file=references/lifecycle-routes.md   session=20261008_215654_03c9fa
+     before=[]
+     after =[('lifecycle-routes.md', '05e2ab2ea815')]
+ ts=2026-10-08T23:05:13.707848+00:00 actor=curator  action=write_file  file=references/owner-gates.md        session=20261008_215654_03c9fa
+     before=[]
+     after =[('owner-gates.md', '55e3cd82808a')]
+ ts=2026-10-08T23:05:36.641091+00:00 actor=curator  action=patch       file=-                                session=20261008_215654_03c9fa
+     before=[('SKILL.md', 'd4ff05616fb3')]
+     after =[('SKILL.md', '79cfb7293ea0')]
+ ts=2026-10-08T23:52:35.046526+00:00 actor=curator  action=patch       file=-                                session=20261009_065920_50151c
+     before=[('SKILL.md', '79cfb7293ea0')]
+     after =[('SKILL.md', 'a0a9155999c4')]
+ ts=2026-10-08T23:52:35.099034+00:00 actor=curator  action=patch       file=-                                session=20261009_065920_50151c
+     before=[('SKILL.md', 'a0a9155999c4')]
+     after =[('SKILL.md', 'd6a03f0c0eb8')]
+ ts=2026-10-09T01:11:53.377657+00:00 actor=curator  action=write_file  file=references/spine-api-and-sealed-lane-gotchas.md session=20261009_065920_50151c
+     before=[]
+     after =[('spine-api-and-sealed-lane-gotchas.md', 'e6499e1e116e')]
+ ts=2026-10-09T01:16:14.320492+00:00 actor=curator  action=patch       file=-                                session=20261009_065920_50151c
+     before=[('SKILL.md', 'd6a03f0c0eb8')]
+     after =[('SKILL.md', 'a3c37c6ae244')]
+ ts=2026-10-09T02:54:53.277205+00:00 actor=curator  action=patch       file=-                                session=20261009_065920_50151c
+     before=[('SKILL.md', 'a3c37c6ae244')]
+     after =[('SKILL.md', '92aa7b89058a')]
+ ts=2026-10-09T02:54:53.342787+00:00 actor=curator  action=write_file  file=references/spine-api-and-sealed-lane-gotchas.md session=20261009_065920_50151c
+     before=[('spine-api-and-sealed-lane-gotchas.md', 'e6499e1e116e')]
+     after =[('spine-api-and-sealed-lane-gotchas.md', 'a75061db2617')]
+ ts=2026-10-09T10:15:59.362568+00:00 actor=curator  action=patch       file=-                                session=20261009_075452_a72359
+     before=[('SKILL.md', '92aa7b89058a')]
+     after =[('SKILL.md', 'c3208bfef118')]
+ ts=2026-10-10T15:48:20.988009+00:00 actor=curator  action=patch       file=references/spine-api-and-sealed-lane-gotchas.md session=20261010_211659_c58849
+     before=[('spine-api-and-sealed-lane-gotchas.md', 'a75061db2617')]
+     after =[('spine-api-and-sealed-lane-gotchas.md', '609ffb61cd4a')]
+ ts=2026-10-10T15:48:21.045719+00:00 actor=curator  action=patch       file=references/spine-api-and-sealed-lane-gotchas.md session=20261010_211659_c58849
+     before=[('spine-api-and-sealed-lane-gotchas.md', '609ffb61cd4a')]
+     after =[('spine-api-and-sealed-lane-gotchas.md', 'c101002fefc8')]
+ ts=2026-10-10T16:03:49.968635+00:00 actor=curator  action=patch       file=references/spine-api-and-sealed-lane-gotchas.md session=20261010_211659_c58849
+     before=[('spine-api-and-sealed-lane-gotchas.md', 'c101002fefc8')]
+     after =[('spine-api-and-sealed-lane-gotchas.md', 'aa191d2b142f')]
+ ts=2026-10-10T16:04:38.697170+00:00 actor=curator  action=patch       file=references/spine-api-and-sealed-lane-gotchas.md session=20261010_211659_c58849
+     before=[('spine-api-and-sealed-lane-gotchas.md', 'aa191d2b142f')]
+     after =[('spine-api-and-sealed-lane-gotchas.md', 'ca3cf95bb399')]
+ ts=2026-10-10T18:22:28.395577+00:00 actor=agent    action=write_file  file=references/sealed-execute-lane-operations.md session=20261010_224611_ff5618
+     before=[]
+     after =[('sealed-execute-lane-operations.md', 'ca46226cf564')]
+ ts=2026-10-10T18:27:13.028140+00:00 actor=agent    action=patch       file=references/sealed-execute-lane-operations.md session=20261010_224611_ff5618
+     before=[('sealed-execute-lane-operations.md', 'ca46226cf564')]
+     after =[('sealed-execute-lane-operations.md', 'ba103c07156f')]
+ ts=2026-10-11T01:10:17.894697+00:00 actor=agent    action=write_file  file=references/release-evidence-and-publication.md session=20261010_224611_ff5618
+     before=[]
+     after =[('release-evidence-and-publication.md', '7a2a5b2ac44a')]
+ ts=2026-10-11T01:16:34.768600+00:00 actor=curator  action=patch       file=references/release-evidence-and-publication.md session=20261010_224611_ff5618
+     before=[('release-evidence-and-publication.md', '7a2a5b2ac44a')]
+     after =[('release-evidence-and-publication.md', '366b1b1c1bd7')]
+ ts=2026-10-11T01:17:04.165197+00:00 actor=curator  action=patch       file=-                                session=20261010_224611_ff5618
+     before=[('SKILL.md', 'c3208bfef118')]
+     after =[('SKILL.md', 'd7bf54875286')]
+ ts=2026-10-11T01:17:04.222355+00:00 actor=curator  action=patch       file=-                                session=20261010_224611_ff5618
+     before=[('SKILL.md', 'd7bf54875286')]
+     after =[('SKILL.md', 'fc9dc618a652')]
+ ts=2026-10-11T03:00:36.790102+00:00 actor=agent    action=write_file  file=references/owner-credential-push-and-rotation.md session=20261010_224611_ff5618
+     before=[]
+     after =[('owner-credential-push-and-rotation.md', '02a259056e7f')]
+ ts=2026-10-11T03:26:13.782475+00:00 actor=curator  action=patch       file=references/release-evidence-and-publication.md session=20261010_224611_ff5618
+     before=[('release-evidence-and-publication.md', '366b1b1c1bd7')]
+     after =[('release-evidence-and-publication.md', '838e3f844b6b')]
+ ts=2026-10-11T03:54:01.545412+00:00 actor=curator  action=write_file  file=references/coverage-gap-adjudication.md session=20261010_224611_ff5618
+     before=[]
+     after =[('coverage-gap-adjudication.md', '9ba50e875aa3')]
+ ts=2026-10-11T03:54:01.608506+00:00 actor=curator  action=patch       file=-                                session=20261010_224611_ff5618
+     before=[('SKILL.md', 'fc9dc618a652')]
+     after =[('SKILL.md', '7384dab85302')]
+ ts=2026-10-11T03:54:01.671546+00:00 actor=curator  action=patch       file=-                                session=20261010_224611_ff5618
+     before=[('SKILL.md', '7384dab85302')]
+     after =[('SKILL.md', '9c5caf5476d0')]
+ ts=2026-10-11T04:50:53.663194+00:00 actor=curator  action=patch       file=references/owner-credential-push-and-rotation.md session=20261010_224611_ff5618
+     before=[('owner-credential-push-and-rotation.md', '02a259056e7f')]
+     after =[('owner-credential-push-and-rotation.md', '21ebbc1eaafa')]
+ ts=2026-10-11T04:50:53.733616+00:00 actor=curator  action=patch       file=references/owner-credential-push-and-rotation.md session=20261010_224611_ff5618
+     before=[('owner-credential-push-and-rotation.md', '21ebbc1eaafa')]
+     after =[('owner-credential-push-and-rotation.md', '43e427b014c8')]
+ ts=2026-10-11T06:34:06.228183+00:00 actor=agent    action=patch       file=references/sealed-execute-lane-operations.md session=20261010_224611_ff5618
+     before=[('sealed-execute-lane-operations.md', 'ba103c07156f')]
+     after =[('sealed-execute-lane-operations.md', 'bcdca4ca4e8c')]
+ ts=2026-10-11T06:59:47.436706+00:00 actor=curator  action=patch       file=references/sealed-execute-lane-operations.md session=20261010_224611_ff5618
+     before=[('sealed-execute-lane-operations.md', 'bcdca4ca4e8c')]
+     after =[('sealed-execute-lane-operations.md', '940a0da3f209')]
+ ts=2026-10-11T06:59:47.510391+00:00 actor=curator  action=patch       file=references/sealed-execute-lane-operations.md session=20261010_224611_ff5618
+     before=[('sealed-execute-lane-operations.md', '940a0da3f209')]
+     after =[('sealed-execute-lane-operations.md', 'c4096876c597')]
+ ts=2026-10-11T07:00:16.806015+00:00 actor=curator  action=patch       file=references/owner-credential-push-and-rotation.md session=20261010_224611_ff5618
+     before=[('owner-credential-push-and-rotation.md', '43e427b014c8')]
+     after =[('owner-credential-push-and-rotation.md', '6e61e1ba0c90')]
+ ts=2026-10-11T07:00:16.872756+00:00 actor=curator  action=patch       file=references/owner-credential-push-and-rotation.md session=20261010_224611_ff5618
+     before=[('owner-credential-push-and-rotation.md', '6e61e1ba0c90')]
+     after =[('owner-credential-push-and-rotation.md', '51c31591b9e2')]
+ ts=2026-10-11T07:00:54.261781+00:00 actor=curator  action=patch       file=-                                session=20261010_224611_ff5618
+     before=[('SKILL.md', '9c5caf5476d0')]
+     after =[('SKILL.md', 'bd894c1f9e86')]
+ ts=2026-10-13T01:32:52.746873+00:00 actor=agent    action=write_file  file=references/canonical-admission-recipe.md session=20261012_180357_43ca84
+     before=[]
+     after =[('canonical-admission-recipe.md', '603e644a9f79')]
+ ts=2026-10-13T05:23:34.525413+00:00 actor=agent    action=patch       file=-                                session=20261013_114601_015679
+     before=[('SKILL.md', 'bd894c1f9e86')]
+     after =[('SKILL.md', 'b653e94be99c')]
+ ts=2026-10-13T05:51:17.350539+00:00 actor=agent    action=patch       file=-                                session=20261013_114601_015679
+     before=[('SKILL.md', 'b653e94be99c')]
+     after =[('SKILL.md', '2ec642ff6001')]
+ ts=2026-10-13T06:02:54.885389+00:00 actor=curator  action=patch       file=-                                session=20261013_114601_015679
+     before=[('SKILL.md', '2ec642ff6001')]
+     after =[('SKILL.md', 'a4b7fc17e46f')]
+ ts=2026-10-13T06:02:54.956545+00:00 actor=curator  action=patch       file=-                                session=20261013_114601_015679
+     before=[('SKILL.md', 'a4b7fc17e46f')]
+     after =[('SKILL.md', 'a304d93fd159')]
+ ts=2026-10-13T06:02:55.020130+00:00 actor=curator  action=patch       file=-                                session=20261013_114601_015679
+     before=[('SKILL.md', 'a304d93fd159')]
+     after =[('SKILL.md', '1207d00f53e7')]
+ ts=2026-10-13T06:02:55.079385+00:00 actor=curator  action=write_file  file=references/evidence-index-integrity.md session=20261013_114601_015679
+     before=[]
+     after =[('evidence-index-integrity.md', '77ea2f8564b8')]
+ ts=2026-10-13T06:02:55.136468+00:00 actor=curator  action=patch       file=references/coverage-gap-adjudication.md session=20261013_114601_015679
+     before=[('coverage-gap-adjudication.md', '9ba50e875aa3')]
+     after =[('coverage-gap-adjudication.md', '0874909cddd7')]
+ ts=2026-10-13T06:03:22.950642+00:00 actor=curator  action=patch       file=-                                session=20261013_114601_015679
+     before=[('SKILL.md', '1207d00f53e7')]
+     after =[('SKILL.md', '33c1aca9200b')]
+ ts=2026-10-13T06:03:23.018307+00:00 actor=curator  action=patch       file=-                                session=20261013_114601_015679
+     before=[('SKILL.md', '33c1aca9200b')]
+     after =[('SKILL.md', 'da75184e17b2')]
+ ts=2026-10-13T07:01:03.715873+00:00 actor=curator  action=patch       file=-                                session=20261013_114601_015679
+     before=[('SKILL.md', 'da75184e17b2')]
+     after =[('SKILL.md', 'e84a5bfb87ca')]
+ ts=2026-10-13T07:01:03.783762+00:00 actor=curator  action=patch       file=-                                session=20261013_114601_015679
+     before=[('SKILL.md', 'e84a5bfb87ca')]
+     after =[('SKILL.md', '66e7b83740ff')]
+ ts=2026-10-13T07:01:03.870722+00:00 actor=curator  action=patch       file=-                                session=20261013_114601_015679
+     before=[('SKILL.md', '66e7b83740ff')]
+     after =[('SKILL.md', '291ce168a077')]
+ ts=2026-10-13T07:01:03.936200+00:00 actor=curator  action=patch       file=references/lifecycle-routes.md   session=20261013_114601_015679
+     before=[('lifecycle-routes.md', '05e2ab2ea815')]
+     after =[('lifecycle-routes.md', 'ec2c8c8a9643')]
+ ts=2026-10-13T07:01:03.999899+00:00 actor=curator  action=patch       file=references/lifecycle-routes.md   session=20261013_114601_015679
+     before=[('lifecycle-routes.md', 'ec2c8c8a9643')]
+     after =[('lifecycle-routes.md', '51b5e20f4c97')]
+ ts=2026-10-14T05:12:05.635641+00:00 actor=curator  action=patch       file=-                                session=20261014_105653_625a5d
+     before=[('SKILL.md', '291ce168a077')]
+     after =[('SKILL.md', 'c71e40ed846f')]
+ ts=2026-10-14T05:12:05.711344+00:00 actor=curator  action=patch       file=-                                session=20261014_105653_625a5d
+     before=[('SKILL.md', 'c71e40ed846f')]
+     after =[('SKILL.md', '49e60fa62efd')]
+ ts=2026-10-14T05:12:05.795734+00:00 actor=curator  action=patch       file=references/sealed-execute-lane-operations.md session=20261014_105653_625a5d
+     before=[('sealed-execute-lane-operations.md', 'c4096876c597')]
+     after =[('sealed-execute-lane-operations.md', '0a983e012417')]
+ ts=2026-10-14T05:12:21.568612+00:00 actor=curator  action=patch       file=-                                session=20261014_105653_625a5d
+     before=[('SKILL.md', '49e60fa62efd')]
+     after =[('SKILL.md', '63f7c12c53bd')]
+ ts=2026-10-14T05:51:14.900697+00:00 actor=curator  action=patch       file=references/spine-api-and-sealed-lane-gotchas.md session=20261014_001634_6bbe39
+     before=[('spine-api-and-sealed-lane-gotchas.md', 'ca3cf95bb399')]
+     after =[('spine-api-and-sealed-lane-gotchas.md', '5c4315bcea42')]
+ ts=2026-10-14T05:51:14.967948+00:00 actor=curator  action=patch       file=references/spine-api-and-sealed-lane-gotchas.md session=20261014_001634_6bbe39
+     before=[('spine-api-and-sealed-lane-gotchas.md', '5c4315bcea42')]
+     after =[('spine-api-and-sealed-lane-gotchas.md', 'a2607c52b025')]
+ ts=2026-10-14T05:51:22.462670+00:00 actor=curator  action=patch       file=-                                session=20261014_001634_6bbe39
+     before=[('SKILL.md', '63f7c12c53bd')]
+     after =[('SKILL.md', '2b211f906da8')]
+ ts=2026-10-15T12:27:30.122158+00:00 actor=agent    action=patch       file=-                                session=20261015_092659_25bac4
+     before=[('SKILL.md', '2b211f906da8')]
+     after =[('SKILL.md', 'ae2b14d2cd80')]
+ ts=2026-10-15T13:10:23.528805+00:00 actor=curator  action=patch       file=-                                session=20261015_092659_25bac4
+     before=[('SKILL.md', 'ae2b14d2cd80')]
+     after =[('SKILL.md', 'a8b142c1613f')]
+ ts=2026-10-15T13:10:23.604853+00:00 actor=curator  action=patch       file=-                                session=20261015_092659_25bac4
+     before=[('SKILL.md', 'a8b142c1613f')]
+     after =[('SKILL.md', '7c8209bbf082')]
+ ts=2026-10-15T13:10:32.714288+00:00 actor=curator  action=patch       file=-                                session=20261015_092659_25bac4
+     before=[('SKILL.md', '7c8209bbf082')]
+     after =[('SKILL.md', '559617954498')]
+ ts=2026-10-15T13:49:24.644160+00:00 actor=curator  action=patch       file=-                                session=20261015_092659_25bac4
+     before=[('SKILL.md', '559617954498')]
+     after =[('SKILL.md', '5fbe6abaa5bb')]
+ ts=2026-10-15T13:49:24.721159+00:00 actor=curator  action=patch       file=-                                session=20261015_092659_25bac4
+     before=[('SKILL.md', '5fbe6abaa5bb')]
+     after =[('SKILL.md', 'ecb3e7ba4b99')]
+ ts=2026-10-15T14:11:43.784371+00:00 actor=curator  action=patch       file=-                                session=20261015_092659_25bac4
+     before=[('SKILL.md', 'ecb3e7ba4b99')]
+     after =[('SKILL.md', '3ffca7ea82f8')]
+ ts=2026-10-16T04:15:21.011561+00:00 actor=curator  action=patch       file=-                                session=20261015_125956_d5f877
+     before=[('SKILL.md', '3ffca7ea82f8')]
+     after =[('SKILL.md', '070e05bcbe7a')]
+ ts=2026-10-16T04:15:21.129399+00:00 actor=curator  action=patch       file=-                                session=20261015_125956_d5f877
+     before=[('SKILL.md', '070e05bcbe7a')]
+     after =[('SKILL.md', '1c185fa74077')]
+ ts=2026-10-16T04:15:21.269252+00:00 actor=curator  action=patch       file=-                                session=20261015_125956_d5f877
+     before=[('SKILL.md', '1c185fa74077')]
+     after =[('SKILL.md', '8af86f502767')]
+ ts=2026-10-16T04:15:21.381862+00:00 actor=curator  action=write_file  file=references/far-run-binding.md    session=20261015_125956_d5f877
+     before=[]
+     after =[('far-run-binding.md', '91ce332351c0')]
+ ts=2026-10-16T05:35:06.964282+00:00 actor=agent    action=patch       file=-                                session=20261016_105348_b4b537
+     before=[('SKILL.md', '8af86f502767')]
+     after =[('SKILL.md', '2911867811a5')]
+
+=== skill: hgk-kanban-and-lane-routing ===
+ ts=2026-10-08T07:25:33.627997+00:00 actor=curator  action=create      file=-                                session=20261007_004622_88f655
+     before=[]
+     after =[('SKILL.md', '4b11e8cbbeba')]
+ ts=2026-10-08T07:28:05.982828+00:00 actor=curator  action=patch       file=-                                session=20261007_004622_88f655
+     before=[('SKILL.md', '4b11e8cbbeba')]
+     after =[('SKILL.md', '89203baa6599')]
+ ts=2026-10-08T09:47:22.772670+00:00 actor=curator  action=patch       file=-                                session=20261007_004622_88f655
+     before=[('SKILL.md', '89203baa6599')]
+     after =[('SKILL.md', '1a821ecc62d9')]
+ ts=2026-10-08T09:47:22.860819+00:00 actor=curator  action=patch       file=-                                session=20261007_004622_88f655
+     before=[('SKILL.md', '1a821ecc62d9')]
+     after =[('SKILL.md', 'c6bd5cf9dc03')]
+ ts=2026-10-08T10:01:16.863763+00:00 actor=curator  action=patch       file=-                                session=20261008_174536_692e28
+     before=[('SKILL.md', 'c6bd5cf9dc03')]
+     after =[('SKILL.md', '163d7505a7f3')]
+ ts=2026-10-08T10:01:32.745452+00:00 actor=curator  action=write_file  file=references/lane-model-attribution.md session=20261008_174536_692e28
+     before=[]
+     after =[('lane-model-attribution.md', '1d3155c43dd3')]
+ ts=2026-10-08T10:01:44.335801+00:00 actor=curator  action=patch       file=-                                session=20261008_174536_692e28
+     before=[('SKILL.md', '163d7505a7f3')]
+     after =[('SKILL.md', 'ba656896781e')]
+ ts=2026-10-08T10:14:24.773689+00:00 actor=curator  action=patch       file=-                                session=20261007_004622_88f655
+     before=[('SKILL.md', 'ba656896781e')]
+     after =[('SKILL.md', '359db6b2c5ab')]
+ ts=2026-10-08T10:14:24.861207+00:00 actor=curator  action=patch       file=-                                session=20261007_004622_88f655
+     before=[('SKILL.md', '359db6b2c5ab')]
+     after =[('SKILL.md', '5c8cd36cd5fc')]
+ ts=2026-10-09T00:08:29.989255+00:00 actor=curator  action=write_file  file=references/lane-dispatch-surfaces.md session=20261009_065920_50151c
+     before=[]
+     after =[('lane-dispatch-surfaces.md', '213cdfb94ea1')]
+ ts=2026-10-09T00:08:30.097403+00:00 actor=curator  action=patch       file=-                                session=20261009_065920_50151c
+     before=[('SKILL.md', '5c8cd36cd5fc')]
+     after =[('SKILL.md', 'b3a54983a426')]
+ ts=2026-10-09T00:15:19.104221+00:00 actor=curator  action=patch       file=-                                session=20261009_065920_50151c
+     before=[('SKILL.md', 'b3a54983a426')]
+     after =[('SKILL.md', '2d45305115d7')]
+ ts=2026-10-09T00:15:19.191328+00:00 actor=curator  action=patch       file=references/lane-dispatch-surfaces.md session=20261009_065920_50151c
+     before=[('lane-dispatch-surfaces.md', '213cdfb94ea1')]
+     after =[('lane-dispatch-surfaces.md', '0f330770cd68')]
+ ts=2026-10-09T00:32:12.426181+00:00 actor=curator  action=patch       file=references/lane-model-attribution.md session=20261009_065258_5a1952
+     before=[('lane-model-attribution.md', '1d3155c43dd3')]
+     after =[('lane-model-attribution.md', '6a84b02287ab')]
+ ts=2026-10-09T00:32:12.511185+00:00 actor=curator  action=patch       file=references/lane-model-attribution.md session=20261009_065258_5a1952
+     before=[('lane-model-attribution.md', '6a84b02287ab')]
+     after =[('lane-model-attribution.md', 'b39311bbbc07')]
+ ts=2026-10-09T00:52:45.142009+00:00 actor=curator  action=patch       file=-                                session=20261009_075452_a72359
+     before=[('SKILL.md', '2d45305115d7')]
+     after =[('SKILL.md', 'fc928c1fe4dd')]
+ ts=2026-10-09T00:52:45.242526+00:00 actor=curator  action=patch       file=-                                session=20261009_075452_a72359
+     before=[('SKILL.md', 'fc928c1fe4dd')]
+     after =[('SKILL.md', 'f3a38b670bd1')]
+ ts=2026-10-09T00:52:45.330042+00:00 actor=curator  action=write_file  file=scripts/run-codex-exec-lane.sh   session=20261009_075452_a72359
+     before=[]
+     after =[('run-codex-exec-lane.sh', 'ec3d41d3354b')]
+ ts=2026-10-09T03:08:26.123391+00:00 actor=curator  action=patch       file=-                                session=20261009_092947_e20811
+     before=[('SKILL.md', 'f3a38b670bd1')]
+     after =[('SKILL.md', '37d6341e193b')]
+ ts=2026-10-09T03:52:24.129463+00:00 actor=curator  action=write_file  file=references/quota-and-token-spend-attribution.md session=20261009_105427_cc2da2
+     before=[]
+     after =[('quota-and-token-spend-attribution.md', 'e6679400cc17')]
+ ts=2026-10-09T03:54:21.488543+00:00 actor=curator  action=write_file  file=scripts/usage_attribution.py     session=20261009_105427_cc2da2
+     before=[]
+     after =[('usage_attribution.py', '987a61ce04b6')]
+ ts=2026-10-09T03:55:15.109708+00:00 actor=curator  action=patch       file=-                                session=20261009_105427_cc2da2
+     before=[('SKILL.md', '37d6341e193b')]
+     after =[('SKILL.md', '3a037393aacd')]
+ ts=2026-10-09T03:55:15.209316+00:00 actor=curator  action=patch       file=-                                session=20261009_105427_cc2da2
+     before=[('SKILL.md', '3a037393aacd')]
+     after =[('SKILL.md', '6450c0293497')]
+ ts=2026-10-09T03:55:15.305887+00:00 actor=curator  action=patch       file=-                                session=20261009_105427_cc2da2
+     before=[('SKILL.md', '6450c0293497')]
+     after =[('SKILL.md', 'ddfb7279e016')]
+ ts=2026-10-09T03:55:15.395966+00:00 actor=curator  action=patch       file=-                                session=20261009_105427_cc2da2
+     before=[('SKILL.md', 'ddfb7279e016')]
+     after =[('SKILL.md', '76a04e46fb5b')]
+ ts=2026-10-09T03:55:15.493526+00:00 actor=curator  action=patch       file=references/lane-model-attribution.md session=20261009_105427_cc2da2
+     before=[('lane-model-attribution.md', 'b39311bbbc07')]
+     after =[('lane-model-attribution.md', '158d05a7b6f7')]
+ ts=2026-10-09T03:55:15.586551+00:00 actor=curator  action=patch       file=references/lane-model-attribution.md session=20261009_105427_cc2da2
+     before=[('lane-model-attribution.md', '158d05a7b6f7')]
+     after =[('lane-model-attribution.md', '2edeb19667fe')]
+ ts=2026-10-09T03:55:15.704225+00:00 actor=curator  action=patch       file=references/lane-model-attribution.md session=20261009_105427_cc2da2
+     before=[('lane-model-attribution.md', '2edeb19667fe')]
+     after =[('lane-model-attribution.md', '6385c6481c45')]
+ ts=2026-10-09T06:51:13.968432+00:00 actor=curator  action=patch       file=-                                session=20261009_065920_50151c
+     before=[('SKILL.md', '76a04e46fb5b')]
+     after =[('SKILL.md', '9193f98aab2a')]
+ ts=2026-10-09T06:51:14.101942+00:00 actor=curator  action=patch       file=-                                session=20261009_065920_50151c
+     before=[('SKILL.md', '9193f98aab2a')]
+     after =[('SKILL.md', 'b16290c9c15d')]
+ ts=2026-10-09T06:51:16.816976+00:00 actor=curator  action=patch       file=-                                session=20261009_065920_50151c
+     before=[('SKILL.md', 'b16290c9c15d')]
+     after =[('SKILL.md', '47df01350dc1')]
+ ts=2026-10-09T10:15:14.043430+00:00 actor=curator  action=patch       file=-                                session=20261009_075452_a72359
+     before=[('SKILL.md', '47df01350dc1')]
+     after =[('SKILL.md', 'ed763abe032b')]
+ ts=2026-10-09T10:15:30.968360+00:00 actor=curator  action=write_file  file=references/codex-lane-transport-and-identity.md session=20261009_075452_a72359
+     before=[]
+     after =[('codex-lane-transport-and-identity.md', '80d74e7146dc')]
+ ts=2026-10-09T10:15:31.066242+00:00 actor=curator  action=patch       file=-                                session=20261009_075452_a72359
+     before=[('SKILL.md', 'ed763abe032b')]
+     after =[('SKILL.md', 'c07b4a71ceb9')]
+ ts=2026-10-09T11:10:44.254324+00:00 actor=agent    action=patch       file=-                                session=20261009_092947_e20811
+     before=[('SKILL.md', 'c07b4a71ceb9')]
+     after =[('SKILL.md', '2f4a797f6735')]
+ ts=2026-10-09T11:10:53.939517+00:00 actor=agent    action=patch       file=-                                session=20261009_092947_e20811
+     before=[('SKILL.md', 'c07b4a71ceb9')]
+     after =[('SKILL.md', '4bcd7c7f445f')]
+ ts=2026-10-09T11:25:22.638867+00:00 actor=curator  action=write_file  file=references/gate-adjudication-and-dag-repair.md session=20261009_092947_e20811
+     before=[]
+     after =[('gate-adjudication-and-dag-repair.md', '98a34799fba8')]
+ ts=2026-10-09T11:25:22.730628+00:00 actor=curator  action=patch       file=-                                session=20261009_092947_e20811
+     before=[('SKILL.md', '4bcd7c7f445f')]
+     after =[('SKILL.md', '3cfc0eebc652')]
+ ts=2026-10-09T11:25:22.819876+00:00 actor=curator  action=patch       file=-                                session=20261009_092947_e20811
+     before=[('SKILL.md', '3cfc0eebc652')]
+     after =[('SKILL.md', 'e73021c650cd')]
+ ts=2026-10-09T11:29:50.263556+00:00 actor=agent    action=patch       file=-                                session=20261009_092947_e20811
+     before=[('SKILL.md', 'e73021c650cd')]
+     after =[('SKILL.md', 'a6cf7e132d64')]
+ ts=2026-10-09T11:55:12.702252+00:00 actor=curator  action=patch       file=references/gate-adjudication-and-dag-repair.md session=20261009_092947_e20811
+     before=[('gate-adjudication-and-dag-repair.md', '98a34799fba8')]
+     after =[('gate-adjudication-and-dag-repair.md', 'b12b5485acec')]
+ ts=2026-10-09T14:18:49.519518+00:00 actor=agent    action=patch       file=-                                session=20261009_203120_2d9b36
+     before=[('SKILL.md', 'a6cf7e132d64')]
+     after =[('SKILL.md', '071733286fea')]
+ ts=2026-10-09T14:49:47.150884+00:00 actor=curator  action=patch       file=-                                session=20261009_203120_2d9b36
+     before=[('SKILL.md', '071733286fea')]
+     after =[('SKILL.md', 'a008f6d31589')]
+ ts=2026-10-09T14:49:47.247290+00:00 actor=curator  action=patch       file=-                                session=20261009_203120_2d9b36
+     before=[('SKILL.md', 'a008f6d31589')]
+     after =[('SKILL.md', 'f85835ad6611')]
+ ts=2026-10-10T08:29:30.125525+00:00 actor=curator  action=patch       file=-                                session=20261010_101436_855302
+     before=[('SKILL.md', 'f85835ad6611')]
+     after =[('SKILL.md', 'dfd31d747d09')]
+ ts=2026-10-10T08:29:30.287751+00:00 actor=curator  action=patch       file=-                                session=20261010_101436_855302
+     before=[('SKILL.md', 'dfd31d747d09')]
+     after =[('SKILL.md', 'd48a9ac1ff1a')]
+ ts=2026-10-10T08:29:39.217692+00:00 actor=curator  action=patch       file=-                                session=20261010_101436_855302
+     before=[('SKILL.md', 'd48a9ac1ff1a')]
+     after =[('SKILL.md', '49f15d418bc8')]
+ ts=2026-10-10T13:07:59.848950+00:00 actor=curator  action=patch       file=-                                session=20261010_182256_88fc79
+     before=[('SKILL.md', '49f15d418bc8')]
+     after =[('SKILL.md', 'f68f7284506a')]
+ ts=2026-10-11T03:25:49.535061+00:00 actor=curator  action=patch       file=-                                session=20261010_224611_ff5618
+     before=[('SKILL.md', 'f68f7284506a')]
+     after =[('SKILL.md', '1cc5e0c464ad')]
+ ts=2026-10-11T03:25:49.643342+00:00 actor=curator  action=patch       file=-                                session=20261010_224611_ff5618
+     before=[('SKILL.md', '1cc5e0c464ad')]
+     after =[('SKILL.md', '5ead0bf63d0d')]
+ ts=2026-10-11T07:00:44.650864+00:00 actor=curator  action=patch       file=-                                session=20261010_224611_ff5618
+     before=[('SKILL.md', '5ead0bf63d0d')]
+     after =[('SKILL.md', 'f8d6b1f60a75')]
+ ts=2026-10-11T07:00:44.782693+00:00 actor=curator  action=patch       file=-                                session=20261010_224611_ff5618
+     before=[('SKILL.md', 'f8d6b1f60a75')]
+     after =[('SKILL.md', '84de13f0369c')]
+ ts=2026-10-11T07:29:59.766875+00:00 actor=curator  action=patch       file=-                                session=20261010_224611_ff5618
+     before=[('SKILL.md', '84de13f0369c')]
+     after =[('SKILL.md', '25ded686172c')]
+ ts=2026-10-11T07:30:12.284603+00:00 actor=curator  action=patch       file=-                                session=20261010_224611_ff5618
+     before=[('SKILL.md', '25ded686172c')]
+     after =[('SKILL.md', '3a4ecd49d0af')]
+ ts=2026-10-11T13:30:21.447542+00:00 actor=agent    action=patch       file=-                                session=20261011_162120_1ffead
+     before=[('SKILL.md', '3a4ecd49d0af')]
+     after =[('SKILL.md', '7eabda9d7a80')]
+ ts=2026-10-12T14:42:10.195692+00:00 actor=agent    action=patch       file=-                                session=20261012_120424_46563c
+     before=[('SKILL.md', '7eabda9d7a80')]
+     after =[('SKILL.md', '67ec9b081e80')]
+ ts=2026-10-13T05:37:10.794067+00:00 actor=agent    action=write_file  file=references/lane-liveness-and-premature-judgement.md session=20261013_111913_a47c29
+     before=[]
+     after =[('lane-liveness-and-premature-judgement.md', '52a45e995b5a')]
+ ts=2026-10-13T05:48:06.637991+00:00 actor=curator  action=write_file  file=references/lane-dispatch-vs-launcher.md session=20261013_111913_a47c29
+     before=[]
+     after =[('lane-dispatch-vs-launcher.md', '844c98755360')]
+ ts=2026-10-13T05:53:11.530050+00:00 actor=curator  action=patch       file=-                                session=20261013_111913_a47c29
+     before=[('SKILL.md', '67ec9b081e80')]
+     after =[('SKILL.md', '9acf08ef635e')]
+ ts=2026-10-13T05:53:11.660642+00:00 actor=curator  action=write_file  file=references/lane-liveness-and-premature-judgement.md session=20261013_111913_a47c29
+     before=[('lane-liveness-and-premature-judgement.md', '52a45e995b5a')]
+     after =[('lane-liveness-and-premature-judgement.md', 'bb70f0aad396')]
+ ts=2026-10-13T10:00:26.123289+00:00 actor=agent    action=patch       file=-                                session=20261013_135927_83685f
+     before=[('SKILL.md', '9acf08ef635e')]
+     after =[('SKILL.md', 'f3e6611d6748')]
+ ts=2026-10-13T10:39:04.806894+00:00 actor=agent    action=patch       file=-                                session=20261013_135927_83685f
+     before=[('SKILL.md', 'f3e6611d6748')]
+     after =[('SKILL.md', '512bd5ae6acd')]
+ ts=2026-10-13T11:14:53.419212+00:00 actor=curator  action=patch       file=-                                session=20261013_135927_83685f
+     before=[('SKILL.md', '512bd5ae6acd')]
+     after =[('SKILL.md', '0b3199233924')]
+ ts=2026-10-13T11:39:15.802771+00:00 actor=curator  action=patch       file=references/codex-lane-transport-and-identity.md session=20261013_135927_83685f
+     before=[('codex-lane-transport-and-identity.md', '80d74e7146dc')]
+     after =[('codex-lane-transport-and-identity.md', 'eda6e8d5dd71')]
+ ts=2026-10-13T11:39:15.905274+00:00 actor=curator  action=patch       file=-                                session=20261013_135927_83685f
+     before=[('SKILL.md', '0b3199233924')]
+     after =[('SKILL.md', 'f2730db5dcba')]
+ ts=2026-10-13T12:12:56.173996+00:00 actor=curator  action=patch       file=references/codex-lane-transport-and-identity.md session=20261013_135927_83685f
+     before=[('codex-lane-transport-and-identity.md', 'eda6e8d5dd71')]
+     after =[('codex-lane-transport-and-identity.md', '96e0a75700a3')]
+ ts=2026-10-13T12:26:23.305000+00:00 actor=curator  action=write_file  file=references/provider-direct-checker.md session=20261013_135927_83685f
+     before=[]
+     after =[('provider-direct-checker.md', '634a7397a086')]
+ ts=2026-10-13T15:35:19.118359+00:00 actor=agent    action=patch       file=-                                session=20261013_221124_9261fd
+     before=[('SKILL.md', 'f2730db5dcba')]
+     after =[('SKILL.md', 'a2b0d5a91fa3')]
+ ts=2026-10-13T15:46:43.661609+00:00 actor=curator  action=patch       file=-                                session=20261013_221124_9261fd
+     before=[('SKILL.md', 'a2b0d5a91fa3')]
+     after =[('SKILL.md', 'd9b4f9d9f40e')]
+ ts=2026-10-13T15:46:43.761280+00:00 actor=curator  action=patch       file=-                                session=20261013_221124_9261fd
+     before=[('SKILL.md', 'd9b4f9d9f40e')]
+     after =[('SKILL.md', '03a1f4caaeb9')]
+ ts=2026-10-13T15:46:43.851421+00:00 actor=curator  action=patch       file=references/codex-lane-transport-and-identity.md session=20261013_221124_9261fd
+     before=[('codex-lane-transport-and-identity.md', '96e0a75700a3')]
+     after =[('codex-lane-transport-and-identity.md', 'eeeaded4af50')]
+ ts=2026-10-13T15:46:43.951633+00:00 actor=curator  action=patch       file=references/codex-lane-transport-and-identity.md session=20261013_221124_9261fd
+     before=[('codex-lane-transport-and-identity.md', 'eeeaded4af50')]
+     after =[('codex-lane-transport-and-identity.md', '575cbd8f7ace')]
+ ts=2026-10-13T16:13:43.813892+00:00 actor=agent    action=patch       file=references/codex-lane-transport-and-identity.md session=20261013_234515_0731d3
+     before=[('codex-lane-transport-and-identity.md', '575cbd8f7ace')]
+     after =[('codex-lane-transport-and-identity.md', 'c8823ce5dbfb')]
+ ts=2026-10-14T05:49:36.715215+00:00 actor=curator  action=patch       file=-                                session=20261014_001634_6bbe39
+     before=[('SKILL.md', '03a1f4caaeb9')]
+     after =[('SKILL.md', '02f6f4054a4d')]
+ ts=2026-10-14T05:49:36.821244+00:00 actor=curator  action=patch       file=references/codex-lane-transport-and-identity.md session=20261014_001634_6bbe39
+     before=[('codex-lane-transport-and-identity.md', 'c8823ce5dbfb')]
+     after =[('codex-lane-transport-and-identity.md', '7198f96393dc')]
+ ts=2026-10-14T05:49:36.953982+00:00 actor=curator  action=patch       file=-                                session=20261014_001634_6bbe39
+     before=[('SKILL.md', '02f6f4054a4d')]
+     after =[('SKILL.md', '05facf76f703')]
+ ts=2026-10-14T06:25:55.740538+00:00 actor=curator  action=patch       file=-                                session=20261014_105653_625a5d
+     before=[('SKILL.md', '05facf76f703')]
+     after =[('SKILL.md', 'f3856c1bc0a3')]
+ ts=2026-10-15T01:43:00.940956+00:00 actor=agent    action=write_file  file=references/relay-startup-and-path-pitfalls.md session=20261015_085609_229fd0
+     before=[]
+     after =[('relay-startup-and-path-pitfalls.md', '3a08eb25694c')]
+ ts=2026-10-15T01:57:00.287348+00:00 actor=agent    action=patch       file=references/relay-startup-and-path-pitfalls.md session=20261015_085609_229fd0
+     before=[('relay-startup-and-path-pitfalls.md', '3a08eb25694c')]
+     after =[('relay-startup-and-path-pitfalls.md', '173452161cd1')]
+ ts=2026-10-15T04:23:30.528365+00:00 actor=curator  action=write_file  file=references/lane-chain-rebind.md  session=20261015_092659_25bac4
+     before=[]
+     after =[('lane-chain-rebind.md', '27bfac301188')]
+ ts=2026-10-15T04:23:30.653069+00:00 actor=curator  action=patch       file=-                                session=20261015_092659_25bac4
+     before=[('SKILL.md', 'f3856c1bc0a3')]
+     after =[('SKILL.md', 'd8032370eaab')]
+ ts=2026-10-15T04:23:30.773227+00:00 actor=curator  action=patch       file=-                                session=20261015_092659_25bac4
+     before=[('SKILL.md', 'd8032370eaab')]
+     after =[('SKILL.md', '61b0ac2ef1b3')]
+ ts=2026-10-15T04:23:30.895401+00:00 actor=curator  action=patch       file=-                                session=20261015_092659_25bac4
+     before=[('SKILL.md', '61b0ac2ef1b3')]
+     after =[('SKILL.md', 'c431e318a7c4')]
+ ts=2026-10-15T04:56:08.621888+00:00 actor=curator  action=patch       file=references/lane-chain-rebind.md  session=20261015_092659_25bac4
+     before=[('lane-chain-rebind.md', '27bfac301188')]
+     after =[('lane-chain-rebind.md', '8523f85bfa6a')]
+ ts=2026-10-15T04:56:22.930271+00:00 actor=curator  action=patch       file=references/lane-model-attribution.md session=20261015_092659_25bac4
+     before=[('lane-model-attribution.md', '6385c6481c45')]
+     after =[('lane-model-attribution.md', 'e0db29e8fc73')]
+ ts=2026-10-15T06:19:08.144923+00:00 actor=curator  action=patch       file=references/quota-and-token-spend-attribution.md session=20261015_092659_25bac4
+     before=[('quota-and-token-spend-attribution.md', 'e6679400cc17')]
+     after =[('quota-and-token-spend-attribution.md', '6bb0ae46b3e4')]
+ ts=2026-10-15T06:19:08.253118+00:00 actor=curator  action=patch       file=references/quota-and-token-spend-attribution.md session=20261015_092659_25bac4
+     before=[('quota-and-token-spend-attribution.md', '6bb0ae46b3e4')]
+     after =[('quota-and-token-spend-attribution.md', '97d385f772eb')]
+ ts=2026-10-15T06:27:32.106656+00:00 actor=curator  action=patch       file=references/quota-and-token-spend-attribution.md session=20261015_092659_25bac4
+     before=[('quota-and-token-spend-attribution.md', '97d385f772eb')]
+     after =[('quota-and-token-spend-attribution.md', '717e493e9b24')]
+ ts=2026-10-15T06:28:10.676460+00:00 actor=curator  action=patch       file=references/relay-startup-and-path-pitfalls.md session=20261015_092659_25bac4
+     before=[('relay-startup-and-path-pitfalls.md', '173452161cd1')]
+     after =[('relay-startup-and-path-pitfalls.md', 'f420815b68aa')]
+ ts=2026-10-15T07:53:24.517636+00:00 actor=agent    action=patch       file=-                                session=20261015_092659_25bac4
+     before=[('SKILL.md', 'c431e318a7c4')]
+     after =[('SKILL.md', '60f7270cb817')]
+ ts=2026-10-15T08:28:40.856790+00:00 actor=agent    action=patch       file=references/lane-model-attribution.md session=20261015_125956_d5f877
+     before=[('lane-model-attribution.md', 'e0db29e8fc73')]
+     after =[('lane-model-attribution.md', '5aaed75fe256')]
+ ts=2026-10-15T10:39:27.161729+00:00 actor=agent    action=patch       file=references/lane-model-attribution.md session=20261015_125956_d5f877
+     before=[('lane-model-attribution.md', '5aaed75fe256')]
+     after =[('lane-model-attribution.md', 'e40260b8ea70')]
+ ts=2026-10-15T11:51:54.872795+00:00 actor=curator  action=patch       file=-                                session=20261015_092659_25bac4
+     before=[('SKILL.md', '60f7270cb817')]
+     after =[('SKILL.md', 'd7c1f7575f93')]
+ ts=2026-10-15T11:51:55.098420+00:00 actor=curator  action=patch       file=-                                session=20261015_092659_25bac4
+     before=[('SKILL.md', 'd7c1f7575f93')]
+     after =[('SKILL.md', '3506262e231a')]
+ ts=2026-10-15T12:10:00.301467+00:00 actor=curator  action=patch       file=-                                session=20261015_092659_25bac4
+     before=[('SKILL.md', '3506262e231a')]
+     after =[('SKILL.md', '03a43bdd4baa')]
+ ts=2026-10-15T12:10:00.458538+00:00 actor=curator  action=patch       file=-                                session=20261015_092659_25bac4
+     before=[('SKILL.md', '03a43bdd4baa')]
+     after =[('SKILL.md', '82930ca4a2a1')]
+ ts=2026-10-15T12:22:26.564472+00:00 actor=curator  action=patch       file=-                                session=20261015_092659_25bac4
+     before=[('SKILL.md', '82930ca4a2a1')]
+     after =[('SKILL.md', 'f02ac75eb679')]
+ ts=2026-10-15T12:46:32.723629+00:00 actor=agent    action=write_file  file=references/hgk-admission-pitfalls.md session=20261015_125956_d5f877
+     before=[]
+     after =[('hgk-admission-pitfalls.md', '0f0b1130ee04')]
+ ts=2026-10-15T14:23:27.497012+00:00 actor=curator  action=patch       file=-                                session=20261015_125956_d5f877
+     before=[('SKILL.md', 'f02ac75eb679')]
+     after =[('SKILL.md', 'f79924c2ea5e')]
+ ts=2026-10-15T14:23:27.631555+00:00 actor=curator  action=patch       file=-                                session=20261015_125956_d5f877
+     before=[('SKILL.md', 'f79924c2ea5e')]
+     after =[('SKILL.md', 'cdda840311ad')]
+ ts=2026-10-15T14:24:06.958385+00:00 actor=curator  action=patch       file=-                                session=20261015_125956_d5f877
+     before=[('SKILL.md', 'f02ac75eb679')]
+     after =[('SKILL.md', '5f77ec84e248')]
+ ts=2026-10-15T14:24:07.125897+00:00 actor=curator  action=patch       file=-                                session=20261015_125956_d5f877
+     before=[('SKILL.md', '5f77ec84e248')]
+     after =[('SKILL.md', '0afca8431643')]
+ ts=2026-10-15T14:24:07.284411+00:00 actor=curator  action=patch       file=-                                session=20261015_125956_d5f877
+     before=[('SKILL.md', '0afca8431643')]
+     after =[('SKILL.md', '7964daa8c5ca')]
+ ts=2026-10-15T14:24:07.445411+00:00 actor=curator  action=patch       file=-                                session=20261015_125956_d5f877
+     before=[('SKILL.md', '7964daa8c5ca')]
+     after =[('SKILL.md', '424f28214c49')]
+ ts=2026-10-15T14:35:51.176915+00:00 actor=curator  action=patch       file=references/codex-lane-transport-and-identity.md session=20261015_092659_25bac4
+     before=[('codex-lane-transport-and-identity.md', '7198f96393dc')]
+     after =[('codex-lane-transport-and-identity.md', '2f84e8788336')]
+ ts=2026-10-15T14:35:51.306915+00:00 actor=curator  action=patch       file=references/codex-lane-transport-and-identity.md session=20261015_092659_25bac4
+     before=[('codex-lane-transport-and-identity.md', '2f84e8788336')]
+     after =[('codex-lane-transport-and-identity.md', '84be2ec00a60')]
+ ts=2026-10-15T14:35:51.426429+00:00 actor=curator  action=patch       file=references/codex-lane-transport-and-identity.md session=20261015_092659_25bac4
+     before=[('codex-lane-transport-and-identity.md', '84be2ec00a60')]
+     after =[('codex-lane-transport-and-identity.md', '9d4b888e152f')]
+ ts=2026-10-15T14:35:51.606943+00:00 actor=curator  action=patch       file=-                                session=20261015_092659_25bac4
+     before=[('SKILL.md', '424f28214c49')]
+     after =[('SKILL.md', 'f8e638c9e160')]
+ ts=2026-10-15T14:35:51.762465+00:00 actor=curator  action=patch       file=-                                session=20261015_092659_25bac4
+     before=[('SKILL.md', 'f8e638c9e160')]
+     after =[('SKILL.md', 'c25ce406abae')]
+ ts=2026-10-15T14:45:39.308196+00:00 actor=curator  action=write_file  file=references/lane-brief-and-guard-pitfalls.md session=20261015_125956_d5f877
+     before=[]
+     after =[('lane-brief-and-guard-pitfalls.md', '0e02fc3d76ea')]
+ ts=2026-10-15T14:46:26.110438+00:00 actor=curator  action=patch       file=-                                session=20261015_125956_d5f877
+     before=[('SKILL.md', 'c25ce406abae')]
+     after =[('SKILL.md', 'c8457e98c63d')]
+ ts=2026-10-15T15:33:43.036618+00:00 actor=curator  action=patch       file=references/lane-brief-and-guard-pitfalls.md session=20261015_125956_d5f877
+     before=[('lane-brief-and-guard-pitfalls.md', '0e02fc3d76ea')]
+     after =[('lane-brief-and-guard-pitfalls.md', 'f29559ba279a')]
+ ts=2026-10-15T15:33:43.172409+00:00 actor=curator  action=patch       file=references/lane-brief-and-guard-pitfalls.md session=20261015_125956_d5f877
+     before=[('lane-brief-and-guard-pitfalls.md', 'f29559ba279a')]
+     after =[('lane-brief-and-guard-pitfalls.md', 'b5929170411a')]
+ ts=2026-10-15T15:33:51.301582+00:00 actor=curator  action=patch       file=-                                session=20261015_125956_d5f877
+     before=[('SKILL.md', 'c8457e98c63d')]
+     after =[('SKILL.md', '994f7da84ae0')]
+ ts=2026-10-15T15:46:15.307439+00:00 actor=curator  action=patch       file=-                                session=20261015_092659_25bac4
+     before=[('SKILL.md', '994f7da84ae0')]
+     after =[('SKILL.md', '6bc8659feed2')]
+ ts=2026-10-15T15:46:15.427188+00:00 actor=curator  action=patch       file=-                                session=20261015_092659_25bac4
+     before=[('SKILL.md', '6bc8659feed2')]
+     after =[('SKILL.md', 'a6b77d5a209e')]
+ ts=2026-10-15T15:46:15.554907+00:00 actor=curator  action=patch       file=-                                session=20261015_092659_25bac4
+     before=[('SKILL.md', 'a6b77d5a209e')]
+     after =[('SKILL.md', '8e848f0cb3be')]
+ ts=2026-10-15T15:46:15.672674+00:00 actor=curator  action=write_file  file=references/candidate-freeze-and-canonical-apply.md session=20261015_092659_25bac4
+     before=[]
+     after =[('candidate-freeze-and-canonical-apply.md', '8568fead422f')]
+ ts=2026-10-15T15:46:28.143279+00:00 actor=curator  action=patch       file=-                                session=20261015_092659_25bac4
+     before=[('SKILL.md', '8e848f0cb3be')]
+     after =[('SKILL.md', 'bb63d6e57204')]
+ ts=2026-10-15T15:56:39.430301+00:00 actor=curator  action=patch       file=-                                session=20261015_092659_25bac4
+     before=[('SKILL.md', 'bb63d6e57204')]
+     after =[('SKILL.md', '3e83e23660a1')]
+ ts=2026-10-15T15:56:39.564378+00:00 actor=curator  action=patch       file=-                                session=20261015_092659_25bac4
+     before=[('SKILL.md', '3e83e23660a1')]
+     after =[('SKILL.md', '8cccec4b05b7')]
+ ts=2026-10-15T15:56:39.720962+00:00 actor=curator  action=patch       file=-                                session=20261015_092659_25bac4
+     before=[('SKILL.md', '8cccec4b05b7')]
+     after =[('SKILL.md', '24e56c959c40')]
+ ts=2026-10-15T16:24:38.097611+00:00 actor=curator  action=patch       file=-                                session=20261015_125956_d5f877
+     before=[('SKILL.md', '24e56c959c40')]
+     after =[('SKILL.md', '960066a404c5')]
+ ts=2026-10-15T16:24:38.221828+00:00 actor=curator  action=patch       file=-                                session=20261015_125956_d5f877
+     before=[('SKILL.md', '960066a404c5')]
+     after =[('SKILL.md', '0d28c0ab94aa')]
+ ts=2026-10-15T16:24:38.354032+00:00 actor=curator  action=patch       file=-                                session=20261015_125956_d5f877
+     before=[('SKILL.md', '0d28c0ab94aa')]
+     after =[('SKILL.md', 'e7b048c98afc')]
+ ts=2026-10-15T16:24:38.485271+00:00 actor=curator  action=patch       file=-                                session=20261015_125956_d5f877
+     before=[('SKILL.md', 'e7b048c98afc')]
+     after =[('SKILL.md', '335e2ec64c9e')]
+ ts=2026-10-15T16:24:38.619458+00:00 actor=curator  action=write_file  file=references/gstack-named-method-readback.md session=20261015_125956_d5f877
+     before=[]
+     after =[('gstack-named-method-readback.md', '07b4d5dd951e')]
+ ts=2026-10-16T03:35:49.228444+00:00 actor=agent    action=write_file  file=references/bounded-writer-turn-shaping.md session=20261016_104922_d455e7
+     before=[]
+     after =[('bounded-writer-turn-shaping.md', 'ec13cdbe57d9')]
+ ts=2026-10-16T03:35:49.364213+00:00 actor=agent    action=write_file  file=references/lane-stall-triage.md  session=20261016_104922_d455e7
+     before=[]
+     after =[('lane-stall-triage.md', '73ff85a60b8a')]
+ ts=2026-10-16T03:35:49.482802+00:00 actor=agent    action=write_file  file=references/brief-hunk-simulation.md session=20261016_104922_d455e7
+     before=[]
+     after =[('brief-hunk-simulation.md', '1652d1052b10')]
+ ts=2026-10-16T03:59:17.338583+00:00 actor=agent    action=patch       file=references/bounded-writer-turn-shaping.md session=20261016_104922_d455e7
+     before=[('bounded-writer-turn-shaping.md', 'ec13cdbe57d9')]
+     after =[('bounded-writer-turn-shaping.md', 'cd4c311beda6')]
+ ts=2026-10-16T03:59:17.486824+00:00 actor=agent    action=write_file  file=references/checker-brief-write-scope.md session=20261016_104922_d455e7
+     before=[]
+     after =[('checker-brief-write-scope.md', 'f609176356ca')]
+ ts=2026-10-16T03:59:17.601287+00:00 actor=agent    action=write_file  file=references/detection-list-across-two-roots.md session=20261016_104922_d455e7
+     before=[]
+     after =[('detection-list-across-two-roots.md', 'b7882f6102e9')]
+ ts=2026-10-16T04:03:37.212625+00:00 actor=agent    action=patch       file=references/lane-model-attribution.md session=20261016_104922_d455e7
+     before=[('lane-model-attribution.md', 'e40260b8ea70')]
+     after =[('lane-model-attribution.md', '0a4d70928e30')]
+ ts=2026-10-16T04:15:21.803134+00:00 actor=curator  action=write_file  file=references/lane-pool-vs-registry-declaration.md session=20261015_125956_d5f877
+     before=[]
+     after =[('lane-pool-vs-registry-declaration.md', '5370b2cc8d75')]
+ ts=2026-10-16T04:50:55.108617+00:00 actor=agent    action=patch       file=references/bounded-writer-turn-shaping.md session=20261016_104922_d455e7
+     before=[('bounded-writer-turn-shaping.md', 'cd4c311beda6')]
+     after =[('bounded-writer-turn-shaping.md', '302cf9c1c97c')]
+ ts=2026-10-16T04:50:55.259658+00:00 actor=agent    action=patch       file=-                                session=20261016_104922_d455e7
+     before=[('SKILL.md', '335e2ec64c9e')]
+     after =[('SKILL.md', 'fbf81d046068')]
+ ts=2026-10-16T04:50:55.381416+00:00 actor=agent    action=patch       file=-                                session=20261016_104922_d455e7
+     before=[('SKILL.md', 'fbf81d046068')]
+     after =[('SKILL.md', 'a11f2fbaad18')]
+ ts=2026-10-16T05:03:50.623845+00:00 actor=agent    action=patch       file=-                                session=20261015_125956_d5f877
+     before=[('SKILL.md', 'a11f2fbaad18')]
+     after =[('SKILL.md', '742f0f891f6e')]
+ ts=2026-10-16T05:07:37.716378+00:00 actor=curator  action=patch       file=-                                session=20261015_125956_d5f877
+     before=[('SKILL.md', '742f0f891f6e')]
+     after =[('SKILL.md', 'd2419d6b3af0')]
+ ts=2026-10-16T05:20:58.047542+00:00 actor=agent    action=patch       file=-                                session=20261016_104922_d455e7
+     before=[('SKILL.md', 'd2419d6b3af0')]
+     after =[('SKILL.md', '2d61c117e83e')]
+ ts=2026-10-16T05:24:59.919490+00:00 actor=agent    action=patch       file=-                                session=20261016_104922_d455e7
+     before=[('SKILL.md', '2d61c117e83e')]
+     after =[('SKILL.md', '62a6b094616a')]
+ ts=2026-10-16T05:29:55.569355+00:00 actor=curator  action=patch       file=references/candidate-freeze-and-canonical-apply.md session=20261016_104922_d455e7
+     before=[('candidate-freeze-and-canonical-apply.md', '8568fead422f')]
+     after =[('candidate-freeze-and-canonical-apply.md', '3522a950e943')]
+ ts=2026-10-16T05:34:47.517220+00:00 actor=agent    action=patch       file=-                                session=20261016_105348_b4b537
+     before=[('SKILL.md', '62a6b094616a')]
+     after =[('SKILL.md', '36e9def9daf6')]
+ ts=2026-10-16T05:35:06.880216+00:00 actor=agent    action=patch       file=-                                session=20261016_105348_b4b537
+     before=[('SKILL.md', '62a6b094616a')]
+     after =[('SKILL.md', 'cc863bb0d301')]
+ ts=2026-10-16T05:38:54.146866+00:00 actor=agent    action=patch       file=-                                session=20261016_104922_d455e7
+     before=[('SKILL.md', 'cc863bb0d301')]
+     after =[('SKILL.md', '053d75d3f28d')]
+
+=== skill: hgk-governed-execution ===
+ ts=2026-10-06T17:37:06.662146+00:00 actor=agent    action=write_file  file=references/model-lane-routing-and-codex-execute-route.md session=20261007_010043_d76343
+     before=[]
+     after =[('model-lane-routing-and-codex-execute-route.md', '6a6db3d119bd')]
+ ts=2026-10-07T01:17:51.146449+00:00 actor=agent    action=patch       file=references/model-lane-routing-and-codex-execute-route.md session=20261007_010043_d76343
+     before=[('model-lane-routing-and-codex-execute-route.md', '6a6db3d119bd')]
+     after =[('model-lane-routing-and-codex-execute-route.md', 'a158e9848001')]
+ ts=2026-10-07T01:17:51.348932+00:00 actor=agent    action=patch       file=references/model-lane-routing-and-codex-execute-route.md session=20261007_010043_d76343
+     before=[('model-lane-routing-and-codex-execute-route.md', 'a158e9848001')]
+     after =[('model-lane-routing-and-codex-execute-route.md', 'e9578c5d1091')]
+ ts=2026-10-07T01:17:51.512980+00:00 actor=agent    action=patch       file=references/model-lane-routing-and-codex-execute-route.md session=20261007_010043_d76343
+     before=[('model-lane-routing-and-codex-execute-route.md', 'e9578c5d1091')]
+     after =[('model-lane-routing-and-codex-execute-route.md', 'f3dd043cbeb6')]
+ ts=2026-10-07T01:17:58.985367+00:00 actor=agent    action=patch       file=references/model-lane-routing-and-codex-execute-route.md session=20261007_010043_d76343
+     before=[('model-lane-routing-and-codex-execute-route.md', 'f3dd043cbeb6')]
+     after =[('model-lane-routing-and-codex-execute-route.md', '801b152ba93e')]
+ ts=2026-10-07T01:19:05.333933+00:00 actor=agent    action=patch       file=references/model-lane-routing-and-codex-execute-route.md session=20261007_010043_d76343
+     before=[('model-lane-routing-and-codex-execute-route.md', '801b152ba93e')]
+     after =[('model-lane-routing-and-codex-execute-route.md', '43965b6cbd63')]
+ ts=2026-10-07T01:19:39.582542+00:00 actor=agent    action=write_file  file=references/adversarial-verification-rounds.md session=20261007_004622_88f655
+     before=[]
+     after =[('adversarial-verification-rounds.md', 'b8df08b5a4e6')]
+ ts=2026-10-07T01:20:31.415058+00:00 actor=agent    action=write_file  file=references/adversarial-verification-rounds.md session=20261007_004622_88f655
+     before=[]
+     after =[('adversarial-verification-rounds.md', 'e85e690b6c74')]
+ ts=2026-10-07T01:46:27.001450+00:00 actor=agent    action=patch       file=references/model-lane-routing-and-codex-execute-route.md session=20261007_010043_d76343
+     before=[('model-lane-routing-and-codex-execute-route.md', '43965b6cbd63')]
+     after =[('model-lane-routing-and-codex-execute-route.md', '8bdf2fe3ddb8')]
+ ts=2026-10-07T01:46:27.125218+00:00 actor=agent    action=patch       file=references/model-lane-routing-and-codex-execute-route.md session=20261007_010043_d76343
+     before=[('model-lane-routing-and-codex-execute-route.md', '8bdf2fe3ddb8')]
+     after =[('model-lane-routing-and-codex-execute-route.md', 'fa8e27b8c441')]
+ ts=2026-10-07T01:57:55.291718+00:00 actor=agent    action=patch       file=references/model-lane-routing-and-codex-execute-route.md session=20261007_010043_d76343
+     before=[('model-lane-routing-and-codex-execute-route.md', 'fa8e27b8c441')]
+     after =[('model-lane-routing-and-codex-execute-route.md', '3c5128bba983')]
+ ts=2026-10-07T03:19:47.287499+00:00 actor=agent    action=write_file  file=references/codex-sealed-lane-windows.md session=20261007_004622_88f655
+     before=[]
+     after =[('codex-sealed-lane-windows.md', 'af50d4bb6d90')]
+ ts=2026-10-07T05:58:01.974127+00:00 actor=agent    action=write_file  file=references/lane-model-routing-verified.md session=20261007_004622_88f655
+     before=[]
+     after =[('lane-model-routing-verified.md', 'a77c10d03e1f')]
+ ts=2026-10-07T14:40:44.636959+00:00 actor=agent    action=write_file  file=references/verifying-lane-declaration-changes.md session=20261007_200605_743d2a
+     before=[]
+     after =[('verifying-lane-declaration-changes.md', '9c92778a39f9')]
+ ts=2026-10-08T03:13:26.594731+00:00 actor=agent    action=patch       file=references/codex-sealed-lane-windows.md session=20261007_004622_88f655
+     before=[('codex-sealed-lane-windows.md', 'af50d4bb6d90')]
+     after =[('codex-sealed-lane-windows.md', 'c058a62bc674')]
+ ts=2026-10-08T03:54:58.028992+00:00 actor=agent    action=patch       file=references/codex-sealed-lane-windows.md session=20261007_004622_88f655
+     before=[('codex-sealed-lane-windows.md', 'c058a62bc674')]
+     after =[('codex-sealed-lane-windows.md', '4476581393c5')]
+ ts=2026-10-08T04:14:45.089481+00:00 actor=agent    action=write_file  file=references/gate-blockage-far-research.md session=20261007_004622_88f655
+     before=[]
+     after =[('gate-blockage-far-research.md', 'e8373b53975e')]
+ ts=2026-10-08T04:14:45.223184+00:00 actor=agent    action=patch       file=references/codex-sealed-lane-windows.md session=20261007_004622_88f655
+     before=[('codex-sealed-lane-windows.md', '4476581393c5')]
+     after =[('codex-sealed-lane-windows.md', 'ea5523156298')]
+ ts=2026-10-08T04:23:56.872694+00:00 actor=agent    action=patch       file=references/codex-sealed-lane-windows.md session=20261007_004622_88f655
+     before=[('codex-sealed-lane-windows.md', 'ea5523156298')]
+     after =[('codex-sealed-lane-windows.md', '9e91265cfd10')]
+ ts=2026-10-08T15:03:49.708355+00:00 actor=agent    action=write_file  file=references/plan-model-fallback.md session=20261008_212221_f98303
+     before=[]
+     after =[('plan-model-fallback.md', 'cfd8e027c861')]
+ ts=2026-10-08T15:11:58.182231+00:00 actor=agent    action=write_file  file=references/plan-model-fallback.md session=20261008_212221_f98303
+     before=[('plan-model-fallback.md', 'cfd8e027c861')]
+     after =[('plan-model-fallback.md', 'a1e32faff56f')]
+ ts=2026-10-08T16:22:21.828166+00:00 actor=agent    action=write_file  file=references/spine-lifecycle-closeout.md session=20261008_212221_f98303
+     before=[]
+     after =[('spine-lifecycle-closeout.md', 'b360a0256484')]
+ ts=2026-10-09T00:20:55.478798+00:00 actor=agent    action=write_file  file=references/verify-lane-must-be-pinned-oneshot.md session=20261009_065920_50151c
+     before=[]
+     after =[('verify-lane-must-be-pinned-oneshot.md', 'd2f81f887e20')]
+ ts=2026-10-09T02:22:35.548685+00:00 actor=agent    action=write_file  file=references/oneshot-lane-liveness-and-model-proof.md session=20261009_065920_50151c
+     before=[]
+     after =[('oneshot-lane-liveness-and-model-proof.md', 'c8a30f8ecc8c')]
+ ts=2026-10-09T06:08:37.196442+00:00 actor=agent    action=write_file  file=references/fabric-rule-to-code-gap-and-invariant-spoof.md session=20261009_065920_50151c
+     before=[]
+     after =[('fabric-rule-to-code-gap-and-invariant-spoof.md', '2e85122f34e5')]
+ ts=2026-10-09T07:07:06.134532+00:00 actor=agent    action=write_file  file=references/interrupted-lane-recovery-and-officer-invocation.md session=20261009_065920_50151c
+     before=[]
+     after =[('interrupted-lane-recovery-and-officer-invocation.md', '7272c92ffcba')]
+ ts=2026-10-10T15:24:46.049690+00:00 actor=agent    action=write_file  file=references/false-green-verification-traps.md session=20261010_211659_c58849
+     before=[]
+     after =[('false-green-verification-traps.md', 'bd6cf1594fef')]
+ ts=2026-10-10T18:45:53.950531+00:00 actor=agent    action=write_file  file=references/guard-false-positives.md session=20261010_224611_ff5618
+     before=[]
+     after =[('guard-false-positives.md', '1d575936cd68')]
+ ts=2026-10-11T05:32:11.351418+00:00 actor=agent    action=write_file  file=references/browser-account-automation-under-guard.md session=20261010_224611_ff5618
+     before=[]
+     after =[('browser-account-automation-under-guard.md', '503663e240c9')]
+ ts=2026-10-11T11:15:10.668900+00:00 actor=agent    action=write_file  file=references/independent-verifier-lane-pitfalls.md session=20261011_162120_1ffead
+     before=[]
+     after =[('independent-verifier-lane-pitfalls.md', '889adc7dcdec')]
+ ts=2026-10-11T14:07:51.863762+00:00 actor=agent    action=write_file  file=references/publication-credential-and-handover.md session=20261011_162120_1ffead
+     before=[]
+     after =[('publication-credential-and-handover.md', '100856678447')]
+ ts=2026-10-11T14:22:10.810191+00:00 actor=agent    action=write_file  file=references/fda-guard-false-positives.md session=20261011_162120_1ffead
+     before=[]
+     after =[('fda-guard-false-positives.md', '8215c1e48356')]
+ ts=2026-10-11T14:22:43.434572+00:00 actor=agent    action=remove_file file=references/fda-guard-false-positives.md session=20261011_162120_1ffead
+     before=[('fda-guard-false-positives.md', '8215c1e48356')]
+     after =[]
+ ts=2026-10-11T14:22:43.580796+00:00 actor=agent    action=patch       file=references/guard-false-positives.md session=20261011_162120_1ffead
+     before=[('guard-false-positives.md', '1d575936cd68')]
+     after =[('guard-false-positives.md', 'da5ffb69a886')]
+ ts=2026-10-11T14:46:40.504987+00:00 actor=agent    action=patch       file=references/gate-blockage-far-research.md session=20261011_162120_1ffead
+     before=[('gate-blockage-far-research.md', 'e8373b53975e')]
+     after =[('gate-blockage-far-research.md', 'd5b25c3dcaef')]
+ ts=2026-10-11T14:54:45.232153+00:00 actor=agent    action=write_file  file=references/artefact-disposal-and-cwd-locks.md session=20261011_162120_1ffead
+     before=[]
+     after =[('artefact-disposal-and-cwd-locks.md', '0f17fda9ab49')]
+ ts=2026-10-12T06:11:24.035691+00:00 actor=agent    action=patch       file=references/acceptance-verification-lane.md session=20261012_104423_e6d0b7
+     before=[('acceptance-verification-lane.md', 'ce6c7228b6b2')]
+     after =[('acceptance-verification-lane.md', '03dacdbfef41')]
+ ts=2026-10-12T06:49:30.933250+00:00 actor=agent    action=patch       file=references/acceptance-verification-lane.md session=20261012_104423_e6d0b7
+     before=[('acceptance-verification-lane.md', '03dacdbfef41')]
+     after =[('acceptance-verification-lane.md', '6ed16b61ff29')]
+ ts=2026-10-12T07:54:22.277281+00:00 actor=agent    action=patch       file=references/acceptance-verification-lane.md session=20261012_104423_e6d0b7
+     before=[('acceptance-verification-lane.md', '6ed16b61ff29')]
+     after =[('acceptance-verification-lane.md', '433fe0dc0f80')]
+ ts=2026-10-12T15:51:44.215938+00:00 actor=agent    action=write_file  file=references/candidate-apply-gates.md session=20261012_120424_46563c
+     before=[]
+     after =[('candidate-apply-gates.md', '7dafc2e829a5')]
+ ts=2026-10-12T15:51:52.480851+00:00 actor=agent    action=write_file  file=references/candidate-apply-gates.md session=20261012_120424_46563c
+     before=[]
+     after =[('candidate-apply-gates.md', '396736cec9c1')]
+ ts=2026-10-13T04:25:43.308414+00:00 actor=agent    action=write_file  file=references/landing-authored-suites.md session=20261012_120424_46563c
+     before=[]
+     after =[('landing-authored-suites.md', 'ded3467fb3da')]
+ ts=2026-10-13T06:20:01.211173+00:00 actor=agent    action=write_file  file=references/codex-lane-log-liveness-markers.md session=20261013_111913_a47c29
+     before=[]
+     after =[('codex-lane-log-liveness-markers.md', '9a2a56a7f19e')]
+ ts=2026-10-13T07:09:04.045784+00:00 actor=agent    action=patch       file=references/false-green-verification-traps.md session=20261013_111913_a47c29
+     before=[('false-green-verification-traps.md', 'bd6cf1594fef')]
+     after =[('false-green-verification-traps.md', '074fcadced55')]
+ ts=2026-10-13T13:47:40.237227+00:00 actor=agent    action=write_file  file=references/bundle-specification-discipline.md session=20261013_114601_015679
+     before=[]
+     after =[('bundle-specification-discipline.md', '08335d04649e')]
+ ts=2026-10-13T16:39:02.232474+00:00 actor=agent    action=patch       file=references/codex-workspace-write.md session=20261014_001036_cb74a2
+     before=[('codex-workspace-write.md', '4405f13425b4')]
+     after =[('codex-workspace-write.md', '2d265a2dded1')]
+ ts=2026-10-13T16:39:02.666918+00:00 actor=agent    action=patch       file=references/codex-sealed-lane-windows.md session=20261014_001036_cb74a2
+     before=[('codex-sealed-lane-windows.md', '9e91265cfd10')]
+     after =[('codex-sealed-lane-windows.md', '3d1d8a2ca61c')]
+ ts=2026-10-13T16:58:55.066988+00:00 actor=agent    action=patch       file=references/codex-workspace-write.md session=20261014_001036_cb74a2
+     before=[('codex-workspace-write.md', '2d265a2dded1')]
+     after =[('codex-workspace-write.md', 'fd9dfe87142d')]
+ ts=2026-10-13T17:36:57.873964+00:00 actor=agent    action=patch       file=references/model-lane-routing-and-codex-execute-route.md session=20261014_001036_cb74a2
+     before=[('model-lane-routing-and-codex-execute-route.md', '3c5128bba983')]
+     after =[('model-lane-routing-and-codex-execute-route.md', '085a4399f2fa')]
+ ts=2026-10-14T15:22:27.976733+00:00 actor=agent    action=write_file  file=references/lane-conformance-gate.md session=20261014_174448_59c428
+     before=[]
+     after =[('lane-conformance-gate.md', '77e8b77164c0')]
+ ts=2026-10-16T04:13:26.588614+00:00 actor=agent    action=write_file  file=references/product-branch-write-set-gates.md session=20261016_105348_b4b537
+     before=[]
+     after =[('product-branch-write-set-gates.md', 'a79d6007819b')]
+ ts=2026-10-16T04:13:42.127906+00:00 actor=agent    action=write_file  file=references/product-branch-write-set-gates.md session=20261016_105348_b4b537
+     before=[]
+     after =[('product-branch-write-set-gates.md', 'acf9dc410e31')]
+ ts=2026-10-16T04:25:08.631753+00:00 actor=agent    action=patch       file=references/product-branch-write-set-gates.md session=20261016_105348_b4b537
+     before=[('product-branch-write-set-gates.md', 'acf9dc410e31')]
+     after =[('product-branch-write-set-gates.md', 'e59968d8fb23')]
+
+=== skill: remote-repo-publication ===
+ ts=2026-10-09T11:55:26.335822+00:00 actor=curator  action=create      file=-                                session=20261009_092947_e20811
+     before=[]
+     after =[('SKILL.md', '084ec59e242a')]
+ ts=2026-10-09T11:56:03.323026+00:00 actor=curator  action=patch       file=-                                session=20261009_092947_e20811
+     before=[('SKILL.md', '084ec59e242a')]
+     after =[('SKILL.md', 'fcadd785436b')]
+ ts=2026-10-09T12:25:41.700677+00:00 actor=curator  action=patch       file=-                                session=20261009_075452_a72359
+     before=[('SKILL.md', 'fcadd785436b')]
+     after =[('SKILL.md', '0bf376e41ff2')]
+ ts=2026-10-09T12:25:41.811434+00:00 actor=curator  action=patch       file=-                                session=20261009_075452_a72359
+     before=[('SKILL.md', '0bf376e41ff2')]
+     after =[('SKILL.md', 'c45fa9495dd2')]
+ ts=2026-10-10T08:56:54.229723+00:00 actor=curator  action=patch       file=-                                session=20261010_101436_855302
+     before=[('SKILL.md', 'c45fa9495dd2')]
+     after =[('SKILL.md', '044fec5b69e2')]
+ ts=2026-10-10T08:56:54.331436+00:00 actor=curator  action=patch       file=-                                session=20261010_101436_855302
+     before=[('SKILL.md', '044fec5b69e2')]
+     after =[('SKILL.md', '9f8baf545b94')]
+ ts=2026-10-10T09:42:23.995381+00:00 actor=curator  action=patch       file=-                                session=20261010_101436_855302
+     before=[('SKILL.md', '9f8baf545b94')]
+     after =[('SKILL.md', '06384382f923')]
+ ts=2026-10-10T13:29:49.942783+00:00 actor=curator  action=patch       file=-                                session=20261010_182256_88fc79
+     before=[('SKILL.md', '06384382f923')]
+     after =[('SKILL.md', '4224491b7c40')]
+ ts=2026-10-10T13:29:50.041331+00:00 actor=curator  action=patch       file=-                                session=20261010_182256_88fc79
+     before=[('SKILL.md', '4224491b7c40')]
+     after =[('SKILL.md', '0d5bf21e7f11')]
+ ts=2026-10-10T13:32:10.453362+00:00 actor=curator  action=patch       file=-                                session=20261010_182256_88fc79
+     before=[('SKILL.md', '0d5bf21e7f11')]
+     after =[('SKILL.md', '12ec527430fd')]
+ ts=2026-10-10T13:32:10.552869+00:00 actor=curator  action=write_file  file=references/evidence-curation.md  session=20261010_182256_88fc79
+     before=[]
+     after =[('evidence-curation.md', '7b99f0b71970')]
+ ts=2026-10-10T15:57:14.379899+00:00 actor=curator  action=patch       file=-                                session=20261010_224611_ff5618
+     before=[('SKILL.md', '12ec527430fd')]
+     after =[('SKILL.md', '78710e0c0d13')]
+ ts=2026-10-10T16:03:49.671258+00:00 actor=curator  action=patch       file=-                                session=20261010_211659_c58849
+     before=[('SKILL.md', '78710e0c0d13')]
+     after =[('SKILL.md', 'd20c57ef2183')]
+ ts=2026-10-10T16:03:49.782891+00:00 actor=curator  action=patch       file=-                                session=20261010_211659_c58849
+     before=[('SKILL.md', 'd20c57ef2183')]
+     after =[('SKILL.md', '8d5ddda7aaa8')]
+ ts=2026-10-10T16:03:49.907634+00:00 actor=curator  action=patch       file=-                                session=20261010_211659_c58849
+     before=[('SKILL.md', '8d5ddda7aaa8')]
+     after =[('SKILL.md', '1921544b39c1')]
+ ts=2026-10-11T15:20:26.322437+00:00 actor=curator  action=patch       file=-                                session=20261011_162120_1ffead
+     before=[('SKILL.md', '1921544b39c1')]
+     after =[('SKILL.md', 'd9825fa32065')]
+ ts=2026-10-11T15:20:26.428529+00:00 actor=curator  action=patch       file=-                                session=20261011_162120_1ffead
+     before=[('SKILL.md', 'd9825fa32065')]
+     after =[('SKILL.md', 'd90967911168')]
+ ts=2026-10-11T15:20:26.540208+00:00 actor=curator  action=patch       file=-                                session=20261011_162120_1ffead
+     before=[('SKILL.md', 'd90967911168')]
+     after =[('SKILL.md', 'cd24133e3dbf')]
+ ts=2026-10-12T11:20:55.317725+00:00 actor=agent    action=patch       file=-                                session=20261012_180357_43ca84
+     before=[('SKILL.md', 'cd24133e3dbf')]
+     after =[('SKILL.md', '472174624105')]
+ ts=2026-10-13T01:33:07.279235+00:00 actor=agent    action=write_file  file=references/branch-building-without-a-worktree.md session=20261012_180357_43ca84
+     before=[]
+     after =[('branch-building-without-a-worktree.md', 'b7d470755815')]
+ ts=2026-10-13T03:19:23.470841+00:00 actor=agent    action=write_file  file=scripts/push_branch.sh           session=20261012_180357_43ca84
+     before=[]
+     after =[('push_branch.sh', '140cb5361e13')]
+ ts=2026-10-13T03:19:23.800163+00:00 actor=agent    action=patch       file=-                                session=20261012_180357_43ca84
+     before=[('SKILL.md', '472174624105')]
+     after =[('SKILL.md', '31ce4e768229')]
+ ts=2026-10-13T06:14:48.152024+00:00 actor=curator  action=write_file  file=references/credential-prompt-containment.md session=20261013_111913_a47c29
+     before=[]
+     after =[('credential-prompt-containment.md', 'b1109f73d3f3')]
+ ts=2026-10-13T06:15:12.961937+00:00 actor=curator  action=patch       file=-                                session=20261013_111913_a47c29
+     before=[('SKILL.md', '31ce4e768229')]
+     after =[('SKILL.md', '2f663b4f5b86')]
+ ts=2026-10-13T08:08:48.067688+00:00 actor=agent    action=patch       file=-                                session=20261013_114601_015679
+     before=[('SKILL.md', '2f663b4f5b86')]
+     after =[('SKILL.md', '2e3c9d47074b')]
+ ts=2026-10-13T08:09:05.715078+00:00 actor=agent    action=patch       file=-                                session=20261013_114601_015679
+     before=[('SKILL.md', '2f663b4f5b86')]
+     after =[('SKILL.md', '5c49fe6fa47b')]
+ ts=2026-10-13T12:13:33.161274+00:00 actor=curator  action=write_file  file=references/git-data-api-changeset.md session=20261013_135927_83685f
+     before=[]
+     after =[('git-data-api-changeset.md', 'fd40e5002497')]
+ ts=2026-10-13T12:13:53.233489+00:00 actor=curator  action=patch       file=-                                session=20261013_135927_83685f
+     before=[('SKILL.md', '5c49fe6fa47b')]
+     after =[('SKILL.md', 'acfc0ab1755c')]
+ ts=2026-10-13T12:26:16.455765+00:00 actor=curator  action=write_file  file=references/github-api-publish.md session=20261013_135927_83685f
+     before=[]
+     after =[('github-api-publish.md', '9b7bd979f56f')]
+ ts=2026-10-14T05:50:09.302844+00:00 actor=curator  action=patch       file=-                                session=20261014_001634_6bbe39
+     before=[('SKILL.md', 'acfc0ab1755c')]
+     after =[('SKILL.md', '394650e0e50c')]
+ ts=2026-10-14T07:59:27.905423+00:00 actor=agent    action=patch       file=-                                session=20261014_105653_625a5d
+     before=[('SKILL.md', '394650e0e50c')]
+     after =[('SKILL.md', '916fe0216648')]
+ ts=2026-10-15T04:55:40.047167+00:00 actor=curator  action=patch       file=references/credential-prompt-containment.md session=20261015_092659_25bac4
+     before=[('credential-prompt-containment.md', 'b1109f73d3f3')]
+     after =[('credential-prompt-containment.md', '62d81326c2d2')]
+ ts=2026-10-15T11:34:09.556670+00:00 actor=agent    action=patch       file=-                                session=20261015_125956_d5f877
+     before=[('SKILL.md', '2ab3ae7acfe6')]
+     after =[('SKILL.md', 'd93a00d29c16')]
+ ts=2026-10-15T12:38:30.648918+00:00 actor=curator  action=patch       file=SKILL.md                         session=20261015_180048_1e0797
+     before=[('SKILL.md', 'd93a00d29c16')]
+     after =[('SKILL.md', '37e095faa945')]
+ ts=2026-10-15T12:38:30.804641+00:00 actor=curator  action=patch       file=references/evidence-curation.md  session=20261015_180048_1e0797
+     before=[('evidence-curation.md', '7b99f0b71970')]
+     after =[('evidence-curation.md', 'aa7bfb5e01f2')]
+ ts=2026-10-15T12:38:43.038912+00:00 actor=curator  action=patch       file=references/credential-prompt-containment.md session=20261015_180048_1e0797
+     before=[('credential-prompt-containment.md', '62d81326c2d2')]
+     after =[('credential-prompt-containment.md', 'f581dc56f9d2')]
+ ts=2026-10-15T12:39:55.612565+00:00 actor=curator  action=patch       file=SKILL.md                         session=20261015_180048_1e0797
+     before=[('SKILL.md', '37e095faa945')]
+     after =[('SKILL.md', '15c3b504e935')]
+ ts=2026-10-15T12:46:32.475604+00:00 actor=agent    action=write_file  file=references/delivered-set-and-merge.md session=20261015_125956_d5f877
+     before=[]
+     after =[('delivered-set-and-merge.md', 'd133509c765a')]
+ ts=2026-10-15T16:24:55.226201+00:00 actor=curator  action=patch       file=-                                session=20261015_125956_d5f877
+     before=[('SKILL.md', '15c3b504e935')]
+     after =[('SKILL.md', '6497fff308d6')]
+ ts=2026-10-15T16:24:55.361939+00:00 actor=curator  action=patch       file=-                                session=20261015_125956_d5f877
+     before=[('SKILL.md', '6497fff308d6')]
+     after =[('SKILL.md', '5e0b0d5fa9c7')]
+ ts=2026-10-16T03:13:23.463026+00:00 actor=curator  action=patch       file=-                                session=20261015_125956_d5f877
+     before=[('SKILL.md', '5e0b0d5fa9c7')]
+     after =[('SKILL.md', 'b3571d0bb902')]
+ ts=2026-10-16T03:13:23.606144+00:00 actor=curator  action=patch       file=references/delivered-set-and-merge.md session=20261015_125956_d5f877
+     before=[('delivered-set-and-merge.md', 'd133509c765a')]
+     after =[('delivered-set-and-merge.md', 'ae12f5adc2bf')]
+ ts=2026-10-16T03:59:17.712165+00:00 actor=agent    action=write_file  file=references/packet-publication-gate.md session=20261016_104922_d455e7
+     before=[]
+     after =[('packet-publication-gate.md', 'c6fd3f340b53')]
+ ts=2026-10-16T04:14:42.927790+00:00 actor=curator  action=patch       file=-                                session=20261015_125956_d5f877
+     before=[('SKILL.md', 'b3571d0bb902')]
+     after =[('SKILL.md', 'cf5186f1f918')]
+ ts=2026-10-16T05:24:09.662949+00:00 actor=agent    action=patch       file=-                                session=20261016_104922_d455e7
+     before=[('SKILL.md', 'cf5186f1f918')]
+     after =[('SKILL.md', '113148f95c30')]
+ ts=2026-10-16T05:28:17.002546+00:00 actor=agent    action=patch       file=-                                session=20261016_104922_d455e7
+     before=[('SKILL.md', '113148f95c30')]
+     after =[('SKILL.md', '558953a6be4e')]
+
+=== sessions that appear in the ledger, with record counts ===
+ 20261007_004622_88f655 : 79
+ 20261015_092659_25bac4 : 59
+ 20261015_125956_d5f877 : 58
+ 20261009_065920_50151c : 54
+ 20261010_224611_ff5618 : 51
+ 20261012_120424_46563c : 49
+ 20261012_180357_43ca84 : 46
+ 20261010_101852_fc36a0 : 43
+ 20261009_075452_a72359 : 42
+ 20261014_105653_625a5d : 30
+ 20261013_111913_a47c29 : 27
+ 20261010_101436_855302 : 26

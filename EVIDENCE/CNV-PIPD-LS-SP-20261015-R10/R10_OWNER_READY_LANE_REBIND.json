@@ -1,0 +1,30 @@
+{
+ "schema": "CNV-PIPD-LS-SP-20261015-R10/OWNER-READY-LANE-REBIND/1",
+ "produced_utc": "2026-10-16T05:21:42.787525+00:00",
+ "one_action_for_the_owner": "apply the R10-0 mandate to the canonical lane routing in ONE edit: routes[].PLAN -> opencode-go/glm-5.3-flash (medium), routes[].VERIFY_SECURITY -> opencode-go/deepseek-v4.1-flash, and record the maker/checker collision that this creates as an OPEN owner-ordered declared_conflicts entry; then bump epoch 21 -> 22 with the reason.",
+ "why_it_is_one_action": "the three coupled declarations (both routes plus the conflict record) must move in the SAME edit or the registry's own conformance sweep reports a collision without the declared authority - and check_drift fails on any projection pointer left behind.",
+ "measured_before": {
+  "epoch": 21,
+  "PLAN": "openai-codex/gpt-6.1-sol (medium, ADMITTED)",
+  "EXECUTE": "opencode-go/deepseek-v4.1-flash (UNPROVEN)",
+  "VERIFY_SECURITY": "openai-codex/gpt-6.1-sol (medium, UNPROVEN)",
+  "check_drift": [],
+  "check_sod_PLAN_vs_VERIFY": "SOD_VIOLATION"
+ },
+ "what_the_owner_gets_after": {
+  "PLAN": "opencode-go/glm-5.3-flash",
+  "EXECUTE": "opencode-go/deepseek-v4.1-flash",
+  "VERIFY_SECURITY": "opencode-go/deepseek-v4.1-flash",
+  "declared_conflicts_entry": "OPEN, ruled_by the 2026-10-16 R10 order, naming the EXECUTE/VERIFY_SECURITY same-arm pair",
+  "residual": "PLAN vs VERIFY_SECURITY becomes distinct; EXECUTE vs VERIFY_SECURITY collapses to one arm - the owner has ordered that, and it is recorded rather than hidden"
+ },
+ "what_this_round_did_NOT_do": [
+  "did not edit the registry",
+  "did not bump the epoch",
+  "did not set admission_status",
+  "did not write a declared_conflicts entry",
+  "did not claim routing authority from either the registry value or the mandate"
+ ],
+ "verify_after_applying": "cd HG-KSEOS && PYTHONPATH=src ./.venv/Scripts/python.exe -c \"from hg_kseos import lane_policy as L; r=L.load_registry(); print(L.check_drift(registry=r)); print(L.check_sod(L.route_for_lane(r,'EXECUTE'),L.route_for_lane(r,'VERIFY_SECURITY')))\" -> expect drift [] and a declared, owner-ordered collision for the maker/checker pair",
+ "claim_ceiling": "owner-ready record only; no routing authority is asserted and nothing was applied"
+}

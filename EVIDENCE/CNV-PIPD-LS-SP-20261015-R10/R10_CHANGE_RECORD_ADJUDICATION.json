@@ -1,0 +1,94 @@
+{
+ "schema": "CNV-PIPD-LS-SP-20261015-R10/CHANGE-RECORD-ADJUDICATION/1",
+ "produced_utc": "2026-10-16T05:45:43.367060+00:00",
+ "scope": "the two change records named in the R10 order: hgk-far-remediation-20261016 (25 rows) and skill-mainfile-cap-remediation (11 rows)",
+ "method": "WS1 (a read-only FAR research worker) adjudicated every row against freshly measured state with 81 recorded measurements under FAR/ws1/raw_measurements.json; the ORCHESTRATOR then re-derived the decisive values itself (below). A row is NEVER closed by manufacturing the artifact it names.",
+ "verdict_counts": {
+  "total_rows": 36,
+  "DONE_MEASURED": 24,
+  "OPEN_OWNER": 9,
+  "SUPERSEDED": 1,
+  "NOT_OWED": 2,
+  "RE_RECLASSIFIED_AFTER_CHECKER": {
+   "row_T5": "DONE_MEASURED -> OPEN_OWNER: the live SKILL.md names entry_map.json at lines 66 and 71 and no such file exists, so its own pointer/load path is broken (re-derived by the orchestrator: entry_map.json absent from the live skill directory)"
+  }
+ },
+ "per_change": {
+  "hgk-far-remediation-20261016": {
+   "what_it_asked": "a lane-routing registry rebind (PLAN onto a named arm), an epoch bump, and PROMOTE-set apply mechanics",
+   "measured_reality": "the rebind IS in the canonical registry: routes[].PLAN=openai-codex/gpt-6.1-sol medium, selection_authority owner-order-20261016-plan-model-rebind-gpt61-sol, admission_status ADMITTED, epoch 21, source_of_routes revision 21; check_drift [] - measured with the project's own reader",
+   "who_did_it": "an act OUTSIDE this round at 2026-10-16T12:36:30 (this round neither performed nor claims it)",
+   "what_that_means_for_the_record": "the 20 DONE_MEASURED rows are TRUE BUT UNTICKED: the change record is stale, not the work. Recording the adjudication does not rewrite the record - the file belongs to the round that owns it, and a PEER round is publishing FAR-REMEDIATION-AND-CLOSURE-20261016 right now, so this round does not edit it",
+   "the_3_open_owner_rows": "all three are the outside act's own residuals: admission_status is still UNPROVEN for the two lanes the act did NOT re-measure, and the usable_now marker / serving evidence restate 2026-10-15 data",
+   "the_2_not_owed_rows": "a live remote re-fetch and a --strict CLI validation of ANOTHER round's change: not this round's to close"
+  },
+  "skill-mainfile-cap-remediation": {
+   "what_it_asked": "split a skill main file into reference files with pointers, to stay under a content cap",
+   "measured_reality": {
+    "main_file_bytes": 21026,
+    "governed_cap": {
+     "constant": "MAX_SKILL_CONTENT_CHARS",
+     "value": 100000,
+     "unit": "characters, LF-normalized"
+    },
+    "earlier_measure": "the pre-slim main file measured 99,996/100,000 LF-normalized characters - i.e. it NEVER exceeded the cap by the governed measure",
+    "references": {
+     "files": 112
+    }
+   },
+   "honest_reading": "the remedy as written (a mechanical split with relocation pointers) is SUPERSEDED for the file it targeted: the file was slimmed instead, to ~21 KB, and no split is needed. Four rows are DONE_MEASURED (the baseline/ceilings that any future round still wants), six remain OPEN_OWNER, and they are the ones that would ADD a regrowth guard, an index completeness pass, a per-topic index and an independent recompute",
+   "the_one_gap_worth_keeping": "73 of 112 reference files are absent from the skill's own support-files index - that is a real, low-cost, high-value item (an index pass), and it belongs to the skill's owner, not to this session's product work",
+   "over_engineering_judgement": "splitting a 21 KB file to satisfy a cap it never exceeded is exactly the over-engineering the mandate tells us to avoid; the adjudication says so explicitly rather than manufacturing the split"
+  }
+ },
+ "orchestrator_re_derivations": [
+  {
+   "claim": "the registry carries the rebind (rows 5-11)",
+   "my_measurement": "lane_policy.load_registry(): epoch 21; PLAN openai-codex/gpt-6.1-sol medium, selection_authority owner-order-20261016-plan-model-rebind-gpt61-sol, admission_status ADMITTED; EXECUTE opencode-go/deepseek-v4.1-flash UNPROVEN; VERIFY_SECURITY openai-codex/gpt-6.1-sol medium UNPROVEN; check_drift []; registry sha256 38f0436b9bde0599a1c3d5b8b928950450f570548380a90079ca06ff0aba38d2",
+   "verdict": "CONFIRMED",
+   "also_measured": "check_sod(PLAN,VERIFY_SECURITY)=SOD_VIOLATION - a NEW control-plane defect the adjudication surfaces (finding R10-F2)"
+  },
+  {
+   "claim": "the skill main file is far below the cap",
+   "my_measurement": "skills/software-development/hgk-governed-execution/SKILL.md = 21,026 bytes",
+   "verdict": "CONFIRMED"
+  },
+  {
+   "claim": "a same-role later turn overwrote an earlier turn's receipt",
+   "my_measurement": "lane_runs/EXECUTE_dispatch_receipt_attempt1.json mtime 12:40:52 holds the later turn (835.74 s) while the earlier turn (364.5 s) survives only as the R9 packet's hand-snapshot",
+   "verdict": "CONFIRMED; WS3 measured the fuller extent (five EXECUTE turns, three VERIFY turns sharing paths)"
+  }
+ ],
+ "probe_defects_recorded": [
+  {
+   "probe": "WS2's candidate-vs-landed inventory",
+   "claim": "skills/hgk-lifecycle-admission/SKILL.md is present but 0 bytes",
+   "my_re_derivation": "the file is 35739 bytes (sha256 2911867811a503d82aabe7951193a70c180af1cd6e453e1e95af4e6921efe102), 361 lines, structurally complete, and the tree's own write log shows its current digest created at 13:35:06 by a DIFFERENT session with NO write in the probe's read window; the previous content digest 8af86f502767 has no copy on this host",
+   "verdict": "READING REFUTED (the file is not 0 bytes now); MECHANISM WITHDRAWN - the past state is NOT RE-MEASURABLE and this round's earlier 'loader rewrite race' explanation is withdrawn, as is an uncorroborated '13:16 load' sentence",
+   "note": "the skills tree does have loader-touched mtimes (e.g. .usage.json 13:38, remote-repo-publication/SKILL.md 13:28), so a single size read can race a rewrite; assert on two reads or a digest"
+  }
+ ],
+ "side_effect_audit": [
+  {
+   "subject": "_handover/CNV-PIPD-LS-SP-20261015/R6_DELIVERY (the guard subject)",
+   "files_modified_this_round": 0,
+   "verdict": "UNTOUCHED"
+  },
+  {
+   "subject": "canonical skills tree",
+   "files_written_by_this_round": "NOT ASSERTED - CORRECTED AFTER INDEPENDENT REVIEW",
+   "verdict": "REWrites OBSERVED IN WINDOW, ATTRIBUTION CAVEAT",
+   "measured": "the canonical skills tree's own write log shows in-window rewrites of at least two files; e.g. hgk-kanban-and-lane-routing changed again after WS2 measured it (86198 -> 88115 bytes since 13:38:54), and hgk-lifecycle-admission/SKILL.md's current digest was created at 13:35:06. The writers were sessions OTHER than this round; whether they were owner-authorised is NOT determinable from artifacts this round may read, and this round wrote nothing there."
+  },
+  {
+   "subject": "Fabric repository",
+   "changes": "none from this round beyond the R10 worktree branch cut off origin/main (peer checkout left untouched)"
+  }
+ ],
+ "claim_ceiling": "adjudication of record-keeping only; no row was closed by manufacturing an artifact, no other round's task file was edited, and no acceptance is asserted",
+ "independent_checker": {
+  "verdict": "R10_VERIFY/R10_VERDICT.json",
+  "overall": "PARTIALLY_VERIFIED",
+  "adjudication": "R10_VERIFY/R10_VERDICT_ADJUDICATION.json"
+ }
+}

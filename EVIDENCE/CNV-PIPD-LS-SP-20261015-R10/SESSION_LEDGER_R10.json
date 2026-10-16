@@ -1,0 +1,183 @@
+{
+ "schema": "CNV-PIPD-LS-SP-20261015-R10/SESSION-LEDGER/1",
+ "produced_utc": "2026-10-16T05:21:18.501879+00:00",
+ "session": {
+  "id": "20261015_125956_d5f877",
+  "started": "2026-10-15T12:59:56+08:00",
+  "mission": "CNV-PIPD-LS-SP-20261015",
+  "rounds_executed": [
+   "R6/R7 (Fabric PR #3 merged b8ff8104)",
+   "R7-0 (validator hardening, PIPD Draft PR #15)",
+   "R8-0 (Fabric branch r8, Draft PR #5)",
+   "R9-0 (Fabric branch r9, Draft PR #7)",
+   "R10-0 (this round)"
+  ]
+ },
+ "control_plane_in_force": {
+  "registry_epoch": 21,
+  "registry_revision": 21,
+  "routes": {
+   "PLAN": {
+    "provider": "openai-codex",
+    "model": "gpt-6.1-sol",
+    "effort": "medium",
+    "admission_status": "ADMITTED",
+    "selection_authority": "owner-order-20261016-plan-model-rebind-gpt61-sol"
+   },
+   "EXECUTE": {
+    "provider": "opencode-go",
+    "model": "deepseek-v4.1-flash",
+    "effort": null,
+    "admission_status": "UNPROVEN",
+    "selection_authority": "owner-order-20261015-lane-model-chain-rebind"
+   },
+   "VERIFY_SECURITY": {
+    "provider": "openai-codex",
+    "model": "gpt-6.1-sol",
+    "effort": "medium",
+    "admission_status": "UNPROVEN",
+    "selection_authority": "owner-order-20261015-lane-model-chain-rebind"
+   }
+  },
+  "CONFLICT_R10_F1": {
+   "what": "the newest owner order (this R10 mandate) names the PLAN & Orchestrator model as opencode-go/glm-5.3-flash, while the canonical registry still carries the rebind applied by an OUTSIDE act at 2026-10-16T12:36:30 (openai-codex/gpt-6.1-sol, selection_authority owner-order-20261016-plan-model-rebind-gpt61-sol, epoch 21)",
+   "two_owner_orders_conflict": true,
+   "measured_session_binding": "this session's own agent model reads model.default=glm-5.3-flash model.provider=opencode-go, i.e. the live PLAN plane MATCHES the newest order",
+   "this_round_action": "recorded only; the registry is a control-plane artifact and this round did NOT edit it - an owner-ready one-action rebind record is carried instead",
+   "claim": "no routing authority is asserted from either value"
+  },
+  "registry_sha256": "38f0436b9bde0599a1c3d5b8b928950450f570548380a90079ca06ff0aba38d2",
+  "measured_by": "hog_kseos.lane_policy.load_registry()+route_for_lane() (the project's own reader), plus check_drift and check_sod",
+  "check_drift": [],
+  "check_sod": {
+   "PLAN_vs_VERIFY_SECURITY": "SOD_VIOLATION (both openai-codex/gpt-6.1-sol)",
+   "EXECUTE_vs_VERIFY_SECURITY": "SOD_OK (deepseek-v4.1-flash != gpt-6.1-sol)"
+  }
+ },
+ "side_effects_disclosed": [
+  {
+   "what": "Hermes config.yaml: delegation.provider/model",
+   "before": "openai-codex/gpt-6.1-sol",
+   "after": "opencode-go/glm-5.3-flash",
+   "why": "align the orchestrator's fan-out plane with the mandate's PLAN arm",
+   "readback": "config get delegation"
+  },
+  {
+   "what": "canonical skill tree (from R9, still in force)",
+   "detail": "hgk-governed-execution/SKILL.md 105116 -> 21026 bytes, zero deletions; applied under a guarded-apply receipt with rollback"
+  },
+  {
+   "what": "Fabric repository",
+   "detail": "branches evidence/cnv-pipd-ls-sp-20261015-r8 (Draft PR #5) and -r9 (Draft PR #7) exist on the remote; main b8ff8104 untouched. A PEER round currently holds the shared local checkout on branch pub/lane-reliability-closure-20261016 with untracked staging (read-only to this round)"
+  },
+  {
+   "what": "HG-KSEOS control plane",
+   "detail": "NOT written by this session; the registry/config backups and the 275 dirty entries predate it"
+  },
+  {
+   "what": "Kanban boards",
+   "detail": "r9-far-residual-closure-20261016 (9/9 done) and r10-session-closure-20261016 (root + 4 workers + verifier + synthesizer)"
+  },
+  {
+   "what": "spine writes",
+   "detail": "typed admission only (register/transition/plan/admit_workorders/checkpoint) for CNV-R10-SESSCLOSE; no raw SQL"
+  },
+  {
+   "what": "credentials",
+   "detail": "the repository token is read from its file by the publication script into memory only; it never enters argv, a URL, a log or an artifact; no credential value was printed"
+  },
+  {
+   "what": "one provider-direct checker one-shot lane (canonical Hermes runtime, model+provider pinned on argv)",
+   "why": "the mandated arm was not in the lane pool; the registry was NOT edited",
+   "readback": "the smoke probe printed PROBE_OK and the receipt-less run writes only under R10/R10_VERIFY/"
+  }
+ ],
+ "blockers_with_owners": [
+  {
+   "id": "R10-B1",
+   "item": "221 acceptance cases / 8 Gates / Fresh G1 / DOC-05 effect admission",
+   "owner": "human owner",
+   "state": "OPEN_OWNER",
+   "locator": "R9_LEDGER.json blockers"
+  },
+  {
+   "id": "R10-B2",
+   "item": "a single Windows identity cannot separate maker from checker at OS level (EIA-R6-03)",
+   "owner": "human owner / infra",
+   "state": "OPEN_OWNER"
+  },
+  {
+   "id": "R10-B3",
+   "item": "the R10 mandate binds writer and checker to the SAME arm (opencode-go/deepseek-v4.1-flash): model-axis independence ABSENT",
+   "owner": "human owner",
+   "state": "OWNER_ORDERED_RESIDUAL",
+   "note": "only process/lane separation survives; the checker is required to RE-DERIVE rather than restate"
+  },
+  {
+   "id": "R10-B4",
+   "item": "dispatcher-side nonce gate + per-role receipt path inside hgk-lane-dispatch.py",
+   "owner": "control-plane owner",
+   "state": "OPEN_OWNER",
+   "note": "the round's own half is repaired in its successor wrapper; the canonical dispatcher is NOT edited by a product round"
+  },
+  {
+   "id": "R10-B5",
+   "item": "plan() derives TS-<last-segment>-NN spec ids, so two projects sharing a last segment collide (UNIQUE at spine.py:277)",
+   "owner": "control-plane owner",
+   "state": "OPEN_OWNER",
+   "note": "mitigated by choosing globally unique last segments (R10: SESSCLOSE)"
+  },
+  {
+   "id": "R10-B6",
+   "item": "PLAN route conflict between the 12:36 outside rebind and this mandate",
+   "owner": "human owner",
+   "state": "OPEN_OWNER",
+   "locator": "CONFLICT_R10_F1 above"
+  }
+ ],
+ "claim_ceiling": "LOCAL / candidate-only. No acceptance, Gate PASS, AO verdict, release or product claim is made anywhere in this round.",
+ "findings": [
+  {
+   "id": "R10-F1",
+   "what": "the registry's PLAN route still carries the outside act's rebind (openai-codex/gpt-6.1-sol, epoch 21) while the newest owner order names opencode-go/glm-5.3-flash",
+   "state": "CONFLICT_OF_TWO_OWNER_ORDERS",
+   "owner": "human owner",
+   "locator": "config/lane-routing-registry.yaml routes[].PLAN"
+  },
+  {
+   "id": "R10-F2",
+   "what": "the canonical registry ALREADY violates its own SoD invariant for the PLAN/VERIFY_SECURITY pair: both resolve to openai-codex/gpt-6.1-sol, and lane_policy.check_sod reports SOD_VIOLATION",
+   "state": "OPEN_CONTROL_PLANE_DEFECT",
+   "owner": "human owner",
+   "note": "this is a data collision inside the registry, not a product defect; it was unmasked when PLAN was rebound onto the checker's arm"
+  },
+  {
+   "id": "R10-F3",
+   "what": "the R10 mandate orders EXECUTE and VERIFY/SECURITY onto the SAME arm (opencode-go/deepseek-v4.1-flash), so this round's verification has NO model-axis independence",
+   "state": "OWNER_ORDERED_RESIDUAL",
+   "owner": "human owner",
+   "mitigation": "the checker is required to RE-DERIVE each decisive claim from artifacts rather than restate the maker's conclusions, and every verdict is adjudicated item by item"
+  },
+  {
+   "id": "R10-F4",
+   "what": "the mandated VERIFY/SECURITY arm is registry admission_status UNPROVEN, and the mandated PLAN arm is not the registry's PLAN route at all",
+   "state": "OPEN_OWNER",
+   "note": "admission_status is a declaration field the owner sets; this round does not set it"
+  },
+  {
+   "id": "R10-F5",
+   "what": "the mandated VERIFY/SECURITY arm (opencode-go/deepseek-v4.1-flash) is NOT in that lane's pool: the dispatch fail-closed with ERR_LANE_REQUIRED_ARM_ABSENT (exit 4) and the receipt's identity_gate lists only rank 1 openai-codex/gpt-6.1-sol with the dispatcher's own words 'the required arm is not in this lane's pool'",
+   "state": "ROUTING_FINDING_disclosed_deviation_applied",
+   "owner": "control-plane owner",
+   "what_this_round_did_NOT_do": "did NOT edit the route registry or the lane slots to make the dispatch succeed",
+   "deviation_applied": "ran the mandated checker MODEL provider-direct through the SAME relay with the model pinned on the command line, after a transport smoke probe returned PROBE_OK on exactly opencode-go/deepseek-v4.1-flash; disclosed as a routing deviation with no pool hop and no pool ledger line",
+   "significance": "declared (registry) / pooled (lane identity_gate) / reachable (provider-direct) are THREE different surfaces - the arm was reachable while not pooled"
+  },
+  {
+   "id": "R10-F6",
+   "what": "the wrap-around attestation path was exercised end-to-end on a FAILED dispatch: the successor wrapper snapshotted 1 file and reported dispatcher_code=ERR_LANE_REQUIRED_ARM_ABSENT with verdict NO_ATTEMPTS_RECORDED (no attempt happened), i.e. it does not manufacture a nonce or an arm from an empty dispatch",
+   "state": "MEASURED",
+   "owner": "-"
+  }
+ ]
+}
