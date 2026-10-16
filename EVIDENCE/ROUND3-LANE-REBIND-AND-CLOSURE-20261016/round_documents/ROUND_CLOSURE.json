@@ -1,0 +1,376 @@
+{
+  "schema": "HGK-ROUND-CLOSURE/1",
+  "round": "ROUND3-LANE-REBIND-AND-CLOSURE-20261016",
+  "session": "20261016_104922_d455e7",
+  "order_id": "owner-order-20261016-lane-rebind-plan-glm-verify-deepseek",
+  "generated_utc": "2026-10-16T06:51:47.129171+00:00",
+  "authority": "owner order delivered to this session (round 3), then the FAR ruling it authorises",
+  "claim_ceiling": "CANDIDATE_ONLY. This round implements the owner order in the candidate layer and publishes its evidence for an external verifier. It performs NO merge, NO branch deletion and NO promotion beyond applying its own owner-authorised edits and the promotion of the bounded writer's change into this working tree.",
+  "canonical_acceptance": "NOT_PERFORMED",
+  "hgk_canonical_acceptance": "NOT_PERFORMED",
+  "canonical_mutations": {
+    "R1_R2_R3_lane_rebind": {
+      "files": [
+        "config/lane-routing-registry.yaml",
+        "config/model-lane-assignment.json",
+        "config/lane-route-slots.candidate.json",
+        "tests/test_lane_policy.py"
+      ],
+      "sha256_before_after": {
+        "config/lane-routing-registry.yaml": [
+          "38f0436b9bde0599a1c3d5b8b928950450f570548380a90079ca06ff0aba38d2",
+          "9ada90bc0324e89384d0ed03550334a4401e6f6a25e266c9d4d3cd6c7622f61d"
+        ],
+        "config/model-lane-assignment.json": [
+          "e7be2dea36874f169e0cddc61ecb77102402218a2e05136878a097462e7664df",
+          "76b3d453f1d978d2020d1c25325dc5ae6747618f9b1c913f4bfde040918e5b8b"
+        ],
+        "config/lane-route-slots.candidate.json": [
+          "9fd0835f8933c7e84a95e06398ce5e3781367d4076a8235d778aac0ccf2864b8",
+          "12f6667ee50bb369457c81dcc9d99ab9d244649a38c6f34ece29d1c3e5812418"
+        ],
+        "tests/test_lane_policy.py": [
+          "15556fd204b62cf92560322f55958f6764a4c3544853cf98a2e9c559399ba3b4",
+          "8ae7ad90ca0609b64d785259eee38aed2579f0968756eda8518e45cfa6f579f8"
+        ]
+      },
+      "projection_rebindings": [
+        {
+          "pointer": "/registry_epoch",
+          "expected_old": 21,
+          "expected_new": 22,
+          "line": 499
+        },
+        {
+          "pointer": "/revision",
+          "expected_old": 21,
+          "expected_new": 22,
+          "line": 500
+        },
+        {
+          "pointer": "/lane_chains/VERIFY_SECURITY/1/role",
+          "expected_old": "fallback1",
+          "expected_new": "fallback1_operator_selectable",
+          "line": 512
+        },
+        {
+          "pointer": "/lane_chains/VERIFY_SECURITY/1/automatic_selection",
+          "expected_old": true,
+          "expected_new": false,
+          "line": 514
+        },
+        {
+          "pointer": "/sod/plan_lane",
+          "expected_old": "openai-codex / gpt-6.1-sol (medium, OpenAI OAuth) — owner order 2026-10-16 (round FAR-REMEDIATION-AND-CLOSURE-20261016); supersedes the 2026-10-15 GLM rebind, whose stated premise (a 429 on the OpenAI OAuth arm) was measured false on 2026-10-16. GLM-5.3-Flash is retained as a rotation alternate, never auto-selected.",
+          "expected_new": "opencode-go / glm-5.3-flash (medium, OpenCode Go) — owner order 2026-10-16 (round ROUND3-LANE-REBIND-AND-CLOSURE-20261016). This supersedes owner-order-20261016-plan-model-rebind-gpt61-sol (round FAR-REMEDIATION-AND-CLOSURE-20261016) and, with it, the 2026-10-15 GLM order whose premise (a 429 on the OpenAI OAuth arm) was already measured false. GLM is now rank-1 AND an automatically selected arm; the earlier prose calling GLM \"never auto-selected\" while the chain declared automatic_selection: true was a cross-field contradiction (F-IND-2) and is repaired here. gpt-6.1-sol is retained as the NON-DEFAULT fallback1 and deepseek-v4.1-flash as automatically selected fallback2.",
+          "line": 515
+        },
+        {
+          "pointer": "/sod/verify_security_lane",
+          "expected_old": "DEFAULT primary arm A = openai-codex / gpt-6.1-sol (OpenAI OAuth); NON-DEFAULT operator-selectable alternate arm B = opencode-go / glm-5.3-flash. CORRECTED in round FAR-REMEDIATION-AND-CLOSURE-20261016: this field and its siblings declared arm A as opencode-go/glm-5.3-flash while lane_chains.VERIFY_SECURITY[0] — and this registry's own projections on that pointer — declared arm A as openai-codex/gpt-6.1-sol. The lane chain is what the dispatch path reads; the prose now matches it.",
+          "expected_new": "DEFAULT primary arm A = opencode-go / deepseek-v4.1-flash (Codex CLI checker); NON-DEFAULT operator-selectable alternate arm B = openai-codex / gpt-6.1-sol (OpenAI OAuth); automatically selected fallback2 arm C = opencode-go / glm-5.3-flash. Rebound by owner order 2026-10-16 (round ROUND3-LANE-REBIND-AND-CLOSURE-20261016): the checker arm is the SAME model the EXECUTE writer holds, so model-axis independence between maker and checker is deliberately ABSENT and is declared in sod_invariants.declared_conflicts (SOD006-C3, OWNER_ORDERED_IN_FORCE). What remains is PROCESS, LANE and EVIDENCE-PATH independence plus the no-self-acceptance rule. Model diversity between writer and checker is NOT claimed.",
+          "line": 517
+        },
+        {
+          "pointer": "/sod/verify_security_default_arm",
+          "expected_old": "A = openai-codex / gpt-6.1-sol (OpenAI OAuth; medium)",
+          "expected_new": "A = opencode-go / deepseek-v4.1-flash (Codex CLI checker)",
+          "line": 518
+        },
+        {
+          "pointer": "/sod/maker_self_acceptance",
+          "expected_old": "PREVENTED at dispatch on every arm: no single call ever verifies its own output. Model-identity separation is deliberately NOT present between PLAN and VERIFY arm A (the same model by owner order, SOD006-C2 OWNER_ORDERED_IN_FORCE); EXECUTE vs VERIFY remains a distinct model family. PLAN and EXECUTE do not share a token, so SOD-APPLY-01 stays a historical record.",
+          "expected_new": "PREVENTED at dispatch on every arm: no single call ever verifies its own output. Model-identity separation between writer and checker is deliberately NOT present under the 2026-10-16 owner order (EXECUTE and VERIFY_SECURITY arm A are both opencode-go/deepseek-v4.1-flash, SOD006-C3 OWNER_ORDERED_IN_FORCE); the separation this round actually has is process, lane and evidence-path independence. PLAN (glm-5.3-flash) is a different model family from both lanes.",
+          "line": 519
+        },
+        {
+          "pointer": "/sod/verify_vs_plan_model_separation",
+          "expected_old": "NONE on the model axis, by owner order: PLAN and VERIFY_SECURITY default arm A are BOTH openai-codex/gpt-6.1-sol (SOD006-C2, now OWNER_ORDERED_IN_FORCE). What remains is PROCESS, LANE and EVIDENCE-PATH independence, plus the no-self-acceptance rule. EXECUTE deepseek-v4.1-flash is a distinct model family from both.",
+          "expected_new": "PASS on the model axis: PLAN is opencode-go/glm-5.3-flash and VERIFY_SECURITY default arm A is opencode-go/deepseek-v4.1-flash — different model families. The earlier collision recorded as SOD006-C2 (PLAN and VERIFY arm A both openai-codex/gpt-6.1-sol) no longer exists and is retained as SUPERSEDED history rather than deleted.",
+          "line": 530
+        },
+        {
+          "pointer": "/lane_chains/PLAN/0/model",
+          "expected_old": "gpt-6.1-sol",
+          "expected_new": "glm-5.3-flash",
+          "line": 537
+        },
+        {
+          "pointer": "/lane_chains/PLAN/0/provider",
+          "expected_old": "openai-codex",
+          "expected_new": "opencode-go",
+          "line": 538
+        },
+        {
+          "pointer": "/lane_chains/VERIFY_SECURITY/0/model",
+          "expected_old": "gpt-6.1-sol",
+          "expected_new": "deepseek-v4.1-flash",
+          "line": 541
+        },
+        {
+          "pointer": "/lane_chains/VERIFY_SECURITY/0/provider",
+          "expected_old": "openai-codex",
+          "expected_new": "opencode-go",
+          "line": 542
+        },
+        {
+          "pointer": "/lane_chains/VERIFY_SECURITY/1/model",
+          "expected_old": "glm-5.3-flash",
+          "expected_new": "gpt-6.1-sol",
+          "line": 544
+        },
+        {
+          "pointer": "/lane_chains/VERIFY_SECURITY/1/provider",
+          "expected_old": "opencode-go",
+          "expected_new": "openai-codex",
+          "line": 545
+        },
+        {
+          "pointer": "/sod/verify_security_reasoning_effort",
+          "expected_old": "medium",
+          "expected_new": "medium (RETAINED from the previous chain because the mandate names no effort for this arm and the deepseek arm declares none — UNVERIFIED for this model, recorded rather than assumed)",
+          "line": 551
+        },
+        {
+          "pointer": "/sod/provider_separation_status",
+          "expected_old": "PARTIAL - PLAN and VERIFY default arm A both sit on openai-codex by owner order; EXECUTE stays on opencode-go. Model-axis separation between EXECUTE and each of them HOLDS (deepseek-v4.1-flash != gpt-6.1-sol). Provider separation is not required (invariants.provider_separation_required=false). Recorded as an accepted risk.",
+          "expected_new": "ABSENT by owner order: all three lanes sit on opencode-go (PLAN glm-5.3-flash, EXECUTE deepseek-v4.1-flash, VERIFY_SECURITY arm A deepseek-v4.1-flash). Provider separation is not required (invariants.provider_separation_required=false). Model-axis separation HOLDS PLAN-vs-EXECUTE and PLAN-vs-VERIFY, and is deliberately absent EXECUTE-vs-VERIFY (SOD006-C3). Recorded as an accepted risk.",
+          "line": 560
+        }
+      ],
+      "patch1_corrections": [
+        "site /lane_chains/VERIFY_SECURITY/0: reasoning_effort restored to \"medium\" (the registry binds this pointer; removing the field to satisfy nothing would have traded coverage for a green light)",
+        "registry VERIFY row: reasoning_effort: medium restored at the block level (mirrors the site field; the mandate names no effort for this arm, so the retained value is declared UNVERIFIED in sod.verify_security_reasoning_effort rather than assumed sound)",
+        "source_of_routes re-pinned 76b3d453f1d9 -> 78a0eb2eabfe (site revision 22)"
+      ],
+      "new_site_digest": "76b3d453f1d978d2020d1c25325dc5ae6747618f9b1c913f4bfde040918e5b8b"
+    },
+    "R10_guard_exemption_promoted_files": [
+      {
+        "file": "scripts/hgk-lane-guard.py",
+        "changed_lines": 307,
+        "candidate_sha256": "ba16c5815129b126dd80b6499812c540861a91e8986ecf64d62343871e5a59dc",
+        "canonical_sha256_after": "ba16c5815129b126dd80b6499812c540861a91e8986ecf64d62343871e5a59dc",
+        "backup": "hgk-lane-guard.py.bak-round3-promote-20261016T062806Z"
+      },
+      {
+        "file": "src/hg_kseos/lane_policy.py",
+        "changed_lines": 375,
+        "candidate_sha256": "255b6b95eeb5be156c0bfb7966764bb5eb213e8af5bf321861ec0f4642d5b12b",
+        "canonical_sha256_after": "255b6b95eeb5be156c0bfb7966764bb5eb213e8af5bf321861ec0f4642d5b12b",
+        "backup": "lane_policy.py.bak-round3-promote-20261016T062806Z"
+      },
+      {
+        "file": "tests/test_lane_guard.py",
+        "changed_lines": 102,
+        "candidate_sha256": "3b5c3c83862c2e1bbe4aa5d65c6086b28d7de2eb4d1c3aca06db46ba78284d45",
+        "canonical_sha256_after": "3b5c3c83862c2e1bbe4aa5d65c6086b28d7de2eb4d1c3aca06db46ba78284d45",
+        "backup": "test_lane_guard.py.bak-round3-promote-20261016T062806Z"
+      }
+    ],
+    "R10_oracle": {
+      "cases": {
+        "01_undeclared_collision_refused": {
+          "exit": 2,
+          "want_exit": 2,
+          "ok": true
+        },
+        "02_declared_pair_sod_admitted": {
+          "exit": 3,
+          "want_exit": 3,
+          "ok": true
+        },
+        "03_distinct_pair_unchanged": {
+          "exit": 3,
+          "want_exit": 3,
+          "ok": true
+        },
+        "04_undeclared_inference_fail_closed": {
+          "exit": 2,
+          "want_exit": 2,
+          "ok": true
+        },
+        "05_conformance_suite": {
+          "exit": 0,
+          "want_exit": 0,
+          "ok": true
+        },
+        "06_writer_test_module": {
+          "exit": 0,
+          "want_exit": 0,
+          "ok": true
+        },
+        "07_check_drift_zero_errors": {
+          "ok": true,
+          "stdout": "ERRORS 0"
+        }
+      },
+      "all_ok": true
+    },
+    "frozen_subject": {
+      "schema": "HGK-ROUND3-SUBJECT-DIGEST/1",
+      "round": "ROUND3-LANE-REBIND-AND-CLOSURE-20261016",
+      "counts": {
+        "scripts": 72,
+        "src": 33,
+        "tests": 63,
+        "config": 45
+      },
+      "total": 213,
+      "digest": "76ec42a0f4c8962c",
+      "rule": "byte-identical copy of canonical scripts/src/tests/config, excluding .git/__pycache__/*.pyc/.pytest_cache/TEST_RESULTS",
+      "frozen_after": "R1-R3 rebind + R10 guard exemption promoted into canonical"
+    }
+  },
+  "lane_evidence": {
+    "EXECUTE": {
+      "required_arm": "opencode-go/deepseek-v4.1-flash",
+      "served_arm": "opencode-go/deepseek-v4.1-flash",
+      "used_rank": 1,
+      "usage_receipt_ok": true,
+      "used_seconds": 508.72,
+      "ok": true,
+      "note": "first measured serving of the mandated EXECUTE arm (opencode-go/deepseek-v4.1-flash) in a code-writing turn"
+    },
+    "VERIFY_SECURITY": {
+      "required_arm": "opencode-go/deepseek-v4.1-flash",
+      "served_arm": "opencode-go/deepseek-v4.1-flash",
+      "used_rank": 1,
+      "usage_receipt_ok": true,
+      "used_seconds": 1011.18,
+      "ok": true,
+      "disclosure": "the checker shares the writer's model BY OWNER ORDER (SOD006-C3); model-axis independence is absent and NOT claimed"
+    },
+    "PLAN": {
+      "model": "opencode-go/glm-5.3-flash",
+      "surface": "in-process orchestrator (this session)",
+      "note": "the PLAN plane is this agent; its binding is declared in the assignment site and the registry, and the round's own delegation fan-out was served by that model"
+    }
+  },
+  "verification": {
+    "checker": "VERIFY_SECURITY (CODEX CLI, opencode-go/deepseek-v4.1-flash)",
+    "claims": {
+      "C1": "AGREE",
+      "C2": "AGREE",
+      "C3": "AGREE",
+      "C4": "AGREE",
+      "C5": "AGREE",
+      "C6": "AGREE",
+      "C7": "AGREE"
+    },
+    "subject_digest_recomputed": "76ec42a0f4c8962cca823f913d6b230bf1d95ef5832e37e8e83a95b5a48bc54f",
+    "verdict_ceiling": "advisory; not an acceptance",
+    "disclosures": [
+      "Model-axis independence between writer and checker is ABSENT BY OWNER ORDER (both opencode-go/deepseek-v4.1-flash), declared as SOD006-C3 OWNER_ORDERED_IN_FORCE; this verdict rests only on process, lane, evidence-path independence and the no-self-acceptance rule, and I claim no separation I do not have.",
+      "Cross-artifact inconsistency (not fatal to C4, which is scoped to the registry): config/model-lane-assignment.json's own sod_conflicts[] still lists SOD006-C2 as OPEN and SOD006-C3 as OPEN_OWNER_ORDERED, while the registry marks them SUPERSEDED and OWNER_ORDERED_IN_FORCE; the guard reads the registry so behaviour is correct, but the assignment-side prose lags. Residual, not a repair.",
+      "C6: the writer's write-set is exactly the three files; the candidate tree has no other divergence from the canonical tree. The frozen subject copy additionally carries the three product .bak backups, a promotion preimage side-effect rather than writer output.",
+      "The guard's exit-0 ADMIT path is exercised with a synthetic in-scope admission receipt; production has no producer of an ADMISSION receipt (gap R11), so a live end-to-end ADMIT is not claimed."
+    ],
+    "commands": [
+      "python -B TEST_RESULTS/recompute_subject_digest.py -> copy_digest_first16=76ec42a0f4c8962c == SUBJECT_DIGEST.json, copy_equals_frozen=true, counts 72/33/63/45=213",
+      "python -B TEST_RESULTS/c1_epoch_coupling.py -> recomputed sha256(model-lane-assignment.json)=78a0eb2eabfecaa4d4d80660438505418724499aeaaac656f3d47631a3effa15 == registry source_of_routes.sha256; epoch=22, revision=22",
+      "python -B TEST_RESULTS/c5_probe.py -> [1] undeclared PLAN/PLAN exit2 ERR_LANE_SOD_VIOLATION; [2] declared EXECUTE/VERIFY admitted exit0 declared_conflict=SOD006-C3; [2b/3] admission-only exit3; [4] ambiguous maker lane exit2 no exemption; [5] PLAN/VERIFY same-model (distinct_required true) exit2",
+      "python -B TEST_RESULTS/c5_wide.py -> exemption requires distinct_required exactly False AND status exactly OWNER_ORDERED_IN_FORCE AND exact pair; wrong-status/wrong-pair/ambiguous all fail closed",
+      "python -B TEST_RESULTS/c6_writeset.py -> candidate vs subject differ only by 3 *.bak files",
+      "python -B TEST_RESULTS/c6_writeset2.py -> candidate sha==receipt candidate_sha256, canonical_after==receipt canonical_sha256_after, .bak==canonical_before, outside_write_set_changes=[]",
+      "python -B TEST_RESULTS/c4_nondestructive.py -> live declared_conflicts add SOD006-C3, remove none of [SOD006-C1, SOD006-C2, SOD-APPLY-01]; C1/C2 retained with SUPERSEDED",
+      "python -B subject/tests/test_lane_policy.py -> 3 tests OK; python -B subject/tests/test_lane_guard.py -> 13 tests OK",
+      "python -B TEST_RESULTS/c7_final.py -> decisive docs carry CANDIDATE_ONLY / merge+branch-deletion=OWNER / NOT_PERFORMED; no self-acceptance claim found"
+    ],
+    "weight": "ADVISORY ONLY, and produced by a checker that SHARES the writer's model by owner order (SOD006-C3). It is not an external review, not an acceptance, and it does not convert the round's claims into verified fact on its own.",
+    "note": "the checker recomputed the frozen subject digest and matched it, ran the guard cases itself (including a synthetic in-scope admission receipt that reached the exit-0 ADMIT path and an adversarial attempt to WIDEN the exemption), and reported the cross-artifact finding below"
+  },
+  "detection": [
+    {
+      "id": "SC-12",
+      "found_by": "self, while repairing the registry after SC-13",
+      "what": "apply_R1_R2_R3.commit() copied each file to its .bak AFTER writing the edit, so the four backups were post-edit copies; and config/ is not tracked by git, so HEAD held no preimage either",
+      "corrected_in": "preimages recovered by digest from the previous round's frozen subject tree and installed under preimages/ with provenance; the promote script now backs up before writing",
+      "evidence": "PATCH1_RECEIPT.json"
+    },
+    {
+      "id": "SC-13",
+      "found_by": "the product itself (yaml ScannerError on the live registry)",
+      "what": "the projection note written by the projection-repair pass was an unquoted YAML plain scalar containing \": \", which made the whole registry unparseable",
+      "corrected_in": "patch1_R1_R2_R3.py quotes it",
+      "evidence": "PATCH1_RECEIPT.json"
+    },
+    {
+      "id": "SC-14",
+      "found_by": "check_drift COVERAGE_GAP on /lane_chains/VERIFY_SECURITY/0/reasoning_effort",
+      "what": "the structured rewrite of the VERIFY chain dropped a field the registry binds, so the binding resolved to nothing",
+      "corrected_in": "the field was RESTORED (with its effort declared UNVERIFIED for this model) rather than deleting the binding, which would have traded coverage for a green light",
+      "evidence": "PATCH1_RECEIPT.json"
+    },
+    {
+      "id": "D-R10",
+      "found_by": "measured pre-dispatch guard call during execution",
+      "what": "the guard refuses ANY same-model maker/checker pair (exit 2) and never consults the registry's declared_conflicts, so the owner's mandate was undispatchable",
+      "corrected_in": "R10 (additive, fail-closed, visible exemption) via the mandated EXECUTE lane",
+      "evidence": "FAR_RULING_ADDENDUM_A.md A2 + evidence/ORACLE_R10_*.txt"
+    },
+    {
+      "id": "D-R11",
+      "found_by": "reading _load_admission()",
+      "what": "ADMITTED is accepted only from a receipt FILE, and nothing in the product produces one (only tests do), so the gate can refuse but never admit",
+      "status": "OPEN - recorded, not papered over; the round does NOT invent a producer",
+      "evidence": "FAR_RULING_ADDENDUM_A.md A3"
+    },
+    {
+      "id": "NF-01",
+      "found_by": "the previous round's enumeration attempt, re-derived here",
+      "what": "the whole-tree enumeration obstruction is a LONG-PATH failure (WinError 3), not access-denied as the previous round recorded",
+      "status": "correction published",
+      "evidence": "this round hit the same failure class in its own preimage search and handled it with an onerror-tolerant walk"
+    },
+    {
+      "id": "NF-06",
+      "found_by": "the INDEPENDENT CHECKER (this round's own finder did not catch it)",
+      "what": "config/model-lane-assignment.json carries its OWN sod_conflicts[] array, which still lists SOD006-C2 as OPEN and SOD006-C3 as OPEN_OWNER_ORDERED: the registry's declared_conflicts was re-declared but this second declaring surface was not",
+      "status": "OPEN - recorded and NOT edited, deliberately: editing the site now would move its digest, invalidate the frozen subject and void the checker verdict on the shipped bytes",
+      "remediation": "next round: bind the site's sod_conflicts[] in the registry's projections (or fold the array into one declaring surface) so the two can no longer diverge unnoticed; then re-freeze and re-check",
+      "evidence": "lanes/VERIFY_SECURITY/V4/CHECKER_VERDICT.json disclosures"
+    },
+    {
+      "id": "NF-05",
+      "found_by": "this round's pool edit",
+      "what": "the dispatch path reads config/lane-route-slots.candidate.json as its pool while the file itself declares status CANDIDATE / not active",
+      "status": "recorded in the file's selection_note; changing its status is a promotion and stays with the owner",
+      "evidence": "FAR_RULING_ADDENDUM_A.md A5"
+    }
+  ],
+  "not_closed": [
+    {
+      "item": "NF-06 — the assignment site's own sod_conflicts[] still disagrees with the registry",
+      "why": "found by the independent checker AFTER the subject was frozen; editing it now would void the verdict on the shipped bytes, so it is recorded with a remediation instead"
+    },
+    {
+      "item": "R11 admission-receipt producer",
+      "why": "a new capability, not a repair; needs its own WorkOrder and acceptance"
+    },
+    {
+      "item": "F-IND-2 detector axis (epoch/revision coupling)",
+      "why": "out of scope for the rebind; the drift pass proved the coupling is enforced at the gate level"
+    },
+    {
+      "item": "F-IND-3 (the previous round's canonical writer was not the mandated writer)",
+      "why": "not retroactively curable; recorded as a bounded accepted deviation"
+    },
+    {
+      "item": "the repository merge and branch cleanup",
+      "why": "the OWNER's decision under the standing contract; a merge-readiness packet is published instead"
+    }
+  ],
+  "publication": {
+    "repo": "shw097-team/Fabric",
+    "branch": "pub/round3-lane-rebind-and-closure-20261016",
+    "pull_request": 10,
+    "pull_request_url": "https://github.com/shw097-team/Fabric/pull/10",
+    "merged": false,
+    "merge_is": "an OWNER decision, explicitly outside this round's claim ceiling",
+    "gate": "GATE_PASS 7/7 (see GATE_REPORT.json)",
+    "packet_files": 348,
+    "remote_verified": "sha_match=true, manifest byte-identical (git blob 02046d14)",
+    "receipt": "PUBLICATION_RECEIPT.json"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "schema": "HGK-ROUND3-REBIND-RECEIPT/1",
+  "round": "ROUND3-LANE-REBIND-AND-CLOSURE-20261016",
+  "apply": true,
+  "order_id": "owner-order-20261016-lane-rebind-plan-glm-verify-deepseek",
+  "newline_convention": "CRLF preserved (verified byte-faithful per file)",
+  "files": [
+    {
+      "file": "config/lane-routing-registry.yaml",
+      "what": "R1+R2: PLAN/VERIFY rebind, SoD pairs + SOD006-C3, epoch 22, source_of_routes re-pinned",
+      "sha256_before": "38f0436b9bde0599a1c3d5b8b928950450f570548380a90079ca06ff0aba38d2",
+      "sha256_after": "9ada90bc0324e89384d0ed03550334a4401e6f6a25e266c9d4d3cd6c7622f61d",
+      "backup": "lane-routing-registry.yaml.bak-round3-lane-rebind-20261016"
+    },
+    {
+      "file": "config/model-lane-assignment.json",
+      "what": "R1+R3: lane_chains, 11 sod prose fields, revision/registry_epoch 22",
+      "sha256_before": "e7be2dea36874f169e0cddc61ecb77102402218a2e05136878a097462e7664df",
+      "sha256_after": "76b3d453f1d978d2020d1c25325dc5ae6747618f9b1c913f4bfde040918e5b8b",
+      "backup": "model-lane-assignment.json.bak-round3-lane-rebind-20261016"
+    },
+    {
+      "file": "config/lane-route-slots.candidate.json",
+      "what": "pool ranks: PLAN glm->1, VERIFY deepseek->1 (rev 9 -> 10)",
+      "sha256_before": "9fd0835f8933c7e84a95e06398ce5e3781367d4076a8235d778aac0ccf2864b8",
+      "sha256_after": "12f6667ee50bb369457c81dcc9d99ab9d244649a38c6f34ece29d1c3e5812418",
+      "backup": "lane-route-slots.candidate.json.bak-round3-lane-rebind-20261016"
+    },
+    {
+      "file": "tests/test_lane_policy.py",
+      "what": "conformance fixture owner_chain moved with the owner order",
+      "sha256_before": "15556fd204b62cf92560322f55958f6764a4c3544853cf98a2e9c559399ba3b4",
+      "sha256_after": "8ae7ad90ca0609b64d785259eee38aed2579f0968756eda8518e45cfa6f579f8",
+      "backup": "test_lane_policy.py.bak-round3-lane-rebind-20261016"
+    }
+  ],
+  "new_site_digest": "76b3d453f1d978d2020d1c25325dc5ae6747618f9b1c913f4bfde040918e5b8b",
+  "sod_prose_fields_rewritten": 11
+}

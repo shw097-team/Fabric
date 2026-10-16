@@ -1,0 +1,45 @@
+{
+  "schema": "HGK-KANBAN-SWARM-GRAPH/1",
+  "round": "ROUND3-LANE-REBIND-AND-CLOSURE-20261016",
+  "at": "2026-10-16",
+  "surface": "hermes kanban (HERMES_HOME/kanban/boards/<slug>/kanban.db)",
+  "board": {
+    "slug": "round3-lane-rebind-and-closure-20261016",
+    "name": "Round3 lane rebind and closure 2026-10-16",
+    "db": "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/kanban/boards/round3-lane-rebind-and-closure-20261016/kanban.db",
+    "default_workdir": "C:/Projects/Agent_Workspace/HG-KSEOS",
+    "created_by": "hermes_cli.main kanban boards create",
+    "board_json_verified": "board.json present in the board directory at creation time"
+  },
+  "swarm": {
+    "builder": "hermes_cli.main kanban --board <slug> swarm (root + N workers + one verifier + one synthesizer, wired into the DAG)",
+    "goal": "Execute the round-3 FAR ruling: rebind the three governed lanes to the owner mandate of 2026-10-16 (PLAN=opencode-go/glm-5.3-flash; EXECUTE and VERIFY/SECURITY=opencode-go/deepseek-v4.1-flash through CODEX CLI), re-declare the flipped maker/checker SoD axis, close or explicitly carry every residual, land or drop the candidate OpenSpec/skill items, settle the repository merge/branch-cleanup question, then independently verify, close, hand over and publish the evidence for external acceptance",
+    "root": "t_195be544",
+    "workers": ["t_a81edd23", "t_56580662", "t_b4e4f8e7", "t_93bf1148"],
+    "verifier": "t_2d78202a",
+    "synthesizer": "t_a7bfe930",
+    "assignee_profile": "hgk-governed",
+    "worker_titles": [
+      "R-lane registry rebind, SoD re-declaration and governed-profile binding",
+      "R-residual closure of live residuals and open findings",
+      "R-candidate OpenSpec apply-archive and skill validation",
+      "R-repo branch cleanup and merge-readiness packet"
+    ]
+  },
+  "what_kanban_swarm_openspec_are_not": [
+    "They are ORCHESTRATION surfaces (task graph, change record, board), NOT model routers: creating them routes no model and selects no arm.",
+    "Which model serves which role is fixed by the lane binding (the Hermes model.default/model.provider binding for the in-Hermes PLAN plane; scripts/hgk-lane-dispatch.py --require-arm --force-rank for the CODEX CLI lanes) — independently of these surfaces.",
+    "GSTACK has no separate implementation in this repository; it is reported as a named-method / role-map readback, never as an enabled component."
+  ],
+  "measured_env_facts_this_round": {
+    "mandated_models_reachable": "relay 127.0.0.1:10101 answered glm-5.3-flash and deepseek-v4.1-flash with http 200 and content PROBE_OK each; exec frontdoor 127.0.0.1:10100/healthz = 200",
+    "hermes_bindings": "root model.default=glm-5.3-flash, model.provider=opencode-go, delegation.provider=opencode-go, delegation.model=glm-5.3-flash; profiles/hgk-governed still binds gpt-6.1-sol/openai-codex (STALE under the new mandate)",
+    "this_session_serving_model": "deepseek-v4.1-flash (runtime header) — an observed-vs-bound split, disclosed, not claimed as compliance"
+  },
+  "disclosed_side_effects": [
+    "The first boards create invocation passed HERMES_HOME as an MSYS path (/c/Users/...), so the native interpreter created a stray board at C:/c/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/kanban/boards/round3-lane-rebind-and-closure-20261016. Removed; the empty ancestor directories that command created were removed with rmdir (non-empty = refused); the board was then re-created with a NATIVE C:/... HERMES_HOME and verified in the canonical board directory.",
+    "C:/c is a PRE-EXISTING stray drive-root tree (C:/c/Projects empty since 2026-10-15 23:56; C:/c/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes holding a full Hermes home: SOUL.md, memories/, skills/, sessions/, cron/, hooks/, pairing/, kanban.db, logs/curator). It was NOT created by this round (nothing inside it is newer than this round's start) and it was NOT touched or deleted: it may hold another session's memories. Reported as an observed environment anomaly for the owner to inspect."
+  ],
+  "dispatch_note": "Cards are recorded graph evidence. The arms this round actually consumes are proven by the CODEX CLI dispatch receipts (required_arm == served_arm) and by Hermes' own model binding readback, not by these card ids.",
+  "claim_ceiling": "A card id is not a run. This artifact records the graph and its builders; it asserts nothing about the model that served any turn."
+}

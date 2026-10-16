@@ -1,0 +1,31 @@
+{
+  "schema": "HGK-CHECKER-REFERENCE-TREE-DIGEST/1",
+  "round": "ROUND3-LANE-REBIND-AND-CLOSURE-20261016",
+  "tree": "subject/",
+  "purpose": "read-only reference tree handed to the VERIFY/SECURITY lane; the lane runs the suites against a writable COPY the runner makes under its own lane directory",
+  "in_packet": false,
+  "reason_excluded": "byte-identical duplicate of content that already lives in the repository (~8 MB)",
+  "per_dir": [
+    {
+      "dir": "scripts",
+      "files": 71,
+      "digest": "e63f38d5a6fd98a5f28ba5c286b1a2e2de40bf54028ed1ee72054a26f4ddf0ef"
+    },
+    {
+      "dir": "src",
+      "files": 32,
+      "digest": "8d9d14ba79f1b61145ba1ba4944f2ba1a8b125981b77c54ee7e1c5defebec3b9"
+    },
+    {
+      "dir": "tests",
+      "files": 62,
+      "digest": "5f1c878155664b22b28b37a8d2b679321b694d278b6bdbcdd9d778712d2651fd"
+    },
+    {
+      "dir": "config",
+      "files": 45,
+      "digest": "124a1bef8fc585c9501e46739971c282372fe1d2e1fd119f5d4986ca8ef5f1ea"
+    }
+  ],
+  "aggregate_sha256": "339d96143a53198c496b38287efbd72c8afd3a7487b6f50569a8e2b7b6051ce2"
+}

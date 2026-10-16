@@ -1,0 +1,283 @@
+{
+  "challenge_budget": {
+    "calls": 28,
+    "max_seconds": 300
+  },
+  "claim_ceiling": "CANDIDATE_ONLY",
+  "contract_sha256": "1c4469c8e30266bc4504afce960285af11816bcfc42a42199940bcec6b547617",
+  "manifest_sha256": "e5347fb9a052639822ec48e4023d9d697d38ba20e7a497b8c1a9d100369bdc0a",
+  "matrix_id": "FAR-LANE-SOD-007-ACCEPTANCE-MATRIX",
+  "ordered_items": [
+    {
+      "claim": "the frozen verify-lane contract exists and pins skeleton_first/forbid_heredoc/max_string_chars/budget",
+      "control": "ordinary",
+      "expect": {
+        "predicate": "file_exists",
+        "value": true
+      },
+      "expected_observation": "match",
+      "id": "M01",
+      "owner": "codex",
+      "probe": {
+        "kind": "exists",
+        "path": "ART-CONTRACT",
+        "timeout_s": 10
+      },
+      "required": true,
+      "round": "FAR-LANE-SOD-007",
+      "source_refs": [
+        "ART-CONTRACT"
+      ]
+    },
+    {
+      "claim": "the contract contains the required keys and the max_string_chars cap == 250",
+      "control": "ordinary",
+      "expect": {
+        "predicate": "regex_match",
+        "value": true
+      },
+      "expected_observation": "match",
+      "id": "M02",
+      "owner": "codex",
+      "probe": {
+        "kind": "grep",
+        "path": "ART-CONTRACT",
+        "pattern": "\"max_string_chars\"\\s*:\\s*250"
+      },
+      "required": true,
+      "round": "FAR-LANE-SOD-007",
+      "source_refs": [
+        "ART-CONTRACT"
+      ]
+    },
+    {
+      "claim": "the contract validator parses as valid Python (read-only syntax probe)",
+      "control": "ordinary",
+      "expect": {
+        "predicate": "rc_zero",
+        "value": true
+      },
+      "expected_observation": "match",
+      "id": "M03",
+      "owner": "codex",
+      "probe": {
+        "approved_probe_id": "py_lint_check_syntax",
+        "argv": [
+          "--check-syntax",
+          "ART-VERIFY-CONTRACT-PY"
+        ],
+        "kind": "command",
+        "timeout_s": 20
+      },
+      "required": true,
+      "round": "FAR-LANE-SOD-007",
+      "source_refs": [
+        "ART-VERIFY-CONTRACT-PY"
+      ]
+    },
+    {
+      "claim": "the frozen acceptance matrix declares an ordered_items denominator",
+      "control": "ordinary",
+      "expect": {
+        "predicate": "regex_match",
+        "value": true
+      },
+      "expected_observation": "match",
+      "id": "M04",
+      "owner": "codex",
+      "probe": {
+        "kind": "grep",
+        "path": "ART-MATRIX",
+        "pattern": "\"ordered_items\"\\s*:"
+      },
+      "required": true,
+      "round": "FAR-LANE-SOD-007",
+      "source_refs": [
+        "ART-MATRIX"
+      ]
+    },
+    {
+      "claim": "the acceptance-matrix artifact exists",
+      "control": "ordinary",
+      "expect": {
+        "predicate": "file_exists",
+        "value": true
+      },
+      "expected_observation": "match",
+      "id": "M05",
+      "owner": "codex",
+      "probe": {
+        "kind": "exists",
+        "path": "ART-MATRIX",
+        "timeout_s": 10
+      },
+      "required": true,
+      "round": "FAR-LANE-SOD-007",
+      "source_refs": [
+        "ART-MATRIX"
+      ]
+    },
+    {
+      "claim": "the evidence runner parses as valid Python (read-only syntax probe)",
+      "control": "ordinary",
+      "expect": {
+        "predicate": "rc_zero",
+        "value": true
+      },
+      "expected_observation": "match",
+      "id": "M06",
+      "owner": "codex",
+      "probe": {
+        "approved_probe_id": "py_lint_check_syntax",
+        "argv": [
+          "--check-syntax",
+          "ART-RUNNER"
+        ],
+        "kind": "command",
+        "timeout_s": 20
+      },
+      "required": true,
+      "round": "FAR-LANE-SOD-007",
+      "source_refs": [
+        "ART-RUNNER"
+      ]
+    },
+    {
+      "claim": "the SSOT lock script parses as valid Python (read-only syntax probe)",
+      "control": "ordinary",
+      "expect": {
+        "predicate": "rc_zero",
+        "value": true
+      },
+      "expected_observation": "match",
+      "id": "M07",
+      "owner": "codex",
+      "probe": {
+        "approved_probe_id": "py_lint_check_syntax",
+        "argv": [
+          "--check-syntax",
+          "ART-LOCK"
+        ],
+        "kind": "command",
+        "timeout_s": 20
+      },
+      "required": true,
+      "round": "FAR-LANE-SOD-007",
+      "source_refs": [
+        "ART-LOCK"
+      ]
+    },
+    {
+      "claim": "the SSOT writer parses as valid Python and never acquires its own lock",
+      "control": "ordinary",
+      "expect": {
+        "predicate": "regex_match",
+        "value": true
+      },
+      "expected_observation": "match",
+      "id": "M08",
+      "owner": "codex",
+      "probe": {
+        "kind": "grep",
+        "path": "ART-WRITE",
+        "pattern": "write_refused_no_lock"
+      },
+      "required": true,
+      "round": "FAR-LANE-SOD-007",
+      "source_refs": [
+        "ART-WRITE"
+      ]
+    },
+    {
+      "claim": "the lock test suite exists and pins the exit-4 second-acquire refusal",
+      "control": "ordinary",
+      "expect": {
+        "predicate": "regex_match",
+        "value": true
+      },
+      "expected_observation": "match",
+      "id": "M09",
+      "owner": "codex",
+      "probe": {
+        "kind": "grep",
+        "path": "ART-TEST-LOCK",
+        "pattern": "assertEqual\\(.{0,40}4"
+      },
+      "required": true,
+      "round": "FAR-LANE-SOD-007",
+      "source_refs": [
+        "ART-TEST-LOCK"
+      ]
+    },
+    {
+      "claim": "the writer test suite exists and pins the no-lock refusal",
+      "control": "ordinary",
+      "expect": {
+        "predicate": "regex_match",
+        "value": true
+      },
+      "expected_observation": "match",
+      "id": "M10",
+      "owner": "codex",
+      "probe": {
+        "kind": "grep",
+        "path": "ART-TEST-WRITE",
+        "pattern": "write_refused_no_lock"
+      },
+      "required": true,
+      "round": "FAR-LANE-SOD-007",
+      "source_refs": [
+        "ART-TEST-WRITE"
+      ]
+    },
+    {
+      "claim": "NEGATIVE: the runner must find the deprecated-name token only if the file changes it",
+      "control": "negative",
+      "expect": {
+        "predicate": "regex_match",
+        "value": true
+      },
+      "expected_observation": "mismatch",
+      "id": "M11",
+      "owner": "codex",
+      "probe": {
+        "kind": "grep",
+        "path": "ART-LINT-TOOL",
+        "pattern": "definitely_absent_zzz_token"
+      },
+      "required": true,
+      "round": "FAR-LANE-SOD-007",
+      "source_refs": [
+        "ART-LINT-TOOL"
+      ]
+    },
+    {
+      "claim": "NEGATIVE: a write-looking command probe is refused before execution",
+      "control": "negative",
+      "expect": {
+        "predicate": "rc_zero",
+        "value": true
+      },
+      "expected_observation": "refused",
+      "id": "M12",
+      "owner": "codex",
+      "probe": {
+        "approved_probe_id": "py_lint_check_syntax",
+        "argv": [
+          "--check-syntax",
+          "rm_marker_delete_foo"
+        ],
+        "kind": "command",
+        "timeout_s": 20
+      },
+      "required": true,
+      "round": "FAR-LANE-SOD-007",
+      "source_refs": [
+        "ART-LINT-TOOL"
+      ]
+    }
+  ],
+  "revision": 1,
+  "round": "FAR-LANE-SOD-007",
+  "schema_version": 1
+}

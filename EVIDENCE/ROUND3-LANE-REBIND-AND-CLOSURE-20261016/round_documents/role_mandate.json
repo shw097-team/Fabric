@@ -1,0 +1,54 @@
+{
+  "artifact": "ROLE_MANDATE",
+  "schema": "HGK-ROLE-MANDATE/1",
+  "round": "ROUND3-LANE-REBIND-AND-CLOSURE-20261016",
+  "session": "20261016_104922_d455e7",
+  "declared_at_utc": "2026-10-16T06:20:00Z",
+  "expires_utc": "2026-10-18T00:00:00Z",
+  "authority": "owner order delivered to session 20261016_104922_d455e7 (round 3)",
+  "claim_ceiling": "CANDIDATE_ONLY. This mandate authorises one bounded writer turn and one independent read-only checker turn; it asserts no acceptance and no promotion.",
+  "roles": {
+    "PLAN": {
+      "lane": "PLAN",
+      "surface": "hermes in-process (PLAN & Orchestrator plane)",
+      "provider": "opencode-go",
+      "model": "glm-5.3-flash",
+      "reasoning_effort": "medium",
+      "rank": 1,
+      "transport": "hermes_provider_client",
+      "arms_pool_rank": 1,
+      "note": "Mandated PLAN model. Served in-process by the Hermes runtime bound to this round's orchestrator."
+    },
+    "EXECUTE": {
+      "lane": "EXECUTE",
+      "surface": "codex-cli bounded writer (CODEX CLI, isolated lane home)",
+      "provider": "opencode-go",
+      "model": "deepseek-v4.1-flash",
+      "rank": 1,
+      "transport": "opencodex relay 10101 via the isolated lane home (codex -> 10100 front door -> 10101)",
+      "note": "Mandated bounded writer. rank-1 default in the registry, the pool and the assignment site (unchanged by round 3's rebind)."
+    },
+    "VERIFY_SECURITY": {
+      "lane": "VERIFY_SECURITY",
+      "surface": "codex-cli independent acceptance officer (CODEX CLI, isolated lane home)",
+      "provider": "opencode-go",
+      "model": "deepseek-v4.1-flash",
+      "rank": 1,
+      "transport": "same sealed codex-cli path as EXECUTE",
+      "note": "Mandated checker. SAME model as the EXECUTE writer BY OWNER ORDER: model-axis independence is deliberately absent and is declared in config/lane-routing-registry.yaml sod_invariants.declared_conflicts as SOD006-C3 (OWNER_ORDERED_IN_FORCE). What remains is process, lane and evidence-path independence plus the no-self-acceptance rule."
+    }
+  },
+  "declared_conflicts": [
+    {
+      "id": "SOD006-C3",
+      "pairs": [["EXECUTE", "VERIFY_SECURITY"]],
+      "axis": "canonical_identity",
+      "status": "OWNER_ORDERED_IN_FORCE",
+      "note": "The mandate puts the checker on the writer's model. Recorded, not hidden; the registry carries the same declaration."
+    }
+  ],
+  "backup_on_quota": {
+    "VERIFY_SECURITY": {"provider": "opencode-go", "model": "glm-5.3-flash",
+                        "rule": "on 429/quota exhaustion switch at once, record the switch, and state that a backup verdict comes from a different checker"}
+  }
+}

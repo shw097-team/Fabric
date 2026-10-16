@@ -1,0 +1,42 @@
+=== A/B on the IDENTICAL isolated home (s4post/checker-sol) and model gpt-6.1-sol; only the BINARY differs ===
+--- E1 HG-KSEOS runtime 0.147  bin=C:/Users/user/AppData/Local/HG-KSEOS/runtime/codex-0.147.0-alpha.6.5/codex.exe
+Reading additional input from stdin...
+2026-10-12T04:18:08.297877Z ERROR codex_models_manager::cache: failed to load models cache: missing field `supports_parallel_tool_calls` at line 139 column 5
+OpenAI Codex v0.147.0-alpha.6.5
+--------
+workdir: C:\Projects\Agent_Workspace\HG-KSEOS\var\far-iao-lane-skip-20261012\probes
+model: gpt-6.1-sol
+provider: openai
+approval: never
+sandbox: read-only
+reasoning effort: medium
+reasoning summaries: none
+session id: 01a12e55-0f4c-7d71-a5c0-b4851e32ca06
+--------
+user
+Reply with exactly OK
+warning: Model metadata for `gpt-6.1-sol` not found. Defaulting to fallback metadata; this can degrade performance and cause issues.
+ERROR: {"type":"error","status":400,"error":{"type":"invalid_request_error","message":"The 'gpt-6.1-sol' model is not supported when using Codex with a ChatGPT account."}}
+ERROR: {"type":"error","status":400,"error":{"type":"invalid_request_error","message":"The 'gpt-6.1-sol' model is not supported when using Codex with a ChatGPT account."}}
+  exit=1
+--- E2 Codex app 0.162  bin=C:/Users/user/AppData/Local/OpenAI/Codex/bin/2e5e00daee91c61d/codex.exe
+Reading additional input from stdin...
+OpenAI Codex v0.162.0-alpha.17.2
+--------
+workdir: C:\Projects\Agent_Workspace\HG-KSEOS\var\far-iao-lane-skip-20261012\probes
+model: gpt-6.1-sol
+provider: openai
+approval: never
+sandbox: read-only
+reasoning effort: medium
+reasoning summaries: none
+session id: 01a12e55-1aa8-7a43-8581-f47a3910b0ce
+--------
+user
+Reply with exactly OK
+codex
+OK
+tokens used
+5,965
+OK
+  exit=0

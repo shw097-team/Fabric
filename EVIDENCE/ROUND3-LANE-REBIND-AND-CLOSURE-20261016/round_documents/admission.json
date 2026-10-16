@@ -1,0 +1,72 @@
+{
+  "round": "ROUND3-LANE-REBIND-AND-CLOSURE-20261016",
+  "at": "2026-10-16T14:16:26.594425+08:00",
+  "base_head": "903e47cddeceb40cb8f5f5793105533b3988a463",
+  "session": "20261016_104922_d455e7",
+  "mandate_digest": "sha256:9da151da5e771637c932e7025318890dad93a90edd8691ada7a74af5076c4827",
+  "roles": {
+    "PLAN": {
+      "lane": "PLAN",
+      "surface": "hermes in-process (PLAN & Orchestrator plane)",
+      "provider": "opencode-go",
+      "model": "glm-5.3-flash",
+      "reasoning_effort": "medium",
+      "rank": 1,
+      "transport": "hermes_provider_client",
+      "arms_pool_rank": 1,
+      "note": "Mandated PLAN model. Served in-process by the Hermes runtime bound to this round's orchestrator."
+    },
+    "EXECUTE": {
+      "lane": "EXECUTE",
+      "surface": "codex-cli bounded writer (CODEX CLI, isolated lane home)",
+      "provider": "opencode-go",
+      "model": "deepseek-v4.1-flash",
+      "rank": 1,
+      "transport": "opencodex relay 10101 via the isolated lane home (codex -> 10100 front door -> 10101)",
+      "note": "Mandated bounded writer. rank-1 default in the registry, the pool and the assignment site (unchanged by round 3's rebind)."
+    },
+    "VERIFY_SECURITY": {
+      "lane": "VERIFY_SECURITY",
+      "surface": "codex-cli independent acceptance officer (CODEX CLI, isolated lane home)",
+      "provider": "opencode-go",
+      "model": "deepseek-v4.1-flash",
+      "rank": 1,
+      "transport": "same sealed codex-cli path as EXECUTE",
+      "note": "Mandated checker. SAME model as the EXECUTE writer BY OWNER ORDER: model-axis independence is deliberately absent and is declared in config/lane-routing-registry.yaml sod_invariants.declared_conflicts as SOD006-C3 (OWNER_ORDERED_IN_FORCE). What remains is process, lane and evidence-path independence plus the no-self-acceptance rule."
+    }
+  },
+  "readback": [
+    {
+      "requirement_state": "FROZEN",
+      "taskspec_state": "ADMITTED",
+      "writable_root": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\ROUND3-LANE-REBIND-AND-CLOSURE-20261016\\candidate",
+      "workorder_id": "WO-ROUND3-LANE-REBIND-AND-CLOSURE-20261016-EXECUTE",
+      "taskspec_id": "TS-ROUND3-LANE-REBIND-AND-CLOSURE-20261016-EXECUTE",
+      "writer": "codex",
+      "worktree": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\ROUND3-LANE-REBIND-AND-CLOSURE-20261016\\candidate",
+      "base_head": "903e47cddeceb40cb8f5f5793105533b3988a463",
+      "state": "CREATED",
+      "result_json": null,
+      "rollback_pointer": "RB-WO-ROUND3-LANE-REBIND-AND-CLOSURE-20261016-EXECUTE",
+      "created_at": "2026-10-16T06:16:26.413937Z",
+      "updated_at": "2026-10-16T06:16:26.413937Z"
+    },
+    {
+      "requirement_state": "FROZEN",
+      "taskspec_state": "ADMITTED",
+      "writable_root": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\ROUND3-LANE-REBIND-AND-CLOSURE-20261016\\checker",
+      "workorder_id": "WO-ROUND3-LANE-REBIND-AND-CLOSURE-20261016-VERIFY_SECURITY",
+      "taskspec_id": "TS-ROUND3-LANE-REBIND-AND-CLOSURE-20261016-VERIFY_SECURITY",
+      "writer": "codex-cli-independent-deepseek",
+      "worktree": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\ROUND3-LANE-REBIND-AND-CLOSURE-20261016\\checker",
+      "base_head": "903e47cddeceb40cb8f5f5793105533b3988a463",
+      "state": "CREATED",
+      "result_json": null,
+      "rollback_pointer": "RB-WO-ROUND3-LANE-REBIND-AND-CLOSURE-20261016-VERIFY_SECURITY",
+      "created_at": "2026-10-16T06:16:26.564363Z",
+      "updated_at": "2026-10-16T06:16:26.564363Z"
+    }
+  ],
+  "canonical_acceptance": "NOT_PERFORMED",
+  "claim_ceiling": "Admission is a PRE-DISPATCH eligibility record. It proves no role executed and no model was served; those come from the lane receipts."
+}

@@ -1,0 +1,61 @@
+ARGV: ['C:\\Projects\\Agent_Workspace\\HG-KSEOS\\scripts\\hgk-lane-guard.py', '--expected-epoch', '22', '--root', '.', '--lane', 'EXECUTE', '--maker-lane', 'PLAN', '--maker-engine', 'hermes', '--maker-model', 'opencode-go/glm-5.3-flash', '--target-engine', 'codex-cli', '--target-model', 'opencode-go/glm-5.3-flash', '--admission', 'UNPROVEN']
+WANT EXIT: 2
+MUST CONTAIN: ['ERR_LANE_SOD_VIOLATION']
+MUST NOT CONTAIN: []
+ACTUAL EXIT: 2
+--- output ---
+{
+  "admission_status": "UNPROVEN",
+  "checks": [
+    {
+      "code": "ERR_LANE_SOD_VIOLATION",
+      "detail": "SOD_VIOLATION maker_model=glm-5.3-flash == checker_model=glm-5.3-flash; no sod_invariants.pairs entry for PLAN/EXECUTE",
+      "id": "sod_distinct_model",
+      "ok": false
+    },
+    {
+      "code": null,
+      "detail": "recorded=78a0eb2eabfecaa4d4d80660438505418724499aeaaac656f3d47631a3effa15 live=78a0eb2eabfecaa4d4d80660438505418724499aeaaac656f3d47631a3effa15",
+      "id": "source_digest",
+      "ok": true
+    },
+    {
+      "code": "ERR_LANE_NOT_ADMITTED",
+      "detail": "status=UNPROVEN",
+      "id": "arm_admitted",
+      "ok": false
+    },
+    {
+      "code": null,
+      "detail": "--expected-epoch=22 live_epoch=22",
+      "id": "expected_epoch_assertion",
+      "ok": true
+    },
+    {
+      "code": null,
+      "detail": "registry_epoch=22 live_epoch=22",
+      "id": "epoch_current",
+      "ok": true
+    }
+  ],
+  "claim_ceiling": "CANDIDATE_ONLY",
+  "decision": "REFUSE",
+  "epoch": 22,
+  "errors": [
+    "ERR_LANE_SOD_VIOLATION"
+  ],
+  "exit_code": 2,
+  "lane": "EXECUTE",
+  "live_epoch": 22,
+  "maker": {
+    "engine": "hermes",
+    "model": "opencode-go/glm-5.3-flash"
+  },
+  "schema": "HGK-LANE-GUARD/1",
+  "status": "REFUSE",
+  "target": {
+    "engine": "codex-cli",
+    "model": "opencode-go/glm-5.3-flash",
+    "provider": null
+  }
+}

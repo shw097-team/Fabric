@@ -1,0 +1,4 @@
+# Keep the pinned sha256 in INSTALL_MANIFEST.json reproducible.
+# Git converted LF->CRLF on checkout under autocrlf, which would silently change every pinned byte
+# on a fresh clone and break the manifest. These files are data, not text: no end-of-line conversion.
+* -text

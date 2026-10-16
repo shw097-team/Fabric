@@ -1,0 +1,188 @@
+{
+ "schema": "HGK-ROUND3-RESIDUAL-STATUS-REDERIVED/1",
+ "generated_for_round": "ROUND3-LANE-REBIND-AND-CLOSURE-20261016",
+ "against_live_tree_at": "C:/Projects/Agent_Workspace/HG-KSEOS",
+ "residual_source": "var/FAR-REMEDIATION-AND-CLOSURE-20261016/ROUND_CLOSURE.json::honest_residuals (15) + FINDINGS_V3C_INDEPENDENT_VERDICT.md (F-IND-2 = R-12, F-IND-3 = R-13)",
+ "measured_at_utc": "2026-10-16T05:59:58.470418+00:00",
+ "new_mandate": {
+  "PLAN_orchestrator": "opencode-go/glm-5.3-flash",
+  "EXECUTE_bounded_writer": "opencode-go/deepseek-v4.1-flash",
+  "VERIFY_SECURITY_checker": "opencode-go/deepseek-v4.1-flash",
+  "recorded_in": "var/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/PLAN.md s1 (this round's own PLAN.md)",
+  "supersedes": "var/FAR-REMEDIATION-AND-CLOSURE-20261016/role_mandate.json (openai-codex/gpt-6.1-sol plan order)"
+ },
+ "items": [
+  {
+   "id": "R-01",
+   "residual": "R5 NOT DELIVERED: --turn-shape flag absent from scripts/hgk-lane-dispatch.py; the bounded-writer turn did not return in-window (lanes/EXECUTE/R5 and R5b TERMINATION.json).",
+   "status": "OPEN",
+   "evidence_used": "grep -rn 'turn-shape' scripts src tests -> empty; wc -l scripts/hgk-lane-dispatch.py = 2275 (unchanged); var/FAR-REMEDIATION-AND-CLOSURE-20261016/lanes/EXECUTE/R5/TERMINATION.json outcome=TERMINATED_BY_ORCHESTRATOR_AFTER_DIAGNOSED_PROBE_LOOP, no_product_change=true; R5b TERMINATION.json outcome=TERMINATED_BY_ORCHESTRATOR_AFTER_PROBE_AND_REVERT_LOOP, no_product_change=true.",
+   "superseded_by_new_mandate": false,
+   "next_owner_decision_or_execution": "Either land --turn-shape via a bounded EXECUTE (deepseek-v4.1-flash) writer with an owner-specified seam, or owner defers it via FAR ruling. Model-independent.",
+   "needed_decisions": []
+  },
+  {
+   "id": "R-02",
+   "residual": "The R7 cross-field declaration detector (check_declaration_agreement.py) is a round artifact only; three remediations priced in FINDINGS_R7_CROSS_FIELD_DECLARATION.md, none applied.",
+   "status": "OPEN",
+   "evidence_used": "test -f scripts/check_declaration_agreement.py -> absent; detector present only at var/FAR-REMEDIATION-AND-CLOSURE-20261016/ and var/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/; grep 'declaration_agreement|claimed_default' src/hg_kseos/lane_policy.py -> empty; running the detector against canonical config/model-lane-assignment.json this turn returns CONTRADICTIONS=0 (R7 default-arm axis still clean on current bytes).",
+   "superseded_by_new_mandate": false,
+   "next_owner_decision_or_execution": "Promote the cross-field default-arm rule into src/hg_kseos/lane_policy.py hooked from check_drift, RED-first test included, under a typed WorkOrder.",
+   "needed_decisions": []
+  },
+  {
+   "id": "R-03",
+   "residual": "E11 is MIXED: two genuine dispatcher defects (uncaught metadata OSError sites) still unrepaired; 136/136 measures this host only.",
+   "status": "OPEN",
+   "evidence_used": "sed -n '864,866p' scripts/hgk-lane-dispatch.py -> candidates listcomp with bare is_file() outside try; sed -n '1134,1136p' -> offset = usage_path.stat().st_size if usage_path.is_file() else 0; both line ranges match evidence/EVIDENCE_E11_PRECONDITION.md named defect sites :862-873 and :1134-1135 on the LIVE tree.",
+   "superseded_by_new_mandate": false,
+   "next_owner_decision_or_execution": "Catch OSError at BOTH metadata sites; produce a typed pre-spawn refusal receipt (rc 4) instead of a crash; add E11 test hermeticity via fixture pool + explicit --usage/--relay-home, and a denied-stat regression test.",
+   "needed_decisions": []
+  },
+  {
+   "id": "R-04",
+   "residual": "Whole-tree canonical-vs-candidate difference cannot be certified; previous round recorded 757 access-denied directories under prior-round var/ trees (evidence/EVIDENCE_PROMOTION_SCOPE.md limitation).",
+   "status": "OPEN",
+   "evidence_used": "Fresh Python os.walk over the LIVE tree this turn: 641,986 file entries enumerated; 4,093 directories could not be listed (os.listdir raising OSError WinError 3 -- long-path/missing-intermediate failures, a different KIND than access-denied); 59,434 file entries whose stat raised non-Permission OSError. The previous round's 757-access-denied enumeration stands recorded, not replaced.",
+   "superseded_by_new_mandate": false,
+   "next_owner_decision_or_execution": "Use a Windows long-path-aware enumerator, or narrow the claim to the 200-file product/control candidate overlay rather than the whole tree.",
+   "needed_decisions": []
+  },
+  {
+   "id": "R-05",
+   "residual": "Two candidate snapshots' config files stale (epoch/revision 19) vs canonical (21) -- deliberately not promoted, NEEDS_OWNER_DECISION.",
+   "status": "SUPERSEDED_BY_THIS_MANDATE",
+   "evidence_used": "var/LANE-RELIABILITY-CLOSURE-20261016/candidate/config/model-lane-assignment.json -> {'registry_epoch':19,'revision':19} live this turn; grep '^epoch' .../candidate/config/lane-routing-registry.yaml -> 19; canonical registry epoch: 21, site revision 21 sha256 e7be2dea…7664df (matches registry source_of_routes pin).",
+   "superseded_by_new_mandate": true,
+   "next_owner_decision_or_execution": "Under the NEWER owner order those epoch-19 candidate configs are doubly inadmissible (stale at epoch 21 AND they encode the 2026-10-15 owner orders the new mandate supersedes, on both PLAN and VERIFY rank-1 arms). They remain retained historical evidence; the only remaining decision is whether they may be deleted once a new-epoch rebind supersedes them.",
+   "needed_decisions": [
+    "May the epoch-19 candidate config snapshots be deleted once the new-epoch rebind supersedes them, or retained as historical evidence?"
+   ]
+  },
+  {
+   "id": "R-06",
+   "residual": "348 canonical-only product/control files classified NEEDS_OWNER_DECISION; retaining needs no decision, deletion would.",
+   "status": "OPEN",
+   "evidence_used": "grep -rln 'needs_owner_decision' var/FAR-REMEDIATION-AND-CLOSURE-20261016/evidence -> evidence/EVIDENCE_PROMOTION_SCOPE.summary.json (counts: promote 4, do_not_promote 242920, needs_owner_decision 348); no post-closure disposition record exists in either round directory (grep on filenames -> empty).",
+   "superseded_by_new_mandate": false,
+   "next_owner_decision_or_execution": "Owner decision per class (most likely: retain all 348). No scripted or agent-side decision. Model-independent.",
+   "needed_decisions": [
+    "Retain or delete each class among the 348 NEEDS_OWNER_DECISION canonical-only product/control/spec files, or accept a retain-all default."
+   ]
+  },
+  {
+   "id": "R-07",
+   "residual": "PLAN and VERIFY_SECURITY share a model by owner order (SOD006-C2, OWNER_ORDERED_IN_FORCE); check_sod reports the collision as the ordered state.",
+   "status": "SUPERSEDED_BY_THIS_MANDATE",
+   "evidence_used": "python + hg_kseos.lane_policy on the LIVE tree this turn: check_sod(route_for_lane(reg,'PLAN'), route_for_lane(reg,'VERIFY_SECURITY')) -> (False, 'SOD_VIOLATION maker_model=gpt-6.1-sol == checker_model=gpt-6.1-sol'); check_sod(EXECUTE, VERIFY_SECURITY) -> (True, 'SOD_OK deepseek-v4.1-flash != gpt-6.1-sol'). Registry routes[].VERIFY_SECURITY currently primary=A / gpt-6.1-sol (config/lane-routing-registry.yaml:295-297). Registry sod_invariants.declared_conflicts[1] carries SOD006-C2 with status OWNER_ORDERED_IN_FORCE.",
+   "superseded_by_new_mandate": true,
+   "next_owner_decision_or_execution": "Under the new mandate PLAN (glm-5.3-flash) no longer equals the VERIFY route's top-level identity (gpt-6.1-sol), so the recorded OWNER_ORDERED_IN_FORCE collision SOD006-C2 is superseded on that pair as soon as the new rebind happens; the rebinding edit MUST in the SAME change set sod_invariants.pairs[] PLAN-vs-VERIFY to distinct_required: true AND add a SUPERSEDED status record naming SOD006-C2 in sod_invariants.declared_conflicts[]. Model-axis diversity is NOT restored for the maker/checker pair the mandate itself creates (EXECUTE == VERIFY == deepseek-v4.1-flash); that NEW residual is carried as NF-02 in new_findings[].",
+   "needed_decisions": [
+    "Owner must record a NEW declared_conflicts[] entry re-declaring the maker/checker pair the mandate itself makes same-model (EXECUTE vs VERIFY_SECURITY, both deepseek-v4.1-flash), replacing the superseded SOD006-C2 semantics on PLAN-vs-VERIFY."
+   ]
+  },
+  {
+   "id": "R-08",
+   "residual": "PLAN-plane availability carry-forward: profile serving rows measured the OLD order's model; no fresh probe after the last one.",
+   "status": "OPEN",
+   "evidence_used": "profiles/hgk-governed/config.yaml model.default=gpt-6.1-sol, provider=openai-codex, reasoning_effort=medium (live readback); profiles/hgk-governed/state.db::sessions last rows (source=oneshot) all gpt-6.1-sol, latest 20261016_121307_a4d22a started 2026-10-16 12:13 (+08) — no glm-5.3-flash row in the governed profile store.",
+   "superseded_by_new_mandate": true,
+   "next_owner_decision_or_execution": "Re-bind model.default/model.provider in profiles/hgk-governed/config.yaml to glm-5.3-flash/opencode-go, then run a one-shot PROBE_OK probe and record the NEW profile-own state.db row; that is the cheapest true closure. Every surface the original residual used as evidence is now the WRONG model under the new mandate.",
+   "needed_decisions": []
+  },
+  {
+   "id": "R-09",
+   "residual": "Interactive-session ordering caveat: the arm shown as served for an interactive turn is the arm the profile selects for that session kind.",
+   "status": "UNVERIFIABLE",
+   "evidence_used": "sqlite3 <hermes root>/state.db last 10 rows this turn: interleaved source=desktop (glm-5.3-flash, 2026-10-16) and source=oneshot (gpt-6.1-sol / glm-5.3-flash) rows; the caveat's mechanism (serving rows carry session-kind source) is live in both datasets.",
+   "superseded_by_new_mandate": false,
+   "next_owner_decision_or_execution": "Nothing to close; a standing measurement caveat that belongs in any D01 re-measure under the new mandate.",
+   "needed_decisions": []
+  },
+  {
+   "id": "R-10",
+   "residual": "Self-research/self-learning note is a proposal set (SELF_EVOLUTION.md §4), not a curriculum; nothing in the skills it touches is third-party validated.",
+   "status": "OPEN",
+   "evidence_used": "tail -6 var/FAR-REMEDIATION-AND-CLOSURE-20261016/SELF_EVOLUTION.md: 'Section 4 is a PROPOSAL SET: none of it is product code in this round, none of it is accepted… No external party has reviewed any of it.' — matches the residual verbatim.",
+   "superseded_by_new_mandate": false,
+   "next_owner_decision_or_execution": "Third-party validation of a specific proposal, or an owner's explicit accept/defer. Model-independent.",
+   "needed_decisions": []
+  },
+  {
+   "id": "R-11",
+   "residual": "No external engineer has reviewed any part of the round.",
+   "status": "OPEN",
+   "evidence_used": "find var -name '*REVIEW*' -newer ROUND_CLOSURE.json -> empty; the only post-closure in-workstream CHECKER activity found this turn is var/R5R3-20261016-preview4-closeout/VERIFY_SECURITY/attempt-2 (a different subject: handover packet preview4; NOT a review of this round's residuals).",
+   "superseded_by_new_mandate": false,
+   "next_owner_decision_or_execution": "An external engineer's verdict on the published packet (EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016 pub branch, PR #8 shw097-team/Fabric); the round's own claim_ceiling already requests exactly this. Model-independent.",
+   "needed_decisions": []
+  },
+  {
+   "id": "R-12",
+   "residual": "F-IND-2: /sod/plan_lane prose says GLM never auto-selected while registry PLAN fallback1 (glm-5.3-flash) declares automatic_selection=true; /sod/verify_security_selection prose says arm B (and arm C's operator-selectable role) never auto-selected while the VERIFY lane's arm B (glm, automatic_selection=true) and arm C (deepseek, automatic_selection=true) both auto-select. Invisible to check_drift; outside the R7 detector's default-arm axis.",
+   "status": "OPEN",
+   "evidence_used": "config/model-lane-assignment.json::sod.plan_lane (live readback this turn): 'GLM-5.3-Flash is retained as a rotation alternate, never auto-selected.'; same file ::sod.verify_security_selection: 'arm B is a non-default operator-selectable alternate, never auto-selected'. config/lane-routing-registry.yaml automatic_selection=true lines (grep this turn): 190 (PLAN fallback1 glm), 263 (VERIFY arm B glm), 328 (VERIFY arm C deepseek). check_declaration_agreement.py against canonical this turn: 4 fields AGREES, CONTRADICTIONS=0 — confirming the contradiction is outside its own default-arm axis (the residual's substance).",
+   "superseded_by_new_mandate": false,
+   "next_owner_decision_or_execution": "Make the registry's automatic_selection flags authoritative and correct the /sod/* prose to the NEW rank order in the SAME edit that rebinds PLAN to glm rank-1; OR add an automatic_selection axis to check_declaration_agreement.py so the contradiction class is caught mechanically. Under the new mandate PLAN itself becomes glm rank-1, so the prose sentence about PLAN is doubly wrong (contradicts BOTH the structured chain AND the new mandate) — that second instance is carried as NF-03 in new_findings[].",
+   "needed_decisions": [
+    "Choose the remediation axis for F-IND-2: (a) flags-authoritative-with-prose-repair, (c) detector-axis extension, or both."
+   ]
+  },
+  {
+   "id": "R-13",
+   "residual": "F-IND-3: the R2 promotion PATH lacked pre-write typed admission (apply_R2_promote.py copied the files before create_workorder which returned ERR_WORKORDER_REQUIRES_DRAFT_TASKSPEC), and its recorded writer was the PLAN/orchestrator rather than the mandated CODEX CLI writer; no atomic pre/post whole-tree inventory. The claim ceiling for R2 stands SPLIT: bytes VERIFIED / pre-write typed admission ABSENT / canonical writer NOT the mandated writer / exclusive historical scope NOT PROVEN.",
+   "status": "OPEN",
+   "evidence_used": "var/FAR-REMEDIATION-AND-CLOSURE-20261016/apply_R2_promote.py lines (readback this turn): shutil.copy2(src, dst) at line 83 executes BEFORE sp.create_workorder(...) at line 101. R2_PROMOTION_RECEIPT.json::workorder_note = 'InvariantViolation: ERR_WORKORDER_REQUIRES_DRAFT_TASKSPEC'. SPINE_STATE_READBACK.json::existing_after.workorders[WO-FAR-REMEDIATION-AND-CLOSURE-20261016-R2] = {'writer':'hermes-plan-orchestrator','state':'CREATED'}. Live byte re-verification this turn: all four promoted files still hash-match their recorded canonical_sha256_after (runtime_role_binding_assert.py 6fa7ed6b…, hgk-governed-runtime-controller.py 5b744de7…, test_governed_runtime_controller.py fdf1dbc2…, test_lane_effort_enforcement.py 18742bf0…).",
+   "superseded_by_new_mandate": false,
+   "next_owner_decision_or_execution": "Nothing retroactively curable (pre-write admission cannot be supplied after the fact). Closure = an owner decision to DISPOSITION the recorded violation as a bounded accepted-deviation — recorded with the split claim ceiling intact, never silently normalized.",
+   "needed_decisions": [
+    "Owner decision to disposition the R2 pre-write-admission violation as an accepted bounded deviation (no repair is retroactively possible)."
+   ]
+  },
+  {
+   "id": "R-14",
+   "residual": "CALIBRATION: whole-tree ABSOLUTE counts (527 tests / 7 failures / 2 errors post-change) do NOT reproduce in a different environment; the paired NAMED DELTA (only test_registry_and_projection_shape moved, none added; independently 47 -> 46) IS the reproducible claim.",
+   "status": "PARTIALLY_CLOSED",
+   "evidence_used": "Interpreter mismatch still live this turn: C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe --version = Python 3.11.9; the runtime's hermes-agent .hermes-runtime python = 3.11.17 — two interpreters co-exist on the host; plus the dependencies the checker named as missing from the reference tree (run_acceptance, tools/package_local.py, task-local toolchain manifest) remain absent.",
+   "superseded_by_new_mandate": false,
+   "next_owner_decision_or_execution": "Pin the interpreter + missing dependencies in a hermetic runner and re-run the whole tree from a fixed environment; OR keep the residual as a permanent calibration note (a legitimate terminal form; the round already declares it).",
+   "needed_decisions": []
+  },
+  {
+   "id": "R-15",
+   "residual": "The independent verdict is NOT unanimous: C1/C5/C7 AGREE, C2/C3/C6 DISAGREE, C4 UNCERTAIN (V3c CHECKER_VERDICT.json).",
+   "status": "OPEN",
+   "evidence_used": "ROUND_CLOSURE.json::verify_verdict_history[1].verdicts = {'C1':'AGREE','C2':'DISAGREE','C3':'DISAGREE','C4':'UNCERTAIN','C5':'AGREE','C6':'DISAGREE','C7':'AGREE'} (read this turn, unchanged recorded state).",
+   "superseded_by_new_mandate": true,
+   "next_owner_decision_or_execution": "Re-run the C1-C7 re-derivation on the NEW checker arm (deepseek-v4.1-flash), whose model differs from the previous checker's; the residual resolves by either uniform agreement (closes), two-sided disagreement on the SAME items (evidence the disagreement is genuine), or disagreement on NEW items (the residual grows; it does not softly 'close').",
+   "needed_decisions": []
+  }
+ ],
+ "new_findings": [
+  {
+   "id": "NF-01",
+   "residual": "Whole-tree enumeration cannot be certified COMPLETE even when every access-denied retry is satisfied: the LIVE tree has 641,986 file entries visible to a plain os.walk, with 4,093 directories that cannot be listed at all (OSError WinError 3 — long-path/missing-intermediate failures, NOT PermissionError) and 59,434 file entries whose stat fails with a non-Permission OSError. The previous round recorded '757 access-denied directories, retried read-only'; this walk shows the obstacle class is LARGER than access-denied and dominated by Windows long-path failures.",
+   "evidence_used": "Fresh Python os.walk over the LIVE tree this turn (counts above); sample failure path: var/hgk-solution-apply-20261012/execute/homes/checker-option1/.tmp/plugins/plugins/nvidia/skills/omniverse-usd-performance-tuning/references/usd-structure-assessment/references/usd-hierarchy-dedupe-candidates/references.",
+   "source": "NEW (this re-derivation; not named by any previous residual)"
+  },
+  {
+   "id": "NF-02",
+   "residual": "The new owner mandate flips the SoD collision axis: maker/checker model separation on the EXECUTE-vs-VERIFY pair (the only pair whose distinct_required was true and SOD_OK) becomes SAME-model because both are mandated on opencode-go/deepseek-v4.1-flash. Measured fail-closed on the live tree: hgk-lane-guard.py --lane VERIFY_SECURITY --maker-model opencode-go/deepseek-v4.1-flash --target-model opencode-go/deepseek-v4.1-flash --admission ADMITTED --expected-epoch 21 -> {'id':'sod_distinct_model','ok':False,'code':'ERR_LANE_SOD_VIOLATION'}, decision=REFUSE, exit_code=2 (source_digest + epoch checks PASS in the same run, confirming the fail is exactly the SoD rule).",
+   "evidence_used": "scripts/hgk-lane-guard.py output this turn; registry sod_invariants.pairs[0] EXECUTE/VERIFY distinct_required=true; configs/lane-routing-registry.yaml sod_invariants in-tree readback.",
+   "source": "NEW (a direct consequence of the new mandate; not carried by any previous residual)"
+  },
+  {
+   "id": "NF-03",
+   "residual": "The text of sod.plan_lane prose is the same CLASS of defect as the original F-IND-2 under the NEW mandate: it claims 'GLM-5.3-Flash is retained as a rotation alternate, never auto-selected', which contradicts BOTH (1) the registry's own structured lane chain (lane_chains.PLAN[1] is deepseek-v4.1-flash with automatic_selection=true) AND (2) the new mandate itself (PLAN is now glm-5.3-flash rank-1, so describing GLM as only a rotation alternate is factually false on its own axis).",
+   "evidence_used": "config/model-lane-assignment.json::sod.plan_lane + ::lane_chains.PLAN[1..2] (readback this turn) + the mandate (var/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/PLAN.md §1).",
+   "source": "NEW (a direct consequence of the new mandate; not carried by any previous residual)"
+  },
+  {
+   "id": "NF-04",
+   "residual": "The R5R3-20261016-preview4-closeout VERIFY turn is the only post-closure CHECKER activity found this turn in the workstream; its subject is a DIFFERENT packet (a handover packet preview4 at _handover/R5R3-20261016-preview4-closeout) and it returned a REJECTED verdict (10 findings + a NOT_ESTABLISHED list), NOT a verdict on this round's residuals. Recorded because a future reader could mistake that directory's verdict for a review of this round's residuals.",
+   "evidence_used": "var/R5R3-20261016-preview4-closeout/VERIFY_SECURITY/attempt-2-20261016T053122Z/attempt-20580-1792128682-3-stdout.txt (tail shows turn.completed with claim_ceiling '… so the packet supports at most a candidate/LOCAL status: hgk_canonical_acceptance NOT performed…'); its attempt.marker.json round=R5R3-20261016-preview4-closeout.",
+   "source": "NEW (this re-derivation)"
+  }
+ ],
+ "claim_ceiling": "CANDIDATE_ONLY re-derivation; read-only (the only writes by this task are this JSON and its .md sibling under var/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/evidence/); every claim re-run or re-read from the live tree this turn; hgk_canonical_acceptance NOT_PERFORMED."
+}

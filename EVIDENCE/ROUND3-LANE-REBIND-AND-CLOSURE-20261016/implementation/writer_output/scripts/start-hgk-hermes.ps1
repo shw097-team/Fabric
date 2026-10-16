@@ -1,0 +1,604 @@
+param(
+  [ValidateSet("Verify", "StartOpenCodex", "Probe", "Hermes", "Write", "ResolveExecuteRoute")]
+  [string]$Action = "Verify",
+  [string[]]$HermesArgs = @(),
+  [string[]]$ModelChain = @(),
+  [string]$ExecuteProvider = "",
+  [string]$Prompt = "",
+  [string]$Nonce = "HGK_CODEX_PROVIDER_LANE_NONCE_OK",
+  [ValidateRange(30, 600)]
+  [int]$ProbeTimeoutSeconds = 180,
+  [switch]$TestInvalidCredential,
+  [switch]$TestInject429
+)
+
+$ErrorActionPreference = "Stop"
+$root = (Resolve-Path -LiteralPath (Split-Path -Parent $PSScriptRoot)).Path
+$bindingPath = Join-Path $root "config\hermes-codex-lane.json"
+$binding = Get-Content -LiteralPath $bindingPath -Raw -Encoding UTF8 | ConvertFrom-Json
+
+function Expand-LanePath([string]$Value) {
+  return [Environment]::ExpandEnvironmentVariables($Value)
+}
+
+# FAR-EXEC-IDENTITY-001: the EXECUTE-lane single-model token. A bare id and a
+# `<provider>/<id>` id normalise to the same token (lowercase, provider prefix dropped).
+function Get-LaneModelToken([string]$Value) {
+  $s = ([string]$Value).Trim().ToLowerInvariant()
+  if ($s.Contains('/')) { $s = $s.Substring($s.LastIndexOf('/') + 1) }
+  return $s.Trim()
+}
+
+# FAR-EXEC-IDENTITY-001 (E1): the ONLY gate that may authorise a Codex Write chain. Refuses unless
+# the resolved chain is exactly the single sanctioned model, and returns the canonical provider-
+# qualified chain. Typed, fail-closed, and callable in isolation (the launcher test exercises this
+# exact text). Errors: ERR_CODEX_WRITE_MODEL_NOT_SANCTIONED:<model>, ERR_CODEX_WRITE_CHAIN_NOT_SINGLE:<n>.
+function Assert-CodexWriteChainSanctioned {
+  param(
+    [string[]]$Chain,
+    [string]$Provider,
+    [string]$SanctionedModel
+  )
+  $sanctionedToken = Get-LaneModelToken $SanctionedModel
+  $providerToken = ([string]$Provider).Trim().ToLowerInvariant()
+  if (-not $sanctionedToken) { throw "ERR_CODEX_WRITE_MODEL_NOT_SANCTIONED:<empty-declaration>" }
+  if ($Chain.Count -eq 0) { throw "ERR_CODEX_WRITE_CHAIN_NOT_SINGLE:0" }
+  foreach ($m in $Chain) {
+    $tok = Get-LaneModelToken $m
+    if (-not $tok -or $tok -ne $sanctionedToken) { throw "ERR_CODEX_WRITE_MODEL_NOT_SANCTIONED:$tok" }
+    $s = ([string]$m).Trim()
+    if ($s.Contains('/')) {
+      $pp = $s.Substring(0, $s.LastIndexOf('/')).Trim().ToLowerInvariant()
+      if ($pp -ne $providerToken) { throw "ERR_CODEX_WRITE_MODEL_NOT_SANCTIONED:$pp/$tok" }
+    }
+  }
+  if ($Chain.Count -ne 1) { throw "ERR_CODEX_WRITE_CHAIN_NOT_SINGLE:$($Chain.Count)" }
+  return @("$Provider/$sanctionedToken")
+}
+
+# FAR-EXEC-IDENTITY-002 (E2): semantic health of the dedicated sealed-EXECUTE front door. The
+# launcher must not path a Codex Write through a dead or wrong service, so the front door's own
+# /healthz is parsed and its sanctioned provider/model/upstream are asserted before any spawn.
+# Pure function so the exact validator is exercised by the in-process launcher test.
+function Get-LaneRouteCandidates([string]$Lane, [string]$Pool) {
+  # FAR-LANE-ROUTE-SLOTS-012 (P2 wiring): the resolver CLI owns pool validation, rank order and
+  # typed refusals. A refusal is TERMINAL - it is never converted into an empty candidate list.
+  $cli = Join-Path $root "scripts\hgk-lane-route.py"
+  if (-not (Test-Path -LiteralPath $cli -PathType Leaf)) { throw "ERR_LANE_ROUTE_CLI_MISSING:$cli" }
+  $savedEap = $ErrorActionPreference
+  $ErrorActionPreference = "Continue"
+  try { $rawOut = & $hermesPython -B $cli --lane $Lane --pool $Pool 2>&1 }
+  finally { $ErrorActionPreference = $savedEap }
+  $parsed = $null
+  try { $parsed = (($rawOut | Out-String).Trim()) | ConvertFrom-Json } catch { $parsed = $null }
+  if (-not $parsed) { throw "ERR_LANE_ROUTE_CLI_UNPARSEABLE" }
+  if (-not $parsed.ok) { throw ("{0}:{1}" -f [string]$parsed.code, [string]$parsed.detail) }
+  return @($parsed.candidates)
+}
+function Assert-ExecFrontdoorHealthJson {
+  param(
+    [string]$Json,
+    [int]$Port,
+    [string]$Provider,
+    [string]$Model,
+    [string]$Upstream
+  )
+  try { $h = $Json | ConvertFrom-Json } catch { throw "ERR_EXEC_FRONTDOOR_HEALTH_UNPARSEABLE" }
+  if (-not $h -or [string]$h.status -ne "ok") { throw "ERR_EXEC_FRONTDOOR_HEALTH_NOT_OK" }
+  if ([string]$h.sanctioned_provider -ne $Provider) {
+    throw "ERR_EXEC_FRONTDOOR_HEALTH_PROVIDER_MISMATCH:$($h.sanctioned_provider)"
+  }
+  if ([string]$h.sanctioned_model -ne $Model) {
+    throw "ERR_EXEC_FRONTDOOR_HEALTH_MODEL_MISMATCH:$($h.sanctioned_model)"
+  }
+  if ([string]$h.upstream -ne $Upstream) {
+    throw "ERR_EXEC_FRONTDOOR_HEALTH_UPSTREAM_MISMATCH:$($h.upstream)"
+  }
+  return $h
+}
+
+# Network path: GET the front door /healthz and hand the body to the pure validator above.
+function Test-ExecFrontdoorHealth {
+  param([int]$Port, [string]$Provider, [string]$Model, [string]$Upstream)
+  try { $resp = Invoke-WebRequest -UseBasicParsing -Uri "http://127.0.0.1:$Port/healthz" -TimeoutSec 3 }
+  catch { throw "ERR_EXEC_FRONTDOOR_NOT_HEALTHY" }
+  if ($resp.StatusCode -ne 200) { throw "ERR_EXEC_FRONTDOOR_NOT_HEALTHY" }
+  return (Assert-ExecFrontdoorHealthJson -Json $resp.Content -Port $Port -Provider $Provider `
+                                        -Model $Model -Upstream $Upstream)
+}
+
+function Import-ProcessCredentialFromEnvFile([string]$Name, [string]$Path) {
+  $existing = [Environment]::GetEnvironmentVariable($Name, "Process")
+  if (-not [string]::IsNullOrWhiteSpace($existing)) { return "existing-process-env" }
+  if (-not (Test-Path -LiteralPath $Path -PathType Leaf)) { throw "ERR_CREDENTIAL_SOURCE_MISSING" }
+  foreach ($line in [IO.File]::ReadAllLines($Path)) {
+    if ($line -notmatch '^\s*(?:export\s+)?([A-Za-z_][A-Za-z0-9_]*)\s*=\s*(.*?)\s*$') { continue }
+    if ($Matches[1] -ne $Name) { continue }
+    $value = $Matches[2].Trim()
+    if (($value.StartsWith('"') -and $value.EndsWith('"')) -or
+        ($value.StartsWith("'") -and $value.EndsWith("'"))) {
+      $value = $value.Substring(1, $value.Length - 2)
+    }
+    if ([string]::IsNullOrWhiteSpace($value)) { throw "ERR_CREDENTIAL_SOURCE_EMPTY" }
+    [Environment]::SetEnvironmentVariable($Name, $value, "Process")
+    return "canonical-hermes-profile-env"
+  }
+  throw "ERR_CREDENTIAL_REFERENCE_NOT_FOUND"
+}
+
+# Owner-authorized additional route. One explicit pair per invocation; never a fallback chain.
+function Resolve-CodexExecuteRoute {
+  param([string[]]$Chain, [string]$Provider, $Binding)
+  $models = @($Chain | ForEach-Object { ([string]$_).Split(',') } | ForEach-Object { $_.Trim() })
+  if ($models.Count -eq 0) { $models = @([string]$Binding.model) }
+  if ($models.Count -ne 1) { throw "ERR_CODEX_WRITE_CHAIN_NOT_SINGLE:$($models.Count)" }
+  $requested = [string]$models[0]
+  if ([string]::IsNullOrWhiteSpace($requested)) { throw "ERR_CODEX_WRITE_MODEL_NOT_SANCTIONED:<empty>" }
+  $requestedProvider = $Provider
+  if ($requested.Contains('/')) {
+    $parts = $requested.Split('/')
+    if ($parts.Count -ne 2) { throw "ERR_CODEX_WRITE_MODEL_NOT_SANCTIONED:$requested" }
+    if ($Provider -and $Provider -cne $parts[0]) { throw "ERR_EXECUTE_PROVIDER_CONFLICT" }
+    $requestedProvider = $parts[0]
+    $requested = $parts[1]
+  }
+  if ($requested -ceq [string]$Binding.model -and
+      (-not $requestedProvider -or $requestedProvider -ceq [string]$Binding.provider)) {
+    return [pscustomobject]@{ provider = [string]$Binding.provider; model = [string]$Binding.model;
+      transport = "sealed-opencodex-frontdoor"; automatic_selection = $false; default = $true }
+  }
+  $matches = @($Binding.execute_additional_routes | Where-Object {
+    $_.model -ceq $requested -and (-not $requestedProvider -or $_.provider -ceq $requestedProvider)
+  })
+  if ($matches.Count -ne 1) { throw "ERR_CODEX_WRITE_MODEL_NOT_SANCTIONED:$requestedProvider/$requested" }
+  $route = $matches[0]
+  if ($route.automatic_selection -ne $false -or $route.default -ne $false) {
+    throw "ERR_EXECUTE_ADDITIONAL_ROUTE_MUST_BE_EXPLICIT"
+  }
+  return $route
+}
+
+# Resolve is read-only and exits before loading credentials or starting any service.
+$selectedExecuteRoute = $null
+if ($Action -in @("Write", "Probe", "ResolveExecuteRoute")) {
+  $selectedExecuteRoute = Resolve-CodexExecuteRoute -Chain $ModelChain -Provider $ExecuteProvider -Binding $binding
+}
+if ($Action -eq "ResolveExecuteRoute") {
+  $selectedExecuteRoute | ConvertTo-Json -Depth 8
+  exit 0
+}
+if ($selectedExecuteRoute -and $selectedExecuteRoute.transport -eq "codex-native-oauth") {
+  if ($TestInject429 -or $TestInvalidCredential) { throw "ERR_OPENCODE_TEST_NOT_VALID_FOR_OAUTH_ROUTE" }
+  if ($Action -eq "Write") {
+    # Adding a permitted route is not proof of its bounded-writer admission.
+    # Fail closed until the existing HGK isolation/binding work admits this transport.
+    throw "ERR_EXECUTE_OAUTH_BOUNDED_WRITER_ADMISSION_REQUIRED"
+  }
+  $oauthCodexExe = Expand-LanePath ([string]$binding.codex_executable)
+  if ((Get-FileHash -LiteralPath $oauthCodexExe -Algorithm SHA256).Hash -ne [string]$binding.codex_sha256) {
+    throw "ERR_CODEX_HASH_MISMATCH"
+  }
+  $oauthHome = Expand-LanePath ([string]$selectedExecuteRoute.codex_home)
+  if (-not (Test-Path -LiteralPath (Join-Path $oauthHome "auth.json") -PathType Leaf)) {
+    throw "ERR_EXECUTE_OAUTH_AUTH_REFERENCE_MISSING"
+  }
+  $env:CODEX_HOME = $oauthHome
+  # Use native OAuth, never the depleted GO relay or a shared mutable base_url.
+  Remove-Item Env:OPENAI_BASE_URL, Env:OPENAI_API_KEY, Env:OPENCODE_GO_API_KEY -ErrorAction SilentlyContinue
+  $oauthArgs = @("exec", "--ignore-user-config", "--ephemeral", "--skip-git-repo-check",
+    "--sandbox", "read-only", "--color", "never", "-c", 'model_provider="openai"',
+    "--model", [string]$selectedExecuteRoute.model, "--cd", $root, "-")
+  "Return exactly $Nonce. Do not use tools or read/modify any files." | & $oauthCodexExe @oauthArgs
+  exit $LASTEXITCODE
+}
+
+$humanConfig = Expand-LanePath $binding.human_codex_config
+$codexHome = Expand-LanePath $binding.hermes_codex_home
+$openCodexHome = Expand-LanePath $binding.hermes_opencodex_home
+$codexExe = Expand-LanePath $binding.codex_executable
+$openCodexRoot = Expand-LanePath $binding.opencodex_root
+$bunExe = Join-Path $openCodexRoot "node_modules\bun\bin\bun.exe"
+$openCodexEntry = Join-Path $openCodexRoot "src\cli\index.ts"
+$hermesExe = [string]$binding.hermes_executable
+$hermesPython = [string]$binding.hermes_python
+$hermesSource = [string]$binding.hermes_source
+$hermesHome = [string]$binding.hermes_home
+$credentialSourceFile = Expand-LanePath ([string]$binding.credential_source_file)
+$port = [int]$binding.opencodex_port
+
+# FAR-EXEC-IDENTITY-002: dedicated sealed-EXECUTE front door binding. The shared relay keeps its
+# 10101 port (other roles still use it); the front door is a separate loopback-only boundary on
+# 10100 that enforces the single sanctioned model for the EXECUTE lane only. The port is declared
+# in the binding (candidate config add) and the front-door script is resolved from $root.
+$executeFrontdoorPort = if ($binding.execute_frontdoor_port) { [int]$binding.execute_frontdoor_port } else { 10100 }
+$executeFrontdoorHost = "127.0.0.1"
+$executeFrontdoorUrl = "http://${executeFrontdoorHost}:$executeFrontdoorPort"
+$executeFrontdoorUpstream = "http://127.0.0.1:$port"
+$executeFrontdoorScript = Join-Path $root "scripts\hgk-exec-model-frontdoor.py"
+$executeFrontdoorHelper = Join-Path $root "scripts\start-hgk-exec-frontdoor.ps1"
+$executeFrontdoorHome = Join-Path (Split-Path -Parent $codexHome) "frontdoor"
+$executeFrontdoorLedger = Join-Path $executeFrontdoorHome "frontdoor-ledger.jsonl"
+$executeFrontdoorPython = if ($binding.execute_frontdoor_python) { Expand-LanePath ([string]$binding.execute_frontdoor_python) } else { $hermesPython }
+
+foreach ($name in @("CODEX_HOME", "OPENCODEX_HOME")) {
+  $permanentUser = [Environment]::GetEnvironmentVariable($name, "User")
+  $permanentMachine = [Environment]::GetEnvironmentVariable($name, "Machine")
+  if ($permanentUser -or $permanentMachine) { throw "ERR_GLOBAL_${name}_FORBIDDEN" }
+}
+if ($env:CODEX_HOME -and ([IO.Path]::GetFullPath($env:CODEX_HOME) -ne [IO.Path]::GetFullPath($codexHome))) {
+  throw "ERR_WRONG_CODEX_HOME_INJECTED"
+}
+if ($env:OPENCODEX_HOME -and ([IO.Path]::GetFullPath($env:OPENCODEX_HOME) -ne [IO.Path]::GetFullPath($openCodexHome))) {
+  throw "ERR_WRONG_OPENCODEX_HOME_INJECTED"
+}
+
+foreach ($directory in @($codexHome, $openCodexHome, $hermesSource, $hermesHome)) {
+  if (-not (Test-Path -LiteralPath $directory -PathType Container)) { throw "ERR_ISOLATED_HOME_MISSING:$directory" }
+}
+# P0-B (round FAR-LANE-REUSE-RCA-20261015): action-scoped dependency checks. The old single
+# guard required codex.exe for EVERY action, so a binary-drift event (an app update replacing the
+# version-hashed directory) blocked even StartOpenCodex/Hermes/Verify, which never exec it directly
+# in the key-auth path. Codex-dependent actions keep the fail-closed checks; non-Codex actions
+# survive drift. The digest check runs only where codex.exe is actually validated for use.
+$codexDependentActions = @("Verify", "Write", "Probe")
+if ($codexDependentActions -contains $Action) {
+  foreach ($file in @($humanConfig, $codexExe)) {
+    if (-not (Test-Path -LiteralPath $file -PathType Leaf)) { throw "ERR_RUNTIME_FILE_MISSING:$file" }
+  }
+} else {
+  foreach ($file in @($bunExe, $openCodexEntry, $hermesExe, $hermesPython)) {
+    if (-not (Test-Path -LiteralPath $file -PathType Leaf)) { throw "ERR_RUNTIME_FILE_MISSING:$file" }
+  }
+}
+if ($codexDependentActions -notcontains $Action) {
+  $actualCodexHash = "(not-required-for-action-$Action)"
+} else {
+
+$humanText = Get-Content -LiteralPath $humanConfig -Raw -Encoding UTF8
+if ($humanText -match '(?m)^\s*openai_base_url\s*=\s*"http://127\.0\.0\.1:1010[01]/v1"' -or
+    $humanText -match '(?m)^\s*model_catalog_json\s*=.*opencodex') {
+  throw "ERR_SHARED_MUTABLE_CODEX_CONFIG_STILL_ACTIVE"
+}
+$actualCodexHash = (Get-FileHash -LiteralPath $codexExe -Algorithm SHA256).Hash
+if ($actualCodexHash -ne [string]$binding.codex_sha256) { throw "ERR_CODEX_HASH_MISMATCH" }
+}
+
+# These assignments affect this launcher and its children only. No setx or registry write is used.
+$env:CODEX_HOME = $codexHome
+$env:OPENCODEX_HOME = $openCodexHome
+$env:HERMES_CODEX_HOME = $codexHome
+$env:HERMES_OPENCODEX_HOME = $openCodexHome
+$env:HERMES_HOME = $hermesHome
+if ($codexDependentActions -contains $Action) {
+  $env:Path = "$(Split-Path -Parent $codexExe);$env:Path"
+}
+
+$codexVersionReadback = if ($codexDependentActions -contains $Action) { (& $codexExe --version 2>&1) -join "`n" } else { "(not-required-for-action-$Action)" }
+Push-Location $openCodexRoot
+try { $openCodexVersionReadback = (& $bunExe run $openCodexEntry --version 2>&1) -join "`n" }
+finally { Pop-Location }
+
+$receipt = [ordered]@{
+  task_id = [string]$binding.task_id
+  action = $Action
+  human_config = $humanConfig
+  human_config_sha256 = (Get-FileHash -LiteralPath $humanConfig -Algorithm SHA256).Hash
+  codex_home = $env:CODEX_HOME
+  opencodex_home = $env:OPENCODEX_HOME
+  codex_executable = $codexExe
+  codex_version_readback = $codexVersionReadback
+  codex_sha256 = $actualCodexHash
+  opencodex_root = $openCodexRoot
+  opencodex_version_readback = $openCodexVersionReadback
+  opencodex_port = $port
+  hermes_executable = $hermesExe
+  hermes_python = $hermesPython
+  hermes_source = $hermesSource
+  hermes_home = $env:HERMES_HOME
+  provider = [string]$binding.provider
+  model = [string]$binding.model
+  openai_fallback = [bool]$binding.openai_fallback
+  process_scoped = $true
+}
+
+if ($Action -eq "Verify") {
+  $receipt | ConvertTo-Json -Depth 6
+  exit 0
+}
+
+$credentialName = [string]$binding.credential_env
+$credentialSource = Import-ProcessCredentialFromEnvFile -Name $credentialName -Path $credentialSourceFile
+$receipt.credential_source = $credentialSource
+if ($TestInvalidCredential) {
+  if ($Action -ne "Probe") { throw "ERR_TEST_INVALID_CREDENTIAL_REQUIRES_PROBE" }
+  [Environment]::SetEnvironmentVariable($credentialName, "HGK_INTENTIONALLY_INVALID_TEST_CREDENTIAL", "Process")
+  $receipt.credential_source = "intentional-invalid-test-fixture"
+}
+
+if ($Action -eq "StartOpenCodex") {
+  Push-Location $openCodexRoot
+  try { & $bunExe run $openCodexEntry start --port $port; exit $LASTEXITCODE }
+  finally { Pop-Location }
+}
+
+if ($Action -eq "Hermes") {
+  try { $health = Invoke-WebRequest -UseBasicParsing -Uri "http://127.0.0.1:$port/healthz" -TimeoutSec 3 }
+  catch { throw "ERR_ISOLATED_OPENCODEX_NOT_HEALTHY" }
+  if ($health.StatusCode -ne 200) { throw "ERR_ISOLATED_OPENCODEX_NOT_HEALTHY" }
+  & $hermesExe @HermesArgs
+  exit $LASTEXITCODE
+}
+
+# -- Write action: model-failover chain on the sealed lane (WO-HGK-MODRED-002) --
+# Runs codex.exe --model <m> over the chain; on 429/non-zero, re-invokes with next
+# model. Probe/Verify FAIL_CLOSED single-model gate stays intact (this branch only).
+if ($Action -eq "Write") {
+  if ([string]::IsNullOrWhiteSpace($Prompt)) { throw "ERR_CODEX_WRITE_REQUIRES_PROMPT" }
+  $chain = @()
+  if ($ModelChain.Count -gt 0) {
+    # -File spawn style passes -ModelChain a,b,c as a single element; normalize by
+    # splitting each element on commas so both real arrays and joined strings work.
+    foreach ($mc in $ModelChain) {
+      foreach ($part in ([string]$mc).Split(',')) {
+        $p = $part.Trim()
+        if ($p) { $chain += $p }
+      }
+    }
+  }
+  else {
+    $chain = @([string]$binding.model)
+    foreach ($fm in @($binding.model_fallbacks)) { $chain += [string]$fm }
+    $chain = @($chain | Where-Object { $_ -and -not [string]::IsNullOrWhiteSpace($_)})
+  }
+
+  # FAR-EXEC-IDENTITY-001 (E1): refuse before any codex spawn unless the resolved chain is EXACTLY
+  # the single sanctioned model. Fail-closed: no quota is spent on a non-sanctioned chain. The
+  # assertion returns the canonical provider-qualified chain (opencodex reserves the bare gpt-*
+  # namespace for the canonical OpenAI provider, so the chain must always be <provider>/<model>).
+  $sanctionedToken = Get-LaneModelToken ([string]$binding.model)
+  $chain = @(Assert-CodexWriteChainSanctioned -Chain $chain -Provider ([string]$binding.provider) `
+                                               -SanctionedModel ([string]$binding.model))
+  try { $health = Invoke-WebRequest -UseBasicParsing -Uri "http://127.0.0.1:$port/healthz" -TimeoutSec 3 }
+  catch { throw "ERR_ISOLATED_OPENCODEX_NOT_HEALTHY" }
+  if ($health.StatusCode -ne 200) { throw "ERR_ISOLATED_OPENCODEX_NOT_HEALTHY" }
+
+  # FAR-EXEC-IDENTITY-002 (E2): the dedicated sealed-EXECUTE front door is a MANDATORY hop. Ensure
+  # it is running (helper), verify its semantic health, and refuse before any spawn if it is dead or
+  # a wrong service. The shared relay on 10101 is never restarted; the front door is separate.
+  if (-not (Test-Path -LiteralPath $executeFrontdoorScript -PathType Leaf)) {
+    throw "ERR_EXEC_FRONTDOOR_SCRIPT_MISSING:$executeFrontdoorScript"
+  }
+  $frontdoorDead = $false
+  try { Test-ExecFrontdoorHealth -Port $executeFrontdoorPort -Provider ([string]$binding.provider) `
+                                 -Model ([string]$binding.model) -Upstream $executeFrontdoorUpstream | Out-Null }
+  catch { $frontdoorDead = $true }
+  if ($frontdoorDead) {
+    if (Test-Path -LiteralPath $executeFrontdoorHelper -PathType Leaf) {
+      & $executeFrontdoorHelper -Action Start | Out-Null
+    }
+  }
+  $frontdoorHealth = Test-ExecFrontdoorHealth -Port $executeFrontdoorPort -Provider ([string]$binding.provider) `
+                                             -Model ([string]$binding.model) -Upstream $executeFrontdoorUpstream
+  $frontdoorSourceDigest = (Get-FileHash -LiteralPath $executeFrontdoorScript -Algorithm SHA256).Hash.ToLowerInvariant()
+
+  # Process-scoped base_url AND explicit codex `-c openai_base_url=...`; two independent pins so
+  # neither environment drift nor a stale isolated config can silently re-point the sealed lane at
+  # the raw shared relay. The isolated config.toml is a secondary persistent pin (see apply tool).
+  $env:OPENAI_BASE_URL = "$executeFrontdoorUrl/v1"
+
+  $logRoot = Join-Path (Split-Path -Parent $codexHome) "logs"
+  New-Item -ItemType Directory -Force -Path $logRoot | Out-Null
+  $attempts = @()
+  $usedModel = ""
+  $chainExhausted = $true
+  for ($i = 0; $i -lt $chain.Count; $i++) {
+    $m = [string]$chain[$i]
+    $attempt = [ordered]@{ index = $i; model = $m }
+    # TestInject429: short-circuit the FIRST attempt as an injected failure to force
+    # the chain forward WITHOUT spending real quota on the primary model.
+    if ($TestInject429 -and $i -eq 0) {
+      $attempt.exit = "ERR_429_INJECTED"
+      $attempt.injected = $true
+      $attempts += $attempt
+      continue
+    }
+    $stamp = (Get-Date).ToUniversalTime().ToString("yyyyMMddTHHmmssfffZ")
+    $wLog = Join-Path $logRoot "codex-write-$stamp-m$i.log"
+    $wErr = Join-Path $logRoot "codex-write-$stamp-m$i.stderr.log"
+    $codexArgs = @(
+      "--model", $m,
+      "--sandbox", "danger-full-access",
+      "-c", "approval_policy=never",
+      "-c", "openai_base_url=$executeFrontdoorUrl/v1",
+      "-c", "features.enable_request_compression=false",
+      "--cd", $root,
+      "exec", "--skip-git-repo-check", "--ephemeral", "--json", $Prompt
+    )
+    $savedEAP = $ErrorActionPreference; $ErrorActionPreference = "Continue"
+    try { & $codexExe @codexArgs *> $wLog; $exit = $LASTEXITCODE } finally { $ErrorActionPreference = $savedEAP }
+    $attempt.exit = $exit
+    $attempt.log = $wLog
+    $attempt.stderr_log = $wErr
+    $attempts += $attempt
+    if ($exit -eq 0) { $usedModel = $m; $chainExhausted = $false; break }
+    # 429/quota exhaustion on deepseek -> try next model. Non-zero (but non-quota)
+    # also advances so a stuck model does not dead-end the chain.
+    Start-Sleep -Milliseconds 1500
+  }
+  $receipt.write_action = "Write"
+  $receipt.write_prompt = if ($Prompt.Length -gt 80) { $Prompt.Substring(0,80) + "..." } else { $Prompt }
+  $receipt.write_chain = $chain
+  $receipt.write_attempts = $attempts
+  $receipt.write_model_used = $usedModel
+  $receipt.write_chain_exhausted = $chainExhausted
+  # FAR-EXEC-IDENTITY-002 (E2): the dispatch gateway is a hard fact of this run.
+  $receipt.execution_gateway = [ordered]@{
+    url = "$executeFrontdoorUrl/v1"
+    host = $executeFrontdoorHost
+    port = $executeFrontdoorPort
+    upstream = $executeFrontdoorUpstream
+    sanctioned_provider = [string]$binding.provider
+    sanctioned_model = [string]$binding.model
+    frontdoor_source_sha256 = $frontdoorSourceDigest
+    process_env_openai_base_url = $env:OPENAI_BASE_URL
+    codex_arg_openai_base_url = "openai_base_url=$executeFrontdoorUrl/v1"
+    request_compression = "disabled (features.enable_request_compression=false)"
+  }
+  # The transported model is what actually reached the transport (the canonical pair). This is NOT
+  # a proof of the backend weights behind the relay: it is the model the sealed lane dispatched with.
+  $receipt.transported_model = "$([string]$binding.provider)/$usedToken"
+  $receipt.transported_model_is_backend_weights_proof = $false
+  if ($chainExhausted) { $receipt | ConvertTo-Json -Depth 8; throw "ERR_CODEX_WRITE_CHAIN_EXHAUSTED" }
+  # FAR-EXEC-IDENTITY-001 (E1): the receipt must PROVE the sanctioned model was the one used. An
+  # empty/unprovable used model is a FAIL, never a pass.
+  $usedToken = Get-LaneModelToken ([string]$usedModel)
+  if (-not $usedToken -or $usedToken -ne $sanctionedToken) {
+    $receipt | ConvertTo-Json -Depth 8
+    throw "ERR_CODEX_WRITE_MODEL_DRIFT:$usedModel"
+  }
+  if ($TestInject429) { $receipt.test_inject_429 = $true }
+  $receipt | ConvertTo-Json -Depth 8
+  exit 0
+}
+
+$logRoot = Join-Path (Split-Path -Parent $codexHome) "logs"
+New-Item -ItemType Directory -Force -Path $logRoot | Out-Null
+$stamp = (Get-Date).ToUniversalTime().ToString("yyyyMMddTHHmmssfffZ")
+$stdoutLog = Join-Path $logRoot "opencodex-probe-$stamp.stdout.log"
+$stderrLog = Join-Path $logRoot "opencodex-probe-$stamp.stderr.log"
+$syncLog = Join-Path $logRoot "opencodex-sync-$stamp.log"
+$codexLog = Join-Path $logRoot "codex-probe-$stamp.log"
+$codexErrorLog = Join-Path $logRoot "codex-probe-$stamp.stderr.log"
+$proxy = $null
+Push-Location $openCodexRoot
+try {
+  $proxy = Start-Process -FilePath $bunExe -ArgumentList @("run", $openCodexEntry, "start", "--port", "$port") -PassThru -WindowStyle Hidden -RedirectStandardOutput $stdoutLog -RedirectStandardError $stderrLog
+  $healthy = $false
+  for ($i = 0; $i -lt 30; $i++) {
+    try {
+      $health = Invoke-WebRequest -UseBasicParsing -Uri "http://127.0.0.1:$port/healthz" -TimeoutSec 2
+      if ($health.StatusCode -eq 200) { $healthy = $true; break }
+    } catch {}
+    Start-Sleep -Milliseconds 500
+  }
+  if (-not $healthy) { throw "ERR_ISOLATED_OPENCODEX_START_FAILED" }
+  $savedErrorAction = $ErrorActionPreference
+  $ErrorActionPreference = "Continue"
+  $syncOutput = & $bunExe run $openCodexEntry sync 2>&1
+  $syncExit = $LASTEXITCODE
+  $ErrorActionPreference = $savedErrorAction
+  $syncOutput | Set-Content -LiteralPath $syncLog -Encoding UTF8
+  if ($syncExit -ne 0) { throw "ERR_OPENCODEX_SYNC_EXIT_$syncExit" }
+  $catalogPath = Join-Path $codexHome "opencodex-catalog.json"
+  if (-not (Test-Path -LiteralPath $catalogPath -PathType Leaf)) { throw "ERR_ISOLATED_CATALOG_MISSING" }
+  # FAR-LANE-ROUTE-SLOTS-012 (P2 wiring): POOLED STARTUP GATE, DISPATCH PIN UNCHANGED.
+  # Rank 1 is measured first with exactly the legacy single-model probe, so a healthy primary
+  # yields the same receipt shape as before. Only when it fails does the gate advance by rank over
+  # the lane's ordered pool (the resolver CLI owns validation and typed refusals). The sealed Write
+  # chain above stays pinned, so dispatch and SoD boundaries are NOT weakened by this wiring.
+  $laneRouteCli = Join-Path $root "scripts\hgk-lane-route.py"
+  $routePoolPath = Join-Path $root "config\lane-route-slots.candidate.json"
+  $probeLane = if ($binding.probe_lane) { [string]$binding.probe_lane } else { "EXECUTE" }
+  $routeAttempts = @()
+  $usedCandidate = $null
+  function Invoke-CodexLaneProbe([string]$ProbeModel, [int]$ProbeRank) {
+    $stampA = (Get-Date).ToUniversalTime().ToString("yyyyMMddTHHmmssfffZ")
+    $aLog = Join-Path $logRoot "codex-probe-$stampA-r$ProbeRank.log"
+    $aErr = Join-Path $logRoot "codex-probe-$stampA-r$ProbeRank.stderr.log"
+    $aArgs = @(
+      "--model", $ProbeModel,
+      "--sandbox", "read-only",
+      "--ask-for-approval", "never",
+      "--cd", $root,
+      "exec", "--skip-git-repo-check", "--ephemeral", "--json",
+      "ReplyExactly:$Nonce"
+    )
+    $att = [ordered]@{ rank = $ProbeRank; model = $ProbeModel; log = $aLog; stderr_log = $aErr }
+    $p = Start-Process -FilePath $codexExe -ArgumentList $aArgs -PassThru -WindowStyle Hidden -RedirectStandardOutput $aLog -RedirectStandardError $aErr
+    if (-not $p.WaitForExit($ProbeTimeoutSeconds * 1000)) {
+      Stop-Process -Id $p.Id -Force -ErrorAction SilentlyContinue
+      $att.exit = "TIMEOUT"
+      return $att
+    }
+    $p.Refresh()
+    $att.exit = [int]$p.ExitCode
+    $out = @()
+    if (Test-Path -LiteralPath $aLog -PathType Leaf) { $out += Get-Content -LiteralPath $aLog -Encoding UTF8 }
+    if (Test-Path -LiteralPath $aErr -PathType Leaf) { $out += Get-Content -LiteralPath $aErr -Encoding UTF8 }
+    $att.nonce_present = (($out -join "`n") -match [regex]::Escape($Nonce))
+    return $att
+  }
+  $primary = Invoke-CodexLaneProbe -ProbeModel ([string]$binding.model) -ProbeRank 1
+  if ($TestInject429) {
+    # Same fixture convention as the Write branch: force rank 1 to fail so the pooled advance is
+    # exercised WITHOUT spending real quota on the primary model.
+    $primary.exit = "ERR_429_INJECTED"
+    $primary.injected = $true
+    $receipt.test_inject_429 = $true
+  }
+  $routeAttempts += $primary
+  if ($primary.exit -eq 0 -and $primary.nonce_present) {
+    $usedCandidate = [ordered]@{ rank = 1; provider = [string]$binding.provider; model = [string]$binding.model }
+    $receipt.route_mode = "pinned_primary"
+  }
+  else {
+    $candidates = Get-LaneRouteCandidates -Lane $probeLane -Pool $routePoolPath
+    foreach ($cand in @($candidates | Where-Object { [int]$_.rank -gt 1 })) {
+      $att = Invoke-CodexLaneProbe -ProbeModel ([string]$cand.token) -ProbeRank ([int]$cand.rank)
+      $att.provider = [string]$cand.provider
+      $routeAttempts += $att
+      if ($att.exit -eq 0 -and $att.nonce_present) {
+        $usedCandidate = [ordered]@{ rank = [int]$cand.rank; provider = [string]$cand.provider;
+                                     model = [string]$cand.model; token = [string]$cand.token }
+        break
+      }
+    }
+    if ($usedCandidate) { $receipt.route_mode = "pooled_advance" } else { $receipt.route_mode = "exhausted" }
+  }
+  $receipt.route_lane = $probeLane
+  $receipt.route_pool = $routePoolPath
+  $receipt.route_pool_sha256 = (Get-FileHash -LiteralPath $routePoolPath -Algorithm SHA256).Hash.ToLowerInvariant()
+  $receipt.route_attempts = $routeAttempts
+  $receipt.route_used_rank = if ($usedCandidate) { [int]$usedCandidate.rank } else { $null }
+  if (-not $usedCandidate) {
+    $receipt | ConvertTo-Json -Depth 8
+    throw "ERR_LANE_ALL_ROUTES_EXHAUSTED"
+  }
+  $codexLog = [string]$routeAttempts[-1].log
+  $codexErrorLog = [string]$routeAttempts[-1].stderr_log
+  $codexExit = $routeAttempts[-1].exit
+  $usagePath = Join-Path $openCodexHome "usage.jsonl"
+  if (-not (Test-Path -LiteralPath $usagePath -PathType Leaf)) { throw "ERR_OPENCODEX_USAGE_RECEIPT_MISSING" }
+  $usageReceipt = (Get-Content -LiteralPath $usagePath -Encoding UTF8 | Select-Object -Last 1) | ConvertFrom-Json
+  # The receipt must show the candidate that actually served, not a fixed single model.
+  # The relay records its OWN account-scoped provider id (the openai arm reports e.g. openai-p6a1fe3,
+  # not the pool's nominal openai-codex), so the provider comparison is an explicit, recorded alias
+  # rule rather than a blanket wildcard; the model and the 200 must match exactly.
+  $providerAliasOk = ([string]$usageReceipt.provider -eq [string]$usedCandidate.provider)
+  if (-not $providerAliasOk -and [string]$usedCandidate.provider -eq "openai-codex") {
+    $providerAliasOk = ([string]$usageReceipt.provider -like "openai*")
+  }
+  $receipt.provider_receipt_provider = [string]$usageReceipt.provider
+  $receipt.provider_receipt_model = [string]$usageReceipt.model
+  $receipt.provider_receipt_alias_match = $providerAliasOk
+  if (-not $providerAliasOk -or
+      [string]$usageReceipt.model -ne [string]$usedCandidate.model -or
+      [int]$usageReceipt.status -ne 200) {
+    throw "ERR_OPENCODEX_PROVIDER_RECEIPT_MISMATCH"
+  }
+  $receipt.route_nonce = $Nonce
+  $receipt.route_exit_code = $codexExit
+  $receipt.provider_route_confirmed = $true
+  $receipt.provider_request_id = [string]$usageReceipt.requestId
+  $receipt.provider_status = [int]$usageReceipt.status
+  $receipt.usage_receipt_sha256 = (Get-FileHash -LiteralPath $usagePath -Algorithm SHA256).Hash
+  $receipt.proxy_stdout = $stdoutLog
+  $receipt.proxy_stderr = $stderrLog
+  $receipt.sync_log = $syncLog
+  $receipt.codex_log = $codexLog
+  $receipt.codex_stderr_log = $codexErrorLog
+  $receipt | ConvertTo-Json -Depth 6
+} finally {
+  Pop-Location
+  if ($proxy -and -not $proxy.HasExited) { Stop-Process -Id $proxy.Id -Force -ErrorAction SilentlyContinue }
+}

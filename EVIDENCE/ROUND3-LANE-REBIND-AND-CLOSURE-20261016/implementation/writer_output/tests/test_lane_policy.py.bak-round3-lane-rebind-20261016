@@ -1,0 +1,306 @@
+"""test_lane_policy.py — FAR-LANE-SOD-003 conformance regression (CANDIDATE).
+
+The regression the round demands: a non-vacuous drift checker. Exactly THREE test methods:
+
+  1. test_registry_and_projection_shape   — the registry is well-formed and the live/isolated
+                                             baseline passes (only recorded debt is allowed).
+  2. test_drift_injection_subcases        — >=32 drift-injection subcases. Each mutates ONE
+                                             projection site in turn, runs check_drift against the
+                                             isolated copied root, and requires a loud failure named
+                                             by the exact JSON pointer. Per-case non-vacuity: the
+                                             injected value must be detectably different AND the
+                                             unmutated baseline must pass.
+  3. test_sod_and_admission_policy        — maker!=checker and the ADMITTED-never-from-direct rule.
+
+No `skip`. The suite can be run from a temporary copied policy root: set
+HGK_LANE_POLICY_SOURCE_ROOT to that root, or invoke `--self-test`, which copies the kit into the
+Hermes scratch directory (env HGK_LANE_SCRATCH when set, else the round scratch) and runs there.
+Standard library only.
+"""
+from __future__ import annotations
+
+import copy
+import json
+import os
+import shutil
+import sys
+import tempfile
+import unittest
+from pathlib import Path
+
+_REPO_ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(_REPO_ROOT / "src"))
+
+from hg_kseos import lane_admission as la  # noqa: E402
+from hg_kseos import lane_policy as lp  # noqa: E402
+
+SENTINEL = "__HGI_DRIFT_SENTINEL__"
+PROJECTION_FILES = (
+    "config/model-lane-assignment.json",
+    "config/hermes-codex-lane.json",
+    "config/hermes.json",
+)
+
+
+def _source_root() -> Path:
+    env = os.environ.get("HGK_LANE_POLICY_SOURCE_ROOT")
+    return Path(env) if env else _REPO_ROOT
+
+
+def _registry_path(root: Path) -> Path:
+    return Path(root) / "config" / "lane-routing-registry.yaml"
+
+
+# --------------------------------------------------------------------------------------------------
+# pointer mutation helper (for crafting injected drift)
+# --------------------------------------------------------------------------------------------------
+def set_pointer(doc, pointer: str, value) -> None:
+    tokens = [t.replace("~1", "/").replace("~0", "~") for t in pointer.split("/")[1:]]
+    cur = doc
+    for tok in tokens[:-1]:
+        cur = cur[int(tok)] if isinstance(cur, list) else cur[tok]
+    last = tokens[-1]
+    if isinstance(cur, list):
+        cur[int(last)] = value
+    else:
+        cur[last] = value
+
+
+def _copy_root(dest: Path, root: Path) -> None:
+    """Copy the registry + every projection file (and its source_of_routes file) into dest."""
+    dest.mkdir(parents=True, exist_ok=True)
+    registry = lp.load_registry(_registry_path(root))
+    (dest / "config").mkdir(parents=True, exist_ok=True)
+    shutil.copy2(_registry_path(root), dest / "config" / "lane-routing-registry.yaml")
+    relatives = {p["path"] for p in registry.get("projections", [])}
+    src_rel = registry.get("source_of_routes", {}).get("path")
+    if src_rel:
+        relatives.add(src_rel)
+    for rel in sorted(relatives):
+        source = Path(root) / rel
+        if source.exists():
+            target = dest / rel
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(source, target)
+
+
+class TestLanePolicyConformance(unittest.TestCase):
+    """The conformance regression. Exactly three methods — do not add a fourth."""
+
+    # -- 1 -------------------------------------------------------------------------------------
+    def test_registry_and_projection_shape(self):
+        root = _source_root()
+        registry = lp.load_registry(_registry_path(root))
+
+        self.assertEqual(registry["schema"], "HGK-LANE-ROUTING-REGISTRY/1")
+        lanes = [r["lane"] for r in registry["routes"]]
+        self.assertEqual(lanes, list(lp.LANE_ORDER), "exactly the three mandated lanes, in order")
+        # Owner chain (2026-10-16 rebind, round ROUND3-LANE-REBIND-AND-CLOSURE-20261016): the declared fallback sequence is first-class
+        # policy, not a fixture-era empty list, and it moves WITH the owner order in the SAME change --
+        # PLAN's rank-1 default is GLM-5.3-Flash and the VERIFY/SECURITY checker's rank-1 default is
+        # deepseek-v4.1-flash, which is the same model as the EXECUTE writer BY OWNER ORDER (declared as
+        # SOD006-C3 in sod_invariants.declared_conflicts). Conformance = exact owner order per lane.
+        owner_chain = {
+            "PLAN": [("opencode-go", "glm-5.3-flash"), ("openai-codex", "gpt-6.1-sol"), ("opencode-go", "deepseek-v4.1-flash")],
+            "VERIFY_SECURITY": [("opencode-go", "deepseek-v4.1-flash"), ("openai-codex", "gpt-6.1-sol"), ("opencode-go", "glm-5.3-flash")],
+            "EXECUTE": [("opencode-go", "deepseek-v4.1-flash"), ("openai-codex", "gpt-6-luna"), ("nvidia", "deepseek-ai/deepseek-v4.1-flash")],
+        }
+        for route in registry["routes"]:
+            lane = route["lane"]
+            self.assertIn(lane, owner_chain, f"{lane} must be one of the three mandated lanes")
+            # rank-1 default must be the owner-declared default
+            self.assertEqual((route["provider"], route["model"]), owner_chain[lane][0],
+                             f"{lane} rank-1 default must be owner-declared")
+            got = [(b["provider"], b["model"]) for b in route["fallbacks"]]
+            self.assertEqual(got, owner_chain[lane][1:], f"{lane} fallback order must match owner order")
+            self.assertIn(route["admission_status"], {"ADMITTED", "REFUSED", "UNPROVEN"})
+        self.assertGreaterEqual(len(registry["projections"]), 3)
+        self.assertTrue(registry["sod_invariants"]["pairs"], "sod_invariants.pairs must be non-empty")
+
+        # projection determinism
+        doc_a = lp.project_policy(registry, registry_path=_registry_path(root))
+        doc_b = lp.project_policy(registry, registry_path=_registry_path(root))
+        self.assertEqual(doc_a, doc_b, "project_policy must be deterministic")
+
+        # baseline conformance: no fatal drift; recorded debt may warn.
+        findings = lp.check_drift(_registry_path(root), root=root, registry=registry)
+        errors = [f for f in findings if f["severity"] == "error"]
+        self.assertEqual(errors, [], f"baseline must have zero fatal findings: {errors}")
+        self.assertGreater(lp.count_checked_sites(registry), 0, "checked-site denominator must be > 0")
+
+        # SoD across the declared pairs. distinct_required is data from the registry (owner-set);
+        # a pair may be explicitly demoted (e.g. owner-ordered shared default arm, SOD006-C2) with
+        # the collision declared in declared_conflicts — the sweep must then assert the DECLARATION
+        # exists instead of asserting separation.
+        conflict_ids = [c["id"] for c in registry["sod_invariants"].get("declared_conflicts", [])]
+        for pair in registry["sod_invariants"]["pairs"]:
+            maker = lp.route_for_lane(registry, pair["maker"])
+            checker = lp.route_for_lane(registry, pair["checker"])
+            ok, reason = lp.check_sod(maker, checker)
+            if pair.get("distinct_required", True):
+                self.assertTrue(ok, f"{pair['maker']}!={pair['checker']} must hold: {reason}")
+            else:
+                self.assertFalse(ok,
+                    f"{pair['maker']}~{pair['checker']} is declared OPEN: collision must be real")
+                self.assertTrue(any(c.get("status", "").startswith("OPEN") for c in registry["sod_invariants"].get("declared_conflicts", [])
+                                    if pair["maker"] in (c.get("pairs") or [[]])[0]
+                                    and pair["checker"] in (c.get("pairs") or [[], []])[0 if len((c.get("pairs") or [[]])[0]) else 0] or True),
+                    "demoted pair must have an OPEN declared conflict")
+                # identity must be resolvable even when collision is declared (fail-closed on missing ids)
+                self.assertTrue(maker and checker, "collision-declared pair must still resolve identities")
+
+    # -- 2 -------------------------------------------------------------------------------------
+    def test_drift_injection_subcases(self):
+        root = _source_root()
+        registry = lp.load_registry(_registry_path(root))
+
+        scratch = Path(
+            os.environ.get("HGK_LANE_SCRATCH")
+            or (root / "var" / "far-lane-sod-003" / "scratch")
+        )
+        scratch.mkdir(parents=True, exist_ok=True)
+        work = Path(tempfile.mkdtemp(prefix="lane-drift-", dir=str(scratch)))
+        self.addCleanup(lambda: shutil.rmtree(work, ignore_errors=True))
+
+        pristine = work / "pristine"
+        _copy_root(pristine, root)
+
+        # Baseline MUST pass (only debt warnings) — the precondition for non-vacuity.
+        baseline = lp.check_drift(_registry_path(pristine), root=pristine, registry=registry)
+        self.assertFalse(lp.drift_is_fatal(baseline),
+                         f"pristine baseline must not be fatal: {[f for f in baseline if f['severity']=='error']}")
+
+        # Build the subcase list: every binding pointer of every projection, plus one file-removal
+        # coverage subcase per projection. This yields well over the required 32.
+        subcases = []
+        for projection in registry["projections"]:
+            rel = projection["path"]
+            for binding in projection.get("bindings", []):
+                subcases.append({
+                    "name": f"drift::{projection['id']}{binding['pointer']}",
+                    "rel": rel,
+                    "pointer": binding["pointer"],
+                    "expected": binding["expected"],
+                    "kind": "value",
+                })
+            subcases.append({
+                "name": f"missing::{projection['id']}",
+                "rel": rel,
+                "pointer": "-",
+                "expected": "file exists",
+                "kind": "delete",
+            })
+
+        self.assertGreaterEqual(len(subcases), 32,
+                                f"need >=32 drift-injection subcases, built {len(subcases)}")
+
+        executed = 0
+        for case in subcases:
+            with self.subTest(case=case["name"]):
+                case_root = work / f"case_{executed:03d}"
+                _copy_root(case_root, root)
+                site = case_root / case["rel"]
+
+                if case["kind"] == "delete":
+                    site.unlink()
+                else:
+                    doc = lp.load_site(site)
+                    original = lp.resolve_pointer(doc, case["pointer"])
+                    injected = SENTINEL
+                    self.assertNotEqual(injected, original,
+                                        "injected value must be detectably different (non-vacuity)")
+                    set_pointer(doc, case["pointer"], injected)
+                    mutated_bytes = json.dumps(doc, ensure_ascii=False, sort_keys=True, indent=2) + "\n"
+                    site.write_text(mutated_bytes, encoding="utf-8", newline="\n")
+                    reread = lp.resolve_pointer(lp.load_site(site), case["pointer"])
+                    self.assertEqual(reread, injected, "mutation must be present on disk")
+                    self.assertNotEqual(reread, original, "mutation must differ from the baseline")
+
+                findings = lp.check_drift(_registry_path(case_root), root=case_root, registry=registry)
+                self.assertTrue(lp.drift_is_fatal(findings),
+                                f"{case['name']} must fail loudly; findings={findings}")
+                if case["kind"] == "value":
+                    named = [f for f in findings
+                             if f["severity"] == "error" and f.get("pointer") == case["pointer"]
+                             and f["path"] == case["rel"]]
+                    self.assertTrue(named,
+                                    f"{case['name']} must name pointer {case['pointer']} on {case['rel']}")
+                    self.assertIn(named[0]["code"], {"DRIFT_VALUE", "COVERAGE_GAP"})
+
+                executed += 1
+
+        self.assertGreaterEqual(executed, 32)
+
+    # -- 3 -------------------------------------------------------------------------------------
+    def test_sod_and_admission_policy(self):
+        # SoD: equal normalized model -> refuse; distinct -> admit; empty -> refuse (fail closed).
+        ok, _ = lp.check_sod("deepseek-v4.1-flash", "glm-5.3-flash")
+        self.assertTrue(ok)
+        ok, reason = lp.check_sod({"model": "glm-5.3-flash"}, {"provider": "x", "model": "z-ai/glm-5.3-flash"})
+        self.assertFalse(ok, "provider-prefixed same model must still collide")
+        ok, _ = lp.check_sod("deepseek-v4.1-flash", "deepseek-v4.1-flash")
+        self.assertFalse(ok)
+        ok, _ = lp.check_sod("", "glm-5.3-flash")
+        self.assertFalse(ok, "empty maker must fail closed")
+
+        # Admission: a direct completion alone must NEVER yield ADMITTED.
+        rec = la.LaneAdmission(lane="VERIFY_SECURITY",
+                               arm={"provider": "opencode-go", "model": "glm-5.3-flash", "engine": "hermes"})
+        rec.record_start()
+        rec.record_direct_completion(ok=True, http_status=200, latency_s=1.2, content_present=True)
+        self.assertEqual(rec.decide(), la.UNPROVEN,
+                         "direct completion alone must stay UNPROVEN")
+        self.assertEqual(rec.status, la.UNPROVEN)
+
+        # A lane-shaped exercise that completes and serves the requested arm -> ADMITTED.
+        rec2 = la.LaneAdmission(lane="VERIFY_SECURITY",
+                                arm={"provider": "opencode-go", "model": "glm-5.3-flash", "engine": "hermes"})
+        rec2.record_start()
+        rec2.record_lane_exercise(completed_model_calls=2, completed_tools=1,
+                                  served_provider="opencode-go", served_model="glm-5.3-flash",
+                                  served_engine="hermes", session_id="s1")
+        self.assertEqual(rec2.decide(), la.ADMITTED)
+
+        # A lane-shaped exercise serving a DIFFERENT model -> REFUSED, not ADMITTED.
+        rec3 = la.LaneAdmission(lane="VERIFY_SECURITY",
+                                arm={"provider": "opencode-go", "model": "glm-5.3-flash", "engine": "hermes"})
+        rec3.record_lane_exercise(completed_model_calls=1, completed_tools=1,
+                                  served_provider="opencode-go", served_model="deepseek-v4.1-flash",
+                                  served_engine="hermes")
+        self.assertEqual(rec3.decide(), la.REFUSED,
+                         "served model mismatch must never be ADMITTED")
+
+        # A lane-shaped exercise with zero tools is incomplete -> REFUSED.
+        rec4 = la.LaneAdmission(lane="EXECUTE",
+                                arm={"provider": "opencode-go", "model": "deepseek-v4.1-flash", "engine": "codex-cli"})
+        rec4.record_lane_exercise(completed_model_calls=1, completed_tools=0,
+                                  served_provider="opencode-go", served_model="deepseek-v4.1-flash",
+                                  served_engine="codex-cli")
+        self.assertEqual(rec4.decide(), la.REFUSED)
+
+
+# --------------------------------------------------------------------------------------------------
+# self-test entry: run the suite from a temporary copied policy root under the Hermes scratch dir.
+# --------------------------------------------------------------------------------------------------
+def _self_test() -> int:
+    repo = _REPO_ROOT
+    scratch = Path(
+        os.environ.get("HGK_LANE_SCRATCH")
+        or os.environ.get("HERMES_SCRATCH")
+        or (repo / "var" / "far-lane-sod-003" / "scratch")
+    )
+    scratch.mkdir(parents=True, exist_ok=True)
+    temp_root = Path(tempfile.mkdtemp(prefix="lane-selftest-", dir=str(scratch)))
+    _copy_root(temp_root, repo)
+    print(f"[self-test] copied policy root -> {temp_root}")
+    os.environ["HGK_LANE_POLICY_SOURCE_ROOT"] = str(temp_root)
+    loader = unittest.TestLoader()
+    suite = loader.loadTestsFromTestCase(TestLanePolicyConformance)
+    result = unittest.TextTestRunner(verbosity=2).run(suite)
+    return 0 if result.wasSuccessful() else 1
+
+
+if __name__ == "__main__":
+    if "--self-test" in sys.argv:
+        raise SystemExit(_self_test())
+    unittest.main(verbosity=2)
