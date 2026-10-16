@@ -1,0 +1,84 @@
+{
+  "schema": "HGK-GSTACK-READBACK/1",
+  "round": "FAR-REMEDIATION-AND-CLOSURE-20261016",
+  "sources": {
+    "role_map": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\HGK\\HGK_GSTACK_ROLE_MAP.yaml",
+    "upstream_snapshot": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\HGK\\HGK_GSTACK_UPSTREAM_CAPABILITY_SNAPSHOT.tsv",
+    "active_selected_evidence": "src/hg_kseos/named_methods.py :: registry_snapshot() / route(flow) / evaluate_activation_invariants() -- the config/ surface carries ROUTES, not named methods"
+  },
+  "registry_epoch": 21,
+  "registry_status": "CANDIDATE",
+  "role_map_roles": [],
+  "active_selected_methods": [
+    "gstack.cso",
+    "gstack.office-hours",
+    "gstack.plan-eng-review",
+    "gstack.qa",
+    "gstack.retro",
+    "gstack.review",
+    "gstack.ship"
+  ],
+  "route_by_flow": {
+    "far-implementation": {
+      "flow": "far-implementation",
+      "provider": null,
+      "state": null,
+      "fallback": null,
+      "final_authority": true,
+      "route": "NATIVE"
+    },
+    "plan-eng-review": {
+      "flow": "plan-eng-review",
+      "provider": "gstack.plan-eng-review",
+      "state": "CERTIFIED",
+      "fallback": "hgk_native_plan_review",
+      "final_authority": true,
+      "route": "GSTACK"
+    },
+    "security-review": {
+      "flow": "security-review",
+      "provider": "gstack.cso",
+      "state": "CERTIFIED",
+      "fallback": "hgk_native_security",
+      "final_authority": true,
+      "route": "GSTACK"
+    },
+    "coding": {
+      "flow": "coding",
+      "provider": null,
+      "state": null,
+      "fallback": null,
+      "final_authority": true,
+      "route": "NATIVE"
+    },
+    "review": {
+      "flow": "review",
+      "provider": "gstack.review",
+      "state": "CERTIFIED",
+      "fallback": "hgk_native_review",
+      "final_authority": true,
+      "route": "GSTACK"
+    }
+  },
+  "activation_invariants": {
+    "canonical_flow_named_method_without_runtime_or_certified_substitute": 0,
+    "active_named_method_missing_identity": 0,
+    "active_named_method_missing_pin": 0,
+    "active_named_method_missing_install": 0,
+    "active_named_method_missing_binding": 0,
+    "active_named_method_missing_doctor": 0,
+    "active_named_method_missing_pilot": 0,
+    "active_named_method_missing_independent_cert": 0,
+    "active_named_method_silent_fallback": 0,
+    "named_method_fake_invocation": 0,
+    "named_method_silent_fallback": 0,
+    "dual_spec_owner": 0,
+    "second_orchestrator": 0,
+    "release_authority_escape": 0
+  },
+  "gap_classes": {
+    "MAP_ROLE_ABSENT": "the declared role map uses role names that have no route(flow) branch in named_methods, so their route is NATIVE -- a MAPPING gap, not a named-method gap",
+    "SELECTED_NOT_IN_MAP": "ZERO is reported explicitly: the empty set is part of the evidence"
+  },
+  "claim_ceiling": "ACTIVE_SELECTED is a configuration/registration fact, not proof that a role RAN in this session. The lane registry carries no gstack role names, so any per-role lane attribution here would be INFERENCE and is not made. GSTACK has no separate implementation in this repository and is NOT reported as an enabled component."
+}

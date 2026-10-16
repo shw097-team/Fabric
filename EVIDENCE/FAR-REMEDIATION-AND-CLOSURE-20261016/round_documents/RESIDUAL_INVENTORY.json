@@ -1,0 +1,256 @@
+{
+  "schema": "HGK-FAR-RESIDUAL-INVENTORY/1",
+  "round": "FAR-REMEDIATION-AND-CLOSURE-20261016",
+  "generated_from": "disk only: the previous round's closure JSON, its frozen manifest, the live registry, and the carried-forward ruling directory",
+  "counts_by_kind": {
+    "owner_decision": 3,
+    "residual": 9,
+    "gap": 3,
+    "closure": 6,
+    "publication": 1
+  },
+  "items": [
+    {
+      "id": "RES-01",
+      "kind": "owner_decision",
+      "title": "F1-PLAN-ROUTE-ROW-OUTLIER",
+      "source": "var/LANE-RELIABILITY-CLOSURE-20261016/ROUND_CLOSURE.json#honest_residuals[0]",
+      "measurement_basis": "F1-PLAN-ROUTE-ROW-OUTLIER: registry routes[].PLAN (opencode-go/glm-5.3-flash) disagrees with the pool, the registry SoD block, the conformance test and the owner mandate. Out of scope this round; remediation priced in FINDINGS_F1_PLAN_ROUTE_OUTLIER.md.",
+      "ruling": null
+    },
+    {
+      "id": "RES-02",
+      "kind": "residual",
+      "title": "tests/test_lane_policy.py",
+      "source": "var/LANE-RELIABILITY-CLOSURE-20261016/ROUND_CLOSURE.json#honest_residuals[1]",
+      "measurement_basis": "tests/test_lane_policy.py::test_registry_and_projection_shape is therefore RED on the canonical tree, and it is RED solely on F1 (the PLAN route row): both the test's other cases and everything else in the 7-module suite are green.",
+      "ruling": null
+    },
+    {
+      "id": "RES-03",
+      "kind": "owner_decision",
+      "title": "PLAN and VERIFY/SECURITY are the SAME model (openai-codex/gpt-6.1-sol)",
+      "source": "var/LANE-RELIABILITY-CLOSURE-20261016/ROUND_CLOSURE.json#honest_residuals[2]",
+      "measurement_basis": "PLAN and VERIFY/SECURITY are the SAME model (openai-codex/gpt-6.1-sol): plan-vs-checker MODEL independence is ABSENT and is declared as SOD006-C2 OPEN_OWNER_ORDERED. Only process / lane / evidence-path independence remains.",
+      "ruling": null
+    },
+    {
+      "id": "RES-04",
+      "kind": "residual",
+      "title": "EXECUTE lane-turn reliability",
+      "source": "var/LANE-RELIABILITY-CLOSURE-20261016/ROUND_CLOSURE.json#honest_residuals[3]",
+      "measurement_basis": "EXECUTE lane-turn reliability: attempts BC1 and BC2 wedged (first file written, then no progress) and BC2 was terminated by the orchestrator on measurement. On the arm: the identity gate passed ONLY on BC3 (`required_arm == served_arm == opencode-go/deepseek-v4.1-flash`, `usage_receipt_ok: true`, rank 1). BC1's ATTEMPT-level attribution names the mandated arm (opencode-go/deepseek-v4.1-flash) but BC1's own aggregate verdict is `ok:false / ERR_LANE_ALL_ROUTES_EXHAUSTED / usage_receipt_ok:false / served_arm:null`, so BC1 does NOT establish arm identity; BC2 has no receipt at all and establishes nothing about the arm, although it DID produce the effort test module before wedging (tests/test_lane_effort_enforcement.py, mtime 11:30:24, 26 s into its own window and inside no other attempt's), which BC3 reused unchanged and which is therefore credited to BC2. Both fields are printed side by side in README's lane table for exactly this reason. The remedy applied in-round was an EDIT-ONLY turn (BC3), which completed in 74 s. A lane that wedges twice on the same brief shape is a standing reliability caveat for future rounds.",
+      "ruling": null
+    },
+    {
+      "id": "RES-05",
+      "kind": "residual",
+      "title": "The claim that the lanes are reliable rests on ONE successful EXECUTE turn and the PLAN plane probes; the firs",
+      "source": "var/LANE-RELIABILITY-CLOSURE-20261016/ROUND_CLOSURE.json#honest_residuals[4]",
+      "measurement_basis": "The claim that the lanes are reliable rests on ONE successful EXECUTE turn and the PLAN plane probes; the first two EXECUTE turns did not complete. That is stated as a count, not smoothed.",
+      "ruling": null
+    },
+    {
+      "id": "RES-06",
+      "kind": "residual",
+      "title": "E11 (five AO-guard cases) remains a NAMED OPEN RESIDUAL from the previous round and is unchanged here.",
+      "source": "var/LANE-RELIABILITY-CLOSURE-20261016/ROUND_CLOSURE.json#honest_residuals[5]",
+      "measurement_basis": "E11 (five AO-guard cases) remains a NAMED OPEN RESIDUAL from the previous round and is unchanged here.",
+      "ruling": null
+    },
+    {
+      "id": "RES-07",
+      "kind": "residual",
+      "title": "SELF-CORRECTION published with this packet",
+      "source": "var/LANE-RELIABILITY-CLOSURE-20261016/ROUND_CLOSURE.json#honest_residuals[6]",
+      "measurement_basis": "SELF-CORRECTION published with this packet: the first commit described BC1's ATTEMPT-level fields as the lane's served arm and receipt verdict, which overstated it. See the corrections block above and FINDINGS_SELF_CORRECTION_BC1_ARM_CLAIM.md. A round that only ever corrects other people's work has not looked at its own.",
+      "ruling": null
+    },
+    {
+      "id": "RES-08",
+      "kind": "residual",
+      "title": "The V1 checker brief was self-contradictory",
+      "source": "var/LANE-RELIABILITY-CLOSURE-20261016/ROUND_CLOSURE.json#honest_residuals[7]",
+      "measurement_basis": "The V1 checker brief was self-contradictory: it forbade every file write while requiring the checker to build mandate/pool fixtures. The checker refused to fabricate and returned UNCERTAIN with named_suite NOT_RUN; that refusal is why its other findings can be believed. The brief was repaired in-round to scope writes to the checker's own work directory, and V2 then seeded its own Shared Spine through the typed API with its own WorkOrder and CONFIRMED claim_B and claim_C. V1 is retained in the packet unedited: an acceptor is entitled to see that the first attempt did not agree and why.",
+      "ruling": null
+    },
+    {
+      "id": "RES-09",
+      "kind": "residual",
+      "title": "The checker's V2 caveat is adopted verbatim",
+      "source": "var/LANE-RELIABILITY-CLOSURE-20261016/ROUND_CLOSURE.json#honest_residuals[8]",
+      "measurement_basis": "The checker's V2 caveat is adopted verbatim: the effort-axis checks are DECLARATION checks. They prove the mandate, the declared pool arm and the declared served effort agree; they are NOT proof of the backend's actual reasoning effort.",
+      "ruling": null
+    },
+    {
+      "id": "RES-10",
+      "kind": "residual",
+      "title": "Both checkers flagged registry integrity on the CANDIDATE copy (fatal /codex_sha256 drift, epoch 19). That is ",
+      "source": "var/LANE-RELIABILITY-CLOSURE-20261016/ROUND_CLOSURE.json#honest_residuals[9]",
+      "measurement_basis": "Both checkers flagged registry integrity on the CANDIDATE copy (fatal /codex_sha256 drift, epoch 19). That is correct and expected: the candidate config/ is a pre-ChangeSet-A snapshot. ChangeSet A was applied to the CANONICAL config only, where canonical drift measures empty. The two facts are consistent, not contradictory, and both are published.",
+      "ruling": null
+    },
+    {
+      "id": "RES-11",
+      "kind": "residual",
+      "title": "Verification is only as independent as the sandbox",
+      "source": "var/LANE-RELIABILITY-CLOSURE-20261016/ROUND_CLOSURE.json#honest_residuals[10]",
+      "measurement_basis": "Verification is only as independent as the sandbox: both checkers ran through the same CODEX CLI lane mechanism as the writer, and the V2 suite re-run was the 5-module named suite (71 tests, OK) rather than the 7-module run my harness performs. The failure counts in the two runs are therefore not comparable, and neither run is an acceptance.",
+      "ruling": null
+    },
+    {
+      "id": "FIND-F1",
+      "kind": "gap",
+      "title": "# FINDINGS F1 — `routes[].PLAN` is the one surface that disagrees with every other PLAN declaration",
+      "source": "var\\LANE-RELIABILITY-CLOSURE-20261016\\FINDINGS_F1_PLAN_ROUTE_OUTLIER.md",
+      "measurement_basis": "finding file published in the previous round; see the file for the measurement",
+      "ruling": null
+    },
+    {
+      "id": "FIND-CHECKER",
+      "kind": "closure",
+      "title": "# FINDING — the checker brief V1 contradicted itself, and the checker caught it",
+      "source": "var\\LANE-RELIABILITY-CLOSURE-20261016\\FINDINGS_CHECKER_BRIEF_V1_WRITE_CONTRADICTION.md",
+      "measurement_basis": "finding file published in the previous round; see the file for the measurement",
+      "ruling": null
+    },
+    {
+      "id": "FIND-SELF",
+      "kind": "closure",
+      "title": "# FINDING — self-correction: an attempt-level field was reported as the lane's arm verdict",
+      "source": "var\\LANE-RELIABILITY-CLOSURE-20261016\\FINDINGS_SELF_CORRECTION_BC1_ARM_CLAIM.md",
+      "measurement_basis": "finding file published in the previous round; see the file for the measurement",
+      "ruling": null
+    },
+    {
+      "id": "GAP-PROMOTION",
+      "kind": "gap",
+      "title": "ChangeSets B and C are verified but live only in the candidate",
+      "source": "var/LANE-RELIABILITY-CLOSURE-20261016/FROZEN_MANIFEST.json",
+      "measurement_basis": "frozen subject: 200 files, aggregate c2527970de76aa61; the VERIFY lane returned claim_B AGREE and claim_C AGREE over it; the canonical tree still carries the pre-change behaviour (same fixtures: canonical exit 3 vs candidate exit 0 / allow)",
+      "ruling": null,
+      "changeset_files": [
+        "scripts/hgk-governed-runtime-controller.py",
+        "scripts/runtime_role_binding_assert.py",
+        "tests/test_governed_runtime_controller.py",
+        "tests/test_lane_effort_enforcement.py"
+      ]
+    },
+    {
+      "id": "GAP-F1",
+      "kind": "gap",
+      "title": "routes[].PLAN disagrees with every other PLAN declaration surface",
+      "source": "config/lane-routing-registry.yaml#routes[PLAN]",
+      "measurement_basis": "routes[].PLAN = opencode-go/glm-5.3-flash with selection_authority='owner-order-20261015-plan-model-rebind-glm', while the pool rank-1, the registry SoD block, the conformance test and the owner mandate all say openai-codex/gpt-6.1-sol; the registry itself marks that arm usable_now='QUOTA_429_2026-10-15'",
+      "ruling": null,
+      "registry_epoch_now": 20,
+      "plan_route_now": "opencode-go/glm-5.3-flash",
+      "plan_route_authority": "owner-order-20261015-plan-model-rebind-glm",
+      "plan_route_admission_status": "UNPROVEN",
+      "sod_conflicts": [
+        {
+          "id": "SOD006-C1",
+          "pairs": [
+            [
+              "PLAN",
+              "VERIFY_SECURITY"
+            ]
+          ],
+          "axis": "canonical_identity",
+          "status": "SUPERSEDED",
+          "resolution": "WO-FAR-D1D2-FINAL-ROUTE-20261008 / REQ-FAR-D1D2-FINAL-20261008 (owner adjudication; events=947)",
+          "resolved_by_rebinding": "owner adjudication 1 (round HGK-SOLUTION-APPLY-20261012); PLAN rebound to opencode-go/deepseek-v4.1-flash so PLAN no longer collides with any VERIFY arm. Historical record preserved."
+        },
+        {
+          "id": "SOD006-C2",
+          "pairs": [
+            [
+              "PLAN",
+              "VERIFY_SECURITY"
+            ]
+          ],
+          "axis": "canonical_identity",
+          "status": "OPEN_OWNER_ORDERED",
+          "note": "Round FAR-LANE-ROUTE-REBIND-20261015: owner explicitly re-points PLAN and VERIFY_SECURITY to the same default arm (openai-codex/gpt-6.1-sol, medium). Maker-and-checker on the same model family is an accepted, owner-declared residual risk for this round; the dispatcher still refuses any single call that would have the same arm self-verify its own output (no self-acceptance), and EXECUTE-vs-VERIFY separation still holds.",
+          "reconciliation": {
+            "ruled_by": "owner order 2026-10-15, lane chain rebind (this round)"
+          }
+        },
+        {
+          "id": "SOD-APPLY-01",
+          "pairs": [
+            [
+              "EXECUTE",
+              "PLAN"
+            ]
+          ],
+          "axis": "canonical_identity",
+          "status": "OPEN",
+          "note": "PLAN and EXECUTE were both rebound onto opencode-go/deepseek-v4.1-flash; they are both maker/executor routes and never check each other, but the model-axis collision is recorded, not hidden.",
+          "reconciliation": {
+            "ruled_by": "owner adjudication, round HGK-SOLUTION-APPLY-20261012 (Option 1 step (a); AMENDMENT_03)",
+            "decision_ref": "FAR-RUN-W6-PLAN-SOD-020 / DEC-020-1",
+            "what": "the strict entry (maker EXECUTE, checker PLAN, distinct_required true) was REMOVED from sod_invariants.pairs. The overlap remains RECORDED here rather than refused, which is what the owner's own 2026-10-10 lane-route-slots declaration already says -- selection_semantics.sod is \"NOT enforced; identity overlaps are recorded as facts only, not as refusals\", and identity_overlaps_recorded_not_enforced lists this very identity.",
+            "why_not_a_model_change": "PLAN's binding (opencode-go/deepseek-v4.1-flash) is the owner's declared rank-1 DEFAULT for the PLAN lane; moving it would have been rework and would have displaced the owner's own pool declaration. The defect was the ENCODING, not the binding.",
+            "compensating_control": [
+              "structural: PLAN and EXECUTE are both maker/executor routes and never check each other; the acceptance/verification route is the dedicated VERIFY_SECURITY lane (arm A), the only lane that checks another lane's artifacts.",
+              "artifact-level: every checker lane writes through the C1 verdict-artifact contract (write-first, shape-validated, updated_by_checker), so a checker cannot pass by omission.",
+              "per-card: the reasoning pin of the checking lane is recorded per card."
+            ],
+            "residual": "with the model axis no longer enforced between the two maker/executor routes, the remaining separation between them is ROLE and ARTIFACT, not model identity. Recorded as an accepted risk, not as a passing invariant."
+          }
+        }
+      ]
+    },
+    {
+      "id": "GAP-OWNER-ORDER-STALE",
+      "kind": "owner_decision",
+      "title": "The 2026-10-15 PLAN rebind order rests on a 429 that this session measured as no longer true",
+      "source": "config/lane-routing-registry.yaml#routes[PLAN].arms[openai-codex] + this session's probes",
+      "measurement_basis": "the row records usable_now=\"QUOTA_429_2026-10-15\" for openai-codex/gpt-6.1-sol, while this session measured that arm serving: PLAN_LANE_PROBE_OK, PLAN_TOOL_PROBE_OK, and fresh state.db::sessions rows (gpt-6.1-sol / openai-codex / chatgpt.com/backend-api/codex / subscription_included), plus two VERIFY/SECURITY turns at required_arm == served_arm == openai-codex/gpt-6.1-sol",
+      "ruling": null,
+      "owner_objective_in_force": "PLAN & Orchestrator = GPT 6.1 SOL-MEDIUM (OpenAI OAuth), per the 2026-10-16 order this round runs under"
+    },
+    {
+      "id": "PRIOR-OWNER_RULING",
+      "kind": "closure",
+      "title": "carried forward from the previous session: OWNER_RULING.json.md",
+      "source": "var\\LANE-ENFORCEMENT-APPLY-20261015\\FAR-GAP-RULING-20261015\\OWNER_RULING.json.md",
+      "measurement_basis": "read in full by this study; any item of it that is still unmet is folded into a ruling below rather than re-listed",
+      "ruling": null
+    },
+    {
+      "id": "PRIOR-FAR_INTEG_STUDY_RULING_V2",
+      "kind": "closure",
+      "title": "carried forward from the previous session: FAR_INTEG_STUDY_RULING_V2.md",
+      "source": "var\\LANE-ENFORCEMENT-APPLY-20261015\\FAR-GAP-RULING-20261015\\FAR_INTEG_STUDY_RULING_V2.md",
+      "measurement_basis": "read in full by this study; any item of it that is still unmet is folded into a ruling below rather than re-listed",
+      "ruling": null
+    },
+    {
+      "id": "PRIOR-R3_GOVERNED_PROFILE_RULING",
+      "kind": "closure",
+      "title": "carried forward from the previous session: R3_GOVERNED_PROFILE_RULING.md",
+      "source": "var\\LANE-ENFORCEMENT-APPLY-20261015\\FAR-GAP-RULING-20261015\\R3_GOVERNED_PROFILE_RULING.md",
+      "measurement_basis": "read in full by this study; any item of it that is still unmet is folded into a ruling below rather than re-listed",
+      "ruling": null
+    },
+    {
+      "id": "CLOSE-01",
+      "kind": "closure",
+      "title": "session closure + handover checkpoint for this round",
+      "source": "owner order: 最後你必須進行本SESSION的結案/移交事項",
+      "measurement_basis": "checkpoint written to _handover/ with the round dir, the claim ceiling, the residuals that survive, and the next moves",
+      "ruling": null
+    },
+    {
+      "id": "CLOSE-02",
+      "kind": "publication",
+      "title": "publish this round's implementation and evidence to Fabric",
+      "source": "owner order + C:/Projects/Agent_Workspace/API KEY/GITHUB-REPO_SHW097-4.txt",
+      "measurement_basis": "PR against shw097-team/Fabric main; the packet gate and the remote readback decide whether it actually landed",
+      "ruling": null
+    }
+  ],
+  "claim_ceiling": "an inventory is a list, not a judgement. Every item's disposition comes from the FAR study that follows; this file asserts nothing about any of them."
+}

@@ -1,0 +1,833 @@
+{
+  "schema": "HGK-ROUND-CLOSURE/1",
+  "round": "FAR-REMEDIATION-AND-CLOSURE-20261016",
+  "at_utc": "2026-10-16T05:27:19.255802+00:00",
+  "core_big_goal": "Under the current Fabric governance contract, with HG-KSEOS as the only control plane and the canonical Hermes bound as its governed Runtime/Orchestration plane: use FAR over every residual, gap, owner-decision item, session closure and repository publication; rule the best low-friction, high-necessity, non-over-engineered engineering option; EXECUTE that ruling; then close, hand over and publish the implementation and evidence to github.com/shw097-team/Fabric.",
+  "lane_model_selection_evidence": {
+    "PLAN_in_hermes": {
+      "model": "gpt-6.1-sol",
+      "provider": "openai-codex",
+      "effort": "medium",
+      "how_proven": "Two surfaces re-derived this round: (a) the governed profile's own state.db carries serving rows for openai-codex/gpt-6.1-sol on the official Codex base_url (mode=subscription_included); (b) the formal HERMES_HOME resolution probe exits 0 and resolves to profiles/hgk-governed. No NEW one-shot reply/tool probe was dispatched this round, and the round says so rather than implying one.",
+      "serving_rows": [
+        {
+          "session": "20261016_121307_a4d22a",
+          "model": "gpt-6.1-sol",
+          "provider": "openai-codex",
+          "base_url": "https://chatgpt.com/backend-api/codex",
+          "mode": "subscription_included",
+          "source": "oneshot",
+          "api_calls": 1,
+          "messages": 2,
+          "started_at": 1792123989.0031285
+        },
+        {
+          "session": "20261016_114341_4be993",
+          "model": "gpt-6.1-sol",
+          "provider": "openai-codex",
+          "base_url": "https://chatgpt.com/backend-api/codex",
+          "mode": "subscription_included",
+          "source": "oneshot",
+          "api_calls": 2,
+          "messages": 4,
+          "started_at": 1792122222.3624778
+        }
+      ],
+      "declaration_change": "R1 rebound routes[].PLAN and the coupled PLAN declarations from opencode-go/glm-5.3-flash to openai-codex/gpt-6.1-sol, so the DECLARATION now matches what the previous round MEASURED and what the owner order of 2026-10-16 names.",
+      "known_open_finding": "none — F1 closed this round (see canonical_mutations)"
+    },
+    "EXECUTE_codex_cli": {
+      "model": "deepseek-v4.1-flash",
+      "provider": "opencode-go",
+      "stage": "see canonical_mutations.R5_dispatcher_turn_shape and lanes/EXECUTE/R5/"
+    },
+    "VERIFY_SECURITY_codex_cli": {
+      "model": "gpt-6.1-sol",
+      "provider": "openai-codex",
+      "verdict": {
+        "verifier": "VERIFY_SECURITY/V3c; independent VERIFY_ONLY checker; dispatch identity not self-attested",
+        "subject_digest_checked": "Reference copy PASS: all 206 files and four directory digests match 73c59b3157645ba199d5302c0abbc6f930af291c99a86ffd806a3dbada3adf11 before testing. Frozen manifest FAIL: 56 items equal item_count; recomputed aggregate 88a53ba7a93ab34d0781f7d1cff3eab0e6c0f1df17e64639fb2fb2c88ac8f236 versus declared 4147b47c67490a756faff1897199d723fc08e2c57e058a27ab6271e7a298a56c. Sole mismatching item is the round FROZEN_MANIFEST.json itself: expected bytes=18015 sha256=5d51820b84b7762f5900f89f3edad6720c6cdea1fec6b5360ac35a31353ec7a3; actual bytes=18180 sha256=48d91dc8c015c8f354374c015aaef3795c266dbe816938802ce2ab7d2b29fa66. This is forbidden self-reference, not a reference-tree count discrepancy.",
+        "claims": [
+          {
+            "id": "C1",
+            "verdict": "AGREE",
+            "why": "Endpoint claim reproduced against real conformance behavior: preserved pre-change pair fails test_registry_and_projection_shape; post-change pair passes. Registry epoch and site revision are 20 before and 21 after, a net increment of one. Both frozen/post_state files equal canonical and supplied copy hashes. This establishes F1 closure and the net increment, not a historical exactly-once publication guarantee across the documented rollback/retry.",
+            "evidence": "TEST_RESULTS/shape_before.txt; TEST_RESULTS/shape_after.txt; TEST_RESULTS/derived.json states; TEST_RESULTS/final_checks.json frozen_post_comparison"
+          },
+          {
+            "id": "C2",
+            "verdict": "DISAGREE",
+            "why": "Default providers/models, GPT medium/OAuth settings, exact ordered fallback lists and site chains conform; source_of_routes revision=21 and sha256=e7be2dea36874f169e0cddc61ecb77102402218a2e05136878a097462e7664df match the site. However coupled declarations still contradict selection policy: site /sod/plan_lane says GLM is never auto-selected and /sod/verify_security_selection says arm B is never auto-selected, while registry PLAN fallback1 and VERIFY_SECURITY arm B declare automatic_selection=true. VERIFY_SECURITY arm C also combines an operator-selectable role with automatic_selection=true. Thus the default rebind is correct but complete cross-surface consistency is not.",
+            "evidence": "TEST_RESULTS/details.json routes, site_sod, pins; subject/config/lane-routing-registry.yaml:297; TEST_RESULTS/shape_after.txt"
+          },
+          {
+            "id": "C3",
+            "verdict": "DISAGREE",
+            "why": "Byte exactness is confirmed for all four promoted files: recomputed canonical, candidate and reference-copy hashes agree with each other and recorded hashes. All 200 prior frozen-candidate entries match their individual frozen digests; candidate configs remain epoch/revision 19 and differ from canonical 21. The candidate product comparison leaves only those two config differences. Legitimacy does not follow: apply_R2_promote.py copies canonical files before attempting create_workorder, and the receipt records ERR_WORKORDER_REQUIRES_DRAFT_TASKSPEC; later remediation cannot retroactively supply pre-write admission. Its recorded writer is hermes-plan-orchestrator rather than codex. Exclusive historical scope also lacks an atomic pre/post whole-tree inventory; a post-change git-status listing cannot prove nothing else changed.",
+            "evidence": "TEST_RESULTS/derived.json promotion, candidate_configs, candidate_comparison; TEST_RESULTS/final_checks.json candidate_files_checked and candidate_mismatches; apply_R2_promote.py; R2_PROMOTION_RECEIPT.json; SPINE_STATE_READBACK.json"
+          },
+          {
+            "id": "C4",
+            "verdict": "UNCERTAIN",
+            "why": "Own current-state discovery with local src/scripts on PYTHONPATH ran 540 tests: 29 failures and 17 errors, not recorded 527 tests with 7 failures and 2 errors. An isolated pre-config copy ran 540 tests: 30 failures and 17 errors. The paired name-set delta removes only test_registry_and_projection_shape and adds none, supporting isolation of F1. Original 10-to-9 canonical counts cannot be certified from this restricted reference tree/environment: it omits dependencies such as run_acceptance, tools/package_local.py and var/FAR-LANE-REUSE-RCA-20261015/sources/task_local_toolchain.json, and the active Python differs from the recorded pinned interpreter. Earlier unconfigured runs are preserved separately and are not used as canonical counts. These are reproduction limitations, not proof that the change caused 37 new regressions.",
+            "evidence": "TEST_RESULTS/whole_with_path.json; TEST_RESULTS/whole_with_path_after.txt; TEST_RESULTS/whole_with_path_before.txt; evidence/WHOLE_TREE_POST.txt; evidence/WHOLE_TREE_PRE.txt"
+          },
+          {
+            "id": "C5",
+            "verdict": "AGREE",
+            "why": "Ran the supplied detector on both actual states: three pre-change contradictions and zero post-change contradictions. Pre-change VERIFY_SECURITY chain starts openai-codex/gpt-6.1-sol while /sod/verify_security_lane explicitly says DEFAULT primary arm A = opencode-go / glm-5.3-flash; /sod/verify_security_default_arm and /sod/verify_security_arm_A likewise name GLM. Independent check_drift calls return zero fatal findings in both states. Earliest-position parsing correctly reads these four single-lane fields; its zero post-change result does not test the automatic-selection contradictions found under C2.",
+            "evidence": "TEST_RESULTS/declarations_before.txt; TEST_RESULTS/declarations_after.txt; TEST_RESULTS/derived.json states; TEST_RESULTS/details.json SC4"
+          },
+          {
+            "id": "C6",
+            "verdict": "DISAGREE",
+            "why": "Substantive SC-1 and SC-4 mechanisms reproduce. Reconstructed incomplete site and registry hashes exactly equal the completion receipt pre-fix hashes; the real combined 11-test guard/policy suite has four failures while drift is empty and conformance passes. But SC-1 incorrectly describes all four as 3 != 4: actual assertions are one 4 != 0 (the otherwise-admissible receipt case) and three 4 != 3. SC-4 is confirmed: MODELS-order selection returns gpt-6.1-sol for the sentence DEFAULT primary arm A = opencode-go / glm-5.3-flash; NON-DEFAULT ... arm B = openai-codex / gpt-6.1-sol, hiding that contradiction; position-order selection returns GLM. The withdrawal of independent F1 detection is correct. This disagreement is limited to SC-1 precision, not denial that the guard caught the incomplete change. The document now contains six corrections, not the brief four.",
+            "evidence": "TEST_RESULTS/details.json SC1_reconstructed and SC4; TEST_RESULTS/SC1_incomplete.txt; TEST_RESULTS/lane_guard_after.txt; R1_R3_COMPLETION_RECEIPT.json; FINDINGS_SELF_CORRECTIONS.md"
+          },
+          {
+            "id": "C7",
+            "verdict": "AGREE",
+            "why": "Neither canonical nor reference-copy dispatcher contains --turn-shape. Round README, closure observed outcomes and residuals explicitly say NOT delivered/NOT LANDED. Targeted document searches found requirements/specifications and expected outcomes, not a contrary delivery assertion. Ruling R5 is a proposed action, and FAR_RULING.md expressly disclaims being an execution result.",
+            "evidence": "TEST_RESULTS/details.json R5; TEST_RESULTS/final_checks.json R5_document_search; README.md:34; ROUND_CLOSURE.json:522; FAR_RULING.md"
+          }
+        ],
+        "commands_run": [
+          "Read-only Get-ChildItem, Get-Content and Select-String on the named manifest, reference digest recipe, claim documents, receipts and relevant production/test sources",
+          "rg --files -g AGENTS.md subject (unavailable; not treated as successful)",
+          "Native apply_patch through codex.exe --codex-run-as-apply-patch to create lane-local drivers and verdict; initial batch-wrapper patch attempt failed without creating a file",
+          "python -B TEST_RESULTS/verify_driver.py (hashes every manifest item and reference file; invokes real pre/post conformance, declaration detector, guard and whole-tree discovery)",
+          "python -B TEST_RESULTS/challenge_details.py (reconstructs incomplete production config and runs unittest tests.test_lane_guard tests.test_lane_policy -v; final reconstruction matches both recorded hashes)",
+          "python -B TEST_RESULTS/recheck_suites.py (unittest discover -s tests -t . -v in supplied copy and own pre-config copy, with each local src/scripts PYTHONPATH)",
+          "python -B TEST_RESULTS/final_checks.py (final per-item manifest readback, frozen post-state comparisons, all 200 candidate-entry hashes and targeted R5 document search)"
+        ],
+        "files_read": [
+          "All 206 reference-copy files, hashed before testing; digest recipe digest_subject.py and SUBJECT_TREE_DIGEST.json",
+          "All 56 absolute paths in FROZEN_MANIFEST.json, recomputed individually; full actual inventory in TEST_RESULTS/final_checks.json",
+          "All 200 files named in prior LANE-RELIABILITY-CLOSURE-20261016/FROZEN_MANIFEST.json; candidate product/config comparison",
+          "control/AGENTS.md; role_mandate.json; FAR_RULING.md; ROUND_CLOSURE.json; RESIDUAL_INVENTORY.json; FINDINGS_SELF_CORRECTIONS.md",
+          "R1_R3_COMPLETION_RECEIPT.json; R2_PROMOTION_RECEIPT.json; SPINE_STATE_READBACK.json; apply_R1_R3_fix1.py; apply_R2_promote.py; check_declaration_agreement.py",
+          "Pre-change config backups; frozen/post_state config pair; canonical config pair and four promoted product files",
+          "evidence/EVIDENCE_PROMOTION_SCOPE.md; evidence/WHOLE_TREE_PRE.txt; evidence/WHOLE_TREE_POST.txt; relevant round JSON/Markdown R5 declaration matches"
+        ],
+        "disagreements": [
+          "Frozen manifest binds its own stale digest/size; this violates the construction-time self-reference prohibition. Only FROZEN_MANIFEST.json disagrees, not all 56 items.",
+          "Automatic-selection declarations remain contradictory despite corrected defaults and zero drift.",
+          "R2 byte equality is proven but pre-write typed admission and codex writer requirements were not satisfied by the recorded promotion path; exclusive historical mutation scope is not proven.",
+          "SC-1 numerical description omits the positive receipt test that failed 4 != 0.",
+          "Recorded whole-tree 10-to-9 counts remain unverified in the supplied environment; independently reproduced paired counts are 47-to-46 named failures/errors, with only F1 removed."
+        ],
+        "notes": "Advisory challenge only; hgk_canonical_acceptance NOT_PERFORMED. No repair, promotion, deployment, permission change, canonical write or acceptance transition. All outputs and execution copies remain under this lane workspace. The manifest defect invalidates the claimed aggregate binding but does not prevent independent file-based C1-C7 adjudication; relevant product/config entries still match. No provider/model identity is inferred from self-description. C1 AGREE concerns deterministic endpoint behavior and net epoch delta, not an event-ledger exactly-once guarantee. Evidence paths without a prefix are relative to the round; TEST_RESULTS paths are relative to this work directory."
+      }
+    }
+  },
+  "detection_list": {
+    "D01": {
+      "expected": "the PLAN plane is SERVED by the owner-named arm",
+      "status": "PASS_CARRY_FORWARD_PLUS_DECLARATION",
+      "observed": {
+        "governed_profile_serving_rows": [
+          {
+            "session": "20261016_121307_a4d22a",
+            "model": "gpt-6.1-sol",
+            "provider": "openai-codex",
+            "base_url": "https://chatgpt.com/backend-api/codex",
+            "mode": "subscription_included",
+            "source": "oneshot",
+            "api_calls": 1,
+            "messages": 2,
+            "started_at": 1792123989.0031285
+          },
+          {
+            "session": "20261016_114341_4be993",
+            "model": "gpt-6.1-sol",
+            "provider": "openai-codex",
+            "base_url": "https://chatgpt.com/backend-api/codex",
+            "mode": "subscription_included",
+            "source": "oneshot",
+            "api_calls": 2,
+            "messages": 4,
+            "started_at": 1792122222.3624778
+          }
+        ],
+        "note": "no new one-shot probe this round; carry-forward measurement plus the rebind"
+      }
+    },
+    "D02": {
+      "expected": "the PLAN plane can ACT, not only reply",
+      "status": "PASS_CARRY_FORWARD",
+      "observed": {
+        "source": "round LANE-RELIABILITY-CLOSURE-20261016 tool-executing probe; not re-run"
+      }
+    },
+    "D03": {
+      "expected": "the formal adapter resolves HERMES_HOME to the governed profile",
+      "status": "PASS",
+      "observed": {
+        "argv": [
+          "pwsh",
+          "-NoProfile",
+          "-File",
+          "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\cache\\scratch\\r3_resolution_probe.ps1"
+        ],
+        "exit": 0,
+        "stdout_lines": [
+          "EFFECTIVE_HERMES_HOME=C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\profiles\\hgk-governed",
+          "profile config.yaml exists=True",
+          "governed_runtime present=True"
+        ]
+      }
+    },
+    "D04": {
+      "expected": "F1: the registry route row agrees with the owner chain",
+      "status": "PASS_AFTER_R1",
+      "observed": {
+        "test": "tests/test_lane_policy.py::test_registry_and_projection_shape",
+        "pre_change": "FAIL (present in the pre-change whole-tree failure list)",
+        "post_change": "absent from the post-change failure list",
+        "epoch": "20 -> 21"
+      }
+    },
+    "D05": {
+      "expected": "the pre-dispatch lane guard admits the site after the rebind",
+      "status": "PASS_AFTER_COMPLETION",
+      "observed": {
+        "probe": [
+          "exit_code = 0 | status = ADMIT"
+        ],
+        "suite": {
+          "exit": 0,
+          "ran": "Ran 11 tests in 9.457s",
+          "verdict": "OK",
+          "failed": []
+        }
+      }
+    },
+    "D06": {
+      "expected": "check_drift reports no fatal finding",
+      "status": "PASS",
+      "observed": {
+        "before_change": "n=0",
+        "after_R1": {
+          "n": 0,
+          "fatal": [],
+          "warn": []
+        },
+        "after_completion": "{\"n\": 0, \"fatal\": []}"
+      }
+    },
+    "D07": {
+      "expected": "the promoted product files are byte-identical to the frozen candidate",
+      "status": "PASS",
+      "observed": [
+        {
+          "file": "scripts/runtime_role_binding_assert.py",
+          "identical": true
+        },
+        {
+          "file": "scripts/hgk-governed-runtime-controller.py",
+          "identical": true
+        },
+        {
+          "file": "tests/test_governed_runtime_controller.py",
+          "identical": true
+        },
+        {
+          "file": "tests/test_lane_effort_enforcement.py",
+          "identical": true
+        }
+      ]
+    },
+    "D08": {
+      "expected": "the promoted product passes an orchestrator-side oracle",
+      "status": "PASS",
+      "observed": {
+        "tests.test_lane_effort_enforcement": {
+          "exit": 0,
+          "ran": "Ran 6 tests in 6.245s",
+          "verdict": "OK",
+          "failed_lines": []
+        },
+        "tests.test_governed_runtime_controller": {
+          "exit": 0,
+          "ran": "Ran 16 tests in 10.170s",
+          "verdict": "OK",
+          "failed_lines": []
+        }
+      }
+    },
+    "D09": {
+      "expected": "no test newly fails anywhere in the tree",
+      "status": "PASS",
+      "observed": {
+        "removed": [
+          "FAIL: test_registry_and_projection_shape"
+        ],
+        "added": []
+      }
+    },
+    "D10": {
+      "expected": "the intra-file declaration contradiction is detected by an instrument",
+      "status": "PASS",
+      "observed": {
+        "detector": "check_declaration_agreement.py",
+        "pre_change_snapshot": "3 contradictions",
+        "post_change": "0 contradictions",
+        "check_drift_in_the_contradictory_state": "0 fatal — invisible to it"
+      }
+    },
+    "D11": {
+      "expected": "the four mechanisms are enabled and evidenced",
+      "status": "PASS",
+      "observed": {
+        "KANBAN": "board far-remediation-and-closure-20261016 with a real DAG",
+        "SWARM": "root + 3 workers + verifier + synthesizer",
+        "OPENSPEC": "change hgk-far-remediation-20261016 validates --strict",
+        "GSTACK": null
+      }
+    },
+    "D12": {
+      "expected": "the residuals and gaps are enumerated mechanically, not from memory",
+      "status": "PASS",
+      "observed": {
+        "inventory": "RESIDUAL_INVENTORY.json",
+        "items": 22,
+        "by_kind": {}
+      }
+    },
+    "D13": {
+      "expected": "the R5 turn-shape ruling is delivered by the bounded writer",
+      "status": "NOT_DELIVERED",
+      "observed": "NOT LANDED — the bounded-writer turn did not return a change within its window; see the lane termination record. The ruling item stays open and appears in honest_residuals."
+    },
+    "D14": {
+      "expected": "an independent checker challenges the frozen subject",
+      "status": "DONE",
+      "observed": {
+        "verifier": "VERIFY_SECURITY/V3c; independent VERIFY_ONLY checker; dispatch identity not self-attested",
+        "subject_digest_checked": "Reference copy PASS: all 206 files and four directory digests match 73c59b3157645ba199d5302c0abbc6f930af291c99a86ffd806a3dbada3adf11 before testing. Frozen manifest FAIL: 56 items equal item_count; recomputed aggregate 88a53ba7a93ab34d0781f7d1cff3eab0e6c0f1df17e64639fb2fb2c88ac8f236 versus declared 4147b47c67490a756faff1897199d723fc08e2c57e058a27ab6271e7a298a56c. Sole mismatching item is the round FROZEN_MANIFEST.json itself: expected bytes=18015 sha256=5d51820b84b7762f5900f89f3edad6720c6cdea1fec6b5360ac35a31353ec7a3; actual bytes=18180 sha256=48d91dc8c015c8f354374c015aaef3795c266dbe816938802ce2ab7d2b29fa66. This is forbidden self-reference, not a reference-tree count discrepancy.",
+        "claims": [
+          {
+            "id": "C1",
+            "verdict": "AGREE",
+            "why": "Endpoint claim reproduced against real conformance behavior: preserved pre-change pair fails test_registry_and_projection_shape; post-change pair passes. Registry epoch and site revision are 20 before and 21 after, a net increment of one. Both frozen/post_state files equal canonical and supplied copy hashes. This establishes F1 closure and the net increment, not a historical exactly-once publication guarantee across the documented rollback/retry.",
+            "evidence": "TEST_RESULTS/shape_before.txt; TEST_RESULTS/shape_after.txt; TEST_RESULTS/derived.json states; TEST_RESULTS/final_checks.json frozen_post_comparison"
+          },
+          {
+            "id": "C2",
+            "verdict": "DISAGREE",
+            "why": "Default providers/models, GPT medium/OAuth settings, exact ordered fallback lists and site chains conform; source_of_routes revision=21 and sha256=e7be2dea36874f169e0cddc61ecb77102402218a2e05136878a097462e7664df match the site. However coupled declarations still contradict selection policy: site /sod/plan_lane says GLM is never auto-selected and /sod/verify_security_selection says arm B is never auto-selected, while registry PLAN fallback1 and VERIFY_SECURITY arm B declare automatic_selection=true. VERIFY_SECURITY arm C also combines an operator-selectable role with automatic_selection=true. Thus the default rebind is correct but complete cross-surface consistency is not.",
+            "evidence": "TEST_RESULTS/details.json routes, site_sod, pins; subject/config/lane-routing-registry.yaml:297; TEST_RESULTS/shape_after.txt"
+          },
+          {
+            "id": "C3",
+            "verdict": "DISAGREE",
+            "why": "Byte exactness is confirmed for all four promoted files: recomputed canonical, candidate and reference-copy hashes agree with each other and recorded hashes. All 200 prior frozen-candidate entries match their individual frozen digests; candidate configs remain epoch/revision 19 and differ from canonical 21. The candidate product comparison leaves only those two config differences. Legitimacy does not follow: apply_R2_promote.py copies canonical files before attempting create_workorder, and the receipt records ERR_WORKORDER_REQUIRES_DRAFT_TASKSPEC; later remediation cannot retroactively supply pre-write admission. Its recorded writer is hermes-plan-orchestrator rather than codex. Exclusive historical scope also lacks an atomic pre/post whole-tree inventory; a post-change git-status listing cannot prove nothing else changed.",
+            "evidence": "TEST_RESULTS/derived.json promotion, candidate_configs, candidate_comparison; TEST_RESULTS/final_checks.json candidate_files_checked and candidate_mismatches; apply_R2_promote.py; R2_PROMOTION_RECEIPT.json; SPINE_STATE_READBACK.json"
+          },
+          {
+            "id": "C4",
+            "verdict": "UNCERTAIN",
+            "why": "Own current-state discovery with local src/scripts on PYTHONPATH ran 540 tests: 29 failures and 17 errors, not recorded 527 tests with 7 failures and 2 errors. An isolated pre-config copy ran 540 tests: 30 failures and 17 errors. The paired name-set delta removes only test_registry_and_projection_shape and adds none, supporting isolation of F1. Original 10-to-9 canonical counts cannot be certified from this restricted reference tree/environment: it omits dependencies such as run_acceptance, tools/package_local.py and var/FAR-LANE-REUSE-RCA-20261015/sources/task_local_toolchain.json, and the active Python differs from the recorded pinned interpreter. Earlier unconfigured runs are preserved separately and are not used as canonical counts. These are reproduction limitations, not proof that the change caused 37 new regressions.",
+            "evidence": "TEST_RESULTS/whole_with_path.json; TEST_RESULTS/whole_with_path_after.txt; TEST_RESULTS/whole_with_path_before.txt; evidence/WHOLE_TREE_POST.txt; evidence/WHOLE_TREE_PRE.txt"
+          },
+          {
+            "id": "C5",
+            "verdict": "AGREE",
+            "why": "Ran the supplied detector on both actual states: three pre-change contradictions and zero post-change contradictions. Pre-change VERIFY_SECURITY chain starts openai-codex/gpt-6.1-sol while /sod/verify_security_lane explicitly says DEFAULT primary arm A = opencode-go / glm-5.3-flash; /sod/verify_security_default_arm and /sod/verify_security_arm_A likewise name GLM. Independent check_drift calls return zero fatal findings in both states. Earliest-position parsing correctly reads these four single-lane fields; its zero post-change result does not test the automatic-selection contradictions found under C2.",
+            "evidence": "TEST_RESULTS/declarations_before.txt; TEST_RESULTS/declarations_after.txt; TEST_RESULTS/derived.json states; TEST_RESULTS/details.json SC4"
+          },
+          {
+            "id": "C6",
+            "verdict": "DISAGREE",
+            "why": "Substantive SC-1 and SC-4 mechanisms reproduce. Reconstructed incomplete site and registry hashes exactly equal the completion receipt pre-fix hashes; the real combined 11-test guard/policy suite has four failures while drift is empty and conformance passes. But SC-1 incorrectly describes all four as 3 != 4: actual assertions are one 4 != 0 (the otherwise-admissible receipt case) and three 4 != 3. SC-4 is confirmed: MODELS-order selection returns gpt-6.1-sol for the sentence DEFAULT primary arm A = opencode-go / glm-5.3-flash; NON-DEFAULT ... arm B = openai-codex / gpt-6.1-sol, hiding that contradiction; position-order selection returns GLM. The withdrawal of independent F1 detection is correct. This disagreement is limited to SC-1 precision, not denial that the guard caught the incomplete change. The document now contains six corrections, not the brief four.",
+            "evidence": "TEST_RESULTS/details.json SC1_reconstructed and SC4; TEST_RESULTS/SC1_incomplete.txt; TEST_RESULTS/lane_guard_after.txt; R1_R3_COMPLETION_RECEIPT.json; FINDINGS_SELF_CORRECTIONS.md"
+          },
+          {
+            "id": "C7",
+            "verdict": "AGREE",
+            "why": "Neither canonical nor reference-copy dispatcher contains --turn-shape. Round README, closure observed outcomes and residuals explicitly say NOT delivered/NOT LANDED. Targeted document searches found requirements/specifications and expected outcomes, not a contrary delivery assertion. Ruling R5 is a proposed action, and FAR_RULING.md expressly disclaims being an execution result.",
+            "evidence": "TEST_RESULTS/details.json R5; TEST_RESULTS/final_checks.json R5_document_search; README.md:34; ROUND_CLOSURE.json:522; FAR_RULING.md"
+          }
+        ],
+        "commands_run": [
+          "Read-only Get-ChildItem, Get-Content and Select-String on the named manifest, reference digest recipe, claim documents, receipts and relevant production/test sources",
+          "rg --files -g AGENTS.md subject (unavailable; not treated as successful)",
+          "Native apply_patch through codex.exe --codex-run-as-apply-patch to create lane-local drivers and verdict; initial batch-wrapper patch attempt failed without creating a file",
+          "python -B TEST_RESULTS/verify_driver.py (hashes every manifest item and reference file; invokes real pre/post conformance, declaration detector, guard and whole-tree discovery)",
+          "python -B TEST_RESULTS/challenge_details.py (reconstructs incomplete production config and runs unittest tests.test_lane_guard tests.test_lane_policy -v; final reconstruction matches both recorded hashes)",
+          "python -B TEST_RESULTS/recheck_suites.py (unittest discover -s tests -t . -v in supplied copy and own pre-config copy, with each local src/scripts PYTHONPATH)",
+          "python -B TEST_RESULTS/final_checks.py (final per-item manifest readback, frozen post-state comparisons, all 200 candidate-entry hashes and targeted R5 document search)"
+        ],
+        "files_read": [
+          "All 206 reference-copy files, hashed before testing; digest recipe digest_subject.py and SUBJECT_TREE_DIGEST.json",
+          "All 56 absolute paths in FROZEN_MANIFEST.json, recomputed individually; full actual inventory in TEST_RESULTS/final_checks.json",
+          "All 200 files named in prior LANE-RELIABILITY-CLOSURE-20261016/FROZEN_MANIFEST.json; candidate product/config comparison",
+          "control/AGENTS.md; role_mandate.json; FAR_RULING.md; ROUND_CLOSURE.json; RESIDUAL_INVENTORY.json; FINDINGS_SELF_CORRECTIONS.md",
+          "R1_R3_COMPLETION_RECEIPT.json; R2_PROMOTION_RECEIPT.json; SPINE_STATE_READBACK.json; apply_R1_R3_fix1.py; apply_R2_promote.py; check_declaration_agreement.py",
+          "Pre-change config backups; frozen/post_state config pair; canonical config pair and four promoted product files",
+          "evidence/EVIDENCE_PROMOTION_SCOPE.md; evidence/WHOLE_TREE_PRE.txt; evidence/WHOLE_TREE_POST.txt; relevant round JSON/Markdown R5 declaration matches"
+        ],
+        "disagreements": [
+          "Frozen manifest binds its own stale digest/size; this violates the construction-time self-reference prohibition. Only FROZEN_MANIFEST.json disagrees, not all 56 items.",
+          "Automatic-selection declarations remain contradictory despite corrected defaults and zero drift.",
+          "R2 byte equality is proven but pre-write typed admission and codex writer requirements were not satisfied by the recorded promotion path; exclusive historical mutation scope is not proven.",
+          "SC-1 numerical description omits the positive receipt test that failed 4 != 0.",
+          "Recorded whole-tree 10-to-9 counts remain unverified in the supplied environment; independently reproduced paired counts are 47-to-46 named failures/errors, with only F1 removed."
+        ],
+        "notes": "Advisory challenge only; hgk_canonical_acceptance NOT_PERFORMED. No repair, promotion, deployment, permission change, canonical write or acceptance transition. All outputs and execution copies remain under this lane workspace. The manifest defect invalidates the claimed aggregate binding but does not prevent independent file-based C1-C7 adjudication; relevant product/config entries still match. No provider/model identity is inferred from self-description. C1 AGREE concerns deterministic endpoint behavior and net epoch delta, not an event-ledger exactly-once guarantee. Evidence paths without a prefix are relative to the round; TEST_RESULTS paths are relative to this work directory."
+      }
+    },
+    "D15": {
+      "expected": "E11 classified by measurement rather than by its label",
+      "status": "PASS_MIXED",
+      "observed": {
+        "what_it_actually_is": "4 E11 guard cases + 1 C2 case, not five E11 unit tests",
+        "on_this_host_unmodified_source": "136/136 OK (independent sub-report)",
+        "genuine_product_defect": "uncaught OSError on relay/usage METADATA probes at scripts/hgk-lane-dispatch.py:862-873 and :1134-1135, so the promised refusal receipt becomes a crash",
+        "report": "evidence/EVIDENCE_E11_PRECONDITION.md"
+      }
+    },
+    "D16": {
+      "expected": "the session is closed, handed over and published with a verified remote digest",
+      "status": "DONE",
+      "observed": {
+        "schema": "HGK-PUBLICATION-RECEIPT/1",
+        "round": "FAR-REMEDIATION-AND-CLOSURE-20261016",
+        "session": "20261016_104922_d455e7",
+        "repository": "shw097-team/Fabric",
+        "branch": "pub/far-remediation-and-closure-20261016",
+        "base_branch": "main",
+        "commit": "b4595e66f9f6ccc81432372cbc701009a4929ab2",
+        "pull_request": {
+          "number": 8,
+          "state": "open",
+          "url": "https://github.com/shw097-team/Fabric/pull/8",
+          "mergeable_state": "clean"
+        },
+        "packet": {
+          "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016",
+          "local_files": 126,
+          "local_bytes_human": "3.3M",
+          "changed_files_reported_by_api": 126,
+          "manifest_local_sha256": "475aa6c01b079709de59073d6bb147f0f1f0d0476ad5815bcfba25e100b48540",
+          "manifest_remote_git_blob": "0700ed8908d23ef211bb244c060dfb9896c3f6c1",
+          "manifest_local_git_blob": "0700ed8908d23ef211bb244c060dfb9896c3f6c1",
+          "manifest_byte_identical": true
+        },
+        "gate": {
+          "report": "GATE_REPORT.json",
+          "verdict": "GATE_PASS",
+          "checks": 7,
+          "embedded_copy_identical_to_local": true,
+          "embedded_local_sha256_prefix": "28b4b3a20550bba9"
+        },
+        "verification_method": "GitHub REST API readback: PR fields, branch head sha, remote tree listing, and a git blob-id comparison of PACKET_MANIFEST.json on both sides (the LOCAL git branch can be empty when it trails the merged remote, so blob ids are the authoritative comparison).",
+        "sha_match": true,
+        "force_push_used": false,
+        "main_merged": false,
+        "side_effects_disclosed": [
+          "A new branch and a new pull request exist on the remote repository; main was NOT touched, NOT merged and NOT force-pushed.",
+          "The four promoted product files are CANONICAL LOCALLY in HG-KSEOS, applied under this round's WorkOrders; the remote carries copies as evidence, not as an application.",
+          "The canonical config pair and registry epoch were changed in HG-KSEOS and are published here as before/after files with diffs."
+        ],
+        "token_handling": "Read from C:/Projects/Agent_Workspace/API KEY/GITHUB-REPO_SHW097-4.txt at run time into the environment only, never written to disk, never printed, never committed (the push used a per-invocation askPass wrapper that contains no secret).",
+        "canonical_acceptance": "NOT_PERFORMED",
+        "claim_ceiling": "Publication is not acceptance. This receipt records that the packet reached the remote byte-identically and that a pull request exists. It does NOT record approval, review, merge or canonical acceptance by anyone, and the checker verdicts it ships are advisory."
+      }
+    }
+  },
+  "reference_facts_rederived": {
+    "gstack_named_methods": null,
+    "gstack_selected_count": null,
+    "residual_inventory": {
+      "items": 22,
+      "by_kind": {}
+    },
+    "check_drift_after_remediation": "{\"n\": 0, \"fatal\": []}",
+    "lane_guard_after_remediation": {
+      "exit": 0,
+      "ran": "Ran 11 tests in 9.457s",
+      "verdict": "OK",
+      "failed": []
+    },
+    "lane_guard_probe_after_remediation": [
+      "exit_code = 0 | status = ADMIT"
+    ]
+  },
+  "canonical_mutations": {
+    "R1_R3_registry_and_site": {
+      "registry_sha256": {
+        "before_R1": "a0d811c48f6063b06af0688a16dd644bc1537651c75a8341795110253362c0b2",
+        "after_R1": "109bcf8a5eed210b669bb1dc2876c142d68b9737dcc2fd0efcd7ddedd1746431",
+        "after_completion": "38f0436b9bde0599a1c3d5b8b928950450f570548380a90079ca06ff0aba38d2"
+      },
+      "site_sha256": {
+        "before_R1": "d41f8f8bff41d4338a4b85dab7a60bd2c9c23b2f5f39c8c008e89bf82587bd36",
+        "after_R1": "21513be1476aed2fd824d746caccbd0623d29846be992dcf57b3a4eb16e1f928",
+        "after_completion": "e7be2dea36874f169e0cddc61ecb77102402218a2e05136878a097462e7664df"
+      },
+      "epoch": "20 -> 21",
+      "workorder": "WO-FAR-REMEDIATION-AND-CLOSURE-20261016-R1",
+      "attempt_1_rolled_back": true,
+      "edits": [
+        "registry: routes[].PLAN provider/model/auth/oauth/authority",
+        "registry: routes[].PLAN arms (gpt -> primary, glm -> rotation alternate, 429 kept as history)",
+        "registry: routes[].PLAN fallbacks + admission_status (UNPROVEN -> measured)",
+        "registry: epoch 20 -> 21 with the reason recorded",
+        "registry: SOD006-C2 OPEN_OWNER_ORDERED -> OWNER_ORDERED_IN_FORCE + surviving independence"
+      ],
+      "coupled_pins_re_pinned_in_completion": [
+        "source_of_routes.revision",
+        "source_of_routes.sha256",
+        "projections /registry_epoch,/revision"
+      ]
+    },
+    "R2_promoted_product_files": [
+      {
+        "rel": "scripts/runtime_role_binding_assert.py",
+        "action": "PROMOTED",
+        "byte_identical_to_candidate": true,
+        "backup": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\scripts\\runtime_role_binding_assert.py.bak-far-remediation-20261016",
+        "canonical_sha256_before": "63d004ade7ff65e16589e76572db33880b459141461beead764ea2f4a3015031",
+        "candidate_sha256": "6fa7ed6b6ea983e154a6a2a0b70a250baa6bbc65742a2a82425ce9a2f5fcacd2"
+      },
+      {
+        "rel": "scripts/hgk-governed-runtime-controller.py",
+        "action": "PROMOTED",
+        "byte_identical_to_candidate": true,
+        "backup": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\scripts\\hgk-governed-runtime-controller.py.bak-far-remediation-20261016",
+        "canonical_sha256_before": "67e79c52e6dd5d1d0d1d44e5dc625afe955efc1bef2aa40028e98c1f139bda90",
+        "candidate_sha256": "5b744de7c4e30240ae92421c2e7220efa5dfca02d88d85f2264bc921ad849412"
+      },
+      {
+        "rel": "tests/test_governed_runtime_controller.py",
+        "action": "PROMOTED",
+        "byte_identical_to_candidate": true,
+        "backup": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\tests\\test_governed_runtime_controller.py.bak-far-remediation-20261016",
+        "canonical_sha256_before": "db0e37ae86fc23a8674e6b788ef3665cc2953c65c0ee4a880c4979c6ef0e0467",
+        "candidate_sha256": "fdf1dbc251eee5e78d9c5db91f2a0ebf18c30c2daa43a66f62b3cde5bf26d521"
+      },
+      {
+        "rel": "tests/test_lane_effort_enforcement.py",
+        "action": "PROMOTED",
+        "byte_identical_to_candidate": true,
+        "backup": null,
+        "canonical_sha256_before": null,
+        "candidate_sha256": "18742bf07b4055ae44733829d9817787a12d3c9140536689c574223e5356e333"
+      }
+    ],
+    "R2_oracle": {
+      "tests.test_lane_effort_enforcement": {
+        "exit": 0,
+        "ran": "Ran 6 tests in 6.245s",
+        "verdict": "OK",
+        "failed_lines": []
+      },
+      "tests.test_governed_runtime_controller": {
+        "exit": 0,
+        "ran": "Ran 16 tests in 10.170s",
+        "verdict": "OK",
+        "failed_lines": []
+      }
+    },
+    "R2_workorder": {
+      "note": "InvariantViolation: ERR_WORKORDER_REQUIRES_DRAFT_TASKSPEC",
+      "remedied_late": true
+    },
+    "R5_dispatcher_turn_shape": "NOT LANDED — the bounded-writer turn did not return a change within its window; see the lane termination record. The ruling item stays open and appears in honest_residuals.",
+    "R7_declaration_detector": "round artifact only; three remediations priced, none applied"
+  },
+  "whole_tree_regression_isolation": {
+    "method": "the pre-change config pair was restored from its backups and the whole tree was run; the post-change pair was then restored and the same command re-run",
+    "pre_change": {
+      "ran": "Ran 527 tests in 110.343s",
+      "verdict": "FAILED (failures=8, errors=2)",
+      "named": [
+        "ERROR: tests.test_acceptance_resolution",
+        "ERROR: test_cov_11_06_source_text_unchanged",
+        "FAIL: test_evolution_status_cli",
+        "FAIL: test_project_start_cli",
+        "FAIL: test_r4_only_allowed_files_changed",
+        "FAIL: test_registry_and_projection_shape",
+        "FAIL: test_config_resolves_scheme_b_appdata_runtime",
+        "FAIL: test_denominator_head_matches_git",
+        "FAIL: test_final_md_guide_projection_matches_actual_guide",
+        "FAIL: test_guide_current_claim_is_task015"
+      ]
+    },
+    "post_change": {
+      "ran": "Ran 527 tests in 124.806s",
+      "verdict": "FAILED (failures=7, errors=2)",
+      "named": [
+        "ERROR: tests.test_acceptance_resolution",
+        "ERROR: test_cov_11_06_source_text_unchanged",
+        "FAIL: test_evolution_status_cli",
+        "FAIL: test_project_start_cli",
+        "FAIL: test_r4_only_allowed_files_changed",
+        "FAIL: test_config_resolves_scheme_b_appdata_runtime",
+        "FAIL: test_denominator_head_matches_git",
+        "FAIL: test_final_md_guide_projection_matches_actual_guide",
+        "FAIL: test_guide_current_claim_is_task015"
+      ]
+    },
+    "diff": {
+      "removed": [
+        "FAIL: test_registry_and_projection_shape"
+      ],
+      "added": []
+    },
+    "conclusion": "exactly one named test moved — test_registry_and_projection_shape, from FAIL to absent (F1 fixed); no test newly fails. The remaining named failures are unrelated by module ownership and are unchanged by this round."
+  },
+  "verify_verdict": {
+    "verifier": "VERIFY_SECURITY/V3c; independent VERIFY_ONLY checker; dispatch identity not self-attested",
+    "subject_digest_checked": "Reference copy PASS: all 206 files and four directory digests match 73c59b3157645ba199d5302c0abbc6f930af291c99a86ffd806a3dbada3adf11 before testing. Frozen manifest FAIL: 56 items equal item_count; recomputed aggregate 88a53ba7a93ab34d0781f7d1cff3eab0e6c0f1df17e64639fb2fb2c88ac8f236 versus declared 4147b47c67490a756faff1897199d723fc08e2c57e058a27ab6271e7a298a56c. Sole mismatching item is the round FROZEN_MANIFEST.json itself: expected bytes=18015 sha256=5d51820b84b7762f5900f89f3edad6720c6cdea1fec6b5360ac35a31353ec7a3; actual bytes=18180 sha256=48d91dc8c015c8f354374c015aaef3795c266dbe816938802ce2ab7d2b29fa66. This is forbidden self-reference, not a reference-tree count discrepancy.",
+    "claims": [
+      {
+        "id": "C1",
+        "verdict": "AGREE",
+        "why": "Endpoint claim reproduced against real conformance behavior: preserved pre-change pair fails test_registry_and_projection_shape; post-change pair passes. Registry epoch and site revision are 20 before and 21 after, a net increment of one. Both frozen/post_state files equal canonical and supplied copy hashes. This establishes F1 closure and the net increment, not a historical exactly-once publication guarantee across the documented rollback/retry.",
+        "evidence": "TEST_RESULTS/shape_before.txt; TEST_RESULTS/shape_after.txt; TEST_RESULTS/derived.json states; TEST_RESULTS/final_checks.json frozen_post_comparison"
+      },
+      {
+        "id": "C2",
+        "verdict": "DISAGREE",
+        "why": "Default providers/models, GPT medium/OAuth settings, exact ordered fallback lists and site chains conform; source_of_routes revision=21 and sha256=e7be2dea36874f169e0cddc61ecb77102402218a2e05136878a097462e7664df match the site. However coupled declarations still contradict selection policy: site /sod/plan_lane says GLM is never auto-selected and /sod/verify_security_selection says arm B is never auto-selected, while registry PLAN fallback1 and VERIFY_SECURITY arm B declare automatic_selection=true. VERIFY_SECURITY arm C also combines an operator-selectable role with automatic_selection=true. Thus the default rebind is correct but complete cross-surface consistency is not.",
+        "evidence": "TEST_RESULTS/details.json routes, site_sod, pins; subject/config/lane-routing-registry.yaml:297; TEST_RESULTS/shape_after.txt"
+      },
+      {
+        "id": "C3",
+        "verdict": "DISAGREE",
+        "why": "Byte exactness is confirmed for all four promoted files: recomputed canonical, candidate and reference-copy hashes agree with each other and recorded hashes. All 200 prior frozen-candidate entries match their individual frozen digests; candidate configs remain epoch/revision 19 and differ from canonical 21. The candidate product comparison leaves only those two config differences. Legitimacy does not follow: apply_R2_promote.py copies canonical files before attempting create_workorder, and the receipt records ERR_WORKORDER_REQUIRES_DRAFT_TASKSPEC; later remediation cannot retroactively supply pre-write admission. Its recorded writer is hermes-plan-orchestrator rather than codex. Exclusive historical scope also lacks an atomic pre/post whole-tree inventory; a post-change git-status listing cannot prove nothing else changed.",
+        "evidence": "TEST_RESULTS/derived.json promotion, candidate_configs, candidate_comparison; TEST_RESULTS/final_checks.json candidate_files_checked and candidate_mismatches; apply_R2_promote.py; R2_PROMOTION_RECEIPT.json; SPINE_STATE_READBACK.json"
+      },
+      {
+        "id": "C4",
+        "verdict": "UNCERTAIN",
+        "why": "Own current-state discovery with local src/scripts on PYTHONPATH ran 540 tests: 29 failures and 17 errors, not recorded 527 tests with 7 failures and 2 errors. An isolated pre-config copy ran 540 tests: 30 failures and 17 errors. The paired name-set delta removes only test_registry_and_projection_shape and adds none, supporting isolation of F1. Original 10-to-9 canonical counts cannot be certified from this restricted reference tree/environment: it omits dependencies such as run_acceptance, tools/package_local.py and var/FAR-LANE-REUSE-RCA-20261015/sources/task_local_toolchain.json, and the active Python differs from the recorded pinned interpreter. Earlier unconfigured runs are preserved separately and are not used as canonical counts. These are reproduction limitations, not proof that the change caused 37 new regressions.",
+        "evidence": "TEST_RESULTS/whole_with_path.json; TEST_RESULTS/whole_with_path_after.txt; TEST_RESULTS/whole_with_path_before.txt; evidence/WHOLE_TREE_POST.txt; evidence/WHOLE_TREE_PRE.txt"
+      },
+      {
+        "id": "C5",
+        "verdict": "AGREE",
+        "why": "Ran the supplied detector on both actual states: three pre-change contradictions and zero post-change contradictions. Pre-change VERIFY_SECURITY chain starts openai-codex/gpt-6.1-sol while /sod/verify_security_lane explicitly says DEFAULT primary arm A = opencode-go / glm-5.3-flash; /sod/verify_security_default_arm and /sod/verify_security_arm_A likewise name GLM. Independent check_drift calls return zero fatal findings in both states. Earliest-position parsing correctly reads these four single-lane fields; its zero post-change result does not test the automatic-selection contradictions found under C2.",
+        "evidence": "TEST_RESULTS/declarations_before.txt; TEST_RESULTS/declarations_after.txt; TEST_RESULTS/derived.json states; TEST_RESULTS/details.json SC4"
+      },
+      {
+        "id": "C6",
+        "verdict": "DISAGREE",
+        "why": "Substantive SC-1 and SC-4 mechanisms reproduce. Reconstructed incomplete site and registry hashes exactly equal the completion receipt pre-fix hashes; the real combined 11-test guard/policy suite has four failures while drift is empty and conformance passes. But SC-1 incorrectly describes all four as 3 != 4: actual assertions are one 4 != 0 (the otherwise-admissible receipt case) and three 4 != 3. SC-4 is confirmed: MODELS-order selection returns gpt-6.1-sol for the sentence DEFAULT primary arm A = opencode-go / glm-5.3-flash; NON-DEFAULT ... arm B = openai-codex / gpt-6.1-sol, hiding that contradiction; position-order selection returns GLM. The withdrawal of independent F1 detection is correct. This disagreement is limited to SC-1 precision, not denial that the guard caught the incomplete change. The document now contains six corrections, not the brief four.",
+        "evidence": "TEST_RESULTS/details.json SC1_reconstructed and SC4; TEST_RESULTS/SC1_incomplete.txt; TEST_RESULTS/lane_guard_after.txt; R1_R3_COMPLETION_RECEIPT.json; FINDINGS_SELF_CORRECTIONS.md"
+      },
+      {
+        "id": "C7",
+        "verdict": "AGREE",
+        "why": "Neither canonical nor reference-copy dispatcher contains --turn-shape. Round README, closure observed outcomes and residuals explicitly say NOT delivered/NOT LANDED. Targeted document searches found requirements/specifications and expected outcomes, not a contrary delivery assertion. Ruling R5 is a proposed action, and FAR_RULING.md expressly disclaims being an execution result.",
+        "evidence": "TEST_RESULTS/details.json R5; TEST_RESULTS/final_checks.json R5_document_search; README.md:34; ROUND_CLOSURE.json:522; FAR_RULING.md"
+      }
+    ],
+    "commands_run": [
+      "Read-only Get-ChildItem, Get-Content and Select-String on the named manifest, reference digest recipe, claim documents, receipts and relevant production/test sources",
+      "rg --files -g AGENTS.md subject (unavailable; not treated as successful)",
+      "Native apply_patch through codex.exe --codex-run-as-apply-patch to create lane-local drivers and verdict; initial batch-wrapper patch attempt failed without creating a file",
+      "python -B TEST_RESULTS/verify_driver.py (hashes every manifest item and reference file; invokes real pre/post conformance, declaration detector, guard and whole-tree discovery)",
+      "python -B TEST_RESULTS/challenge_details.py (reconstructs incomplete production config and runs unittest tests.test_lane_guard tests.test_lane_policy -v; final reconstruction matches both recorded hashes)",
+      "python -B TEST_RESULTS/recheck_suites.py (unittest discover -s tests -t . -v in supplied copy and own pre-config copy, with each local src/scripts PYTHONPATH)",
+      "python -B TEST_RESULTS/final_checks.py (final per-item manifest readback, frozen post-state comparisons, all 200 candidate-entry hashes and targeted R5 document search)"
+    ],
+    "files_read": [
+      "All 206 reference-copy files, hashed before testing; digest recipe digest_subject.py and SUBJECT_TREE_DIGEST.json",
+      "All 56 absolute paths in FROZEN_MANIFEST.json, recomputed individually; full actual inventory in TEST_RESULTS/final_checks.json",
+      "All 200 files named in prior LANE-RELIABILITY-CLOSURE-20261016/FROZEN_MANIFEST.json; candidate product/config comparison",
+      "control/AGENTS.md; role_mandate.json; FAR_RULING.md; ROUND_CLOSURE.json; RESIDUAL_INVENTORY.json; FINDINGS_SELF_CORRECTIONS.md",
+      "R1_R3_COMPLETION_RECEIPT.json; R2_PROMOTION_RECEIPT.json; SPINE_STATE_READBACK.json; apply_R1_R3_fix1.py; apply_R2_promote.py; check_declaration_agreement.py",
+      "Pre-change config backups; frozen/post_state config pair; canonical config pair and four promoted product files",
+      "evidence/EVIDENCE_PROMOTION_SCOPE.md; evidence/WHOLE_TREE_PRE.txt; evidence/WHOLE_TREE_POST.txt; relevant round JSON/Markdown R5 declaration matches"
+    ],
+    "disagreements": [
+      "Frozen manifest binds its own stale digest/size; this violates the construction-time self-reference prohibition. Only FROZEN_MANIFEST.json disagrees, not all 56 items.",
+      "Automatic-selection declarations remain contradictory despite corrected defaults and zero drift.",
+      "R2 byte equality is proven but pre-write typed admission and codex writer requirements were not satisfied by the recorded promotion path; exclusive historical mutation scope is not proven.",
+      "SC-1 numerical description omits the positive receipt test that failed 4 != 0.",
+      "Recorded whole-tree 10-to-9 counts remain unverified in the supplied environment; independently reproduced paired counts are 47-to-46 named failures/errors, with only F1 removed."
+    ],
+    "notes": "Advisory challenge only; hgk_canonical_acceptance NOT_PERFORMED. No repair, promotion, deployment, permission change, canonical write or acceptance transition. All outputs and execution copies remain under this lane workspace. The manifest defect invalidates the claimed aggregate binding but does not prevent independent file-based C1-C7 adjudication; relevant product/config entries still match. No provider/model identity is inferred from self-description. C1 AGREE concerns deterministic endpoint behavior and net epoch delta, not an event-ledger exactly-once guarantee. Evidence paths without a prefix are relative to the round; TEST_RESULTS paths are relative to this work directory."
+  },
+  "verify_verdict_source": "lanes/VERIFY_SECURITY/V3c/work/CHECKER_VERDICT.json",
+  "verify_verdict_history": [
+    {
+      "path": "lanes/VERIFY_SECURITY/V3b/work/CHECKER_VERDICT.json",
+      "verdicts": {
+        "C1": "UNCERTAIN",
+        "C2": "UNCERTAIN",
+        "C3": "UNCERTAIN",
+        "C4": "UNCERTAIN",
+        "C5": "UNCERTAIN",
+        "C6": "UNCERTAIN",
+        "C7": "UNCERTAIN"
+      },
+      "subject_digest_checked": "FAILED: declared 7ae3dd836968c53f609e49a5c58949925eaabdf35cc9c97fad1c25bd52614a74; recomputed original manifest paths 10bf3ad90a94eb57e2bbaea00c7b637f1b890d69bd6288c8a87606d0742f6774",
+      "is_refusal": true
+    },
+    {
+      "path": "lanes/VERIFY_SECURITY/V3c/work/CHECKER_VERDICT.json",
+      "verdicts": {
+        "C1": "AGREE",
+        "C2": "DISAGREE",
+        "C3": "DISAGREE",
+        "C4": "UNCERTAIN",
+        "C5": "AGREE",
+        "C6": "DISAGREE",
+        "C7": "AGREE"
+      },
+      "subject_digest_checked": "Reference copy PASS: all 206 files and four directory digests match 73c59b3157645ba199d5302c0abbc6f930af291c99a86ffd806a3dbada3adf11 before testing. Frozen manifest FAIL: 56 items equal item_count; re",
+      "is_refusal": false
+    }
+  ],
+  "verify_verdict_history_note": "Every VERIFY/SECURITY turn that produced a verdict, oldest first. An entry with is_refusal=TRUE is a REFUSAL, not a verification: it establishes nothing about the claims and no claim here rests on it. The binding verdict is the LAST entry (verify_verdict_source).",
+  "publication": {
+    "schema": "HGK-PUBLICATION-RECEIPT/1",
+    "round": "FAR-REMEDIATION-AND-CLOSURE-20261016",
+    "session": "20261016_104922_d455e7",
+    "repository": "shw097-team/Fabric",
+    "branch": "pub/far-remediation-and-closure-20261016",
+    "base_branch": "main",
+    "commit": "b4595e66f9f6ccc81432372cbc701009a4929ab2",
+    "pull_request": {
+      "number": 8,
+      "state": "open",
+      "url": "https://github.com/shw097-team/Fabric/pull/8",
+      "mergeable_state": "clean"
+    },
+    "packet": {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016",
+      "local_files": 126,
+      "local_bytes_human": "3.3M",
+      "changed_files_reported_by_api": 126,
+      "manifest_local_sha256": "475aa6c01b079709de59073d6bb147f0f1f0d0476ad5815bcfba25e100b48540",
+      "manifest_remote_git_blob": "0700ed8908d23ef211bb244c060dfb9896c3f6c1",
+      "manifest_local_git_blob": "0700ed8908d23ef211bb244c060dfb9896c3f6c1",
+      "manifest_byte_identical": true
+    },
+    "gate": {
+      "report": "GATE_REPORT.json",
+      "verdict": "GATE_PASS",
+      "checks": 7,
+      "embedded_copy_identical_to_local": true,
+      "embedded_local_sha256_prefix": "28b4b3a20550bba9"
+    },
+    "verification_method": "GitHub REST API readback: PR fields, branch head sha, remote tree listing, and a git blob-id comparison of PACKET_MANIFEST.json on both sides (the LOCAL git branch can be empty when it trails the merged remote, so blob ids are the authoritative comparison).",
+    "sha_match": true,
+    "force_push_used": false,
+    "main_merged": false,
+    "side_effects_disclosed": [
+      "A new branch and a new pull request exist on the remote repository; main was NOT touched, NOT merged and NOT force-pushed.",
+      "The four promoted product files are CANONICAL LOCALLY in HG-KSEOS, applied under this round's WorkOrders; the remote carries copies as evidence, not as an application.",
+      "The canonical config pair and registry epoch were changed in HG-KSEOS and are published here as before/after files with diffs."
+    ],
+    "token_handling": "Read from C:/Projects/Agent_Workspace/API KEY/GITHUB-REPO_SHW097-4.txt at run time into the environment only, never written to disk, never printed, never committed (the push used a per-invocation askPass wrapper that contains no secret).",
+    "canonical_acceptance": "NOT_PERFORMED",
+    "claim_ceiling": "Publication is not acceptance. This receipt records that the packet reached the remote byte-identically and that a pull request exists. It does NOT record approval, review, merge or canonical acceptance by anyone, and the checker verdicts it ships are advisory."
+  },
+  "corrections": [
+    {
+      "id": "SC-1",
+      "what": "R1/R3 was first applied INCOMPLETE: the pre-dispatch lane guard refused with ERR_LANE_SOURCE_STALE because source_of_routes{revision,sha256} and the registry-epoch/site-revision coupling are not drift-checked. PRECISION, supplied by the independent checker (V3c): my first description collapsed four failures into one shape. The assertions are actually ONE 4 != 0 (the otherwise-admissible receipt case) and THREE 4 != 3 -- two distinct causes, not one.",
+      "found_by": "tests/test_lane_guard.py (4 newly failing cases, exit 3 != 4)",
+      "corrected_in": "apply_R1_R3_fix1.py -> R1_R3_COMPLETION_RECEIPT.json",
+      "verified_after": "11 tests OK; guard probe exit 0/ADMIT; check_drift 0 fatal"
+    },
+    {
+      "id": "SC-2",
+      "what": "attempt 1 was applied then rolled back; the rollback restored files only, so its spine rows survived and attempt 2 hit a UNIQUE constraint.",
+      "corrected_in": "R1_R3_APPLY_RECEIPT.attempt1_ROLLED_BACK.json + SPINE_STATE_READBACK.json"
+    },
+    {
+      "id": "SC-3",
+      "what": "R2 promoted the four files BEFORE its WorkOrder existed (spine refused with ERR_WORKORDER_REQUIRES_DRAFT_TASKSPEC: no TaskSpec had been created).",
+      "corrected_in": "remedy_spine_workorders.py; the refusal and the remedy are both in R2_PROMOTION_RECEIPT.json"
+    },
+    {
+      "id": "SC-4",
+      "what": "the R7 detector's first parser returned the first model token in list order rather than by position, reporting AGREES on the very line it exists to catch; a claim made from that buggy run was WITHDRAWN.",
+      "corrected_in": "check_declaration_agreement.py (position-first); FINDINGS_SELF_CORRECTIONS.md"
+    },
+    {
+      "id": "SC-5",
+      "what": "the frozen subject was taken TOO EARLY — before the checker's first verdict and before the round's own helper scripts settled — so it no longer bound the paths it recorded. The first VERIFY/SECURITY turn (V3b) recomputed the aggregate, got a different value, and REFUSED to adjudicate any claim (UNCERTAIN on C1-C7) instead of inventing a replacement binding. That refusal was correct and is the reason the defect is on the record at all. Independently reproduced orchestrator-side by the gate's own G2 check, which named the same disagreeing files: freeze_subject_round2.py, gate_round2.py and publish_packet_round2.py.",
+      "found_by": "VERIFY_SECURITY/V3b CHECKER_VERDICT.json (disagreements[]) and GATE_REPORT.json G2",
+      "corrected_in": "re-frozen LAST (revision 2, with the helper scripts excluded from the frozen set and the earlier revision retained as FROZEN_MANIFEST.rev1.SUPERSEDED.json); the checker was then re-dispatched against the valid freeze as V3c"
+    },
+    {
+      "id": "SC-6",
+      "what": "the first CHECKER_BRIEF conflated TWO DIFFERENT OBJECTS: the frozen manifest (this round's subject: the canonical change, the promoted product, the round documents, the evidence sub-tree, the lane receipts) and the `subject/` reference tree (a byte-identical copy of the canonical scripts/src/tests/config, provided only so the checker can run the suites). The checker correctly reported their differing sizes as a disagreement because the brief never said they measure different things.",
+      "found_by": "VERIFY_SECURITY/V3b CHECKER_VERDICT.json (disagreements[])",
+      "corrected_in": "CHECKER_BRIEF.md now states both objects explicitly, names each one's scope and file counts, and requires proportionate adjudication rather than blanket non-adjudication"
+    },
+    {
+      "id": "SC-7",
+      "what": "the R7 detector's SCOPE was overstated by omission: check_declaration_agreement.py compares the DEFAULT-ARM claims only, so it cannot see a contradiction on another axis. The independent checker found one by hand -- /sod/plan_lane and /sod/verify_security_selection say an arm is NEVER auto-selected while the registry declares automatic_selection=true for exactly those arms. My report of \"0 contradictions after the fix\" was true ONLY over the axis the detector reads and must not be read as general cross-surface agreement.",
+      "found_by": "VERIFY_SECURITY/V3c CHECKER_VERDICT.json (C2 DISAGREE, disagreement 2)",
+      "corrected_in": "recorded as an OPEN residual in this closure and priced in FINDINGS_V3C_INDEPENDENT_VERDICT.md (F-IND-2); the detector is NOT silently widened here -- that axis belongs to a WorkOrder"
+    },
+    {
+      "id": "SC-8",
+      "what": "the gate's own self-acceptance check (G4) COULD NOT FAIL for the reason it was written for. Its pattern was r'canonical_acceptance[\"\\\\s:]+(?!NOT_PERFORMED)' -- and a greedy character class followed by a negative lookahead simply BACKTRACKS to a shorter match, so the lookahead around NOT_PERFORMED was always satisfiable. It therefore flagged every document that mentioned the key, including the ones that say NOT_PERFORMED, and would also have missed a genuine positive written without the key word. Replaced with a direct document-level assertion (a file that mentions canonical_acceptance must also contain NOT_PERFORMED).",
+      "found_by": "the gate itself, the moment its own packet contained text using the key",
+      "corrected_in": "gate_round2.py G4; the same defect class was removed from the litter check, whose generic \"_probe\" token flagged a legitimate checker script (seam_probe.py) -- a false positive teaches a reader to ignore the check"
+    },
+    {
+      "id": "SC-9",
+      "what": "the first packet build shipped 352 files because the lane-receipt rule flattened the VERIFY lane's scratch: 244 files from the checker's tree copies (work/subject/**, work/TEST_RESULTS/{pre_tree,incomplete_tree,before,after}/**) and its per-test scratch directories. The rule is now a DEPTH limit -- files directly under work/, plus the checker's own measurement files directly under work/TEST_RESULTS/ -- because a name list would keep missing the next scratch directory a lane invents.",
+      "found_by": "gate_round2.py G6 (which flagged the litter) and its own packet file count",
+      "corrected_in": "publish_packet_round2.py; the rebuild is reported below with its file count"
+    },
+    {
+      "id": "SC-10",
+      "what": "a RE-RUN OF AN IDEMPOTENT SCRIPT DESTROYED A DISCLOSURE. apply_R2_promote.py records why the 114 MB per-file enumeration was compacted inside the receipt it writes, and that script was re-invoked later in the round (a re-run finds the files already identical and writes no bytes). The re-run REWROTE the same receipt file and could not re-enter the compaction branch, because the large file was already gone -- so R2_PROMOTION_RECEIPT.json.enumeration_compacted now reads null, the only in-packet reason the enumeration is absent was lost, and EVIDENCE_PROMOTION_SCOPE.md still pointed a reader at the deleted file (\"Every file is individually listed in the JSON\"). Found only because a late sub-agent notification prompted a check of what the child had actually written.",
+      "found_by": "orchestrator check prompted by the late delegation notification for deleg_3dc8f237",
+      "corrected_in": "ADDITIVE ONLY: evidence/EVIDENCE_PROMOTION_SCOPE_COMPACTION_NOTE.md restores the disclosure and names the defect; no frozen artifact was rewritten. Generalised rules: a receipt a re-runnable script overwrites is not a receipt (append a revision instead), and a publication gate should extract every artifact filename fail on any that is absent from the packet"
+    },
+    {
+      "id": "SC-11",
+      "what": "THE FROZEN SUBJECT CONTAINED A FILE THE ROUND'S OWN PUBLISH TOOLING REWRITES. push_round2.py rewrites PUSH_RECEIPT.json at the end of every push, and that file had been frozen as a round document -- so the freeze taken before a push failed its own recomputation after it: an EQUAL aggregate with the single mismatching item PUSH_RECEIPT.json. This is the same class as SC-10, on my own tooling.",
+      "found_by": "gate_round2.py G2 (aggregate equal, one item mismatched) during the publication addendum for the corrected checkpoint digests",
+      "corrected_in": "PUSH_RECEIPT.json added, with its reason, to the freeze exclusion set beside FROZEN_MANIFEST.json and GATE_REPORT.json; the subject was re-frozen as a new revision and the packet rebuilt. Generalised rule: freeze only bytes that NO tool in the round rewrites after the freeze -- anything else ships in the packet but is disclosed as SHIPPED-BUT-NOT-FROZEN"
+    }
+  ],
+  "claim_ceiling": "CANDIDATE_ONLY. Everything here was measured on this host by this session. Applying a ruling is not accepting it: nothing is accepted, and the checker verdict is advisory. hgk_canonical_acceptance: NOT_PERFORMED.",
+  "external_acceptance_requested": "An external engineer should judge: (1) whether the R1 rebind matches the owner order in force; (2) whether promoting the four verified files was authorised; (3) the R7 ruling and its three priced remediations; (4) the E11/MIXED classification and the two genuine product defects it identifies.",
+  "detection_tally": {
+    "total": 16,
+    "by_status": {
+      "DONE": 2,
+      "NOT_DELIVERED": 1,
+      "PASS": 8,
+      "PASS_AFTER_COMPLETION": 1,
+      "PASS_AFTER_R1": 1,
+      "PASS_CARRY_FORWARD": 1,
+      "PASS_CARRY_FORWARD_PLUS_DECLARATION": 1,
+      "PASS_MIXED": 1
+    },
+    "not_delivered": [
+      "D13"
+    ],
+    "pending": []
+  },
+  "honest_residuals": [
+    "R5 NOT DELIVERED: the bounded-writer turn did not return within its window, so the turn-shape flag is NOT implemented in scripts/hgk-lane-dispatch.py. The previous round's single most valuable reliability lever therefore remains unencoded in the product, and it is recorded as open rather than claimed. Its lane record and termination evidence are in lanes/EXECUTE/R5/.",
+    "The R7 class remains undetected by the product: check_declaration_agreement.py is a round artifact. Three remediations are priced in FINDINGS_R7_CROSS_FIELD_DECLARATION.md and none is applied.",
+    "E11 is reclassified MIXED, not closed. Two genuine product defects are identified (uncaught metadata OSError at two dispatcher sites); neither is repaired here. The 136/136 pass measures this host, not the historical sandbox or production relay health.",
+    "The exact whole-tree canonical-vs-candidate difference cannot be certified: 757 directories under prior-round var/ trees were access-denied to the read-only walk, so the enumeration is incomplete by construction and says so.",
+    "The candidate snapshot's two config files are stale (revision 19) relative to canonical (21). They were deliberately NOT promoted; that is a decision, not an omission.",
+    "348 canonical-only product/control files remain classified NEEDS_OWNER_DECISION. Retaining them needs no decision; proposing deletion would.",
+    "PLAN and VERIFY_SECURITY share a model by owner order (SOD006-C2, now OWNER_ORDERED_IN_FORCE). After R1 the derived check_sod reports the collision the owner ordered; it was previously concealed by a declaration (PLAN=glm) that the measurement contradicts. Maker/checker MODEL independence is ABSENT by order; process, lane, evidence-path independence and the no-self-acceptance rule remain.",
+    "PLAN-plane availability is carry-forward from the previous round plus the governed profile's serving rows; no new one-shot PLAN probe was dispatched this round. A fresh probe would strengthen D01 and is priced as cheap.",
+    "The interactive-session ordering caveat from the previous round still applies: the arm shown as served for an interactive turn is the arm the profile selects for that session kind.",
+    "This round's self-research/self-learning note is a proposal set, not a curriculum; nothing in the skills it touches has been validated by a third party.",
+    "No external engineer has reviewed any part of this round.",
+    "OPEN, FOUND BY THE INDEPENDENT CHECKER (V3c), NOT REPAIRED: /sod/plan_lane declares GLM is never auto-selected and /sod/verify_security_selection declares arm B is never auto-selected, while the registry declares automatic_selection=true for PLAN fallback1 and VERIFY_SECURITY arm B (and arm C pairs an operator-selectable role with automatic_selection=true) at config/lane-routing-registry.yaml:297. Same CLASS as R7 (prose vs structured field, invisible to check_drift) on an axis my detector does not read. Three low-friction remediations are priced in FINDINGS_V3C_INDEPENDENT_VERDICT.md; changing automatic_selection changes routing and belongs to a WorkOrder, so nothing was changed.",
+    "OPEN, FOUND BY THE INDEPENDENT CHECKER (V3c): the R2 promotion PATH lacked pre-write typed admission (apply_R2_promote.py copied the files before attempting create_workorder, which returned ERR_WORKORDER_REQUIRES_DRAFT_TASKSPEC) and its recorded writer was the PLAN/orchestrator rather than the mandated CODEX CLI writer, and no atomic pre/post whole-tree inventory was taken. The claim ceiling for R2 is therefore SPLIT and must be quoted that way: bytes VERIFIED (independently recomputed) / pre-write typed admission ABSENT / canonical writer NOT the mandated writer / exclusive historical scope NOT PROVEN. Disclosure at the time does not make it compliance.",
+    "CALIBRATION, FOUND BY THE INDEPENDENT CHECKER (V3c): the recorded whole-tree ABSOLUTE counts (527 tests, 7 failures, 2 errors post-change) do NOT reproduce in the checker's restricted reference tree, which measured 540 tests / 29 failures / 17 errors and names the missing dependencies and a different interpreter. What DOES reproduce is the paired DELTA: exactly one named test removed (test_registry_and_projection_shape) and none added (its own pair: 47 -> 46). The isolation claim is therefore restated as a DELTA claim, and the absolute counts are labelled environment-specific and not independently reproduced -- the checker explicitly notes this is not evidence of 37 new regressions.",
+    "The independent verdict is NOT unanimous: C1/C5/C7 AGREE, C2/C3/C6 DISAGREE, C4 UNCERTAIN. Its single most valuable output is that the first FROZEN_MANIFEST revision could never verify (it hashed ITSELF) and that the first CHECKER_BRIEF conflated the manifest with the reference tree -- both were mine, both were found by recomputation rather than by my own review, and both are corrected with the earlier revision retained."
+  ]
+}

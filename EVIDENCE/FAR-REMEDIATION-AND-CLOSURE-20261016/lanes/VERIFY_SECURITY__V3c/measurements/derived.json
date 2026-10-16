@@ -1,0 +1,1136 @@
+{
+  "tree": {
+    "computed": "73c59b3157645ba199d5302c0abbc6f930af291c99a86ffd806a3dbada3adf11",
+    "declared": "73c59b3157645ba199d5302c0abbc6f930af291c99a86ffd806a3dbada3adf11",
+    "per_dir": [
+      {
+        "dir": "scripts",
+        "files": 71,
+        "digest": "e63f38d5a6fd98a5f28ba5c286b1a2e2de40bf54028ed1ee72054a26f4ddf0ef"
+      },
+      {
+        "dir": "src",
+        "files": 32,
+        "digest": "8d9d14ba79f1b61145ba1ba4944f2ba1a8b125981b77c54ee7e1c5defebec3b9"
+      },
+      {
+        "dir": "tests",
+        "files": 61,
+        "digest": "633ee7853cc40ba1ac16b382eda7edc8fb9bda03c395cf0d1c0f403240c110d1"
+      },
+      {
+        "dir": "config",
+        "files": 42,
+        "digest": "9aef1f79c927d4cc7b2b224c6506852e23bc0f5088e8b7d3c5aa2465b932cbbd"
+      }
+    ],
+    "matches": true
+  },
+  "manifest": {
+    "computed": "88a53ba7a93ab34d0781f7d1cff3eab0e6c0f1df17e64639fb2fb2c88ac8f236",
+    "declared": "4147b47c67490a756faff1897199d723fc08e2c57e058a27ab6271e7a298a56c",
+    "item_count": 56,
+    "count_matches": true,
+    "mismatches": [
+      {
+        "path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\FAR-REMEDIATION-AND-CLOSURE-20261016\\FROZEN_MANIFEST.json",
+        "label": "round_document",
+        "expected_sha256": "5d51820b84b7762f5900f89f3edad6720c6cdea1fec6b5360ac35a31353ec7a3",
+        "actual_sha256": "48d91dc8c015c8f354374c015aaef3795c266dbe816938802ce2ab7d2b29fa66",
+        "expected_bytes": 18015,
+        "actual_bytes": 18180
+      }
+    ]
+  },
+  "states": {
+    "before": {
+      "epoch": 20,
+      "revision": 20,
+      "source_of_routes": {
+        "path": "config/model-lane-assignment.json",
+        "revision": 20,
+        "sha256": "d41f8f8bff41d4338a4b85dab7a60bd2c9c23b2f5f39c8c008e89bf82587bd36"
+      },
+      "site_sha256": "d41f8f8bff41d4338a4b85dab7a60bd2c9c23b2f5f39c8c008e89bf82587bd36",
+      "routes": [
+        {
+          "lane": "PLAN",
+          "role_group": "PLAN",
+          "lanes": [
+            "ARCH",
+            "HARD WORK",
+            "THREAT",
+            "EFFECT PLANNING",
+            "RESEARCH",
+            "SYNTHESIS",
+            "EVOLUTION"
+          ],
+          "engine": "hermes",
+          "provider": "opencode-go",
+          "model": "glm-5.3-flash",
+          "canonical_identity": "glm-5.3-flash",
+          "auth": "env_ref:OPENCODE_GO_API_KEY",
+          "oauth": false,
+          "reasoning_effort": "medium",
+          "selection_authority": "owner-order-20261015-plan-model-rebind-glm",
+          "arms": [
+            {
+              "arm": "primary",
+              "provider": "opencode-go",
+              "model": "glm-5.3-flash",
+              "canonical_identity": "glm-5.3-flash",
+              "auth": "env_ref:OPENCODE_GO_API_KEY",
+              "oauth": false,
+              "reasoning_effort": "medium",
+              "default": true
+            },
+            {
+              "arm": "fallback1",
+              "provider": "opencode-go",
+              "model": "deepseek-v4.1-flash",
+              "canonical_identity": "deepseek-v4.1-flash",
+              "auth": "env_ref:OPENCODE_GO_API_KEY",
+              "oauth": false,
+              "default": false,
+              "automatic_selection": true
+            },
+            {
+              "arm": "non_default_operator_selectable",
+              "provider": "openai-codex",
+              "model": "gpt-6.1-sol",
+              "canonical_identity": "gpt-6.1-sol",
+              "auth": "openai_oauth",
+              "oauth": true,
+              "reasoning_effort": "medium",
+              "default": false,
+              "automatic_selection": false,
+              "usable_now": "QUOTA_429_2026-10-15",
+              "note": "prior revision-18 default arm; retained, never auto-selected"
+            }
+          ],
+          "fallbacks": [
+            {
+              "provider": "opencode-go",
+              "model": "deepseek-v4.1-flash",
+              "canonical_identity": "deepseek-v4.1-flash",
+              "auth": "env_ref:OPENCODE_GO_API_KEY",
+              "oauth": false
+            },
+            {
+              "provider": "openai-codex",
+              "model": "gpt-6.1-sol",
+              "canonical_identity": "gpt-6.1-sol",
+              "auth": "openai_oauth",
+              "oauth": true
+            }
+          ],
+          "admission_status": "UNPROVEN"
+        },
+        {
+          "lane": "EXECUTE",
+          "role_group": "EXECUTE",
+          "lanes": [
+            "BULK BUILD",
+            "BULK SECURITY TEST",
+            "REPAIR",
+            "BULK CODE",
+            "HARNESS",
+            "EVAL CODE",
+            "BULK TRANSFORM"
+          ],
+          "engine": "codex-cli",
+          "provider": "opencode-go",
+          "model": "deepseek-v4.1-flash",
+          "canonical_identity": "deepseek-v4.1-flash",
+          "auth": "env_ref:OPENCODE_GO_API_KEY",
+          "oauth": false,
+          "selection_authority": "owner-order-20261015-lane-model-chain-rebind",
+          "arms": [
+            {
+              "arm": "fallback1_operator_selectable",
+              "provider": "openai-codex",
+              "model": "gpt-6-luna",
+              "canonical_identity": "gpt-6-luna",
+              "engine": "codex-cli",
+              "transport": "codex-native-oauth",
+              "auth": "openai_oauth",
+              "oauth": true,
+              "automatic_selection": false,
+              "default": false,
+              "admission_status": "UNPROVEN",
+              "note_preexisting": "HTTP_400_UNSUPPORTED_ON_CURRENT_CLI_ACCOUNT backend probe; UNPROVEN admission"
+            },
+            {
+              "arm": "fallback2_auto",
+              "provider": "nvidia",
+              "model": "deepseek-ai/deepseek-v4.1-flash",
+              "canonical_identity": "deepseek-v4.1-flash",
+              "engine": "codex-cli",
+              "auth": "env_ref:NVIDIA_API_KEY",
+              "oauth": false,
+              "default": false,
+              "automatic_selection": true,
+              "note_preexisting": "nvidia provider namespace not loaded into running relay; needs owner-approved relay restart"
+            }
+          ],
+          "fallbacks": [
+            {
+              "provider": "openai-codex",
+              "model": "gpt-6-luna",
+              "canonical_identity": "gpt-6-luna",
+              "auth": "openai_oauth",
+              "oauth": true
+            },
+            {
+              "provider": "nvidia",
+              "model": "deepseek-ai/deepseek-v4.1-flash",
+              "canonical_identity": "deepseek-v4.1-flash",
+              "auth": "env_ref:NVIDIA_API_KEY",
+              "oauth": false
+            }
+          ],
+          "admission_status": "UNPROVEN"
+        },
+        {
+          "lane": "VERIFY_SECURITY",
+          "role_group": "VERIFY_SECURITY",
+          "lanes": [
+            "ACCEPTANCE",
+            "SECURITY REVIEW",
+            "VERIFY"
+          ],
+          "engine": "hermes",
+          "provider": "openai-codex",
+          "model": "gpt-6.1-sol",
+          "reasoning_effort": "medium",
+          "canonical_identity": "gpt-6.1-sol",
+          "auth": "openai_oauth",
+          "oauth": true,
+          "selection_authority": "owner-order-20261015-lane-model-chain-rebind",
+          "selected_arm": "A",
+          "selected_arm_identity": "gpt-6.1-sol",
+          "arms": [
+            {
+              "arm": "A",
+              "model": "gpt-6.1-sol",
+              "provider": "openai-codex",
+              "canonical_identity": "gpt-6.1-sol",
+              "auth": "openai_oauth",
+              "oauth": true,
+              "reasoning_effort": "medium",
+              "co_equal": false,
+              "role": "primary",
+              "default": true
+            },
+            {
+              "arm": "B",
+              "model": "glm-5.3-flash",
+              "provider": "opencode-go",
+              "canonical_identity": "glm-5.3-flash",
+              "auth": "env_ref:OPENCODE_GO_API_KEY",
+              "oauth": false,
+              "reasoning_effort": "medium",
+              "co_equal": false,
+              "role": "fallback1_operator_selectable",
+              "default": false,
+              "automatic_selection": true
+            },
+            {
+              "arm": "C",
+              "model": "deepseek-v4.1-flash",
+              "provider": "opencode-go",
+              "canonical_identity": "deepseek-v4.1-flash",
+              "auth": "env_ref:OPENCODE_GO_API_KEY",
+              "oauth": false,
+              "co_equal": false,
+              "role": "fallback2_operator_selectable",
+              "default": false,
+              "automatic_selection": true
+            }
+          ],
+          "fallbacks": [
+            {
+              "provider": "opencode-go",
+              "model": "glm-5.3-flash",
+              "canonical_identity": "glm-5.3-flash",
+              "auth": "env_ref:OPENCODE_GO_API_KEY",
+              "oauth": false
+            },
+            {
+              "provider": "opencode-go",
+              "model": "deepseek-v4.1-flash",
+              "canonical_identity": "deepseek-v4.1-flash",
+              "auth": "env_ref:OPENCODE_GO_API_KEY",
+              "oauth": false
+            }
+          ],
+          "admission_status": "UNPROVEN"
+        }
+      ],
+      "lane_chains": {
+        "PLAN": [
+          {
+            "model": "glm-5.3-flash",
+            "provider": "opencode-go",
+            "reasoning_effort": "medium",
+            "role": "primary",
+            "default": true,
+            "arm": "A"
+          },
+          {
+            "model": "deepseek-v4.1-flash",
+            "provider": "opencode-go",
+            "role": "fallback1",
+            "default": false,
+            "automatic_selection": true
+          },
+          {
+            "model": "gpt-6.1-sol",
+            "provider": "openai-codex",
+            "reasoning_effort": "medium",
+            "role": "non_default_operator_selectable",
+            "default": false,
+            "automatic_selection": false,
+            "usable_now": "QUOTA_429_2026-10-15",
+            "note": "demoted from default by owner order 2026-10-15; retained, never auto-selected"
+          }
+        ],
+        "EXECUTE": [
+          {
+            "model": "deepseek-v4.1-flash",
+            "provider": "opencode-go",
+            "reasoning_effort": null
+          },
+          {
+            "model": "gpt-6-luna",
+            "provider": "openai-codex",
+            "transport": "codex-native-oauth",
+            "automatic_selection": false,
+            "default": false
+          },
+          {
+            "model": "deepseek-ai/deepseek-v4.1-flash",
+            "provider": "nvidia"
+          },
+          {
+            "arm": "owner_selectable_additional",
+            "model": "gpt-6-luna",
+            "provider": "openai-codex",
+            "engine": "codex-cli",
+            "transport": "codex-native-oauth",
+            "auth": "openai_oauth",
+            "automatic_selection": false,
+            "default": false,
+            "usable_now": "BACKEND_HTTP_400_UNSUPPORTED_ON_CURRENT_CLI_ACCOUNT",
+            "admission_status": "UNPROVEN",
+            "authorization_basis": "WO-PIPD-R5-EXECUTE-LUNA-ROUTE-20261009"
+          }
+        ],
+        "VERIFY_SECURITY": [
+          {
+            "role": "primary",
+            "model": "gpt-6.1-sol",
+            "provider": "openai-codex",
+            "reasoning_effort": "medium",
+            "default": true,
+            "arm": "A"
+          },
+          {
+            "role": "fallback1",
+            "model": "glm-5.3-flash",
+            "provider": "opencode-go",
+            "default": false,
+            "automatic_selection": true,
+            "arm": "B",
+            "reasoning_effort": "medium"
+          },
+          {
+            "role": "fallback2",
+            "model": "deepseek-v4.1-flash",
+            "provider": "opencode-go",
+            "default": false,
+            "automatic_selection": true
+          }
+        ],
+        "VERIFY_SECURITY_previous_revision_8": [
+          {
+            "arm": "primary",
+            "model": "z-ai/glm-5.3-flash",
+            "provider": "nvidia",
+            "auth": "NVIDIA NIM key",
+            "usable_now": "LIVE_BY_DIRECT_PROBE_ONLY",
+            "evidence": "HTTP 200 in 1.7 s (receipts/verify_flash_arm_probe.json) \u2014 superseded: live by probe did not mean usable as a lane",
+            "retired": true,
+            "retired_note": "RETIRED - no longer part of the current route; the current VERIFY default is arm B."
+          },
+          {
+            "arm": "fallback_1",
+            "model": "glm-5.3-flash",
+            "provider": "opencode-go",
+            "auth": "OPENCODE_GO_API_KEY",
+            "usable_now": "LIVE",
+            "evidence": "hermes one-shot returned FLASH_FB_OK in 5 s"
+          }
+        ],
+        "VERIFY_SECURITY_previous_revision_5": [
+          {
+            "arm": "primary",
+            "model": "z-ai/glm-5.3",
+            "provider": "nvidia",
+            "usable_now": "DEAD"
+          },
+          {
+            "arm": "fallback_1",
+            "model": "glm-5.3",
+            "provider": "opencode-go",
+            "usable_now": "LIVE"
+          }
+        ],
+        "VERIFY_SECURITY_previous_revision_17": [
+          {
+            "model": "glm-5.3-flash",
+            "provider": "opencode-go"
+          },
+          {
+            "model": "gpt-6.1-sol",
+            "provider": "openai-codex"
+          }
+        ],
+        "PLAN_previous_revision_18": [
+          {
+            "model": "gpt-6.1-sol",
+            "provider": "openai-codex",
+            "reasoning_effort": "medium"
+          },
+          {
+            "model": "glm-5.3-flash",
+            "provider": "opencode-go"
+          },
+          {
+            "model": "deepseek-v4.1-flash",
+            "provider": "opencode-go"
+          }
+        ]
+      },
+      "sod": {
+        "plan_lane": "opencode-go / glm-5.3-flash (medium) \u2014 owner order 2026-10-15; prior openai-codex/gpt-6.1-sol arm retained as a non-default alternate (QUOTA_429)",
+        "execute_lane": "opencode-go / deepseek-v4.1-flash (Codex CLI worker)",
+        "verify_security_lane": "DEFAULT primary arm A = opencode-go / glm-5.3-flash; NON-DEFAULT operator-selectable alternate arm B = openai-codex / gpt-6.1-sol (OpenAI OAuth)",
+        "verify_security_arm_A": "opencode-go / glm-5.3-flash (primary unspecified default; medium)",
+        "verify_security_default_arm": "A = opencode-go / glm-5.3-flash (env_ref:OPENCODE_GO_API_KEY; medium)",
+        "verify_security_selection": "owner adjudication; unset -> default arm A; arm B is a non-default operator-selectable alternate, never auto-selected",
+        "verify_vs_execute_model_separation": "PASS on BOTH arms - glm-5.3-flash and gpt-6.1-sol are both different model families from deepseek-v4.1-flash.",
+        "verify_vs_plan_model_separation": "PARTIAL after the 2026-10-15 PLAN rebind: PLAN glm-5.3-flash vs VERIFY default primary arm gpt-6.1-sol stays distinct, but PLAN == VERIFY fallback1 arm glm-5.3-flash and that arm served the R6 checker turn \u2014 recorded as SOD006-C3.",
+        "provider_separation": "PARTIAL - PLAN, EXECUTE and primary VERIFY arm A now all sit on opencode-go; arm B openai-codex is a non-default operator-selectable alternate, never auto-selected. Provider separation is not required; model-axis separation holds on default routes.",
+        "maker_self_acceptance": "PREVENTED at dispatch on every arm: no single call ever verifies its own output. After the 2026-10-15 owner PLAN rebind the model-identity separation is PARTIAL, not clean: PLAN glm-5.3-flash equals VERIFY fallback1 arm glm-5.3-flash (recorded SOD006-C3), while EXECUTE deepseek-v4.1-flash vs VERIFY default arm gpt-6.1-sol remains distinct; PLAN and EXECUTE no longer share a token, so SOD-APPLY-01 stays a historical record.",
+        "lane_deviation_recorded": {
+          "kanban_card": "t_152ba41c (LR-AO)",
+          "assigned": "openai-codex / gpt-6.1-sol",
+          "declared_lane": "VERIFY_SECURITY listed ACCEPTANCE, whose assigned model was then glm-5.3",
+          "status": "SUPERSEDED_HISTORICAL - describes an earlier revision, not the current route",
+          "deviation_note": "Historical: the acceptance card had been seeded on the PLAN model in an earlier revision; the VERIFY route is now the dual arm A/B route."
+        },
+        "verify_security_reasoning_effort": "medium",
+        "plan_reasoning_effort": "medium",
+        "provider_separation_status": "PARTIAL - PLAN, EXECUTE and VERIFY arm A all share opencode-go by owner rebinding. Model-axis separation between PLAN/EXECUTE and VERIFY arm A HOLDS (deepseek-v4.1-flash != glm-5.3-flash). Not a sod_conflict: the registry does not require provider separation (invariants.provider_separation_required=false). Recorded as an accepted risk."
+      },
+      "fatal_findings": []
+    },
+    "after": {
+      "epoch": 21,
+      "revision": 21,
+      "source_of_routes": {
+        "path": "config/model-lane-assignment.json",
+        "revision": 21,
+        "sha256": "e7be2dea36874f169e0cddc61ecb77102402218a2e05136878a097462e7664df"
+      },
+      "site_sha256": "e7be2dea36874f169e0cddc61ecb77102402218a2e05136878a097462e7664df",
+      "routes": [
+        {
+          "lane": "PLAN",
+          "role_group": "PLAN",
+          "lanes": [
+            "ARCH",
+            "HARD WORK",
+            "THREAT",
+            "EFFECT PLANNING",
+            "RESEARCH",
+            "SYNTHESIS",
+            "EVOLUTION"
+          ],
+          "engine": "hermes",
+          "provider": "openai-codex",
+          "model": "gpt-6.1-sol",
+          "canonical_identity": "gpt-6.1-sol",
+          "auth": "openai_oauth",
+          "oauth": true,
+          "reasoning_effort": "medium",
+          "selection_authority": "owner-order-20261016-plan-model-rebind-gpt61-sol",
+          "arms": [
+            {
+              "arm": "primary",
+              "provider": "openai-codex",
+              "model": "gpt-6.1-sol",
+              "canonical_identity": "gpt-6.1-sol",
+              "auth": "openai_oauth",
+              "oauth": true,
+              "reasoning_effort": "medium",
+              "default": true
+            },
+            {
+              "arm": "fallback1",
+              "provider": "opencode-go",
+              "model": "glm-5.3-flash",
+              "canonical_identity": "glm-5.3-flash",
+              "auth": "env_ref:OPENCODE_GO_API_KEY",
+              "oauth": false,
+              "reasoning_effort": "medium",
+              "default": false,
+              "automatic_selection": true,
+              "prior_revision_note": "Default arm of epochs 19-20 under owner-order-20261015-plan-model-rebind-glm, chosen because the OpenAI OAuth arm measured status=429 on 2026-10-15. That premise was measured FALSE on 2026-10-16 and the order was superseded; the arm is now fallback1 in the owner chain and is never the rank-1 default. History preserved rather than deleted."
+            },
+            {
+              "arm": "fallback2",
+              "provider": "opencode-go",
+              "model": "deepseek-v4.1-flash",
+              "canonical_identity": "deepseek-v4.1-flash",
+              "auth": "env_ref:OPENCODE_GO_API_KEY",
+              "oauth": false,
+              "default": false,
+              "automatic_selection": true
+            }
+          ],
+          "fallbacks": [
+            {
+              "provider": "opencode-go",
+              "model": "glm-5.3-flash",
+              "canonical_identity": "glm-5.3-flash",
+              "auth": "env_ref:OPENCODE_GO_API_KEY",
+              "oauth": false
+            },
+            {
+              "provider": "opencode-go",
+              "model": "deepseek-v4.1-flash",
+              "canonical_identity": "deepseek-v4.1-flash",
+              "auth": "env_ref:OPENCODE_GO_API_KEY",
+              "oauth": false
+            }
+          ],
+          "admission_status": "ADMITTED",
+          "admission_evidence": "MEASURED 2026-10-16: reply probe + tool-executing probe + 2 VERIFY/SECURITY turns at required_arm == served_arm == openai-codex/gpt-6.1-sol",
+          "admission_status_prior": "UNPROVEN (epochs 19-20; no measured serving evidence had been recorded for this row). The status moved to ADMITTED on measurement, not on declaration: the arm answered a reply probe and a tool-executing probe, and served two VERIFY/SECURITY turns at required_arm == served_arm."
+        },
+        {
+          "lane": "EXECUTE",
+          "role_group": "EXECUTE",
+          "lanes": [
+            "BULK BUILD",
+            "BULK SECURITY TEST",
+            "REPAIR",
+            "BULK CODE",
+            "HARNESS",
+            "EVAL CODE",
+            "BULK TRANSFORM"
+          ],
+          "engine": "codex-cli",
+          "provider": "opencode-go",
+          "model": "deepseek-v4.1-flash",
+          "canonical_identity": "deepseek-v4.1-flash",
+          "auth": "env_ref:OPENCODE_GO_API_KEY",
+          "oauth": false,
+          "selection_authority": "owner-order-20261015-lane-model-chain-rebind",
+          "arms": [
+            {
+              "arm": "fallback1_operator_selectable",
+              "provider": "openai-codex",
+              "model": "gpt-6-luna",
+              "canonical_identity": "gpt-6-luna",
+              "engine": "codex-cli",
+              "transport": "codex-native-oauth",
+              "auth": "openai_oauth",
+              "oauth": true,
+              "automatic_selection": false,
+              "default": false,
+              "admission_status": "UNPROVEN",
+              "note_preexisting": "HTTP_400_UNSUPPORTED_ON_CURRENT_CLI_ACCOUNT backend probe; UNPROVEN admission"
+            },
+            {
+              "arm": "fallback2_auto",
+              "provider": "nvidia",
+              "model": "deepseek-ai/deepseek-v4.1-flash",
+              "canonical_identity": "deepseek-v4.1-flash",
+              "engine": "codex-cli",
+              "auth": "env_ref:NVIDIA_API_KEY",
+              "oauth": false,
+              "default": false,
+              "automatic_selection": true,
+              "note_preexisting": "nvidia provider namespace not loaded into running relay; needs owner-approved relay restart"
+            }
+          ],
+          "fallbacks": [
+            {
+              "provider": "openai-codex",
+              "model": "gpt-6-luna",
+              "canonical_identity": "gpt-6-luna",
+              "auth": "openai_oauth",
+              "oauth": true
+            },
+            {
+              "provider": "nvidia",
+              "model": "deepseek-ai/deepseek-v4.1-flash",
+              "canonical_identity": "deepseek-v4.1-flash",
+              "auth": "env_ref:NVIDIA_API_KEY",
+              "oauth": false
+            }
+          ],
+          "admission_status": "UNPROVEN"
+        },
+        {
+          "lane": "VERIFY_SECURITY",
+          "role_group": "VERIFY_SECURITY",
+          "lanes": [
+            "ACCEPTANCE",
+            "SECURITY REVIEW",
+            "VERIFY"
+          ],
+          "engine": "hermes",
+          "provider": "openai-codex",
+          "model": "gpt-6.1-sol",
+          "reasoning_effort": "medium",
+          "canonical_identity": "gpt-6.1-sol",
+          "auth": "openai_oauth",
+          "oauth": true,
+          "selection_authority": "owner-order-20261015-lane-model-chain-rebind",
+          "selected_arm": "A",
+          "selected_arm_identity": "gpt-6.1-sol",
+          "arms": [
+            {
+              "arm": "A",
+              "model": "gpt-6.1-sol",
+              "provider": "openai-codex",
+              "canonical_identity": "gpt-6.1-sol",
+              "auth": "openai_oauth",
+              "oauth": true,
+              "reasoning_effort": "medium",
+              "co_equal": false,
+              "role": "primary",
+              "default": true
+            },
+            {
+              "arm": "B",
+              "model": "glm-5.3-flash",
+              "provider": "opencode-go",
+              "canonical_identity": "glm-5.3-flash",
+              "auth": "env_ref:OPENCODE_GO_API_KEY",
+              "oauth": false,
+              "reasoning_effort": "medium",
+              "co_equal": false,
+              "role": "fallback1_operator_selectable",
+              "default": false,
+              "automatic_selection": true
+            },
+            {
+              "arm": "C",
+              "model": "deepseek-v4.1-flash",
+              "provider": "opencode-go",
+              "canonical_identity": "deepseek-v4.1-flash",
+              "auth": "env_ref:OPENCODE_GO_API_KEY",
+              "oauth": false,
+              "co_equal": false,
+              "role": "fallback2_operator_selectable",
+              "default": false,
+              "automatic_selection": true
+            }
+          ],
+          "fallbacks": [
+            {
+              "provider": "opencode-go",
+              "model": "glm-5.3-flash",
+              "canonical_identity": "glm-5.3-flash",
+              "auth": "env_ref:OPENCODE_GO_API_KEY",
+              "oauth": false
+            },
+            {
+              "provider": "opencode-go",
+              "model": "deepseek-v4.1-flash",
+              "canonical_identity": "deepseek-v4.1-flash",
+              "auth": "env_ref:OPENCODE_GO_API_KEY",
+              "oauth": false
+            }
+          ],
+          "admission_status": "UNPROVEN"
+        }
+      ],
+      "lane_chains": {
+        "PLAN": [
+          {
+            "model": "gpt-6.1-sol",
+            "provider": "openai-codex",
+            "reasoning_effort": "medium",
+            "role": "primary",
+            "default": true,
+            "arm": "A"
+          },
+          {
+            "model": "deepseek-v4.1-flash",
+            "provider": "opencode-go",
+            "role": "fallback1",
+            "default": false,
+            "automatic_selection": true
+          },
+          {
+            "model": "glm-5.3-flash",
+            "provider": "opencode-go",
+            "reasoning_effort": "medium",
+            "role": "rotation_alternate",
+            "default": false,
+            "arm": "A",
+            "automatic_selection": false,
+            "prior_revision_note": "default arm of epochs 19-20 under owner-order-20261015-plan-model-rebind-glm; premise (429 on the OpenAI OAuth arm) measured false 2026-10-16"
+          }
+        ],
+        "EXECUTE": [
+          {
+            "model": "deepseek-v4.1-flash",
+            "provider": "opencode-go",
+            "reasoning_effort": null
+          },
+          {
+            "model": "gpt-6-luna",
+            "provider": "openai-codex",
+            "transport": "codex-native-oauth",
+            "automatic_selection": false,
+            "default": false
+          },
+          {
+            "model": "deepseek-ai/deepseek-v4.1-flash",
+            "provider": "nvidia"
+          },
+          {
+            "arm": "owner_selectable_additional",
+            "model": "gpt-6-luna",
+            "provider": "openai-codex",
+            "engine": "codex-cli",
+            "transport": "codex-native-oauth",
+            "auth": "openai_oauth",
+            "automatic_selection": false,
+            "default": false,
+            "usable_now": "BACKEND_HTTP_400_UNSUPPORTED_ON_CURRENT_CLI_ACCOUNT",
+            "admission_status": "UNPROVEN",
+            "authorization_basis": "WO-PIPD-R5-EXECUTE-LUNA-ROUTE-20261009"
+          }
+        ],
+        "VERIFY_SECURITY": [
+          {
+            "role": "primary",
+            "model": "gpt-6.1-sol",
+            "provider": "openai-codex",
+            "reasoning_effort": "medium",
+            "default": true,
+            "arm": "A"
+          },
+          {
+            "role": "fallback1",
+            "model": "glm-5.3-flash",
+            "provider": "opencode-go",
+            "default": false,
+            "automatic_selection": true,
+            "arm": "B",
+            "reasoning_effort": "medium"
+          },
+          {
+            "role": "fallback2",
+            "model": "deepseek-v4.1-flash",
+            "provider": "opencode-go",
+            "default": false,
+            "automatic_selection": true
+          }
+        ],
+        "VERIFY_SECURITY_previous_revision_8": [
+          {
+            "arm": "primary",
+            "model": "z-ai/glm-5.3-flash",
+            "provider": "nvidia",
+            "auth": "NVIDIA NIM key",
+            "usable_now": "LIVE_BY_DIRECT_PROBE_ONLY",
+            "evidence": "HTTP 200 in 1.7 s (receipts/verify_flash_arm_probe.json) \u2014 superseded: live by probe did not mean usable as a lane",
+            "retired": true,
+            "retired_note": "RETIRED - no longer part of the current route; the current VERIFY default is arm B."
+          },
+          {
+            "arm": "fallback_1",
+            "model": "glm-5.3-flash",
+            "provider": "opencode-go",
+            "auth": "OPENCODE_GO_API_KEY",
+            "usable_now": "LIVE",
+            "evidence": "hermes one-shot returned FLASH_FB_OK in 5 s"
+          }
+        ],
+        "VERIFY_SECURITY_previous_revision_5": [
+          {
+            "arm": "primary",
+            "model": "z-ai/glm-5.3",
+            "provider": "nvidia",
+            "usable_now": "DEAD"
+          },
+          {
+            "arm": "fallback_1",
+            "model": "glm-5.3",
+            "provider": "opencode-go",
+            "usable_now": "LIVE"
+          }
+        ],
+        "VERIFY_SECURITY_previous_revision_17": [
+          {
+            "model": "glm-5.3-flash",
+            "provider": "opencode-go"
+          },
+          {
+            "model": "gpt-6.1-sol",
+            "provider": "openai-codex"
+          }
+        ],
+        "PLAN_previous_revision_18": [
+          {
+            "model": "gpt-6.1-sol",
+            "provider": "openai-codex",
+            "reasoning_effort": "medium"
+          },
+          {
+            "model": "glm-5.3-flash",
+            "provider": "opencode-go"
+          },
+          {
+            "model": "deepseek-v4.1-flash",
+            "provider": "opencode-go"
+          }
+        ]
+      },
+      "sod": {
+        "plan_lane": "openai-codex / gpt-6.1-sol (medium, OpenAI OAuth) \u2014 owner order 2026-10-16 (round FAR-REMEDIATION-AND-CLOSURE-20261016); supersedes the 2026-10-15 GLM rebind, whose stated premise (a 429 on the OpenAI OAuth arm) was measured false on 2026-10-16. GLM-5.3-Flash is retained as a rotation alternate, never auto-selected.",
+        "execute_lane": "opencode-go / deepseek-v4.1-flash (Codex CLI worker)",
+        "verify_security_lane": "DEFAULT primary arm A = openai-codex / gpt-6.1-sol (OpenAI OAuth); NON-DEFAULT operator-selectable alternate arm B = opencode-go / glm-5.3-flash. CORRECTED in round FAR-REMEDIATION-AND-CLOSURE-20261016: this field and its siblings declared arm A as opencode-go/glm-5.3-flash while lane_chains.VERIFY_SECURITY[0] \u2014 and this registry's own projections on that pointer \u2014 declared arm A as openai-codex/gpt-6.1-sol. The lane chain is what the dispatch path reads; the prose now matches it.",
+        "verify_security_arm_A": "openai-codex / gpt-6.1-sol (primary; medium)",
+        "verify_security_default_arm": "A = openai-codex / gpt-6.1-sol (OpenAI OAuth; medium)",
+        "verify_security_selection": "owner adjudication; unset -> default arm A; arm B is a non-default operator-selectable alternate, never auto-selected",
+        "verify_vs_execute_model_separation": "PASS on BOTH arms - glm-5.3-flash and gpt-6.1-sol are both different model families from deepseek-v4.1-flash.",
+        "verify_vs_plan_model_separation": "NONE on the model axis, by owner order: PLAN and VERIFY_SECURITY default arm A are BOTH openai-codex/gpt-6.1-sol (SOD006-C2, now OWNER_ORDERED_IN_FORCE). What remains is PROCESS, LANE and EVIDENCE-PATH independence, plus the no-self-acceptance rule. EXECUTE deepseek-v4.1-flash is a distinct model family from both.",
+        "provider_separation": "PARTIAL - PLAN and VERIFY default arm A both sit on openai-codex by owner order; EXECUTE stays on opencode-go. Model-axis separation between EXECUTE and each of them HOLDS (deepseek-v4.1-flash != gpt-6.1-sol). Provider separation is not required (invariants.provider_separation_required=false). Recorded as an accepted risk.",
+        "maker_self_acceptance": "PREVENTED at dispatch on every arm: no single call ever verifies its own output. Model-identity separation is deliberately NOT present between PLAN and VERIFY arm A (the same model by owner order, SOD006-C2 OWNER_ORDERED_IN_FORCE); EXECUTE vs VERIFY remains a distinct model family. PLAN and EXECUTE do not share a token, so SOD-APPLY-01 stays a historical record.",
+        "lane_deviation_recorded": {
+          "kanban_card": "t_152ba41c (LR-AO)",
+          "assigned": "openai-codex / gpt-6.1-sol",
+          "declared_lane": "VERIFY_SECURITY listed ACCEPTANCE, whose assigned model was then glm-5.3",
+          "status": "SUPERSEDED_HISTORICAL - describes an earlier revision, not the current route",
+          "deviation_note": "Historical: the acceptance card had been seeded on the PLAN model in an earlier revision; the VERIFY route is now the dual arm A/B route."
+        },
+        "verify_security_reasoning_effort": "medium",
+        "plan_reasoning_effort": "medium",
+        "provider_separation_status": "PARTIAL - PLAN and VERIFY default arm A both sit on openai-codex by owner order; EXECUTE stays on opencode-go. Model-axis separation between EXECUTE and each of them HOLDS (deepseek-v4.1-flash != gpt-6.1-sol). Provider separation is not required (invariants.provider_separation_required=false). Recorded as an accepted risk."
+      },
+      "fatal_findings": []
+    }
+  },
+  "shape_before": {
+    "exit": 1,
+    "names": [
+      "test_registry_and_projection_shape (tests.test_lane_policy.TestLanePolicyConformance.test_registry_and_projection_shape)"
+    ],
+    "ran": [
+      "Ran 1 test in 0.065s"
+    ],
+    "status": [
+      "FAILED (failures=1)"
+    ]
+  },
+  "declarations_before": {
+    "exit": 0,
+    "names": [],
+    "ran": [],
+    "status": []
+  },
+  "shape_after": {
+    "exit": 0,
+    "names": [],
+    "ran": [
+      "Ran 1 test in 0.066s"
+    ],
+    "status": [
+      "OK"
+    ]
+  },
+  "declarations_after": {
+    "exit": 0,
+    "names": [],
+    "ran": [],
+    "status": []
+  },
+  "promotion": [
+    {
+      "rel": "scripts/runtime_role_binding_assert.py",
+      "canonical": "6fa7ed6b6ea983e154a6a2a0b70a250baa6bbc65742a2a82425ce9a2f5fcacd2",
+      "candidate": "6fa7ed6b6ea983e154a6a2a0b70a250baa6bbc65742a2a82425ce9a2f5fcacd2",
+      "reference_copy": "6fa7ed6b6ea983e154a6a2a0b70a250baa6bbc65742a2a82425ce9a2f5fcacd2",
+      "receipt": "6fa7ed6b6ea983e154a6a2a0b70a250baa6bbc65742a2a82425ce9a2f5fcacd2"
+    },
+    {
+      "rel": "scripts/hgk-governed-runtime-controller.py",
+      "canonical": "5b744de7c4e30240ae92421c2e7220efa5dfca02d88d85f2264bc921ad849412",
+      "candidate": "5b744de7c4e30240ae92421c2e7220efa5dfca02d88d85f2264bc921ad849412",
+      "reference_copy": "5b744de7c4e30240ae92421c2e7220efa5dfca02d88d85f2264bc921ad849412",
+      "receipt": "5b744de7c4e30240ae92421c2e7220efa5dfca02d88d85f2264bc921ad849412"
+    },
+    {
+      "rel": "tests/test_governed_runtime_controller.py",
+      "canonical": "fdf1dbc251eee5e78d9c5db91f2a0ebf18c30c2daa43a66f62b3cde5bf26d521",
+      "candidate": "fdf1dbc251eee5e78d9c5db91f2a0ebf18c30c2daa43a66f62b3cde5bf26d521",
+      "reference_copy": "fdf1dbc251eee5e78d9c5db91f2a0ebf18c30c2daa43a66f62b3cde5bf26d521",
+      "receipt": "fdf1dbc251eee5e78d9c5db91f2a0ebf18c30c2daa43a66f62b3cde5bf26d521"
+    },
+    {
+      "rel": "tests/test_lane_effort_enforcement.py",
+      "canonical": "18742bf07b4055ae44733829d9817787a12d3c9140536689c574223e5356e333",
+      "candidate": "18742bf07b4055ae44733829d9817787a12d3c9140536689c574223e5356e333",
+      "reference_copy": "18742bf07b4055ae44733829d9817787a12d3c9140536689c574223e5356e333",
+      "receipt": "18742bf07b4055ae44733829d9817787a12d3c9140536689c574223e5356e333"
+    }
+  ],
+  "candidate_configs": {
+    "epoch": 19,
+    "revision": 19,
+    "config_digests": {
+      "model-lane-assignment.json": {
+        "canonical": "e7be2dea36874f169e0cddc61ecb77102402218a2e05136878a097462e7664df",
+        "candidate": "6af264c9ffdb57113be769842ac1a8503eb472a3c55f1941ee42667078808753"
+      },
+      "lane-routing-registry.yaml": {
+        "canonical": "38f0436b9bde0599a1c3d5b8b928950450f570548380a90079ca06ff0aba38d2",
+        "candidate": "06a8d10aed3785a9fb015d76291c32ef26cc3d4b36c00eb8ec9f7860d6f550d2"
+      }
+    }
+  },
+  "candidate_comparison": [
+    "config\\lane-routing-registry.yaml",
+    "config\\model-lane-assignment.json"
+  ],
+  "lane_guard_after": {
+    "exit": 0,
+    "names": [],
+    "ran": [
+      "Ran 8 tests in 0.462s"
+    ],
+    "status": [
+      "OK"
+    ]
+  },
+  "whole_after": {
+    "exit": 1,
+    "names": [
+      "tests.test_acceptance_resolution (unittest.loader._FailedTest.tests.test_acceptance_resolution)",
+      "tests.test_acceptance_runner (unittest.loader._FailedTest.tests.test_acceptance_runner)",
+      "tests.test_agents_providers (unittest.loader._FailedTest.tests.test_agents_providers)",
+      "tests.test_assurance (unittest.loader._FailedTest.tests.test_assurance)",
+      "tests.test_autonomy_evolution (unittest.loader._FailedTest.tests.test_autonomy_evolution)",
+      "tests.test_bootstrap (unittest.loader._FailedTest.tests.test_bootstrap)",
+      "tests.test_c2_case_run (unittest.loader._FailedTest.tests.test_c2_case_run)",
+      "tests.test_controls_observability_repo (unittest.loader._FailedTest.tests.test_controls_observability_repo)",
+      "tests.test_coverage_reducer (unittest.loader._FailedTest.tests.test_coverage_reducer)",
+      "tests.test_cs_a_gate_repair (unittest.loader._FailedTest.tests.test_cs_a_gate_repair)",
+      "tests.test_e2e_vertical_slice (unittest.loader._FailedTest.tests.test_e2e_vertical_slice)",
+      "tests.test_evo004_meta_gates (unittest.loader._FailedTest.tests.test_evo004_meta_gates)",
+      "test_digest_mismatch_is_typed_not_a_spawn (tests.test_far_lane_fix_20261015.TestP0PinAssert.test_digest_mismatch_is_typed_not_a_spawn)",
+      "test_end_to_end_no_nonce_run_reads_the_new_code (tests.test_lane_dispatch_ao_guard.C1FailureDisposition.test_end_to_end_no_nonce_run_reads_the_new_code)",
+      "test_declared_dispatchable_arm_is_never_skipped (tests.test_lane_dispatch_ao_guard.C2DispatchableConsumer.test_declared_dispatchable_arm_is_never_skipped)",
+      "test_declared_not_dispatchable_arm_is_skipped_with_no_spawn (tests.test_lane_dispatch_ao_guard.C2DispatchableConsumer.test_declared_not_dispatchable_arm_is_skipped_with_no_spawn)",
+      "test_force_rank_reaches_a_skipped_rank (tests.test_lane_dispatch_ao_guard.C2DispatchableConsumer.test_force_rank_reaches_a_skipped_rank)",
+      "test_dispatchable_false_without_feasibility_still_carries_a_reason (tests.test_lane_dispatch_ao_guard.R2Repair.test_dispatchable_false_without_feasibility_still_carries_a_reason)",
+      "test_non_blank_nonce_still_behaves_as_before (tests.test_lane_dispatch_ao_guard.R2Repair.test_non_blank_nonce_still_behaves_as_before)",
+      "test_G1_null_text_child_cannot_pass_with_nonce_None_end_to_end (tests.test_lane_dispatch_ao_guard.R3Repair.test_G1_null_text_child_cannot_pass_with_nonce_None_end_to_end)",
+      "test_G1_object_text_child_cannot_pass_with_nonce_None_end_to_end (tests.test_lane_dispatch_ao_guard.R3Repair.test_G1_object_text_child_cannot_pass_with_nonce_None_end_to_end)",
+      "test_G1_the_two_nonce_signals_agree_and_the_normal_case_still_passes (tests.test_lane_dispatch_ao_guard.R3Repair.test_G1_the_two_nonce_signals_agree_and_the_normal_case_still_passes)",
+      "test_G2_empty_feasibility_shapes_still_yield_a_real_reason (tests.test_lane_dispatch_ao_guard.R3Repair.test_G2_empty_feasibility_shapes_still_yield_a_real_reason)",
+      "test_H4_positive_two_non_empty_roots_still_compare (tests.test_lane_dispatch_ao_guard.R4Repair.test_H4_positive_two_non_empty_roots_still_compare)",
+      "tests.test_package_local (unittest.loader._FailedTest.tests.test_package_local)",
+      "test_cov_11_06_source_text_unchanged (tests.test_task013_hermes_v020_closure.Gate0PolicySemanticsTests.test_cov_11_06_source_text_unchanged)",
+      "test_current_pin_verifies (tests.test_far_lane_fix_20261015.TestP0PinAssert.test_current_pin_verifies)",
+      "test_owner_order_mandate_resolves (tests.test_far_lane_fix_20261015.TestP1MandateConsumer.test_owner_order_mandate_resolves)",
+      "test_verify_security_mandate_resolves (tests.test_far_lane_fix_20261015.TestP1MandateConsumer.test_verify_security_mandate_resolves)",
+      "test_wrong_model_in_pool_refuses (tests.test_far_lane_fix_20261015.TestP1MandateConsumer.test_wrong_model_in_pool_refuses)",
+      "test_all_arms_skipped_reports_the_skip_list_and_fails_closed (tests.test_lane_dispatch_ao_guard.C2DispatchableConsumer.test_all_arms_skipped_reports_the_skip_list_and_fails_closed)",
+      "test_E11a_a_conforming_attempt_stands (tests.test_lane_dispatch_ao_guard.DeterministicGuardNegative.test_E11a_a_conforming_attempt_stands)",
+      "test_E11b_mutation_voids_a_would_have_passed_attempt (tests.test_lane_dispatch_ao_guard.DeterministicGuardNegative.test_E11b_mutation_voids_a_would_have_passed_attempt)",
+      "test_E11c_removal_voids_a_would_have_passed_attempt (tests.test_lane_dispatch_ao_guard.DeterministicGuardNegative.test_E11c_removal_voids_a_would_have_passed_attempt)",
+      "test_E11d_an_added_file_is_recorded_but_not_fatal (tests.test_lane_dispatch_ao_guard.DeterministicGuardNegative.test_E11d_an_added_file_is_recorded_but_not_fatal)",
+      "test_all_arms_refused_refuses_wholesale_with_no_spawn (tests.test_lane_dispatch_ao_guard.GateEndToEndRefusal.test_all_arms_refused_refuses_wholesale_with_no_spawn)",
+      "test_guard_root_that_does_not_resolve_is_refused (tests.test_lane_dispatch_ao_guard.GateEndToEndRefusal.test_guard_root_that_does_not_resolve_is_refused)",
+      "test_required_arm_absent_from_the_pool_is_typed (tests.test_lane_dispatch_ao_guard.GateEndToEndRefusal.test_required_arm_absent_from_the_pool_is_typed)",
+      "test_required_arm_refused_fails_closed_instead_of_degrading (tests.test_lane_dispatch_ao_guard.GateEndToEndRefusal.test_required_arm_refused_fails_closed_instead_of_degrading)",
+      "test_F1_no_identity_gate_does_not_switch_off_require_arm (tests.test_lane_dispatch_ao_guard.HostileReviewRegression.test_F1_no_identity_gate_does_not_switch_off_require_arm)",
+      "test_F2_a_declared_cli_login_requirement_is_honoured_end_to_end (tests.test_lane_dispatch_ao_guard.HostileReviewRegression.test_F2_a_declared_cli_login_requirement_is_honoured_end_to_end)",
+      "test_F2_a_misspelled_requirement_is_refused_end_to_end (tests.test_lane_dispatch_ao_guard.HostileReviewRegression.test_F2_a_misspelled_requirement_is_refused_end_to_end)",
+      "test_F6_a_guard_root_containing_harness_output_is_refused (tests.test_lane_dispatch_ao_guard.HostileReviewRegression.test_F6_a_guard_root_containing_harness_output_is_refused)",
+      "test_guard_refusal_receipt_also_carries_both_home_fields (tests.test_lane_dispatch_ao_guard.R2Repair.test_guard_refusal_receipt_also_carries_both_home_fields)",
+      "test_refusal_receipt_carries_both_home_fields (tests.test_lane_dispatch_ao_guard.R2Repair.test_refusal_receipt_carries_both_home_fields)",
+      "test_G3_added_file_does_not_void_but_changed_and_removed_do (tests.test_lane_dispatch_ao_guard.R3Repair.test_G3_added_file_does_not_void_but_changed_and_removed_do)",
+      "test_G3_empty_guard_root_refuses_pre_spawn (tests.test_lane_dispatch_ao_guard.R3Repair.test_G3_empty_guard_root_refuses_pre_spawn)",
+      "test_G3_non_empty_guard_root_still_snapshots_and_compares (tests.test_lane_dispatch_ao_guard.R3Repair.test_G3_non_empty_guard_root_still_snapshots_and_compares)",
+      "test_H4_negative_an_empty_root_is_refused_even_with_a_non_empty_sibling (tests.test_lane_dispatch_ao_guard.R4Repair.test_H4_negative_an_empty_root_is_refused_even_with_a_non_empty_sibling)",
+      "test_config_resolves_scheme_b_appdata_runtime (tests.test_task014_named_method_closure.CanonicalRuntimeTests.test_config_resolves_scheme_b_appdata_runtime)",
+      "test_denominator_head_matches_git (tests.test_task015_coherence_closure.G2DenominatorTests.test_denominator_head_matches_git)",
+      "test_final_md_guide_projection_matches_actual_guide (tests.test_task015_coherence_closure.GuideAndDeterminismTests.test_final_md_guide_projection_matches_actual_guide)",
+      "test_guide_current_claim_is_task015 (tests.test_task015_coherence_closure.GuideAndDeterminismTests.test_guide_current_claim_is_task015)"
+    ],
+    "ran": [
+      "Ran 448 tests in 98.658s"
+    ],
+    "status": [
+      "FAILED (failures=27, errors=26)"
+    ]
+  },
+  "whole_before": {
+    "exit": 1,
+    "names": [
+      "tests.test_acceptance_resolution (unittest.loader._FailedTest.tests.test_acceptance_resolution)",
+      "tests.test_acceptance_runner (unittest.loader._FailedTest.tests.test_acceptance_runner)",
+      "tests.test_agents_providers (unittest.loader._FailedTest.tests.test_agents_providers)",
+      "tests.test_assurance (unittest.loader._FailedTest.tests.test_assurance)",
+      "tests.test_autonomy_evolution (unittest.loader._FailedTest.tests.test_autonomy_evolution)",
+      "tests.test_bootstrap (unittest.loader._FailedTest.tests.test_bootstrap)",
+      "tests.test_c2_case_run (unittest.loader._FailedTest.tests.test_c2_case_run)",
+      "tests.test_controls_observability_repo (unittest.loader._FailedTest.tests.test_controls_observability_repo)",
+      "tests.test_coverage_reducer (unittest.loader._FailedTest.tests.test_coverage_reducer)",
+      "tests.test_cs_a_gate_repair (unittest.loader._FailedTest.tests.test_cs_a_gate_repair)",
+      "tests.test_e2e_vertical_slice (unittest.loader._FailedTest.tests.test_e2e_vertical_slice)",
+      "tests.test_evo004_meta_gates (unittest.loader._FailedTest.tests.test_evo004_meta_gates)",
+      "test_digest_mismatch_is_typed_not_a_spawn (tests.test_far_lane_fix_20261015.TestP0PinAssert.test_digest_mismatch_is_typed_not_a_spawn)",
+      "test_neg_maker_dotdot_escape_to_protected_denied (tests.test_governed_runtime_controller.GovernedRuntimeController.test_neg_maker_dotdot_escape_to_protected_denied)",
+      "test_neg_maker_execute_code_relative_from_parent_cwd_denied (tests.test_governed_runtime_controller.GovernedRuntimeController.test_neg_maker_execute_code_relative_from_parent_cwd_denied)",
+      "test_neg_maker_execute_code_under_protected_cwd_denied (tests.test_governed_runtime_controller.GovernedRuntimeController.test_neg_maker_execute_code_under_protected_cwd_denied)",
+      "test_neg_maker_relative_path_under_protected_cwd_denied (tests.test_governed_runtime_controller.GovernedRuntimeController.test_neg_maker_relative_path_under_protected_cwd_denied)",
+      "test_neg_maker_terminal_mentioning_protected_root_denied (tests.test_governed_runtime_controller.GovernedRuntimeController.test_neg_maker_terminal_mentioning_protected_root_denied)",
+      "test_neg_maker_terminal_relative_from_parent_cwd_denied (tests.test_governed_runtime_controller.GovernedRuntimeController.test_neg_maker_terminal_relative_from_parent_cwd_denied)",
+      "test_neg_maker_terminal_relative_write_under_protected_cwd_denied (tests.test_governed_runtime_controller.GovernedRuntimeController.test_neg_maker_terminal_relative_write_under_protected_cwd_denied)",
+      "test_neg_maker_write_inside_protected_denied (tests.test_governed_runtime_controller.GovernedRuntimeController.test_neg_maker_write_inside_protected_denied)",
+      "test_neg_malformed_stdin_nonzero_and_not_bare_allow (tests.test_governed_runtime_controller.GovernedRuntimeController.test_neg_malformed_stdin_nonzero_and_not_bare_allow)",
+      "test_pos_absent_session_id_free_text_is_answered_not_an_outage (tests.test_governed_runtime_controller.GovernedRuntimeController.test_pos_absent_session_id_free_text_is_answered_not_an_outage)",
+      "test_pos_absent_session_id_is_answered_not_an_outage (tests.test_governed_runtime_controller.GovernedRuntimeController.test_pos_absent_session_id_is_answered_not_an_outage)",
+      "test_pos_checker_write_allowed (tests.test_governed_runtime_controller.GovernedRuntimeController.test_pos_checker_write_allowed)",
+      "test_pos_non_governed_session_write_allowed (tests.test_governed_runtime_controller.GovernedRuntimeController.test_pos_non_governed_session_write_allowed)",
+      "test_pos_null_session_id_is_answered_not_an_outage (tests.test_governed_runtime_controller.GovernedRuntimeController.test_pos_null_session_id_is_answered_not_an_outage)",
+      "test_pos_ordinary_read_allowed (tests.test_governed_runtime_controller.GovernedRuntimeController.test_pos_ordinary_read_allowed)",
+      "test_pos_write_outside_protected_allowed (tests.test_governed_runtime_controller.GovernedRuntimeController.test_pos_write_outside_protected_allowed)",
+      "test_end_to_end_no_nonce_run_reads_the_new_code (tests.test_lane_dispatch_ao_guard.C1FailureDisposition.test_end_to_end_no_nonce_run_reads_the_new_code)",
+      "test_declared_dispatchable_arm_is_never_skipped (tests.test_lane_dispatch_ao_guard.C2DispatchableConsumer.test_declared_dispatchable_arm_is_never_skipped)",
+      "test_declared_not_dispatchable_arm_is_skipped_with_no_spawn (tests.test_lane_dispatch_ao_guard.C2DispatchableConsumer.test_declared_not_dispatchable_arm_is_skipped_with_no_spawn)",
+      "test_force_rank_reaches_a_skipped_rank (tests.test_lane_dispatch_ao_guard.C2DispatchableConsumer.test_force_rank_reaches_a_skipped_rank)",
+      "test_dispatchable_false_without_feasibility_still_carries_a_reason (tests.test_lane_dispatch_ao_guard.R2Repair.test_dispatchable_false_without_feasibility_still_carries_a_reason)",
+      "test_non_blank_nonce_still_behaves_as_before (tests.test_lane_dispatch_ao_guard.R2Repair.test_non_blank_nonce_still_behaves_as_before)",
+      "test_G1_null_text_child_cannot_pass_with_nonce_None_end_to_end (tests.test_lane_dispatch_ao_guard.R3Repair.test_G1_null_text_child_cannot_pass_with_nonce_None_end_to_end)",
+      "test_G1_object_text_child_cannot_pass_with_nonce_None_end_to_end (tests.test_lane_dispatch_ao_guard.R3Repair.test_G1_object_text_child_cannot_pass_with_nonce_None_end_to_end)",
+      "test_G1_the_two_nonce_signals_agree_and_the_normal_case_still_passes (tests.test_lane_dispatch_ao_guard.R3Repair.test_G1_the_two_nonce_signals_agree_and_the_normal_case_still_passes)",
+      "test_G2_empty_feasibility_shapes_still_yield_a_real_reason (tests.test_lane_dispatch_ao_guard.R3Repair.test_G2_empty_feasibility_shapes_still_yield_a_real_reason)",
+      "test_H4_positive_two_non_empty_roots_still_compare (tests.test_lane_dispatch_ao_guard.R4Repair.test_H4_positive_two_non_empty_roots_still_compare)",
+      "test_neg_effort_mismatch_is_refused (tests.test_lane_effort_enforcement.LaneEffortEnforcement.test_neg_effort_mismatch_is_refused)",
+      "test_neg_mandate_effort_absent_from_pool_is_refused (tests.test_lane_effort_enforcement.LaneEffortEnforcement.test_neg_mandate_effort_absent_from_pool_is_refused)",
+      "test_neg_served_effort_mismatch_is_refused (tests.test_lane_effort_enforcement.LaneEffortEnforcement.test_neg_served_effort_mismatch_is_refused)",
+      "test_neg_served_effort_without_a_mandate_effort_is_unverifiable (tests.test_lane_effort_enforcement.LaneEffortEnforcement.test_neg_served_effort_without_a_mandate_effort_is_unverifiable)",
+      "test_pos_lane_without_a_declared_effort_stays_a_pass_through (tests.test_lane_effort_enforcement.LaneEffortEnforcement.test_pos_lane_without_a_declared_effort_stays_a_pass_through)",
+      "test_pos_matching_effort_passes (tests.test_lane_effort_enforcement.LaneEffortEnforcement.test_pos_matching_effort_passes)",
+      "test_argv_require_arm_conflicting_with_mandate_refused_no_spawn (tests.test_matrix_d_full.M06.test_argv_require_arm_conflicting_with_mandate_refused_no_spawn)",
+      "test_omitted_require_arm_cannot_escape_mandate (tests.test_matrix_d_full.M07.test_omitted_require_arm_cannot_escape_mandate)",
+      "test_wrong_force_rank_refused (tests.test_matrix_d_full.M07.test_wrong_force_rank_refused)",
+      "test_foreign_surface_usage_receipt_cannot_complete (tests.test_matrix_d_full.M08.test_foreign_surface_usage_receipt_cannot_complete)",
+      "test_mandated_surface_usage_receipt_completes_control (tests.test_matrix_d_full.M08.test_mandated_surface_usage_receipt_completes_control)",
+      "tests.test_package_local (unittest.loader._FailedTest.tests.test_package_local)",
+      "test_prespawn_expired_binding_refused (tests.test_role_binding_enforcement.DispatcherPreSpawn.test_prespawn_expired_binding_refused)",
+      "test_prespawn_require_arm_mismatch_refused_no_spawn (tests.test_role_binding_enforcement.DispatcherPreSpawn.test_prespawn_require_arm_mismatch_refused_no_spawn)",
+      "test_prespawn_require_arm_omission_derives_mandatory_arm (tests.test_role_binding_enforcement.DispatcherPreSpawn.test_prespawn_require_arm_omission_derives_mandatory_arm)",
+      "test_negative_blank_session_is_a_typed_refusal (tests.test_role_binding_enforcement.SessionBindingLookup.test_negative_blank_session_is_a_typed_refusal)",
+      "test_negative_different_session_workorder_is_not_returned_for_s (tests.test_role_binding_enforcement.SessionBindingLookup.test_negative_different_session_workorder_is_not_returned_for_s)",
+      "test_negative_two_live_workorders_same_session_refuse_no_pick (tests.test_role_binding_enforcement.SessionBindingLookup.test_negative_two_live_workorders_same_session_refuse_no_pick)",
+      "test_negative_unknown_session_returns_none_no_exception (tests.test_role_binding_enforcement.SessionBindingLookup.test_negative_unknown_session_returns_none_no_exception)",
+      "test_positive_single_live_match_returns_wo_and_binding_with_matching_digest (tests.test_role_binding_enforcement.SessionBindingLookup.test_positive_single_live_match_returns_wo_and_binding_with_matching_digest)",
+      "test_legacy_non_governed_row_unchanged (tests.test_role_binding_enforcement.SpineConsumer.test_legacy_non_governed_row_unchanged)",
+      "test_negative_bound_wo_refuses_empty_evidence (tests.test_role_binding_enforcement.SpineConsumer.test_negative_bound_wo_refuses_empty_evidence)",
+      "test_negative_bound_wo_refuses_replayed_foreign_receipt (tests.test_role_binding_enforcement.SpineConsumer.test_negative_bound_wo_refuses_replayed_foreign_receipt)",
+      "test_negative_self_checker_and_no_delivery (tests.test_role_binding_enforcement.SpineConsumer.test_negative_self_checker_and_no_delivery)",
+      "test_positive_bound_wo_verified_with_exact_evidence (tests.test_role_binding_enforcement.SpineConsumer.test_positive_bound_wo_verified_with_exact_evidence)",
+      "test_cov_11_06_source_text_unchanged (tests.test_task013_hermes_v020_closure.Gate0PolicySemanticsTests.test_cov_11_06_source_text_unchanged)",
+      "test_current_pin_verifies (tests.test_far_lane_fix_20261015.TestP0PinAssert.test_current_pin_verifies)",
+      "test_owner_order_mandate_resolves (tests.test_far_lane_fix_20261015.TestP1MandateConsumer.test_owner_order_mandate_resolves)",
+      "test_verify_security_mandate_resolves (tests.test_far_lane_fix_20261015.TestP1MandateConsumer.test_verify_security_mandate_resolves)",
+      "test_wrong_model_in_pool_refuses (tests.test_far_lane_fix_20261015.TestP1MandateConsumer.test_wrong_model_in_pool_refuses)",
+      "test_all_arms_skipped_reports_the_skip_list_and_fails_closed (tests.test_lane_dispatch_ao_guard.C2DispatchableConsumer.test_all_arms_skipped_reports_the_skip_list_and_fails_closed)",
+      "test_E11a_a_conforming_attempt_stands (tests.test_lane_dispatch_ao_guard.DeterministicGuardNegative.test_E11a_a_conforming_attempt_stands)",
+      "test_E11b_mutation_voids_a_would_have_passed_attempt (tests.test_lane_dispatch_ao_guard.DeterministicGuardNegative.test_E11b_mutation_voids_a_would_have_passed_attempt)",
+      "test_E11c_removal_voids_a_would_have_passed_attempt (tests.test_lane_dispatch_ao_guard.DeterministicGuardNegative.test_E11c_removal_voids_a_would_have_passed_attempt)",
+      "test_E11d_an_added_file_is_recorded_but_not_fatal (tests.test_lane_dispatch_ao_guard.DeterministicGuardNegative.test_E11d_an_added_file_is_recorded_but_not_fatal)",
+      "test_all_arms_refused_refuses_wholesale_with_no_spawn (tests.test_lane_dispatch_ao_guard.GateEndToEndRefusal.test_all_arms_refused_refuses_wholesale_with_no_spawn)",
+      "test_guard_root_that_does_not_resolve_is_refused (tests.test_lane_dispatch_ao_guard.GateEndToEndRefusal.test_guard_root_that_does_not_resolve_is_refused)",
+      "test_required_arm_absent_from_the_pool_is_typed (tests.test_lane_dispatch_ao_guard.GateEndToEndRefusal.test_required_arm_absent_from_the_pool_is_typed)",
+      "test_required_arm_refused_fails_closed_instead_of_degrading (tests.test_lane_dispatch_ao_guard.GateEndToEndRefusal.test_required_arm_refused_fails_closed_instead_of_degrading)",
+      "test_F1_no_identity_gate_does_not_switch_off_require_arm (tests.test_lane_dispatch_ao_guard.HostileReviewRegression.test_F1_no_identity_gate_does_not_switch_off_require_arm)",
+      "test_F2_a_declared_cli_login_requirement_is_honoured_end_to_end (tests.test_lane_dispatch_ao_guard.HostileReviewRegression.test_F2_a_declared_cli_login_requirement_is_honoured_end_to_end)",
+      "test_F2_a_misspelled_requirement_is_refused_end_to_end (tests.test_lane_dispatch_ao_guard.HostileReviewRegression.test_F2_a_misspelled_requirement_is_refused_end_to_end)",
+      "test_F6_a_guard_root_containing_harness_output_is_refused (tests.test_lane_dispatch_ao_guard.HostileReviewRegression.test_F6_a_guard_root_containing_harness_output_is_refused)",
+      "test_guard_refusal_receipt_also_carries_both_home_fields (tests.test_lane_dispatch_ao_guard.R2Repair.test_guard_refusal_receipt_also_carries_both_home_fields)",
+      "test_refusal_receipt_carries_both_home_fields (tests.test_lane_dispatch_ao_guard.R2Repair.test_refusal_receipt_carries_both_home_fields)",
+      "test_G3_added_file_does_not_void_but_changed_and_removed_do (tests.test_lane_dispatch_ao_guard.R3Repair.test_G3_added_file_does_not_void_but_changed_and_removed_do)",
+      "test_G3_empty_guard_root_refuses_pre_spawn (tests.test_lane_dispatch_ao_guard.R3Repair.test_G3_empty_guard_root_refuses_pre_spawn)",
+      "test_G3_non_empty_guard_root_still_snapshots_and_compares (tests.test_lane_dispatch_ao_guard.R3Repair.test_G3_non_empty_guard_root_still_snapshots_and_compares)",
+      "test_H4_negative_an_empty_root_is_refused_even_with_a_non_empty_sibling (tests.test_lane_dispatch_ao_guard.R4Repair.test_H4_negative_an_empty_root_is_refused_even_with_a_non_empty_sibling)",
+      "test_registry_and_projection_shape (tests.test_lane_policy.TestLanePolicyConformance.test_registry_and_projection_shape)",
+      "test_config_resolves_scheme_b_appdata_runtime (tests.test_task014_named_method_closure.CanonicalRuntimeTests.test_config_resolves_scheme_b_appdata_runtime)",
+      "test_denominator_head_matches_git (tests.test_task015_coherence_closure.G2DenominatorTests.test_denominator_head_matches_git)",
+      "test_final_md_guide_projection_matches_actual_guide (tests.test_task015_coherence_closure.GuideAndDeterminismTests.test_final_md_guide_projection_matches_actual_guide)",
+      "test_guide_current_claim_is_task015 (tests.test_task015_coherence_closure.GuideAndDeterminismTests.test_guide_current_claim_is_task015)"
+    ],
+    "ran": [
+      "Ran 448 tests in 74.555s"
+    ],
+    "status": [
+      "FAILED (failures=28, errors=66)"
+    ]
+  },
+  "recorded_whole": {
+    "PRE": {
+      "names": [
+        "tests.test_acceptance_resolution (unittest.loader._FailedTest.tests.test_acceptance_resolution)",
+        "test_cov_11_06_source_text_unchanged (tests.test_task013_hermes_v020_closure.Gate0PolicySemanticsTests.test_cov_11_06_source_text_unchanged)",
+        "test_evolution_status_cli (tests.test_autonomy_evolution.CliEntrypointTests.test_evolution_status_cli)",
+        "test_project_start_cli (tests.test_autonomy_evolution.CliEntrypointTests.test_project_start_cli)",
+        "test_r4_only_allowed_files_changed (tests.test_c2_case_run.CaseRunCliTests.test_r4_only_allowed_files_changed)",
+        "test_registry_and_projection_shape (tests.test_lane_policy.TestLanePolicyConformance.test_registry_and_projection_shape)",
+        "test_config_resolves_scheme_b_appdata_runtime (tests.test_task014_named_method_closure.CanonicalRuntimeTests.test_config_resolves_scheme_b_appdata_runtime)",
+        "test_denominator_head_matches_git (tests.test_task015_coherence_closure.G2DenominatorTests.test_denominator_head_matches_git)",
+        "test_final_md_guide_projection_matches_actual_guide (tests.test_task015_coherence_closure.GuideAndDeterminismTests.test_final_md_guide_projection_matches_actual_guide)",
+        "test_guide_current_claim_is_task015 (tests.test_task015_coherence_closure.GuideAndDeterminismTests.test_guide_current_claim_is_task015)"
+      ],
+      "ran": [
+        "Ran 527 tests in 110.343s"
+      ],
+      "status": [
+        "FAILED (failures=8, errors=2)"
+      ]
+    },
+    "POST": {
+      "names": [
+        "tests.test_acceptance_resolution (unittest.loader._FailedTest.tests.test_acceptance_resolution)",
+        "test_cov_11_06_source_text_unchanged (tests.test_task013_hermes_v020_closure.Gate0PolicySemanticsTests.test_cov_11_06_source_text_unchanged)",
+        "test_evolution_status_cli (tests.test_autonomy_evolution.CliEntrypointTests.test_evolution_status_cli)",
+        "test_project_start_cli (tests.test_autonomy_evolution.CliEntrypointTests.test_project_start_cli)",
+        "test_r4_only_allowed_files_changed (tests.test_c2_case_run.CaseRunCliTests.test_r4_only_allowed_files_changed)",
+        "test_config_resolves_scheme_b_appdata_runtime (tests.test_task014_named_method_closure.CanonicalRuntimeTests.test_config_resolves_scheme_b_appdata_runtime)",
+        "test_denominator_head_matches_git (tests.test_task015_coherence_closure.G2DenominatorTests.test_denominator_head_matches_git)",
+        "test_final_md_guide_projection_matches_actual_guide (tests.test_task015_coherence_closure.GuideAndDeterminismTests.test_final_md_guide_projection_matches_actual_guide)",
+        "test_guide_current_claim_is_task015 (tests.test_task015_coherence_closure.GuideAndDeterminismTests.test_guide_current_claim_is_task015)"
+      ],
+      "ran": [
+        "Ran 527 tests in 124.806s"
+      ],
+      "status": [
+        "FAILED (failures=7, errors=2)"
+      ]
+    }
+  }
+}

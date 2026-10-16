@@ -1,0 +1,46 @@
+{
+  "schema": "HGK-ROLE-MANDATE/1",
+  "round": "FAR-REMEDIATION-AND-CLOSURE-20261016",
+  "session": "20261016_104922_d455e7",
+  "declared_by": "owner order delivered to session 20261016_104922_d455e7: make the three lanes USABLE and RELIABLE with the named model per lane; PLAN & Orchestrator (in Hermes) must be GPT 6.1 SOL-MEDIUM (OpenAI OAuth) and its model selection must be demonstrably usable",
+  "roles": {
+    "PLAN": {
+      "provider": "openai-codex",
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "medium",
+      "auth": "oauth",
+      "surface": "Hermes-internal main agent, launched under the governed profile <HERMES_HOME>/profiles/hgk-governed (model.default + model.provider + reasoning_effort); NOT the per-session picker",
+      "binding_surface_readback": "profiles/hgk-governed/config.yaml::model.default=gpt-6.1-sol, model.provider=openai-codex, reasoning_effort=medium"
+    },
+    "EXECUTE": {
+      "provider": "opencode-go",
+      "model": "deepseek-v4.1-flash",
+      "rank": 1,
+      "surface": "CODEX CLI sealed lane (scripts/hgk-lane-dispatch.py --lane EXECUTE) through the 10100 front door to the 10101 relay",
+      "reasoning_effort": null,
+      "reasoning_effort_note": "the pool entry for this arm declares no reasoning_effort; the mandate therefore declares none either, and the M03 effort gate treats a lane with no declared effort as a pass-through rather than failing it"
+    },
+    "VERIFY_SECURITY": {
+      "provider": "openai-codex",
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "medium",
+      "auth": "oauth",
+      "rank": 1,
+      "surface": "CODEX CLI sealed lane (scripts/hgk-lane-dispatch.py --lane VERIFY_SECURITY), read-only checker process with the frozen candidate as its guard subject"
+    }
+  },
+  "no_silent_substitution": true,
+  "expires_utc": "2026-10-17T00:00:00+00:00",
+  "sod_residual": {
+    "plan_vs_verify_same_model": true,
+    "detail": "PLAN and VERIFY/SECURITY are BOTH openai-codex/gpt-6.1-sol (medium) in this mandate, so model-level independence between the planner/orchestrator and the independent acceptance officer is ABSENT; only PROCESS / LANE / EVIDENCE-PATH independence remains (separate process, fresh context, read-only checker, forced re-derivation of every decisive claim, forbidden from reading the writer's report). Correlated blind spots are the concrete failure mode this does NOT hedge. Maker EXECUTE=opencode-go/deepseek-v4.1-flash != checker gpt-6.1-sol still HOLDS.",
+    "owner_basis": "owner mandate for this session names GPT-6.1-SOL-MEDIUM (OpenAI OAuth) for both PLAN and VERIFY/SECURITY; recorded as an owner-authorised deviation, not as a satisfied invariant"
+  },
+  "observed_serving_this_turn": {
+    "interactive_orchestrator_session_model": "deepseek-v4.1-flash",
+    "interactive_orchestrator_provider": "opencode-go",
+    "note": "the interactive orchestrator session 20261016_104922_d455e7 is a DIFFERENT binding surface from the PLAN plane (state.db::sessions.model, pinned at session start); the PLAN-plane claim in this round is made on the governed profile's OWN measured rows and one-shot probes, and the two are reported separately, never conflated",
+    "governed_profile_measured": "profiles/hgk-governed/state.db::sessions -> model=gpt-6.1-sol, billing_provider=openai-codex, billing_base_url=https://chatgpt.com/backend-api/codex, billing_mode=subscription_included, source=oneshot"
+  },
+  "claim_ceiling": "A mandate is a DECLARATION. The serving evidence for each lane is that lane's own receipt (required_arm == served_arm) or the PLAN profile's own session rows -- never this file."
+}

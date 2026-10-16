@@ -1,0 +1,40 @@
+{
+  "schema": "HGK-LANE-ATTEMPT-TERMINATION/1",
+  "round": "FAR-REMEDIATION-AND-CLOSURE-20261016",
+  "lane": "EXECUTE",
+  "tag": "R5",
+  "workorder": "WO-FAR-REMEDIATION-AND-CLOSURE-20261016-EXECUTE",
+  "required_arm": "opencode-go/deepseek-v4.1-flash",
+  "started_utc": "2026-10-16T04:26:25Z",
+  "terminated_utc": "2026-10-16T04:41:40Z",
+  "elapsed_s": 915,
+  "dispatched_timeout_s": 1500,
+  "outcome": "TERMINATED_BY_ORCHESTRATOR_AFTER_DIAGNOSED_PROBE_LOOP",
+  "what_the_attempt_DID_land": [
+    "candidate/scripts/hgk-lane-dispatch.py — the SEEDED copy, byte-identical to the canonical file (never edited)",
+    "12 probe files of 2-7 bytes whose names are a sequential search for a writable directory: _probe_write.txt, scratchdir/_probe.txt, scripts/zztemp.txt (contents 'hello'), scripts2/zz.txt, scriptsx/zz.txt, test2/zz.txt, .scripts/zz.txt, script/zz.txt, src/zz.txt, config/zz.txt, foo/tests/zz.txt, candidate/scripts/zz.txt"
+  ],
+  "no_product_change": true,
+  "diagnosis": {
+    "measured_signature": [
+      "codex.exe (pid 15780, spawned 12:26:26) held PercentProcessorTime=0 across repeated samples from 12:34 to 12:41",
+      "every write was 2-7 bytes into a NEW directory name, at 15-60 s intervals, ending 12:41:30; no write to the target file in 15 minutes",
+      "the probe sequence walks plausible spellings of the target path (scripts2, scriptsx, .scripts, script, src, config, foo/tests) and finally candidate/scripts — i.e. it is resolving WHERE the target file lives, not editing it",
+      "no attempt directory or dispatch.json was produced under lanes/EXECUTE/R5/raw, so the dispatcher never reached its completion path"
+    ],
+    "cause": "the brief's output path is ambiguous under the sandbox cwd. The brief says the file is 'scripts/hgk-lane-dispatch.py' and that the result must be written to 'candidate/scripts/hgk-lane-dispatch.py', while the dispatch was made with --cwd <round>/candidate and --sandbox workspace-write. The writer therefore tried to resolve 'candidate/...' BELOW its own cwd, probing directory names until it settled on candidate/candidate/scripts. That is an ORCHESTRATION defect in this round's brief, not a model or arm failure.",
+    "attributable_to_the_model_or_the_arm": false,
+    "attributable_to_the_brief_and_the_dispatch_cwd": true,
+    "how_this_differs_from_the_previous_round": "BC1 and BC2 wedged with no probe sequence and no write at all after the first file. This attempt wrote continuously for 15 minutes — it was not idle, it was searching. The signature is distinguishable, and it pointed at a fixable brief error."
+  },
+  "remediation_taken": [
+    "the 12 probe files were recorded into lanes/EXECUTE/R5/work/candidate_tree_at_termination.txt and then deleted; the candidate tree now contains only the seeded file",
+    "the brief was rewritten: the output path is stated cwd-RELATIVE, the sandbox root is named explicitly, and the writer is told that probing for a writable location is unnecessary because its cwd is writable",
+    "the turn was re-dispatched as R5b with the corrected brief"
+  ],
+  "honest_notes": [
+    "This termination is a deliberate choice on measurement, not a timeout: 915 s of the 1500 s budget had elapsed and the diagnosis was actionable.",
+    "The arm identity for this attempt is NOT claimed: no receipt exists, and the round does not attribute the turn to opencode-go/deepseek-v4.1-flash on the strength of the invocation args alone.",
+    "A codex.exe process (pid 6616) appeared at 12:41:48, seconds after the dispatcher was killed. It is NOT attributed to this lane anywhere in this round; attribution would need its parent process, which was not captured before the kill."
+  ]
+}

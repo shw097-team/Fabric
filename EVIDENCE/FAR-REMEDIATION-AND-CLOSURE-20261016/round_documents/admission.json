@@ -1,0 +1,67 @@
+{
+  "round": "FAR-REMEDIATION-AND-CLOSURE-20261016",
+  "at": "2026-10-16T12:16:33.476466+08:00",
+  "base_head": "903e47cddeceb40cb8f5f5793105533b3988a463",
+  "session": "20261016_104922_d455e7",
+  "mandate_digest": "sha256:3a2e26da8e86344e9dbea6e9c07cf6fa26925552a0950799da5474d6c5036fbe",
+  "roles": {
+    "PLAN": {
+      "provider": "openai-codex",
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "medium",
+      "auth": "oauth",
+      "surface": "Hermes-internal main agent, launched under the governed profile <HERMES_HOME>/profiles/hgk-governed (model.default + model.provider + reasoning_effort); NOT the per-session picker",
+      "binding_surface_readback": "profiles/hgk-governed/config.yaml::model.default=gpt-6.1-sol, model.provider=openai-codex, reasoning_effort=medium"
+    },
+    "EXECUTE": {
+      "provider": "opencode-go",
+      "model": "deepseek-v4.1-flash",
+      "rank": 1,
+      "surface": "CODEX CLI sealed lane (scripts/hgk-lane-dispatch.py --lane EXECUTE) through the 10100 front door to the 10101 relay",
+      "reasoning_effort": null,
+      "reasoning_effort_note": "the pool entry for this arm declares no reasoning_effort; the mandate therefore declares none either, and the M03 effort gate treats a lane with no declared effort as a pass-through rather than failing it"
+    },
+    "VERIFY_SECURITY": {
+      "provider": "openai-codex",
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "medium",
+      "auth": "oauth",
+      "rank": 1,
+      "surface": "CODEX CLI sealed lane (scripts/hgk-lane-dispatch.py --lane VERIFY_SECURITY), read-only checker process with the frozen candidate as its guard subject"
+    }
+  },
+  "readback": [
+    {
+      "requirement_state": "FROZEN",
+      "taskspec_state": "ADMITTED",
+      "writable_root": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\FAR-REMEDIATION-AND-CLOSURE-20261016\\candidate",
+      "workorder_id": "WO-FAR-REMEDIATION-AND-CLOSURE-20261016-EXECUTE",
+      "taskspec_id": "TS-FAR-REMEDIATION-AND-CLOSURE-20261016-EXECUTE",
+      "writer": "codex",
+      "worktree": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\FAR-REMEDIATION-AND-CLOSURE-20261016\\candidate",
+      "base_head": "903e47cddeceb40cb8f5f5793105533b3988a463",
+      "state": "CREATED",
+      "result_json": null,
+      "rollback_pointer": "RB-WO-FAR-REMEDIATION-AND-CLOSURE-20261016-EXECUTE",
+      "created_at": "2026-10-16T04:16:32.547632Z",
+      "updated_at": "2026-10-16T04:16:32.547632Z"
+    },
+    {
+      "requirement_state": "FROZEN",
+      "taskspec_state": "ADMITTED",
+      "writable_root": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\FAR-REMEDIATION-AND-CLOSURE-20261016\\checker",
+      "workorder_id": "WO-FAR-REMEDIATION-AND-CLOSURE-20261016-VERIFY_SECURITY",
+      "taskspec_id": "TS-FAR-REMEDIATION-AND-CLOSURE-20261016-VERIFY_SECURITY",
+      "writer": "codex-cli-independent-gpt",
+      "worktree": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\FAR-REMEDIATION-AND-CLOSURE-20261016\\checker",
+      "base_head": "903e47cddeceb40cb8f5f5793105533b3988a463",
+      "state": "CREATED",
+      "result_json": null,
+      "rollback_pointer": "RB-WO-FAR-REMEDIATION-AND-CLOSURE-20261016-VERIFY_SECURITY",
+      "created_at": "2026-10-16T04:16:33.417196Z",
+      "updated_at": "2026-10-16T04:16:33.417196Z"
+    }
+  ],
+  "canonical_acceptance": "NOT_PERFORMED",
+  "claim_ceiling": "Admission is a PRE-DISPATCH eligibility record. It proves no role executed and no model was served; those come from the lane receipts."
+}

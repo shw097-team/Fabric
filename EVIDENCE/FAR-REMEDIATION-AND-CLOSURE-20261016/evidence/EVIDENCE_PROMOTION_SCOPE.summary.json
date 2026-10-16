@@ -1,0 +1,340 @@
+{
+  "schema": "HGK-EVIDENCE-PROMOTION-SCOPE/1",
+  "generated_for_round": "FAR-REMEDIATION-AND-CLOSURE-20261016",
+  "counts": {
+    "candidate_files": 200,
+    "canonical_enumerated_files": 243465,
+    "common_identical": 194,
+    "candidate_only": 1,
+    "modified": 5,
+    "canonical_only_enumerated": 243266,
+    "known_file_differences": 243272,
+    "promote": 4,
+    "do_not_promote": 242920,
+    "needs_owner_decision": 348,
+    "unreadable_canonical_directories": 757,
+    "reparse_boundaries": 3
+  },
+  "promote": [
+    {
+      "path": "scripts/hgk-governed-runtime-controller.py",
+      "difference": "modified",
+      "node_kind": "file",
+      "candidate_sha256": "5b744de7c4e30240ae92421c2e7220efa5dfca02d88d85f2264bc921ad849412",
+      "canonical_exists": true,
+      "canonical_sha256": "67e79c52e6dd5d1d0d1d44e5dc625afe955efc1bef2aa40028e98c1f139bda90",
+      "candidate_bytes": 12289,
+      "reason": "Product JSON-stdin runtime adapter: handles blank/non-string session IDs with the explicit no-session-id-unattributable allow response instead of an unattributable-session outage.",
+      "content_evidence": [
+        {
+          "line": 22,
+          "text": "from __future__ import annotations"
+        },
+        {
+          "line": 24,
+          "text": "import json"
+        },
+        {
+          "line": 25,
+          "text": "import os"
+        },
+        {
+          "line": 26,
+          "text": "import posixpath"
+        },
+        {
+          "line": 27,
+          "text": "import sys"
+        },
+        {
+          "line": 28,
+          "text": "from pathlib import Path"
+        },
+        {
+          "line": 39,
+          "text": "SPINE_DB = ROOT / \"var\" / \"shared-spine\" / \"hg-kseos.db\""
+        },
+        {
+          "line": 40,
+          "text": "SPINE_SCHEMA = ROOT / \"src\" / \"hg_kseos\" / \"schema.sql\""
+        },
+        {
+          "line": 85,
+          "text": "def _ensure_src_on_path() -> None:"
+        },
+        {
+          "line": 87,
+          "text": "    src = str(ROOT / \"src\")"
+        },
+        {
+          "line": 88,
+          "text": "    if src not in sys.path:"
+        },
+        {
+          "line": 89,
+          "text": "        sys.path.insert(0, src)"
+        },
+        {
+          "line": 93,
+          "text": "    _ensure_src_on_path()"
+        },
+        {
+          "line": 94,
+          "text": "    from hg_kseos.spine import SharedSpine  # noqa: E402"
+        },
+        {
+          "line": 108,
+          "text": "        import yaml  # noqa: PLC0415"
+        },
+        {
+          "line": 227,
+          "text": "    # ABSENT/BLANK session id (finding CONTROLLER-ABSENT-SESSION-ID-FAILCLOSED, closed by round"
+        },
+        {
+          "line": 230,
+          "text": "    # ERR_ROLE_BINDING_SESSION_REQUIRED for it. So a call carrying no session id cannot belong to a"
+        },
+        {
+          "line": 241,
+          "text": "        _ensure_src_on_path()"
+        },
+        {
+          "line": 242,
+          "text": "        from hg_kseos import role_binding as _role_binding  # noqa: PLC0415"
+        }
+      ]
+    },
+    {
+      "path": "scripts/runtime_role_binding_assert.py",
+      "difference": "modified",
+      "node_kind": "file",
+      "candidate_sha256": "6fa7ed6b6ea983e154a6a2a0b70a250baa6bbc65742a2a82425ce9a2f5fcacd2",
+      "canonical_exists": true,
+      "canonical_sha256": "63d004ade7ff65e16589e76572db33880b459141461beead764ea2f4a3015031",
+      "candidate_bytes": 16665,
+      "reason": "Product pre-dispatch role-mandate gate: adds --served-effort and typed mandate/pool/served reasoning-effort checks with exit 7; no round-local path dependency added.",
+      "content_evidence": [
+        {
+          "line": 19,
+          "text": "  ERR_MANDATE_ROLE_NOT_DECLARED            the lane has no declared arm for this round"
+        },
+        {
+          "line": 27,
+          "text": "from __future__ import annotations"
+        },
+        {
+          "line": 29,
+          "text": "import argparse"
+        },
+        {
+          "line": 30,
+          "text": "import hashlib"
+        },
+        {
+          "line": 31,
+          "text": "import json"
+        },
+        {
+          "line": 32,
+          "text": "import subprocess"
+        },
+        {
+          "line": 33,
+          "text": "import sys"
+        },
+        {
+          "line": 34,
+          "text": "from pathlib import Path"
+        },
+        {
+          "line": 37,
+          "text": "sys.path.insert(0, str(ROOT_EARLY / \"src\"))"
+        },
+        {
+          "line": 39,
+          "text": "    from hg_kseos import role_binding as _role_binding  # noqa: E402"
+        },
+        {
+          "line": 46,
+          "text": "    \"role\": \"ERR_MANDATE_ROLE_NOT_DECLARED\","
+        },
+        {
+          "line": 77,
+          "text": "    ap.add_argument(\"--pool\", default=str(ROOT / \"config\" / \"lane-route-slots.candidate.json\"))"
+        },
+        {
+          "line": 78,
+          "text": "    ap.add_argument(\"--toolchain-declaration\", default=str(ROOT / \"config\" / \"hermes-codex-lane.json\"))"
+        },
+        {
+          "line": 106,
+          "text": "            print(json.dumps({\"ok\": False, \"code\": \"ERR_ROLE_BINDING_INVALID\","
+        },
+        {
+          "line": 111,
+          "text": "            print(json.dumps({\"ok\": False, \"code\": \"ERR_ROLE_BINDING_FILE_MISSING\","
+        },
+        {
+          "line": 117,
+          "text": "            print(json.dumps({\"ok\": False, \"code\": \"ERR_ROLE_BINDING_FILE_INVALID\","
+        },
+        {
+          "line": 167,
+          "text": "            print(json.dumps({\"ok\": False, \"code\": \"ERR_ROLE_BINDING_MANDATE_ARM_MISMATCH\","
+        },
+        {
+          "line": 175,
+          "text": "        [sys.executable, str(ROOT / \"scripts\" / \"hgk-lane-toolchain.py\"),"
+        }
+      ]
+    },
+    {
+      "path": "tests/test_governed_runtime_controller.py",
+      "difference": "modified",
+      "node_kind": "file",
+      "candidate_sha256": "fdf1dbc251eee5e78d9c5db91f2a0ebf18c30c2daa43a66f62b3cde5bf26d521",
+      "canonical_exists": true,
+      "canonical_sha256": "db0e37ae86fc23a8674e6b788ef3665cc2953c65c0ee4a880c4979c6ef0e0467",
+      "candidate_bytes": 15687,
+      "reason": "Product behavioral regression suite: adds three blank/null-session subprocess tests paired with the existing real-session maker-denial controls.",
+      "content_evidence": [
+        {
+          "line": 11,
+          "text": "from __future__ import annotations"
+        },
+        {
+          "line": 13,
+          "text": "import hashlib"
+        },
+        {
+          "line": 14,
+          "text": "import json"
+        },
+        {
+          "line": 15,
+          "text": "import os"
+        },
+        {
+          "line": 16,
+          "text": "import pathlib"
+        },
+        {
+          "line": 17,
+          "text": "import subprocess"
+        },
+        {
+          "line": 18,
+          "text": "import sys"
+        },
+        {
+          "line": 19,
+          "text": "import tempfile"
+        },
+        {
+          "line": 20,
+          "text": "import unittest"
+        },
+        {
+          "line": 23,
+          "text": "CONTROLLER = ROOT / \"scripts\" / \"hgk-governed-runtime-controller.py\""
+        },
+        {
+          "line": 29,
+          "text": "sys.path.insert(0, str(ROOT / \"src\"))"
+        },
+        {
+          "line": 30,
+          "text": "from hg_kseos import role_binding  # noqa: E402"
+        },
+        {
+          "line": 31,
+          "text": "from hg_kseos.spine import SharedSpine  # noqa: E402"
+        },
+        {
+          "line": 39,
+          "text": "        \"schema\": role_binding.ROLE_BINDING_SCHEMA,"
+        },
+        {
+          "line": 57,
+          "text": "        tmp = pathlib.Path(tempfile.mkdtemp(prefix=\"hgk-grc-\", dir=str(ROOT.parent / \"TEST_RESULTS\")))"
+        },
+        {
+          "line": 85,
+          "text": "                                  {role_binding.ROLE_BINDING_KEY: doc}, [\"unit\"], \"evidence\")"
+        },
+        {
+          "line": 92,
+          "text": "        env[\"HGK_SPINE_SCHEMA\"] = str(ROOT / \"src\" / \"hg_kseos\" / \"schema.sql\")"
+        },
+        {
+          "line": 95,
+          "text": "            [str(HGK_PY), str(CONTROLLER)],"
+        },
+        {
+          "line": 256,
+          "text": "        \"\"\"CONTROLLER-ABSENT-SESSION-ID-FAILCLOSED: a blank session id must be ANSWERED."
+        }
+      ]
+    },
+    {
+      "path": "tests/test_lane_effort_enforcement.py",
+      "difference": "candidate_only",
+      "node_kind": "file",
+      "candidate_sha256": "18742bf07b4055ae44733829d9817787a12d3c9140536689c574223e5356e333",
+      "canonical_exists": false,
+      "canonical_sha256": null,
+      "candidate_bytes": 5161,
+      "reason": "New product regression suite: six positive/negative cases exercise the real role-mandate assertion script and reasoning-effort typed refusals.",
+      "content_evidence": [
+        {
+          "line": 17,
+          "text": "from __future__ import annotations"
+        },
+        {
+          "line": 19,
+          "text": "import json"
+        },
+        {
+          "line": 20,
+          "text": "import pathlib"
+        },
+        {
+          "line": 21,
+          "text": "import subprocess"
+        },
+        {
+          "line": 22,
+          "text": "import sys"
+        },
+        {
+          "line": 23,
+          "text": "import tempfile"
+        },
+        {
+          "line": 24,
+          "text": "import unittest"
+        },
+        {
+          "line": 27,
+          "text": "ASSERT = ROOT / \"scripts\" / \"runtime_role_binding_assert.py\""
+        },
+        {
+          "line": 28,
+          "text": "TOOLCHAIN = ROOT / \"config\" / \"hermes-codex-lane.json\""
+        },
+        {
+          "line": 55,
+          "text": "        tmp = pathlib.Path(tempfile.mkdtemp(prefix=\"hgk-effort-\", dir=str(ROOT.parent / \"TEST_RESULTS\")))"
+        },
+        {
+          "line": 62,
+          "text": "                \"--toolchain-declaration\", str(TOOLCHAIN)]"
+        }
+      ]
+    }
+  ],
+  "needs_owner_decision_count": 348,
+  "do_not_promote_count": 242920,
+  "completeness": "CANDIDATE_COMPARISON_COMPLETE; CANONICAL_ONLY_ENUMERATION_INCOMPLETE_ACCESS_DENIED",
+  "exactness_claim": "All 200 candidate regular files were hashed and compared to the same canonical relative path. All discoverable canonical-only regular files are individually listed. Cannot honestly certify the EXACT whole-canonical-tree difference: 757 non-excluded canonical directories remain access-denied after read-only retry; three reparse directories are recorded but not traversed. No unknown descendants are invented."
+}

@@ -1,0 +1,76 @@
+{
+ "label": "before",
+ "path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\FAR-REMEDIATION-AND-CLOSURE-20261016\\lanes\\VERIFY_SECURITY\\V3c\\work\\TEST_RESULTS\\before\\config\\model-lane-assignment.json",
+ "findings": [
+  {
+   "pointer": "/sod/plan_lane",
+   "lane": "PLAN",
+   "chain_default": "opencode-go/glm-5.3-flash",
+   "claimed_default": "glm-5.3-flash",
+   "parsed_via": "first model token",
+   "verdict": "AGREES"
+  },
+  {
+   "pointer": "/sod/verify_security_lane",
+   "lane": "VERIFY_SECURITY",
+   "chain_default": "openai-codex/gpt-6.1-sol",
+   "claimed_default": "glm-5.3-flash",
+   "parsed_via": "default primary arm a =",
+   "verdict": "CONTRADICTS_THE_CHAIN"
+  },
+  {
+   "pointer": "/sod/verify_security_default_arm",
+   "lane": "VERIFY_SECURITY",
+   "chain_default": "openai-codex/gpt-6.1-sol",
+   "claimed_default": "glm-5.3-flash",
+   "parsed_via": "a = ",
+   "verdict": "CONTRADICTS_THE_CHAIN"
+  },
+  {
+   "pointer": "/sod/verify_security_arm_A",
+   "lane": "VERIFY_SECURITY",
+   "chain_default": "openai-codex/gpt-6.1-sol",
+   "claimed_default": "glm-5.3-flash",
+   "parsed_via": "first model token",
+   "verdict": "CONTRADICTS_THE_CHAIN"
+  }
+ ],
+ "info": [
+  {
+   "pointer": "/sod/verify_vs_plan_model_separation",
+   "model_tokens_present": [
+    "gpt-6.1-sol",
+    "glm-5.3-flash"
+   ],
+   "rule": "multi-lane prose: listed, not strictly judged"
+  },
+  {
+   "pointer": "/sod/provider_separation",
+   "model_tokens_present": [],
+   "rule": "multi-lane prose: listed, not strictly judged"
+  },
+  {
+   "pointer": "/sod/provider_separation_status",
+   "model_tokens_present": [
+    "deepseek-v4.1-flash",
+    "glm-5.3-flash"
+   ],
+   "rule": "multi-lane prose: listed, not strictly judged"
+  },
+  {
+   "pointer": "/sod/maker_self_acceptance",
+   "model_tokens_present": [
+    "deepseek-v4.1-flash",
+    "gpt-6.1-sol",
+    "glm-5.3-flash"
+   ],
+   "rule": "multi-lane prose: listed, not strictly judged"
+  }
+ ],
+ "contradictions": 3
+}
+/sod/plan_lane                             PLAN             chain=opencode-go/glm-5.3-flash    claimed=glm-5.3-flash      AGREES
+/sod/verify_security_lane                  VERIFY_SECURITY  chain=openai-codex/gpt-6.1-sol     claimed=glm-5.3-flash      CONTRADICTS_THE_CHAIN
+/sod/verify_security_default_arm           VERIFY_SECURITY  chain=openai-codex/gpt-6.1-sol     claimed=glm-5.3-flash      CONTRADICTS_THE_CHAIN
+/sod/verify_security_arm_A                 VERIFY_SECURITY  chain=openai-codex/gpt-6.1-sol     claimed=glm-5.3-flash      CONTRADICTS_THE_CHAIN
+CONTRADICTIONS = 3

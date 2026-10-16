@@ -1,0 +1,21 @@
+test_registry_and_projection_shape (tests.test_lane_policy.TestLanePolicyConformance.test_registry_and_projection_shape) ... FAIL
+
+======================================================================
+FAIL: test_registry_and_projection_shape (tests.test_lane_policy.TestLanePolicyConformance.test_registry_and_projection_shape)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-REMEDIATION-AND-CLOSURE-20261016\lanes\VERIFY_SECURITY\V3c\work\subject\tests\test_lane_policy.py", line 109, in test_registry_and_projection_shape
+    self.assertEqual((route["provider"], route["model"]), owner_chain[lane][0],
+AssertionError: Tuples differ: ('opencode-go', 'glm-5.3-flash') != ('openai-codex', 'gpt-6.1-sol')
+
+First differing element 0:
+'opencode-go'
+'openai-codex'
+
+- ('opencode-go', 'glm-5.3-flash')
++ ('openai-codex', 'gpt-6.1-sol') : PLAN rank-1 default must be owner-declared
+
+----------------------------------------------------------------------
+Ran 1 test in 0.065s
+
+FAILED (failures=1)

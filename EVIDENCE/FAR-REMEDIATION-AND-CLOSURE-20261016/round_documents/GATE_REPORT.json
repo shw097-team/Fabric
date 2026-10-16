@@ -1,0 +1,53 @@
+{
+  "schema": "HGK-ROUND-GATE-REPORT/1",
+  "round": "FAR-REMEDIATION-AND-CLOSURE-20261016",
+  "checks": {
+    "G1_all_json_parses": {
+      "ok": true,
+      "failures": [],
+      "counted": 107
+    },
+    "G2_frozen_subject_recomputes": {
+      "ok": false,
+      "recorded": "6fdda13e3e6a2da527ad4f75e98151edb98f607f53cba55304d748eef6b63f25",
+      "recomputed": "6fdda13e3e6a2da527ad4f75e98151edb98f607f53cba55304d748eef6b63f25",
+      "mismatched_items": [
+        "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/PUSH_RECEIPT.json"
+      ],
+      "items": 67
+    },
+    "G3_no_credential_material": {
+      "ok": true,
+      "hits": [],
+      "patterns": 5
+    },
+    "G4_no_self_acceptance_claim": {
+      "ok": true,
+      "hits": []
+    },
+    "G5_receipts_exist_and_agree": {
+      "ok": true,
+      "missing": [],
+      "promoted_4": true,
+      "closure_regression_diff": {
+        "removed": [
+          "FAIL: test_registry_and_projection_shape"
+        ],
+        "added": []
+      }
+    },
+    "G6_packet_hygiene": {
+      "ok": true,
+      "packet_files": 131,
+      "oversize": [],
+      "litter": []
+    },
+    "G7_residuals_preserved": {
+      "ok": true,
+      "closure_residuals": 15,
+      "inventory_items": 22,
+      "note": "counts are compared, not wording: the closure may rephrase a ledgered item but may not drop it"
+    }
+  },
+  "verdict": "GATE_REFUSE"
+}

@@ -1,0 +1,40 @@
+{
+  "schema": "HGK-LANE-ATTEMPT-TERMINATION/1",
+  "round": "FAR-REMEDIATION-AND-CLOSURE-20261016",
+  "lane": "EXECUTE",
+  "tag": "R5b",
+  "workorder": "WO-FAR-REMEDIATION-AND-CLOSURE-20261016-EXECUTE",
+  "required_arm": "opencode-go/deepseek-v4.1-flash",
+  "supersedes": "lanes/EXECUTE/R5 (terminated after a path-ambiguity probe loop)",
+  "started_utc": "2026-10-16T04:42:34Z",
+  "terminated_utc": "2026-10-16T04:47:00Z",
+  "elapsed_s": 266,
+  "dispatched_timeout_s": 1200,
+  "outcome": "TERMINATED_BY_ORCHESTRATOR_AFTER_PROBE_AND_REVERT_LOOP",
+  "what_the_attempt_DID_land": [
+    "candidate/tests/.__patch_probe.txt (11 bytes, 12:44:47) — a probe INSIDE the correct target directory, i.e. the corrected brief fixed the path-ambiguity of the first attempt",
+    "candidate/scripts/hgk-lane-dispatch.py at 12:44:59 with 141834 bytes (+8 over the seed), REVERTED to the seed's exact 141826 bytes at 12:45:04 — the writer applied something and then rolled it back",
+    "candidate/TEST_RESULTS/probe.txt (6 bytes, 12:46:05) — probing again, in a third directory"
+  ],
+  "no_product_change": true,
+  "diagnosis": {
+    "measured_signature": [
+      "codex.exe (pid 18836, spawned 12:42:34) held PercentProcessorTime=0 across samples at 12:45 and 12:46",
+      "one genuine patch to the target file, reverted 5 seconds later; then relocation of the probing into a new directory",
+      "no net change in 4.4 minutes; no dispatch receipt produced"
+    ],
+    "cause": "This is NOT the first attempt's cause. The corrected brief demonstrably worked: the probe moved into the correct target directory and a patch was attempted. What failed is the TURN SCOPE — a four-part additive change plus a new typed test file, on a 2275-line file, in a single edit-only turn. The writer made one attempt at the file and backed out rather than complete all four edits.",
+    "attributable_to_the_model_or_the_arm": false,
+    "attributable_to_the_turn_scope": true,
+    "evidence_that_the_brief_was_not_the_cause": "the probe landed in tests/ (correct) instead of a sequence of misspelled directories, and the target file was actually modified once"
+  },
+  "remediation_priced_for_the_next_round": [
+    "Decompose R5 into two or three separate edit-only turns, each with a single objective (argparse flag + constant; the prompt-assembly line + receipt keys; the test module). This round's evidence says the unit of work, not the brief, is what exceeds the window.",
+    "Alternatively dispatch the SAME change on the same lane with a larger --timeout and watch whether the revert recovers; that experiment was not run, so it is not claimed."
+  ],
+  "honest_notes": [
+    "Two attempts, two terminations, both on measurement rather than on timeout: 915 s and 266 s of 1500 s and 1200 s budgets.",
+    "The arm identity is NOT claimed for either attempt: no receipt exists, and the round does not attribute a turn to opencode-go/deepseek-v4.1-flash on the strength of invocation args alone.",
+    "Verdict on the outcome: R5 is NOT delivered. Four bounded-writer turns across two rounds have now wedged; the second round's two wedges had two DIFFERENT diagnosed causes, which is itself the useful result."
+  ]
+}
