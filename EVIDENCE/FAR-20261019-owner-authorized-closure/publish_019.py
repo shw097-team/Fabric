@@ -101,10 +101,19 @@ index_bytes = json.dumps(index, ensure_ascii=False, indent=1).encode()
 files.append(("PACK_INDEX.json", index_bytes))
 
 st, mainref = api("GET", f"/repos/{REPO}/git/ref/heads/{BASE_BRANCH}")
-base_sha = (mainref.get("object") or {}).get("sha")
+main_sha = (mainref.get("object") or {}).get("sha")
+st, refchk = api("GET", f"/repos/{REPO}/git/ref/heads/{BRANCH}")
+branch_exists = bool(refchk.get("object"))
+if branch_exists:
+    # A second stage on an existing branch must parent its commit on the BRANCH tip, not on main: a commit
+    # whose parent is main while the ref already points elsewhere is a non-fast-forward and is refused.
+    base_sha = refchk["object"]["sha"]
+    print("branch exists; parenting on tip", base_sha[:8], "(main is at", main_sha[:8], ")")
+else:
+    base_sha = main_sha
 st, basecommit = api("GET", f"/repos/{REPO}/git/commits/{base_sha}")
 base_tree = (basecommit.get("tree") or {}).get("sha")
-print("base", BASE_BRANCH, base_sha[:8], "tree", (base_tree or "")[:8])
+print("base", BASE_BRANCH if not branch_exists else BRANCH, base_sha[:8], "tree", (base_tree or "")[:8])
 
 entry = [{"path": f"{prefix}/{rel}", "mode": "100644", "type": "blob",
           "content": b.decode("utf-8", errors="surrogateescape")} for rel, b in files]
