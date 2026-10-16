@@ -102,5 +102,39 @@
    "owner": "coordination"
   }
  ],
- "claim_ceiling": "LOCAL / candidate-only"
+ "claim_ceiling": "LOCAL / candidate-only",
+ "publication": {
+  "status": "PUBLISHED_candidate_evidence_first_cut",
+  "branch": "evidence/cnv-pipd-ls-sp-20261015-r11",
+  "head_first_cut": "51c804ad172b9eb8b5cbc838b362cd1757625bff",
+  "m2": {
+   "verdict": "PASS",
+   "blobs": 75,
+   "bytes": 423623,
+   "hard_secrets": 0,
+   "soft_candidates": 0,
+   "scope_violations": 0,
+   "executables": 0,
+   "token_occurrences": 0
+  },
+  "readback": {
+   "match": true,
+   "remote_blobs": 75,
+   "blob_mismatches": 0
+  },
+  "pr": {
+   "number": 11,
+   "draft": true,
+   "base": "main",
+   "url": "https://github.com/shw097-team/Fabric/pull/11"
+  },
+  "external_readback_via_api": {
+   "pr_head_matches": true,
+   "main": "b8ff81043e47 UNCHANGED",
+   "r9": "5cd47cea UNCHANGED",
+   "r10": "34d57124 UNCHANGED"
+  },
+  "defect_found_by_the_round_itself": "the first cut MISSED SELF_EVOLUTION_R11.md/.json: they were written after prepare staged the packet (MANIFEST local=73). Disclosed, re-cut and re-pushed (the PR is a draft, so its head moves with the branch).",
+  "claim_ceiling": "LOCAL/candidate-only - the bytes landing and a clean secret gate are all this proves; not an acceptance, Gate PASS, AO verdict or release"
+ }
 }

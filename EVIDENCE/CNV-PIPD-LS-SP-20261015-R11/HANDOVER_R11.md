@@ -4,6 +4,11 @@
 of the conversation that produced it. Claim ceiling: **`LOCAL / candidate-only`** — nothing here is an
 acceptance, a Gate PASS, an AO verdict or a release.
 
+**Outcome**: this round's evidence packet is on Fabric as branch `evidence/cnv-pipd-ls-sp-20261015-r11`
+(Draft PR #11, base `main`), M2 trusted-scope/secrets gate PASS, remote readback 0 blob mismatches, and the
+pre-existing prefixes (`main` `b8ff8104`, R9 `5cd47cea`, R10 `34d57124`) re-read as unchanged. The handover below
+is what that packet carries.
+
 Generated: 2026-10-16 (UTC+8 host) by round **R11-0** (`ChangeSet R11-0-SESSION-HANDOVER`, HGK project
 `CNV-R11-HANDOVER`). Predecessor handover: `../CNV-PIPD-LS-SP-20261015-R10/HANDOVER_R10.md`.
 
