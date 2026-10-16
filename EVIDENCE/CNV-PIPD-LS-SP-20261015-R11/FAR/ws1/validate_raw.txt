@@ -1,0 +1,106 @@
+###CMD: npx --no-install openspec validate gcm-noninteractive-default-containment --strict
+---cwd: C:/Projects/Agent_Workspace/HG-KSEOS/openspec
+Change 'gcm-noninteractive-default-containment' is valid
+---exit: 0
+###CMD: npx --no-install openspec validate hermes-incident-2026-10-05-repair --strict
+---cwd: C:/Projects/Agent_Workspace/HG-KSEOS/openspec
+Change 'hermes-incident-2026-10-05-repair' is valid
+---exit: 0
+###CMD: npx --no-install openspec validate hgk-checker-upgrade-adapter --strict
+---cwd: C:/Projects/Agent_Workspace/HG-KSEOS/openspec
+Change 'hgk-checker-upgrade-adapter' is valid
+---exit: 0
+###CMD: npx --no-install openspec validate hgk-far-remediation-20261016 --strict
+---cwd: C:/Projects/Agent_Workspace/HG-KSEOS/openspec
+Change 'hgk-far-remediation-20261016' is valid
+---exit: 0
+###CMD: npx --no-install openspec validate hgk-lane-brief-and-guard-hardening-20261015 --strict
+---cwd: C:/Projects/Agent_Workspace/HG-KSEOS/openspec
+Change 'hgk-lane-brief-and-guard-hardening-20261015' is valid
+---exit: 0
+###CMD: npx --no-install openspec validate hgk-lane-reliability-closure-20261016 --strict
+---cwd: C:/Projects/Agent_Workspace/HG-KSEOS/openspec
+Change 'hgk-lane-reliability-closure-20261016' is valid
+---exit: 0
+###CMD: npx --no-install openspec validate hgk-plan-plane-rebind-20261015 --strict
+---cwd: C:/Projects/Agent_Workspace/HG-KSEOS/openspec
+Change 'hgk-plan-plane-rebind-20261015' has issues
+✗ [ERROR] file: Change must have at least one delta. No deltas found. Ensure your change has a specs/ directory with capability folders (e.g. specs/http-server/spec.md) containing .md files that use delta headers (## ADDED/MODIFIED/REMOVED/RENAMED Requirements) and that each requirement includes at least one "#### Scenario:" block. If this change intentionally modifies no specs (pure refactor, tooling, docs), set "skip_specs: true" in the change's .openspec.yaml instead. Tip: run "openspec change show <change-id> --json --deltas-only" to inspect parsed deltas.
+Next steps:
+  - Ensure change has deltas in specs/: use headers ## ADDED/MODIFIED/REMOVED/RENAMED Requirements
+  - Each requirement MUST include at least one #### Scenario: block
+  - Debug parsed deltas: openspec show hgk-plan-plane-rebind-20261015 --json --deltas-only
+---exit: 1
+###CMD: npx --no-install openspec validate hgk-r10-session-closure-20261016 --strict
+---cwd: C:/Projects/Agent_Workspace/HG-KSEOS/openspec
+Change 'hgk-r10-session-closure-20261016' is valid
+---exit: 0
+###CMD: npx --no-install openspec validate hgk-r11-session-handover-20261016 --strict
+---cwd: C:/Projects/Agent_Workspace/HG-KSEOS/openspec
+Change 'hgk-r11-session-handover-20261016' is valid
+---exit: 0
+###CMD: npx --no-install openspec validate hgk-r8-eia-closure-skill-slim-20261016 --strict
+---cwd: C:/Projects/Agent_Workspace/HG-KSEOS/openspec
+Change 'hgk-r8-eia-closure-skill-slim-20261016' is valid
+---exit: 0
+###CMD: npx --no-install openspec validate hgk-r9-far-residual-closure-20261016 --strict
+---cwd: C:/Projects/Agent_Workspace/HG-KSEOS/openspec
+Change 'hgk-r9-far-residual-closure-20261016' is valid
+---exit: 0
+###CMD: npx --no-install openspec validate hgk-skill-convergence-20261014 --strict
+---cwd: C:/Projects/Agent_Workspace/HG-KSEOS/openspec
+Change 'hgk-skill-convergence-20261014' is valid
+---exit: 0
+###CMD: npx --no-install openspec validate lane-health-repair-20261011 --strict
+---cwd: C:/Projects/Agent_Workspace/HG-KSEOS/openspec
+Change 'lane-health-repair-20261011' is valid
+---exit: 0
+###CMD: npx --no-install openspec validate lane-mandate-rebinding-and-d01-revocation --strict
+---cwd: C:/Projects/Agent_Workspace/HG-KSEOS/openspec
+Change 'lane-mandate-rebinding-and-d01-revocation' is valid
+---exit: 0
+###CMD: npx --no-install openspec validate lane-model-chain-rebind-20261015 --strict
+---cwd: C:/Projects/Agent_Workspace/HG-KSEOS/openspec
+Change 'lane-model-chain-rebind-20261015' is valid
+---exit: 0
+###CMD: npx --no-install openspec validate lane-sod-enforcement --strict
+---cwd: C:/Projects/Agent_Workspace/HG-KSEOS/openspec
+Change 'lane-sod-enforcement' is valid
+---exit: 0
+###CMD: npx --no-install openspec validate lane-supervisor-windowless-convergence --strict
+---cwd: C:/Projects/Agent_Workspace/HG-KSEOS/openspec
+Change 'lane-supervisor-windowless-convergence' is valid
+---exit: 0
+###CMD: npx --no-install openspec validate lane-toolchain-identity-and-failure-classification --strict
+---cwd: C:/Projects/Agent_Workspace/HG-KSEOS/openspec
+Change 'lane-toolchain-identity-and-failure-classification' is valid
+---exit: 0
+###CMD: npx --no-install openspec validate lane-verify-dual-routing-and-plan-high --strict
+---cwd: C:/Projects/Agent_Workspace/HG-KSEOS/openspec
+Change 'lane-verify-dual-routing-and-plan-high' is valid
+---exit: 0
+###CMD: npx --no-install openspec validate lane-verify-routing-remediation --strict
+---cwd: C:/Projects/Agent_Workspace/HG-KSEOS/openspec
+Change 'lane-verify-routing-remediation' is valid
+---exit: 0
+###CMD: npx --no-install openspec validate skill-mainfile-cap-remediation --strict
+---cwd: C:/Projects/Agent_Workspace/HG-KSEOS/openspec
+Change 'skill-mainfile-cap-remediation' is valid
+---exit: 0
+###CMD: npx --no-install openspec validate sod-independent-verify-enforcement --strict
+---cwd: C:/Projects/Agent_Workspace/HG-KSEOS/openspec
+Change 'sod-independent-verify-enforcement' has issues
+✗ [ERROR] file: Change must have at least one delta. No deltas found. Ensure your change has a specs/ directory with capability folders (e.g. specs/http-server/spec.md) containing .md files that use delta headers (## ADDED/MODIFIED/REMOVED/RENAMED Requirements) and that each requirement includes at least one "#### Scenario:" block. If this change intentionally modifies no specs (pure refactor, tooling, docs), set "skip_specs: true" in the change's .openspec.yaml instead. Tip: run "openspec change show <change-id> --json --deltas-only" to inspect parsed deltas.
+Next steps:
+  - Ensure change has deltas in specs/: use headers ## ADDED/MODIFIED/REMOVED/RENAMED Requirements
+  - Each requirement MUST include at least one #### Scenario: block
+  - Debug parsed deltas: openspec show sod-independent-verify-enforcement --json --deltas-only
+---exit: 1
+###CMD: npx --no-install openspec validate strict-declaration-20261011 --strict
+---cwd: C:/Projects/Agent_Workspace/HG-KSEOS/openspec
+Change 'strict-declaration-20261011' is valid
+---exit: 0
+###CMD: npx --no-install openspec validate verification-artifact-contract --strict
+---cwd: C:/Projects/Agent_Workspace/HG-KSEOS/openspec
+Change 'verification-artifact-contract' is valid
+---exit: 0

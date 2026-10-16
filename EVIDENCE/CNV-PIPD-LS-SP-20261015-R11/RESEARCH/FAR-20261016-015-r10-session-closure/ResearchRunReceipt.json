@@ -1,0 +1,76 @@
+{
+ "schema": "FAR-ARTIFACT/ResearchRunReceipt/1",
+ "run_id": "FAR-20261016-015-r10-session-closure",
+ "produced_utc": "2026-10-16T05:48:23.070571+00:00",
+ "route": "FAR_ROUTE_NATIVE_ARIS",
+ "status": "RESEARCH_PARTIAL",
+ "artifacts_written": [
+  "CandidateResearch.yaml",
+  "ClaimLedger.tsv",
+  "ContradictionLedger.tsv",
+  "ExtractionLedger.jsonl",
+  "FitGapLedger.tsv",
+  "HypothesisLedger.tsv",
+  "OpenQuestionLedger.tsv",
+  "ProposedEvolution.yaml",
+  "QueryLedger.tsv",
+  "RejectedAlternativeLedger.tsv",
+  "ResearchHandoff.yaml",
+  "ResearchPlan.yaml",
+  "ResearchRequest.yaml",
+  "ResearchSourceDenominator.tsv",
+  "ResearchSynthesis.md",
+  "SourceDispositionLedger.tsv",
+  "SourceSnapshotLedger.tsv"
+ ],
+ "conditional_artifacts_omitted": [
+  "DisagreementLedger.tsv (no challenge round ran)",
+  "ExperimentPlan.yaml / ExperimentResult.yaml (no experiment was required or run)",
+  "CandidateKnowledge.yaml (no knowledge candidate)"
+ ],
+ "children": [
+  {
+   "id": "WS1",
+   "arm": "opencode-go/glm-5.3-flash",
+   "api_calls": 130,
+   "seconds": 1446.49,
+   "deliverables": [
+    "FAR/ws1/adjudication.tsv",
+    "FAR/ws1/raw_measurements.json",
+    "FAR/ws1/report.md"
+   ]
+  },
+  {
+   "id": "WS2",
+   "arm": "opencode-go/glm-5.3-flash",
+   "api_calls": 41,
+   "seconds": 396.72,
+   "deliverables": [
+    "FAR/ws2/candidate_inventory.tsv",
+    "FAR/ws2/closure_requirements.json",
+    "FAR/ws2/report.md"
+   ]
+  },
+  {
+   "id": "WS3",
+   "arm": "opencode-go/glm-5.3-flash",
+   "api_calls": 21,
+   "seconds": 501.22,
+   "deliverables": [
+    "FAR/ws3/defect_spec.json",
+    "FAR/ws3/receipt_paths.json",
+    "FAR/ws3/report.md"
+   ]
+  }
+ ],
+ "orchestrator_re_derivations": [
+  "registry epoch/routes/drift/SoD via the project's own reader",
+  "the skill main-file size",
+  "the lane_runs collision by mtime and content",
+  "the nonce reproduction on the previous round's real receipt",
+  "the 0-byte child claim refuted"
+ ],
+ "child_claims_refuted": 1,
+ "manufactured_artifacts": 0,
+ "claim_ceiling": "LOCAL / candidate-only; child outputs are claims, re-derived by the orchestrator"
+}

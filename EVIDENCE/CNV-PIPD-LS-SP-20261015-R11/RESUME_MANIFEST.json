@@ -1,0 +1,261 @@
+{
+ "schema": "CNV-PIPD-LS-SP-20261015-R11/RESUME-MANIFEST/1",
+ "produced_utc": "2026-10-16T06:28:54.495964+00:00",
+ "how_to_resume": [
+  "1) read HANDOVER_R11.md top to bottom",
+  "2) read the anchors in `anchors` below (package = sole authority)",
+  "3) pick an item from `open_items` (each has ONE next action)",
+  "4) before any lane dispatch, pre-flight the lane POOL, not just the registry",
+  "5) keep the claim ceiling LOCAL/candidate-only until an EXTERNAL officer accepts"
+ ],
+ "anchors": {
+  "package": {
+   "path": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md",
+   "bytes": 2689181,
+   "sha256": "96d9d564286743e17550ccef15b9952347901eb77168f930376938893cff9c3f",
+   "role": "SOLE AUTHORITY"
+  },
+  "eia_report": {
+   "path": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric_Convergence_External_Independent_Acceptance_Report_20261015.md",
+   "bytes": 33616,
+   "sha256": "10caf4dbdb1993cd46ff2c50394dd01dfd5f34d635816f95e3d2e5ab6c566206",
+   "verdicts": {
+    "scope": "PARTIAL_CHALLENGE",
+    "production": "FAIL_CLOSED",
+    "merge": "CONDITIONAL_APPROVE_AFTER_MINIMAL_METADATA_AND_SCOPE_CHECKS"
+   }
+  },
+  "rules": {
+   "path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\AGENTS.md",
+   "bytes": 14055
+  },
+  "claim_ceiling": "LOCAL / candidate-only"
+ },
+ "entry_points": {
+  "handover_doc": "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015-R11/HANDOVER_R11.md",
+  "round_roots": {
+   "R6_R7": "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015",
+   "R8": "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015-R8",
+   "R9": ".../CNV-PIPD-LS-SP-20261015-R9",
+   "R10": ".../CNV-PIPD-LS-SP-20261015-R10",
+   "R11": ".../CNV-PIPD-LS-SP-20261015-R11"
+  },
+  "guard_subject": "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/R6_DELIVERY/ (HANDS-OFF, 300 files, byte-verbatim)",
+  "spine_db": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\shared-spine\\hg-kseos.db",
+  "lane_registry": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\lane-routing-registry.yaml (UNTRACKED local control-plane state)",
+  "lane_slots": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\lane-route-slots.candidate.json (UNTRACKED)",
+  "dispatchers": {
+   "r9": ".../CNV-PIPD-LS-SP-20261015-R9/dispatch_r9.py",
+   "r10_successor": ".../CNV-PIPD-LS-SP-20261015-R10/tooling/dispatch_r10.py (per-turn receipts + nonce attestation)"
+  },
+  "credential_path": "C:/Projects/Agent_Workspace/API KEY/GITHUB-REPO_SHW097-4.txt (NAME ONLY - never print, never put in argv/URL)",
+  "hermes_home": "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes"
+ },
+ "skills_to_load_first": [
+  "hgk-lifecycle-admission (typed admission)",
+  "hgk-kanban-and-lane-routing (lanes, pool vs registry, Codex CLI relay)",
+  "hgk-governed-execution (governance-grade execution rules)",
+  "governed-write-admission",
+  "remote-repo-publication (packet publish + API readback)"
+ ],
+ "protected_and_forbidden": [
+  "no write to the guard subject R6_DELIVERY/",
+  "no rewrite of published EVIDENCE/** in R6..R10 packets",
+  "no force-push; branch off origin/main in a NEW worktree",
+  "never edit the lane registry/slots to make your own dispatch succeed",
+  "no credential value in argv/URL/log/artifact",
+  "peer in-flight branches are READ-ONLY (do not switch/clean their checkout)"
+ ],
+ "open_items_source": "populated from the round's FAR research; each item carries class/owner/one_action/locator/evidence",
+ "open_items": [],
+ "open_records_measured_this_round": [
+  {
+   "change": "gcm-noninteractive-default-containment",
+   "tasks_done": 36,
+   "tasks_open": 8,
+   "spec_md": true,
+   "newest_mtime": "2026-10-13 16:00"
+  },
+  {
+   "change": "hermes-incident-2026-10-05-repair",
+   "tasks_done": 0,
+   "tasks_open": 35,
+   "spec_md": true,
+   "newest_mtime": "2026-10-07 09:38"
+  },
+  {
+   "change": "hgk-checker-upgrade-adapter",
+   "tasks_done": 0,
+   "tasks_open": 23,
+   "spec_md": true,
+   "newest_mtime": "2026-10-09 10:33"
+  },
+  {
+   "change": "hgk-far-remediation-20261016",
+   "tasks_done": 0,
+   "tasks_open": 25,
+   "spec_md": true,
+   "newest_mtime": "2026-10-16 12:18"
+  },
+  {
+   "change": "hgk-lane-brief-and-guard-hardening-20261015",
+   "tasks_done": 0,
+   "tasks_open": 22,
+   "spec_md": true,
+   "newest_mtime": "2026-10-16 00:01"
+  },
+  {
+   "change": "hgk-lane-reliability-closure-20261016",
+   "tasks_done": 5,
+   "tasks_open": 16,
+   "spec_md": true,
+   "newest_mtime": "2026-10-16 11:30"
+  },
+  {
+   "change": "hgk-plan-plane-rebind-20261015",
+   "tasks_done": 3,
+   "tasks_open": 5,
+   "spec_md": false,
+   "newest_mtime": "2026-10-15 23:35"
+  },
+  {
+   "change": "hgk-r10-session-closure-20261016",
+   "tasks_done": 25,
+   "tasks_open": 5,
+   "spec_md": true,
+   "newest_mtime": "2026-10-16 13:49"
+  },
+  {
+   "change": "hgk-r11-session-handover-20261016",
+   "tasks_done": 0,
+   "tasks_open": 18,
+   "spec_md": true,
+   "newest_mtime": "2026-10-16 14:28"
+  },
+  {
+   "change": "hgk-r8-eia-closure-skill-slim-20261016",
+   "tasks_done": 0,
+   "tasks_open": 22,
+   "spec_md": true,
+   "newest_mtime": "2026-10-16 11:14"
+  },
+  {
+   "change": "hgk-r9-far-residual-closure-20261016",
+   "tasks_done": 20,
+   "tasks_open": 5,
+   "spec_md": true,
+   "newest_mtime": "2026-10-16 13:00"
+  },
+  {
+   "change": "hgk-skill-convergence-20261014",
+   "tasks_done": 3,
+   "tasks_open": 13,
+   "spec_md": true,
+   "newest_mtime": "2026-10-14 12:08"
+  },
+  {
+   "change": "lane-health-repair-20261011",
+   "tasks_done": 30,
+   "tasks_open": 4,
+   "spec_md": true,
+   "newest_mtime": "2026-10-11 14:23"
+  },
+  {
+   "change": "lane-mandate-rebinding-and-d01-revocation",
+   "tasks_done": 11,
+   "tasks_open": 27,
+   "spec_md": true,
+   "newest_mtime": "2026-10-13 13:01"
+  },
+  {
+   "change": "lane-model-chain-rebind-20261015",
+   "tasks_done": 0,
+   "tasks_open": 13,
+   "spec_md": true,
+   "newest_mtime": "2026-10-15 11:40"
+  },
+  {
+   "change": "lane-sod-enforcement",
+   "tasks_done": 0,
+   "tasks_open": 27,
+   "spec_md": true,
+   "newest_mtime": "2026-10-07 15:02"
+  },
+  {
+   "change": "lane-supervisor-windowless-convergence",
+   "tasks_done": 12,
+   "tasks_open": 1,
+   "spec_md": true,
+   "newest_mtime": "2026-10-08 23:34"
+  },
+  {
+   "change": "lane-toolchain-identity-and-failure-classification",
+   "tasks_done": 18,
+   "tasks_open": 9,
+   "spec_md": true,
+   "newest_mtime": "2026-10-13 11:48"
+  },
+  {
+   "change": "lane-verify-dual-routing-and-plan-high",
+   "tasks_done": 5,
+   "tasks_open": 23,
+   "spec_md": true,
+   "newest_mtime": "2026-10-07 20:24"
+  },
+  {
+   "change": "lane-verify-routing-remediation",
+   "tasks_done": 0,
+   "tasks_open": 14,
+   "spec_md": true,
+   "newest_mtime": "2026-10-07 12:19"
+  },
+  {
+   "change": "skill-mainfile-cap-remediation",
+   "tasks_done": 0,
+   "tasks_open": 11,
+   "spec_md": true,
+   "newest_mtime": "2026-10-07 10:21"
+  },
+  {
+   "change": "sod-independent-verify-enforcement",
+   "tasks_done": 3,
+   "tasks_open": 2,
+   "spec_md": true,
+   "newest_mtime": "2026-10-09 14:17"
+  },
+  {
+   "change": "strict-declaration-20261011",
+   "tasks_done": 5,
+   "tasks_open": 17,
+   "spec_md": true,
+   "newest_mtime": "2026-10-11 14:33"
+  },
+  {
+   "change": "verification-artifact-contract",
+   "tasks_done": 7,
+   "tasks_open": 26,
+   "spec_md": true,
+   "newest_mtime": "2026-10-12 23:17"
+  }
+ ],
+ "open_records_summary": {
+  "records": 24,
+  "with_open_rows": 24,
+  "total_open_rows": 371
+ },
+ "resume_recipes": {
+  "hgk_admission": "cd C:/Projects/Agent_Workspace/HG-KSEOS && ./.venv/Scripts/python.exe <R>/hgk_admission_r1x.py   (copy the previous round's harness; change PROJECT_ID + paths)",
+  "board": "hermes kanban boards list  |  hermes kanban swarm \"<goal>\" --worker ... --verifier ... --synthesizer ...  |  hermes kanban list",
+  "openspec": "cd C:/Projects/Agent_Workspace/HG-KSEOS/openspec && openspec validate <change> --strict   (delta spec MUST live at changes/<change>/specs/<capability>/spec.md, plus proposal.md)",
+  "lane_dispatch": "cd C:/Projects/Agent_Workspace/HG-KSEOS && ./.venv/Scripts/python.exe <R>/tooling/dispatch_r10.py <LANE> <BRIEF> <turn> <timeout> --artifacts <dir>   (PRE-FLIGHT the pool: a mandated arm absent from the pool fail-closes ERR_LANE_REQUIRED_ARM_ABSENT - then run the model provider-direct through the same relay, disclosed)",
+  "publish": "cd <round root> && python publish_r1x.py prepare|m2|push|readback|pr   (successor of publish_r10.py; worktree off origin/main; token via credential helper only)"
+ },
+ "claim_ceiling": "LOCAL / candidate-only",
+ "not_claimed": [
+  "no acceptance",
+  "no Gate PASS",
+  "no AO verdict",
+  "no release",
+  "no product behaviour"
+ ]
+}
