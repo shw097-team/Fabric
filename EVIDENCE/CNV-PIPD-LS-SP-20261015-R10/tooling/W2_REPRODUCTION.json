@@ -1,0 +1,53 @@
+{
+ "schema": "CNV-PIPD-LS-SP-20261015-R10/W2-REPRODUCTION/1",
+ "defect_1": {
+  "what": "a receipt path derived from the lane name, not the turn: a same-role later turn overwrote the earlier turn's receipt",
+  "measured": "EXECUTE_dispatch_receipt_attempt1.json mtime 12:40:52 holds the SECOND EXECUTE turn's content (835.74s); the first turn's (12:25, 04:25:50Z, 364.5s) is gone from that path and survives only as the hand-snapshot WS_A/receipts/EXECUTE_dispatch_receipt_W2_20261016T042550Z.json published in the R9 packet",
+  "repair": "receipt_paths(lane, turn, stamp) -> <lane>_turn<N>_<UTC>_dispatch_receipt.json + matching attempt-log dir; snapshot() copies both into the round root",
+  "proven_by": "test_receipt_paths_are_per_turn_and_immutable, test_snapshot_copies_receipt_and_attempt_log"
+ },
+ "defect_2": {
+  "what": "the dispatcher scans only transcript agent_message events for the nonce",
+  "measured": {
+   "dispatcher_code": "ERR_NO_ARM_EMITTED_NONCE",
+   "used_rank": null,
+   "used_transport_model": null,
+   "attempt0_nonce_present": false,
+   "attempt0_nonce_source": "item.completed/agent_message",
+   "attempt0_stdout_bytes": 429783,
+   "the_same_receipts_own_stdout_tail_contains_the_nonce": true
+  },
+  "repair": "attest() derives the expected nonce from the dispatched brief and searches the surfaces the dispatcher ALREADY recorded (attempts[].stdout_path/stderr_path) plus caller-declared artifact roots; it never rewrites the receipt and reads the served arm from attempts[]",
+  "reproduced_on_the_real_receipt": {
+   "verdict": "NONCE_PRESENT_DESPITE_DISPATCHER_CODE",
+   "expected_nonce_from_brief": true,
+   "nonce_found_in": [
+    "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\lane_runs\\CNV-PIPD-LS-SP-20261015-R9\\VERIFY_SECURITY\\attempt-1-20261016T044148Z\\attempt-1188-1792125708-1-stdout.txt"
+   ],
+   "arms_from_attempts": [
+    {
+     "rank": 1,
+     "provider": "openai-codex",
+     "model": "gpt-6.1-sol",
+     "exit": 0,
+     "seconds": 768.19,
+     "nonce_present_as_reported": false,
+     "nonce_source_as_reported": "item.completed/agent_message",
+     "timed_out": false,
+     "stdout_bytes": 429783
+    }
+   ]
+  },
+  "proven_by": "test_attest_finds_the_nonce_in_a_surface_the_dispatcher_recorded, test_attest_reads_a_declared_artifact_root, test_recovery_on_the_REAL_r9_receipt_and_brief"
+ },
+ "what_is_NOT_proven": [
+  "no live lane turn was dispatched with the successor wrapper this round, so the end-to-end path (dispatch -> receipt -> attestation) is proven only by fixture and by re-deriving the preceding round's real receipt",
+  "the dispatcher-side fix (reading the lane artifact root inside hgk-lane-dispatch.py) is a CONTROL-PLANE change and is carried as an owner-ready item, not performed here"
+ ],
+ "tests": {
+  "command": "C:/Projects/Agent_Workspace/HG-KSEOS/.venv/Scripts/python.exe -m pytest -q test_dispatch_r10.py",
+  "result": "8 passed",
+  "elapsed_s": 0.13,
+  "raw_output_file": "tooling/pytest_r10a.stdout.txt"
+ }
+}
