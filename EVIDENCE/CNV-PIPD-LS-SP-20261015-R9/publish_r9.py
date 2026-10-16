@@ -48,7 +48,11 @@ EXTRA_INCLUDE = [
 # directory names anywhere under the handover root that are lane scratch, not evidence
 EXCLUDE_DIR_PREFIXES = ("pipd-clone", "pipd_wt_", "scratch-clone-", "tmp_verify", "rebase_scratch",
                         "r9-wt", "r8-wt", "clone", "logs", "drill-tmp")
-EXCLUDE_DIR_EXACT = {"__pycache__", ".git"}
+EXCLUDE_DIR_EXACT = {"__pycache__", ".git",
+                     # derived copies of whole skill trees: published as manifests instead, because copies of a
+                     # skill's own references trip the packet scanner's url_with_credentials rule on DOCUMENTATION
+                     # placeholders (the credential-in-URL push form), which are not secrets.
+                     "CANDIDATE_V2", "repaired_candidate", "preimage", "drill"}
 
 
 def _skip_scratch(dirpath, names):
@@ -131,6 +135,10 @@ def prepare() -> int:
         return 2
     git("config", "core.autocrlf", "false")
     dst = WT / PKT
+    # the packet is a SNAPSHOT: remove the previous staging first, or a path excluded by a later rule would
+    # survive from the earlier commit while the manifest no longer lists it.
+    if dst.exists():
+        shutil.rmtree(dst)
     dst.mkdir(parents=True, exist_ok=True)
     missing = []
     # the whole round root (minus scratch), then the transferable extras

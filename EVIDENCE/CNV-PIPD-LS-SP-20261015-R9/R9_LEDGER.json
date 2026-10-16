@@ -1,6 +1,6 @@
 {
  "schema": "CNV-PIPD-LS-SP-20261015-R9/LEDGER/1",
- "produced_utc": "2026-10-16T04:32:56.798797+00:00",
+ "produced_utc": "2026-10-16T04:42:12.710389+00:00",
  "mission": "CNV-PIPD-LS-SP-20261015",
  "changeset": "R9-0-FAR-RESIDUAL-CLOSURE",
  "hgk_project": "CNV-R9-FARCLOSURE",
@@ -9,8 +9,8 @@
   {
    "id": "R9-B1",
    "item": "the first repaired candidate fails the round's own C6 gate (one live reference absent: product-branch-write-set-gates.md, 4986 B)",
-   "state": "RESOLVED_BY_SUCCESSOR",
-   "resolution": "CANDIDATE_V2 restores the file verbatim; C1-C6 all PASS (orchestrator run)"
+   "state": "RESOLVED_AND_APPLIED",
+   "resolution": "the apply was performed BY OVERLAY (zero deletions), which preserves every canonical-only path; post-apply C1-C6 all PASS with 113 live references and 0 lost; the orchestrator re-derived the same result and the loader row"
   },
   {
    "id": "R9-B2",
@@ -68,6 +68,10 @@
   {
    "id": "R9-F7",
    "what": "the FAR repair measurement used a live reference denominator of 112 vs the canonical 113, so one absent live reference was not reported"
+  },
+  {
+   "id": "R9-F8",
+   "what": "the round's own dispatch wrapper pinned VERIFY_SECURITY to --force-rank 2 (opencode-go/glm-5.3-flash), so the mandated rank-1 checker was never attempted; corrected in dispatch_r9.py with the predecessor backed up"
   }
  ],
  "incidents": [
@@ -99,14 +103,19 @@
    "who": "the orchestrator"
   },
   {
-   "id": "SE-04",
-   "what": "no canonical skill byte was changed (the apply is refused/pending as recorded)",
-   "who": "n/a"
-  },
-  {
    "id": "SE-05",
    "what": "no git write, no remote write, no credential read occurred in this round's lanes",
    "who": "n/a"
+  },
+  {
+   "id": "SE-04",
+   "what": "the canonical skill tree WAS changed this round: hgk-governed-execution SKILL.md 105116 -> 21026 bytes, 10 replaced + 4 added files applied by overlay, ZERO deletions; pre-image kept at WS_B/preimage (127 files) with a rehearsed rollback",
+   "who": "the bounded-writer EXECUTE lane, act authorised by the FAR decision executed under this round's admission"
+  },
+  {
+   "id": "SE-06",
+   "what": "a CANDIDATE_V2 successor tree was authored by the orchestrator and then NOT needed by the apply (the overlay-with-retention reached the same result); it is kept as evidence of the measurement",
+   "who": "the orchestrator"
   }
  ],
  "open_owner_actions": [
@@ -115,5 +124,16 @@
   "decide the successor candidate's canonical apply",
   "fix the lifecycle taskspec-id derivation",
   "decide the 221-case applicability owner and source #6's status"
- ]
+ ],
+ "applied_state": {
+  "canonical_skill": "hgk-governed-execution",
+  "SKILL.md_bytes": 21026,
+  "SKILL.md_sha256_prefix": "60a4d9b3c79fc9e7",
+  "references_files": 115,
+  "retained_reference_sha256_prefix": "e59968d8fb23f18a",
+  "apply_mode": "overlay, zero deletions",
+  "post_apply_gate": "C1-C6 all PASS (both the lane and the orchestrator)",
+  "loader_row": "hgk-governed-execution | software-development | local | local | enabled",
+  "rollback": "pre-image at WS_B/preimage; drill OK on a copy (31 restored sha matches, tree identical)"
+ }
 }

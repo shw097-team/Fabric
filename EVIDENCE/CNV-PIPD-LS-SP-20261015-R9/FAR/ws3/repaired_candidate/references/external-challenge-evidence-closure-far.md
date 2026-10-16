@@ -1,1 +1,0 @@
-SKCV-POINTER external-evidence-closure: payload moved verbatim to skill/references/topics/external-evidence-closure.md byte offset 15900 length 5363 sha256 9412dfe386962e8e71280dbc129e16dfe89a93cb6c91e93c90390ffe1a157505; do not reconstruct.
