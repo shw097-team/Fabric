@@ -1,0 +1,62 @@
+ARGV: ['C:\\Projects\\Agent_Workspace\\HG-KSEOS\\scripts\\hgk-lane-guard.py', '--lane', 'VERIFY_SECURITY', '--maker-lane', 'EXECUTE', '--maker-engine', 'codex-cli', '--maker-model', 'opencode-go/deepseek-v4.1-flash', '--target-engine', 'codex-cli', '--target-model', 'opencode-go/deepseek-v4.1-flash', '--target-provider', 'opencode-go', '--admission', 'UNPROVEN', '--expected-epoch', '22', '--root', '.']
+EXPECTED EXIT: 0
+MUST CONTAIN: ['SOD006-C3']
+ACTUAL EXIT: 3
+--- output ---
+{
+  "admission_status": "UNPROVEN",
+  "checks": [
+    {
+      "code": null,
+      "declared_conflict": "SOD006-C3",
+      "detail": "SOD_VIOLATION maker_model=deepseek-v4.1-flash == checker_model=deepseek-v4.1-flash; EXEMPTED by declared conflict SOD006-C3 (OWNER_ORDERED_IN_FORCE)",
+      "id": "sod_distinct_model",
+      "ok": true
+    },
+    {
+      "code": null,
+      "detail": "recorded=78a0eb2eabfecaa4d4d80660438505418724499aeaaac656f3d47631a3effa15 live=78a0eb2eabfecaa4d4d80660438505418724499aeaaac656f3d47631a3effa15",
+      "id": "source_digest",
+      "ok": true
+    },
+    {
+      "code": "ERR_LANE_NOT_ADMITTED",
+      "detail": "status=UNPROVEN",
+      "id": "arm_admitted",
+      "ok": false
+    },
+    {
+      "code": null,
+      "detail": "--expected-epoch=22 live_epoch=22",
+      "id": "expected_epoch_assertion",
+      "ok": true
+    },
+    {
+      "code": null,
+      "detail": "registry_epoch=22 live_epoch=22",
+      "id": "epoch_current",
+      "ok": true
+    }
+  ],
+  "claim_ceiling": "CANDIDATE_ONLY",
+  "decision": "REFUSE",
+  "declared_conflict": "SOD006-C3",
+  "epoch": 22,
+  "errors": [
+    "ERR_LANE_NOT_ADMITTED"
+  ],
+  "exit_code": 3,
+  "lane": "VERIFY_SECURITY",
+  "live_epoch": 22,
+  "maker": {
+    "engine": "codex-cli",
+    "model": "opencode-go/deepseek-v4.1-flash"
+  },
+  "schema": "HGK-LANE-GUARD/1",
+  "status": "REFUSE",
+  "target": {
+    "engine": "codex-cli",
+    "model": "opencode-go/deepseek-v4.1-flash",
+    "provider": "opencode-go"
+  }
+}

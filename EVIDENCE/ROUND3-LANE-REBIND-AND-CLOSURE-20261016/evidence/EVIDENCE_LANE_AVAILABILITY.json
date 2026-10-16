@@ -1,0 +1,105 @@
+{
+  "schema": "HGK-EVIDENCE-LANE-AVAILABILITY/1",
+  "generated_for_round": "ROUND3-LANE-REBIND-AND-CLOSURE-20261016",
+  "per_lane": [
+    {
+      "lane": "PLAN",
+      "mandate": "opencode-go/glm-5.3-flash (Hermes-native PLAN & Orchestrator)",
+      "registry_epoch": 21,
+      "registry_route_row": "openai-codex/gpt-6.1-sol (medium, openai_oauth), fallback1=opencode-go/glm-5.3-flash, fallback2=opencode-go/deepseek-v4.1-flash",
+      "mandated_arm_in_pool": "PRESENT at wrong rank (rank 2 FALLBACK1 in routes[].PLAN.arms, lane_chains.PLAN[2] rotation_alternate automatic_selection:false, slots pool rank 2)",
+      "rank1_matches_mandate": false,
+      "required_change_fields": [
+        "routes[].PLAN provider/model/canonical_identity/auth/oauth -> opencode-go/glm-5.3-flash + env_ref:OPENCODE_GO_API_KEY + oauth:false; the rank-1 arm re-labeled; old primary to fallback1; fallbacks[] reordered same",
+        "routes[].PLAN selection_authority -> the NEW owner order id (current value owner-order-20261016-plan-model-rebind-gpt61-sol is superseded)",
+        "config/model-lane-assignment.json lane_chains.PLAN[0] model/provider/arm/effort + sod.plan_lane + sod.plan_reasoning_effort + all projections[].bindings[] pointers (/lane_chains/PLAN/0/model, /lane_chains/PLAN/0/provider, /assignment/0/assigned_model, ...); revision AND registry_epoch advance in the SAME change",
+        "registry source_of_routes.revision + sha256 re-pinned to the new revision-22 bytes (else pre-dispatch refusal ERR_LANE_SOURCE_STALE)",
+        "slots pool rank flip (rank1 <-> rank2) — the pool is the dispatcher's selection AUTHORITY, a registry-only edit does not change the dispatched default",
+        "admission_status -> ADMITTED only on a measured receipt (required_arm == served_arm) for the new rank-1 arm",
+        "sod_invariants re-declaration: PLAN-vs-VERIFY distinct_required and declared_conflicts (SOD006-C2 axis stops colliding; EXECUTE-vs-VERIFY becomes same-model, see VERIFY_SECURITY entry)"
+      ],
+      "servability_measured": {
+        "relay_probe": "http 200, content 'PROBE_OK' (max_tokens 400; at 8/12 tokens content None finish_reason length — truncation artifact, reasoning_tokens consume the cap)",
+        "relay_usage_today": "280 rows status 200 inboundProtocol responses (opencode-go/glm-5.3-flash)",
+        "models_catalog": "present as opencode-go/glm-5.3-flash in /v1/models (90 models)"
+      },
+      "commands": [
+        "curl -s -X POST http://127.0.0.1:10101/v1/chat/completions -d {glm-5.3-flash PROBE_OK} -> 200 PROBE_OK",
+        "config/lane-routing-registry.yaml routes[].PLAN read",
+        "config/lane-route-slots.candidate.json pools[PLAN].ordered_pool read",
+        "config/model-lane-assignment.json lane_chains.PLAN read",
+        "profiles/hgk-governed/config.yaml model block read (stale: gpt-6.1-sol/openai-codex under the mandate)"
+      ]
+    },
+    {
+      "lane": "EXECUTE",
+      "mandate": "opencode-go/deepseek-v4.1-flash (CODEX CLI bounded writer)",
+      "registry_epoch": 21,
+      "registry_route_row": "opencode-go/deepseek-v4.1-flash, engine codex-cli, auth env_ref:OPENCODE_GO_API_KEY, fallbacks openai-codex/gpt-6-luna (operator-selectable) + nvidia/deepseek-ai/deepseek-v4.1-flash",
+      "mandated_arm_in_pool": "PRESENT and IS rank1 (routes[].EXCUTE primary default:true; lane_chains.EXECUTE[0]; slots pool rank 1 DISPATCHABLE verified end-to-end; hermes-codex-lane.json /provider opencode-go /model deepseek-v4.1-flash)",
+      "rank1_matches_mandate": true,
+      "required_change_fields": [],
+      "servability_measured": {
+        "relay_probe": "http 200, content 'PROBE_OK' at max_tokens 80 (reasoning_tokens 51)",
+        "relay_usage_today": "484 rows status 200 inboundProtocol responses (opencode-go/deepseek-v4.1-flash) — the most-served id today",
+        "writer_path": "run_candidate argv: codex --model opencode-go/deepseek-v4.1-flash --sandbox danger-full-access --ask-for-approval never -c openai_base_url=... exec --skip-git-repo-check --ephemeral --json <prompt>; SANDBOX_BY_LANE[EXECUTE]=danger-full-access (read-only/workspace-write emit NO command_execution while exit 0 — false-green, per in-code T5/T5b/T6 measurement)",
+        "toolchain_pin": "scripts/hgk-lane-toolchain.py --resolve exit 0; codex.exe 0.162.0-alpha.17.2 sha256 E98C516F...99E == declared"
+      },
+      "change_needed": "NO route change (mandate already rank-1). admission_status UNPROVEN is a measurement debt, flipped only by the next measured dispatch receipt.",
+      "commands": [
+        "curl -s -X POST http://127.0.0.1:10101/v1/chat/completions -d {deepseek-v4.1-flash PROBE_OK} -> 200 PROBE_OK",
+        "python scripts/hgk-lane-toolchain.py --resolve -> exit 0 OK",
+        "scripts/hgk-lane-dispatch.py run_candidate() argv construction read",
+        "config/lane-route-slots.candidate.json pools[EXECUTE].ordered_pool read",
+        "config/hermes-codex-lane.json provider/model/default_execute_route/status read"
+      ]
+    },
+    {
+      "lane": "VERIFY_SECURITY",
+      "mandate": "opencode-go/deepseek-v4.1-flash (CODEX CLI read-only acceptance officer)",
+      "registry_epoch": 21,
+      "registry_route_row": "openai-codex/gpt-6.1-sol (medium, openai_oauth) default arm A; arm B=opencode-go/glm-5.3-flash fallback1; arm C=opencode-go/deepseek-v4.1-flash fallback2; selected_arm A",
+      "mandated_arm_in_pool": "PRESENT as a NON-default arm (routes[].VERIFY_SECURITY.arms[2]=C automatic_selection:true; lane_chains.VERIFY_SECURITY[2] fallback2; slots pool rank 3 DISPATCHABLE measured relay_http 200 [1.0,1.52s])",
+      "rank1_matches_mandate": false,
+      "required_change_fields": [
+        "routes[].VERIFY_SECURITY default arm -> deepseek arm C promoted to default:true/primary (or row provider/model/canonical_identity/auth/oauth/effort re-pointed with arms[]/fallbacks[] rebuilt)",
+        "routes[].VERIFY_SECURITY selected_arm + selected_arm_identity (currently A / gpt-6.1-sol) -> the deepseek arm",
+        "config/model-lane-assignment.json lane_chains.VERIFY_SECURITY role/default flip at [0]/[2] + sod.verify_security_lane + sod.verify_security_default_arm + sod.verify_security_reasoning_effort + projections[].bindings[] pointers for VERIFY arm A/B/C",
+        "codex_home_config.windows_sandbox:elevated declaration MUST survive the rebind — the dispatcher's R-E gate refuses a read-only lane whose home declares no sandbox level (ERR_LANE_SANDBOX_LEVEL_ABSENT, false-green class)",
+        "admission_status -> ADMITTED only on a measured receipt (--require-arm opencode-go/deepseek-v4.1-flash, required_arm == served_arm)",
+        "round_model_exclusions stays empty unless the owner orders a new exclusion (excluded_family_restore_forbidden:true is fail-closed)",
+        "sod_invariants re-declaration: EXECUTE-vs-VERIFY distinct_required becomes false-by-mandate (same model) — the maker/checker distinct-model check measured REFUSE exit 2 ERR_LANE_SOD_VIOLATION for this pair today; a new owner-order-backed declared_conflict record must carry it, preserving PROCESS/LANE/EVIDENCE-PATH independence + no-self-acceptance"
+      ],
+      "servability_measured": {
+        "relay_probe": "same id as EXECUTE — http 200 'PROBE_OK' (P2)",
+        "checker_path": "SANDBOX_BY_LANE[VERIFY_SECURITY]=read-only; escalation to writer-grade needs BOTH --allow-sandbox-escalation AND --guard-subject (ERR_SANDBOX_ESCALATION_REFUSED / ERR_GUARD_REQUIRED_FOR_ESCALATED_CHECKER); mutation of the guarded subject voids the verdict (ERR_CHECKER_MUTATED_SUBJECT); --ask-for-approval never for non-interactive",
+        "identity_gate": "provider opencode-go -> IDENTITY_NONE ('key-auth arm: no human-attended identity') in default_identity_requirement()"
+      },
+      "commands": [
+        "scripts/hgk-lane-dispatch.py SANDBOX_BY_LANE + run_candidate + ERR_SANDBOX_ESCALATION_REFUSED/ERR_GUARD_* paths read",
+        "config/lane-route-slots.candidate.json pools[VERIFY_SECURITY].ordered_pool read",
+        "python scripts/hgk-lane-guard.py --lane VERIFY_SECURITY --maker-model opencode-go/deepseek-v4.1-flash --target-model opencode-go/deepseek-v4.1-flash --admission ADMITTED --expected-epoch 21 -> REFUSE exit 2 ERR_LANE_SOD_VIOLATION (_maker==checker measured under the mandate)"
+      ]
+    }
+  ],
+  "prerequisites": [
+    "relay 127.0.0.1:10101 live and serving both mandated ids (measured 200 PROBE_OK x2)",
+    "exec frontdoor 127.0.0.1:10100/healthz = 200 (measured)",
+    "codex toolchain pin verified (hgk-lane-toolchain.py --resolve exit 0)",
+    "registry source pin intact: config/model-lane-assignment.json sha256 e7be2dea...7664df == source_of_routes.sha256 (lane guard source_digest check PASS)",
+    "registry epoch 21 == live epoch 21 (lane guard epoch_current PASS)"
+  ],
+  "blockers": [
+    "PLAN rank-1 is openai-codex/gpt-6.1-sol under owner-order-20261016-plan-model-rebind-gpt61-sol (ADM lane ADMITTED on that arm) — the rebind requires a SUPERSEDING owner order + the coupled registry+assignment+projection edits, or the dispatched default stays gpt-6.1-sol",
+    "VERIFY_SECURITY rank-1 is openai-codex/gpt-6.1-sol with selected_arm A — same superseding-order requirement; the deepseek arm exists but only as fallback2/automatic",
+    "EXECUTE-vs-VERIFY same-model pair under the mandate fails the guard's sod_distinct_model check today (measured ERR_LANE_SOD_VIOLATION exit 2) — conformant registry content requires the SoD re-declaration to land in the SAME change, else the registry is self-contradictory",
+    "source_of_routes must move with any model-lane-assignment.json edit (sha256 + revision), else ERR_LANE_SOURCE_STALE refuses every dispatch",
+    "admission_status for the mandated default arms is UNPROVEN (EXECUTE) / UNPROVEN (VERIFY) — a registry edit cannot set ADMITTED; only a measured required_arm == served_arm receipt can, and this audit did not dispatch one (read-only contract)"
+  ],
+  "unknowns": [
+    "the owner-order ID the rebind will record (artifact consumed by the rebind did not exist at audit time; the field is selection_authority)",
+    "whether the mandate's VERIFY checker must emit a file-backed verdict artifact or whether an inline-only verdict is acceptable under the round's procedure (per-round decision, not a code path)",
+    "admission posture of the gpt-6-luna operator-selectable fallback arms post-rebind (not the mandate's defaults; not measurable without a dispatch)",
+    "the owner's adjudication of the EXECUTE/VERIFY same-model SoD trade — the re-declaration is a field requirement whose content (accepted axes of independence) is the owner's ruling, not a probe result"
+  ]
+}

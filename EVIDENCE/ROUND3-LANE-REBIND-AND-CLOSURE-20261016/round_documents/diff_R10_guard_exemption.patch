@@ -1,0 +1,279 @@
+--- a/scripts/hgk-lane-guard.py  (preimage, before the writer turn)
++++ b/scripts/hgk-lane-guard.py  (after promotion)
+@@ -110,6 +110,29 @@
+     return None
+ 
+ 
++def _infer_maker_lane(registry: dict, maker_model: str | None) -> str | None:
++    """Infer the maker lane from a model id, ONLY when exactly one route's default arm matches.
++
++    The default arm is compared as `model` and as `provider/model` (both with and without the
++    `provider/` prefix), exact case-insensitive string equality. An ambiguous match (more than one
++    lane) or no match returns None, so the caller does NOT exempt — an unresolvable lane must fail
++    closed, never widen the exemption.
++    """
++    if not maker_model:
++        return None
++    requested = str(maker_model).strip().lower()
++    matches: set[str] = set()
++    for route in registry.get("routes", []):
++        provider = str(route.get("provider") or "").strip().lower()
++        model = str(route.get("model") or "").strip().lower()
++        forms = {model, f"{provider}/{model}" if provider else model}
++        if requested in forms:
++            matches.add(route.get("lane"))
++    if len(matches) == 1:
++        return next(iter(matches))
++    return None
++
++
+ def evaluate(args) -> dict:
+     registry_path = Path(args.registry) if args.registry else lp.DEFAULT_REGISTRY
+     registry = lp.load_registry(registry_path)
+@@ -133,8 +156,26 @@
+     maker = {"engine": args.maker_engine, "model": args.maker_model}
+     target = {"engine": args.target_engine, "model": args.target_model}
+     sod_ok, sod_reason = lp.check_sod(maker["model"], target["model"])
+-    checks.append({"id": "sod_distinct_model", "ok": sod_ok, "code": None if sod_ok else "ERR_LANE_SOD_VIOLATION",
+-                   "detail": sod_reason})
++    declared_conflict = None
++    if not sod_ok:
++        # A same-model pair may be EXEMPTED by an owner-ordered declaration in the registry. The
++        # exemption is never silent: the resolved conflict id is carried on the verdict. The maker
++        # lane comes from --maker-lane when given, else is inferred from --maker-model only when
++        # exactly one route default arm matches; an unresolved lane fails closed (no exemption).
++        maker_lane = args.maker_lane or _infer_maker_lane(registry, args.maker_model)
++        checker_lane = args.lane if args.lane in lp.LANE_ORDER else None
++        conflict_id, exempt_reason = lp.sod_declaration_exemption(registry, maker_lane, checker_lane)
++        if conflict_id is not None:
++            declared_conflict = conflict_id
++            sod_ok = True
++            sod_reason = f"{sod_reason}; EXEMPTED by declared conflict {conflict_id} (OWNER_ORDERED_IN_FORCE)"
++        else:
++            sod_reason = f"{sod_reason}; {exempt_reason}"
++    sod_check = {"id": "sod_distinct_model", "ok": sod_ok,
++                 "code": None if sod_ok else "ERR_LANE_SOD_VIOLATION", "detail": sod_reason}
++    if declared_conflict is not None:
++        sod_check["declared_conflict"] = declared_conflict
++    checks.append(sod_check)
+     if not sod_ok and exit_code == EXIT_ADMIT:
+         errors.append("ERR_LANE_SOD_VIOLATION")
+         exit_code = EXIT_SOD
+@@ -217,7 +258,7 @@
+         exit_code = EXIT_NOT_ADMITTED
+         status = "REFUSE"
+ 
+-    return {
++    verdict = {
+         "schema": "HGK-LANE-GUARD/1",
+         "claim_ceiling": "CANDIDATE_ONLY",
+         "status": status,
+@@ -232,6 +273,9 @@
+         "errors": errors,
+         "decision": "ADMIT" if exit_code == EXIT_ADMIT else "REFUSE",
+     }
++    if declared_conflict is not None:
++        verdict["declared_conflict"] = declared_conflict
++    return verdict
+ 
+ 
+ def load_lane_declaration(path: "str | Path | None" = None) -> dict:
+@@ -363,6 +407,11 @@
+     parser = argparse.ArgumentParser(prog="hgk-lane-guard.py", description=__doc__)
+     parser.add_argument("--lane", required=False,
+                         help="intended lane: PLAN | EXECUTE | VERIFY_SECURITY")
++    parser.add_argument("--maker-lane", default=None,
++                        choices=list(lp.LANE_ORDER),
++                        help="maker lane (PLAN|EXECUTE|VERIFY_SECURITY); lets the SoD check consult "
++                             "the registry's declared owner-ordered exemption. Omit to infer from "
++                             "--maker-model, which only resolves when exactly one lane matches.")
+     parser.add_argument("--maker-engine", required=False)
+     parser.add_argument("--maker-model", required=False)
+     parser.add_argument("--target-engine", required=False)
+--- a/src/hg_kseos/lane_policy.py  (preimage, before the writer turn)
++++ b/src/hg_kseos/lane_policy.py  (after promotion)
+@@ -32,6 +32,7 @@
+     "route_for_lane",
+     "project_policy",
+     "check_sod",
++    "sod_declaration_exemption",
+     "check_drift",
+     "render_receipt",
+     "registry_epoch",
+@@ -237,6 +238,49 @@
+     return True, f"SOD_OK {m} != {c}"
+ 
+ 
++def sod_declaration_exemption(
++    registry: dict[str, Any],
++    maker_lane: str | None,
++    checker_lane: str | None,
++) -> tuple[str | None, str]:
++    """Return (conflict_id, reason) for an OWNER-ORDERED same-model lane exemption.
++
++    A same-model (maker_lane, checker_lane) pair is EXEMPTED only when the registry declares BOTH:
++      * an `sod_invariants.pairs` entry whose maker/checker match the pair (either orientation) with
++        `distinct_required` exactly false; and
++      * an `sod_invariants.declared_conflicts` entry listing that EXACT pair with `status` exactly
++        `OWNER_ORDERED_IN_FORCE`.
++
++    Returns the conflict id when exempted; otherwise None plus a short reason. This is a pure read of
++    the registry document and never weakens `check_sod` (which stays a two-token comparison).
++    """
++    if not maker_lane or not checker_lane:
++        return None, "UNDETERMINED lane pair (maker_lane/checker_lane unresolved)"
++    sod = registry.get("sod_invariants") or {}
++    pair = None
++    for entry in sod.get("pairs") or []:
++        if {entry.get("maker"), entry.get("checker")} == {maker_lane, checker_lane}:
++            pair = entry
++            break
++    if pair is None:
++        return None, f"no sod_invariants.pairs entry for {maker_lane}/{checker_lane}"
++    if pair.get("distinct_required") is not False:
++        return None, (f"pair {maker_lane}/{checker_lane} distinct_required is not false "
++                      f"(got {pair.get('distinct_required')!r})")
++    for conflict in sod.get("declared_conflicts") or []:
++        if conflict.get("status") != "OWNER_ORDERED_IN_FORCE":
++            continue
++        for declared in conflict.get("pairs") or []:
++            if not isinstance(declared, (list, tuple)) or len(declared) != 2:
++                continue
++            if {declared[0], declared[1]} == {maker_lane, checker_lane}:
++                cid = conflict.get("id")
++                return cid, (f"pair {maker_lane}/{checker_lane} exempted by declared conflict "
++                             f"{cid} status=OWNER_ORDERED_IN_FORCE")
++    return None, (f"no OWNER_ORDERED_IN_FORCE declared_conflicts entry lists "
++                  f"{maker_lane}/{checker_lane}")
++
++
+ def _identity(worker: Any, axis: str) -> str:
+     if isinstance(worker, dict):
+         value = worker.get(axis) or worker.get("model") or ""
+--- a/tests/test_lane_guard.py  (preimage, before the writer turn)
++++ b/tests/test_lane_guard.py  (after promotion)
+@@ -6,6 +6,7 @@
+ """
+ from __future__ import annotations
+ 
++import copy
+ import importlib.util
+ import json
+ import pathlib
+@@ -39,6 +40,40 @@
+     return guard.evaluate(guard.build_parser().parse_args(argv))
+ 
+ 
++def _registry_with_pair(tmp, *, status, distinct_required):
++    """Copy the live registry, force the EXECUTE/VERIFY_SECURITY declaration, re-pin the source
++    digest so only the SoD surface (not source_digest) is under test."""
++    reg = copy.deepcopy(lp.load_registry())
++    reg["source_of_routes"]["sha256"] = lp._sha256_file(ROOT / reg["source_of_routes"]["path"])
++    for pair in reg["sod_invariants"]["pairs"]:
++        if {pair.get("maker"), pair.get("checker")} == {"EXECUTE", "VERIFY_SECURITY"}:
++            pair["distinct_required"] = distinct_required
++    for conflict in reg["sod_invariants"]["declared_conflicts"]:
++        if conflict.get("id") == "SOD006-C3":
++            conflict["status"] = status
++    path = tmp / "registry_fixture.json"
++    path.write_text(json.dumps(reg), encoding="utf-8")
++    return str(path)
++
++
++def _registry_without_declaration(tmp):
++    """Copy the live registry and STRIP every EXECUTE/VERIFY_SECURITY declaration entry, so the pair
++    is genuinely undeclared (no pairs entry, no OWNER_ORDERED_IN_FORCE conflict)."""
++    reg = copy.deepcopy(lp.load_registry())
++    reg["source_of_routes"]["sha256"] = lp._sha256_file(ROOT / reg["source_of_routes"]["path"])
++    reg["sod_invariants"]["pairs"] = [
++        pair for pair in reg["sod_invariants"]["pairs"]
++        if {pair.get("maker"), pair.get("checker")} != {"EXECUTE", "VERIFY_SECURITY"}
++    ]
++    reg["sod_invariants"]["declared_conflicts"] = [
++        conflict for conflict in reg["sod_invariants"]["declared_conflicts"]
++        if conflict.get("id") != "SOD006-C3"
++    ]
++    path = tmp / "registry_open.json"
++    path.write_text(json.dumps(reg), encoding="utf-8")
++    return str(path)
++
++
+ PLAN_ARM = ["--lane", "PLAN", "--maker-engine", "opencode-go", "--maker-model", "deepseek-v4.1-flash",
+             "--target-engine", "openai-codex", "--target-model", "gpt-6.1-sol", "--target-provider", "openai-codex"]
+ VERIFY_ARM = ["--lane", "VERIFY_SECURITY", "--maker-engine", "opencode-go", "--maker-model", "deepseek-v4.1-flash",
+@@ -51,6 +86,7 @@
+         self.addCleanup(shutil.rmtree, self.tmp, ignore_errors=True)
+         self.plan_fix = _fixture(self.tmp / "plan.json", "gpt-6.1-sol", "openai-codex", "openai-codex")
+         self.verify_fix = _fixture(self.tmp / "verify.json", "glm-5.3-flash", "opencode-go", "hermes")
++        self.deepseek_fix = _fixture(self.tmp / "deepseek.json", "deepseek-v4.1-flash", "opencode-go", "hermes")
+ 
+     def test_sod_same_model_is_refused(self):
+         v = evaluate(["--lane", "VERIFY_SECURITY", "--maker-engine", "opencode-go",
+@@ -59,6 +95,67 @@
+                       "--admission", "ADMITTED"])
+         self.assertEqual(v["exit_code"], 2)
+         self.assertIn("ERR_LANE_SOD_VIOLATION", v["errors"])
++
++    # -- owner-ordered exemption (round ROUND3-LANE-REBIND-AND-CLOSURE-20261016) --------------------
++    def test_sod_undeclared_same_model_pair_still_refused(self):
++        # The regression that must NOT move: an undeclared same-model pair is refused, exit 2, and
++        # never carries a declared_conflict field.
++        reg = _registry_without_declaration(self.tmp)
++        v = evaluate(["--lane", "VERIFY_SECURITY", "--maker-lane", "EXECUTE", "--maker-engine", "opencode-go",
++                      "--maker-model", "deepseek-v4.1-flash", "--target-engine", "hermes",
++                      "--target-model", "deepseek-v4.1-flash", "--target-provider", "opencode-go",
++                      "--admission", self.deepseek_fix, "--registry", reg, "--root", str(ROOT)])
++        self.assertEqual(v["exit_code"], 2)
++        self.assertIn("ERR_LANE_SOD_VIOLATION", v["errors"])
++        self.assertNotIn("declared_conflict", v)
++
++    def test_declared_owner_ordered_pair_admits_with_conflict_id(self):
++        reg = _registry_with_pair(self.tmp, status="OWNER_ORDERED_IN_FORCE", distinct_required=False)
++        v = evaluate(["--lane", "VERIFY_SECURITY", "--maker-lane", "EXECUTE",
++                      "--maker-engine", "opencode-go", "--maker-model", "deepseek-v4.1-flash",
++                      "--target-engine", "hermes", "--target-model", "deepseek-v4.1-flash",
++                      "--target-provider", "opencode-go", "--admission", self.deepseek_fix,
++                      "--registry", reg, "--root", str(ROOT)])
++        self.assertEqual(v["exit_code"], 0, v["errors"])
++        self.assertEqual(v["status"], "ADMIT")
++        self.assertEqual(v.get("declared_conflict"), "SOD006-C3")
++        check = [c for c in v["checks"] if c["id"] == "sod_distinct_model"][0]
++        self.assertTrue(check["ok"])
++        self.assertEqual(check.get("declared_conflict"), "SOD006-C3")
++        self.assertIn("SOD006-C3", check["detail"])
++
++    def test_distinct_pair_admits_without_declared_conflict(self):
++        v = evaluate(VERIFY_ARM + ["--admission", self.verify_fix])
++        self.assertEqual(v["exit_code"], 0, v["errors"])
++        self.assertNotIn("declared_conflict", v)
++        check = [c for c in v["checks"] if c["id"] == "sod_distinct_model"][0]
++        self.assertNotIn("declared_conflict", check)
++
++    def test_declared_but_still_distinct_required_is_refused(self):
++        # The exemption cannot be widened: named by the declaration, but distinct_required is still
++        # true -> still refused.
++        reg = _registry_with_pair(self.tmp, status="OWNER_ORDERED_IN_FORCE", distinct_required=True)
++        v = evaluate(["--lane", "VERIFY_SECURITY", "--maker-lane", "EXECUTE",
++                      "--maker-engine", "opencode-go", "--maker-model", "deepseek-v4.1-flash",
++                      "--target-engine", "hermes", "--target-model", "deepseek-v4.1-flash",
++                      "--target-provider", "opencode-go", "--admission", self.deepseek_fix,
++                      "--registry", reg, "--root", str(ROOT)])
++        self.assertEqual(v["exit_code"], 2)
++        self.assertIn("ERR_LANE_SOD_VIOLATION", v["errors"])
++        self.assertNotIn("declared_conflict", v)
++
++    def test_declared_but_wrong_status_is_refused(self):
++        # Named by the declaration and distinct_required false, but status is not
++        # OWNER_ORDERED_IN_FORCE -> still refused.
++        reg = _registry_with_pair(self.tmp, status="SUPERSEDED", distinct_required=False)
++        v = evaluate(["--lane", "VERIFY_SECURITY", "--maker-lane", "EXECUTE",
++                      "--maker-engine", "opencode-go", "--maker-model", "deepseek-v4.1-flash",
++                      "--target-engine", "hermes", "--target-model", "deepseek-v4.1-flash",
++                      "--target-provider", "opencode-go", "--admission", self.deepseek_fix,
++                      "--registry", reg, "--root", str(ROOT)])
++        self.assertEqual(v["exit_code"], 2)
++        self.assertIn("ERR_LANE_SOD_VIOLATION", v["errors"])
++        self.assertNotIn("declared_conflict", v)
+ 
+     def test_admit_with_receipt_evidence(self):
+         v = evaluate(VERIFY_ARM + ["--admission", self.verify_fix])

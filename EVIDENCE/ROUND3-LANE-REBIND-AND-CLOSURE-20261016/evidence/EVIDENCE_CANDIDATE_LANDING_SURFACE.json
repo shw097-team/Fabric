@@ -1,0 +1,960 @@
+{
+ "schema": "HGK-EVIDENCE-CANDIDATE-LANDING-SURFACE/1",
+ "generated_for_round": "ROUND3-LANE-REBIND-AND-CLOSURE-20261016",
+ "scope_note": "read-only audit of candidate-but-not-landed work across three surfaces (OpenSpec changes, unapplied candidate artifacts, unvalidated skills). Nothing was edited.",
+ "opened_utc": "2026-10-16T05:47:59.544458Z",
+ "measured_facts": {
+  "openspec_changes_non_archive": 23,
+  "openspec_specs_dir": [
+   "ao-lane-independent-verify"
+  ],
+  "archive_entries": [
+   "2026-10-10-ao-lane-independent-verify-20261010"
+  ],
+  "strict_invalid_changes": [
+   "hgk-plan-plane-rebind-20261015",
+   "sod-independent-verify-enforcement"
+  ],
+  "strict_valid_changes_count": 21,
+  "changes_with_git_tracked_code_refs": {
+   "hgk-checker-upgrade-adapter": 1
+  },
+  "candidate_or_frozen_dirs_found": 22,
+  "skills_total_in_library": 72,
+  "governed_workstream_skills_round_authored": 16
+ },
+ "openspec": [
+  {
+   "change": "gcm-noninteractive-default-containment",
+   "spec_deltas": [
+    "git-credential-noninteractive-default"
+   ],
+   "corresponding_spec_in_main": [],
+   "validates_strict": true,
+   "code_or_test_refs": 0,
+   "same_workstream_candidate": false,
+   "archived": false
+  },
+  {
+   "change": "hermes-incident-2026-10-05-repair",
+   "spec_deltas": [
+    "hermes-runtime-binding-integrity",
+    "hermes-runtime-incident-integrity"
+   ],
+   "corresponding_spec_in_main": [],
+   "validates_strict": true,
+   "code_or_test_refs": 0,
+   "same_workstream_candidate": false,
+   "archived": false
+  },
+  {
+   "change": "hgk-checker-upgrade-adapter",
+   "spec_deltas": [
+    "independent-checker-execution"
+   ],
+   "corresponding_spec_in_main": [],
+   "validates_strict": true,
+   "code_or_test_refs": 1,
+   "same_workstream_candidate": false,
+   "archived": false
+  },
+  {
+   "change": "hgk-far-remediation-20261016",
+   "spec_deltas": [
+    "lane-governance-gates"
+   ],
+   "corresponding_spec_in_main": [],
+   "validates_strict": true,
+   "code_or_test_refs": 0,
+   "same_workstream_candidate": true,
+   "archived": false
+  },
+  {
+   "change": "hgk-lane-brief-and-guard-hardening-20261015",
+   "spec_deltas": [
+    "lane-brief-and-guard-hardening"
+   ],
+   "corresponding_spec_in_main": [],
+   "validates_strict": true,
+   "code_or_test_refs": 0,
+   "same_workstream_candidate": true,
+   "archived": false
+  },
+  {
+   "change": "hgk-lane-reliability-closure-20261016",
+   "spec_deltas": [
+    "lane-governance-gates"
+   ],
+   "corresponding_spec_in_main": [],
+   "validates_strict": true,
+   "code_or_test_refs": 0,
+   "same_workstream_candidate": true,
+   "archived": false
+  },
+  {
+   "change": "hgk-plan-plane-rebind-20261015",
+   "spec_deltas": [],
+   "corresponding_spec_in_main": [],
+   "validates_strict": false,
+   "code_or_test_refs": 0,
+   "same_workstream_candidate": true,
+   "archived": false
+  },
+  {
+   "change": "hgk-r10-session-closure-20261016",
+   "spec_deltas": [
+    "r10-session-closure"
+   ],
+   "corresponding_spec_in_main": [],
+   "validates_strict": true,
+   "code_or_test_refs": 0,
+   "same_workstream_candidate": true,
+   "archived": false
+  },
+  {
+   "change": "hgk-r8-eia-closure-skill-slim-20261016",
+   "spec_deltas": [
+    "r8-eia-closure-and-skill-slim-regression"
+   ],
+   "corresponding_spec_in_main": [],
+   "validates_strict": true,
+   "code_or_test_refs": 0,
+   "same_workstream_candidate": true,
+   "archived": false
+  },
+  {
+   "change": "hgk-r9-far-residual-closure-20261016",
+   "spec_deltas": [
+    "r9-far-residual-closure"
+   ],
+   "corresponding_spec_in_main": [],
+   "validates_strict": true,
+   "code_or_test_refs": 0,
+   "same_workstream_candidate": true,
+   "archived": false
+  },
+  {
+   "change": "hgk-skill-convergence-20261014",
+   "spec_deltas": [
+    "governance-skill-convergence"
+   ],
+   "corresponding_spec_in_main": [],
+   "validates_strict": true,
+   "code_or_test_refs": 0,
+   "same_workstream_candidate": true,
+   "archived": false
+  },
+  {
+   "change": "lane-health-repair-20261011",
+   "spec_deltas": [
+    "lane-dispatch-honest-declarations"
+   ],
+   "corresponding_spec_in_main": [],
+   "validates_strict": true,
+   "code_or_test_refs": 0,
+   "same_workstream_candidate": false,
+   "archived": false
+  },
+  {
+   "change": "lane-mandate-rebinding-and-d01-revocation",
+   "spec_deltas": [
+    "lane-mandate-rebinding"
+   ],
+   "corresponding_spec_in_main": [],
+   "validates_strict": true,
+   "code_or_test_refs": 0,
+   "same_workstream_candidate": false,
+   "archived": false
+  },
+  {
+   "change": "lane-model-chain-rebind-20261015",
+   "spec_deltas": [
+    "lane-model-chain-policy"
+   ],
+   "corresponding_spec_in_main": [],
+   "validates_strict": true,
+   "code_or_test_refs": 0,
+   "same_workstream_candidate": true,
+   "archived": false
+  },
+  {
+   "change": "lane-sod-enforcement",
+   "spec_deltas": [
+    "lane-sod-enforcement"
+   ],
+   "corresponding_spec_in_main": [],
+   "validates_strict": true,
+   "code_or_test_refs": 0,
+   "same_workstream_candidate": false,
+   "archived": false
+  },
+  {
+   "change": "lane-supervisor-windowless-convergence",
+   "spec_deltas": [
+    "scheduled-task-console-window"
+   ],
+   "corresponding_spec_in_main": [],
+   "validates_strict": true,
+   "code_or_test_refs": 0,
+   "same_workstream_candidate": false,
+   "archived": false
+  },
+  {
+   "change": "lane-toolchain-identity-and-failure-classification",
+   "spec_deltas": [
+    "lane-toolchain-identity"
+   ],
+   "corresponding_spec_in_main": [],
+   "validates_strict": true,
+   "code_or_test_refs": 0,
+   "same_workstream_candidate": false,
+   "archived": false
+  },
+  {
+   "change": "lane-verify-dual-routing-and-plan-high",
+   "spec_deltas": [
+    "lane-verify-dual-routing-and-plan-high"
+   ],
+   "corresponding_spec_in_main": [],
+   "validates_strict": true,
+   "code_or_test_refs": 0,
+   "same_workstream_candidate": false,
+   "archived": false
+  },
+  {
+   "change": "lane-verify-routing-remediation",
+   "spec_deltas": [
+    "model-lane-routing"
+   ],
+   "corresponding_spec_in_main": [],
+   "validates_strict": true,
+   "code_or_test_refs": 0,
+   "same_workstream_candidate": false,
+   "archived": false
+  },
+  {
+   "change": "skill-mainfile-cap-remediation",
+   "spec_deltas": [
+    "skill-mainfile-cap-governance"
+   ],
+   "corresponding_spec_in_main": [],
+   "validates_strict": true,
+   "code_or_test_refs": 0,
+   "same_workstream_candidate": true,
+   "archived": false
+  },
+  {
+   "change": "sod-independent-verify-enforcement",
+   "spec_deltas": [],
+   "corresponding_spec_in_main": [],
+   "validates_strict": false,
+   "code_or_test_refs": 0,
+   "same_workstream_candidate": false,
+   "archived": false
+  },
+  {
+   "change": "strict-declaration-20261011",
+   "spec_deltas": [
+    "strict-declaration"
+   ],
+   "corresponding_spec_in_main": [],
+   "validates_strict": true,
+   "code_or_test_refs": 0,
+   "same_workstream_candidate": false,
+   "archived": false
+  },
+  {
+   "change": "verification-artifact-contract",
+   "spec_deltas": [
+    "verification-artifact-contract"
+   ],
+   "corresponding_spec_in_main": [],
+   "validates_strict": true,
+   "code_or_test_refs": 0,
+   "same_workstream_candidate": false,
+   "archived": false
+  }
+ ],
+ "candidate_artifacts": [
+  {
+   "path": "var/LANE-RELIABILITY-CLOSURE-20261016/candidate/**",
+   "kind": "full candidate tree (config/scripts/src/tests snapshot + ChangeSets B/C)",
+   "status": "candidate-only; ChangeSet A (model-lane-assignment.json + lane-routing-registry.yaml) APPLIED 2026-10-16T03:28Z; candidate copies differ from canonical (post-apply further edits possible)",
+   "markers": [
+    "FROZEN_MANIFEST.json",
+    "CHANGESET_A_APPLY_RECEIPT.json",
+    "README claim ceiling CANDIDATE_ONLY"
+   ]
+  },
+  {
+   "path": "var/FAR-REMEDIATION-AND-CLOSURE-20261016/candidate/scripts/hgk-lane-dispatch.py",
+   "kind": "candidate writer file produced by R1-R3/R5 rounds",
+   "status": "NOT_APPLIED\u591a\u5934? diff vs canonical scripts/hgk-lane-dispatch.py: DIFFERS (canonical untracked in git; candidate mtime earlier than canonical)",
+   "markers": [
+    "candidate/ dir",
+    "apply_R1_R3*.py receipts"
+   ]
+  },
+  {
+   "path": "var/FAR-REMEDIATION-AND-CLOSURE-20261016/frozen/**",
+   "kind": "frozen subject manifests",
+   "status": "frozen manifest only - evidence binding",
+   "markers": [
+    "FROZEN_MANIFEST.json"
+   ]
+  },
+  {
+   "path": "var/LANE-ENFORCEMENT-APPLY-20261015/candidate/**",
+   "kind": "apply-round candidate set",
+   "status": "partially applied per its own receipts (admission_C/D); residual items named in its checkpoint",
+   "markers": [
+    "ACCEPTANCE_MATRIX.json",
+    "BUILD_* Specs"
+   ]
+  },
+  {
+   "path": "var/hgk-solution-apply-20261012/candidate/**",
+   "kind": "rebinding candidate",
+   "status": "APPLIED per APPLIED_REBINDING_RECEIPT.json (20261013T013301Z)",
+   "markers": [
+    "APPLIED_REBINDING_RECEIPT.json"
+   ]
+  },
+  {
+   "path": "var/FAR-LANE-REPAIR-20261014/CANDIDATE/hgk-lane-dispatch.py",
+   "kind": "candidate dispatch",
+   "status": "DIFFERS from canonical (not applied byte-identical)",
+   "markers": [
+    "CANDIDATE_INJECTION_TEST.json",
+    "CANDIDATE_META.json",
+    "patch file hgk-lane-dispatch.codex_home_config.patch"
+   ]
+  },
+  {
+   "path": "var/FAR-LANE-ENFORCEMENT-RCA-20261015/frozen/**",
+   "kind": "frozen evidence set",
+   "status": "frozen manifest (evidence binding only)",
+   "markers": [
+    "MANIFEST.json",
+    "FAR_RULING_CANDIDATE.md"
+   ]
+  },
+  {
+   "path": "var/SKILL-CONVERGENCE-20261014/candidates/**",
+   "kind": "guarded-apply tooling + patches incl lane-dispatch-timeout-capture.patch",
+   "status": "patch NOT applied: var copy differs from canonical; DISPOSITION unknown",
+   "markers": [
+    "apply/patch/*.patch",
+    "phase1_result.json"
+   ]
+  },
+  {
+   "path": "worktrees/hgk-sod-s1star-20261009/maker/candidate/**",
+   "kind": "S1* lifecycle+spine candidate (sod-independent-verify-enforcement ChangeSet S1*)",
+   "status": "NOT_APPLIED to canonical (candidate spine.py/lifecycle.py differ from canonical; tasks.md: 'Apply to canonical tree (owner gate - NOT executed)')",
+   "markers": [
+    "migrations/0001_evidence_subject_digest.py (migration authored, not run)"
+   ]
+  },
+  {
+   "path": "worktrees/hgk-sod-verify-handoff-20261009/maker/candidate/**",
+   "kind": "verify-handoff candidate",
+   "status": "NOT_APPLIED (unknown, differing bytes)",
+   "markers": []
+  },
+  {
+   "path": "worktrees/pipd-r2-core-20261009/maker/candidate/**",
+   "kind": "PIPD R2 candidate",
+   "status": "UNKNOWN",
+   "markers": []
+  },
+  {
+   "path": "config/lane-route-slots.candidate.json",
+   "kind": "candidate config (route slots 012)",
+   "status": "UNAPPLIED? - sits in config/ untracked in git with .bak chain; applied-ish but never git-tracked",
+   "markers": [
+    "*.bak-rev*"
+   ]
+  },
+  {
+   "path": "var/far-lane-sod-007/resume-20261008/gate-qualification-candidate",
+   "kind": "gate qualification candidate",
+   "status": "UNKNOWN",
+   "markers": []
+  },
+  {
+   "path": "var/far-lane-sod-008-console-window-20261008/candidate-fix",
+   "kind": "console-window fix candidate",
+   "status": "UNKNOWN",
+   "markers": []
+  },
+  {
+   "path": "var/far-iao-lane-skip-20261012/candidate",
+   "kind": "IAO lane-skip candidate",
+   "status": "UNKNOWN",
+   "markers": []
+  },
+  {
+   "path": "var/far-iao-lane-skip-20261012/verify/scratch/simulated_candidate",
+   "kind": "simulated candidate (verify scratch)",
+   "status": "simulated - not real",
+   "markers": []
+  },
+  {
+   "path": "var/FAR-GOV-SKILLS-20261014/candidate",
+   "kind": "decision matrix + research synthesis",
+   "status": "research artifact, no apply target",
+   "markers": []
+  },
+  {
+   "path": "var/rounds/R2-SOD-FIX1-DISPOSITION-20261009/maker/candidate/**",
+   "kind": "SOD FIX1 maker candidate",
+   "status": "NOT_APPLIED byte-wise",
+   "markers": []
+  },
+  {
+   "path": "var/hgk-solution-apply-20261012/execute/candidate-snapshots",
+   "kind": "apply snapshots",
+   "status": "snapshot",
+   "markers": []
+  },
+  {
+   "path": "var/LANE-ENFORCEMENT-APPLY-20261015/probe/probe-link/candidate",
+   "kind": "probe artifact",
+   "status": "probe",
+   "markers": []
+  },
+  {
+   "path": "var/lane-route-001/candidate",
+   "kind": "lane-route candidate",
+   "status": "UNKNOWN",
+   "markers": []
+  },
+  {
+   "path": "scripts/hgk-lane-dispatch.py (untracked canonical-name file)",
+   "kind": "canonical dispatcher itself UNTRACKED in git",
+   "status": "whole dispatcher was never committed - can't tell applied from candidate by git",
+   "markers": [
+    ".bak-lanerepair / .bak-x2b / .bak-z2 backups"
+   ]
+  }
+ ],
+ "skills": [
+  {
+   "skill": "software-development/hgk-kanban-and-lane-routing",
+   "last_touched": "2026-10-16",
+   "size_bytes": 88115,
+   "refs": 20,
+   "unvalidated_round_lessons": [
+    "R10 round's lane-rebind/brief-marker/subject-guard lessons authored 2026-10-16 by the round itself ('a packet that copies whole skill trees is BLOCKED', 'ERR_NO_ARM_EMITTED_NONCE', receipt-per-role overwrite)",
+    "several 'measured:' lessons cite one round's own observations only"
+   ],
+   "reference_claims": [
+    {
+     "claim": "SKILL.md references scripts/runtime_role_binding_assert.py and scripts/start-hgk-exec-frontdoor.ps1 which live in the HG-KSEOS repo, NOT in the skill's own references/ or scripts/",
+     "evidence": "skill dir scripts/ holds only usage_attribution.py + run-codex-exec-lane.sh; the two paths resolve only inside <HG-KSEOS>/scripts/",
+     "verdict": "unsupported-in-library (external dependency, not residual)"
+    }
+   ],
+   "self_claim_vs_support": [
+    {
+     "claim": "body cites 22 references files but lists/non-trivially anchors each; 3 body paths resolve outside the skill dir",
+     "status": "consistency risk not fabricated"
+    }
+   ]
+  },
+  {
+   "skill": "hgk-lifecycle-admission",
+   "last_touched": "2026-10-16",
+   "size_bytes": 35739,
+   "refs": 10,
+   "unvalidated_round_lessons": [
+    "rules 5,16,26 etc carry round-specific measured lessons (PLAN-model mandate, owner-grant scope reading, PLAN_READY stranded project) asserted from single-round observation"
+   ],
+   "reference_claims": []
+  },
+  {
+   "skill": "software-development/remote-repo-publication",
+   "last_touched": "2026-10-16",
+   "size_bytes": 44335,
+   "refs": 8,
+   "unvalidated_round_lessons": [
+    "publishes lab-rat B/anonymous-readback recipes; round-authored"
+   ],
+   "reference_claims": []
+  },
+  {
+   "skill": "software-development/hgk-governed-execution",
+   "last_touched": "2026-10-16",
+   "size_bytes": 21026,
+   "refs": 115,
+   "unvalidated_round_lessons": [
+    "115 reference files is just above the R8-0 'more than 60 references = WARNING' threshold; whether the hard gate applies is not defined in the change (proposal-only)",
+    "main file 21026 bytes is far below the 100000-byte cap so the split remedy rows in skill-mainfile-cap-remediation are superseded per r10's reconciliation note"
+   ],
+   "reference_claims": []
+  },
+  {
+   "skill": "software-development/adversarial-verification-rounds",
+   "last_touched": "2026-10-16",
+   "size_bytes": 23151,
+   "refs": 29,
+   "unvalidated_round_lessons": [
+    "round-authored"
+   ],
+   "reference_claims": []
+  },
+  {
+   "skill": "software-development/lossless-content-consolidation",
+   "last_touched": "2026-10-16",
+   "size_bytes": 10864,
+   "refs": 1,
+   "unvalidated_round_lessons": [
+    "round-authored"
+   ],
+   "reference_claims": []
+  },
+  {
+   "skill": "software-development/canonical-change-landing",
+   "last_touched": "2026-10-15",
+   "size_bytes": 12441,
+   "refs": 0,
+   "unvalidated_round_lessons": [
+    "round-authored; body cites NO reference files",
+    "skill claims rollback+probe discipline but nothing on disk supports it beyond the body itself"
+   ],
+   "reference_claims": [
+    {
+     "claim": "no references/ dir or scripts back the body's probes",
+     "evidence": "refs=0 on disk",
+     "verdict": "self-contained; acceptable but unvalidated"
+    }
+   ]
+  },
+  {
+   "skill": "governed-write-admission",
+   "last_touched": "2026-10-15",
+   "size_bytes": 16733,
+   "refs": 4,
+   "unvalidated_round_lessons": [
+    "round-authored"
+   ],
+   "reference_claims": []
+  },
+  {
+   "skill": "software-development/destructive-path-guards",
+   "last_touched": "2026-10-15",
+   "size_bytes": 16402,
+   "refs": 0,
+   "unvalidated_round_lessons": [
+    "round-authored; 0 reference files; body-only support"
+   ],
+   "reference_claims": []
+  },
+  {
+   "skill": "software-development/long-running-worker-supervision",
+   "last_touched": "2026-10-15",
+   "size_bytes": 67824,
+   "refs": 8,
+   "unvalidated_round_lessons": [
+    "round-authored"
+   ],
+   "reference_claims": []
+  },
+  {
+   "skill": "software-development/provider-routing-triage",
+   "last_touched": "2026-10-15",
+   "size_bytes": 30659,
+   "refs": 4,
+   "unvalidated_round_lessons": [
+    "round-authored"
+   ],
+   "reference_claims": []
+  },
+  {
+   "skill": "software-development/governed-stack-audit",
+   "last_touched": "2026-10-15",
+   "size_bytes": 61801,
+   "refs": 12,
+   "unvalidated_round_lessons": [
+    "round-authored"
+   ],
+   "reference_claims": []
+  },
+  {
+   "skill": "software-development/hgk-enforcement-closure",
+   "last_touched": "2026-10-12",
+   "size_bytes": 12956,
+   "refs": 1,
+   "unvalidated_round_lessons": [
+    "round-authored"
+   ],
+   "reference_claims": []
+  },
+  {
+   "skill": "software-development/windows-lane-verification-audit",
+   "last_touched": "2026-10-09",
+   "size_bytes": 5963,
+   "refs": 0,
+   "unvalidated_round_lessons": [
+    "round-authored"
+   ],
+   "reference_claims": []
+  },
+  {
+   "skill": "software-development/inspecting-hermes-desktop-dom",
+   "last_touched": "2026-10-05",
+   "size_bytes": 6250,
+   "refs": 0,
+   "unvalidated_round_lessons": [
+    "possibly workstream-authored"
+   ],
+   "reference_claims": []
+  },
+  {
+   "skill": "software-development/node-inspect-debugger",
+   "last_touched": "2026-10-05",
+   "size_bytes": 11065,
+   "refs": 0,
+   "unvalidated_round_lessons": [
+    "UNKNOWN authorship"
+   ],
+   "reference_claims": []
+  }
+ ],
+ "classify": [
+  {
+   "change": "gcm-noninteractive-default-containment",
+   "spec_deltas": [
+    "git-credential-noninteractive-default"
+   ],
+   "corresponding_spec_in_main": [],
+   "validates_strict": true,
+   "code_or_test_refs": 0,
+   "same_workstream_candidate": false,
+   "archived": false,
+   "disposition": "DEFER",
+   "reason": "valid strict but its scripts/ were partially created (staged) and never exercised as a round item; no corresponding spec, no code refs"
+  },
+  {
+   "change": "hermes-incident-2026-10-05-repair",
+   "spec_deltas": [
+    "hermes-runtime-binding-integrity",
+    "hermes-runtime-incident-integrity"
+   ],
+   "corresponding_spec_in_main": [],
+   "validates_strict": true,
+   "code_or_test_refs": 0,
+   "same_workstream_candidate": false,
+   "archived": false,
+   "disposition": "DROP",
+   "reason": "dated incident proposal (2026-10-05) whose repair window has passed; no spec landing, no code refs"
+  },
+  {
+   "change": "hgk-checker-upgrade-adapter",
+   "spec_deltas": [
+    "independent-checker-execution"
+   ],
+   "corresponding_spec_in_main": [],
+   "validates_strict": true,
+   "code_or_test_refs": 1,
+   "same_workstream_candidate": false,
+   "archived": false,
+   "disposition": "DEFER",
+   "reason": "single doc mention in usage guide; adapter proposal never landed as spec"
+  },
+  {
+   "change": "hgk-far-remediation-20261016",
+   "spec_deltas": [
+    "lane-governance-gates"
+   ],
+   "corresponding_spec_in_main": [],
+   "validates_strict": true,
+   "code_or_test_refs": 0,
+   "same_workstream_candidate": true,
+   "archived": false,
+   "disposition": "LAND",
+   "reason": "this workstream, 20261016; R1 (PLAN rebind) measured as executed outside the round per r10's reconciliation note - reconcile its 25 task rows then archive; structurally valid"
+  },
+  {
+   "change": "hgk-lane-brief-and-guard-hardening-20261015",
+   "spec_deltas": [
+    "lane-brief-and-guard-hardening"
+   ],
+   "corresponding_spec_in_main": [],
+   "validates_strict": true,
+   "code_or_test_refs": 0,
+   "same_workstream_candidate": true,
+   "archived": false,
+   "disposition": "DEFER",
+   "reason": "workstream 20261015; hardening lessons were absorbed into the hgk-kanban skill body; change record itself unreconciled"
+  },
+  {
+   "change": "hgk-lane-reliability-closure-20261016",
+   "spec_deltas": [
+    "lane-governance-gates"
+   ],
+   "corresponding_spec_in_main": [],
+   "validates_strict": true,
+   "code_or_test_refs": 0,
+   "same_workstream_candidate": true,
+   "archived": false,
+   "disposition": "LAND",
+   "reason": "this workstream; ChangeSet A applied under WO with receipt; promoted candidate remains CANDIDATE_ONLY, needs application/acceptance step then archive"
+  },
+  {
+   "change": "hgk-plan-plane-rebind-20261015",
+   "spec_deltas": [],
+   "corresponding_spec_in_main": [],
+   "validates_strict": false,
+   "code_or_test_refs": 0,
+   "same_workstream_candidate": true,
+   "archived": false,
+   "disposition": "FIX-or-DROP",
+   "reason": "FAILS strict validation (scenario-less requirements); premise already superseded by later owner rebinds - fix format or close as superseded"
+  },
+  {
+   "change": "hgk-r10-session-closure-20261016",
+   "spec_deltas": [
+    "r10-session-closure"
+   ],
+   "corresponding_spec_in_main": [],
+   "validates_strict": true,
+   "code_or_test_refs": 0,
+   "same_workstream_candidate": true,
+   "archived": false,
+   "disposition": "LAND",
+   "reason": "this workstream, currently executing reconciliation round; only valid path to closing the other 20261016 changes"
+  },
+  {
+   "change": "hgk-r8-eia-closure-skill-slim-20261016",
+   "spec_deltas": [
+    "r8-eia-closure-and-skill-slim-regression"
+   ],
+   "corresponding_spec_in_main": [],
+   "validates_strict": true,
+   "code_or_test_refs": 0,
+   "same_workstream_candidate": true,
+   "archived": false,
+   "disposition": "LAND",
+   "reason": "this workstream, proposal-only contract gate governing skill-slim/apply-authorization - keep as owner gate"
+  },
+  {
+   "change": "hgk-r9-far-residual-closure-20261016",
+   "spec_deltas": [
+    "r9-far-residual-closure"
+   ],
+   "corresponding_spec_in_main": [],
+   "validates_strict": true,
+   "code_or_test_refs": 0,
+   "same_workstream_candidate": true,
+   "archived": false,
+   "disposition": "DEFER",
+   "reason": "this workstream; validator-adaptation candidate EXECUTED-CANDIDATE, acceptance tasks unchecked; continue under R9/R10"
+  },
+  {
+   "change": "hgk-skill-convergence-20261014",
+   "spec_deltas": [
+    "governance-skill-convergence"
+   ],
+   "corresponding_spec_in_main": [],
+   "validates_strict": true,
+   "code_or_test_refs": 0,
+   "same_workstream_candidate": true,
+   "archived": false,
+   "disposition": "DEFER",
+   "reason": "workstream; guarded-apply tooling and patches sit unapplied in var/SKILL-CONVERGENCE-20261014/candidates"
+  },
+  {
+   "change": "lane-health-repair-20261011",
+   "spec_deltas": [
+    "lane-dispatch-honest-declarations"
+   ],
+   "corresponding_spec_in_main": [],
+   "validates_strict": true,
+   "code_or_test_refs": 0,
+   "same_workstream_candidate": false,
+   "archived": false,
+   "disposition": "DEFER",
+   "reason": "older workstream change; no spec land, no refs"
+  },
+  {
+   "change": "lane-mandate-rebinding-and-d01-revocation",
+   "spec_deltas": [
+    "lane-mandate-rebinding"
+   ],
+   "corresponding_spec_in_main": [],
+   "validates_strict": true,
+   "code_or_test_refs": 0,
+   "same_workstream_candidate": false,
+   "archived": false,
+   "disposition": "DEFER",
+   "reason": "older workstream change; rebind history superseded by 20261015/16 chain rebinds"
+  },
+  {
+   "change": "lane-model-chain-rebind-20261015",
+   "spec_deltas": [
+    "lane-model-chain-policy"
+   ],
+   "corresponding_spec_in_main": [],
+   "validates_strict": true,
+   "code_or_test_refs": 0,
+   "same_workstream_candidate": true,
+   "archived": false,
+   "disposition": "DEFER",
+   "reason": "this workstream; full rebind procedure reference exists in hgk-kanban skill; change record itself never reconciled"
+  },
+  {
+   "change": "lane-sod-enforcement",
+   "spec_deltas": [
+    "lane-sod-enforcement"
+   ],
+   "corresponding_spec_in_main": [],
+   "validates_strict": true,
+   "code_or_test_refs": 0,
+   "same_workstream_candidate": false,
+   "archived": false,
+   "disposition": "DEFER",
+   "reason": "proposal names a spec capability never landed; overlapping with sod-independent-verify-enforcement"
+  },
+  {
+   "change": "lane-supervisor-windowless-convergence",
+   "spec_deltas": [
+    "scheduled-task-console-window"
+   ],
+   "corresponding_spec_in_main": [],
+   "validates_strict": true,
+   "code_or_test_refs": 0,
+   "same_workstream_candidate": false,
+   "archived": false,
+   "disposition": "DROP",
+   "reason": "supervisor-window proposal with no corresponding behavior on disk and no refs"
+  },
+  {
+   "change": "lane-toolchain-identity-and-failure-classification",
+   "spec_deltas": [
+    "lane-toolchain-identity"
+   ],
+   "corresponding_spec_in_main": [],
+   "validates_strict": true,
+   "code_or_test_refs": 0,
+   "same_workstream_candidate": false,
+   "archived": false,
+   "disposition": "DEFER",
+   "reason": "only archived change is ao-lane (related); this one unreconciled"
+  },
+  {
+   "change": "lane-verify-dual-routing-and-plan-high",
+   "spec_deltas": [
+    "lane-verify-dual-routing-and-plan-high"
+   ],
+   "corresponding_spec_in_main": [],
+   "validates_strict": true,
+   "code_or_test_refs": 0,
+   "same_workstream_candidate": false,
+   "archived": false,
+   "disposition": "DEFER",
+   "reason": "routing history superseded by later chain rebinds"
+  },
+  {
+   "change": "lane-verify-routing-remediation",
+   "spec_deltas": [
+    "model-lane-routing"
+   ],
+   "corresponding_spec_in_main": [],
+   "validates_strict": true,
+   "code_or_test_refs": 0,
+   "same_workstream_candidate": false,
+   "archived": false,
+   "disposition": "DEFER",
+   "reason": "routing history superseded by later chain rebinds"
+  },
+  {
+   "change": "skill-mainfile-cap-remediation",
+   "spec_deltas": [
+    "skill-mainfile-cap-governance"
+   ],
+   "corresponding_spec_in_main": [],
+   "validates_strict": true,
+   "code_or_test_refs": 0,
+   "same_workstream_candidate": true,
+   "archived": false,
+   "disposition": "DROP",
+   "reason": "r10 reconciliation measured the governed cap never exceeded, main files far under 100000 bytes; split remedy superseded"
+  },
+  {
+   "change": "sod-independent-verify-enforcement",
+   "spec_deltas": [],
+   "corresponding_spec_in_main": [],
+   "validates_strict": false,
+   "code_or_test_refs": 0,
+   "same_workstream_candidate": false,
+   "archived": false,
+   "disposition": "LAND-or-REPAIR",
+   "reason": "FAILS strict validation but its S1* candidate (worktrees/hgk-sod-s1star-20261009) is real, unapplied, owner-gated - highest-value unlanded candidate; fix scenario blocks before apply"
+  },
+  {
+   "change": "strict-declaration-20261011",
+   "spec_deltas": [
+    "strict-declaration"
+   ],
+   "corresponding_spec_in_main": [],
+   "validates_strict": true,
+   "code_or_test_refs": 0,
+   "same_workstream_candidate": false,
+   "archived": false,
+   "disposition": "DEFER",
+   "reason": "older workstream change; unreconciled"
+  },
+  {
+   "change": "verification-artifact-contract",
+   "spec_deltas": [
+    "verification-artifact-contract"
+   ],
+   "corresponding_spec_in_main": [],
+   "validates_strict": true,
+   "code_or_test_refs": 0,
+   "same_workstream_candidate": false,
+   "archived": false,
+   "disposition": "DEFER",
+   "reason": "proposal-only contract change; unreconciled"
+  }
+ ],
+ "unknowns": [
+  {
+   "item": "22 of 23 change folders have NO code/test reference searchable in tracked src/tests/scripts/docs/config",
+   "verification": "grep over git-tracked paths; untracked working-copy files were NOT exhaustively grepped (repo has a large untracked set incl. Fabric/, HGK/, SQS-THC/)",
+   "status": "UNKNOWN"
+  },
+  {
+   "item": "whether each of the 23 change folders was 'APPLIED' to main specs exactly once and archived per the repo's own workflow",
+   "verification": "OPENSPEC/specs holds only ao-lane-independent-verify and the archive dir holds exactly one entry - so every other change is unapplied/unarchived, but WHICH round meant to apply them and why they did not is not recorded in a central ledger on disk",
+   "status": "UNKNOWN"
+  },
+  {
+   "item": "var/far-lane-sod-007/gate-qualification-candidate, var/far-lane-sod-008/candidate-fix, var/far-iao-lane-skip-20261012/candidate, var/lane-route-001/candidate, worktrees/pipd-r2-core-20261009 - NO apply receipts found in their trees; whether each was applied outside them (as_changeSet B/A receipts exist elsewhere) is not determinable from disk alone",
+   "verification": "walked each candidate dir for APPLIED_RECEIPT/APPLY_RECEIPT naming; none found",
+   "status": "UNKNOWN"
+  },
+  {
+   "item": "scripts/hgk-lane-dispatch.py (the canonical dispatcher) is untracked in git; 'applied' candidates could not be judged as applied by git alone, only by byte compare vs var/ copies",
+   "verification": "git ls-files returned empty",
+   "status": "KNOWN_LIMIT"
+  },
+  {
+   "item": "hgk-skill convergence patch lane-dispatch-timeout-capture.patch - whether it entered the canonical dispatcher via one of the .bak-x2b/.bak-z2 edits",
+   "verification": "candidate copy differs from canonical; no patchbook receipt ties the patch to a dated apply record",
+   "status": "UNKNOWN"
+  },
+  {
+   "item": "r8's skill-slim gate: 115-references count on hgk-governed-execution - whether the >60 WARNING threshold (proposal text) hardens to a FAIL on apply",
+   "verification": "proposal-only contract; no implemented validator on main",
+   "status": "UNKNOWN"
+  },
+  {
+   "item": "whether the R10 reconciliation (r10 change records) has already been run to completion for the 20261016 rounds",
+   "verification": "r10 tasks.md shows 1.1-1.3 [x] but 2.1-2.3 adjudication rows are [ ] at proposal time; on-disk packet has FINDINGS_V3C_INDEPENDENT_VERDICT sign-off but no closing epoch marker found",
+   "status": "UNKNOWN"
+  }
+ ]
+}

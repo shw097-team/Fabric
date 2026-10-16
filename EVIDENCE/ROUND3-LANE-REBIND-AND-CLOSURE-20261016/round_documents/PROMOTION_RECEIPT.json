@@ -1,0 +1,154 @@
+{
+  "schema": "HGK-ROUND3-PROMOTION-RECEIPT/1",
+  "round": "ROUND3-LANE-REBIND-AND-CLOSURE-20261016",
+  "apply": true,
+  "stamp": "round3-promote-20261016T062806Z",
+  "files": [
+    {
+      "file": "scripts/hgk-lane-guard.py",
+      "identical_to_canonical": false,
+      "candidate_sha256": "ba16c5815129b126dd80b6499812c540861a91e8986ecf64d62343871e5a59dc",
+      "canonical_sha256_before": "8233d019c3d434a97ac6fe473edf9f894864714608313f960b5fe6d905473fc5",
+      "changed_lines": 307,
+      "backup": "hgk-lane-guard.py.bak-round3-promote-20261016T062806Z",
+      "canonical_sha256_after": "ba16c5815129b126dd80b6499812c540861a91e8986ecf64d62343871e5a59dc"
+    },
+    {
+      "file": "src/hg_kseos/lane_policy.py",
+      "identical_to_canonical": false,
+      "candidate_sha256": "255b6b95eeb5be156c0bfb7966764bb5eb213e8af5bf321861ec0f4642d5b12b",
+      "canonical_sha256_before": "5384116f2cd8568a26b9244cc11a206b25a2dcec435e2d9e1ba8c4c6f0a089bb",
+      "changed_lines": 375,
+      "backup": "lane_policy.py.bak-round3-promote-20261016T062806Z",
+      "canonical_sha256_after": "255b6b95eeb5be156c0bfb7966764bb5eb213e8af5bf321861ec0f4642d5b12b"
+    },
+    {
+      "file": "tests/test_lane_guard.py",
+      "identical_to_canonical": false,
+      "candidate_sha256": "3b5c3c83862c2e1bbe4aa5d65c6086b28d7de2eb4d1c3aca06db46ba78284d45",
+      "canonical_sha256_before": "270b9515d51c184934226526652d37e08fcde0dd93e93f0378dbbcb1fa945f31",
+      "changed_lines": 102,
+      "backup": "test_lane_guard.py.bak-round3-promote-20261016T062806Z",
+      "canonical_sha256_after": "3b5c3c83862c2e1bbe4aa5d65c6086b28d7de2eb4d1c3aca06db46ba78284d45"
+    }
+  ],
+  "oracle": {
+    "writer_test_module": {
+      "argv": [
+        "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\tests\\test_lane_guard.py"
+      ],
+      "exit": 0,
+      "expected_exit": 0,
+      "must_contain": [],
+      "ok": true
+    },
+    "conformance": {
+      "argv": [
+        "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\tests\\test_lane_policy.py"
+      ],
+      "exit": 0,
+      "expected_exit": 0,
+      "must_contain": [
+        "OK"
+      ],
+      "ok": true
+    },
+    "guard_undeclared_collision": {
+      "argv": [
+        "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\scripts\\hgk-lane-guard.py",
+        "--lane",
+        "EXECUTE",
+        "--maker-lane",
+        "PLAN",
+        "--maker-engine",
+        "hermes",
+        "--maker-model",
+        "opencode-go/glm-5.3-flash",
+        "--target-engine",
+        "codex-cli",
+        "--target-model",
+        "opencode-go/glm-5.3-flash",
+        "--admission",
+        "UNPROVEN",
+        "--expected-epoch",
+        "22",
+        "--root",
+        "."
+      ],
+      "exit": 2,
+      "expected_exit": 2,
+      "must_contain": [
+        "ERR_LANE_SOD_VIOLATION"
+      ],
+      "ok": true
+    },
+    "guard_declared_owner_ordered": {
+      "argv": [
+        "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\scripts\\hgk-lane-guard.py",
+        "--lane",
+        "VERIFY_SECURITY",
+        "--maker-lane",
+        "EXECUTE",
+        "--maker-engine",
+        "codex-cli",
+        "--maker-model",
+        "opencode-go/deepseek-v4.1-flash",
+        "--target-engine",
+        "codex-cli",
+        "--target-model",
+        "opencode-go/deepseek-v4.1-flash",
+        "--target-provider",
+        "opencode-go",
+        "--admission",
+        "UNPROVEN",
+        "--expected-epoch",
+        "22",
+        "--root",
+        "."
+      ],
+      "exit": 3,
+      "expected_exit": 0,
+      "must_contain": [
+        "SOD006-C3"
+      ],
+      "ok": false
+    },
+    "guard_distinct_pair": {
+      "argv": [
+        "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\scripts\\hgk-lane-guard.py",
+        "--lane",
+        "VERIFY_SECURITY",
+        "--maker-lane",
+        "PLAN",
+        "--maker-engine",
+        "hermes",
+        "--maker-model",
+        "opencode-go/glm-5.3-flash",
+        "--target-engine",
+        "codex-cli",
+        "--target-model",
+        "opencode-go/deepseek-v4.1-flash",
+        "--target-provider",
+        "opencode-go",
+        "--admission",
+        "UNPROVEN",
+        "--expected-epoch",
+        "22",
+        "--root",
+        "."
+      ],
+      "exit": 3,
+      "expected_exit": 0,
+      "must_contain": [
+        "SOD_OK"
+      ],
+      "ok": false
+    },
+    "check_drift": {
+      "stdout": "ERRORS 0\nTOTAL 0",
+      "ok": true
+    }
+  },
+  "outside_write_set_changes": [],
+  "all_oracle_ok": false
+}

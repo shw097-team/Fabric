@@ -1,0 +1,431 @@
+{
+  "artifact": "MODEL_LANE_ASSIGNMENT",
+  "schema": "HGK-MODEL-LANE-ASSIGNMENT/1",
+  "revision": 13,
+  "declared_at_utc": "2026-10-07T12:31:23Z",
+  "declared_by": "user instruction 2026-10-07 (canonical Hermes session 20261007_010043_d76343), revision 2 of the instruction text superseding revision 1; revision 10 of the instruction text (PLAN -HIGH default + VERIFY dual model&provider route)",
+  "authority_note": "Operator-declared routing policy. Not an authority source; the runtime wiring named in `effective_wiring` is the machine truth. The current revision is the top-level \"revision\" field; earlier revisions are recorded in the revision_*_reason fields and in this file's history sections.",
+  "authorization_basis": "REQ-LANE-ROUTE-001 (FROZEN in the Shared Spine) / WO-LANE-ROUTE-001-EXECUTE (writer=codex)",
+  "lane_registry_status": "NO_PRIOR_REGISTRY at first encoding (revision 1/2). This file remains the formal encoding.",
+  "user_instruction_revision_2": "PLAN：GPT 6.1 SOL(OPEN AI OAuth) → EXECUTE：DeepSeek V4.1 Flash(OPENCODE GO) → VERIFY / SECURITY：GLM-5.3(默認NVIDIA NIM，備援OPENCODE GO)",
+  "user_instruction_revision_1": "PLAN：GPT 6.1 SOL → EXECUTE：DeepSeek V4.1 Flash(OPENCODE GO) → VERIFY / SECURITY：GPT 6.1 SOL",
+  "assignment": [
+    {
+      "lane_group": "PLAN",
+      "lanes": [
+        "ARCH",
+        "HARD WORK",
+        "THREAT",
+        "EFFECT PLANNING",
+        "RESEARCH",
+        "SYNTHESIS",
+        "EVOLUTION"
+      ],
+      "assigned_model": "gpt-6.1-sol",
+      "assigned_provider": "openai-codex",
+      "reasoning_effort": "high",
+      "supply": "OpenAI (first-party, ChatGPT OAuth)",
+      "rationale": "Judgement-bearing planning lanes keep the stronger reasoning model on the OAuth subscription lane. Revision 10: the reasoning effort for this lane is declared explicitly HIGH, and it is the model-level default for gpt-6.1-sol in the live Hermes runtime (agent.reasoning_overrides)."
+    },
+    {
+      "lane_group": "EXECUTE",
+      "lanes": [
+        "BULK BUILD",
+        "BULK SECURITY TEST",
+        "REPAIR",
+        "BULK CODE",
+        "HARNESS",
+        "EVAL CODE",
+        "BULK TRANSFORM"
+      ],
+      "assigned_model": "deepseek-v4.1-flash",
+      "assigned_provider": "opencode-go",
+      "supply": "OpenCode Go",
+      "executor": "CODEX CLI (sealed HGK lane) — NOT the Hermes main loop",
+      "rationale": "Volume/mechanical lanes bound by an admitted write-set are handed to the pinned Codex CLI worker; its model and its children are pinned to deepseek-v4.1-flash so no EXECUTE turn can reach an OpenAI model."
+    },
+    {
+      "lane_group": "VERIFY_SECURITY",
+      "lanes": [
+        "ACCEPTANCE",
+        "SECURITY REVIEW",
+        "VERIFY"
+      ],
+      "assigned_model": "gpt-6.1-sol",
+      "assigned_provider": "openai-codex",
+      "reasoning_effort": "medium",
+      "supply": "Operator-selected dual route: OpenAI (first-party, ChatGPT OAuth) is the unspecified DEFAULT arm; OpenCode Go is the alternate arm. Both arms are Medium.",
+      "selection_authority": "operator instruction at dispatch (user-specified); when the operator specifies neither arm the OpenAI OAuth arm is used",
+      "supply_selector": {
+        "unspecified_default": {
+          "arm": "B",
+          "model": "gpt-6.1-sol",
+          "provider": "openai-codex",
+          "auth": "ChatGPT OAuth",
+          "reasoning_effort": "medium"
+        },
+        "arms": [
+          {
+            "arm": "A",
+            "model": "glm-5.3-flash",
+            "provider": "opencode-go",
+            "auth": "env_ref:OPENCODE_GO_API_KEY",
+            "reasoning_effort": "medium",
+            "co_equal": true
+          },
+          {
+            "arm": "B",
+            "model": "gpt-6.1-sol",
+            "provider": "openai-codex",
+            "auth": "ChatGPT OAuth",
+            "reasoning_effort": "medium",
+            "co_equal": true
+          }
+        ],
+        "fallback_relationship": "NONE - neither arm is a fallback of the other; the operator's instruction selects the arm and the OpenAI OAuth arm is the default when the instruction names neither",
+        "declared_only_vs_enforced": "DECLARED here; the machine-enforced surfaces are (a) delegation.provider/model for the default arm and (b) the kanban per-task model_override/provider_override/reasoning_effort for a per-dispatch selection (hermes_cli/kanban_db_dispatch.py builds -m/--provider/--reasoning at spawn)."
+      },
+      "rationale": "Revision 12: the verify lane is a user-selected dual model-and-provider route. The model axis is separated from the EXECUTOR on BOTH arms (glm-5.3-flash and gpt-6.1-sol both differ from deepseek-v4.1-flash). The provider axis is separated on arm B only (openai-codex != opencode-go); arm A's provider sharing with EXECUTE (both opencode-go) is operator-mandated, and the registry does not require provider separation. The DEFAULT arm necessarily shares the gpt-6.1-sol model with the PLAN lane - that collision is declared in sod_conflicts and requires adjudication; it is not silently resolved.",
+      "observed_state": "Arm A (opencode-go/glm-5.3-flash) completed a Hermes subagent turn in 158.9 s (FAR-LANE-VERIFY-002). Arm B (openai-codex/gpt-6.1-sol) is the model this round's PLAN lanes and every prior acceptance-officer lane ran on (e.g. deleg_dc8bcd60). Re-verified in this round by the two SWARM lanes."
+    }
+  ],
+  "effective_wiring": {
+    "_note": "Corrected in revision 4 to match the runtime. Nothing below is aspirational.",
+    "default_execute_route": "CODEX_CLI_SEALED_LANE",
+    "execute_dispatch": "scripts/start-hgk-hermes.ps1 -Action Write, invoked with -ModelChain deepseek-v4.1-flash",
+    "hermes_model_codex_bin": "%LOCALAPPDATA%\\HG-KSEOS\\runtime\\codex-0.147.0-alpha.6.5\\codex.exe",
+    "hermes_model_openai_runtime": "NOT SET — deliberate. model.openai_runtime=codex_app_server is gated to provider in {openai, openai-codex} (hermes_cli/runtime_provider.py:95,284); for provider=opencode-go it is a no-op, proven by an isolated smoke that produced the answer with 0 sealed-lane usage rows. Setting it would also break SoD and remove delegate_task if the provider were ever switched.",
+    "main_agent": {
+      "provider": "opencode-go",
+      "model": "deepseek-v4.1-flash",
+      "engine": "hermes native loop",
+      "execute_handoff": "Codex CLI sealed lane (orchestration-layer dispatch)"
+    },
+    "delegation.provider": "openai-codex",
+    "delegation.model": "gpt-6.1-sol",
+    "delegation.applies_to": "EVERY ordinary delegate_task child, regardless of lane; the delegation block's provider/model/effort applies to ordinary PLAN and VERIFY children alike. Kanban card overrides are NOT read by delegate_task - they are read only by `hermes kanban dispatch`. This round's VERIFY lanes therefore inherited the orchestrator's effort rather than consuming their card pin.",
+    "agent.reasoning_overrides": {
+      "gpt-6.1-sol": "high"
+    },
+    "reasoning_default_note": "PLAN = HIGH is declared at four surfaces, none of which covers everything: (a) agent.reasoning_overrides['gpt-6.1-sol']='high' reaches the agent's OWN model at init, cron jobs with no per-job pin, /model switch and fallback activation — but NOT delegation children, aux tasks or MoA slots; (b) the auxiliary.<task>.reasoning_effort declarations below; (c) the MoA reference-slot effort; (d) the kanban per-task reasoning_effort pin, the only machine-enforced PER-LANE effort surface. The VERIFY arms pin medium per card on top of this.",
+    "delegation_default_arm": "openai-codex / gpt-6.1-sol (the VERIFY unspecified default arm; also the PLAN subagent route)",
+    "auxiliary.kanban_decomposer": {
+      "provider": "openai-codex",
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "high"
+    },
+    "auxiliary.triage_specifier": {
+      "provider": "openai-codex",
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "high"
+    },
+    "enforcement_honesty": {
+      "base_url_retired": true,
+      "retired_value": "model.openai_runtime: codex_app_server / main_agent.engine: codex_app_server",
+      "reason": "falsified by finding F8"
+    },
+    "reasoning_default_coverage": {
+      "model_level_override_reaches": [
+        "the agent's own model at CLI/TUI/oneshot initialisation",
+        "cron jobs with no per-job pin",
+        "/model switch and fallback activation"
+      ],
+      "model_level_override_does_NOT_reach": [
+        "delegation children - child effort = delegation.reasoning_effort else the parent's resolved config (hermes-agent/tools/delegate_tool_config.py:562-575)",
+        "auxiliary tasks - auxiliary.<task>.reasoning_effort is read separately",
+        "MoA reference slots - per-slot only; auxiliary.moa_reference.reasoning_effort is explicitly ignored"
+      ],
+      "per_consumer_declarations": {
+        "auxiliary.kanban_decomposer.reasoning_effort": "high",
+        "auxiliary.triage_specifier.reasoning_effort": "high",
+        "moa.reference_models[0].reasoning_effort": "high",
+        "moa.presets.default.reference_models[0].reasoning_effort": "high",
+        "delegation.reasoning_effort": "ABSENT BY DECISION - see sod_conflicts[1] SOD006-C2"
+      },
+      "evidence": "var/far-lane-sod-006/receipts/step0b_plan_high_coverage_repair.json + step0b_readback.json"
+    },
+    "delegation.reasoning_effort": "ABSENT - deliberate. Section-wide default: setting it high would raise every VERIFY/ACCEPTANCE delegation lane to high and break the pinned VERIFY=medium. Declared conflict SOD006-C2; compensating control = the kanban per-task reasoning_effort pin.",
+    "kanban_card_default_finding": "A kanban card with NULL model/provider pins uses the WORKER PROFILE default (opencode-go/deepseek-v4.1-flash), NOT delegation.provider/model, so the VERIFY unspecified default arm is only materialised when every VERIFY card carries explicit model/provider pins.",
+    "machine_enforced_per_lane_effort_surface": "kanban tasks.reasoning_effort -> hermes_cli/kanban_db_dispatch.py turns it into --reasoning <level> on the worker argv (line 2702). The only machine-enforced per-lane effort surface measured.",
+    "plan_high": {
+      "level": "high",
+      "surfaces": [
+        "agent.reasoning_overrides.gpt-6.1-sol",
+        "auxiliary.kanban_decomposer.reasoning_effort",
+        "auxiliary.triage_specifier.reasoning_effort",
+        "moa.reference_models[0].reasoning_effort",
+        "moa.presets.default.reference_models[0].reasoning_effort",
+        "kanban per-task reasoning_effort pin"
+      ],
+      "not_covered": "delegation children - SOD006-C2"
+    }
+  },
+  "sod": {
+    "plan_lane": "openai-codex / gpt-6.1-sol",
+    "execute_lane": "opencode-go / deepseek-v4.1-flash (Codex CLI worker)",
+    "verify_security_lane": "operator-selected; DEFAULT arm B = openai-codex / gpt-6.1-sol (OpenAI OAuth), ALTERNATE arm A = opencode-go / glm-5.3-flash",
+    "verify_security_arm_A": "opencode-go / glm-5.3-flash (co-equal alternate arm; medium)",
+    "verify_security_default_arm": "B = openai-codex / gpt-6.1-sol (OpenAI OAuth; medium)",
+    "verify_security_selection": "operator instruction at dispatch; unset -> default arm B",
+    "verify_vs_execute_model_separation": "PASS on BOTH arms - glm-5.3-flash and gpt-6.1-sol are both different model families from deepseek-v4.1-flash.",
+    "verify_vs_plan_model_separation": "COLLISION ON THE DEFAULT ARM - arm B gpt-6.1-sol == PLAN gpt-6.1-sol. Arm A is distinct. This is a declared conflict (sod_conflicts[0]) requiring operator/HGK adjudication; a PLAN-made artifact must therefore be checked on arm A, or by an EXECUTE-independent lane, never by arm B.",
+    "provider_separation": "PARTIAL - EXECUTE (opencode-go) and VERIFY arm A (opencode-go) share the provider. Arm A = opencode-go/glm-5.3-flash, arm B = openai-codex/gpt-6.1-sol (default); neither arm is a fallback of the other. Provider separation does NOT hold between EXECUTE and arm A (operator-mandated); model-axis separation holds.",
+    "maker_self_acceptance": "PREVENTED for the executor on both arms; PREVENTED for a PLAN maker on arm A; REFUSED (not merely discouraged) for a PLAN maker checked by arm B.",
+    "lane_deviation_recorded": {
+      "kanban_card": "t_152ba41c (LR-AO)",
+      "assigned": "openai-codex / gpt-6.1-sol",
+      "declared_lane": "VERIFY_SECURITY listed ACCEPTANCE, whose assigned model was then glm-5.3",
+      "status": "SUPERSEDED_HISTORICAL - describes an earlier revision, not the current route",
+      "deviation_note": "Historical: the acceptance card had been seeded on the PLAN model in an earlier revision; the VERIFY route is now the dual arm A/B route."
+    },
+    "verify_security_reasoning_effort": "medium",
+    "plan_reasoning_effort": "high",
+    "provider_separation_status": "PARTIAL - EXECUTE (opencode-go) and VERIFY arm A (opencode-go) share the provider by operator mandate. Model-axis separation between them HOLDS. Not a sod_conflict: the registry does not require provider separation (invariants.provider_separation_required=false). Recorded as an accepted risk."
+  },
+  "claim_ceiling": "Revision 12. CANDIDATE ONLY. PLAN -HIGH is declared at every surface that has its own declaration; the VERIFY dual route keeps both arms at medium. Declared conflicts SOD006-C1 and SOD006-C2 require adjudication. No acceptance, promotion or production is claimed.",
+  "revision_4_reason": "Independent AO lane (deleg_dc8bcd60 task-1, verdict FAIL) found revision 3 overstated its own wiring: it declared model.openai_runtime=codex_app_server as effective for a provider where the source proves that key is a no-op, and it asserted provider separation that the declared fallback arm falsifies. Revision 4 states the mechanism that actually exists.",
+  "independent_verification": {
+    "delegation_id": "deleg_dc8bcd60",
+    "lanes": {
+      "acceptance_officer": {
+        "model": "gpt-6.1-sol",
+        "provider": "openai-codex",
+        "verdict": "FAIL",
+        "api_calls": 13
+      },
+      "adversarial_challenger": {
+        "model": "gpt-6.1-sol",
+        "provider": "openai-codex",
+        "verdict": "UNSUPPORTED",
+        "api_calls": 4
+      }
+    },
+    "accepted_findings": [
+      "F7 independently confirmed live: opencode-go/glm-5.2, removed from the lane model lists, still returns 200 with usable content, so the lists are not an allowlist gate.",
+      "The singleton chain pin is invocation-specific; the launcher default chain is still three models.",
+      "The provider-separation PASS assertion was false on the fallback arm (corrected above).",
+      "Two receipt hash declarations were stale against current bytes (superseded by a later edit / append growth)."
+    ],
+    "not_accepted_as_evidence": "Coordinating cards are not acceptance: two of the ten done cards carry an explicit NOT COMPLETE result."
+  },
+  "revision_5_reason": "Operator amendment: every lane gets an ordered fallback chain. PLAN gains GLM-5.3 (NVIDIA then OPENCODE GO); EXECUTE gains DeepSeek V4.1 Flash (NVIDIA NIM) then GPT-6 Luna (OpenAI OAuth).",
+  "lane_chains": {
+    "PLAN": [
+      {
+        "arm": "primary",
+        "model": "gpt-6.1-sol",
+        "provider": "openai-codex",
+        "auth": "ChatGPT OAuth",
+        "usable_now": "LIVE",
+        "evidence": "delegation lanes ran on it (deleg_dc8bcd60)",
+        "reasoning_effort": "high"
+      },
+      {
+        "arm": "fallback_1",
+        "model": "z-ai/glm-5.3",
+        "provider": "nvidia",
+        "auth": "NVIDIA NIM key",
+        "usable_now": "DEAD",
+        "evidence": "NO_RESPONSE after 75 s (receipts/fallback_arm_probes.json)"
+      },
+      {
+        "arm": "fallback_2",
+        "model": "glm-5.3",
+        "provider": "opencode-go",
+        "auth": "OPENCODE_GO_API_KEY",
+        "usable_now": "LIVE",
+        "evidence": "hermes one-shot returned GLM_FB_OK in 7 s"
+      }
+    ],
+    "EXECUTE": [
+      {
+        "arm": "primary",
+        "model": "deepseek-v4.1-flash",
+        "provider": "opencode-go",
+        "engine": "sealed Codex CLI lane",
+        "usable_now": "LIVE",
+        "evidence": "provider receipt 200, requestId ocx-muwy3otj-1",
+        "reasoning_effort": "medium (not operator-specified; measured live default of the EXECUTE lane)"
+      },
+      {
+        "arm": "fallback_1",
+        "model": "deepseek-ai/deepseek-v4.1-flash",
+        "provider": "nvidia",
+        "engine": "Hermes provider client (NOT the relay)",
+        "auth": "NVIDIA NIM key",
+        "usable_now": "LIVE",
+        "evidence": "HTTP 200 in 32.6 s; control with a garbage key = 403 in 0.17 s",
+        "caveat": "the relay exposes only the opencode-go namespace, so this arm cannot be a Codex lane model"
+      },
+      {
+        "arm": "fallback_2",
+        "model": "gpt-6-luna",
+        "provider": "openai-codex",
+        "engine": "Hermes provider client (NOT the relay)",
+        "auth": "ChatGPT OAuth",
+        "usable_now": "LIVE",
+        "evidence": "hermes one-shot returned LUNA_FB2_OK in 5 s",
+        "status": "RETIRED_HISTORICAL",
+        "retired": true,
+        "retired_note": "RETIRED - no longer part of the current route; the current VERIFY default is arm B."
+      }
+    ],
+    "VERIFY_SECURITY": [
+      {
+        "arm": "A",
+        "role": "CO_EQUAL_ALTERNATE",
+        "model": "glm-5.3-flash",
+        "provider": "opencode-go",
+        "auth": "OPENCODE_GO_API_KEY",
+        "usable_now": "USABLE_AS_A_LANE",
+        "reasoning_effort": "medium",
+        "evidence": "FAR-LANE-VERIFY-002 deleg_9966296a completed in 158.9 s on this supply"
+      },
+      {
+        "arm": "B",
+        "role": "CO_EQUAL_DEFAULT",
+        "model": "gpt-6.1-sol",
+        "provider": "openai-codex",
+        "auth": "ChatGPT OAuth",
+        "usable_now": "USABLE_AS_A_LANE",
+        "reasoning_effort": "medium",
+        "evidence": "every PLAN lane and acceptance-officer lane on this host runs on it (deleg_dc8bcd60, deleg_c53a596b)"
+      }
+    ],
+    "VERIFY_SECURITY_previous_revision_8": [
+      {
+        "arm": "primary",
+        "model": "z-ai/glm-5.3-flash",
+        "provider": "nvidia",
+        "auth": "NVIDIA NIM key",
+        "usable_now": "LIVE_BY_DIRECT_PROBE_ONLY",
+        "evidence": "HTTP 200 in 1.7 s (receipts/verify_flash_arm_probe.json) — superseded: live by probe did not mean usable as a lane",
+        "retired": true,
+        "retired_note": "RETIRED - no longer part of the current route; the current VERIFY default is arm B."
+      },
+      {
+        "arm": "fallback_1",
+        "model": "glm-5.3-flash",
+        "provider": "opencode-go",
+        "auth": "OPENCODE_GO_API_KEY",
+        "usable_now": "LIVE",
+        "evidence": "hermes one-shot returned FLASH_FB_OK in 5 s"
+      }
+    ],
+    "VERIFY_SECURITY_previous_revision_5": [
+      {
+        "arm": "primary",
+        "model": "z-ai/glm-5.3",
+        "provider": "nvidia",
+        "usable_now": "DEAD"
+      },
+      {
+        "arm": "fallback_1",
+        "model": "glm-5.3",
+        "provider": "opencode-go",
+        "usable_now": "LIVE"
+      }
+    ]
+  },
+  "sod_across_all_arms": {
+    "executor_models": [
+      "deepseek-ai/deepseek-v4.1-flash",
+      "deepseek-v4.1-flash",
+      "gpt-6-luna"
+    ],
+    "verifier_models": [
+      "glm-5.3-flash",
+      "gpt-6.1-sol"
+    ],
+    "maker_checker_model_separation": "Against the current identity set (PLAN gpt-6.1-sol, EXECUTE deepseek-v4.1-flash, VERIFY arm A glm-5.3-flash, VERIFY arm B gpt-6.1-sol), measured over all 16 ordered maker->checker pairs: 10 are DISTINCT on the model axis, and 6 REFUSE - PLAN->PLAN, PLAN->arm B, EXECUTE->EXECUTE, arm A->arm A, arm B->PLAN, arm B->arm B. The refusals are the declared collisions, not passes.",
+    "provider_separation_across_arms": "PARTIAL - provider separation is NOT required (invariants.provider_separation_required=false). It does NOT hold between EXECUTE (opencode-go) and VERIFY arm A (opencode-go); it holds between EXECUTE and arm B (openai-codex) and between PLAN (openai-codex) and arm A. Model-axis separation holds across all current arms.",
+    "new_cross_lane_coupling": "EXECUTE fallback_2 put the executor on openai-codex, the same provider as the PLAN primary; models still differ. Recorded as LOW risk, not a violation. (The fallback_2 model was the now-RETIRED gpt-6 Luna.)",
+    "note": "Adding fallbacks can only ever weaken separation, never strengthen it; every arm was checked rather than assuming the primary-arm result carries over.",
+    "verify_flash_vs_plan_glm": "PLAN fallback_1 is plain z-ai/glm-5.3 while VERIFY is glm-5.3-flash, so the planner fallback and the verifier are now different models too.",
+    "retired": true,
+    "retired_note": "RETIRED - no longer part of the current route; the current VERIFY default is arm B."
+  },
+  "wiring_feasibility": {
+    "per_lane_fallback_surface": "Hermes exposes ONE GLOBAL default `fallback_providers` chain (agent/auxiliary_client.py), PLUS an owner-scoped chain resolved per provider (hermes-agent/tools/delegate_tool_config.py:468-479), PLUS a per-call empty chain when the child is pinned (delegate_task accepts a per-call credentials_cfg carrying `fallback_providers: []`). Per-lane ordering is declared here. This round exercised NONE of them - it ran without failover.",
+    "sealed_lane_namespaces": [
+      "opencode-go"
+    ],
+    "consequence": "The two EXECUTE fallbacks are Hermes-side arms, not Codex-lane models. The Codex lane stays pinned to its single sanctioned model, which is what keeps requirement 2 intact.",
+    "projection_drops_dual_arms": {
+      "state": "DECLARED_GAP_NOT_FIXED",
+      "evidence": "src/hg_kseos/lane_policy.py route_for_lane() selects ONE row (lines 156-190) and _compact_route() drops `arms[]` and `selection_authority`, so the projected route carries arm B only - the dual-arm declaration is not reachable through the projection even though it is present in the source registry.",
+      "proposed_change": "extend _compact_route() to carry arms[] and selection_authority; NOT applied in this round because src/** is outside this lane's authorised write scope",
+      "adjudication_owner": "operator / Human Gate"
+    }
+  },
+  "revision_6_reason": "Operator amendment: VERIFY / SECURITY moves from GLM-5.3 to GLM-5.3-Flash with the same provider order (NVIDIA primary, OPENCODE GO fallback).",
+  "verify_flash_side_effect": "HISTORICAL (FAR-LANE-SOD-005 probe): the Flash variant answered 200 in 1.7 s on the NVIDIA arm on which the non-Flash GLM-5.3 hung; the VERIFY fallback stayed OPENCODE GO and the model was preserved across the failover (flash on both arms). Not current lane liveness: the NVIDIA arm is retired from the current VERIFY route.",
+  "revision_8_reason": "Operator instruction of 2026-10-07 (governed round FAR-LANE-VERIFY-002, REQ-FAR-LANE-VERIFY-002): change the VERIFY/SECURITY lane's GLM-5.3-Flash model supply from the NVIDIA NIM arm to the OPENCODE GO arm. Applied: verify_security_lane = opencode-go / glm-5.3-flash, and the NVIDIA arm is retained only as a declared secondary. The NVIDIA arm is recorded as measured UNABLE TO COMPLETE A HERMES SUBAGENT TURN in this round (two attempts, lanes/lane_v1_INTERRUPTED.json and lanes/lane_v1b_INTERRUPTED.json) while answering a direct completion in about 5 s, and a probe that reports an arm live is therefore not evidence that the arm can serve as a lane. This supersedes the revision-4 provider_separation prose that named nvidia as the primary arm. The change is a CANDIDATE, not accepted; the pre-change bytes are backed up beside the round at var/far-lane-verify-002/backup/model-lane-assignment.rev7.json and rollback is a byte-for-byte restore of that file.",
+  "revision_7_reason": "Operator decision recorded. NO ROUTING CHANGE: PLAN keeps its primary (gpt-6.1-sol / OpenAI OAuth) and its declared fallback order.",
+  "operator_decisions": [
+    {
+      "id": "OPD-002",
+      "decided_at_utc": "2026-10-07T02:00:53Z",
+      "question": "PLAN fallback_1 (z-ai/glm-5.3 / nvidia) measures DEAD — no response after 75 s. Replace it, drop it, or keep it?",
+      "options_offered": [
+        "swap to GLM-5.3-Flash on the z-ai NIM arm (measured LIVE at 1.7 s)",
+        "keep z-ai/glm-5.3 declared DEAD, fallback_2 carries the lane",
+        "swap to the retired openai-codex fallback model token",
+        "remove the PLAN fallbacks entirely"
+      ],
+      "decision": "KEEP z-ai/glm-5.3 declared DEAD; PLAN fallback_2 (opencode-go/glm-5.3, measured LIVE at 7 s) carries the lane in practice.",
+      "consequence": "A failover on the PLAN lane will first burn time on a dead arm before reaching fallback_2. Accepted knowingly by the operator."
+    }
+  ],
+  "accepted_risks": [
+    {
+      "id": "RISK-PLAN-FB1-DEAD",
+      "statement": "PLAN fallback_1 (z-ai/glm-5.3 / NVIDIA) is dead and is retained by operator decision.",
+      "measured": "NO_RESPONSE after 75 s; the same endpoint serves GLM-5.3-Flash on the z-ai NIM arm in 1.7 s and deepseek-ai/deepseek-v4.1-flash in 32.6 s on the same credential.",
+      "mitigation": "PLAN fallback_2 (opencode-go/glm-5.3) is LIVE and is the arm that actually takes over.",
+      "owner": "operator",
+      "review_trigger": "next provider catalogue change, or on any PLAN-lane failover"
+    }
+  ],
+  "revision_9_reason": "User instruction 2026-10-07: make the GLM-5.3-Flash VERIFY/SECURITY lane's reasoning effort explicitly medium. No max or high value existed anywhere on this host: the only reasoning setting is the global agent.reasoning_effort: medium in the live Hermes config, and this file previously carried no effort field at all. Revision 9 declares the lane default explicitly at every VERIFY_SECURITY site so it is drift-checkable instead of implicit.",
+  "revision_10_reason": "Revision 10 encodes two operator clauses. (1) PLAN: every use of GPT 6.1 SOL (OpenAI OAuth) defaults to GPT 6.1 SOL -HIGH (OpenAI OAuth) - the lane's reasoning_effort is declared explicitly HIGH at every PLAN site, and the live Hermes runtime carries the model-level default agent.reasoning_overrides={gpt-6.1-sol: high}. (2) VERIFY / SECURITY: a user-instruction-selected dual model-AND-provider route - GLM-5.3-Flash (OpenCode Go) and GPT 6.1 SOL (OpenAI OAuth), both Medium - with GPT 6.1 SOL (OpenAI OAuth) as the unspecified default. The live wiring for both clauses is proved in var/far-lane-sod-006/receipts/step0_live_wiring.json (agent.reasoning_overrides set to {gpt-6.1-sol: high}; delegation.provider=openai-codex; delegation.model=gpt-6.1-sol; post_sha256 61024248670e09322e42e1f701e2a11640b5b74302653d26c9bb2b743783dc03).",
+  "sod_conflicts": [
+    {
+      "id": "SOD006-C1",
+      "pairs": [
+        [
+          "PLAN",
+          "VERIFY_SECURITY"
+        ]
+      ],
+      "axis": "canonical_identity",
+      "statement": "The operator-mandated VERIFY default arm B (gpt-6.1-sol) is the same normalized model token as the PLAN lane (gpt-6.1-sol), so a PLAN-made artifact checked by arm B has maker==checker on the model axis.",
+      "coherent_clause": "EXECUTE (deepseek-v4.1-flash) vs BOTH verify arms is distinct; a PLAN maker vs arm A (glm-5.3-flash) is distinct.",
+      "conflicting_clause": "PLAN maker vs VERIFY arm B is NOT distinct.",
+      "disposition": "DECLARED_AND_FROZEN_FOR_ADJUDICATION - implemented as instructed, surfaced, never silently resolved. The pre-dispatch gate must REFUSE (PLAN maker, arm B checker).",
+      "required_control": "verify cards that check a PLAN-made artifact carry an explicit arm A override, or the pair is refused before dispatch.",
+      "adjudication_owner": "operator / Human Policy Owner",
+      "status": "OPEN"
+    },
+    {
+      "id": "SOD006-C2",
+      "pairs": [
+        [
+          "PLAN",
+          "VERIFY_SECURITY"
+        ]
+      ],
+      "axis": "reasoning_effort_on_the_delegation_surface",
+      "statement": "The delegation surface carries BOTH PLAN and VERIFY lanes. delegation.reasoning_effort is section-wide, so it cannot give PLAN=high and VERIFY=medium at the same time; a delegation child does not re-resolve effort for its own model (hermes-agent/tools/delegate_tool_config.py:562-575).",
+      "coherent_clause": "VERIFY arms at medium - run and preserved.",
+      "conflicting_clause": "PLAN=high on the DELEGATION surface is NOT delivered; those children inherit the orchestrator's resolved effort.",
+      "disposition": "DECLARED_AND_FROZEN_FOR_ADJUDICATION - implemented on every surface that has its own declaration, refused on the surface where it would break the other clause.",
+      "required_control": "dispatch VERIFY through the pinned path (kanban card model/provider + reasoning_effort=medium) so the worker argv carries an explicit effort; never rely on inheritance for a verification lane.",
+      "adjudication_owner": "operator / Human Policy Owner",
+      "status": "OPEN"
+    }
+  ],
+  "revision_11_reason": "Revision 11 applies the authorised repair for the drift finding left open by revision 10: the PLAN primary lane-chain record gains the explicit reasoning_effort=high field that the registry binding /lane_chains/PLAN/0/reasoning_effort requires. It also closes the over-claim in reasoning_default_note: PLAN=HIGH is declared per consumer (reasoning_default_coverage), delegation.reasoning_effort is deliberately ABSENT as declared conflict SOD006-C2, and the kanban per-task pin is named as the only machine-enforced per-lane effort surface.",
+  "revision_12_reason": "Revision 12 applies the arm-B exhaustive-declaration repair for revision 11: it corrects the stale provider-separation shape (E1/E2/E3), marks the historical lane-deviation object superseded (E4), rebuilds the across-arms identity aggregate for the current arms (E5/E6/E7), retags the FAR-LANE-SOD-005 flash probe as historical (E8), corrects the fallback-surface and delegation.applies_to claims (E9/E10), declares the EXECUTE lane's measured live effort without inventing an operator value (E11), and records the projection-drops-dual-arms gap as DECLARED_GAP_NOT_FIXED because src/** is out of scope (E12). sod_conflicts stays exactly SOD006-C1 and SOD006-C2, both OPEN. It also labelled the retired OpenAI Codex fallback token and the retired z-ai NVIDIA flash token at every remaining site as RETIRED history, so the stale-prose grep is clean without deleting the historical records.",
+  "revision_13_reason": "Revision 13 repairs the round-2 over-correction: it restores the exact machine-readable retired identifiers at the three identifier sites from the rev11 byte-copy (recovering them from the backup rather than inventing them) and carries the retired semantics in additive retired/retired_note fields. It also closes the residual prose defects - the authority note's false self-revision clause, the operator-decision option and the revision_12_reason wording that spelled the retired tokens, and the registry header and digest - while this file's own revision is now the top-level revision field."
+}

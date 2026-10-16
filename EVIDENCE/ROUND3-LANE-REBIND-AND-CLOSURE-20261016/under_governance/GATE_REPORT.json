@@ -1,0 +1,61 @@
+{
+  "schema": "HGK-ROUND-GATE-REPORT/1",
+  "round": "ROUND3-LANE-REBIND-AND-CLOSURE-20261016",
+  "checks": {
+    "G1_all_json_parses": {
+      "ok": true,
+      "failures": [],
+      "counted": 56
+    },
+    "G2_frozen_subject_recomputes": {
+      "ok": true,
+      "recorded": "1511502d6bf98f72fa9e2d381c33273ad2678a5dace49d688fd5db6f4254cb04",
+      "recomputed": "1511502d6bf98f72fa9e2d381c33273ad2678a5dace49d688fd5db6f4254cb04",
+      "mismatched_items": [],
+      "items": 65
+    },
+    "G3_no_credential_material": {
+      "ok": true,
+      "hits": [],
+      "patterns": 5,
+      "exempted_verbatim_canonical_copies": [
+        "candidate/config/hermes-codex-lane.json",
+        "candidate/config/hermes.json",
+        "candidate/config/lane-route-slots.candidate.json",
+        "candidate/config/model-lane-assignment.json",
+        "candidate/config/project.json",
+        "candidate/config/ssot-supersession-ledger.json",
+        "candidate/config/verify-acceptance-matrix.json",
+        "candidate/config/verify-lane-contract.json",
+        "candidate/scripts/cred/INSTALL_MANIFEST.json",
+        "candidate/scripts/cred/ADMISSION_RECEIPT.md"
+      ],
+      "exempted_count": 341
+    },
+    "G4_no_self_acceptance_claim": {
+      "ok": true,
+      "hits": []
+    },
+    "G5_receipts_exist_and_agree": {
+      "ok": true,
+      "missing": [],
+      "promoted_3": true,
+      "oracle_all_ok": true,
+      "frozen_subject_digest": "76ec42a0f4c8962c"
+    },
+    "G6_packet_hygiene": {
+      "ok": true,
+      "packet_files": 347,
+      "oversize": [],
+      "litter": []
+    },
+    "G7_residuals_preserved": {
+      "ok": true,
+      "closure_entries": 13,
+      "inventory_items": 32,
+      "dropped_from_inventory": [],
+      "note": "counts and ids are compared, not wording: the closure may rephrase a ledgered item but may not drop it"
+    }
+  },
+  "verdict": "GATE_PASS"
+}

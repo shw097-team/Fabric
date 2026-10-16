@@ -1,0 +1,31 @@
+{
+  "checker": "VERIFY_SECURITY",
+  "subject_digest_recomputed": "76ec42a0f4c8962cca823f913d6b230bf1d95ef5832e37e8e83a95b5a48bc54f",
+  "claims": {
+    "C1": "AGREE",
+    "C2": "AGREE",
+    "C3": "AGREE",
+    "C4": "AGREE",
+    "C5": "AGREE",
+    "C6": "AGREE",
+    "C7": "AGREE"
+  },
+  "disclosures": [
+    "Model-axis independence between writer and checker is ABSENT BY OWNER ORDER (both opencode-go/deepseek-v4.1-flash), declared as SOD006-C3 OWNER_ORDERED_IN_FORCE; this verdict rests only on process, lane, evidence-path independence and the no-self-acceptance rule, and I claim no separation I do not have.",
+    "Cross-artifact inconsistency (not fatal to C4, which is scoped to the registry): config/model-lane-assignment.json's own sod_conflicts[] still lists SOD006-C2 as OPEN and SOD006-C3 as OPEN_OWNER_ORDERED, while the registry marks them SUPERSEDED and OWNER_ORDERED_IN_FORCE; the guard reads the registry so behaviour is correct, but the assignment-side prose lags. Residual, not a repair.",
+    "C6: the writer's write-set is exactly the three files; the candidate tree has no other divergence from the canonical tree. The frozen subject copy additionally carries the three product .bak backups, a promotion preimage side-effect rather than writer output.",
+    "The guard's exit-0 ADMIT path is exercised with a synthetic in-scope admission receipt; production has no producer of an ADMISSION receipt (gap R11), so a live end-to-end ADMIT is not claimed."
+  ],
+  "commands": [
+    "python -B TEST_RESULTS/recompute_subject_digest.py -> copy_digest_first16=76ec42a0f4c8962c == SUBJECT_DIGEST.json, copy_equals_frozen=true, counts 72/33/63/45=213",
+    "python -B TEST_RESULTS/c1_epoch_coupling.py -> recomputed sha256(model-lane-assignment.json)=78a0eb2eabfecaa4d4d80660438505418724499aeaaac656f3d47631a3effa15 == registry source_of_routes.sha256; epoch=22, revision=22",
+    "python -B TEST_RESULTS/c5_probe.py -> [1] undeclared PLAN/PLAN exit2 ERR_LANE_SOD_VIOLATION; [2] declared EXECUTE/VERIFY admitted exit0 declared_conflict=SOD006-C3; [2b/3] admission-only exit3; [4] ambiguous maker lane exit2 no exemption; [5] PLAN/VERIFY same-model (distinct_required true) exit2",
+    "python -B TEST_RESULTS/c5_wide.py -> exemption requires distinct_required exactly False AND status exactly OWNER_ORDERED_IN_FORCE AND exact pair; wrong-status/wrong-pair/ambiguous all fail closed",
+    "python -B TEST_RESULTS/c6_writeset.py -> candidate vs subject differ only by 3 *.bak files",
+    "python -B TEST_RESULTS/c6_writeset2.py -> candidate sha==receipt candidate_sha256, canonical_after==receipt canonical_sha256_after, .bak==canonical_before, outside_write_set_changes=[]",
+    "python -B TEST_RESULTS/c4_nondestructive.py -> live declared_conflicts add SOD006-C3, remove none of [SOD006-C1, SOD006-C2, SOD-APPLY-01]; C1/C2 retained with SUPERSEDED",
+    "python -B subject/tests/test_lane_policy.py -> 3 tests OK; python -B subject/tests/test_lane_guard.py -> 13 tests OK",
+    "python -B TEST_RESULTS/c7_final.py -> decisive docs carry CANDIDATE_ONLY / merge+branch-deletion=OWNER / NOT_PERFORMED; no self-acceptance claim found"
+  ],
+  "verdict_ceiling": "advisory; not an acceptance"
+}

@@ -1,0 +1,55 @@
+{
+  "admission_status": "ADMITTED",
+  "checks": [
+    {
+      "code": "ERR_LANE_SOD_VIOLATION",
+      "detail": "SOD_VIOLATION maker_model=deepseek-v4.1-flash == checker_model=deepseek-v4.1-flash",
+      "id": "sod_distinct_model",
+      "ok": false
+    },
+    {
+      "code": null,
+      "detail": "recorded=78a0eb2eabfecaa4d4d80660438505418724499aeaaac656f3d47631a3effa15 live=78a0eb2eabfecaa4d4d80660438505418724499aeaaac656f3d47631a3effa15",
+      "id": "source_digest",
+      "ok": true
+    },
+    {
+      "code": "ERR_LANE_NOT_ADMITTED",
+      "detail": "status=ADMITTED evidence=ABSENT (a bare ADMITTED string is not admissible; pass a probe receipt)",
+      "id": "arm_admitted",
+      "ok": false
+    },
+    {
+      "code": null,
+      "detail": "--expected-epoch=22 live_epoch=22",
+      "id": "expected_epoch_assertion",
+      "ok": true
+    },
+    {
+      "code": null,
+      "detail": "registry_epoch=22 live_epoch=22",
+      "id": "epoch_current",
+      "ok": true
+    }
+  ],
+  "claim_ceiling": "CANDIDATE_ONLY",
+  "decision": "REFUSE",
+  "epoch": 22,
+  "errors": [
+    "ERR_LANE_SOD_VIOLATION"
+  ],
+  "exit_code": 2,
+  "lane": "VERIFY_SECURITY",
+  "live_epoch": 22,
+  "maker": {
+    "engine": "codex-cli",
+    "model": "opencode-go/deepseek-v4.1-flash"
+  },
+  "schema": "HGK-LANE-GUARD/1",
+  "status": "REFUSE",
+  "target": {
+    "engine": "codex-cli",
+    "model": "opencode-go/deepseek-v4.1-flash",
+    "provider": "opencode-go"
+  }
+}

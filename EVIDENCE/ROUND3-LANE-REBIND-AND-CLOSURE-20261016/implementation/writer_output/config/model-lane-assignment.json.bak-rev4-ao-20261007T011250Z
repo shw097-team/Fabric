@@ -1,0 +1,72 @@
+{
+  "artifact": "MODEL_LANE_ASSIGNMENT",
+  "schema": "HGK-MODEL-LANE-ASSIGNMENT/1",
+  "revision": 3,
+  "declared_at_utc": "2026-10-06T17:35:00Z",
+  "declared_by": "user instruction 2026-10-07 (canonical Hermes session 20261007_010043_d76343), revision 2 of the instruction text superseding revision 1",
+  "authority_note": "Operator-declared routing policy. Not an authority source; the runtime wiring named in `effective_wiring` is the machine truth. Revision 3 supersedes revision 2.",
+  "authorization_basis": "REQ-LANE-ROUTE-001 (FROZEN in the Shared Spine) / WO-LANE-ROUTE-001-EXECUTE (writer=codex)",
+  "lane_registry_status": "NO_PRIOR_REGISTRY at first encoding (revision 1/2). This file remains the formal encoding.",
+
+  "user_instruction_revision_2": "PLAN：GPT 6.1 SOL(OPEN AI OAuth) → EXECUTE：DeepSeek V4.1 Flash(OPENCODE GO) → VERIFY / SECURITY：GLM-5.3(默認NVIDIA NIM，備援OPENCODE GO)",
+  "user_instruction_revision_1": "PLAN：GPT 6.1 SOL → EXECUTE：DeepSeek V4.1 Flash(OPENCODE GO) → VERIFY / SECURITY：GPT 6.1 SOL",
+
+  "assignment": [
+    {
+      "lane_group": "PLAN",
+      "lanes": ["ARCH", "HARD WORK", "THREAT", "EFFECT PLANNING", "RESEARCH", "SYNTHESIS", "EVOLUTION"],
+      "assigned_model": "gpt-6.1-sol",
+      "assigned_provider": "openai-codex",
+      "supply": "OpenAI (first-party, ChatGPT OAuth)",
+      "rationale": "Judgement-bearing planning lanes keep the stronger reasoning model on the OAuth subscription lane."
+    },
+    {
+      "lane_group": "EXECUTE",
+      "lanes": ["BULK BUILD", "BULK SECURITY TEST", "REPAIR", "BULK CODE", "HARNESS", "EVAL CODE", "BULK TRANSFORM"],
+      "assigned_model": "deepseek-v4.1-flash",
+      "assigned_provider": "opencode-go",
+      "supply": "OpenCode Go",
+      "executor": "CODEX CLI (sealed HGK lane) — NOT the Hermes main loop",
+      "rationale": "Volume/mechanical lanes bound by an admitted write-set are handed to the pinned Codex CLI worker; its model and its children are pinned to deepseek-v4.1-flash so no EXECUTE turn can reach an OpenAI model."
+    },
+    {
+      "lane_group": "VERIFY_SECURITY",
+      "lanes": ["ACCEPTANCE", "SECURITY REVIEW", "VERIFY"],
+      "assigned_model": "z-ai/glm-5.3",
+      "assigned_provider": "nvidia",
+      "fallback_provider": "opencode-go",
+      "fallback_model": "glm-5.3",
+      "supply": "NVIDIA NIM (primary) / OpenCode Go (fallback)",
+      "rationale": "The verification lane must share neither model nor provider with the executor. Failover swaps the PROVIDER and keeps the MODEL, so the separation survives a provider outage.",
+      "observed_state": "DEGRADED_PRIMARY — NVIDIA NIM completion path unreachable at wiring time; see var/lane-route-001/probes/."
+    }
+  ],
+
+  "effective_wiring": {
+    "_note": "How the assignment is enforced in the Hermes runtime. Hermes exposes uniform routing for subagents (delegation.*) and for auxiliary helpers; per-lane overrides ride the Kanban card (--model/--provider).",
+    "model.openai_runtime": "codex_app_server",
+    "model.codex_bin": "%LOCALAPPDATA%\\HG-KSEOS\\runtime\\codex-0.147.0-alpha.6.5\\codex.exe",
+    "default_execute_route": "CODEX_CLI_SEALED_LANE",
+    "codex_lane_binding": "config/hermes-codex-lane.json",
+    "codex_lane_precondition": "CODEX_HOME must be the isolated lane home (%LOCALAPPDATA%\\HG-KSEOS\\codex-hermes) at Hermes launch; only the sanctioned launcher scripts/start-hgk-hermes.ps1 -Action Hermes sets it (a user/machine-level CODEX_HOME is refused by the launcher).",
+    "delegation.provider": "openai-codex",
+    "delegation.model": "gpt-6.1-sol",
+    "delegation.applies_to": "every spawned subagent on the PLAN lane; the VERIFY lane is dispatched with an explicit glm-5.3 override",
+    "auxiliary.kanban_decomposer": {"provider": "openai-codex", "model": "gpt-6.1-sol"},
+    "auxiliary.triage_specifier": {"provider": "openai-codex", "model": "gpt-6.1-sol"},
+    "main_agent": {"provider": "opencode-go", "model": "deepseek-v4.1-flash", "engine": "codex_app_server"}
+  },
+
+  "sod": {
+    "plan_lane": "openai-codex / gpt-6.1-sol",
+    "execute_lane": "opencode-go / deepseek-v4.1-flash (Codex CLI worker)",
+    "verify_security_lane": "nvidia / z-ai/glm-5.3 (fallback opencode-go / glm-5.3)",
+    "plan_vs_execute_model_separation": "PASS — different model and provider",
+    "verify_vs_execute_model_separation": "PASS — different model family (glm-5.3 vs deepseek-v4.1-flash) on both the primary and the fallback arm",
+    "provider_separation": "PASS — no two lanes share a provider",
+    "maker_self_acceptance": "PREVENTED — the executor (Codex, deepseek-v4.1-flash) never runs on the verification lane",
+    "clause_superseded": "The original clause setting PLAN and VERIFY/SECURITY to deepseek-v4.1-flash was withdrawn by the operator (it collapses maker and checker onto one model). It is recorded, not executed."
+  },
+
+  "claim_ceiling": "Routing assignment declared and wired, with the VERIFY primary recorded as DEGRADED and running on its declared fallback. Not a claim of acceptance for any work produced under it."
+}

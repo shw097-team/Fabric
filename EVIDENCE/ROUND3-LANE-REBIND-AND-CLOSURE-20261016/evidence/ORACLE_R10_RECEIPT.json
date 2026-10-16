@@ -1,0 +1,42 @@
+{
+  "schema": "HGK-ROUND3-R10-ORACLE/1",
+  "round": "ROUND3-LANE-REBIND-AND-CLOSURE-20261016",
+  "cases": {
+    "01_undeclared_collision_refused": {
+      "exit": 2,
+      "want_exit": 2,
+      "ok": true
+    },
+    "02_declared_pair_sod_admitted": {
+      "exit": 3,
+      "want_exit": 3,
+      "ok": true
+    },
+    "03_distinct_pair_unchanged": {
+      "exit": 3,
+      "want_exit": 3,
+      "ok": true
+    },
+    "04_undeclared_inference_fail_closed": {
+      "exit": 2,
+      "want_exit": 2,
+      "ok": true
+    },
+    "05_conformance_suite": {
+      "exit": 0,
+      "want_exit": 0,
+      "ok": true
+    },
+    "06_writer_test_module": {
+      "exit": 0,
+      "want_exit": 0,
+      "ok": true
+    },
+    "07_check_drift_zero_errors": {
+      "ok": true,
+      "stdout": "ERRORS 0"
+    }
+  },
+  "all_ok": true,
+  "claim_ceiling": "the SoD exemption is proven for the owner-ordered declared pair; the exit-0 ADMIT path is NOT proven because no legitimate admission receipt exists yet (gap R11)"
+}

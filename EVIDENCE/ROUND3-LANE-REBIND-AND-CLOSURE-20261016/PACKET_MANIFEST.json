@@ -1,0 +1,1751 @@
+{
+  "schema": "ROUND3-LANE-REBIND-AND-CLOSURE-20261016/PACKET-MANIFEST/1",
+  "round": "ROUND3-LANE-REBIND-AND-CLOSURE-20261016",
+  "at_utc": "2026-10-16T07:00:51.916169+00:00",
+  "collection_rule": "every file in the round directory by suffix, plus the evidence/, lanes/, candidate/ and openspec/ sub-trees, plus the handover checkpoint; no hand-maintained list",
+  "section_counts": {
+    "round_documents": 53,
+    "evidence": 22,
+    "preimages": 4,
+    "implementation_files": 6,
+    "writer_output": 213,
+    "lane_files": 38,
+    "openspec_and_governance": 7
+  },
+  "publish_claim": "the DELIVERED set is every file under EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/. Bytes are stored verbatim (-text). An external acceptor can recompute each sha256 below from the delivered blob.",
+  "files": [
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/.gitattributes",
+      "bytes": 349,
+      "sha256": "5680ae1059ee850d6725a035ad05bede7f2f298dbbe923f8f4b0c6a9d709b443"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/evidence/EVIDENCE_CANDIDATE_LANDING_SURFACE.json",
+      "bytes": 30997,
+      "sha256": "a8de698c91580b38dc027c37dd40249c64df5aa9d2a470da00d4304a820a9327"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/evidence/EVIDENCE_CANDIDATE_LANDING_SURFACE.md",
+      "bytes": 14972,
+      "sha256": "3f975a13d3da48d0625d379053507e0b778ea06ce4e664154142059078d57438"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/evidence/EVIDENCE_LANE_AVAILABILITY.json",
+      "bytes": 10684,
+      "sha256": "c444898670c2c7b8be3966b5cfccdcd74a705d9240a219e4ecaa633c3afb377a"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/evidence/EVIDENCE_LANE_AVAILABILITY.md",
+      "bytes": 23700,
+      "sha256": "ab35c8675365c0168d8975588048eee13ae07db3cf55077846c3a9e77724bf57"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/evidence/EVIDENCE_REPO_MERGE_AND_BRANCH_CLEANUP.json",
+      "bytes": 19544,
+      "sha256": "a67157d14d13ef4318ee0bada0be76f77eb6dbbb36fc85f23a3cf3877422a79a"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/evidence/EVIDENCE_REPO_MERGE_AND_BRANCH_CLEANUP.md",
+      "bytes": 18221,
+      "sha256": "1a1dd1e965d01f106daa3b600596583d1fbef0e1a82a940e7ebef732fa92fa65"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/evidence/EVIDENCE_RESIDUAL_STATUS_REDERIVED.json",
+      "bytes": 21378,
+      "sha256": "5e099130746ced532809a6fb5389f3fa13dc6552bddb4b7d473e1d0955e88c84"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/evidence/EVIDENCE_RESIDUAL_STATUS_REDERIVED.md",
+      "bytes": 25202,
+      "sha256": "4996df33f8454faad071cbb3d62e91751d3ecc3a7a72a094b09dfaf584e79c93"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/evidence/GUARD_VERIFY_vs_EXECUTE.json",
+      "bytes": 1452,
+      "sha256": "18771c96f91d0b9081edffd07fd33d340566a39dc7a3ad4c2350e9c5b144d8b7"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/evidence/GUARD_VERIFY_vs_PLAN.json",
+      "bytes": 1382,
+      "sha256": "483e09f080f10450e349e72f00bdc038fbd936b98d10a4148c4fb570ff7bbf3f"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/evidence/ORACLE_conformance.txt",
+      "bytes": 579,
+      "sha256": "b322cc0e257005ef30647b2d02867d7d8d38b5365bb35d520a1b6ea1843b08be"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/evidence/ORACLE_guard_declared_owner_ordered.txt",
+      "bytes": 2034,
+      "sha256": "6329029d6aefa1a55a32e91afdc41492f4d8f508144729ca6a9360f6e8f23708"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/evidence/ORACLE_guard_distinct_pair.txt",
+      "bytes": 1827,
+      "sha256": "b9e632b260bcb1b47fba9ebbfc615d4da96cba20dc512c2edd13c1ebb9dd0373"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/evidence/ORACLE_guard_undeclared_collision.txt",
+      "bytes": 1867,
+      "sha256": "b816eb62ea2ead54d7031d35260e98db703a7ee4a5f0deef12c184b5ac9d3425"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/evidence/ORACLE_R10_01_undeclared_collision_refused.txt",
+      "bytes": 1885,
+      "sha256": "84ed8549ccb8663b57f52bf7737fd39158c4cd4f35d07199af48d30872913074"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/evidence/ORACLE_R10_02_declared_pair_sod_admitted.txt",
+      "bytes": 2101,
+      "sha256": "4152ca2451eeefaca471ee0f4b1d175c06b1b2190516ac6136d6d48805879778"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/evidence/ORACLE_R10_03_distinct_pair_unchanged.txt",
+      "bytes": 1869,
+      "sha256": "0a45cd1dbee3b9aa4badf60cd46ea2c683d5b497c5ad71103ab3d99fafefd9f8"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/evidence/ORACLE_R10_04_undeclared_inference_fail_closed.txt",
+      "bytes": 1896,
+      "sha256": "ed5836784823a9d55a2cba4f02726fe08b5c850c0544bc12bf9646d9067ce4cb"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/evidence/ORACLE_R10_05_conformance_suite.txt",
+      "bytes": 598,
+      "sha256": "31327630976ea051157bfd023182790edcfce1d3ac81d1976a1c14e76528e517"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/evidence/ORACLE_R10_06_writer_test_module.txt",
+      "bytes": 285,
+      "sha256": "817650c7ab8473abd24827d3594b58e6df50c08c2d32fd1bcaae211a40bff8aa"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/evidence/ORACLE_R10_RECEIPT.json",
+      "bytes": 1043,
+      "sha256": "d0570fc6bacfa9d64fa017d519f9dc04b4ee84ee0c4cf75fa0a1178d26438d5c"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/evidence/ORACLE_writer_test_module.txt",
+      "bytes": 263,
+      "sha256": "530e728e2ddce10dcf45898ae54bd017f384ec5328abb67cde1194aa8f9b24cd"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/config/after/config/lane-routing-registry.yaml",
+      "bytes": 47224,
+      "sha256": "02481992df124ca4f83b655b4583fc2053ecebbbb3125702ab28e39d0c35ea70"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/config/after/config/model-lane-assignment.json",
+      "bytes": 49203,
+      "sha256": "78a0eb2eabfecaa4d4d80660438505418724499aeaaac656f3d47631a3effa15"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/config/before/config/lane-routing-registry.yaml",
+      "bytes": 39125,
+      "sha256": "a0d811c48f6063b06af0688a16dd644bc1537651c75a8341795110253362c0b2"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/config/before/config/model-lane-assignment.json",
+      "bytes": 44021,
+      "sha256": "d41f8f8bff41d4338a4b85dab7a60bd2c9c23b2f5f39c8c008e89bf82587bd36"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/product/after/scripts/hgk-lane-guard.py",
+      "bytes": 22497,
+      "sha256": "ba16c5815129b126dd80b6499812c540861a91e8986ecf64d62343871e5a59dc"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/product/after/src/hg_kseos/lane_policy.py",
+      "bytes": 19208,
+      "sha256": "255b6b95eeb5be156c0bfb7966764bb5eb213e8af5bf321861ec0f4642d5b12b"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/product/after/tests/test_lane_guard.py",
+      "bytes": 11118,
+      "sha256": "3b5c3c83862c2e1bbe4aa5d65c6086b28d7de2eb4d1c3aca06db46ba78284d45"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/config/.hermes.json.tmp-6b165178e1074dd2881ef74fc72dae0a",
+      "bytes": 4127,
+      "sha256": "d3e6fb345b57d5de7a65eda0737d7e06f9790f779f54fae5ca0740bc0c22e95f"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/config/hermes-codex-lane.json",
+      "bytes": 11101,
+      "sha256": "2da6b69fcce3681f6f8cedc43270b54ba449d0a22f21b1b714a007df2dbf96b4"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/config/hermes-codex-lane.json.bak-codexroute-20261002_162820",
+      "bytes": 1468,
+      "sha256": "cbc95cd0a3f652699c75550f1de5dce4c766bf1a01d99a90855ed8e6f793fcd4"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/config/hermes-codex-lane.json.bak-executeroute-20261007T010023Z",
+      "bytes": 3470,
+      "sha256": "7e08f4495cb55ff26e15753df732c0be512f43a11f39467d7af1f3a641121c19"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/config/hermes-codex-lane.json.bak-moddred2-20260821_160225",
+      "bytes": 1418,
+      "sha256": "613398d0e53189e62233563c11b647b2d30c5118a5a2383ec82b8609edf5e96f"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/config/hermes-codex-lane.json.bak-msixpath-20261006T232659",
+      "bytes": 3068,
+      "sha256": "91413cb8ba211a30306b0445f994d9b98cc6f02432e6da55121bfaf2d26b0bde"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/config/hermes-codex-lane.json.bak-pool-far-20261010T152723",
+      "bytes": 9880,
+      "sha256": "6b5e85327cff5b42747a6b8d53f42913d9253d9d7b5c33647200a31c3be6b74e"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/config/hermes-codex-lane.json.bak-pre-rebind-20261012T154832Z",
+      "bytes": 10919,
+      "sha256": "212f5404c4791eeb20da44d21a196882e0304e24179e4465f83a3688b7a37866"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/config/hermes-codex-lane.json.bak-pre-rebind-20261013T013301Z",
+      "bytes": 10919,
+      "sha256": "212f5404c4791eeb20da44d21a196882e0304e24179e4465f83a3688b7a37866"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/config/hermes-codex-lane.json.bak-rev5-20261007T014534Z",
+      "bytes": 5319,
+      "sha256": "60b9c9c5701ab0d7c307a1d8d2b9df56c29e675d4c09780a0199e98ad0f7b931"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/config/hermes.json",
+      "bytes": 4527,
+      "sha256": "4e32dcc609d46fb6010b202455ef3de4eef873d3829049b21895fee1fbf119b6"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/config/lane-route-slots.candidate.json",
+      "bytes": 34932,
+      "sha256": "12f6667ee50bb369457c81dcc9d99ab9d244649a38c6f34ece29d1c3e5812418"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/config/lane-route-slots.candidate.json.bak-chainrebind-20261015",
+      "bytes": 33277,
+      "sha256": "0c2a3233f52fc7ab3f31bc983cb08d48f8e7fd5a75ee5f4ba3b99b7c88d64b8a"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/config/lane-route-slots.candidate.json.bak-lanerepair-20261014T025006Z",
+      "bytes": 31490,
+      "sha256": "48975aabd0f450c4ca075141707cc565461f9739f32055568f334f1e92ea0d2e"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/config/lane-route-slots.candidate.json.bak-rev5-20261010T152723",
+      "bytes": 18678,
+      "sha256": "6c874dc3ff556673a27862b63636106ba1f4ebef70ea026acc475ebcb1c34572"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/config/lane-route-slots.candidate.json.bak-rev6-20261010T1735",
+      "bytes": 20611,
+      "sha256": "5ee2742ad84d470c33b10077f18ddaef968b77742a75ddb3caf3f71d30753571"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/config/lane-route-slots.candidate.json.bak-rev8-ao-identity-20261010T2200",
+      "bytes": 21240,
+      "sha256": "e18f53312ba19a81eb2864a744753a751837e34078f9f9a0925e65cc37684bf8"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/config/lane-route-slots.candidate.json.bak-round3-lane-rebind-20261016",
+      "bytes": 34932,
+      "sha256": "12f6667ee50bb369457c81dcc9d99ab9d244649a38c6f34ece29d1c3e5812418"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/config/lane-routing-registry.yaml",
+      "bytes": 47224,
+      "sha256": "02481992df124ca4f83b655b4583fc2053ecebbbb3125702ab28e39d0c35ea70"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/config/lane-routing-registry.yaml.bak-chainrebind-20261015",
+      "bytes": 32736,
+      "sha256": "2d2fd27bb0af8200bb0ea3ed6b2facba0698cb605618c3c4bd3572c079559bd8"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/config/lane-routing-registry.yaml.bak-far-remediation-20261016",
+      "bytes": 39125,
+      "sha256": "a0d811c48f6063b06af0688a16dd644bc1537651c75a8341795110253362c0b2"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/config/lane-routing-registry.yaml.bak-final-route-20261008T071211Z",
+      "bytes": 16537,
+      "sha256": "4a46c8e6fa579c2f1e724e3ddb3f921d29b4107b6bff31a48587462353ce13d8"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/config/lane-routing-registry.yaml.bak-lane-reliability-20261016",
+      "bytes": 37294,
+      "sha256": "06a8d10aed3785a9fb015d76291c32ef26cc3d4b36c00eb8ec9f7860d6f550d2"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/config/lane-routing-registry.yaml.bak-pre-rebind-20261012T154832Z",
+      "bytes": 25196,
+      "sha256": "fc9df27592da913d7a67b1b2b6d40f51d2ef96693f89d0e454a6cb284e2f7c4f"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/config/lane-routing-registry.yaml.bak-pre-rebind-20261013T013301Z",
+      "bytes": 25196,
+      "sha256": "fc9df27592da913d7a67b1b2b6d40f51d2ef96693f89d0e454a6cb284e2f7c4f"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/config/lane-routing-registry.yaml.bak-round3-lane-rebind-20261016",
+      "bytes": 47192,
+      "sha256": "e58d7be1d3d35a837b9411f8f9577c30b5984f6d41b50a6059542d51ea0cff74"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/config/lane-routing-registry.yaml.bak-sourcepin-refresh-20261015",
+      "bytes": 32736,
+      "sha256": "be3350b247b572015545533d3d66b02f3ba861de997e052c4a5495fa0d7cfc64"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/config/model-lane-assignment.json",
+      "bytes": 49203,
+      "sha256": "78a0eb2eabfecaa4d4d80660438505418724499aeaaac656f3d47631a3effa15"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/config/model-lane-assignment.json.bak-chainrebind-20261015",
+      "bytes": 39066,
+      "sha256": "869dd7a9d9af565695a28d855873dd89fd9dadcb20db1bad25503f92d77acfcc"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/config/model-lane-assignment.json.bak-far-remediation-20261016",
+      "bytes": 44021,
+      "sha256": "d41f8f8bff41d4338a4b85dab7a60bd2c9c23b2f5f39c8c008e89bf82587bd36"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/config/model-lane-assignment.json.bak-final-route-20261008T071211Z",
+      "bytes": 30987,
+      "sha256": "03a7547f5f573daae22e91f599c2d8edce2c42688f4740e19c1ef3472fee1b4e"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/config/model-lane-assignment.json.bak-lane-reliability-20261016",
+      "bytes": 39265,
+      "sha256": "6af264c9ffdb57113be769842ac1a8503eb472a3c55f1941ee42667078808753"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/config/model-lane-assignment.json.bak-planrebind-20261015T1940Z",
+      "bytes": 36371,
+      "sha256": "d89148b983319b91e86d0c4906f28b66dfce6d8ebdb0d61b94834de767c9e9c6"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/config/model-lane-assignment.json.bak-pre-rebind-20261012T154832Z",
+      "bytes": 33444,
+      "sha256": "7c1fa5f25d67799f82650621b5194e8ac7a6739a219cf8bc5cf1ded379298d13"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/config/model-lane-assignment.json.bak-pre-rebind-20261013T013301Z",
+      "bytes": 33444,
+      "sha256": "7c1fa5f25d67799f82650621b5194e8ac7a6739a219cf8bc5cf1ded379298d13"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/config/model-lane-assignment.json.bak-rev3",
+      "bytes": 5427,
+      "sha256": "5b6bae6af19f8715f3791bcb1f467ca5d21e710a9c6554d09d223cbbb6eee69b"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/config/model-lane-assignment.json.bak-rev4-ao-20261007T011250Z",
+      "bytes": 5081,
+      "sha256": "6372bb560ec1579775c9df77d508669ac18cfa52845cb06ae5cad1bbab5338d7"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/config/model-lane-assignment.json.bak-rev5-20261007T014534Z",
+      "bytes": 7712,
+      "sha256": "1ae1899562941eaa195af57166c9ddbcda70b516e351f486f4a79c03df298d28"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/config/model-lane-assignment.json.bak-rev6-20261007T015710Z",
+      "bytes": 11553,
+      "sha256": "374f307dc252a59ecf53740419a8b3ff7e9133996f40e04351e610b167f1386f"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/config/model-lane-assignment.json.bak-rev7-20261007T020053Z",
+      "bytes": 12695,
+      "sha256": "74cc6c5c2815bb7d88d8844bc27f4e61e965e0ae0dfbb43f4a34bf4a8c816d28"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/config/model-lane-assignment.json.bak-round3-lane-rebind-20261016",
+      "bytes": 49164,
+      "sha256": "76b3d453f1d978d2020d1c25325dc5ae6747618f9b1c913f4bfde040918e5b8b"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/config/project.json",
+      "bytes": 936,
+      "sha256": "8f028240f1f3ba5f8ffdce464b2b19679553e076ca90a22adfd3af632732f6c3"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/config/ssot-supersession-ledger.json",
+      "bytes": 731,
+      "sha256": "94f4e9f9d88f4b486749bb31da01404ef8e20f0916eb4562027e6fb2f5bafea7"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/config/verify-acceptance-matrix.json",
+      "bytes": 7192,
+      "sha256": "bba1d5013a11f1d1a671e867d918bdeec25bc7ead5e71ff7204ed873d6c1b4a9"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/config/verify-lane-contract.json",
+      "bytes": 5362,
+      "sha256": "1c4469c8e30266bc4504afce960285af11816bcfc42a42199940bcec6b547617"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/acceptance.ps1",
+      "bytes": 468,
+      "sha256": "d857ada3965bd4d50f425b50599e9d5c309ef184c89026e7dbb61c5344f8d9c7"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/backup.ps1",
+      "bytes": 421,
+      "sha256": "aebd9864aa936c94e01f90a6ad9cc982a8aab051b8c613f315052b87e82abaf1"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/bootstrap.ps1",
+      "bytes": 1207,
+      "sha256": "134ae87a7031cd43711d2ba443531a45b0ffd4f63c739522326de1a6f7427aa7"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/cred/.gitattributes",
+      "bytes": 273,
+      "sha256": "8c12e8fd4210448c24d1e324f757ea67ee5e8d2479b678e25dedd2ed4838d8be"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/cred/admission/hgk_cred_admission.py",
+      "bytes": 5598,
+      "sha256": "e521ae869fc48d56b52a0a94d09d7418dbb078d7b02b533f4788be0cccdbd7ea"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/cred/ADMISSION_RECEIPT.md",
+      "bytes": 4663,
+      "sha256": "610999c8c91c4a66ec9a55a013a508b801f6f29316907269f827c6c3f6631519"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/cred/cred_broker.py",
+      "bytes": 8445,
+      "sha256": "38baca046f26ff7fbb197dff0d771619a0512858000b3529a35eea1c189e1f62"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/cred/cred_preflight.py",
+      "bytes": 14159,
+      "sha256": "cc5177c73690859e0785ee902930912703dc761a64ca4a71ed342abcc193a8bc"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/cred/INSTALL.md",
+      "bytes": 4668,
+      "sha256": "6f0054e8b80cc72a759e4ef562e70bb49a0e6626b9c1b74c41870eb851337b06"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/cred/INSTALL_MANIFEST.json",
+      "bytes": 4738,
+      "sha256": "17b7eab17cce8ef43c3c019d4d4e666d30da5400bcff7cf4acd9fba05372ab49"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/cred/README.md",
+      "bytes": 2862,
+      "sha256": "d235b0dddfa48b4898d270ed864dfa5a14398052160e9d35be124d77b5cebef0"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/cred/selftest.py",
+      "bytes": 5282,
+      "sha256": "26c47a492f56c63ab6e3384f9694d532fc5f93ad896ac8e7a73f4a999a4b398e"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/cred/verify_offline.py",
+      "bytes": 5950,
+      "sha256": "30bc35ea0a56ed110241d2f432a0f570f7738e9a5a49c3d293ee67f2ff73f7e9"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/doctor.ps1",
+      "bytes": 421,
+      "sha256": "713daeb6b20c42b6d4967e08c9edf5d07b1c6e92cc06a0f8e2546c17c71aeddc"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/gcm-containment/apply_gitconfig_default.py",
+      "bytes": 19203,
+      "sha256": "63685bb704acc24880c84039a1ff2f85e0072bcd099a19ee0f15da93b2c84b7d"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/gcm-containment/assertions.py",
+      "bytes": 23294,
+      "sha256": "07667016f8c54debdc6cbf61a17d16bf1bb75d3f7b74f930dbd82e9aae98065b"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/gcm-containment/assertions.py.bak-z1-20261013T073320Z",
+      "bytes": 13846,
+      "sha256": "58c17212c9b294197bddbbbc8adc4b5643dff91b654f929ee4160d082c0f1488"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/gcm-containment/authorization_claim.py",
+      "bytes": 14536,
+      "sha256": "60a3033ecc15af7d1a0bb5f5011d7ce7b07285614c392ba7c4d8cb1ee7179db9"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/gcm-containment/authorization_claim.py.bak-z2-20261013T072923Z",
+      "bytes": 8615,
+      "sha256": "79655ff7ba41cd7d2028637bf49d07addc9ee68fda30610906b1bbf78703c5cd"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/gcm-containment/credential_preflight.py",
+      "bytes": 17319,
+      "sha256": "b3cc67bf56ffc49d5c3e3e4937fedcb95beefe908ff5c4ea444623abcdb9f72d"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/gcm-containment/credential_preflight.py.bak-z1-20261013T073320Z",
+      "bytes": 14804,
+      "sha256": "76e961a8a9bb8f12f40ebf10850a38dd774101c8dd4442205ff609caa0257a41"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/gcm-containment/lane_credential_posture.py",
+      "bytes": 7214,
+      "sha256": "9ff69be2471fcb611ab9608e0d3d4bbc002bd6ad6681c5773156124b7be4694c"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/gcm-containment/lane_output_dir.py",
+      "bytes": 12312,
+      "sha256": "ee7f6c86ade52af9c0e2c7dc6df259b993181c72cb7e82c80a2cf2b1e690b51d"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/gcm-containment/README.md",
+      "bytes": 6594,
+      "sha256": "983439f976de7546c9f6478c8b743c862ffbf69db241d9d6cb0ea6a2eeaf6ce7"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/gcm-containment/seam_probe.py",
+      "bytes": 13842,
+      "sha256": "d591375a02b3ac3921caeef1697700183180b4ba1ab99077f35f4e55eaf230c9"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/gcm-containment/tests/test_authorization_boundary.py",
+      "bytes": 34222,
+      "sha256": "847e420f89dd94993b8489b1ea462c148a923491778253b6f06d6b48e0b48a1f"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/gcm-containment/tests/test_authorization_boundary.py.bak-z2-20261013T072923Z",
+      "bytes": 20257,
+      "sha256": "f825aa258f9a721f038344e00942427252980fc4064243141501ee9f2e1f226b"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/gcm-containment/tests/test_credential_preflight.py",
+      "bytes": 20814,
+      "sha256": "6d6d789902aedccd8b405e5af273b6724f39da924bdd8435947ebbede030d8c9"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/gcm-containment/tests/test_credential_preflight.py.bak-z1-20261013T073320Z",
+      "bytes": 10852,
+      "sha256": "f11ba0e539a4c4c38cc1f7a066e023a5a4155e1a2be9a51e4c8c31c091422e66"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/gcm-containment/win_instrument.py",
+      "bytes": 14192,
+      "sha256": "bdb171a8890567694b5f2256ce8558b4a145ea1516f4c020e94ce86411da56e6"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/hermes-core.ps1",
+      "bytes": 1618,
+      "sha256": "cb394383914fab200b54f706b62fac712893a8db348667543bbdb759c63c9089"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/hgk-artifact-gate.py",
+      "bytes": 9224,
+      "sha256": "f2ae2f1828069ae93decd04c04568db45842fd3c18c25fbc46694602db5a27f2"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/hgk-exec-model-frontdoor.py",
+      "bytes": 47631,
+      "sha256": "99353cd3566fac60bee9b077d83b4117865cd4fa1718de8da01677cf2a7e7b43"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/hgk-governed-runtime-controller.py",
+      "bytes": 12289,
+      "sha256": "5b744de7c4e30240ae92421c2e7220efa5dfca02d88d85f2264bc921ad849412"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/hgk-governed-runtime-controller.py.bak-far-remediation-20261016",
+      "bytes": 10949,
+      "sha256": "67e79c52e6dd5d1d0d1d44e5dc625afe955efc1bef2aa40028e98c1f139bda90"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/hgk-lane-dispatch.py",
+      "bytes": 141826,
+      "sha256": "e53776af9094958527938dd12140eba159a454489147ab0e7a75742346b4de72"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/hgk-lane-dispatch.py.bak-lanerepair-20261014T025006Z",
+      "bytes": 123999,
+      "sha256": "cca0d804727e10bd1876ce25b33a8d0d401ad4393a3371ecca2fb825abc91336"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/hgk-lane-dispatch.py.bak-x2b-20261013T045725Z",
+      "bytes": 86551,
+      "sha256": "d7583411fd616a341dfebc6fedba5268770ccdfb879eb771aafe4a85062bf5d9"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/hgk-lane-dispatch.py.bak-z2-20261013T072923Z",
+      "bytes": 113286,
+      "sha256": "62e6978ae501681dbbc4edd3b54214555dcb3b7ef3fdf39bac4b798ad2ded86a"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/hgk-lane-guard.py",
+      "bytes": 22497,
+      "sha256": "ba16c5815129b126dd80b6499812c540861a91e8986ecf64d62343871e5a59dc"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/hgk-lane-policy.py",
+      "bytes": 4758,
+      "sha256": "91014a30358a8de7cd0b3e104cfc11b0ca3861a2249e1a3b66cffeff2778726d"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/hgk-lane-preflight.py",
+      "bytes": 26817,
+      "sha256": "ea3ea436b83aba44e8b5398f4d0cbbb502dbf64e4443c2633afc1253f12963d7"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/hgk-lane-route.py",
+      "bytes": 3962,
+      "sha256": "055dca958c26d89ba874a181ae535b632792eb46ddda36aa681aeedc4158d75a"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/hgk-lane-toolchain.py",
+      "bytes": 9500,
+      "sha256": "591afbcc345993fb51683994efd34a1f1ef5a5d08fa8eff00473fc2ad1733ef4"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/hgk-ssot-lock.py",
+      "bytes": 31789,
+      "sha256": "da959cefeac0980de40dbe995ea6e00c6bdc3fa357b15d570458966c915e4d77"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/hgk-ssot-write.py",
+      "bytes": 15410,
+      "sha256": "4904dbcd0e70987bd4d612b284adf6daa95e3a7e5c879db110020fd43e507c45"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/hgk-verify-contract.py",
+      "bytes": 23417,
+      "sha256": "af6d96854767ce7d73183d1efa594ac187c03c9b40d26cf6874aacea091de2a7"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/hgk-verify-evidence-runner.py",
+      "bytes": 23384,
+      "sha256": "fb3d741a50dddc3253bbe36655cbc505dee990d6f6edfb7f71d3e2ca3378a68d"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/lane_launcher.sh",
+      "bytes": 19340,
+      "sha256": "141b74119cdfe40ec6158533dc6bcb24391b58d3ff0a67b9949a207e1f78d6f1"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/lane_launcher.sh.bak-gcm-apply-x2-20261013T045412Z",
+      "bytes": 12482,
+      "sha256": "6b7a63bbdd4e6fdeb0fc02a95eaa6defccc4f2d430dd8fc5b09357090750784f"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/migrate.ps1",
+      "bytes": 400,
+      "sha256": "f697163207fdea8dd6d891861e351e9ad8d98d3a73d0105b303495dcd99c5742"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/package.ps1",
+      "bytes": 419,
+      "sha256": "a102bba09144dcc1fe578331d47b405f75fcfd26639012ad1a54ca028efaefda"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/probe-hgk-lane.py",
+      "bytes": 7892,
+      "sha256": "88f2a809dff66de8873d91fb0c43084b8bfe12ff8bd72fbd131bc8cecfe0a46f"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/qualify-hermes-core.ps1",
+      "bytes": 448,
+      "sha256": "1ab5fc265b4848fa6d5b940ddcb58901e12dd0fc5996f4ddd4bbecc1084bdb72"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/reconcile-tt.ps1",
+      "bytes": 405,
+      "sha256": "5580145c3ff1500f22a68c5ccf22c5fa364c7b4498461d842ef0d7ff332c21da"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/restore-drill.ps1",
+      "bytes": 467,
+      "sha256": "a2b9c0c4d2a4338c8110b726c06ab484d983b1dbfcf49d5306bb741c74efa3f2"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/runtime_role_binding_assert.py",
+      "bytes": 16665,
+      "sha256": "6fa7ed6b6ea983e154a6a2a0b70a250baa6bbc65742a2a82425ce9a2f5fcacd2"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/runtime_role_binding_assert.py.bak-far-remediation-20261016",
+      "bytes": 12845,
+      "sha256": "63d004ade7ff65e16589e76572db33880b459141461beead764ea2f4a3015031"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/sbom.ps1",
+      "bytes": 419,
+      "sha256": "ae41513cf4fdee7d046dcac61ec97b8e99f1f19ee592ad80296709a32d7535be"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/start-hgk-exec-frontdoor.ps1",
+      "bytes": 6763,
+      "sha256": "2aa95be525d4d19b25a39b1eef1708a7b25bafbf44155858565239dc1c6e7e01"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/start-hgk-hermes.ps1",
+      "bytes": 31130,
+      "sha256": "c81c1770ab1f672c8e6b3c16bc0607e676b2c050ef2d4fe3543dca7fd1e4a381"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/start-hgk-hermes.ps1.bak-moddred2-20260821_160225",
+      "bytes": 10208,
+      "sha256": "9f503e8cb9027ca5215123463b05fbfe0b81f25cb78b2b649cf5bc2455e7df02"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/start-hgk-hermes.ps1.bak-slots012-wiring-20261010T142150",
+      "bytes": 25531,
+      "sha256": "eb58e7da3b58bf0747d861cffe0f78830e7d2f93ca40823751267554d579b525"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/supervise-hgk-opencodex.ps1",
+      "bytes": 11145,
+      "sha256": "c8ebe9696543b2af3d6944ebcb8bdf50c805064d7a04c8d9a4ce8b348358293e"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/supervise-hgk-opencodex.run.vbs",
+      "bytes": 1469,
+      "sha256": "ad93e2d1930fafaa1d4e0b2c8c606dd79ba956c147fea1c8b89fa58171070398"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/test-hermes-codex-lane.ps1",
+      "bytes": 4811,
+      "sha256": "c958f12bc55660bfe2459255fb940b022eb258f1cc4a3ce3aafc48572652a25e"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/test-hermes-codex-lane.ps1.bak-moddred2-20260821_160225",
+      "bytes": 3394,
+      "sha256": "31587924bdaed4bc12a051a5ac708009fedcaa57fd9db63041af5c6f1d83a4d9"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/test-hermes-codex-lane.ps1.bak-n4fix-20260821_163102",
+      "bytes": 4533,
+      "sha256": "85dd70d78c95e96354e07e09031c60b4f0565aac17a525a39701a33ebef5cd7b"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/test-hermes-codex-lane.ps1.bak-n4rewrite-20260821_163540",
+      "bytes": 4533,
+      "sha256": "85dd70d78c95e96354e07e09031c60b4f0565aac17a525a39701a33ebef5cd7b"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/test.ps1",
+      "bytes": 461,
+      "sha256": "ad7f1ce9c047bac386dafe513d920aa72683a9efa567a1bd3ec0f87798466bf0"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/scripts/verify-local.ps1",
+      "bytes": 479,
+      "sha256": "c9e182c0aa1225a186a59565e43d1d9e0bbe21d2b25bbfacbec710aead467328"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/src/hg_kseos/__init__.py",
+      "bytes": 72,
+      "sha256": "242c86d46ae3017c7f9fe9d476fc5d6e2a1fd513e2dfda0d32f673f55347f821"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/src/hg_kseos/__main__.py",
+      "bytes": 49,
+      "sha256": "76fa916e93e0ae1a6c1bb51dcc0bcf289c014e9f760a47165f8a84401ccf41d7"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/src/hg_kseos/agents.py",
+      "bytes": 2628,
+      "sha256": "16e6608b6b3b7ea862ed5dd9488bb80727287dab2423e354c8700dad928fdde6"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/src/hg_kseos/assurance.py",
+      "bytes": 5159,
+      "sha256": "7b90ab43cc0537a22e56b752487d55ad336a69d05f8cb0dc0124934991d8b8e5"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/src/hg_kseos/bootstrap.py",
+      "bytes": 5325,
+      "sha256": "e4e9d8c74ede0d073a695f2b80221209c1fe87ad7a48ae4f57c105c756793e3d"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/src/hg_kseos/cli.py",
+      "bytes": 12028,
+      "sha256": "6d31382d601b5fe01c042c39cd17e93aa1f4f442ce0d59d44cc5e519a1414312"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/src/hg_kseos/control_validation.py",
+      "bytes": 4481,
+      "sha256": "669f53fd5c5b746529d0508fc21ecca2b53ca33a915ffeaec0cde92333788b02"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/src/hg_kseos/doctor.py",
+      "bytes": 2446,
+      "sha256": "e650687f9e941e948cc06dd94618eb875d8d90eb87c8a62e8572d0219c5da33c"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/src/hg_kseos/errors.py",
+      "bytes": 522,
+      "sha256": "33cc9a80ca824bc50ac9fe897787709bf48b84257d9acc5fd6e1424c94631be8"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/src/hg_kseos/evidence_graph.py",
+      "bytes": 12933,
+      "sha256": "53ffe344a828ae2a5a163495f81148f37832d070c2ca5996ed31b26aebc3a247"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/src/hg_kseos/evolution.py",
+      "bytes": 21454,
+      "sha256": "030f0d7ee31f984b6300c02b951c06e6496779149e526480c8e0bbb75748607f"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/src/hg_kseos/harness.py",
+      "bytes": 3484,
+      "sha256": "409398828b500d9e473e441c6c4c90ecd4890627b0fdfe161d21ce26e56af00e"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/src/hg_kseos/hlpe.py",
+      "bytes": 1529,
+      "sha256": "11d1d9d471acef578e2042221252fb797557204ed847a24b0d5cc6d097ec7d39"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/src/hg_kseos/knowledge.py",
+      "bytes": 16093,
+      "sha256": "5bfc08fcc153e99d446fcce4bd49829e072d034727d35c243b2a7428b1539c72"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/src/hg_kseos/lane_admission.py",
+      "bytes": 9489,
+      "sha256": "235b4bfbb5e98eb8573ed931a892734d2391eb4eea8edf54a7b3732d0c722094"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/src/hg_kseos/lane_policy.py",
+      "bytes": 19208,
+      "sha256": "255b6b95eeb5be156c0bfb7966764bb5eb213e8af5bf321861ec0f4642d5b12b"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/src/hg_kseos/lane_policy.py.bak-pre-rebind-20261012T154832Z",
+      "bytes": 14751,
+      "sha256": "498ab9435a7d5f885416dc50af62b3ad515517f8da036a936ff84568fa7083ba"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/src/hg_kseos/lane_policy.py.bak-pre-rebind-20261013T013301Z",
+      "bytes": 14751,
+      "sha256": "498ab9435a7d5f885416dc50af62b3ad515517f8da036a936ff84568fa7083ba"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/src/hg_kseos/lane_route_resolver.py",
+      "bytes": 15236,
+      "sha256": "49606e09e9ae2ba011f730679888937352e4c5881e8bddc2ab31903df0305a87"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/src/hg_kseos/lifecycle.py",
+      "bytes": 35954,
+      "sha256": "a172e16ccca5924e35fdbaa132802a6b0cbb0f389b2db3aecda14b150f609e86"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/src/hg_kseos/meta_gates.py",
+      "bytes": 8643,
+      "sha256": "df9ea8cb070cfab391301492d0f64e7238411f80504efe99d108f6ab73a723d2"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/src/hg_kseos/named_methods.py",
+      "bytes": 13239,
+      "sha256": "80fbb94cc71153b7df36ca705d7ed168ef6c96a883dace619bdce816696c148b"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/src/hg_kseos/observability.py",
+      "bytes": 1372,
+      "sha256": "3620418f7571ed055da95c5bfe4916aac9db08475b41883b11d0ce352443b8d8"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/src/hg_kseos/providers.py",
+      "bytes": 6884,
+      "sha256": "dd7909638590f9fd4cbdca729a47f2152e690006eefea4f300831ff24dd8cc2a"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/src/hg_kseos/recovery.py",
+      "bytes": 2086,
+      "sha256": "3c47652c6cd76b5b334d6ab4f7c674006622904d0a35cd83fa7cb7e4f870adca"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/src/hg_kseos/release.py",
+      "bytes": 31719,
+      "sha256": "927ffafde7f4050cc308b01340c7ba95d62641ae87415f0b3a28b28af17adb89"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/src/hg_kseos/repo_intelligence.py",
+      "bytes": 1803,
+      "sha256": "0ae6b740cc182fb8e6e1c899ad65e76ee06c8d87fed0d237f5526cebcbd0e311"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/src/hg_kseos/role_binding.py",
+      "bytes": 25296,
+      "sha256": "94084205266e1a841ce0f9be1696813085ef26fbda48ade830cf5f66eff2b938"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/src/hg_kseos/schema.sql",
+      "bytes": 10633,
+      "sha256": "da80631dbe65e10cbfeac4561d7abfa13fbc6176422c8eba39a168793c94562a"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/src/hg_kseos/security.py",
+      "bytes": 2888,
+      "sha256": "226f612b1901566e11b4cb5c4dc22d6159ed070e4135ad3f59c1e54e0957a983"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/src/hg_kseos/spine.py",
+      "bytes": 29858,
+      "sha256": "bccabc9e04d55eb2f5f94229ee5f22ea53c91ce3cbce2f25d85965d5c2254b54"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/src/hg_kseos/util.py",
+      "bytes": 859,
+      "sha256": "e75c10a605727aeea69182659e276c7e1af4db6ffcd0f84419d2d5e3f65cbf7d"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/TEST_RESULTS/green_driver.py",
+      "bytes": 4727,
+      "sha256": "ea3237b14e3d239e3bcfbc14aaa81d2b2de1d9515de537818e74c191c6fbb06c"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/TEST_RESULTS/red_driver.py",
+      "bytes": 4119,
+      "sha256": "31a1f2bd676da8ec2335bc8431d64d19f4c49dcdc39bcc4d5595dd5d53cc7261"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/TEST_RESULTS/run_tests_driver.py",
+      "bytes": 644,
+      "sha256": "b8a3b250229d50a5f8096de34047c4c2f04b906122e0f6db4ed9c7a98e52ec2b"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/__init__.py",
+      "bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/fixtures/stub_lane_child.py",
+      "bytes": 3718,
+      "sha256": "1aea82117d9f19e6e42fe64c9409301b9d7eebbede586b7abb3e737918b06e59"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/test_acceptance_resolution.py",
+      "bytes": 19660,
+      "sha256": "b49d31b031609a687b8424088e0c49a816ddee16fc78e7d0003a44bd01a58806"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/test_acceptance_runner.py",
+      "bytes": 4673,
+      "sha256": "78fd24ea1a1d99a4b03e1f010765bf8f9cb04fa1f43b32455ba26665ce524b07"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/test_agents_providers.py",
+      "bytes": 3732,
+      "sha256": "582ace8f88ac35192d31f32c1f1031bf53d397a6be617c93a435653d58051e5c"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/test_assurance.py",
+      "bytes": 4350,
+      "sha256": "e644429e89f88b9000a0954809b951a2ec5aa420c3550f523b4f68060bb2e847"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/test_autonomy_evolution.py",
+      "bytes": 14505,
+      "sha256": "b94b15993b3d59ee57ab13070c12bef6780ba45542426c45b01bcaf2c584c009"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/test_bootstrap.py",
+      "bytes": 2127,
+      "sha256": "95f53c906b4b1d6c23704068bff0e16e7f49ce9aca69799c3b5eb6d8da692205"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/test_c2_case_run.py",
+      "bytes": 6176,
+      "sha256": "45d777fd43c345a3c414c189f539e80d0e419cd60dc9ca856b1f3d3d6cd6929c"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/test_controls_observability_repo.py",
+      "bytes": 2504,
+      "sha256": "b2d9a1ef12a763946b38aebab84a8e269d3745032fde67c2957c9cac6f504214"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/test_coverage_reducer.py",
+      "bytes": 8029,
+      "sha256": "3e5018446e86fa90ccac3211c5bf113a2c3625c846abf0b61a015c85e1e23c2d"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/test_cs_a_gate_repair.py",
+      "bytes": 11374,
+      "sha256": "57e04055428887008655cea7f88a03f7feef139542120c7bdb75bf8d91ecce44"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/test_e2e_vertical_slice.py",
+      "bytes": 4845,
+      "sha256": "306a0ff9ccba38763ab866a6da0f35b6e30bbbc358018c7b2cd19c718a67f701"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/test_evo004_dogfood.py",
+      "bytes": 3618,
+      "sha256": "fb2b3fe7f4a73c0106490a28e04214d9901981b0b6689fdcd5c04504c8fef4f9"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/test_evo004_meta_gates.py",
+      "bytes": 5460,
+      "sha256": "989e07ef5aa1165347aec0aed0591b53d3452f1905e89b5063d86f8ff677b6eb"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/test_evo005_evidence_graph.py",
+      "bytes": 4137,
+      "sha256": "da465b2c52b12612553f6e7fc8711d447b300dc6486e7f4cbb39249159f13c3a"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/test_evo005_graph_freeze.py",
+      "bytes": 4015,
+      "sha256": "a060850b004e7ffdd8b5b60a8424e622e1043fb9be4ffaee919fe40f9208bd12"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/test_execute_luna_route.py",
+      "bytes": 3838,
+      "sha256": "a834bb1b7826ad4d358d96a052cf023c4c145b4977ae7eb0a13b57904693cef4"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/test_far_lane_fix_20261015.py",
+      "bytes": 11656,
+      "sha256": "b039a2ac3d21a269863cb2da4f139fc7f8e1c939e2767c450ef79231634ba7f1"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/test_final_md_section_u_semantics.py",
+      "bytes": 6053,
+      "sha256": "428267aef00ea7f65f77f9ef2baffbd799f06ffeac8ad6e4e35b58c83c3040ee"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/test_g0_rbwi_source_bound.py",
+      "bytes": 1703,
+      "sha256": "53be050e434f131f892a81bb1edae71a16522c98d33711b922e2b6382931fcb2"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/test_g0_wave3_controls.py",
+      "bytes": 6121,
+      "sha256": "78862dce82b8c62b2fccf6b94c73b6eb58b47b18d5ff0f3481b2df27d51f7e8a"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/test_governed_runtime_controller.py",
+      "bytes": 15687,
+      "sha256": "fdf1dbc251eee5e78d9c5db91f2a0ebf18c30c2daa43a66f62b3cde5bf26d521"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/test_governed_runtime_controller.py.bak-far-remediation-20261016",
+      "bytes": 12945,
+      "sha256": "db0e37ae86fc23a8674e6b788ef3665cc2953c65c0ee4a880c4979c6ef0e0467"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/test_hermes_qualification.py",
+      "bytes": 3004,
+      "sha256": "87c0d0674f85c2643043dbc2136bbcc4e066782c128a3807dd42015f9b4507af"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/test_hlpe.py",
+      "bytes": 854,
+      "sha256": "0de9765d196fb81f6eab2b9fd6fd0a7a0e6a30674cc99c5fade6f9c09978094f"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/test_knowledge.py",
+      "bytes": 4549,
+      "sha256": "49afb7858e6606e63fc7903b6d901b8e5086f8081615badc6484df3004b6d229"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/test_knowledge_memory_poison.py",
+      "bytes": 2893,
+      "sha256": "162a112fd7c70f7bbce2fed859106870a3425703c7b74db185224d4c5b913522"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/test_knowledge_promotion_gate.py",
+      "bytes": 3226,
+      "sha256": "dbc4d975b587b5c795ffb6bb60613accf7c7a9e7f9a543c7f4bd7016a63abcb5"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/test_lane_dispatch_ao_guard.py",
+      "bytes": 117741,
+      "sha256": "a8b82dc679750303fe30431e83a3f0d9ca4490e202acc76a31cc755213aed0b9"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/test_lane_effort_enforcement.py",
+      "bytes": 5161,
+      "sha256": "18742bf07b4055ae44733829d9817787a12d3c9140536689c574223e5356e333"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/test_lane_guard.py",
+      "bytes": 11118,
+      "sha256": "3b5c3c83862c2e1bbe4aa5d65c6086b28d7de2eb4d1c3aca06db46ba78284d45"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/test_lane_policy.py",
+      "bytes": 16825,
+      "sha256": "8ae7ad90ca0609b64d785259eee38aed2579f0968756eda8518e45cfa6f579f8"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/test_lane_policy.py.bak-round3-lane-rebind-20261016",
+      "bytes": 16825,
+      "sha256": "8ae7ad90ca0609b64d785259eee38aed2579f0968756eda8518e45cfa6f579f8"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/test_mandatory_tool_guard.py",
+      "bytes": 9218,
+      "sha256": "4b69e576573e6f0294c1eefefd79529a444568d77405d6c9c9dca09ad961d564"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/test_matrix_d_full.py",
+      "bytes": 20400,
+      "sha256": "da23f3868980f98b97ecd32a39cf9f8b05776d6c5cbaf85a071b926d63970d1d"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/test_named_methods.py",
+      "bytes": 9499,
+      "sha256": "ac579e2d240e90a1bac9c295b8636e712efa5f7755d1c4c7870ee29610b4db59"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/test_ordering_oracle.py",
+      "bytes": 4990,
+      "sha256": "22d1578d20cbe10981682f506596048bc5d70c909a6dcbb5c553adc855faad35"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/test_package_local.py",
+      "bytes": 1814,
+      "sha256": "78cb1586f56403889264a648922951fd14748a032c739ee1b5c6e5bdd384fbc4"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/test_recovery_release.py",
+      "bytes": 3053,
+      "sha256": "9be5a6a292d1fa8aa01dfe0c86b2b6b103080ec4cf2e84bffb3f31730c70e3ac"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/test_role_binding_enforcement.py",
+      "bytes": 24491,
+      "sha256": "8d5c8ac7dd44e2b59a26c4c659e6ce5b6f113400e887651fe3dcd7fba919128d"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/test_security_harness.py",
+      "bytes": 3653,
+      "sha256": "5c92a17da704506a132a2774c7b91961e0899227d15db139dc44d95c9f7bc84c"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/test_source_repoint.py",
+      "bytes": 6278,
+      "sha256": "608a3382be31b3e9615b9e01b2b3e44b045e417b16a47aedd18ab2292ae7e0d4"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/test_spine.py",
+      "bytes": 3511,
+      "sha256": "27b2307ada0caef6cb3ea464e3508421686e3b03b433cd5f07327e77d8c4bafd"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/test_task012_semantic_closure.py",
+      "bytes": 10141,
+      "sha256": "af6623fa06c1bb03c8aebaf6ca6dd5901883ffa3991294f243ae0c32491324ff"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/test_task013_hermes_v020_closure.py",
+      "bytes": 7688,
+      "sha256": "b0bc380d1d1f252fff3b1b76c7088ab298bffc6ed8ece7023e6a5b2b2a6b8429"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/test_task014_named_method_closure.py",
+      "bytes": 6207,
+      "sha256": "79a22235c98ae594a2a2af81f0432a892f70e4654ea69d0846aa9a6eb50d2aee"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/test_task015_coherence_closure.py",
+      "bytes": 9692,
+      "sha256": "b8db38f69f609e269fd2a159085178ab0457367eff9da4cc65a89dcbc7c62a2c"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/test_user_experience_reducer.py",
+      "bytes": 11675,
+      "sha256": "5ca27b060a4fb2e137e21884448c2d7e1005a5ddd7ddd80772f1f928c3993794"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/w3_solution/conftest.py",
+      "bytes": 5171,
+      "sha256": "aa8f10d2a811dc94c2e0623fe79514fe49e493bf3bddc47198a84a2a5e13032e"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/w3_solution/fixtures/probes_MATRIX_2_binary_ab.txt",
+      "bytes": 1751,
+      "sha256": "01d38ee528d445529f7d81ba92e5d5606b3140fa30fa74e61c2d4ed761319fc9"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/w3_solution/fixtures/verify_VERIFY_AO3_literal_provenance.txt",
+      "bytes": 2414,
+      "sha256": "763aacecc4ab7af1c878218c09578ee932b4b27a0f39c24bd280486d609269c1"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/w3_solution/lane_harness.py",
+      "bytes": 5960,
+      "sha256": "2ff17001ae8642ddd6e662d7332df8e16233bd6ee54caf5a21a5019aed560823"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/w3_solution/pytest.ini",
+      "bytes": 592,
+      "sha256": "9618a9bc82fb9b621dcd4fe2db861ad65498504fa437dbb6715af601f47f38d9"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/w3_solution/sitecustomize.py",
+      "bytes": 673,
+      "sha256": "a060dfd75e56c5c82b97712704ba9547579d636bda80ad06a4769f3ab146edc6"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/w3_solution/test_code_page_independence.py",
+      "bytes": 2551,
+      "sha256": "db82371c64128499ef1ffd34cf015d336614fd2f607471a95e0c85e1421d6e6c"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/w3_solution/test_lane_preflight_classification.py",
+      "bytes": 4954,
+      "sha256": "3cd5f7717e2aa25acdd935fa0ac588f0f81a4d2024f4d59932d05dd2f5cc51cb"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/w3_solution/test_lane_toolchain_resolver.py",
+      "bytes": 4713,
+      "sha256": "3c094d17a121c99b5e48133e7e24d93e4ae247f0fb28a4622b6fa8d74ed63048"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/w3_solution/test_mandatory_defects.py",
+      "bytes": 8920,
+      "sha256": "d161eb58e819f03d0da55002808d67bb02df9839136321d894b6c147dfaf32e8"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/w3_solution/test_receipt_schema.py",
+      "bytes": 4245,
+      "sha256": "823dd9c6962f478be13a412644ca70cad1d0f6760878da7995f91f89473774e7"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/w3_solution/test_served_vs_declared_identity.py",
+      "bytes": 6173,
+      "sha256": "47dabedef9f8da7f43515bf6d4dd90b5686d5799c4b24ca6513569b498dc9126"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/implementation/writer_output/tests/w3_solution/test_substitution_gate.py",
+      "bytes": 4927,
+      "sha256": "d0cbb3c7e91f896a875892999d9914dba02076b6a83dbc915d6c272f7bbdb173"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/IMPLEMENTATION_DIFFS.json",
+      "bytes": 127259,
+      "sha256": "2e78b9ea8700d674bd8d45219b3030beb47ce0ed2d649a17c700594c411aaea4"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/lanes/EXECUTE__R1/dispatch.json",
+      "bytes": 6233,
+      "sha256": "cb5c1123f71c647da6d5e2fbe9f957177ddadf41af6bfacb2390cea916d4960c"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/lanes/EXECUTE__R1/dispatch.json.attempts.ndjson",
+      "bytes": 2678,
+      "sha256": "0d8314ce31f53363899629c7dc25638f686ac4809ec10f2091ff738fb6ab2ca1"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/lanes/EXECUTE__R1/exit.json",
+      "bytes": 54,
+      "sha256": "8cc1637fbb20a1230c0ae0fc22c1472aa51b64d100ebe7f3a012f13245384151"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/lanes/EXECUTE__R1/invocation.json",
+      "bytes": 7876,
+      "sha256": "ef84d358257ecf107c0f109865b72cef2528eb1f347e83b5ee4a3b380b912dc4"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/lanes/EXECUTE__R1/raw/attempt-21600-1792131413-1-stderr.txt",
+      "bytes": 2953,
+      "sha256": "9f9eede0169096858ea6c0ee07e2ceed2a3085a1177191f732cb4b2dbdd45cae"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/lanes/EXECUTE__R1/raw/attempt-21600-1792131413-1-stdout.txt",
+      "bytes": 224145,
+      "sha256": "d1a98f0a8296d4637bd68bf9e513e0dce1fd0835432ca56c180d56183c01884a"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/lanes/EXECUTE__R1/stderr.txt",
+      "bytes": 668,
+      "sha256": "eda398778ce094db59e563ffeea6987ef831564ae44aa7e81a1e264126800547"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/lanes/EXECUTE__R1/stdout.txt",
+      "bytes": 6235,
+      "sha256": "ad353c924a7b1f42efaa1754a6c9e6c2c7ae9569bbcb9d0844e5bb36164c251a"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V4/CHECKER_VERDICT.json",
+      "bytes": 3232,
+      "sha256": "0032a68660adb9f9700d172b69dbf3df6888ffc051b4bde8511d82f219f2ad69"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V4/dispatch.json",
+      "bytes": 6879,
+      "sha256": "08cfae9606b7df13084d66448f3a2bf685ac2e18dc5c970bb2d7ed3ed2d78261"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V4/dispatch.json.attempts.ndjson",
+      "bytes": 2628,
+      "sha256": "e04ac4509d1191bcb0bea9aeb4994b1223167beaf825000c19ff911974e98bbf"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V4/exit.json",
+      "bytes": 54,
+      "sha256": "d2f009bf63746294734f80c6392b3099fa3ceb88bbb7223e8bd4dfa3d7702fc9"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V4/invocation.json",
+      "bytes": 8081,
+      "sha256": "3777461487ff45668cb9e6ec1fc91a518c262cec6ed3d3721e2e9bd643e902e2"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V4/measurements/adm_verify_A.json",
+      "bytes": 161,
+      "sha256": "116579504f6cc4426d4f8496ce1ac8695e18c1a3f0d4402ce0cad41d4b7cbcea"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V4/measurements/c1_epoch_coupling.py",
+      "bytes": 999,
+      "sha256": "7d20617a6910bec301e4b0f49f48dd4e9b09ed42db4bad6869c54e86d7d727fd"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V4/measurements/c2c3_assignment.py",
+      "bytes": 683,
+      "sha256": "b79e407b12facbeb8f190d026a3ec40efbc33426c45cb491f3df121bf09d3865"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V4/measurements/c4_crosscheck.py",
+      "bytes": 1035,
+      "sha256": "6add3e7c9b00197f7412aa16662be89cf300d938ba16a649e83995547a7a028d"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V4/measurements/c4_nondestructive.py",
+      "bytes": 1180,
+      "sha256": "f7fb72c3ee6c91ac1e0a0da15ad49c8facd5abdea6049fe887c39b54634e44d6"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V4/measurements/c5_probe.py",
+      "bytes": 4801,
+      "sha256": "4d593ae7e511ba63d441d3d19d0812737ead766e3405dfa9a9a975c5d5208d16"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V4/measurements/c5_wide.py",
+      "bytes": 2356,
+      "sha256": "745cee66532ba742fc405de3fa028001221b616026ef93fad5cbaa12681456af"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V4/measurements/c6_writeset.py",
+      "bytes": 1138,
+      "sha256": "cc2a8edfc8c47f8f52481bbf92850c073daf7ec65c8bdbdf7d6c5d73e3576fab"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V4/measurements/c6_writeset2.py",
+      "bytes": 1999,
+      "sha256": "f83ff57a3d7153c741ef35e2d04de946ea00132b4d40d0d2e61072d4825339cc"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V4/measurements/c7_ceiling.py",
+      "bytes": 1574,
+      "sha256": "4f08b9ccdaa0e958c3564dffd050f11b8a233c2bad96e9204d2050818060d78c"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V4/measurements/c7_ceiling2.py",
+      "bytes": 1588,
+      "sha256": "ecaf43e14ea75fe5641831cc8dfa235d80dec71e77df92644c20957b1f24228e"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V4/measurements/c7_final.py",
+      "bytes": 1195,
+      "sha256": "9ed31f3ab5cb804ed583615a5b7d766c61d845fcaecc73ddee2eb3bb1c8e9cff"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V4/measurements/digest_brute.py",
+      "bytes": 2537,
+      "sha256": "adf24fc175dbca22b6129ab35a63ba4563d280572ab7ebb16faa3a6ffd135ce8"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V4/measurements/digest_compare.py",
+      "bytes": 1829,
+      "sha256": "c322e86721a078084095bd83124ec54b70962358dab492e199bfbba8e00eeb90"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V4/measurements/digest_recompute.py",
+      "bytes": 1800,
+      "sha256": "e4749c8163b68ecebfe458606ed75d263a1c6ffdbdd79ab8e3383a1c3c9066b3"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V4/measurements/digest_variants.py",
+      "bytes": 2482,
+      "sha256": "4c6bf3fa81b3039bde01af3edf1d49f778876a5c92badfba51716203a35b4bee"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V4/measurements/digest_variants2.py",
+      "bytes": 1872,
+      "sha256": "84bbe049b6d3cff2037b3c93c746c8fdf7903e971fafa257567aa73417bd5589"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V4/measurements/digest_variants3.py",
+      "bytes": 1844,
+      "sha256": "1dbd5868b61bbea2d9a3df21f183813309fb404907e19f8b6de0982b0ae10b07"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V4/measurements/find_generator.py",
+      "bytes": 1065,
+      "sha256": "e7e5cb75d0398aba34a9f1524ba78a34a88926817aaa1705128e127da9a0d6cc"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V4/measurements/recompute_subject_digest.py",
+      "bytes": 1889,
+      "sha256": "3f4088faaf5283480238cffdda6e2c755296cd963395c7aa56937792d0ab138b"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V4/raw/attempt-14848-1792132176-1-stderr.txt",
+      "bytes": 566,
+      "sha256": "05e80515e8f130ea41dfbb22874f7401c78b226d2de353c69778c556fbc69a77"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V4/raw/attempt-14848-1792132176-1-stdout.txt",
+      "bytes": 1191843,
+      "sha256": "d45f5bfbfe5594a83f775b735fec8fcd0e2f25e884c045da9b789177f5a6b826"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V4/stderr.txt",
+      "bytes": 668,
+      "sha256": "eda398778ce094db59e563ffeea6987ef831564ae44aa7e81a1e264126800547"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V4/stdout.txt",
+      "bytes": 6881,
+      "sha256": "ace23f6e352675e90f8f5aff725b36a05ff26e400e41e53a3aa9ce31e4b972c8"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY__V4/work/VERDICT_VERIFY_SECURITY_V4.json",
+      "bytes": 3072,
+      "sha256": "f7f96f2f9f9d3cbacc8431fd5ed0ec61e5b5dcb47aa4f2da27617c21fe35a350"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/openspec/proposal.md",
+      "bytes": 3001,
+      "sha256": "41b39b737ecb5e0064bfe8fc658c02f4cc72caa4a4026c3d20504ac3e38bc0ff"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/openspec/specs/lane-governance-gates/spec.md",
+      "bytes": 3052,
+      "sha256": "1d87c89625fa16f020c104268fb333c1c5624cc9d0f57d44254326ad6fa1bc21"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/openspec/tasks.md",
+      "bytes": 3856,
+      "sha256": "f75d2a3c5a901661ec69b94daeaf1909d9cffc33019d46afb1de04fd46e8461f"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/preimages/lane-route-slots.candidate.json.pre-9fd0835f8933",
+      "bytes": 32105,
+      "sha256": "9fd0835f8933c7e84a95e06398ce5e3781367d4076a8235d778aac0ccf2864b8"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/preimages/lane-routing-registry.yaml.pre-38f0436b9bde",
+      "bytes": 42948,
+      "sha256": "38f0436b9bde0599a1c3d5b8b928950450f570548380a90079ca06ff0aba38d2"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/preimages/model-lane-assignment.json.pre-e7be2dea3687",
+      "bytes": 47218,
+      "sha256": "e7be2dea36874f169e0cddc61ecb77102402218a2e05136878a097462e7664df"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/preimages/test_lane_policy.py.pre-15556fd204b6",
+      "bytes": 16454,
+      "sha256": "15556fd204b62cf92560322f55958f6764a4c3544853cf98a2e9c559399ba3b4"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/admission.json",
+      "bytes": 3782,
+      "sha256": "75d8e30ee1d5c323ccaf9cfc34176d6352376b033133902d78158b36ba4877c1"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/admit_round.py",
+      "bytes": 9248,
+      "sha256": "de08f6edc95688d0b7ba91a45f392d98a4cf614ed82755226bc679ca471fdc8a"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/apply_R1_R2_R3.py",
+      "bytes": 34318,
+      "sha256": "2bb43fe9554cd4f3bea6d4bdd6a51d14ecf15d243335b86fda414aef59bab7ce"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/BRIEF_EXECUTE.md",
+      "bytes": 5481,
+      "sha256": "a0620fb6445497970fb8b11fbc993698d48a44f8d0df6c5b48cd26b9bd69634d"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/BRIEF_VERIFY.md",
+      "bytes": 4747,
+      "sha256": "c418adec13e6654cf7af732f6f3be1f0c9bcf40806fd141899aae8e0d043f213"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/build_inventory.py",
+      "bytes": 8157,
+      "sha256": "7aea4264aaddc3b50aaa3fe1dad3ea2a4a9af05659116a29bfe3682e53c6b3e8"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/check_declaration_agreement.py",
+      "bytes": 4335,
+      "sha256": "8958a3eb2444f6f4a085be7fbdbe23e4f25c3c1cc0cf76509ed891bad144c4fd"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/diff_R10_guard_exemption.patch",
+      "bytes": 14913,
+      "sha256": "364a42293166a81047060105162e76ba17a89872aaac906af15a76ac0a1e2dc5"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/digest_subject.py",
+      "bytes": 1891,
+      "sha256": "daa212cf5f56556621855b904410f2610e8e41224c75f90735e1b00bc14f4115"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/extract_verdicts.py",
+      "bytes": 2790,
+      "sha256": "a129deed50719b389e216eede15c31b3458d096f3e0a4e343d1ce14332ba2a96"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/FAR_RULING.md",
+      "bytes": 14901,
+      "sha256": "547027d5f3fc01351cdfefb0d7bd00ecf34a23400c5a24e85fbe0de1e2c12238"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/FAR_RULING_ADDENDUM_A.md",
+      "bytes": 5890,
+      "sha256": "7e8ad440e24649ce457c34bdbe3f5c5efb33ac4610ea51f804b567e6235f4e61"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/fix_projections_R1_R2_R3.py",
+      "bytes": 6723,
+      "sha256": "c44d836c6ae3a8bb29f41726ae3b1b72b725bb65c308b1e7a3bebe27fbf589a5"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/freeze_candidate.py",
+      "bytes": 2321,
+      "sha256": "821e119a709a24c06048a316ebd7c9d9450a385658ea77ab8054d56c770bfd88"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/freeze_subject_round2.py",
+      "bytes": 7925,
+      "sha256": "75bce285ca316338461c889371c570ef82d8aa1c15eba1cc095803f7f28f93c0"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/freeze_subject_round3.py",
+      "bytes": 7778,
+      "sha256": "c49da12beebb7a291a17dd0237354acc698812dd5703bfd23b2d6768b0d1d8ac"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/FROZEN_MANIFEST.json",
+      "bytes": 21636,
+      "sha256": "4488e28c9f99400db2723887916dc1af04c112893761641bb25576829c2b93f5"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/GATE_REPORT.json",
+      "bytes": 1945,
+      "sha256": "5ae0dc19c16933a3cf0e213a729a5907fcf88cfecdc5969c150b16d17f6ae043"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/gate_round2.py",
+      "bytes": 9977,
+      "sha256": "b08e7af5e582a836c42810cef70f874943549ff9f17896942ffce5aab4b30cec"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/gate_round3.py",
+      "bytes": 12000,
+      "sha256": "002913d78659e198f0b3e7624027cdc8b994a2b57f4e963d58acfaaad8a74feb"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/KANBAN_SWARM_GRAPH.json",
+      "bytes": 4546,
+      "sha256": "4ddf0ab7cc5356959817711077abd2637fdc9bc7162b1d09a7b4da209beaa538"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/make_closure_round2.py",
+      "bytes": 32214,
+      "sha256": "15eb95dffdb84688b380002016d9626bb72da9f2ed0113a07db591f52b956daa"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/make_closure_round3.py",
+      "bytes": 31795,
+      "sha256": "ece87d8f4c2e90f68d5e67ea4795a9fa4be5c1ae1be043f6a151329ccc3f0342"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/make_pr_round2.py",
+      "bytes": 6240,
+      "sha256": "e5e08327d7235ad5d1ddded84c8fd928192dfc6d94283d3137c98cadd4560376"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/make_pr_round3.py",
+      "bytes": 6132,
+      "sha256": "96030727079088ff8b88d2dacbe9042542bc2faa5c06e3152868764cfa4af2dc"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/make_residual_inventory_round3.py",
+      "bytes": 3448,
+      "sha256": "14c5ad9a3dc5658388e6e157ff140c80c466e6f4f18d9a8128d4990f54c1d7c4"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/open_pr_round3.py",
+      "bytes": 5359,
+      "sha256": "2978825801b5db81fbb0b2dafb0f4efe3b9a3fd311ff31005a61bf62d4f530fc"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/oracle_R10.py",
+      "bytes": 5221,
+      "sha256": "a0cca9a67e4c7ed0be3ddd45df2b1bfea1954faadb85e34b68d9a5495907612d"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/patch1_R1_R2_R3.py",
+      "bytes": 9440,
+      "sha256": "c74737b1b933f75b18f316891aa4bafb6c2e0c4be0771629af611ca1d7df50ff"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/PATCH1_RECEIPT.json",
+      "bytes": 2200,
+      "sha256": "407ef33cfd291a4702cd8858431fdddfc828febf489d10ed8caa6d36d070c6dd"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/PLAN.md",
+      "bytes": 6316,
+      "sha256": "fb3fb2dda68898a4ff89b96b39e3b20aa7e714eaed8c982466c095e9d2176f43"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/probe_round.py",
+      "bytes": 10068,
+      "sha256": "625880671e4dc60242fe292de4a7e037010caaf943ed17a4910c3231f28aab72"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/PROJECTION_REPAIR_RECEIPT.json",
+      "bytes": 7975,
+      "sha256": "7d471d1ea31ecf4d0b0756fd6ef152b41e245a61cd725df8b586b44be95c9ad3"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/promote_and_oracle_R10.py",
+      "bytes": 7480,
+      "sha256": "af7a586e64c408a303fae152aad6c6c8c98538bdcdffde8542a59e917d90628e"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/PROMOTION_RECEIPT.json",
+      "bytes": 4583,
+      "sha256": "28e68d1a813561cf53dbac1e41386adfa6990309ea139617f56baaff7e7a6f28"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/publish_packet_round2.py",
+      "bytes": 10440,
+      "sha256": "31f97000912784cf1ec5a8eb4c1ba5c5fb775f854c0a0374e48820cf28fadcfe"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/publish_packet_round3.py",
+      "bytes": 9913,
+      "sha256": "a5b3aac963c01e1b00bd8b8b40ab2ef9d9b620397145307af1d933e65978feed"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/push_round2.py",
+      "bytes": 6247,
+      "sha256": "6804cefeb94bc11e65aa5923ed899f046f0225ed1aa461d3342ccb5da89fdb5c"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/push_round3.py",
+      "bytes": 6067,
+      "sha256": "3d023b78d011de3d187a4a0f85602e7d9daf0ae9f7677f442dfe6f003da6135c"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/R1_R2_R3_APPLY_RECEIPT.json",
+      "bytes": 2070,
+      "sha256": "2c577f43d9c127c8d78f9d4a4e75ec62f1a29b20525ca63b63196fec93da0566"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/README.md",
+      "bytes": 4981,
+      "sha256": "b57913a9918752cc6ec385dc6d2accae631f1ffd8d34187891c61ef735f1c3ac"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/remedy_spine_workorders.py",
+      "bytes": 5385,
+      "sha256": "afe076ce490cac31131979e5c1a186b9c23b87fa45e7602a36e6b38590ed73f7"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/RESIDUAL_INVENTORY.json",
+      "bytes": 10164,
+      "sha256": "3bb517f20aadc7251cc03dfc7f6af7c4531a30f40f53e5c6b976a484c0828c50"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/RETROSPECTIVE.md",
+      "bytes": 2918,
+      "sha256": "45d847ce3b621efb0cd9dc2ec302e4b63bf324cb6250518b33152ffcebc7911b"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/role_mandate.json",
+      "bytes": 2640,
+      "sha256": "9da151da5e771637c932e7025318890dad93a90edd8691ada7a74af5076c4827"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/ROUND_CLOSURE.json",
+      "bytes": 23150,
+      "sha256": "f3c946317814402eb91424408b2c707f70688d61909487b94886bc0ca13e8520"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/run_lane.py",
+      "bytes": 7195,
+      "sha256": "fed335337d193a56f9720e5e097a68fd8a115fe596d8415fa7a6192d55bb8257"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/SELF_EVOLUTION.md",
+      "bytes": 3912,
+      "sha256": "80914c3dda9623e3d440ddf05b05f6c992167148763ee916a46452d6ea98701d"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/SUBJECT_DIGEST.json",
+      "bytes": 459,
+      "sha256": "a189135281119e4de15f7134d4644dda1427f762522f0e5121119d68f1e46073"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/SUBJECT_TREE_DIGEST.json",
+      "bytes": 1116,
+      "sha256": "7674c4dbc157ff30bb4f6bcbcb88168719a82fab847796b75ceff25054d201a2"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/verify_remote.py",
+      "bytes": 4758,
+      "sha256": "ec5998ddbae61626057db9085ac5ed7fb75b2eac480c159a5337259831af908f"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/verify_remote_round3.py",
+      "bytes": 4668,
+      "sha256": "89574e5960595d5feb555e9e4737b398399859322105c78f23e29c3d8975065d"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/round_documents/write_closure_round3.py",
+      "bytes": 11117,
+      "sha256": "75337617c2eaf6f05b025f7ecc0592a57650a6deec54e58ed454aafa75c0144f"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/under_governance/CHECKPOINT.md",
+      "bytes": 4279,
+      "sha256": "b56f143514a1f71564b9f901445ddc8630e684376327806bb34ef1c881a31a1f"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/under_governance/FROZEN_MANIFEST.json",
+      "bytes": 21636,
+      "sha256": "4488e28c9f99400db2723887916dc1af04c112893761641bb25576829c2b93f5"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/under_governance/GATE_REPORT.json",
+      "bytes": 1945,
+      "sha256": "5ae0dc19c16933a3cf0e213a729a5907fcf88cfecdc5969c150b16d17f6ae043"
+    },
+    {
+      "path": "EVIDENCE/ROUND3-LANE-REBIND-AND-CLOSURE-20261016/under_governance/ROUND_CLOSURE.json",
+      "bytes": 23150,
+      "sha256": "f3c946317814402eb91424408b2c707f70688d61909487b94886bc0ca13e8520"
+    }
+  ],
+  "file_count": 346,
+  "canonical_acceptance": "NOT_PERFORMED",
+  "claim_ceiling": "CANDIDATE_ONLY. This packet is evidence for an external acceptance officer; it resolves nothing, and any checker verdict inside it is advisory."
+}

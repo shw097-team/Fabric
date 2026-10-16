@@ -1,0 +1,241 @@
+{
+  "schema": "HGK-RESIDUAL-INVENTORY/1",
+  "round": "ROUND3-LANE-REBIND-AND-CLOSURE-20261016",
+  "sources": [
+    "var/FAR-REMEDIATION-AND-CLOSURE-20261016/ROUND_CLOSURE.json::honest_residuals",
+    "evidence/EVIDENCE_RESIDUAL_STATUS_REDERIVED.json",
+    "ROUND_CLOSURE.json"
+  ],
+  "counts": {
+    "total": 32,
+    "closed_this_round": 4,
+    "open": 18
+  },
+  "items": [
+    {
+      "id": "R-01",
+      "source": "round-2 honest_residuals, re-derived under the 2026-10-16 order",
+      "disposition": "OPEN",
+      "detail": null,
+      "artifact": "evidence/EVIDENCE_RESIDUAL_STATUS_REDERIVED.json"
+    },
+    {
+      "id": "R-02",
+      "source": "round-2 honest_residuals, re-derived under the 2026-10-16 order",
+      "disposition": "OPEN",
+      "detail": null,
+      "artifact": "evidence/EVIDENCE_RESIDUAL_STATUS_REDERIVED.json"
+    },
+    {
+      "id": "R-03",
+      "source": "round-2 honest_residuals, re-derived under the 2026-10-16 order",
+      "disposition": "OPEN",
+      "detail": null,
+      "artifact": "evidence/EVIDENCE_RESIDUAL_STATUS_REDERIVED.json"
+    },
+    {
+      "id": "R-04",
+      "source": "round-2 honest_residuals, re-derived under the 2026-10-16 order",
+      "disposition": "OPEN",
+      "detail": null,
+      "artifact": "evidence/EVIDENCE_RESIDUAL_STATUS_REDERIVED.json"
+    },
+    {
+      "id": "R-05",
+      "source": "round-2 honest_residuals, re-derived under the 2026-10-16 order",
+      "disposition": "SUPERSEDED_BY_THIS_MANDATE",
+      "detail": null,
+      "artifact": "evidence/EVIDENCE_RESIDUAL_STATUS_REDERIVED.json"
+    },
+    {
+      "id": "R-06",
+      "source": "round-2 honest_residuals, re-derived under the 2026-10-16 order",
+      "disposition": "OPEN",
+      "detail": null,
+      "artifact": "evidence/EVIDENCE_RESIDUAL_STATUS_REDERIVED.json"
+    },
+    {
+      "id": "R-07",
+      "source": "round-2 honest_residuals, re-derived under the 2026-10-16 order",
+      "disposition": "SUPERSEDED_BY_THIS_MANDATE",
+      "detail": null,
+      "artifact": "evidence/EVIDENCE_RESIDUAL_STATUS_REDERIVED.json"
+    },
+    {
+      "id": "R-08",
+      "source": "round-2 honest_residuals, re-derived under the 2026-10-16 order",
+      "disposition": "OPEN",
+      "detail": null,
+      "artifact": "evidence/EVIDENCE_RESIDUAL_STATUS_REDERIVED.json"
+    },
+    {
+      "id": "R-09",
+      "source": "round-2 honest_residuals, re-derived under the 2026-10-16 order",
+      "disposition": "UNVERIFIABLE",
+      "detail": null,
+      "artifact": "evidence/EVIDENCE_RESIDUAL_STATUS_REDERIVED.json"
+    },
+    {
+      "id": "R-10",
+      "source": "round-2 honest_residuals, re-derived under the 2026-10-16 order",
+      "disposition": "OPEN",
+      "detail": null,
+      "artifact": "evidence/EVIDENCE_RESIDUAL_STATUS_REDERIVED.json"
+    },
+    {
+      "id": "R-11",
+      "source": "round-2 honest_residuals, re-derived under the 2026-10-16 order",
+      "disposition": "OPEN",
+      "detail": null,
+      "artifact": "evidence/EVIDENCE_RESIDUAL_STATUS_REDERIVED.json"
+    },
+    {
+      "id": "R-12",
+      "source": "round-2 honest_residuals, re-derived under the 2026-10-16 order",
+      "disposition": "OPEN",
+      "detail": null,
+      "artifact": "evidence/EVIDENCE_RESIDUAL_STATUS_REDERIVED.json"
+    },
+    {
+      "id": "R-13",
+      "source": "round-2 honest_residuals, re-derived under the 2026-10-16 order",
+      "disposition": "OPEN",
+      "detail": null,
+      "artifact": "evidence/EVIDENCE_RESIDUAL_STATUS_REDERIVED.json"
+    },
+    {
+      "id": "R-14",
+      "source": "round-2 honest_residuals, re-derived under the 2026-10-16 order",
+      "disposition": "PARTIALLY_CLOSED",
+      "detail": null,
+      "artifact": "evidence/EVIDENCE_RESIDUAL_STATUS_REDERIVED.json"
+    },
+    {
+      "id": "R-15",
+      "source": "round-2 honest_residuals, re-derived under the 2026-10-16 order",
+      "disposition": "OPEN",
+      "detail": null,
+      "artifact": "evidence/EVIDENCE_RESIDUAL_STATUS_REDERIVED.json"
+    },
+    {
+      "id": "NF-01",
+      "source": "delegated study (this round)",
+      "disposition": "RECORDED",
+      "detail": null,
+      "artifact": "evidence/EVIDENCE_RESIDUAL_STATUS_REDERIVED.json"
+    },
+    {
+      "id": "NF-02",
+      "source": "delegated study (this round)",
+      "disposition": "RECORDED",
+      "detail": null,
+      "artifact": "evidence/EVIDENCE_RESIDUAL_STATUS_REDERIVED.json"
+    },
+    {
+      "id": "NF-03",
+      "source": "delegated study (this round)",
+      "disposition": "RECORDED",
+      "detail": null,
+      "artifact": "evidence/EVIDENCE_RESIDUAL_STATUS_REDERIVED.json"
+    },
+    {
+      "id": "NF-04",
+      "source": "delegated study (this round)",
+      "disposition": "RECORDED",
+      "detail": null,
+      "artifact": "evidence/EVIDENCE_RESIDUAL_STATUS_REDERIVED.json"
+    },
+    {
+      "id": "SC-12",
+      "source": "this round (self-caught or checker-caught)",
+      "disposition": "CLOSED_THIS_ROUND",
+      "detail": "apply_R1_R2_R3.commit() copied each file to its .bak AFTER writing the edit, so the four backups were post-edit copies; and config/ is not tracked by git, so HEAD held no preimage either",
+      "artifact": "PATCH1_RECEIPT.json"
+    },
+    {
+      "id": "SC-13",
+      "source": "this round (self-caught or checker-caught)",
+      "disposition": "CLOSED_THIS_ROUND",
+      "detail": "the projection note written by the projection-repair pass was an unquoted YAML plain scalar containing \": \", which made the whole registry unparseable",
+      "artifact": "PATCH1_RECEIPT.json"
+    },
+    {
+      "id": "SC-14",
+      "source": "this round (self-caught or checker-caught)",
+      "disposition": "CLOSED_THIS_ROUND",
+      "detail": "the structured rewrite of the VERIFY chain dropped a field the registry binds, so the binding resolved to nothing",
+      "artifact": "PATCH1_RECEIPT.json"
+    },
+    {
+      "id": "D-R10",
+      "source": "this round (self-caught or checker-caught)",
+      "disposition": "CLOSED_THIS_ROUND",
+      "detail": "the guard refuses ANY same-model maker/checker pair (exit 2) and never consults the registry's declared_conflicts, so the owner's mandate was undispatchable",
+      "artifact": "FAR_RULING_ADDENDUM_A.md A2 + evidence/ORACLE_R10_*.txt"
+    },
+    {
+      "id": "D-R11",
+      "source": "this round (self-caught or checker-caught)",
+      "disposition": "OPEN - recorded, not papered over; the round does NOT invent a producer",
+      "detail": "ADMITTED is accepted only from a receipt FILE, and nothing in the product produces one (only tests do), so the gate can refuse but never admit",
+      "artifact": "FAR_RULING_ADDENDUM_A.md A3"
+    },
+    {
+      "id": "NF-01",
+      "source": "this round (self-caught or checker-caught)",
+      "disposition": "correction published",
+      "detail": "the whole-tree enumeration obstruction is a LONG-PATH failure (WinError 3), not access-denied as the previous round recorded",
+      "artifact": "this round hit the same failure class in its own preimage search and handled it with an onerror-tolerant walk"
+    },
+    {
+      "id": "NF-06",
+      "source": "this round (self-caught or checker-caught)",
+      "disposition": "OPEN - recorded and NOT edited, deliberately: editing the site now would move its digest, invalidate the frozen subject and void the checker verdict on the shipped bytes",
+      "detail": "config/model-lane-assignment.json carries its OWN sod_conflicts[] array, which still lists SOD006-C2 as OPEN and SOD006-C3 as OPEN_OWNER_ORDERED: the registry's declared_conflicts was re-declared but this second declaring surface was not",
+      "artifact": "lanes/VERIFY_SECURITY/V4/CHECKER_VERDICT.json disclosures"
+    },
+    {
+      "id": "NF-05",
+      "source": "this round (self-caught or checker-caught)",
+      "disposition": "recorded in the file's selection_note; changing its status is a promotion and stays with the owner",
+      "detail": "the dispatch path reads config/lane-route-slots.candidate.json as its pool while the file itself declares status CANDIDATE / not active",
+      "artifact": "FAR_RULING_ADDENDUM_A.md A5"
+    },
+    {
+      "id": "NF-06 — the assignment site's own sod_conflicts[] still disagrees with the registry",
+      "source": "this round, explicitly not closed",
+      "disposition": "OPEN",
+      "detail": "found by the independent checker AFTER the subject was frozen; editing it now would void the verdict on the shipped bytes, so it is recorded with a remediation instead",
+      "artifact": "ROUND_CLOSURE.json"
+    },
+    {
+      "id": "R11 admission-receipt producer",
+      "source": "this round, explicitly not closed",
+      "disposition": "OPEN",
+      "detail": "a new capability, not a repair; needs its own WorkOrder and acceptance",
+      "artifact": "ROUND_CLOSURE.json"
+    },
+    {
+      "id": "F-IND-2 detector axis (epoch/revision coupling)",
+      "source": "this round, explicitly not closed",
+      "disposition": "OPEN",
+      "detail": "out of scope for the rebind; the drift pass proved the coupling is enforced at the gate level",
+      "artifact": "ROUND_CLOSURE.json"
+    },
+    {
+      "id": "F-IND-3 (the previous round's canonical writer was not the mandated writer)",
+      "source": "this round, explicitly not closed",
+      "disposition": "OPEN",
+      "detail": "not retroactively curable; recorded as a bounded accepted deviation",
+      "artifact": "ROUND_CLOSURE.json"
+    },
+    {
+      "id": "the repository merge and branch cleanup",
+      "source": "this round, explicitly not closed",
+      "disposition": "OPEN",
+      "detail": "the OWNER's decision under the standing contract; a merge-readiness packet is published instead",
+      "artifact": "ROUND_CLOSURE.json"
+    }
+  ],
+  "claim_ceiling": "CANDIDATE_ONLY. This inventory records dispositions; it is not an acceptance, and an item recorded as closed was closed by this round's own measurement, not by an external party."
+}

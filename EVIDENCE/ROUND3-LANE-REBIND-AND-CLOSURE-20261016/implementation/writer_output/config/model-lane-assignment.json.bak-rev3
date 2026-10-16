@@ -1,0 +1,81 @@
+{
+  "artifact": "MODEL_LANE_ASSIGNMENT",
+  "schema": "HGK-MODEL-LANE-ASSIGNMENT/1",
+  "revision": 2,
+  "declared_at_utc": "2026-10-07T01:05:00Z",
+  "declared_by": "user instruction 2026-10-07 (canonical Hermes session)",
+  "authority_note": "Operator-declared routing policy. Not an authority source; the runtime wiring named in `effective_wiring` is the machine truth. Revision 2 supersedes revision 1 (2026-10-07T00:25Z).",
+  "authorization_basis": "ROUTE-WO-FDA-001",
+  "lane_registry_status": "NO_PRIOR_REGISTRY — a workspace-wide search found no pre-existing machine-readable lane registry for these lane names. They were prose-only or incidental matches. This file is the first formal encoding.",
+
+  "user_instruction_revision_2": "採用「PLAN：GPT 6.1 SOL -> EXECUTE：DeepSeek V4.1 Flash (OPENCODE GO) -> VERIFY / SECURITY：GPT 6.1 SOL」的模型SoD分工方案",
+
+  "assignment": [
+    {
+      "lane_group": "PLAN",
+      "lanes": ["ARCH", "HARD WORK", "THREAT", "EFFECT PLANNING", "RESEARCH", "SYNTHESIS", "EVOLUTION"],
+      "assigned_model": "gpt-6.1-sol",
+      "assigned_provider": "openai-codex",
+      "supply": "OpenAI (first-party)",
+      "rationale": "Deliberation / audit / threat / planning / research / synthesis / evolution are judgement-bearing planning lanes; they get the stronger reasoning model and are handed over first."
+    },
+    {
+      "lane_group": "EXECUTE",
+      "lanes": ["BULK BUILD", "BULK SECURITY TEST", "REPAIR", "BULK CODE", "HARNESS", "EVAL CODE", "BULK TRANSFORM"],
+      "assigned_model": "deepseek-v4.1-flash",
+      "assigned_provider": "opencode-go",
+      "supply": "OpenCode Go",
+      "rationale": "Volume/mechanical lanes bound by an admitted write-set: build, transform, harness, eval code and repair. Cheap, fast, high-throughput."
+    },
+    {
+      "lane_group": "VERIFY_SECURITY",
+      "lanes": ["ACCEPTANCE", "SECURITY REVIEW", "VERIFY"],
+      "assigned_model": "gpt-6.1-sol",
+      "assigned_provider": "openai-codex",
+      "supply": "OpenAI (first-party)",
+      "rationale": "The verification/acceptance lane must never share a model or provider with the executor; it returns to gpt-6.1-sol per explicit instruction."
+    }
+  ],
+
+  "effective_wiring": {
+    "_note": "How the assignment is actually enforced in the Hermes runtime. Hermes exposes uniform routing for subagents (delegation.*) and for auxiliary helpers; the main agent model is fixed at session start.",
+    "delegation.provider": "openai-codex",
+    "delegation.model": "gpt-6.1-sol",
+    "delegation.applies_to": "every spawned subagent — i.e. the PLAN and VERIFY_SECURITY lanes",
+    "auxiliary.kanban_decomposer": {"provider": "openai-codex", "model": "gpt-6.1-sol"},
+    "auxiliary.triage_specifier": {"provider": "openai-codex", "model": "gpt-6.1-sol"},
+    "auxiliary_move_reason": "Both were nvidia/z-ai/glm-5.3 and therefore BROKEN (NVIDIA NIM chat-completions outage). They are decomposition/planning lanes, so they move with the planning group rather than waiting on a dead provider.",
+    "auxiliary.vision": {"provider": "opencode-go", "model": "qwen3.8-max", "unchanged": true},
+    "main_agent": {"provider": "opencode-go", "model": "deepseek-v4.1-flash", "applies_to": "the EXECUTE lanes (the canonical Hermes main agent)"}
+  },
+
+  "sod": {
+    "plan_lane": "openai-codex / gpt-6.1-sol",
+    "execute_lane": "opencode-go / deepseek-v4.1-flash",
+    "verify_security_lane": "openai-codex / gpt-6.1-sol",
+    "plan_vs_execute_model_separation": "PASS — different models",
+    "verify_vs_execute_model_separation": "PASS — different models",
+    "provider_separation": "PASS — openai-codex != opencode-go",
+    "maker_self_acceptance": "PREVENTED — the executor never runs on the verification lane",
+    "note": "PLAN and VERIFY_SECURITY intentionally share a model: both are advisory/read-only roles, and the required separation is maker (EXECUTE) != checker (VERIFY), which holds both by model and by provider."
+  },
+
+  "superseded": {
+    "revision_1_assignment": "REASONING_ADVISORY (8 lanes) = openai-codex/gpt-6.1-sol ; BULK_EXECUTION (7 lanes) = opencode-go/deepseek-v4.1-flash",
+    "prior_assignment": "PLAN/VERIFY/SECURITY = nvidia/z-ai/glm-5.3 ; EXECUTE = opencode-go/deepseek-v4.1-flash",
+    "supersede_reason": "Replaced by explicit user instruction (revision 2). The NIM provider is additionally in outage (glm-5.3 hangs, catalogue 410/503).",
+    "evidence": "var/repair/source-repoint-001/VERIFY_LANE_FAILOVER.json"
+  },
+
+  "verification_status": "VERIFIED — end-to-end probe confirmed 2026-10-07T00:26Z (delegation deleg_0e2f5f4f, subagent sa-0-0d819e07): status=completed, api_calls=1, duration 7.39s, runtime footer reported `Model: gpt-6.1-sol`, and the child self-reported line2=gpt-6.1-sol. For contrast, the same probe shape on the superseded nvidia/z-ai/glm-5.3 lane stalled 15m23s and aborted at the model-call layer with zero tool calls.",
+  "verification_evidence": {
+    "delegation_id": "deleg_0e2f5f4f",
+    "subagent_id": "sa-0-0d819e07",
+    "model_reported_by_runtime": "gpt-6.1-sol",
+    "api_calls": 1,
+    "duration_seconds": 7.39,
+    "transcript": "cache/delegation/live/deleg_0e2f5f4f/task-0.log",
+    "revision_2_swarm": "deleg_0d5b9003 (2 independent VERIFY_ONLY lanes on the PLAN/VERIFY model)"
+  },
+  "claim_ceiling": "Routing assignment declared and wired. Not a claim of acceptance for any work produced under it."
+}

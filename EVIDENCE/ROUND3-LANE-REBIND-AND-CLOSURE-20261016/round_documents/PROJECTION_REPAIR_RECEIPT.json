@@ -1,0 +1,125 @@
+{
+  "schema": "HGK-ROUND3-PROJECTION-REPAIR/1",
+  "round": "ROUND3-LANE-REBIND-AND-CLOSURE-20261016",
+  "drift_findings": 17,
+  "rewrites": [
+    {
+      "pointer": "/registry_epoch",
+      "expected_old": 21,
+      "expected_new": 22,
+      "line": 499
+    },
+    {
+      "pointer": "/revision",
+      "expected_old": 21,
+      "expected_new": 22,
+      "line": 500
+    },
+    {
+      "pointer": "/lane_chains/VERIFY_SECURITY/1/role",
+      "expected_old": "fallback1",
+      "expected_new": "fallback1_operator_selectable",
+      "line": 512
+    },
+    {
+      "pointer": "/lane_chains/VERIFY_SECURITY/1/automatic_selection",
+      "expected_old": true,
+      "expected_new": false,
+      "line": 514
+    },
+    {
+      "pointer": "/sod/plan_lane",
+      "expected_old": "openai-codex / gpt-6.1-sol (medium, OpenAI OAuth) — owner order 2026-10-16 (round FAR-REMEDIATION-AND-CLOSURE-20261016); supersedes the 2026-10-15 GLM rebind, whose stated premise (a 429 on the OpenAI OAuth arm) was measured false on 2026-10-16. GLM-5.3-Flash is retained as a rotation alternate, never auto-selected.",
+      "expected_new": "opencode-go / glm-5.3-flash (medium, OpenCode Go) — owner order 2026-10-16 (round ROUND3-LANE-REBIND-AND-CLOSURE-20261016). This supersedes owner-order-20261016-plan-model-rebind-gpt61-sol (round FAR-REMEDIATION-AND-CLOSURE-20261016) and, with it, the 2026-10-15 GLM order whose premise (a 429 on the OpenAI OAuth arm) was already measured false. GLM is now rank-1 AND an automatically selected arm; the earlier prose calling GLM \"never auto-selected\" while the chain declared automatic_selection: true was a cross-field contradiction (F-IND-2) and is repaired here. gpt-6.1-sol is retained as the NON-DEFAULT fallback1 and deepseek-v4.1-flash as automatically selected fallback2.",
+      "line": 515
+    },
+    {
+      "pointer": "/sod/verify_security_lane",
+      "expected_old": "DEFAULT primary arm A = openai-codex / gpt-6.1-sol (OpenAI OAuth); NON-DEFAULT operator-selectable alternate arm B = opencode-go / glm-5.3-flash. CORRECTED in round FAR-REMEDIATION-AND-CLOSURE-20261016: this field and its siblings declared arm A as opencode-go/glm-5.3-flash while lane_chains.VERIFY_SECURITY[0] — and this registry's own projections on that pointer — declared arm A as openai-codex/gpt-6.1-sol. The lane chain is what the dispatch path reads; the prose now matches it.",
+      "expected_new": "DEFAULT primary arm A = opencode-go / deepseek-v4.1-flash (Codex CLI checker); NON-DEFAULT operator-selectable alternate arm B = openai-codex / gpt-6.1-sol (OpenAI OAuth); automatically selected fallback2 arm C = opencode-go / glm-5.3-flash. Rebound by owner order 2026-10-16 (round ROUND3-LANE-REBIND-AND-CLOSURE-20261016): the checker arm is the SAME model the EXECUTE writer holds, so model-axis independence between maker and checker is deliberately ABSENT and is declared in sod_invariants.declared_conflicts (SOD006-C3, OWNER_ORDERED_IN_FORCE). What remains is PROCESS, LANE and EVIDENCE-PATH independence plus the no-self-acceptance rule. Model diversity between writer and checker is NOT claimed.",
+      "line": 517
+    },
+    {
+      "pointer": "/sod/verify_security_default_arm",
+      "expected_old": "A = openai-codex / gpt-6.1-sol (OpenAI OAuth; medium)",
+      "expected_new": "A = opencode-go / deepseek-v4.1-flash (Codex CLI checker)",
+      "line": 518
+    },
+    {
+      "pointer": "/sod/maker_self_acceptance",
+      "expected_old": "PREVENTED at dispatch on every arm: no single call ever verifies its own output. Model-identity separation is deliberately NOT present between PLAN and VERIFY arm A (the same model by owner order, SOD006-C2 OWNER_ORDERED_IN_FORCE); EXECUTE vs VERIFY remains a distinct model family. PLAN and EXECUTE do not share a token, so SOD-APPLY-01 stays a historical record.",
+      "expected_new": "PREVENTED at dispatch on every arm: no single call ever verifies its own output. Model-identity separation between writer and checker is deliberately NOT present under the 2026-10-16 owner order (EXECUTE and VERIFY_SECURITY arm A are both opencode-go/deepseek-v4.1-flash, SOD006-C3 OWNER_ORDERED_IN_FORCE); the separation this round actually has is process, lane and evidence-path independence. PLAN (glm-5.3-flash) is a different model family from both lanes.",
+      "line": 519
+    },
+    {
+      "pointer": "/sod/verify_vs_plan_model_separation",
+      "expected_old": "NONE on the model axis, by owner order: PLAN and VERIFY_SECURITY default arm A are BOTH openai-codex/gpt-6.1-sol (SOD006-C2, now OWNER_ORDERED_IN_FORCE). What remains is PROCESS, LANE and EVIDENCE-PATH independence, plus the no-self-acceptance rule. EXECUTE deepseek-v4.1-flash is a distinct model family from both.",
+      "expected_new": "PASS on the model axis: PLAN is opencode-go/glm-5.3-flash and VERIFY_SECURITY default arm A is opencode-go/deepseek-v4.1-flash — different model families. The earlier collision recorded as SOD006-C2 (PLAN and VERIFY arm A both openai-codex/gpt-6.1-sol) no longer exists and is retained as SUPERSEDED history rather than deleted.",
+      "line": 530
+    },
+    {
+      "pointer": "/lane_chains/PLAN/0/model",
+      "expected_old": "gpt-6.1-sol",
+      "expected_new": "glm-5.3-flash",
+      "line": 537
+    },
+    {
+      "pointer": "/lane_chains/PLAN/0/provider",
+      "expected_old": "openai-codex",
+      "expected_new": "opencode-go",
+      "line": 538
+    },
+    {
+      "pointer": "/lane_chains/VERIFY_SECURITY/0/model",
+      "expected_old": "gpt-6.1-sol",
+      "expected_new": "deepseek-v4.1-flash",
+      "line": 541
+    },
+    {
+      "pointer": "/lane_chains/VERIFY_SECURITY/0/provider",
+      "expected_old": "openai-codex",
+      "expected_new": "opencode-go",
+      "line": 542
+    },
+    {
+      "pointer": "/lane_chains/VERIFY_SECURITY/1/model",
+      "expected_old": "glm-5.3-flash",
+      "expected_new": "gpt-6.1-sol",
+      "line": 544
+    },
+    {
+      "pointer": "/lane_chains/VERIFY_SECURITY/1/provider",
+      "expected_old": "opencode-go",
+      "expected_new": "openai-codex",
+      "line": 545
+    },
+    {
+      "pointer": "/sod/verify_security_reasoning_effort",
+      "expected_old": "medium",
+      "expected_new": "medium (RETAINED from the previous chain because the mandate names no effort for this arm and the deepseek arm declares none — UNVERIFIED for this model, recorded rather than assumed)",
+      "line": 551
+    },
+    {
+      "pointer": "/sod/provider_separation_status",
+      "expected_old": "PARTIAL - PLAN and VERIFY default arm A both sit on openai-codex by owner order; EXECUTE stays on opencode-go. Model-axis separation between EXECUTE and each of them HOLDS (deepseek-v4.1-flash != gpt-6.1-sol). Provider separation is not required (invariants.provider_separation_required=false). Recorded as an accepted risk.",
+      "expected_new": "ABSENT by owner order: all three lanes sit on opencode-go (PLAN glm-5.3-flash, EXECUTE deepseek-v4.1-flash, VERIFY_SECURITY arm A deepseek-v4.1-flash). Provider separation is not required (invariants.provider_separation_required=false). Model-axis separation HOLDS PLAN-vs-EXECUTE and PLAN-vs-VERIFY, and is deliberately absent EXECUTE-vs-VERIFY (SOD006-C3). Recorded as an accepted risk.",
+      "line": 560
+    }
+  ],
+  "non_drift_findings": [
+    {
+      "code": "COVERAGE_GAP",
+      "id": "model-lane-assignment",
+      "path": "config/model-lane-assignment.json",
+      "pointer": "/lane_chains/VERIFY_SECURITY/0/reasoning_effort",
+      "expected": "medium",
+      "actual": null,
+      "severity": "error"
+    }
+  ],
+  "note_edits": [
+    "projection note moved to revision 22 / SOD006-C3"
+  ],
+  "sha256_before": "9ada90bc0324e89384d0ed03550334a4401e6f6a25e266c9d4d3cd6c7622f61d",
+  "sha256_after": "e58d7be1d3d35a837b9411f8f9577c30b5984f6d41b50a6059542d51ea0cff74"
+}

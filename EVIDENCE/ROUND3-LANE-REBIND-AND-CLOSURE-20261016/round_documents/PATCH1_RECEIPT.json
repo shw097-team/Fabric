@@ -1,0 +1,43 @@
+{
+  "schema": "HGK-ROUND3-PATCH1-RECEIPT/1",
+  "apply": true,
+  "preimage_search": [
+    {
+      "candidate": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\FAR-REMEDIATION-AND-CLOSURE-20261016\\subject\\config\\lane-routing-registry.yaml",
+      "sha256": "38f0436b9bde0599a1c3d5b8b928950450f570548380a90079ca06ff0aba38d2",
+      "matches": [
+        "config/lane-routing-registry.yaml"
+      ]
+    },
+    {
+      "candidate": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\FAR-REMEDIATION-AND-CLOSURE-20261016\\subject\\config\\model-lane-assignment.json",
+      "sha256": "e7be2dea36874f169e0cddc61ecb77102402218a2e05136878a097462e7664df",
+      "matches": [
+        "config/model-lane-assignment.json"
+      ]
+    },
+    {
+      "candidate": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\FAR-REMEDIATION-AND-CLOSURE-20261016\\subject\\config\\lane-route-slots.candidate.json",
+      "sha256": "9fd0835f8933c7e84a95e06398ce5e3781367d4076a8235d778aac0ccf2864b8",
+      "matches": [
+        "config/lane-route-slots.candidate.json"
+      ]
+    },
+    {
+      "candidate": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\FAR-REMEDIATION-AND-CLOSURE-20261016\\subject\\tests\\test_lane_policy.py",
+      "sha256": "15556fd204b62cf92560322f55958f6764a4c3544853cf98a2e9c559399ba3b4",
+      "matches": [
+        "tests/test_lane_policy.py"
+      ]
+    }
+  ],
+  "edits": [
+    "site /lane_chains/VERIFY_SECURITY/0: reasoning_effort restored to \"medium\" (the registry binds this pointer; removing the field to satisfy nothing would have traded coverage for a green light)",
+    "registry VERIFY row: reasoning_effort: medium restored at the block level (mirrors the site field; the mandate names no effort for this arm, so the retained value is declared UNVERIFIED in sod.verify_security_reasoning_effort rather than assumed sound)",
+    "source_of_routes re-pinned 76b3d453f1d9 -> 78a0eb2eabfe (site revision 22)"
+  ],
+  "sha256_after": {
+    "config/lane-routing-registry.yaml": "02481992df124ca4f83b655b4583fc2053ecebbbb3125702ab28e39d0c35ea70",
+    "config/model-lane-assignment.json": "78a0eb2eabfecaa4d4d80660438505418724499aeaaac656f3d47631a3effa15"
+  }
+}

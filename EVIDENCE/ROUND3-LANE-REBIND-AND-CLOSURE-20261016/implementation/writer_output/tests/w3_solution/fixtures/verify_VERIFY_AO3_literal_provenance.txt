@@ -1,0 +1,24 @@
+STEP 3: literal log provenance
+unexpected argument line present in supplied log=False
+preflight.classify(literal-1, exit_code=1, declared_model="gpt-6.1-sol")
+2026-10-12T04:01:35.174907Z ERROR codex_models_manager::cache: failed to load models cache: missing field `supports_parallel_tool_calls` at line 139 column 5
+{"case": "literal-1", "classification": "LANE_TOOLCHAIN_MISMATCH", "substitution_permitted": false}
+preflight.classify(literal-2, exit_code=1, declared_model="gpt-6.1-sol")
+warning: Model metadata for `gpt-6.1-sol` not found. Defaulting to fallback metadata; this can degrade performance and cause issues.
+{"case": "literal-2", "classification": "LANE_TOOLCHAIN_MISMATCH", "substitution_permitted": false}
+preflight.classify(literal-3, exit_code=1, declared_model="gpt-6.1-sol")
+error: unexpected argument '-' found
+{"case": "literal-3", "classification": "LANE_TOOLCHAIN_MISMATCH", "substitution_permitted": false}
+preflight.classify(literal-4, exit_code=1, declared_model="gpt-6.1-sol")
+ERROR: {"type":"error","status":400,"error":{"type":"invalid_request_error","message":"The 'gpt-6.1-sol' model is not supported when using Codex with a ChatGPT account."}}
+{"case": "literal-4", "classification": "LANE_MODEL_REFUSED", "substitution_permitted": true}
+preflight.classify(combined-failing-log, exit_code=1, declared_model="gpt-6.1-sol")
+2026-10-12T04:01:35.174907Z ERROR codex_models_manager::cache: failed to load models cache: missing field `supports_parallel_tool_calls` at line 139 column 5
+warning: Model metadata for `gpt-6.1-sol` not found. Defaulting to fallback metadata; this can degrade performance and cause issues.
+error: unexpected argument '-' found
+ERROR: {"type":"error","status":400,"error":{"type":"invalid_request_error","message":"The 'gpt-6.1-sol' model is not supported when using Codex with a ChatGPT account."}}
+{"case": "combined-failing-log", "classification": "LANE_TOOLCHAIN_MISMATCH", "substitution_permitted": false}
+preflight.classify(clean-refusal, exit_code=1, declared_model="gpt-6.1-sol")
+ERROR: {"type":"error","status":403,"error":{"type":"invalid_request_error","message":"The gpt-6.1-sol model is not supported when using Codex with a ChatGPT account."}}
+{"case": "clean-refusal", "classification": "LANE_MODEL_REFUSED", "substitution_permitted": true}
+preflight.classify(empty-boundary, exit_code=1, declared_model="gpt-6.1-sol")

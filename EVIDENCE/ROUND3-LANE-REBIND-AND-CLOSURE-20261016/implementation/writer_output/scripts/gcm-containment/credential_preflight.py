@@ -1,0 +1,371 @@
+#!/usr/bin/env python3
+"""L3 consumer / gate: assert the GCM containment invariant on the EFFECTIVE
+credential-helper resolution, split into a BASELINE and a CHILD context.
+
+Round ``HGK-GCM-REPAIR-20261013``. This is a single, side-effect-free command
+usable as a gate. It reads ONLY the effective configuration through
+``git config --show-scope --show-origin --get-all`` (never a candidate file's
+bytes) and reports a set of NAMED assertions (see ``assertions.py``), each with
+its own ``PASS`` / ``FAIL`` / ``UNKNOWN`` status, rolled up into one verdict:
+
+  PASS          every named assertion is PASS.
+  FAIL          at least one assertion is FAIL (a positive violation).
+  INCONCLUSIVE  no assertion FAILed, but at least one is UNKNOWN. Exit 2; never
+                counted as verification.
+
+Two contexts are always reported:
+
+  baseline  the ambient / effective resolution the operator currently has.
+  child     the environment a lane will actually spawn with. This is the section
+            that MUST be non-prompting. ``clean_env()`` scrub of the GIT_CONFIG_*
+            variables is applied to the BASELINE read only; it is never used to
+            prove the child safe.
+
+What a PASS NOW covers (posture assertions only):
+
+  * an empty-string helper reset exists at or above the system helper, so the
+    accumulated lower-precedence helpers (the system-scope ``manager``) are
+    cleared; and
+  * every SURVIVING helper is of a form this checker can positively classify as
+    non-interactive: git's documented no-op helper, or a prompt-capable family
+    governed by a documented interaction-disabling setting
+    (``credential.interactive`` / ``GCM_INTERACTIVE``); and
+  * ``GIT_ASKPASS`` / ``SSH_ASKPASS`` / ``core.askPass`` are absent or empty in
+    the CHILD environment; and
+  * the CHILD environment sets ``GIT_TERMINAL_PROMPT=0``; and
+  * the CHILD environment carries no configuration override
+    (``GIT_CONFIG_SYSTEM/GLOBAL/NOSYSTEM``, ``GIT_CONFIG_COUNT/PARAMETERS``,
+    ``GIT_CONFIG_KEY_*`` / ``GIT_CONFIG_VALUE_*``, or ``-c credential.helper``)
+    that silently reinstates a prompt-capable helper.
+
+What a PASS does NOT cover (stated so a PASS is not read as stronger than it is):
+
+  * It does not PROVE nothing can prompt; it is a posture assertion, not an
+    enforcement mechanism.
+  * ``--no-ui`` disables the GUI only; on its own it is NOT accepted as
+    "nothing can prompt".
+  * ``GIT_TERMINAL_PROMPT=0`` closes git's own terminal prompt only; git tries
+    an askpass program BEFORE honouring it, so askpass is asserted separately.
+  * An unvetted executable askpass is never a PASS.
+  * It says nothing about push authorization, remote policy, or any credential
+    value. No credential value is read, printed, or probed.
+
+Exit 0 on PASS, exit 2 on FAIL or INCONCLUSIVE. ``INCONCLUSIVE`` is never
+counted as verification. No writes, no network, no live credential probe.
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import os
+import shutil
+import subprocess
+import sys
+
+sys.dont_write_bytecode = True
+
+# Sibling module (named-assertion library). Make the import robust whether this
+# file is run directly, imported, or loaded by importlib from another script.
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import assertions as A  # noqa: E402
+
+PASS = "PASS"
+FAIL = "FAIL"
+INCONCLUSIVE = "INCONCLUSIVE"
+
+SCHEMA = "HGK-GCM-CONTAINMENT-PREFLIGHT/2"
+
+#: Keys scrubbed for the BASELINE ambient/effective read. Never used to prove
+#: the CHILD context safe.
+_SCRUB_KEYS = ("GIT_CONFIG_SYSTEM", "GIT_CONFIG_GLOBAL", "GIT_CONFIG_NOSYSTEM",
+               "GIT_CONFIG_COUNT", "GIT_CONFIG_PARAMETERS")
+
+
+def clean_env(overrides: dict | None = None) -> dict:
+    """The ambient environment minus every GIT_CONFIG_* knob.
+
+    For the BASELINE effective read only. It must NOT be used to prove the
+    child is safe (the child environment is evaluated as given).
+    """
+    env = dict(os.environ)
+    for k in _SCRUB_KEYS:
+        env.pop(k, None)
+    for k in list(env):
+        if k.startswith("GIT_CONFIG_KEY_") or k.startswith("GIT_CONFIG_VALUE_"):
+            env.pop(k, None)
+    if overrides:
+        env.update(overrides)
+    return env
+
+
+def _fwd(path) -> str:
+    return str(path).replace("\\", "/")
+
+
+def read_config(git: str, key: str, env: dict) -> dict:
+    """Read one multi-valued key with scope+origin. rc 1 (absent) is not an error."""
+    try:
+        proc = subprocess.run(
+            [git, "config", "--show-scope", "--show-origin", "--get-all", key],
+            capture_output=True, text=True, env=env, timeout=30)
+    except (OSError, subprocess.SubprocessError) as exc:
+        return {"ok": False, "reason": f"could not execute git ({type(exc).__name__}): {exc}",
+                "entries": []}
+    if proc.returncode not in (0, 1):
+        return {"ok": False, "reason": f"git config exited {proc.returncode}",
+                "stderr": proc.stderr, "entries": []}
+    entries = []
+    for line in (proc.stdout or "").splitlines():
+        parts = line.split("\t")
+        if len(parts) >= 3:
+            scope, origin, value = parts[0], parts[1], "\t".join(parts[2:])
+        elif len(parts) == 2:
+            scope, origin, value = None, parts[0], parts[1]
+        else:
+            scope, origin, value = None, "", line
+        entries.append({"scope": scope, "origin": origin, "value": value})
+    return {"ok": True, "entries": entries, "raw": proc.stdout}
+
+
+def read_context(git: str, env: dict) -> dict:
+    """Read helpers + interactive + askpass under ``env`` (as given)."""
+    helpers = read_config(git, "credential.helper", env)
+    if not helpers["ok"]:
+        return {"ok": False, "reason": helpers["reason"],
+                "stderr": helpers.get("stderr"),
+                "helpers": [], "interactive": [], "askpass": [],
+                "interactive_ok": False, "askpass_ok": False}
+    interactive = read_config(git, "credential.interactive", env)
+    askpass = read_config(git, "core.askPass", env)
+    return {
+        "ok": True,
+        "raw": helpers.get("raw"),
+        "helpers": helpers["entries"],
+        "interactive": interactive["entries"],
+        "interactive_ok": interactive["ok"],
+        "interactive_reason": interactive.get("reason"),
+        "askpass": askpass["entries"],
+        "askpass_ok": askpass["ok"],
+        "askpass_reason": askpass.get("reason"),
+    }
+
+
+def read_effective(git: str, overrides: dict | None = None) -> dict:
+    """Effective helper read (helpers + credential.interactive), scrubbed ambient env.
+
+    Retained so ``lane_credential_posture.py`` keeps importing a stable surface.
+    The EFFECTIVE resolution includes the ``credential.interactive`` setting, so
+    each helper entry is annotated with ``interaction_disabled`` computed against
+    the effective interactive config (scope-relative, same rule as the named
+    assertions). This is what lets the helper-only read distinguish the
+    contained L1 shape (``manager --no-ui`` + ``interactive = false``) from a
+    bare ``manager --no-ui`` with NO interaction-disabling setting.
+    """
+    env = clean_env(overrides)
+    helpers = read_config(git, "credential.helper", env)
+    if not helpers["ok"]:
+        return {"ok": False, "reason": helpers["reason"], "stderr": helpers.get("stderr"),
+                "entries": []}
+    interactive = read_config(git, "credential.interactive", env)
+    inter_entries = interactive["entries"] if interactive["ok"] else []
+    for h in helpers["entries"]:
+        h["interaction_disabled"] = A.interaction_disabled_for(h.get("scope"), inter_entries)
+    return {"ok": True, "entries": helpers["entries"], "raw": helpers.get("raw"),
+            "interactive": inter_entries}
+
+
+def evaluate_context(env: dict, cwd: str | None, helpers, interactive=None,
+                     askpass_config=None, config_params=None,
+                     askpass_read_ok=True, interactive_read_ok=True,
+                     allow=None, which=None) -> dict:
+    """PURE: evaluate one context's named assertions from already-read config.
+
+    No git process, no network, no credential access. ``env`` is the explicit
+    context environment and is used verbatim (never scrubbed). ``cwd`` is
+    recorded as metadata only for now.
+
+    ``askpass_read_ok`` / ``interactive_read_ok`` carry the outcome of the config
+    reads so a FAILED read becomes UNKNOWN (missing input is never absence),
+    never a silent PASS (round-2 defect D3).
+    """
+    result = A.run_assertions(helpers, interactive=interactive, env=env,
+                              askpass_config=askpass_config,
+                              config_params=config_params,
+                              askpass_read_ok=askpass_read_ok,
+                              interactive_read_ok=interactive_read_ok,
+                              allow=allow, which=which)
+    return {"cwd": cwd, "assertions": result["assertions"], "verdict": result["verdict"]}
+
+
+# --------------------------------------------------------------------------- #
+# back-compat single-verdict helper (helpers only, no environment)
+# --------------------------------------------------------------------------- #
+
+def classify(entries, interactive=None, env=None) -> dict:
+    """Helper-only verdict from the named helper assertions (DEPRECATED shim).
+
+    Retained for ``lane_credential_posture.py``. It has no environment to assert
+    askpass / terminal / override against, so its PASS covers ONLY the helper
+    list. It is NOT the whole-path verdict; use ``evaluate_context`` for that.
+    Without an ``interactive`` setting a prompt-capable family that relies on it
+    classifies as UNKNOWN (never PASS), which is why the loose ``--no-ui``
+    sniff was removed.
+
+    A mistyped argument (e.g. ``interactive="false"`` scalar instead of a list of
+    ``{"scope","value"}`` entries) returns a typed INCONCLUSIVE error dict with a
+    message; it never raises a bare ``AttributeError`` (round-2 defect D8).
+    """
+    def _typed_error(message):
+        return {"verdict": INCONCLUSIVE, "assertions": [],
+                "is_acceptance": False, "error": "ERR_CLASSIFY_BAD_ARGUMENT",
+                "reason": message}
+
+    if not isinstance(entries, (list, tuple)):
+        return _typed_error(
+            "entries must be a list of {scope,value,origin} mappings, got %s"
+            % type(entries).__name__)
+    if any(not isinstance(h, dict) for h in entries):
+        return _typed_error(
+            "entries must be a list of {scope,value,origin} mappings; a non-mapping "
+            "element was given")
+    if interactive is not None and not isinstance(interactive, (list, tuple)):
+        return _typed_error(
+            "interactive must be a list of {scope,value} entries (or None), got %s; "
+            "a scalar value cannot be resolved by git precedence"
+            % type(interactive).__name__)
+    if interactive is not None and any(not isinstance(i, dict) for i in interactive):
+        return _typed_error(
+            "interactive must be a list of {scope,value} mappings")
+    if not entries:
+        return {"verdict": INCONCLUSIVE,
+                "reason": "empty effective helper list: nothing to assert against",
+                "assertions": []}
+    result = A.run_helper_assertions(entries, interactive=interactive, env=env)
+    assertions = result["assertions"]
+    by_name = {a["name"]: a for a in assertions}
+    out = {"verdict": result["verdict"], "assertions": assertions,
+           "reset_present": by_name["helper_resolution_reset"]["status"] == PASS,
+           "reason": "helper-only verdict (no child env asserted): " +
+                     "; ".join(f"{a['name']}={a['status']}" for a in assertions)}
+    survivors = A.surviving_helpers(entries)
+    out["consulted_helpers"] = [str(h.get("value", "")).strip() for h in survivors]
+    for a in assertions:
+        if a["status"] == FAIL:
+            ev = a.get("evidence", {}).get("per_helper", [])
+            for item in ev:
+                if item.get("status") == FAIL:
+                    out["prompt_capable_helper"] = item["value"]
+                    break
+            for h in survivors:
+                if str(h.get("value", "")).strip() == out.get("prompt_capable_helper"):
+                    out["origin"] = h.get("origin")
+                    break
+    return out
+
+
+# --------------------------------------------------------------------------- #
+# CLI
+# --------------------------------------------------------------------------- #
+
+def _resolution_env(base_env: dict, test_global) -> dict:
+    """BASE env with the TEST-ONLY global redirection applied for the read only."""
+    env = dict(base_env)
+    if test_global:
+        env["GIT_CONFIG_GLOBAL"] = _fwd(test_global)
+    return env
+
+
+def _section(name: str, git: str, base_env: dict, test_global, scratch_env: dict) -> dict:
+    """Read a context back-compatibly and evaluate it.
+
+    ``scratch_env`` is the environment used for the git-config resolution read
+    (it may carry the TEST-ONLY global redirection). The child assertion env is
+    ``base_env`` as given, WITHOUT the test redirection, so the override
+    assertion sees the real child environment.
+    """
+    read = read_context(git, scratch_env)
+    if not read["ok"]:
+        return {"section": name, "ok": False, "reason": read["reason"],
+                "verdict": INCONCLUSIVE, "assertions": []}
+    evaluated = evaluate_context(
+        env=base_env, cwd=None,
+        helpers=read["helpers"], interactive=read["interactive"],
+        askpass_config=read["askpass"],
+        askpass_read_ok=read.get("askpass_ok", True),
+        interactive_read_ok=read.get("interactive_ok", True),
+    )
+    return {"section": name, "ok": True, "helpers": read["helpers"],
+            "interactive": read["interactive"], "askpass": read["askpass"],
+            "assertions": evaluated["assertions"], "verdict": evaluated["verdict"]}
+
+
+def build_result(git: str | None, test_global, child_env: dict, child_cwd=None) -> dict:
+    result = {"schema": SCHEMA, "verdict": INCONCLUSIVE,
+              "baseline": None, "child": None}
+    if git is None:
+        result["reason"] = "git executable not found on PATH"
+        return result
+
+    baseline_base = clean_env()
+    baseline = _section("baseline", git, baseline_base, test_global,
+                        _resolution_env(baseline_base, test_global))
+
+    child_base = dict(child_env)  # as given: NEVER scrubbed
+    child = _section("child", git, child_base, test_global,
+                     _resolution_env(child_base, test_global))
+
+    result["baseline"] = baseline
+    result["child"] = child
+    result["git"] = git
+    result["child_cwd"] = child_cwd
+    result["test_global"] = _fwd(test_global) if test_global else None
+    # The authoritative verdict is the CHILD context.
+    result["verdict"] = child.get("verdict", INCONCLUSIVE)
+    result["authoritative_section"] = "child"
+    result["claim_ceiling"] = ("containment POSTURE assertion on the effective child "
+                              "resolution; not an enforcement, not push authorization")
+    result["assertions"] = child.get("assertions", [])
+    return result
+
+
+def main(argv: list[str] | None = None) -> int:
+    ap = argparse.ArgumentParser(description="GCM containment preflight (gate, baseline+child)")
+    ap.add_argument("--json", action="store_true")
+    ap.add_argument("--git", default=None)
+    ap.add_argument("--test-global", default=None, dest="test_global",
+                    help="TEST-ONLY: point git's global scope at a scratch file")
+    ap.add_argument("--child-env-file", default=None, dest="child_env_file",
+                    help="JSON mapping of the CHILD spawn environment (default: the "
+                         "ambient process environment, taken as-is, not scrubbed)")
+    ap.add_argument("--child-cwd", default=None, dest="child_cwd",
+                    help="the working directory the child lane will spawn in")
+    args = ap.parse_args(argv)
+
+    git = args.git or shutil.which("git")
+
+    if args.child_env_file:
+        with open(args.child_env_file, "r", encoding="utf-8") as fh:
+            child_env = json.load(fh)
+    else:
+        child_env = dict(os.environ)
+
+    result = build_result(git, args.test_global, child_env, args.child_cwd)
+
+    if result["verdict"] == PASS:
+        result["gate"] = "single command, no side effects, no write"
+    else:
+        result["gate"] = ("FAIL-CLOSED: exit 2; INCONCLUSIVE and UNKNOWN are never "
+                          "counted as verification")
+
+    if args.json:
+        print(json.dumps(result, indent=2, ensure_ascii=False))
+    else:
+        reason = "; ".join(
+            f"{a['name']}={a['status']}" for a in result.get("assertions", [])
+        ) or result.get("reason", "")
+        print(f"{result['verdict']}: {reason}")
+    return 0 if result["verdict"] == PASS else 2
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

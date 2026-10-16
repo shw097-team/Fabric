@@ -1,0 +1,91 @@
+{
+  "schema": "HGK-CRED-BROKER-INSTALL/1",
+  "artefact": "GitHub credential broker (R9-designed) standing install",
+  "origin": "ephemeral scratch: <scratch>/r9/cred/ (pruned when idle; cannot serve an unattended run)",
+  "install_repo": "HG-KSEOS",
+  "install_mode": "COPY_BYTES_PRESERVING",
+  "activation": false,
+  "activation_note": "STANDING, NON-ACTIVATED. No config/ lane-routing / model-lane / dispatcher / Hermes-binding file references these paths. Installing does not wire the broker into any lane; activation is a separate, later, separately-admitted change.",
+  "governance": {
+    "control_plane": "HG-KSEOS",
+    "route": "separate HG-KSEOS control-plane admission (typed ProjectLifecycleController.admit_requirement); NOT rideable inside a PIPD product round",
+    "precedent": "FAR-PIPD-R8-DISPATCH-004 sec.4 option B",
+    "candidate_requirement": "REQ-HGK-CREDBROKER-001",
+    "candidate_admission_script": "scripts/cred/admission/hgk_cred_admission.py",
+    "minimal_target_project": "HGK-CHU-20261009 (EXECUTING; already carries REQ-CHU-R2-04-CREDENTIAL-SCRUB / REQ-CHU-R2-05-BRIDGE-CONFIG)",
+    "candidate_admission_script_note": "REPOINTED. This field previously named a Route-B round directory that was never created, leaving a pinned target that did not exist. The script that actually performed the admission is installed at the path above and is the file this field now pins.",
+    "route_actually_taken": "Route A - admit into existing control-plane project HGK-CHU-20261009"
+  },
+  "self_hash_policy": "This manifest does NOT list its own digest (self-reference prohibited, AGENTS.md rule 5).",
+  "files": [
+    {
+      "target": "scripts/cred/cred_broker.py",
+      "sha256": "38baca046f26ff7fbb197dff0d771619a0512858000b3529a35eea1c189e1f62",
+      "bytes": 8011
+    },
+    {
+      "target": "scripts/cred/cred_preflight.py",
+      "sha256": "cc5177c73690859e0785ee902930912703dc761a64ca4a71ed342abcc193a8bc",
+      "bytes": 7909
+    },
+    {
+      "target": "scripts/cred/selftest.py",
+      "sha256": "26c47a492f56c63ab6e3384f9694d532fc5f93ad896ac8e7a73f4a999a4b398e",
+      "bytes": 3838
+    },
+    {
+      "target": "scripts/cred/verify_offline.py",
+      "sha256": "30bc35ea0a56ed110241d2f432a0f570f7738e9a5a49c3d293ee67f2ff73f7e9",
+      "bytes": 3964
+    },
+    {
+      "target": "scripts/cred/README.md",
+      "sha256": "d235b0dddfa48b4898d270ed864dfa5a14398052160e9d35be124d77b5cebef0",
+      "bytes": 2862
+    },
+    {
+      "target": "scripts/cred/INSTALL.md",
+      "sha256": "6f0054e8b80cc72a759e4ef562e70bb49a0e6626b9c1b74c41870eb851337b06",
+      "bytes": 4668
+    },
+    {
+      "target": "scripts/cred/admission/hgk_cred_admission.py",
+      "sha256": "e521ae869fc48d56b52a0a94d09d7418dbb078d7b02b533f4788be0cccdbd7ea",
+      "bytes": 5598
+    }
+  ],
+  "control_plane_admission_file": {
+    "target": "scripts/cred/admission/hgk_cred_admission.py",
+    "sha256": "e521ae869fc48d56b52a0a94d09d7418dbb078d7b02b533f4788be0cccdbd7ea",
+    "note": "REPOINTED. This target previously named a Route-B round directory that was never created, so it dangled. The script that actually performed the admission is installed at the path above and is what this field now pins.",
+    "route_actually_taken": "Route A - admitted into existing control-plane project HGK-CHU-20261009"
+  },
+  "verification": [
+    {
+      "id": "V1_integrity",
+      "cmd": "python -c \"import json,hashlib,pathlib as p;m=json.load(open('scripts/cred/INSTALL_MANIFEST.json'));[print(f['target'], hashlib.sha256((p.Path('.')/f['target']).read_bytes()).hexdigest()==f['sha256']) for f in m['files']]\"",
+      "expect": "all True"
+    },
+    {
+      "id": "V2_offline_contract",
+      "cmd": "python scripts/cred/verify_offline.py",
+      "expect": "verdict=PASS_OFFLINE_T5_UNPROVEN, exit 0"
+    },
+    {
+      "id": "V3_full_contract_dummy",
+      "cmd": "python scripts/cred/selftest.py",
+      "expect": "7/7 PASS, exit 0 (V3 counts the recorded checks: T1 was split into T1a/T1b/T1c when the gate began requiring the EFFECTIVE source rather than unconditionally the PAT; needs network for T5; DUMMY creds only)"
+    },
+    {
+      "id": "V4_failclosed",
+      "cmd": "env HGK_CRED_FILE=/nonexistent python scripts/cred/cred_preflight.py --metadata-only",
+      "expect": "verdict=FAIL_CLOSED, exit 2"
+    },
+    {
+      "id": "V5_non_activation",
+      "cmd": "git grep -n \"scripts/cred\" -- config/ scripts/ src/ | grep -v '^scripts/cred/' || echo NON_ACTIVATED_OK",
+      "expect": "NON_ACTIVATED_OK"
+    }
+  ],
+  "secret_policy": "No secret value is read, printed, hashed, or copied. verify_offline.py and selftest.py use DUMMY tokens only; cred_preflight --metadata-only never reads the credential file's content."
+}

@@ -1,0 +1,351 @@
+{
+  "schema": "ROUND3-EVIDENCE-REPO-MERGE-BRANCH-CLEANUP/1",
+  "generated_for_round": "ROUND3-LANE-REBIND-AND-CLOSURE-20261016",
+  "measured_at_utc": "2026-10-16T05:45:00Z",
+  "branches": [
+    {
+      "branch": "main",
+      "tip_sha": "b8ff81043e47e4b652522be34444bf52fcf4d65e",
+      "class": "LONG_LIVED_DO_NOT_TOUCH",
+      "measurement": "the default branch itself; tip equals origin/HEAD per git ls-remote; last commit 2026-10-15T20:45:45+08:00 which is the merge commit of PR #3"
+    },
+    {
+      "branch": "docs/skill-convergence-20261014",
+      "tip_sha": "37074480a7ac3ab94e86b90e34bfff478481d769",
+      "class": "MERGED_AND_DELETABLE",
+      "measurement": "PR #1 (state=closed, merged_at=2026-10-14T08:10:09Z, merge_commit_sha=f14724d) merged exactly this tip; tip is ancestor of origin/main; ahead=0 behind=15; git merge-base --is-ancestor exit 0"
+    },
+    {
+      "branch": "docs/skill-convergence-20261014-followup",
+      "tip_sha": "4650444eb08f51e06fa327506a4be56ff43d3b06",
+      "class": "MERGED_AND_DELETABLE",
+      "measurement": "PR #2 (state=closed, merged_at=2026-10-14T08:21:06Z, merge_commit_sha=266f8d6) merged exactly this tip; tip is ancestor of origin/main; ahead=0 behind=13"
+    },
+    {
+      "branch": "evidence/cnv-pipd-ls-sp-20261015-r6",
+      "tip_sha": "a10f7bea645792048e3415443d417ffa3c2ac890",
+      "class": "MERGED_AND_DELETABLE",
+      "measurement": "PR #3 (state=closed, merged_at=2026-10-15T12:45:46Z, merge_commit_sha=b8ff810 = current origin/main) merged exactly this tip; tip is ancestor of origin/main; ahead=0 behind=1"
+    },
+    {
+      "branch": "evidence/cnv-pipd-ls-sp-20261015-r7",
+      "tip_sha": "04a1e118dd6616ccb6b2e68b68544fd5af4271ae",
+      "class": "OPEN_PR_AWAITING_OWNER",
+      "measurement": "is the head ref of OPEN PR #4 (draft=true, mergeable=true, mergeable_state=clean, 306 changed files); NOT an ancestor of origin/main; ahead=7 behind=0; last commit 2026-10-16T01:00:08+08:00"
+    },
+    {
+      "branch": "evidence/cnv-pipd-ls-sp-20261015-r8",
+      "tip_sha": "3af4148021c2cc7bd5a30fba3f3dd46de61bb854",
+      "class": "OPEN_PR_AWAITING_OWNER",
+      "measurement": "is the head ref of OPEN PR #5 (draft=true, mergeable=true, mergeable_state=clean, 359 changed files); NOT an ancestor of origin/main; ahead=3 behind=0; last commit 2026-10-16T11:52:41+08:00; no file overlap with R7 or R9 ranges"
+    },
+    {
+      "branch": "evidence/cnv-pipd-ls-sp-20261015-r9",
+      "tip_sha": "5cd47ceaa493f37de479aa558f1123fd4e3e4136",
+      "class": "OPEN_PR_AWAITING_OWNER",
+      "measurement": "is the head ref of OPEN PR #7 (draft=true, mergeable=true, mergeable_state=clean, 120 changed files); NOT an ancestor of origin/main; ahead=4 behind=0; last commit 2026-10-16T13:00:11+08:00"
+    },
+    {
+      "branch": "evidence/skill-convergence-20261014-full-packet",
+      "tip_sha": "df411fbd2ff6db2fc1f1b03120756194a9f76b81",
+      "class": "LONG_LIVED_DO_NOT_TOUCH",
+      "measurement": "NOT merged, has NO open PR, ahead=3 behind=14 relative to origin/main; its 641 file diff touches only EVIDENCE/skill-convergence-20261014-full-packet/; carried documentation on main (EVIDENCE/SKILL-CONVERGENCE-20261014/README.md lines 41-56, PUBLICATION-RECORD.md line 24, FABRIC/README.md line 51, INTEGRATION/KNOWN-FINDINGS.md K-20) explicitly designates this branch as the byte-identical standing evidence home and documents a clone workflow targetting this exact branch name; treated as a deliberate long-lived evidence branch - deletion would break documented provenance"
+    },
+    {
+      "branch": "pub/far-remediation-and-closure-20261016",
+      "tip_sha": "5ae6f37d305fa9da2da8e9a05b03ff65f02bd04f",
+      "class": "OPEN_PR_AWAITING_OWNER",
+      "measurement": "is the head ref of OPEN PR #8 (draft=false, mergeable=true, mergeable_state=clean, 131 changed files); NOT an ancestor of origin/main; ahead=4 behind=0; last commit 2026-10-16T13:27:27+08:00; this is the tip the local clone is currently checked out on"
+    },
+    {
+      "branch": "pub/lane-reliability-closure-20261016",
+      "tip_sha": "0cb59d904224afc553906ebab002d443a3981e3d",
+      "class": "OPEN_PR_AWAITING_OWNER",
+      "measurement": "is the head ref of OPEN PR #6 (draft=false, mergeable=true, mergeable_state=clean, 74 changed files); NOT an ancestor of origin/main; ahead=4 behind=0; last commit 2026-10-16T12:05:24+08:00"
+    }
+  ],
+  "pull_requests": [
+    {
+      "number": 1,
+      "state": "closed",
+      "merged": true,
+      "merged_at": "2026-10-14T08:10:09Z",
+      "merge_commit_sha": "f14724d",
+      "head_branch": "docs/skill-convergence-20261014",
+      "head_sha": "37074480a7ac3ab94e86b90e34bfff478481d769",
+      "base_branch": "main",
+      "base_sha_at_merge": "71de521",
+      "changed_files": 27,
+      "result": "MERGED"
+    },
+    {
+      "number": 2,
+      "state": "closed",
+      "merged": true,
+      "merged_at": "2026-10-14T08:21:06Z",
+      "merge_commit_sha": "266f8d6",
+      "head_branch": "docs/skill-convergence-20261014-followup",
+      "head_sha": "4650444eb08f51e06fa327506a4be56ff43d3b06",
+      "base_branch": "main",
+      "base_sha_at_merge": "f14724d",
+      "changed_files": 5,
+      "result": "MERGED"
+    },
+    {
+      "number": 3,
+      "state": "closed",
+      "merged": true,
+      "merged_at": "2026-10-15T12:45:46Z",
+      "merge_commit_sha": "b8ff810",
+      "head_branch": "evidence/cnv-pipd-ls-sp-20261015-r6",
+      "head_sha": "a10f7bea645792048e3415443d417ffa3c2ac890",
+      "base_branch": "main",
+      "base_sha_at_merge": "266f8d6",
+      "changed_files": 581,
+      "result": "MERGED (merge commit IS the current origin/main tip)"
+    },
+    {
+      "number": 4,
+      "state": "open",
+      "draft": true,
+      "head_branch": "evidence/cnv-pipd-ls-sp-20261015-r7",
+      "head_sha": "04a1e118dd6616ccb6b2e68b68544fd5af4271ae",
+      "base_branch": "main",
+      "base_sha": "b8ff81043e47e4b652522be34444bf52fcf4d65e",
+      "head_is_ancestor_of_main": false,
+      "ahead_behind_vs_main": "ahead=7 behind=0",
+      "mergeable": true,
+      "mergeable_state": "clean",
+      "changed_files": 306,
+      "content_already_on_main_by_another_route": false,
+      "content_note": "its 306 changed files are entirely under EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/, zero files overlap with R8/R9/FAR/lane/full-packet ranges, and zero branch files already exist on origin/main"
+    },
+    {
+      "number": 5,
+      "state": "open",
+      "draft": true,
+      "head_branch": "evidence/cnv-pipd-ls-sp-20261015-r8",
+      "head_sha": "3af4148021c2cc7bd5a30fba3f3dd46de61bb854",
+      "base_branch": "main",
+      "base_sha": "b8ff81043e47e4b652522be34444bf52fcf4d65e",
+      "head_is_ancestor_of_main": false,
+      "ahead_behind_vs_main": "ahead=3 behind=0",
+      "mergeable": true,
+      "mergeable_state": "clean",
+      "changed_files": 359,
+      "content_already_on_main_by_another_route": false,
+      "content_note": "its 359 changed files are entirely under EVIDENCE/CNV-PIPD-LS-SP-20261015-R8/, zero files overlap with R7/R9/FAR/lane/full-packet ranges, zero branch files already exist on origin/main"
+    },
+    {
+      "number": 6,
+      "state": "open",
+      "draft": false,
+      "head_branch": "pub/lane-reliability-closure-20261016",
+      "head_sha": "0cb59d904224afc553906ebab002d443a3981e3d",
+      "base_branch": "main",
+      "base_sha": "b8ff81043e47e4b652522be34444bf52fcf4d65e",
+      "head_is_ancestor_of_main": false,
+      "ahead_behind_vs_main": "ahead=4 behind=0",
+      "mergeable": true,
+      "mergeable_state": "clean",
+      "changed_files": 74,
+      "content_already_on_main_by_another_route": false,
+      "content_note": "74 changed files are entirely under EVIDENCE/LANE-RELIABILITY-CLOSURE-20261016/, zero overlap with other open branches, zero branch files already exist on origin/main"
+    },
+    {
+      "number": 7,
+      "state": "open",
+      "draft": true,
+      "head_branch": "evidence/cnv-pipd-ls-sp-20261015-r9",
+      "head_sha": "5cd47ceaa493f37de479aa558f1123fd4e3e4136",
+      "base_branch": "main",
+      "base_sha": "b8ff81043e47e4b652522be34444bf52fcf4d65e",
+      "head_is_ancestor_of_main": false,
+      "ahead_behind_vs_main": "ahead=4 behind=0",
+      "mergeable": true,
+      "mergeable_state": "clean",
+      "changed_files": 120,
+      "content_already_on_main_by_another_route": false,
+      "content_note": "120 changed files are entirely under EVIDENCE/CNV-PIPD-LS-SP-20261015-R9/, zero overlap with other open branches, zero branch files already exist on origin/main"
+    },
+    {
+      "number": 8,
+      "state": "open",
+      "draft": false,
+      "head_branch": "pub/far-remediation-and-closure-20261016",
+      "head_sha": "5ae6f37d305fa9da2da8e9a05b03ff65f02bd04f",
+      "base_branch": "main",
+      "base_sha": "b8ff81043e47e4b652522be34444bf52fcf4d65e",
+      "head_is_ancestor_of_main": false,
+      "ahead_behind_vs_main": "ahead=4 behind=0",
+      "mergeable": true,
+      "mergeable_state": "clean",
+      "changed_files": 131,
+      "content_already_on_main_by_another_route": false,
+      "content_note": "131 changed files are entirely under EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/, zero overlap with other open branches, zero branch files already exist on origin/main"
+    }
+  ],
+  "cleanup_candidates": [
+    {
+      "branch": "docs/skill-convergence-20261014",
+      "class": "MERGED_AND_DELETABLE",
+      "why_safe": "tip 3707448 is the exact merge input of merged PR #1 and is an ancestor of origin/main; DELETE branch via the PR's merge notification link preserves the commit id forever",
+      "risk": "near-zero; the deletion is reversible by re-pushing the same SHA"
+    },
+    {
+      "branch": "docs/skill-convergence-20261014-followup",
+      "class": "MERGED_AND_DELETABLE",
+      "why_safe": "tip 4650444 is the exact merge input of merged PR #2 and is an ancestor of origin/main",
+      "risk": "near-zero"
+    },
+    {
+      "branch": "evidence/cnv-pipd-ls-sp-20261015-r6",
+      "class": "MERGED_AND_DELETABLE",
+      "why_safe": "tip a10f7be is the exact merge input of merged PR #3 and is an ancestor of origin/main (origin/main IS the merge commit b8ff810 of PR #3)",
+      "risk": "near-zero"
+    }
+  ],
+  "merge_readiness": [
+    {
+      "pr_number": 6,
+      "headline": "LANE-RELIABILITY-CLOSURE-20261016: three-lane usability and reliability (candidate only)",
+      "head_branch": "pub/lane-reliability-closure-20261016",
+      "base_branch": "main",
+      "draft": false,
+      "mergeable": true,
+      "mergeable_state": "clean",
+      "changed_files": 74,
+      "base_sha_current_main_sha": true,
+      "head_is_ancestor_of_main": false,
+      "conflicts_with_open_prs": false,
+      "content_already_on_main_by_another_route": false,
+      "verdict_for_owner": "review-then-merge if accepted"
+    },
+    {
+      "pr_number": 8,
+      "headline": "FAR-REMEDIATION-AND-CLOSURE-20261016: F1 closed, candidate promoted, R7 defect class named (candidate only)",
+      "head_branch": "pub/far-remediation-and-closure-20261016",
+      "base_branch": "main",
+      "draft": false,
+      "mergeable": true,
+      "mergeable_state": "clean",
+      "changed_files": 131,
+      "base_sha_current_main_sha": true,
+      "head_is_ancestor_of_main": false,
+      "conflicts_with_open_prs": false,
+      "content_already_on_main_by_another_route": false,
+      "verdict_for_owner": "review-then-merge if accepted"
+    },
+    {
+      "pr_number": 4,
+      "headline": "evidence(CNV-PIPD-LS-SP-20261015-R7): R7-0 validator hardening, checker isolation, EIA review receipts (candidate only)",
+      "head_branch": "evidence/cnv-pipd-ls-sp-20261015-r7",
+      "base_branch": "main",
+      "draft": true,
+      "mergeable": true,
+      "mergeable_state": "clean",
+      "changed_files": 306,
+      "base_sha_current_main_sha": true,
+      "head_is_ancestor_of_main": false,
+      "conflicts_with_open_prs": false,
+      "content_already_on_main_by_another_route": false,
+      "verdict_for_owner": "still DRAFT - owner needs to decide whether to mark ready-for-review first"
+    },
+    {
+      "pr_number": 5,
+      "headline": "evidence(CNV-PIPD-LS-SP-20261015-R8): skill-slim regression+apply, R8-0 rebase on main, checker-isolation evidence (draft)",
+      "head_branch": "evidence/cnv-pipd-ls-sp-20261015-r8",
+      "base_branch": "main",
+      "draft": true,
+      "mergeable": true,
+      "mergeable_state": "clean",
+      "changed_files": 359,
+      "base_sha_current_main_sha": true,
+      "head_is_ancestor_of_main": false,
+      "conflicts_with_open_prs": false,
+      "content_already_on_main_by_another_route": false,
+      "verdict_for_owner": "still DRAFT - owner needs to decide whether to mark ready-for-review first"
+    },
+    {
+      "pr_number": 7,
+      "headline": "evidence(CNV-PIPD-LS-SP-20261015-R9): FAR residual closure, validator adaptation on main, repaired skill candidate, record corrections",
+      "head_branch": "evidence/cnv-pipd-ls-sp-20261015-r9",
+      "base_branch": "main",
+      "draft": true,
+      "mergeable": true,
+      "mergeable_state": "clean",
+      "changed_files": 120,
+      "base_sha_current_main_sha": true,
+      "head_is_ancestor_of_main": false,
+      "conflicts_with_open_prs": false,
+      "content_already_on_main_by_another_route": false,
+      "verdict_for_owner": "still DRAFT - owner needs to decide whether to mark ready-for-review first"
+    }
+  ],
+  "options_analysis": {
+    "a_merge_an_open_pr_into_main": {
+      "feasible": true,
+      "risk_level_note": "all 5 open PRs are mergeable_state=clean and do not conflict with each other; but this is owner's acceptance authority",
+      "allowed_to_agent": false
+    },
+    "b_delete_merged_but_unpruned_branches": {
+      "feasible": true,
+      "risk_level_note": "the three docs/+ one evidence/ branches whose PRs already merged are pure residue",
+      "allowed_to_agent": false
+    },
+    "c_leave_everything_and_publish_merge_readiness_packet": {
+      "feasible": true,
+      "risk_level_note": "lowest-friction zero-write option",
+      "allowed_to_agent": true
+    },
+    "d_other_low_friction_options": {
+      "feasible": true,
+      "risk_level_note": "no other zero-write candidates surfaced; every remaining mutation (PR edit/close, branch delete, PR comment) is already reserved to the owner by the governance contract",
+      "allowed_to_agent": false
+    }
+  },
+  "owner_only_actions": [
+    "OPTION (a): merge any of PRs #4 #5 #6 #7 #8 into main - each is mergeable_state=clean, but every PR acceptance is reserved to the repository owner under the no-agent-self-acceptance contract",
+    "OPTION (b): delete merged-and-unpruned branches docs/skill-convergence-20261014, docs/skill-convergence-20261014-followup, evidence/cnv-pipd-ls-sp-20261015-r6 via GitHub's PR-page 'Delete branch' button or API DELETE /repos/shw097-team/Fabric/git/refs/heads/<branch>; commits stay reachable via the PR #1/#2/#3 merge commits so no history is lost",
+    "OPTION (d-alternative): same deletion via 'gh pr list --state merged && gh api repos/shw097-team/Fabric/git/refs/heads/<branch> -X DELETE' would be redundant with option (b) and is owner-only too",
+    "for all three DRAFT PRs (#4 #5 #7): owner flips draft->ready_for_review before any merge consideration"
+  ],
+  "agent_allowed_actions": [
+    "OPTION (c): publish this merge-readiness packet (this JSON plus the paired MD evidence file) and nothing else"
+  ],
+  "unknowns": [
+    "GET /branches/main/protection returned 403 'Resource not accessible by personal access token' for the fine-grained PAT - branch protection rules could not be read directly; the branches/main endpoint payload states protected:false and protection.enabled:false. If branch protection were actually on, PRs #4-#8 would surface additional required review/state checks in mergeable_state that are not visible with 'clean'; at time of measurement all 5 report mergeable_state=clean",
+    "whether the intended governing contract for this round also classifies evidence/skill-convergence-20261014-full-packet as deletable is ambiguous: it is NOT PR-merged, has no open PR, is ahead=3/behind=14 of main, but multiple main-tree records (README, PUBLICATION-RECORD, KNOWN-FINDINGS K-20) document it as the standing evidence home. It is classified LONG_LIVED_DO_NOT_TOUCH in this audit; owner should confirm or amend this classification",
+    "deleted branch tips are archived only as commit ids reachable via PR merge commits, not as branch refs; a full SHA recall of docs/skill-convergence-20261014 tip and its exact merge commit f14724d can only be confirmed from the audit record here (or from git if the local clone keeps a reflog/fetch ref)"
+  ],
+  "governance_note": "Under the contract that forbids agent self-acceptance/self-promotion and reserves merges to the repository owner: the agent may publish ownership-neutral read-only evidence such as this packet. It may NOT merge, close, comment on, edit or push any of this state; all of (a), (b), (d) are owner-only actions.",
+  "commands_used": {
+    "local": [
+      "cd C:/Projects/Agent_Workspace/Fabric && git rev-parse HEAD",
+      "cd C:/Projects/Agent_Workspace/Fabric && git rev-parse --abbrev-ref HEAD",
+      "cd C:/Projects/Agent_Workspace/Fabric && git remote -v",
+      "cd C:/Projects/Agent_Workspace/Fabric && git fetch origin --prune",
+      "cd C:/Projects/Agent_Workspace/Fabric && git branch -r --sort=objectname --format='%(refname:short)|%(objectname)|%(committerdate:iso8601-strict)|%(subject)'",
+      "cd C:/Projects/Agent_Workspace/Fabric && git log --oneline origin/main..origin/<branch>   (per branch, for the divergent ones)",
+      "cd C:/Projects/Agent_Workspace/Fabric && git merge-base --is-ancestor origin/<branch> origin/main",
+      "cd C:/Projects/Agent_Workspace/Fabric && git diff --name-only origin/main...origin/<branch>",
+      "cd C:/Projects/Agent_Workspace/Fabric && git diff --name-only <merge_base>..<tip>   (per merged PR)",
+      "cd C:/Projects/Agent_Workspace/Fabric && git ls-tree -r --name-only origin/main",
+      "cd C:/Projects/Agent_Workspace/Fabric && git grep -n 'full-packet' origin/main -- '*.md' '*.json'",
+      "cd /tmp/fp_ro && git config core.longpaths true && git checkout -f FETCH_HEAD && git ls-files | wc -l"
+    ],
+    "remote": [
+      "curl -s -H 'Authorization: Bearer <token from env>' https://api.github.com/repos/shw097-team/Fabric/pulls?state=all -o /tmp/fabric_prs.json",
+      "python urllib GET https://api.github.com/repos/shw097-team/Fabric/pulls/<n>",
+      "python urllib GET https://api.github.com/repos/shw097-team/Fabric/pulls/<n>/files",
+      "python urllib GET https://api.github.com/repos/shw097-team/Fabric/pulls/<n>/commits",
+      "python urllib GET https://api.github.com/repos/shw097-team/Fabric/issues/<n>/comments",
+      "python urllib GET https://api.github.com/repos/shw097-team/Fabric/collaborators/shw097/permission",
+      "python urllib GET https://api.github.com/repos/shw097-team/Fabric/user   (identity check)",
+      "python urllib GET https://api.github.com/repos/shw097-team/Fabric/branches/main>",
+      "python urllib GET https://api.github.com/repos/shw097-team/Fabric/branches/main/protection (returned 403, see unknowns)",
+      "git ls-remote https://github.com/shw097-team/Fabric.git",
+      "git clone --depth 1 --branch evidence/skill-convergence-20261014-full-packet https://github.com/shw097-team/Fabric.git <tmp-path>  (read-only verification of branch clone-ability; succeeded)"
+    ]
+  }
+}

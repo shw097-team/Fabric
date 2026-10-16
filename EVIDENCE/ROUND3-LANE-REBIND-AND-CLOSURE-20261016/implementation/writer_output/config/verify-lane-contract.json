@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "contract_id": "HGK-VERIFY-1",
+  "round": "FAR-LANE-SOD-007",
+  "claim_ceiling": "CANDIDATE_ONLY",
+  "skeleton_first": true,
+  "forbid_heredoc_writes": true,
+  "max_string_chars": 250,
+  "default_tool_call_budget": 28,
+  "refine_max": 3,
+  "typed_refusal": {
+    "on_refusal": "stop_and_emit_blocked",
+    "max_retries": 1,
+    "authorization_retries": 0,
+    "transient_read_retries": 1,
+    "retry_scope": "transient_read_only",
+    "checkpoint_count_is_not_refinement": true
+  },
+  "required_keys": [
+    "round",
+    "verifier_model_and_provider",
+    "verdict",
+    "checks",
+    "caveats",
+    "unfinished",
+    "phase",
+    "matrix_sha256",
+    "contract_sha256",
+    "manifest_sha256",
+    "claim_ceiling"
+  ],
+  "verdict_enum": ["PASS", "PARTIAL", "FAIL"],
+  "check_status_enum": ["PASS", "FAIL", "NOT_RUN", "BLOCKED"],
+  "check_item_keys": ["id", "claim", "evidence", "holds", "status"],
+  "rules": [
+    {
+      "id": "R01",
+      "requirement": "skeleton_first: the frozen verdict skeleton is written before any discovery and carries one ordered NOT_RUN row per frozen matrix item.",
+      "enforcement_point": "controller_pre_dispatch",
+      "evidence_requirement": "trusted lifecycle trace ordering skeleton write before first discovery tool call",
+      "static_status": "ENFORCED_BY_VALIDATORS",
+      "behavioral_status": "BLOCKED_CONTROLLER_NOT_AUTHORIZED"
+    },
+    {
+      "id": "R02",
+      "requirement": "forbid_heredoc_writes: no heredoc/shell redirection write is used to author artifacts.",
+      "enforcement_point": "controller_pre_tool",
+      "evidence_requirement": "trusted tool-call trace with no heredoc authoring call",
+      "static_status": "STATIC_ARTIFACT_ONLY",
+      "behavioral_status": "BLOCKED_CONTROLLER_NOT_AUTHORIZED"
+    },
+    {
+      "id": "R03",
+      "requirement": "max_string_chars: every string value in the verdict is <= 250 Unicode code points.",
+      "enforcement_point": "offline_validator",
+      "evidence_requirement": "validate exit 0 with recursive string scan",
+      "static_status": "ENFORCED_BY_VALIDATORS",
+      "behavioral_status": "ENFORCED"
+    },
+    {
+      "id": "R04",
+      "requirement": "default_tool_call_budget 28 counts all tool invocations including nested and parallel calls; the lane stops and checkpoints PARTIAL at the bound.",
+      "enforcement_point": "controller_pre_tool",
+      "evidence_requirement": "trusted controller trace counter",
+      "static_status": "STATIC_ARTIFACT_ONLY",
+      "behavioral_status": "BLOCKED_CONTROLLER_NOT_AUTHORIZED"
+    },
+    {
+      "id": "R05",
+      "requirement": "typed_refusal: on refusal stop and emit BLOCKED, zero authorization retries, at most one transient-read retry.",
+      "enforcement_point": "controller_pre_tool",
+      "evidence_requirement": "typed refusal record with blocked checkpoint and retry counters",
+      "static_status": "ENFORCED_BY_VALIDATORS",
+      "behavioral_status": "BLOCKED_CONTROLLER_NOT_AUTHORIZED"
+    },
+    {
+      "id": "R06",
+      "requirement": "refine_max 3 bounds final narrative rewrites only; per-item checkpointing is not a refinement.",
+      "enforcement_point": "controller_pre_dispatch",
+      "evidence_requirement": "trusted lifecycle trace refine counter",
+      "static_status": "STATIC_ARTIFACT_ONLY",
+      "behavioral_status": "BLOCKED_CONTROLLER_NOT_AUTHORIZED"
+    },
+    {
+      "id": "R07",
+      "requirement": "required_keys: the verdict contains every required key; skeleton verdict is null and final verdict is one of PASS/PARTIAL/FAIL.",
+      "enforcement_point": "offline_validator",
+      "evidence_requirement": "check-skeleton and validate exit 0",
+      "static_status": "ENFORCED_BY_VALIDATORS",
+      "behavioral_status": "ENFORCED"
+    },
+    {
+      "id": "R08",
+      "requirement": "atomic serialize-validate-replace preserves the previous valid checkpoint on failure.",
+      "enforcement_point": "offline_validator",
+      "evidence_requirement": "interrupted-write test preserving prior valid target",
+      "static_status": "ENFORCED_BY_VALIDATORS",
+      "behavioral_status": "ENFORCED"
+    },
+    {
+      "id": "R09",
+      "requirement": "unfinished lists exactly the matrix ids that are neither PASS nor FAIL (NOT_RUN/BLOCKED).",
+      "enforcement_point": "offline_validator",
+      "evidence_requirement": "validate exit 0 with unfinished consistency check",
+      "static_status": "ENFORCED_BY_VALIDATORS",
+      "behavioral_status": "ENFORCED"
+    },
+    {
+      "id": "R10",
+      "requirement": "PASS requires a complete nonempty frozen denominator, every required row PASS, effective controls and no BLOCKED/NOT_RUN rows.",
+      "enforcement_point": "offline_validator",
+      "evidence_requirement": "validate aggregate-verdict consistency check",
+      "static_status": "ENFORCED_BY_VALIDATORS",
+      "behavioral_status": "ENFORCED"
+    }
+  ],
+  "enforcement_wiring": {
+    "actual_hgk_consumer": null,
+    "note": "No HGK controller pre-dispatch / pre-tool consumer path is authorized for round FAR-LANE-SOD-007. The three static read-only subcommands enforce the decidable subset; temporal lane discipline (skeleton ordering, budget, no-heredoc, refine count, refusal) has no authorized controller hook and is therefore BLOCKED, not implemented.",
+    "separate_authorization_required": true
+  }
+}

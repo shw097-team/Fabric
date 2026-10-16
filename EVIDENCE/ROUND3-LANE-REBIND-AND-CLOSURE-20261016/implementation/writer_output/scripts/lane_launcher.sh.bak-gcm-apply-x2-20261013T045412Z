@@ -1,0 +1,344 @@
+#!/usr/bin/env sh
+# T3 - lane launcher wiring.
+#
+# Usage: lane_launcher.sh <lane-name> <model> <effort> <brief> <log>
+#
+# Fixed, fail-closed order:
+#   1. resolve + verify the DECLARED toolchain identity via
+#      scripts/hgk-lane-toolchain.py (T1). No find / command -v discovery.
+#   2. run the bounded pre-lane identity preflight via
+#      scripts/hgk-lane-preflight.py (T2).
+#   3. only then run the real lane, and only when T2 returned LANE_OK.
+#
+# Substitution gate:
+#   * LANE_TOOLCHAIN_MISMATCH -> REFUSE to substitute; exit non-zero and NAME the
+#     offending build. No deviation record is written.
+#   * LANE_MODEL_REFUSED      -> write a declared-model-deviation record that
+#     carries the T2 receipt fields; do NOT substitute inline; exit non-zero for
+#     an owner decision.
+#
+# Safety:
+#   * the canonical containment guard (scripts/hgk-lane-preflight.py's
+#     check_containment, reused via --check-containment) is the ONLY containment
+#     predicate; there is no second, weaker inline check.
+#   * NO directory is created (no mkdir) until containment is PROVEN for the
+#     scratch base, the lane scratch, the caller log and the receipt.
+#   * cleanup deletes ONLY the lane's own scratch, only after re-proving
+#     containment; a failed deletion changes the exit status and is recorded
+#     AFTER it is attempted. No `|| true` swallows a delete failure.
+#
+# T7 identity assertion:
+#   * after the long lane returns, the served model is extracted ONLY from the
+#     CLI's anchored startup banner in $LOG and compared with the declared model.
+#   * a mismatch, or an absent/unreadable banner on an otherwise-successful lane,
+#     writes ${LOG}.identity.receipt.json and exits 98
+#     (ERR_LANE_MODEL_IDENTITY_MISMATCH). 98 is deliberately outside the existing
+#     90/91/92/93/94/95/99 launcher/preflight codes.
+#
+# POSIX sh (git-bash on Windows). Prefer stdlib; no new dependencies.
+
+set -u
+
+if [ "$#" -ne 5 ]; then
+  echo "usage: $0 <lane-name> <model> <effort> <brief> <log>" >&2
+  exit 64
+fi
+
+LANE_NAME="$1"
+MODEL="$2"
+EFFORT="$3"
+BRIEF="$4"
+LOG="$5"
+
+SELF_DIR="$(cd "$(dirname "$0")" && pwd)"
+RESOLVER="$SELF_DIR/hgk-lane-toolchain.py"
+PREFLIGHT="$SELF_DIR/hgk-lane-preflight.py"
+SUBJECT_ROOT="$(cd "$SELF_DIR/.." && pwd)"
+
+# Windows<->POSIX path conversion when a native interpreter is used on git-bash.
+WIN() {
+  if command -v cygpath >/dev/null 2>&1; then cygpath -w "$1"; else printf '%s' "$1"; fi
+}
+
+# Interpreter override; otherwise pick a working one. This is NOT binary
+# discovery of the lane toolchain (that is T1's job) - it only chooses a Python
+# to run the two helper scripts.
+PYTHON="${HGK_LANE_PYTHON:-}"
+if [ -z "$PYTHON" ]; then
+  for cand in python3 python; do
+    if command -v "$cand" >/dev/null 2>&1 && "$cand" -c '' >/dev/null 2>&1; then
+      PYTHON="$cand"; break
+    fi
+  done
+  if [ -z "$PYTHON" ]; then
+    echo "ERR_LANE_TOOLCHAIN_NO_PYTHON" >&2
+    exit 92
+  fi
+fi
+
+if "$PYTHON" -c 'import os,sys; sys.exit(0 if os.name=="nt" else 1)' 2>/dev/null; then
+  WINPATHS=1
+else
+  WINPATHS=0
+fi
+P() { if [ "$WINPATHS" = 1 ]; then WIN "$1"; else printf '%s' "$1"; fi; }
+
+SCRATCH_BASE="${HGK_LANE_SCRATCH:-${TMPDIR:-/tmp}/hgk-lane-preflight}"
+SCRATCH="${SCRATCH_BASE}/${LANE_NAME}"
+PREFLIGHT_RECEIPT="${LOG}.preflight.receipt.json"
+CONTAINMENT_RECEIPT="${LOG}.containment.receipt.json"
+DEVIATION_RECORD="${LOG}.model-deviation-required.json"
+IDENTITY_RECEIPT="${LOG}.identity.receipt.json"
+
+# ---- The ONE containment guard, reused from T2 (never a second check) --------
+# Calls the canonical check_containment in hgk-lane-preflight.py. Exit 0 when
+# containment is proven, non-zero otherwise.
+containment_ok() {
+  "$PYTHON" "$(P "$PREFLIGHT")" --check-containment "$(P "$1")" "$(P "$2")" "$(P "$3")" >/dev/null 2>&1
+}
+
+# ---- Containment decisions BEFORE any mkdir --------------------------------
+CONTAINMENT_OK=0
+if containment_ok "$SCRATCH_BASE" "$SCRATCH" "$SUBJECT_ROOT"; then
+  CONTAINMENT_OK=1
+fi
+
+LOG_PARENT="$(dirname "$LOG")"
+LOG_CONTAINMENT_OK=0
+if containment_ok "$LOG_PARENT" "$LOG" "$SUBJECT_ROOT" \
+   && containment_ok "$LOG_PARENT" "$PREFLIGHT_RECEIPT" "$SUBJECT_ROOT" \
+   && containment_ok "$LOG_PARENT" "$CONTAINMENT_RECEIPT" "$SUBJECT_ROOT" \
+   && containment_ok "$LOG_PARENT" "$DEVIATION_RECORD" "$SUBJECT_ROOT" \
+   && containment_ok "$LOG_PARENT" "$IDENTITY_RECEIPT" "$SUBJECT_ROOT"; then
+  LOG_CONTAINMENT_OK=1
+fi
+
+if [ "$LOG_CONTAINMENT_OK" != 1 ]; then
+  echo "ERR_LANE_LOG_PATH_INSIDE_SUBJECT: caller log path '${LOG:-}' (or a sibling output path) is not proven outside subject root '${SUBJECT_ROOT}'; refused before creating any directory (0 attempts)." >&2
+  exit 94
+fi
+
+if [ "$CONTAINMENT_OK" != 1 ]; then
+  echo "ERR_LANE_SCRATCH_CONTAINMENT_UNPROVEN: scratch_base='${SCRATCH_BASE}' scratch='${SCRATCH}' is not proven contained and outside subject root '${SUBJECT_ROOT}'; refused before creating any directory (0 attempts)." >&2
+  exit 95
+fi
+
+# ---- Cleanup: delete ONLY the proven scratch, AFTER re-proving --------------
+CLEANUP_DONE=0
+CLEANUP_FAILED=0
+cleanup() {
+  if [ "$CLEANUP_DONE" = 1 ]; then
+    return 0
+  fi
+  CLEANUP_DONE=1
+  if [ "$CONTAINMENT_OK" != 1 ]; then
+    echo "CLEANUP_SKIPPED: containment not proven; deleted nothing." >&2
+    return 0
+  fi
+  # Re-prove immediately before deleting (defense in depth); on doubt, delete
+  # nothing. Every failure is surfaced and reflected in the exit status.
+  if ! containment_ok "$SCRATCH_BASE" "$SCRATCH" "$SUBJECT_ROOT"; then
+    echo "CLEANUP_SKIPPED: containment lost at delete time; deleted nothing." >&2
+    return 0
+  fi
+  if rm -f "$(P "${SCRATCH}/binaryhome/auth.json")" 2>/dev/null || [ ! -e "$SCRATCH/binaryhome/auth.json" ]; then
+    :
+  else
+    echo "CLEANUP_FAILED: could not remove the seeded credential under '${SCRATCH}'." >&2
+    CLEANUP_FAILED=1
+  fi
+  if rm -rf "$(P "$SCRATCH")" 2>/dev/null; then
+    if [ -e "$SCRATCH" ]; then
+      echo "CLEANUP_FAILED: scratch '${SCRATCH}' still exists after rm -rf." >&2
+      CLEANUP_FAILED=1
+    fi
+  else
+    echo "CLEANUP_FAILED: rm -rf '${SCRATCH}' failed." >&2
+    CLEANUP_FAILED=1
+  fi
+}
+trap cleanup EXIT
+trap 'exit 130' INT
+trap 'exit 143' TERM
+
+# ---- 1. Toolchain identity: resolve + verify FIRST (fail closed) ------------
+DECL_ARGS=""
+if [ -n "${HGK_LANE_DECLARATION:-}" ]; then
+  DECL_ARGS="--declaration $(P "${HGK_LANE_DECLARATION}")"
+fi
+RESOLVE_JSON="$("$PYTHON" "$(P "$RESOLVER")" --verify $DECL_ARGS 2>/dev/null)"
+RESOLVE_RC=$?
+if [ "$RESOLVE_RC" != 0 ]; then
+  DETAIL="$(printf '%s' "$RESOLVE_JSON" | "$PYTHON" -c 'import json,sys
+try:
+    d=json.load(sys.stdin)
+    print("{}: {}".format(d.get("error"), d.get("detail")))
+except Exception:
+    print("ERR_LANE_TOOLCHAIN: unparsable resolver output")' 2>/dev/null)"
+  echo "ERR_LANE_TOOLCHAIN: declared toolchain did not verify; lane NOT run; substitution REFUSED." >&2
+  echo "${DETAIL}" >&2
+  exit 90
+fi
+CODEX_EXE="$(printf '%s' "$RESOLVE_JSON" | "$PYTHON" -c 'import json,sys;print(json.load(sys.stdin)["path"])')"
+CODEX_VERSION="$(printf '%s' "$RESOLVE_JSON" | "$PYTHON" -c 'import json,sys;print(json.load(sys.stdin)["version"])')"
+
+# ---- Caller log directory: created ONLY NOW (containment + identity proven) --
+if [ ! -d "$LOG_PARENT" ]; then
+  mkdir -p "$(P "$LOG_PARENT")"
+fi
+
+# ---- 2. Pre-lane identity preflight (one trivial prompt, <=120 s) -----------
+SEED_ARGS=""
+if [ -n "${HGK_LANE_PREFLIGHT_SEED_AUTH:-}" ]; then
+  SEED_ARGS="--seed-auth $(P "${HGK_LANE_PREFLIGHT_SEED_AUTH}")"
+fi
+"$PYTHON" "$(P "$PREFLIGHT")" --model "$MODEL" --effort "$EFFORT" $DECL_ARGS \
+  $SEED_ARGS --scratch "$(P "$SCRATCH")" --log "$(P "${LOG}.preflight.log")" \
+  --subject-root "$(P "$SUBJECT_ROOT")" --receipt "$(P "$PREFLIGHT_RECEIPT")"
+PREFLIGHT_RC=$?
+
+CLASS="$("$PYTHON" -c 'import json,sys
+try:
+    print(json.load(open(sys.argv[1], encoding="utf-8")).get("error_class") or "LANE_INCONCLUSIVE")
+except Exception:
+    print("LANE_INCONCLUSIVE")' "$(P "$PREFLIGHT_RECEIPT")" 2>/dev/null)"
+
+case "$CLASS" in
+  LANE_OK)
+    : # fall through to the real lane
+    ;;
+  LANE_TOOLCHAIN_MISMATCH)
+    echo "LANE_TOOLCHAIN_MISMATCH: harness fault; offending build path=${CODEX_EXE} version=${CODEX_VERSION}; lane NOT run; substitution REFUSED." >&2
+    exit 91
+    ;;
+  LANE_MODEL_REFUSED)
+    "$PYTHON" - "$(P "$DEVIATION_RECORD")" "$LANE_NAME" "$(P "$PREFLIGHT_RECEIPT")" <<'PY'
+import json, sys
+dest, lane, receipt_path = sys.argv[1:4]
+r = json.load(open(receipt_path, encoding="utf-8"))
+doc = {
+    "schema": "HGK-LANE-MODEL-DEVIATION-REQUIRED/1",
+    "required": True,
+    "class": "LANE_MODEL_REFUSED",
+    "lane": lane,
+    # the deviation record CARRIES the T2 receipt fields:
+    "codex_cli": r.get("codex_cli"),
+    "codex_cli_version": r.get("codex_cli_version"),
+    "declared_model": r.get("declared_model"),
+    "served_model": r.get("served_model"),
+    "error_class": r.get("error_class"),
+    "preflight_raw": r.get("preflight_raw"),
+    "evidence_receipt": receipt_path,
+    "note": ("genuine provider refusal on the declared model; a human/owner "
+             "decides the declared model deviation. The launcher does NOT "
+             "substitute inline."),
+}
+json.dump(doc, open(dest, "w", encoding="utf-8"), indent=2)
+PY
+    echo "LANE_MODEL_REFUSED: wrote ${DEVIATION_RECORD}; lane NOT run; substitution permitted only via a declared owner decision." >&2
+    exit 92
+    ;;
+  *)
+    echo "LANE_INCONCLUSIVE: preflight produced no usable verdict; lane NOT run; substitution REFUSED." >&2
+    exit 93
+    ;;
+esac
+
+# ---- 3. Real lane ----------------------------------------------------------
+CODEX_HOME_DIR="${HGK_LANE_CODEX_HOME:-${SCRATCH}/binaryhome}"
+mkdir -p "$(P "$CODEX_HOME_DIR")"
+export CODEX_HOME="$(P "$CODEX_HOME_DIR")"
+
+echo "=== ${LANE_NAME} lane -> ${LOG} (codex=${CODEX_EXE} version=${CODEX_VERSION} model=${MODEL}) ===" >&2
+set +e
+timeout "${HGK_LANE_TIMEOUT:-2400}" "$CODEX_EXE" exec --cd "$(P "$LOG_PARENT")" --skip-git-repo-check \
+  -s read-only -m "$MODEL" -c "model_reasoning_effort=\"${EFFORT}\"" - \
+  < "$BRIEF" > "$LOG" 2>&1
+LANE_RC=$?
+set -e
+echo "EXIT=${LANE_RC}" >> "$LOG"
+
+IDENTITY_OUT=""
+IDENTITY_RC=0
+set +e
+IDENTITY_OUT="$("$PYTHON" - "$(P "$LOG")" "$MODEL" "$(P "$PREFLIGHT")" "$(P "$IDENTITY_RECEIPT")" "$LANE_RC" <<'PY'
+import importlib.util
+import json
+import sys
+from pathlib import Path
+
+sys.dont_write_bytecode = True
+
+log_path, declared_model, preflight_path, receipt_path, lane_rc = sys.argv[1:6]
+try:
+    lane_rc_int = int(lane_rc)
+except ValueError:
+    lane_rc_int = -1
+
+spec = importlib.util.spec_from_file_location(
+    "hgk_lane_preflight_identity", preflight_path
+)
+module = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(module)
+
+raw = Path(log_path).read_text(encoding="utf-8", errors="replace")
+lines = raw.splitlines()
+served_model, served_version = module.served_from_header(lines)
+
+if served_model is None:
+    status = "IDENTITY_UNREADABLE"
+    error_class = "ERR_LANE_MODEL_IDENTITY_MISMATCH"
+elif served_model == declared_model:
+    status = "IDENTITY_OK"
+    error_class = None
+else:
+    status = "IDENTITY_MISMATCH"
+    error_class = "ERR_LANE_MODEL_IDENTITY_MISMATCH"
+
+doc = {
+    "schema": "HGK-LANE-IDENTITY-RECEIPT/1",
+    "identity_ok": status == "IDENTITY_OK",
+    "status": status,
+    "error_class": error_class,
+    "declared_model": declared_model,
+    "served_model": served_model,
+    "served_version": served_version,
+    "lane_exit_code": lane_rc_int,
+    "assertion_enforced": lane_rc_int == 0,
+    "raw_log_path": log_path,
+    "extraction": "anchored_startup_banner_only",
+}
+Path(receipt_path).write_text(json.dumps(doc, indent=2), encoding="utf-8")
+print(status + " " + (served_model if served_model is not None else "UNREADABLE"))
+PY
+)"
+IDENTITY_RC=$?
+set -e
+if [ "$IDENTITY_RC" != 0 ] || [ -z "$IDENTITY_OUT" ]; then
+  echo "ERR_LANE_MODEL_IDENTITY_MISMATCH declared=${MODEL} served=UNREADABLE" >&2
+  cleanup
+  if [ "$CLEANUP_FAILED" = 1 ]; then
+    exit 99
+  fi
+  exit 98
+fi
+
+set -- $IDENTITY_OUT
+IDENTITY_STATUS="${1:-IDENTITY_UNREADABLE}"
+IDENTITY_SERVED="${2:-UNREADABLE}"
+if [ "$LANE_RC" = 0 ] && [ "$IDENTITY_STATUS" != "IDENTITY_OK" ]; then
+  echo "ERR_LANE_MODEL_IDENTITY_MISMATCH declared=${MODEL} served=${IDENTITY_SERVED}" >&2
+  cleanup
+  if [ "$CLEANUP_FAILED" = 1 ]; then
+    exit 99
+  fi
+  exit 98
+fi
+
+EXIT_REASON="LANE_COMPLETE"
+cleanup
+if [ "$CLEANUP_FAILED" = 1 ] && [ "$LANE_RC" = 0 ]; then
+  # A cleanup failure must change the return code.
+  exit 99
+fi
+exit "$LANE_RC"
