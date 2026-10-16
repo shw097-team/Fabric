@@ -224,7 +224,25 @@ doc = {
                                'files directly under work/TEST_RESULTS/ -- because a name list would keep '
                                'missing the next scratch directory a lane invents.',
          'found_by': 'gate_round2.py G6 (which flagged the litter) and its own packet file count',
-         'corrected_in': 'publish_packet_round2.py; the rebuild is reported below with its file count'}],
+         'corrected_in': 'publish_packet_round2.py; the rebuild is reported below with its file count'},
+        {'id': 'SC-10', 'what': 'a RE-RUN OF AN IDEMPOTENT SCRIPT DESTROYED A DISCLOSURE. '
+                                'apply_R2_promote.py records why the 114 MB per-file enumeration was compacted '
+                                'inside the receipt it writes, and that script was re-invoked later in the '
+                                'round (a re-run finds the files already identical and writes no bytes). The '
+                                're-run REWROTE the same receipt file and could not re-enter the '
+                                'compaction branch, because the large file was already gone -- so '
+                                'R2_PROMOTION_RECEIPT.json.enumeration_compacted now reads null, the only '
+                                'in-packet reason the enumeration is absent was lost, and '
+                                'EVIDENCE_PROMOTION_SCOPE.md still pointed a reader at the deleted file '
+                                '("Every file is individually listed in the JSON"). Found only because a late '
+                                'sub-agent notification prompted a check of what the child had actually '
+                                'written.',
+         'found_by': 'orchestrator check prompted by the late delegation notification for deleg_3dc8f237',
+         'corrected_in': 'ADDITIVE ONLY: evidence/EVIDENCE_PROMOTION_SCOPE_COMPACTION_NOTE.md restores the '
+                         'disclosure and names the defect; no frozen artifact was rewritten. Generalised '
+                         'rules: a receipt a re-runnable script overwrites is not a receipt (append a '
+                         'revision instead), and a publication gate should extract every artifact filename '
+                         'the round cites and fail on any that is absent from the packet'}],
     'claim_ceiling': (
         'CANDIDATE_ONLY. Everything here was measured on this host by this session. Applying a ruling is not '
         'accepting it: nothing is accepted, and the checker verdict is advisory. hgk_canonical_acceptance: '

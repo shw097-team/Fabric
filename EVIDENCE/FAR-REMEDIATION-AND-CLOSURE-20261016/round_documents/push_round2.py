@@ -43,6 +43,7 @@ def step(name, args, **kw):
 
 
 # ---- preconditions
+UPDATE = '--update' in sys.argv
 gate = O / 'GATE_REPORT.json'
 if not gate.is_file() or json.loads(gate.read_text(encoding='utf-8')).get('verdict') != 'GATE_PASS':
     print(json.dumps({'REFUSED': 'the gate report is missing or not GATE_PASS', 'verdict':
@@ -59,8 +60,20 @@ if not tok:
     sys.exit(2)
 
 # ---- branch off the origin tip (never off a divergent local branch, never a force-push)
-step('fetch', ['git', 'fetch', 'origin', '--prune'])
-step('checkout', ['git', 'checkout', '-B', BRANCH, 'origin/main'])
+if UPDATE:
+    # ADDITIVE update: the branch already carries this round's base commit on the remote, so a later
+    # publication must STACK on it. Re-running the fresh-branch path here would rewrite the branch from
+    # origin/main and the push would be rejected as non-fast-forward -- correctly, because it would drop
+    # the earlier commit. The previous round used exactly this shape (four commits on one branch).
+    rc, cur, _ = step('verify_branch', ['git', 'rev-parse', '--abbrev-ref', 'HEAD'])
+    if cur != BRANCH:
+        print(json.dumps({'REFUSED': 'update mode requires the checked-out branch to be %s, found %s'
+                          % (BRANCH, cur)}, indent=1))
+        sys.exit(5)
+    step('fetch', ['git', 'fetch', 'origin', '--prune'])
+else:
+    step('fetch', ['git', 'fetch', 'origin', '--prune'])
+    step('checkout', ['git', 'checkout', '-B', BRANCH, 'origin/main'])
 rc, porcelain, _ = step('status_before', ['git', 'status', '--porcelain'])
 step('add', ['git', 'add', '--', PACKET_REL])
 rc, staged, _ = step('staged_list', ['git', 'diff', '--cached', '--name-only'])
@@ -72,6 +85,8 @@ if outside:
     print(json.dumps({'REFUSED': 'staging leaked outside the packet', 'outside': outside[:10]}, indent=1))
     sys.exit(3)
 
+if UPDATE:
+    MSG = MSG + ' [addendum: remote readback, the final closure revision and the re-frozen manifest]'
 rc, so, se = step('commit', ['git', 'commit', '-m', MSG])
 if rc != 0 and 'nothing to commit' not in (so + se):
     print(json.dumps({'REFUSED': 'commit failed', 'stderr': se[:300]}, indent=1))
