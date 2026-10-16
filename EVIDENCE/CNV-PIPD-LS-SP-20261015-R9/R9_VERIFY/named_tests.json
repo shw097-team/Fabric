@@ -1,0 +1,11 @@
+{
+  "command": [
+    "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+    "-B",
+    "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R9\\R9_VERIFY\\safe_tests.py"
+  ],
+  "cwd": "C:\\Projects\\Agent_Workspace\\PIPD\\worktrees\\r8-wt",
+  "exit": 1,
+  "stdout": "",
+  "stderr": "setUpClass (test_s4ext_trace_closure.LegalTraceStillPassesTests) ... ERROR\ntest_cli_smoke_runs (test_tooling_executes.TestToolingExecutes.test_cli_smoke_runs)\nThe 13-command CLI surface must actually execute, not just import. ... ok\n\n======================================================================\nERROR: setUpClass (test_s4ext_trace_closure.LegalTraceStillPassesTests)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Projects\\Agent_Workspace\\PIPD\\worktrees\\r8-wt\\tests\\test_s4ext_trace_closure.py\", line 87, in setUpClass\n    _init_git_repo(cls.repo)\n  File \"C:\\Projects\\Agent_Workspace\\PIPD\\worktrees\\r8-wt\\tests\\test_s4ext_trace_closure.py\", line 60, in _init_git_repo\n    g(\"init\", \"-q\")\n  File \"C:\\Projects\\Agent_Workspace\\PIPD\\worktrees\\r8-wt\\tests\\test_s4ext_trace_closure.py\", line 56, in g\n    subprocess.run([\"git\", \"-C\", str(path).replace(\"\\\\\", \"/\"), *a],\n  File \"C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R9\\R9_VERIFY\\safe_tests.py\", line 16, in readonly_git_run\n    raise RuntimeError('R9V_FORBIDDEN_GIT_WRITE: ' + repr(command))\nRuntimeError: R9V_FORBIDDEN_GIT_WRITE: ['git', '-C', 'C:/Users/user/AppData/Local/Temp/tmp3eedulc6/repo', 'init', '-q']\n\n----------------------------------------------------------------------\nRan 1 test in 32.254s\n\nFAILED (errors=1)\n"
+}

@@ -1,0 +1,12 @@
+{
+  "command": [
+    "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+    "-B",
+    "-c",
+    "import importlib.util; from pathlib import Path; spec=importlib.util.spec_from_file_location('probe',r'C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R8\\WS_B\\RUNNERS\\probe_mutations.py'); module=importlib.util.module_from_spec(spec); spec.loader.exec_module(module); module.SRC=Path(r'C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R9\\R9_VERIFY\\probe_source.md'); codes=[module.m04_profile_downgrade(),module.m06_domain_oracle_expected(),module.m16_trace_digest_mismatch()]; raise SystemExit(max(codes))"
+  ],
+  "cwd": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R9\\R9_VERIFY",
+  "exit": 0,
+  "stdout": "{\n \"id\": \"M04\",\n \"mutation\": \"ProfileBinding assurance downgraded ASSURED->LITE\",\n \"expected\": \"REJECT\",\n \"observed\": \"REJECT\",\n \"validator_verdict\": \"FAIL\",\n \"first_fail\": \"ProfileBinding: content_hash does not match the record body (body edited without re-issuing identity)\",\n \"raw_receipt\": \"RAW/mut_m04.json\"\n}\n{\n \"id\": \"M06\",\n \"mutation\": \"domain oracle expected changed to 999\",\n \"expected\": \"REJECT\",\n \"observed\": \"REJECT\",\n \"validator_verdict\": \"FAIL\",\n \"first_fail\": \"RequirementAtom: content_hash does not match the record body (body edited without re-issuing identity)\",\n \"raw_receipt\": \"RAW/mut_m06.json\"\n}\n{\n \"id\": \"M16\",\n \"mutation\": \"trace atom digest mismatched\",\n \"expected\": \"REJECT\",\n \"observed\": \"REJECT\",\n \"validator_verdict\": \"FAIL\",\n \"first_fail\": \"TraceLink: content_hash does not match the record body (body edited without re-issuing identity)\",\n \"raw_receipt\": \"RAW/mut_m16.json\"\n}\n",
+  "stderr": ""
+}

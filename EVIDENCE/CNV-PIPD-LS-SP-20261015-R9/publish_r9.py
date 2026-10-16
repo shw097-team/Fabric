@@ -52,7 +52,7 @@ EXCLUDE_DIR_EXACT = {"__pycache__", ".git",
                      # derived copies of whole skill trees: published as manifests instead, because copies of a
                      # skill's own references trip the packet scanner's url_with_credentials rule on DOCUMENTATION
                      # placeholders (the credential-in-URL push form), which are not secrets.
-                     "CANDIDATE_V2", "repaired_candidate", "preimage", "drill"}
+                     "CANDIDATE_V2", "repaired_candidate", "preimage", "drill", "landing_sim"}
 
 
 def _skip_scratch(dirpath, names):
