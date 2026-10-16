@@ -1,0 +1,168 @@
+{
+  "schema": "HGK-LANE-RESOLUTION/1",
+  "lane": "VERIFY_SECURITY",
+  "role": "checker",
+  "role_binding_source": null,
+  "engine": "codex-cli",
+  "codex_executable": "C:/Users/user/AppData/Local/OpenAI/Codex/bin/e78bad9887fa50cf/codex.exe",
+  "codex_home": "C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\codex-hermes",
+  "relay_base": "http://127.0.0.1:10101/v1",
+  "codex_home_is_declared_lane_home": true,
+  "human_home_transport_acknowledged": false,
+  "skipped_arms": [
+    {
+      "rank": 4,
+      "arm": "nvidia/deepseek-ai/deepseek-v4.1-flash",
+      "reason": "UNREACHABLE_MEASURED_20261011"
+    }
+  ],
+  "transport": "opencodex relay via per-invocation -c openai_base_url (no config mutation)",
+  "transport_target": "http://127.0.0.1:10101/v1",
+  "front_door_port": null,
+  "front_door_note": "the lane-scoped pool door (10103 VERIFY_SECURITY / 10105 EXECUTE) carries the hop and ledgers every decision; the sealed single-model 10100 door is unchanged and unused; None here means direct to the relay on 10101",
+  "sandbox": "read-only",
+  "sandbox_by_role_default": "read-only",
+  "sandbox_escalation_authorised": false,
+  "cwd": "C:\\Projects\\Agent_Workspace\\HG-KSEOS",
+  "side_effect_note": "no write access granted by the sandbox mode",
+  "receipt_binding": "usage rows appended after this attempt started (byte offset bound)",
+  "pool": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\lane-route-slots.candidate.json",
+  "candidates_considered": [
+    1,
+    2,
+    3
+  ],
+  "mode": "pinned_primary",
+  "unguarded_escalation_acknowledged": false,
+  "inject_429_first": false,
+  "identity_gate": {
+    "state": "enforced",
+    "lane_home": "C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\codex-hermes",
+    "relay_home": "C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\opencodex-hermes",
+    "arms": [
+      {
+        "rank": 1,
+        "provider": "opencode-go",
+        "model": "deepseek-v4.1-flash",
+        "requirement": "none",
+        "ok": true,
+        "detail": "key-auth arm: no human-attended identity"
+      },
+      {
+        "rank": 2,
+        "provider": "openai-codex",
+        "model": "gpt-6.1-sol",
+        "requirement": "relay_pool",
+        "ok": true,
+        "detail": "non-empty refreshable credential present in codex-accounts.json"
+      },
+      {
+        "rank": 3,
+        "provider": "opencode-go",
+        "model": "glm-5.3-flash",
+        "requirement": "none",
+        "ok": true,
+        "detail": "key-auth arm: no human-attended identity"
+      }
+    ],
+    "degraded": false,
+    "required_arm": null
+  },
+  "authorization": {
+    "checked": false
+  },
+  "subject_mutation": {
+    "files_before": 1,
+    "files_after": 1,
+    "added": [],
+    "removed": [],
+    "changed": [],
+    "mutated": false,
+    "mutated_known": true,
+    "inconclusive": false,
+    "verdict": "CLEAN",
+    "rule": "removed/changed => verdict void; added is recorded, not fatal; an empty side => INCONCLUSIVE (never a clean verdict from nothing)",
+    "guard_roots": [
+      "C:/Projects/Agent_Workspace/_handover/CNV-HYGIENE-README-CLOSURE-20261016/subject_verify"
+    ],
+    "subject_digest_sha256_before": "909a926e0c0b4b1cb7297ec14a3760c6945da1423cec482258826256c41616ce",
+    "subject_digest_sha256_after": "909a926e0c0b4b1cb7297ec14a3760c6945da1423cec482258826256c41616ce"
+  },
+  "attempt_log_dir": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-HYGIENE-README-CLOSURE-20261016\\lane_out_verify\\CNV-HYGIENE-README-CLOSURE-20261016\\VERIFY_SECURITY\\attempt-1-20261016T152133Z",
+  "output_dir_policy": {
+    "mode": "derived",
+    "derived": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-HYGIENE-README-CLOSURE-20261016\\lane_out_verify\\CNV-HYGIENE-README-CLOSURE-20261016\\VERIFY_SECURITY\\attempt-1-20261016T152133Z",
+    "attempt_number": 1,
+    "attempt_marker": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-HYGIENE-README-CLOSURE-20261016\\lane_out_verify\\CNV-HYGIENE-README-CLOSURE-20261016\\VERIFY_SECURITY\\attempt-1-20261016T152133Z\\attempt.marker.json"
+  },
+  "repair_precondition": {
+    "checked": false
+  },
+  "remote_write_precheck": {
+    "mode": "DETECTION_ONLY",
+    "ran": true,
+    "brief": "C:/Projects/Agent_Workspace/_handover/CNV-HYGIENE-README-CLOSURE-20261016/subject_verify/VERIFY_TASK.md",
+    "markers": [],
+    "publication_wo": "wo-space",
+    "would_refuse": false
+  },
+  "attempts": [
+    {
+      "rank": 1,
+      "provider": "opencode-go",
+      "model": "deepseek-v4.1-flash",
+      "transport_model": "opencode-go/deepseek-v4.1-flash",
+      "sandbox": "read-only",
+      "reasoning_effort": null,
+      "exit": 0,
+      "timed_out": false,
+      "seconds": 58.9,
+      "nonce_present": true,
+      "nonce_present_raw_stdout": true,
+      "nonce_source": "item.completed/agent_message",
+      "usage_rows_after_offset": 6,
+      "usage_offset": 28255788,
+      "usage_provider": "opencode-go",
+      "usage_model": "deepseek-v4.1-flash",
+      "usage_status": 200,
+      "usage_receipt_ok": true,
+      "usage_receipt_reason": "",
+      "usage_ledger_rewritten": false,
+      "usage_rows_shape_invalid": 0,
+      "usage_rows_undecodable": 0,
+      "carrier_lines_undecodable": 0,
+      "carrier_lines_surrogate": 0,
+      "credential_posture": {
+        "verdict": "INCONCLUSIVE",
+        "decision": "WARN_CONTINUE",
+        "reason": "helper-only verdict (no child env asserted): helper_resolution_reset=PASS; helper_non_interactive=UNKNOWN",
+        "prompt_capable_helper": null,
+        "origin": null,
+        "git_terminal_prompt": "0"
+      },
+      "attempt_log_dir": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-HYGIENE-README-CLOSURE-20261016\\lane_out_verify\\CNV-HYGIENE-README-CLOSURE-20261016\\VERIFY_SECURITY\\attempt-1-20261016T152133Z",
+      "stdout_byte_exact": true,
+      "stdout_path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-HYGIENE-README-CLOSURE-20261016\\lane_out_verify\\CNV-HYGIENE-README-CLOSURE-20261016\\VERIFY_SECURITY\\attempt-1-20261016T152133Z\\attempt-5720-1792164093-1-stdout.txt",
+      "stdout_bytes": 25255,
+      "stdout_sha256": "7cbfd5336955b464d5ec20a66c3ae91e646cd4a2889525ecd21807f9ca5151b6",
+      "stderr_byte_exact": true,
+      "stderr_path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-HYGIENE-README-CLOSURE-20261016\\lane_out_verify\\CNV-HYGIENE-README-CLOSURE-20261016\\VERIFY_SECURITY\\attempt-1-20261016T152133Z\\attempt-5720-1792164093-1-stderr.txt",
+      "stderr_bytes": 379,
+      "stderr_sha256": "e4e908c803395c8b74791d9e10a38bf3957e84545cc8257992c553e9ce8e6d6a",
+      "stdout_tail": " that the current read-only sandbox withholds. If you want it landed, re-run me where that one path is writable (or grant the write), and I will emit exactly the block above to that file.\\n\\nNONCE-DONE: CNVH-HOMEPAGE-VERIFY-8d41b3\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":90012,\"cached_input_tokens\":75904,\"cache_write_input_tokens\":0,\"output_tokens\":5507,\"reasoning_output_tokens\":3311}}\n",
+      "stderr_tail": "api::endpoint::responses_websocket: failed to connect to websocket: HTTP error: 426 Upgrade Required, url: ws://127.0.0.1:10101/v1/responses\n2026-10-16T15:22:19.462217Z ERROR codex_core::tools::router: error=patch rejected: writing is blocked by read-only sandbox; rejected by user approval settings\n"
+    }
+  ],
+  "used_rank": 1,
+  "used_transport_model": "opencode-go/deepseek-v4.1-flash",
+  "used_seconds": 58.9,
+  "generated_utc": "2026-10-16T15:22:32.333146+00:00",
+  "claim_ceiling": "a pass here proves the Codex-CLI lane served this turn through the relay with a matching usage receipt; it is not an acceptance of any subject",
+  "ok": true,
+  "completion_evidence": {
+    "checked": false
+  },
+  "usage_receipt_ok": true,
+  "usage_rows_shape_invalid": 0,
+  "usage_rows_undecodable": 0
+}

@@ -1,0 +1,158 @@
+{
+ "schema": "CNV-HYGIENE/SELF-CHECK/1",
+ "checks": [
+  {
+   "id": "C01",
+   "ok": true,
+   "detail": "index members 15 vs on-disk 15; missing []"
+  },
+  {
+   "id": "C02",
+   "ok": true,
+   "detail": "10 of 10 published blobs read back byte-identical"
+  },
+  {
+   "id": "C03",
+   "ok": true,
+   "detail": "status refresh present in the homepage text"
+  },
+  {
+   "id": "C04",
+   "ok": true,
+   "detail": "appendix heading present"
+  },
+  {
+   "id": "C05",
+   "ok": true,
+   "detail": "merge commits of PRs [12, 13, 14] appear in the homepage"
+  },
+  {
+   "id": "C06",
+   "ok": true,
+   "detail": "PR #15 live state: open merged=False"
+  },
+  {
+   "id": "C07",
+   "ok": true,
+   "detail": "14 deletions each carry a tip commit and a rollback ref"
+  },
+  {
+   "id": "C08",
+   "ok": true,
+   "detail": "still-present-despite-removal=[] missing-though-kept=[] live=['evidence/cnv-far018-far019-archive', 'evidence/skill-convergence-20261014-full-packet', 'homepage/cnv-hygiene-readme-closure-20261016', 'main']"
+  },
+  {
+   "id": "C09",
+   "ok": true,
+   "detail": "change record strict-valid with no residual unchecked task"
+  },
+  {
+   "id": "C10",
+   "ok": true,
+   "detail": "verifier finding set present with provenance"
+  },
+  {
+   "id": "C11",
+   "ok": true,
+   "detail": "credential-shaped strings in published artefacts: none"
+  },
+  {
+   "id": "C12",
+   "ok": true,
+   "detail": "writer opencode-go/deepseek-v4.1-flash / checker opencode-go/deepseek-v4.1-flash, ok=True/True"
+  }
+ ],
+ "checks_passed": 12,
+ "checks_total": 12,
+ "mutations": [
+  {
+   "id": "M01",
+   "detected": true,
+   "checks_that_failed": [
+    "C02"
+   ]
+  },
+  {
+   "id": "M02",
+   "detected": true,
+   "checks_that_failed": [
+    "C01"
+   ]
+  },
+  {
+   "id": "M03",
+   "detected": true,
+   "checks_that_failed": [
+    "C05"
+   ]
+  },
+  {
+   "id": "M04",
+   "detected": true,
+   "checks_that_failed": [
+    "C07"
+   ]
+  },
+  {
+   "id": "M05",
+   "detected": true,
+   "checks_that_failed": [
+    "C10"
+   ]
+  },
+  {
+   "id": "M06",
+   "detected": true,
+   "checks_that_failed": [
+    "C11"
+   ]
+  },
+  {
+   "id": "M07",
+   "detected": true,
+   "checks_that_failed": [
+    "C06"
+   ]
+  },
+  {
+   "id": "M08",
+   "detected": true,
+   "checks_that_failed": [
+    "C03"
+   ]
+  },
+  {
+   "id": "M09",
+   "detected": true,
+   "checks_that_failed": [
+    "C09"
+   ]
+  },
+  {
+   "id": "M10",
+   "detected": true,
+   "checks_that_failed": [
+    "C12"
+   ]
+  },
+  {
+   "id": "M11",
+   "detected": true,
+   "checks_that_failed": [
+    "C08"
+   ]
+  },
+  {
+   "id": "M12",
+   "detected": true,
+   "checks_that_failed": [
+    "C12"
+   ]
+  }
+ ],
+ "mutations_total": 12,
+ "mutations_detected": 12,
+ "not_detected": [],
+ "pack_members": 15,
+ "verdict": "SELF_CHECK_PASS"
+}
