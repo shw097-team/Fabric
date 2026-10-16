@@ -1,0 +1,141 @@
+{
+  "schema": "CNV-PIPD-LS-SP-20261015-R11/FAR/ws2/RAW-MEASUREMENTS/1",
+  "produced_utc_note": "measured 2026-10-16 14:13-14:47 +08:00 by an R11 ws2 read-only research worker; every value below came from a live command or file read this session",
+  "claim_ceiling": "LOCAL / candidate-only",
+  "control_plane": {
+    "registry_path": "C:/Projects/Agent_Workspace/HG-KSEOS/config/lane-routing-registry.yaml",
+    "measured_with": "cd HG-KSEOS && PYTHONPATH=src ./.venv/Scripts/python.exe -c 'from hg_kseos import lane_policy as L; r=L.load_registry(); L.route_for_lane(...)'",
+    "epoch": 22,
+    "registry_bytes": 47224,
+    "registry_sha256": "02481992df124ca4f83b655b4583fc2053ecebbbb3125702ab28e39d0c35ea70",
+    "registry_mtime_local": "2026-10-16 14:13:29 +08:00",
+    "routes": {
+      "PLAN": "opencode-go/glm-5.3-flash (medium, ADMITTED, selection_authority owner-order-20261016-lane-rebind-plan-glm-verify-deepseek)",
+      "EXECUTE": "opencode-go/deepseek-v4.1-flash (UNPROVEN, selection_authority owner-order-20261015-lane-model-chain-rebind)",
+      "VERIFY_SECURITY": "opencode-go/deepseek-v4.1-flash (medium, UNPROVEN, selection_authority owner-order-20261016-lane-rebind-plan-glm-verify-deepseek)"
+    },
+    "check_drift": [],
+    "check_sod_PLAN_vs_VERIFY": "(True, 'SOD_OK glm-5.3-flash != deepseek-v4.1-flash')",
+    "check_sod_EXECUTE_vs_VERIFY": "(False, 'SOD_VIOLATION maker_model=deepseek-v4.1-flash == checker_model=deepseek-v4.1-flash')",
+    "supersedes": "R10 ledger/HANDOVER record epoch 21 with PLAN=openai-codex/gpt-6.1-sol; the owner rebind landed at 14:13 local, minutes AFTER the R10 ledger (14:05). R10-F1 conflict is resolved; the R10-F2 SOD violation MOVED from PLAN/VERIFY to EXECUTE/VERIFY."
+  },
+  "hermes_config": {
+    "model.default": "glm-5.3-flash",
+    "model.provider": "opencode-go",
+    "delegation.provider": "opencode-go",
+    "delegation.model": "glm-5.3-flash",
+    "read_from": "C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/hermes/config.yaml lines 8-11 and 168-171"
+  },
+  "skills_tree": {
+    "hgk_governed_execution_SKILL_md_bytes": 21026,
+    "hgk_governed_execution_SKILL_md_sha256_prefix": "60a4d9b3c79fc9e7",
+    "hgk_lifecycle_admission_SKILL_md_bytes": 35739,
+    "hgk_lifecycle_admission_location": "<HERMES_HOME>/skills/hgk-lifecycle-admission/SKILL.md (top-level dir, NOT software-development/)",
+    "hgk_kanban_and_lane_routing_SKILL_md_bytes": 89271,
+    "entry_map_json_named_at": "hgk-governed-execution/SKILL.md lines 66 and 71",
+    "entry_map_json_exists": false,
+    "entry_map_json_find_count": 0,
+    "skmd_files_in_tree": 72,
+    "zero_byte_files_in_tree": ["<HERMES_HOME>/skills/.hub/audit.log"],
+    "support_files_index": "references/support-files-index.md exists",
+    "references_files_recursive": 123,
+    "references_listed_in_index": 41,
+    "references_unlisted": 82,
+    "curator_ledger_records": 873,
+    "curator_ledger_path": "<HERMES_HOME>/skills/.curator_ledger.jsonl"
+  },
+  "openspec": {
+    "root": "C:/Projects/Agent_Workspace/HG-KSEOS/openspec/changes",
+    "records_total": 24,
+    "total_open_rows": 371,
+    "strict_failures": [
+      "hgk-plan-plane-rebind-20261015 (exit 1: 'Change must have at least one delta. No deltas found' - no specs/ dir; proposal.md+tasks.md only)",
+      "sod-independent-verify-enforcement (exit 1: spec at specs/authority.md, not specs/<capability>/spec.md delta form)"
+    ],
+    "strict_valid_password": "all other 22 changes pass 'npx --no-install openspec validate <id> --strict' under C:/Projects/Agent_Workspace/HG-KSEOS/openspec/changes",
+    "per_record_open_rows": {
+      "gcm-noninteractive-default-containment": 8,
+      "hermes-incident-2026-10-05-repair": 35,
+      "hgk-checker-upgrade-adapter": 23,
+      "hgk-far-remediation-20261016": 25,
+      "hgk-lane-brief-and-guard-hardening-20261015": 22,
+      "hgk-lane-reliability-closure-20261016": 16,
+      "hgk-plan-plane-rebind-20261015": 5,
+      "hgk-r10-session-closure-20261016": 5,
+      "hgk-r11-session-handover-20261016": 18,
+      "hgk-r8-eia-closure-skill-slim-20261016": 22,
+      "hgk-r9-far-residual-closure-20261016": 5,
+      "hgk-skill-convergence-20261014": 13,
+      "lane-health-repair-20261011": 4,
+      "lane-mandate-rebinding-and-d01-revocation": 27,
+      "lane-model-chain-rebind-20261015": 13,
+      "lane-sod-enforcement": 27,
+      "lane-supervisor-windowless-convergence": 1,
+      "lane-toolchain-identity-and-failure-classification": 9,
+      "lane-verify-dual-routing-and-plan-high": 23,
+      "lane-verify-routing-remediation": 14,
+      "skill-mainfile-cap-remediation": 11,
+      "sod-independent-verify-enforcement": 2,
+      "strict-declaration-20261011": 17,
+      "verification-artifact-contract": 26
+    }
+  },
+  "spine": {
+    "db": "C:/Projects/Agent_Workspace/HG-KSEOS/var/shared-spine/hg-kseos.db",
+    "r11_project": "CNV-R11-HANDOVER",
+    "r11_workorders": ["WO-TS-HANDOVER-01..06 all state=CREATED"],
+    "r11_acceptance": "ACC-REQ-CNV-R11-HANDOVER-PLAN verdict=NOT_RUN",
+    "workorder_states_overall": {"CREATED": 392, "VERIFIED": 102, "RESULT_RECORDED": 20, "COMPLETED": 11, "ADMITTED": 2, "ROLLED_BACK": 1, "FAILED": 1, "COMPLETED_WITH_BINDING_DEFECT": 1},
+    "admission_report": "R11/HGK_TYPED_ADMISSION_R11.json verdict ADMISSION_OK, final_state WORKORDERS_ADMITTED, checkpoint CK-HANDOVER-581D907D"
+  },
+  "kanban": {
+    "r11_board": "r11-session-handover-20261016: 7 cards - root done, W1..W4 ready (unstarted), verifier todo, synthesizer todo",
+    "r11_board_evidence_txt_is_placeholder": "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015-R11/R11_BOARD_EVIDENCE.txt is 39 bytes with EMPTY fields: 'root= W1= W2= W3= W4= VERIFIER= SYNTH='",
+    "r11_board_evidence_json": "sibling R11_BOARD_EVIDENCE.json DOES carry ids (root t_ca2c3c71, workers t_deedfc1b/t_a3314756/t_a69640dd/t_a0840557, verifier t_c9ac2164, synthesizer t_a8cef856)",
+    "r11_resume_manifest_open_items_empty": "RESUME_MANIFEST.json open_items[] measured empty at 14:28",
+    "residue_boards_with_open_cards": [
+      "far-remediation-and-closure-20261016: 1 done / 5 open (peer round, in flight)",
+      "lane-reliability-closure-20261016: 1 done / 5 open (peer round, in flight)",
+      "hgk-sod-fix1 gates: 4 boards fully blocked (7+3+4+5 cards)",
+      "hgk-solution-apply-20261012: 14 done / 44 open",
+      "far-strict-declaration-20261011: 7 open"
+    ]
+  },
+  "fabric_repo": {
+    "path": "C:/Projects/Agent_Workspace/Fabric",
+    "current_branch": "pub/far-remediation-and-closure-20261016",
+    "branch_holder": "PEER round (read-only for this session; never switch/clean)",
+    "untracked_entries": 2,
+    "git_status_porcelain_count": 2,
+    "head_note": "log shows three commits with the same FAR-REMEDIATION title under different shas (peer's addendum chain); not examined further - "
+  },
+  "pipd_worktree": {
+    "path": "C:/Projects/Agent_Workspace/PIPD/worktrees/r8-wt",
+    "state": "3 modified files uncommitted: src/pipd_ls_sp/cli.py, pipeline.py (+39), validate.py (+191/-2, 232 insertions total)",
+    "origin": "R9 ledger side-effect SE-01 (bounded-writer lane candidate edit)"
+  },
+  "r10_tooling": {
+    "dispatch_r10_path": "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015-R10/tooling/dispatch_r10.py",
+    "dispatch_r10_bytes": 12497,
+    "dispatch_r10_sha256_prefix": "a308b1cea808d2af",
+    "pytest_fresh_rerun_this_session": "cd R10/tooling && HG-KSEOS/.venv/Scripts/python.exe -m pytest -q -p no:cacheprovider test_dispatch_r10.py -> '8 passed in 0.09s' exit 0",
+    "predecessors_byte_unchanged": ["dispatch_r6.py", "R9/dispatch_r9.py"],
+    "publishers": ["R10/publish_r10.py (prepare/m2/push/readback/pr)", "R9/publish_r9.py"]
+  },
+  "r10_record_state": {
+    "ledger_publication": "SESSION_LEDGER_R10.json: published branch evidence/cnv-pipd-ls-sp-20261015-r10 HEAD 34d57124..., Draft PR #9 open + mergeable, remote readback 0 mismatches, prior prefixes unchanged",
+    "tasks_md_stale_rows": "hgk-r10-session-closure-20261016/tasks.md rows 5.2 and 5.3 still '- [ ]' though the ledger's appended round-outcome records push+readback+PR#9 complete",
+    "tasks_md_real_open": "row 6.1 '- [ ] Run the VERIFY/SECURITY lane on the mandate's checker arm and adjudicate its verdict' OPEN (6.1a fail-closed ERR_LANE_REQUIRED_ARM_ABSENT; 6.1b provider-direct deviation)",
+    "record_mtimes_local": "SESSION_LEDGER_R10.json / HANDOVER_R10.md both 14:05:23; registry rebound 14:13:29"
+  },
+  "anchors": {
+    "package": {"path": ".../hermes/attachments/Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md", "bytes": 2689181, "sha256": "96d9d564286743e17550ccef15b9952347901eb77168f930376938893cff9c3f", "role": "SOLE AUTHORITY"},
+    "eia": {"path": ".../hermes/attachments/Fabric_Convergence_External_Independent_Acceptance_Report_20261015.md", "bytes": 33616, "verdicts": {"scope": "PARTIAL_CHALLENGE", "merge": "CONDITIONAL_GO after M1-M3 (report line 191/225)", "production": "FAIL_CLOSED"}},
+    "credential_path": {"path": "C:/Projects/Agent_Workspace/API KEY/GITHUB-REPO_SHW097-4.txt", "bytes": 93, "note": "NAME ONLY recorded here; NEVER read, printed, or placed in argv/URL/log"}
+  },
+  "protected_paths_verified": {
+    "guard_subject": "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/R6_DELIVERY/ exists (21 entries at depth 1) - HANDS-OFF",
+    "published_evidence": "EVIDENCE/** packets in R6..R10 roots untouched by this worker (zero writes outside R11/FAR/ws2/)"
+  },
+  "writes_by_this_worker": ["C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015-R11/FAR/ws2/* only"]
+}

@@ -9,7 +9,7 @@ Your nonce is `R11V-CHECKER-NONCE-9c3e17` - print it as the first line of your f
 The round's ONLY product is a **handover** that lets a new session continue this mission. Its deliverables:
 
 1. `HANDOVER_R11.md` - the single entry document. It asserts measured facts about the mission's anchors, its
-   published rounds, and its open items.
+   rounds that are already delivered and visible to the external officer, and its open items.
 2. `RESUME_MANIFEST.json` - machine-readable anchors, protected paths, resume recipes, and the open-item set.
 3. `OPEN_RECORDS_INVENTORY.tsv` - a MEASURED inventory of every openspec change record under
    `C:/Projects/Agent_Workspace/HG-KSEOS/openspec/changes/`.

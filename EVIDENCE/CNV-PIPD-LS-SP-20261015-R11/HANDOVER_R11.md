@@ -105,29 +105,43 @@ and adjudicated 36 change-record rows.
 
 | id | item | one action |
 |---|---|---|
-| OD-1 | **Registry vs order conflict**: the live registry has `PLAN = openai-codex/gpt-6.1-sol` (epoch 21, applied 12:36:30 by an act outside the rounds, `check_drift == []`), while the standing order binds PLAN to `GLM-5.3-Flash`. | Decide which stands, then run one registry re-declaration (or accept the registry value). Record as an OPEN `declared_conflicts` entry either way. |
-| OD-2 | **`SOD_VIOLATION` in the registry itself**: `check_sod(PLAN, VERIFY_SECURITY)` is a violation because both resolve to `openai-codex/gpt-6.1-sol`. | Decide the intended PLAN/VERIFY split; the registry must then satisfy `check_sod`, not merely `check_drift`. |
-| OD-3 | **Writer/checker same arm** in the standing order (EXECUTE and VERIFY both `DeepSeek V4.1 Flash`). | Accept as a declared residual, or name a different checker arm. |
-| OD-4 | **221 cases / 8 Gates / Fresh G1 / source #6** were never run; the package marks source #6 `FAIL_CLOSED`. | Authorise an acceptance window, or explicitly defer them out of scope. |
-| OD-5 | **Skill support-files index gap**: 73 of 112 reference files are unlisted in `hgk-governed-execution`'s index. | Approve the index pass (an owner-authored record, not an agent rewrite). |
+| id | item | state as measured THIS round | one action |
+|---|---|---|---|
+| OD-1 | ~~Registry vs order: PLAN conflict~~ | **RESOLVED by an act outside the rounds**: at 14:13:29 the registry advanced to **epoch 22** (sha256 `02481992df124ca4f83b655b4583fc20…`, `check_drift == []`) and PLAN now reads `opencode-go/glm-5.3-flash`, i.e. it agrees with the standing order; authority `owner-order-20261016-lane-rebind-plan-glm-verify-deepseek`. | none required; keep the order and the registry in step when either moves. |
+| OD-2 | ~~`SOD_VIOLATION` PLAN vs VERIFY~~ | **RESOLVED**: measured this round, `check_sod(PLAN, VERIFY_SECURITY) = (True, 'SOD_OK plan != verify_security')`. | none. |
+| OD-3 | Writer/checker share ONE model (`deepseek-v4.1-flash`) | **now a DECLARED owner-ordered exclusion, not a violation**: `check_sod(EXECUTE, VERIFY_SECURITY) = (True, 'SOD_OK execute != verify_security')`. The *verification-strength* residual stands: a round's checker cannot be model-independent from its writer. | accept as a declared residual, or name a different checker model in the order (owner decision). |
+| OD-4 | 221 cases / 8 Gates / Fresh G1 / source #6 never run; package marks source #6 `FAIL_CLOSED` | unchanged, not run | authorise an acceptance window, or explicitly defer them out of scope. |
+| OD-5 | Skill support-files index gap | re-measured this round: the index now covers **41 of 123** references (**82 unlisted**; R10 recorded 73 of 112) | approve the index pass (an owner-authored record, not an agent rewrite). |
+| OD-6 | **Registry binds VERIFY/SECURITY to engine `hermes`, while the standing order says the checker is transferred to CODEX CLI** | measured: `VERIFY_SECURITY.engine = hermes` (EXECUTE = `codex-cli`) | decide which engine the checker lane must use, then align the registry or the order. |
+| OD-7 | Lane admission: PLAN `ADMITTED` (measured evidence: reply probe + tool-executing probe + 2 serving turns) but **EXECUTE and VERIFY/SECURITY still `UNPROVEN`** | measured | run the serving probes for EXECUTE and VERIFY, or accept the status. |
 
 ### 5.2 Work remaining (an agent can do these; nothing needs a decision)
 
 | id | item | one action | locator |
 |---|---|---|---|
 | WR-1 | The **canonical dispatcher** still lacks the two repairs the round proved: per-turn receipt paths and a nonce gate that reads its own recorded stdout. R10's repair lives in a *successor* file only. | Port `R10/tooling/dispatch_r10.py`'s two changes into the canonical `scripts/hgk-lane-dispatch.py` (owner-authorized control-plane round). | `C:/Projects/Agent_Workspace/HG-KSEOS/scripts/hgk-lane-dispatch.py` |
-| WR-2 | **Dangling load path** in the governed skill: it names `entry_map.json` (lines 66, 71) and the file does not exist. | Write the missing `entry_map.json` or amend the skill to a resolvable pointer. | `<HERMES_HOME>/skills/software-development/hgk-governed-execution/SKILL.md` |
+| WR-2 | **12 dangling pointers** in the governed skill (measured this round): `entry_map.json` at SKILL.md lines 66 and 71, plus 10 more frozen-evidence references under `references/`; ws3 also lists 3 planned-but-unbuilt rows - **15 rows in total** in `R11/FAR/ws3/dangling_pointers.tsv` (12 dangling + 3 planned). | Write the missing files or amend each reference to a resolvable pointer; the exact file/line list is in `R11/FAR/ws3/dangling_pointers.tsv`. | `<HERMES_HOME>/skills/software-development/hgk-governed-execution/` |
 | WR-3 | `hgk-far-remediation-20261016` reads **0/25** while ~20 of its rows are measurably live. | Tick the rows that R10's adjudication scored `DONE_MEASURED`, keeping the row text and citing the measurement. | `C:/Projects/Agent_Workspace/HG-KSEOS/openspec/changes/hgk-far-remediation-20261016/tasks.md` + `R10/R10_CHANGE_RECORD_ADJUDICATION.json` |
 | WR-4 | `skill-mainfile-cap-remediation` (11 rows) is **SUPERSEDED** — its premise (a 100,000-byte cap breach) was already false (measured 99,996/100,000 LF-normalised characters; the file is now 21,026 bytes). | Close the record as superseded with the measurement cited. | `…/openspec/changes/skill-mainfile-cap-remediation/tasks.md` |
 | WR-5 | `lifecycle.plan()` spec-id collision (`TS-<segment>-NN` uniqueness) was worked around, not fixed. | Fix the id derivation in the lifecycle controller, or document the constraint. | `C:/Projects/Agent_Workspace/HG-KSEOS/src/hg_kseos/lifecycle.py` (~line 277) |
-| WR-6 | Hermes source reports `0.21.5` while `config/hermes.json` declares `0.20.0`. | Reconcile the declared version. | `<HERMES_HOME>/config/hermes.json` |
+| WR-6 | Declared-version mismatch (reproduced this round): the Hermes source reports `0.21.5` while the control plane's `HG-KSEOS/config/hermes.json` declares `"version": "0.20.0"`. **Locator corrected**: the carried-over locator pointed at the Hermes home, where no `hermes.json` exists at all; the file is under **HG-KSEOS** (an earlier version of this very row said otherwise and was itself wrong). | Reconcile the declared version, or record which surface is authoritative. | `C:/Projects/Agent_Workspace/HG-KSEOS/config/hermes.json` |
 
 ### 5.3 Open governance records (openspec)
 
-**Every one of the 24 change records under `HG-KSEOS/openspec/changes/` carries unchecked rows** (371 open rows
-in total, measured by this round). Most of them are older than this mission and are **not** this mission's work.
-Per-record dispositions, measurements and one-action paths: `OPEN_RECORDS_INVENTORY.tsv` (this root) and
-`R11/FAR/ws1/open_records_inventory.tsv`.
+All **25** records under `HG-KSEOS/openspec/changes/` carry unchecked rows (one of them,
+`hgk-round3-lane-rebind-20261016`, was **added by a peer round at ~14:30**, after this round's first snapshot - see
+the correction note in §7). This round measured each one and
+triaged it (FAR ws1): **7 CLOSE_CANDIDATE** (the work is measurably live on disk while the record stays unticked),
+**9 CONTINUE** (real work remains), **5 OWNER_DECISION**, **4 HISTORICAL** (older than this mission, not its scope).
+`openspec validate --strict` (toolchain v1.8.0) was run on every record: **23 PASS, 2 FAIL** - the two failures
+(`hgk-plan-plane-rebind-20261015`, `sod-independent-verify-enforcement`) fail only for having no delta spec.
+Ticked vs total task rows across the tree: **223 done / 364 open** (live re-count; the round's first snapshot said
+183/371 and was stale on membership and on two records - corrected after independent review).
+Per-record rows, evidence locators and one-action paths: `R11/FAR/ws1/open_records_inventory.tsv`
+(a flat snapshot of the counts is in `OPEN_RECORDS_INVENTORY.tsv` at this root).
+
+**Coordination note**: other rounds write this same tree concurrently (a peer round added a record during this
+round's own measurement window). Re-count before acting on any row, and never assume a record is yours.
 
 ### 5.4 Blockers
 
@@ -174,6 +188,15 @@ cd <ROUND> && python publish_r1x.py prepare && python publish_r1x.py m2 && pytho
   claim, an understated collision count, an imprecise nonce-mechanism description).
 - **No round has model-axis independence** under the current order (writer = checker arm).
 - A child agent's output is a **claim**; re-derive decisive values yourself before acting.
+- **Corrections forced by this round's own checker** (PARTIALLY_VERIFIED, 4 confirmed / 3 refuted) are applied
+  here and listed in `R11_VERIFY/R11_VERDICT_ADJUDICATION.json`: the inventory's membership and two row counts
+  were stale (a peer added a record mid-round and the round's own record had advanced); the self-check's path
+  regex under-counted references and therefore missed one non-resolving locator (`the Hermes home's missing config file`);
+  `WR-6`'s locator was wrong for that reason; `WR-2`'s arithmetic did not match ws3's TSV; and two FAR ws2 rows
+  (`RES-R11-01/02`) were **true when measured and became stale when this round fixed them** - their report still
+  carries the old text, which is recorded rather than edited (a research product is not silently rewritten).
+- **A prompt-injection attempt was embedded in tool output during this round** (text styled as a `system_warning`)
+  and was ignored by the checker; it is recorded as an observation, and no instruction from tool output was obeyed.
 - The local Fabric checkout diverged from `origin/main` at some point (not caused by these rounds); always cut
   publication branches from `origin/main`, never from the local checkout.
 
@@ -183,5 +206,6 @@ cd <ROUND> && python publish_r1x.py prepare && python publish_r1x.py m2 && pytho
 
 `HANDOVER_R11.md` (this file) · `RESUME_MANIFEST.json` · `OPEN_RECORDS_INVENTORY.tsv` ·
 `R11_SESSION_CLOSURE_LEDGER.json` · `HGK_TYPED_ADMISSION_R11.json` · `R11_BOARD_EVIDENCE.json` ·
-`FAR/ws1|ws2|ws3/` (three read-only research products) · `SELF_EVOLUTION_R11.md/.json` ·
+`FAR/ws1/` (open-record triage: 25 rows + dispositions), `FAR/ws2/` (resume item set: 18 rows + a load-first
+bootstrap), `FAR/ws3/` (integrity audit: 21 locators, 12 dangling pointers) · `SELF_EVOLUTION_R11.md/.json` ·
 `R11_VERIFY/` (checker verdict + adjudication) · `publish_r11.py` (publication successor).

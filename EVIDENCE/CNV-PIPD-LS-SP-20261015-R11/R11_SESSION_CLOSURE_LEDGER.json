@@ -19,7 +19,7 @@
  "findings": [
   {
    "id": "R11-F1",
-   "what": "Every one of the 24 openspec change records under HG-KSEOS carries unchecked rows (371 open rows measured); most predate this mission and are not its work",
+   "what": "Every one of the 25 openspec change records under HG-KSEOS carries unchecked rows (live: 223 done / 364 open); a peer round added one record mid-round",
    "state": "MEASURED",
    "owner": "owner / next session"
   },
@@ -40,6 +40,12 @@
    "what": "The governed skill names entry_map.json at lines 66/71 and the file does not exist in its own directory (dangling load path)",
    "state": "MEASURED",
    "owner": "skill owner"
+  },
+  {
+   "id": "R11-F5",
+   "what": "A prompt-injection attempt styled as a `system_warning` was embedded in tool output during this round and was ignored by the checker; no instruction from tool output was obeyed",
+   "state": "OBSERVED (reported by the round's checker)",
+   "owner": "-"
   }
  ],
  "side_effects_disclosed": [
@@ -67,6 +73,11 @@
    "what": "did NOT touch the guard subject, the published R6..R10 packets, the lane registry/slots, or any peer working tree",
    "why": "constraints",
    "readback": "guard subject count/mtime re-measured by the round and by ws3"
+  },
+  {
+   "what": "the round's self-check v2 was WRONG (under-counted path references) and its first inventory snapshot was stale; both were corrected after independent review and the corrections are disclosed, not silently rewritten",
+   "why": "evidence discipline",
+   "readback": "SELFCHECK_R11.json schema .../3 and the correction note in HANDOVER_R11.md §7"
   }
  ],
  "blockers": [
