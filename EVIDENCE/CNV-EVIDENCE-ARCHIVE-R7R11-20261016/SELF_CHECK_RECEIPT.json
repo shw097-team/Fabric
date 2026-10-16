@@ -1,6 +1,6 @@
 {
  "schema": "CNV-EVIDENCE-ARCHIVE-R7R11/SELF-CHECK/1",
- "generated_utc": "2026-10-16T10:29:01.647558+00:00",
+ "generated_utc": "2026-10-16T10:31:08.297701+00:00",
  "checks": [
   {
    "id": "S1",
@@ -95,15 +95,15 @@
   {
    "id": "S12",
    "what": "publication readback bound to the remote (branch ref sha == commit sha)",
-   "verdict": "NOT_RUN",
-   "detail": "NOT_RUN - publication has not happened yet"
+   "verdict": "PASS",
+   "detail": "branch=refs/heads/evidence/cnv-evidence-archive-r7r11-20261016 pr=12 readback_match=True"
   }
  ],
  "summary": {
   "total": 16,
-  "pass": 15,
+  "pass": 16,
   "fail": 0,
-  "not_run": 1
+  "not_run": 0
  },
  "self_repairs": [
   {
