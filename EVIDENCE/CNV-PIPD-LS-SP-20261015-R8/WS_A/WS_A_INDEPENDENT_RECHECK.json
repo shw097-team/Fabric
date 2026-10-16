@@ -1,0 +1,63 @@
+{
+ "schema": "CNV-PIPD-LS-SP-20261015-R8/WS-A-INDEPENDENT-RECHECK/1",
+ "produced_utc": "2026-10-16T03:16:11.984782+00:00",
+ "subject": "canonical skills tree: …/hermes/skills/software-development/adversarial-verification-rounds/",
+ "checker": "in-Hermes orchestrator re-run (NOT the maker lane; but same OS identity and process family — see limitation)",
+ "method": "re-run of ws_a_skill_slim_regression.py with subject = the LIVE post-apply tree and live = WS_A/apply/preimage (the pre-apply bytes), plus a loader-parity call into the real Hermes skill loader",
+ "checks": {
+  "C1_capacity": "PASS",
+  "C2_loader_shape": "PASS",
+  "C3_link_intake": "PASS",
+  "C4_lossless": "PASS",
+  "C5_controls": "PASS"
+ },
+ "overall": "PASS",
+ "details": {
+  "main_file_bytes_before": 101488,
+  "main_file_bytes_after": 21332,
+  "cap_bytes": 100000,
+  "references_count_after": 26,
+  "absorbed_reference_stubs": 6,
+  "absorbed_stub_sha_mismatches": [],
+  "absorbed_stub_offset_mismatches": [],
+  "preimage_lines_gt40": 999,
+  "lost_lines": 0,
+  "frontmatter_at_byte_0": true,
+  "slice_markers_present": 0,
+  "loader_parity": "hermes skills list still shows the skill as local/enabled after the apply (71 enabled, 0 disabled)"
+ },
+ "guarded_apply_record": {
+  "paths": 31,
+  "actions": {
+   "replaced": 7,
+   "retained_untouched": 21,
+   "added": 3
+  },
+  "preimage_dir": "WS_A/apply/preimage (with PREIMAGE_MANIFEST.json)",
+  "rollback_script": "WS_A/apply/rollback.py",
+  "rollback_drill": {
+   "step": "rollback_drill",
+   "pre_turn_files": 28,
+   "landed_files": 31,
+   "restored_files": 28,
+   "byte_for_byte_restored": true,
+   "verdict": "PASS",
+   "mismatches": []
+  }
+ },
+ "excluded_stale_absorption": {
+  "reference": "references/verifier-lane-handover.md",
+  "recorded_in_stub": "aebb35ea0ef523de9d64940081706fc62bd36fb4712abe51ef8baa19e3dd939b",
+  "live_bytes_sha256_now": "2126b82e… (29,708 B, carried verbatim by the lane)",
+  "handling": "carried live, not absorbed"
+ },
+ "lane_dispatch_caveat": {
+  "dispatcher_exit": 3,
+  "code": "ERR_NO_ARM_EMITTED_NONCE",
+  "nonce_absent_arms": [
+   "opencode-go/deepseek-v4.1-flash"
+  ],
+  "meaning": "the lane's products are verifiable and were verified here, but the dispatcher could NOT evidence which model arm served the turn; EXECUTE model attribution for this lane is therefore UNPROVEN (tooling finding, 8th occurrence this mission)"
+ },
+ "claim_ceiling": "LOCAL / candidate-only; this is a maker-side-adjacent re-run, not an independent acceptance (not a different identity, not a checker lane verdict)"
+}

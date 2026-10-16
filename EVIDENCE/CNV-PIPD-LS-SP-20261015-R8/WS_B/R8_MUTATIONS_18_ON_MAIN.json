@@ -1,0 +1,231 @@
+{
+ "schema": "PIPD-R8-MUTATIONS-18-ON-MAIN/1",
+ "producer": "WS-B (R8-0 rebase on main)",
+ "produced_utc": "2026-10-16T03:21:13.584560+00:00",
+ "base_commit": "dba4b19456777d3b597fdf71480f6423dd974243",
+ "product_tree": "C:/Projects/Agent_Workspace/PIPD/worktrees/r8-wt",
+ "driver_diff": "R8_0_DRIVER_DIFF.patch",
+ "driver_diff_sha256": "9886a564d7d359e200195694f1fae5139e739df2b513aac4ce58cb5733704f90",
+ "driver_note": "R6/R7 mutation driver reused verbatim; only PIPD_SRC / SCHEMAS / RAW / ROOT constants redirected (no logic change). See driver_diff.",
+ "totals": {
+  "executed": 10,
+  "detected": 10,
+  "not_detected": 0,
+  "not_run": 8,
+  "total": 18
+ },
+ "rows": [
+  {
+   "id": "M01",
+   "mutation": "narrative spoof / wrong trusted package sha",
+   "expected": "REJECT",
+   "observed": "REJECT",
+   "validator_verdict": "exit=20",
+   "first_fail": "{\"verdict\": \"FAIL_CLOSED\", \"reason\": \"TRUSTED_PACKAGE_SHA_MISMATCH\", \"exit\": 20}",
+   "raw_receipt": "RAW/mut_m01.stdout.txt",
+   "raw_receipt_sha256": "1b45ee368dfb4f37bf75091153a989b4eb79fa378e3c57eb39181dec1e417649"
+  },
+  {
+   "id": "M02",
+   "mutation": "plugin helper body tamper",
+   "expected": "REJECT",
+   "observed": "NOT_RUN",
+   "validator_verdict": "",
+   "first_fail": "",
+   "raw_receipt": "",
+   "rejudgement": "NOT_CONSTRUCTIBLE_FROZEN_BYTES_ABSENT",
+   "not_run_reason": "plugin helper body inside frozen R5 corpus bytes not reachable without mutating frozen source"
+  },
+  {
+   "id": "M03",
+   "mutation": "IntentCard atom claim forged",
+   "expected": "REJECT",
+   "observed": "REJECT",
+   "validator_verdict": "PiSemanticFail",
+   "first_fail": "PI_SEMANTIC",
+   "raw_receipt": "RAW/mut_m03.stdout.txt",
+   "raw_receipt_sha256": "f6ec455bf1f74c8a6a31b7280c4e599e33dacd6d2dfbd28fdb1fff0dcaeae755"
+  },
+  {
+   "id": "M04",
+   "mutation": "ProfileBinding assurance downgraded ASSURED->LITE",
+   "expected": "REJECT",
+   "observed": "REJECT",
+   "validator_verdict": "FAIL",
+   "first_fail": "ProfileBinding: content_hash does not match the record body (body edited without re-issuing identity)",
+   "raw_receipt": "RAW/mut_m04.stdout.txt",
+   "raw_receipt_sha256": "d3f0cce7b9b99b7f8c4004935143708276eba09941c370f77ba5776cc6e58a1e"
+  },
+  {
+   "id": "M05",
+   "mutation": "PI acceptance oracle poisoned",
+   "expected": "REJECT",
+   "observed": "REJECT",
+   "validator_verdict": "FAIL",
+   "first_fail": "PI-PKG: content_hash does not match the record body (body edited without re-issuing identity)",
+   "raw_receipt": "RAW/mut_m05.stdout.txt",
+   "raw_receipt_sha256": "4ee4998896d4a5af560b792754b901a9b264f136a868451622429d35adbcf897"
+  },
+  {
+   "id": "M06",
+   "mutation": "domain oracle expected changed to 999",
+   "expected": "REJECT",
+   "observed": "REJECT",
+   "validator_verdict": "FAIL",
+   "first_fail": "RequirementAtom: content_hash does not match the record body (body edited without re-issuing identity)",
+   "raw_receipt": "RAW/mut_m06.stdout.txt",
+   "raw_receipt_sha256": "3a931125a3d65477f18c3b00ab8a4614a05e7fc0ef99bb9f6634cb3936d33a0a"
+  },
+  {
+   "id": "M07",
+   "mutation": "legacy T01 negative=positive",
+   "expected": "REJECT",
+   "observed": "NOT_RUN",
+   "validator_verdict": "",
+   "first_fail": "",
+   "raw_receipt": "",
+   "rejudgement": "NOT_CONSTRUCTIBLE_FROZEN_BYTES_ABSENT",
+   "not_run_reason": "legacy T01 fixture bytes not present in admitted physical source root"
+  },
+  {
+   "id": "M08",
+   "mutation": "64-bridge RQ02 test miswired to T27",
+   "expected": "REJECT",
+   "observed": "NOT_RUN",
+   "validator_verdict": "",
+   "first_fail": "",
+   "raw_receipt": "",
+   "rejudgement": "NOT_CONSTRUCTIBLE_FROZEN_BYTES_ABSENT",
+   "not_run_reason": "64-bridge RQ02->T27 miswiring requires the frozen bridge registry bytes"
+  },
+  {
+   "id": "M09",
+   "mutation": "PI-01 title false term",
+   "expected": "REJECT",
+   "observed": "NOT_RUN",
+   "validator_verdict": "",
+   "first_fail": "",
+   "raw_receipt": "",
+   "rejudgement": "NOT_CONSTRUCTIBLE_FROZEN_BYTES_ABSENT",
+   "not_run_reason": "PI-01 vendor title fixture bytes not admitted"
+  },
+  {
+   "id": "M10",
+   "mutation": "WP-01 ignores approval",
+   "expected": "REJECT",
+   "observed": "NOT_RUN",
+   "validator_verdict": "",
+   "first_fail": "",
+   "raw_receipt": "",
+   "rejudgement": "NOT_CONSTRUCTIBLE_FROZEN_BYTES_ABSENT",
+   "not_run_reason": "WP-01 approval-ignore requires the owner WP/RBWI artifact bytes"
+  },
+  {
+   "id": "M11",
+   "mutation": "false RELEASED claim via unguarded key",
+   "expected": "REJECT",
+   "observed": "REJECT",
+   "validator_verdict": "FAIL",
+   "first_fail": "ClaimCeiling: claims above LOCAL_QUALIFIED require a bound approval receipt AND a checker identity; a maker cannot mint them unilaterally",
+   "raw_receipt": "RAW/mut_m11.stdout.txt",
+   "raw_receipt_sha256": "5d1245d9b0439f2ad7e7b21cc382a7d3f1d5b2c07d0c078acf60818bc4e01eab"
+  },
+  {
+   "id": "M12",
+   "mutation": "self-minted INDEPENDENT_PASS ceiling",
+   "expected": "REJECT",
+   "observed": "REJECT",
+   "validator_verdict": "FAIL",
+   "first_fail": "ClaimCeiling: claims above LOCAL_QUALIFIED require a bound approval receipt AND a checker identity; a maker cannot mint them unilaterally",
+   "raw_receipt": "RAW/mut_m12.stdout.txt",
+   "raw_receipt_sha256": "77da6db08b202710831fbf730355ca6caaa69d217fa49f01b9d51d24da4155a2"
+  },
+  {
+   "id": "M13",
+   "mutation": "rename selected technology",
+   "expected": "REJECT",
+   "observed": "NOT_RUN",
+   "validator_verdict": "",
+   "first_fail": "",
+   "raw_receipt": "",
+   "rejudgement": "NOT_CONSTRUCTIBLE_FROZEN_BYTES_ABSENT",
+   "not_run_reason": "technology rename requires the frozen TechnologyAdmission ledger bytes"
+  },
+  {
+   "id": "M14",
+   "mutation": "fake repo snapshot head claim",
+   "expected": "REJECT",
+   "observed": "REJECT",
+   "validator_verdict": "StaleProvider",
+   "first_fail": "STALE_PROVIDER",
+   "raw_receipt": "RAW/mut_m14.stdout.txt",
+   "raw_receipt_sha256": "637bcc6e48037417093720f6c3b1fd5dad72f246c4e6d8b5adad5e288bc48572"
+  },
+  {
+   "id": "M15",
+   "mutation": "RQ06 mapped to forbidden T22",
+   "expected": "REJECT",
+   "observed": "NOT_RUN",
+   "validator_verdict": "",
+   "first_fail": "",
+   "raw_receipt": "",
+   "rejudgement": "NOT_CONSTRUCTIBLE_FROZEN_BYTES_ABSENT",
+   "not_run_reason": "RQ06->T22 mapping requires the frozen trace-crosswalk bytes"
+  },
+  {
+   "id": "M16",
+   "mutation": "trace atom digest mismatched",
+   "expected": "REJECT",
+   "observed": "REJECT",
+   "validator_verdict": "FAIL",
+   "first_fail": "TraceLink: content_hash does not match the record body (body edited without re-issuing identity)",
+   "raw_receipt": "RAW/mut_m16.stdout.txt",
+   "raw_receipt_sha256": "fbc61ac45cbf8eddde6859b0ddce68eb2382ed0c778e44e0ff3a527623e8c3fa"
+  },
+  {
+   "id": "M17",
+   "mutation": "duplicated RQ64 case",
+   "expected": "REJECT",
+   "observed": "NOT_RUN",
+   "validator_verdict": "",
+   "first_fail": "",
+   "raw_receipt": "",
+   "rejudgement": "NOT_CONSTRUCTIBLE_FROZEN_BYTES_ABSENT",
+   "not_run_reason": "duplicated RQ64 case requires the frozen registry projection bytes"
+  },
+  {
+   "id": "M18",
+   "mutation": "remove 22nd CAND / candidate_only=false",
+   "expected": "REJECT",
+   "observed": "REJECT",
+   "validator_verdict": "FAIL",
+   "first_fail": "WorkOrderCandidate/: Additional properties are not allowed ('workorder_id' was unexpected)",
+   "raw_receipt": "RAW/mut_m18.stdout.txt",
+   "raw_receipt_sha256": "a6e7bc35ca1add82c6035c94f9697425b58074869a1f3fd95b838ce5cc1946e9"
+  }
+ ],
+ "detected_ids": [
+  "M01",
+  "M03",
+  "M04",
+  "M05",
+  "M06",
+  "M11",
+  "M12",
+  "M14",
+  "M16",
+  "M18"
+ ],
+ "not_detected_ids": [],
+ "not_run_ids": [
+  "M02",
+  "M07",
+  "M08",
+  "M09",
+  "M10",
+  "M13",
+  "M15",
+  "M17"
+ ],
+ "claim_level": "LOCAL / candidate-only; a green local run is not an acceptance and not a Gate PASS"
+}

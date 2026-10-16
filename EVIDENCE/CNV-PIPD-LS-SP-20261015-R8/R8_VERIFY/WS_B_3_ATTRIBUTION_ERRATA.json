@@ -1,0 +1,56 @@
+{
+ "schema": "CNV-PIPD-LS-SP-20261015-R8/CHECKER-ATTRIBUTION-ERRATA/1",
+ "produced_utc": "2026-10-16T03:50:38.693624+00:00",
+ "produced_by": "in-Hermes orchestrator (third party to both the WS-B maker lane and the WS-V checker lane)",
+ "subject": "R8_VERIFY/R8_VERIFY_VERDICT.json -> subjects.WS_B.claims[WS-B-3].raw_output_excerpt",
+ "checker_text_under_challenge": "'2 failed, 609 passed, 20 skipped, 62 subtests passed in 206.15s (0:03:26); 2 failed are pre-existing on main and not caused by the hardening port'",
+ "finding": "The measured counts are not disputed. The ATTRIBUTION clause is false. Both failures are introduced by the ported hardening.",
+ "evidence_2x2": [
+  {
+   "tree": "clean main dba4b19, no hardening",
+   "runner": "in-Hermes orchestrator",
+   "command": "python -m pytest tests -q -p no:cacheprovider -k 'test_real_trace_link_is_legal_beside_its_endpoints or test_cli_smoke_runs'",
+   "result": "2 passed, 629 deselected in 27.89s",
+   "worktree": "C:/Projects/wt-r8-cleanmain (detached dba4b19, created for this check)"
+  },
+  {
+   "tree": "clean main dba4b19, no hardening",
+   "runner": "WS-B maker lane (stashed the change in its own worktree)",
+   "command": "recorded in WS_B/RAW/r8_pytest_main_baseline_twofail.*",
+   "result": "2 passed in 23.07s",
+   "worktree": "C:/Projects/Agent_Workspace/PIPD/worktrees/r8-wt"
+  },
+  {
+   "tree": "hardening applied (+203/-6 in validate.py, pipeline.py, cli.py)",
+   "runner": "in-Hermes orchestrator",
+   "command": "same selection",
+   "result": "2 failed, 629 deselected in 18.69s - test_s4ext_trace_closure.py::LegalTraceStillPassesTests::test_real_trace_link_is_legal_beside_its_endpoints and tests/test_tooling_executes.py::TestToolingExecutes::test_cli_smoke_runs",
+   "worktree": "C:/Projects/Agent_Workspace/PIPD/worktrees/r8-wt"
+  },
+  {
+   "tree": "hardening applied",
+   "runner": "WS-V checker lane",
+   "command": "python -m pytest tests -q (full suite)",
+   "result": "2 failed, 609 passed, 20 skipped (same two ids)",
+   "worktree": "same"
+  }
+ ],
+ "conclusion": "Two independent clean-main measurements pass; two hardening-tree measurements fail on the same two ids. Failures are port-induced. The checker's attribution sentence is retracted.",
+ "effect_on_the_verdict": {
+  "PER_CLAIM_structure": "retained - the per-claim states remain usable",
+  "WS-B-3": "state CONFIRMED is retained for the reproduced counts; its attribution clause is REPLACED by '2 failed ARE caused by the ported hardening', which also means the maker's honest partial in WS_B_RECEIPT.md §4.2 was correct and the checker was wrong on the causal reading",
+  "independent_verdict_not_read_as": "'every claim's stated basis is sound' - read it per claim with this amendment",
+  "no_self_acceptance": "this errata corrects a checker error against the maker's favour; it does not approve anything and does not upgrade the round"
+ },
+ "process_lesson": {
+  "id": "L7 (self-evolution)",
+  "rule": "A checker verdict's narrative attributions are themselves claims and must be re-measured, not merely read: reproduce the measurement AND the causal sentence.",
+  "why": "here the counts were honest but the cause was inverted; a round that accepted the sentence would have filed a port-induced defect as pre-existing and shipped the port as clean"
+ },
+ "escalation": {
+  "blocker": "BLK-R8-WS2-MAIN-DIVERGENCE",
+  "from": "OPEN",
+  "to": "CONFIRMED_PORT_INDUCED - 2 named failures, 2 independent clean-main baselines",
+  "disposition": "not fixed in this round by design; adaptation belongs to R9-0 with the hardening owner"
+ }
+}

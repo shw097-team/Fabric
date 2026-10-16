@@ -1,0 +1,87 @@
+{
+ "schema": "CNV-PIPD-LS-SP-20261015-R8/WS-C-CHECKER-WRITE-ROOT-ISOLATION/1",
+ "produced_utc": "2026-10-16T03:07:05.700200+00:00",
+ "finding_ref": "EIA-R6-03 (EVIDENCE_GAP / HIGH; earliest owner: HGK Checker Harness Owner)",
+ "producer": "in-Hermes orchestrator (raw OS probe, not a lane claim)",
+ "identity": {
+  "whoami": "user",
+  "USERNAME": "user"
+ },
+ "A_effective_acl_of_guarded_subject": {
+  "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY",
+  "raw": "### whoami\nuser\nUSERNAME=user\n\n### icacls guarded subject (R6_DELIVERY)\nC:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY BUILTIN\\Administrators:(I)(OI)(CI)(F)\n                                                                          NT AUTHORITY\\SYSTEM:(I)(OI)(CI)(F)\n                                                                          BUILTIN\\Users:(I)(OI)(CI)(RX)\n                                                                          NT AUTHORITY\\Authenticated Users:(I)(M)\n                                                                          NT AUTHORITY\\Authenticated Users:(I)(OI)(CI)(IO)(M)\n\n�w���Q�B�z 1 ���ɮ�; 0 ���ɮ׳B�z����\nrc=0\n\n### icacls parent (_handover/CNV-PIPD-LS-SP-20261015)\nC:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015 BUILTIN\\Administrators:(I)(OI)(CI)(F)\n                                                              NT AUTHORITY\\SYSTEM:(I)(OI)(CI)(F)\n                                                              BUILTIN\\Users:(I)(OI)(CI)(RX)\n                                                              NT AUTHORITY\\Authenticated Users:(I)(M)\n                                                              NT AUTHORITY\\Authenticated Users:(I)(OI)(CI)(IO)(M)\n\n�w���Q�B�z 1 ���ɮ�; 0 ���ɮ׳B�z����\nrc=0\n",
+  "aces": [
+   {
+    "principal": "BUILTIN\\Administrators",
+    "rights": "(I)(OI)(CI)(F)"
+   },
+   {
+    "principal": "NT AUTHORITY\\SYSTEM",
+    "rights": "(I)(OI)(CI)(F)"
+   },
+   {
+    "principal": "BUILTIN\\Users",
+    "rights": "(I)(OI)(CI)(RX)"
+   },
+   {
+    "principal": "NT AUTHORITY\\Authenticated Users",
+    "rights": "(I)(M)"
+   },
+   {
+    "principal": "NT AUTHORITY\\Authenticated Users",
+    "rights": "(I)(OI)(CI)(IO)(M)"
+   }
+  ],
+  "deny_aces_present": false,
+  "conclusion": "NO OS-level write denial exists. The current identity is an Authenticated User and therefore has inherited Modify on the guarded subject and its children: a checker running as this identity can write into it. The R7 control is procedural only."
+ },
+ "B_absence_control": {
+  "step": "create+write a file in a scratch directory (WS_C/acl_probe) with the current ACE set",
+  "raw": "### step2 create+write (no deny)\nwrite_rc=0\n",
+  "result": "write succeeded (rc=0) — the same rights the guarded subject grants"
+ },
+ "C_mechanism_proof": {
+  "directory_tested": "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015-R8/WS_C/acl_probe (scratch, deleted afterwards)",
+  "step1_apply_deny": {
+   "command": "icacls \"WS_C\\acl_probe\" /deny \"%USERNAME%:(W)\"",
+   "rc": 0,
+   "raw": "### step3a apply deny W\n�w�B�z���ɮ�: C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015-R8/WS_C\\acl_probe\n�w���Q�B�z 1 ���ɮ�; 0 ���ɮ׳B�z����\nicacls_rc=0\n### step3b attempt write under deny\n/usr/bin/bash: line 5: C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015-R8/WS_C/acl_probe/probe_denied.txt: Permission denied\nwrite_rc=1\n"
+  },
+  "step2_write_under_deny": {
+   "observed": "Permission denied",
+   "rc": 1,
+   "file_created": false,
+   "raw_excerpt": "bash: …/probe_denied.txt: Permission denied\nwrite_rc=1"
+  },
+  "step3_remove_deny": {
+   "command": "icacls \"WS_C\\acl_probe\" /remove:d \"%USERNAME%\"",
+   "rc": 0,
+   "raw": "### step3c remove deny\n�w�B�z���ɮ�: C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015-R8/WS_C\\acl_probe\n�w���Q�B�z 1 ���ɮ�; 0 ���ɮ׳B�z����\nicacls_rc=0\n### step3d attempt write after removal\nwrite_rc=0\ntotal 2\ndrwxr-xr-x 1 user 197121 0 十月   16 11:06 .\ndrwxr-xr-x 1 user 197121 0 十月   16 11:06 ..\n-rw-r--r-- 1 user 197121 6 十月   16 11:06 probe_after.txt\n-rw-r--r-- 1 user 197121 7 十月   16 11:06 probe_before.txt\n"
+  },
+  "step4_write_after_removal": {
+   "observed": "write succeeded",
+   "rc": 0
+  },
+  "step5_cleanup": {
+   "observed": "scratch directory removed",
+   "rc": 0
+  },
+  "conclusion": "An explicit (DENY)(W) ACE does block writes on this host (and is cleanly reversible). The mechanism is available; it is not applied to the guarded subject."
+ },
+ "D_proposed_change_for_owner": {
+  "apply": "icacls \"C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\" /deny \"%USERNAME%:(W)\"",
+  "rollback": "icacls \"C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\" /remove:d \"%USERNAME%\"",
+  "blast_radius": "the interactive identity loses write access to the guarded subject and its children (read preserved). Maker and checker run as the SAME Windows identity here, so this denies both; it enforces the subject's immutability but does NOT by itself separate maker from checker.",
+  "why_not_applied": "a filesystem ACL change on an existing governed artifact changes the security posture of published evidence and needs the owner's authorisation; and it cannot deliver the SoD separation EIA-R6-03 asks for (that needs distinct OS identities or a process sandbox)",
+  "structural_finding": "true maker/checker separation requires distinct OS identities or a sandboxed checker process; with one shared identity only immutability is enforceable, and the checker's write root must stay outside the subject by construction"
+ },
+ "E_guarded_subject_re_measurement": {
+  "files": 300,
+  "bytes": 1102562,
+  "digest": "3588d5d51a4941cf1c9425beee9dcf3f4162fe23bcdd276bc1dd3939af86f16c",
+  "matches_recorded_WS_D_value": true,
+  "recorded": "3588d5d51a4941cf1c9425beee9dcf3f4162fe23bcdd276bc1dd3939af86f16c"
+ },
+ "verdict": "EVIDENCE_OF_ABSENCE + MECHANISM_PROVEN + PROPOSAL_ONLY (isolation NOT fixed; EIA-R6-03 remains open)",
+ "claim_ceiling": "LOCAL / candidate-only; raw OS output with commands recorded; no ACL on any real path was changed"
+}

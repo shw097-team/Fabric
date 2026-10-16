@@ -1,0 +1,1418 @@
+{
+  "schema": "GSTACK-R8-ROLEMAP-READBACK/1",
+  "mission": "CNV-PIPD-LS-SP-20261015",
+  "round": "R8-0",
+  "claim_ceiling": "LOCAL / CANDIDATE_ONLY / READBACK_NOT_APPROVAL",
+  "as_of_utc": "2026-10-16T03:09:57.468775+00:00",
+  "repo": "C:\\Projects\\Agent_Workspace\\HG-KSEOS",
+  "git_head": "903e47cddeceb40cb8f5f5793105533b3988a463",
+  "counts": {
+    "ROLE_KEYED": 7,
+    "MAP_ROLE_ABSENT": 12,
+    "total_roles": 19,
+    "role_keyed_slot_declarations": 0,
+    "absent_role_keys_with_literal_alias": 6,
+    "absent_role_keys_with_literal_native": 6,
+    "registry_drift_value_findings": 1
+  },
+  "status_semantics": {
+    "ROLE_KEYED": "Exact gstack.ROLE key exists in source NAMED_METHODS. Not a model route, executed method, or acceptance claim.",
+    "MAP_ROLE_ABSENT": "Exact role-keyed named method or role-specific route-slot bridge absent. Broad substring route aliases do not count as role-keyed.",
+    "DRIFT_VALUE": "Expected/observed disagreement; shared registry drift and mandate drift are separate findings, not fabricated per-role model bindings."
+  },
+  "roles": [
+    {
+      "role": "office-hours",
+      "map_declaration": {
+        "category": "support",
+        "disposition": "ADOPT",
+        "host": "hgk-orchestrator",
+        "worker_mode": "on-demand",
+        "fallback": "hgk_native_support"
+      },
+      "map_evidence": {
+        "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\HGK\\HGK_GSTACK_ROLE_MAP.yaml",
+        "pointer": "/roles/office-hours"
+      },
+      "status": "ROLE_KEYED",
+      "named_method": {
+        "expected_symbol": "hg_kseos.named_methods.NAMED_METHODS['gstack.office-hours']",
+        "exists": true,
+        "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\src\\hg_kseos\\named_methods.py",
+        "line": 112,
+        "source_quote": "\"gstack.office-hours\": NamedMethod(",
+        "observed": {
+          "tool_id": "gstack.office-hours",
+          "source_disposition": "CONDITIONAL_RECOMMENDED / SELECTIVE",
+          "current_execution_scope": "USER_AUTHORIZED_ACTIVE_SELECTED_SLICES",
+          "runtime_required_now": true,
+          "role": "AMBIGUITY_PRODUCT_INTERROGATION_ADVISORY",
+          "provider_state": "CERTIFIED_ACTIVE_SELECTED_SLICES",
+          "fallback": "hgk_native_prw",
+          "final_authority": false,
+          "xor_with": null,
+          "evidence_refs": [
+            "HG-KSEOS_GSTACK_IDENTITY_READBACK.json",
+            "HG-KSEOS_GSTACK_HERMES_BINDING_ACCEPTANCE.json"
+          ]
+        },
+        "absence_evidence": "commands.json runtime-named-method-and-drift-readback full registry; source-role-and-wiring-search src/scripts search"
+      },
+      "literal_route_call": {
+        "symbol": "hg_kseos.named_methods.route",
+        "argument": "office-hours",
+        "observed": {
+          "flow": "office-hours",
+          "provider": null,
+          "state": null,
+          "fallback": null,
+          "final_authority": true,
+          "route": "NATIVE"
+        },
+        "is_role_keyed_proof": false
+      },
+      "route_slot": {
+        "declared_for_this_role": false,
+        "status": "MAP_ROLE_ABSENT",
+        "provider": null,
+        "model": null,
+        "reasoning_effort": null,
+        "expected": "An explicit GSTACK-role-to-lane/slot binding if claiming a role-specific model route",
+        "observed": "The role map declares host/fallback but no model slot; lane-route-slots.candidate.json declares PLAN/EXECUTE/VERIFY_SECURITY only. No GSTACK-role-to-lane bridge is declared in the supplied files.",
+        "evidence": "config/lane-route-slots.candidate.json /lanes and HGK/HGK_GSTACK_ROLE_MAP.yaml /roles/office-hours"
+      },
+      "drift_values": []
+    },
+    {
+      "role": "plan-ceo-review",
+      "map_declaration": {
+        "category": "plan",
+        "disposition": "MAP_TO_EXISTING_OWNER",
+        "host": "hgk-engineering-reviewer",
+        "worker_mode": "on-demand",
+        "fallback": "hgk_native_plan"
+      },
+      "map_evidence": {
+        "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\HGK\\HGK_GSTACK_ROLE_MAP.yaml",
+        "pointer": "/roles/plan-ceo-review"
+      },
+      "status": "MAP_ROLE_ABSENT",
+      "named_method": {
+        "expected_symbol": "hg_kseos.named_methods.NAMED_METHODS['gstack.plan-ceo-review']",
+        "exists": false,
+        "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\src\\hg_kseos\\named_methods.py",
+        "line": null,
+        "source_quote": null,
+        "observed": null,
+        "absence_evidence": "commands.json runtime-named-method-and-drift-readback full registry; source-role-and-wiring-search src/scripts search"
+      },
+      "literal_route_call": {
+        "symbol": "hg_kseos.named_methods.route",
+        "argument": "plan-ceo-review",
+        "observed": {
+          "flow": "plan-ceo-review",
+          "provider": "gstack.plan-eng-review",
+          "state": "CERTIFIED",
+          "fallback": "hgk_native_plan_review",
+          "final_authority": true,
+          "route": "GSTACK"
+        },
+        "is_role_keyed_proof": false
+      },
+      "route_slot": {
+        "declared_for_this_role": false,
+        "status": "MAP_ROLE_ABSENT",
+        "provider": null,
+        "model": null,
+        "reasoning_effort": null,
+        "expected": "An explicit GSTACK-role-to-lane/slot binding if claiming a role-specific model route",
+        "observed": "The role map declares host/fallback but no model slot; lane-route-slots.candidate.json declares PLAN/EXECUTE/VERIFY_SECURITY only. No GSTACK-role-to-lane bridge is declared in the supplied files.",
+        "evidence": "config/lane-route-slots.candidate.json /lanes and HGK/HGK_GSTACK_ROLE_MAP.yaml /roles/plan-ceo-review"
+      },
+      "drift_values": []
+    },
+    {
+      "role": "plan-eng-review",
+      "map_declaration": {
+        "category": "plan",
+        "disposition": "ADOPT",
+        "host": "hgk-engineering-reviewer",
+        "worker_mode": "on-demand",
+        "fallback": "hgk_native_plan"
+      },
+      "map_evidence": {
+        "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\HGK\\HGK_GSTACK_ROLE_MAP.yaml",
+        "pointer": "/roles/plan-eng-review"
+      },
+      "status": "ROLE_KEYED",
+      "named_method": {
+        "expected_symbol": "hg_kseos.named_methods.NAMED_METHODS['gstack.plan-eng-review']",
+        "exists": true,
+        "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\src\\hg_kseos\\named_methods.py",
+        "line": 56,
+        "source_quote": "\"gstack.plan-eng-review\": NamedMethod(",
+        "observed": {
+          "tool_id": "gstack.plan-eng-review",
+          "source_disposition": "CONDITIONAL_RECOMMENDED / SELECTIVE",
+          "current_execution_scope": "USER_AUTHORIZED_ACTIVE_SELECTED_SLICES",
+          "runtime_required_now": true,
+          "role": "ADVISORY_REVIEW_QA_SECURITY_METHOD_ADAPTER",
+          "provider_state": "CERTIFIED_ACTIVE_SELECTED_SLICES",
+          "fallback": "hgk_native_plan_review",
+          "final_authority": false,
+          "xor_with": null,
+          "evidence_refs": [
+            "HG-KSEOS_GSTACK_IDENTITY_READBACK.json",
+            "HG-KSEOS_GSTACK_HERMES_BINDING_ACCEPTANCE.json"
+          ]
+        },
+        "absence_evidence": "commands.json runtime-named-method-and-drift-readback full registry; source-role-and-wiring-search src/scripts search"
+      },
+      "literal_route_call": {
+        "symbol": "hg_kseos.named_methods.route",
+        "argument": "plan-eng-review",
+        "observed": {
+          "flow": "plan-eng-review",
+          "provider": "gstack.plan-eng-review",
+          "state": "CERTIFIED",
+          "fallback": "hgk_native_plan_review",
+          "final_authority": true,
+          "route": "GSTACK"
+        },
+        "is_role_keyed_proof": false
+      },
+      "route_slot": {
+        "declared_for_this_role": false,
+        "status": "MAP_ROLE_ABSENT",
+        "provider": null,
+        "model": null,
+        "reasoning_effort": null,
+        "expected": "An explicit GSTACK-role-to-lane/slot binding if claiming a role-specific model route",
+        "observed": "The role map declares host/fallback but no model slot; lane-route-slots.candidate.json declares PLAN/EXECUTE/VERIFY_SECURITY only. No GSTACK-role-to-lane bridge is declared in the supplied files.",
+        "evidence": "config/lane-route-slots.candidate.json /lanes and HGK/HGK_GSTACK_ROLE_MAP.yaml /roles/plan-eng-review"
+      },
+      "drift_values": []
+    },
+    {
+      "role": "autoplan",
+      "map_declaration": {
+        "category": "plan",
+        "disposition": "ADOPT",
+        "host": "hgk-orchestrator",
+        "worker_mode": "on-demand",
+        "fallback": "hgk_native_plan"
+      },
+      "map_evidence": {
+        "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\HGK\\HGK_GSTACK_ROLE_MAP.yaml",
+        "pointer": "/roles/autoplan"
+      },
+      "status": "MAP_ROLE_ABSENT",
+      "named_method": {
+        "expected_symbol": "hg_kseos.named_methods.NAMED_METHODS['gstack.autoplan']",
+        "exists": false,
+        "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\src\\hg_kseos\\named_methods.py",
+        "line": null,
+        "source_quote": null,
+        "observed": null,
+        "absence_evidence": "commands.json runtime-named-method-and-drift-readback full registry; source-role-and-wiring-search src/scripts search"
+      },
+      "literal_route_call": {
+        "symbol": "hg_kseos.named_methods.route",
+        "argument": "autoplan",
+        "observed": {
+          "flow": "autoplan",
+          "provider": "gstack.plan-eng-review",
+          "state": "CERTIFIED",
+          "fallback": "hgk_native_plan_review",
+          "final_authority": true,
+          "route": "GSTACK"
+        },
+        "is_role_keyed_proof": false
+      },
+      "route_slot": {
+        "declared_for_this_role": false,
+        "status": "MAP_ROLE_ABSENT",
+        "provider": null,
+        "model": null,
+        "reasoning_effort": null,
+        "expected": "An explicit GSTACK-role-to-lane/slot binding if claiming a role-specific model route",
+        "observed": "The role map declares host/fallback but no model slot; lane-route-slots.candidate.json declares PLAN/EXECUTE/VERIFY_SECURITY only. No GSTACK-role-to-lane bridge is declared in the supplied files.",
+        "evidence": "config/lane-route-slots.candidate.json /lanes and HGK/HGK_GSTACK_ROLE_MAP.yaml /roles/autoplan"
+      },
+      "drift_values": []
+    },
+    {
+      "role": "plan-design-review",
+      "map_declaration": {
+        "category": "plan",
+        "disposition": "MAP_TO_EXISTING_OWNER",
+        "host": "hgk-design-worker",
+        "worker_mode": "on-demand",
+        "fallback": "hgk_native_plan"
+      },
+      "map_evidence": {
+        "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\HGK\\HGK_GSTACK_ROLE_MAP.yaml",
+        "pointer": "/roles/plan-design-review"
+      },
+      "status": "MAP_ROLE_ABSENT",
+      "named_method": {
+        "expected_symbol": "hg_kseos.named_methods.NAMED_METHODS['gstack.plan-design-review']",
+        "exists": false,
+        "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\src\\hg_kseos\\named_methods.py",
+        "line": null,
+        "source_quote": null,
+        "observed": null,
+        "absence_evidence": "commands.json runtime-named-method-and-drift-readback full registry; source-role-and-wiring-search src/scripts search"
+      },
+      "literal_route_call": {
+        "symbol": "hg_kseos.named_methods.route",
+        "argument": "plan-design-review",
+        "observed": {
+          "flow": "plan-design-review",
+          "provider": "gstack.plan-eng-review",
+          "state": "CERTIFIED",
+          "fallback": "hgk_native_plan_review",
+          "final_authority": true,
+          "route": "GSTACK"
+        },
+        "is_role_keyed_proof": false
+      },
+      "route_slot": {
+        "declared_for_this_role": false,
+        "status": "MAP_ROLE_ABSENT",
+        "provider": null,
+        "model": null,
+        "reasoning_effort": null,
+        "expected": "An explicit GSTACK-role-to-lane/slot binding if claiming a role-specific model route",
+        "observed": "The role map declares host/fallback but no model slot; lane-route-slots.candidate.json declares PLAN/EXECUTE/VERIFY_SECURITY only. No GSTACK-role-to-lane bridge is declared in the supplied files.",
+        "evidence": "config/lane-route-slots.candidate.json /lanes and HGK/HGK_GSTACK_ROLE_MAP.yaml /roles/plan-design-review"
+      },
+      "drift_values": []
+    },
+    {
+      "role": "plan-devex-review",
+      "map_declaration": {
+        "category": "plan",
+        "disposition": "MAP_TO_EXISTING_OWNER",
+        "host": "hgk-devex-worker",
+        "worker_mode": "on-demand",
+        "fallback": "hgk_native_plan"
+      },
+      "map_evidence": {
+        "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\HGK\\HGK_GSTACK_ROLE_MAP.yaml",
+        "pointer": "/roles/plan-devex-review"
+      },
+      "status": "MAP_ROLE_ABSENT",
+      "named_method": {
+        "expected_symbol": "hg_kseos.named_methods.NAMED_METHODS['gstack.plan-devex-review']",
+        "exists": false,
+        "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\src\\hg_kseos\\named_methods.py",
+        "line": null,
+        "source_quote": null,
+        "observed": null,
+        "absence_evidence": "commands.json runtime-named-method-and-drift-readback full registry; source-role-and-wiring-search src/scripts search"
+      },
+      "literal_route_call": {
+        "symbol": "hg_kseos.named_methods.route",
+        "argument": "plan-devex-review",
+        "observed": {
+          "flow": "plan-devex-review",
+          "provider": "gstack.plan-eng-review",
+          "state": "CERTIFIED",
+          "fallback": "hgk_native_plan_review",
+          "final_authority": true,
+          "route": "GSTACK"
+        },
+        "is_role_keyed_proof": false
+      },
+      "route_slot": {
+        "declared_for_this_role": false,
+        "status": "MAP_ROLE_ABSENT",
+        "provider": null,
+        "model": null,
+        "reasoning_effort": null,
+        "expected": "An explicit GSTACK-role-to-lane/slot binding if claiming a role-specific model route",
+        "observed": "The role map declares host/fallback but no model slot; lane-route-slots.candidate.json declares PLAN/EXECUTE/VERIFY_SECURITY only. No GSTACK-role-to-lane bridge is declared in the supplied files.",
+        "evidence": "config/lane-route-slots.candidate.json /lanes and HGK/HGK_GSTACK_ROLE_MAP.yaml /roles/plan-devex-review"
+      },
+      "drift_values": []
+    },
+    {
+      "role": "design-consultation",
+      "map_declaration": {
+        "category": "design",
+        "disposition": "MAP_TO_EXISTING_OWNER",
+        "host": "hgk-design-worker",
+        "worker_mode": "on-demand",
+        "fallback": "hgk_native_design"
+      },
+      "map_evidence": {
+        "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\HGK\\HGK_GSTACK_ROLE_MAP.yaml",
+        "pointer": "/roles/design-consultation"
+      },
+      "status": "MAP_ROLE_ABSENT",
+      "named_method": {
+        "expected_symbol": "hg_kseos.named_methods.NAMED_METHODS['gstack.design-consultation']",
+        "exists": false,
+        "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\src\\hg_kseos\\named_methods.py",
+        "line": null,
+        "source_quote": null,
+        "observed": null,
+        "absence_evidence": "commands.json runtime-named-method-and-drift-readback full registry; source-role-and-wiring-search src/scripts search"
+      },
+      "literal_route_call": {
+        "symbol": "hg_kseos.named_methods.route",
+        "argument": "design-consultation",
+        "observed": {
+          "flow": "design-consultation",
+          "provider": null,
+          "state": null,
+          "fallback": null,
+          "final_authority": true,
+          "route": "NATIVE"
+        },
+        "is_role_keyed_proof": false
+      },
+      "route_slot": {
+        "declared_for_this_role": false,
+        "status": "MAP_ROLE_ABSENT",
+        "provider": null,
+        "model": null,
+        "reasoning_effort": null,
+        "expected": "An explicit GSTACK-role-to-lane/slot binding if claiming a role-specific model route",
+        "observed": "The role map declares host/fallback but no model slot; lane-route-slots.candidate.json declares PLAN/EXECUTE/VERIFY_SECURITY only. No GSTACK-role-to-lane bridge is declared in the supplied files.",
+        "evidence": "config/lane-route-slots.candidate.json /lanes and HGK/HGK_GSTACK_ROLE_MAP.yaml /roles/design-consultation"
+      },
+      "drift_values": []
+    },
+    {
+      "role": "devex-review",
+      "map_declaration": {
+        "category": "devex",
+        "disposition": "MAP_TO_EXISTING_OWNER",
+        "host": "hgk-devex-worker",
+        "worker_mode": "on-demand",
+        "fallback": "hgk_native_devex"
+      },
+      "map_evidence": {
+        "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\HGK\\HGK_GSTACK_ROLE_MAP.yaml",
+        "pointer": "/roles/devex-review"
+      },
+      "status": "MAP_ROLE_ABSENT",
+      "named_method": {
+        "expected_symbol": "hg_kseos.named_methods.NAMED_METHODS['gstack.devex-review']",
+        "exists": false,
+        "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\src\\hg_kseos\\named_methods.py",
+        "line": null,
+        "source_quote": null,
+        "observed": null,
+        "absence_evidence": "commands.json runtime-named-method-and-drift-readback full registry; source-role-and-wiring-search src/scripts search"
+      },
+      "literal_route_call": {
+        "symbol": "hg_kseos.named_methods.route",
+        "argument": "devex-review",
+        "observed": {
+          "flow": "devex-review",
+          "provider": "gstack.review",
+          "state": "CERTIFIED",
+          "fallback": "hgk_native_review",
+          "final_authority": true,
+          "route": "GSTACK"
+        },
+        "is_role_keyed_proof": false
+      },
+      "route_slot": {
+        "declared_for_this_role": false,
+        "status": "MAP_ROLE_ABSENT",
+        "provider": null,
+        "model": null,
+        "reasoning_effort": null,
+        "expected": "An explicit GSTACK-role-to-lane/slot binding if claiming a role-specific model route",
+        "observed": "The role map declares host/fallback but no model slot; lane-route-slots.candidate.json declares PLAN/EXECUTE/VERIFY_SECURITY only. No GSTACK-role-to-lane bridge is declared in the supplied files.",
+        "evidence": "config/lane-route-slots.candidate.json /lanes and HGK/HGK_GSTACK_ROLE_MAP.yaml /roles/devex-review"
+      },
+      "drift_values": []
+    },
+    {
+      "role": "investigate",
+      "map_declaration": {
+        "category": "research",
+        "disposition": "ADOPT",
+        "host": "specialist-research-worker",
+        "worker_mode": "on-demand",
+        "fallback": "hgk_native_research"
+      },
+      "map_evidence": {
+        "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\HGK\\HGK_GSTACK_ROLE_MAP.yaml",
+        "pointer": "/roles/investigate"
+      },
+      "status": "MAP_ROLE_ABSENT",
+      "named_method": {
+        "expected_symbol": "hg_kseos.named_methods.NAMED_METHODS['gstack.investigate']",
+        "exists": false,
+        "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\src\\hg_kseos\\named_methods.py",
+        "line": null,
+        "source_quote": null,
+        "observed": null,
+        "absence_evidence": "commands.json runtime-named-method-and-drift-readback full registry; source-role-and-wiring-search src/scripts search"
+      },
+      "literal_route_call": {
+        "symbol": "hg_kseos.named_methods.route",
+        "argument": "investigate",
+        "observed": {
+          "flow": "investigate",
+          "provider": null,
+          "state": null,
+          "fallback": null,
+          "final_authority": true,
+          "route": "NATIVE"
+        },
+        "is_role_keyed_proof": false
+      },
+      "route_slot": {
+        "declared_for_this_role": false,
+        "status": "MAP_ROLE_ABSENT",
+        "provider": null,
+        "model": null,
+        "reasoning_effort": null,
+        "expected": "An explicit GSTACK-role-to-lane/slot binding if claiming a role-specific model route",
+        "observed": "The role map declares host/fallback but no model slot; lane-route-slots.candidate.json declares PLAN/EXECUTE/VERIFY_SECURITY only. No GSTACK-role-to-lane bridge is declared in the supplied files.",
+        "evidence": "config/lane-route-slots.candidate.json /lanes and HGK/HGK_GSTACK_ROLE_MAP.yaml /roles/investigate"
+      },
+      "drift_values": []
+    },
+    {
+      "role": "review",
+      "map_declaration": {
+        "category": "review",
+        "disposition": "ADOPT",
+        "host": "hgk-engineering-reviewer",
+        "worker_mode": "on-demand",
+        "fallback": "hgk_native_review"
+      },
+      "map_evidence": {
+        "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\HGK\\HGK_GSTACK_ROLE_MAP.yaml",
+        "pointer": "/roles/review"
+      },
+      "status": "ROLE_KEYED",
+      "named_method": {
+        "expected_symbol": "hg_kseos.named_methods.NAMED_METHODS['gstack.review']",
+        "exists": true,
+        "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\src\\hg_kseos\\named_methods.py",
+        "line": 67,
+        "source_quote": "\"gstack.review\": NamedMethod(",
+        "observed": {
+          "tool_id": "gstack.review",
+          "source_disposition": "CONDITIONAL_RECOMMENDED / SELECTIVE",
+          "current_execution_scope": "USER_AUTHORIZED_ACTIVE_SELECTED_SLICES",
+          "runtime_required_now": true,
+          "role": "ADVISORY_REVIEW_QA_SECURITY_METHOD_ADAPTER",
+          "provider_state": "CERTIFIED_ACTIVE_SELECTED_SLICES",
+          "fallback": "hgk_native_review",
+          "final_authority": false,
+          "xor_with": null,
+          "evidence_refs": [
+            "HG-KSEOS_GSTACK_IDENTITY_READBACK.json",
+            "HG-KSEOS_GSTACK_HERMES_BINDING_ACCEPTANCE.json"
+          ]
+        },
+        "absence_evidence": "commands.json runtime-named-method-and-drift-readback full registry; source-role-and-wiring-search src/scripts search"
+      },
+      "literal_route_call": {
+        "symbol": "hg_kseos.named_methods.route",
+        "argument": "review",
+        "observed": {
+          "flow": "review",
+          "provider": "gstack.review",
+          "state": "CERTIFIED",
+          "fallback": "hgk_native_review",
+          "final_authority": true,
+          "route": "GSTACK"
+        },
+        "is_role_keyed_proof": false
+      },
+      "route_slot": {
+        "declared_for_this_role": false,
+        "status": "MAP_ROLE_ABSENT",
+        "provider": null,
+        "model": null,
+        "reasoning_effort": null,
+        "expected": "An explicit GSTACK-role-to-lane/slot binding if claiming a role-specific model route",
+        "observed": "The role map declares host/fallback but no model slot; lane-route-slots.candidate.json declares PLAN/EXECUTE/VERIFY_SECURITY only. No GSTACK-role-to-lane bridge is declared in the supplied files.",
+        "evidence": "config/lane-route-slots.candidate.json /lanes and HGK/HGK_GSTACK_ROLE_MAP.yaml /roles/review"
+      },
+      "drift_values": []
+    },
+    {
+      "role": "qa",
+      "map_declaration": {
+        "category": "qa",
+        "disposition": "ADOPT",
+        "host": "hgk-qa",
+        "worker_mode": "on-demand",
+        "fallback": "hgk_native_qa"
+      },
+      "map_evidence": {
+        "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\HGK\\HGK_GSTACK_ROLE_MAP.yaml",
+        "pointer": "/roles/qa"
+      },
+      "status": "ROLE_KEYED",
+      "named_method": {
+        "expected_symbol": "hg_kseos.named_methods.NAMED_METHODS['gstack.qa']",
+        "exists": true,
+        "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\src\\hg_kseos\\named_methods.py",
+        "line": 78,
+        "source_quote": "\"gstack.qa\": NamedMethod(",
+        "observed": {
+          "tool_id": "gstack.qa",
+          "source_disposition": "CONDITIONAL_RECOMMENDED / SELECTIVE",
+          "current_execution_scope": "USER_AUTHORIZED_ACTIVE_SELECTED_SLICES",
+          "runtime_required_now": true,
+          "role": "ADVISORY_REVIEW_QA_SECURITY_METHOD_ADAPTER",
+          "provider_state": "CERTIFIED_ACTIVE_SELECTED_SLICES",
+          "fallback": "hgk_native_qa",
+          "final_authority": false,
+          "xor_with": null,
+          "evidence_refs": [
+            "HG-KSEOS_GSTACK_IDENTITY_READBACK.json",
+            "HG-KSEOS_GSTACK_HERMES_BINDING_ACCEPTANCE.json"
+          ]
+        },
+        "absence_evidence": "commands.json runtime-named-method-and-drift-readback full registry; source-role-and-wiring-search src/scripts search"
+      },
+      "literal_route_call": {
+        "symbol": "hg_kseos.named_methods.route",
+        "argument": "qa",
+        "observed": {
+          "flow": "qa",
+          "provider": "gstack.qa",
+          "state": "CERTIFIED",
+          "fallback": "hgk_native_qa",
+          "final_authority": true,
+          "route": "GSTACK"
+        },
+        "is_role_keyed_proof": false
+      },
+      "route_slot": {
+        "declared_for_this_role": false,
+        "status": "MAP_ROLE_ABSENT",
+        "provider": null,
+        "model": null,
+        "reasoning_effort": null,
+        "expected": "An explicit GSTACK-role-to-lane/slot binding if claiming a role-specific model route",
+        "observed": "The role map declares host/fallback but no model slot; lane-route-slots.candidate.json declares PLAN/EXECUTE/VERIFY_SECURITY only. No GSTACK-role-to-lane bridge is declared in the supplied files.",
+        "evidence": "config/lane-route-slots.candidate.json /lanes and HGK/HGK_GSTACK_ROLE_MAP.yaml /roles/qa"
+      },
+      "drift_values": []
+    },
+    {
+      "role": "qa-only",
+      "map_declaration": {
+        "category": "qa",
+        "disposition": "ADOPT",
+        "host": "hgk-qa",
+        "worker_mode": "on-demand",
+        "fallback": "hgk_native_qa"
+      },
+      "map_evidence": {
+        "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\HGK\\HGK_GSTACK_ROLE_MAP.yaml",
+        "pointer": "/roles/qa-only"
+      },
+      "status": "MAP_ROLE_ABSENT",
+      "named_method": {
+        "expected_symbol": "hg_kseos.named_methods.NAMED_METHODS['gstack.qa-only']",
+        "exists": false,
+        "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\src\\hg_kseos\\named_methods.py",
+        "line": null,
+        "source_quote": null,
+        "observed": null,
+        "absence_evidence": "commands.json runtime-named-method-and-drift-readback full registry; source-role-and-wiring-search src/scripts search"
+      },
+      "literal_route_call": {
+        "symbol": "hg_kseos.named_methods.route",
+        "argument": "qa-only",
+        "observed": {
+          "flow": "qa-only",
+          "provider": "gstack.qa",
+          "state": "CERTIFIED",
+          "fallback": "hgk_native_qa",
+          "final_authority": true,
+          "route": "GSTACK"
+        },
+        "is_role_keyed_proof": false
+      },
+      "route_slot": {
+        "declared_for_this_role": false,
+        "status": "MAP_ROLE_ABSENT",
+        "provider": null,
+        "model": null,
+        "reasoning_effort": null,
+        "expected": "An explicit GSTACK-role-to-lane/slot binding if claiming a role-specific model route",
+        "observed": "The role map declares host/fallback but no model slot; lane-route-slots.candidate.json declares PLAN/EXECUTE/VERIFY_SECURITY only. No GSTACK-role-to-lane bridge is declared in the supplied files.",
+        "evidence": "config/lane-route-slots.candidate.json /lanes and HGK/HGK_GSTACK_ROLE_MAP.yaml /roles/qa-only"
+      },
+      "drift_values": []
+    },
+    {
+      "role": "cso",
+      "map_declaration": {
+        "category": "security",
+        "disposition": "ADOPT",
+        "host": "hgk-security",
+        "worker_mode": "on-demand",
+        "fallback": "hgk_native_security"
+      },
+      "map_evidence": {
+        "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\HGK\\HGK_GSTACK_ROLE_MAP.yaml",
+        "pointer": "/roles/cso"
+      },
+      "status": "ROLE_KEYED",
+      "named_method": {
+        "expected_symbol": "hg_kseos.named_methods.NAMED_METHODS['gstack.cso']",
+        "exists": true,
+        "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\src\\hg_kseos\\named_methods.py",
+        "line": 89,
+        "source_quote": "\"gstack.cso\": NamedMethod(",
+        "observed": {
+          "tool_id": "gstack.cso",
+          "source_disposition": "CONDITIONAL_RECOMMENDED / SELECTIVE",
+          "current_execution_scope": "USER_AUTHORIZED_ACTIVE_SELECTED_SLICES",
+          "runtime_required_now": true,
+          "role": "ADVISORY_REVIEW_QA_SECURITY_METHOD_ADAPTER",
+          "provider_state": "CERTIFIED_ACTIVE_SELECTED_SLICES",
+          "fallback": "hgk_native_security",
+          "final_authority": false,
+          "xor_with": null,
+          "evidence_refs": [
+            "HG-KSEOS_GSTACK_IDENTITY_READBACK.json",
+            "HG-KSEOS_GSTACK_HERMES_BINDING_ACCEPTANCE.json"
+          ]
+        },
+        "absence_evidence": "commands.json runtime-named-method-and-drift-readback full registry; source-role-and-wiring-search src/scripts search"
+      },
+      "literal_route_call": {
+        "symbol": "hg_kseos.named_methods.route",
+        "argument": "cso",
+        "observed": {
+          "flow": "cso",
+          "provider": null,
+          "state": null,
+          "fallback": null,
+          "final_authority": true,
+          "route": "NATIVE"
+        },
+        "is_role_keyed_proof": false
+      },
+      "route_slot": {
+        "declared_for_this_role": false,
+        "status": "MAP_ROLE_ABSENT",
+        "provider": null,
+        "model": null,
+        "reasoning_effort": null,
+        "expected": "An explicit GSTACK-role-to-lane/slot binding if claiming a role-specific model route",
+        "observed": "The role map declares host/fallback but no model slot; lane-route-slots.candidate.json declares PLAN/EXECUTE/VERIFY_SECURITY only. No GSTACK-role-to-lane bridge is declared in the supplied files.",
+        "evidence": "config/lane-route-slots.candidate.json /lanes and HGK/HGK_GSTACK_ROLE_MAP.yaml /roles/cso"
+      },
+      "drift_values": []
+    },
+    {
+      "role": "benchmark",
+      "map_declaration": {
+        "category": "perf",
+        "disposition": "MAP_TO_EXISTING_OWNER",
+        "host": "hgk-performance-worker",
+        "worker_mode": "on-demand",
+        "fallback": "hgk_native_bench"
+      },
+      "map_evidence": {
+        "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\HGK\\HGK_GSTACK_ROLE_MAP.yaml",
+        "pointer": "/roles/benchmark"
+      },
+      "status": "MAP_ROLE_ABSENT",
+      "named_method": {
+        "expected_symbol": "hg_kseos.named_methods.NAMED_METHODS['gstack.benchmark']",
+        "exists": false,
+        "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\src\\hg_kseos\\named_methods.py",
+        "line": null,
+        "source_quote": null,
+        "observed": null,
+        "absence_evidence": "commands.json runtime-named-method-and-drift-readback full registry; source-role-and-wiring-search src/scripts search"
+      },
+      "literal_route_call": {
+        "symbol": "hg_kseos.named_methods.route",
+        "argument": "benchmark",
+        "observed": {
+          "flow": "benchmark",
+          "provider": null,
+          "state": null,
+          "fallback": null,
+          "final_authority": true,
+          "route": "NATIVE"
+        },
+        "is_role_keyed_proof": false
+      },
+      "route_slot": {
+        "declared_for_this_role": false,
+        "status": "MAP_ROLE_ABSENT",
+        "provider": null,
+        "model": null,
+        "reasoning_effort": null,
+        "expected": "An explicit GSTACK-role-to-lane/slot binding if claiming a role-specific model route",
+        "observed": "The role map declares host/fallback but no model slot; lane-route-slots.candidate.json declares PLAN/EXECUTE/VERIFY_SECURITY only. No GSTACK-role-to-lane bridge is declared in the supplied files.",
+        "evidence": "config/lane-route-slots.candidate.json /lanes and HGK/HGK_GSTACK_ROLE_MAP.yaml /roles/benchmark"
+      },
+      "drift_values": []
+    },
+    {
+      "role": "document-*",
+      "map_declaration": {
+        "category": "docs",
+        "disposition": "MAP_TO_EXISTING_OWNER",
+        "host": "hgk-documentation-worker",
+        "worker_mode": "on-demand",
+        "fallback": "hgk_native_docs"
+      },
+      "map_evidence": {
+        "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\HGK\\HGK_GSTACK_ROLE_MAP.yaml",
+        "pointer": "/roles/document-*"
+      },
+      "status": "MAP_ROLE_ABSENT",
+      "named_method": {
+        "expected_symbol": "hg_kseos.named_methods.NAMED_METHODS['gstack.document-*']",
+        "exists": false,
+        "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\src\\hg_kseos\\named_methods.py",
+        "line": null,
+        "source_quote": null,
+        "observed": null,
+        "absence_evidence": "commands.json runtime-named-method-and-drift-readback full registry; source-role-and-wiring-search src/scripts search"
+      },
+      "literal_route_call": {
+        "symbol": "hg_kseos.named_methods.route",
+        "argument": "document-*",
+        "observed": {
+          "flow": "document-*",
+          "provider": null,
+          "state": null,
+          "fallback": null,
+          "final_authority": true,
+          "route": "NATIVE"
+        },
+        "is_role_keyed_proof": false
+      },
+      "route_slot": {
+        "declared_for_this_role": false,
+        "status": "MAP_ROLE_ABSENT",
+        "provider": null,
+        "model": null,
+        "reasoning_effort": null,
+        "expected": "An explicit GSTACK-role-to-lane/slot binding if claiming a role-specific model route",
+        "observed": "The role map declares host/fallback but no model slot; lane-route-slots.candidate.json declares PLAN/EXECUTE/VERIFY_SECURITY only. No GSTACK-role-to-lane bridge is declared in the supplied files.",
+        "evidence": "config/lane-route-slots.candidate.json /lanes and HGK/HGK_GSTACK_ROLE_MAP.yaml /roles/document-*"
+      },
+      "drift_values": []
+    },
+    {
+      "role": "ship",
+      "map_declaration": {
+        "category": "release",
+        "disposition": "SUPPORT_ONLY",
+        "host": "hgk-orchestrator",
+        "worker_mode": "advisory",
+        "fallback": "hgk_native_release"
+      },
+      "map_evidence": {
+        "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\HGK\\HGK_GSTACK_ROLE_MAP.yaml",
+        "pointer": "/roles/ship"
+      },
+      "status": "ROLE_KEYED",
+      "named_method": {
+        "expected_symbol": "hg_kseos.named_methods.NAMED_METHODS['gstack.ship']",
+        "exists": true,
+        "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\src\\hg_kseos\\named_methods.py",
+        "line": 100,
+        "source_quote": "\"gstack.ship\": NamedMethod(",
+        "observed": {
+          "tool_id": "gstack.ship",
+          "source_disposition": "CONDITIONAL_RECOMMENDED / SELECTIVE",
+          "current_execution_scope": "USER_AUTHORIZED_ACTIVE_SELECTED_SLICES",
+          "runtime_required_now": true,
+          "role": "ADVISORY_REVIEW_QA_SECURITY_METHOD_ADAPTER",
+          "provider_state": "CERTIFIED_ACTIVE_SELECTED_SLICES",
+          "fallback": "hgk_native_release_checklist",
+          "final_authority": false,
+          "xor_with": null,
+          "evidence_refs": [
+            "HG-KSEOS_GSTACK_IDENTITY_READBACK.json",
+            "HG-KSEOS_GSTACK_HERMES_BINDING_ACCEPTANCE.json"
+          ]
+        },
+        "absence_evidence": "commands.json runtime-named-method-and-drift-readback full registry; source-role-and-wiring-search src/scripts search"
+      },
+      "literal_route_call": {
+        "symbol": "hg_kseos.named_methods.route",
+        "argument": "ship",
+        "observed": {
+          "flow": "ship",
+          "provider": null,
+          "state": null,
+          "fallback": null,
+          "final_authority": true,
+          "route": "NATIVE"
+        },
+        "is_role_keyed_proof": false
+      },
+      "route_slot": {
+        "declared_for_this_role": false,
+        "status": "MAP_ROLE_ABSENT",
+        "provider": null,
+        "model": null,
+        "reasoning_effort": null,
+        "expected": "An explicit GSTACK-role-to-lane/slot binding if claiming a role-specific model route",
+        "observed": "The role map declares host/fallback but no model slot; lane-route-slots.candidate.json declares PLAN/EXECUTE/VERIFY_SECURITY only. No GSTACK-role-to-lane bridge is declared in the supplied files.",
+        "evidence": "config/lane-route-slots.candidate.json /lanes and HGK/HGK_GSTACK_ROLE_MAP.yaml /roles/ship"
+      },
+      "drift_values": []
+    },
+    {
+      "role": "canary",
+      "map_declaration": {
+        "category": "canary",
+        "disposition": "MAP_TO_EXISTING_OWNER",
+        "host": "hgk-qa",
+        "worker_mode": "local-paper",
+        "fallback": "hgk_native_canary"
+      },
+      "map_evidence": {
+        "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\HGK\\HGK_GSTACK_ROLE_MAP.yaml",
+        "pointer": "/roles/canary"
+      },
+      "status": "MAP_ROLE_ABSENT",
+      "named_method": {
+        "expected_symbol": "hg_kseos.named_methods.NAMED_METHODS['gstack.canary']",
+        "exists": false,
+        "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\src\\hg_kseos\\named_methods.py",
+        "line": null,
+        "source_quote": null,
+        "observed": null,
+        "absence_evidence": "commands.json runtime-named-method-and-drift-readback full registry; source-role-and-wiring-search src/scripts search"
+      },
+      "literal_route_call": {
+        "symbol": "hg_kseos.named_methods.route",
+        "argument": "canary",
+        "observed": {
+          "flow": "canary",
+          "provider": null,
+          "state": null,
+          "fallback": null,
+          "final_authority": true,
+          "route": "NATIVE"
+        },
+        "is_role_keyed_proof": false
+      },
+      "route_slot": {
+        "declared_for_this_role": false,
+        "status": "MAP_ROLE_ABSENT",
+        "provider": null,
+        "model": null,
+        "reasoning_effort": null,
+        "expected": "An explicit GSTACK-role-to-lane/slot binding if claiming a role-specific model route",
+        "observed": "The role map declares host/fallback but no model slot; lane-route-slots.candidate.json declares PLAN/EXECUTE/VERIFY_SECURITY only. No GSTACK-role-to-lane bridge is declared in the supplied files.",
+        "evidence": "config/lane-route-slots.candidate.json /lanes and HGK/HGK_GSTACK_ROLE_MAP.yaml /roles/canary"
+      },
+      "drift_values": []
+    },
+    {
+      "role": "retro",
+      "map_declaration": {
+        "category": "retro",
+        "disposition": "ADOPT",
+        "host": "hgk-orchestrator",
+        "worker_mode": "on-demand",
+        "fallback": "hgk_native_retro"
+      },
+      "map_evidence": {
+        "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\HGK\\HGK_GSTACK_ROLE_MAP.yaml",
+        "pointer": "/roles/retro"
+      },
+      "status": "ROLE_KEYED",
+      "named_method": {
+        "expected_symbol": "hg_kseos.named_methods.NAMED_METHODS['gstack.retro']",
+        "exists": true,
+        "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\src\\hg_kseos\\named_methods.py",
+        "line": 123,
+        "source_quote": "\"gstack.retro\": NamedMethod(",
+        "observed": {
+          "tool_id": "gstack.retro",
+          "source_disposition": "CONDITIONAL_RECOMMENDED / SELECTIVE",
+          "current_execution_scope": "USER_AUTHORIZED_ACTIVE_SELECTED_SLICES",
+          "runtime_required_now": true,
+          "role": "RETROSPECTIVE_LEARNING_ADVISORY",
+          "provider_state": "CERTIFIED_ACTIVE_SELECTED_SLICES",
+          "fallback": "hgk_native_retro",
+          "final_authority": false,
+          "xor_with": null,
+          "evidence_refs": [
+            "HG-KSEOS_GSTACK_IDENTITY_READBACK.json",
+            "HG-KSEOS_GSTACK_HERMES_BINDING_ACCEPTANCE.json"
+          ]
+        },
+        "absence_evidence": "commands.json runtime-named-method-and-drift-readback full registry; source-role-and-wiring-search src/scripts search"
+      },
+      "literal_route_call": {
+        "symbol": "hg_kseos.named_methods.route",
+        "argument": "retro",
+        "observed": {
+          "flow": "retro",
+          "provider": "gstack.retro",
+          "state": "CERTIFIED",
+          "fallback": "hgk_native_retro",
+          "final_authority": true,
+          "route": "GSTACK"
+        },
+        "is_role_keyed_proof": false
+      },
+      "route_slot": {
+        "declared_for_this_role": false,
+        "status": "MAP_ROLE_ABSENT",
+        "provider": null,
+        "model": null,
+        "reasoning_effort": null,
+        "expected": "An explicit GSTACK-role-to-lane/slot binding if claiming a role-specific model route",
+        "observed": "The role map declares host/fallback but no model slot; lane-route-slots.candidate.json declares PLAN/EXECUTE/VERIFY_SECURITY only. No GSTACK-role-to-lane bridge is declared in the supplied files.",
+        "evidence": "config/lane-route-slots.candidate.json /lanes and HGK/HGK_GSTACK_ROLE_MAP.yaml /roles/retro"
+      },
+      "drift_values": []
+    },
+    {
+      "role": "codex",
+      "map_declaration": {
+        "category": "coding",
+        "disposition": "MAP_TO_EXISTING_OWNER",
+        "host": "hgk-coding-factory",
+        "worker_mode": "tracked-writer",
+        "fallback": "sealed-codex-lane"
+      },
+      "map_evidence": {
+        "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\HGK\\HGK_GSTACK_ROLE_MAP.yaml",
+        "pointer": "/roles/codex"
+      },
+      "status": "MAP_ROLE_ABSENT",
+      "named_method": {
+        "expected_symbol": "hg_kseos.named_methods.NAMED_METHODS['gstack.codex']",
+        "exists": false,
+        "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\src\\hg_kseos\\named_methods.py",
+        "line": null,
+        "source_quote": null,
+        "observed": null,
+        "absence_evidence": "commands.json runtime-named-method-and-drift-readback full registry; source-role-and-wiring-search src/scripts search"
+      },
+      "literal_route_call": {
+        "symbol": "hg_kseos.named_methods.route",
+        "argument": "codex",
+        "observed": {
+          "flow": "codex",
+          "provider": null,
+          "state": null,
+          "fallback": null,
+          "final_authority": true,
+          "route": "NATIVE"
+        },
+        "is_role_keyed_proof": false
+      },
+      "route_slot": {
+        "declared_for_this_role": false,
+        "status": "MAP_ROLE_ABSENT",
+        "provider": null,
+        "model": null,
+        "reasoning_effort": null,
+        "expected": "An explicit GSTACK-role-to-lane/slot binding if claiming a role-specific model route",
+        "observed": "The role map declares host/fallback but no model slot; lane-route-slots.candidate.json declares PLAN/EXECUTE/VERIFY_SECURITY only. No GSTACK-role-to-lane bridge is declared in the supplied files.",
+        "evidence": "config/lane-route-slots.candidate.json /lanes and HGK/HGK_GSTACK_ROLE_MAP.yaml /roles/codex"
+      },
+      "drift_values": []
+    }
+  ],
+  "lane_defaults_not_role_bindings": [
+    {
+      "lane": "PLAN",
+      "not_a_role_keyed_binding": true,
+      "pool_source": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\lane-route-slots.candidate.json",
+      "pool_pointer": "/lanes/0/ordered_pool/0",
+      "pool_engine": "hermes",
+      "pool_default": {
+        "rank": 1,
+        "provider": "openai-codex",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "medium",
+        "auth": "openai_oauth",
+        "transport_model": "gpt-6.1-sol"
+      },
+      "reasoning_effort_declared": true,
+      "registry_default": {
+        "provider": "opencode-go",
+        "model": "glm-5.3-flash",
+        "reasoning_effort": "medium",
+        "engine": "hermes"
+      },
+      "assignment": {
+        "assigned_provider": "opencode-go",
+        "assigned_model": "glm-5.3-flash",
+        "reasoning_effort": "medium"
+      }
+    },
+    {
+      "lane": "EXECUTE",
+      "not_a_role_keyed_binding": true,
+      "pool_source": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\lane-route-slots.candidate.json",
+      "pool_pointer": "/lanes/1/ordered_pool/0",
+      "pool_engine": "codex-cli",
+      "pool_default": {
+        "rank": 1,
+        "provider": "opencode-go",
+        "model": "deepseek-v4.1-flash",
+        "reasoning_effort": null,
+        "auth": "env_ref:OPENCODE_GO_API_KEY",
+        "transport_model": "opencode-go/deepseek-v4.1-flash"
+      },
+      "reasoning_effort_declared": false,
+      "registry_default": {
+        "provider": "opencode-go",
+        "model": "deepseek-v4.1-flash",
+        "reasoning_effort": null,
+        "engine": "codex-cli"
+      },
+      "assignment": {
+        "assigned_provider": "opencode-go",
+        "assigned_model": "deepseek-v4.1-flash",
+        "reasoning_effort": null
+      }
+    },
+    {
+      "lane": "VERIFY_SECURITY",
+      "not_a_role_keyed_binding": true,
+      "pool_source": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\lane-route-slots.candidate.json",
+      "pool_pointer": "/lanes/2/ordered_pool/0",
+      "pool_engine": "codex-cli",
+      "pool_default": {
+        "rank": 1,
+        "provider": "openai-codex",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "medium",
+        "auth": "openai_oauth",
+        "transport_model": "gpt-6.1-sol"
+      },
+      "reasoning_effort_declared": true,
+      "registry_default": {
+        "provider": "openai-codex",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "medium",
+        "engine": "hermes"
+      },
+      "assignment": {
+        "assigned_provider": "opencode-go",
+        "assigned_model": "glm-5.3-flash",
+        "reasoning_effort": "medium"
+      }
+    }
+  ],
+  "registry_drift_receipt": {
+    "schema": "HGK-LANE-DRIFT/1",
+    "status": "CANDIDATE",
+    "epoch": 19,
+    "checked_sites": 90,
+    "fatal": true,
+    "findings": [
+      {
+        "code": "DRIFT_VALUE",
+        "id": "hermes-codex-lane",
+        "path": "config/hermes-codex-lane.json",
+        "pointer": "/codex_sha256",
+        "expected": "D13914CED6C7AF174D8D638DB938284231227312104B06A25E9608C632A7DAEC",
+        "actual": "e98c516f1c8935789aabe9122ee7e05ec4c3efd1ba6acf179242e031c495b99e",
+        "severity": "error"
+      }
+    ],
+    "claim_ceiling": "CANDIDATE_ONLY"
+  },
+  "mandate_vs_declared_registry_and_assignment": [
+    {
+      "status": "DRIFT_VALUE",
+      "expectation_basis": "R8 owner mandate, not a mutation instruction",
+      "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\lane-routing-registry.yaml",
+      "pointer": "/routes/0/provider",
+      "expected": "openai-codex",
+      "observed": "opencode-go"
+    },
+    {
+      "status": "DRIFT_VALUE",
+      "expectation_basis": "R8 owner mandate, not a mutation instruction",
+      "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\lane-routing-registry.yaml",
+      "pointer": "/routes/0/model",
+      "expected": "gpt-6.1-sol",
+      "observed": "glm-5.3-flash"
+    },
+    {
+      "status": "DRIFT_VALUE",
+      "expectation_basis": "R8 owner mandate",
+      "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\model-lane-assignment.json",
+      "pointer": "/assignment/0/assigned_provider",
+      "expected": "openai-codex",
+      "observed": "opencode-go"
+    },
+    {
+      "status": "DRIFT_VALUE",
+      "expectation_basis": "R8 owner mandate",
+      "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\model-lane-assignment.json",
+      "pointer": "/assignment/0/assigned_model",
+      "expected": "gpt-6.1-sol",
+      "observed": "glm-5.3-flash"
+    },
+    {
+      "status": "DRIFT_VALUE",
+      "expectation_basis": "R8 owner mandate",
+      "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\model-lane-assignment.json",
+      "pointer": "/assignment/2/assigned_provider",
+      "expected": "openai-codex",
+      "observed": "opencode-go"
+    },
+    {
+      "status": "DRIFT_VALUE",
+      "expectation_basis": "R8 owner mandate",
+      "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\model-lane-assignment.json",
+      "pointer": "/assignment/2/assigned_model",
+      "expected": "gpt-6.1-sol",
+      "observed": "glm-5.3-flash"
+    }
+  ],
+  "internal_assignment_disagreements": [
+    {
+      "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\model-lane-assignment.json",
+      "pointer": "/assignment/2/assigned_model",
+      "observed": "glm-5.3-flash",
+      "conflicting_pointer": "/assignment/2/supply_selector/arms/0/model",
+      "conflicting_observed": "gpt-6.1-sol",
+      "note": "Top-level VERIFY assignment and A/B prose say GLM arm A; structured supply selector arm A/default and lane_chains say GPT arm A. Reported as internal disagreement, not silently resolved."
+    }
+  ],
+  "profile_and_shared_config_raw": "FILE=C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\profiles\\hgk-governed\\config.yaml\n1: governed_runtime:\n2:   protected_roots:\n3:   - C:/Projects/Agent_Workspace/HG-KSEOS\n4:   - C:/Projects/Agent_Workspace/Fabric\n5:   controller_command:\n6:   - C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\python.exe\n7:   - C:/Projects/Agent_Workspace/HG-KSEOS/scripts/hgk-governed-runtime-controller.py\n8:   timeout_seconds: 10\n9: model:\n10:   default: gpt-6.1-sol\n11:   provider: openai-codex\n12:   reasoning_effort: medium\n13:   _plane: PLAN & Orchestrator (in-Hermes) — main-agent binding, NOT the session picker\nFILE=C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\config.yaml\n8: model:\n9:   default: glm-5.3-flash\n10:   provider: opencode-go\n11:   base_url: 'https://opencode.ai/zen/go/v1'\n12:   codex_bin: C:/Users/user/AppData/Local/HG-KSEOS/runtime/codex-0.147.0-alpha.6.5/codex.exe\n13:   api_mode: chat_completions\n168: delegation:\n169:   max_iterations: 250\n170:   provider: openai-codex\n171:   model: gpt-6.1-sol\n",
+  "source_pin": {
+    "expected": {
+      "path": "config/model-lane-assignment.json",
+      "revision": 19,
+      "sha256": "6af264c9ffdb57113be769842ac1a8503eb472a3c55f1941ee42667078808753"
+    },
+    "observed_sha256": "6af264c9ffdb57113be769842ac1a8503eb472a3c55f1941ee42667078808753"
+  },
+  "runtime_assert": {
+    "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\scripts\\runtime_role_binding_assert.py",
+    "exists": true,
+    "tracked": false,
+    "git_ls_files_exit": 1,
+    "git_status": "?? scripts/runtime_role_binding_assert.py",
+    "exists_under_src": false,
+    "direct_operational_caller_in_src_scripts_found": false,
+    "direct_call_evidence": "standalone-assert-direct-call-search: only script self-docstring plus tests/test_far_lane_fix_20261015.py:133; evidence/FAR-LANE-ROUTE-REBIND-20261015/run_e2e.py is a historical harness caller (discovery read), not runtime wiring.",
+    "related_role_binding_logic_wired": true,
+    "related_evidence": "wiring-focused-context: dispatcher imports role_binding; guarded path at 1474-1544 consumes canonical binding; controller 225-241 consumes find_session_binding; governed profile lines 1-8 names controller command.",
+    "ceiling": "Standalone assertion script is UNTRACKED and not directly invoked by the inspected runtime src/scripts. Related helper/dispatch/profile wiring is now present in source/config, conditional on binding/workorder inputs. No runtime activation or spine lookup was exercised."
+  },
+  "sod": {
+    "mandate": {
+      "PLAN": {
+        "provider": "openai-codex",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "medium"
+      },
+      "EXECUTE": {
+        "provider": "opencode-go",
+        "model": "deepseek-v4.1-flash"
+      },
+      "VERIFY_SECURITY": {
+        "provider": "openai-codex",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "medium"
+      }
+    },
+    "model_axis_PLAN_VERIFY": {
+      "independent": false,
+      "evidence": [
+        false,
+        "SOD_VIOLATION maker_model=gpt-6.1-sol == checker_model=gpt-6.1-sol"
+      ],
+      "note": "Both are gpt-6.1-sol on openai-codex at medium by this round mandate. Provider and effort axes are shared too."
+    },
+    "model_axis_EXECUTE_VERIFY": {
+      "independent_on_mandated_defaults": true,
+      "evidence": [
+        true,
+        "SOD_OK deepseek-v4.1-flash != gpt-6.1-sol"
+      ],
+      "not_all_fallbacks": "VERIFY fallback2 is DeepSeek too; no universal all-arms separation claim."
+    },
+    "process_axis": {
+      "status": "STRUCTURAL_BOUNDARY_PRESENT; R8_PAIR_NOT_EXECUTED",
+      "evidence": "wiring-focused-context: scripts/hgk-lane-dispatch.py:1142-1148 subprocess.run launches a separate CLI child. identity-time records only this readback process, not a PLAN/VERIFY served pair."
+    },
+    "lane_axis": {
+      "status": "DECLARATIVELY_DISTINCT; R8_SERVED_PAIR_UNPROVEN",
+      "evidence": "source:config/lane-route-slots.candidate.json distinct /lanes/0 PLAN and /lanes/2 VERIFY_SECURITY; runtime routes distinct lane keys. Shared model does not collapse the role labels. Pool VERIFY engine=codex-cli differs from registry VERIFY engine=hermes."
+    },
+    "receipt_axis": {
+      "status": "STRUCTURALLY_SEPARABLE; R8_INDEPENDENT_CHECKER_RECEIPT_NOT_PRODUCED",
+      "evidence": "wiring-focused-context: dispatcher:1520-1526 binds session/round/workorder/subject/arm/rank; 2175-2268 records attempts and required/served arm; role_binding.py:421-450 validates exact context and successful lane receipt. This readback is its own receipt, not independent verification."
+    },
+    "os_identity_axis": {
+      "status": "NOT_ESTABLISHED; NO DISTINCT_IDENTITY_EVIDENCE",
+      "evidence": {
+        "stdout_base64": "DQpVU0VSIElORk9STUFUSU9ODQotLS0tLS0tLS0tLS0tLS0tDQoNCqjPpc6qzKZXutkgICAgICAgICAgIFNJRCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICANCj09PT09PT09PT09PT09PT09PT09ID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0NCmRlc2t0b3AtNTdlbzQxNFx1c2VyIFMtMS01LTIxLTI2ODczMzQ5NTAtMzg2ODQzODYzMy0xNTkyMTM3OTI2LTEwMDANCg==",
+        "stderr_base64": "",
+        "decoded_cp950": "\r\nUSER INFORMATION\r\n----------------\r\n\r\n使用者名稱           SID                                           \r\n==================== ==============================================\r\ndesktop-57eo414\\user S-1-5-21-2687334950-3868438633-1592137926-1000\r\n",
+        "exit_code": 0
+      },
+      "note": "Only desktop-57eo414\\user SID S-1-5-21-2687334950-3868438633-1592137926-1000 was measured. No separate PLAN/VERIFY process-token observation exists here; OAuth descriptor or isolated home does not establish a different Windows identity. Under a single-account design identity separation is NOT APPLICABLE, not achieved."
+    }
+  },
+  "probe": {
+    "source": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS\\probe_gstack_rolemap.py",
+    "exists_in_current_canonical_tree": false,
+    "existing_external_runner_targets_current_map": true,
+    "runs": [
+      {
+        "id": "existing-probe-positive",
+        "command": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe -B C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS\\probe_gstack_rolemap.py positive",
+        "stdout": "{\n \"verdict\": \"GSTACK_ROLEMAP_POSITIVE_OK\",\n \"adopt_full_role_architecture\": true,\n \"adopt_full_control_plane\": false,\n \"role_count\": 19,\n \"hard_deny_count\": 4,\n \"missing_disposition_count\": 0\n}\n",
+        "stderr": "",
+        "exit_code": 0
+      },
+      {
+        "id": "existing-probe-negative",
+        "command": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe -B C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS\\probe_gstack_rolemap.py negative",
+        "stdout": "{\n \"verdict\": \"GSTACK_ROLEMAP_NEGATIVE_OK\",\n \"breach_count\": 0,\n \"breaches\": []\n}\n",
+        "stderr": "",
+        "exit_code": 0
+      },
+      {
+        "id": "probe-in-memory-negative-control",
+        "command": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe -B -c \"import runpy,sys,json; from pathlib import Path; p=Path('C:\\\\Projects\\\\Agent_Workspace\\\\_handover\\\\CNV-PIPD-LS-SP-20261015\\\\R6_DELIVERY\\\\RUNNERS\\\\probe_gstack_rolemap.py'); ns=runpy.run_path(str(p),run_name='readback_import'); fn=ns['negative']; original=fn.__globals__['_load']; data=original(); data['roles']['office-hours']['host']='gstack Conductor as canonical scheduler'; fn.__globals__['_load']=lambda:data; print('CONTROL: only in-memory office-hours host changed to hard-denied surface; expected exit=1'); sys.exit(fn())\"",
+        "stdout": "CONTROL: only in-memory office-hours host changed to hard-denied surface; expected exit=1\n{\n \"verdict\": \"GSTACK_ROLEMAP_NEGATIVE_OK\",\n \"breach_count\": 4,\n \"breaches\": [\n  {\n   \"role\": \"office-hours\",\n   \"host\": \"gstack Conductor as canonical scheduler\",\n   \"deny\": \"gstack conductor as canonical scheduler\"\n  },\n  {\n   \"role\": \"office-hours\",\n   \"host\": \"gstack Conductor as canonical scheduler\",\n   \"deny\": \"gstack /spec as canonical spec owner\"\n  },\n  {\n   \"role\": \"office-hours\",\n   \"host\": \"gstack Conductor as canonical scheduler\",\n   \"deny\": \"gstack /ship as promote/release\"\n  },\n  {\n   \"role\": \"office-hours\",\n   \"host\": \"gstack Conductor as canonical scheduler\",\n   \"deny\": \"gstack /land-and-deploy or setup-deploy as production\"\n  }\n ]\n}\n",
+        "stderr": "",
+        "exit_code": 1
+      },
+      {
+        "id": "probe-positive-assertion-boundary",
+        "command": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe -B -c \"import runpy,sys; from pathlib import Path; p=Path('C:\\\\Projects\\\\Agent_Workspace\\\\_handover\\\\CNV-PIPD-LS-SP-20261015\\\\R6_DELIVERY\\\\RUNNERS\\\\probe_gstack_rolemap.py'); ns=runpy.run_path(str(p),run_name='readback_import'); fn=ns['positive']; data=fn.__globals__['_load'](); data['architecture']['ADOPT_FULL_GSTACK_CONTROL_PLANE']=True; fn.__globals__['_load']=lambda:data; print('CONTROL: in-memory full-control-plane=true; observing whether positive asserts it'); sys.exit(fn())\"",
+        "stdout": "CONTROL: in-memory full-control-plane=true; observing whether positive asserts it\n{\n \"verdict\": \"GSTACK_ROLEMAP_POSITIVE_OK\",\n \"adopt_full_role_architecture\": true,\n \"adopt_full_control_plane\": true,\n \"role_count\": 19,\n \"hard_deny_count\": 4,\n \"missing_disposition_count\": 0\n}\n",
+        "stderr": "",
+        "exit_code": 0
+      }
+    ],
+    "limitations": [
+      "positive() prints claims and returns 0 without asserting architecture booleans/counts. In-memory adopt-full-control-plane=true still exits 0.",
+      "negative() on unmodified input is an absence scan, not an injected negative control. Separate in-memory mutation invokes the existing function and exits 1 with 4 token-match breaches.",
+      "Both modes ignore named_methods.py and model routes. Their OK strings do not validate named-method/model coverage."
+    ]
+  },
+  "input_fingerprints": [
+    {
+      "path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\AGENTS.md",
+      "size": 14055,
+      "mtime_ns": 1792039770797636900,
+      "sha256": "7f7246d34be112bb465b48dadaef6163e466e16e5e705fc58acee04b3809a613"
+    },
+    {
+      "path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\HGK\\HGK_GSTACK_ROLE_MAP.yaml",
+      "size": 4404,
+      "mtime_ns": 1786545090853724200,
+      "sha256": "f8b8b967b1acab723e290fa5c7c45ec1e376a7348bfd886b4049e7b1cc9f0627"
+    },
+    {
+      "path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\HGK\\HGK_GSTACK_UPSTREAM_CAPABILITY_SNAPSHOT.tsv",
+      "size": 4292,
+      "mtime_ns": 1786545090852724700,
+      "sha256": "a4c427a6e0a96f981209bed437102643f52fd1a0ce6768d8ee445c31554960dc"
+    },
+    {
+      "path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\src\\hg_kseos\\named_methods.py",
+      "size": 13239,
+      "mtime_ns": 1786336356353362700,
+      "sha256": "80fbb94cc71153b7df36ca705d7ed168ef6c96a883dace619bdce816696c148b"
+    },
+    {
+      "path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\src\\hg_kseos\\lane_policy.py",
+      "size": 16978,
+      "mtime_ns": 1791855181748724100,
+      "sha256": "5384116f2cd8568a26b9244cc11a206b25a2dcec435e2d9e1ba8c4c6f0a089bb"
+    },
+    {
+      "path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\src\\hg_kseos\\role_binding.py",
+      "size": 25296,
+      "mtime_ns": 1792067413125261500,
+      "sha256": "94084205266e1a841ce0f9be1696813085ef26fbda48ade830cf5f66eff2b938"
+    },
+    {
+      "path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\scripts\\runtime_role_binding_assert.py",
+      "size": 12845,
+      "mtime_ns": 1792059169257149100,
+      "sha256": "63d004ade7ff65e16589e76572db33880b459141461beead764ea2f4a3015031"
+    },
+    {
+      "path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\scripts\\hgk-lane-dispatch.py",
+      "size": 141826,
+      "mtime_ns": 1792066284178242100,
+      "sha256": "e53776af9094958527938dd12140eba159a454489147ab0e7a75742346b4de72"
+    },
+    {
+      "path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\scripts\\hgk-governed-runtime-controller.py",
+      "size": 10949,
+      "mtime_ns": 1792077349823154900,
+      "sha256": "67e79c52e6dd5d1d0d1d44e5dc625afe955efc1bef2aa40028e98c1f139bda90"
+    },
+    {
+      "path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\lane-route-slots.candidate.json",
+      "size": 32105,
+      "mtime_ns": 1792036434398542500,
+      "sha256": "9fd0835f8933c7e84a95e06398ce5e3781367d4076a8235d778aac0ccf2864b8"
+    },
+    {
+      "path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\model-lane-assignment.json",
+      "size": 39265,
+      "mtime_ns": 1792063645050745300,
+      "sha256": "6af264c9ffdb57113be769842ac1a8503eb472a3c55f1941ee42667078808753"
+    },
+    {
+      "path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\lane-routing-registry.yaml",
+      "size": 37294,
+      "mtime_ns": 1792063680754677600,
+      "sha256": "06a8d10aed3785a9fb015d76291c32ef26cc3d4b36c00eb8ec9f7860d6f550d2"
+    },
+    {
+      "path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\hermes-codex-lane.json",
+      "size": 11101,
+      "mtime_ns": 1792078668630483400,
+      "sha256": "2da6b69fcce3681f6f8cedc43270b54ba449d0a22f21b1b714a007df2dbf96b4"
+    },
+    {
+      "path": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\profiles\\hgk-governed\\config.yaml",
+      "size": 498,
+      "mtime_ns": 1792078504044728000,
+      "sha256": "0130c2e0c311e29b37adadf434e4f791f1c3a180b9c55c64c555fe6fe49894db"
+    },
+    {
+      "path": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\config.yaml",
+      "size": 6890,
+      "mtime_ns": 1792120041187221500,
+      "sha256": "7029050cb492b980a87936eba74e8e06b987f602044ff3a670bd7241a8843603"
+    },
+    {
+      "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015\\R6_DELIVERY\\RUNNERS\\probe_gstack_rolemap.py",
+      "size": 2357,
+      "mtime_ns": 1792051479728723400,
+      "sha256": "5d3937d5f93093d21895f4b8b96541f297795a81f7abadbf61d7c7354cc7bbab"
+    }
+  ],
+  "subject_git_status_unchanged": true,
+  "not_performed": [
+    "No model/provider API calls, credential reads, spine DB open/write, dispatcher invocation, config/source edits, git writes, approval, Gate PASS, or route-map-correctness claim.",
+    "KANBAN/SWARM/OPENSPEC and additional checker dispatch were not run: this is the scoped readback subtask, with writes allowed only under WS_G."
+  ]
+}

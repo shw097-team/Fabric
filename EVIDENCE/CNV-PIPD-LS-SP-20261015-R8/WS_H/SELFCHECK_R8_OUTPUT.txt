@@ -1,0 +1,172 @@
+COMMAND: C:\Users\user\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\hermes\hermes-agent\venv\Scripts\python.exe -B C:\Projects\Agent_Workspace\_handover\CNV-PIPD-LS-SP-20261015-R8\WS_H\test_tf10.py --legacy-red
+OFFLINE REPRO: API functions replaced with read-only local git object reads; inherited API/remote labels below are NOT network requests.
+[2] blob inventory under EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/ (--no-filters bytes)
+       command: GET repos/.../git/trees/{head}?recursive=1  x  local walk blob-id rehash
+       remote=212 blobs | local files=306 | MISSING=0 | LOCAL_ONLY=94 | MISMATCHES=3
+       result: FAIL
+       local_only sample: ['EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/CHECKPOINT_STATE_20261016.json', 'EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/HANDOVER_CHECKPOINT_20261016.md', 'EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/KANBAN_SWARM_GRAPH_R7.json', 'EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/R7_ACCELERATION_AND_SWARM.md', 'EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/R7_VERIFIER_SWARM/RAW/base_blob_ids.txt', 'EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/R7_VERIFIER_SWARM/RAW/dir_listing_1.txt', 'EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/R7_VERIFIER_SWARM/RAW/fabric-lsremote.txt', 'EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/R7_VERIFIER_SWARM/RAW/r5q_repro.txt', 'EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/R7_VERIFIER_SWARM/RAW/read-1-git-ls-remote-err.txt', 'EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/R7_VERIFIER_SWARM/RAW/read-1-git-ls-remote.txt']
+       mismatch sample: ['EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/PACKET_MANIFEST.json', 'EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/R7_SIDE_EFFECTS.json', 'EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/R7_TOOLING_FINDINGS.json']
+[3] packet manifest reconciliation
+       command: GET repos/.../contents/PACKET_MANIFEST.json (raw bytes -> sha256) + blob count from [2]
+       file_count=306 | tracked_file_count=306 | local_only_excluded=0 | tracked_inventory=306
+       c1 tracked==live blobs (306==212): False
+       c2 file_count - tracked == len(local_only_excluded) (306-306==0): True
+       manifest bytes sha256=b19a096142b3cebd... matches expected (c5fc66e4...): False
+       result: FAIL
+LEGACY_OFFLINE_REPRO: [False, False] (False values reproduce TF-10)
+EXIT_CODE: 1
+
+COMMAND: C:\Users\user\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\hermes\hermes-agent\venv\Scripts\python.exe -B C:\Projects\Agent_Workspace\_handover\CNV-PIPD-LS-SP-20261015-R8\WS_H\test_tf10.py
+test_empty_inventory_is_rejected (__main__.Regression.test_empty_inventory_is_rejected) ... ok
+test_equal_count_wrong_set_is_rejected (__main__.Regression.test_equal_count_wrong_set_is_rejected) ... ok
+test_git_write_is_refused (__main__.Regression.test_git_write_is_refused) ... ok
+test_live_inventory (__main__.Regression.test_live_inventory) ... ok
+test_live_manifest (__main__.Regression.test_live_manifest) ... ok
+test_traversal_is_rejected (__main__.Regression.test_traversal_is_rejected) ... ok
+test_wrong_prefix_is_rejected (__main__.Regression.test_wrong_prefix_is_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.636s
+
+OK
+EXIT_CODE: 0
+
+COMMAND: C:\Users\user\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\hermes\hermes-agent\venv\Scripts\python.exe -B C:\Projects\Agent_Workspace\_handover\CNV-PIPD-LS-SP-20261015-R8\WS_H\round_selfcheck_r8.py --worktree C:/Projects/wt-cnv-r7
+claim_ceiling: LOCAL / candidate-only. No acceptance, Gate PASS or merge authorization.
+UTC: 2026-10-16T03:12:35.737511+00:00
+MODE: offline; read-only Git; no credential reads; no packet repair/writes
+SNAPSHOT: {"branch": "evidence/cnv-pipd-ls-sp-20261015-r7", "git_blobs": 306, "head": "04a1e118dd6616ccb6b2e68b68544fd5af4271ae", "packet_root": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/", "worktree": "C:\\Projects\\wt-cnv-r7"}
+[1] check_1: FAIL
+{
+  "cached_tracking_head": "04a1e118dd6616ccb6b2e68b68544fd5af4271ae",
+  "gap": "Network forbidden: cached ref is NOT a live remote readback",
+  "historical_record_matches": false,
+  "historical_recorded_head": "96b9307d51b40c4169230a8eb0d74c9e62152b20",
+  "live_remote_verified": false,
+  "local_equals_cached": true,
+  "local_head": "04a1e118dd6616ccb6b2e68b68544fd5af4271ae"
+}
+[2] check_2: PASS
+{
+  "git_blobs": 306,
+  "head": "04a1e118dd6616ccb6b2e68b68544fd5af4271ae",
+  "local_files": 306,
+  "local_only": [],
+  "missing": [],
+  "raw_blob_id_mismatches": []
+}
+[3] check_3: PASS
+{
+  "conditions": {
+    "excluded_not_tracked": true,
+    "excluded_unique": true,
+    "file_count_reconciliation": true,
+    "no_duplicates": true,
+    "nonempty": true,
+    "prefix_containment": true,
+    "set_equality": true,
+    "tracked_equals_live": true
+  },
+  "excluded_paths": 0,
+  "extra": [],
+  "file_count": 306,
+  "git_blobs": 306,
+  "inventory_paths": 306,
+  "manifest_committed_sha256": "b19a096142b3cebd20848915ad37474b974a3f685c5dae5a465026063377979b",
+  "manifest_exact_bytes_equal": true,
+  "manifest_local_sha256": "b19a096142b3cebd20848915ad37474b974a3f685c5dae5a465026063377979b",
+  "missing": [],
+  "tracked_file_count": 306
+}
+[4] check_4: FAIL
+{
+  "baseline_blobs": 581,
+  "baseline_head": "b8ff81043e47e4b652522be34444bf52fcf4d65e",
+  "baseline_manifest_sha256": "27ba42f7cb32d9f490d8897ef0205b0b70cd13bb2b7bc6344e717e5bffbd118b",
+  "cached_main": "b8ff81043e47e4b652522be34444bf52fcf4d65e",
+  "changed_paths": 306,
+  "forbidden_changed_paths": [],
+  "frozen_prefix": "EVIDENCE/CNV-PIPD-LS-SP-20261015/",
+  "gap": "Network forbidden: live main equality cannot be established",
+  "head_blobs": 581,
+  "head_manifest_sha256": "27ba42f7cb32d9f490d8897ef0205b0b70cd13bb2b7bc6344e717e5bffbd118b",
+  "live_main_verified": false,
+  "local_conditions": {
+    "archive_full_tree_unchanged": true,
+    "archive_manifest_exact_bytes_equal": true,
+    "baseline_nonempty": true,
+    "baseline_record_count_matches": true,
+    "baseline_record_manifest_matches": true,
+    "cached_main_equals_baseline": true,
+    "changed_paths_contained": true
+  }
+}
+[5] check_5: PASS
+{
+  "hard_findings": [],
+  "hard_policy_patterns": 8,
+  "historical_record_pass": true,
+  "historical_scan_head": "acd32c809a5a1874012802c915fe588d020457b7",
+  "note": "Live re-scan; historical record alone is not current evidence. No packet code executed. Operator token exact-value scan not performed.",
+  "scan_digest_sha256": "d090bdfa21933a4b15320a67ef089e510f70ab63ab1188db85bcdfaa3450f658",
+  "scan_head": "04a1e118dd6616ccb6b2e68b68544fd5af4271ae",
+  "scanned_blobs": 306,
+  "scope_violations": []
+}
+[6] check_6: PASS
+{
+  "conditions": {
+    "items": true,
+    "overall": true,
+    "schema": true
+  },
+  "first_fail": null,
+  "ids": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6"
+  ],
+  "items": 6,
+  "note": "Historical verdict format check only; not a fresh independent checker verdict",
+  "overall_verdict": "PENDING_OWNER",
+  "policy_source": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\selfcheck\\round_selfcheck.py",
+  "schema": "CNV-PIPD-LS-SP-20261015-R7/CHECKER-VERDICT/3",
+  "verdict_source": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-PIPD-LS-SP-20261015-R7\\R7_CHECKER_ATTEMPT3\\R7_CHECKER_VERDICT.json"
+}
+NEGATIVE_CONTROL: PASS (violations rejected)
+{
+  "empty_inventory_check_2": "FAIL",
+  "empty_inventory_missing": 306,
+  "equal_count_wrong_set_check_3": "FAIL",
+  "git_push_refused": true,
+  "outside_write_refused": true,
+  "wrong_prefix_rejected": true,
+  "wrong_set_conditions": {
+    "excluded_not_tracked": true,
+    "excluded_unique": true,
+    "file_count_reconciliation": true,
+    "no_duplicates": true,
+    "nonempty": true,
+    "prefix_containment": true,
+    "set_equality": false,
+    "tracked_equals_live": true
+  }
+}
+HEAD_AND_REFS_STABLE: True
+1=FAIL 2=PASS 3=PASS 4=FAIL 5=PASS 6=PASS
+OVERALL_SELFCHECK_VERDICT: FAIL
+Repairs: harness expectation derivation only; packet and historical evidence remain unchanged.
+Remote branch/main, provider/model attestation, upstream CI and acceptance authority remain unverified.
+EXIT_CODE: 1
+
+COMMAND: C:\Users\user\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\hermes\hermes-agent\venv\Scripts\python.exe -B C:\Projects\Agent_Workspace\_handover\CNV-PIPD-LS-SP-20261015-R8\WS_H\round_selfcheck_r8.py --worktree C:/Projects/wt-cnv-r7 --prefix EVIDENCE/__deliberately_wrong__/
+claim_ceiling: LOCAL / candidate-only. No acceptance, Gate PASS or merge authorization.
+UTC: 2026-10-16T03:12:45.822153+00:00
+MODE: offline; read-only Git; no credential reads; no packet repair/writes
+SNAPSHOT FAIL: ValueError wrong/unsafe prefix; does not match branch-bound live manifest
+OVERALL_SELFCHECK_VERDICT: FAIL
+EXIT_CODE: 1
+

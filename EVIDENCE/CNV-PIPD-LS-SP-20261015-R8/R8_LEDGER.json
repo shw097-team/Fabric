@@ -1,0 +1,170 @@
+{
+ "schema": "CNV-PIPD-LS-SP-20261015-R8/LEDGER/1",
+ "produced_utc": "2026-10-16T03:39:18.799372+00:00",
+ "round": "R8-0-SKILL-SLIM-REGRESSION-AND-EIA-CLOSURE",
+ "project": "CNV-R8-SKILL-SLIM-EIA-CLOSURE (4 WorkOrders)",
+ "claim_ceiling": "LOCAL / candidate-only; nothing here is an acceptance, approval or Gate PASS",
+ "blockers": [
+  {
+   "id": "BLK-R7-WS1-STALE-BASELINE",
+   "severity": "high",
+   "status": "CLOSED_IN_SUBSTANCE",
+   "closed_by": "WS-B: the R7-0 hardening rebuilt on main (dba4b19) and all 18 mutations re-measured there",
+   "evidence": "WS_B/WS_B_RECEIPT.md, WS_B/R8_MUTATIONS_18_ON_MAIN.json (executed 10, detected 10, not_detected 0, NOT_RUN 8 re-judged; M04/M06/M16 REJECT)",
+   "residual": "independent re-run pending (verifier lane)"
+  },
+  {
+   "id": "BLK-R8-WS2-MAIN-DIVERGENCE",
+   "severity": "high",
+   "status": "CONFIRMED_PORT_INDUCED",
+   "detail": "the port closes the counterexamples but introduces 2 failures on main's newer suite, both shown to pass on clean main: (a) test_real_trace_link_is_legal_beside_its_endpoints fails closed when no frozen context is supplied; (b) test_cli_smoke_runs crashes with AttributeError: 'str' object has no attribute 'get' at validate.py:434 derive_frozen_context",
+   "owner": "DOC-07 Oracle/Validator Owner",
+   "action": "R9-0 ChangeSet that adapts the hardening to main's contracts, then re-runs the suite and the 18 mutations",
+   "evidence": "WS_B/WS_B_RECEIPT.md sections 4.2 and 5.2",
+   "escalated_utc": "2026-10-16T03:50:38.693624+00:00",
+   "evidence_2x2": "R8_VERIFY/WS_B_3_ATTRIBUTION_ERRATA.json"
+  },
+  {
+   "id": "EIA-R6-03",
+   "severity": "high",
+   "status": "OPEN_ROOT_CAUSE_IDENTIFIED",
+   "detail": "no OS-level write denial on the guarded subject (Authenticated Users inherit Modify); the deny-ACE mechanism is proven and reversible but a single shared Windows identity cannot separate maker from checker",
+   "owner": "HGK Checker Harness Owner",
+   "action": "SE-1 (distinct identity or scoped sandbox)",
+   "evidence": "WS_C/CHECKER_WRITE_ROOT_ISOLATION_EVIDENCE.json"
+  },
+  {
+   "id": "TF-06",
+   "severity": "medium",
+   "status": "OPEN",
+   "detail": "ERR_NO_ARM_EMITTED_NONCE - the dispatcher could not evidence which model arm served the EXECUTE lanes this round (8th occurrence this mission); products verified, attribution unproven",
+   "owner": "HGK lane/dispatcher owner",
+   "action": "SE-2",
+   "evidence": "WS_A/WS_A_INDEPENDENT_RECHECK.json (lane_dispatch_caveat)"
+  },
+  {
+   "id": "TF-10",
+   "severity": "low",
+   "status": "REPAIRED",
+   "detail": "the R7 self-check harness compared live state against hardcoded expectations; now derives them at run time with the negative control retained",
+   "evidence": "WS_H/round_selfcheck_r8.py, WS_H/test_tf10.py, WS_H/SELFCHECK_R8_OUTPUT.txt"
+  },
+  {
+   "id": "TF-01",
+   "severity": "low",
+   "status": "NOT_TRIGGERED",
+   "detail": "dispatcher brief-marker misfire: 0 occurrences this round (briefs were marker-scanned before dispatch)"
+  },
+  {
+   "id": "EIA-R6-05/07",
+   "severity": "high/medium",
+   "status": "BLOCKED_AUTHORITY",
+   "detail": "8 Gates, Fresh G1, 221 cases, source #6 active-normative decision - unchanged and not claimed",
+   "owner": "HGK/domain Gate owners, PIPD Source Authority Owner"
+  }
+ ],
+ "findings": [
+  {
+   "id": "R8-F1",
+   "detail": "the AVR slim candidate could not be landed as-is: 10 SKCV-SLICE markers left the frontmatter off byte 0 (loader would not parse the identity) and one absorbed reference was stale (recorded aebb35ea vs live 2126b82e)",
+   "status": "REPAIRED_AND_LANDED",
+   "evidence": "WS_A_REGRESSION_AVR.json, WS_A_RECEIPT.md"
+  },
+  {
+   "id": "R8-F2",
+   "detail": "the R6 packet manifest declares 583 paths while 581 are shipped; both extras are __pycache__ .pyc paths - the count mismatch now has a single identified cause",
+   "status": "OPEN_ERRATA_PROPOSED",
+   "evidence": "WS_D/EIA_R6_RECONCILIATION.json"
+  },
+  {
+   "id": "R8-F3",
+   "detail": "the guarded subject has no deny ACE; an ordinary process running as the current identity can write into it",
+   "status": "OPEN",
+   "evidence": "WS_C/CHECKER_WRITE_ROOT_ISOLATION_EVIDENCE.json"
+  },
+  {
+   "id": "R8-F4",
+   "detail": "library-wide: 2 skills exceed the 100,000-byte main-file cap (hgk-governed-execution 105,116 B; adversarial-verification-rounds 101,488 B pre-apply) and hgk-governed-execution carries 118 references against a 60 reference soft cap (warning only, never a hard gate)",
+   "status": "MEASURED",
+   "evidence": "WS_A_LIBRARY_SCAN.json"
+  },
+  {
+   "id": "R8-F5",
+   "detail": "the hgk-governed-execution slim candidate is NOT landable: two live reference texts do not survive (lane-conformance-gate.md 3,299 B absent; step-verify-only-lane.md 7,994 B rewritten to 6,029 B with the remainder present nowhere); the live tree also carries 6 __pycache__/*.pyc entries",
+   "status": "BLOCKED_PENDING_REPAIR",
+   "evidence": "WS_A/WS_A_HGK_APPLY_DECISION.json"
+  },
+  {
+   "id": "R8-F6",
+   "detail": "the HG-KHEOS lane control plane disagrees with itself and with the owner's mandate: lane pool slots declare VERIFY_SECURITY rank 1 as openai-codex/gpt-6.1-sol while the routing registry's route declares opencode-go, and the assignment file's top-level VERIFY model (glm-5.3-flash) contradicts its own structured arm-A selector (gpt-6.1-sol); one DRIFT_VALUE remains at /codex_sha256",
+   "status": "OPEN_OWNER_AUTHORISED_EDIT_REQUIRED",
+   "evidence": "WS_G/GSTACK_R8_ROLEMAP.json (mandate_vs_declared_registry_and_assignment, internal_assignment_disagreements)"
+  },
+  {
+   "id": "R8-F7",
+   "detail": "PKG RQ06 names a '10/6' slice partition; the artifacts in hand reconstruct 5 (AVR) and 6 (HGK) slices, so byte-exactness was verified against the artifacts' own maps rather than against the PKG's named partition",
+   "status": "OPEN_PKG_SOURCE_RECONCILIATION",
+   "evidence": "PKG_ALIGNMENT_R8.json"
+  },
+  {
+   "id": "R8-F8",
+   "detail": "the WS-V checker's WS-B-3 attribution ('the 2 test failures are pre-existing on main') is false; two independent clean-main runs pass both tests while two hardening-tree runs fail them. Checker counts honest, causal clause inverted.",
+   "status": "ERRATA_RECORDED_CHECKER_CORRECTED",
+   "evidence": "R8_VERIFY/WS_B_3_ATTRIBUTION_ERRATA.json",
+   "severity": "medium - affects attribution, not the measured counts; would have mis-filed a port-induced defect as pre-existing"
+  }
+ ],
+ "incidents": [
+  {
+   "id": "INC-R8-01",
+   "detail": "two sub-agent receipts (WS_F, WS_H) were refused by the pre-tool guard, which requires explicit human authorization for this class of content",
+   "handling": "the orchestrator asked the owner; the owner authorised the sanctioned time-boxed path; the receipts were written afterwards with their provenance disclosed in-file",
+   "status": "RESOLVED_BY_OWNER_AUTHORISATION"
+  },
+  {
+   "id": "INC-R8-02",
+   "detail": "the WS-A writer lane returned dispatcher EXIT 3 (no arm nonce)",
+   "handling": "its products were independently re-run and verified by the orchestrator; the attribution claim was dropped, not softened",
+   "status": "RECORDED"
+  }
+ ],
+ "side_effects": [
+  {
+   "what": "canonical skills tree",
+   "path": "…/hermes/skills/software-development/adversarial-verification-rounds/",
+   "change": "guarded apply: SKILL.md 101,488 -> 21,332 B; 7 files replaced, 3 added, 21 retained untouched; pre-image + rollback.py present; rollback drill restored byte-for-byte",
+   "reversible": "yes (WS_A/apply/rollback.py)"
+  },
+  {
+   "what": "Hermes config.yaml",
+   "change": "delegation.provider opencode-go -> openai-codex; delegation.model glm-5.3-flash -> gpt-6.1-sol (sha dfdb3575 -> 7029050c)",
+   "reversible": "yes (set back to the previous pair)"
+  },
+  {
+   "what": "kanban board",
+   "change": "board cnv-r8-skill-slim-eia-closure-20261016 created with a 5-worker swarm DAG",
+   "reversible": "yes (board archive)"
+  },
+  {
+   "what": "PIPD product repo",
+   "change": "new detached worktree worktrees/r8-wt at dba4b19 with the three hardened files modified inside that worktree only; the main working tree, index and branch untouched",
+   "reversible": "yes (worktree remove)"
+  },
+  {
+   "what": "Fabric repo",
+   "change": "new branch + evidence prefix EVIDENCE/CNV-PIPD-LS-SP-20261015-R8 (packet prepared and scanned; publication reported separately with its readback)",
+   "reversible": "yes (drop branch)"
+  },
+  {
+   "what": "scratch filesystem",
+   "change": "WS_C/acl_probe created, a deny ACE applied and removed, directory deleted",
+   "reversible": "already reverted"
+  }
+ ],
+ "residual_risks": [
+  "the verifier lane's verdict is pending at the time of writing",
+  "the R8 packet's remote readback is pending at the time of writing",
+  "EIA-R6-03/05/07 and BLK-R8-WS2 remain open",
+  "PLAN and VERIFY share a model axis by owner design (documented, not silently accepted)"
+ ]
+}

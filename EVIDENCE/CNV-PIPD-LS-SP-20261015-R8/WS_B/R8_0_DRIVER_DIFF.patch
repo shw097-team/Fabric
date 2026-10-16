@@ -1,0 +1,48 @@
+diff --git a/C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/R6_DELIVERY/RUNNERS/probe_mutations.py b/C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015-R8/WS_B/RUNNERS/probe_mutations.py
+index 2eee791..7fd2684 100644
+--- a/C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/R6_DELIVERY/RUNNERS/probe_mutations.py
++++ b/C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015-R8/WS_B/RUNNERS/probe_mutations.py
+@@ -16,14 +16,14 @@ import sys
+ import traceback
+ from pathlib import Path
+ 
+-PIPD_SRC = "C:/Projects/Agent_Workspace/PIPD/src"
++PIPD_SRC = "C:/Projects/Agent_Workspace/PIPD/worktrees/r8-wt/src"
+ sys.path.insert(0, PIPD_SRC)
+ sys.path.insert(0, "C:/Projects/Agent_Workspace/HG-KSEOS/src")
+ 
+ ROOT = Path("C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/R6_DELIVERY")
+-RAW = ROOT / "RAW"
++RAW = Path("C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015-R8/WS_B/RAW")
+ SRC = RAW / "pipd_scratch_source.md"
+-SCHEMAS = Path("C:/Projects/Agent_Workspace/PIPD/schemas")
++SCHEMAS = Path("C:/Projects/Agent_Workspace/PIPD/worktrees/r8-wt/schemas")
+ PY = "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe"
+ PKG = ("C:/Users/user/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/"
+        "Local/hermes/attachments/Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md")
+diff --git a/C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/R6_DELIVERY/RUNNERS/probe_lib.py b/C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015-R8/WS_B/RUNNERS/probe_lib.py
+index 1d7006f..09e570d 100644
+--- a/C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/R6_DELIVERY/RUNNERS/probe_lib.py
++++ b/C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015-R8/WS_B/RUNNERS/probe_lib.py
+@@ -14,7 +14,7 @@ from datetime import datetime, timezone
+ from pathlib import Path
+ 
+ ROOT = Path("C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/R6_DELIVERY")
+-RAW = ROOT / "RAW"
++RAW = Path("C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015-R8/WS_B/RAW")
+ 
+ 
+ def utc_now() -> str:
+diff --git a/C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/R6_DELIVERY/RUNNERS/run_mutations.py b/C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015-R8/WS_B/RUNNERS/run_mutations.py
+index e0cb2ed..4ed3402 100644
+--- a/C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/R6_DELIVERY/RUNNERS/run_mutations.py
++++ b/C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015-R8/WS_B/RUNNERS/run_mutations.py
+@@ -8,7 +8,7 @@ from pathlib import Path
+ sys.path.insert(0, str(Path(__file__).resolve().parent))
+ from probe_lib import capture  # noqa: E402
+ 
+-ROOT = Path("C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/R6_DELIVERY")
++ROOT = Path("C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015-R8/WS_B")
+ PY = "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe"
+ R = str(ROOT / "RUNNERS")
+ 

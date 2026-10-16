@@ -1,0 +1,33 @@
+{
+  "schema": "CNV-PIPD-LS-SP-20261015/R6R7-MERGE-AND-CLOSURE/1",
+  "generated_local": "2026-10-15T20:46:09+08:00",
+  "authorisation": {
+    "M1": "VERIFIED",
+    "M2": "VERIFIED",
+    "M3": "GRANTED_BY_OWNER",
+    "approval_channel": "interactive Owner decision; recorded in PR #3 comment and M3_MAINTAINER_APPROVAL.json"
+  },
+  "merge": {
+    "pr": 3,
+    "method": "merge_commit",
+    "merge_commit_sha": "b8ff81043e47e4b652522be34444bf52fcf4d65e",
+    "merged_at": "2026-10-15T12:45:46Z",
+    "pr_state": "closed",
+    "approved_head": "a10f7bea645792048e3415443d417ffa3c2ac890",
+    "base_before": "266f8d65cf9b21c3b37c1c243946a5c828cf973b",
+    "blobs_under_prefix_on_main": 581,
+    "blob_set_identical_to_approved_head": true,
+    "manifest_sha256_on_main": "27ba42f7cb32d9f490d8897ef0205b0b70cd13bb2b7bc6344e717e5bffbd118b",
+    "pyc_present_on_main": false
+  },
+  "executed_by": "HGK narrow-repair orchestration acting on the Owner's explicit authorisation (the approval identity is the Owner)",
+  "unchanged_verdicts": {
+    "scope": "PARTIAL_CHALLENGE",
+    "full_convergence": "TEMP_CLOSED_CHALLENGE",
+    "production": "FAIL_CLOSED",
+    "canonical_acceptance": "NOT_ISSUED"
+  },
+  "rollback": "git revert b8ff81043e47e4b652522be34444bf52fcf4d65e or a new PR; never force-push main",
+  "open_r7": "see R7_BLOCKERS_AND_TASKS.json (M04/M06/M16 hardening, checker OS-ACL, Fresh G1, 221 cases, G-A..G-H, AUD-24, 4 R6 WOs)",
+  "claim_ceiling": "LOCAL_ORCHESTRATION + published/merged evidence archive. Not an AO verdict."
+}

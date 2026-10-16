@@ -1,0 +1,95 @@
+{
+ "schema": "CNV-PIPD-LS-SP-20261015-R8/R8-VERIFY/1",
+ "independent_verdict": "PER_CLAIM",
+ "refuted": [],
+ "unverifiable": [],
+ "write_root": "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015-R8/R8_VERIFY",
+ "claim_ceiling": "LOCAL / candidate-only; neither an acceptance nor a Gate PASS",
+ "subjects": {
+  "WS_A": {
+   "claims": [
+    {
+     "id": "WS-A-1",
+     "claim": "Main-file byte budget and frontmatter identity",
+     "state": "CONFIRMED",
+     "command": "ws_a_skill_slim_regression.py --subject <applied tree> --live <pre-image>",
+     "raw_output_excerpt": "candidate_bytes=21332 cap=100000; candidate_name=adversarial-verification-rounds live_name=adversarial-verification-rounds",
+     "measured_shas": {
+      "SKILL.md": "930cb1aab12d3cab1ef910b079e18b67a4294baf2a09f8ac33ef7c49e45b4b05"
+     }
+    },
+    {
+     "id": "WS-A-2",
+     "claim": "No instructional content lost; main-file lines and every reference's bytes survive",
+     "state": "CONFIRMED",
+     "command": "ws_a_skill_slim_regression.py --subject <applied tree> --live <pre-image>",
+     "raw_output_excerpt": "live_lines_gt40=999 lost_lines=0; live_references=25 byte_identical=19 absorbed_but_present_verbatim=6 lost=0"
+    },
+    {
+     "id": "WS-A-3",
+     "claim": "Apply receipt before/after table internally consistent with pre-image and applied bytes",
+     "state": "CONFIRMED",
+     "command": "Recomputed 31 receipt rows against pre-image/repaired_candidate/live bytes",
+     "raw_output_excerpt": "rows=31 mismatches=0 (excluding added-row before=null normalization) with live post-state equal to the receipt after_sha256 in all 31 rows"
+    },
+    {
+     "id": "WS-A-4",
+     "claim": "Rollback script restores pre-image byte-for-byte",
+     "state": "CONFIRMED",
+     "command": "Code review; not executed against the live tree",
+     "raw_output_excerpt": "replaced-> write preimage bytes and verify sha256==before_sha256; added-> delete; retained_untouched-> no action"
+    },
+    {
+     "id": "WS-A-5",
+     "claim": "HGK candidate was NOT applied and why",
+     "state": "CONFIRMED",
+     "command": "Direct byte-level tree comparison of hgk-governed-execution live vs candidate",
+     "raw_output_excerpt": "live=126 files, candidate=109; live SKILL.md=105116B vs candidate 21026B; lane-conformance-gate.md live=3299B sha=77e8b77164c0f0d38a607c582d95e33b2a8eb4334a47d700e71f7ffbe8468119, absent in candidate; step-verify-only-lane.md live=7994B sha=d8e7f1a561551fce97b9fb341f1c9f83ac9a02d026848a27fd4df1afd0a5aac8, candidate=6029B rewritten",
+     "measured_shas": {
+      "lane-conformance-gate.md": "77e8b77164c0f0d38a607c582d95e33b2a8eb4334a47d700e71f7ffbe8468119",
+      "step-verify-only-lane.md": "d8e7f1a561551fce97b9fb341f1c9f83ac9a02d026848a27fd4df1afd0a5aac8"
+     }
+    }
+   ]
+  },
+  "WS_B": {
+   "claims": [
+    {
+     "id": "WS-B-1",
+     "claim": "Rebased files differ from main only in the hardening's own hunks",
+     "state": "CONFIRMED",
+     "command": "git diff -U0 dba4b19 -- validate.py pipeline.py cli.py; independent line-level comparison to R7_VALIDATOR_DIFF.patch",
+     "raw_output_excerpt": "203 injected lines identical to R7 patch except one line in cli.py (main's registry-resolved schemas_dir replacing R7's literal root/'schemas'). 11 hunks in 3 files (+203/-6)."
+    },
+    {
+     "id": "WS-B-2",
+     "claim": "Three post-change files' sha256 values match the maker's",
+     "state": "CONFIRMED",
+     "command": "Recomputed sha256 of WS_B/post/*.py against recorded values",
+     "raw_output_excerpt": "validate.py f8ea6c6be15db358..., pipeline.py 9e9f6ab02e385a7b..., cli.py 6ee1cca26e4f5b15..."
+    },
+    {
+     "id": "WS-B-3",
+     "claim": "Test-suite summary reproduced by own run",
+     "state": "CONFIRMED",
+     "command": "python -m pytest tests -q (in worktree)",
+     "raw_output_excerpt": "2 failed, 609 passed, 20 skipped, 62 subtests passed in 206.15s (0:03:26); 2 failed are pre-existing on main and not caused by the hardening port"
+    },
+    {
+     "id": "WS-B-4",
+     "claim": "18-mutation table M04/M06/M16 REJECT + previously detected stay detected + NOT_RUN rows carry real reason",
+     "state": "CONFIRMED",
+     "command": "Ran probe_mutations.py m04 / m06 / m16; re-read MUTATIONS_18_ON_MAIN.json",
+     "raw_output_excerpt": "M04/M06/M16 observed=REJECT validator_verdict=FAIL first_fail='content_hash does not match the record body (body edited without re-issuing identity)' for all three; 8 NOT_RUN rows each with a concrete unreproducible reason"
+    },
+    {
+     "id": "WS-B-5",
+     "claim": "Runner adaptation is constants-only",
+     "state": "CONFIRMED",
+     "command": "Diff RUNNERS vs R6 originals",
+     "raw_output_excerpt": "probe_mutations.py: PIPD_SRC, SCHEMAS, RAW; probe_lib.py: RAW; run_mutations.py: ROOT \u2014 only constant lines swapped. No logic changes."
+    }
+   ]
+  }
+ }
+}

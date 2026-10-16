@@ -1,0 +1,75 @@
+................................................................ [ 10%]
+....s........................................................ [ 19%]
+................................................................ [ 29%]
+........................................................................ [ 41%]
+............s....................s..................sssssss [ 50%]
+ssssssssss.............................................................. [ 62%]
+........................................................................ [ 73%]
+............F..............................................................................................F.............. [ 92%]
+.............................................                            [100%]
+================================== FAILURES ===================================
+_ LegalTraceStillPassesTests.test_real_trace_link_is_legal_beside_its_endpoints _
+
+self = <tests.test_s4ext_trace_closure.LegalTraceStillPassesTests testMethod=test_real_trace_link_is_legal_beside_its_endpoints>
+
+    def test_real_trace_link_is_legal_beside_its_endpoints(self) -> None:
+        """A TraceLink bundled WITH the PI it points at resolves on both sides."""
+        link = self.bundle["PI-PKG"]["trace"][0]
+        res = validate.validate_bundle({"PI-PKG": self.bundle["PI-PKG"], "TraceLink": link},
+                                       SCHEMAS_DIR)
+>       self.assertEqual(res["verdict"], "PASS", str(res["findings"])[:400])
+E       AssertionError: 'FAIL' != 'PASS'
+E       - FAIL
+E       + PASS
+E        : [{'contract': 'TraceLink', 'kind': 'SEMANTIC', 'detail': 'TraceLink: UNBOUND_FROZEN_CONTEXT: from_hash cannot be verified against a frozen subject->digest map (frozen context not supplied); binding is unproven, not a pass'}, {'contract': 'TraceLink', 'kind': 'SEMANTIC', 'detail': 'TraceLink: UNBOUND_FROZEN_CONTEXT: to_hash cannot be verified against a frozen subject->digest map (frozen context not
+
+tests\test_s4ext_trace_closure.py:113: AssertionError
+___________________ TestToolingExecutes.test_cli_smoke_runs ___________________
+
+self = <tests.test_tooling_executes.TestToolingExecutes testMethod=test_cli_smoke_runs>
+
+    def test_cli_smoke_runs(self) -> None:
+        """The 13-command CLI surface must actually execute, not just import.
+    
+        Run inside a throwaway copy of the repo: the runner writes .hgk/artifacts/cli/CLI_SMOKE.json
+        by design, and a test that rewrites tracked evidence makes "tree clean after a test run"
+        impossible. The copy has every artifact the runner reads, so nothing is skipped.
+        """
+        import os as _os
+        import shutil as _sh
+        import tempfile as _tf
+        with _tf.TemporaryDirectory() as tmp:
+            dst = Path(tmp) / "repo"
+            _sh.copytree(ROOT, dst, ignore=_sh.ignore_patterns(".git", "__pycache__", "*.db", "*.pyc"))
+            r = subprocess.run([sys.executable, "-B", "tools/cli_smoke.py"], cwd=str(dst),
+                               capture_output=True, text=True,
+                               env={**_os.environ, "PYTHONDONTWRITEBYTECODE": "1"})
+>       self.assertEqual(r.returncode, 0,
+                         f"cli_smoke.py exited {r.returncode}\n{(r.stderr or r.stdout)[-800:]}")
+E       AssertionError: 2 != 0 : cli_smoke.py exited 2
+E       {
+E        "commands_run": 13,
+E        "expected": 13,
+E        "nonzero_exit": 1,
+E        "verdicts": {
+E         "init": "PASS",
+E         "intake": "n/a",
+E         "profile": "n/a",
+E         "compile-pi": "n/a",
+E         "bind-pd": "n/a",
+E         "compile-ecp": "n/a",
+E         "compile-tqaep": "n/a",
+E         "validate": "n/a",
+E         "doctor": "PASS",
+E         "project": "PASS",
+E         "export": "PASS",
+E         "diff": "PASS",
+E         "repair": "n/a"
+E        }
+E       }
+
+tests\test_tooling_executes.py:75: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_s4ext_trace_closure.py::LegalTraceStillPassesTests::test_real_trace_link_is_legal_beside_its_endpoints
+FAILED tests/test_tooling_executes.py::TestToolingExecutes::test_cli_smoke_runs
+2 failed, 609 passed, 20 skipped, 62 subtests passed in 262.18s (0:04:22)

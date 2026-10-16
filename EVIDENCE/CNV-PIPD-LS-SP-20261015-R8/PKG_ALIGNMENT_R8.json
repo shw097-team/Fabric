@@ -1,0 +1,82 @@
+{
+ "schema": "CNV-PIPD-LS-SP-20261015-R8/PKG-ACCEPTANCE-ALIGNMENT/1",
+ "produced_utc": "2026-10-16T03:42:16.916215+00:00",
+ "purpose": "Bind this round's skill work to the PKG's own acceptance clauses instead of to local invention.",
+ "authority": "Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md v2.0.0 - RQ06 / ACC-RQ06 (gate G-A) and RQ08 / ACC-RQ08 (gate G-A)",
+ "clauses": {
+  "RQ06": {
+   "gate": "G-A",
+   "risk_guard": "T22 miswire / fake loader parity",
+   "scope": "OFFLINE_CONTRACT_FIXTURE_ONLY_LIVE_UNBOUND",
+   "acceptance_close_predicate": "byte exact 10/6 + loader parity + negative state transitions",
+   "acc_rule": "the trusted observation must be avrhgk_reconstruction=BOTH_BYTE_EXACT_AND_LOADER_PARITY; BOTH_BYTE_EXACT_ONLY is REJECTED; first-fail ORACLE_RQ06_MISMATCH",
+   "child_obligations": [
+    "preserved refs and counts do not imply selection/loader behavioral parity",
+    "nested references/topics paths preserved",
+    "no extension truncation"
+   ]
+  },
+  "RQ08": {
+   "gate": "G-A",
+   "risk_guard": "94 vs 60 invented gate",
+   "acceptance": {
+    "expected": "SOFT_WARNING",
+    "negative": "HARD_BLOCK"
+   },
+   "child_obligations": [
+    "reference 60 warning 不強制合併 - the >60 references condition must not become a hard merge gate"
+   ]
+  }
+ },
+ "local_evidence_against_RQ06": {
+  "byte_exact_component": {
+   "status": "LOCALLY_VERIFIED_FOR_THE_ARTIFACTS_OWN_MAPS",
+   "main_file": {
+    "before_bytes": 101488,
+    "after_bytes": 21332,
+    "frontmatter_at_byte_0": true,
+    "slice_markers_after_apply": 0
+   },
+   "absorbed_references": {
+    "count": 6,
+    "sha_and_offset_verbatim": "all 6 match the pre-image bytes at the recorded topic offsets"
+   },
+   "reference_coverage": {
+    "live_references": 25,
+    "byte_identical_or_present_verbatim": 25,
+    "lost": 0
+   },
+   "entry_map_self_check": {
+    "artifact": "SKILL-CONVERGENCE-20261014/candidates/hgk/entry_map.json",
+    "slices": 6,
+    "dest_byte_range_verification": "6/6 slices: sha256(dest bytes) == recorded sha256"
+   }
+  },
+  "loader_parity_component": {
+   "status": "LOCALLY_OBSERVED",
+   "method": "the real Hermes skill loader lists the skill as local/enabled after the apply (71 enabled, 0 disabled)",
+   "nested_path_resolution": "the 8 paths named by the applied SKILL.md resolve on disk; the absorbed stubs' topic paths resolve and hold the pre-image bytes at the recorded offsets",
+   "scope_limit": "this is the host loader's resolution in the local plane, NOT the PKG's trusted observation (live runner UNBOUND_OWNER_PIN_REQUIRED)",
+   "loader_listing_row": "name adversarial-verificat… | category software-development | source local | enabled",
+   "raw_log": "WS_A/loader_parity_raw.txt (annotated: states what each section does and does not prove)",
+   "false_red_guard": "`hermes skills inspect` resolves against installable sources, not the local tree - its 'not found' is NOT a load failure and is annotated as such in the raw log"
+  },
+  "what_the_ACC_would_reject_here": "avrhgk_reconstruction=BOTH_BYTE_EXACT_ONLY - i.e. byte evidence without loader behaviour is insufficient; this artifact therefore carries the loader component explicitly instead of resting on byte counts",
+  "NOT_CLAIMED": "no trusted observation, no live runner binding, no negative state transitions (staged/installed/retired, TOCTOU) and no live trigger/non-trigger behaviour - all remain with the Skill Owner under an owner pin"
+ },
+ "local_evidence_against_RQ08": {
+  "references_over_60": {
+   "hgk-governed-execution_live": 118,
+   "hgk-governed-execution_candidate": 90,
+   "adversarial-verification-rounds_post_apply": 26
+  },
+  "treatment": "SOFT_WARNING only - no merge gate was created, no candidate was merged or split under coercion, and the cap for the main file (100,000 bytes) was treated as a defect to repair and as a queue item, not as a gate on publication",
+  "negative_control": "the hard-block polarity remains available as the fixture's negative; it was not applied to this condition"
+ },
+ "gap_found": {
+  "id": "R8-F7",
+  "detail": "the PKG's close predicate names a '10/6' slice partition, while the artifacts in hand reconstruct 5 slices (AVR candidate S1..S5, 10 marker lines) and 6 slices (HGK entry map ids 0..5). The exact 10/6 partition definition must be read from the PKG's source clause (BP2 section 16) before RQ06's byte-exact predicate can be claimed in the PKG's own terms.",
+  "action": "Skill Owner / PKG source reader reconciles the partition definition; this round verified byte-exactness against the artifacts' own maps and says so"
+ },
+ "claim_ceiling": "LOCAL / candidate-only; an ACC-level verdict requires the trusted observation and the owner pin"
+}
