@@ -1,10 +1,10 @@
 {
   "schema": "FAR-REMEDIATION-AND-CLOSURE-20261016/PACKET-MANIFEST/1",
   "round": "FAR-REMEDIATION-AND-CLOSURE-20261016",
-  "at_utc": "2026-10-16T05:17:26.954735+00:00",
+  "at_utc": "2026-10-16T05:18:57.146521+00:00",
   "collection_rule": "every file in the round directory by suffix, plus the evidence/, lanes/, candidate/ and openspec/ sub-trees, plus the handover checkpoint; no hand-maintained list",
   "section_counts": {
-    "round_documents": 51,
+    "round_documents": 54,
     "evidence": 7,
     "implementation_files": 15,
     "writer_output": 1,
@@ -465,8 +465,8 @@
     },
     {
       "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/FROZEN_MANIFEST.json",
-      "bytes": 20769,
-      "sha256": "69baacb9033253e404dd608855e6b31f5a1be75f8725fb8c1f9328e2ce56140a"
+      "bytes": 21654,
+      "sha256": "d6518dda5eca49c73d71d0f68372472d87ec599504b6de95d85dd9d739fa68db"
     },
     {
       "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/GATE_REPORT.json",
@@ -534,6 +534,11 @@
       "sha256": "c5f67ca9d414ab265cd6458306a2cb25e0c1b9508d57ca00b5d2c3334e06765f"
     },
     {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/PUBLICATION_RECEIPT.json",
+      "bytes": 2581,
+      "sha256": "fff485478e54ca64d7ae0501f95f67ee9e600473b8066c8b0a0311d431fed6f7"
+    },
+    {
       "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/publish_packet.py",
       "bytes": 8455,
       "sha256": "7b9471c470c730b8470a22f58c33d92f1022037abdee8b0e2dc879e92f250f23"
@@ -542,6 +547,11 @@
       "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/publish_packet_round2.py",
       "bytes": 9898,
       "sha256": "fd544a87e763d8a51dca837e5282479e698a6facaf07e7599036b9dcbcdccef2"
+    },
+    {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/PUSH_RECEIPT.json",
+      "bytes": 2756,
+      "sha256": "a3e04e0b7f17e806d5a0d84fe7264f11922275e15324cc3c9dfbeba7cbbc2587"
     },
     {
       "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/push_round2.py",
@@ -579,6 +589,11 @@
       "sha256": "a00d67e9ffefc885a251454d24d37ca0b4c5d4a800020eeb51fa6bcdea7e9ea5"
     },
     {
+      "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/REMOTE_READBACK.json",
+      "bytes": 852,
+      "sha256": "863e398a5e300525a5c4488a9abbd6b0fcc884dd09057fd83ad2d0744d1ea803"
+    },
+    {
       "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/RESIDUAL_INVENTORY.json",
       "bytes": 17323,
       "sha256": "0ae6984dc1bd277cc08df4b8db815d345fec20779d9ad7cf5569aab82eddc198"
@@ -595,8 +610,8 @@
     },
     {
       "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/ROUND_CLOSURE.json",
-      "bytes": 64216,
-      "sha256": "51cd51b0a0568bd23279c9a09a4cfa09324a2b900ba48f73cbc8e74609cf485c"
+      "bytes": 69543,
+      "sha256": "bfd231e8eb5c51bc0aedd1131f9302464e41cae3d45abd01a0ac69aba3dc0cd2"
     },
     {
       "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/run_lane.py",
@@ -620,13 +635,13 @@
     },
     {
       "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/round_documents/verify_remote.py",
-      "bytes": 4254,
-      "sha256": "2f82e9ef93c14a1c6f383657bec0ee8db158492e5c1b55fe492493a0406cee2c"
+      "bytes": 4662,
+      "sha256": "c1f37c761bbff8c3f2e81f6d854cfa0428c03d457a8c8b678db3809cb4178ff4"
     },
     {
       "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/under_governance/FROZEN_MANIFEST.json",
-      "bytes": 20769,
-      "sha256": "69baacb9033253e404dd608855e6b31f5a1be75f8725fb8c1f9328e2ce56140a"
+      "bytes": 21654,
+      "sha256": "d6518dda5eca49c73d71d0f68372472d87ec599504b6de95d85dd9d739fa68db"
     },
     {
       "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/under_governance/GATE_REPORT.json",
@@ -635,11 +650,11 @@
     },
     {
       "path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016/under_governance/ROUND_CLOSURE.json",
-      "bytes": 64216,
-      "sha256": "51cd51b0a0568bd23279c9a09a4cfa09324a2b900ba48f73cbc8e74609cf485c"
+      "bytes": 69543,
+      "sha256": "bfd231e8eb5c51bc0aedd1131f9302464e41cae3d45abd01a0ac69aba3dc0cd2"
     }
   ],
-  "file_count": 125,
+  "file_count": 128,
   "canonical_acceptance": "NOT_PERFORMED",
   "claim_ceiling": "CANDIDATE_ONLY. This packet is evidence for an external acceptance officer; it resolves nothing, and any checker verdict inside it is advisory."
 }

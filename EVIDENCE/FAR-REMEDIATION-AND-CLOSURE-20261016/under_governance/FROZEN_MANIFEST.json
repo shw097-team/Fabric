@@ -1,10 +1,10 @@
 {
   "schema": "HGK-FROZEN-SUBJECT-MANIFEST/2",
   "round": "FAR-REMEDIATION-AND-CLOSURE-20261016",
-  "revision": 4,
-  "supersedes": "frozen/FROZEN_MANIFEST.rev3.SUPERSEDED.json",
+  "revision": 5,
+  "supersedes": "frozen/FROZEN_MANIFEST.rev4.SUPERSEDED.json",
   "freeze_policy": "freeze last, before each consumption; retain every revision",
-  "frozen_utc": "2026-10-16T05:16:16.067220+00:00",
+  "frozen_utc": "2026-10-16T05:18:55.824780+00:00",
   "subject_definition": "the canonical change in both states (config pair, four product files) plus the round documents, the evidence sub-tree and the lane receipts",
   "excluded": [
     "candidate/ (live writer workspace)",
@@ -14,9 +14,9 @@
     "the round's own helper scripts (*.py at the round root): edited legitimately between runs, their integrity asserted by the packet manifest rather than by this freeze",
     "FROZEN_MANIFEST.json and GATE_REPORT.json: SELF-REFERENCE. A manifest cannot bind its own bytes (it would only ever record the previous revision) and the gate rewrites its own report on every run while also being what verifies this file, which makes the pair mutually unverifiable. Both are published and hashed by the packet manifest instead"
   ],
-  "item_count": 63,
-  "round_document_count": 24,
-  "aggregate_sha256": "d680d7a47bb4353f005f3f417bb3e2b34548705ea73ef9d1e0364108907a826c",
+  "item_count": 66,
+  "round_document_count": 27,
+  "aggregate_sha256": "ba0cade2e6eaf10393486ab4e38c7254965bacea4899d5011e667bb22fffd25e",
   "items": [
     {
       "label": "config.after",
@@ -188,6 +188,20 @@
     },
     {
       "label": "round_document",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/PUBLICATION_RECEIPT.json",
+      "exists": true,
+      "bytes": 2581,
+      "sha256": "fff485478e54ca64d7ae0501f95f67ee9e600473b8066c8b0a0311d431fed6f7"
+    },
+    {
+      "label": "round_document",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/PUSH_RECEIPT.json",
+      "exists": true,
+      "bytes": 2756,
+      "sha256": "a3e04e0b7f17e806d5a0d84fe7264f11922275e15324cc3c9dfbeba7cbbc2587"
+    },
+    {
+      "label": "round_document",
       "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/R1_R3_APPLY_RECEIPT.attempt1_ROLLED_BACK.json",
       "exists": true,
       "bytes": 4274,
@@ -223,6 +237,13 @@
     },
     {
       "label": "round_document",
+      "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/REMOTE_READBACK.json",
+      "exists": true,
+      "bytes": 852,
+      "sha256": "863e398a5e300525a5c4488a9abbd6b0fcc884dd09057fd83ad2d0744d1ea803"
+    },
+    {
+      "label": "round_document",
       "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/RESIDUAL_INVENTORY.json",
       "exists": true,
       "bytes": 17323,
@@ -246,8 +267,8 @@
       "label": "round_document",
       "path": "C:/Projects/Agent_Workspace/HG-KSEOS/var/FAR-REMEDIATION-AND-CLOSURE-20261016/ROUND_CLOSURE.json",
       "exists": true,
-      "bytes": 64216,
-      "sha256": "51cd51b0a0568bd23279c9a09a4cfa09324a2b900ba48f73cbc8e74609cf485c"
+      "bytes": 69543,
+      "sha256": "bfd231e8eb5c51bc0aedd1131f9302464e41cae3d45abd01a0ac69aba3dc0cd2"
     },
     {
       "label": "round_document",

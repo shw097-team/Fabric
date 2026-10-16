@@ -1,0 +1,33 @@
+{
+  "schema": "HGK-PUBLICATION-RECEIPT/1",
+  "round": "FAR-REMEDIATION-AND-CLOSURE-20261016",
+  "session": "20261016_104922_d455e7",
+  "repository": "shw097-team/Fabric",
+  "branch": "pub/far-remediation-and-closure-20261016",
+  "base_branch": "main",
+  "commit": "b4595e66f9f6ccc81432372cbc701009a4929ab2",
+  "pull_request": {"number": 8, "state": "open", "url": "https://github.com/shw097-team/Fabric/pull/8",
+                   "mergeable_state": "clean"},
+  "packet": {"path": "EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016",
+             "local_files": 126, "local_bytes_human": "3.3M",
+             "changed_files_reported_by_api": 126,
+             "manifest_local_sha256": "475aa6c01b079709de59073d6bb147f0f1f0d0476ad5815bcfba25e100b48540",
+             "manifest_remote_git_blob": "0700ed8908d23ef211bb244c060dfb9896c3f6c1",
+             "manifest_local_git_blob": "0700ed8908d23ef211bb244c060dfb9896c3f6c1",
+             "manifest_byte_identical": true},
+  "gate": {"report": "GATE_REPORT.json", "verdict": "GATE_PASS", "checks": 7,
+           "embedded_copy_identical_to_local": true,
+           "embedded_local_sha256_prefix": "28b4b3a20550bba9"},
+  "verification_method": "GitHub REST API readback: PR fields, branch head sha, remote tree listing, and a git blob-id comparison of PACKET_MANIFEST.json on both sides (the LOCAL git branch can be empty when it trails the merged remote, so blob ids are the authoritative comparison).",
+  "sha_match": true,
+  "force_push_used": false,
+  "main_merged": false,
+  "side_effects_disclosed": [
+    "A new branch and a new pull request exist on the remote repository; main was NOT touched, NOT merged and NOT force-pushed.",
+    "The four promoted product files are CANONICAL LOCALLY in HG-KSEOS, applied under this round's WorkOrders; the remote carries copies as evidence, not as an application.",
+    "The canonical config pair and registry epoch were changed in HG-KSEOS and are published here as before/after files with diffs."
+  ],
+  "token_handling": "Read from C:/Projects/Agent_Workspace/API KEY/GITHUB-REPO_SHW097-4.txt at run time into the environment only, never written to disk, never printed, never committed (the push used a per-invocation askPass wrapper that contains no secret).",
+  "canonical_acceptance": "NOT_PERFORMED",
+  "claim_ceiling": "Publication is not acceptance. This receipt records that the packet reached the remote byte-identically and that a pull request exists. It does NOT record approval, review, merge or canonical acceptance by anyone, and the checker verdicts it ships are advisory."
+}

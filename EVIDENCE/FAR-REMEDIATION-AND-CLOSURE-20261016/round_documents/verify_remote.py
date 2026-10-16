@@ -7,17 +7,24 @@ import hashlib
 import json
 import pathlib
 import re
+import sys
 import urllib.error
 import urllib.request
 
 KEY = pathlib.Path('C:/Projects/Agent_Workspace/API KEY/GITHUB-REPO_SHW097-4.txt')
 REPO, BRANCH, PR = 'shw097-team/Fabric', 'pub/far-remediation-and-closure-20261016', None
 PREFIX = 'EVIDENCE/FAR-REMEDIATION-AND-CLOSURE-20261016'
-# The PR number is not known until the PR exists, so read it from the receipt my own PR script wrote
-# rather than hard-coding it (a hard-coded number silently verifies the WRONG pull request).
+# The PR number is not known until the PR exists, so take it from argv (the value my PR script printed) or
+# from a receipt file -- never hard-code it, because a hard-coded number silently verifies the WRONG pull
+# request. Measured: the first attempt died with `%d format: a real number is required, not NoneType`.
 _pr = pathlib.Path(__file__).resolve().parent / 'PR_CREATED.json'
+if PR is None and len(sys.argv) > 1 and sys.argv[1].isdigit():
+    PR = int(sys.argv[1])
 if PR is None and _pr.is_file():
     PR = json.loads(_pr.read_text(encoding='utf-8')).get('number')
+if PR is None:
+    raise SystemExit('REFUSING: no PR number given. Pass it as argv[1] (e.g. `verify_remote.py 8`) or '
+                     'write PR_CREATED.json next to this script.')
 LOCAL = pathlib.Path('C:/Projects/Agent_Workspace/Fabric') / PREFIX
 
 tok = re.search(r'github_pat_[A-Za-z0-9_]+', KEY.read_text(encoding='utf-8', errors='replace')).group(0)
