@@ -1,0 +1,57 @@
+--- a/references/fda_guard_hook.py
++++ b/references/fda_guard_hook.py
+@@ -59,6 +59,18 @@
+     "fda_run",
+     "fabric-desktop-automation",
+ ]
++
++# B7 (FAR-20261019) minimal change. The guard's DOCUMENTED design authorizes on an
++# INTENT VERB paired with a TARGET NOUN (see fda-authorization-guardrail-design.md,
++# "明確提及 偵測 (條件 1)": 意圖動詞 ∧ FDA 目標詞). For content-authoring tools the
++# hook cannot read the user message, so the operable surrogate for that intent verb is
++# an EXECUTION verb adjacent to a plane marker. A filename ENUMERATION carries the
++# markers but no execution verb, so it is not a plane operation and must not be
++# blocked. Bare substring matching is the D0 defect.
++CONTENT_EXEC_VERBS = (
++    "python", "py -", "pwsh", "powershell", "cmd ", "subprocess",
++    "start-process", "os.system", "os.popen", "popen", "run(",
++)
+ SCRIPT_SEGMENT_RE = re.compile(r"[^\s\"'`;|&()=]+")
+ ROUTE_TOKEN_RE = re.compile(r"(ROUTE-WO-FDA-[\w.-]+|ROUTE-SQS-[\w.-]+)", re.IGNORECASE)
+ DOUBLE_DASH_ROUTE_RE = re.compile(r"--route-id(?:=|\s+)([^\s,;]+)", re.IGNORECASE)
+@@ -159,6 +171,14 @@
+     return paths
+ 
+ 
++def _content_is_execution(lowered):
++    """B7: True when the text carries an EXECUTION verb, i.e. it would RUN a plane
++    script -- the operable surrogate for the documented intent verb. Pure filename
++    enumeration carries the markers but no execution verb, so it is not a plane
++    operation."""
++    return any(verb in lowered for verb in CONTENT_EXEC_VERBS)
++
++
+ def classify_fda_relevant(tool_name, args, extra_text=""):
+     """Return True when the tool call is FDA-relevant and must be gated."""
+     if tool_name == "terminal":
+@@ -180,13 +200,17 @@
+ 
+     if tool_name in ("execute_code", "delegate_task", "write_file", "patch"):
+         lowered = _args_text(args).lower()
+-        if any(marker.lower() in lowered for marker in TOOLCALL_MARKERS):
+-            return True
++        marker_present = any(marker.lower() in lowered for marker in TOOLCALL_MARKERS)
++        # B7: a write INTO the gate's own protected surface is always gated, markers
++        # or not (that path check is class-level, not content-level).
+         if tool_name in ("write_file", "patch"):
+             target = _target_path(args)
+             if target is not None and _is_fda_path(target):
+                 return True
+-        return False
++        # B7: a marker only gates when the content would EXECUTE a plane script. An
++        # artifact that merely ENUMERATES filename markers is not a plane operation
++        # (the D0 false positive): no execution verb, so not blocked.
++        return marker_present and _content_is_execution(lowered)
+ 
+     return False
+ 

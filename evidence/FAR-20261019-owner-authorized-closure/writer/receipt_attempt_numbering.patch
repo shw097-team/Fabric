@@ -1,0 +1,84 @@
+--- a/scripts/hgk-lane-dispatch.py
++++ b/scripts/hgk-lane-dispatch.py
+@@ -653,6 +653,37 @@
+     return h.hexdigest()
+ 
+ 
++def write_receipt(path, rec: dict) -> str:
++    """Persist a receipt without destroying an earlier attempt's record.
++
++    FAR018-ER1: every receipt path is fixed, so a RETRY used to overwrite the
++    first attempt's refusal and lose exactly the record the round needed to
++    recover by hand. This preserves prior bytes: if the destination already
++    holds a DIFFERENT receipt, the existing receipt is first archived verbatim
++    to a numbered sibling ``<path>.attempt-N`` (N = count of archives + 1), then
++    the new receipt is written to the original path. Identical rewrites, and
++    first writes, keep the old behaviour and never create an archive.
++
++    Returns the archive path when one was written, else None.
++    """
++    out = Path(path)
++    out.parent.mkdir(parents=True, exist_ok=True)
++    new_text = json.dumps(rec, indent=2, ensure_ascii=False)
++    if out.exists():
++        try:
++            old_text = out.read_text(encoding="utf-8")
++        except OSError:
++            old_text = None
++        if old_text is not None and old_text != new_text:
++            existing = sorted(out.parent.glob(out.name + ".attempt-*"))
++            archive = out.parent / f"{out.name}.attempt-{len(existing) + 1}"
++            archive.write_text(old_text, encoding="utf-8")
++            out.write_text(new_text, encoding="utf-8")
++            return str(archive)
++    out.write_text(new_text, encoding="utf-8")
++    return None
++
++
+ def emit_refusal(args, rec: dict) -> int:
+     """Print a typed refusal and persist it. Exists so every refusal path returns the same shape."""
+     # FIX 3 (C3): every refusal receipt records the resolved home and whether it is the declared
+@@ -660,9 +691,7 @@
+     rec = dict(rec)
+     rec.update(home_isolation_fields(args))
+     if getattr(args, "json_out", None):
+-        out = Path(args.json_out)
+-        out.parent.mkdir(parents=True, exist_ok=True)
+-        out.write_text(json.dumps(rec, indent=2, ensure_ascii=False), encoding="utf-8")
++        write_receipt(args.json_out, rec)
+     print(json.dumps(rec, indent=2, ensure_ascii=False))
+     return 4
+ 
+@@ -1803,9 +1832,7 @@
+                    **home_isolation_fields(args),
+                    "generated_utc": datetime.now(UTC).isoformat()}
+         if args.json_out:
+-            out = Path(args.json_out)
+-            out.parent.mkdir(parents=True, exist_ok=True)
+-            out.write_text(json.dumps(refusal, indent=2, ensure_ascii=False), encoding="utf-8")
++            write_receipt(args.json_out, refusal)
+         print(json.dumps(refusal, indent=2, ensure_ascii=False))
+         return 4
+     subject_before = snapshot_subject(guard_roots)
+@@ -1829,9 +1856,7 @@
+                        **home_isolation_fields(args),
+                        "generated_utc": datetime.now(UTC).isoformat()}
+             if args.json_out:
+-                out = Path(args.json_out)
+-                out.parent.mkdir(parents=True, exist_ok=True)
+-                out.write_text(json.dumps(refusal, indent=2, ensure_ascii=False), encoding="utf-8")
++                write_receipt(args.json_out, refusal)
+             print(json.dumps(refusal, indent=2, ensure_ascii=False))
+             return 4
+     subject_digest = hashlib.sha256(json.dumps(sorted(subject_before.items()), sort_keys=True).encode()).hexdigest() \
+@@ -2264,9 +2289,7 @@
+         receipt["verdict_void_reason"] = (f"the guarded subject changed during the turn: "
+                                           f"changed={len(mutation['changed'])} removed={len(mutation['removed'])}")
+     if args.json_out:
+-        out = Path(args.json_out)
+-        out.parent.mkdir(parents=True, exist_ok=True)
+-        out.write_text(json.dumps(receipt, indent=2, ensure_ascii=False), encoding="utf-8")
++        write_receipt(args.json_out, receipt)
+     print(json.dumps(receipt, indent=2, ensure_ascii=False))
+     return 0 if receipt["ok"] else 3
+ 

@@ -1,0 +1,974 @@
+{
+ "schema": "FAR-20261019/KANBAN-LIFECYCLE/1",
+ "board": "far-019-owner-auth-closure",
+ "generated_utc": "2026-10-16T11:59:57.276569+00:00",
+ "cards_created": 16,
+ "board_state_histogram": {
+  "done": 4,
+  "running": 9,
+  "blocked": 3
+ },
+ "board_readback": [
+  {
+   "id": "t_6428220e",
+   "title": "R0 R0 gstack route check + negative control (NATIVE vs G",
+   "status": "done"
+  },
+  {
+   "id": "t_0011ab6f",
+   "title": "R1 R1 CAPC contract gates lint/activation/acceptance/com",
+   "status": "done"
+  },
+  {
+   "id": "t_fd5461ea",
+   "title": "R2 R2 HGK typed admission FAR-019-OWNER-AUTH (TS-AUTH-01",
+   "status": "done"
+  },
+  {
+   "id": "t_49e0513b",
+   "title": "R3 R3 OpenSpec change hgk-far-019-owner-authorized-closu",
+   "status": "done"
+  },
+  {
+   "id": "t_89d7edbc",
+   "title": "R4 R4 SWARM lane W1 current open-item universe (independ",
+   "status": "running"
+  },
+  {
+   "id": "t_0bf53a96",
+   "title": "R5 R5 SWARM lane W2 owner-decision dossier + achievabili",
+   "status": "running"
+  },
+  {
+   "id": "t_bec4ef17",
+   "title": "R6 R6 EXECUTE lane writer artifacts (opencode-go/deepsee",
+   "status": "running"
+  },
+  {
+   "id": "t_92bdcc4c",
+   "title": "R7 R7 VERIFY lane pinned rank2 openai-codex/gpt-6.1-sol ",
+   "status": "running"
+  },
+  {
+   "id": "t_e8dbca14",
+   "title": "R8 R8 canonical lane-config stale codex pin repaired + r",
+   "status": "running"
+  },
+  {
+   "id": "t_f30db112",
+   "title": "R9 R9 peer evidence chain PR6/8/10 merged under owner au",
+   "status": "running"
+  },
+  {
+   "id": "t_b1e3faae",
+   "title": "R10 R10 evidence pack published + per-blob remote readba",
+   "status": "running"
+  },
+  {
+   "id": "t_9f24c6c7",
+   "title": "R11 R11 handover, single evidence MD, self-check with in",
+   "status": "running"
+  },
+  {
+   "id": "t_2d6e3efe",
+   "title": "R12 R12 governed self-evolution record (skill lessons la",
+   "status": "running"
+  },
+  {
+   "id": "t_8ce17bd6",
+   "title": "OS1 OS-OWNER-SIGNATURE: facts only the owner can attest ",
+   "status": "blocked"
+  },
+  {
+   "id": "t_763c0dee",
+   "title": "OS2 OS-OWNER-SIGNATURE: normative semantic change (KP R0",
+   "status": "blocked"
+  },
+  {
+   "id": "t_4dee4a9d",
+   "title": "OS3 OS-OWNER-SIGNATURE: cross-repo promotion R7-02 (PIPD",
+   "status": "blocked"
+  }
+ ],
+ "call_count": 62,
+ "calls": [
+  {
+   "argv": [
+    "boards",
+    "create",
+    "far-019-owner-auth-closure"
+   ],
+   "exit": 0,
+   "stdout": "Board 'far-019-owner-auth-closure' created.\n  Display name: Far 019 Owner Auth Closure\n  DB path:      C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\far-019-owner-auth-closure\\kanban.db\n  Use `hermes kanban boards switch far-019-owner-auth-clos",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "create",
+    "R0 R0 gstack route check + negative control (NATIVE vs GSTACK)",
+    "--idempotency-key",
+    "FAR019-R0",
+    "--created-by",
+    "hgk-orchestrator",
+    "--assignee",
+    "hgk-orchestrator",
+    "--body",
+    "FAR-20261019 gate card; evidence under _handover/FAR-20261019-*/"
+   ],
+   "exit": 0,
+   "stdout": "Created t_6428220e  (ready, assignee=hgk-orchestrator)",
+   "stderr": "⚠  No gateway is running — the task will sit in 'ready' until you start it. Run:\n    hermes gateway start\nThe gateway hosts an embedded dispatcher (tick interva"
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "create",
+    "R1 R1 CAPC contract gates lint/activation/acceptance/compile PASS",
+    "--idempotency-key",
+    "FAR019-R1",
+    "--created-by",
+    "hgk-orchestrator",
+    "--assignee",
+    "hgk-orchestrator",
+    "--body",
+    "FAR-20261019 gate card; evidence under _handover/FAR-20261019-*/"
+   ],
+   "exit": 0,
+   "stdout": "Created t_0011ab6f  (ready, assignee=hgk-orchestrator)",
+   "stderr": "⚠  No gateway is running — the task will sit in 'ready' until you start it. Run:\n    hermes gateway start\nThe gateway hosts an embedded dispatcher (tick interva"
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "create",
+    "R2 R2 HGK typed admission FAR-019-OWNER-AUTH (TS-AUTH-01..05)",
+    "--idempotency-key",
+    "FAR019-R2",
+    "--created-by",
+    "hgk-orchestrator",
+    "--assignee",
+    "hgk-orchestrator",
+    "--body",
+    "FAR-20261019 gate card; evidence under _handover/FAR-20261019-*/"
+   ],
+   "exit": 0,
+   "stdout": "Created t_fd5461ea  (ready, assignee=hgk-orchestrator)",
+   "stderr": "⚠  No gateway is running — the task will sit in 'ready' until you start it. Run:\n    hermes gateway start\nThe gateway hosts an embedded dispatcher (tick interva"
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "create",
+    "R3 R3 OpenSpec change hgk-far-019-owner-authorized-closure strict-valid",
+    "--idempotency-key",
+    "FAR019-R3",
+    "--created-by",
+    "hgk-orchestrator",
+    "--assignee",
+    "hgk-orchestrator",
+    "--body",
+    "FAR-20261019 gate card; evidence under _handover/FAR-20261019-*/"
+   ],
+   "exit": 0,
+   "stdout": "Created t_49e0513b  (ready, assignee=hgk-orchestrator)",
+   "stderr": "⚠  No gateway is running — the task will sit in 'ready' until you start it. Run:\n    hermes gateway start\nThe gateway hosts an embedded dispatcher (tick interva"
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "create",
+    "R4 R4 SWARM lane W1 current open-item universe (independent leaf)",
+    "--idempotency-key",
+    "FAR019-R4",
+    "--created-by",
+    "hgk-orchestrator",
+    "--assignee",
+    "hgk-orchestrator",
+    "--body",
+    "FAR-20261019 gate card; evidence under _handover/FAR-20261019-*/"
+   ],
+   "exit": 0,
+   "stdout": "Created t_89d7edbc  (ready, assignee=hgk-orchestrator)",
+   "stderr": "⚠  No gateway is running — the task will sit in 'ready' until you start it. Run:\n    hermes gateway start\nThe gateway hosts an embedded dispatcher (tick interva"
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "create",
+    "R5 R5 SWARM lane W2 owner-decision dossier + achievability measurement",
+    "--idempotency-key",
+    "FAR019-R5",
+    "--created-by",
+    "hgk-orchestrator",
+    "--assignee",
+    "hgk-orchestrator",
+    "--body",
+    "FAR-20261019 gate card; evidence under _handover/FAR-20261019-*/"
+   ],
+   "exit": 0,
+   "stdout": "Created t_0bf53a96  (ready, assignee=hgk-orchestrator)",
+   "stderr": "⚠  No gateway is running — the task will sit in 'ready' until you start it. Run:\n    hermes gateway start\nThe gateway hosts an embedded dispatcher (tick interva"
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "create",
+    "R6 R6 EXECUTE lane writer artifacts (opencode-go/deepseek-v4.1-flash)",
+    "--idempotency-key",
+    "FAR019-R6",
+    "--created-by",
+    "hgk-orchestrator",
+    "--assignee",
+    "hgk-orchestrator",
+    "--body",
+    "FAR-20261019 gate card; evidence under _handover/FAR-20261019-*/"
+   ],
+   "exit": 0,
+   "stdout": "Created t_bec4ef17  (ready, assignee=hgk-orchestrator)",
+   "stderr": "⚠  No gateway is running — the task will sit in 'ready' until you start it. Run:\n    hermes gateway start\nThe gateway hosts an embedded dispatcher (tick interva"
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "create",
+    "R7 R7 VERIFY lane pinned rank2 openai-codex/gpt-6.1-sol (cross-model)",
+    "--idempotency-key",
+    "FAR019-R7",
+    "--created-by",
+    "hgk-orchestrator",
+    "--assignee",
+    "hgk-orchestrator",
+    "--body",
+    "FAR-20261019 gate card; evidence under _handover/FAR-20261019-*/"
+   ],
+   "exit": 0,
+   "stdout": "Created t_92bdcc4c  (ready, assignee=hgk-orchestrator)",
+   "stderr": "⚠  No gateway is running — the task will sit in 'ready' until you start it. Run:\n    hermes gateway start\nThe gateway hosts an embedded dispatcher (tick interva"
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "create",
+    "R8 R8 canonical lane-config stale codex pin repaired + readback",
+    "--idempotency-key",
+    "FAR019-R8",
+    "--created-by",
+    "hgk-orchestrator",
+    "--assignee",
+    "hgk-orchestrator",
+    "--body",
+    "FAR-20261019 gate card; evidence under _handover/FAR-20261019-*/"
+   ],
+   "exit": 0,
+   "stdout": "Created t_e8dbca14  (ready, assignee=hgk-orchestrator)",
+   "stderr": "⚠  No gateway is running — the task will sit in 'ready' until you start it. Run:\n    hermes gateway start\nThe gateway hosts an embedded dispatcher (tick interva"
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "create",
+    "R9 R9 peer evidence chain PR6/8/10 merged under owner authorisation",
+    "--idempotency-key",
+    "FAR019-R9",
+    "--created-by",
+    "hgk-orchestrator",
+    "--assignee",
+    "hgk-orchestrator",
+    "--body",
+    "FAR-20261019 gate card; evidence under _handover/FAR-20261019-*/"
+   ],
+   "exit": 0,
+   "stdout": "Created t_f30db112  (ready, assignee=hgk-orchestrator)",
+   "stderr": "⚠  No gateway is running — the task will sit in 'ready' until you start it. Run:\n    hermes gateway start\nThe gateway hosts an embedded dispatcher (tick interva"
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "create",
+    "R10 R10 evidence pack published + per-blob remote readback + PR promoted",
+    "--idempotency-key",
+    "FAR019-R10",
+    "--created-by",
+    "hgk-orchestrator",
+    "--assignee",
+    "hgk-orchestrator",
+    "--body",
+    "FAR-20261019 gate card; evidence under _handover/FAR-20261019-*/"
+   ],
+   "exit": 0,
+   "stdout": "Created t_b1e3faae  (ready, assignee=hgk-orchestrator)",
+   "stderr": "⚠  No gateway is running — the task will sit in 'ready' until you start it. Run:\n    hermes gateway start\nThe gateway hosts an embedded dispatcher (tick interva"
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "create",
+    "R11 R11 handover, single evidence MD, self-check with injected mutations",
+    "--idempotency-key",
+    "FAR019-R11",
+    "--created-by",
+    "hgk-orchestrator",
+    "--assignee",
+    "hgk-orchestrator",
+    "--body",
+    "FAR-20261019 gate card; evidence under _handover/FAR-20261019-*/"
+   ],
+   "exit": 0,
+   "stdout": "Created t_9f24c6c7  (ready, assignee=hgk-orchestrator)",
+   "stderr": "⚠  No gateway is running — the task will sit in 'ready' until you start it. Run:\n    hermes gateway start\nThe gateway hosts an embedded dispatcher (tick interva"
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "create",
+    "R12 R12 governed self-evolution record (skill lessons landed)",
+    "--idempotency-key",
+    "FAR019-R12",
+    "--created-by",
+    "hgk-orchestrator",
+    "--assignee",
+    "hgk-orchestrator",
+    "--body",
+    "FAR-20261019 gate card; evidence under _handover/FAR-20261019-*/"
+   ],
+   "exit": 0,
+   "stdout": "Created t_2d6e3efe  (ready, assignee=hgk-orchestrator)",
+   "stderr": "⚠  No gateway is running — the task will sit in 'ready' until you start it. Run:\n    hermes gateway start\nThe gateway hosts an embedded dispatcher (tick interva"
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "create",
+    "OS1 OS-OWNER-SIGNATURE: facts only the owner can attest (R7-04 fresh G1 cert)",
+    "--idempotency-key",
+    "FAR019-OS1",
+    "--created-by",
+    "hgk-orchestrator",
+    "--assignee",
+    "hgk-orchestrator",
+    "--body",
+    "FAR-20261019 gate card; evidence under _handover/FAR-20261019-*/"
+   ],
+   "exit": 0,
+   "stdout": "Created t_8ce17bd6  (ready, assignee=hgk-orchestrator)",
+   "stderr": "⚠  No gateway is running — the task will sit in 'ready' until you start it. Run:\n    hermes gateway start\nThe gateway hosts an embedded dispatcher (tick interva"
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "create",
+    "OS2 OS-OWNER-SIGNATURE: normative semantic change (KP R04 polarity activation)",
+    "--idempotency-key",
+    "FAR019-OS2",
+    "--created-by",
+    "hgk-orchestrator",
+    "--assignee",
+    "hgk-orchestrator",
+    "--body",
+    "FAR-20261019 gate card; evidence under _handover/FAR-20261019-*/"
+   ],
+   "exit": 0,
+   "stdout": "Created t_763c0dee  (ready, assignee=hgk-orchestrator)",
+   "stderr": "⚠  No gateway is running — the task will sit in 'ready' until you start it. Run:\n    hermes gateway start\nThe gateway hosts an embedded dispatcher (tick interva"
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "create",
+    "OS3 OS-OWNER-SIGNATURE: cross-repo promotion R7-02 (PIPD-LS-SP validator)",
+    "--idempotency-key",
+    "FAR019-OS3",
+    "--created-by",
+    "hgk-orchestrator",
+    "--assignee",
+    "hgk-orchestrator",
+    "--body",
+    "FAR-20261019 gate card; evidence under _handover/FAR-20261019-*/"
+   ],
+   "exit": 0,
+   "stdout": "Created t_4dee4a9d  (ready, assignee=hgk-orchestrator)",
+   "stderr": "⚠  No gateway is running — the task will sit in 'ready' until you start it. Run:\n    hermes gateway start\nThe gateway hosts an embedded dispatcher (tick interva"
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "ls",
+    "--json"
+   ],
+   "exit": 0,
+   "stdout": "[\n  {\n    \"id\": \"t_6428220e\",\n    \"title\": \"R0 R0 gstack route check + negative control (NATIVE vs GSTACK)\",\n    \"body\": \"FAR-20261019 gate card; evidence under _handover/FAR-20261019-*/\",\n    \"assignee\": \"hgk-orchestrator\",\n    \"status\": \"ready\",\n    \"priority\": 0,\n    \"tenant\": null,\n    \"workspac",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "claim",
+    "t_6428220e",
+    "--ttl",
+    "1800"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_6428220e\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\far-019-owner-auth-closure\\workspaces\\t_6428220e",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "heartbeat",
+    "t_6428220e"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_6428220e",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "comment",
+    "t_6428220e",
+    "verified: artifact on disk",
+    "--author",
+    "hgk-orchestrator"
+   ],
+   "exit": 0,
+   "stdout": "Comment added to t_6428220e",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "complete",
+    "t_6428220e",
+    "--result",
+    "done with raw receipt",
+    "--metadata",
+    "{\"evidence\": \"see round root receipts\"}"
+   ],
+   "exit": 0,
+   "stdout": "Completed t_6428220e",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "claim",
+    "t_0011ab6f",
+    "--ttl",
+    "1800"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_0011ab6f\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\far-019-owner-auth-closure\\workspaces\\t_0011ab6f",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "heartbeat",
+    "t_0011ab6f"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_0011ab6f",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "comment",
+    "t_0011ab6f",
+    "verified: artifact on disk",
+    "--author",
+    "hgk-orchestrator"
+   ],
+   "exit": 0,
+   "stdout": "Comment added to t_0011ab6f",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "complete",
+    "t_0011ab6f",
+    "--result",
+    "done with raw receipt",
+    "--metadata",
+    "{\"evidence\": \"see round root receipts\"}"
+   ],
+   "exit": 0,
+   "stdout": "Completed t_0011ab6f",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "claim",
+    "t_fd5461ea",
+    "--ttl",
+    "1800"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_fd5461ea\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\far-019-owner-auth-closure\\workspaces\\t_fd5461ea",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "heartbeat",
+    "t_fd5461ea"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_fd5461ea",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "comment",
+    "t_fd5461ea",
+    "verified: artifact on disk",
+    "--author",
+    "hgk-orchestrator"
+   ],
+   "exit": 0,
+   "stdout": "Comment added to t_fd5461ea",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "complete",
+    "t_fd5461ea",
+    "--result",
+    "done with raw receipt",
+    "--metadata",
+    "{\"evidence\": \"see round root receipts\"}"
+   ],
+   "exit": 0,
+   "stdout": "Completed t_fd5461ea",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "claim",
+    "t_49e0513b",
+    "--ttl",
+    "1800"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_49e0513b\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\far-019-owner-auth-closure\\workspaces\\t_49e0513b",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "heartbeat",
+    "t_49e0513b"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_49e0513b",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "comment",
+    "t_49e0513b",
+    "verified: artifact on disk",
+    "--author",
+    "hgk-orchestrator"
+   ],
+   "exit": 0,
+   "stdout": "Comment added to t_49e0513b",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "complete",
+    "t_49e0513b",
+    "--result",
+    "done with raw receipt",
+    "--metadata",
+    "{\"evidence\": \"see round root receipts\"}"
+   ],
+   "exit": 0,
+   "stdout": "Completed t_49e0513b",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "claim",
+    "t_89d7edbc",
+    "--ttl",
+    "1800"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_89d7edbc\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\far-019-owner-auth-closure\\workspaces\\t_89d7edbc",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "heartbeat",
+    "t_89d7edbc"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_89d7edbc",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "claim",
+    "t_0bf53a96",
+    "--ttl",
+    "1800"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_0bf53a96\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\far-019-owner-auth-closure\\workspaces\\t_0bf53a96",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "heartbeat",
+    "t_0bf53a96"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_0bf53a96",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "claim",
+    "t_bec4ef17",
+    "--ttl",
+    "1800"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_bec4ef17\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\far-019-owner-auth-closure\\workspaces\\t_bec4ef17",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "heartbeat",
+    "t_bec4ef17"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_bec4ef17",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "claim",
+    "t_92bdcc4c",
+    "--ttl",
+    "1800"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_92bdcc4c\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\far-019-owner-auth-closure\\workspaces\\t_92bdcc4c",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "heartbeat",
+    "t_92bdcc4c"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_92bdcc4c",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "claim",
+    "t_e8dbca14",
+    "--ttl",
+    "1800"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_e8dbca14\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\far-019-owner-auth-closure\\workspaces\\t_e8dbca14",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "heartbeat",
+    "t_e8dbca14"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_e8dbca14",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "claim",
+    "t_f30db112",
+    "--ttl",
+    "1800"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_f30db112\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\far-019-owner-auth-closure\\workspaces\\t_f30db112",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "heartbeat",
+    "t_f30db112"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_f30db112",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "claim",
+    "t_b1e3faae",
+    "--ttl",
+    "1800"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_b1e3faae\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\far-019-owner-auth-closure\\workspaces\\t_b1e3faae",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "heartbeat",
+    "t_b1e3faae"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_b1e3faae",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "claim",
+    "t_9f24c6c7",
+    "--ttl",
+    "1800"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_9f24c6c7\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\far-019-owner-auth-closure\\workspaces\\t_9f24c6c7",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "heartbeat",
+    "t_9f24c6c7"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_9f24c6c7",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "claim",
+    "t_2d6e3efe",
+    "--ttl",
+    "1800"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_2d6e3efe\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\far-019-owner-auth-closure\\workspaces\\t_2d6e3efe",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "heartbeat",
+    "t_2d6e3efe"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_2d6e3efe",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "claim",
+    "t_8ce17bd6",
+    "--ttl",
+    "1800"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_8ce17bd6\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\far-019-owner-auth-closure\\workspaces\\t_8ce17bd6",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "heartbeat",
+    "t_8ce17bd6"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_8ce17bd6",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "block",
+    "t_8ce17bd6",
+    "assertion only the owner can make; prepared as a single action",
+    "--kind",
+    "needs_input"
+   ],
+   "exit": 0,
+   "stdout": "Blocked t_8ce17bd6: assertion only the owner can make; prepared as a single action",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "claim",
+    "t_763c0dee",
+    "--ttl",
+    "1800"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_763c0dee\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\far-019-owner-auth-closure\\workspaces\\t_763c0dee",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "heartbeat",
+    "t_763c0dee"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_763c0dee",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "block",
+    "t_763c0dee",
+    "assertion only the owner can make; prepared as a single action",
+    "--kind",
+    "needs_input"
+   ],
+   "exit": 0,
+   "stdout": "Blocked t_763c0dee: assertion only the owner can make; prepared as a single action",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "claim",
+    "t_4dee4a9d",
+    "--ttl",
+    "1800"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_4dee4a9d\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\far-019-owner-auth-closure\\workspaces\\t_4dee4a9d",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "heartbeat",
+    "t_4dee4a9d"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_4dee4a9d",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "block",
+    "t_4dee4a9d",
+    "assertion only the owner can make; prepared as a single action",
+    "--kind",
+    "needs_input"
+   ],
+   "exit": 0,
+   "stdout": "Blocked t_4dee4a9d: assertion only the owner can make; prepared as a single action",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "far-019-owner-auth-closure",
+    "ls",
+    "--json"
+   ],
+   "exit": 0,
+   "stdout": "[\n  {\n    \"id\": \"t_6428220e\",\n    \"title\": \"R0 R0 gstack route check + negative control (NATIVE vs GSTACK)\",\n    \"body\": \"FAR-20261019 gate card; evidence under _handover/FAR-20261019-*/\",\n    \"assignee\": \"hgk-orchestrator\",\n    \"status\": \"done\",\n    \"priority\": 0,\n    \"tenant\": null,\n    \"workspace",
+   "stderr": ""
+  }
+ ]
+}

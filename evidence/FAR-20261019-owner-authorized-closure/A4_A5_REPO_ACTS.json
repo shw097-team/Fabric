@@ -1,0 +1,123 @@
+{
+ "schema": "FAR-20261019/REPO-ACTS/1",
+ "generated_utc": "2026-10-16T12:02:30.826461+00:00",
+ "repo": "shw097-team/Fabric",
+ "token_source": "read from file by this process only (never printed)",
+ "steps": [
+  {
+   "id": "A4-PR6",
+   "number": 6,
+   "measured": {
+    "state": "open",
+    "draft": false,
+    "mergeable": true,
+    "mergeable_state": "clean",
+    "head_sha": "0cb59d904224afc553906ebab002d443a3981e3d",
+    "base_sha": "b8ff81043e47e4b652522be34444bf52fcf4d65e",
+    "changed_files": 74,
+    "title": "LANE-RELIABILITY-CLOSURE-20261016: three-lane usability and reliability (candida"
+   },
+   "merge_call": {
+    "http": 200,
+    "response": {
+     "sha": "5541ed99a81c2334bf31e26e0150215375bafeae",
+     "merged": true,
+     "message": "Pull Request successfully merged"
+    }
+   },
+   "verdict": "MERGED",
+   "merge_commit_parents": [
+    "312baa0ee2aa591000959cc878bb978a31c89796",
+    "0cb59d904224afc553906ebab002d443a3981e3d"
+   ],
+   "head_is_a_parent": true
+  },
+  {
+   "id": "A4-PR8",
+   "number": 8,
+   "measured": {
+    "state": "open",
+    "draft": false,
+    "mergeable": null,
+    "mergeable_state": "unknown",
+    "head_sha": "5ae6f37d305fa9da2da8e9a05b03ff65f02bd04f",
+    "base_sha": "b8ff81043e47e4b652522be34444bf52fcf4d65e",
+    "changed_files": 131,
+    "title": "FAR-REMEDIATION-AND-CLOSURE-20261016: F1 closed, candidate promoted, R7 class na"
+   },
+   "merge_call": {
+    "http": 200,
+    "response": {
+     "sha": "5790e2cfb3cc19c71601bf77bead92b89ca15b32",
+     "merged": true,
+     "message": "Pull Request successfully merged"
+    }
+   },
+   "verdict": "MERGED",
+   "merge_commit_parents": [
+    "5541ed99a81c2334bf31e26e0150215375bafeae",
+    "5ae6f37d305fa9da2da8e9a05b03ff65f02bd04f"
+   ],
+   "head_is_a_parent": true
+  },
+  {
+   "id": "A4-PR10",
+   "number": 10,
+   "measured": {
+    "state": "open",
+    "draft": false,
+    "mergeable": null,
+    "mergeable_state": "unknown",
+    "head_sha": "4695e0cf870f5eb64b51a6d615cfd17b09f992cc",
+    "base_sha": "b8ff81043e47e4b652522be34444bf52fcf4d65e",
+    "changed_files": 350,
+    "title": "ROUND3-LANE-REBIND-AND-CLOSURE-20261016: lanes rebound to the owner order, guard"
+   },
+   "merge_call": {
+    "http": 200,
+    "response": {
+     "sha": "1807680ebf467aaee80b3d628ceb328fab0734df",
+     "merged": true,
+     "message": "Pull Request successfully merged"
+    }
+   },
+   "verdict": "MERGED",
+   "merge_commit_parents": [
+    "5790e2cfb3cc19c71601bf77bead92b89ca15b32",
+    "4695e0cf870f5eb64b51a6d615cfd17b09f992cc"
+   ],
+   "head_is_a_parent": true
+  },
+  {
+   "id": "A5-PR13",
+   "before": {
+    "state": "open",
+    "draft": true,
+    "head_sha": "0fc70f2f050119ada63cad7b4e641c21fdb37fa5",
+    "changed_files": 55,
+    "node_id": "PR_kwDOU7aI7c8AAAABI1UQaQ"
+   },
+   "mutation_http": 200,
+   "mutation_response": {
+    "number": 13,
+    "isDraft": false,
+    "state": "OPEN",
+    "url": "https://github.com/shw097-team/Fabric/pull/13"
+   },
+   "after": {
+    "draft": false,
+    "state": "open",
+    "head_sha": "0fc70f2f050119ada63cad7b4e641c21fdb37fa5"
+   },
+   "verdict": "PROMOTED"
+  }
+ ],
+ "main_before": "312baa0ee2aa591000959cc878bb978a31c89796",
+ "frozen_sources_seen": [
+  "A03_A05_PR_PREFLIGHT.json",
+  "A03_A05_PR_PREFLIGHT.probe_v1_superseded.json",
+  "PEER_CHAIN_DRYRUN.json"
+ ],
+ "main_after": "1807680ebf467aaee80b3d628ceb328fab0734df",
+ "main_moved": true
+}
