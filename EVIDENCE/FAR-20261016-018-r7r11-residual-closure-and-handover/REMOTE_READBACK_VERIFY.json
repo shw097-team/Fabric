@@ -1,0 +1,35 @@
+{
+ "schema": "FAR-20261016-018/REMOTE-READBACK-VERIFY/1",
+ "repo": "shw097-team/Fabric",
+ "branch": "evidence/far-018-r7r11-residual-closure",
+ "expected_tip": "47548b518798f7f0ed0cc283518fe65b7e33b9d3",
+ "expected_tip_source": "PUBLISH_FOLLOWUP_SYNC.json",
+ "method": "remote tree blob id vs locally computed git blob id (exact bytes, no download)",
+ "token_value_exported": false,
+ "checks": {
+  "branch_ref": {
+   "status": 200,
+   "sha": "47548b518798f7f0ed0cc283518fe65b7e33b9d3",
+   "matches_expected": true
+  },
+  "pr_state": {
+   "status": 200,
+   "state": "open",
+   "draft": true,
+   "base_sha_live": "312baa0ee2aa591000959cc878bb978a31c89796"
+  },
+  "main_unchanged": {
+   "live_main": "312baa0ee2aa591000959cc878bb978a31c89796",
+   "expected": "312baa0ee2aa591000959cc878bb978a31c89796",
+   "unchanged": true
+  }
+ },
+ "mismatches": [],
+ "committed_not_indexed": [],
+ "in_index_not_committed": [],
+ "missing": [],
+ "files_verified": 50,
+ "files_listed": 50,
+ "payload_files": 51,
+ "verdict": "PASS"
+}
