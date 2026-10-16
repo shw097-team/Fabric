@@ -1,0 +1,77 @@
+registry path      : C:\Projects\Agent_Workspace\HG-KSEOS\config\lane-routing-registry.yaml
+registry bytes     : 42948
+registry sha256    : 38f0436b9bde0599a1c3d5b8b928950450f570548380a90079ca06ff0aba38d2
+registry mtime     : 2026-10-16 12:36:30.262170
+schema             : HGK-LANE-ROUTING-REGISTRY/1
+epoch              : 21
+routes count       : 3
+check_drift count  : 0
+check_drift(_)     : []
+
+--- route PLAN ---
+  engine               hermes
+  provider             openai-codex
+  model                gpt-6.1-sol
+  canonical_identity   gpt-6.1-sol
+  auth                 openai_oauth
+  oauth                True
+  admission_status     ADMITTED
+  reasoning_effort     medium
+  selection_authority  owner-order-20261016-plan-model-rebind-gpt61-sol
+  fallbacks            [{'provider': 'opencode-go', 'model': 'glm-5.3-flash', 'canonical_identity': 'glm-5.3-flash', 'auth': 'env_ref:OPENCODE_GO_API_KEY', 'oauth': False}, {'provider': 'opencode-go', 'model': 'deepseek-v4.1-flash', 'canonical_identity': 'deepseek-v4.1-flash', 'auth': 'env_ref:OPENCODE_GO_API_KEY', 'oauth': False}]
+
+--- route EXECUTE ---
+  engine               codex-cli
+  provider             opencode-go
+  model                deepseek-v4.1-flash
+  canonical_identity   deepseek-v4.1-flash
+  auth                 env_ref:OPENCODE_GO_API_KEY
+  oauth                False
+  admission_status     UNPROVEN
+  reasoning_effort     None
+  selection_authority  owner-order-20261015-lane-model-chain-rebind
+  fallbacks            [{'provider': 'openai-codex', 'model': 'gpt-6-luna', 'canonical_identity': 'gpt-6-luna', 'auth': 'openai_oauth', 'oauth': True}, {'provider': 'nvidia', 'model': 'deepseek-ai/deepseek-v4.1-flash', 'canonical_identity': 'deepseek-v4.1-flash', 'auth': 'env_ref:NVIDIA_API_KEY', 'oauth': False}]
+
+--- route VERIFY_SECURITY ---
+  engine               hermes
+  provider             openai-codex
+  model                gpt-6.1-sol
+  canonical_identity   gpt-6.1-sol
+  auth                 openai_oauth
+  oauth                True
+  admission_status     UNPROVEN
+  reasoning_effort     medium
+  selection_authority  owner-order-20261015-lane-model-chain-rebind
+  fallbacks            [{'provider': 'opencode-go', 'model': 'glm-5.3-flash', 'canonical_identity': 'glm-5.3-flash', 'auth': 'env_ref:OPENCODE_GO_API_KEY', 'oauth': False}, {'provider': 'opencode-go', 'model': 'deepseek-v4.1-flash', 'canonical_identity': 'deepseek-v4.1-flash', 'auth': 'env_ref:OPENCODE_GO_API_KEY', 'oauth': False}]
+
+check_sod(PLAN, VERIFY_SECURITY)          : (False, 'SOD_VIOLATION maker_model=gpt-6.1-sol == checker_model=gpt-6.1-sol')
+check_sod(EXECUTE, VERIFY_SECURITY)       : (True, 'SOD_OK deepseek-v4.1-flash != gpt-6.1-sol')
+
+--- raw registry text for the fields the adjudication cites ---
+  epoch:                       2 occurrence(s)
+         epoch: 21
+         epoch: 20
+  source_of_routes             6 occurrence(s)
+         # TASK8 advanced `source_of_routes` (revision 10 -> 11 plus a new digest) and appended bindings
+         # /registry_epoch followed the assignment to revision 20; and source_of_routes was re-pinned to
+         source_of_routes:
+  selection_authority          4 occurrence(s)
+         # _compact_route carries arms[] + selection_authority + selected_arm, measured raw output recorded
+         selection_authority: owner-order-20261016-plan-model-rebind-gpt61-sol
+         selection_authority: owner-order-20261015-lane-model-chain-rebind
+  admission_status: ADMITTED   1 occurrence(s)
+         admission_status: ADMITTED
+  admission_status: UNPROVEN   3 occurrence(s)
+         admission_status: UNPROVEN
+         admission_status: UNPROVEN
+         admission_status: UNPROVEN
+  SOD006-C2                    6 occurrence(s)
+         # changing one alone leaves this file's own content self-contradictory. declared_conflicts[SOD006-C2]
+         with distinct_required: false for this pair; the collision is recorded as SOD006-C2
+         - id: SOD006-C2
+  OWNER_ORDERED_IN_FORCE       4 occurrence(s)
+         # reclassified OPEN_OWNER_ORDERED -> OWNER_ORDERED_IN_FORCE.
+         status: OWNER_ORDERED_IN_FORCE
+         - {pointer: /sod/maker_self_acceptance, expected: "PREVENTED at dispatch on every arm: no single call ever verifies its own output. Model-identity separation is
+  prior_revision_note          1 occurrence(s)
+         prior_revision_note: >-

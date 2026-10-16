@@ -1,0 +1,125 @@
+{
+  "schema": "CNV-PIPD-LS-SP-20261015-R10/R10-VERIFY-VERDICT/1",
+  "nonce": "R10V-CHECKER-NONCE-4f7a2b",
+  "role": "independent acceptance officer (VERIFY / SECURITY), R10-0",
+  "overall": "PARTIALLY_VERIFIED",
+  "brief_executed": "R10_VERIFIER_BRIEF.md (the file the order named, R10_CHECKER_SHOT_PROMPT.md, does not exist on this host)",
+  "independent_model_axis": false,
+  "independence_disclosure": "Per the mandate, writer and checker share one arm; this verdict rests on re-derivation from artifacts by re-running commands, not on the maker's conclusions. No claim below is copied from a round summary.",
+  "measurement_window": "2026-10-16 13:49:30 to 13:59 (local, UTC+8)",
+  "round_frozen_during_verification": false,
+  "round_frozen_note": "The maker's process rewrote SESSION_LEDGER_R10.json and created SELF_EVOLUTION_R10.md/.json at 13:49:43, and rewrote tooling/dispatch_r10.py (12319 -> 12497 bytes) at 13:50:22, i.e. after my first measurement at 13:50:15. Every measurement below states which revision it describes. No maker write occurred after 13:50:30 (verified by my own listing at 13:57:25).",
+  "raw_output_root": "C:/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015-R10/R10_VERIFY/raw/",
+
+  "claims": [
+    {
+      "id": "C1",
+      "claim": "Wrapper repair A is test-backed: the successor wrapper's suite passes (README: '8 passed, no live lane and no network required').",
+      "verdict": "CONFIRMED",
+      "my_raw_output": "Ran the brief's own command: cd .../R10/tooling && HG-KSEOS/.venv/Scripts/python.exe -m pytest -q test_dispatch_r10.py -> '8 passed in 0.08s', exit 0, no skips (revision in place at that moment: 12319 bytes, digest prefix 645c1b6de005, mtime 13:20:04). Re-ran the same suite against the LIVE revision (12497 bytes, digest prefix a308b1cea808): '8 passed in 0.06s', and the file's digest was unchanged before and after my run. Logs: raw/t1_pytest_raw.txt, raw/t1b_pytest_live.txt.",
+      "disagreement": "The artifact under test changed mid-verification (13:50:22). The README's '8 passed' describes the 12319-byte revision; the live revision adds a snapshot() filename de-duplication and also passes. A verdict that names no revision is not reproducible from the README alone."
+    },
+    {
+      "id": "C2",
+      "claim": "Defect 1 is real: one receipt path served several turns of one role, so a later same-role turn destroyed an earlier turn's provenance.",
+      "verdict": "CONFIRMED",
+      "my_raw_output": "Live listing of _handover/CNV-PIPD-LS-SP-20261015/lane_runs (raw/t1c_turn_mapping.txt): there is exactly ONE file per attempt label, while the dispatcher's own attempt directories carry distinct per-turn stamps - I count 7 EXECUTE turns labelled attempt-1 (20261015T073929Z, 20261015T125607Z, 20261015T125836Z, 20261016T025727Z, 20261016T030300Z, 20261016T041945Z, 20261016T042656Z) and 4 VERIFY_SECURITY turns labelled attempt-1 (20261015T082053Z, 20261015T135448Z, 20261016T033706Z, and the R9 turn 20261016T044148Z), against one EXECUTE_dispatch_receipt_attempt1.json and one VERIFY_SECURITY_dispatch_receipt_attempt1.json. The surviving EXECUTE file (7701 B, mtime 12:40:52, digest prefix e4a5db9b7ea4) holds attempt-1-20261016T042656Z, generated_utc 04:40:52Z, seconds 835.74 - the LAST of the 7. The 364.5 s earlier-turn receipt survives only outside lane_runs, in the R9 packet's hand-named copy WS_A/receipts/EXECUTE_dispatch_receipt_W2_20261016T042550Z.json. So yes: one path served several turns of one role.",
+      "disagreement": "Count understated. SELF_EVOLUTION_R10.md RS-12 and the adjudication (attributing WS3) say 8 turns (5 EXECUTE, 3 VERIFY_SECURITY); I measure 11 attempts sharing the two attempt-1 paths (7 EXECUTE + 4 VERIFY_SECURITY), i.e. up to 9 receipts destroyed. The defect direction is confirmed; the recorded magnitude is low by my count."
+    },
+    {
+      "id": "C3",
+      "claim": "Defect 2 is real: a nonce that IS present was reported absent on the round-before's real VERIFY receipt.",
+      "verdict": "CONFIRMED",
+      "my_raw_output": "From lane_runs/VERIFY_SECURITY_dispatch_receipt_attempt1.json (R9's turn) with no round helper: code='ERR_NO_ARM_EMITTED_NONCE', attempts[0].nonce_present=false, attempts[0].nonce_source='item.completed/agent_message', attempts[0].stdout_bytes=429783, attempts[0].nonce_present_raw_stdout=true, used_rank/used_transport_model=null. The surface that same receipt recorded: lane_runs/CNV-PIPD-LS-SP-20261015-R9/VERIFY_SECURITY/attempt-1-20261016T044148Z/attempt-1188-1792125708-1-stdout.txt = 429,783 bytes, digest prefix 5d07b4c4053e (equal to the receipt's recorded stdout_sha256), and it contains R9V-CHECKER-NONCE-5c1d84 - the nonce taken from R9_VERIFIER_BRIEF.md line 7 - 6 times, the last occurrence being the final token before turn.completed. The receipt's own stdout_tail also ends with that nonce. Log: raw/t2_bytesurface.txt.",
+      "disagreement": "Mechanism imprecise. README_R10_TOOLING.md says the dispatcher reads the nonce 'only from transcript item.completed/agent_message events'; the same receipt also carries nonce_present_raw_stdout=true, so the dispatcher did detect the token in raw stdout and the code path declined to accept it. The defect and the repair verdict (NONCE_PRESENT_DESPITE_DISPATCHER_CODE) stand."
+    },
+    {
+      "id": "C4",
+      "claim": "The change-record adjudication's decisive control-plane values are as recorded (epoch 21, the three routes, check_drift [], check_sod PLAN/VERIFY = SOD_VIOLATION); the TSV verdict counts are 24/9/1/2 over 36 rows and no row was closed by manufacturing an artifact.",
+      "verdict": "CONFIRMED",
+      "my_raw_output": "Re-derived with the project's own reader (PYTHONPATH=src HG-KSEOS/.venv/Scripts/python.exe, lane_policy.load_registry/route_for_lane/check_drift/check_sod), log raw/t3_registry_probe.txt: epoch 21; PLAN openai-codex/gpt-6.1-sol, effort medium, admission_status ADMITTED, selection_authority owner-order-20261016-plan-model-rebind-gpt61-sol; EXECUTE opencode-go/deepseek-v4.1-flash, admission_status UNPROVEN; VERIFY_SECURITY openai-codex/gpt-6.1-sol, medium, UNPROVEN; check_drift(registry=reg) == [] (0 findings); check_sod(PLAN, VERIFY_SECURITY) == (False, 'SOD_VIOLATION maker_model=gpt-6.1-sol == checker_model=gpt-6.1-sol'); check_sod(EXECUTE, VERIFY_SECURITY) == (True, 'SOD_OK ...'). Registry file 42,948 bytes, digest prefix 38f0436b9bde (full length match to the recorded value), mtime 2026-10-16 12:36:30. TSV counted by me with awk: 24 DONE_MEASURED, 9 OPEN_OWNER, 1 SUPERSEDED, 2 NOT_OWED, 36 data rows, split 25 (far-remediation) + 11 (skill-mainfile). Artifact existence for 23 paths named by the rows: all EXISTS (raw/t3b_t5_artifact_existence.txt), including the V3c checker verdict (C1 AGREE, C2/C3/C6 DISAGREE, C4 UNCERTAIN, C5/C7 AGREE) and its dispatch.json showing the VERIFY lane actually served openai-codex/gpt-6.1-sol, exit 0, 798.81 s. No row I could test closes a row by naming a nonexistent artifact.",
+      "disagreement": "Two internal tensions. (a) Row T5 is scored DONE_MEASURED while its own note records the load path as broken: I measured that the live SKILL.md names entry_map.json at lines 66 and 71, and no entry_map.json exists in the live skill directory - so 'the pointer integrity claim has one broken load path' is not a clean pass and is recorded as one. (b) Row T6's arithmetic: I measure 113 top-level files under the skill's references/ (123 recursive) and 39-43 distinct .md names in support-files-index.md, so '39 of 112, 73 not listed' is right in direction but off by a few in basis."
+    },
+    {
+      "id": "C5",
+      "claim": "The recorded probe defect is refuted: skills/hgk-lifecycle-admission/SKILL.md is not a 0-byte file (recorded: 35,739 bytes, 361 lines, structurally complete), and the only zero-byte file under the skills tree is .hub/audit.log.",
+      "verdict": "CONFIRMED",
+      "my_raw_output": "My own measurement, twice, identical (raw/t4_skill_measure.txt): .../hermes/skills/hgk-lifecycle-admission/SKILL.md = 35,739 bytes, 361 lines, digest prefix 2911867811a5, mtime 2026-10-16 13:35:06 - byte-identical to the adjudication's re-derivation, including the full digest. find <skills tree> -type f -size 0 returns exactly one file: .hub/audit.log. So a 0-byte SKILL.md is false today and the skill is not corrupt.",
+      "disagreement": "The refutation's reasoning and evidence do not hold up, and the statement about the past is not re-measurable. Evidence (raw/t4d_tree_births.txt, raw/t4e_curator.txt, raw/t4g_r10_session_writes.txt): the tree's own write log names the exact digest I measured as created at 13:35:06 (local) by a DIFFERENT Hermes session (20261016_105348_b4b537, actor 'agent'), while the adjudication's ancillary claim that the file 'loaded successfully into this session at 13:16' is verifiable nowhere; and the file's previous content state began at 12:15:21. In the probe's own read window (13:19:24) the write log records NO write to that file at all, so the round's stated mechanism ('a single size read can race a rewrite', SELF_EVOLUTION_R10.md RS-14) has no support in the tree's log; the log records only SHA digests, not byte sizes, and no copy of the 12:15:21 content exists on this host, so I cannot settle whether WS2 saw a transient 0 bytes or misread. Verdict split: 'not corrupt today' CONFIRMED, 'the probe's reading was a false alarm for the reason given' NOT ESTABLISHED."
+    },
+    {
+      "id": "C6",
+      "claim": "A delivery set exists whose manifest can be checked (brief item 5: R10/PACKET_MANIFEST.json 'if present').",
+      "verdict": "UNVERIFIABLE",
+      "my_raw_output": "R10/PACKET_MANIFEST.json does not exist: 'ls: cannot access PACKET_MANIFEST.json: No such file or directory', and no file matching *MANIFEST* anywhere under the round root (raw/t3d_final_counts.txt). The nearest local records are M2_TRUSTED_SCOPE_SECRETS_R10.json and publish_r10.py (prepare/m2/push/readback/pr), whose 'pr'/'push' stages I did not run, and the brief forbids remote operations. Log: raw/t2b_t5e_nonce_and_m2.txt (M2 verdict 'PASS', claim_ceiling 'LOCAL_TRUSTED_SCAN (tool-side scan of published blobs; not an AO verdict)', 0 hard findings, 1 soft candidate, 0 occurrences of the operator token in the scanned packet).",
+      "disagreement": "None on the round's side: the round never claims a packet manifest at this root; the brief's item 5 simply has no subject here and cannot be scored as a pass."
+    },
+    {
+      "id": "C7",
+      "claim": "Claim discipline: no record of this round reads as an acceptance, a Gate PASS, an AO verdict, a release or a product claim.",
+      "verdict": "CONFIRMED",
+      "my_raw_output": "Case-insensitive scan of SESSION_LEDGER_R10.json, HANDOVER_R10.md, R10_CHANGE_RECORD_ADJUDICATION.json, tooling/README_R10_TOOLING.md, SELF_EVOLUTION_R10.md/.json, R10_OWNER_READY_LANE_REBIND.json, R10_BOARD_EVIDENCE.json for acceptance/gate PASS/AO verdict/release/product claim/accepted/approved/sign-off returns 7 lines (raw/t6_claim_scan.txt): one blocker id, and six explicit DISCLAIMERS ('Claim ceiling: LOCAL / candidate-only - nothing here is an acceptance, a Gate PASS, an AO verdict or a release'; 'no acceptance is asserted'; SELF_EVOLUTION_R10.md 'Not claimed' section). No sentence inflates a local measurement into an acceptance.",
+      "disagreement": "None."
+    },
+    {
+      "id": "C8",
+      "claim": "Side-effect audit: the adjudication states of the canonical skills tree 'files_written_by_this_round: none asserted; mtimes inside the research window are consistent with skill LOADS ... no content change is claimed and none is detectable', and the handover attributes canonical-tree changes only to R9.",
+      "verdict": "REFUTED",
+      "my_raw_output": "The skills tree keeps its own write log at .../hermes/skills/.curator_ledger.jsonl (871 records, actors curator/agent). Mapped with my own reader (raw/ledger_map.py -> raw/t4f_ledger_footprint.txt, raw/ledger_r10_session.py -> raw/t4g_r10_session_writes.txt): (a) INSIDE the round's research window, two SKILL.md files were rewritten - hgk-lifecycle-admission/SKILL.md at 13:35:06 and hgk-kanban-and-lane-routing/SKILL.md at 13:38:54 (86,198 -> 88,115 bytes) - by sessions 20261016_105348_b4b537 and 20261016_104922_d455e7, i.e. content changes in that window ARE detectable and are agent 'patch' actions, not the loader touches the audit names; (b) the round's own session id (20261015_125956_d5f877, per SESSION_LEDGER_R10.json) has 16 canonical-tree content writes on 2026-10-16 between 03:13:22Z and 05:07:37Z (11:13-13:07 local) across 6 skills, including hgk-lifecycle-admission/SKILL.md at 12:15:21 plus a new references/far-run-binding.md, and hgk-kanban-and-lane-routing/SKILL.md at 13:03:50, none of which the round's records attribute to this session. I did not determine who authorised the peer sessions' in-window writes.",
+      "disagreement": "The blanket 'none is detectable' is contradicted by the tree's own log, and the second measurement basis in the same report is stale: WS2's hgk-kanban-and-lane-routing value (86,198 B) no longer describes the file (88,115 B since 13:38:54). Attribution caveat stated: the two in-window rewrites are by PEER sessions, not by the R10-0 round itself, and the R10-0 round's own window (13:16-13:50) shows no write by the R10 session in the log."
+    },
+    {
+      "id": "C9",
+      "claim": "Routing finding F5/F6 and the wrapper's behaviour on a failed dispatch (fail-closed ERR_LANE_REQUIRED_ARM_ABSENT; no manufactured nonce or arm from an empty dispatch).",
+      "verdict": "CONFIRMED",
+      "my_raw_output": "Round-root snapshots: lane_receipts/VERIFY_SECURITY_turn1_20261016T054613Z_nonce_attestation.json (1745 B, digest prefix 35ad9dd72304) records dispatcher_code='ERR_LANE_REQUIRED_ARM_ABSENT', arms_from_attempts=[], nonce_found_in=[], verdict='NO_ATTEMPTS_RECORDED', expected_nonce_present_in_brief=true, and claims no acceptance; the copied receipt (1068 B, digest prefix 7ba62daed70f) is the fail-closed one. I independently confirmed the attestation's expected_nonce_sha256_prefix 'd9cd7c3990001b29' IS sha256('R10V-CHECKER-NONCE-4f7a2b') (raw/t2b_t5e_nonce_and_m2.txt), i.e. the wrapper derives the nonce from the dispatched brief, not from the lane. The same attestation's snapshot filename carries the doubled prefix VERIFY_SECURITY_turn1_..._VERIFY_SECURITY_turn1_... - the live evidence of the snapshot() bug that was patched at 13:50:22.",
+      "disagreement": "None; this is the one part of the round whose evidence I could reproduce end to end without a live lane."
+    }
+  ],
+
+  "disagreements": [
+    "D1 (count): the collision extent is recorded as 8 turns (5 EXECUTE + 3 VERIFY_SECURITY); I measure 11 attempt-1 turns sharing the two attempt-1 receipt paths (7 + 4). Defect confirmed, magnitude understated.",
+    "D2 (mechanism, nonce): README_R10_TOOLING.md says the dispatcher reads the nonce only from agent_message events, but the same receipt records nonce_present_raw_stdout=true - the token was seen in raw stdout and not accepted. Repair verdict unaffected; the description is imprecise.",
+    "D3 (mechanism, 0-byte probe): the round explains the probe's reading as a loader rewrite race, yet the tree's write log shows no write to that file in the probe's read window; the file's content actually changed 10 minutes AFTER the probe report, by a different session, and the adjudication's '13:16 load' claim matches no artifact.",
+    "D4 (stale evidence basis): the same WS2 report whose 0-byte reading was refuted also reported hgk-kanban-and-lane-routing/SKILL.md = 86,198 bytes; that file has been 88,115 bytes since 13:38:54, so the adjudication carried a stale value forward without noting the drift.",
+    "D5 (side-effect audit): 'no content change ... detectable' in the canonical skills tree is refuted by the tree's own write log, which shows in-window content rewrites by peer sessions and 16 earlier same-day content writes by this session; the handover attributes canonical-tree changes to R9 alone.",
+    "D6 (row closure): row T5 is DONE_MEASURED while its own note records a broken load path (entry_map.json named by the live SKILL.md, absent from the live skill directory) - a measured defect recorded as a pass in the same row.",
+    "D7 (reproducibility): the artifact under test changed during verification (dispatch_r10.py 12319 -> 12497 bytes at 13:50:22; SESSION_LEDGER_R10.json and SELF_EVOLUTION_R10.* written at 13:49:43, after the brief at 13:46:03). Claims that name no revision or digest are not reproducible from the round's records.",
+    "D8 (order): the file the order named, R10_CHECKER_SHOT_PROMPT.md, does not exist anywhere on this host (a workspace-wide name search returns 0 hits); I executed R10_VERIFIER_BRIEF.md, the only checker brief in the round root."
+  ],
+
+  "procedural_compliance": {
+    "write_root_respected": {
+      "answer": "YES",
+      "evidence": "Every artifact I created is under R10_VERIFY/: R10_VERIFY/raw/* (16 raw logs + 3 probe scripts) and R10_VERIFY/R10_VERDICT.json, R10_VERDICT.md, R10V_DONE. 'find <round root> -type f -newermt 13:52' returns only files under R10_VERIFY (raw/t1b_pytest_live.txt)."
+    },
+    "write_verbs_used": {
+      "answer": "file writes only, all inside the write root; no git write, no network write",
+      "evidence": "shell redirection (tee/'>'/'>>') for raw command output, and write_file for the three probe scripts and the verdict files. No git command was invoked at all during this verification (commands used: find, stat, ls, cat, awk, sed, wc, grep, sha256sum, date, ps, and HG-KSEOS venv python/pytest). One non-verbatim side effect is disclosed: the brief's exact pytest command maintains the pre-existing cache dir tooling/.pytest_cache (content-free nodeids/lastfailed); a first run at 13:50:15 was followed by a cache update at 13:50:30 that I cannot attribute because a concurrent process was also running that suite then; my later runs used -p no:cacheprovider and PYTHONDONTWRITEBYTECODE=1, and the digest of tooling/dispatch_r10.py was unchanged across my run."
+    },
+    "forbidden_locations": {
+      "answer": "no forbidden location was WRITTEN; required reads were read-only",
+      "evidence": "I read _handover/CNV-PIPD-LS-SP-20261015/lane_runs/** (the brief's own item 1/2 subject), the canonical skills tree (item 4 subject), HG-KSEOS/config/lane-routing-registry.yaml via the project reader (item 3 subject), and one filename only from the R9 packet. I wrote nothing under R6_DELIVERY/, -R9/WS_A/, -R9/WS_B/, -R9/FAR/, or any config/skill tree, and I ran no git write command. M2_TRUSTED_SCOPE_SECRETS_R10.json was parsed for key names and types only; no credential value was read or printed anywhere in this run (its operator_token fields are reported as presence/counts only)."
+    },
+    "network": {
+      "answer": "none attempted",
+      "evidence": "No curl/git/API call was made; the only executable that could touch a network was the local pytest suite, whose own docstring states no live lane and no network are required, and whose run finished in 0.08 s."
+    },
+    "nonce_discipline": {
+      "answer": "disclosed deviation",
+      "evidence": "The brief orders the nonce as the first line of the first message; my first message was already sent when I read the brief, so the nonce cannot be placed there retroactively. It is written into R10_VERIFY/R10V_DONE and carried in this verdict."
+    },
+    "self_verdict_ceiling": "This verdict is advisory evidence for the owner. It is not an acceptance, not a Gate PASS, not an AO verdict and not a release, and it asserts nothing about product behaviour."
+  },
+
+  "could_not_verify": [
+    "The 0-byte state of skills/hgk-lifecycle-admission/SKILL.md at 13:19-13:24 is not re-measurable: the file was rewritten at 13:35:06 and its previous content (digest prefix 8af86f502767) has no copy on this host; the write log records digests only, not byte sizes, so neither WS2's reading nor its absence can be settled.",
+    "R10/PACKET_MANIFEST.json does not exist, so the delivery set named in brief item 5 cannot be enumerated or checked.",
+    "The round's remote claims (Fabric PR #8 head prefix b4595e66f9f6, the 160-file remote packet, the readback sha_match) were not re-fetched: the brief forbids remote operations, so I report only the local records (REMOTE_READBACK.json, PUBLICATION_RECEIPT.json, PUSH_RECEIPT.json all present and mutually consistent).",
+    "The round's HGK Spine claims (typed admission, checkpoints, board writes) were not re-derived: I did not read the spine database, so Spine side effects are unverified.",
+    "Row 1's 're-admission through the HGK Spine' and row 4's openspec --strict validation were not re-executed by me; artifact presence only, which matches the round's own NOT_OWED/NOT_MEASURED scoring for row 4.",
+    "Whether the two in-window canonical-tree rewrites by peer sessions were owner-authorised is not determinable from the artifacts I am permitted to read.",
+    "The maker's own live lane behaviour under the successor wrapper is unverifiable here: no new lane turn was dispatched by me (the brief runs no live lane)."
+  ],
+  "claim_ceiling": "advisory evidence, LOCAL / candidate-only; independently re-derived where stated, NOT re-derived where marked UNVERIFIABLE"
+}

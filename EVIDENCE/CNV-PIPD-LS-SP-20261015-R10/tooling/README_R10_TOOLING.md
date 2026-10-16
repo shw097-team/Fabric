@@ -4,6 +4,11 @@ Successor file: `dispatch_r10.py` (predecessors `dispatch_r6.py` and `dispatch_r
 a successor is issued instead of editing a predecessor that already underpins published evidence).
 Tests: `test_dispatch_r10.py` - 8 passed, no live lane and no network required.
 
+**Tested revision (named, because a verdict that names no revision is not reproducible):**
+`dispatch_r10.py` 12497 bytes, sha256 `a308b1cea808d2af3321987c99cb41ba582d13a391fe76be0f55e475b73b424c`. An earlier revision of this same file
+(12,319 bytes) was already independently exercised and also passed 8/8; the only difference is a cosmetic
+de-duplication in `snapshot()`'s destination filename, added after the first test run and disclosed here.
+
 ## Repair 1 - a same-role later turn no longer destroys an earlier turn's provenance
 
 The predecessors named the receipt `<lane>_dispatch_receipt_attempt<attempt>.json` while rounds dispatch every
@@ -17,11 +22,14 @@ attempt-log directory, and `snapshot()` copies the receipt AND the attempt log i
 
 ## Repair 2 - a nonce that IS present is no longer reported absent
 
-The dispatcher reads the nonce only from transcript `item.completed/agent_message` events
-(`nonce_source` in its own receipt). Measured on the round-before's VERIFY turn: `code:
-ERR_NO_ARM_EMITTED_NONCE`, `nonce_present: false`, `used_rank`/`used_transport_model` null - while the SAME
-receipt's recorded `stdout_tail` ended with the nonce the brief had asked for, and its recorded
-`stdout_path` (429,783 bytes) contained it.
+The dispatcher's gate requires a nonce in the transcript's `item.completed/agent_message` carrier AND in raw
+stdout (`nonce_ok = nonce_in_agent_message(out_b, args.nonce) and nonce_raw`). CORRECTED AFTER INDEPENDENT
+REVIEW: it is NOT true that it reads "only the carrier" - the same receipt carries
+`nonce_present_raw_stdout: true`, i.e. the raw-stdout channel DID see the token and the carrier channel did not,
+so the gate declined it. Measured on the round-before's VERIFY turn: `code: ERR_NO_ARM_EMITTED_NONCE`,
+`nonce_present: false`, `used_rank`/`used_transport_model` null - while the same receipt's recorded
+`stdout_tail` ended with the nonce the brief had asked for and its recorded `stdout_path` (429,783 bytes)
+contained it.
 
 `attest(receipt, brief, artifact_roots)` derives the expected nonce from the BRIEF being dispatched, then
 searches the surfaces the dispatcher already recorded (`attempts[].stdout_path`, `attempts[].stderr_path`) plus

@@ -1,6 +1,6 @@
 {
   "schema": "CNV-PIPD-LS-SP-20261015-R10/PACKET-MANIFEST/1",
-  "publish_claim": "the DELIVERED set is tracked_inventory (38 paths); the local inventory is 38 paths, of which 0 are excluded by the repository's own ignore rules and are NOT published; 8 further paths under the round root are excluded as lane scratch and are listed here",
+  "publish_claim": "the DELIVERED set is tracked_inventory (67 paths); the local inventory is 67 paths, of which 0 are excluded by the repository's own ignore rules and are NOT published; 8 further paths under the round root are excluded as lane scratch and are listed here",
   "files": [
     {
       "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/FAR/ws1/adjudication.tsv",
@@ -131,7 +131,7 @@
     {
       "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/M2_TRUSTED_SCOPE_SECRETS_R10.json",
       "bytes": 2062,
-      "sha256": "4c5e137b3adf012fa325db6ca777c4fee05a9e88698e623b296fe2b2c0d6c02b",
+      "sha256": "c5721d517311310928120045564acbedee3435c48d7c851b96174fbccd80986a",
       "tracked": true
     },
     {
@@ -178,8 +178,8 @@
     },
     {
       "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_CHANGE_RECORD_ADJUDICATION.json",
-      "bytes": 6373,
-      "sha256": "b96db75425b941f5f7ea2d852ca9dac8efbb7386cc74d1553b239a922d3eee3a",
+      "bytes": 7450,
+      "sha256": "236b13275f7daa7b65d32c5ec1950d856baf0a07c58e2c46b25e60e122afe73f",
       "tracked": true
     },
     {
@@ -195,15 +195,183 @@
       "tracked": true
     },
     {
+      "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_VERIFY/R10_VERDICT.json",
+      "bytes": 21400,
+      "sha256": "23bc0dd0e9a13e80a1bf2c1a421ddeec330ab3233c7b0c8a7649a271ae4af370",
+      "tracked": true
+    },
+    {
+      "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_VERIFY/R10_VERDICT.md",
+      "bytes": 12464,
+      "sha256": "1ed8ddad0872cfb144200cd73a7401608896aaafed19c39f03c8546479ebc88d",
+      "tracked": true
+    },
+    {
+      "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_VERIFY/R10_VERDICT_ADJUDICATION.json",
+      "bytes": 5427,
+      "sha256": "aa9c00ed041a26b39fa14bfd2ad9e5c636a70558d864730bd0c8ba4e257a0212",
+      "tracked": true
+    },
+    {
+      "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_VERIFY/R10V_DONE",
+      "bytes": 25,
+      "sha256": "d9cd7c3990001b297c238bfa2122beffbf3e9cd830d56d3372f3ae1759d7b5b3",
+      "tracked": true
+    },
+    {
+      "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_VERIFY/raw/ledger_map.py",
+      "bytes": 1815,
+      "sha256": "f9fc04cd634046b6ccec6281ac10f77fe31d6bf79ed93fd67051b8ec7ee21bc5",
+      "tracked": true
+    },
+    {
+      "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_VERIFY/raw/ledger_r10_session.py",
+      "bytes": 1587,
+      "sha256": "ed42792e3988d7c6802097306564ce1803eb9e2ee242887cc72ab68b635fefaa",
+      "tracked": true
+    },
+    {
+      "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_VERIFY/raw/r10_frozen_state_listing.txt",
+      "bytes": 2591,
+      "sha256": "e3ca06a6c0c3df6b0924b96f11669b8bbfff0524ba997a2d49b7d6070cafd2f0",
+      "tracked": true
+    },
+    {
+      "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_VERIFY/raw/t1_pytest_raw.txt",
+      "bytes": 100,
+      "sha256": "1fc2ebe41f169a8fdc6458e343c0dcc22a922426a3414cbfbc160012eaf345eb",
+      "tracked": true
+    },
+    {
+      "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_VERIFY/raw/t1b_pytest_live.txt",
+      "bytes": 334,
+      "sha256": "356259af48c69f249072da2867aae82130ddf849fd0ff3b9c8b7c6dd6fa02cc9",
+      "tracked": true
+    },
+    {
+      "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_VERIFY/raw/t1c_turn_mapping.txt",
+      "bytes": 2968,
+      "sha256": "fcc03f82451415fc8b7cbc1b936b8c6aca16e9d1e59d26a8f872d09075dbd051",
+      "tracked": true
+    },
+    {
+      "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_VERIFY/raw/t2_bytesurface.txt",
+      "bytes": 1820,
+      "sha256": "459ce2d5689c3d2ae93387886a90a2f4cbe9ff2e3492a6c04e7d04d7ca918a1c",
+      "tracked": true
+    },
+    {
+      "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_VERIFY/raw/t2b_t5e_nonce_and_m2.txt",
+      "bytes": 606,
+      "sha256": "69414680ba94defd4079c7225ea6869d82105079abd0fd3f1e071f639a45d7ab",
+      "tracked": true
+    },
+    {
+      "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_VERIFY/raw/t3_registry_probe.py",
+      "bytes": 2346,
+      "sha256": "8063a508772947ec933b74b20a7abf26fc5dff42699f4d3416a59439e69d6add",
+      "tracked": true
+    },
+    {
+      "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_VERIFY/raw/t3_registry_probe.txt",
+      "bytes": 4439,
+      "sha256": "ac2a9d1355d7af7c994ceb3108e9f23404d687ad76f1241acaa9a47fcf54898d",
+      "tracked": true
+    },
+    {
+      "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_VERIFY/raw/t3b_t5_artifact_existence.txt",
+      "bytes": 1791,
+      "sha256": "3f737bcf37a6c9fa6ccdac6af91008ffc5490ab6795c61b327329dfeaaab4547",
+      "tracked": true
+    },
+    {
+      "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_VERIFY/raw/t3c_checker_and_publish.txt",
+      "bytes": 2021,
+      "sha256": "a3b61570abba08d59add30174428ebd23ec958512b474d721b183fe91038c06b",
+      "tracked": true
+    },
+    {
+      "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_VERIFY/raw/t3d_final_counts.txt",
+      "bytes": 1297,
+      "sha256": "e7472ded02a003c0e1af6f2914551c6ade7e5e0d4ca4684f5e726511db377dfb",
+      "tracked": true
+    },
+    {
+      "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_VERIFY/raw/t4_skill_measure.txt",
+      "bytes": 1568,
+      "sha256": "044820b21b3123f0764c6c772bff61de42ad1b2a4e3451545ade1e2b2bc19a15",
+      "tracked": true
+    },
+    {
+      "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_VERIFY/raw/t4b_timing.txt",
+      "bytes": 2678,
+      "sha256": "039eed856e419b52052cfabbf35790ac4d8af547df23085325ec5ce6513cf603",
+      "tracked": true
+    },
+    {
+      "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_VERIFY/raw/t4c_birth.txt",
+      "bytes": 965,
+      "sha256": "83e17c36158551303a3cfcb6c0989ab649d4d55f037cb3de77c2cb5e3d248608",
+      "tracked": true
+    },
+    {
+      "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_VERIFY/raw/t4d_tree_births.txt",
+      "bytes": 6563,
+      "sha256": "07098d90c45d0e7ba7a03db0d8938c7cf60de045ea65a875ed56bf450a82d8fd",
+      "tracked": true
+    },
+    {
+      "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_VERIFY/raw/t4e_curator.txt",
+      "bytes": 4164,
+      "sha256": "174431c1116a1fce7dd22fdb19cece8bb10db077e0855ca30af0ac93f3a67848",
+      "tracked": true
+    },
+    {
+      "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_VERIFY/raw/t4f_ledger_footprint.txt",
+      "bytes": 77525,
+      "sha256": "b6443d3c87d208ab23953a4f62b177f36f3563c504786163d149c9116c2a5cb5",
+      "tracked": true
+    },
+    {
+      "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_VERIFY/raw/t4f_session_footprint.txt",
+      "bytes": 207,
+      "sha256": "964bd23d95bedaa9b183f65c768011661719ecfb627d69993489f05dc1f25ae4",
+      "tracked": true
+    },
+    {
+      "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_VERIFY/raw/t4g_r10_session_writes.txt",
+      "bytes": 4276,
+      "sha256": "c3d16d28a65f624179ee576b4dac0b65f7dce6a62c60ec6673460b3a1d5b6f09",
+      "tracked": true
+    },
+    {
+      "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_VERIFY/raw/t6_claim_scan.txt",
+      "bytes": 914,
+      "sha256": "3bafc1a149199769bf16f684f27c78cecb52b285bd1359db9a4bd6a8b17fb97b",
+      "tracked": true
+    },
+    {
+      "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/SELF_EVOLUTION_R10.json",
+      "bytes": 7552,
+      "sha256": "ab8c94b2fd8ec4d0284db2ed927951adca39dcb83f1472a133010785d747c255",
+      "tracked": true
+    },
+    {
+      "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/SELF_EVOLUTION_R10.md",
+      "bytes": 6592,
+      "sha256": "a796a30e159c3efcc16c01997a286d6e6da6b9f96524f3dd7b4cb78f750b0508",
+      "tracked": true
+    },
+    {
       "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/SESSION_LEDGER_R10.json",
-      "bytes": 7465,
-      "sha256": "c12edb473a2bf48f5f4f7fed5433d161a85eacd76071e33228752aad2e65e06b",
+      "bytes": 9233,
+      "sha256": "6446f521442d45b275b88494883aca60a43c06c93b9f162a8e539f8410ac9282",
       "tracked": true
     },
     {
       "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/tooling/dispatch_r10.py",
-      "bytes": 12319,
-      "sha256": "645c1b6de005b2cee92e90de59a2f4fd0718b7dcfb857c7ef4b65c8b4d454fe9",
+      "bytes": 12497,
+      "sha256": "a308b1cea808d2af3321987c99cb41ba582d13a391fe76be0f55e475b73b424c",
       "tracked": true
     },
     {
@@ -213,9 +381,15 @@
       "tracked": true
     },
     {
+      "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/tooling/pytest_r10b.stdout.txt",
+      "bytes": 100,
+      "sha256": "4a7a681458c41df32870635250738c8dbabc6038c8e530a18d9ddbe5c0bc3698",
+      "tracked": true
+    },
+    {
       "path": "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/tooling/README_R10_TOOLING.md",
-      "bytes": 2919,
-      "sha256": "caf61a7462c6b9c1a18cf3f1263d259099d1e53ee78f793685f62e6a4ef39105",
+      "bytes": 3676,
+      "sha256": "280e90f71ac6380748e241c18156384ba064166dd50d05215e8c6e01151907b7",
       "tracked": true
     },
     {
@@ -231,9 +405,9 @@
       "tracked": true
     }
   ],
-  "file_count": 38,
-  "tracked_file_count": 38,
-  "local_inventory_count": 38,
+  "file_count": 67,
+  "tracked_file_count": 67,
+  "local_inventory_count": 67,
   "tracked_inventory": [
     "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/FAR/ws1/adjudication.tsv",
     "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/FAR/ws1/raw_measurements.json",
@@ -262,6 +436,34 @@
     "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_CHANGE_RECORD_ADJUDICATION.json",
     "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_OWNER_READY_LANE_REBIND.json",
     "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_VERIFIER_BRIEF.md",
+    "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_VERIFY/R10V_DONE",
+    "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_VERIFY/R10_VERDICT.json",
+    "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_VERIFY/R10_VERDICT.md",
+    "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_VERIFY/R10_VERDICT_ADJUDICATION.json",
+    "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_VERIFY/raw/ledger_map.py",
+    "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_VERIFY/raw/ledger_r10_session.py",
+    "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_VERIFY/raw/r10_frozen_state_listing.txt",
+    "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_VERIFY/raw/t1_pytest_raw.txt",
+    "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_VERIFY/raw/t1b_pytest_live.txt",
+    "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_VERIFY/raw/t1c_turn_mapping.txt",
+    "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_VERIFY/raw/t2_bytesurface.txt",
+    "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_VERIFY/raw/t2b_t5e_nonce_and_m2.txt",
+    "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_VERIFY/raw/t3_registry_probe.py",
+    "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_VERIFY/raw/t3_registry_probe.txt",
+    "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_VERIFY/raw/t3b_t5_artifact_existence.txt",
+    "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_VERIFY/raw/t3c_checker_and_publish.txt",
+    "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_VERIFY/raw/t3d_final_counts.txt",
+    "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_VERIFY/raw/t4_skill_measure.txt",
+    "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_VERIFY/raw/t4b_timing.txt",
+    "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_VERIFY/raw/t4c_birth.txt",
+    "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_VERIFY/raw/t4d_tree_births.txt",
+    "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_VERIFY/raw/t4e_curator.txt",
+    "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_VERIFY/raw/t4f_ledger_footprint.txt",
+    "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_VERIFY/raw/t4f_session_footprint.txt",
+    "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_VERIFY/raw/t4g_r10_session_writes.txt",
+    "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/R10_VERIFY/raw/t6_claim_scan.txt",
+    "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/SELF_EVOLUTION_R10.json",
+    "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/SELF_EVOLUTION_R10.md",
     "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/SESSION_LEDGER_R10.json",
     "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/hgk_admission_r10.py",
     "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/lane_receipts/VERIFY_SECURITY_turn1_20261016T054613Z_VERIFY_SECURITY_turn1_20261016T054613Z_dispatch_receipt.json",
@@ -272,6 +474,7 @@
     "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/tooling/W2_REPRODUCTION.json",
     "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/tooling/dispatch_r10.py",
     "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/tooling/pytest_r10a.stdout.txt",
+    "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/tooling/pytest_r10b.stdout.txt",
     "EVIDENCE/CNV-PIPD-LS-SP-20261015-R10/tooling/test_dispatch_r10.py"
   ],
   "local_only_excluded": [],

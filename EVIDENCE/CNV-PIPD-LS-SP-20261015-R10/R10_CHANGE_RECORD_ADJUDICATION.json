@@ -8,7 +8,10 @@
   "DONE_MEASURED": 24,
   "OPEN_OWNER": 9,
   "SUPERSEDED": 1,
-  "NOT_OWED": 2
+  "NOT_OWED": 2,
+  "RE_RECLASSIFIED_AFTER_CHECKER": {
+   "row_T5": "DONE_MEASURED -> OPEN_OWNER: the live SKILL.md names entry_map.json at lines 66 and 71 and no such file exists, so its own pointer/load path is broken (re-derived by the orchestrator: entry_map.json absent from the live skill directory)"
+  }
  },
  "per_change": {
   "hgk-far-remediation-20261016": {
@@ -60,8 +63,8 @@
   {
    "probe": "WS2's candidate-vs-landed inventory",
    "claim": "skills/hgk-lifecycle-admission/SKILL.md is present but 0 bytes",
-   "my_re_derivation": "the file is 35,739 bytes (sha256 2911867811a503d82aabe7951193a70c180af1cd6e453e1e95af4e6921efe102), 361 lines, structurally complete and it loaded successfully into this session at 13:16; the ONLY zero-byte file under the skills tree is .hub/audit.log",
-   "verdict": "PROBE_DEFECT - refuted; the probe's 0-byte reading is the finding, not a corrupted skill",
+   "my_re_derivation": "the file is 35739 bytes (sha256 2911867811a503d82aabe7951193a70c180af1cd6e453e1e95af4e6921efe102), 361 lines, structurally complete, and the tree's own write log shows its current digest created at 13:35:06 by a DIFFERENT session with NO write in the probe's read window; the previous content digest 8af86f502767 has no copy on this host",
+   "verdict": "READING REFUTED (the file is not 0 bytes now); MECHANISM WITHDRAWN - the past state is NOT RE-MEASURABLE and this round's earlier 'loader rewrite race' explanation is withdrawn, as is an uncorroborated '13:16 load' sentence",
    "note": "the skills tree does have loader-touched mtimes (e.g. .usage.json 13:38, remote-repo-publication/SKILL.md 13:28), so a single size read can race a rewrite; assert on two reads or a digest"
   }
  ],
@@ -73,12 +76,19 @@
   },
   {
    "subject": "canonical skills tree",
-   "files_written_by_this_round": "none asserted; mtimes inside the research window are consistent with skill LOADS (the tree's own loader writes .usage.json and rewrites loaded files) - no content change is claimed and none is detectable"
+   "files_written_by_this_round": "NOT ASSERTED - CORRECTED AFTER INDEPENDENT REVIEW",
+   "verdict": "REWrites OBSERVED IN WINDOW, ATTRIBUTION CAVEAT",
+   "measured": "the canonical skills tree's own write log shows in-window rewrites of at least two files; e.g. hgk-kanban-and-lane-routing changed again after WS2 measured it (86198 -> 88115 bytes since 13:38:54), and hgk-lifecycle-admission/SKILL.md's current digest was created at 13:35:06. The writers were sessions OTHER than this round; whether they were owner-authorised is NOT determinable from artifacts this round may read, and this round wrote nothing there."
   },
   {
    "subject": "Fabric repository",
    "changes": "none from this round beyond the R10 worktree branch cut off origin/main (peer checkout left untouched)"
   }
  ],
- "claim_ceiling": "adjudication of record-keeping only; no row was closed by manufacturing an artifact, no other round's task file was edited, and no acceptance is asserted"
+ "claim_ceiling": "adjudication of record-keeping only; no row was closed by manufacturing an artifact, no other round's task file was edited, and no acceptance is asserted",
+ "independent_checker": {
+  "verdict": "R10_VERIFY/R10_VERDICT.json",
+  "overall": "PARTIALLY_VERIFIED",
+  "adjudication": "R10_VERIFY/R10_VERDICT_ADJUDICATION.json"
+ }
 }

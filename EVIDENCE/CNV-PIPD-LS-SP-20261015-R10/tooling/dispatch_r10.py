@@ -176,6 +176,7 @@ def snapshot(receipt_path: str, attempt_log_dir: str, round_root: str, lane: str
     dest_dir = Path(round_root) / "lane_receipts"
     dest_dir.mkdir(parents=True, exist_ok=True)
     copied = []
+    prefix = lane + "_turn" + str(turn) + "_" + stamp + "_"
     srcs = [receipt_path]
     ald = Path(attempt_log_dir) if attempt_log_dir else None
     if ald and ald.is_dir():
@@ -185,7 +186,9 @@ def snapshot(receipt_path: str, attempt_log_dir: str, round_root: str, lane: str
         sp = Path(s)
         if not sp.is_file():
             continue
-        dp = dest_dir / (lane + "_turn" + str(turn) + "_" + stamp + "_" + sp.name)
+        # the dispatcher already names the receipt after the turn; do not stack the prefix twice
+        name = sp.name if sp.name.startswith(prefix) else prefix + sp.name
+        dp = dest_dir / name
         dp.write_bytes(sp.read_bytes())
         copied.append({"from": s, "to": str(dp), "bytes": dp.stat().st_size, "sha256": sha256_file(str(dp))})
     return {"snapshot_dir": str(dest_dir), "copied": copied}

@@ -85,6 +85,11 @@
   {
    "what": "credentials",
    "detail": "the repository token is read from its file by the publication script into memory only; it never enters argv, a URL, a log or an artifact; no credential value was printed"
+  },
+  {
+   "what": "one provider-direct checker one-shot lane (canonical Hermes runtime, model+provider pinned on argv)",
+   "why": "the mandated arm was not in the lane pool; the registry was NOT edited",
+   "readback": "the smoke probe printed PROBE_OK and the receipt-less run writes only under R10/R10_VERIFY/"
   }
  ],
  "blockers_with_owners": [
@@ -158,6 +163,21 @@
    "what": "the mandated VERIFY/SECURITY arm is registry admission_status UNPROVEN, and the mandated PLAN arm is not the registry's PLAN route at all",
    "state": "OPEN_OWNER",
    "note": "admission_status is a declaration field the owner sets; this round does not set it"
+  },
+  {
+   "id": "R10-F5",
+   "what": "the mandated VERIFY/SECURITY arm (opencode-go/deepseek-v4.1-flash) is NOT in that lane's pool: the dispatch fail-closed with ERR_LANE_REQUIRED_ARM_ABSENT (exit 4) and the receipt's identity_gate lists only rank 1 openai-codex/gpt-6.1-sol with the dispatcher's own words 'the required arm is not in this lane's pool'",
+   "state": "ROUTING_FINDING_disclosed_deviation_applied",
+   "owner": "control-plane owner",
+   "what_this_round_did_NOT_do": "did NOT edit the route registry or the lane slots to make the dispatch succeed",
+   "deviation_applied": "ran the mandated checker MODEL provider-direct through the SAME relay with the model pinned on the command line, after a transport smoke probe returned PROBE_OK on exactly opencode-go/deepseek-v4.1-flash; disclosed as a routing deviation with no pool hop and no pool ledger line",
+   "significance": "declared (registry) / pooled (lane identity_gate) / reachable (provider-direct) are THREE different surfaces - the arm was reachable while not pooled"
+  },
+  {
+   "id": "R10-F6",
+   "what": "the wrap-around attestation path was exercised end-to-end on a FAILED dispatch: the successor wrapper snapshotted 1 file and reported dispatcher_code=ERR_LANE_REQUIRED_ARM_ABSENT with verdict NO_ATTEMPTS_RECORDED (no attempt happened), i.e. it does not manufacture a nonce or an arm from an empty dispatch",
+   "state": "MEASURED",
+   "owner": "-"
   }
  ]
 }

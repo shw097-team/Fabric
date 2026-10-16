@@ -1,0 +1,14 @@
+### T2: byte surface of the R9 VERIFY stdout
+path=/c/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/lane_runs/CNV-PIPD-LS-SP-20261015-R9/VERIFY_SECURITY/attempt-1-20261016T044148Z/attempt-1188-1792125708-1-stdout.txt
+bytes=429783 mtime=2026-10-16 12:54:36.990860900 +0800
+5d07b4c4053ebb9551b865eedf9efc2e5014dd9db04374b157a43afec3b47bb1 */c/Projects/Agent_Workspace/_handover/CNV-PIPD-LS-SP-20261015/lane_runs/CNV-PIPD-LS-SP-20261015-R9/VERIFY_SECURITY/attempt-1-20261016T044148Z/attempt-1188-1792125708-1-stdout.txt
+--- nonce occurrence count (R9V-CHECKER-NONCE-5c1d84) ---
+6
+--- last 3 containing lines (truncated 240 chars) ---
+6
+71:{"type":"item.started","item":{"id":"item_41","type":"command_execution","command":"\"C:\\\\Users\\\\user\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$env:PYTHONDON
+72:{"type":"item.completed","item":{"id":"item_41","type":"command_execution","command":"\"C:\\\\Users\\\\user\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$env:PYTHOND
+73:{"type":"item.completed","item":{"id":"item_42","type":"agent_message","text":"**Overall: UNVERIFIABLE — LOCAL / candidate-only.** This is not AO acceptance, a Gate PASS, or a release decision.\n\nWritten and schema-validated:\n- `C:/P
+--- is the nonce the LAST non-whitespace token? ---
+VERIFY/tmp`; the known external temporary root is absent on readback.\n\nAccordingly, the report marks this checker run’s **procedural compliance REFUTED**, separately from the artifact findings.\n\nR9V-CHECKER-NONCE-5c1d84"}}
+{"type":"turn.completed","usage":{"input_tokens":1577291,"cached_input_tokens":1488256,"cache_write_input_tokens":0,"output_tokens":31294,"reasoning_output_tokens":6591}}
