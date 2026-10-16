@@ -102,3 +102,27 @@ canonical dispatcher already keeps attempt-scoped output; what it does not do is
 fixed `--json-out` path**, which is the path a retry overwrites. The writer's T1 patch addresses exactly
 that narrower defect, and this measurement narrows the finding that the previous round left open rather
 than confirming it wholesale.
+
+## ER12 — the first push landed under a lower-case root, and my repair then dropped the human-readable files
+
+The publisher normalised the discovered root to lower case, so the pack landed at
+`evidence/FAR-20261019-owner-authorized-closure` while the repository's convention — and the previous
+round's pack — is upper-case `EVIDENCE/<ROUND>` (measured: `EVIDENCE/FAR-20261016-018-r7r11-residual-closure-and-handover`,
+55 blobs). An external reviewer would not have found the pack where the convention puts it.
+The repair (one commit, same 62 blobs re-added under `EVIDENCE/…` and the lower-case paths deleted in the
+same tree) then **dropped the `.md` files** — my repair script excluded `.md` because the receipts stage
+owns them, which was right for a stage filter and wrong for a repair. Detected by re-reading the tree:
+51 files matched under the new prefix while the payload had 64. Restored with a further commit
+(`b1b86721`, 65/65 blob-id match, 0 mismatches). Recorded rather than quietly fixed, because a publish
+step that silently loses the round's ruling and handover documents is exactly the failure a readback exists
+to catch — and here the readback did catch it, one step late.
+Root cause fixed in the publisher: the discovered root is now used verbatim, case included.
+
+## ER13 — the readback's `main_unchanged` field is misleading for a second-stage commit
+
+`REMOTE_READBACK_VERIFY_019.json` reports `main_unchanged: false`. Main did **not** move: it is `1807680e`
+before and after (verified independently against the API). The field compares main's tip against the
+commit's *base*, and on the second stage the base is deliberately the **branch** tip (a commit parented on
+main while the ref points elsewhere is a non-fast-forward and is refused). So the field is a false alarm
+produced by my own comparison logic. It is left in the artifact as the machine wrote it and corrected here,
+and the publisher now records the branch-parenting case explicitly.
