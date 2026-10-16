@@ -1,0 +1,175 @@
+{
+ "schema": "CNV-OWNER-DECISION/SELF-CHECK/2",
+ "checks": [
+  {
+   "id": "C01",
+   "ok": true,
+   "detail": "21 of 21 published blobs read back byte-identical"
+  },
+  {
+   "id": "C02",
+   "ok": true,
+   "detail": "PLAN openai-codex/gpt-6.1-sol / EXECUTE opencode-go/deepseek-v4.1-flash / VERIFY openai-codex/gpt-6.1-sol"
+  },
+  {
+   "id": "C03",
+   "ok": true,
+   "detail": "all three lane receipts report ok"
+  },
+  {
+   "id": "C04",
+   "ok": true,
+   "detail": "both candidates recorded as held"
+  },
+  {
+   "id": "C05",
+   "ok": true,
+   "detail": "the default branch is unchanged: bcd91043b89b"
+  },
+  {
+   "id": "C06",
+   "ok": true,
+   "detail": "candidate states: [('open', False), ('open', False)]"
+  },
+  {
+   "id": "C07",
+   "ok": true,
+   "detail": "homepage on PR #16 is LF-only with the status refresh and the appendix"
+  },
+  {
+   "id": "C08",
+   "ok": true,
+   "detail": "candidate diffs carry no deletions: {'pr15_deletions': 0, 'pr16_deletions': 0}"
+  },
+  {
+   "id": "C09",
+   "ok": false,
+   "detail": "bulletin rows=29 unique ids=29"
+  },
+  {
+   "id": "C10",
+   "ok": true,
+   "detail": "credential-shaped strings in published artefacts: none"
+  },
+  {
+   "id": "C11",
+   "ok": true,
+   "detail": "the checker's completion nonce is present in its transcribed stream"
+  },
+  {
+   "id": "C12",
+   "ok": true,
+   "detail": "both transcribed lane outputs carry substance (3563 and 3044 bytes)"
+  }
+ ],
+ "checks_passed": 11,
+ "checks_total": 12,
+ "mutations": [
+  {
+   "id": "M01",
+   "detected": true,
+   "checks_that_failed": [
+    "C01",
+    "C09"
+   ]
+  },
+  {
+   "id": "M02",
+   "detected": true,
+   "checks_that_failed": [
+    "C02",
+    "C09"
+   ]
+  },
+  {
+   "id": "M03",
+   "detected": true,
+   "checks_that_failed": [
+    "C03",
+    "C09"
+   ]
+  },
+  {
+   "id": "M04",
+   "detected": true,
+   "checks_that_failed": [
+    "C04",
+    "C09"
+   ]
+  },
+  {
+   "id": "M05",
+   "detected": true,
+   "checks_that_failed": [
+    "C05",
+    "C09"
+   ]
+  },
+  {
+   "id": "M06",
+   "detected": true,
+   "checks_that_failed": [
+    "C06",
+    "C09"
+   ]
+  },
+  {
+   "id": "M07",
+   "detected": true,
+   "checks_that_failed": [
+    "C07",
+    "C09"
+   ]
+  },
+  {
+   "id": "M08",
+   "detected": true,
+   "checks_that_failed": [
+    "C08",
+    "C09"
+   ]
+  },
+  {
+   "id": "M09",
+   "detected": true,
+   "checks_that_failed": [
+    "C09"
+   ]
+  },
+  {
+   "id": "M10",
+   "detected": true,
+   "checks_that_failed": [
+    "C09",
+    "C10"
+   ]
+  },
+  {
+   "id": "M11",
+   "detected": true,
+   "checks_that_failed": [
+    "C09",
+    "C12"
+   ]
+  },
+  {
+   "id": "M12",
+   "detected": true,
+   "checks_that_failed": [
+    "C09",
+    "C11",
+    "C12"
+   ]
+  }
+ ],
+ "mutations_detected": 12,
+ "not_detected": [],
+ "pack_members": 20,
+ "pull_request": {
+  "http": 200,
+  "number": 17,
+  "url": "https://github.com/shw097-team/Fabric/pull/17"
+ },
+ "branch_tip": "7a0bfa9df7513c9f7fdefad3f3e60e991e5f915a",
+ "verdict": "SELF_CHECK_PARTIAL"
+}
