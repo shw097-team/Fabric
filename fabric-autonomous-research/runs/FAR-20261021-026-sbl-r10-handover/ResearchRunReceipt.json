@@ -1,0 +1,68 @@
+{
+  "schema": "ResearchRunReceipt/1",
+  "run_id": "FAR-20261021-026-sbl-r10-handover",
+  "created_at_utc": "2026-10-21T14:40:42.509555+00:00",
+  "resume_iterations": 1,
+  "trigger_keys": [
+    "mandate-gate:AVAILABLE",
+    "lane-rebind:applied",
+    "self-check:R10_SELF_CHECK_PASS",
+    "hgk:ACC-REQ-HGK-PRJ-SBL-PIPDLS-R10-HANDOVER=FAIL"
+  ],
+  "artifacts": [
+    {
+      "file": "DEVIATIONS.tsv",
+      "bytes": 1070,
+      "sha256": "937cd1b7c768d3ac782e121918d765dee5dd4d8d37311ec4c20075a5764557d0"
+    },
+    {
+      "file": "FINDINGS.tsv",
+      "bytes": 2556,
+      "sha256": "76d76e76c26e474c64258da2e6766246d87c966843b2f33c47ed9792515acb4e"
+    },
+    {
+      "file": "LEARNING.md",
+      "bytes": 2178,
+      "sha256": "858e2c65822ea4463887b9a13ec25753642bad05b24840a5f0ea2c324e90af4b"
+    },
+    {
+      "file": "METHOD.md",
+      "bytes": 2141,
+      "sha256": "27d8932901bb14c76fe3aeb61479291e9794d8d18edbb7d5ffeafee7ddcf1784"
+    },
+    {
+      "file": "VERDICT.json",
+      "bytes": 2388,
+      "sha256": "2cd305f1c1b59ae51da0becb7cd33dc48f9049295492f9ab8b199ea9097b6707"
+    }
+  ],
+  "artifact_count": 5,
+  "digest_verification": "recomputed from disk at seal time",
+  "research_model": {
+    "name": "gpt-6.1-sol",
+    "provider": "openai-codex",
+    "arm_rank": 1,
+    "workers": 0,
+    "note": "no subagent fan-out this round: R10 is a handover, and the work was lane verification plus artifact authoring, not four parallel research questions. Stated rather than padded."
+  },
+  "execution_lanes": {
+    "PLAN": "opencode-go/minimax-m3.1-flash-free@rank1",
+    "EXECUTE": "opencode-go/deepseek-v4.1-flash@rank1",
+    "VERIFY_SECURITY": "openai-codex/gpt-6.1-sol@rank1"
+  },
+  "learning_range": "L37-L44",
+  "related": {
+    "sbl_evidence_branch": "evidence/r7-20261021-c7 @ 2dde2d8",
+    "hgk_head": "b22706e",
+    "hgk_requirement": "REQ-HGK-PRJ-SBL-PIPDLS-R10-HANDOVER",
+    "kanban_board": "sbl-pipdls-20261020",
+    "kanban_items": [
+      "t_d5cf019e",
+      "t_3acb914f",
+      "t_61a9ffca",
+      "t_35ba4d93",
+      "t_731d40f4"
+    ]
+  },
+  "claim_ceiling": "CANDIDATE_ONLY; no acceptance obtained; conformance not re-measured after b22706e"
+}

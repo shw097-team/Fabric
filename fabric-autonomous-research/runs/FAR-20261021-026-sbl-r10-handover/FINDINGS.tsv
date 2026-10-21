@@ -1,0 +1,12 @@
+id	class	statement	evidence
+F1	method	D1 reproduced for the third time: after the pool/registry/assignment re-order the drift gate returned 0 findings while ALL THREE runtime declarations still named superseded models.	var/R10-LANES/plan_exec_swap_apply_receipt.json (drift 0) vs the three declarations before sync
+F2	method	The drift gate structurally cannot catch this: it compares each pin to the file it points at, never two surfaces to each other. A check for "the surfaces agree" has to compare the surfaces.	self_check_r10.py C4
+F3	method	Probing the target arm at its current rank before promoting it is what makes the pause clause measurable instead of rhetorical. If the probe came after, a dead arm would look like a rebind failure.	var/R10-GATE/gate_*.json (pre) vs final_*.json (post)
+F4	method	Loading the existing builder and overriding its parameters preserved the arms-vs-fallbacks re-derivation that was the D3 fix. A fork would have re-opened D3 silently.	var/R10-LANES/apply_plan_exec_swap.py
+F5	defect	Moving the declarations turned the drift gate red, and the red was correct: the registry's own projection of the sealed lane still expected minimax. The stale side was the projection, not the route.	DRIFT_VALUE id=hermes-codex-lane pointer=/model
+F6	defect	The sealed lane pinned execute_lane_child_models to minimax while the same file's child_model_enforcement.config_surface claimed children were pinned to deepseek. An internal contradiction, pre-existing, now resolved.	config/hermes-codex-lane.json
+F7	defect	var/ is gitignored (.gitignore:9), so this round's tools, backups and receipts are on disk but not in the repository. The next session inherits artifacts it cannot fetch.	.gitignore:9; git status shows no R10 entries
+F8	claim	Installation remains three-of-five: package, standalone bootstrap, adapter files hold; effective host installation and native integration do not, and the ABI itself declares they are not_provided.	HANDOVER_STATE_R10.json planes.install
+F9	claim	FABRIC still has no SBL install target and none was manufactured.	HANDOVER_STATE_R10.json planes.fabric
+F10	claim	The handover's own acceptance cannot be performed by the session that wrote it: its criterion is that a FRESH session resumes from it. Recorded as FAIL, not NOT_RUN, because HGK accepts only PASS or FAIL.	self_check_r10.py C6; HGK acceptances
+F11	claim	SP integration remains NOT INTEGRATED: the dispatcher binds models, not SPs, and no inspected path invokes commander_sp, external_challenge_sp or sign_verdict.	HANDOVER §5 SP-INT

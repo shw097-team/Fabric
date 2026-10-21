@@ -1,0 +1,7 @@
+id	severity	deviation	disposition
+DEV-R10-01	high	No independent acceptance again. R7 stays INCONCLUSIVE / NOT ACCEPTED; R10's acceptance recorded FAIL.	CARRIED. Blocked on an authorised writable scratch root (R9-02).
+DEV-R10-02	high	Conformance NOT re-measured after b22706e.	OPEN. It is the first Kanban item for the next session precisely because it gates every other claim.
+DEV-R10-03	medium	Round tools, backups and receipts are in a gitignored directory and are not in the repository.	DISCLOSED. Same class as R9-05; policy change or per-round disclosure required.
+DEV-R10-04	medium	Six files modified by concurrent writers were left alone; the working tree is not clean.	CORRECT. Staging them would misattribute authorship.
+DEV-R10-05	low	FAR run renumbered 024 -> 025 in the previous round and this run is 026; numbers are no longer contiguous with any external register.	DISCLOSED.
+DEV-R10-06	low	Self-check C7 was initially written over-broad and failed on five legitimate rows from other rounds.	CORRECTED IN THE SAME ROUND; the five are recorded as context.

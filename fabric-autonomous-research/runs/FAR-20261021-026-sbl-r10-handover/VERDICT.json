@@ -1,0 +1,50 @@
+{
+  "schema": "FAR-VERDICT/1",
+  "run_id": "FAR-20261021-026-sbl-r10-handover",
+  "captured_at_utc": "2026-10-21T14:40:31.136396+00:00",
+  "ruling": "The mandate is available and was applied by re-ordering, not insertion. The handover is the deliverable, and its honesty is measured by what it says is still open. No closure is claimed that a fresh session cannot re-derive.",
+  "mandate": {
+    "verdict": "AVAILABLE_NOT_PAUSED",
+    "pre_probe": {
+      "PLAN@rank2": "minimax-m3.1-flash-free ok 5.43s usage200",
+      "EXECUTE@rank2": "deepseek-v4.1-flash ok 2.51s usage200",
+      "VERIFY@rank1": "gpt-6.1-sol ok 3.60s usage200"
+    },
+    "post_bind": {
+      "PLAN@rank1": "minimax-m3.1-flash-free 3.75s",
+      "EXECUTE@rank1": "deepseek-v4.1-flash 3.57s",
+      "VERIFY@rank1": "gpt-6.1-sol 3.05s"
+    },
+    "operation": "re-order of existing ranks; no arm added, none removed (demoted arms retained as fallbacks)"
+  },
+  "convergent_finding": "D1 reproduced a third time: a clean gate is silent about whether the surfaces agree.",
+  "delivered": [
+    {
+      "item": "handover package",
+      "where": "SBL evidence/r7-20261021-c7 @ 2dde2d8",
+      "content": "303-line handover + machine-readable state + 9/9 self-check"
+    },
+    {
+      "item": "lane rebind",
+      "where": "HG-KSEOS b22706e",
+      "measure": "epoch 29, drift 0, three surfaces agreed and cross-checked"
+    }
+  ],
+  "self_check": {
+    "verdict": "R10_SELF_CHECK_PASS",
+    "passed": 9,
+    "total": 9,
+    "notable": "C4 compares surfaces to each other; C7 scoped to this programme's subjects after an over-broad first draft"
+  },
+  "hgk": {
+    "requirement": "REQ-HGK-PRJ-SBL-PIPDLS-R10-HANDOVER",
+    "requirement_state": "FROZEN",
+    "taskspec_state": "ADMITTED",
+    "workorder_state": "FAILED",
+    "acceptance_verdict": "FAIL",
+    "evidence_rows": 6,
+    "why_fail": "the handover's acceptance criterion requires a FRESH session to resume from it; this session cannot perform that on itself"
+  },
+  "claim_ceiling": "CANDIDATE_ONLY. Candidate pool and candidate declarations re-ordered under owner authority. Not an acceptance, not native integration, not host installation, not a full-contract closure, no completion percentage.",
+  "next_best_action": "R10-01 (re-measure conformance) as the first action because it gates every other claim, then R10-02 for the first independent verdict."
+}
