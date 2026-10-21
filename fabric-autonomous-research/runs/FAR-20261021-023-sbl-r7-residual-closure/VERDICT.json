@@ -1,0 +1,49 @@
+{
+ "schema": "LOGICAL_FAR_VERDICT_V1",
+ "run_id": "FAR-20261021-023-sbl-r7-residual-closure",
+ "task_class": "RESEARCH_LITERATURE_REPO",
+ "captured_at_utc": "2026-10-21T06:32:32.575693+00:00",
+ "decision": "PROCEED_WITH_SCOPED_CLOSURE",
+ "reason_code": "FAR_ROUTE_NATIVE_ARIS",
+ "inputs": {
+  "r6_residual_denominator": 16,
+  "branches_measured": 49,
+  "sbl_branches_mergenow": 1,
+  "pipd_branches_mergenow": 0,
+  "official_pipd_skills_on_main": "8/8",
+  "residual_buckets": {
+   "executable_this_round": 5,
+   "one_action_owner": 4,
+   "not_closable_this_round": 5,
+   "closed_by_lane_owner": 1,
+   "closed_by_isolation": 1
+  }
+ },
+ "ruling": {
+  "RULING-1": "The wheel/sdist non-reproducibility was a BUILD-INPUT defect and is now CLOSED: .gitattributes pins LF and tools/build_reproducible.py exports a named commit with autocrlf disabled, pins SOURCE_DATE_EPOCH and repacks the sdist. Measured: two independent builds yield the identical wheel sha256 a161162fa4173460ad9041a9bc83afc31a52b6fc0539f4655f74de3b1147ecf6 and the identical sdist sha256 b147f674ffb2356123b63b6e95d6ad572a91f7364db56e859e562495fdd4a927.",
+  "RULING-2": "Exactly one candidate branch may enter MAIN: SBL candidate/c3-20261021-v2 (PR #2), scoped, merge-tree exit 0, 6/0, 27 files, +2576/-63, both CI runs success on that head. All 48 other branches are SUPERSEDED(26)/EVIDENCE_ONLY(16)/NOT_RECOMMENDED(3)/DO_NOT_MERGE(3). No PIPD-LS-SP branch is recommended; its 8 official skills are already on main.",
+  "RULING-3": "R6-TS06-A is one Owner action: press merge on PR #2 and authorise the release. Version 0.1.1rc1; merge_method=merge; draft first; the 9-step plan with per-step gates, failure handling and rollback is in ResearchHandoff.yaml.",
+  "RULING-4": "MID-ROUND OWNER ORDER: the PLAN execution model and the VERIFY/SECURITY checker model were rebound to minimax-m3.1-flash-free (opencode-go); EXECUTE stays deepseek-v4.1-flash, per the owner's clarification. Applied to the canonical dispatch-time pool (HG-KSEOS lane-route-slots.candidate.json revision 11, commit 3f81b4b) and MEASURED on that canonical pool for both rebound lanes: served_arm == required_arm, nonce_present=true, usage HTTP 200, exit 0. The openai-codex/gpt-6.1-sol arm is demoted to rank 2 as a fallback and NOT removed. The planner/checker identity overlap is RECORDED, not smoothed over: the dispatcher enforces no maker==checker REFUSE rule, so the checker no longer provides model-axis independence from the planner. HG-KSEOS has no git remote, so the rebind is local-only and is disclosed as such.",
+  "RULING-5": "THE FIRST INDEPENDENT CHECKER ROUND FOUND TWO REAL DEFECTS IN THE PRODUCT, NOT IN THE EVIDENCE. F8: the reproducibility tests asserted source text, so 2 of 3 contract-breaking mutations still passed them. F9: the build required the 'build' package from the ambient interpreter. Both were repaired in candidate commit 59d2138 and re-measured (202 passed / 2 skipped; the new mutation probe proves each mechanism can be broken and the suite notices). The lesson is recorded as L10/L11: a test that greps the source cannot fail when the source lies, and a build tool that depends on the ambient interpreter is an environment bug wearing a product costume."
+ },
+ "executed_this_round": [
+  "TT-R6-WHEEL-NONREPRODUCIBLE-001 CLOSED (product change on candidate/r7-20261021-repro-build, pushed to origin; 200 passed / 2 skipped)",
+  "TT-R6-VERIFY-TRANSPORT-VOCAB-001 confirmed CLOSED by the lane owner (HG-KSEOS 5d63e00) and independently re-measured: 3/3 lanes ok, nonce present, usage HTTP 200",
+  "TT-R6-APPENDIX-STALE-MERGE-001 closed as an isolation rule",
+  "16-item residual set assigned to exactly one bucket each",
+  "49-branch ruling produced with measured facts",
+  "TS06-A execution plan prepared down to the two Owner buttons",
+  "independent VERIFY_SECURITY round 1 (GPT 6.1 SOL): ran 392 s, produced byte-exact evidence (nonce present, usage HTTP 200) and two substantive findings (F8, F9), then ENDED WITHOUT A VERDICT because the provider quota was exhausted. Classified INCOMPLETE_ROUND_PROVIDER_QUOTA - preserved, not counted, not rounded up to a FAIL or a PASS.",
+  "F8 and F9 repaired in candidate commit 59d2138 and re-measured: 202 passed / 2 skipped; mutation probe green.",
+  "mid-round owner order applied: PLAN and VERIFY/SECURITY rebound to minimax-m3.1-flash-free and MEASURED on the canonical pool; EXECUTE confirmed by the owner as deepseek-v4.1-flash; a concurrent process's conflicting pool variant was dropped, not merged, and the conflict is disclosed.",
+  "a premature PASS on the HGK workorder was withdrawn with the typed rollback API, so the spine reads ROLLED_BACK rather than a false acceptance."
+ ],
+ "not_executed_and_why": {
+  "PR #2 merge / C3 prerelease": "Owner action (Human/Native gate). The owner's pre-authorisation covers executing the FAR ruling, not bypassing the human authorisation boundary; the R6 report states the Reviewer did not press merge.",
+  "CR-PLUGIN-SCHEMA-AUTHORITY / CR-GPTB-KP-R04-POLARITY": "each needs one owner decision, written out with a recommended default and a reason",
+  "R6-TS12 / TS15 / TS16 / TS21 / TS22-23-24 / TS07-CLOSURE": "need a Native issuer, a Host authorisation, or a new admitted WriteSet slice; not closable in this round",
+  "signed PASS_CHALLENGE": "the canonical challenge bundle is still missing; claiming it would be a false green",
+  "independent_checker_verdict": "PENDING: the round-2 VERIFY_SECURITY dispatch runs on the new minimax arm (nonce R7CHK-NC-20261021-A2) and had not produced a verdict when this verdict was captured. Until it does, the R7 candidate is NOT independently accepted and no PASS may be recorded on the workorder."
+ },
+ "claim_ceiling": "SCOPED_R7_CLOSURE_ONLY__EXACT_RECEIPTS__OWNER_ACTIONS_NOT_TAKEN__NO_INDEPENDENT_VERDICT_YET__NOT_FULL_CONTRACT_PASS__PLANNER_AND_CHECKER_ARE_NOW_THE_SAME_IDENTITY"
+}
