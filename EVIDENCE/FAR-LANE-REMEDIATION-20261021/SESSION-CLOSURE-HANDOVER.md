@@ -2,9 +2,10 @@
 
 **Control plane:** HG-KSEOS (sole). **Runtime/Orchestration:** the canonical Hermes profile.
 **Rounds:** `FAR-REMEDIATION-20261021` (epoch 23) → `FAR-CLOSURE-20261021` (epoch 24) →
-`FAR-CLOSURE-20261021-R2` (transport vocabulary + checker tooling).
-**HG-KSEOS commits:** `c442f07` → `5d63e00` → `248eda9`.
-**Fabric branch:** `pub/far-lane-remediation-20261021` at `cf391af` (published, not merged).
+`FAR-CLOSURE-20261021-R2` (transport vocabulary + checker tooling) →
+`FAR-CLOSURE-20261021-R3` (land the untracked runtime so a clean checkout can rebuild the contract).
+**HG-KSEOS commits:** `c442f07` → `5d63e00` → `248eda9` → `051d574`.
+**Fabric branch:** `pub/far-lane-remediation-20261021` at `cf93dab` (published, not merged).
 
 ## The one-paragraph version
 
@@ -33,6 +34,7 @@ digest guard reporting 520/520 governed files unchanged.
 | F7 | `AGENTS.md` pointed at the superseded SoD conflict (C2) and source revision 18 | now C4 and revision 24 | `AGENTS.md` |
 | G8 | the openai arm's transport vocabulary was qualified, not bare → the declared GPT 6.1 SOL-MEDIUM arm was structurally un-runnable | bare transport id for PLAN#1, VERIFY_SECURITY#1, EXECUTE#2; a conformance test fails if any `openai-codex` entry is qualified | `var/FAR-CLOSURE-20261021-R2/apply_receipt.json`; `pool.transport_vocabulary` |
 | G9 | a checker lane could not re-derive a test-suite result: the host shell exports `TMPDIR=/tmp` (an MSYS virtual path a native Windows child cannot use), so `tempfile.mkdtemp` failed | the dispatcher hands the child a Windows-usable scratch root as `TMPDIR`/`TEMP`/`TMP`, plus `PYTHONDONTWRITEBYTECODE=1` and `-p no:cacheprovider` | `scripts/hgk-lane-dispatch.py`; `lane_receipts/VERIFY_acceptance.json` |
+| G10 | the published contract was **not reproducible from the repository**: this round committed the tests and the dispatcher while the modules they import (`hg_kseos.lane_policy`, `lane_admission`, `lane_route_resolver`, `role_binding`) were untracked — a clean worktree at HEAD raised `ImportError` and the suite aborted during collection | the measured closure landed in commit `051d574`; the closure was re-derived against `git ls-files`, so nothing pulls in an untracked dependency | `evidence/apply_receipt_r3.json`; `lane_receipts/AO_landing2.json` (AO extracted the tree with `git archive HEAD` and got `IMPORTS_OK` + `5 passed, 90 subtests passed` from the committed bytes alone) |
 
 ## Verification actually performed (and by whom)
 
@@ -68,7 +70,15 @@ digest guard reporting 520/520 governed files unchanged.
 4. **No acceptance, no release, no promotion.** The AO's own receipt states that a pass "is not an
    acceptance of any subject". The Fabric packet is `CANDIDATE_ONLY`; the branch is published for
    external acceptance and is **not merged**.
-5. **The Hermes *session* model and the *lane* models are two different planes and were kept
+5. **The COMMITTED `config/hermes.json` is stale.** It still names the `var/hermes-v020` isolated
+   home and `deepseek-v4-flash`, so the committed tree carries three `PROJECTION_DEBT` warnings
+   that the working tree does not. The corrected binding exists only as an **uncommitted** edit
+   from an earlier session; it was deliberately NOT landed because it is an out-of-scope rewrite
+   that also repoints `executable` at the `hermes.exe` trampoline. Ledger row `K-27`/`K-28`.
+6. **300+ untracked candidate entries remain** in the HG-KSEOS working tree; the nine files this
+   round's tests and dispatcher actually depend on are landed, the rest needs a per-item
+   disposition. Ledger row `K-29`.
+7. **The Hermes *session* model and the *lane* models are two different planes and were kept
    separate throughout.** The interactive session's provider pin says nothing about what the PLAN
    lane is bound to; every lane model claim in this packet comes from the pool's governance
    identity and was exercised through `scripts/hgk-lane-dispatch.py`.
