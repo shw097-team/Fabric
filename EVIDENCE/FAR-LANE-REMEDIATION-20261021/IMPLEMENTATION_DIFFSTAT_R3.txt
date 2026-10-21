@@ -1,0 +1,35 @@
+commit 051d5745eeb8a0677ab4fefa377367284d221309
+Author: HGK Governed Runtime <hgk@local>
+Date:   Wed Oct 21 13:16:32 2026 +0800
+
+    FAR-CLOSURE-20261021-R3: land the lane runtime so a clean checkout can rebuild it
+    
+    This round committed tests/test_lane_policy.py and scripts/hgk-lane-dispatch.py, and both
+    import hg_kseos.lane_policy / lane_admission / lane_route_resolver / role_binding -- none of
+    which were tracked. A clean detached worktree at the round's own HEAD could not import them
+    (ImportError: cannot import name 'lane_policy' from 'hg_kseos'), and the conformance suite
+    aborted during collection. The tracked tree carried the TESTS and the DISPATCHER while the
+    modules they depend on lived only in the working copy, so the published epoch-24 contract was
+    not reproducible from the repository.
+    
+    Lands the measured closure: four runtime modules, four lane scripts, one test. Every local
+    import of every candidate was resolved against git ls-files first, so no candidate pulls in an
+    untracked dependency; no candidate carries a credential-shaped literal; no candidate hardcodes a
+    machine-absolute path.
+    
+    Verification is from a FRESH DETACHED WORKTREE at the new commit: the four modules import, the
+    conformance suite collects and passes, and the dispatcher parses. The point is that the repository
+    can now rebuild its own lane contract from its own tracked bytes.
+    
+    Local commit only: no push, no branch movement, no force operation.
+
+ scripts/hgk-artifact-gate.py           |  214 ++++
+ scripts/hgk-exec-model-frontdoor.py    |  968 ++++++++++++++++
+ scripts/hgk-lane-guard.py              |  467 ++++++++
+ scripts/runtime_role_binding_assert.py |  297 +++++
+ src/hg_kseos/lane_admission.py         |  242 ++++
+ src/hg_kseos/lane_policy.py            |  468 ++++++++
+ src/hg_kseos/lane_route_resolver.py    |  305 +++++
+ src/hg_kseos/role_binding.py           |  518 +++++++++
+ tests/test_lane_dispatch_ao_guard.py   | 1929 ++++++++++++++++++++++++++++++++
+ 9 files changed, 5408 insertions(+)

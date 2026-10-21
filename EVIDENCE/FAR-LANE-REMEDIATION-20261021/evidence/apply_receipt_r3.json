@@ -1,0 +1,91 @@
+{
+  "round": "FAR-CLOSURE-20261021-R3",
+  "utc": "20261021T051631Z",
+  "applied": true,
+  "candidates": [
+    "src/hg_kseos/lane_policy.py",
+    "src/hg_kseos/lane_admission.py",
+    "src/hg_kseos/lane_route_resolver.py",
+    "src/hg_kseos/role_binding.py",
+    "scripts/hgk-lane-guard.py",
+    "scripts/runtime_role_binding_assert.py",
+    "scripts/hgk-exec-model-frontdoor.py",
+    "scripts/hgk-artifact-gate.py",
+    "tests/test_lane_dispatch_ao_guard.py"
+  ],
+  "pre_sha256": {
+    "src/hg_kseos/lane_policy.py": "255b6b95eeb5be156c0bfb7966764bb5eb213e8af5bf321861ec0f4642d5b12b",
+    "src/hg_kseos/lane_admission.py": "235b4bfbb5e98eb8573ed931a892734d2391eb4eea8edf54a7b3732d0c722094",
+    "src/hg_kseos/lane_route_resolver.py": "49606e09e9ae2ba011f730679888937352e4c5881e8bddc2ab31903df0305a87",
+    "src/hg_kseos/role_binding.py": "94084205266e1a841ce0f9be1696813085ef26fbda48ade830cf5f66eff2b938",
+    "scripts/hgk-lane-guard.py": "ba16c5815129b126dd80b6499812c540861a91e8986ecf64d62343871e5a59dc",
+    "scripts/runtime_role_binding_assert.py": "6fa7ed6b6ea983e154a6a2a0b70a250baa6bbc65742a2a82425ce9a2f5fcacd2",
+    "scripts/hgk-exec-model-frontdoor.py": "99353cd3566fac60bee9b077d83b4117865cd4fa1718de8da01677cf2a7e7b43",
+    "scripts/hgk-artifact-gate.py": "f2ae2f1828069ae93decd04c04568db45842fd3c18c25fbc46694602db5a27f2",
+    "tests/test_lane_dispatch_ao_guard.py": "a8b82dc679750303fe30431e83a3f0d9ca4490e202acc76a31cc755213aed0b9"
+  },
+  "staged_but_uncommitted": [
+    "scripts/hgk-artifact-gate.py",
+    "scripts/hgk-exec-model-frontdoor.py",
+    "scripts/hgk-lane-guard.py",
+    "scripts/runtime_role_binding_assert.py",
+    "src/hg_kseos/lane_admission.py",
+    "src/hg_kseos/lane_policy.py",
+    "src/hg_kseos/lane_route_resolver.py",
+    "src/hg_kseos/role_binding.py",
+    "tests/test_lane_dispatch_ao_guard.py"
+  ],
+  "git_add": [],
+  "git_add_already_staged": [
+    "src/hg_kseos/lane_policy.py",
+    "src/hg_kseos/lane_admission.py",
+    "src/hg_kseos/lane_route_resolver.py",
+    "src/hg_kseos/role_binding.py",
+    "scripts/hgk-lane-guard.py",
+    "scripts/runtime_role_binding_assert.py",
+    "scripts/hgk-exec-model-frontdoor.py",
+    "scripts/hgk-artifact-gate.py",
+    "tests/test_lane_dispatch_ao_guard.py"
+  ],
+  "index_blobs": {
+    "scripts/hgk-artifact-gate.py": "427313562b72963b017c14f3ea74e2274458f842",
+    "scripts/hgk-exec-model-frontdoor.py": "f1d8eeaf9297ed0666e1efed4da3eab6ec38d5f9",
+    "scripts/hgk-lane-guard.py": "dc79f0696949db6ce8ae54c7bccb081759ed1996",
+    "scripts/runtime_role_binding_assert.py": "b0d4c93c60a9402967f6aecdd60d434259ba3fec",
+    "src/hg_kseos/lane_admission.py": "66e55c8fa527c759971e271e25b52acdf0b04733",
+    "src/hg_kseos/lane_policy.py": "b76a2ef3e187fdd34cd04e9d25449e09873dffa4",
+    "src/hg_kseos/lane_route_resolver.py": "7b11ddbddd39620453f18116fbb8844c20a2eeb0",
+    "src/hg_kseos/role_binding.py": "494ca7a7f2f60095c9a6627263a7a809cfffcca0",
+    "tests/test_lane_dispatch_ao_guard.py": "46d931f93db97ac5c3791829ae81b36c207d9615"
+  },
+  "head_before": "248eda9371c6c622219c115a92a1b478d689abac",
+  "commit": {
+    "rc": 0,
+    "stderr": ""
+  },
+  "head_after": "051d5745eeb8a0677ab4fefa377367284d221309",
+  "verification": {
+    "worktree_add": {
+      "rc": 0,
+      "stderr": "Preparing worktree (detached HEAD 051d574)\n"
+    },
+    "imports": {
+      "rc": 0,
+      "out": "IMPORTS_OK",
+      "err": ""
+    },
+    "pytest": {
+      "rc": 0,
+      "tail": [
+        ".....                                                  [100%]",
+        "5 passed, 90 subtests passed in 9.58s"
+      ],
+      "err": ""
+    },
+    "dispatcher": {
+      "rc": 0,
+      "out": "DISPATCHER_PARSES"
+    },
+    "worktree_removed": true
+  }
+}

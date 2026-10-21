@@ -42,6 +42,53 @@ verification is not independent acceptance; publication is not release.
 | EXECUTE | `opencode-go/deepseek-v4.1-flash` | codex-cli | `opencode-go/deepseek-v4.1-flash` | `openai-codex/gpt-6-luna` (bare `gpt-6-luna`), `nvidia/deepseek-ai/deepseek-v4.1-flash` |
 | VERIFY_SECURITY | `openai-codex/gpt-6.1-sol` (medium, OAuth) | codex-cli | `gpt-6.1-sol` (BARE) | `opencode-go/glm-5.3-flash`, `opencode-go/deepseek-v4.1-flash` |
 
+### Round 3 (`FAR-CLOSURE-20261021-R3`) — the published contract was not reproducible from the repository
+
+An independent read of the round-2 output found a defect that no local gate could see: this round
+committed `tests/test_lane_policy.py` and `scripts/hgk-lane-dispatch.py`, and **both import
+`hg_kseos.lane_policy` / `lane_admission` / `lane_route_resolver` / `role_binding` — none of which
+were tracked in git**. A clean detached worktree at the round's own HEAD could not import them:
+
+```
+clean checkout: ImportError: cannot import name 'lane_policy' from 'hg_kseos'
+pytest tests/test_lane_policy.py -> ERROR during collection (1 error)
+```
+
+So the tracked tree carried the **tests** and the **dispatcher** while the modules they depend on
+lived only in the working copy. A lane that cannot be rebuilt from a clean checkout is a lane that
+cannot be handed over.
+
+**Fixed** in commit `051d574` (HG-KSEOS): the measured closure — four runtime modules
+(`src/hg_kseos/lane_policy.py`, `lane_admission.py`, `lane_route_resolver.py`, `role_binding.py`),
+four lane scripts (`scripts/hgk-lane-guard.py`, `runtime_role_binding_assert.py`,
+`hgk-exec-model-frontdoor.py`, `hgk-artifact-gate.py`) and one test
+(`tests/test_lane_dispatch_ao_guard.py`) — is now tracked. The closure was **re-derived**, not
+guessed: every local import of every candidate was resolved against `git ls-files` first, so no
+candidate pulls in an untracked dependency; no candidate carries a credential-shaped literal; no
+candidate hardcodes a machine-absolute path.
+
+**Verification, by the independent AO lane, from the committed bytes only**
+(`lane_receipts/AO_landing2.json` — the checker extracted the tree with `git archive HEAD` and
+worked inside it, so nothing from the working copy could leak in):
+
+| claim | result |
+|---|---|
+| all nine files present in the extracted HEAD tree | PASS (none missing) |
+| `from hg_kseos import lane_policy, lane_admission, lane_route_resolver, role_binding` | `IMPORTS_OK`, exit 0 |
+| `pytest tests/test_lane_policy.py -q` in the extracted tree | exit 0, `5 passed, 90 subtests passed` |
+| `config/` present in the extracted tree; registry `epoch: 24` | PASS |
+| epoch / drift read from the extracted tree | `EPOCH 24`, drift non-empty (see below) |
+| the suite is self-contained from committed bytes | PASS — only an external venv+pytest is needed |
+
+The AO lane also disclosed, without being asked, that the drift it read in the **extracted** tree is
+non-empty (three `PROJECTION_DEBT` warnings about `config/hermes.json`) whereas the main working
+tree reads `[]`. That difference is real and is **not** repaired here: the committed
+`config/hermes.json` still describes the `var/hermes-v020` isolated home and the old model name
+`deepseek-v4-flash`, and the corrected version exists only as an **uncommitted** working-tree edit
+left by an earlier session. Committing it would land an unreviewed, out-of-scope rewrite (it also
+repoints `executable` at the `hermes.exe` trampoline) — so it is recorded as an open item below
+rather than silently shipped. See ledger row `K-27`.
+
 ### The transport vocabulary is a second, per-provider vocabulary — read this before trusting a lane
 
 A pool entry carries **two** identities, and they are not the same thing:
@@ -104,6 +151,20 @@ separation is claimed. EXECUTE (`deepseek-v4.1-flash`) vs VERIFY (`gpt-6.1-sol`)
   weekly used with an unexpired credential while requests failed with `Model is unavailable`; the
   transport-vocabulary repair is what made the arm usable, but the upstream's catalogue and
   availability remain outside the local contract.
+- **The committed `config/hermes.json` is stale** — it still names the `var/hermes-v020` isolated
+  home and `deepseek-v4-flash`, so the COMMITTED tree carries three `PROJECTION_DEBT` warnings that
+  the working tree does not. The corrected binding exists only as an uncommitted edit from an
+  earlier session and was deliberately NOT landed here (it is an out-of-scope rewrite that also
+  repoints `executable` at the `hermes.exe` trampoline). Ledger row `K-27`.
+- **Two lane tools are still untracked**: `scripts/hgk-lane-guard.py` and
+  `scripts/runtime_role_binding_assert.py` were landed, but the wider `var/` candidate population
+  (300+ untracked entries) is untouched. Landing it is a per-item disposition job, not a bulk
+  `git add`. Ledger row `K-28`.
+- **Other work from earlier sessions remains uncommitted** in the HG-KSEOS working tree
+  (`src/hg_kseos/knowledge.py`, `src/hg_kseos/spine.py`, `scripts/hermes-core.ps1`,
+  `source-freeze/TT_LEDGER.csv`, `tests/test_task014_named_method_closure.py`,
+  `docs/HG-KSEOS使用說明文檔.md`, `config/project.json`). It was left alone deliberately: it belongs
+  to a different task and was not verified in this round.
 - No canonical acceptance, no release, no production authorisation.
 - The mirrored `var/` trees, the spine database, the credential stores and every machine-local
   runtime path are **not** published here.
