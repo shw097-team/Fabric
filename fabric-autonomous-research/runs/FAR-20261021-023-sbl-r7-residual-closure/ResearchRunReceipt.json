@@ -1,7 +1,7 @@
 {
   "schema": "LOGICAL_FAR_RESEARCH_RUN_RECEIPT_V1",
   "run_id": "FAR-20261021-023-sbl-r7-residual-closure",
-  "captured_at_utc": "2026-10-21T12:21:52.769126+00:00",
+  "captured_at_utc": "2026-10-21T12:38:50.035853+00:00",
   "task_class": "RESEARCH_LITERATURE_REPO",
   "route": {
     "decision": "NATIVE_WITH_SELECTED_ARIS",
@@ -20,10 +20,10 @@
     "base_head": "3d06f3da83488219a3dcdf608c937b8c5285810c"
   },
   "lane_mandate_observed": {
-    "PLAN": "openai-codex/gpt-6.1-sol",
-    "EXECUTE": "opencode-go/deepseek-v4.1-flash",
-    "VERIFY_SECURITY": "openai-codex/gpt-6.1-sol",
-    "note": "the interactive session model (minimax-m3.1-flash-free / opencode-go) is a DIFFERENT plane and is not a lane binding"
+    "PLAN": "openai-codex/gpt-6.1-sol (reasoning effort medium, OpenAI OAuth)",
+    "EXECUTE": "opencode-go/deepseek-v4.1-flash, dispatched through the Codex CLI as the bounded writer",
+    "VERIFY_SECURITY": "openai-codex/gpt-6.1-sol (reasoning effort medium, OpenAI OAuth)",
+    "note": "these are the LANE arms measured on the canonical dispatch-time pool; the shared session interaction plane runs a different model on purpose and is never used as a lane binding"
   },
   "lane_probe_evidence": "HG-KSEOS/var/R7-LANES/probe2_{PLAN,EXECUTE,VERIFY_SECURITY}.json (ok=true, nonce_present=true, usage status 200)",
   "artifacts": {
@@ -40,8 +40,8 @@
       "sha256": "4a61c4098504a1f8b495f48b6fefb76f4bbb173f401c55a2662756dd28489551"
     },
     "DEVIATIONS.tsv": {
-      "bytes": 5944,
-      "sha256": "f9185b6026f6db1340110b6519f348f2ed7481f13e61aa3ca7131af90648c9aa"
+      "bytes": 6824,
+      "sha256": "7c5079990f9ff94c999b78fd6435bdcda0981cba2595f2a1f1fe5259eb8745c5"
     },
     "DisagreementLedger.tsv": {
       "bytes": 705,
@@ -52,8 +52,8 @@
       "sha256": "5f8ca8b62edf0636229586218d21336da07ad4906c2b8f86caccedf1de081c60"
     },
     "FINDINGS.tsv": {
-      "bytes": 7750,
-      "sha256": "de215627fc144f867ad97362aa5501275f3e5a6619df8f8163345b7f47e84edc"
+      "bytes": 10552,
+      "sha256": "5f424522aae957fed9d5646eb77da7dbae7c44ff47d4a03095de807d745e997a"
     },
     "FitGapLedger.tsv": {
       "bytes": 594,
@@ -64,8 +64,8 @@
       "sha256": "f50264f06fd4bc720263208732d790b761b9e52d999577b82f82a9abe5380f6f"
     },
     "LEARNING.md": {
-      "bytes": 16347,
-      "sha256": "5b92ec7ddd4e11633ee291afa6f100877f6de7bcead89bae01fcde18822608f4"
+      "bytes": 20622,
+      "sha256": "480c5cb619cde6fe162783ee385cc92bd25f9019ff4d289e547fc15ff0e788cd"
     },
     "METHOD.md": {
       "bytes": 5879,
@@ -112,15 +112,15 @@
       "sha256": "0b2b5b97dbd799236caa490a92c6c26f16b63c7151f81395a9b16d81242286bd"
     },
     "VERDICT.json": {
-      "bytes": 13547,
-      "sha256": "7499dbd0552d9bd696fe61f75b27f2af8309372f29147e8dcf032b9391bda427"
+      "bytes": 17011,
+      "sha256": "2b04e63abd2d75ee6d0c5d7c966dd339477c01069fca349de78db6cccb51ba1d"
     }
   },
   "raw_evidence_dir": "raw_worker_artifacts/",
-  "claim_ceiling": "LOCAL / CANDIDATE-ONLY; not an acceptance; not a Gate PASS; not authority; full DOC-00..13 closure NOT claimed",
+  "claim_ceiling": "SCOPED_R7_CLOSURE_ONLY__THREE_MERGES_AND_A_PRERELEASE_EXECUTED__INDEPENDENT_VERDICT_IS_INCONCLUSIVE_NOT_ACCEPTED__HGK_ACCEPTANCE_RECORDED_AS_FAIL__NOT_FULL_CONTRACT_PASS__RELEASE_IS_A_PRERELEASE__NO_NATIVE_ISSUER_NO_HOST_GRANT",
   "note_copy_in_sbl": "a copy of this run is committed under SBL/_governance/round-20261021-r7/20_FAR/far-20261021-023/",
   "artifact_count": 22,
-  "artifact_bytes_total": 119109,
+  "artifact_bytes_total": 130530,
   "resume_iterations": [
     {
       "at_utc": "2026-10-21T10:51:03.693818+00:00",
@@ -155,7 +155,7 @@
       "independent_verdict": "PENDING - checker attempt 4 dispatched; no verdict yet"
     },
     {
-      "at_utc": "2026-10-21T12:21:52.784164+00:00",
+      "at_utc": "2026-10-21T12:38:50.044869+00:00",
       "trigger": "resume after reboot: lane toolchain pin, CI environment gap, release",
       "defects_found_and_fixed": [
         "R7R-TOOLCHAIN-PIN: the declared codex binary no longer existed after an in-place CLI upgrade; every lane dispatch failed BEFORE SPAWNING, stopping the SBL EXECUTE and VERIFY lanes. Pin re-derived from the installed binary; the registry's two expected values re-pinned in the same commit.",
