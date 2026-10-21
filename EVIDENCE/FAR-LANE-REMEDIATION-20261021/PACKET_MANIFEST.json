@@ -4,8 +4,8 @@
   "subject": "HG-KSEOS lane/model declaration remediation, epoch 22 -> epoch 23",
   "control_plane": "HG-KSEOS (sole control plane); canonical Hermes = governed Runtime/Orchestration Plane",
   "publish_claim": "the DELIVERED set is every file under evidence/FAR-LANE-REMEDIATION-20261021/. Bytes are stored verbatim (-text). An external acceptor can recompute each sha256 below from the delivered blob.",
-  "file_count": 27,
-  "total_bytes": 342197,
+  "file_count": 36,
+  "total_bytes": 711428,
   "manifest_excludes_itself": true,
   "independent_recomputation_mismatches": [],
   "secret_scan": {
@@ -28,6 +28,11 @@
       "sha256": "d974a7213c7fa8ecf5d63300479ce4778bf44195f0e301aedba7c7340cf40aee"
     },
     {
+      "path": "EVIDENCE/FAR-LANE-REMEDIATION-20261021/evidence/apply_receipt_r2.json",
+      "bytes": 2875,
+      "sha256": "bad05a2ff15cc1576ac014dacd6177d49b10247e25fdeb39593e6ab13fdffe22"
+    },
+    {
       "path": "EVIDENCE/FAR-LANE-REMEDIATION-20261021/evidence/EVIDENCE_DIGEST.md",
       "bytes": 11694,
       "sha256": "c46652ea95387598121d6a2110ffc79124ee444b17a4e53c38025150a0617fb3"
@@ -48,9 +53,19 @@
       "sha256": "37321bd74c7d2be7e90c3afb00faf693f206e1b888e007513bcf46db92b0684f"
     },
     {
+      "path": "EVIDENCE/FAR-LANE-REMEDIATION-20261021/implementation/apply_transport_fix.py",
+      "bytes": 8791,
+      "sha256": "080f9bc37fa3f7e2f38355d1574f26afdd1c6ec2d13cfe3057883cedf7e3922e"
+    },
+    {
       "path": "EVIDENCE/FAR-LANE-REMEDIATION-20261021/implementation/hermes-codex-lane.json",
       "bytes": 11705,
       "sha256": "c2aa55684cff091c849c40566b53f304970d23bbe2b52d1ab8967d073cf93478"
+    },
+    {
+      "path": "EVIDENCE/FAR-LANE-REMEDIATION-20261021/implementation/hgk-lane-dispatch.py",
+      "bytes": 144524,
+      "sha256": "847247f350f7883d8408e55b5ff8a1c6eaab86a9b8fc158c1438905579fbfeca"
     },
     {
       "path": "EVIDENCE/FAR-LANE-REMEDIATION-20261021/implementation/IMPLEMENTATION_DIFF.patch",
@@ -64,18 +79,18 @@
     },
     {
       "path": "EVIDENCE/FAR-LANE-REMEDIATION-20261021/implementation/lane-route-slots.candidate.json",
-      "bytes": 28293,
-      "sha256": "5c891c0fbcc9474ec415d4f9e5d0d1d727fc372d760a621280f3836e045c9301"
+      "bytes": 30209,
+      "sha256": "b44f416fecab4496b1c7ff795cb57590d098a829c596c2339630b4ed2acf901f"
     },
     {
       "path": "EVIDENCE/FAR-LANE-REMEDIATION-20261021/implementation/lane-routing-registry.yaml",
-      "bytes": 32724,
-      "sha256": "f3219dc7ebdcf1ad08e25158c6640f665df344e9d5342b4f5a4056a3849ebc6a"
+      "bytes": 32657,
+      "sha256": "98f1d92aa3144339f64d2fc6d57f16c8f62f5135c89c471203f816f19270b7c9"
     },
     {
       "path": "EVIDENCE/FAR-LANE-REMEDIATION-20261021/implementation/model-lane-assignment.json",
-      "bytes": 48643,
-      "sha256": "9c70d8803ee2d5922efd540a4268d4c2674cdcb961ff317398a98df46c5c298f"
+      "bytes": 49517,
+      "sha256": "b1ec1b8bbea360d15f329ba6633b1327dd8c33cc969e67d9cd2cca3c4b9b15d0"
     },
     {
       "path": "EVIDENCE/FAR-LANE-REMEDIATION-20261021/implementation/selfcheck.py",
@@ -86,6 +101,16 @@
       "path": "EVIDENCE/FAR-LANE-REMEDIATION-20261021/implementation/selfcheck_epoch24.py",
       "bytes": 5586,
       "sha256": "e85b8c4356b7a282a26090c08115afe67264f50a4bfd920bc26f5c9199e5f246"
+    },
+    {
+      "path": "EVIDENCE/FAR-LANE-REMEDIATION-20261021/IMPLEMENTATION_DIFF_R2.patch",
+      "bytes": 181558,
+      "sha256": "b2eeb7d3ec8fa146e2567eddd91e2452cdf2535c7e10def5bb99018bad0ebce2"
+    },
+    {
+      "path": "EVIDENCE/FAR-LANE-REMEDIATION-20261021/IMPLEMENTATION_DIFFSTAT_R2.txt",
+      "bytes": 627,
+      "sha256": "2bc928758cc92f6d4aa7a5a3adaf18ea08262f2f2b93f7786e546d64c16e2d4b"
     },
     {
       "path": "EVIDENCE/FAR-LANE-REMEDIATION-20261021/lane_receipts/AO_verdict.json",
@@ -108,14 +133,34 @@
       "sha256": "e76a1550efd8ce449c37e5e6db89d6f2542ee66d9ff6fa7a2cdc267681bf4c14"
     },
     {
+      "path": "EVIDENCE/FAR-LANE-REMEDIATION-20261021/lane_receipts/EXECUTE_transport.json",
+      "bytes": 5729,
+      "sha256": "b125e0f900b93a35e75c877056e3c9a9e143fcd6751f4bdf4c876ff4355157e3"
+    },
+    {
       "path": "EVIDENCE/FAR-LANE-REMEDIATION-20261021/lane_receipts/probe_MINIMAX_EXECUTE.json",
       "bytes": 5822,
       "sha256": "65c60a0887f3ea6bf2d119f47417879d1fdb6e6987902049d4772da91c5d8f29"
     },
     {
+      "path": "EVIDENCE/FAR-LANE-REMEDIATION-20261021/lane_receipts/VERIFY_acceptance.json",
+      "bytes": 6260,
+      "sha256": "7c7e1e65102f4a5f3894360c43cf1f759a019f010967b6a0276708650e6d9684"
+    },
+    {
+      "path": "EVIDENCE/FAR-LANE-REMEDIATION-20261021/lane_receipts/VERIFY_final.json",
+      "bytes": 5542,
+      "sha256": "fa191a76df6f2d9cee9bc7b02574055eae776cca8eb2263a6c98280645e66f53"
+    },
+    {
       "path": "EVIDENCE/FAR-LANE-REMEDIATION-20261021/openspec/proposal.md",
       "bytes": 2088,
       "sha256": "e136548539662e0aa76533f72a4cb98811484ca906d165a2ebccf1e31721016d"
+    },
+    {
+      "path": "EVIDENCE/FAR-LANE-REMEDIATION-20261021/openspec/spec.md",
+      "bytes": 2422,
+      "sha256": "60f563734e67969c88f8a5febc310106cebae4998863ce82a40ed990253fe8a4"
     },
     {
       "path": "EVIDENCE/FAR-LANE-REMEDIATION-20261021/openspec/specs/lane-routing/spec.md",
@@ -124,13 +169,13 @@
     },
     {
       "path": "EVIDENCE/FAR-LANE-REMEDIATION-20261021/openspec/tasks.md",
-      "bytes": 943,
-      "sha256": "7d8546e125e5b0b5625df2d7787d5e4c6648163014ce868b5447a45bf0fbe9c4"
+      "bytes": 5198,
+      "sha256": "c09810c42bcf2fd128236061d1cdab434444158763d99a70a4176e0774430566"
     },
     {
       "path": "EVIDENCE/FAR-LANE-REMEDIATION-20261021/README.md",
-      "bytes": 4109,
-      "sha256": "4999877a85de276470e17931bf35c508b498358de7f84d7c81013d59f7e27070"
+      "bytes": 8034,
+      "sha256": "7c8cd4f786923c7ed0e890cc71a2f42d7eacc4aa73363d452b58e66fb260a0e3"
     },
     {
       "path": "EVIDENCE/FAR-LANE-REMEDIATION-20261021/research/RESEARCH_CANDIDATES.md",

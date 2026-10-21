@@ -111,8 +111,9 @@
           "role": "DEFAULT/首選",
           "auth": "openai_oauth",
           "oauth": true,
-          "transport_model": "openai-codex/gpt-6.1-sol",
-          "reasoning_effort": "medium"
+          "transport_model": "gpt-6.1-sol",
+          "reasoning_effort": "medium",
+          "transport_vocabulary_note": "the openai arm requires the BARE id: a qualified 'openai-codex/<model>' is routed by the relay to the default provider and answers HTTP 400 'Model is unavailable' (measured 2026-10-21 on 127.0.0.1:10101; bare id -> 200). The governance identity provider=openai-codex / model=<id> is unchanged."
         },
         {
           "rank": 2,
@@ -180,38 +181,43 @@
         {
           "rank": 1,
           "provider": "opencode-go",
-          "model": "minimax-m3.1-flash-free",
-          "role": "PROBE/探測",
-          "auth": "env_ref:OPENCODE_GO_API_KEY",
-          "oauth": false,
-          "transport_model": "opencode-go/minimax-m3.1-flash-free"
-        },
-        {
-          "rank": 2,
-          "provider": "opencode-go",
           "model": "deepseek-v4.1-flash",
           "role": "DEFAULT/首選",
           "auth": "env_ref:OPENCODE_GO_API_KEY",
           "oauth": false,
-          "transport_model": "opencode-go/deepseek-v4.1-flash"
+          "transport_model": "opencode-go/deepseek-v4.1-flash",
+          "probe_note": "declared policy default for this lane (owner order 2026-10-21)"
         },
         {
-          "rank": 3,
+          "rank": 2,
           "provider": "openai-codex",
           "model": "gpt-6-luna",
           "role": "FALLBACK1/備援1",
           "auth": "openai_oauth",
           "oauth": true,
-          "transport_model": "openai-codex/gpt-6-luna"
+          "transport_model": "gpt-6-luna",
+          "transport_vocabulary_note": "the openai arm requires the BARE id: a qualified 'openai-codex/<model>' is routed by the relay to the default provider and answers HTTP 400 'Model is unavailable' (measured 2026-10-21 on 127.0.0.1:10101; bare id -> 200). The governance identity provider=openai-codex / model=<id> is unchanged."
         },
         {
-          "rank": 4,
+          "rank": 3,
           "provider": "nvidia",
           "model": "deepseek-ai/deepseek-v4.1-flash",
           "role": "FALLBACK2/備援2",
           "auth": "env_ref:NVIDIA_API_KEY",
           "oauth": false,
           "transport_model": "nvidia/deepseek-ai/deepseek-v4.1-flash"
+        },
+        {
+          "rank": 4,
+          "provider": "opencode-go",
+          "model": "minimax-m3.1-flash-free",
+          "role": "PROBE/探測",
+          "auth": "env_ref:OPENCODE_GO_API_KEY",
+          "oauth": false,
+          "transport_model": "opencode-go/minimax-m3.1-flash-free",
+          "probe_note": "measured lane arm (round FAR-CLOSURE-20261021): the Codex-CLI lane served this arm at required_arm == served_arm. A PROBE arm is NOT a policy default and must not be selected by an unpinned dispatch; it is an explicitly pinnable measured capability.",
+          "default": false,
+          "automatic_selection": false
         }
       ]
     },
@@ -237,8 +243,9 @@
           "role": "DEFAULT/首選",
           "auth": "openai_oauth",
           "oauth": true,
-          "transport_model": "openai-codex/gpt-6.1-sol",
-          "reasoning_effort": "medium"
+          "transport_model": "gpt-6.1-sol",
+          "reasoning_effort": "medium",
+          "transport_vocabulary_note": "the openai arm requires the BARE id: a qualified 'openai-codex/<model>' is routed by the relay to the default provider and answers HTTP 400 'Model is unavailable' (measured 2026-10-21 on 127.0.0.1:10101; bare id -> 200). The governance identity provider=openai-codex / model=<id> is unchanged."
         },
         {
           "rank": 2,
@@ -369,7 +376,7 @@
       "deepseek-ai/deepseek-v4.1-flash 400"
     ]
   },
-  "rev": "far-remediation-20261021",
+  "rev": "far-closure-20261021-r2",
   "history": [
     {
       "rev": 7,
@@ -396,5 +403,18 @@
     "gate_scope": "CODEX-CLI lanes only (EXECUTE / VERIFY_SECURITY). The PLAN lane runs on the hermes engine and is not dispatched by scripts/hgk-lane-dispatch.py.",
     "implementation": "scripts/hgk-lane-dispatch.py: default_identity_requirement() + identity_check() + the pre-spawn gate in main(); tests/test_lane_dispatch_ao_guard.py",
     "require_arm_semantics": "--require-arm provider/model makes the run FAIL CLOSED instead of silently degrading to another arm when the named arm is refused"
+  },
+  "transport_vocabulary": {
+    "measured_at": "2026-10-21",
+    "relay": "http://127.0.0.1:10101",
+    "rule": "the transport id is per-provider: openai-codex REQUIRES the bare id; nvidia REQUIRES '<provider>/<model>'; opencode-go accepts bare or qualified.",
+    "openai_codex_bare_only": true,
+    "evidence": {
+      "gpt-6.1-sol": 200,
+      "openai/gpt-6.1-sol": 200,
+      "openai-codex/gpt-6.1-sol": 400,
+      "openai-codex/gpt-5.6-sol": 400,
+      "gpt-6.1-sol-high": 400
+    }
   }
 }

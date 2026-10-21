@@ -1,0 +1,76 @@
+{
+  "round": "FAR-CLOSURE-20261021-R2",
+  "utc": "20261021T045318Z",
+  "applied": true,
+  "changes": [
+    {
+      "finding": "G8",
+      "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\lane-route-slots.candidate.json",
+      "change": "openai-codex transport_model -> bare id",
+      "fixed": [
+        {
+          "lane": "PLAN",
+          "rank": 1,
+          "from": "openai-codex/gpt-6.1-sol",
+          "to": "gpt-6.1-sol"
+        },
+        {
+          "lane": "EXECUTE",
+          "rank": 2,
+          "from": "openai-codex/gpt-6-luna",
+          "to": "gpt-6-luna"
+        },
+        {
+          "lane": "VERIFY_SECURITY",
+          "rank": 1,
+          "from": "openai-codex/gpt-6.1-sol",
+          "to": "gpt-6.1-sol"
+        }
+      ]
+    },
+    {
+      "finding": "G8",
+      "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\tests\\test_lane_policy.py",
+      "change": "added transport-vocabulary conformance tests"
+    }
+  ],
+  "fixed": [
+    {
+      "lane": "PLAN",
+      "rank": 1,
+      "from": "openai-codex/gpt-6.1-sol",
+      "to": "gpt-6.1-sol"
+    },
+    {
+      "lane": "EXECUTE",
+      "rank": 2,
+      "from": "openai-codex/gpt-6-luna",
+      "to": "gpt-6-luna"
+    },
+    {
+      "lane": "VERIFY_SECURITY",
+      "rank": 1,
+      "from": "openai-codex/gpt-6.1-sol",
+      "to": "gpt-6.1-sol"
+    }
+  ],
+  "pre_sha256": {
+    "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\lane-route-slots.candidate.json": "6820f027d898ea859098d8b38e3c9ae1e87431a8457b8094a54a1042923d3b1c",
+    "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\model-lane-assignment.json": "b1ec1b8bbea360d15f329ba6633b1327dd8c33cc969e67d9cd2cca3c4b9b15d0",
+    "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\lane-routing-registry.yaml": "98f1d92aa3144339f64d2fc6d57f16c8f62f5135c89c471203f816f19270b7c9",
+    "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\tests\\test_lane_policy.py": "054f7b4d6deb20ff0e9b28f1a89b0d72f1ba97321c81a8e29f92afcac81e925c"
+  },
+  "check_drift": [],
+  "openai_transport_offenders": [],
+  "pytest_rc": 0,
+  "pytest_tail": [
+    ".....                                                  [100%]",
+    "5 passed, 90 subtests passed in 8.41s"
+  ],
+  "post_sha256": {
+    "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\lane-route-slots.candidate.json": "b44f416fecab4496b1c7ff795cb57590d098a829c596c2339630b4ed2acf901f",
+    "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\model-lane-assignment.json": "b1ec1b8bbea360d15f329ba6633b1327dd8c33cc969e67d9cd2cca3c4b9b15d0",
+    "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\lane-routing-registry.yaml": "98f1d92aa3144339f64d2fc6d57f16c8f62f5135c89c471203f816f19270b7c9",
+    "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\tests\\test_lane_policy.py": "847a0bb0c702a419696feeab1263710e425c3372c883e0202c156a543ae62780"
+  }
+}

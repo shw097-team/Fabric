@@ -1,7 +1,7 @@
 {
   "artifact": "MODEL_LANE_ASSIGNMENT",
   "schema": "HGK-MODEL-LANE-ASSIGNMENT/1",
-  "revision": 23,
+  "revision": 24,
   "declared_at_utc": "2026-10-15T11:25:47.689574Z",
   "declared_by": "Owner order 2026-10-16 (round ROUND3-LANE-REBIND-AND-CLOSURE-20261016) — PLAN & Orchestrator rebound to opencode-go/glm-5.3-flash; VERIFY/SECURITY checker rebound to opencode-go/deepseek-v4.1-flash; EXECUTE unchanged at opencode-go/deepseek-v4.1-flash. Applied under typed WorkOrders by the in-Hermes orchestrator; external acceptance NOT performed.",
   "authority_note": "Operator-declared routing policy. Not an authority source; the runtime wiring named in `effective_wiring` is the machine truth. The current revision is the top-level \"revision\" field; earlier revisions are recorded in the revision_*_reason fields and in this file's history sections.",
@@ -220,7 +220,7 @@
     "plan_lane": "openai-codex / gpt-6.1-sol (medium, OpenAI OAuth) — owner order 2026-10-21 (round FAR-REMEDIATION-20261021, epoch 23); supersedes the 2026-10-16 GLM order.",
     "execute_lane": "opencode-go / deepseek-v4.1-flash (Codex CLI worker)",
     "verify_security_lane": "openai-codex / gpt-6.1-sol (medium, OpenAI OAuth) — owner order 2026-10-21; supersedes the 2026-10-16 deepseek order.",
-    "verify_security_arm_A": "opencode-go / deepseek-v4.1-flash (primary Codex CLI checker)",
+    "verify_security_arm_A": "openai-codex / gpt-6.1-sol (primary Codex CLI checker)",
     "verify_security_default_arm": "gpt-6.1-sol",
     "verify_security_selection": "owner order 2026-10-16 (round ROUND3-LANE-REBIND-AND-CLOSURE-20261016); unset -> default arm A = deepseek-v4.1-flash; arm B (gpt-6.1-sol) is a NON-DEFAULT operator-selectable alternate and is never auto-selected; arm C (glm-5.3-flash) is an automatically selected fallback.",
     "verify_vs_execute_model_separation": "NONE on the model axis, BY OWNER ORDER: EXECUTE and VERIFY_SECURITY default arm A are BOTH opencode-go/deepseek-v4.1-flash (SOD006-C3, OWNER_ORDERED_IN_FORCE, owner order 2026-10-16). What remains is PROCESS, LANE and EVIDENCE-PATH independence plus the no-self-acceptance rule; model diversity between writer and checker is deliberately absent and is NOT claimed.",
@@ -236,7 +236,9 @@
     },
     "verify_security_reasoning_effort": "medium",
     "plan_reasoning_effort": "medium",
-    "provider_separation_status": "ABSENT by owner order: all three lanes sit on opencode-go (PLAN glm-5.3-flash, EXECUTE deepseek-v4.1-flash, VERIFY_SECURITY arm A deepseek-v4.1-flash). Provider separation is not required (invariants.provider_separation_required=false). Model-axis separation HOLDS PLAN-vs-EXECUTE and PLAN-vs-VERIFY, and is deliberately absent EXECUTE-vs-VERIFY (SOD006-C3). Recorded as an accepted risk."
+    "provider_separation_status": "ABSENT by owner order: all three lanes sit on opencode-go (PLAN glm-5.3-flash, EXECUTE deepseek-v4.1-flash, VERIFY_SECURITY arm A deepseek-v4.1-flash). Provider separation is not required (invariants.provider_separation_required=false). Model-axis separation HOLDS PLAN-vs-EXECUTE and PLAN-vs-VERIFY, and is deliberately absent EXECUTE-vs-VERIFY (SOD006-C3). Recorded as an accepted risk.",
+    "verify_security_arm_A_note": "Aligned to lane_chains.VERIFY_SECURITY[0] in round FAR-CLOSURE-20261021. This field is a PROSE restatement of the chain, so it is not covered by check_drift(); the cross-field check is now a named gate (see tests/test_lane_declaration_agreement.py).",
+    "verify_security_arm_A_prior_value": "openai-codex / gpt-6.1-sol (primary Codex CLI checker)"
   },
   "claim_ceiling": "Owner-authorized canonical declarations applied; deterministic drift/route/SoD verification is not independent acceptance, promotion, production, or provider-liveness evidence. SOD006-C1 is resolved by owner adjudication; historical SOD006-C2 remains recorded. | Revision 19: an owner-ordered canonical declaration applied by agent orchestration under that order; it is not independent verification, not acceptance, and not model-liveness proof for the GLM arm.",
   "revision_4_reason": "Independent AO lane (deleg_dc8bcd60 task-1, verdict FAIL) found revision 3 overstated its own wiring: it declared model.openai_runtime=codex_app_server as effective for a provider where the source proves that key is a no-op, and it asserted provider separation that the declared fallback arm falsifies. Revision 4 states the mechanism that actually exists.",
@@ -573,7 +575,7 @@
   "revision_12_reason": "Revision 12 applies the arm-B exhaustive-declaration repair for revision 11: it corrects the stale provider-separation shape (E1/E2/E3), marks the historical lane-deviation object superseded (E4), rebuilds the across-arms identity aggregate for the current arms (E5/E6/E7), retags the FAR-LANE-SOD-005 flash probe as historical (E8), corrects the fallback-surface and delegation.applies_to claims (E9/E10), declares the EXECUTE lane's measured live effort without inventing an operator value (E11), and records the projection-drops-dual-arms gap as DECLARED_GAP_NOT_FIXED because src/** is out of scope (E12). sod_conflicts stays exactly SOD006-C1 and SOD006-C2, both OPEN. It also labelled the retired OpenAI Codex fallback token and the retired z-ai NVIDIA flash token at every remaining site as RETIRED history, so the stale-prose grep is clean without deleting the historical records.",
   "revision_13_reason": "Revision 13 repairs the round-2 over-correction: it restores the exact machine-readable retired identifiers at the three identifier sites from the rev11 byte-copy (recovering them from the backup rather than inventing them) and carries the retired semantics in additive retired/retired_note fields. It also closes the residual prose defects - the authority note's false self-revision clause, the operator-decision option and the revision_12_reason wording that spelled the retired tokens, and the registry header and digest - while this file's own revision is now the top-level revision field.",
   "revision_14_reason": "WO-FAR-D1D2-FINAL-ROUTE-20261008 / REQ-FAR-D1D2-FINAL-20261008 (owner adjudication; events=947); PLAN medium; VERIFY primary/default arm A and arm B fallback; affected projections synchronized; historical records preserved.",
-  "registry_epoch": 23,
+  "registry_epoch": 24,
   "revision_16_reason": "WO-PIPD-R5-EXECUTE-LUNA-ROUTE-20261009: owner-requested additional explicit EXECUTE gpt-6-luna/openai-codex OAuth route. Preserve primary and historical retired entries; zero automatic fallbacks; local route resolution only, backend unsupported and bounded-writer admission not claimed.",
   "revision_15_reason": "Second canonical edit under WO-FAR-D1D2-FINAL-ROUTE-20261008 / REQ-FAR-D1D2-FINAL-20261008 (owner adjudication; events=947): preserve VERIFY primary/default arm A and PLAN medium; demote arm B to a non-default operator-selectable alternate, never auto-selected; restore every registry fallbacks list to []; advance registry epoch 12 -> 13 and declaration revision 14 -> 15; synchronize source digest and projection bindings without modifying candidate tests.",
   "round_authorization": {
@@ -647,5 +649,6 @@
     },
     "claim_ceiling": "CANDIDATE_ONLY declaration. A binding is a declaration; the serving evidence is the profile's own session rows plus the probe stdout cited above, and it is NOT canonical acceptance."
   },
-  "revision_23_reason": "Round FAR-REMEDIATION-20261021 (owner order 2026-10-21): PLAN rank-1 = openai-codex/gpt-6.1-sol (medium, OAuth); VERIFY_SECURITY rank-1 = openai-codex/gpt-6.1-sol (medium, OAuth, Codex CLI); EXECUTE unchanged; SOD006-C3 superseded, SOD006-C4 declared OPEN_OWNER_ORDERED; toolchain pin unified to the live 0.163.0-alpha.10.2 build. Cross-surface alignment (registry / pool / profile / AGENTS.md / owner-chain test) lands in the SAME change set."
+  "revision_23_reason": "Round FAR-REMEDIATION-20261021 (owner order 2026-10-21): PLAN rank-1 = openai-codex/gpt-6.1-sol (medium, OAuth); VERIFY_SECURITY rank-1 = openai-codex/gpt-6.1-sol (medium, OAuth, Codex CLI); EXECUTE unchanged; SOD006-C3 superseded, SOD006-C4 declared OPEN_OWNER_ORDERED; toolchain pin unified to the live 0.163.0-alpha.10.2 build. Cross-surface alignment (registry / pool / profile / AGENTS.md / owner-chain test) lands in the SAME change set.",
+  "revision_24_reason": "Round FAR-CLOSURE-20261021: close the cross-field declaration gaps that check_drift() cannot see. sod.verify_security_arm_A now restates lane_chains.VERIFY_SECURITY[0] instead of the superseded deepseek arm; registry authorization_basis / selected_arm_identity / projection note stopped describing revision 17/22; the EXECUTE pool's PROBE arm is labelled as a PROBE and the declared default is stated; the change checklist is reconciled against receipts. Epoch 24."
 }

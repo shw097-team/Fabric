@@ -7,11 +7,11 @@
 # ============================================================================
 schema: HGK-LANE-ROUTING-REGISTRY/1
 status: CANDIDATE
-epoch: 23
-authorization_basis: REQ-FAR-LANE-SOD-003 / WO-LANE-ROUTE-001-EXECUTE (writer=codex). The route values are adopted from the `sod` block of config/model-lane-assignment.json, dispatchable at revision 17. This registry does not itself confer authority; activation requires an HGK-authorized generation binding. Owner final route change authorized by WO-FAR-D1D2-FINAL-ROUTE-20261008 / REQ-FAR-D1D2-FINAL-20261008 (owner adjudication; events=947).
+epoch: 24
+authorization_basis: REQ-FAR-LANE-SOD-003 / WO-LANE-ROUTE-001-EXECUTE (writer=codex). The route values are adopted from the `sod` block of config/model-lane-assignment.json, dispatchable at revision 24. This registry does not itself confer authority; activation requires an HGK-authorized generation binding. Owner final route change authorized by WO-FAR-D1D2-FINAL-ROUTE-20261008 / REQ-FAR-D1D2-FINAL-20261008 (owner adjudication; events=947).
 source_of_routes:
   path: config/model-lane-assignment.json
-  revision: 23
+  revision: 24
   sha256: 9c70d8803ee2d5922efd540a4268d4c2674cdcb961ff317398a98df46c5c298f
 transport_model_constraints:
   rule_source: measured 2026-10-10 (E4/E5b/E6/E7 + direct codex probes); evidence under evidence/review/
@@ -171,7 +171,7 @@ routes:
   oauth: true
   selection_authority: owner-order-20261021-lane-rebind-plan-gpt-verify-gpt
   selected_arm: A
-  selected_arm_identity: deepseek-v4.1-flash
+  selected_arm_identity: gpt-6.1-sol
   arms:
   - arm: primary
     provider: openai-codex
@@ -302,12 +302,12 @@ projections:
 - id: model-lane-assignment
   path: config/model-lane-assignment.json
   format: json
-  note: 'canonical policy revision 22 (owner order 2026-10-16, round ROUND3-LANE-REBIND-AND-CLOSURE-20261016). PLAN rank-1 is opencode-go/glm-5.3-flash (medium, OpenCode Go) with the owner-chain fallbacks GPT-6.1-SOL (non-default) then DeepSeek V4.1 Flash; the additional EXECUTE route is operator-selectable only; VERIFY_SECURITY arm A is opencode-go/deepseek-v4.1-flash and arm B is openai-codex/gpt-6.1-sol (non-default operator-selectable). SUPERSEDES the epoch-21 order that put PLAN and VERIFY/SECURITY on openai-codex/gpt-6.1-sol: the writer and the checker now share one model BY OWNER ORDER, which is declared as SOD006-C3 rather than hedged.'
+  note: 'canonical policy revision 24 (owner order 2026-10-21, round FAR-CLOSURE-20261021, superseding revision 22 / the 2026-10-16 order). PLAN rank-1 is openai-codex/gpt-6.1-sol (medium, OpenAI OAuth) with the owner-chain fallbacks GLM-5.3-Flash (OpenCode Go) then DeepSeek V4.1 Flash; VERIFY_SECURITY arm A is openai-codex/gpt-6.1-sol (Codex CLI) and arm B is opencode-go/glm-5.3-flash; the additional EXECUTE route is operator-selectable only. PLAN and VERIFY/SECURITY share one model BY OWNER ORDER, declared as SOD006-C4 (OPEN_OWNER_ORDERED, process separation only) rather than hedged.'
   bindings:
   - pointer: /registry_epoch
-    expected: 23
+    expected: 24
   - pointer: /revision
-    expected: 23
+    expected: 24
   - pointer: /assignment/1/additional_routes/0/provider
     expected: openai-codex
   - pointer: /assignment/1/additional_routes/0/model
