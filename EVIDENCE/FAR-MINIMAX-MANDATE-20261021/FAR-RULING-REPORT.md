@@ -235,26 +235,47 @@ fabric-autonomous-research/runs/FAR-20261021-024-fallback-chain-reorder/
 **裁決 C2（建議）**：TT-001 進入獨立 change（需 schema/資料相容性變更），
 **不列入本回合收尾**。
 
-### 裁決 D：模型軸獨立性（必須讓業主知情）
+### 裁決 D：模型軸獨立性（**epoch 26 已恢復；本項狀態已更新**）
 
-業主的新模型方案讓 **PLAN、EXECUTE、VERIFY_SECURITY 三車道全部是同一個模型**
-（`opencode-go/minimax-m3.1-flash-free`）。這意味著：
+> **重測記錄（2026-10-21 16:2x）**：本項原記「三車道全部是 MiniMax，模型軸獨立性 = 0」，
+> 那是 **epoch 25** 的事實。並行 session 的 `f4a2ec4`（epoch 26）已把車道分開：
+> PLAN/VERIFY = `openai-codex/gpt-6.1-sol`，EXECUTE = `opencode-go/deepseek-v4.1-flash`。
+> **重測 `check_sod` 三對全為 SOD_OK，模型軸獨立性已恢復。**
 
-- **模型軸獨立性 = 0**。三車道同模型。
-- 依 HGK 的 SoD 規則，這必須**明確宣告**，不能含糊帶過。
-- 本回合已宣告為 `SOD006-C5`（`OPEN_OWNER_ORDERED`），並把
-  `sod_invariants.pairs` 中 `EXECUTE->VERIFY_SECURITY` 的 `distinct_required` 由 `true`
-  改為 `false`，**同時記錄了原因**（不是無聲翻轉旗標）。
-- 剩下的分離只有：PROCESS（獨立 Codex-CLI 程序）、LANE（角色不同）、
-  EVIDENCE-PATH（checker 從工件重新推導，不讀 writer 的摘要）、
-  以及 no-self-acceptance 規則。
-- **相關盲點（correlated blind spots）不被主張為不存在。**
+**現況（epoch 26，pool revision 12）**：
 
-**裁決 D1（建議，給業主）**：若未來要把模型軸分離恢復，
-最省阻力的做法是保留 MiniMax 為三車道 rank-1，**同時**把 `gpt-6.1-sol`
-留在 VERIFY_SECURITY 的 operator-selectable 臂（它已在池中，rank 2）——
-如此 checker 可在配額恢復後切換，而不需要再做一次池重綁。
-**本回合已把 MiniMax 之外的臂全部保留為 fallback，沒有刪除任何臂。**
+| 車道 | rank-1 | transport_model | MiniMax |
+|---|---|---|---|
+| PLAN | `openai-codex/gpt-6.1-sol` | `gpt-6.1-sol`（裸 id） | rank 2，保留 |
+| EXECUTE | `opencode-go/deepseek-v4.1-flash` | `opencode-go/deepseek-v4.1-flash` | rank 2，保留 |
+| VERIFY_SECURITY | `openai-codex/gpt-6.1-sol` | `gpt-6.1-sol`（裸 id） | rank 2，保留 |
+
+**重測結果**：
+`check_drift` → 0 findings；
+`check_sod(PLAN,VERIFY_SECURITY)` / `(EXECUTE,VERIFY_SECURITY)` / `(PLAN,EXECUTE)` → 全部 `SOD_OK`。
+
+**因此 D 項的裁決內容改為**：
+
+- **模型軸獨立性已恢復**（writer = `deepseek-v4.1-flash` 於 EXECUTE，
+  checker = `gpt-6.1-sol` 於 VERIFY_SECURITY，**不同 provider、不同模型**）。
+- 本回合在 epoch 25 宣告的 `SOD006-C5`（三車道同模型 → `distinct_required: false`）
+  隨 epoch 26 一併失效——**由另一個 session 的重綁自然解除，不需本回合再改**。
+- **本回合的測試修補因此仍然有效且仍然必要**：
+  `tests/fixtures/stub_lane_child.py` 從 dispatcher 的 `--model` 推導 provider/model
+  （而非硬編 rank-1）——**這個修補正是 epoch 26 能成立的前提**，
+  硬編 rank-1 的 stub 會在每次重綁時誤報 receipt 為 model mismatch。
+- MiniMax 臂**未被刪除**，在三車道都是 rank 2 fallback。
+  若日後配額再次受限，**改回 MiniMax 只需改 pool 的 rank 順序，不需要新機制**——
+  這正是「低阻力」原則的實際意義。
+
+**一個反向的治理缺陷（本回合未修，屬另一個 session 的 commit 範圍）**：
+epoch 26 的 pool 中，每個車道的 `selection_note` 仍寫著
+「minimax-m3.1-flash-free (opencode-go) is rank 1 and the automatic selection for <LANE>」，
+**與同一檔案的 `ordered_pool` rank-1 不符**。
+這與本回合 `a1bd583` 曾犯的缺陷**同類**（當時是 `declared_by` 文字與實際改動不符）。
+**本回合不擅自修改**——pool 正由另一個 session 作業，且修它需先決定 `selection_note`
+該描述哪一個 order。已列入交接事項。
+
 
 ### 裁決 E：delegation 平面
 

@@ -191,7 +191,41 @@ R11 原話已指明：**不要改這兩個 record 的 proposal 文字**。
 
 ## 5. 必須先處理的阻塞項（會影響回填正確性）
 
-### 5.1 現況測試套件 20 紅（實測，非本回合造成）
+### 5.1 現況測試套件狀態（**本節已於 epoch 26 後重測修正**）
+
+> **重測記錄（2026-10-21 16:2x）**：本節原記「20 紅」，且註明「epoch 25 registry 變更未提交、
+> 測試 oracle 仍停在 epoch 23」。**兩項前提在並行 session commit `f4a2ec4`／`bf209cf`（epoch 26）
+> 後已不再成立。** 重測結果如下。
+
+**重測（使用專案 interpreter `HG-KSEOS/.venv/Scripts/python.exe`，pytest 9.1.1 + PyYAML 6.0.3）**：
+
+```
+PYTHONPATH=src ./.venv/Scripts/python.exe -m pytest -q \
+  tests/test_lane_policy.py tests/test_lane_dispatch_ao_guard.py
+→ 141 passed, 90 subtests passed
+```
+
+**結論：epoch 26 沒有引入 regression。**
+
+**但本次重測過程中發現一個必須記錄的環境陷阱**（已寫入 skill `hgk-lane-rebinding-traps` Trap 5）：
+
+第一次重測得到 `2 failed, 139 passed`，失敗為
+`test_registry_and_projection_shape` 與 `test_drift_injection_subcases`，
+錯誤是 `JSONDecodeError: Expecting value: line 1 column 1`——
+看起來像 registry 檔損毀，**實際上是 interpreter 選錯**：
+
+| interpreter | pytest | PyYAML | 結果 |
+|---|---|---|---|
+| `where python` → Hermes runtime venv | 有 | **無** | 2 failed（假失敗） |
+| `HG-KSEOS/.venv/Scripts/python.exe` | 有 | 有 | **141 passed** |
+
+`lane_policy._yaml_load_unique()` 在 PyYAML 缺席時回 `None`，
+`load_site()` 便 fallback 到 `json.loads()` → 對 YAML 內容必然拋 `JSONDecodeError`。
+
+**教训（已入 skill）**：紅燈結果必須先用「專案 interpreter 的絕對路徑」重測再下結論；
+`where python` 在這台機器上指向 Hermes 內建 runtime，不是專案環境。
+
+**對本報告的影響**：§5.1 原列的 3 個阻塞前提全部重新評估如下。
 
 ```
 PYTHONPATH=src ./.venv/Scripts/python.exe -m pytest -q \
@@ -226,11 +260,43 @@ pool 殘留 epoch 23 的 `deepseek-v4.1-flash`，epoch 25 已改 `minimax-m3.1-f
 - 建議在本回合把 34 個 change 目錄納管（`git add openspec/changes`），否則 §4.1 的動作全部不可稽核。
 - 這也解釋了為何先前代理用 git log 交叉驗證會失敗——那條路徑對這批檔案本來就不存在。
 
-### 5.3 SoD 前提已於 epoch 25 失效
+### 5.3 SoD 前提：**epoch 26 已恢復模型軸獨立性**（本節已重測修正）
 
-live 實測：`check_sod(PLAN,VERIFY_SECURITY)` = SOD_OK、`check_sod(EXECUTE,VERIFY_SECURITY)` = SOD_OK — 但這是因為**三車道全部**綁在 `opencode-go/minimax-m3.1-flash-free` 同一模型上，registry 自述：「Model-axis separation is ABSENT between every pair (SOD006-C4 and SOD006-C5, both OPEN_OWNER_ORDERED)」。
+> **重測記錄（2026-10-21 16:2x）**：本節原記「三車道全部綁在 minimax 同一模型，模型軸獨立性
+> ABSENT，任何要求 checker ≠ writer 的驗收列在現行 owner order 下無法取得模型軸獨立性」。
+> **該前提在並行 session commit `f4a2ec4`（epoch 26）後已不再成立。**
 
-**影響**：任何要求「checker ≠ writer」的驗收列（`strict-declaration` 4.2、`hgk-far-019` 4.1、`pipd-r17` 3.1、`hgk-r8` 4.x）在現行 owner order 下**無法取得模型軸獨立性**。這些列只能標 disposition（`OWNER_ORDERED_NO_MODEL_AXIS_INDEPENDENCE`），不能標完成。
+**重測（專案 interpreter）**：
+
+```
+check_drift(...)                  → 0 findings
+check_sod('PLAN','VERIFY_SECURITY')         → (True, 'SOD_OK plan != verify_security')
+check_sod('EXECUTE','VERIFY_SECURITY')      → (True, 'SOD_OK execute != verify_security')
+check_sod('PLAN','EXECUTE')                 → (True, 'SOD_OK plan != execute')
+```
+
+**現況 rank-1**（`config/lane-route-slots.candidate.json` revision 12）：
+
+| 車道 | rank-1 | MiniMax 位置 |
+|---|---|---|
+| PLAN | `openai-codex/gpt-6.1-sol`（transport `gpt-6.1-sol`） | rank 2（保留為 fallback） |
+| EXECUTE | `opencode-go/deepseek-v4.1-flash` | rank 2（保留） |
+| VERIFY_SECURITY | `openai-codex/gpt-6.1-sol` | rank 2（保留） |
+
+**因此「模型軸獨立性」不再是 §5.3 的阻塞**。
+§2 中所有標為「只能標 disposition（`OWNER_ORDERED_NO_MODEL_AXIS_INDEPENDENCE`）、不能標完成」的
+驗收列（`strict-declaration` 4.2、`hgk-far-019` 4.1、`pipd-r17` 3.1、`hgk-r8` 4.x），
+**在 epoch 26 下重新具備「checker ≠ writer」的技術前提**。
+它們仍需逐項人工判斷（是否真的執行過、證據是否成立），但**不再是因為模型軸而不可能完成**。
+
+**注意一個反向的治理缺陷（本回合未修，屬另一個 session 的 commit 範圍）**：
+epoch 26 的 pool 每一個車道的 `selection_note` 仍寫著
+「Owner order 2026-10-21: minimax-m3.1-flash-free (opencode-go) is rank 1 and the automatic
+selection for <LANE>」——**與同一檔案裡的 `ordered_pool` rank-1 不符**。
+這是「artifact 內部自相矛盾」，與本回合 `a1bd583` 曾犯的是**同一類缺陷**（當時是
+`declared_by` 說「只改 PLAN 與 VERIFY」、實際改了全部三車道）。
+**本回合不擅自修改**：pool 正由另一個 session 作業中，且修它需要先決定
+`selection_note` 應描述哪一個 order。已列入 checkpoint 的交接事項。
 
 ### 5.4 Fabric 上 PR #12/#13/#14 的 merge 不在 `main`
 

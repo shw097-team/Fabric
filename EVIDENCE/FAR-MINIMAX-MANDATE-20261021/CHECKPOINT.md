@@ -13,9 +13,21 @@
 **FAR 裁決報告（含實測索引）**、**Fabric 證據包發布（遠端 67/67 驗證通過）**；
 **尚缺**一張**獨立 AO 簽署的 verdict** 與**業主對兩項裁決的確認**。
 
-**但有一個狀況改變了整件事的前提**：另一個 session 依**更新的業主命令**
-（`OWNER-ORDER-20261021-GPT-QUOTA-RESTORED`，記為「GPT 配額已恢復」）已把 lane pool
-重綁回 GPT 並 **commit**（`f4a2ec4`、`bf209cf`）。**本回合的 MiniMax 指示已不是現況。**
+**但有一個狀況改變了整件事的前提**：另一個 session 依**更新的業主命令**已把 lane pool
+重綁回 GPT 並 **commit**（`f4a2ec4`、`bf209cf`，epoch 26）。
+
+> **裁決 ① 已在 2026-10-21 16:2x 實測後解決（不再是待決事項）**：
+> 現行 pool revision 12 的 `declared_by` 欄**逐字記載了業主的更新命令**——
+> 「Owner order 2026-10-21 (owner messages, GPT quota restored): the PLAN execution model and
+> the Independent Acceptance Officer / VERIFY / SECURITY checker model are BOTH GPT 6.1 SOL-MEDIUM
+> (OpenAI OAuth) = openai-codex/gpt-6.1-sol … This SUPERSEDES the 2026-10-21 order that put
+> minimax-m3.1-flash-free (opencode-go) on PLAN and VERIFY_SECURITY. The EXECUTE lane is NOT
+> named by this order and stays deepseek-v4.1-flash (opencode-go) at rank 1, per the owner's
+> standing clarification 「維持 DeepSeek V4.1 Flash（依您原話：只改 PLAN 與 VERIFY/CHECKER）」」
+>
+> **即：更新命令明確 supersede 本回合的 MiniMax 指示，且明確指示只改 PLAN 與 VERIFY/CHECKER。
+> 本回合的 MiniMax 綁定（epoch 25）保留為 git 歷史與證據，不是現行契約。**
+> **仍待業主裁決的只有 FAR 五項（A–E），裁決 ① 已由 pool 的 declared_by 回答。**
 
 ---
 
@@ -90,15 +102,35 @@ git status --short
 
 ### P0 — 業主裁決（**不可自行決定**）
 
-**裁決 ①：並行業主命令衝突**
+**裁決 ①：並行業主命令衝突 — ✅ 已由實測解決（2026-10-21 16:2x）**
 
-| 車道 | 本回合 epoch 25 | 另一個 session 的 epoch 26（已 commit） |
+| 車道 | 本回合 epoch 25（`a1bd583`/`1cbb9d2`） | 現行 epoch 26（`f4a2ec4`/`bf209cf`，已 commit） |
 |---|---|---|
-| PLAN | `opencode-go/minimax-m3.1-flash-free` | `openai-codex/gpt-6.1-sol` |
+| PLAN | `opencode-go/minimax-m3.1-flash-free` | `openai-codex/gpt-6.1-sol`（transport 裸 id） |
 | EXECUTE | `opencode-go/minimax-m3.1-flash-free` | `opencode-go/deepseek-v4.1-flash` |
-| VERIFY_SECURITY | `opencode-go/minimax-m3.1-flash-free` | `openai-codex/gpt-6.1-sol` |
+| VERIFY_SECURITY | `opencode-go/minimax-m3.1-flash-free` | `openai-codex/gpt-6.1-sol`（transport 裸 id） |
 
-選項：(A) MiniMax 指示有效 → 修掉 `declared_by` 矛盾並重綁；(B) GPT 重綁有效 → 本回合 commit 保留為歷史證據；(C) 兩者都要，需業主說明切換條件。
+**解決依據（不是推測，是 artifact 內的逐字記載）**：
+pool revision 12 的 `declared_by` 明文寫著
+「Owner order 2026-10-21 (owner messages, GPT quota restored) … **This SUPERSEDES the 2026-10-21
+order that put minimax-m3.1-flash-free (opencode-go) on PLAN and VERIFY_SECURITY.**
+The EXECUTE lane is NOT named by this order and stays deepseek-v4.1-flash (opencode-go) at rank 1,
+per the owner's standing clarification 「維持 DeepSeek V4.1 Flash（依您原話：只改 PLAN 與
+VERIFY/CHECKER）」」。
+
+**結論**：選項 (B) 成立——**更新命令有效，本回合的 MiniMax commit 保留為 git 歷史與證據**。
+本回合**不撤銷**另一個 session 的任何工作。MiniMax 臂在三車道都保留為 rank 2 fallback。
+
+**連帶的實測結果（epoch 26 下）**：
+- `check_drift` → **0 findings**
+- `check_sod` 三對 → **全部 SOD_OK**（模型軸獨立性**已恢復**）
+- targeted suites → **141 passed, 0 failed**（用專案 interpreter）
+- 裁決 D 的結論因此改寫：模型軸獨立性不再是爭議項。
+
+**剩一個反向缺陷（本回合不修，屬另一 session 範圍）**：
+epoch 26 pool 的每個 `selection_note` 仍寫「minimax…is rank 1」，與同檔的
+`ordered_pool` rank-1 不符。與本回合 `a1bd583` 曾犯的是同類 artifact 自相矛盾。
+**修它需要業主先決定 `selection_note` 應描述哪一個 order**——列為交接事項。
 
 **裁決 ②：FAR 五項裁決確認**（詳見 `FAR-RULING-REPORT.md`）
 
@@ -147,17 +179,38 @@ cd C:/Projects/Agent_Workspace/HG-KSEOS
 
 ---
 
-## 4. 開機後的建議執行順序
+## 4. 開機後的建議執行順序（**已依 16:2x 的實測更新**）
 
-1. **讀第 1 節的三條命令，確認現況**（尤其：業主有沒有下新命令）
-2. **向業主取得裁決 ①**（哪個命令有效）——這決定後續所有事
-3. **取得裁決 ②**（FAR 五項）→ 若確認，執行：
+1. **讀第 1 節的三條命令，確認現況**（尤其：業主在關機前後有沒有再下新命令）
+2. ~~取得裁決 ①~~ → **已解決**（pool `declared_by` 逐字記載更新命令 supersede MiniMax）。
+   現行契約 = epoch 26：PLAN/VERIFY=`gpt-6.1-sol`、EXECUTE=`deepseek-v4.1-flash`，
+   MiniMax 三車道皆保留為 rank 2 fallback。
+3. **取得裁決 ②**（FAR 五項 A–E）→ 若確認，執行：
    - A：只 tick 那 109 筆可交叉驗證者，其餘標 disposition
+     （**注意：epoch 26 下模型軸已分離，§5.3 原本阻擋「只能標 disposition」的驗收列重新具備技術前提**）
    - B：不刪目錄，只更新 index
    - C：用既有 `reconcile-tt` 程序（**不需新機制**）
-4. **裁決 ① 定了之後，重跑 AO 取得簽署 verdict**（P1）
-5. **把 AO verdict + 裁決結果 + 最終 FAR report 納入 Fabric 證據包**，刷新 manifest、secret scan、遠端 digest 驗證、乾淨 commit
-6. **更新本 checkpoint** 為完成狀態
+4. **重跑 AO 取得簽署 verdict**（P1）——現在的 `--require-arm` 必須用
+   `openai-codex/gpt-6.1-sol`（不是 MiniMax），且需要 `--lane-scratch`：
+   ```
+   --lane VERIFY_SECURITY --require-arm openai-codex/gpt-6.1-sol --force-rank 1 \
+   --sandbox workspace-write --allow-sandbox-escalation \
+   --lane-scratch "C:/Users/user/AppData/Local/Temp/hgk-ao-final3" \
+   --codex-executable "C:/Users/user/AppData/Local/OpenAI/Codex/bin/896a0166b774037a/codex.exe"
+   ```
+5. **修 epoch 26 pool 的 `selection_note` 矛盾**（需業主先決定 `selection_note` 描述哪個 order）
+6. **把 AO verdict + 裁決結果 + 最終 FAR report 納入 Fabric 證據包**，刷新 manifest、secret scan、遠端 digest 驗證、乾淨 commit
+7. **更新本 checkpoint** 為完成狀態
+
+### 測試時必須用專案 interpreter（**新踩到的坑**）
+
+```
+C:/Projects/Agent_Workspace/HG-KSEOS/.venv/Scripts/python.exe
+```
+有 pytest 9.1.1 + PyYAML 6.0.3。**`where python` 指向 Hermes 內建 runtime（無 PyYAML）**，
+用它跑會得到假的 `2 failed`（registry 被 `json.loads` 解析而拋 JSONDecodeError）。
+**`./.venv/Scripts/python.exe` 在 bash 裡也可能解析到 `C:/Users/user/.venv`（兩者都沒有）。**
+一律用絕對路徑。
 
 ---
 
@@ -184,8 +237,11 @@ cd C:/Projects/Agent_Workspace/HG-KSEOS
 | `var/` 頂層目錄 | 121（含本回合目錄）→ 歷史候選 **120** |
 | TT ledger OPEN | 恰 2（`HGK-EBC-TT-001`、`HGK-EBC-TT-002`） |
 | 知識庫檔案數 | 7,322 |
-| 全庫測試 BEFORE / AFTER | 8 failed, 436 passed, 90 subtests / 同（新增失敗 0） |
-| Targeted suites | 141 passed, 0 failed |
+| 全庫測試 BEFORE / AFTER | 8 failed, 436 passed, 90 subtests / 同（新增失敗 0；epoch 25 時點） |
+| Targeted suites（epoch 25） | 141 passed, 0 failed |
+| **Targeted suites（epoch 26，重測）** | **141 passed, 0 failed**（用專案 interpreter；用 PATH 的 python 會假失敗 2 個） |
+| **`check_drift`（epoch 26）** | **0 findings** |
+| **`check_sod` 三對（epoch 26）** | **全部 SOD_OK** — 模型軸獨立性已恢復 |
 | Fabric 遠端驗證 | 67/67 digest 相符、0 機密 |
 | 三車道 MiniMax admission | 皆 ADMITTED（`required_arm == served_arm`） |
 
@@ -193,7 +249,8 @@ cd C:/Projects/Agent_Workspace/HG-KSEOS
 
 ## 7. 環境速查
 
-- **HG-KSEOS**：`C:/Projects/Agent_Workspace/HG-KSEOS`（`.venv/Scripts/python.exe`）
+- **HG-KSEOS**：`C:/Projects/Agent_Workspace/HG-KSEOS`
+- **測試用 interpreter（必須絕對路徑）**：`C:/Projects/Agent_Workspace/HG-KSEOS/.venv/Scripts/python.exe`（pytest 9.1.1 + PyYAML 6.0.3）。`where python` → Hermes runtime（**無 PyYAML**，會產生假的 JSONDecodeError 失敗）
 - **Fabric**：`C:/Projects/Agent_Workspace/Fabric`
 - **知識庫**：`C:/Projects/Agent_Workspace/知識庫/實作相關DOC`
 - **Canonical Hermes**：`%LOCALAPPDATA%\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\hermes\config.yaml`

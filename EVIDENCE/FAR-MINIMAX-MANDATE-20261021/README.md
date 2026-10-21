@@ -21,6 +21,17 @@
 | EXECUTE | `opencode-go/minimax-m3.1-flash-free` | `opencode-go/deepseek-v4.1-flash` |
 | VERIFY_SECURITY | `opencode-go/minimax-m3.1-flash-free` | `openai-codex/gpt-6.1-sol` |
 
+**裁決已解決（2026-10-21 16:2x 實測）**：pool revision 12 的 `declared_by` 欄**逐字記載了
+業主的更新命令**——「Owner order 2026-10-21 (owner messages, GPT quota restored) … **This
+SUPERSEDES the 2026-10-21 order that put minimax-m3.1-flash-free (opencode-go) on PLAN and
+VERIFY_SECURITY.** The EXECUTE lane is NOT named by this order and stays deepseek-v4.1-flash
+(opencode-go) at rank 1, per the owner's standing clarification 「維持 DeepSeek V4.1 Flash
+（依您原話：只改 PLAN 與 VERIFY/CHECKER）」」。
+
+**即：更新命令有效，本包的 epoch 25 內容是 git 歷史與證據，不是現行契約。**
+MiniMax 臂在三車道都保留為 rank 2 fallback，未被刪除——若配額再次受限，
+改回只需調整 pool 的 rank 順序，不需新機制。
+
 **因此：本包是「epoch 25 的歷史與證據」，不是現行契約。**
 它記錄的是：
 - MiniMax 臂在 HGK 車道上的**可用性實測**（三車道皆 ADMITTED，model 實際驅動工具）；
@@ -28,6 +39,13 @@
 - 測試 oracle 的**根因修補**（stub 從 dispatcher 的 `--model` 推導 provider/model）；
 - 殘留主題的**實測索引**與 **FAR 裁決報告**（仍待業主確認，數字不受影響）；
 - 獨立 AO 找到第二層缺陷的**原始證據**。
+
+**epoch 26 下的重測結果（2026-10-21 16:2x）**：
+`check_drift` → 0 findings；
+`check_sod` 三對 → 全部 SOD_OK（**模型軸獨立性已恢復**，writer=deepseek-v4.1-flash、
+checker=gpt-6.1-sol，不同 provider）；
+targeted suites → 141 passed / 0 failed（用專案 interpreter
+`HG-KSEOS/.venv/Scripts/python.exe`；用 PATH 上的 python 會因缺 PyYAML 產生 2 個假失敗）。
 
 **這些產出與「哪個 rank-1 生效」無關，全部成立。**
 但「三車道全 MiniMax」這個**配置狀態**已不再是現況。
