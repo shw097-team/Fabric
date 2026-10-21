@@ -1,0 +1,21 @@
+{
+ "artifact": "HG-KSEOS registry route sync",
+ "round": "FAR-MINIMAX-MANDATE-20261021",
+ "what": "rebuild the registry's own route rows (fallbacks[], arms[], canonical_identity, selected_arm_identity, admission_status, admission_evidence) from the canonical pool, and record the MEASURED HGK lane-admission receipt for the current head arm",
+ "why": "check_drift compares the registry's projections against the live sites; it does NOT compare the registry's internal route rows against the pool. Before this sync the registry still advertised gpt-6.1-sol (PLAN, VERIFY_SECURITY) and deepseek-v4.1-flash (EXECUTE) while the pool and the assignment both said minimax-m3.1-flash-free -- and check_drift still returned an empty list.",
+ "applied_changes": 15,
+ "changes_by_lane": {
+  "PLAN": [],
+  "EXECUTE": [],
+  "VERIFY_SECURITY": []
+ },
+ "post_sync_drift": [],
+ "admission_receipts_used": {
+  "PLAN": "var/FAR-MINIMAX-MANDATE-20261021/admission/PLAN.json",
+  "EXECUTE": "var/FAR-MINIMAX-MANDATE-20261021/admission/EXECUTE.json",
+  "VERIFY_SECURITY": "var/FAR-MINIMAX-MANDATE-20261021/admission/VERIFY_SECURITY.json"
+ },
+ "script": "var/FAR-MINIMAX-MANDATE-20261021/apply_registry_route_sync.py",
+ "claim_ceiling": "candidate-only. This shows the registry now agrees with the pool and with the measured admission receipts. It is not an acceptance and not a release.",
+ "idempotent_recheck": "the dry-run above reports 0 further changes"
+}

@@ -1,0 +1,2305 @@
+{
+  "schema": "HGK-OPENSPEC-UNCHECKED-INDEX/1",
+  "generated_utc": "2026-10-21T06:27:50.945758Z",
+  "total_active_changes": 38,
+  "changes_with_unchecked": 34,
+  "total_unchecked": 460,
+  "other_changes_with_unchecked": 34,
+  "other_changes_unchecked": 460,
+  "this_round_change": "far-lane-remediation-20261021",
+  "owner_referenced_figure": 471,
+  "figure_note": "The owner's 471 is a stale estimate. The measured figure is 460 unchecked items across 34 changes (460 in the 34 changes other than this round's).",
+  "ticks_applied_by_this_script": 0,
+  "changes": [
+    {
+      "change": "archive",
+      "unchecked_count": 0,
+      "checked_count": 33,
+      "unchecked": [],
+      "has_own_artifacts": 5,
+      "name_appears_in_git_log": false,
+      "spec_files": [
+        "openspec/changes/archive/2026-10-10-ao-lane-independent-verify-20261010/specs/ao-lane-independent-verify/spec.md"
+      ]
+    },
+    {
+      "change": "far-lane-remediation-20261021",
+      "unchecked_count": 0,
+      "checked_count": 19,
+      "unchecked": [],
+      "has_own_artifacts": 3,
+      "name_appears_in_git_log": true,
+      "spec_files": [
+        "openspec/changes/far-lane-remediation-20261021/specs/lane-routing/spec.md"
+      ]
+    },
+    {
+      "change": "gcm-noninteractive-default-containment",
+      "unchecked_count": 8,
+      "checked_count": 36,
+      "unchecked": [
+        {
+          "file": "openspec/changes/gcm-noninteractive-default-containment/tasks.md",
+          "text": "NOT DONE — L2 activation / broker wiring (3.2 wire branch): never performed. The broker remains NON_ACTIVATED; there is no seam in the governed write lane to invoke it. REPAIR2 was forbidden to activate it and did not — evidence: `var/hgk-gcm-repair2-20261013/evidence/ROUND_LEDGER.json` (prohibition list) and `var/hgk-gcm-repair2-20261013/closure/SESSION_CLOSEOUT_20261013.md` §3.3."
+        },
+        {
+          "file": "openspec/changes/gcm-noninteractive-default-containment/tasks.md",
+          "text": "NOT DONE — the collision-free post-fix measurement was never obtained. The round's post-fix runs collided (X3 and X3b wrote the same paths); the discriminative result survives only in the collision snapshot, not as an uninterrupted single-writer stream. Still open after REPAIR2 (the round issued 0 live requests) — evidence: `var/hgk-gcm-repair2-20261013/closure/SESSION_CLOSEOUT_20261013.md` §3.2/§3.3."
+        },
+        {
+          "file": "openspec/changes/gcm-noninteractive-default-containment/tasks.md",
+          "text": "NOT DONE — 5.4 Positive/no-over-reach control: a push satisfied from the credential store still succeeds silently, with unchanged behaviour. The prior round's control was DECLARATIVE / NOT_MEASURED_NO_SECRET_READ; a behavioural control would require reading a real credential, which is forbidden — evidence: `var/hgk-gcm-repair2-20261013/closure/SESSION_CLOSEOUT_20261013.md` §3.3."
+        },
+        {
+          "file": "openspec/changes/gcm-noninteractive-default-containment/tasks.md",
+          "text": "NOT DONE — 6.4 Close out: kanban cards completed, checkpoint recorded, and every side effect disclosed. The apply board is 7/7 done, but the containment board's verifier/synthesizer cards remain ready/todo; those leftover items are SUPERSEDED by this repair round, NOT retro-closed."
+        },
+        {
+          "file": "openspec/changes/gcm-noninteractive-default-containment/tasks.md",
+          "text": "NOT DONE — authorization cap: the round-level live-measurement cap was violated (2 live credential requests issued vs. 1 authorized). Recorded as a carried round-level defect; not cured by this repair — evidence: `var/hgk-gcm-repair2-20261013/closure/SESSION_CLOSEOUT_20261013.md` §3.2 (APPLY-G10)."
+        },
+        {
+          "file": "openspec/changes/gcm-noninteractive-default-containment/tasks.md",
+          "text": "NOT DONE — model-axis SoD is **NOT** satisfied in REPAIR2 (writer and checker both `opencode-go/deepseek-v4.1-flash`, owner mandate). The repair therefore carries a correlated-blind-spot caveat and the verdicts of this round cannot supersede the `gpt-6.1-sol` `FAIL` — evidence: `$R/evidence/ROUND_LEDGER.json` (`sod_axis_model: NOT_SATISFIED`)."
+        },
+        {
+          "file": "openspec/changes/gcm-noninteractive-default-containment/tasks.md",
+          "text": "NOT DONE — the close-out is a docs/data close-out only; it does **not** produce an independent different-model verdict on the REPAIR2 result. The `gpt-6.1-sol` FAIL remains the last different-model verdict; whether to re-run it on REPAIR2 is the owner's call — evidence: `SESSION_CLOSEOUT_20261013.md` §4."
+        },
+        {
+          "file": "openspec/changes/gcm-noninteractive-default-containment/tasks.md",
+          "text": "NOT DONE — no independent acceptance: `is_acceptance` is `false` for all rounds; the project stays `EXECUTING`; L2 remains `NON_ACTIVATED`; the collision-free measurement and the positive control were never obtained."
+        }
+      ],
+      "has_own_artifacts": 4,
+      "name_appears_in_git_log": false,
+      "spec_files": [
+        "openspec/changes/gcm-noninteractive-default-containment/specs/git-credential-noninteractive-default/spec.md"
+      ]
+    },
+    {
+      "change": "hermes-incident-2026-10-05-repair",
+      "unchecked_count": 35,
+      "checked_count": 0,
+      "unchecked": [
+        {
+          "file": "openspec/changes/hermes-incident-2026-10-05-repair/tasks.md",
+          "text": "1.1 Re-run the store probe (`var/far-hermes-incident-rca-001/x_probes.py`) from a fresh context and confirm every digest and quick_check verdict in `evidence/store_probes.json` recomputes"
+        },
+        {
+          "file": "openspec/changes/hermes-incident-2026-10-05-repair/tasks.md",
+          "text": "1.2 Confirm the incident record's `state.db.snapshot-1755` hash binds an artifact whose `PRAGMA quick_check` is NOT ok, and record the raw error text as the falsification evidence"
+        },
+        {
+          "file": "openspec/changes/hermes-incident-2026-10-05-repair/tasks.md",
+          "text": "1.3 Confirm the rescue-export denominator (401 exported, 400 present, missing id 51395) with a read-only query on the live store"
+        },
+        {
+          "file": "openspec/changes/hermes-incident-2026-10-05-repair/tasks.md",
+          "text": "1.4 Enumerate both copies of the incident `state.db` subject with their own sha256 and integrity verdicts"
+        },
+        {
+          "file": "openspec/changes/hermes-incident-2026-10-05-repair/tasks.md",
+          "text": "2.1 Author `INCIDENT_RECORD_2026-10-05_state-db-wal.v2.md` with per-artifact measured verdicts and an explicit withdrawal of the previous `INTACT / quick_check ok` claim"
+        },
+        {
+          "file": "openspec/changes/hermes-incident-2026-10-05-repair/tasks.md",
+          "text": "2.2 Restate the loss in **three tiers, never as a single total**: (i) PROVEN loss = 1 row (id 51395 — present in the rescue export, absent now); (ii) CANDIDATE gaps = 3 (ids 51396–51398 are id-sequence gaps and do **not** prove those rows ever existed); (iii) the earlier `~22 rows` estimate stays UNVERIFIED (neither confirmed nor refuted, because the rescue export ends at id 51395). Acceptance: the document contains no un-tiered total-loss number."
+        },
+        {
+          "file": "openspec/changes/hermes-incident-2026-10-05-repair/tasks.md",
+          "text": "2.3 Keep the forensic WAL and both copies byte-identical; record their digests; refuse any in-place repair. Characterise the WAL by its **frame chain** — header valid (`0x377f0682`, page size 4096, frame size 4120), frames 1–51 verify, the chain breaks at frame 52, and the tail is not frame-aligned — and state that a **salvageable committed prefix exists**; do NOT use a blanket \"not a WAL / no replay\" claim."
+        },
+        {
+          "file": "openspec/changes/hermes-incident-2026-10-05-repair/tasks.md",
+          "text": "2.4 Obtain an independent VERIFY lane verdict on the corrected record before it replaces the original as the cited artifact"
+        },
+        {
+          "file": "openspec/changes/hermes-incident-2026-10-05-repair/tasks.md",
+          "text": "3.1 Stage first: copy `verification_evidence.db` from the incident snapshot into `var/staging/verification_evidence.db` and read back `quick_check` + row counts (128 verification_state rows / 4 verification_events). No write to the live home."
+        },
+        {
+          "file": "openspec/changes/hermes-incident-2026-10-05-repair/tasks.md",
+          "text": "3.2 Only through the gate: move the staged file into the canonical home with a timestamped backup of the (absent) target and a post-write readback; record rollback pointer `RB-VERIFICATION-EVIDENCE-DB`."
+        },
+        {
+          "file": "openspec/changes/hermes-incident-2026-10-05-repair/tasks.md",
+          "text": "3.3 Acceptance: the live file must NOT exist before the gate approves; the staging digest is recorded in the evidence manifest."
+        },
+        {
+          "file": "openspec/changes/hermes-incident-2026-10-05-repair/tasks.md",
+          "text": "4.1 Publish the 50-item removed-skill delta with per-skill sha256 (from `lanes/lane_a_drift.json`) as a candidate artifact"
+        },
+        {
+          "file": "openspec/changes/hermes-incident-2026-10-05-repair/tasks.md",
+          "text": "4.2 Stage the HGK-critical subset into `var/staging/skills/` with a curation tombstone naming the source digest for each skill. Adopting that staged tree into `$HERMES_HOME/skills` is a canonical class C action and happens only through the gate."
+        },
+        {
+          "file": "openspec/changes/hermes-incident-2026-10-05-repair/tasks.md",
+          "text": "4.3 Add a skills shrink guard that refuses (fails closed with a finding) a bulk removal above a declared threshold instead of adopting the smaller tree as the new baseline"
+        },
+        {
+          "file": "openspec/changes/hermes-incident-2026-10-05-repair/tasks.md",
+          "text": "4.4 Verify the staged subset loads (skill_view / registry readback) and that the guard's negative case fires; assert the live skills count is unchanged before the gate approves"
+        },
+        {
+          "file": "openspec/changes/hermes-incident-2026-10-05-repair/tasks.md",
+          "text": "5.1 Repoint the pre-LLM and pre-tool-call gate hooks to scripts inside the canonical home (sanctioned CLI, backup first, readback after)"
+        },
+        {
+          "file": "openspec/changes/hermes-incident-2026-10-05-repair/tasks.md",
+          "text": "5.2 Add a startup self-check that surfaces a missing gate script as a loud diagnostic rather than a silent denial"
+        },
+        {
+          "file": "openspec/changes/hermes-incident-2026-10-05-repair/tasks.md",
+          "text": "5.3 Archive the second home with a per-entry digest receipt, or adopt it canonically and update the binding files — record the decision either way"
+        },
+        {
+          "file": "openspec/changes/hermes-incident-2026-10-05-repair/tasks.md",
+          "text": "5.4 Reconcile `HG-KSEOS/config/hermes.json` to the live runtime identity (0.21.5 / resolved MSIX home) with command evidence, and record the version delta"
+        },
+        {
+          "file": "openspec/changes/hermes-incident-2026-10-05-repair/tasks.md",
+          "text": "5.5 Resolve the 2026-10-06 failed update: complete or discard the parked stash with a recorded decision and a rollback copy"
+        },
+        {
+          "file": "openspec/changes/hermes-incident-2026-10-05-repair/tasks.md",
+          "text": "6.1 R12 — updater must not `unlink` WAL sidecars before a consistent copy exists: take the copy with the SQLite backup API (or `VACUUM INTO`) first, verify it, and only then touch sidecars; every deletion emits a receipt."
+        },
+        {
+          "file": "openspec/changes/hermes-incident-2026-10-05-repair/tasks.md",
+          "text": "6.2 R12 (negative) — simulate a non-atomic copy of a WAL-bearing database and PROVE the guard refuses it."
+        },
+        {
+          "file": "openspec/changes/hermes-incident-2026-10-05-repair/tasks.md",
+          "text": "6.2b R12 acceptance oracle (data preservation, NOT integrity-only) — prove that a copy taken with the backup API / `VACUUM INTO` remains READABLE for rows that exist only in the WAL, on a purpose-built fixture; integrity-only (`quick_check ok`) is explicitly insufficient."
+        },
+        {
+          "file": "openspec/changes/hermes-incident-2026-10-05-repair/tasks.md",
+          "text": "6.3 R13 — make the control-plane test suite hermetic: per-test spine/database; add a guard that FAILS any test which appends a `canonical_events` row to the canonical spine; CI pre/post check that the event count is unchanged (defect D15 proved this is currently violated: +2 events per run, reproducible)."
+        },
+        {
+          "file": "openspec/changes/hermes-incident-2026-10-05-repair/tasks.md",
+          "text": "6.4 R14 — repair the five red tests and reconcile declarations: `test_denominator_head_matches_git` (declared value must equal `git rev-parse HEAD`), guide/current-claim and `_final.md` projection tests, `test_r4_only_allowed_files_changed` scope check, and the COV-11-06 source-text test (defect D16; suite must end `OK`)."
+        },
+        {
+          "file": "openspec/changes/hermes-incident-2026-10-05-repair/tasks.md",
+          "text": "6.5 R15 — repair the crossed TaskSpec/WorkOrder binding in the spine (D17): create the correctly paired TS/WO via the domain API and record a supersede note, or record it explicitly as a disclosed one-WO-per-TS exception."
+        },
+        {
+          "file": "openspec/changes/hermes-incident-2026-10-05-repair/tasks.md",
+          "text": "6.6 R16 — narrow the runtime pre-tool-call gate matcher so it inspects dangerous content patterns instead of input paths/whole payloads, and whitelist writes to an already-admitted run dir; keep blocking real secret-bearing payloads (D18). Negative + positive acceptance required."
+        },
+        {
+          "file": "openspec/changes/hermes-incident-2026-10-05-repair/tasks.md",
+          "text": "6.7 Align `HG-KSEOS/config/hermes.json` to the **measured** HEAD `f97608f178d1ffeca59860195ab7da295f7c8e5f` (D8/D14), and explain the version-stamp divergence separately rather than adopting the stamp as the alignment value."
+        },
+        {
+          "file": "openspec/changes/hermes-incident-2026-10-05-repair/tasks.md",
+          "text": "7.1 Repair the stale `kanban_state` field to the live truth and record the small repair with a readback"
+        },
+        {
+          "file": "openspec/changes/hermes-incident-2026-10-05-repair/tasks.md",
+          "text": "7.2 Dispose of the 0-byte stale lock files only after confirming no live process holds them (quiescence procedure); otherwise disclose and leave them"
+        },
+        {
+          "file": "openspec/changes/hermes-incident-2026-10-05-repair/tasks.md",
+          "text": "7.3 Record the partial trigram-FTS coverage as a disclosed limitation or resolve it on a COPY"
+        },
+        {
+          "file": "openspec/changes/hermes-incident-2026-10-05-repair/tasks.md",
+          "text": "8.1 Freeze the single evidence MD, mirror it byte-identically into the three review roots, and verify SHA-256 equality"
+        },
+        {
+          "file": "openspec/changes/hermes-incident-2026-10-05-repair/tasks.md",
+          "text": "8.2 Obtain the independent VERIFY/SECURITY lane verdict (gpt-6.1-sol, fresh context, read-only) with an explicit blockers count per round; keep every round's FAIL verbatim"
+        },
+        {
+          "file": "openspec/changes/hermes-incident-2026-10-05-repair/tasks.md",
+          "text": "8.3 Keep the claim ceiling honest: implementation vs locally+independently verified vs externally accepted, with what remains open listed item by item"
+        },
+        {
+          "file": "openspec/changes/hermes-incident-2026-10-05-repair/tasks.md",
+          "text": "8.4 Record every live metric with an as-of timestamp and an observed range; a live count must never be quoted un-stamped"
+        }
+      ],
+      "has_own_artifacts": 6,
+      "name_appears_in_git_log": true,
+      "spec_files": [
+        "openspec/changes/hermes-incident-2026-10-05-repair/specs/hermes-runtime-binding-integrity/spec.md",
+        "openspec/changes/hermes-incident-2026-10-05-repair/specs/hermes-runtime-incident-integrity/spec.md"
+      ]
+    },
+    {
+      "change": "hgk-checker-upgrade-adapter",
+      "unchecked_count": 23,
+      "checked_count": 0,
+      "unchecked": [
+        {
+          "file": "openspec/changes/hgk-checker-upgrade-adapter/tasks.md",
+          "text": "1.1 Freeze the source package digests (`hgk_checker_upgrade` files) and the candidate base HEAD into the round evidence root"
+        },
+        {
+          "file": "openspec/changes/hgk-checker-upgrade-adapter/tasks.md",
+          "text": "1.2 Record the pre-existing suite baseline (test count, failures, errors) before any candidate edit"
+        },
+        {
+          "file": "openspec/changes/hgk-checker-upgrade-adapter/tasks.md",
+          "text": "2.1 Create `src/hg_kseos/checker_bridge/runner.py`: snapshot digesting with symlink refusal, intake validation, staging/snapshot non-overlap, advisory verdict staging, post-run mutation detection"
+        },
+        {
+          "file": "openspec/changes/hgk-checker-upgrade-adapter/tasks.md",
+          "text": "2.2 Create `src/hg_kseos/checker_bridge/watchdog.py`: pure `assess()` decision + `scan()` emitting diagnosis/pause requests"
+        },
+        {
+          "file": "openspec/changes/hgk-checker-upgrade-adapter/tasks.md",
+          "text": "2.3 Create `src/hg_kseos/checker_bridge/binding.py`: candidate binding record + identity-field assertion"
+        },
+        {
+          "file": "openspec/changes/hgk-checker-upgrade-adapter/tasks.md",
+          "text": "2.4 Create `src/hg_kseos/checker_bridge/advisory_verdict.schema.json` and a validator that rejects non-advisory tokens"
+        },
+        {
+          "file": "openspec/changes/hgk-checker-upgrade-adapter/tasks.md",
+          "text": "2.5 Create `config/checker/checker-binding.candidate.json` and `config/checker/monitor-policy.json`"
+        },
+        {
+          "file": "openspec/changes/hgk-checker-upgrade-adapter/tasks.md",
+          "text": "3.1 Add the bridge preflight probe (loopback-only, positive-only, cannot promote)"
+        },
+        {
+          "file": "openspec/changes/hgk-checker-upgrade-adapter/tasks.md",
+          "text": "3.2 Attempt live qualification of Codex CLI → bridge → OpenCode Go GLM-5.3-Flash and record the raw outcome"
+        },
+        {
+          "file": "openspec/changes/hgk-checker-upgrade-adapter/tasks.md",
+          "text": "3.3 Record `BLOCKED_HITL` / `NO_CUTOVER` if the bridge is unsupported in the pinned environment"
+        },
+        {
+          "file": "openspec/changes/hgk-checker-upgrade-adapter/tasks.md",
+          "text": "4.1 Positive: a mock checker stages an advisory verdict and leaves the snapshot untouched"
+        },
+        {
+          "file": "openspec/changes/hgk-checker-upgrade-adapter/tasks.md",
+          "text": "4.2 Negative: candidate mutation, symlink snapshot, incomplete intake, digest mismatch, out-of-enum verdict, staging overlap"
+        },
+        {
+          "file": "openspec/changes/hgk-checker-upgrade-adapter/tasks.md",
+          "text": "4.3 Watchdog: four repeats do not pause; the fifth after verified progress does; a different signature does not accumulate; stale heartbeat pauses; corrupt state fails closed"
+        },
+        {
+          "file": "openspec/changes/hgk-checker-upgrade-adapter/tasks.md",
+          "text": "4.4 Security: poisoned repository instruction cannot escalate the checker role; permission escalation attempt fails closed"
+        },
+        {
+          "file": "openspec/changes/hgk-checker-upgrade-adapter/tasks.md",
+          "text": "5.1 Run the checker-bridge suite plus the full HG-KSEOS suite and diff against the frozen baseline"
+        },
+        {
+          "file": "openspec/changes/hgk-checker-upgrade-adapter/tasks.md",
+          "text": "5.2 Repair any candidate defect through the tracked writer on a NEW commit and re-run"
+        },
+        {
+          "file": "openspec/changes/hgk-checker-upgrade-adapter/tasks.md",
+          "text": "5.3 Confirm the failure set is a subset of the frozen baseline (no new failures introduced)"
+        },
+        {
+          "file": "openspec/changes/hgk-checker-upgrade-adapter/tasks.md",
+          "text": "6.1 Freeze the candidate commit and snapshot canonical digests before/after the verify lane"
+        },
+        {
+          "file": "openspec/changes/hgk-checker-upgrade-adapter/tasks.md",
+          "text": "6.2 Run an independent VERIFY_ONLY lane on a different model from the maker and capture the raw verdict"
+        },
+        {
+          "file": "openspec/changes/hgk-checker-upgrade-adapter/tasks.md",
+          "text": "6.3 Adjudicate the verdict: re-measure every disputed fact from the raw artifact"
+        },
+        {
+          "file": "openspec/changes/hgk-checker-upgrade-adapter/tasks.md",
+          "text": "7.1 Produce the single-file evidence MD with claim ceiling, binding, raw index, gates and nonclaims"
+        },
+        {
+          "file": "openspec/changes/hgk-checker-upgrade-adapter/tasks.md",
+          "text": "7.2 Mirror the evidence MD byte-identically into the review roots and verify SHA-256 equality"
+        },
+        {
+          "file": "openspec/changes/hgk-checker-upgrade-adapter/tasks.md",
+          "text": "7.3 Leave shadow/cutover as `BLOCKED_HITL` for the owner gate (COV-11-06); do not self-enable"
+        }
+      ],
+      "has_own_artifacts": 5,
+      "name_appears_in_git_log": true,
+      "spec_files": [
+        "openspec/changes/hgk-checker-upgrade-adapter/specs/independent-checker-execution/spec.md"
+      ]
+    },
+    {
+      "change": "hgk-cnv-evidence-archive-r7r11-20261016",
+      "unchecked_count": 10,
+      "checked_count": 11,
+      "unchecked": [
+        {
+          "file": "openspec/changes/hgk-cnv-evidence-archive-r7r11-20261016/tasks.md",
+          "text": "CODEX CLI EXECUTE lane (bounded writer) + CODEX CLI VERIFY/SECURITY lane (checker)"
+        },
+        {
+          "file": "openspec/changes/hgk-cnv-evidence-archive-r7r11-20261016/tasks.md",
+          "text": "manifest-vs-tracked-set and current-HEAD determinism per PR, outside the PR"
+        },
+        {
+          "file": "openspec/changes/hgk-cnv-evidence-archive-r7r11-20261016/tasks.md",
+          "text": "trusted secrets/privacy scan over every changed blob"
+        },
+        {
+          "file": "openspec/changes/hgk-cnv-evidence-archive-r7r11-20261016/tasks.md",
+          "text": "no archived `.py`/`.ps1` helper executed"
+        },
+        {
+          "file": "openspec/changes/hgk-cnv-evidence-archive-r7r11-20261016/tasks.md",
+          "text": "decide errata only on measured defects"
+        },
+        {
+          "file": "openspec/changes/hgk-cnv-evidence-archive-r7r11-20261016/tasks.md",
+          "text": "obtain per-PR maintainer approval (HITL) — evidence-prefix publication approval"
+        },
+        {
+          "file": "openspec/changes/hgk-cnv-evidence-archive-r7r11-20261016/tasks.md",
+          "text": "remote merge (HITL) as repository maintainer"
+        },
+        {
+          "file": "openspec/changes/hgk-cnv-evidence-archive-r7r11-20261016/tasks.md",
+          "text": "per-PR merge + readback (main, merge commit, tree prefix)"
+        },
+        {
+          "file": "openspec/changes/hgk-cnv-evidence-archive-r7r11-20261016/tasks.md",
+          "text": "K-ledger cross-index metadata errata + ten EIA findings disposition matrix"
+        },
+        {
+          "file": "openspec/changes/hgk-cnv-evidence-archive-r7r11-20261016/tasks.md",
+          "text": "`CONVERGENCE_EVIDENCE_RETURN_PACK` + single evidence MD, published and mirrored"
+        }
+      ],
+      "has_own_artifacts": 3,
+      "name_appears_in_git_log": true,
+      "spec_files": [
+        "openspec/changes/hgk-cnv-evidence-archive-r7r11-20261016/specs/evidence-archive-admission/spec.md"
+      ]
+    },
+    {
+      "change": "hgk-cnv-far018-far019-archive",
+      "unchecked_count": 5,
+      "checked_count": 10,
+      "unchecked": [
+        {
+          "file": "openspec/changes/hgk-cnv-far018-far019-archive/tasks.md",
+          "text": "3.3 Merge #12, #13, #14 each with `sha=<approved head>` and read `main` back"
+        },
+        {
+          "file": "openspec/changes/hgk-cnv-far018-far019-archive/tasks.md",
+          "text": "3.4 Rollback pointer per PR (`git revert <merge_sha>`)"
+        },
+        {
+          "file": "openspec/changes/hgk-cnv-far018-far019-archive/tasks.md",
+          "text": "4.1 Machine-readable evidence_return_pack per PR"
+        },
+        {
+          "file": "openspec/changes/hgk-cnv-far018-far019-archive/tasks.md",
+          "text": "4.2 12/12 disposition of the acceptance report's findings with owner and claim ceiling"
+        },
+        {
+          "file": "openspec/changes/hgk-cnv-far018-far019-archive/tasks.md",
+          "text": "4.3 Single evidence MD + handover + self-check with injected mutations"
+        }
+      ],
+      "has_own_artifacts": 3,
+      "name_appears_in_git_log": true,
+      "spec_files": [
+        "openspec/changes/hgk-cnv-far018-far019-archive/specs/archive-evidence-merge/spec.md"
+      ]
+    },
+    {
+      "change": "hgk-cnv-hygiene-readme-closure",
+      "unchecked_count": 0,
+      "checked_count": 17,
+      "unchecked": [],
+      "has_own_artifacts": 4,
+      "name_appears_in_git_log": true,
+      "spec_files": [
+        "openspec/changes/hgk-cnv-hygiene-readme-closure/specs/hygiene-and-readme-closure/spec.md",
+        "openspec/changes/hgk-cnv-hygiene-readme-closure/specs/repo-surface/spec.md"
+      ]
+    },
+    {
+      "change": "hgk-cnv-owner-decision-main-landing",
+      "unchecked_count": 0,
+      "checked_count": 11,
+      "unchecked": [],
+      "has_own_artifacts": 3,
+      "name_appears_in_git_log": true,
+      "spec_files": [
+        "openspec/changes/hgk-cnv-owner-decision-main-landing/specs/owner-decision-and-landing/spec.md"
+      ]
+    },
+    {
+      "change": "hgk-far-018-r7r11-residual-closure",
+      "unchecked_count": 9,
+      "checked_count": 3,
+      "unchecked": [
+        {
+          "file": "openspec/changes/hgk-far-018-r7r11-residual-closure/tasks.md",
+          "text": "R3 Kanban 板＋卡生命週期（create→claim→heartbeat→complete/block，全 CLI 收據）"
+        },
+        {
+          "file": "openspec/changes/hgk-far-018-r7r11-residual-closure/tasks.md",
+          "text": "R4 W1 殘留全集（獨立子代理，primary sources）"
+        },
+        {
+          "file": "openspec/changes/hgk-far-018-r7r11-residual-closure/tasks.md",
+          "text": "R5 W2 缺陷檔案（含 OS 強制唯讀隔離可行性實測、指標逐條驗證）"
+        },
+        {
+          "file": "openspec/changes/hgk-far-018-r7r11-residual-closure/tasks.md",
+          "text": "R6 EXECUTE 車道：`opencode-go/deepseek-v4.1-flash`（CODEX CLI）產出可執行項目的 artifact"
+        },
+        {
+          "file": "openspec/changes/hgk-far-018-r7r11-residual-closure/tasks.md",
+          "text": "R7 VERIFY/SECURITY 車道：pin `openai-codex/gpt-6.1-sol`（rank 2，`--require-arm`）獨立覆核"
+        },
+        {
+          "file": "openspec/changes/hgk-far-018-r7r11-residual-closure/tasks.md",
+          "text": "R8 OWNER-gated 項目備妥為單一動作形式（不合併、不晉升、不編輯控制平面）"
+        },
+        {
+          "file": "openspec/changes/hgk-far-018-r7r11-residual-closure/tasks.md",
+          "text": "R9 證據推送 `shw097-team/Fabric` 新前綴＋遠端 readback"
+        },
+        {
+          "file": "openspec/changes/hgk-far-018-r7r11-residual-closure/tasks.md",
+          "text": "R10 移交 checkpoint＋單一證據 MD（鏡像三 review root，SHA-256 相等）"
+        },
+        {
+          "file": "openspec/changes/hgk-far-018-r7r11-residual-closure/tasks.md",
+          "text": "R11 自檢測／自修補／自驗收＋受治理自我進化紀錄"
+        }
+      ],
+      "has_own_artifacts": 3,
+      "name_appears_in_git_log": true,
+      "spec_files": [
+        "openspec/changes/hgk-far-018-r7r11-residual-closure/specs/far-residual-closure-admission/spec.md"
+      ]
+    },
+    {
+      "change": "hgk-far-019-owner-authorized-closure",
+      "unchecked_count": 14,
+      "checked_count": 7,
+      "unchecked": [
+        {
+          "file": "openspec/changes/hgk-far-019-owner-authorized-closure/tasks.md",
+          "text": "1.8 gstack named-method route check for this round's flow, with a negative control"
+        },
+        {
+          "file": "openspec/changes/hgk-far-019-owner-authorized-closure/tasks.md",
+          "text": "2.1 One ranked ruling over every still-open item, each with friction, feasibility, necessity, over-engineering test, alignment, authority and falsifier"
+        },
+        {
+          "file": "openspec/changes/hgk-far-019-owner-authorized-closure/tasks.md",
+          "text": "2.2 Authority graph: which actions rest on the owner's authorisation, which on an agent's judgement, and which assert a fact only the owner can attest"
+        },
+        {
+          "file": "openspec/changes/hgk-far-019-owner-authorized-closure/tasks.md",
+          "text": "3.1 Canonical lane-config stale `codex_executable` pin repaired with backup, hash readback and a focused re-run"
+        },
+        {
+          "file": "openspec/changes/hgk-far-019-owner-authorized-closure/tasks.md",
+          "text": "3.2 Peer evidence chain PR #6/#8/#10 merged into `main` under the owner's authorisation, with a readback of the resulting tip"
+        },
+        {
+          "file": "openspec/changes/hgk-far-019-owner-authorized-closure/tasks.md",
+          "text": "3.3 Evidence pack published to the target repo and promoted out of draft"
+        },
+        {
+          "file": "openspec/changes/hgk-far-019-owner-authorized-closure/tasks.md",
+          "text": "3.4 Lane receipt loss on retry repaired (attempt-numbered receipts)"
+        },
+        {
+          "file": "openspec/changes/hgk-far-019-owner-authorized-closure/tasks.md",
+          "text": "3.5 Regression proof for each previously vacuous probe: the repaired harness must catch what the original missed"
+        },
+        {
+          "file": "openspec/changes/hgk-far-019-owner-authorized-closure/tasks.md",
+          "text": "4.1 VERIFY lane pinned to a rank that is not the writer's own model; nonce required"
+        },
+        {
+          "file": "openspec/changes/hgk-far-019-owner-authorized-closure/tasks.md",
+          "text": "4.2 Checker verdict extracted programmatically, with UNVERIFIABLE preserved rather than rounded up"
+        },
+        {
+          "file": "openspec/changes/hgk-far-019-owner-authorized-closure/tasks.md",
+          "text": "5.1 Single evidence MD, per-blob remote readback against the pushed tip"
+        },
+        {
+          "file": "openspec/changes/hgk-far-019-owner-authorized-closure/tasks.md",
+          "text": "5.2 HGK lineage: work-order results with writer ≠ checker, lifecycle advanced only as far as the authority allows"
+        },
+        {
+          "file": "openspec/changes/hgk-far-019-owner-authorized-closure/tasks.md",
+          "text": "5.3 Self-check with injected mutations; every mutation must be detected"
+        },
+        {
+          "file": "openspec/changes/hgk-far-019-owner-authorized-closure/tasks.md",
+          "text": "5.4 Governed self-evolution record and the lessons landed in the skill"
+        }
+      ],
+      "has_own_artifacts": 3,
+      "name_appears_in_git_log": true,
+      "spec_files": [
+        "openspec/changes/hgk-far-019-owner-authorized-closure/specs/far-residual-closure-admission/spec.md"
+      ]
+    },
+    {
+      "change": "hgk-far-remediation-20261016",
+      "unchecked_count": 25,
+      "checked_count": 0,
+      "unchecked": [
+        {
+          "file": "openspec/changes/hgk-far-remediation-20261016/tasks.md",
+          "text": "1. Typed HGK admission for this round (requirement FROZEN, TaskSpec ADMITTED, WorkOrder per role)"
+        },
+        {
+          "file": "openspec/changes/hgk-far-remediation-20261016/tasks.md",
+          "text": "2. WorkOrder created for each canonical change: R1, R2, R5"
+        },
+        {
+          "file": "openspec/changes/hgk-far-remediation-20261016/tasks.md",
+          "text": "3. KANBAN board + SWARM graph recorded with the root, workers, verifier and synthesizer ids"
+        },
+        {
+          "file": "openspec/changes/hgk-far-remediation-20261016/tasks.md",
+          "text": "4. This change validated `--strict` by the project CLI before execution"
+        },
+        {
+          "file": "openspec/changes/hgk-far-remediation-20261016/tasks.md",
+          "text": "5. Back up `config/lane-routing-registry.yaml`; record its sha256 before the change"
+        },
+        {
+          "file": "openspec/changes/hgk-far-remediation-20261016/tasks.md",
+          "text": "6. Rebind `routes[].PLAN` to `openai-codex/gpt-6.1-sol` medium OAuth with the in-force order as its"
+        },
+        {
+          "file": "openspec/changes/hgk-far-remediation-20261016/tasks.md",
+          "text": "7. Replace the stale `usable_now: QUOTA_429_2026-10-15` marker with this session's measurement,"
+        },
+        {
+          "file": "openspec/changes/hgk-far-remediation-20261016/tasks.md",
+          "text": "8. Set `admission_status` from this session's measurement rather than leaving `UNPROVEN`"
+        },
+        {
+          "file": "openspec/changes/hgk-far-remediation-20261016/tasks.md",
+          "text": "9. Reclassify `declared_conflicts[SOD006-C2]` to `OWNER_ORDERED_IN_FORCE` and record the remaining"
+        },
+        {
+          "file": "openspec/changes/hgk-far-remediation-20261016/tasks.md",
+          "text": "10. Advance registry `epoch` 20 -> 21 and record the reason in the provenance block"
+        },
+        {
+          "file": "openspec/changes/hgk-far-remediation-20261016/tasks.md",
+          "text": "11. Record sha256 after the change; prove `check_drift` reports no fatal item"
+        },
+        {
+          "file": "openspec/changes/hgk-far-remediation-20261016/tasks.md",
+          "text": "12. Take the PROMOTE set from the measured candidate-vs-canonical diff, not from memory"
+        },
+        {
+          "file": "openspec/changes/hgk-far-remediation-20261016/tasks.md",
+          "text": "13. Apply each file with a backup and a before/after digest"
+        },
+        {
+          "file": "openspec/changes/hgk-far-remediation-20261016/tasks.md",
+          "text": "14. Prove each promoted file equals the frozen candidate's digest byte for byte"
+        },
+        {
+          "file": "openspec/changes/hgk-far-remediation-20261016/tasks.md",
+          "text": "15. Prove nothing round-local was promoted into the canonical tree"
+        },
+        {
+          "file": "openspec/changes/hgk-far-remediation-20261016/tasks.md",
+          "text": "16. EXECUTE lane, EDIT-ONLY turn: implement `--turn-shape {normal,edit_only}` additively"
+        },
+        {
+          "file": "openspec/changes/hgk-far-remediation-20261016/tasks.md",
+          "text": "17. Require a typed RED-first test module for the new flag"
+        },
+        {
+          "file": "openspec/changes/hgk-far-remediation-20261016/tasks.md",
+          "text": "18. Prove the default path is behaviourally unchanged (an existing invocation's receipt compares)"
+        },
+        {
+          "file": "openspec/changes/hgk-far-remediation-20261016/tasks.md",
+          "text": "19. Apply the lane's product to canonical only after the orchestrator re-derives it"
+        },
+        {
+          "file": "openspec/changes/hgk-far-remediation-20261016/tasks.md",
+          "text": "20. Re-derive the full detection list D01..D16 orchestrator-side"
+        },
+        {
+          "file": "openspec/changes/hgk-far-remediation-20261016/tasks.md",
+          "text": "21. Freeze the subject and have the independent VERIFY/SECURITY lane challenge it"
+        },
+        {
+          "file": "openspec/changes/hgk-far-remediation-20261016/tasks.md",
+          "text": "22. Record the checker's verdict verbatim, agreeing or not"
+        },
+        {
+          "file": "openspec/changes/hgk-far-remediation-20261016/tasks.md",
+          "text": "23. Write the closure JSON, README and the handover checkpoint, with the surviving residuals"
+        },
+        {
+          "file": "openspec/changes/hgk-far-remediation-20261016/tasks.md",
+          "text": "24. Gate the packet, publish it, and read the remote back by digest"
+        },
+        {
+          "file": "openspec/changes/hgk-far-remediation-20261016/tasks.md",
+          "text": "25. Record the self-research / self-learning / self-iteration / self-evolution note"
+        }
+      ],
+      "has_own_artifacts": 3,
+      "name_appears_in_git_log": true,
+      "spec_files": [
+        "openspec/changes/hgk-far-remediation-20261016/specs/lane-governance-gates/spec.md"
+      ]
+    },
+    {
+      "change": "hgk-lane-brief-and-guard-hardening-20261015",
+      "unchecked_count": 22,
+      "checked_count": 0,
+      "unchecked": [
+        {
+          "file": "openspec/changes/hgk-lane-brief-and-guard-hardening-20261015/tasks.md",
+          "text": "1.1 [TF-01|NOW] Classify a remote-write marker occurrence by command context, not bare words:"
+        },
+        {
+          "file": "openspec/changes/hgk-lane-brief-and-guard-hardening-20261015/tasks.md",
+          "text": "1.2 [TF-01|NOW] Keep `detection_only` semantics; the dispatcher stops REFUSING a dispatch on"
+        },
+        {
+          "file": "openspec/changes/hgk-lane-brief-and-guard-hardening-20261015/tasks.md",
+          "text": "2.1 [TF-08|NOW] Define the guarded subject as the tracked (packet) file set where the subject"
+        },
+        {
+          "file": "openspec/changes/hgk-lane-brief-and-guard-hardening-20261015/tasks.md",
+          "text": "2.2 [TF-08|NOW] Record every ignored-path add/remove in the guard receipt (hygiene leaves a"
+        },
+        {
+          "file": "openspec/changes/hgk-lane-brief-and-guard-hardening-20261015/tasks.md",
+          "text": "2.3 [TF-09|NOW] Sample the guarded subject digest during the turn (bounded sampler, capped"
+        },
+        {
+          "file": "openspec/changes/hgk-lane-brief-and-guard-hardening-20261015/tasks.md",
+          "text": "2.4 [TF-07/HG-KSEOS half|NOW] Make the standing dispatch-brief template state every guarded"
+        },
+        {
+          "file": "openspec/changes/hgk-lane-brief-and-guard-hardening-20261015/tasks.md",
+          "text": "3.1 [TF-06|NOW] Record per-attempt the nonce carrier surface probed (wrapper echo path, relay"
+        },
+        {
+          "file": "openspec/changes/hgk-lane-brief-and-guard-hardening-20261015/tasks.md",
+          "text": "3.2 [TF-06|BLOCKED-owner] Root-cause fix of the wrapper/relay nonce echo path so"
+        },
+        {
+          "file": "openspec/changes/hgk-lane-brief-and-guard-hardening-20261015/tasks.md",
+          "text": "4.1 [TF-02|BLOCKED-owner] Derive `taskspec_id` from a full project-id digest (or a spine-wide"
+        },
+        {
+          "file": "openspec/changes/hgk-lane-brief-and-guard-hardening-20261015/tasks.md",
+          "text": "4.2 [TF-02|BLOCKED-owner] Resolve WorkOrder `base_head` from the project's declared"
+        },
+        {
+          "file": "openspec/changes/hgk-lane-brief-and-guard-hardening-20261015/tasks.md",
+          "text": "4.3 [TF-02|BLOCKED-owner] On workorder-field failure, return a typed error instead of"
+        },
+        {
+          "file": "openspec/changes/hgk-lane-brief-and-guard-hardening-20261015/tasks.md",
+          "text": "4.4 Gating note: 4.1–4.3 may only be executed when an owner authorisation for a control-plane"
+        },
+        {
+          "file": "openspec/changes/hgk-lane-brief-and-guard-hardening-20261015/tasks.md",
+          "text": "5.1 [TF-07/TF-09|NOW] Add `--out-dir`/`DEST` to `probe_mutations.py` so a re-run writes its RAW"
+        },
+        {
+          "file": "openspec/changes/hgk-lane-brief-and-guard-hardening-20261015/tasks.md",
+          "text": "5.2 [TF-07|NOW] Cross-check: the driver's declared out-dir is validated against the brief's"
+        },
+        {
+          "file": "openspec/changes/hgk-lane-brief-and-guard-hardening-20261015/tasks.md",
+          "text": "6.1 [TF-03|NOW] Adopt the WriteSet + unified-diff pair as the standing provenance convention"
+        },
+        {
+          "file": "openspec/changes/hgk-lane-brief-and-guard-hardening-20261015/tasks.md",
+          "text": "6.2 [TF-05|NOW] Make `tests/test_publication_projection.py` and"
+        },
+        {
+          "file": "openspec/changes/hgk-lane-brief-and-guard-hardening-20261015/tasks.md",
+          "text": "6.3 [TF-05|NOW] Checker classification task (pre-existing vs introduced failures recorded"
+        },
+        {
+          "file": "openspec/changes/hgk-lane-brief-and-guard-hardening-20261015/tasks.md",
+          "text": "7.1 [TF-04|NOW] Record in the round's operating guidance: verify on-disk bytes before editing"
+        },
+        {
+          "file": "openspec/changes/hgk-lane-brief-and-guard-hardening-20261015/tasks.md",
+          "text": "8.1 Deterministic tests only: no test in this change depends on the network, a real model, the"
+        },
+        {
+          "file": "openspec/changes/hgk-lane-brief-and-guard-hardening-20261015/tasks.md",
+          "text": "8.2 Candidate-only constants hold: no promotion, no archive, no main-spec write, no"
+        },
+        {
+          "file": "openspec/changes/hgk-lane-brief-and-guard-hardening-20261015/tasks.md",
+          "text": "8.3 Each surface's implemented fix gets an independent checker lane before any verdict is"
+        },
+        {
+          "file": "openspec/changes/hgk-lane-brief-and-guard-hardening-20261015/tasks.md",
+          "text": "8.4 NON-CLAIMS boundary observed: implementing and even passing a test is not an acceptance —"
+        }
+      ],
+      "has_own_artifacts": 5,
+      "name_appears_in_git_log": true,
+      "spec_files": [
+        "openspec/changes/hgk-lane-brief-and-guard-hardening-20261015/specs/lane-brief-and-guard-hardening/spec.md"
+      ]
+    },
+    {
+      "change": "hgk-lane-reliability-closure-20261016",
+      "unchecked_count": 16,
+      "checked_count": 5,
+      "unchecked": [
+        {
+          "file": "openspec/changes/hgk-lane-reliability-closure-20261016/tasks.md",
+          "text": "ChangeSet A: additive PLAN-plane declaration + stale `usable_now` correction + registry drift fix (WorkOrder-gated)."
+        },
+        {
+          "file": "openspec/changes/hgk-lane-reliability-closure-20261016/tasks.md",
+          "text": "RED: `tests/test_lane_effort_enforcement.py` fails against the current assert script."
+        },
+        {
+          "file": "openspec/changes/hgk-lane-reliability-closure-20261016/tasks.md",
+          "text": "Implement the effort comparison + `--served-effort` in `scripts/runtime_role_binding_assert.py`."
+        },
+        {
+          "file": "openspec/changes/hgk-lane-reliability-closure-20261016/tasks.md",
+          "text": "GREEN + the round's named acceptance command."
+        },
+        {
+          "file": "openspec/changes/hgk-lane-reliability-closure-20261016/tasks.md",
+          "text": "RED: three new cases in `tests/test_governed_runtime_controller.py` (blank, null, free-text class)."
+        },
+        {
+          "file": "openspec/changes/hgk-lane-reliability-closure-20261016/tasks.md",
+          "text": "Answer the blank-session case instead of exiting 3; POSITIVE CONTROL on the same fixture stays denying."
+        },
+        {
+          "file": "openspec/changes/hgk-lane-reliability-closure-20261016/tasks.md",
+          "text": "GREEN + the round's named acceptance command."
+        },
+        {
+          "file": "openspec/changes/hgk-lane-reliability-closure-20261016/tasks.md",
+          "text": "EXECUTE lane receipt: `required_arm == served_arm`, `usage_receipt_ok`."
+        },
+        {
+          "file": "openspec/changes/hgk-lane-reliability-closure-20261016/tasks.md",
+          "text": "Orchestrator re-derives the writer's named acceptance command (the receipt is a claim)."
+        },
+        {
+          "file": "openspec/changes/hgk-lane-reliability-closure-20261016/tasks.md",
+          "text": "VERIFY/SECURITY lane (CODEX CLI, `openai-codex/gpt-6.1-sol`, `--guard-subject` = frozen candidate)."
+        },
+        {
+          "file": "openspec/changes/hgk-lane-reliability-closure-20261016/tasks.md",
+          "text": "Self-check harness with armed must-refuse probes and a machine-gate verdict (never PASS for acceptance)."
+        },
+        {
+          "file": "openspec/changes/hgk-lane-reliability-closure-20261016/tasks.md",
+          "text": "Canonical apply of the verified candidate + the full suite AT the canonical root."
+        },
+        {
+          "file": "openspec/changes/hgk-lane-reliability-closure-20261016/tasks.md",
+          "text": "Publish implementation + evidence to `shw097-team/Fabric` for the external acceptance officer."
+        },
+        {
+          "file": "openspec/changes/hgk-lane-reliability-closure-20261016/tasks.md",
+          "text": "Drive the board cards to a real outcome (a card id is not a run)."
+        },
+        {
+          "file": "openspec/changes/hgk-lane-reliability-closure-20261016/tasks.md",
+          "text": "E11: five AO-guard cases (host 136/136 vs checker sandbox 131 passed / 4 failed / 1 error on relay-metadata access)."
+        },
+        {
+          "file": "openspec/changes/hgk-lane-reliability-closure-20261016/tasks.md",
+          "text": "Matrix rows still NOT_RUN after this round's slice (each listed in the round's re-derived matrix readback)."
+        }
+      ],
+      "has_own_artifacts": 3,
+      "name_appears_in_git_log": true,
+      "spec_files": [
+        "openspec/changes/hgk-lane-reliability-closure-20261016/specs/lane-governance-gates/spec.md"
+      ]
+    },
+    {
+      "change": "hgk-plan-plane-rebind-20261015",
+      "unchecked_count": 5,
+      "checked_count": 3,
+      "unchecked": [
+        {
+          "file": "openspec/changes/hgk-plan-plane-rebind-20261015/tasks.md",
+          "text": "Obtain a served-arm receipt from a session started after the rebind (claim ceiling)."
+        },
+        {
+          "file": "openspec/changes/hgk-plan-plane-rebind-20261015/tasks.md",
+          "text": "Drive the cards to a real outcome (blocked in the skill's sense: a card id is not a run)."
+        },
+        {
+          "file": "openspec/changes/hgk-plan-plane-rebind-20261015/tasks.md",
+          "text": "R4 canonical apply of the 9 frozen files + rollback rehearsal (gated on ACC11)."
+        },
+        {
+          "file": "openspec/changes/hgk-plan-plane-rebind-20261015/tasks.md",
+          "text": "Matrix M01–M05, M09–M18."
+        },
+        {
+          "file": "openspec/changes/hgk-plan-plane-rebind-20261015/tasks.md",
+          "text": "E11 environment-dependent cases (known, not accepted as green)."
+        }
+      ],
+      "has_own_artifacts": 2,
+      "name_appears_in_git_log": true,
+      "spec_files": []
+    },
+    {
+      "change": "hgk-r10-session-closure-20261016",
+      "unchecked_count": 5,
+      "checked_count": 25,
+      "unchecked": [
+        {
+          "file": "openspec/changes/hgk-r10-session-closure-20261016/tasks.md",
+          "text": "5.2 [OPEN] Push + independent readback (per-blob digest recomputation), prior prefixes unchanged."
+        },
+        {
+          "file": "openspec/changes/hgk-r10-session-closure-20261016/tasks.md",
+          "text": "5.3 [OPEN] Draft PR opened for external verification; claim ceiling restated in the packet."
+        },
+        {
+          "file": "openspec/changes/hgk-r10-session-closure-20261016/tasks.md",
+          "text": "6.1 [OPEN] Run the VERIFY/SECURITY lane on the mandate's checker arm and adjudicate its verdict."
+        },
+        {
+          "file": "openspec/changes/hgk-r10-session-closure-20261016/tasks.md",
+          "text": "7.1 [OWNER-BLOCKED] 221 cases, 8 Gates, Fresh G1, DOC-05 effect admission, release/publication approval."
+        },
+        {
+          "file": "openspec/changes/hgk-r10-session-closure-20261016/tasks.md",
+          "text": "7.2 [OWNER-BLOCKED] Any canonical lane-registry rebind; this round only records owner-ready items."
+        }
+      ],
+      "has_own_artifacts": 3,
+      "name_appears_in_git_log": true,
+      "spec_files": [
+        "openspec/changes/hgk-r10-session-closure-20261016/specs/r10-session-closure/spec.md"
+      ]
+    },
+    {
+      "change": "hgk-r11-session-handover-20261016",
+      "unchecked_count": 1,
+      "checked_count": 26,
+      "unchecked": [
+        {
+          "file": "openspec/changes/hgk-r11-session-handover-20261016/tasks.md",
+          "text": "3.4 [BUILD] Carried-over findings/blockers from R10, each labelled carried-over vs re-measured."
+        }
+      ],
+      "has_own_artifacts": 3,
+      "name_appears_in_git_log": true,
+      "spec_files": [
+        "openspec/changes/hgk-r11-session-handover-20261016/specs/session-handover/spec.md"
+      ]
+    },
+    {
+      "change": "hgk-r8-eia-closure-skill-slim-20261016",
+      "unchecked_count": 22,
+      "checked_count": 0,
+      "unchecked": [
+        {
+          "file": "openspec/changes/hgk-r8-eia-closure-skill-slim-20261016/tasks.md",
+          "text": "1.1 [EIA-R6-09|FUTURE-BOUNDED] Freeze AVR/HGK live and candidate roots, full per-file bytes/SHA-256 and AVR 10/HGK 6 source-block maps; correct the HGK receipt's inconsistent subject_live binding in a successor record without rewriting the original. Owner: Skill Owner. Evidence: explicit root/identity correspondence and immutable input inventory; missing/wrong-subject input must refuse the gate."
+        },
+        {
+          "file": "openspec/changes/hgk-r8-eia-closure-skill-slim-20261016/tasks.md",
+          "text": "1.2 [EIA-R6-09/K-16|FUTURE-BOUNDED] Implement/qualify the 100000-byte main-file hard cap and >60-reference WARNING independently. Evidence: 100000 accepted/100001 rejected, 60/61 reference boundary and 90-reference valid candidate not hard-blocked. Preserve C1..C5 per-check/per-skill results and actual denominator."
+        },
+        {
+          "file": "openspec/changes/hgk-r8-eia-closure-skill-slim-20261016/tasks.md",
+          "text": "1.3 [EIA-R6-09|FUTURE-BOUNDED] Repair the AVR pre-frontmatter wrappers and stale absorbed verifier-lane-handover source in a bounded candidate, then verify byte-0 frontmatter, identity, complete recursive reference intake and actual host loading/selection. Evidence: positive trigger, negative nontrigger/forged-tool-text, missing/unknown physical reference and wrapper-before-YAML controls, with loader/version/source bindings."
+        },
+        {
+          "file": "openspec/changes/hgk-r8-eia-closure-skill-slim-20261016/tasks.md",
+          "text": "1.4 [EIA-R6-09|FUTURE-BOUNDED] Verify full source SHA-256 plus byte offsets/lengths for every explicit absorbed stub and all 10/6 source-block reconstructions. Evidence: exact-byte reconstruction, unreachable stub rejection, independent lost-byte/offset/SHA negative controls; short ordinary references without absorbed markers stay ordinary. Zero lost long lines alone is insufficient."
+        },
+        {
+          "file": "openspec/changes/hgk-r8-eia-closure-skill-slim-20261016/tasks.md",
+          "text": "2.1 [EIA-R6-09|FUTURE-BOUNDED] Prepare dry-run-default apply consuming the regression gate on an explicit target allowlist; bind full pre-image digests and create non-overwriting per-run backups. Evidence: all supported flags/modes checked; failed hard gate, wrong subject and drift each abort before live writes; a soft reference warning alone does not abort; repeat rehearsal cannot clobber an earlier backup."
+        },
+        {
+          "file": "openspec/changes/hgk-r8-eia-closure-skill-slim-20261016/tasks.md",
+          "text": "2.2 [EIA-R6-09|FUTURE-BOUNDED] Rehearse authorized apply and exact-byte rollback in an isolated copy, with after-write hash/readback and real loader checks; record target/pre-image/candidate/post-image digests, command, raw exits, warnings and rollback pointer. Owner: Skill Owner. Live apply requires a subsequent explicit authorization; no unlisted deletion is allowed."
+        },
+        {
+          "file": "openspec/changes/hgk-r8-eia-closure-skill-slim-20261016/tasks.md",
+          "text": "2.3 [EIA-R6-09|FUTURE-BOUNDED] Obtain an independent rerun of both candidates and guarded apply/rollback evidence on the frozen subjects before reconsidering local remediation. Evidence: checker identity, raw outputs and same-subject bindings; maker machine results are not G-A PASS or independent acceptance."
+        },
+        {
+          "file": "openspec/changes/hgk-r8-eia-closure-skill-slim-20261016/tasks.md",
+          "text": "3.1 [EIA-R6-04|FUTURE-BOUNDED] Resolve frozen product main baseline dba4b19 to its full commit, record authorized repository/root, derive the R8-0 rebased validator candidate and a bounded WriteSet/diff. Owner: DOC-07 Oracle/Validator Owner. Evidence: candidate/base identity showing no substitution of the old 9bd33a1 or ambient HG-KSEOS HEAD; baseline drift requires adjudication, not silent repinning."
+        },
+        {
+          "file": "openspec/changes/hgk-r8-eia-closure-skill-slim-20261016/tasks.md",
+          "text": "3.2 [EIA-R6-04|FUTURE-BOUNDED] Execute and preserve M04 ASSURED veto, M06 expected-oracle pin and M16 trace-digest tamper on the rebased candidate; all must REJECT. Evidence: per-case expected/actual, first failure, runner SHA, raw stdout/stderr/exit plus neighboring valid ACCEPT and safety-negative/boundary regression."
+        },
+        {
+          "file": "openspec/changes/hgk-r8-eia-closure-skill-slim-20261016/tasks.md",
+          "text": "3.3 [EIA-R6-04|FUTURE-BOUNDED] Retrieve the original M01..M18 register, identify the exact eight historical NOT_RUN IDs, and re-measure all 18 rows on the frozen candidate. Evidence: unique IDs, historical/new statuses, applicability source rationale, prerequisites and responsible owner per missing run; absent fixtures/authority remain NOT_RUN, not detected. Competent owner approval is required for each N/A; do not invent cases to move a count."
+        },
+        {
+          "file": "openspec/changes/hgk-r8-eia-closure-skill-slim-20261016/tasks.md",
+          "text": "3.4 [EIA-R6-04|FUTURE-BOUNDED] Independently re-run the rebased measurement with outputs outside the subject. Evidence: all 18 disposition rows, executed/detected/not-detected/NOT_RUN/approved-N/A counts computed from rows, raw checker receipts and unchanged subject readback; no finding closure from R7-only success."
+        },
+        {
+          "file": "openspec/changes/hgk-r8-eia-closure-skill-slim-20261016/tasks.md",
+          "text": "4.1 [EIA-R6-03|FUTURE-BOUNDED] Reconfirm effective ACL/identity evidence-of-absence and preserve WS-C scratch proof as historical evidence. Owner: HGK Checker Harness Owner. Evidence: separate absence/mechanism/deployment fields, complete frozen subject manifest and digest comparison; equal final bytes must not be described as prevention of transient writes."
+        },
+        {
+          "file": "openspec/changes/hgk-r8-eia-closure-skill-slim-20261016/tasks.md",
+          "text": "4.2 [EIA-R6-03|FUTURE-BOUNDED] Qualify the proposed deny mechanism only on a disposable equivalent tree: initial permitted write, denied create/overwrite/delete/rename including existing descendants, and permitted external output writes; save original ACL and restore it exactly. Evidence: exact principal/SID, inheritance scope, raw commands/errors/exits, no forbidden files created and restored ACL/readback. Do not generalize the W-only scratch file-creation test to full protection."
+        },
+        {
+          "file": "openspec/changes/hgk-r8-eia-closure-skill-slim-20261016/tasks.md",
+          "text": "4.3 [EIA-R6-03|BLOCKED-owner] Ask the Harness/Security Owner to choose distinct OS identities or a scoped process sandbox and explicitly authorize any real guarded-subject ACL/security change. Evidence: recorded scope, original ACL backup, rollback authority and selected boundary; one shared Windows identity or a second login of that identity cannot provide role separation. In the absence of authority leave deployment PROPOSAL_ONLY and EIA-R6-03 open."
+        },
+        {
+          "file": "openspec/changes/hgk-r8-eia-closure-skill-slim-20261016/tasks.md",
+          "text": "4.4 [EIA-R6-03|BLOCKED-owner] Only after 4.3, verify deployed checker allowed-write/forbidden-write discrimination, external output root, child-path protections, exact ACL rollback and complete guarded-set readback (WS-C's 300-file baseline, not just historical 299). Evidence: independent same-context negative matrix and raw digest rows; no live action occurs as part of authoring this task list."
+        },
+        {
+          "file": "openspec/changes/hgk-r8-eia-closure-skill-slim-20261016/tasks.md",
+          "text": "5.1 [EIA-R6-01..09|FUTURE-BOUNDED] Carry all nine WS-D records into a successor ledger with original class/severity, source/check/observed, local disposition, blocker, earliest owner, authority and evidence ceiling. Evidence: exact ID-set comparison and no upgraded acceptance; preserve EIA-R6-06 CLOSED_LOCALLY as R6-only authorization, not a GitHub review or R8 grant."
+        },
+        {
+          "file": "openspec/changes/hgk-r8-eia-closure-skill-slim-20261016/tasks.md",
+          "text": "5.2 [EIA-R6-01/02|FUTURE-BOUNDED] Prepare a versioned R6 publication errata naming the two exact manifest-only pyc paths from design D5. Evidence: historical b8ff81043e47e4b652522be34444bf52fcf4d65e, 583 declared/581 shipped/2 excluded observation, stale 566 and report-time 567/569 lineage, SHA/observation-UTC semantics and corrected declared-shipped exact-path set. Preserve merged/failed historical evidence and never ship the cache files to manufacture equality."
+        },
+        {
+          "file": "openspec/changes/hgk-r8-eia-closure-skill-slim-20261016/tasks.md",
+          "text": "5.3 [EIA-R6-01/02/06|BLOCKED-owner] Obtain Fabric publication owner/Repo Maintainer authority for the exact errata publication/R8 prefix and revision, then read back the precise published target/head, full path set, count and digests. Evidence: fresh observation time and set equality on the corrected shipped set; historical heads remain labeled historical. No publication/merge is authorized or performed by this proposal."
+        },
+        {
+          "file": "openspec/changes/hgk-r8-eia-closure-skill-slim-20261016/tasks.md",
+          "text": "6.1 [EIA-R6-05|BLOCKED-owner] Retain Fresh G1 not certified, original G-A..G-H without newly claimed PASS, 221 runtime cases not run here and AO verdict NOT_ISSUED. Owner: HGK/domain Gate Owners. Any future lift requires legitimate RepoContext, owner-authorized WorkOrder, applicable DEV/OPS ECP/TQAEP, effect-time DOC-05 admission and fresh independent raw/AO receipts; evidence-only or proposal validation cannot supply these."
+        },
+        {
+          "file": "openspec/changes/hgk-r8-eia-closure-skill-slim-20261016/tasks.md",
+          "text": "6.2 [EIA-R6-07|BLOCKED-owner] Obtain a versioned PIPD Source/Authority Owner ruling on source #6 active normative versus superseded history, then recompute only the owner-approved active denominator. Evidence: source/ruling pins and before/after identity sets; absence of the ruling leaves FAIL_CLOSED and no full PI/PD/source coverage claim."
+        },
+        {
+          "file": "openspec/changes/hgk-r8-eia-closure-skill-slim-20261016/tasks.md",
+          "text": "6.3 [EIA-R6-08|BLOCKED-owner] Keep all 20 KP *-R04 polarity conflicts quarantined from automatic policy/release intake until KP Policy Owner / DOC Owner corrects precise clauses and safety-negative/cross-KP/release-boundary regression is evidenced. Evidence: attempted unrepaired consumption blocked; quarantine alone is not repair and an affected consuming Gate cannot pass."
+        },
+        {
+          "file": "openspec/changes/hgk-r8-eia-closure-skill-slim-20261016/tasks.md",
+          "text": "7.1 [EIA-R6-01..09|FUTURE-BOUNDED] Review every claim against same-candidate raw evidence and independent checker identity, preserving all owner-blocked/NOT_RUN statuses and separate denominators. Evidence: no structural-validator result, hash, row count, local maker result, push or merge is substituted for Gate/AO acceptance; no source/config/spine/routing authority is inferred from this proposal."
+        }
+      ],
+      "has_own_artifacts": 5,
+      "name_appears_in_git_log": true,
+      "spec_files": [
+        "openspec/changes/hgk-r8-eia-closure-skill-slim-20261016/specs/r8-eia-closure-and-skill-slim-regression/spec.md"
+      ]
+    },
+    {
+      "change": "hgk-r9-far-residual-closure-20261016",
+      "unchecked_count": 5,
+      "checked_count": 20,
+      "unchecked": [
+        {
+          "file": "openspec/changes/hgk-r9-far-residual-closure-20261016/tasks.md",
+          "text": "1.2 [R8-WS2|EXECUTED-CANDIDATE] Acceptance: `test_real_trace_link_is_legal_beside_its_endpoints` and"
+        },
+        {
+          "file": "openspec/changes/hgk-r9-far-residual-closure-20261016/tasks.md",
+          "text": "1.3 [R8-WS2|EXECUTED-CANDIDATE] Re-run the full local suite on the adapted tree and record the counts"
+        },
+        {
+          "file": "openspec/changes/hgk-r9-far-residual-closure-20261016/tasks.md",
+          "text": "2.2b [R8-F5|EXECUTED-CANDIDATE] Apply the successor BY OVERLAY (no deletions) with a byte-for-byte pre-image,"
+        },
+        {
+          "file": "openspec/changes/hgk-r9-far-residual-closure-20261016/tasks.md",
+          "text": "5.1 [221 cases / 8 Gates / Fresh G1|OWNER-BLOCKED] Human gates; not executed, not approximated."
+        },
+        {
+          "file": "openspec/changes/hgk-r9-far-residual-closure-20261016/tasks.md",
+          "text": "5.2 [EIA-R6-03|OWNER-BLOCKED] A single Windows identity cannot separate maker from checker; the"
+        }
+      ],
+      "has_own_artifacts": 5,
+      "name_appears_in_git_log": true,
+      "spec_files": [
+        "openspec/changes/hgk-r9-far-residual-closure-20261016/specs/r9-far-residual-closure/spec.md"
+      ]
+    },
+    {
+      "change": "hgk-round3-lane-rebind-20261016",
+      "unchecked_count": 1,
+      "checked_count": 26,
+      "unchecked": [
+        {
+          "file": "openspec/changes/hgk-round3-lane-rebind-20261016/tasks.md",
+          "text": "5.4 R11 (no admission-receipt producer exists in the product) recorded as an open gap; the round does"
+        }
+      ],
+      "has_own_artifacts": 3,
+      "name_appears_in_git_log": true,
+      "spec_files": [
+        "openspec/changes/hgk-round3-lane-rebind-20261016/specs/lane-governance-gates/spec.md"
+      ]
+    },
+    {
+      "change": "hgk-skill-convergence-20261014",
+      "unchecked_count": 13,
+      "checked_count": 3,
+      "unchecked": [
+        {
+          "file": "openspec/changes/hgk-skill-convergence-20261014/tasks.md",
+          "text": "1.4 Qualify native writer scope with positive, outside, subprocess and preexisting-junction refusal plus host readback."
+        },
+        {
+          "file": "openspec/changes/hgk-skill-convergence-20261014/tasks.md",
+          "text": "2.1 Codex DeepSeek HGK entry writer generates byte-reversible extraction, topical routing and legacy aliases."
+        },
+        {
+          "file": "openspec/changes/hgk-skill-convergence-20261014/tasks.md",
+          "text": "2.2 Codex DeepSeek AVR entry writer generates byte-reversible extraction, topical routing and legacy aliases."
+        },
+        {
+          "file": "openspec/changes/hgk-skill-convergence-20261014/tasks.md",
+          "text": "2.3 Codex DeepSeek consumer writer adds full-current advisory findings and evaluation status through existing single/batch callers without changing delta semantics or policy."
+        },
+        {
+          "file": "openspec/changes/hgk-skill-convergence-20261014/tasks.md",
+          "text": "2.4 Build scoped dry-run/apply/rollback tooling with pre-image guards and compensation; no live write yet."
+        },
+        {
+          "file": "openspec/changes/hgk-skill-convergence-20261014/tasks.md",
+          "text": "3.1 Reconstruct every original source byte from candidate payloads; run corrupted/missing/reordered slice negatives and alias/dangling/orphan checks."
+        },
+        {
+          "file": "openspec/changes/hgk-skill-convergence-20261014/tasks.md",
+          "text": "3.2 Run current full lint, consumer positive/negative/boundary/rollback/cross-skill suites and footprint measurement; distinguish inherited warnings."
+        },
+        {
+          "file": "openspec/changes/hgk-skill-convergence-20261014/tasks.md",
+          "text": "3.3 Freeze nonempty candidate and global unchanged coverage; run trigger/refusal/SoD and cross-role holdout canaries."
+        },
+        {
+          "file": "openspec/changes/hgk-skill-convergence-20261014/tasks.md",
+          "text": "3.4 Dispatch fresh Codex GLM VERIFY and SECURITY in parallel, strict verdict schema, raw actual command evidence and exact subject guards."
+        },
+        {
+          "file": "openspec/changes/hgk-skill-convergence-20261014/tasks.md",
+          "text": "3.5 On defects, preserve FAIL and repair only through original admitted maker WriteSet, then fresh independent recheck; never weaken oracle."
+        },
+        {
+          "file": "openspec/changes/hgk-skill-convergence-20261014/tasks.md",
+          "text": "4.1 Admit exact local apply binding after independent success; exercise dry-run, stale-preimage refusal and rollback roundtrip."
+        },
+        {
+          "file": "openspec/changes/hgk-skill-convergence-20261014/tasks.md",
+          "text": "4.2 Local apply, digest readback, cold-start/canary checks and final independent post-apply review."
+        },
+        {
+          "file": "openspec/changes/hgk-skill-convergence-20261014/tasks.md",
+          "text": "4.3 Record typed results, checkpoint and completion sweep; deliver tests ran/skipped, covered/uncovered matrix, original failures and rollback command."
+        }
+      ],
+      "has_own_artifacts": 5,
+      "name_appears_in_git_log": true,
+      "spec_files": [
+        "openspec/changes/hgk-skill-convergence-20261014/specs/governance-skill-convergence/spec.md"
+      ]
+    },
+    {
+      "change": "lane-health-repair-20261011",
+      "unchecked_count": 4,
+      "checked_count": 30,
+      "unchecked": [
+        {
+          "file": "openspec/changes/lane-health-repair-20261011/tasks.md",
+          "text": "6.1 **K1-K3** (in scope): an unterminated carrier, a non-strictly-UTF-8 carrier, and a U+2028-terminated carrier can each still produce a success"
+        },
+        {
+          "file": "openspec/changes/lane-health-repair-20261011/tasks.md",
+          "text": "6.2 **K4-K5** (out of scope): the declaration is coerced by `int()`/`str()` in `src/hg_kseos/lane_route_resolver.py` — touching it needs an admitted write-set amendment (OQ11)"
+        },
+        {
+          "file": "openspec/changes/lane-health-repair-20261011/tasks.md",
+          "text": "6.3 **C5/C6** UNVERIFIED; **OQ1-OQ11** open"
+        },
+        {
+          "file": "openspec/changes/lane-health-repair-20261011/tasks.md",
+          "text": "6.4 The iteration was **stopped deliberately**: the same defect class was found by five consecutive independent reviews, which the owner's standing monitoring order treats as a repeated block requiring intervention rather than another pass"
+        }
+      ],
+      "has_own_artifacts": 5,
+      "name_appears_in_git_log": true,
+      "spec_files": [
+        "openspec/changes/lane-health-repair-20261011/specs/lane-dispatch-honest-declarations/spec.md"
+      ]
+    },
+    {
+      "change": "lane-mandate-rebinding-and-d01-revocation",
+      "unchecked_count": 27,
+      "checked_count": 11,
+      "unchecked": [
+        {
+          "file": "openspec/changes/lane-mandate-rebinding-and-d01-revocation/tasks.md",
+          "text": "1.1 Enumerate every site in `config/lane-routing-registry.yaml` that binds PLAN to `gpt-6.1-sol`: `routes[PLAN]` (provider/model/canonical_identity/auth/oauth), `lane_chains.PLAN[0]`, `sod.plan_lane`, and the PLAN entries in `effective_wiring.plan_high.surfaces`; record the exact JSON/YAML pointer of each"
+        },
+        {
+          "file": "openspec/changes/lane-mandate-rebinding-and-d01-revocation/tasks.md",
+          "text": "1.2 Rebind each enumerated site to `opencode-go / deepseek-v4.1-flash` (`canonical_identity: deepseek-v4.1-flash`, `auth: env_ref:OPENCODE_GO_API_KEY`, `oauth: false`) with no site left declaring `gpt-6.1-sol` for PLAN"
+        },
+        {
+          "file": "openspec/changes/lane-mandate-rebinding-and-d01-revocation/tasks.md",
+          "text": "1.3 Update the matching PLAN-site `bindings[]` in `projections[]` (model, provider, and any canonical-identity pointer) so the drift expectation equals the new rebinding, not the old"
+        },
+        {
+          "file": "openspec/changes/lane-mandate-rebinding-and-d01-revocation/tasks.md",
+          "text": "1.4 Advance the registry publication counter `epoch` (15 -> 16) and update its commentary block in the same edit, because the committed content changed"
+        },
+        {
+          "file": "openspec/changes/lane-mandate-rebinding-and-d01-revocation/tasks.md",
+          "text": "1.5 Synchronize `source_of_routes` (revision/digest) and the projected site `config/model-lane-assignment.json` so the drift gate resolves without a stale pointer"
+        },
+        {
+          "file": "openspec/changes/lane-mandate-rebinding-and-d01-revocation/tasks.md",
+          "text": "1.6 Re-run the registry drift gate and record the raw output; zero `severity=error` findings is the exit condition"
+        },
+        {
+          "file": "openspec/changes/lane-mandate-rebinding-and-d01-revocation/tasks.md",
+          "text": "2.6 Prove the compiled dispatch now contains both arms (assert `arms[]` length and `selection_authority` presence; assert the primary route is unchanged) and record the raw output"
+        },
+        {
+          "file": "openspec/changes/lane-mandate-rebinding-and-d01-revocation/tasks.md",
+          "text": "3.1 Read the original D-01 artifact and record its absolute path and `sha256` (the two byte-identical files `verify/MODEL_SUBSTITUTION.txt` and `evidence/09_CHALLENGE/MODEL_SUBSTITUTION.txt`, both `f54dec16d48d9432d61d3394b3468cfd2a12ddf5dfecf724a34922c8246e7fc2`) into the revocation record's `original_path` + `original_sha256`"
+        },
+        {
+          "file": "openspec/changes/lane-mandate-rebinding-and-d01-revocation/tasks.md",
+          "text": "3.2 Write an ADDITIVE revocation record (new companion file beside the round, e.g. `D-01_REVOCATION.json`) with `deviation_id: D-01`, `verdict: REVOKED`, and the falsifying evidence: the same isolated home/auth/model/prompt produced HTTP 400 exit 1 on Codex CLI `0.147.0-alpha.6.5` and `OK` exit 0 on `0.162.0-alpha.17.2`"
+        },
+        {
+          "file": "openspec/changes/lane-mandate-rebinding-and-d01-revocation/tasks.md",
+          "text": "3.3 Bind the checker lane in the revocation record to the currently mandated model (`opencode-go/glm-5.3-flash`), replacing the revoked substitution's `gpt-5.6-sol` binding for the forward mandate"
+        },
+        {
+          "file": "openspec/changes/lane-mandate-rebinding-and-d01-revocation/tasks.md",
+          "text": "3.4 Assert the original artifact is byte-unchanged by the change: re-hash both original files and confirm they still equal `f54dec16...e7fc2`; assert no manifest that binds those bytes was edited"
+        },
+        {
+          "file": "openspec/changes/lane-mandate-rebinding-and-d01-revocation/tasks.md",
+          "text": "3.5 Record the revocation record's own `sha256` and that it is keyed by the original's digest, so a later reader can join revocation to the frozen bytes"
+        },
+        {
+          "file": "openspec/changes/lane-mandate-rebinding-and-d01-revocation/tasks.md",
+          "text": "4.1 Declare the rule in the registry: a model family excluded by the owner for a round MUST NOT be selected by a registry default, a fallback arm, or an inherited child setting"
+        },
+        {
+          "file": "openspec/changes/lane-mandate-rebinding-and-d01-revocation/tasks.md",
+          "text": "4.2 Enumerate the exclusion for THIS round (the `gpt-*` family, excluded because the GPT quota is nearly exhausted) and record its authority and scope"
+        },
+        {
+          "file": "openspec/changes/lane-mandate-rebinding-and-d01-revocation/tasks.md",
+          "text": "4.3 Assert the exclusion survives the PLAN default path and the `delegation` inheritance path — no default or inherited child setting may re-enter an excluded family"
+        },
+        {
+          "file": "openspec/changes/lane-mandate-rebinding-and-d01-revocation/tasks.md",
+          "text": "4.4 Record a check that a dispatch naming an excluded family is refused (not silently downgraded) while a permitted family dispatches normally"
+        },
+        {
+          "file": "openspec/changes/lane-mandate-rebinding-and-d01-revocation/tasks.md",
+          "text": "5.1 Drift test: the rebinding (C1) leaves zero `severity=error` findings and the `epoch` advance is consistent with the changed bytes"
+        },
+        {
+          "file": "openspec/changes/lane-mandate-rebinding-and-d01-revocation/tasks.md",
+          "text": "5.2 Projection test: the compact route carries `arms[]` + `selection_authority` and the primary route is byte-identical to pre-change (C2)"
+        },
+        {
+          "file": "openspec/changes/lane-mandate-rebinding-and-d01-revocation/tasks.md",
+          "text": "5.3 History-preservation test: original D-01 bytes still hash to `f54dec16...e7fc2` and no arm/history record was rewritten (C3)"
+        },
+        {
+          "file": "openspec/changes/lane-mandate-rebinding-and-d01-revocation/tasks.md",
+          "text": "5.4 Exclusion test: an excluded family cannot be reached via the registry default or an inherited child setting (C4)"
+        },
+        {
+          "file": "openspec/changes/lane-mandate-rebinding-and-d01-revocation/tasks.md",
+          "text": "5.5 Record all raw test output and exit codes; no test is marked done by this change (candidate only)"
+        },
+        {
+          "file": "openspec/changes/lane-mandate-rebinding-and-d01-revocation/tasks.md",
+          "text": "6.1 Document the PLAN rebinding and every updated site, with before/after values (C1)"
+        },
+        {
+          "file": "openspec/changes/lane-mandate-rebinding-and-d01-revocation/tasks.md",
+          "text": "6.2 Document the arm-reachability fix and the round-selection field, stating the projection now carries both arms and the history was preserved (C2)"
+        },
+        {
+          "file": "openspec/changes/lane-mandate-rebinding-and-d01-revocation/tasks.md",
+          "text": "6.3 Document the D-01 revocation: original path + `sha256`, falsifying A/B evidence, the bound checker lane, and the explicit statement that the original is not mutated (C3)"
+        },
+        {
+          "file": "openspec/changes/lane-mandate-rebinding-and-d01-revocation/tasks.md",
+          "text": "6.4 Document the exclusion rule and its round-scope authority (C4)"
+        },
+        {
+          "file": "openspec/changes/lane-mandate-rebinding-and-d01-revocation/tasks.md",
+          "text": "6.5 State the claim ceiling: this change authors the rebinding document; it does not apply the rebinding and is not an acceptance"
+        },
+        {
+          "file": "openspec/changes/lane-mandate-rebinding-and-d01-revocation/tasks.md",
+          "text": "7.7 Independent verification of 7.1–7.6 by a checker lane — see the round's checker receipt; writer-side claims are not sufficient"
+        }
+      ],
+      "has_own_artifacts": 5,
+      "name_appears_in_git_log": true,
+      "spec_files": [
+        "openspec/changes/lane-mandate-rebinding-and-d01-revocation/specs/lane-mandate-rebinding/spec.md"
+      ]
+    },
+    {
+      "change": "lane-model-chain-rebind-20261015",
+      "unchecked_count": 13,
+      "checked_count": 0,
+      "unchecked": [
+        {
+          "file": "openspec/changes/lane-model-chain-rebind-20261015/tasks.md",
+          "text": "1.1 Update `config/lane-route-slots.candidate.json`: PLAN ordered_pool -> 1 openai-codex/gpt-6.1-sol (effort medium), 2 opencode-go/glm-5.3-flash, 3 opencode-go/deepseek-v4.1-flash (demote remaining optional arms below); VERIFY ordered_pool same; EXECUTE ordered_pool -> 1 opencode-go/deepseek-v4.1-flash, 2 openai-codex/gpt-6-luna, 3 nvidia/deepseek-ai/deepseek-v4.1-flash; keep role labels DEFAULT/FALLBACK1/FALLBACK2; keep per-arm measured/feasibility text; preserve prior chain as `previous_revision_*` records."
+        },
+        {
+          "file": "openspec/changes/lane-model-chain-rebind-20261015/tasks.md",
+          "text": "1.2 Update `config/model-lane-assignment.json`: assignment[PLAN].assigned_* -> openai-codex/gpt-6.1-sol (effort medium), assignment[VERIFY_SECURITY].supply_selector.unspecified_default/arms.A -> openai-codex/gpt-6.1-sol medium (arm B -> opencode-go/glm-5.3-flash, arm C -> opencode-go/deepseek-v4.1-flash); lane_chains order update matching 1.1; add authoritative note \"rebind per owner order 2026-10-15, round FAR-LANE-ROUTE-REBIND-20261015\"; bump registry_epoch -> 18 and revision -> 18."
+        },
+        {
+          "file": "openspec/changes/lane-model-chain-rebind-20261015/tasks.md",
+          "text": "1.3 Update `config/lane-routing-registry.yaml`: replace round_model_exclusions block with the NEW round scope (HGK-SOLUTION-APPLY-20261012 -> FAR-LANE-ROUTE-REBIND-20261015) and empty/purposeful exclusion set; refresh source_of_routes sha256 + revision 18; epoch 18; append history entry with rollback pointer."
+        },
+        {
+          "file": "openspec/changes/lane-model-chain-rebind-20261015/tasks.md",
+          "text": "1.4 .bak each touched config before writing; record digests in var/FAR-LANE-ROUTE-REBIND-20261015/sources/."
+        },
+        {
+          "file": "openspec/changes/lane-model-chain-rebind-20261015/tasks.md",
+          "text": "2.1 `lane_policy.load_registry()` returns epoch 18 and projected routes matching 1.1/1.2/1.3; `check_exclusions` admits gpt-6.1-sol for the new round."
+        },
+        {
+          "file": "openspec/changes/lane-model-chain-rebind-20261015/tasks.md",
+          "text": "2.2 Update `tests/test_lane_policy.py` expected orders/epochs; add one test: resolver order == owner-declared chain (PLAN/VERIFY/EXECUTE)."
+        },
+        {
+          "file": "openspec/changes/lane-model-chain-rebind-20261015/tasks.md",
+          "text": "2.3 Extend `scripts/runtime_role_binding_assert.py` mandate file schema with per-lane `chain` (ordered list); a declared arm must be IN its lane chain; tests OK (new negative case lives in tests/test_far_lane_fix_20261015.py pattern)."
+        },
+        {
+          "file": "openspec/changes/lane-model-chain-rebind-20261015/tasks.md",
+          "text": "3.1 EXECUTE lane turn (default DeepSeek, GO) — receipt ok:true, required==served."
+        },
+        {
+          "file": "openspec/changes/lane-model-chain-rebind-20261015/tasks.md",
+          "text": "3.2 VERIFY lane turn with a mandate naming fallback1 GLM — receipt ok:true, required==served."
+        },
+        {
+          "file": "openspec/changes/lane-model-chain-rebind-20261015/tasks.md",
+          "text": "3.3 PLAN not dispatchable via codex lanes; record Hermes session model readback in the round evidence instead (advisory)."
+        },
+        {
+          "file": "openspec/changes/lane-model-chain-rebind-20261015/tasks.md",
+          "text": "3.4 (Blocked, owner-gated) EXECUTE fallback arms: nvidia requires relay-restart window; luna requires backend admission work — record as pre-existing limitation, not a new defect."
+        },
+        {
+          "file": "openspec/changes/lane-model-chain-rebind-20261015/tasks.md",
+          "text": "4.1 Manifest + digests in var/FAR-LANE-ROUTE-REBIND-20261015/."
+        },
+        {
+          "file": "openspec/changes/lane-model-chain-rebind-20261015/tasks.md",
+          "text": "4.2 Candidate -> owner review; acceptance NOT recorded by agents."
+        }
+      ],
+      "has_own_artifacts": 5,
+      "name_appears_in_git_log": true,
+      "spec_files": [
+        "openspec/changes/lane-model-chain-rebind-20261015/specs/lane-model-chain-policy/spec.md"
+      ]
+    },
+    {
+      "change": "lane-sod-enforcement",
+      "unchecked_count": 27,
+      "checked_count": 0,
+      "unchecked": [
+        {
+          "file": "openspec/changes/lane-sod-enforcement/tasks.md",
+          "text": "1.1 Write `config/lane-routing-registry.yaml` with `epoch`, three `routes[]`, `sod_invariants`, `projections[]`"
+        },
+        {
+          "file": "openspec/changes/lane-sod-enforcement/tasks.md",
+          "text": "1.2 Pin every active JSON pointer of `model-lane-assignment.json` and `hermes-codex-lane.json` as a binding"
+        },
+        {
+          "file": "openspec/changes/lane-sod-enforcement/tasks.md",
+          "text": "1.3 Record `config/hermes.json` runtime-path/model debt as `debt[]` (warn), never a PASS"
+        },
+        {
+          "file": "openspec/changes/lane-sod-enforcement/tasks.md",
+          "text": "1.4 Derive the whole projected policy deterministically from the registry (`project_policy`)"
+        },
+        {
+          "file": "openspec/changes/lane-sod-enforcement/tasks.md",
+          "text": "1.5 Acceptance test: `test_registry_and_projection_shape` — three lanes in order, zero fallback arms, projection deterministic, baseline non-fatal"
+        },
+        {
+          "file": "openspec/changes/lane-sod-enforcement/tasks.md",
+          "text": "2.1 Implement `check_drift` returning one finding per disagreement as a JSON pointer"
+        },
+        {
+          "file": "openspec/changes/lane-sod-enforcement/tasks.md",
+          "text": "2.2 Implement the `validate` CLI (exit 1 on fatal drift) and `diff-live` (what would change)"
+        },
+        {
+          "file": "openspec/changes/lane-sod-enforcement/tasks.md",
+          "text": "2.3 Regression: >=32 drift-injection subcases, each mutating one projection site"
+        },
+        {
+          "file": "openspec/changes/lane-sod-enforcement/tasks.md",
+          "text": "2.4 Acceptance test: `test_drift_injection_subcases` — per-case non-vacuity, baseline passes, loud named failure"
+        },
+        {
+          "file": "openspec/changes/lane-sod-enforcement/tasks.md",
+          "text": "3.1 Implement `check_sod(maker, checker)` on the normalized model axis"
+        },
+        {
+          "file": "openspec/changes/lane-sod-enforcement/tasks.md",
+          "text": "3.2 Implement `scripts/hgk-lane-guard.py` with exits 0 admit / 2 SoD / 3 not admitted / 4 stale epoch"
+        },
+        {
+          "file": "openspec/changes/lane-sod-enforcement/tasks.md",
+          "text": "3.3 Refuse when the arm is not lane-shaped ADMITTED, and when the epoch or source digest is stale"
+        },
+        {
+          "file": "openspec/changes/lane-sod-enforcement/tasks.md",
+          "text": "3.4 Acceptance test: `test_sod_and_admission_policy` — equal models collide, empty fails closed"
+        },
+        {
+          "file": "openspec/changes/lane-sod-enforcement/tasks.md",
+          "text": "4.1 Implement `src/hg_kseos/lane_admission.py` (ADMITTED / REFUSED / UNPROVEN) and the receipt writer"
+        },
+        {
+          "file": "openspec/changes/lane-sod-enforcement/tasks.md",
+          "text": "4.2 Implement `scripts/probe-hgk-lane.py`: direct completion recorded separately, never ADMITTED alone"
+        },
+        {
+          "file": "openspec/changes/lane-sod-enforcement/tasks.md",
+          "text": "4.3 Implement `--dry-run` with no network I/O; parse the served arm from the Hermes `agent.log` session line"
+        },
+        {
+          "file": "openspec/changes/lane-sod-enforcement/tasks.md",
+          "text": "4.4 Acceptance test: a direct completion stays UNPROVEN; a served-model mismatch is REFUSED"
+        },
+        {
+          "file": "openspec/changes/lane-sod-enforcement/tasks.md",
+          "text": "5.1 Freeze the input set before reading; exclude own output and registered producer outputs by resolved identity"
+        },
+        {
+          "file": "openspec/changes/lane-sod-enforcement/tasks.md",
+          "text": "5.2 Require `--out` and an input digest; fail on empty denominator, missing artifact, sha mismatch, unresolved citation"
+        },
+        {
+          "file": "openspec/changes/lane-sod-enforcement/tasks.md",
+          "text": "5.3 Prove semantic-stability: identical frozen inputs produce identical findings with or without a prior output file"
+        },
+        {
+          "file": "openspec/changes/lane-sod-enforcement/tasks.md",
+          "text": "6.1 Implement `scripts/supervise-hgk-opencodex.ps1` for pwsh 7 with healthz + /v1/models checks"
+        },
+        {
+          "file": "openspec/changes/lane-sod-enforcement/tasks.md",
+          "text": "6.2 Bounded restart within a window; emit a JSON lease receipt; fail closed and only start the HG-KSEOS launcher"
+        },
+        {
+          "file": "openspec/changes/lane-sod-enforcement/tasks.md",
+          "text": "6.3 Verify: run `-Action Verify`; confirm it reports DEGRADED/BLOCKED rather than looping when the relay is down"
+        },
+        {
+          "file": "openspec/changes/lane-sod-enforcement/tasks.md",
+          "text": "7.1 Document every live integration point (path + symbol + line reference + minimal diff intent) in the adoption guide"
+        },
+        {
+          "file": "openspec/changes/lane-sod-enforcement/tasks.md",
+          "text": "7.2 Document rollback per component and the applied-versus-staged split"
+        },
+        {
+          "file": "openspec/changes/lane-sod-enforcement/tasks.md",
+          "text": "7.3 Produce the OpenSpec change and validate with `openspec validate lane-sod-enforcement --strict`"
+        },
+        {
+          "file": "openspec/changes/lane-sod-enforcement/tasks.md",
+          "text": "7.4 Record the execute receipt (artifacts, bytes, sha256, commands, raw test output, untouched paths, `claim_ceiling: CANDIDATE_ONLY`)"
+        }
+      ],
+      "has_own_artifacts": 5,
+      "name_appears_in_git_log": true,
+      "spec_files": [
+        "openspec/changes/lane-sod-enforcement/specs/lane-sod-enforcement/spec.md"
+      ]
+    },
+    {
+      "change": "lane-supervisor-windowless-convergence",
+      "unchecked_count": 1,
+      "checked_count": 12,
+      "unchecked": [
+        {
+          "file": "openspec/changes/lane-supervisor-windowless-convergence/tasks.md",
+          "text": "3.3 Separate the recovery budget from the trigger interval so a recovery attempt cannot drop the next trigger"
+        }
+      ],
+      "has_own_artifacts": 4,
+      "name_appears_in_git_log": true,
+      "spec_files": [
+        "openspec/changes/lane-supervisor-windowless-convergence/specs/scheduled-task-console-window/spec.md"
+      ]
+    },
+    {
+      "change": "lane-toolchain-identity-and-failure-classification",
+      "unchecked_count": 9,
+      "checked_count": 18,
+      "unchecked": [
+        {
+          "file": "openspec/changes/lane-toolchain-identity-and-failure-classification/tasks.md",
+          "text": "T1.4 No ad-hoc discovery: the resolver and its callers use no `find` / `command -v`"
+        },
+        {
+          "file": "openspec/changes/lane-toolchain-identity-and-failure-classification/tasks.md",
+          "text": "T2.1 Implement the preflight as a one-line echo with a `<=120s` budget, run BEFORE any long lane"
+        },
+        {
+          "file": "openspec/changes/lane-toolchain-identity-and-failure-classification/tasks.md",
+          "text": "T3.4 No lane script performs binary discovery with `find` / `command -v`"
+        },
+        {
+          "file": "openspec/changes/lane-toolchain-identity-and-failure-classification/tasks.md",
+          "text": "T4.4 Determinism: no test depends on the network, a real model, the relay, or the developer's real Codex home"
+        },
+        {
+          "file": "openspec/changes/lane-toolchain-identity-and-failure-classification/tasks.md",
+          "text": "T6.1 Document the declared lane-toolchain identity and how to read the resolver output (path + sha256 + `--version`)"
+        },
+        {
+          "file": "openspec/changes/lane-toolchain-identity-and-failure-classification/tasks.md",
+          "text": "T6.2 Document the typed code table (`LANE_TOOLCHAIN_MISMATCH` vs `LANE_MODEL_REFUSED`) and the substitution gate"
+        },
+        {
+          "file": "openspec/changes/lane-toolchain-identity-and-failure-classification/tasks.md",
+          "text": "T6.3 Document the verdict-binds-bytes rule (a post-verdict rebuild / digest refresh / published-asset replacement invalidates the verdict) as policy; its enforcement is out of scope here"
+        },
+        {
+          "file": "openspec/changes/lane-toolchain-identity-and-failure-classification/tasks.md",
+          "text": "7.1 Candidate-only constants hold: no promotion, no archive, no main-spec write, no `config/` or route edit, everything additive"
+        },
+        {
+          "file": "openspec/changes/lane-toolchain-identity-and-failure-classification/tasks.md",
+          "text": "7.2 No task in this change is marked done: the round is a candidate, not an acceptance"
+        }
+      ],
+      "has_own_artifacts": 5,
+      "name_appears_in_git_log": true,
+      "spec_files": [
+        "openspec/changes/lane-toolchain-identity-and-failure-classification/specs/lane-toolchain-identity/spec.md"
+      ]
+    },
+    {
+      "change": "lane-verify-dual-routing-and-plan-high",
+      "unchecked_count": 23,
+      "checked_count": 5,
+      "unchecked": [
+        {
+          "file": "openspec/changes/lane-verify-dual-routing-and-plan-high/tasks.md",
+          "text": "2.1 Q1: how `-HIGH` is expressed as a default, which surface makes it a default, and every declaration site it must reach"
+        },
+        {
+          "file": "openspec/changes/lane-verify-dual-routing-and-plan-high/tasks.md",
+          "text": "2.2 Q1: the per-model-vs-per-lane conflict and the only per-dispatch effort surface"
+        },
+        {
+          "file": "openspec/changes/lane-verify-dual-routing-and-plan-high/tasks.md",
+          "text": "2.3 Q3: the SoD verdict on the instruction as written (coherent clause vs conflicting clause)"
+        },
+        {
+          "file": "openspec/changes/lane-verify-dual-routing-and-plan-high/tasks.md",
+          "text": "2.4 Q2: the selection surface, the co-equal dual-arm encoding, the default-arm before/after, lane-shaped liveness of both arms"
+        },
+        {
+          "file": "openspec/changes/lane-verify-dual-routing-and-plan-high/tasks.md",
+          "text": "2.5 Q2: the maker/checker collision matrix and which pairs a pre-dispatch gate must refuse"
+        },
+        {
+          "file": "openspec/changes/lane-verify-dual-routing-and-plan-high/tasks.md",
+          "text": "3.1 `config/model-lane-assignment.json` → revision 10 (PLAN effort, VERIFY dual selector, `sod_conflicts`, effective wiring)"
+        },
+        {
+          "file": "openspec/changes/lane-verify-dual-routing-and-plan-high/tasks.md",
+          "text": "3.2 `config/lane-routing-registry.yaml` → epoch 10 (PLAN effort, VERIFY arms, projection bindings, declared conflict) with every comment preserved"
+        },
+        {
+          "file": "openspec/changes/lane-verify-dual-routing-and-plan-high/tasks.md",
+          "text": "3.3 Amendment receipt naming every byte changed, before/after sha256, and the raw check output"
+        },
+        {
+          "file": "openspec/changes/lane-verify-dual-routing-and-plan-high/tasks.md",
+          "text": "4.3 Record pre-image, post-image and the byte-exact rollback"
+        },
+        {
+          "file": "openspec/changes/lane-verify-dual-routing-and-plan-high/tasks.md",
+          "text": "5.1 SWARM-A on `opencode-go/glm-5.3-flash` (medium): per-claim verdict on the PLAN findings and the amendment"
+        },
+        {
+          "file": "openspec/changes/lane-verify-dual-routing-and-plan-high/tasks.md",
+          "text": "5.2 SWARM-B on `openai-codex/gpt-6.1-sol` (medium): independent verdict on the same subjects, simultaneously proving the dual route is real"
+        },
+        {
+          "file": "openspec/changes/lane-verify-dual-routing-and-plan-high/tasks.md",
+          "text": "5.3 Record for each arm the served model/provider from the runtime log, not from the dispatch banner"
+        },
+        {
+          "file": "openspec/changes/lane-verify-dual-routing-and-plan-high/tasks.md",
+          "text": "6.1 Run the registry drift gate; zero `severity=error` findings is the exit condition"
+        },
+        {
+          "file": "openspec/changes/lane-verify-dual-routing-and-plan-high/tasks.md",
+          "text": "6.2 On any finding, repair the declaration (never the expectation) and re-run until clean"
+        },
+        {
+          "file": "openspec/changes/lane-verify-dual-routing-and-plan-high/tasks.md",
+          "text": "6.3 Record the raw gate output, the epoch, the checked-site count and the source digest"
+        },
+        {
+          "file": "openspec/changes/lane-verify-dual-routing-and-plan-high/tasks.md",
+          "text": "7.1 `openspec validate lane-verify-dual-routing-and-plan-high --strict`"
+        },
+        {
+          "file": "openspec/changes/lane-verify-dual-routing-and-plan-high/tasks.md",
+          "text": "7.2 GSTACK named-method route check: registry ACTIVE_SELECTED + route(flow) evidence for this round"
+        },
+        {
+          "file": "openspec/changes/lane-verify-dual-routing-and-plan-high/tasks.md",
+          "text": "7.3 Record, per surface, whether it was SELECTED or `NOT_SELECTED_WITH_REASON` (silent fallback prohibited)"
+        },
+        {
+          "file": "openspec/changes/lane-verify-dual-routing-and-plan-high/tasks.md",
+          "text": "8.1 Enumerate and hash every round artifact"
+        },
+        {
+          "file": "openspec/changes/lane-verify-dual-routing-and-plan-high/tasks.md",
+          "text": "8.2 Write the evidence manifest"
+        },
+        {
+          "file": "openspec/changes/lane-verify-dual-routing-and-plan-high/tasks.md",
+          "text": "8.3 Generate the single evidence MD LAST so it binds every digest"
+        },
+        {
+          "file": "openspec/changes/lane-verify-dual-routing-and-plan-high/tasks.md",
+          "text": "8.4 Mirror to the further roots and assert byte equality by re-hashing"
+        },
+        {
+          "file": "openspec/changes/lane-verify-dual-routing-and-plan-high/tasks.md",
+          "text": "8.5 `claim_ceiling: CANDIDATE_ONLY`; no acceptance, no promotion, no self-signature"
+        }
+      ],
+      "has_own_artifacts": 5,
+      "name_appears_in_git_log": true,
+      "spec_files": [
+        "openspec/changes/lane-verify-dual-routing-and-plan-high/specs/lane-verify-dual-routing-and-plan-high/spec.md"
+      ]
+    },
+    {
+      "change": "lane-verify-routing-remediation",
+      "unchecked_count": 14,
+      "checked_count": 0,
+      "unchecked": [
+        {
+          "file": "openspec/changes/lane-verify-routing-remediation/tasks.md",
+          "text": "1.1 Probe both mandated arms and one live sibling with bounded timeouts; record http code, elapsed seconds and whether content came back"
+        },
+        {
+          "file": "openspec/changes/lane-verify-routing-remediation/tasks.md",
+          "text": "1.2 Record the current delegation route (provider and model) as the restore point, with a readback"
+        },
+        {
+          "file": "openspec/changes/lane-verify-routing-remediation/tasks.md",
+          "text": "1.3 Set the delegation route to the mandated VERIFY model, dispatch the verify lane, then restore the route and read both values back"
+        },
+        {
+          "file": "openspec/changes/lane-verify-routing-remediation/tasks.md",
+          "text": "1.4 Capture the runtime log line that names the verify session's model and provider as the authoritative routing evidence"
+        },
+        {
+          "file": "openspec/changes/lane-verify-routing-remediation/tasks.md",
+          "text": "2.1 Amend the lane policy file to state that a per-task model/provider override exists on the kanban dispatch surface, and that only a lane-name-indexed fallback registry is absent"
+        },
+        {
+          "file": "openspec/changes/lane-verify-routing-remediation/tasks.md",
+          "text": "2.2 Reconcile the policy file's verify-lane model field with its own claim-ceiling text so both name the same model"
+        },
+        {
+          "file": "openspec/changes/lane-verify-routing-remediation/tasks.md",
+          "text": "3.1 Admit a TaskSpec and a WorkOrder for the candidate repair set under the existing admission pattern"
+        },
+        {
+          "file": "openspec/changes/lane-verify-routing-remediation/tasks.md",
+          "text": "3.2 Apply the candidate patch inside an admitted isolated worktree, then run the suite and record the counts"
+        },
+        {
+          "file": "openspec/changes/lane-verify-routing-remediation/tasks.md",
+          "text": "3.3 Obtain an independent check from a lane on a different model, made to the checker as a claim-based brief"
+        },
+        {
+          "file": "openspec/changes/lane-verify-routing-remediation/tasks.md",
+          "text": "4.1 Only after 3.2 lands, run the suite against the canonical store and record the store's event count before and after"
+        },
+        {
+          "file": "openspec/changes/lane-verify-routing-remediation/tasks.md",
+          "text": "4.2 If the repair has not landed, run against an override store and state in the handoff that the canonical store was not exercised"
+        },
+        {
+          "file": "openspec/changes/lane-verify-routing-remediation/tasks.md",
+          "text": "4.3 Record both defects' status as re-derived rather than repeated"
+        },
+        {
+          "file": "openspec/changes/lane-verify-routing-remediation/tasks.md",
+          "text": "5.1 Freeze artifacts first, generate the single evidence file last, mirror it to the declared roots and confirm the digests are equal"
+        },
+        {
+          "file": "openspec/changes/lane-verify-routing-remediation/tasks.md",
+          "text": "5.2 State the claim ceiling as no mutation of the subject store plus the enumerated write ledger"
+        }
+      ],
+      "has_own_artifacts": 5,
+      "name_appears_in_git_log": true,
+      "spec_files": [
+        "openspec/changes/lane-verify-routing-remediation/specs/model-lane-routing/spec.md"
+      ]
+    },
+    {
+      "change": "pipd-r17-install-doc-identity-guard",
+      "unchecked_count": 21,
+      "checked_count": 0,
+      "unchecked": [
+        {
+          "file": "openspec/changes/pipd-r17-install-doc-identity-guard/tasks.md",
+          "text": "1.1 `tests/test_r6_doc_identity_guard.py` exists, stdlib + `unittest`, no network."
+        },
+        {
+          "file": "openspec/changes/pipd-r17-install-doc-identity-guard/tasks.md",
+          "text": "1.2 It fails on a paragraph that pairs the preview.4 id with the preview.3 commit without marking"
+        },
+        {
+          "file": "openspec/changes/pipd-r17-install-doc-identity-guard/tasks.md",
+          "text": "1.3 It fails on a fenced build example whose mount pack, release id and release commit name"
+        },
+        {
+          "file": "openspec/changes/pipd-r17-install-doc-identity-guard/tasks.md",
+          "text": "1.4 It fails on a `dist/mount/` path that does not exist in the tree."
+        },
+        {
+          "file": "openspec/changes/pipd-r17-install-doc-identity-guard/tasks.md",
+          "text": "1.5 It fails on a same-file `#fragment` link with no matching heading, in either document."
+        },
+        {
+          "file": "openspec/changes/pipd-r17-install-doc-identity-guard/tasks.md",
+          "text": "1.6 It fails if the user guide loses `S4_FULL_PASS NOT_GRANTED` or regains the preview.3-era hold"
+        },
+        {
+          "file": "openspec/changes/pipd-r17-install-doc-identity-guard/tasks.md",
+          "text": "1.7 Each check has a paired mutation case that makes exactly that check fail."
+        },
+        {
+          "file": "openspec/changes/pipd-r17-install-doc-identity-guard/tasks.md",
+          "text": "1.8 The suite passes on the candidate and no workflow file was edited."
+        },
+        {
+          "file": "openspec/changes/pipd-r17-install-doc-identity-guard/tasks.md",
+          "text": "2.1 `docs/install/README.md` records that the served `PIPD_WEB_FALLBACK.md` declares the earlier"
+        },
+        {
+          "file": "openspec/changes/pipd-r17-install-doc-identity-guard/tasks.md",
+          "text": "2.2 The note states the correction requires a future release, and the release asset is not"
+        },
+        {
+          "file": "openspec/changes/pipd-r17-install-doc-identity-guard/tasks.md",
+          "text": "2.3 A next-release ticket carries the item."
+        },
+        {
+          "file": "openspec/changes/pipd-r17-install-doc-identity-guard/tasks.md",
+          "text": "3.1 The checker is dispatched on a different model axis from the writer, with the arm pinned."
+        },
+        {
+          "file": "openspec/changes/pipd-r17-install-doc-identity-guard/tasks.md",
+          "text": "3.2 The checker is given the ability to fetch served bytes and to run the suite, if the lane"
+        },
+        {
+          "file": "openspec/changes/pipd-r17-install-doc-identity-guard/tasks.md",
+          "text": "3.3 The checker's verdict is bound to the frozen candidate commit and tree."
+        },
+        {
+          "file": "openspec/changes/pipd-r17-install-doc-identity-guard/tasks.md",
+          "text": "4.1 The `VERIFY_SECURITY` pool ordering defect is documented with a candidate patch, in a"
+        },
+        {
+          "file": "openspec/changes/pipd-r17-install-doc-identity-guard/tasks.md",
+          "text": "4.2 The round records that it did not edit the registry."
+        },
+        {
+          "file": "openspec/changes/pipd-r17-install-doc-identity-guard/tasks.md",
+          "text": "5.1 The candidate is committed and pushed; the remote head is read back."
+        },
+        {
+          "file": "openspec/changes/pipd-r17-install-doc-identity-guard/tasks.md",
+          "text": "5.2 The evidence packet is emitted and verified against the committed blobs in a fresh fetch."
+        },
+        {
+          "file": "openspec/changes/pipd-r17-install-doc-identity-guard/tasks.md",
+          "text": "5.3 A handover record carries the exact subject identity, open tickets, owner decisions, rollback"
+        },
+        {
+          "file": "openspec/changes/pipd-r17-install-doc-identity-guard/tasks.md",
+          "text": "5.4 No secret appears in the diff, the branch, the packet or the logs."
+        },
+        {
+          "file": "openspec/changes/pipd-r17-install-doc-identity-guard/tasks.md",
+          "text": "5.5 Owner decisions are requested in one-action form and not executed by the round."
+        }
+      ],
+      "has_own_artifacts": 3,
+      "name_appears_in_git_log": false,
+      "spec_files": [
+        "openspec/changes/pipd-r17-install-doc-identity-guard/specs/pipd-install-doc-identity/spec.md"
+      ]
+    },
+    {
+      "change": "pipd-repo-hygiene-and-handover-20261016",
+      "unchecked_count": 21,
+      "checked_count": 0,
+      "unchecked": [
+        {
+          "file": "openspec/changes/pipd-repo-hygiene-and-handover-20261016/tasks.md",
+          "text": "1.1 HGK typed admission：`ADMISSION_OK`、`WO-TS-20261016-01..05`、checkpoint 記錄"
+        },
+        {
+          "file": "openspec/changes/pipd-repo-hygiene-and-handover-20261016/tasks.md",
+          "text": "1.2 GSTACK named-method route check（含負向對照 NATIVE）"
+        },
+        {
+          "file": "openspec/changes/pipd-repo-hygiene-and-handover-20261016/tasks.md",
+          "text": "1.3 OpenSpec change 建立並 `validate --strict`"
+        },
+        {
+          "file": "openspec/changes/pipd-repo-hygiene-and-handover-20261016/tasks.md",
+          "text": "1.4 KANBAN gate DAG（E0–E7 依賴鏈）"
+        },
+        {
+          "file": "openspec/changes/pipd-repo-hygiene-and-handover-20261016/tasks.md",
+          "text": "2.1 回收 12 個可還原 worktree（守門 `dirty==0` ∧ 尖端在 origin；排除使用中者）"
+        },
+        {
+          "file": "openspec/changes/pipd-repo-hygiene-and-handover-20261016/tasks.md",
+          "text": "2.2 救援主 clone 6 個未提交檔至 `rescue/r5p-uncommitted-20261016`"
+        },
+        {
+          "file": "openspec/changes/pipd-repo-hygiene-and-handover-20261016/tasks.md",
+          "text": "2.3 刪除可重生 `_scratch`；`.gitignore` 止漏（條件式）"
+        },
+        {
+          "file": "openspec/changes/pipd-repo-hygiene-and-handover-20261016/tasks.md",
+          "text": "3.1 `README.md` current-state 節刷新至 2026-10-16"
+        },
+        {
+          "file": "openspec/changes/pipd-repo-hygiene-and-handover-20261016/tasks.md",
+          "text": "3.2 更正過期車道模型列"
+        },
+        {
+          "file": "openspec/changes/pipd-repo-hygiene-and-handover-20261016/tasks.md",
+          "text": "3.3 `docs/adr/ADR-0008` 更新（本地衛生清冊）"
+        },
+        {
+          "file": "openspec/changes/pipd-repo-hygiene-and-handover-20261016/tasks.md",
+          "text": "3.4 `docs/adr/ADR-0009` 更新（結案移交）"
+        },
+        {
+          "file": "openspec/changes/pipd-repo-hygiene-and-handover-20261016/tasks.md",
+          "text": "3.5 驗證 `git diff --name-only origin/main...<branch>` 恰為 3 檔、無 `src/`／`schemas/`／`skills/`"
+        },
+        {
+          "file": "openspec/changes/pipd-repo-hygiene-and-handover-20261016/tasks.md",
+          "text": "4.1 證據包（六件具名 ＋ 單一對外 MD）"
+        },
+        {
+          "file": "openspec/changes/pipd-repo-hygiene-and-handover-20261016/tasks.md",
+          "text": "4.2 shipped-bytes manifest ＋ fresh-extract 自驗"
+        },
+        {
+          "file": "openspec/changes/pipd-repo-hygiene-and-handover-20261016/tasks.md",
+          "text": "4.3 push 證據分支 ＋ 遠端尖端回讀"
+        },
+        {
+          "file": "openspec/changes/pipd-repo-hygiene-and-handover-20261016/tasks.md",
+          "text": "4.4 VERIFY 車道獨立複驗；裁決逐字入包"
+        },
+        {
+          "file": "openspec/changes/pipd-repo-hygiene-and-handover-20261016/tasks.md",
+          "text": "4.5 檢測清單回填（`D-01..D-16`）"
+        },
+        {
+          "file": "openspec/changes/pipd-repo-hygiene-and-handover-20261016/tasks.md",
+          "text": "5.1 FAR-021 五件（含 `LEARNING.md`、`DEVIATIONS_ADDENDUM.md`）"
+        },
+        {
+          "file": "openspec/changes/pipd-repo-hygiene-and-handover-20261016/tasks.md",
+          "text": "5.2 skill 更新（可重用規則）"
+        },
+        {
+          "file": "openspec/changes/pipd-repo-hygiene-and-handover-20261016/tasks.md",
+          "text": "5.3 memory 更新（僅跨 session 事實）"
+        },
+        {
+          "file": "openspec/changes/pipd-repo-hygiene-and-handover-20261016/tasks.md",
+          "text": "5.4 Owner 交還包（`OWNER_ACTION_REQUIRED`）"
+        }
+      ],
+      "has_own_artifacts": 5,
+      "name_appears_in_git_log": false,
+      "spec_files": [
+        "openspec/changes/pipd-repo-hygiene-and-handover-20261016/specs/repo-hygiene-and-handover/spec.md"
+      ]
+    },
+    {
+      "change": "pipd-s4r6-closeout-doc-identity-and-update-route",
+      "unchecked_count": 23,
+      "checked_count": 0,
+      "unchecked": [
+        {
+          "file": "openspec/changes/pipd-s4r6-closeout-doc-identity-and-update-route/tasks.md",
+          "text": "1.1 `docs/install/README.md`: the version pin names the `v0.1.1-preview.4` tag object"
+        },
+        {
+          "file": "openspec/changes/pipd-s4r6-closeout-doc-identity-and-update-route/tasks.md",
+          "text": "1.2 `docs/install/README.md`: the preview.4 `build_source_commit` is stated together with its"
+        },
+        {
+          "file": "openspec/changes/pipd-s4r6-closeout-doc-identity-and-update-route/tasks.md",
+          "text": "1.3 `docs/install/README.md`: the Web-fallback build example is labelled the legacy preview.3"
+        },
+        {
+          "file": "openspec/changes/pipd-s4r6-closeout-doc-identity-and-update-route/tasks.md",
+          "text": "1.4 No reference to a `pipd-ls-sp-s4-chatgpt-mount-v0.1.1-preview.4` directory (it does not"
+        },
+        {
+          "file": "openspec/changes/pipd-s4r6-closeout-doc-identity-and-update-route/tasks.md",
+          "text": "2.1 `docs/USER_GUIDE.md`: the `Merge and release are HOLD` sentence is removed and replaced by the"
+        },
+        {
+          "file": "openspec/changes/pipd-s4r6-closeout-doc-identity-and-update-route/tasks.md",
+          "text": "2.2 `docs/USER_GUIDE.md`: the published-wheel Trace claim is scoped without asserting that the"
+        },
+        {
+          "file": "openspec/changes/pipd-s4r6-closeout-doc-identity-and-update-route/tasks.md",
+          "text": "2.3 `docs/USER_GUIDE.md`: the CLI section no longer contrasts a \"candidate branch\" against a"
+        },
+        {
+          "file": "openspec/changes/pipd-s4r6-closeout-doc-identity-and-update-route/tasks.md",
+          "text": "3.1 `docs/install/README.md` gains the `Updating a plugin you already installed` section with"
+        },
+        {
+          "file": "openspec/changes/pipd-s4r6-closeout-doc-identity-and-update-route/tasks.md",
+          "text": "3.2 The section states that a same-id Add refusal is about the id already being present and is"
+        },
+        {
+          "file": "openspec/changes/pipd-s4r6-closeout-doc-identity-and-update-route/tasks.md",
+          "text": "3.3 `docs/USER_GUIDE.md` points at that section rather than copying it."
+        },
+        {
+          "file": "openspec/changes/pipd-s4r6-closeout-doc-identity-and-update-route/tasks.md",
+          "text": "4.1 The plugin ZIP bullet carries the release download entry and the sha256"
+        },
+        {
+          "file": "openspec/changes/pipd-s4r6-closeout-doc-identity-and-update-route/tasks.md",
+          "text": "4.2 `SHA256SUMS` is named as the sidecar of record; the page does not become a second sidecar."
+        },
+        {
+          "file": "openspec/changes/pipd-s4r6-closeout-doc-identity-and-update-route/tasks.md",
+          "text": "4.3 The `NOT_SUPPORTED_FOR_ACCOUNT` downgrade to `PIPD_WEB_FALLBACK.md` (`DOC_MOUNT_ONLY`) is"
+        },
+        {
+          "file": "openspec/changes/pipd-s4r6-closeout-doc-identity-and-update-route/tasks.md",
+          "text": "5.1 The round's doc-identity detector passes with 0 errors."
+        },
+        {
+          "file": "openspec/changes/pipd-s4r6-closeout-doc-identity-and-update-route/tasks.md",
+          "text": "5.2 Every detector check has a paired mutation that makes exactly that check fire (non-vacuity)."
+        },
+        {
+          "file": "openspec/changes/pipd-s4r6-closeout-doc-identity-and-update-route/tasks.md",
+          "text": "5.3 `python -m pytest tests/test_r5r3_install_route_identity.py` passes on the candidate."
+        },
+        {
+          "file": "openspec/changes/pipd-s4r6-closeout-doc-identity-and-update-route/tasks.md",
+          "text": "5.4 The affected regression subset passes with raw counts recorded."
+        },
+        {
+          "file": "openspec/changes/pipd-s4r6-closeout-doc-identity-and-update-route/tasks.md",
+          "text": "5.5 `git diff --check` is clean and the changed path set is a subset of the authorized set."
+        },
+        {
+          "file": "openspec/changes/pipd-s4r6-closeout-doc-identity-and-update-route/tasks.md",
+          "text": "5.6 A non-maker checker replays 5.1–5.4 on the frozen candidate and issues its own verdict."
+        },
+        {
+          "file": "openspec/changes/pipd-s4r6-closeout-doc-identity-and-update-route/tasks.md",
+          "text": "6.1 The candidate is committed and pushed to the controlled branch; the remote head equals the"
+        },
+        {
+          "file": "openspec/changes/pipd-s4r6-closeout-doc-identity-and-update-route/tasks.md",
+          "text": "6.2 No secret appears in the diff, the branch, the commit message or the evidence pack."
+        },
+        {
+          "file": "openspec/changes/pipd-s4r6-closeout-doc-identity-and-update-route/tasks.md",
+          "text": "6.3 `S4_R6_CLOSEOUT_RETURN/` is emitted with `CK-01..CK-14` dispositions."
+        },
+        {
+          "file": "openspec/changes/pipd-s4r6-closeout-doc-identity-and-update-route/tasks.md",
+          "text": "6.4 Owner closeout ratification is requested; `TEMP_CLOSED` is not written as `FULL_PASS`."
+        }
+      ],
+      "has_own_artifacts": 3,
+      "name_appears_in_git_log": false,
+      "spec_files": [
+        "openspec/changes/pipd-s4r6-closeout-doc-identity-and-update-route/specs/pipd-install-doc-identity/spec.md"
+      ]
+    },
+    {
+      "change": "pipd-unmerged-candidate-merge-20261016",
+      "unchecked_count": 1,
+      "checked_count": 7,
+      "unchecked": [
+        {
+          "file": "openspec/changes/pipd-unmerged-candidate-merge-20261016/tasks.md",
+          "text": "4.2 VERIFY 車道裁決逐字入包（進行中）"
+        }
+      ],
+      "has_own_artifacts": 5,
+      "name_appears_in_git_log": false,
+      "spec_files": [
+        "openspec/changes/pipd-unmerged-candidate-merge-20261016/specs/unmerged-candidate-merge/spec.md"
+      ]
+    },
+    {
+      "change": "s4-final-pr18-closeout-20261016",
+      "unchecked_count": 1,
+      "checked_count": 22,
+      "unchecked": [
+        {
+          "file": "openspec/changes/s4-final-pr18-closeout-20261016/tasks.md",
+          "text": "5.2 Record the verdict with its same-model-axis disclosure"
+        }
+      ],
+      "has_own_artifacts": 5,
+      "name_appears_in_git_log": false,
+      "spec_files": [
+        "openspec/changes/s4-final-pr18-closeout-20261016/specs/release-closeout-evidence/spec.md"
+      ]
+    },
+    {
+      "change": "skill-mainfile-cap-remediation",
+      "unchecked_count": 11,
+      "checked_count": 0,
+      "unchecked": [
+        {
+          "file": "openspec/changes/skill-mainfile-cap-remediation/tasks.md",
+          "text": "T1 Pre-flight: skill_guard `pre` baseline; record LF-normalized chars, raw chars, bytes, sha256."
+        },
+        {
+          "file": "openspec/changes/skill-mainfile-cap-remediation/tasks.md",
+          "text": "T2 Freeze the split manifest (section -> target reference file), pre-registered before editing."
+        },
+        {
+          "file": "openspec/changes/skill-mainfile-cap-remediation/tasks.md",
+          "text": "T3 Build/verify the mechanical splitter; dry-run on a copy (never in place first)."
+        },
+        {
+          "file": "openspec/changes/skill-mainfile-cap-remediation/tasks.md",
+          "text": "T4 Reverse reconstruction: reinsert slices into pointer positions and prove byte-identity with the pre-split copy."
+        },
+        {
+          "file": "openspec/changes/skill-mainfile-cap-remediation/tasks.md",
+          "text": "T5 Pointer integrity: every moved section has a 3-line pointer; routing map lists the load path."
+        },
+        {
+          "file": "openspec/changes/skill-mainfile-cap-remediation/tasks.md",
+          "text": "T6 Index completeness: the support-files index includes the newly created reference files."
+        },
+        {
+          "file": "openspec/changes/skill-mainfile-cap-remediation/tasks.md",
+          "text": "T7 Add the adversarial-verification-rounds pointer; reconcile duplication with the standalone skill."
+        },
+        {
+          "file": "openspec/changes/skill-mainfile-cap-remediation/tasks.md",
+          "text": "T8 skill_guard `post` = PASS; keyword grep counts not lower than baseline; 0 new orphans."
+        },
+        {
+          "file": "openspec/changes/skill-mainfile-cap-remediation/tasks.md",
+          "text": "T9 Cold-start canary: a fresh leaf given only the main file must reach the right reference file."
+        },
+        {
+          "file": "openspec/changes/skill-mainfile-cap-remediation/tasks.md",
+          "text": "T10 Regrowth guard: declare a ceiling and a check that fails a future round crossing it."
+        },
+        {
+          "file": "openspec/changes/skill-mainfile-cap-remediation/tasks.md",
+          "text": "T11 Independent checker (not the maker) recomputes T1-T10 numbers from raw bytes; verdict recorded."
+        }
+      ],
+      "has_own_artifacts": 4,
+      "name_appears_in_git_log": false,
+      "spec_files": [
+        "openspec/changes/skill-mainfile-cap-remediation/specs/skill-mainfile-cap-governance/spec.md"
+      ]
+    },
+    {
+      "change": "sod-independent-verify-enforcement",
+      "unchecked_count": 2,
+      "checked_count": 3,
+      "unchecked": [
+        {
+          "file": "openspec/changes/sod-independent-verify-enforcement/tasks.md",
+          "text": "Apply to canonical tree (owner gate - NOT executed)"
+        },
+        {
+          "file": "openspec/changes/sod-independent-verify-enforcement/tasks.md",
+          "text": "Execute the subject_digest migration (owner gate - NOT executed)"
+        }
+      ],
+      "has_own_artifacts": 4,
+      "name_appears_in_git_log": false,
+      "spec_files": []
+    },
+    {
+      "change": "strict-declaration-20261011",
+      "unchecked_count": 17,
+      "checked_count": 5,
+      "unchecked": [
+        {
+          "file": "openspec/changes/strict-declaration-20261011/tasks.md",
+          "text": "2.1 S1: the resolver refuses a wrongly-typed declaration with a typed error instead of coercing rank/provider/model"
+        },
+        {
+          "file": "openspec/changes/strict-declaration-20261011/tasks.md",
+          "text": "2.2 S2: the dispatcher's raw-pool read applies the same exact typing (no `int()` coercion)"
+        },
+        {
+          "file": "openspec/changes/strict-declaration-20261011/tasks.md",
+          "text": "2.3 S3: a carrier counts only when it is a complete LF/CRLF-terminated, strictly UTF-8-decodable JSON object"
+        },
+        {
+          "file": "openspec/changes/strict-declaration-20261011/tasks.md",
+          "text": "2.4 S4: no regression of the previous frozen classification, the declared-capability skip/override, the lane-home isolation refusal"
+        },
+        {
+          "file": "openspec/changes/strict-declaration-20261011/tasks.md",
+          "text": "2.5 Scope: the writer touched only the four admitted files"
+        },
+        {
+          "file": "openspec/changes/strict-declaration-20261011/tasks.md",
+          "text": "3.1 S1 positive/negative/boundary: well-typed pool loads; `1.9` / `\"1\"` / `true` / `null` rank and integer/boolean/null provider or model each raise the typed refusal"
+        },
+        {
+          "file": "openspec/changes/strict-declaration-20261011/tasks.md",
+          "text": "3.2 S2: a non-integer raw-pool rank is a typed refusal, not a coerced match"
+        },
+        {
+          "file": "openspec/changes/strict-declaration-20261011/tasks.md",
+          "text": "3.3 S3: unterminated / invalid-UTF-8 / U+2028-terminated carriers each fail to produce a success; a CRLF and an LF carrier both succeed"
+        },
+        {
+          "file": "openspec/changes/strict-declaration-20261011/tasks.md",
+          "text": "3.4 Permanent probes extended (P24-P28) so each false-green class cannot return unnoticed"
+        },
+        {
+          "file": "openspec/changes/strict-declaration-20261011/tasks.md",
+          "text": "3.5 The whole suite passes"
+        },
+        {
+          "file": "openspec/changes/strict-declaration-20261011/tasks.md",
+          "text": "4.1 Maker-side gates: pytest + the declaration probes"
+        },
+        {
+          "file": "openspec/changes/strict-declaration-20261011/tasks.md",
+          "text": "4.2 Independent checker lane (VERIFY/SECURITY, `openai-codex/gpt-6.1-sol`) re-derives S1-S4 from the raw bytes; verdict + explicit UNVERIFIED items"
+        },
+        {
+          "file": "openspec/changes/strict-declaration-20261011/tasks.md",
+          "text": "4.3 Iterate: every new finding is FAR-researched and repaired, then re-checked"
+        },
+        {
+          "file": "openspec/changes/strict-declaration-20261011/tasks.md",
+          "text": "4.4 Freeze the round; evidence + claim ceiling recorded"
+        },
+        {
+          "file": "openspec/changes/strict-declaration-20261011/tasks.md",
+          "text": "5.1 All actionable items, gaps and decisions closed locally"
+        },
+        {
+          "file": "openspec/changes/strict-declaration-20261011/tasks.md",
+          "text": "5.2 External acceptance explicitly NOT claimed: `ACC-STRICT-DECLARATION-014` stays NOT_RUN"
+        },
+        {
+          "file": "openspec/changes/strict-declaration-20261011/tasks.md",
+          "text": "5.3 Nothing promoted, no route change, no service restart, no credential operation"
+        }
+      ],
+      "has_own_artifacts": 5,
+      "name_appears_in_git_log": false,
+      "spec_files": [
+        "openspec/changes/strict-declaration-20261011/specs/strict-declaration/spec.md"
+      ]
+    },
+    {
+      "change": "verification-artifact-contract",
+      "unchecked_count": 26,
+      "checked_count": 7,
+      "unchecked": [
+        {
+          "file": "openspec/changes/verification-artifact-contract/tasks.md",
+          "text": "1.1 Confirm the runner pre-creates `<workdir>/VERDICT.json` with every item `INCONCLUSIVE` and `updated_by_checker: false` BEFORE the checker turn is dispatched"
+        },
+        {
+          "file": "openspec/changes/verification-artifact-contract/tasks.md",
+          "text": "1.2 Confirm the post-condition refuses a missing artifact, an unparsable artifact, and an artifact whose `updated_by_checker` is not true — each with `ERR_VERIFY_NO_VERDICT` and a non-zero exit"
+        },
+        {
+          "file": "openspec/changes/verification-artifact-contract/tasks.md",
+          "text": "1.3 Record the receipt fields that expose the distinction (`verdict`, `verdict_updated_by_checker`, `verdict_is_skeleton_only`)"
+        },
+        {
+          "file": "openspec/changes/verification-artifact-contract/tasks.md",
+          "text": "1.4 Build the deterministic stand-in checker (no model calls) that simulates: full verdict, no write, skeleton-only, and kill-after-k-writes"
+        },
+        {
+          "file": "openspec/changes/verification-artifact-contract/tasks.md",
+          "text": "1.5 Prove the three acceptance classes: POSITIVE (truncated budget still leaves a partial verdict), NEGATIVE (pre-creation removed -> nothing; untouched skeleton -> refused; exit 0 with no file -> refused), BOUNDARY (kills at k = 0, 1, mid-list, after a final PASS write)"
+        },
+        {
+          "file": "openspec/changes/verification-artifact-contract/tasks.md",
+          "text": "1.6 For every negative case, state why it discriminates — a case that would also pass with the defect present counts for nothing"
+        },
+        {
+          "file": "openspec/changes/verification-artifact-contract/tasks.md",
+          "text": "2.1 Import the audit's item ids from the verification brief and assert the schedule carries each exactly once"
+        },
+        {
+          "file": "openspec/changes/verification-artifact-contract/tasks.md",
+          "text": "2.2 Read the ceiling from the checker model's OWN catalogue entry selected by slug; record the first-match value (334800) as the trap it is"
+        },
+        {
+          "file": "openspec/changes/verification-artifact-contract/tasks.md",
+          "text": "2.3 Record per-shard predicted peak input tokens and the headroom rule applied"
+        },
+        {
+          "file": "openspec/changes/verification-artifact-contract/tasks.md",
+          "text": "2.4 Implement `ERR_LANE_CONTEXT_BUDGET_EXCEEDED`: measure a lane's own peak `usage.inputTokens` from the relay ledger inside the lane's window and fail closed above budget"
+        },
+        {
+          "file": "openspec/changes/verification-artifact-contract/tasks.md",
+          "text": "2.5 Keep each shard's artifact, log and receipt separate from every other shard's"
+        },
+        {
+          "file": "openspec/changes/verification-artifact-contract/tasks.md",
+          "text": "3.1 Build the discriminating fixtures: declared≠served identity; body-mentions-but-header-agrees (false-positive control); unreadable header (no vacuous pass); untouched artifact after a truncated budget; out-of-boundary sibling directory"
+        },
+        {
+          "file": "openspec/changes/verification-artifact-contract/tasks.md",
+          "text": "3.2 Emit `MANIFEST.sha256` plus a single `pack_digest` over the sorted file digests"
+        },
+        {
+          "file": "openspec/changes/verification-artifact-contract/tasks.md",
+          "text": "3.3 Prove determinism (two builds, identical digest) and non-vacuity (one modified byte fails the check)"
+        },
+        {
+          "file": "openspec/changes/verification-artifact-contract/tasks.md",
+          "text": "3.4 Present the pack read-only to consumers and state the portable check a checker lane runs"
+        },
+        {
+          "file": "openspec/changes/verification-artifact-contract/tasks.md",
+          "text": "4.1 Give each concurrent lane its own runtime home materialised from the sealed config (no shared mutable home)"
+        },
+        {
+          "file": "openspec/changes/verification-artifact-contract/tasks.md",
+          "text": "4.2 Replace the global mutex with a per-lane lock and keep orphan cleanup scoped to the lane's own process ids, never a command pattern"
+        },
+        {
+          "file": "openspec/changes/verification-artifact-contract/tasks.md",
+          "text": "4.3 Record each lane's declared write scope in its receipt so a collision would be detectable afterwards"
+        },
+        {
+          "file": "openspec/changes/verification-artifact-contract/tasks.md",
+          "text": "4.4 Verify no credential is copied when a lane home is materialised"
+        },
+        {
+          "file": "openspec/changes/verification-artifact-contract/tasks.md",
+          "text": "5.1 Drive EXECUTE -> post-condition check -> typed failure -> repair -> re-dispatch as a bounded loop with an explicit stop condition"
+        },
+        {
+          "file": "openspec/changes/verification-artifact-contract/tasks.md",
+          "text": "5.2 Classify each failure and count it PER CLASS, not per session; stop and report rather than retry an unmitigated class a fifth time"
+        },
+        {
+          "file": "openspec/changes/verification-artifact-contract/tasks.md",
+          "text": "5.3 Report the loop's terminal state honestly: `PARTIAL` when no acceptable verdict exists, never rounded up to done"
+        },
+        {
+          "file": "openspec/changes/verification-artifact-contract/tasks.md",
+          "text": "6.1 Dispatch at least one shard lane under the new budget and pre-creation contract"
+        },
+        {
+          "file": "openspec/changes/verification-artifact-contract/tasks.md",
+          "text": "6.2 Require a verdict artifact with `updated_by_checker: true`, per-item outcomes and explicit `INCONCLUSIVE` markers"
+        },
+        {
+          "file": "openspec/changes/verification-artifact-contract/tasks.md",
+          "text": "6.3 Treat the verdict as an advisory independent check; owner acceptance remains `NOT_RUN`"
+        },
+        {
+          "file": "openspec/changes/verification-artifact-contract/tasks.md",
+          "text": "6.4 Record the checker's identity evidence from non-introspective sources only (relay model field, anchored run header, config)"
+        }
+      ],
+      "has_own_artifacts": 5,
+      "name_appears_in_git_log": true,
+      "spec_files": [
+        "openspec/changes/verification-artifact-contract/specs/verification-artifact-contract/spec.md"
+      ]
+    }
+  ]
+}

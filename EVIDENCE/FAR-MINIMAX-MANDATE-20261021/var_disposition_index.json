@@ -1,0 +1,1678 @@
+{
+  "schema": "HGK-VAR-DISPOSITION-INDEX/1",
+  "generated_utc": "2026-10-21T06:27:27.354909Z",
+  "scope": "top-level directories under var/ (the round-output root)",
+  "total_top_level_dirs_excluding_this_round": 120,
+  "note": "The owner referenced 114 directories. The measured count is 120 (excluding this round's own output directory). These are NOT 120 unfinished rounds: only the ROUND_OPEN / ROUND_ARTIFACT classes are round outputs at all, and RUNTIME_OR_CACHE directories were never rounds. A disposition may only be recorded per item; a receipt's existence alone is never sufficient to close a round.",
+  "counts_by_class": {
+    "ROUND_ARTIFACT": 75,
+    "UNCLASSIFIED": 32,
+    "ROUND_OPEN": 8,
+    "RUNTIME_OR_CACHE": 3,
+    "EMPTY": 2
+  },
+  "destructive_actions_taken": 0,
+  "directories": [
+    {
+      "name": "FABRIC-CLOSEOUT-20261013",
+      "file_count": 4,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "FABRIC-CLOSEOUT-20261013/ExecutionReceipt.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "FABRIC-OPEN-ITEMS-20261013",
+      "file_count": 21,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "FABRIC-OPEN-ITEMS-20261013/ExecutionReceipt.json",
+        "FABRIC-OPEN-ITEMS-20261013/Manifest.json",
+        "FABRIC-OPEN-ITEMS-20261013/execute/fold_and_receipt.py"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "FABRIC-REPO-ASSESS-20261013",
+      "file_count": 27,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "FABRIC-REPO-ASSESS-20261013/ExecutionReceipt.json",
+        "FABRIC-REPO-ASSESS-20261013/Manifest.json",
+        "FABRIC-REPO-ASSESS-20261013/execute/fold_and_receipt.py",
+        "FABRIC-REPO-ASSESS-20261013/verify_security/check-repo-assess/receipt.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "FABRIC-REPO-PUBLISH-20261013",
+      "file_count": 7,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "FABRIC-REPO-PUBLISH-20261013/ExecutionReceipt.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "FAR-CLOSURE-20261021",
+      "file_count": 16,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "FAR-CLOSURE-20261021/apply_receipt.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "FAR-CLOSURE-20261021-R2",
+      "file_count": 35,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "FAR-CLOSURE-20261021-R2/apply_receipt.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "FAR-CLOSURE-20261021-R3",
+      "file_count": 23,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "FAR-CLOSURE-20261021-R3/apply_receipt.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "FAR-CLOSURE-PUBLISH-20261021",
+      "file_count": 6,
+      "unreadable_subtrees": 0,
+      "marker_files": [],
+      "openspec_change": null,
+      "disposition_class": "UNCLASSIFIED",
+      "proposed_action": "owner ruling required; do not auto-close and do not delete"
+    },
+    {
+      "name": "FAR-FBKREORDER-20261021",
+      "file_count": 33,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "FAR-FBKREORDER-20261021/apply_receipt.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "FAR-GOV-SKILLS-20261014",
+      "file_count": 83,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "FAR-GOV-SKILLS-20261014/evidence/MANIFEST.json",
+        "FAR-GOV-SKILLS-20261014/evidence/ResearchRunReceipt.json",
+        "FAR-GOV-SKILLS-20261014/evidence/board_receipt.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "FAR-LANE-ENFORCEMENT-RCA-20261015",
+      "file_count": 124,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "FAR-LANE-ENFORCEMENT-RCA-20261015/BUNDLE_MANIFEST.json",
+        "FAR-LANE-ENFORCEMENT-RCA-20261015/far-product/ResearchRunReceipt.json",
+        "FAR-LANE-ENFORCEMENT-RCA-20261015/far-product/TriSourceCoverageReceipt.json",
+        "FAR-LANE-ENFORCEMENT-RCA-20261015/frozen/MANIFEST.json",
+        "FAR-LANE-ENFORCEMENT-RCA-20261015/frozen/sources/historical_matching_receipts.json",
+        "FAR-LANE-ENFORCEMENT-RCA-20261015/frozen/sources/other_session_role_receipts.json",
+        "FAR-LANE-ENFORCEMENT-RCA-20261015/sources/historical_matching_receipts.json",
+        "FAR-LANE-ENFORCEMENT-RCA-20261015/sources/other_session_role_receipts.json",
+        "FAR-LANE-ENFORCEMENT-RCA-20261015/sources/process_receipt_inventory.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "FAR-LANE-REPAIR-20261014",
+      "file_count": 105,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "FAR-LANE-REPAIR-20261014/ADMISSION_RECEIPT.json",
+        "FAR-LANE-REPAIR-20261014/APPLY/APPLY_RECEIPT.json",
+        "FAR-LANE-REPAIR-20261014/APPLY_ADMISSION_RECEIPT.json",
+        "FAR-LANE-REPAIR-20261014/APPLY_SPINE_RECEIPT.json",
+        "FAR-LANE-REPAIR-20261014/Manifest.json",
+        "FAR-LANE-REPAIR-20261014/SPINE_RESULT_RECEIPT.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "FAR-LANE-REUSE-RCA-20261015",
+      "file_count": 193,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "FAR-LANE-REUSE-RCA-20261015/EVIDENCE_MANIFEST.json",
+        "FAR-LANE-REUSE-RCA-20261015/ORIGINAL_SOURCE_COPY_RECEIPT.json",
+        "FAR-LANE-REUSE-RCA-20261015/far-product/ResearchRunReceipt.json",
+        "FAR-LANE-REUSE-RCA-20261015/far-product/TriSourceCoverageReceipt.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "FAR-LANE-ROUTE-REBIND-20261015",
+      "file_count": 42,
+      "unreadable_subtrees": 0,
+      "marker_files": [],
+      "openspec_change": null,
+      "disposition_class": "UNCLASSIFIED",
+      "proposed_action": "owner ruling required; do not auto-close and do not delete"
+    },
+    {
+      "name": "FAR-LANE-VERSION-MIX-20261021",
+      "file_count": 26,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "FAR-LANE-VERSION-MIX-20261021/MANIFEST.json",
+        "FAR-LANE-VERSION-MIX-20261021/REPORT.md"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "FAR-REMEDIATION-20261021",
+      "file_count": 18,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "FAR-REMEDIATION-20261021/RECEIPT.md",
+        "FAR-REMEDIATION-20261021/apply_receipt.json",
+        "FAR-REMEDIATION-20261021/selfcheck_receipt.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "FAR-REMEDIATION-AND-CLOSURE-20261016",
+      "file_count": 1455,
+      "unreadable_subtrees": 120,
+      "marker_files": [
+        "FAR-REMEDIATION-AND-CLOSURE-20261016/FROZEN_MANIFEST.json",
+        "FAR-REMEDIATION-AND-CLOSURE-20261016/PUBLICATION_RECEIPT.json",
+        "FAR-REMEDIATION-AND-CLOSURE-20261016/PUSH_RECEIPT.json",
+        "FAR-REMEDIATION-AND-CLOSURE-20261016/R1_R3_APPLY_RECEIPT.attempt1_ROLLED_BACK.json",
+        "FAR-REMEDIATION-AND-CLOSURE-20261016/R1_R3_APPLY_RECEIPT.json",
+        "FAR-REMEDIATION-AND-CLOSURE-20261016/R1_R3_COMPLETION_RECEIPT.json",
+        "FAR-REMEDIATION-AND-CLOSURE-20261016/R2_PROMOTION_RECEIPT.json",
+        "FAR-REMEDIATION-AND-CLOSURE-20261016/frozen/FROZEN_MANIFEST.prefreeze-1.SUPERSEDED.json",
+        "FAR-REMEDIATION-AND-CLOSURE-20261016/frozen/FROZEN_MANIFEST.rev1.SUPERSEDED.json",
+        "FAR-REMEDIATION-AND-CLOSURE-20261016/frozen/FROZEN_MANIFEST.rev2.SUPERSEDED.json",
+        "FAR-REMEDIATION-AND-CLOSURE-20261016/frozen/FROZEN_MANIFEST.rev3.SUPERSEDED.json",
+        "FAR-REMEDIATION-AND-CLOSURE-20261016/frozen/FROZEN_MANIFEST.rev4.SUPERSEDED.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "FAR-RO-TOOLREFUSAL-20261014",
+      "file_count": 43,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "FAR-RO-TOOLREFUSAL-20261014/Manifest.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "FAR-STACK-HYGIENE-20261013",
+      "file_count": 252,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "FAR-STACK-HYGIENE-20261013/ExecutionReceipt.json",
+        "FAR-STACK-HYGIENE-20261013/ResearchRunReceipt.json",
+        "FAR-STACK-HYGIENE-20261013/exec-closeout/Manifest-v2.json",
+        "FAR-STACK-HYGIENE-20261013/exec-closeout/Manifest-v3.json",
+        "FAR-STACK-HYGIENE-20261013/exec-closeout/Manifest.json",
+        "FAR-STACK-HYGIENE-20261013/exec-doc/probes/foreign_receipt.json",
+        "FAR-STACK-HYGIENE-20261013/execute/append_close_receipt.py",
+        "FAR-STACK-HYGIENE-20261013/execute/docs/receipt.json",
+        "FAR-STACK-HYGIENE-20261013/execute/docs/receipt.json.attempts.ndjson",
+        "FAR-STACK-HYGIENE-20261013/execute/modules/receipt.json",
+        "FAR-STACK-HYGIENE-20261013/execute/modules/receipt.json.attempts.ndjson",
+        "FAR-STACK-HYGIENE-20261013/execute/smoke/receipt.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "LANE-ENFORCEMENT-APPLY-20261015",
+      "file_count": 414511,
+      "unreadable_subtrees": 10143,
+      "marker_files": [
+        "LANE-ENFORCEMENT-APPLY-20261015/APPLY_P6/APPLY_RECEIPT.json",
+        "LANE-ENFORCEMENT-APPLY-20261015/APPLY_P6/apply_manifest.json",
+        "LANE-ENFORCEMENT-APPLY-20261015/BASELINE_MANIFEST.json",
+        "LANE-ENFORCEMENT-APPLY-20261015/CANONICAL_APPLIED/hgk/scripts/cred/ADMISSION_RECEIPT.md",
+        "LANE-ENFORCEMENT-APPLY-20261015/CANONICAL_APPLIED/hgk/scripts/cred/INSTALL_MANIFEST.json",
+        "LANE-ENFORCEMENT-APPLY-20261015/CANONICAL_APPLIED/hgk/tests/w3_solution/test_receipt_schema.py",
+        "LANE-ENFORCEMENT-APPLY-20261015/R3_ACTIVATION/R3_ACTIVATION_RECEIPT.json",
+        "LANE-ENFORCEMENT-APPLY-20261015/candidate/TEST_RESULTS/AB_REDERIVED_2_receipt.json",
+        "LANE-ENFORCEMENT-APPLY-20261015/candidate/TEST_RESULTS/C1_receipt.json",
+        "LANE-ENFORCEMENT-APPLY-20261015/candidate/TEST_RESULTS/C2a_receipt.json",
+        "LANE-ENFORCEMENT-APPLY-20261015/candidate/TEST_RESULTS/hgk-m06-e2e-3tjfkzk9/receipt.json",
+        "LANE-ENFORCEMENT-APPLY-20261015/candidate/TEST_RESULTS/hgk-m06-e2e-8ktn376f/receipt.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "LANE-RELIABILITY-CLOSURE-20261016",
+      "file_count": 961,
+      "unreadable_subtrees": 40,
+      "marker_files": [
+        "LANE-RELIABILITY-CLOSURE-20261016/CHANGESET_A_APPLY_RECEIPT.json",
+        "LANE-RELIABILITY-CLOSURE-20261016/FROZEN_MANIFEST.json",
+        "LANE-RELIABILITY-CLOSURE-20261016/TEST_RESULTS/hgk-m06-e2e-mviy7xeo/receipt.json",
+        "LANE-RELIABILITY-CLOSURE-20261016/TEST_RESULTS/hgk-m06-e2e-sobv4_h8/receipt.json",
+        "LANE-RELIABILITY-CLOSURE-20261016/TEST_RESULTS/hgk-m07a-2q1b3c_7/receipt.json",
+        "LANE-RELIABILITY-CLOSURE-20261016/TEST_RESULTS/hgk-m07a-2q1b3c_7/receipt.json.attempts.ndjson",
+        "LANE-RELIABILITY-CLOSURE-20261016/TEST_RESULTS/hgk-m07a-j20fqj3a/receipt.json",
+        "LANE-RELIABILITY-CLOSURE-20261016/TEST_RESULTS/hgk-m07a-j20fqj3a/receipt.json.attempts.ndjson",
+        "LANE-RELIABILITY-CLOSURE-20261016/TEST_RESULTS/hgk-m07b-fh95va81/receipt.json",
+        "LANE-RELIABILITY-CLOSURE-20261016/TEST_RESULTS/hgk-m07b-smzodqlq/receipt.json",
+        "LANE-RELIABILITY-CLOSURE-20261016/TEST_RESULTS/hgk-m08-72xxmtmi/receipt.json",
+        "LANE-RELIABILITY-CLOSURE-20261016/TEST_RESULTS/hgk-m08-72xxmtmi/receipt.json.attempts.ndjson"
+      ],
+      "openspec_change": "hgk-lane-reliability-closure-20261016",
+      "disposition_class": "ROUND_OPEN",
+      "proposed_action": "reconcile the linked change's unchecked tasks first; close only with a per-item ruling"
+    },
+    {
+      "name": "R5-20261014-s4-r4-closeout",
+      "file_count": 17,
+      "unreadable_subtrees": 0,
+      "marker_files": [],
+      "openspec_change": null,
+      "disposition_class": "UNCLASSIFIED",
+      "proposed_action": "owner ruling required; do not auto-close and do not delete"
+    },
+    {
+      "name": "R5-PREFLIGHT",
+      "file_count": 28,
+      "unreadable_subtrees": 0,
+      "marker_files": [],
+      "openspec_change": null,
+      "disposition_class": "UNCLASSIFIED",
+      "proposed_action": "owner ruling required; do not auto-close and do not delete"
+    },
+    {
+      "name": "R5R-20261014",
+      "file_count": 5,
+      "unreadable_subtrees": 0,
+      "marker_files": [],
+      "openspec_change": null,
+      "disposition_class": "UNCLASSIFIED",
+      "proposed_action": "owner ruling required; do not auto-close and do not delete"
+    },
+    {
+      "name": "R5R-20261014-s4-preview4-focused-close",
+      "file_count": 4061,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "R5R-20261014-s4-preview4-focused-close/CI_LOGS/public-plugin-verify_38581970365_749dc322_x/verify/11_Negative — the fallback builder must refuse a pack whose bytes drifted from MANIFEST.sha256.txt",
+        "R5R-20261014-s4-preview4-focused-close/EXECUTE/dispatch_receipt.json",
+        "R5R-20261014-s4-preview4-focused-close/EXECUTE/dispatch_receipt.json.attempts.ndjson",
+        "R5R-20261014-s4-preview4-focused-close/HOST_SMOKE/variant-a-root-manifest.zip",
+        "R5R-20261014-s4-preview4-focused-close/HOST_SMOKE/variant-a-root-manifest.zip.sha256",
+        "R5R-20261014-s4-preview4-focused-close/RELEASE/build-a/RELEASE_RECEIPT.json",
+        "R5R-20261014-s4-preview4-focused-close/RELEASE/build-b/RELEASE_RECEIPT.json",
+        "R5R-20261014-s4-preview4-focused-close/VERIFY2/dispatch_receipt.json",
+        "R5R-20261014-s4-preview4-focused-close/VERIFY2/dispatch_receipt.json.attempts.ndjson",
+        "R5R-20261014-s4-preview4-focused-close/verify/new_tree/.hgk/ao/R3_COMPILER_RECEIPTS.json",
+        "R5R-20261014-s4-preview4-focused-close/verify/new_tree/.hgk/ao/pub/PUBLICATION_PROJECTION_MANIFEST.json",
+        "R5R-20261014-s4-preview4-focused-close/verify/new_tree/.hgk/artifacts/PackageDerivationReceipt.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "R5R3-20261016-preview4-closeout",
+      "file_count": 7,
+      "unreadable_subtrees": 0,
+      "marker_files": [],
+      "openspec_change": null,
+      "disposition_class": "UNCLASSIFIED",
+      "proposed_action": "owner ruling required; do not auto-close and do not delete"
+    },
+    {
+      "name": "R5S-20261015-s4-preview4-verify-close",
+      "file_count": 62,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "R5S-20261015-s4-preview4-verify-close/VERIFY3/dispatch_receipt.json",
+        "R5S-20261015-s4-preview4-verify-close/VERIFY3/dispatch_receipt.json.attempts.ndjson",
+        "R5S-20261015-s4-preview4-verify-close/VERIFY3/dispatch_receipt2.json",
+        "R5S-20261015-s4-preview4-verify-close/VERIFY3/dispatch_receipt2.json.attempts.ndjson",
+        "R5S-20261015-s4-preview4-verify-close/VERIFY3/dispatch_receipt3.json",
+        "R5S-20261015-s4-preview4-verify-close/VERIFY3/dispatch_receipt3.json.attempts.ndjson",
+        "R5S-20261015-s4-preview4-verify-close/VERIFY3/dispatch_receipt4.json",
+        "R5S-20261015-s4-preview4-verify-close/VERIFY3/dispatch_receipt5.json",
+        "R5S-20261015-s4-preview4-verify-close/VERIFY3/dispatch_receipt5.json.attempts.ndjson",
+        "R5S-20261015-s4-preview4-verify-close/VERIFY3/probe_receipt.json",
+        "R5S-20261015-s4-preview4-verify-close/VERIFY3/probe_receipt.json.attempts.ndjson"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "R5Y-20261014-gpt-plugin-publication",
+      "file_count": 6,
+      "unreadable_subtrees": 0,
+      "marker_files": [],
+      "openspec_change": null,
+      "disposition_class": "UNCLASSIFIED",
+      "proposed_action": "owner ruling required; do not auto-close and do not delete"
+    },
+    {
+      "name": "R5Y-20261014-gpt-plugin-publication-recheck",
+      "file_count": 6,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "R5Y-20261014-gpt-plugin-publication-recheck/dispatch_receipt.json",
+        "R5Y-20261014-gpt-plugin-publication-recheck/dispatch_receipt.json.attempts.ndjson"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "R5Z-20261014-session-conformance",
+      "file_count": 139,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "R5Z-20261014-session-conformance/EXECUTE/EXECUTE_REBUILD_RECEIPT.json",
+        "R5Z-20261014-session-conformance/EXECUTE/build-a/RELEASE_RECEIPT.json",
+        "R5Z-20261014-session-conformance/EXECUTE/build-b/RELEASE_RECEIPT.json",
+        "R5Z-20261014-session-conformance/EXECUTE/dispatch_receipt.json",
+        "R5Z-20261014-session-conformance/EXECUTE/dispatch_receipt.json.attempts.ndjson",
+        "R5Z-20261014-session-conformance/VERIFY_SECURITY/arm3/c/RELEASE_RECEIPT.json",
+        "R5Z-20261014-session-conformance/VERIFY_SECURITY/arm5/c/RELEASE_RECEIPT.json",
+        "R5Z-20261014-session-conformance/VERIFY_SECURITY/c/RELEASE_RECEIPT.json",
+        "R5Z-20261014-session-conformance/VERIFY_SECURITY/c/c_fresh/RELEASE_RECEIPT.json",
+        "R5Z-20261014-session-conformance/VERIFY_SECURITY/c_fresh_verify/RELEASE_RECEIPT.json",
+        "R5Z-20261014-session-conformance/VERIFY_SECURITY/dispatch_receipt.json.attempts.ndjson",
+        "R5Z-20261014-session-conformance/VERIFY_SECURITY/dispatch_receipt_arm3.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "R5Z-20261014-session-conformance-arm3",
+      "file_count": 3,
+      "unreadable_subtrees": 0,
+      "marker_files": [],
+      "openspec_change": null,
+      "disposition_class": "UNCLASSIFIED",
+      "proposed_action": "owner ruling required; do not auto-close and do not delete"
+    },
+    {
+      "name": "R5Z-20261014-session-conformance-arm4",
+      "file_count": 3,
+      "unreadable_subtrees": 0,
+      "marker_files": [],
+      "openspec_change": null,
+      "disposition_class": "UNCLASSIFIED",
+      "proposed_action": "owner ruling required; do not auto-close and do not delete"
+    },
+    {
+      "name": "R5Z-20261014-session-conformance-arm5",
+      "file_count": 3,
+      "unreadable_subtrees": 0,
+      "marker_files": [],
+      "openspec_change": null,
+      "disposition_class": "UNCLASSIFIED",
+      "proposed_action": "owner ruling required; do not auto-close and do not delete"
+    },
+    {
+      "name": "R5Z-20261014-session-conformance-recheck",
+      "file_count": 3,
+      "unreadable_subtrees": 0,
+      "marker_files": [],
+      "openspec_change": null,
+      "disposition_class": "UNCLASSIFIED",
+      "proposed_action": "owner ruling required; do not auto-close and do not delete"
+    },
+    {
+      "name": "R6-20261014-far-remediation-and-repair",
+      "file_count": 46,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "R6-20261014-far-remediation-and-repair/EXECUTE/dispatch_receipt.json",
+        "R6-20261014-far-remediation-and-repair/EXECUTE/dispatch_receipt.json.attempts.ndjson",
+        "R6-20261014-far-remediation-and-repair/EXECUTE/out/R4_EVIDENCE_EXPANDED/EVIDENCE_RETURN_MANIFEST.json",
+        "R6-20261014-far-remediation-and-repair/EXECUTE/out/R4_EVIDENCE_EXPANDED/LANE_RECEIPT_INDEX.json",
+        "R6-20261014-far-remediation-and-repair/EXECUTE/out/acceptance/GOVERNING_DOCS_MANIFEST.json",
+        "R6-20261014-far-remediation-and-repair/EXECUTE/out/zipcheck/c/RELEASE_RECEIPT.json",
+        "R6-20261014-far-remediation-and-repair/EXECUTE/out/zipcheck/c2/RELEASE_RECEIPT.json",
+        "R6-20261014-far-remediation-and-repair/VERIFY_SECURITY/dispatch_receipt_r6.json",
+        "R6-20261014-far-remediation-and-repair/VERIFY_SECURITY/dispatch_receipt_r6.json.attempts.ndjson",
+        "R6-20261014-far-remediation-and-repair/VERIFY_SECURITY/dispatch_receipt_r6_attempt2.json",
+        "R6-20261014-far-remediation-and-repair/VERIFY_SECURITY/dispatch_receipt_r6_attempt2.json.attempts.ndjson",
+        "R6-20261014-far-remediation-and-repair/VERIFY_SECURITY/out_c/RELEASE_RECEIPT.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "R6-CHKS",
+      "file_count": 71,
+      "unreadable_subtrees": 0,
+      "marker_files": [],
+      "openspec_change": null,
+      "disposition_class": "UNCLASSIFIED",
+      "proposed_action": "owner ruling required; do not auto-close and do not delete"
+    },
+    {
+      "name": "R7-20261014-merge-hygiene-closeout",
+      "file_count": 29,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "R7-20261014-merge-hygiene-closeout/EXECUTE/dispatch_receipt.json",
+        "R7-20261014-merge-hygiene-closeout/EXECUTE/dispatch_receipt.json.attempts.ndjson",
+        "R7-20261014-merge-hygiene-closeout/VERIFY_SECURITY/LANE_RECEIPT_VERIFY_R7_attempt1.json",
+        "R7-20261014-merge-hygiene-closeout/VERIFY_SECURITY/LANE_RECEIPT_VERIFY_R7_attempt2.json",
+        "R7-20261014-merge-hygiene-closeout/VERIFY_SECURITY/dispatch_receipt_r7.json.attempts.ndjson",
+        "R7-20261014-merge-hygiene-closeout/VERIFY_SECURITY/dispatch_receipt_r7_attempt2.json.attempts.ndjson",
+        "R7-20261014-merge-hygiene-closeout/VERIFY_SECURITY/dispatch_receipt_r7_attempt3.json",
+        "R7-20261014-merge-hygiene-closeout/VERIFY_SECURITY/dispatch_receipt_r7_attempt3.json.attempts.ndjson"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "R7-LANES",
+      "file_count": 54,
+      "unreadable_subtrees": 0,
+      "marker_files": [],
+      "openspec_change": null,
+      "disposition_class": "UNCLASSIFIED",
+      "proposed_action": "owner ruling required; do not auto-close and do not delete"
+    },
+    {
+      "name": "ROUND3-LANE-REBIND-AND-CLOSURE-20261016",
+      "file_count": 760,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "ROUND3-LANE-REBIND-AND-CLOSURE-20261016/FROZEN_MANIFEST.json",
+        "ROUND3-LANE-REBIND-AND-CLOSURE-20261016/PATCH1_RECEIPT.json",
+        "ROUND3-LANE-REBIND-AND-CLOSURE-20261016/PROJECTION_REPAIR_RECEIPT.json",
+        "ROUND3-LANE-REBIND-AND-CLOSURE-20261016/PROMOTION_RECEIPT.json",
+        "ROUND3-LANE-REBIND-AND-CLOSURE-20261016/PUBLICATION_RECEIPT.json",
+        "ROUND3-LANE-REBIND-AND-CLOSURE-20261016/PUSH_RECEIPT.json",
+        "ROUND3-LANE-REBIND-AND-CLOSURE-20261016/R1_R2_R3_APPLY_RECEIPT.json",
+        "ROUND3-LANE-REBIND-AND-CLOSURE-20261016/candidate/scripts/cred/ADMISSION_RECEIPT.md",
+        "ROUND3-LANE-REBIND-AND-CLOSURE-20261016/candidate/scripts/cred/INSTALL_MANIFEST.json",
+        "ROUND3-LANE-REBIND-AND-CLOSURE-20261016/candidate/tests/w3_solution/test_receipt_schema.py",
+        "ROUND3-LANE-REBIND-AND-CLOSURE-20261016/evidence/ORACLE_R10_RECEIPT.json",
+        "ROUND3-LANE-REBIND-AND-CLOSURE-20261016/lanes/VERIFY_SECURITY/V4/work/subject/scripts/cred/ADMISSION_RECEIPT.md"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "S4R3FAR-20261013-decision-and-handover",
+      "file_count": 63,
+      "unreadable_subtrees": 0,
+      "marker_files": [],
+      "openspec_change": null,
+      "disposition_class": "UNCLASSIFIED",
+      "proposed_action": "owner ruling required; do not auto-close and do not delete"
+    },
+    {
+      "name": "S4R3FAR-probe",
+      "file_count": 3,
+      "unreadable_subtrees": 0,
+      "marker_files": [],
+      "openspec_change": null,
+      "disposition_class": "UNCLASSIFIED",
+      "proposed_action": "owner ruling required; do not auto-close and do not delete"
+    },
+    {
+      "name": "S4R3X-20261013-f006-and-stageb-successor",
+      "file_count": 33,
+      "unreadable_subtrees": 0,
+      "marker_files": [],
+      "openspec_change": null,
+      "disposition_class": "UNCLASSIFIED",
+      "proposed_action": "owner ruling required; do not auto-close and do not delete"
+    },
+    {
+      "name": "SKILL-CONVERGENCE-20261014",
+      "file_count": 1854,
+      "unreadable_subtrees": 3,
+      "marker_files": [
+        "SKILL-CONVERGENCE-20261014/evidence/SKILL-CONVERGENCE-20261014-preflight-2/compiled/compiler-receipt.json",
+        "SKILL-CONVERGENCE-20261014/evidence/build_closure_manifest.py",
+        "SKILL-CONVERGENCE-20261014/evidence/continuation_turn_receipt.json",
+        "SKILL-CONVERGENCE-20261014/evidence/gstack_route_receipt.json",
+        "SKILL-CONVERGENCE-20261014/evidence/inspect_manifest.py",
+        "SKILL-CONVERGENCE-20261014/evidence/postfreeze/CLOSURE_MANIFEST.json",
+        "SKILL-CONVERGENCE-20261014/evidence/qualification_receipt.json",
+        "SKILL-CONVERGENCE-20261014/evidence/subject_manifest.json",
+        "SKILL-CONVERGENCE-20261014/verification/round-harness/rollback_receipt.json"
+      ],
+      "openspec_change": "hgk-skill-convergence-20261014",
+      "disposition_class": "ROUND_OPEN",
+      "proposed_action": "reconcile the linked change's unchecked tasks first; close only with a per-item ruling"
+    },
+    {
+      "name": "SQS-THC-PUBLICATION-20261015",
+      "file_count": 3,
+      "unreadable_subtrees": 0,
+      "marker_files": [],
+      "openspec_change": null,
+      "disposition_class": "UNCLASSIFIED",
+      "proposed_action": "owner ruling required; do not auto-close and do not delete"
+    },
+    {
+      "name": "_SKCV_PUBLISH_20261014",
+      "file_count": 160,
+      "unreadable_subtrees": 0,
+      "marker_files": [],
+      "openspec_change": null,
+      "disposition_class": "UNCLASSIFIED",
+      "proposed_action": "owner ruling required; do not auto-close and do not delete"
+    },
+    {
+      "name": "__pycache__",
+      "file_count": 18,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "__pycache__/task015_input_manifest.cpython-312.pyc"
+      ],
+      "openspec_change": null,
+      "disposition_class": "RUNTIME_OR_CACHE",
+      "proposed_action": "NOT a round: exclude from the unfinished-round denominator; retention decided by the owner"
+    },
+    {
+      "name": "a2",
+      "file_count": 793,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "a2/FDA_GUARDRAIL_VERIFICATION_RECEIPT.json",
+        "a2/FDA_INTEGRITY_RESPONSE_CONSTRUCTION_RECEIPT.json",
+        "a2/FDA_RECIPE_MERGE_CONSTRUCTION_RECEIPT.json",
+        "a2/FDA_UPGRADE_CONSTRUCTION_RECEIPT.json",
+        "a2/SQS_FDA_ROUTE_REGISTRATION_RECEIPT.json",
+        "a2/codex-canary-wt/evidence/review/HG-KSEOS_TASK011_APL05_RUNTIME_RECEIPT.json",
+        "a2/codex-canary-wt/evidence/review/HGK_CS_A_BARRIER_A_RECEIPT.json",
+        "a2/codex-canary-wt/evidence/wave-00/BACKUP_READBACK_RECEIPT.json",
+        "a2/codex-canary-wt/evidence/wave-00/CAPABILITY_RECEIPT.json",
+        "a2/codex-canary-wt/evidence/wave-06/HERMES_INSTALL_RECEIPT.json",
+        "a2/codex-canary-wt/evidence/wave-08/CONTROL_MATERIALIZATION_RECEIPT.json",
+        "a2/codex-canary-wt/registries/CONTROL_MATERIALIZATION_MANIFEST.csv"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "a3",
+      "file_count": 532,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "a3/GPTWORK_CODEX_RESTORE_CONSTRUCTION_RECEIPT.json",
+        "a3/a3_admission_receipt.json",
+        "a3/compiled/compiler-receipt.json",
+        "a3/final-closure/closure_admission_receipt.json",
+        "a3/final-closure/closure_receipt_f05.json",
+        "a3/final-closure/wt-hgk/evidence/review/HG-KSEOS_TASK011_APL05_RUNTIME_RECEIPT.json",
+        "a3/final-closure/wt-hgk/evidence/review/HGK_CS_A_BARRIER_A_RECEIPT.json",
+        "a3/final-closure/wt-hgk/evidence/wave-00/BACKUP_READBACK_RECEIPT.json",
+        "a3/final-closure/wt-hgk/evidence/wave-00/CAPABILITY_RECEIPT.json",
+        "a3/final-closure/wt-hgk/evidence/wave-06/HERMES_INSTALL_RECEIPT.json",
+        "a3/final-closure/wt-hgk/evidence/wave-08/CONTROL_MATERIALIZATION_RECEIPT.json",
+        "a3/final-closure/wt-hgk/registries/CONTROL_MATERIALIZATION_MANIFEST.csv"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "backups",
+      "file_count": 11,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "backups/hg-kseos-20260808T115711.216854Z.manifest.json",
+        "backups/hg-kseos-20260808T115720.920805Z.manifest.json",
+        "backups/hg-kseos-20261008T140622.207089Z.manifest.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "RUNTIME_OR_CACHE",
+      "proposed_action": "NOT a round: exclude from the unfinished-round denominator; retention decided by the owner"
+    },
+    {
+      "name": "cnv-ea-r7r11-20261016",
+      "file_count": 9,
+      "unreadable_subtrees": 0,
+      "marker_files": [],
+      "openspec_change": null,
+      "disposition_class": "UNCLASSIFIED",
+      "proposed_action": "owner ruling required; do not auto-close and do not delete"
+    },
+    {
+      "name": "codex-app-server-logs",
+      "file_count": 0,
+      "unreadable_subtrees": 0,
+      "marker_files": [],
+      "openspec_change": null,
+      "disposition_class": "EMPTY",
+      "proposed_action": "confirm and remove only with owner approval (a directory the tool created and never used)"
+    },
+    {
+      "name": "codex-home-g3-003",
+      "file_count": 3,
+      "unreadable_subtrees": 0,
+      "marker_files": [],
+      "openspec_change": null,
+      "disposition_class": "UNCLASSIFIED",
+      "proposed_action": "owner ruling required; do not auto-close and do not delete"
+    },
+    {
+      "name": "codex-relay",
+      "file_count": 1,
+      "unreadable_subtrees": 0,
+      "marker_files": [],
+      "openspec_change": null,
+      "disposition_class": "UNCLASSIFIED",
+      "proposed_action": "owner ruling required; do not auto-close and do not delete"
+    },
+    {
+      "name": "far",
+      "file_count": 81,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "far/capc/out/compiler-receipt.json",
+        "far/gen_closure_receipts.py",
+        "far/regen_evidence_manifest.py"
+      ],
+      "openspec_change": "far-lane-remediation-20261021",
+      "disposition_class": "ROUND_OPEN",
+      "proposed_action": "reconcile the linked change's unchecked tasks first; close only with a per-item ruling"
+    },
+    {
+      "name": "far-018",
+      "file_count": 6,
+      "unreadable_subtrees": 0,
+      "marker_files": [],
+      "openspec_change": "hgk-cnv-far018-far019-archive",
+      "disposition_class": "ROUND_OPEN",
+      "proposed_action": "linked to an openspec change with no local receipt: inspect and disposition"
+    },
+    {
+      "name": "far-019",
+      "file_count": 6,
+      "unreadable_subtrees": 0,
+      "marker_files": [],
+      "openspec_change": "hgk-cnv-far018-far019-archive",
+      "disposition_class": "ROUND_OPEN",
+      "proposed_action": "linked to an openspec change with no local receipt: inspect and disposition"
+    },
+    {
+      "name": "far-ao-independence-20261010",
+      "file_count": 166,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "far-ao-independence-20261010/FREEZE_MANIFEST.json",
+        "far-ao-independence-20261010/build_freeze_manifest.py"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "far-doc-update-20261013",
+      "file_count": 11,
+      "unreadable_subtrees": 0,
+      "marker_files": [],
+      "openspec_change": null,
+      "disposition_class": "UNCLASSIFIED",
+      "proposed_action": "owner ruling required; do not auto-close and do not delete"
+    },
+    {
+      "name": "far-exec-identity-001",
+      "file_count": 44,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "far-exec-identity-001/SOURCE_MANIFEST.json",
+        "far-exec-identity-001/_control/CANDIDATE_MANIFEST.json",
+        "far-exec-identity-001/_control/maker/LAUNCHER_RECEIPT_E1.json",
+        "far-exec-identity-001/_control/maker/MAKER_RECEIPT_E1.json",
+        "far-exec-identity-001/_control/maker/MAKER_RECEIPT_E1.md",
+        "far-exec-identity-001/_control/measure/MEASURE_RECEIPT.json",
+        "far-exec-identity-001/_control/measure/measure_receipt.py"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "far-exec-identity-002",
+      "file_count": 119,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "far-exec-identity-002/_control/CLOSURE_RECEIPT.json",
+        "far-exec-identity-002/_control/apply/APPLY_RECEIPT.json",
+        "far-exec-identity-002/_control/maker/BUILD_RECEIPT.json",
+        "far-exec-identity-002/_control/maker/BUILD_RECEIPT.md",
+        "far-exec-identity-002/_control/repair/REPAIR_RECEIPT.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "far-execute-model-expansion",
+      "file_count": 22,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "far-execute-model-expansion/FAR_GATE1_RECEIPT.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "far-hermes-incident-rca-001",
+      "file_count": 57,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "far-hermes-incident-rca-001/F0_ADMISSION_RECEIPT.json",
+        "far-hermes-incident-rca-001/codex/spawn_receipt.txt",
+        "far-hermes-incident-rca-001/evidence/EVIDENCE_FREEZE_RECEIPT.json",
+        "far-hermes-incident-rca-001/evidence/EVIDENCE_MANIFEST.json",
+        "far-hermes-incident-rca-001/evidence/EVIDENCE_MIRROR_RECEIPT.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "far-iao-lane-skip-20261012",
+      "file_count": 2468,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "far-iao-lane-skip-20261012/execute/scratch/bt1/test_launcher_does_not_run_lan0/lane.log.containment.receipt.json",
+        "far-iao-lane-skip-20261012/execute/scratch/bt1/test_launcher_receipt_does_not0/lane.log.containment.receipt.json",
+        "far-iao-lane-skip-20261012/execute/scratch/bt1/test_launcher_receipt_does_not0/lane.log.preflight.receipt.json",
+        "far-iao-lane-skip-20261012/execute/scratch/bt1/test_launcher_removes_seeded_s0/lane.log.containment.receipt.json",
+        "far-iao-lane-skip-20261012/execute/scratch/bt1/test_launcher_resolver_failure0/lane.log.containment.receipt.json",
+        "far-iao-lane-skip-20261012/execute/scratch/bt1/test_launcher_writes_substitut0/lane.log.containment.receipt.json",
+        "far-iao-lane-skip-20261012/execute/scratch/bt1/test_launcher_writes_substitut0/lane.log.preflight.receipt.json",
+        "far-iao-lane-skip-20261012/execute/scratch/bt1/test_preflight_deletes_credent0/out/receipt.json",
+        "far-iao-lane-skip-20261012/execute/scratch/bt1/test_preflight_exception_after0/out/receipt.json",
+        "far-iao-lane-skip-20261012/execute/scratch/bt1/test_preflight_refuses_scratch0/out/receipt.json",
+        "far-iao-lane-skip-20261012/execute/scratch/bt1/test_preflight_refuses_scratch1/out/receipt.json",
+        "far-iao-lane-skip-20261012/execute/scratch/bt1/test_preflight_removes_throwaw0/out/receipt.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "far-lane-health-repair-20261011",
+      "file_count": 186,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "far-lane-health-repair-20261011/FREEZE_MANIFEST.json",
+        "far-lane-health-repair-20261011/build_freeze_manifest.py",
+        "far-lane-health-repair-20261011/checker/checker_receipt.json",
+        "far-lane-health-repair-20261011/checker/checker_receipt.json.attempts.ndjson",
+        "far-lane-health-repair-20261011/checker/checker_receipt_pass2.json",
+        "far-lane-health-repair-20261011/checker/checker_receipt_pass2.json.attempts.ndjson",
+        "far-lane-health-repair-20261011/checker/checker_receipt_pass3.json",
+        "far-lane-health-repair-20261011/checker/checker_receipt_pass3.json.attempts.ndjson",
+        "far-lane-health-repair-20261011/checker/checker_receipt_pass4.json",
+        "far-lane-health-repair-20261011/checker/checker_receipt_pass4.json.attempts.ndjson",
+        "far-lane-health-repair-20261011/checker/checker_receipt_pass4b.json",
+        "far-lane-health-repair-20261011/checker/checker_receipt_pass4b.json.attempts.ndjson"
+      ],
+      "openspec_change": "lane-health-repair-20261011",
+      "disposition_class": "ROUND_OPEN",
+      "proposed_action": "reconcile the linked change's unchecked tasks first; close only with a per-item ruling"
+    },
+    {
+      "name": "far-lane-route-slots-012",
+      "file_count": 53,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "far-lane-route-slots-012/evidence/ARTIFACT_MANIFEST.json",
+        "far-lane-route-slots-012/evidence/DEPLOYMENT_WINDOW_P1P2_RECEIPT.json",
+        "far-lane-route-slots-012/evidence/DUAL_KEY_ROUTING_RECEIPT.json",
+        "far-lane-route-slots-012/evidence/LANE_DISPATCH_EXECUTION_RECEIPT.json",
+        "far-lane-route-slots-012/evidence/LIVE_WIRING_RECEIPT.json",
+        "far-lane-route-slots-012/evidence/MIRROR_RECEIPT.json",
+        "far-lane-route-slots-012/evidence/MIRROR_RECEIPT_10TH.json",
+        "far-lane-route-slots-012/evidence/MIRROR_RECEIPT_11TH.json",
+        "far-lane-route-slots-012/evidence/MIRROR_RECEIPT_12TH.json",
+        "far-lane-route-slots-012/evidence/MIRROR_RECEIPT_2ND.json",
+        "far-lane-route-slots-012/evidence/MIRROR_RECEIPT_3RD.json",
+        "far-lane-route-slots-012/evidence/MIRROR_RECEIPT_4TH.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "far-lane-sod-003",
+      "file_count": 907,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "far-lane-sod-003/codex/spawn4_receipt.txt",
+        "far-lane-sod-003/evidence/EVIDENCE_MANIFEST.json",
+        "far-lane-sod-003/evidence/EXECUTE_RECEIPT.json",
+        "far-lane-sod-003/evidence/GSTACK_SOD_RECEIPT.json",
+        "far-lane-sod-003/evidence/gate_fixture/MANIFEST.json",
+        "far-lane-sod-003/evidence/lane-admission/EXECUTE__opencode-go__deepseek-v4.1-flash__codex-cli/receipt.json",
+        "far-lane-sod-003/evidence/lane-admission/VERIFY_SECURITY__opencode-go__glm-5.3-flash__hermes/receipt.json",
+        "far-lane-sod-003/evidence/relay-supervisor.receipt.json",
+        "far-lane-sod-003/evidence/relay-supervisor.receipts.jsonl",
+        "far-lane-sod-003/receipts/AUTHORIZATION_RECEIPT.json",
+        "far-lane-sod-003/receipts/REPAIR_RECEIPT_R1.json",
+        "far-lane-sod-003/receipts/VERIFY_EFFORT_AND_BINDING_RECEIPT.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "far-lane-sod-004",
+      "file_count": 26,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "far-lane-sod-004/evidence/EVIDENCE_MANIFEST.json",
+        "far-lane-sod-004/receipts/CODEX_ADOPTION_RECEIPT.json",
+        "far-lane-sod-004/receipts/admission_receipt.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "far-lane-sod-005",
+      "file_count": 15,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "far-lane-sod-005/evidence/EVIDENCE_MANIFEST.json",
+        "far-lane-sod-005/receipts/admission_receipt.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "far-lane-sod-006",
+      "file_count": 63,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "far-lane-sod-006/evidence/EVIDENCE_MANIFEST.json",
+        "far-lane-sod-006/receipts/CODEX_AMENDMENT_RECEIPT.json",
+        "far-lane-sod-006/receipts/CODEX_REPAIR2_RECEIPT.json",
+        "far-lane-sod-006/receipts/CODEX_REPAIR3_RECEIPT.json",
+        "far-lane-sod-006/receipts/CODEX_REPAIR_RECEIPT.json",
+        "far-lane-sod-006/receipts/admission_receipt.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "far-lane-sod-007",
+      "file_count": 3655,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "far-lane-sod-007/config/verify-subject-manifest.json",
+        "far-lane-sod-007/receipts/CODEX_ADOPTION_RECEIPT.json",
+        "far-lane-sod-007/receipts/CODEX_FREEZE_RECEIPT.json",
+        "far-lane-sod-007/receipts/CODEX_TASK7_RECEIPT.json",
+        "far-lane-sod-007/receipts/admission_receipt.json",
+        "far-lane-sod-007/resume-20261008/d1-d2-execution-20261008/SOURCE_MANIFEST.json",
+        "far-lane-sod-007/resume-20261008/d1-d2-execution-20261008/_control/maker/MAKER_RECEIPT.json",
+        "far-lane-sod-007/resume-20261008/d1-d2-execution-20261008/_control/maker/evidence/fixture_verify_receipt.json",
+        "far-lane-sod-007/resume-20261008/d1-d2-execution-20261008/_control/verify/independent/subject/openspec/changes/receipt-anchor-epoch/specs/lane-guard/spec.md",
+        "far-lane-sod-007/resume-20261008/d1-d2-execution-20261008/_control/verify/independent/subject/openspec/changes/receipt-anchor-epoch/tasks.md",
+        "far-lane-sod-007/resume-20261008/d1-d2-execution-20261008/subject/openspec/changes/receipt-anchor-epoch/specs/lane-guard/spec.md",
+        "far-lane-sod-007/resume-20261008/d1-d2-execution-20261008/subject/openspec/changes/receipt-anchor-epoch/tasks.md"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "far-lane-sod-008-console-window-20261008",
+      "file_count": 12,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "far-lane-sod-008-console-window-20261008/EVIDENCE_MANIFEST.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "far-lane-sod-009-supervisor-governance-20261008",
+      "file_count": 2,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "far-lane-sod-009-supervisor-governance-20261008/round1/ROUND1_EVIDENCE_MANIFEST.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "far-lane-sod-010-converge",
+      "file_count": 78,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "far-lane-sod-010-converge/closure/CLOSURE_EXECUTION_RECEIPT.json",
+        "far-lane-sod-010-converge/closure/CLOSURE_MANIFEST.json",
+        "far-lane-sod-010-converge/evidence/EVIDENCE_MANIFEST.json",
+        "far-lane-sod-010-converge/evidence/ROUND_RECEIPT.json",
+        "far-lane-sod-010-converge/evidence/ROUND_RECEIPT_FINAL.json",
+        "far-lane-sod-010-converge/exec/EXECUTE_RECEIPT.json",
+        "far-lane-sod-010-converge/exec/verification-sandbox/var/test-20261008T141825127255/evidence/relay-supervisor.receipt.json",
+        "far-lane-sod-010-converge/exec/verification-sandbox/var/test-20261008T141825127255/evidence/relay-supervisor.receipts.jsonl",
+        "far-lane-sod-010-converge/exec/verification-sandbox/var/test-20261008T141841305151/evidence/relay-supervisor.receipt.json",
+        "far-lane-sod-010-converge/exec/verification-sandbox/var/test-20261008T141841305151/evidence/relay-supervisor.receipts.jsonl",
+        "far-lane-sod-010-converge/exec/verification-sandbox/var/test-20261008T142015449596/evidence/relay-supervisor.receipt.json",
+        "far-lane-sod-010-converge/exec/verification-sandbox/var/test-20261008T142015449596/evidence/relay-supervisor.receipts.jsonl"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "far-lane-sod-011-router-window",
+      "file_count": 5736,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "far-lane-sod-011-router-window/closure/CLOSURE_EXECUTION_RECEIPT.json",
+        "far-lane-sod-011-router-window/evidence/EVIDENCE_MANIFEST.json",
+        "far-lane-sod-011-router-window/evidence/ROUND_RECEIPT_FINAL.json",
+        "far-lane-sod-011-router-window/exec/EXECUTE_RECEIPT.json",
+        "far-lane-sod-011-router-window/exec/scratch/assemble_receipt.py",
+        "far-lane-sod-011-router-window/tools/make_manifest.py",
+        "far-lane-sod-011-router-window/verify/ao/codex_home/.tmp/plugins/plugins/codex-security/examples/completed-scan/report.md",
+        "far-lane-sod-011-router-window/verify/ao/codex_home/.tmp/plugins/plugins/codex-security/examples/completed-scan/scan-manifest.json",
+        "far-lane-sod-011-router-window/verify/ao/codex_home/.tmp/plugins/plugins/codex-security/schemas/scan-manifest.schema.json",
+        "far-lane-sod-011-router-window/verify/ao/codex_home/.tmp/plugins/plugins/nvidia/skills/omniverse-cad-to-simready/shared/preflight_manifest.py",
+        "far-lane-sod-011-router-window/verify/ao/codex_home/.tmp/plugins/plugins/nvidia/skills/omniverse-usd-performance-tuning/references/operations/manifest.json",
+        "far-lane-sod-011-router-window/verify/ao/codex_home/.tmp/plugins/plugins/nvidia/skills/omniverse-usd-performance-tuning/references/operations/scripts/operation-manifest.schema.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "far-lane-verify-002",
+      "file_count": 88,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "far-lane-verify-002/codex/attempt1_relay_down/spawn_receipt.txt",
+        "far-lane-verify-002/codex/packet2_pre_refresh/BUILD_RECEIPT.json",
+        "far-lane-verify-002/codex/packet2_pre_refresh/ResearchRunReceipt.json",
+        "far-lane-verify-002/codex/spawn2_receipt.txt",
+        "far-lane-verify-002/codex/spawn3_receipt.txt",
+        "far-lane-verify-002/codex/spawn_receipt.txt",
+        "far-lane-verify-002/evidence/EVIDENCE_MANIFEST.json",
+        "far-lane-verify-002/evidence/GSTACK_ROUTE_RECEIPT.json",
+        "far-lane-verify-002/evidence/PROVIDER_SUPPLY_CHANGE_RECEIPT.json",
+        "far-lane-verify-002/product/BUILD_RECEIPT.json",
+        "far-lane-verify-002/product/REFRESH_RECEIPT.json",
+        "far-lane-verify-002/product/ResearchRunReceipt.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "far-oauth-window-20261010",
+      "file_count": 20,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "far-oauth-window-20261010/EVIDENCE_MANIFEST.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "far-pending-decisions-20261013",
+      "file_count": 4,
+      "unreadable_subtrees": 0,
+      "marker_files": [],
+      "openspec_change": null,
+      "disposition_class": "UNCLASSIFIED",
+      "proposed_action": "owner ruling required; do not auto-close and do not delete"
+    },
+    {
+      "name": "far-plan-enforcement-011",
+      "file_count": 186,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "far-plan-enforcement-011/coordination/checkpoint_manifest.json",
+        "far-plan-enforcement-011/coordination/far/RouterReceipt.json",
+        "far-plan-enforcement-011/coordination/far/TriSourceCoverageReceipt.json",
+        "far-plan-enforcement-011/coordination/far/TriSourceCoverageReceipt_attempt1.json",
+        "far-plan-enforcement-011/coordination/far/TriSourceCoverageReceipt_attempt2.json",
+        "far-plan-enforcement-011/coordination/openspec/changes/plan-lane-enforcement-011/specs/governed-plan-dispatch/spec.md",
+        "far-plan-enforcement-011/coordination/openspec/changes/plan-lane-enforcement-011/tasks.md",
+        "far-plan-enforcement-011/coordination/swarm_receipt.json",
+        "far-plan-enforcement-011/execute/_gen_receipt.py",
+        "far-plan-enforcement-011/execute/_r2_gen_receipt.py",
+        "far-plan-enforcement-011/execute/_r3_baseline_manifest.py",
+        "far-plan-enforcement-011/execute/_r3_gen_receipt.py"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "far-planning-intelligence-fit-012",
+      "file_count": 24,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "far-planning-intelligence-fit-012/ResearchPlan_ledgers_receipt.json",
+        "far-planning-intelligence-fit-012/ResearchRunReceipt.json",
+        "far-planning-intelligence-fit-012/RouterReceipt.json",
+        "far-planning-intelligence-fit-012/TriSourceCoverageReceipt.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "far-strict-declaration-20261011",
+      "file_count": 72,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "far-strict-declaration-20261011/build_freeze_manifest.py",
+        "far-strict-declaration-20261011/checker/checker_receipt_pass1.json",
+        "far-strict-declaration-20261011/checker/checker_receipt_pass1.json.attempts.ndjson",
+        "far-strict-declaration-20261011/checker/checker_receipt_pass2.json",
+        "far-strict-declaration-20261011/checker/checker_receipt_pass2.json.attempts.ndjson",
+        "far-strict-declaration-20261011/checker/checker_receipt_pass2b.json",
+        "far-strict-declaration-20261011/checker/checker_receipt_pass2b.json.attempts.ndjson",
+        "far-strict-declaration-20261011/far-run/FAR-RUN-STRICT-DECLARATION-014-R2/ResearchRunReceipt.json",
+        "far-strict-declaration-20261011/far-run/FAR-RUN-STRICT-DECLARATION-014/ResearchRunReceipt.json",
+        "far-strict-declaration-20261011/writer/dispatch_receipt_pass1.json",
+        "far-strict-declaration-20261011/writer/dispatch_receipt_pass1.json.attempts.ndjson",
+        "far-strict-declaration-20261011/writer/dispatch_receipt_pass2.json"
+      ],
+      "openspec_change": "strict-declaration-20261011",
+      "disposition_class": "ROUND_OPEN",
+      "proposed_action": "reconcile the linked change's unchecked tasks first; close only with a per-item ruling"
+    },
+    {
+      "name": "far-swof-kseos-rca-001",
+      "file_count": 25,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "far-swof-kseos-rca-001/FAR_DELIVERY_RECEIPT.json",
+        "far-swof-kseos-rca-001/Gate1_Receipt.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "far-verify-drift-20261012",
+      "file_count": 35,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "far-verify-drift-20261012/far-run/FAR-RUN-VERIFY-DRIFT-016/ResearchRunReceipt.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "far-verify-lane-noverdict-20261012",
+      "file_count": 36,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "far-verify-lane-noverdict-20261012/far-run/FAR-RUN-VERIFY-LANE-NOVERDICT-017/ResearchRunReceipt.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "far-verify-model-misselection-20261012",
+      "file_count": 33,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "far-verify-model-misselection-20261012/far-run/FAR-RUN-VERIFY-MODEL-MISSELECTION-015/ResearchRunReceipt.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "far-w6-closure-decision-20261012",
+      "file_count": 16,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "far-w6-closure-decision-20261012/ResearchRunReceipt.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "far-w6-mandate-alignment-20261012",
+      "file_count": 16,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "far-w6-mandate-alignment-20261012/ResearchRunReceipt.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "far-w6-nextstep-decision-20261012",
+      "file_count": 19,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "far-w6-nextstep-decision-20261012/ResearchRunReceipt.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "far-w6-plan-sod-reconciliation-20261012",
+      "file_count": 18,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "far-w6-plan-sod-reconciliation-20261012/ResearchRunReceipt.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "fda",
+      "file_count": 1635,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "fda/FAR_GATE1_RECEIPT_fdarun_blueprint.json",
+        "fda/build_manifest.py",
+        "fda/compiled/compiler-receipt.json",
+        "fda/dod17_closure_receipt.py",
+        "fda/dod17_closure_receipt2.py",
+        "fda/far_manifest_audit.py",
+        "fda/manifest_rr6.py",
+        "fda/rr3_final_manifest.py",
+        "fda/rr3_final_manifest2.py",
+        "fda/rr6_checker_receipt.py",
+        "fda/sync_rr8_manifest.py",
+        "fda/update_manifest.py"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "hermes-disposable",
+      "file_count": 24655,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "hermes-disposable/TST-054-001/build-venv/Lib/site-packages/setuptools/launcher manifest.xml",
+        "hermes-disposable/TST-054-001/build-venv/Lib/site-packages/setuptools/tests/test_manifest.py",
+        "hermes-disposable/TST-054-001/diag-venv/Lib/site-packages/agent/pet/__pycache__/manifest.cpython-311.pyc",
+        "hermes-disposable/TST-054-001/diag-venv/Lib/site-packages/agent/pet/manifest.py",
+        "hermes-disposable/TST-054-001/diag-venv/Lib/site-packages/pip/_vendor/distlib/__pycache__/manifest.cpython-311.pyc",
+        "hermes-disposable/TST-054-001/diag-venv/Lib/site-packages/pip/_vendor/distlib/manifest.py",
+        "hermes-disposable/TST-054-001/diag-venv/Lib/site-packages/plugins/hermes-achievements/dashboard/manifest.json",
+        "hermes-disposable/TST-054-001/diag-venv/Lib/site-packages/plugins/kanban/dashboard/manifest.json",
+        "hermes-disposable/TST-054-001/diag-venv/Lib/site-packages/setuptools/command/launcher manifest.xml",
+        "hermes-disposable/TST-054-001/diag-venv/optional-mcps/linear/manifest.yaml",
+        "hermes-disposable/TST-054-001/diag-venv/optional-mcps/n8n/manifest.yaml",
+        "hermes-disposable/TST-054-001/test-venv/Lib/site-packages/pip/_vendor/distlib/__pycache__/manifest.cpython-311.pyc"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "hermes-qualification",
+      "file_count": 5,
+      "unreadable_subtrees": 0,
+      "marker_files": [],
+      "openspec_change": null,
+      "disposition_class": "UNCLASSIFIED",
+      "proposed_action": "owner ruling required; do not auto-close and do not delete"
+    },
+    {
+      "name": "hgk-gcm-apply-20261013",
+      "file_count": 227,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "hgk-gcm-apply-20261013/evidence/ORCHESTRATOR_RERUN_RECEIPT.json",
+        "hgk-gcm-apply-20261013/execute/artifacts/X1_apply_receipt.json",
+        "hgk-gcm-apply-20261013/execute/artifacts/X4_real_lane_receipt.json",
+        "hgk-gcm-apply-20261013/execute/artifacts/X4_real_lane_receipt.json.attempts.ndjson",
+        "hgk-gcm-apply-20261013/execute/artifacts/_collision_snapshot/MANIFEST.json",
+        "hgk-gcm-apply-20261013/execute/scratch/w3/pytest/test_launcher_cleanup_failure_0/out/lane.log.credential-posture.receipt.json",
+        "hgk-gcm-apply-20261013/execute/scratch/w3/pytest/test_launcher_cleanup_failure_0/out/lane.log.identity.receipt.json",
+        "hgk-gcm-apply-20261013/execute/scratch/w3/pytest/test_launcher_cleanup_failure_0/out/lane.log.preflight.receipt.json",
+        "hgk-gcm-apply-20261013/execute/scratch/w3/pytest/test_mismatch_refuses_to_subst0/out/lane.log.preflight.receipt.json",
+        "hgk-gcm-apply-20261013/execute/scratch/w3/pytest/test_model_refused_may_open_a_0/out/lane.log.preflight.receipt.json",
+        "hgk-gcm-apply-20261013/execute/scratch/w3/pytest/test_negative_control_body_men0/out/lane.log.credential-posture.receipt.json",
+        "hgk-gcm-apply-20261013/execute/scratch/w3/pytest/test_negative_control_body_men0/out/lane.log.identity.receipt.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "hgk-gcm-containment-20261013",
+      "file_count": 127,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "hgk-gcm-containment-20261013/evidence/ORCHESTRATOR_RERUN_RECEIPT.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "hgk-gcm-repair-20261013",
+      "file_count": 310,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "hgk-gcm-repair-20261013/verify/scratch/live_marker.receipt.json",
+        "hgk-gcm-repair-20261013/verify/scratch/log_only.receipt.json",
+        "hgk-gcm-repair-20261013/verify/scratch/log_only.receipt.json.attempts.ndjson",
+        "hgk-gcm-repair-20261013/verify/scratch/missing_dir.receipt.json",
+        "hgk-gcm-repair-20261013/verify/scratch/missing_dir.receipt.json.attempts.ndjson",
+        "hgk-gcm-repair-20261013/verify/scratch/no_marker.receipt.json",
+        "hgk-gcm-repair-20261013/verify/scratch/no_marker.receipt.json.attempts.ndjson",
+        "hgk-gcm-repair-20261013/verify/scratch/pytest-corrected/test_invalid_utf8_child_bytes_0/out/preflight.receipt.json",
+        "hgk-gcm-repair-20261013/verify/scratch/pytest-corrected/test_launcher_cleanup_failure_0/out/lane.log.credential-posture.receipt.json",
+        "hgk-gcm-repair-20261013/verify/scratch/pytest-corrected/test_launcher_cleanup_failure_0/out/lane.log.identity.receipt.json",
+        "hgk-gcm-repair-20261013/verify/scratch/pytest-corrected/test_launcher_cleanup_failure_0/out/lane.log.preflight.receipt.json",
+        "hgk-gcm-repair-20261013/verify/scratch/pytest-corrected/test_mismatch_refuses_to_subst0/out/lane.log.preflight.receipt.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "hgk-gcm-repair2-20261013",
+      "file_count": 41,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "hgk-gcm-repair2-20261013/evidence/ORCHESTRATOR_RERUN_RECEIPT.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "hgk-solution-apply-20261012",
+      "file_count": 65049,
+      "unreadable_subtrees": 8,
+      "marker_files": [
+        "hgk-solution-apply-20261012/candidate/APPLIED_REBINDING_RECEIPT.json",
+        "hgk-solution-apply-20261012/candidate/checker/mirror_v1/tests/test_receipt_schema.py",
+        "hgk-solution-apply-20261012/candidate/checker/r8_receipts.py",
+        "hgk-solution-apply-20261012/candidate/checker/rerun_r8_receipts.txt",
+        "hgk-solution-apply-20261012/candidate/make_receipt_v2.py",
+        "hgk-solution-apply-20261012/candidate/make_w3_receipt.py",
+        "hgk-solution-apply-20261012/candidate/scratch-w3-land/proofB/tests/test_receipt_schema.py",
+        "hgk-solution-apply-20261012/candidate/scratch-w3-land/pytest/test_invalid_utf8_child_bytes_0/out/preflight.receipt.json",
+        "hgk-solution-apply-20261012/candidate/scratch-w3-land/pytest/test_launcher_cleanup_failure_0/out/lane.log.identity.receipt.json",
+        "hgk-solution-apply-20261012/candidate/scratch-w3-land/pytest/test_launcher_cleanup_failure_0/out/lane.log.preflight.receipt.json",
+        "hgk-solution-apply-20261012/candidate/scratch-w3-land/pytest/test_mismatch_refuses_to_subst0/out/lane.log.preflight.receipt.json",
+        "hgk-solution-apply-20261012/candidate/scratch-w3-land/pytest/test_model_refused_may_open_a_0/out/lane.log.preflight.receipt.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "lane-health-20261011",
+      "file_count": 26,
+      "unreadable_subtrees": 0,
+      "marker_files": [],
+      "openspec_change": null,
+      "disposition_class": "UNCLASSIFIED",
+      "proposed_action": "owner ruling required; do not auto-close and do not delete"
+    },
+    {
+      "name": "lane-resolutions",
+      "file_count": 36,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "lane-resolutions/T11-fresh-receipt.json",
+        "lane-resolutions/T11-fresh-receipt.json.attempts.ndjson"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "lane-route-001",
+      "file_count": 32,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "lane-route-001/receipts/codex_write_receipt.json",
+        "lane-route-001/receipts/evidence_freeze_receipt.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "modred",
+      "file_count": 5,
+      "unreadable_subtrees": 0,
+      "marker_files": [],
+      "openspec_change": null,
+      "disposition_class": "UNCLASSIFIED",
+      "proposed_action": "owner ruling required; do not auto-close and do not delete"
+    },
+    {
+      "name": "opencodex-backup",
+      "file_count": 3944,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "opencodex-backup/pre-install/.codex/.tmp/bundled-marketplaces/openai-bundled/plugins/browser/scripts/check-native-host-manifest.js",
+        "opencodex-backup/pre-install/.codex/.tmp/bundled-marketplaces/openai-bundled/plugins/browser/scripts/node_modules/abstract-level/test/manifest-test.js",
+        "opencodex-backup/pre-install/.codex/.tmp/bundled-marketplaces/openai-bundled/plugins/chrome/scripts/check-native-host-manifest.js",
+        "opencodex-backup/pre-install/.codex/.tmp/bundled-marketplaces/openai-bundled/plugins/chrome/scripts/installManifest.mjs",
+        "opencodex-backup/pre-install/.codex/.tmp/bundled-marketplaces/openai-bundled/plugins/chrome/scripts/node_modules/abstract-level/test/manifest-test.js",
+        "opencodex-backup/pre-install/.codex/.tmp/plugins/plugins/codex-security/examples/completed-scan/scan-manifest.json",
+        "opencodex-backup/pre-install/.codex/.tmp/plugins/plugins/codex-security/schemas/scan-manifest.schema.json",
+        "opencodex-backup/pre-install/.codex/.tmp/plugins/plugins/nvidia/skills/omniverse-cad-to-simready/shared/preflight_manifest.py",
+        "opencodex-backup/pre-install/.codex/.tmp/plugins/plugins/nvidia/skills/omniverse-usd-performance-tuning/references/operations/manifest.json",
+        "opencodex-backup/pre-install/.codex/.tmp/plugins/plugins/nvidia/skills/omniverse-usd-performance-tuning/references/operations/scripts/operation-manifest.schema.json",
+        "opencodex-backup/pre-install/MANIFEST.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "RUNTIME_OR_CACHE",
+      "proposed_action": "NOT a round: exclude from the unfinished-round denominator; retention decided by the owner"
+    },
+    {
+      "name": "pciv",
+      "file_count": 118,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "pciv/compiled-evo/compiler-receipt.json",
+        "pciv/compiled/compiler-receipt.json",
+        "pciv/design/E1_E2_EVOLUTION_RECEIPTS_SUPERSEDING.yaml",
+        "pciv/design/FINAL_PACKAGE_MANIFEST_SUPERSEDING.yaml"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "provider-failover-routing",
+      "file_count": 2955,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "provider-failover-routing/tests/homes/scenario_a_401/skills/.bundled_manifest",
+        "provider-failover-routing/tests/homes/scenario_b_429_reset/skills/.bundled_manifest",
+        "provider-failover-routing/tests/homes/zen_deepseek_fallback/skills/.bundled_manifest",
+        "provider-failover-routing/tests/homes/zen_deepseek_fallback_debug/skills/.bundled_manifest",
+        "provider-failover-routing/tests/homes/zen_deepseek_fallback_proper/skills/.bundled_manifest",
+        "provider-failover-routing/tests/homes/zen_primary_chain_smoke/skills/.bundled_manifest"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "rbwi-fullrun-001",
+      "file_count": 54,
+      "unreadable_subtrees": 0,
+      "marker_files": [],
+      "openspec_change": null,
+      "disposition_class": "UNCLASSIFIED",
+      "proposed_action": "owner ruling required; do not auto-close and do not delete"
+    },
+    {
+      "name": "releases",
+      "file_count": 1,
+      "unreadable_subtrees": 0,
+      "marker_files": [],
+      "openspec_change": null,
+      "disposition_class": "UNCLASSIFIED",
+      "proposed_action": "owner ruling required; do not auto-close and do not delete"
+    },
+    {
+      "name": "repair",
+      "file_count": 12,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "repair/source-repoint-001/APPLY_RECEIPT.json",
+        "repair/source-repoint-001/REPORT.md"
+      ],
+      "openspec_change": "hermes-incident-2026-10-05-repair",
+      "disposition_class": "ROUND_OPEN",
+      "proposed_action": "reconcile the linked change's unchecked tasks first; close only with a per-item ruling"
+    },
+    {
+      "name": "research",
+      "file_count": 4,
+      "unreadable_subtrees": 0,
+      "marker_files": [],
+      "openspec_change": null,
+      "disposition_class": "UNCLASSIFIED",
+      "proposed_action": "owner ruling required; do not auto-close and do not delete"
+    },
+    {
+      "name": "rollback-proof",
+      "file_count": 2,
+      "unreadable_subtrees": 0,
+      "marker_files": [],
+      "openspec_change": null,
+      "disposition_class": "UNCLASSIFIED",
+      "proposed_action": "owner ruling required; do not auto-close and do not delete"
+    },
+    {
+      "name": "rounds",
+      "file_count": 58,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "rounds/R2-SOD-FIX1-DISPOSITION-20261009/maker/launcher-receipt.log",
+        "rounds/R2-SOD-FIX1-DISPOSITION-20261009/maker/raw-command-receipts.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "rp002-stage1",
+      "file_count": 92,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "rp002-stage1/compile-out/compiler-receipt.json",
+        "rp002-stage1/reinforce_checker_receipt.py",
+        "rp002-stage1/verify_receipt.py"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "shared-spine",
+      "file_count": 1,
+      "unreadable_subtrees": 0,
+      "marker_files": [],
+      "openspec_change": null,
+      "disposition_class": "UNCLASSIFIED",
+      "proposed_action": "owner ruling required; do not auto-close and do not delete"
+    },
+    {
+      "name": "swof-construction-002",
+      "file_count": 64,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "swof-construction-002/r3_compiled/compiler-receipt.json",
+        "swof-construction-002/r7_receipt.py"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "swof-construction-002-r4",
+      "file_count": 3,
+      "unreadable_subtrees": 0,
+      "marker_files": [],
+      "openspec_change": null,
+      "disposition_class": "UNCLASSIFIED",
+      "proposed_action": "owner ruling required; do not auto-close and do not delete"
+    },
+    {
+      "name": "swof-construction-002-w2",
+      "file_count": 32,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "swof-construction-002-w2/w2_12_kanban_receipt.py"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "swof-construction-002-w2-repair-001",
+      "file_count": 405,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "swof-construction-002-w2-repair-001/evidence/R1_APPLY_RECEIPT.json",
+        "swof-construction-002-w2-repair-001/evidence/R1_LOCAL_CLOSURE_RECEIPT.json",
+        "swof-construction-002-w2-repair-001/evidence/R2_APPLY_RECEIPT.json",
+        "swof-construction-002-w2-repair-001/evidence/R2_COMPILED/compiler-receipt.json",
+        "swof-construction-002-w2-repair-001/evidence/R2_COMPILER_RECEIPT.json",
+        "swof-construction-002-w2-repair-001/evidence/R2_FRESH_CHECKER_RECEIPT.json",
+        "swof-construction-002-w2-repair-001/evidence/R2_LOCAL_CLOSURE_RECEIPT.json",
+        "swof-construction-002-w2-repair-001/evidence/R3B_APPLY_RECEIPT.json",
+        "swof-construction-002-w2-repair-001/evidence/R3_APPLY_RECEIPT.json",
+        "swof-construction-002-w2-repair-001/evidence/R3_COMPILED/compiler-receipt.json",
+        "swof-construction-002-w2-repair-001/evidence/R3_COMPILER_RECEIPT.json",
+        "swof-construction-002-w2-repair-001/evidence/R3_FRESH_CHECKER_RECEIPT.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "swof-precon-001",
+      "file_count": 80,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "swof-precon-001/gstack_route_receipt.json",
+        "swof-precon-001/receipt_compiler_acceptance.json",
+        "swof-precon-001/receipt_compiler_activation.json",
+        "swof-precon-001/receipt_compiler_lint.json",
+        "swof-precon-001/receipt_hgk_doctor.json",
+        "swof-precon-001/render/compiler-receipt.json",
+        "swof-precon-001/swof_source_freeze_receipt.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "swof-w1-r4-evidence-cleanup",
+      "file_count": 51,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "swof-w1-r4-evidence-cleanup/E10_FINAL_RECEIPT.json",
+        "swof-w1-r4-evidence-cleanup/E11_FINAL_RECEIPT.json",
+        "swof-w1-r4-evidence-cleanup/E12_FINAL_RECEIPT.json",
+        "swof-w1-r4-evidence-cleanup/E13_FINAL_RECEIPT.json",
+        "swof-w1-r4-evidence-cleanup/E1_CONTRACT_RECEIPT.json",
+        "swof-w1-r4-evidence-cleanup/E2_CALIBRATION_RECEIPT.json",
+        "swof-w1-r4-evidence-cleanup/E3_LINKAGE_RECEIPT.json",
+        "swof-w1-r4-evidence-cleanup/E4_PROVENANCE_RECEIPT.json",
+        "swof-w1-r4-evidence-cleanup/E5_PACKAGING_RECEIPT.json",
+        "swof-w1-r4-evidence-cleanup/E6_PACK_RECEIPT.json",
+        "swof-w1-r4-evidence-cleanup/E8_FINAL_RECEIPT.json",
+        "swof-w1-r4-evidence-cleanup/E9_REPUBLISH_RECEIPT.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "swof-w1-r4-final-closure",
+      "file_count": 13,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "swof-w1-r4-final-closure/COMPILER_PASS_RECEIPTS_FINAL_CLOSURE.json",
+        "swof-w1-r4-final-closure/contract/compiled/compiler-receipt.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    },
+    {
+      "name": "wiki-rebuild",
+      "file_count": 0,
+      "unreadable_subtrees": 0,
+      "marker_files": [],
+      "openspec_change": null,
+      "disposition_class": "EMPTY",
+      "proposed_action": "confirm and remove only with owner approval (a directory the tool created and never used)"
+    },
+    {
+      "name": "workbench",
+      "file_count": 12180,
+      "unreadable_subtrees": 0,
+      "marker_files": [
+        "workbench/llm-wiki/node_modules/@anthropic-ai/claude-agent-sdk/manifest.json",
+        "workbench/llm-wiki/node_modules/@anthropic-ai/claude-agent-sdk/manifest.zst.json"
+      ],
+      "openspec_change": null,
+      "disposition_class": "ROUND_ARTIFACT",
+      "proposed_action": "attach to the change it evidences; no receipt-based auto-close"
+    }
+  ]
+}

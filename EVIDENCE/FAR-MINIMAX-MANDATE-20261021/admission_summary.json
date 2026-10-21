@@ -1,0 +1,71 @@
+{
+  "round": "FAR-MINIMAX-MANDATE-20261021",
+  "owner_order": "2026-10-21: PLAN / EXECUTE / VERIFY_SECURITY all on opencode-go/minimax-m3.1-flash-free (OPENCODE GO)",
+  "arm": {
+    "provider": "opencode-go",
+    "model": "minimax-m3.1-flash-free",
+    "engine": "codex-cli"
+  },
+  "transport_model": "opencode-go/minimax-m3.1-flash-free",
+  "transport_rule": "the opencode-go arm accepts the qualified spelling; the openai arm is the opposite and requires the bare id (measured on the live relay)",
+  "policy_epoch": 24,
+  "results": [
+    {
+      "lane": "PLAN",
+      "status": "REFUSED",
+      "receipt": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\FAR-MINIMAX-MANDATE-20261021\\admission\\PLAN.json",
+      "direct_completion": {
+        "ok": true,
+        "http_status": 200,
+        "latency_s": 0.933,
+        "content_present": true,
+        "detail": "ADMIT_DIRECT_OK"
+      },
+      "lane_exercise": {
+        "ok": true,
+        "detail": "PLAN is Hermes-internal; no Codex-CLI dispatch applies",
+        "direct_completion_only": true
+      },
+      "note": "PLAN is the Hermes-internal orchestration plane. It is bound by the profile's own model, not by a Codex-CLI dispatch, so its admission is a DIRECT completion plus the lane identity; the pool entry records the intended arm for later dispatches."
+    },
+    {
+      "lane": "EXECUTE",
+      "status": "REFUSED",
+      "receipt": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\FAR-MINIMAX-MANDATE-20261021\\admission\\EXECUTE.json",
+      "direct_completion": {
+        "ok": true,
+        "http_status": 200,
+        "latency_s": 1.163,
+        "content_present": true,
+        "detail": "ADMIT_DIRECT_OK"
+      },
+      "lane_exercise": {
+        "ok": false,
+        "detail": "dispatcher produced no receipt (rc=2)",
+        "stderr": ""
+      },
+      "note": "Bounded writer. Currently the pool's rank-4 PROBE arm; the owner order makes it the rank-1 DEFAULT for this lane."
+    },
+    {
+      "lane": "VERIFY_SECURITY",
+      "status": "REFUSED",
+      "receipt": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\FAR-MINIMAX-MANDATE-20261021\\admission\\VERIFY_SECURITY.json",
+      "direct_completion": {
+        "ok": true,
+        "http_status": 200,
+        "latency_s": 0.936,
+        "content_present": true,
+        "detail": "AD"
+      },
+      "lane_exercise": {
+        "ok": false,
+        "detail": "dispatcher produced no receipt (rc=2)",
+        "stderr": ""
+      },
+      "note": "Independent Acceptance Officer. The pool does not yet carry this arm at all, so the lane exercise is performed against a POOL PROBE COPY so the binding is measured before the pool is changed (a change that follows a measurement, not one that assumes it)."
+    }
+  ],
+  "sod_ceiling": "PLAN, EXECUTE and VERIFY/SECURITY share ONE model, so model-axis independence is ZERO for every pair. The registry must declare this explicitly (the existing SOD006-C4 covers the PLAN/VERIFY pair only; the EXECUTE/VERIFY pair is currently distinct_required: true and this order changes that).",
+  "claim_ceiling": "admission proves this arm served on this account/transport/invocation. It is not an acceptance of any subject, not a release, and not a model-axis independence claim.",
+  "generated_utc": "2026-10-21T05:46:12Z"
+}

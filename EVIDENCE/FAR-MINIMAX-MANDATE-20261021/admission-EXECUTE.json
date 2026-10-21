@@ -1,0 +1,50 @@
+{
+  "schema": "HGK-LANE-ADMISSION/1",
+  "claim_ceiling": "CANDIDATE_ONLY",
+  "probe_id": "probe-0e9d17f71c89755a",
+  "lane": "EXECUTE",
+  "arm": {
+    "provider": "opencode-go",
+    "model": "minimax-m3.1-flash-free",
+    "engine": "codex-cli"
+  },
+  "status": "ADMITTED",
+  "policy_epoch": 24,
+  "request_profile": {
+    "owner_order": "2026-10-21 minimax mandate",
+    "transport_model": "opencode-go/minimax-m3.1-flash-free",
+    "relay": "127.0.0.1:10101",
+    "codex_executable": "C:/Users/user/AppData/Local/OpenAI/Codex/bin/896a0166b774037a/codex.exe",
+    "engine": "codex-cli"
+  },
+  "started_utc": "2026-10-21T06:01:00.839928Z",
+  "finished_utc": "2026-10-21T06:01:00.839928Z",
+  "expires_utc": "2026-10-21T06:31:00.839928Z",
+  "direct_completion": {
+    "ok": true,
+    "http_status": 200,
+    "latency_s": 0.0,
+    "content_present": true,
+    "detail": "ADMIT_DIRECT_OK via relay /v1/chat/completions",
+    "sufficient_for_admission": false
+  },
+  "lane_exercise": {
+    "completed_model_calls": 1,
+    "completed_tools": 1,
+    "session_id": null,
+    "elapsed_s": null,
+    "evidence_ref": "dispatcher ok=True required_arm=opencode-go/minimax-m3.1-flash-free served_arm=opencode-go/minimax-m3.1-flash-free used_rank=4 exit=0 nonce_ok=True tool_echo_ok=True receipt=var/FAR-MINIMAX-MANDATE-20261021/probes/EXECUTE_admit.json"
+  },
+  "served": {
+    "provider": "opencode-go",
+    "model": "minimax-m3.1-flash-free",
+    "engine": "codex-cli"
+  },
+  "failure_code": null,
+  "admission_key": "EXECUTE__opencode-go__minimax-m3.1-flash-free__codex-cli",
+  "status_policy": {
+    "ADMITTED": "lane-shaped exercise completed (>=1 model call, >=1 tool) and served identity matches the requested arm",
+    "REFUSED": "lane-shaped exercise ran and definitively failed",
+    "UNPROVEN": "nothing measured, or only a direct completion measured — never sufficient"
+  }
+}
