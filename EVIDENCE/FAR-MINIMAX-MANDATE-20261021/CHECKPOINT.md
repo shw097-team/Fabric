@@ -212,3 +212,31 @@ cd C:/Projects/Agent_Workspace/HG-KSEOS
 **因為該缺陷結構上就在閘門的盲區裡**（閘門比對 projection 與現場，不比對 artifact 自身內部）。
 同時，兩個研究代理的數字差異（35 vs 34）都是正確的（是否含本回合 change），代理的 `[~]` 宣稱則被我實測推翻並修正。
 **下一步的檢測 effort 應放在「閘門看不到的地方」，不是更多同類閘門。**
+
+---
+
+## 9. 非同步研究代理的失敗通知（2026-10-21 16:0x 收到）— **不需補救**
+
+關機前收到 `deleg_dc8b6492` task-0 的失敗通知：`HTTP 429: The usage limit has been reached`。
+
+**這個失敗不影響任何交付物。** 理由（皆已實測驗證）：
+
+| 事實 | 驗證方式 |
+|---|---|
+| task-0 的實質計數**早已 Recover** | 從 `state.db` 子 session `20261021_142457_de97f0`（175 則訊息）取回，寫成 `research/OPENSPEC-CLASSIFICATION.md`（35,677 bytes、303 行） |
+| 該報告**涵蓋全部 34 個 change / 460 筆** | §3.1 分布 16+2+5+5+4+2 = 34 change、185+32+75+69+99 = 460 筆，加總完全吻合 |
+| 指定的 10 個 owner-gated／superseded change **全部涵蓋** | `sod-independent-verify-enforcement`、`hgk-r10-session-closure`、`gcm-noninteractive-default-containment`、`hgk-r11-session-handover`、`hgk-round3-lane-rebind`、`lane-mandate-rebinding-and-d01-revocation`、`lane-verify-dual-routing-and-plan-high`、`verification-artifact-contract`、`strict-declaration-20261011`、`hermes-incident-2026-10-05-repair` 皆在報告內 |
+| task-1（var/）與 task-2（TT ledger）**已完成** | `research/TASK-1_RESEARCH.md`（7,057 bytes）、`research/TASK-2_RESEARCH.md`（3,646 bytes）皆存在且已納入 Fabric 證據包 |
+| 無存活子代理 | `delegate_task list` → 0 live |
+| 數字仍與現況一致 | 現況重測：38 active / 35 含未勾 / 465 筆 `[ ]` + 1 筆 `[~]`；排除本回合 = 34 change / **460** |
+
+**開機後不要重跑這三份研究。** 只需要在裁決 ② 獲確認後，
+依 `research/` 下的報告執行**已核准的那部分**（目前是 0 tick / 0 刪除 / 0 關閉）。
+
+### 一個值得記下的比對陷阱
+
+我第一次比對「報告涵蓋哪些 change」時用了錯誤的正則（只抓表格首欄），
+得出「只有 25 個 change 被覆蓋、460−385 = 75 筆有缺口」的**錯誤結論**。
+實際上 `lane-health-repair-20261011`（4 筆）在 §5 阻塞項表內、格式不同所以沒被正則抓到。
+**這是「用工具驗證工具產物」時正則本身會出錯的實例**——
+差一步就會重跑一份 3 分鐘的研究去補一個不存在的缺口。
