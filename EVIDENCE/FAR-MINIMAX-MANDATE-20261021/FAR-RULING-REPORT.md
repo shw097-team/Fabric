@@ -293,6 +293,42 @@ fabric-autonomous-research/runs/FAR-20261021-024-fallback-chain-reorder/
 4. **不要**把 B1 的 PIPD lifecycle state 灌入 HG-KSEOS：只用其詞彙表做 460 項的**注記欄位**，
    狀態機仍走 HG-KSEOS 自己的等價物。→ 已寫入裁決 A2。
 
+### 知識庫比對帶出的三項「可立即複用」發現（已驗證）
+
+代理的完整報告（12 個 A 類直接先例 + 12 個 B 類方法論先例）帶出三項**本回合可直接複用**
+且**已由本回合實測驗證**的東西：
+
+**① TT ledger 變更不需要新機制**（先例 A7）
+`C:/Projects/Agent_Workspace/HG-KSEOS/知識庫/實作相關DOC/HG-KSEOS/HG-KSEOS使用說明文檔.md`
+§29 記載既有流程：`source-freeze/TT_LEDGER.csv` → `scripts/reconcile-tt.ps1` → `hg_kseos.cli reconcile-tt`。
+**本回合已實測驗證**：`scripts/reconcile-tt.ps1` 存在（405 bytes），
+`src/hg_kseos/cli.py` 已註冊 `reconcile-tt` 子命令（第 64 行 add_parser、第 160 行 dispatch）。
+→ 裁決 C 只需**使用**既有程序，**不需新造任何工具**。這把裁決 C 的執行阻力降到最低。
+
+**② claim ceiling 有現成的格式可沿用**（先例 A5）
+`FAR-SWOF-KSEOS-RCA-001/FAR_DELIVERY_RECEIPT.json` 的 `non_claims` 清單格式：
+`NOT_EXTERNALLY_ACCEPTED` / `NOT_MERGED` / `NOT_RELEASED` / `NOT_PRODUCTION`。
+→ 本回合的候選狀態可直接用同一組鍵值描述，不必自創措辭。
+
+**③ 業主裁決簽核有現成的欄位格式**（先例 A11）
+`FAR/USER_DECISION_FAR_RETRIEVAL_2026-08-13_001.md`：
+`decision_id / authority / decided_at / status: FROZEN / supersedes / supersession_basis / bound_into`。
+→ 裁決 A/B/C/D/E 若獲確認，應以這個格式記錄（含 `supersedes` 與 `supersession_basis`，
+以便未來被推翻時有先例可循）。
+
+### 一項對「460 項為何是主因」的直接解釋（先例 B9，實測校正）
+
+openspec 自身的完成語意是：**全勾 = Complete；部分未完成 = `[~]` 具名殘留**。
+本回合**實測**：38 個 active change 裡有 **35 個含未勾項**，共 **465 筆 `[ ]`**，
+另有 **1 筆 `[~]`**（`s4-final-pr18-closeout-20261016` 的 5.1，「named residual」）——
+**`[~]` 不計入 460**。
+
+**這正是 460 項的性質**：它們**無一**處於 openspec 原生可接受的「具名殘留」形態。
+一個 change 若是「做完了、只剩幾項具名殘留」，開著完全合理；
+但 34 個 change 裡有 16 個處於「近 185 筆未勾」這種狀態，那是**未開工的工程工作**，
+不是可接受的殘留。**這是為什麼本回合不建議批次關閉它們**——不是因為數量大，
+而是因為它們的形態本來就不屬於 openspec 認得的「已完成」。
+
 ### 明確的不可套用判定（研究代理的界線聲明）
 
 - 知識庫中約 9.5MB 的逐字稿日誌（`Fabric vNext/.../驗收_紀錄_vol-01..10.md`）**僅可作事實佐證，

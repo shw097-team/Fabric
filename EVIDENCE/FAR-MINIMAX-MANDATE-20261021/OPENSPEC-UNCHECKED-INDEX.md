@@ -49,3 +49,15 @@
 | `far-lane-remediation-20261021` | 0 | 19 | 3 | 是 |
 | `hgk-cnv-hygiene-readme-closure` | 0 | 17 | 4 | 是 |
 | `hgk-cnv-owner-decision-main-landing` | 0 | 11 | 3 | 是 |
+
+### `[~]` 具名殘留不計入本索引（openspec 自身的完成語意）
+
+openspec 的完成語意是：**全勾 = Complete；部分未完成 = `[~]` 具名殘留**。
+本索引只數 `[ ]`。實測全部 38 個 active change 裡：
+`[ ]` 共 465 筆（含本回合自己的 5 筆 → 其他 34 個 change 共 **460** 筆），
+`[~]` 共 **1** 筆（`s4-final-pr18-closeout-20261016` 5.1「Dispatch the VERIFY_SECURITY lane
+against the frozen packet (running)」）——**不計入 460**。
+
+這個區分正是 460 項的性質所在：**它們無一處於 openspec 原生可接受的「具名殘留」形態**。
+一個 change 若「做完了、只剩幾項具名殘留」，開著完全合理；但 16 個 change 處於近 185 筆未勾，
+那是**未開工的工程工作**，不是可接受的殘留。
