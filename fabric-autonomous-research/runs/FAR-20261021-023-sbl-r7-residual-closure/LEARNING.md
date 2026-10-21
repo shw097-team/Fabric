@@ -134,3 +134,56 @@ restore the ruled variant over the working tree and DROP the other, never apply 
 conflict itself: a stash on the control-plane repository and a conflicted artifact are round events an
 external reviewer must be told about, not noise to be cleaned up quietly. A parse error in a governance
 artifact is a governance incident, not a syntax bug.
+
+## L15 — A lane binding is only real if the lane can RUN on it
+**Trigger.** The machine was rebooted between rounds and the Codex CLI had been upgraded in place. The
+declared toolchain pin named `.../bin/896a0166b774037a/codex.exe`; that directory no longer existed.
+**Measurement.** Every lane dispatch failed BEFORE SPAWNING with `ERR_LANE_PIN_IDENTITY_INVALID` /
+`ERR_LANE_TOOLCHAIN_BINARY_MISSING`. The SBL EXECUTE and VERIFY lanes could not run at all — including
+the independent acceptance officer, which is why the round could not close. Repairing it required TWO
+surfaces to move together: the live declaration and the registry's `/codex_version` and
+`/codex_sha256` expected values. Changing one alone made the drift gate report fatal errors; that is
+the gate working, not a regression.
+**Rule.** A configuration that parses is not a configuration that works. After any host toolchain
+upgrade, re-derive the pin FROM THE INSTALLED BINARY — discover the path, ask the binary its version,
+hash the file — and re-pin every expected value in the same change. Then prove the lane RUNS: a live
+probe with a nonce and a usage receipt is the only evidence that a lane binding is real. A config-only
+test suite would have stayed green while every lane was dead.
+
+## L16 — A hand-written declaration of a machine-checked file is a defect, not a convenience
+**Trigger.** After the owner order promoted GPT 6.1 SOL to rank 1 on PLAN and VERIFY_SECURITY, all three
+lanes' `selection_note` still read "minimax-m3.1-flash-free (opencode-go) is rank 1".
+**Measurement.** The note contradicted the same file's `declared_by`, its `change_log`, and its own
+`ordered_pool[0]`. A reviewer reading the note would have concluded MiniMax was the PLAN binding — the
+exact lane-vs-session confusion the owner ordered to be eliminated. The drift gate did NOT catch it:
+the gate compares machine-checked values, and prose is not one.
+**Rule.** Never hand-write what a machine-checked file already states. Generate the note from
+`ordered_pool[0]` so it cannot drift. And treat a stale prose field as a real defect even when every
+automated gate is green: a green gate only means the gate's own fields agree, not that the document
+tells the truth.
+
+## L17 — An acceptance check that pins an earlier run's value checks the past, not the state
+**Trigger.** The R7 self-check C6 asserted that the checker transcript contained round 1's nonce token.
+**Measurement.** The nonce is per round. A fully successful, correctly-armed, correctly-nonced round 4
+would still have failed C6, so the round could never have reached 16/16 — the check was validating the
+checker's ability to echo a token it was never given. Fixed to read the nonce from the receipt, with a
+fallback to the token found in the transcript.
+**Rule.** Read the expected value from the artefact under test, never from a constant that a past run
+produced. And verify an acceptance-check fix against synthetic scenarios — success, stale-arm,
+missing-token, wrong-arm — before trusting it. A check that cannot fail for the right reasons will
+eventually fail for the wrong ones.
+
+## L18 — A green maker run and a red CI run are two facts, not a contradiction
+**Trigger.** The maker's Windows suite was green while the hosted CI had been red for five consecutive runs, on both ubuntu and windows.
+**Measurement.** The CI workflow installs pytest and nothing else, so the `build` package is absent on the runner. The sdist-normalisation test stubbed the build COMMAND but still let `build()` resolve a backend interpreter, so it raised SystemExit there — an environment gap reported as a product failure. Because the mutation probe requires the unmutated tree to pass, the whole probe went red with it. Reproduced locally by removing the backend from PATH: the failure reappeared exactly, and vanished when the backend was reachable.
+**Rule.** When two environments disagree, build the second environment before theorising. The maker's machine had a build backend and a PATH with interpreters on it; the runner had neither. A defect that only appears where a tool is missing is usually the tool's absence being misreported as a defect — find the exact difference and reproduce it.
+
+## L19 — An INCONCLUSIVE verdict is not an empty verdict
+**Trigger.** The R7 checker round 4 returned INCONCLUSIVE — NOT ACCEPTED because its sandbox forbids every filesystem write, which would normally mean "nothing learned".
+**Measurement.** The same verdict reproduced the W1 defect and reported the fail-open skip and the weak mutation oracle as defects. All three were real and independently reproducible on the maker side.
+**Rule.** Read a non-acceptance for what it actually measured. "Could not verify" and "found nothing" are different statements, and the first one can carry real findings about the thing that could not be verified. Dumping the round on the word INCONCLUSIVE would have left three live defects in the acceptance oracle itself.
+
+## L20 — Isolation is a property of the whole environment, not of one call
+**Trigger.** The mutation probe's write-through defect looked fixed after giving the copy its own git dir, and the independent SWARM audit still found two escape routes.
+**Measurement.** The probe copied `os.environ` wholesale and overrode only GIT_DIR, GIT_WORK_TREE and GIT_INDEX_FILE, so GIT_COMMON_DIR or GIT_OBJECT_DIRECTORY could still point into the protected repository. And `copytree(symlinks=True)` kept symlinks, so a mutation writing to a linked file could follow it back into the protected tree. The audit also reported two protected files changing during the run; that turned out to be the orchestrator's own concurrent edits, verified independently by the staged tree, HEAD and cached diff all being unchanged.
+**Rule.** When you isolate a write, enumerate every channel the write could take — environment, filesystem, IPC, subprocess — and close each one. Then verify the invariant semantically (staged tree, HEAD, status) rather than by a file hash: git rewrites the index's stat cache on any read, so a hash changes without the staged content changing. And check a reported violation yourself before believing it.

@@ -61,3 +61,21 @@ question is answered with the measurement that settles it.
     # the lane probes
     python HG-KSEOS/scripts/hgk-lane-dispatch.py --lane PLAN --prompt "<brief including the nonce>" \
         --nonce <token> --require-arm openai-codex/gpt-6.1-sol --json-out <receipt>
+
+## 7. Method contributions from the resume iteration (2026-10-21)
+
+Three techniques that changed what this round could measure, added after the reboot resume:
+
+  * **Multi-surface re-pinning.** When a toolchain upgrade invalidates a pin, the fix is never in one
+    file. The declaration and the registry's expected values are two surfaces of one fact, and the
+    drift gate exists to tell you when they disagree. The correct move is to derive both from the
+    installed binary in the same change, then let the gate confirm. Atomicity across governance
+    surfaces is the same discipline as the lane rebind, applied to a pin.
+  * **Generated prose over hand-written prose.** The pool's per-lane `selection_note` is now computed
+    from `ordered_pool[0]` instead of written by hand. This converts a class of undetected drift
+    (declarations that disagree with the data they describe) into a class that cannot occur. The
+    generator is the contract; the text is its output.
+  * **Synthetic-scenario verification of an acceptance check.** Before trusting a repaired acceptance
+    check, run it against four scenarios: the success case, a stale-arm case, a missing-token case,
+    and a wrong-arm case. A check that only ever sees the happy path is untested. This is the same
+    mutation-sensitivity principle the product tests use, applied to the governance harness itself.
