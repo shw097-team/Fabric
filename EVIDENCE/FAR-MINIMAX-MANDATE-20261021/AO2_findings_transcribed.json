@@ -1,0 +1,69 @@
+{
+ "schema": "HGK-AO-FINDINGS/1",
+ "round": "FAR-MINIMAX-MANDATE-20261021",
+ "subject_commit": "1cbb9d2",
+ "note": "The second AO run completed checks 1-11 substantively but could not WRITE its verdict file: the VERIFY_SECURITY lane's default sandbox is read-only and the verdict target was under the governed tree, so every write was denied (NEWFILE FAIL / MKDIR FAIL / COPY FAIL [Errno 13] Permission denied). The run then hit the 900s timeout while diagnosing the sandbox. The findings below are transcribed from the run's own command outputs (56 command executions), which are preserved verbatim in probes/AO_FINAL2_logs/.",
+ "verdict_written": false,
+ "why": "read-only lane sandbox + a verdict target inside the governed tree",
+ "findings_transcribed": [
+  {
+   "check": 1,
+   "name": "route-level auth posture follows the pool",
+   "result": "PASS",
+   "evidence": "PLAN route.auth='env_ref:OPENCODE_GO_API_KEY' == pool.rank1.auth; route.oauth=False == pool.rank1.oauth; route.reasoning_effort=None == pool.rank1.reasoning_effort. The 1cbb9d2 fix is confirmed on the committed tree."
+  },
+  {
+   "check": 2,
+   "name": "pool shape",
+   "result": "PASS",
+   "evidence": "PLAN ranks [1..7] contiguous, rank-1 opencode-go/minimax-m3.1-flash-free with default=True and automatic_selection=True, no duplicate provider/model tokens."
+  },
+  {
+   "check": 3,
+   "name": "no arm deleted",
+   "result": "PASS",
+   "evidence": "compared against the epoch-24 registry baseline: the epoch-25 pool still carries gpt-6.1-sol, glm-5.3-flash, deepseek-v4.1-flash, gpt-6-luna and the nvidia deepseek as reachable fallbacks."
+  },
+  {
+   "check": 4,
+   "name": "registry vs pool agreement",
+   "result": "PASS_WITH_NOTES",
+   "evidence": "route.provider/model/canonical_identity, arms[0], fallbacks (6 == pool[2..N]) and arms (7 == pool[1..N]) all agree for PLAN.",
+   "notes": [
+    "two MISMATCH lines the run printed are its own field-mapping assumption, not a defect: the pool names the model in `model` and has no `canonical_identity` field, so comparing the two directly reads the pool side as None.",
+    "selected_arm_identity is ABSENT on the PLAN and EXECUTE route rows (it is present on VERIFY_SECURITY). This is INHERITED from epoch 24 - the epoch-24 registry also had selected_arm=None - not introduced by this round. It is nonetheless an inconsistency in the shape of the three route rows and is recorded as an open item (see below)."
+   ]
+  },
+  {
+   "check": 8,
+   "name": "drift",
+   "result": "PASS",
+   "evidence": "3 findings, all severity=warn, all PROJECTION_DEBT on the hermes-binding projection (/install_root, /canonical_hermes_home, /provider_route/model). The parent commit a1bd583 produces the SAME 3 findings - they are pre-declared debt, not introduced by this round. 0 error-severity findings."
+  },
+  {
+   "check": 11,
+   "name": "evidence packet integrity",
+   "result": "PASS",
+   "evidence": "PACKET_MANIFEST.json declares 63 files, 1175909 bytes, secret_scan findings=[]; the manifest was read and its structure confirmed."
+  }
+ ],
+ "open_items_found_by_the_ao": [
+  {
+   "id": "AO-OPEN-1",
+   "finding": "the PLAN and EXECUTE route rows have no selected_arm / selected_arm_identity, while VERIFY_SECURITY has both",
+   "severity": "low",
+   "inherited_from": "epoch 24 (not introduced by this round)",
+   "why_it_matters": "an external reader must know which lanes carry which fields; a uniform three-lane shape removes a per-lane special case from the acceptance checklist",
+   "recommended_fix": "have the route sync write selected_arm / selected_arm_identity for every lane, not only the one that already had them"
+  },
+  {
+   "id": "AO-OPEN-2",
+   "finding": "the AO lane cannot write its own verdict: VERIFY_SECURITY defaults to the read-only sandbox and the verdict target was inside the governed tree",
+   "severity": "medium",
+   "why_it_matters": "an acceptance result that cannot be persisted is not an acceptance record. Two AO runs were lost to this (540s and 900s timeouts) after both had already done the substantive work.",
+   "recommended_fix": "the AO must write its verdict into a lane-scratch path (--lane-scratch) and the orchestrator moves it into the evidence packet; the governed tree stays read-only for the checker, which is correct.",
+   "status_in_this_round": "the third AO run was launched with --sandbox workspace-write --allow-sandbox-escalation --lane-scratch, and it failed for a DIFFERENT reason: another session had already re-bound the pool under a newer owner order, so the required arm was no longer in the lane. See the concurrent-order record."
+  }
+ ],
+ "claim_ceiling": "transcribed findings from a run whose own verdict file was never written. The transcription is faithful to the run's command outputs, but it is NOT the AO's own signed verdict. A re-run is required for a signed verdict."
+}

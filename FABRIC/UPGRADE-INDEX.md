@@ -57,3 +57,19 @@ tells you what is here and which document to trust first.
 - **Branch note**: this round publishes on `pub/far-minimax-mandate-20261021`. The earlier branch
   `pub/far-lane-remediation-20261021` was contaminated by another session's commits and is **not**
   the branch to verify against — see `../EVIDENCE/FAR-MINIMAX-MANDATE-20261021/PUBLISH-BRANCH-INCIDENT.md`.
+
+- **Status change (added after publication)**: a parallel session applied a NEWER owner order
+  (`OWNER-ORDER-20261021-GPT-QUOTA-RESTORED`, recorded as "GPT quota restored") and re-bound the
+  lane pool: PLAN and VERIFY/SECURITY to `openai-codex/gpt-6.1-sol`, EXECUTE to
+  `opencode-go/deepseek-v4.1-flash` (pool revision 12, registry epoch 26, staged, not yet
+  committed). **The MiniMax mandate recorded in this round is therefore no longer the current
+  configuration** - the round's own commit `a1bd583`/`1cbb9d2` remains in the git history as the
+  record of that configuration, and the evidence packet is explicitly labelled as history rather
+  than as the live contract. The MiniMax arm is **retained as a reachable fallback**, not removed,
+  so the availability measurement in this round still carries.
+  What survives regardless of which rank-1 is in force: the registry's route rows must be DERIVED
+  from the pool (two cross-field defects were found and fixed here), the test oracle must derive
+  the served model from the dispatcher's `--model` rather than hard-coding a rank-1, and
+  `tests/fixtures/` must be tracked so a clean checkout can rebuild the suite.
+  Full conflict record and the single question that needs an owner ruling:
+  `EVIDENCE/FAR-MINIMAX-MANDATE-20261021/CONCURRENT-OWNER-ORDER-CONFLICT.md`.

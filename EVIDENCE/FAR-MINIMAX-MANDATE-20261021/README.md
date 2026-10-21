@@ -5,6 +5,41 @@
 **三車道全部**使用 `opencode-go/minimax-m3.1-flash-free`（MiniMax M3.1 Flash, OPENCODE GO）。
 **Registry epoch**：24 → 25
 
+---
+
+# ⚠ 狀態變更通知 — 本包記錄的是 epoch 25，已被 epoch 26 取代
+
+**讀這份檔案前請先讀這一段。**
+
+在本包發布之後，**另一個 session 依據一條更新的業主命令
+（`OWNER-ORDER-20261021-GPT-QUOTA-RESTORED`，記錄為「GPT 配額已恢復」）
+把 lane pool 重綁回去**，並已 staged（未 commit）：
+
+| 車道 | 本包記錄的 epoch 25 | 現行 staged epoch 26 |
+|---|---|---|
+| PLAN | `opencode-go/minimax-m3.1-flash-free` | `openai-codex/gpt-6.1-sol` |
+| EXECUTE | `opencode-go/minimax-m3.1-flash-free` | `opencode-go/deepseek-v4.1-flash` |
+| VERIFY_SECURITY | `opencode-go/minimax-m3.1-flash-free` | `openai-codex/gpt-6.1-sol` |
+
+**因此：本包是「epoch 25 的歷史與證據」，不是現行契約。**
+它記錄的是：
+- MiniMax 臂在 HGK 車道上的**可用性實測**（三車道皆 ADMITTED，model 實際驅動工具）；
+- 兩個**跨欄位治理缺陷**的發現與修補（registry 的 route rows 必須由 pool 推導）；
+- 測試 oracle 的**根因修補**（stub 從 dispatcher 的 `--model` 推導 provider/model）；
+- 殘留主題的**實測索引**與 **FAR 裁決報告**（仍待業主確認，數字不受影響）；
+- 獨立 AO 找到第二層缺陷的**原始證據**。
+
+**這些產出與「哪個 rank-1 生效」無關，全部成立。**
+但「三車道全 MiniMax」這個**配置狀態**已不再是現況。
+
+完整的衝突記錄與需業主裁決的問題見
+[`CONCURRENT-OWNER-ORDER-CONFLICT.md`](CONCURRENT-OWNER-ORDER-CONFLICT.md)。
+
+**另一個 session 保留了 MiniMax 臂**（降為可達 fallback，未刪除），
+所以本包記錄的證據仍然有意義——它證明了那個臂是可用的。
+
+**本包沒有、也不會撤銷另一個 session 的施工。**
+
 > **CLAIM CEILING — 請先讀這段**
 > 本證據包證明的是：這條綁定在**本機**被量測過、並由獨立 Acceptance Officer
 > 從工件重新推導過。它**不是** acceptance、**不是** release、**不是** merge、

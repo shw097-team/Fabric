@@ -1,18 +1,18 @@
 {
   "schema": "HGK-EVIDENCE-PACKET/1",
   "packet": "FAR-MINIMAX-MANDATE-20261021",
-  "generated_utc": "2026-10-21T07:33:35.658742Z",
+  "generated_utc": "2026-10-21T07:44:00.231616Z",
   "control_plane": "HG-KSEOS",
   "owner_order": "2026-10-21: PLAN, EXECUTE (Codex CLI) and VERIFY/SECURITY (Codex CLI) all on opencode-go/minimax-m3.1-flash-free (MiniMax M3.1 Flash, OPENCODE GO)",
   "registry_epoch": 25,
   "claim_ceiling": "CANDIDATE_ONLY. The evidence below shows that the binding was measured and independently re-derived on this machine. It is NOT an acceptance, NOT a release, NOT a merge, and NOT a promotion. No upstream provider state, no external acceptance and no release action is claimed.",
   "secret_scan": {
-    "files_scanned": 63,
+    "files_scanned": 67,
     "findings": [],
     "note": "The GitHub PAT (C:/Projects/Agent_Workspace/API KEY/GITHUB-REPO_SHW097-4.txt), the OAuth account metadata and the relay credential are OUTSIDE this packet and appear in it only as [REDACTED]."
   },
-  "file_count": 63,
-  "total_bytes": 1175909,
+  "file_count": 67,
+  "total_bytes": 1516022,
   "files": [
     {
       "path": "admission/admission_summary.json",
@@ -58,6 +58,11 @@
       "path": "admit_minimax_lanes.py",
       "sha256": "8af469532e7c86af9e4c179738a9bc117b7085be1179af36f7f0074b24796019",
       "bytes": 16583
+    },
+    {
+      "path": "AO2_findings_transcribed.json",
+      "sha256": "bf468dc775864f0a47258f1f2d3f96f3d089cb4620e6c8d43e40c13f8a4fd8ef",
+      "bytes": 4928
     },
     {
       "path": "ao_evidence_bundle.json",
@@ -108,6 +113,11 @@
       "path": "compare_pytest_isolated.py",
       "sha256": "7552e353338f26567bc90db2fed893166a1dfdad742dbfd27bddcd0afc9c85ca",
       "bytes": 4874
+    },
+    {
+      "path": "CONCURRENT-OWNER-ORDER-CONFLICT.md",
+      "sha256": "16071f045312ac99e274697d96e5ba15ce131934fe458de62d1ec6403d6c5554",
+      "bytes": 6871
     },
     {
       "path": "config/lane-route-slots.candidate.json",
@@ -205,6 +215,11 @@
       "bytes": 5658
     },
     {
+      "path": "probes/AO_FINAL2_receipt.json",
+      "sha256": "93048011560932f19d9e34da4cf10585e204e6f950926d34f9e2012f9a90efb2",
+      "bytes": 5836
+    },
+    {
       "path": "probes/AO_FINAL_receipt.json",
       "sha256": "a021461e3ec1d810dfbc17fe7af0880f4f5164c8b77c12b24cb4bb46c609f649",
       "bytes": 5736
@@ -213,6 +228,11 @@
       "path": "probes/attempt-21612-1792566884-1-stdout.txt",
       "sha256": "e5bb0409cefb91da485c831ad62156b262f6dd7c222d5c7790a15b617f4153d4",
       "bytes": 230575
+    },
+    {
+      "path": "probes/attempt-24364-1792567563-1-stdout.txt",
+      "sha256": "b542b4e5489de85bbe59c2cf5fa38e4841c9cc96be051eeb66395a23ac886d45",
+      "bytes": 320658
     },
     {
       "path": "PUBLISH-BRANCH-INCIDENT.md",
@@ -226,8 +246,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "03b9d1c8080c32907ec20ee3e4a6e6f67aafe9889ad9acc21a145c5f5c1bfa1d",
-      "bytes": 9679
+      "sha256": "20fe5c06c0940499b31a766c67e8e2fcdcb9c0f47d7201c01471973e61bb31b9",
+      "bytes": 11499
     },
     {
       "path": "registry_route_sync.json",
