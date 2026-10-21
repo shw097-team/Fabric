@@ -1,0 +1,5 @@
+criterion	requirement	observed	fit
+low_resistance	the action should not require killing a live service	the only known ways past the lock are killing the holder or unbounded waiting	NOT_FIT
+upstream_conformance	follow the canonical source	PIPD states no rule requiring worktrees inside the repo; the previous moves required a new gitignore rule	NOT_FIT
+engineering_necessity	execute only what is necessary	gain is one fewer directory name at the workspace root; the substantive hygiene is already done	NOT_MET
+safety_during_open_acceptance	do not churn artefacts bound into an open acceptance window	this worktree's path is bound into taskspec rows and the acceptance master	FAVOURS_DEFERRAL

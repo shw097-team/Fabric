@@ -1,0 +1,25 @@
+{
+ "schema": "FAR-SELF-EVOLUTION-DELTA/1",
+ "run_id": "FAR-20261016-014-r5r3-closeout-learning",
+ "skill_updates": [
+  {
+   "skill": "hgk-kanban-and-lane-routing",
+   "change": "record that the lane brief's remote-write marker scan is a SUBSTRING scan and pre-scan the brief for all five markers before dispatch"
+  },
+  {
+   "skill": "hgk-lifecycle-admission",
+   "change": "record artefact-provenance-first triage: rebuild a refused artefact from its recorded source commit before investigating the refusing host, and prefer deleting causes with a byte-diff over supporting a hypothesis with one"
+  }
+ ],
+ "new_round_assets": [
+  "zip_repro_r5r3.py",
+  "probe_control_plane_r5r3.py",
+  "push_with_pat.sh",
+  "PRIVATE_PLUGIN_UPLOAD_RUNBOOK.md",
+  "OWNER_DECISION_REQUEST.md",
+  "pack_closeout_r5r3.py",
+  "extract_checker_closeout.py"
+ ],
+ "not_promoted": "no canonical route, no product behaviour and no release was changed by this run's learning",
+ "claim_ceiling": "candidate self-evolution record; applies to this stack's skills only after review"
+}

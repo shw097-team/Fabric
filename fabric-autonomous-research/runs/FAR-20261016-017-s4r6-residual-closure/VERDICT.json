@@ -1,0 +1,105 @@
+{
+ "schema": "FAR-RUN-VERDICT/1",
+ "run_id": "FAR-20261016-017-s4r6-residual-closure",
+ "task_class": "RESEARCH_LITERATURE_REPO",
+ "decision": "NATIVE_WITH_SELECTED_ARIS",
+ "reason_code": "FAR_ROUTE_NATIVE_ARIS",
+ "inputs": {
+  "residual_universe": "37 rows / 33 not yet addressed (OWNER_DECISION 12, RESIDUAL 9, UNLANDED_CANDIDATE 5, TT_TICKET 5, BLOCKED 4, NOT_RUN_EVIDENCE 2)",
+  "defect_dossier": "checker capability gap (closable in-contract) + VERIFY pool ordering (owner-ordered, NOT a defect)",
+  "own_measurements": "local reproduction of the stage-c write-set classifier; guard falsification on the pre-repair tree; served-byte recomputation"
+ },
+ "ruling": {
+  "one_line": "The residuals that this round can legally close are (1) a RED GATE this round itself caused, (2) the one missing half of the doc check F-R6-01 asked for, (3) the disclosure of an immutable-release provenance drift, (4) the checker's own capability limit, and (5) the session handover. Everything else in the 37-row universe is either already closed, or is an owner decision.",
+  "execute_now": [
+   {
+    "id": "A1a",
+    "action": "Move the round's evidence packet off the product branch onto a dedicated evidence branch, byte-identical",
+    "friction": "low - the commit already exists; a branch ref and one rewritten product branch",
+    "feasibility": "high - within the round's branch-push authority",
+    "necessity": "high - this is the measured cause of PR #18's red `verify` check",
+    "over_engineering": "none - it restores the repository's own declared design",
+    "alignment": "the workflow states a round's evidence tree is deliberately outside both allowlists; prior rounds already used dedicated evidence branches",
+    "authority": "round"
+   },
+   {
+    "id": "A1b",
+    "action": "Add a NAMED amendment to the stage-c ALLOWED set for docs/USER_GUIDE.md, disclosed in the PR body and in the packet",
+    "friction": "low - one line, in a file whose own convention defines how to amend it",
+    "feasibility": "high",
+    "necessity": "high - the round's WorkOrder (F-R6-02) names that file, and stage-c's set omits it while stage-b's includes it",
+    "over_engineering": "none - an alternative new stage arm would be the over-engineered form",
+    "alignment": "the workflow requires an amendment to be named and reviewed in the same pull request that needs it",
+    "authority": "round"
+   },
+   {
+    "id": "A2",
+    "action": "Land the doc-identity guard the R6 report ordered, with paired mutations (DONE this round)",
+    "friction": "low - one test file, auto-wired by the existing ci workflow",
+    "feasibility": "high",
+    "necessity": "high - F-R6-01 asks for exactly this check and it did not exist",
+    "over_engineering": "none - one file; no workflow edit, no tools/ script, no new framework",
+    "alignment": "reuses the half that already exists on main and the repository's mutation-testing convention",
+    "authority": "round"
+   },
+   {
+    "id": "A3",
+    "action": "Disclose the served-document provenance drift in the install SSOT; carry it as a next-release ticket (DONE this round)",
+    "friction": "low - a bounded note",
+    "feasibility": "high",
+    "necessity": "high - the drift is measured and misleading to a reader",
+    "over_engineering": "none - the release asset is not touched; no release is made",
+    "alignment": "PKG-08 immutability: a published artefact is corrected by a successor, never in place",
+    "authority": "round"
+   },
+   {
+    "id": "A4",
+    "action": "Close the checker's own capability limit inside the lane contract, and bind the final verdict to the final candidate",
+    "friction": "medium - one escalated dispatch with a guard subject",
+    "feasibility": "high - the flags exist and were executed this round",
+    "necessity": "high - otherwise the accepted evidence is bounded by a tooling limit the round can remove",
+    "over_engineering": "none - no new tooling, no relaxation of the read-only default for ordinary checkers",
+    "alignment": "the escalated lane keeps a guard root so an unbounded checker is refused",
+    "authority": "round"
+   },
+   {
+    "id": "A5",
+    "action": "Emit the session closeout/handover record and refresh the evidence packet against the final tip (DONE / in progress)",
+    "friction": "low",
+    "feasibility": "high",
+    "necessity": "high - the owner asked for closeout and handover explicitly",
+    "over_engineering": "none",
+    "alignment": "checkpoint discipline: exact subject identity, open tickets, owner decisions, rollback pointer, next legal action",
+    "authority": "round"
+   }
+  ],
+  "owner_gated": [
+   {"id": "B1", "item": "Merge PR #18 (product: install SSOT + user guide + the new guard + the named amendment)", "why": "merge is the owner's"},
+   {"id": "B2", "item": "Merge PR #17 (verified: 1 file, +14/-0, non-draft, mergeable clean, checks green)", "why": "merge is the owner's"},
+   {"id": "B3", "item": "Ratify S4_PREVIEW_MVP_PHASE = TEMP_CLOSED", "why": "an agent must not self-ratify a stage close"},
+   {"id": "B4", "item": "Private-host same-id UPDATE smoke (1 POS / 1 source-less NACK / 1 security NEG)", "why": "requires a human account UI"},
+   {"id": "B5", "item": "Issue a successor tag if the 11 post-tag main commits are to be advertised", "why": "release authority; must not touch preview.4"},
+   {"id": "B6", "item": "Reversing the VERIFY_SECURITY pool order (rank 1 = the writer's model)", "why": "the current order is BY OWNER ORDER 2026-10-16 (registry SOD006-C3 OWNER_ORDERED_IN_FORCE); reordering reverses an owner order and is a policy decision. The round's correct action is to pin the checker by identity, which it did."}
+  ],
+  "rejected": [
+   {"id": "C1", "item": "Add the round's evidence paths to the product allowlist", "why": "the workflow explicitly rejects permitting a round directory inside the governed product write set"},
+   {"id": "C2", "item": "Declare a whole new stage arm", "why": "a one-line, named amendment covers the need; a new arm is the over-engineered form"},
+   {"id": "C3", "item": "A second verification framework or a new CI job", "why": "the existing suite already runs the guard"},
+   {"id": "C4", "item": ".hgk migration, four-host UAT as this phase's gate, public directory publication, PR #14/#15", "why": "standing deferrals and owner rulings; re-litigating them is the failure mode the R6 report names"}
+  ],
+  "already_closed_do_not_redo": [
+   "D1 / D2 / ClaimCeiling repairs (on main; the R6 report closed them)",
+   "the release-identity half of the doc guard (tests/test_r5r3_install_route_identity.py already re-derives tag facts from git and binds the served digest to its download paragraph)",
+   "verification of PR #17",
+   "the public-directory ruling (OD-12, standing)"
+  ]
+ },
+ "executed_this_round": {
+  "guard": "tests/test_r6_doc_identity_guard.py, 9 tests (5 real-document checks + 4 paired mutations); FAILED(6) on the pre-repair tree d3bd545 - the historical defect is caught",
+  "ssot_note": "docs/install/README.md records the served-document provenance drift and states only a future release can correct it",
+  "checker_capability": "relaunched on danger-full-access with --guard-subject and the arm pinned to openai-codex/gpt-6.1-sol at rank 2",
+  "red_gate_diagnosis": "the stage-c classifier reproduced locally; the exact refused paths are enumerated",
+  "handover": "SESSION_CLOSEOUT_AND_HANDOVER.md with checkpoint, owner decisions in one-action form, open tickets, rollback pointer"
+ },
+ "claim_ceiling": "Round product: a bounded candidate on a controlled branch, a falsifiable guard, a reproducible diagnosis of a red gate, and the ruling above. No merge, tag, release, host acceptance or production claim. Everything asserted here is bound to a re-runnable command in the round's artifacts."
+}

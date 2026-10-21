@@ -1,0 +1,23 @@
+schema: LOGICAL_FAR_RESEARCH_REQUEST_V1
+run_id: FAR-20261011-008-redundant-clone-disposal
+generated_utc: "2026-10-11T15:05:00Z"
+fields:
+  workorder_ref:
+    id: FAR-WO-20261011-008
+    digest: "PENDING_HGK_ADMISSION_READ_ONLY_RESEARCH"
+  decision_question: >-
+    Should the redundant local git clone at C:/Projects/Agent_Workspace/PIPD-r7-release be deleted,
+    kept as-is, or converted to something else — judged by low resistance, conformity with upstream
+    PIPD, and high engineering necessity?
+  owner: WORKSPACE_OWNER (operator of C:/Projects/Agent_Workspace)
+  task_class: WORKSPACE_HYGIENE_DISPOSAL_DECISION
+  source_requirements:
+    - memory: HGK Shared Spine, READ-ONLY (requirements / taskspecs / workorders / canonical_events)
+    - knowledge: PIPD repo object DB + git metadata, Fabric FAR references, hgk-governed-execution skill
+    - web: governed GET-only, anonymous read of the upstream GitHub repo (no credential used)
+  freshness_requirement: LIVE_MEASUREMENT_REQUIRED (git state re-measured this run; retrieval date = run date)
+  budget_ref: LOCAL_READ_ONLY; no provider lane dispatched
+  security_boundary_ref: SEC-SRC-01..08 (source-as-data); no credential read; no remote mutation
+  expected_decision_output: >-
+    one of DELETE / KEEP / TRANSFORM, with the evidence that makes it reversible or not,
+    plus explicit non-claims

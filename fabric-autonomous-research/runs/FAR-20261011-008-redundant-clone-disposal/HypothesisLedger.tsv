@@ -1,0 +1,6 @@
+hypothesis_id	statement	status	basis
+H1	The clone holds commits that exist nowhere else.	REFUTED	S4: 0/14 missing; S5: 024d358 reachable in PIPD
+H2	The clone is a publication boundary / the only copy of a release.	REFUTED	S3: origin is a local path; upstream serves the same commit
+H3	Deleted state is recoverable from an independent site.	SUPPORTED	S5 + S8 (two independent sites)
+H4	Some governance record binds the clone's path.	REFUTED	S1 negative
+H5	Keeping it costs storage for zero unique capability.	SUPPORTED	S6

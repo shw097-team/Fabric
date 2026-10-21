@@ -1,0 +1,14 @@
+source_id	source_class	required|optional	authority_role	identity_locator	expected_freshness	access_status	snapshot_digest_or_locator	disposition	reason
+SRC-01	OFFICIAL_DOC	required	PKG v2.0.0 authority	attachments/Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md	as-of 2026-10-16	SNAPSHOTTED	sha256:96d9d564286743e1	USED	governs RQ06/RQ08; 2689181 bytes
+SRC-02	OFFICIAL_DOC	required	external review register	attachments/Fabric_Convergence_External_Independent_Acceptance_Report_20261015.md	as-of	SNAPSHOTTED	sha256:10caf4dbdb1993cd	USED	EIA-R6-01..09
+SRC-03	OFFICIAL_DOC	required	mission brief	attachments/Fabric_HG-KSEOS_Convergence_指揮薄PROMPT.md	as-of	SNAPSHOTTED	sha256:6894a6ba08781f2e	USED	machine header gates
+SRC-04	LOCAL_GOVERNED_CORPUS	required	control-plane rules	HG-KSEOS/AGENTS.md	as-of	SNAPSHOTTED	sha256:7f7246d34be112bb	USED	admission/lifecycle rules
+SRC-05	GIT_REPOSITORY	required	round self-record (claims)	_handover/CNV-PIPD-LS-SP-20261015-R8/R8_LEDGER.json	round	SNAPSHOTTED	sha256:8cfcc39b9e2de01a	ACCEPTED_AS_CLAIM	decisive items re-measured by the orchestrator
+SRC-06	GIT_REPOSITORY	required	round synthesis (claims)	_handover/CNV-PIPD-LS-SP-20261015-R8/R8_SYNTHESIS.md	round	SNAPSHOTTED	sha256:9aad321cf2eb9840	ACCEPTED_AS_CLAIM	same
+SRC-07	GIT_REPOSITORY	required	independent checker verdict	_handover/CNV-PIPD-LS-SP-20261015-R8/R8_VERIFY/R8_VERIFY_VERDICT.json	round	SNAPSHOTTED	sha256:d5da438faf7f1703	ACCEPTED_WITH_ERRATA	R8-F8 attribution refuted; provenance corrected this round
+SRC-08	DATASET	required	lane dispatch receipts	_handover/CNV-PIPD-LS-SP-20261015/lane_runs/*dispatch_receipt*.json	live	RESOLVED	lane_runs/	USED	arm attribution re-derived by the orchestrator
+SRC-09	GIT_REPOSITORY	required	product repo trees	PIPD/worktrees/r8-wt ; C:/Projects/wt-r8-cleanmain	live	RESOLVED	git worktrees	USED	2x2 baseline matrix executed
+SRC-10	LOCAL_GOVERNED_CORPUS	required	control-plane config	HG-KSEOS/config/{lane-routing-registry.yaml,lane-route-slots.candidate.json,model-lane-assignment.json}	live	RESOLVED	live read	USED	canonical vs candidate pool vs mandate
+SRC-11	DATASET	required	prior FAR runs	Fabric/fabric-autonomous-research/runs/FAR-20261015-010,-011	as-of	RESOLVED	run dirs	USED	inherited open questions
+SRC-12	OFFICIAL_DOC	required	FAR governance	Fabric/FABRIC/fabric-autonomous-research/{governance,research-product}	as-of	RESOLVED	live read	USED	route + artifact contracts
+SRC-13	EXPERIMENT_INPUT	required	blocked candidate + harness	HG-KSEOS/var/SKILL-CONVERGENCE-20261014/candidates/hgk/skill + _handover/...-R8/ws_a_skill_slim_regression.py	live	RESOLVED	scratch copy	USED	repair experiment executed in scratch

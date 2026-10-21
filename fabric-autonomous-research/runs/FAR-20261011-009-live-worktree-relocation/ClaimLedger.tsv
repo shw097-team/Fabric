@@ -1,0 +1,7 @@
+claim_id	claim	class	evidence	counterevidence_probe	outcome	confidence
+CL1	The lock is on the directory node, not on its contents	LOCK_CAUSE	L1,L2	attempted to rename every immediate subdirectory; all succeeded	ZERO_RELEVANT_COUNTEREVIDENCE_HIT	HIGH
+CL2	The holder is a live process using the directory as its cwd, most plausibly the sandbox service the lanes ran under	LOCK_CAUSE	L8	correlated with the five worktrees that did move	PARTIAL: stated as a suspect class, not proven attribution	MEDIUM
+CL3	The worktree holds live unreplicated evidence	UNIQUENESS	L4	enumerated the five untracked files	ZERO_RELEVANT_COUNTEREVIDENCE_HIT	HIGH
+CL4	Moving it would rewrite paths bound into governance records	PATH_BINDING	L6	counted the binding sites	ZERO_RELEVANT_COUNTEREVIDENCE_HIT	HIGH
+CL5	Engineering necessity for the move is low	NECESSITY_VS_RESISTANCE	L5,L6	enumerated what the move would actually improve	ZERO_RELEVANT_COUNTEREVIDENCE_HIT	HIGH
+CL6	The correct disposition is deferral to round close, not a forced move	NECESSITY_VS_RESISTANCE	CL2,CL4,CL5	applied the three stated criteria in order	ZERO_RELEVANT_COUNTEREVIDENCE_HIT	MEDIUM_HIGH

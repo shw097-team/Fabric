@@ -32,3 +32,18 @@ tells you what is here and which document to trust first.
 - **Ceiling**: the two checks that ran (`VERIFY 6`, `SECURITY 5`) are advisory; this change-set accepts,
   merges, releases and promotes nothing.
 - Generated 2026-10-13T12:23:20.088907+00:00; round note added 2026-10-14.
+
+## Round note — `FAR-LANE-REMEDIATION-20261021`
+
+- **What changed for planners**: the HG-KSEOS lane/model declaration surfaces were aligned to the
+  2026-10-21 owner order and the registry advanced to **epoch 24**. The published route contract
+  (registry, assignment, pool, lane binding) is now mirrored here byte-for-byte, with a per-file
+  SHA-256 manifest, so an external engineer can plan a lane upgrade from this repository alone.
+  **The governance contract itself did not change.**
+- **Read first**: [`../EVIDENCE/FAR-LANE-REMEDIATION-20261021/README.md`](../EVIDENCE/FAR-LANE-REMEDIATION-20261021/README.md),
+  then `PACKET_MANIFEST.json` (recompute each digest from the committed blob).
+- **Ceiling**: `CANDIDATE_ONLY`. The independent acceptance lane did **not** return a verdict — the
+  `openai-codex/gpt-6.1-sol` upstream answered `HTTP 400 Model is unavailable` on every attempt
+  (provider quota 31% weekly, credential unexpired), so the unavailability is an upstream condition,
+  not a local defect. **No acceptance, no release, no promotion.**
+- Generated 2026-10-21; round note added by the `pub/far-lane-remediation-20261021` change-set.

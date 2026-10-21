@@ -1,0 +1,72 @@
+{
+  "round": "FAR-CLOSURE-20261021",
+  "utc": "20261021T044508Z",
+  "applied": true,
+  "changes": [
+    {
+      "finding": "F1",
+      "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\model-lane-assignment.json",
+      "change": "sod.verify_security_arm_A aligned to the chain"
+    },
+    {
+      "finding": "sync",
+      "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\lane-routing-registry.yaml",
+      "change": "epoch 24 + projection expected values for /registry_epoch and /revision + source_of_routes sha256"
+    },
+    {
+      "finding": "F2/F3/F4",
+      "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\lane-routing-registry.yaml",
+      "change": "authorization_basis revision, selected_arm_identity, projection note"
+    },
+    {
+      "finding": "F5",
+      "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\lane-route-slots.candidate.json",
+      "change": "PROBE arm demoted below the declared DEFAULT",
+      "pool": [
+        [
+          "1:opencode-go/deepseek-v4.1-flash:DEFAULT/首選",
+          "2:openai-codex/gpt-6-luna:FALLBACK1/備援1",
+          "3:nvidia/deepseek-ai/deepseek-v4.1-flash:FALLBACK2/備援2",
+          "4:opencode-go/minimax-m3.1-flash-free:PROBE/探測"
+        ]
+      ]
+    },
+    {
+      "finding": "F7",
+      "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\AGENTS.md",
+      "change": "live SoD conflict pointer C2->C4, source revision 18->24"
+    },
+    {
+      "finding": "F6",
+      "file": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\openspec\\changes\\far-lane-remediation-20261021\\tasks.md",
+      "change": "checklist reconciled against receipts (AO item left open)"
+    }
+  ],
+  "pre_sha256": {
+    "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\model-lane-assignment.json": "b1ec1b8bbea360d15f329ba6633b1327dd8c33cc969e67d9cd2cca3c4b9b15d0",
+    "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\lane-routing-registry.yaml": "98f1d92aa3144339f64d2fc6d57f16c8f62f5135c89c471203f816f19270b7c9",
+    "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\lane-route-slots.candidate.json": "6820f027d898ea859098d8b38e3c9ae1e87431a8457b8094a54a1042923d3b1c",
+    "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\AGENTS.md": "a1727fcd000fce69c073c96c3b8bf0a61b68652679b03c137c1d042768c1cb59",
+    "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\openspec\\changes\\far-lane-remediation-20261021\\tasks.md": "cfdcf05fa84ed028e5f25c5ff501d731764fd0a0493c6a377541ebab5618133f",
+    "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\README.md": "04743dbfb3bcc385b1ef6a05c47bc216ff272e53229887a05ee531c028c47d99"
+  },
+  "check_drift": [],
+  "F1_alignment": {
+    "sod_arm_A": "openai-codex / gpt-6.1-sol (primary Codex CLI checker)",
+    "chain_primary": "openai-codex / gpt-6.1-sol",
+    "aligned": true
+  },
+  "pytest_rc": 0,
+  "pytest_tail": [
+    "...                                                    [100%]",
+    "3 passed, 90 subtests passed in 8.41s"
+  ],
+  "post_sha256": {
+    "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\model-lane-assignment.json": "b1ec1b8bbea360d15f329ba6633b1327dd8c33cc969e67d9cd2cca3c4b9b15d0",
+    "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\lane-routing-registry.yaml": "98f1d92aa3144339f64d2fc6d57f16c8f62f5135c89c471203f816f19270b7c9",
+    "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\lane-route-slots.candidate.json": "6820f027d898ea859098d8b38e3c9ae1e87431a8457b8094a54a1042923d3b1c",
+    "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\AGENTS.md": "a1727fcd000fce69c073c96c3b8bf0a61b68652679b03c137c1d042768c1cb59",
+    "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\openspec\\changes\\far-lane-remediation-20261021\\tasks.md": "cfdcf05fa84ed028e5f25c5ff501d731764fd0a0493c6a377541ebab5618133f",
+    "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\README.md": "04743dbfb3bcc385b1ef6a05c47bc216ff272e53229887a05ee531c028c47d99"
+  }
+}

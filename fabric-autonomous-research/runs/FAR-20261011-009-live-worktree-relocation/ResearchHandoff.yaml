@@ -1,0 +1,14 @@
+schema: LOGICAL_FAR_RESEARCH_HANDOFF_V1
+run_ref: FAR-20261011-009-live-worktree-relocation
+terminal: CANDIDATE_DECISION
+owner: WORKSPACE_OWNER
+next_actions:
+  - accept the deferral (default) — nothing further is required now
+  - at round close-out, run the recorded git worktree move and add the old-to-new mapping
+  - if the owner wants it moved now, the prerequisite is releasing the directory-node lock, not re-running the move
+durable_change_route: HGK Governed Evolution — SEPARATE_OWNER_APPROVAL_REQUIRED
+open_questions: [OQ1, OQ2]
+nonclaims:
+  - candidate result, not authority
+  - no relocation performed; no process killed
+  - independent challenge lane NOT_RUN

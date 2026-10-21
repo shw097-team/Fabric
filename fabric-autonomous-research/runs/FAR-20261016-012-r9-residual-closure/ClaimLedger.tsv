@@ -1,0 +1,11 @@
+claim_id	claim_text	claim_class	support_source_ids	counter_source_ids	status	confidence	freshness	owner
+CL-01	The two failures are port-induced: clean main passes both tests (2 passed, 629 deselected, 27.89s) and the hardened tree fails them	REGRESSION	SRC-09		SUPPORTED	HIGH	2026-10-16	hardening owner
+CL-02	The crash is the mapping access at validate.py:434 receiving a string risk_guard, reached from cli.py:175-176	DEFECT	SRC-09		SUPPORTED	HIGH	2026-10-16	hardening owner
+CL-03	The legal-link failure is the fail-closed UNBOUND_FROZEN_CONTEXT branch firing when the caller supplies no frozen context although the bundle carries the atoms	DEFECT	SRC-09		SUPPORTED	HIGH	2026-10-16	hardening owner
+CL-04	The R8 VERIFY turn was served by its lane rank-2 fallback opencode-go/glm-5.3-flash; the round wrapper pinned rank 2	ATTRIBUTION	SRC-08		SUPPORTED	HIGH	2026-10-16	control-plane owner
+CL-05	The canonical registry was drift-clean throughout, and its PLAN route was REBOUND to openai-codex/gpt-6.1-sol (medium, OAuth) at 2026-10-16T12:36:30 by an act outside this round, bringing it into agreement with the 2026-10-16 mandate; the round's earlier measurement recorded opencode-go/glm-5.3-flash with selection_authority owner-order-20261015-plan-model-rebind-glm	ROUTING	SRC-10		SUPPORTED	HIGH	2026-10-16	HGK Lifecycle Owner
+CL-06	The successor candidate passes C1-C6 with 113 live references accounted and none lost	CONFORMANCE	SRC-13		SUPPORTED	HIGH	2026-10-16	Skill Owner
+CL-07	PKG ACC-RQ06 names AVR/10-piece and HGK/6-piece reconstruction; the PKG states no size cap; references>60 stays a warning	GOVERNANCE	SRC-01		SUPPORTED	HIGH	2026-10-16	Owner
+CL-08	No governing clause forbids repairing the two tests; a canonical registry mutation needs owner scope + a WorkOrder + DOC05 admission	GOVERNANCE	SRC-01,SRC-02		SUPPORTED_WITH_LIMIT	HIGH	2026-10-16	Owner
+CL-09	The first repaired candidate was one live reference short (product-branch-write-set-gates.md, 4986 B)	CONTENT_INTEGRITY	SRC-13		SUPPORTED	HIGH	2026-10-16	Skill Owner
+CL-10	The round harness serialises subject_live before honouring --live	TOOLING	SRC-13		SUPPORTED	HIGH	2026-10-16	tooling owner

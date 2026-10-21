@@ -1,0 +1,23 @@
+schema: LOGICAL_FAR_EXPERIMENT_RESULT_V1
+run_id: FAR-20261016-012-r9-residual-closure
+results:
+  - experiment_ref: H-04
+    environment_digest: local control plane as of 2026-10-16
+    command_digest: read of *_dispatch_receipt_attempt1.json and .attempts.ndjson
+    result_digest: EXECUTE rank1 opencode-go/deepseek-v4.1-flash; VERIFY_SECURITY rank2 opencode-go/glm-5.3-flash
+    status: SUPPORTED
+    partial_note: attribution is receipt-bound; the provider side is not attested
+  - experiment_ref: H-06
+    environment_digest: scratch copy of the blocked candidate
+    command_digest: the round C1-C6 harness, three runs (worker insertion, orchestrator reproduction, successor re-run)
+    result_digest: first candidate C6 FAIL (113 live refs, 1 lost); successor candidate overall PASS
+    status: SUPPORTED_WITH_LIMIT
+    partial_note: the worker's own denominator was one reference short; the successor restore was authored by the orchestrator and disclosed
+  - experiment_ref: H-01
+    environment_digest: clean main worktree vs the hardened worktree
+    command_digest: pytest -k on both trees
+    result_digest: clean main 2 passed (twice); hardened tree 2 failed (twice)
+    status: SUPPORTED
+    partial_note: local only
+not_executed:
+  - the 221 planned acceptance cases, the eight Gates, Fresh G1 and any release act

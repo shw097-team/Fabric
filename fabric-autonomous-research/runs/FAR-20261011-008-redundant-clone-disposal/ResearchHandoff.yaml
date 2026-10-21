@@ -1,0 +1,14 @@
+schema: LOGICAL_FAR_RESEARCH_HANDOFF_V1
+run_ref: FAR-20261011-008-redundant-clone-disposal
+terminal: CANDIDATE_DECISION
+owner: WORKSPACE_OWNER
+next_actions:
+  - decide DELETE or KEEP (one word is sufficient)
+  - if DELETE: run the recorded command and then re-run du -sh to confirm the reclaim
+  - optional cosmetic: recreate the local branch label r7-del018-successor in PIPD by fetching upstream
+durable_change_route: HGK Governed Evolution — SEPARATE_OWNER_APPROVAL_REQUIRED
+open_questions: [OQ1, OQ2]
+nonclaims:
+  - candidate result, not authority
+  - no deletion performed
+  - independent challenge lane NOT_RUN

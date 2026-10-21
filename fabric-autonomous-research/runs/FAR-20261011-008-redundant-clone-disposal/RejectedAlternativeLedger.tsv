@@ -1,0 +1,6 @@
+alternative	why_rejected
+KEEP_AS_IS	Keeps 85M of data with provably zero unique content; resolves no hygiene goal; resistance is low only because nothing is done
+ARCHIVE_TO_ZIP_THEN_DELETE	Adds a second copy of already-duplicated data; a zip is strictly worse than the two canonical sites (no history, no refs, no fetch)
+CONVERT_TO_GIT_WORKTREE	A worktree shares PIPD's object DB and would hold no separate objects at all, so it would be a pure second checkout of main with no purpose; also still 100s of MB of checkout
+PRUNE_REMOTE_TRACKING_REFS_ONLY	Leaves the clone and its 85M in place; the bulk of the cost is the object DB + checkout, not ref files
+DELETE_WITHOUT_CHECKING_REACHABILITY	Rejected as a method: reachability was checked before recommending removal; this is the difference between a decision and a guess

@@ -1,0 +1,12 @@
+schema: LOGICAL_FAR_EXPERIMENT_PLAN_V1
+experiments:
+  - id: E-01
+    what: 對 frozen main 與已安裝 wheel 各跑同一組 22 個 D1/D2/TYPE5 驗收邊界
+    pass_condition: main 22/22；wheel 僅在無空白句界一例分歧（且該例可歸因 R5R2）
+    executed_by: Hermes orchestrator (deterministic)
+    verified_by: CODEX CLI VERIFY/SECURITY gpt-6.1-sol
+  - id: E-02
+    what: 下載 7 個 served assets 重算 SHA256 並與 released SHA256SUMS 對帳
+    pass_condition: 6/6 條目一致且 API digest/size 7/7 一致
+    executed_by: Hermes orchestrator
+    verified_by: 同上

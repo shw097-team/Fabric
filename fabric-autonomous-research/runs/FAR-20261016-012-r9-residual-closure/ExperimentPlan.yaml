@@ -1,0 +1,24 @@
+schema: LOGICAL_FAR_EXPERIMENT_PLAN_V1
+run_id: FAR-20261016-012-r9-residual-closure
+experiments:
+  - hypothesis_ref: H-04
+    method: read the dispatch receipt's attempts[] and identity_gate.arms[] for each completed turn
+    environment: local control plane, read-only
+    commands: [read _handover/CNV-PIPD-LS-SP-20261015/lane_runs/*dispatch_receipt*.json]
+    bounded_write_set: [_handover/CNV-PIPD-LS-SP-20261015-R9/FAR/**]
+    expected_metrics: rank/provider/model/exit/seconds/nonce_present per attempt
+    abort_criteria: [receipt absent]
+  - hypothesis_ref: H-06
+    method: build a repaired copy of the blocked candidate in scratch and re-run C1-C6
+    environment: local, scratch copy only
+    commands: [python ws_a_skill_slim_regression.py --subject <candidate> --live <live tree> --out <json>]
+    bounded_write_set: [_handover/CNV-PIPD-LS-SP-20261015-R9/FAR/ws3/**, _handover/CNV-PIPD-LS-SP-20261015-R9/WS_B/**]
+    expected_metrics: [C1..C6 verdicts, live_references, byte_identical, absorbed_but_present_verbatim, lost]
+    abort_criteria: [any check FAIL]
+  - hypothesis_ref: H-01
+    method: run the two named tests on a clean base tree and on the hardened tree
+    environment: local git worktrees
+    commands: [pytest -k "test_real_trace_link_is_legal_beside_its_endpoints or test_cli_smoke_runs"]
+    bounded_write_set: [C:/Projects/wt-r8-cleanmain (read-only use), C:/Projects/Agent_Workspace/PIPD/worktrees/r8-wt]
+    expected_metrics: [pass/fail counts, seconds]
+    abort_criteria: [clean-base run not reproducible]

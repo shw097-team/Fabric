@@ -1,0 +1,11 @@
+source_id	source_class	required|optional	authority_role	identity_locator	expected_freshness	access_status	snapshot_digest_or_locator	disposition	reason
+S01	governing_document	required	anchor	attachments/Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md	frozen	read	sha256:96d9d564...f9c3f (approved digest)	ADMITTED	operator-reviewed anchor
+S02	acceptance_report	required	context	attachments/Fabric_Convergence_External_Independent_Acceptance_Report_20261015.md	frozen	read	EIA-FABRIC-CONVERGENCE-R6-20261015	ADMITTED	EIA verdict in force
+S03	control_plane	required	governance	HG-KSEOS/config/lane-routing-registry.yaml	live	re-read at adjudication time	sha256:38f0436b...aba38d2	epoch 21	ADMITTED	read via lane_policy
+S04	control_plane_pair	required	governance	HG-KSEOS/config/model-lane-assignment.json	live	re-read	sha256 per row 7 of the adjudication	ADMITTED	legacy/semantic refusal (SEC-2)
+S05	change_record	required	governance	HG-KSEOS/openspec/changes/hgk-far-remediation-20261016/tasks.md	live	read	25 rows	ADMITTED	VENDOR-REPORT: openspec toolchain contract
+S06	change_record	required	governance	HG-KSEOS/openspec/changes/skill-mainfile-cap-remediation/tasks.md	live	read	11 rows	ADMITTED	VENDOR-REPORT: openspec toolchain contract
+S07	canonical_artifact	required	subject	skills/software-development/hgk-governed-execution/SKILL.md	live	measured	21026 bytes	ADMITTED	local file read
+S08	canonical_artifact	required	subject	skills/hgk-lifecycle-admission/SKILL.md	live	measured	35739 bytes sha256 2911867811a5...	ADMITTED	refutes a child's 0-byte claim
+S09	equipment	report	required	context	_handover/CNV-PIPD-LS-SP-20261015-R10/FAR/ws1..ws3/	this round	read	81 measurements + inventories	ADMITTED	child measurements, re-derived by the orchestrator
+S10	canonical_artifact	required	subject	HG-KSEOS/scripts/hgk-lane-dispatch.py	live	read (line ranges)\tlines 1179-1188, 1055-1058	ADMITTED	read-only source inspection

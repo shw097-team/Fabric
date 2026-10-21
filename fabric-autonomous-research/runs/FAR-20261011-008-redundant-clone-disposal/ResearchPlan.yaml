@@ -1,0 +1,10 @@
+schema: LOGICAL_FAR_RESEARCH_PLAN_V1
+run_id: FAR-20261011-008-redundant-clone-disposal
+subquestions:
+  - SQ1: Does the clone hold any commit, ref-target, or file that exists nowhere else?
+  - SQ2: Is any part of the clone's unique state recoverable from an independent site?
+  - SQ3: Does upstream PIPD (repo, governance docs, skill references) attach any requirement to this clone?
+  - SQ4: What is the measured cost of keeping it, and the measured cost of removal?
+claim_classes: [REVERSIBILITY, UNIQUENESS, UPSTREAM_CONFORMANCE, COST]
+method: R2 tri-source retrieval -> R3 extraction -> R4 analysis -> R5 self-adversarial challenge
+independent_challenge_lane: NOT_RUN (see R5 disclosure)

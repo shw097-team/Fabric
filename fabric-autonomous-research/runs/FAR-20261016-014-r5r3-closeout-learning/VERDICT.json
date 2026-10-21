@@ -1,0 +1,44 @@
+{
+ "schema": "FAR-RUN-VERDICT/1",
+ "run_id": "FAR-20261016-014-r5r3-closeout-learning",
+ "task_class": "RESEARCH_LITERATURE_REPO",
+ "decision": "NATIVE_WITH_SELECTED_ARIS",
+ "reason_code": "FAR_ROUTE_NATIVE_ARIS",
+ "swarm": {
+  "mode": "SOURCE_FAMILY_SPLIT_plus_INDEPENDENT_EXPERIMENT",
+  "canonical_parallel_writers": 0,
+  "board": "r5r3-preview4-closeout-20261016",
+  "root": "t_3e49c992",
+  "workers": [
+   "t_2785cdad",
+   "t_b00bb774",
+   "t_3b99303e"
+  ],
+  "verifier": "t_5199e12d",
+  "synthesizer": "t_c900b6f2"
+ },
+ "executed_this_round": {
+  "D1_ticket_check": "TT-02 CLOSED (allowlist present on main); TT-03 NOT_REPRODUCED",
+  "D2_asset_reproducibility": "PASS (2 builds at cc6c193 equal the served asset)",
+  "D3_governance_surfaces": "KANBAN board + SWARM graph + GSTACK readback + OPENSPEC validated (exit 0)",
+  "D4_credential_mechanism": "REMEDIATED (push_with_pat.sh; dry-run authenticates, no ref updated)",
+  "D5_runbook": "PRIVATE_PLUGIN_UPLOAD_RUNBOOK.md (9 steps, outcome classes, discrimination order)",
+  "D6_owner_package": "OWNER_DECISION_REQUEST.md (3 one-action decisions, none executed)"
+ },
+ "owner_ready": [
+  "NEW_RELEASE (successor carrying later repairs)",
+  "PRIVATE_HOST_INSTALL (one consented import, then the accepted package)",
+  "canonical SoD route repair (PLAN vs VERIFY_SECURITY collision)",
+  "lane marker-scan semantics (substring match refuses ordinary prose)"
+ ],
+ "out_of_scope_this_round": [
+  "release/tag",
+  "host install",
+  "directory publication",
+  "production promotion",
+  ".hgk migration",
+  "four-host UAT",
+  "MCP/apps/hooks surfaces"
+ ],
+ "claim_ceiling": "candidate research product; non-authority. Every EXECUTED item is a local measurement or a prepared artefact. No host acceptance, no release, no external verdict is asserted by this run. Gate-1 is research, not admission."
+}

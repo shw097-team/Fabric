@@ -1,0 +1,31 @@
+{
+ "schema": "FAR-SOURCE-INVENTORY/1",
+ "run_id": "FAR-20261016-016-pipd-s4r6-closeout-learning",
+ "sources": [
+  {"path": "attachments/S4 R6｜階段結案＋私人 Plugin 指揮薄.md", "kind": "command-envelope"},
+  {"path": "attachments/PIPD-LS-SP｜S4 R6 修補後外部獨立複驗與階段結案裁決.md", "kind": "independent-challenge-report"},
+  {"path": "C:/Projects/Agent_Workspace/HG-KSEOS/AGENTS.md", "kind": "governance-rules"},
+  {"path": "C:/Projects/Agent_Workspace/HG-KSEOS/src/hg_kseos/named_methods.py", "kind": "live-control-plane", "read": "registry_snapshot() + route(flow)"},
+  {"path": "C:/Projects/Agent_Workspace/HG-KSEOS/config/lane-route-slots.candidate.json", "kind": "live-control-plane", "read": "EXECUTE / VERIFY_SECURITY ordered pools"},
+  {"path": "C:/Projects/Agent_Workspace/HG-KSEOS/scripts/hgk-lane-dispatch.py", "kind": "live-control-plane", "read": "REMOTE_WRITE_MARKERS, require_arm matching, receipt fields"},
+  {"path": "C:/Projects/Agent_Workspace/HG-KSEOS/openspec/changes/pipd-s4r6-closeout-doc-identity-and-update-route", "kind": "round-artefact", "validation": "openspec validate --strict -> valid"},
+  {"path": "C:/Projects/Agent_Workspace/PIPD-S4R6-wt", "kind": "frozen-source-worktree", "commit": "d3bd5456afbff21a8c8837994a49f57be3e1b97e -> candidate 552bbde073806e254f84e95039f05c9767608aa1"},
+  {"path": "https://api.github.com/repos/shw097-team/PIPD-LS-SP", "kind": "live-external-state", "read": "release, tag ref/object, pulls, main"},
+  {"path": "https://github.com/shw097-team/PIPD-LS-SP/releases/download/v0.1.1-preview.4/pipd-ls-sp-public-skills.zip", "kind": "measured-served-bytes", "sha256": "545e359a5ca6abc7bcbbaa2316f8e062244ad4a132ae1ae839bc9a8e17d95d75"},
+  {"path": "https://github.com/shw097-team/PIPD-LS-SP/releases/download/v0.1.1-preview.4/SHA256SUMS", "kind": "measured-served-bytes", "sha256": "0f76502670038ae35bd4f772dc23223f6b47241c3acee2f918d106eaabffe689"},
+  {"path": "C:/Projects/Agent_Workspace/_handover/PIPD-S4-R6-CLOSEOUT-20261016/compiler/compiled/compiler-receipt.json", "kind": "round-measured-receipt"},
+  {"path": "C:/Projects/Agent_Workspace/_handover/PIPD-S4-R6-CLOSEOUT-20261016/HGK_TYPED_ADMISSION_S4R6.json", "kind": "round-measured-receipt"},
+  {"path": "C:/Projects/Agent_Workspace/_handover/PIPD-S4-R6-CLOSEOUT-20261016/lane/execute/execute_turn1.json", "kind": "round-measured-receipt"},
+  {"path": "C:/Projects/Agent_Workspace/_handover/PIPD-S4-R6-CLOSEOUT-20261016/lane/verify/verify_turn1.json", "kind": "round-measured-receipt"},
+  {"path": "C:/Projects/Agent_Workspace/_handover/PIPD-S4-R6-CLOSEOUT-20261016/route_check.json", "kind": "round-measured-receipt"},
+  {"path": "C:/Projects/Agent_Workspace/_handover/PIPD-S4-R6-CLOSEOUT-20261016/diff_and_tests/release_readback.json", "kind": "round-measured-receipt"},
+  {"path": "C:/Projects/Agent_Workspace/_handover/PIPD-S4-R6-CLOSEOUT-20261016/diff_and_tests/r6_doc_identity_check.json", "kind": "round-measured-receipt"},
+  {"path": "C:/Projects/Agent_Workspace/_handover/PIPD-S4-R6-CLOSEOUT-20261016/diff_and_tests/pytest_full.txt", "kind": "raw-log"},
+  {"path": "C:/Projects/Agent_Workspace/Fabric/fabric-autonomous-research/runs/FAR-20261016-014-r5r3-closeout-learning", "kind": "prior-FAR-run", "used": "continuity of the open owner items this run resolves or extends"}
+ ],
+ "source_gaps": [
+  {"item": "challenge-review canonical validator bundle", "status": "NOT_PRESENT", "effect": "no canonical EXTERNAL_CHALLENGE_REPORT JSON+digest validation was possible for the R6 report itself; unchanged by this run"},
+  {"item": "human ChatGPT account with upload/update permission", "status": "NOT_AVAILABLE", "effect": "private-host UAT is NOT_RUN, not PASS"}
+ ],
+ "denominator_note": "This inventory lists the sources this run actually read or measured. It is not a claim of exhaustive upstream coverage."
+}

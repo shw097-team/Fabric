@@ -1,0 +1,9 @@
+source_id	channel	locator	sha256_or_id	retrieved_utc	kind
+S1	memory	HGK Shared Spine (PIPD/.hgk) requirements/taskspecs/workorders	read-only query, no rows matched PIPD-r7-release	2026-10-11T14:50Z	negative
+S2	memory	workspace-migration-20261011.json	45f5f7e89b657cd6	2026-10-11T14:50Z	local
+S3	knowledge	git -C PIPD-r7-release remote -v / rev-parse / for-each-ref	live command output	2026-10-11T14:52Z	measurement
+S4	knowledge	git -C PIPD cd 14/14 ref-target object existence probe	live command output (PIPD_HAS=14 PIPD_MISSING=0)	2026-10-11T14:53Z	measurement
+S5	knowledge	git -C PIPD branch -a --contains 024d358	live command output	2026-10-11T14:55Z	measurement
+S6	knowledge	du -sh on the clone	85M	2026-10-11T14:55Z	measurement
+S7	knowledge	hgk-governed-execution skill references (gate-blockage FAR method; guard false positives)	skill tree	2026-10-11T14:48Z	reference
+S8	web	git ls-remote --heads https://github.com/shw097-team/PIPD-LS-SP.git (anonymous, GET-only)	live output	2026-10-11T14:56Z	measurement

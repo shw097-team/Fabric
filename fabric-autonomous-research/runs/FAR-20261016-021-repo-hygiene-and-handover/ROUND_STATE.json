@@ -1,0 +1,79 @@
+{
+  "round": "PIPD-REPO-HYGIENE-AND-HANDOVER-20261016",
+  "far": "FAR-20261016-021-repo-hygiene-and-handover",
+  "verdicts": {
+    "HYGIENE_LOCALLY_EXECUTED": "GRANTED",
+    "FRONT_PAGE_REFRESH_CANDIDATE": "CANDIDATE_ONLY",
+    "ADR_UPDATES": "CANDIDATE_ONLY",
+    "OWNER_MERGE": "NOT_GRANTED",
+    "S4_FULL_PASS": "NOT_GRANTED",
+    "PRODUCTION": "NOT_GRANTED"
+  },
+  "remote_effects": {
+    "pushes": 2,
+    "commits_docs_branch": 1,
+    "commits_evidence_branch": 2,
+    "merge": 0,
+    "tag": 0,
+    "release": 0,
+    "asset_replacement": 0,
+    "main_writes": 0,
+    "product_branch_writes": 0,
+    "pr_created": 0
+  },
+  "tips": {
+    "evidence_branch": "repo-hygiene-evidence-20261016",
+    "docs_candidate_branch": "docs/repo-state-and-handover-refresh-20261016",
+    "docs_candidate_tip": "196456106ece060e00aec37813d070c79ab36c0d",
+    "parent_evidence_tip": "5750c6904ea6a12fde4a7ce56936d516f661c428",
+    "main": "d3bd5456afbff21a8c8837994a49f57be3e1b97e",
+    "pr18_head": "c17aa761b26033fc0a2a2aa3df5ad0f61f2e5a20",
+    "evidence_tip_at_first_build": "bbe855ee860977974d52c645919abc0e0a49c928",
+    "evidence_tip_note": "the branch tip advances with every evidence commit, so recording it here would be self-referential; read it live: git ls-remote origin refs/heads/repo-hygiene-evidence-20261016"
+  },
+  "local_effects": {
+    "worktrees_before": 29,
+    "worktrees_after": 17,
+    "reclaimed": 12,
+    "rescue_branch": "rescue/r5p-uncommitted-20261016",
+    "rescue_commit": "39079c0",
+    "scratch_removed": 5,
+    "gitignore_rule_applied": false,
+    "gitignore_candidate_unsafe_proof": ".hgk prefix holds 644 tracked files"
+  },
+  "checks": {
+    "hgk_admission": "ADMISSION_OK",
+    "checkpoint": "CK-20261016-25D7301C",
+    "gstack_routes": "6/6 CERTIFIED + NATIVE negative control",
+    "openspec_strict": "valid",
+    "kanban_gates": 8,
+    "independent_verify": "INDEPENDENT_VERIFY_PASS (6/6, digests recomputed from origin bytes)",
+    "codex_lane": {
+      "lane": "VERIFY_SECURITY",
+      "ok": true,
+      "rank": 1,
+      "required==served": "opencode-go/deepseek-v4.1-flash",
+      "seconds": 524.64,
+      "nonce_emitted": true,
+      "verdict": "INCONCLUSIVE",
+      "summary": "no substance found contradicting the writer's core claims; kept below full PASS"
+    }
+  },
+  "residual_defects": [
+    "SID-01..07 (self-inflicted, disclosed)",
+    "DEV-RH-01..05 (declared deviations)",
+    "orphan spine project PIPD-REPO-HYGIENE-HANDOVER (PLAN_READY, 0 work orders)",
+    "pre-existing openspec failures in two unrelated changes (hgk-plan-plane-rebind-20261015, sod-independent-verify-enforcement)",
+    "guard test from PR #18 is 7/4 red on main itself (pre-existing, not caused by this round)"
+  ],
+  "owner_action_required": [
+    "merge the docs candidate branch (3 files, docs-only, no src/schemas/skills)",
+    "decide on the unapplied .gitignore candidate",
+    "decide whether the primary clone returns to main (local main ref is 153 behind)",
+    "prune or keep the orphaned spine project",
+    "merge PR #18 / PR #17 and sign TEMP_CLOSED (carried over, unchanged)"
+  ],
+  "rollback": "delete or reset the two pushed branches; locally `git -C PIPD checkout r5p-post-challenge-repair` and delete rescue/r5p-uncommitted-20261016 if the preserved work is not wanted. main, both PRs, product branches and the .4 assets are untouched.",
+  "model_segregation_disclosure": "PLAN/EXECUTE/VERIFY all on opencode-go/deepseek-v4.1-flash (registry SOD006-C3): model-axis SoD does not exist; separation is procedural/lane/evidence-path only.",
+  "self_inflicted_defects_note": "SID-01..07 are recorded in this round's hygiene_actions.json and DEVIATIONS_ADDENDUM.md"
+}

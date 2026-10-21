@@ -1,0 +1,16 @@
+schema: FAR-ARTIFACT/CandidateResearch/1
+run_id: FAR-20261016-015-r10-session-closure
+candidates:
+  - id: C1
+    what: the repaired dispatch wrapper (per-turn receipts + nonce attestation)
+    candidate_path: C:/Projects/Agent_Workspace/FAR-20261016-015-r10-session-closure
+    landed: FALSE
+    why_not_landed: it lives in this round's _handover root; the canonical dispatcher patch is an owner item
+    evidence: 8 passing tests, one regression against the previous round's real receipt
+  - id: C2
+    what: the adjudication of the two stale change records
+    landed: TRUE as the artifact R10_CHANGE_RECORD_ADJUDICATION.json
+    why_not_landed: it asserts nothing about the records themselves, by design
+  - id: C3
+    what: the session closure/handover package
+    landed: TRUE as HANDOVER_R10.md + SESSION_LEDGER_R10.json

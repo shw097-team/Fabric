@@ -1,0 +1,23 @@
+{
+ "schema": "FAR/self-evolution-delta/1",
+ "run_id": "FAR-20261016-013-r5r3-postverification-learning",
+ "skill_updates": [
+  {
+   "skill": "hgk-governed-execution",
+   "file": "references/product-branch-write-set-gates.md",
+   "rule": "round artifacts and openspec changes never go on a product branch carrying a positive write-set gate; records land where the repo's docs already point",
+   "note": "SKILL.md is over the 100k patch limit, so no body pointer could be added"
+  }
+ ],
+ "memory_updates": [
+  {
+   "target": "memory",
+   "rule": "Windows git with a PAT: GIT_ASKPASS is ignored (GCM sets credential.interactive=false); use -c credential.helper= -c credential.interactive=always -c core.askPass=<.cmd>"
+  }
+ ],
+ "procedure_updates": [
+  "simulate the subject's own write-set gate locally, post-commit, before pushing",
+  "read the sibling test file's header before adding a test file",
+  "keep the red run of every gate in the evidence set"
+ ]
+}

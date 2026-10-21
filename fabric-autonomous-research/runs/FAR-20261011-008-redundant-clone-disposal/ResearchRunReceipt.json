@@ -1,0 +1,41 @@
+{
+ "workorder_id": "FAR-WO-20261011-008",
+ "run_id": "FAR-20261011-008-redundant-clone-disposal",
+ "task_class": "WORKSPACE_HYGIENE_DISPOSAL_DECISION",
+ "primary": "session main loop (hermes agent runtime)",
+ "challenger": "NOT_RUN",
+ "provider_identity_digest": "provider not recorded by the runtime for the main loop; disclosed as NOT_RUN rather than asserted",
+ "terminal": "CANDIDATE_DECISION",
+ "open_questions": [
+  "OQ1",
+  "OQ2"
+ ],
+ "usage": {
+  "web_fetches": 1,
+  "spine_reads": 1,
+  "local_measurements": 6,
+  "provider_lane_calls": 0
+ },
+ "tri_source_coverage": {
+  "memory": "COUNTED",
+  "knowledge": "COUNTED",
+  "web": "COUNTED"
+ },
+ "nonclaims": [
+  "candidate result, not authority",
+  "no deletion performed",
+  "independent challenge lane NOT_RUN",
+  "no credential used"
+ ],
+ "verdict": "DELETE (proposed, not executed)",
+ "source_denominator_digest": "6fc625e85e268696920521b2e03253f8054b09bcf8b19e2931aae57b43ce27c0",
+ "claim_ledger_digest": "c53d05453066010a43aa23b04a4c3f2ec9bc08f63f45aca1c093418821782764",
+ "candidate_digest": "3633bebc55a6f61105e31bd05252819a83f9bcee8eb59b1639c372d5ac50f60f",
+ "synthesis_digest": "32b2b03adbd0a059853a8e491c85e990ee079868086adde8552167d974bfb526",
+ "md_hygiene": {
+  "literal_None_in_synthesis": false,
+  "note": "no nested-field read bug; no literal None emitted"
+ },
+ "artifact_count": 21,
+ "generated_utc": "2026-10-11T15:25:00Z"
+}

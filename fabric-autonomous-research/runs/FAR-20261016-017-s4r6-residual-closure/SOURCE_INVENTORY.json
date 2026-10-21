@@ -1,0 +1,26 @@
+{
+ "schema": "FAR-SOURCE-INVENTORY/1",
+ "run_id": "FAR-20261016-017-s4r6-residual-closure",
+ "sources": [
+  {"path": "C:/Projects/Agent_Workspace/_handover/PIPD-S4-R6-CLOSEOUT-20261016/far-r17/RESIDUAL_UNIVERSE.tsv", "kind": "subagent-product", "rows": 37, "producer": "read-only reconnaissance child W1"},
+  {"path": "C:/Projects/Agent_Workspace/_handover/PIPD-S4-R6-CLOSEOUT-20261016/far-r17/DEFECT_DOSSIER.md", "kind": "subagent-product", "rows": 257, "producer": "read-only reconnaissance child W2"},
+  {"path": "C:/Projects/Agent_Workspace/PIPD-S4R6-wt/.github/workflows/public-plugin-verify.yml", "kind": "live-gate-definition", "read": "declared STAGE, per-arm ALLOWED/DENIED/EXCLUDED, declared bases, the classifier loop"},
+  {"path": "C:/Projects/Agent_Workspace/PIPD-S4R6-wt/.github/workflows/ci.yml", "kind": "live-gate-definition", "read": "the suite runs `python -m unittest discover -s tests`, so a new test file is auto-wired"},
+  {"path": "C:/Projects/Agent_Workspace/PIPD-S4R6-wt/tests/test_r5r3_install_route_identity.py", "kind": "existing-guard", "read": "the release-identity half that already exists on main"},
+  {"path": "C:/Projects/Agent_Workspace/PIPD-S4R6-wt/tests/test_s4r2m_docs_route.py", "kind": "existing-guard", "read": "the house convention for README-text tests"},
+  {"path": "C:/Projects/Agent_Workspace/HG-KSEOS/scripts/hgk-lane-dispatch.py", "kind": "live-control-plane", "read": "SANDBOX_BY_LANE, escalation flags, guard-subject enforcement, require-arm matching"},
+  {"path": "C:/Projects/Agent_Workspace/HG-KSEOS/config/lane-route-slots.candidate.json", "kind": "live-control-plane", "read": "EXECUTE and VERIFY_SECURITY ordered pools, selection_semantics, declared_by"},
+  {"path": "C:/Projects/Agent_Workspace/HG-KSEOS/config/lane-routing-registry.yaml", "kind": "live-control-plane", "read": "epoch 22, sod_invariants.declared_conflicts (SOD006-C3 OWNER_ORDERED_IN_FORCE)"},
+  {"path": "https://api.github.com/repos/shw097-team/PIPD-LS-SP", "kind": "live-external-state", "read": "PR #18/#17 state and check-runs, release metadata, tag..main count"},
+  {"path": "https://github.com/shw097-team/PIPD-LS-SP/releases/download/v0.1.1-preview.4/pipd-ls-sp-public-skills.zip", "kind": "measured-served-bytes", "sha256": "545e359a5ca6abc7bcbbaa2316f8e062244ad4a132ae1ae839bc9a8e17d95d75"},
+  {"path": "C:/Projects/Agent_Workspace/_handover/PIPD-S4-R6-CLOSEOUT-20261016/far-r17/lane/execute/execute_turn.json", "kind": "round-measured-receipt"},
+  {"path": "C:/Projects/Agent_Workspace/_handover/PIPD-S4-R6-CLOSEOUT-20261016/far-r17/lane/verify/verify_turn.json", "kind": "round-measured-receipt"},
+  {"path": "C:/Projects/Agent_Workspace/_handover/PIPD-S4-R6-CLOSEOUT-20261016/far-r17/diff_and_tests/", "kind": "raw-logs", "files": ["unittest_r6_guard.txt", "unittest_guard_on_prerepair_tree.txt", "unittest_affected.txt"]}
+ ],
+ "source_gaps": [
+  {"item": "Actions job log for the failing `verify` run", "status": "NOT_READABLE", "detail": "the fine-grained PAT is refused (HTTP 401 InvalidAuthenticationInfo) on actions/jobs/<id>/logs", "effect": "the failure reason was instead reproduced from the workflow's own classifier, which is checkable in the repository"},
+  {"item": "human ChatGPT account with upload/update permission", "status": "NOT_AVAILABLE", "effect": "private-host UAT is NOT_RUN, never PASS"},
+  {"item": "FAR-20261016-015 VERDICT.json", "status": "ABSENT", "effect": "its ResearchRunReceipt.json and OpenQuestionLedger were used instead"}
+ ],
+ "denominator_note": "This inventory lists what this run actually read or measured. It is not a claim of exhaustive coverage of the governance tree."
+}

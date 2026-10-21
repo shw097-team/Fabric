@@ -1,0 +1,10 @@
+source_id	channel	locator	sha256_or_id	retrieved_utc	kind
+L1	knowledge	mv of subdirectories .hgk / src / tests inside the worktree	live: all three RENAMED OK	2026-10-11T15:10Z	measurement
+L2	knowledge	mv of the top-level directory itself (from parent)	live: 'Device or resource busy'	2026-10-11T15:10Z	measurement
+L3	knowledge	git worktree move, three attempts, plus pwsh Move-Item	live: Permission denied / in use by another process	2026-10-11T15:12Z	measurement
+L4	knowledge	git status --porcelain in the worktree	5 untracked lane/verify log files	2026-10-11T15:12Z	measurement
+L5	knowledge	du -sh; rev-parse --abbrev-ref HEAD; rev-parse HEAD	49M; s4-r2-affected-only-20261011; 3f6c7dc5...	2026-10-11T15:12Z	measurement
+L6	knowledge	HGK taskspec rows / acceptance artifact path references	4 taskspec rows + the acceptance master reference the old path	2026-10-11T15:14Z	measurement
+L7	memory	workspace-migration-20261011.json (recorded 'moved: false, blocked_reason')	45f5f7e89b657cd6	2026-10-11T14:50Z	local
+L8	knowledge	correlation across the six already-relocated worktrees	the five moved successfully; the one that will not move is the one the lane ran under	2026-10-11T15:16Z	measurement
+L9	web	none — declared absent	n/a	n/a	not_applicable

@@ -1,0 +1,87 @@
+{
+  "schema": "FAR-VERDICT/1",
+  "run_id": "FAR-20261016-020-s4-final-closeout",
+  "round": "PIPD-S4-FINAL-PR18-CLOSEOUT-20261016",
+  "predecessor": "FAR-20261016-019-s4r6-external-handover",
+  "subject_frozen": {
+    "main": "d3bd5456afbff21a8c8837994a49f57be3e1b97e",
+    "pr18_head": "c17aa761b26033fc0a2a2aa3df5ad0f61f2e5a20",
+    "pr17_head": "97a01dab95bc53a08b8c372e3c3b04e69a923d7d",
+    "tag_object": "0618d73c725da0d8c3280f99ef369d13741b5197",
+    "tag_commit": "cc6c1930765160697e7e51d6e37735b9220a30db",
+    "tag_tree": "7d277a0afaff28b6841836cea3a31ffd0b214d94",
+    "release_assets": 7,
+    "private_zip_sha256": "545e359a5ca6abc7bcbbaa2316f8e062244ad4a132ae1ae839bc9a8e17d95d75",
+    "evidence_branch": "s4-final-closeout-evidence-20261016@219e92ba10b17ffb2070dcc9bf89bd29e5925190"
+  },
+  "verdict": "TEMP_CLOSED_RECOMMENDED__NO_NEW_REPAIR_ROUND",
+  "reasoning": [
+    "None of the five STOP-RULE counterexamples was confirmed: no fresh security break, no MUST NOT->MUST source-text error, no Trace false PASS, no supply-chain digest mismatch. The fifth class (a user actually receiving an unusable promised version) could not be excluded by this round because no host account was operated, so it is reported NOT_RUN, not cleared.",
+    "All thirteen field-level identity checks match the frozen values from live sources, including the private ZIP re-hashed from its own bytes.",
+    "The candidate's write-set gate passes at the subject's own head, so PR #18 does not expand the product write set beyond its declared arm."
+  ],
+  "findings": [
+    {
+      "id": "DEV-S4F-01", "class": "MAKER_TOOL_DEFECT", "severity": "P3",
+      "what": "the round's own readback script compared an unsorted expected path list with a sorted API list and reported a false FAIL for PR #18's file set",
+      "evidence": "identities_and_release.json -> deviations; the set of four paths was identical",
+      "status": "FIXED_IN_ROUND_AND_RECORDED",
+      "owner": "AGENT",
+      "remediation": "sort both sides, add a count assertion; keep the disclosure in the published artefact rather than only in chat"
+    },
+    {
+      "id": "DEV-S4F-02", "class": "METHOD_DEFECT", "severity": "P2",
+      "what": "check_write_set.py extracts the ALLOWED/DENIED allowlist from the ambient checkout's workflow, so judging a candidate that edits its own gate yields a false FAIL when the classifier runs against main's tree",
+      "evidence": "same command, two trees: at main's workflow -> 'UPGRADE_WROTE_OUTSIDE_ALLOWED_SET: docs/USER_GUIDE.md, RESULT: FAIL'; in a detached worktree at c17aa76 -> 'RESULT: PASS (write set is inside the declared arm)', changed=27, excluded=0",
+      "status": "MITIGATED_BY_PROCEDURE",
+      "owner": "AGENT",
+      "remediation": "classify in a detached worktree at the subject head (git worktree add --detach <tmp> <sha>); never classify from the ambient checkout when the subject touches its own gate",
+      "why_it_matters": "this failure mode is invisible: it looks like a real product violation and would have sent the round into a repair that the STOP RULE forbids"
+    },
+    {
+      "id": "DEV-S4F-03", "class": "ORCHESTRATION_FRAGILITY", "severity": "P3",
+      "what": "a SWARM child lane died with HTTP 429 (provider usage limit) after 121 s",
+      "evidence": "pr_and_ci_raw_index.json -> fallback_note; delegation warning captured in the same turn",
+      "status": "MITIGATED_BY_DETERMINISTIC_FALLBACK",
+      "owner": "AGENT",
+      "remediation": "every extraction that can be scripted gets a model-free route; on 429 switch immediately, continue, and record the substitution in the artefact"
+    },
+    {
+      "id": "DEV-S4F-04", "class": "CLAIM_ATTRIBUTION_RISK", "severity": "P2",
+      "what": "a branch push in this repository triggers no workflow, because public-plugin-verify is limited to pull_request and workflow_dispatch; a narrative that says 'the evidence branch's CI is green' is therefore attributing a PR run to a push",
+      "evidence": "workflow 'on:' block in .github/workflows/public-plugin-verify.yml; the four run IDs all belong to PR-triggered or dispatched runs",
+      "status": "CORRECTED_IN_THIS_ROUND",
+      "owner": "AGENT",
+      "remediation": "attribute CI numbers to run id + head sha; state explicitly when a push produced no run (this round: the evidence-branch push produced none, and no CI is claimed for it)"
+    },
+    {
+      "id": "DEV-S4F-05", "class": "SOD_DISCLOSURE", "severity": "P3",
+      "what": "maker and checker resolve to the same provider and model arm (registry SOD006-C3, OWNER_ORDERED_IN_FORCE), so no model-axis independence exists",
+      "evidence": "checker_and_owner_closeout.md section 1; lane receipt",
+      "status": "DISCLOSED_NOT_REPAIRED",
+      "owner": "OWNER",
+      "remediation": "leave the registry as owner-ordered; if model-axis separation is later required, change the registry explicitly and record the new assignment basis"
+    }
+  ],
+  "residual_and_owner_gates": [
+    {"gate": "merge PR #18", "expected_head_sha": "c17aa761b26033fc0a2a2aa3df5ad0f61f2e5a20", "owner": "OWNER", "blocking_this_closeout": false},
+    {"gate": "merge PR #17", "expected_head_sha": "97a01dab95bc53a08b8c372e3c3b04e69a923d7d", "owner": "OWNER", "blocking_this_closeout": false},
+    {"gate": "ratify S4_PREVIEW_MVP_PHASE = TEMP_CLOSED", "owner": "OWNER", "blocking_this_closeout": false},
+    {"gate": "next immutable preview release (only when a distribution need exists)", "owner": "OWNER", "blocking_this_closeout": false},
+    {"gate": "host-account install/update smoke (one POS, one missing-source NACK, one unauthorized probe)", "owner": "HOST_OWNER", "blocking_this_closeout": false},
+    {"gate": "four-host full qualification", "owner": "OWNER", "blocking_this_closeout": false}
+  ],
+  "claim_ceiling": {
+    "MAIN_CORE": "PASS_SCOPED",
+    "PREVIEW_4": "PUBLISHED_PASS_SCOPED",
+    "PRIVATE_ZIP": "FORMAT_PASS / ONE_ACCOUNT_PARTIAL",
+    "S4_PREVIEW_MVP_PHASE": "TEMP_CLOSED_RECOMMENDED (OWNER_RATIFIED only after a human signature)",
+    "S4_FULL_PASS": "NOT_GRANTED",
+    "HOST_QUALIFIED": "NOT_GRANTED",
+    "PRODUCTION": "NOT_GRANTED",
+    "PUBLIC_DIRECTORY": "OUT_OF_SCOPE"
+  },
+  "stop_rule_restated": "No new S4 core repair round unless one of the five counterexamples is confirmed. This round confirmed none, so it closed rather than repaired.",
+  "independent_checker": "PENDING_AT_ASSEMBLY — see lane/verify_s4f receipt and checker_and_owner_closeout.md",
+  "next_legal_step": "Owner performs the two merges and signs or declines the phase close; nothing else in this round is outstanding."
+}

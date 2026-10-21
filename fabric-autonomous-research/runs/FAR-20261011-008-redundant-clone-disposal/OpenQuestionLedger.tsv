@@ -1,0 +1,3 @@
+question_id	question	blocking	closing_trigger
+OQ1	Does any non-PIPD tool (IDE, backup job, script) depend on the clone path?	NO_FOR_THIS_DECISION	grep of local scripts/config for the path before deletion
+OQ2	Should the local branch label r7-del018-successor be recreated in PIPD after deletion?	NO	cosmetic; the label is served upstream and the commit is reachable locally

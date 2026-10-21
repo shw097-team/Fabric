@@ -1,0 +1,17 @@
+schema: LOGICAL_FAR_CANDIDATE_RESEARCH_V1
+run_id: FAR-20261016-011-r5r3-preview4-live-subject
+verdict: PARTIAL — S4_PREVIEW_MVP_PHASE_TEMP_CLOSED 可對 preview.4 這個受驗主體宣告，但 release/main 漂移與 OQ-01 保留給 Owner
+confirmed_defect_now:
+  - id: R5R3-D1
+    what: install 路線命名了非 release 供應的 ZIP 身分，且 release 身分在 repo 內無紀錄
+    severity: USER_VISIBLE_IDENTITY_MISMATCH
+    repair: docs/metadata + derived guard
+    status: REPAIRED_IN_THIS_CHANGE_SET
+owner_gates:
+  - id: OQ-01
+    what: 是否為 R5R2 精修切新 immutable release
+  - id: OQ-02
+    what: 私人 Host smoke
+sequenced:
+  - id: R8-0
+    what: R7-0 硬化對 main 重建 + 18 mutation 重測

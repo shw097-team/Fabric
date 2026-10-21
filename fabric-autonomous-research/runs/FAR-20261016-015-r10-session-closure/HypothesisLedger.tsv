@@ -1,0 +1,5 @@
+hypothesis_id	text	basis_source_ids	status	testability
+H1	the two stale change records' work is done but the records were never updated	S05,S03	SUPPORTED	measurable (registry read)
+H2	the cap remediation's premise was already false by the governed measure	S06,S07	SUPPORTED	measurable (char count vs constant)
+H3	this session's wrapper destroyed an earlier turn's provenance	S09	SUPPORTED	measurable (mtime + content of lane_runs)
+H4	the dispatcher's nonce gate misses a nonce that exists in surfaces it itself recorded	S09,S10	SUPPORTED	reproduced on a real receipt

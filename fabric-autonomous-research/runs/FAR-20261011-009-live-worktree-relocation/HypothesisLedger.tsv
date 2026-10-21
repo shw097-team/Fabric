@@ -1,0 +1,7 @@
+hypothesis_id	statement	status	basis
+H1	A file inside the worktree is exclusively open.	REFUTED	L1: every subdirectory renames cleanly
+H2	A process holds the directory node as its cwd.	SUPPORTED	L2
+H3	The lock is a tool quirk of git worktree move.	REFUTED	L3: plain mv and Move-Item fail identically
+H4	The worktree is stale and holds nothing live.	REFUTED	L4,L5: it is the open round's branch home with untracked evidence
+H5	Relocating it is a purely cosmetic gain.	SUPPORTED	L5,L6: value is in the branch + evidence, which do not depend on location
+H6	The move is blocked by resistance that cannot be paid cheaply.	SUPPORTED	L2,L8: past it requires killing a live service or waiting without bound

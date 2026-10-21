@@ -1,0 +1,9 @@
+claim_id	claim_text	claim_class	support_source_ids	counter_source_ids	status	confidence	freshness	owner
+CL-01	the registry carries the PLAN rebind and epoch 21	fact	S03	-	CONFIRMED_BY_MEASUREMENT	high	live	orchestrator
+CL-02	the rebind was performed by an act outside this round	attribution	S03	-	CONFIRMED_BY_MEASUREMENT	medium (inferred from mtime and authority string)	live	orchestrator
+CL-03	the cap split remedy is superseded for its target	judgement	S06,S07	-	CONFIRMED_BY_MEASUREMENT	high	live	orchestrator
+CL-04	the wrapper destroyed a same-role earlier receipt	fact	S09	-	CONFIRMED_BY_MEASUREMENT	high	live	orchestrator
+CL-05	the dispatcher's nonce gate missed a nonce present in its own recorded stdout	fact	S09,S10	-	REPRODUCED	high	live	orchestrator
+CL-06	the registry violates its own SoD invariant for PLAN/VERIFY	fact	S03	-	CONFIRMED_BY_MEASUREMENT	high	live	orchestrator
+CL-07	the two repairs behave correctly on local fixtures and on the round-before's real receipt	fact	S09	-	CONFIRMED_IN_ROUND (8 tests) but NOT yet independently checked	medium	this round	horchestrator
+CL-08	this round's verification has no model-axis independence	fact	(declared plan)	-	CONFIRMED_BY_DECLARATION	high	this round	owner order

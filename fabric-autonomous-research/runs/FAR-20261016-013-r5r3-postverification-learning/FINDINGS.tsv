@@ -1,0 +1,5 @@
+id	finding	basis	severity	state
+F-01	a documented route can be broken while every artifact it names is individually valid	the install guide named a tuple entry that did not exist; nothing else was wrong	HIGH	REPAIRED
+F-02	the repository's own CI is a better reviewer than the round's self-check for write scope	the round's self-check passed 10/10 while the hosted gate refused the same commit	HIGH	REPAIRED
+F-03	an independent checker finds defects the maker's own guard cannot see	3 findings, all in the maker's test/record, none in the product	MEDIUM	REPAIRED
+F-04	SKILL.md of hgk-governed-execution exceeds the 100k patch limit with 106 reference files	no patch that grows the body is accepted, so a pointer could not be added	MEDIUM	OPEN

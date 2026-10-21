@@ -1,0 +1,7 @@
+query_id	subquestion_id	route	query_or_lookup	timestamp	result_count	selected_source_ids	failure_code	cost
+Q-01	SQ1	local	PKG tokens '10/6','BOTH_BYTE_EXACT_AND_LOADER_PARITY','100,000','100000'	2026-10-16T04:20:42.282126+00:00	15 / 15 / 0 / 0	SRC-01		local
+Q-02	SQ2	local	read hardened validate.py regions + cli.py 168-182 + the two failing tests	2026-10-16T04:20:42.282126+00:00	5 regions	SRC-09		local
+Q-03	SQ3	local	read lane_runs receipts and attempts.ndjson arm rows	2026-10-16T04:20:42.282126+00:00	4 files	SRC-08		local
+Q-04	SQ4	local	lane_policy.check_drift(registry=load_registry()) + route_for_lane + check_sod	2026-10-16T04:20:42.282126+00:00	3 calls	SRC-10		local
+Q-05	SQ5	local	the two named tests on clean main and on the hardened tree	2026-10-16T04:20:42.282126+00:00	4 runs	SRC-09		local
+Q-06	SQ6	local	hash and compare the two lost reference files; re-run C1-C6 on the repaired scratch copy	2026-10-16T04:20:42.282126+00:00	2 files + 6 checks	SRC-13		local

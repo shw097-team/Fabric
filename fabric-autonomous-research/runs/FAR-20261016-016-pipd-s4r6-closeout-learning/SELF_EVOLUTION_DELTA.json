@@ -1,0 +1,40 @@
+{
+ "schema": "FAR-SELF-EVOLUTION-DELTA/1",
+ "run_id": "FAR-20261016-016-pipd-s4r6-closeout-learning",
+ "skill_updates": [
+  {
+   "skill": "hgk-kanban-and-lane-routing",
+   "change": "pre-scan every lane brief for the remote-write marker list before dispatch: the scan is a SUBSTRING match and the list includes 'publish', so ordinary prose ('published') refuses the dispatch with ERR_LANE_REMOTE_WRITE_NOT_AUTHORIZED. Satisfy the gate by naming the admitted delivery WorkOrder (a bare WO- token) in the brief, never by rewording around the scanner."
+  },
+  {
+   "skill": "hgk-governed-execution",
+   "change": "when the lane pool's rank-1 arm is the same model as the writer, the round has no SoD: pin the mandated checker with --require-arm <provider>/<model> plus --force-rank <n> (and --allow-human-home-transport when the arm is marked REACHABLE_VIA_HUMAN_HOME_TRANSPORT), record required-vs-served in the receipt, and never edit the registry to align it with the mandate."
+  },
+  {
+   "skill": "hgk-lifecycle-admission",
+   "change": "compile-first rule: a command envelope's own compiler verdict (e.g. compiler_verdict_here: PROMPT_COMPILE_BLOCKED) is a claim about the machine that produced the envelope. Locate a same-version compiler bundle locally and run lint/activation/acceptance/compile before reporting a blocker."
+  },
+  {
+   "skill": "adversarial-verification-rounds",
+   "change": "require a paired mutation for every check in a round's self-check, and report how many mutations fired: a detector that cannot fail is not evidence. Also verify a release artefact's SELF-DECLARED identity (its own header/provenance fields), not only its digest."
+  }
+ ],
+ "new_round_assets": [
+  "checks/r6_doc_identity_check.py (document-identity detector with paired mutations; 7 checks / 7 mutations)",
+  "checks/release_readback.py (fresh HTTPS release readback: tag identity, 7 assets, served ZIP recomputation, archive member audit)",
+  "checks/route_check.py (GSTACK named-method registry snapshot + per-flow route decision + negative control)",
+  "build_evidence_pack.py (evidence pack generator that derives every count from artefacts on disk)",
+  "publish/_askpass.cmd + publish/_askpass.py (non-echoing credential helper; the PAT is never in argv, logs, the remote URL, a commit or the evidence)"
+ ],
+ "openspec_delta": "pipd-s4r6-closeout-doc-identity-and-update-route (3 ADDED requirements, 6 scenarios, validate --strict valid)",
+ "far_continuity": {
+  "extends": "FAR-20261016-014-r5r3-closeout-learning",
+  "prior_open_owner_items_now_concretely_resolved": [
+   "lane marker-scan semantics (substring match refuses ordinary prose) -> satisfy by citing the delivery WorkOrder; the marker list was read from source, not guessed",
+   "canonical SoD route repair (PLAN vs VERIFY_SECURITY collision) -> resolved at dispatch time with rank+arm pinning and a receipt that records required vs served"
+  ],
+  "still_open_from_prior_runs": [
+   "the registry still ranks the writer's own model first on VERIFY_SECURITY - a control-plane defect this round worked around but did not fix (editing the registry is not a round's prerogative)"
+  ]
+ }
+}

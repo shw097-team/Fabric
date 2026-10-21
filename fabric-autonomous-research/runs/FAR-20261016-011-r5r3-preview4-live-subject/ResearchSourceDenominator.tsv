@@ -1,0 +1,8 @@
+source_id	source_class	requirement	authority_role	identity_locator	snapshot_digest_or_locator	access_status	disposition	reason
+SRC-ORDER	prompt_brief	required	Owner 執行契約	R5 指揮薄 PROMPT-3	37a811f89c07398c134994bd1d0d4163015ddc19b643835544e886731714d819	READ	USED	cited in the ledgers
+SRC-VERDICT	external_review	required	外部獨立裁決	S4 R5 修補後獨立驗收裁決-3	2c2175383142f42b7dbe3c3aea51aef86d3f2a058ed724a5a9f0da7da891a45c	READ	USED	cited in the ledgers
+SRC-PKG	pkg_authority	required	上位權威 SPEC/設計	PIPD-LS-SP_PIPD-PKG-00..10	4f04f1359963170855b582c0c5ce95e453b4f3c8adb45c69aeed48eb794d7ffe	READ	USED	cited in the ledgers
+SRC-FABRIC	repo_evidence	required	治理/保證契約面	Fabric AGENTS.md + contracts/assurance	referenced, not re-scanned this run	CITED	USED	cited in the ledgers
+SRC-HGK	hgk_machine_truth	required	控制平面 machine truth	HG-KSEOS AGENTS.md v2026-10-15.1 + lane registry epoch 19	06a8d10aed3785a9fb015d76291c32ef26cc3d4b36c00eb8ec9f7860d6f550d2	READ	USED	cited in the ledgers
+SRC-REPO-LIVE	repo_evidence	required	受驗主體	origin/main dba4b194 + v0.1.1-preview.4 tag cc6c1930 + 7 served assets	see raw/served_assets.json	MEASURED	USED	cited in the ledgers
+SRC-GSTACK	hgk_machine_truth	required	車道/GSTACK 讀回	raw/gstack_readback.json	dbb559afd8b788535422b0ab78aba4641b22bd360570aa9e8c2125cbfb662b4e	READ	USED	cited in the ledgers

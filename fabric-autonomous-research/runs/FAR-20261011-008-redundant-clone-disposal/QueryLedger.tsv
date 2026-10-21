@@ -1,0 +1,7 @@
+query_id	channel	query	result_summary
+Q1	knowledge	git remote -v in the clone	origin -> local PIPD path (NOT a network remote)
+Q2	knowledge	git rev-parse HEAD; status --porcelain; stash list	4445db5a; 0 dirty; 0 stashes
+Q3	knowledge	for-each-ref targets, tested with git cat-file -e in PIPD	14 targets present in PIPD, 0 missing
+Q4	knowledge	which PIPD refs contain the clone-only branch tip 024d358	postrelease-narrow-repair-20261011, s4-r2-affected-only-20261011
+Q5	web	ls-remote of upstream heads	refs/heads/r7-del018-successor = 024d358cc972... still served upstream
+Q6	memory	spine query for the clone path	no requirement/taskspec/workorder binds to it

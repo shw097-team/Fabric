@@ -1,0 +1,6 @@
+{"extraction_id": "Y1", "source": "L1,L2", "field": "lock_granularity", "value": "directory node only", "interpretation": "a process has it as its current working directory; no file inside is exclusively open"}
+{"extraction_id": "Y2", "source": "L8", "field": "suspect_class", "value": "the Codex sandbox service that the R2 EXECUTE lanes ran under", "interpretation": "the correlation is exact: the five worktrees that moved were never a lane --cd target; this one was"}
+{"extraction_id": "Y3", "source": "L4", "field": "unique_content", "value": "5 untracked evidence logs", "interpretation": "the worktree holds live, unreplicated evidence"}
+{"extraction_id": "Y4", "source": "L5", "field": "branch_role", "value": "the open R2 round's branch tip", "interpretation": "this is the in-flight branch home, not a stale checkout"}
+{"extraction_id": "Y5", "source": "L6", "field": "path_bindings", "value": "taskspec rows + the acceptance master", "interpretation": "moving it rewrites paths bound into governance and already-verified artefacts"}
+{"extraction_id": "Y6", "source": "L7", "field": "prior_disposition", "value": "recorded as 'moved:false, blocked'", "interpretation": "the earlier frame was a failure frame; this run reframes it as a decision"}

@@ -1,0 +1,107 @@
+{
+ "verdict": "GATE_PASS",
+ "rows": [
+  {
+   "check": "C1_epoch",
+   "status": "PASS",
+   "detail": "epoch=24"
+  },
+  {
+   "check": "C2_route_PLAN",
+   "status": "PASS",
+   "detail": "openai-codex/gpt-6.1-sol engine=hermes"
+  },
+  {
+   "check": "C2_route_EXECUTE",
+   "status": "PASS",
+   "detail": "opencode-go/deepseek-v4.1-flash engine=codex-cli"
+  },
+  {
+   "check": "C2_route_VERIFY_SECURITY",
+   "status": "PASS",
+   "detail": "openai-codex/gpt-6.1-sol engine=codex-cli"
+  },
+  {
+   "check": "C3_drift_empty",
+   "status": "PASS",
+   "detail": "0 rows []"
+  },
+  {
+   "check": "C4_pin_exists",
+   "status": "PASS",
+   "detail": "C:\\Users\\user\\AppData\\Local\\OpenAI\\Codex\\bin\\896a0166b774037a\\codex.exe"
+  },
+  {
+   "check": "C5_pin_sha",
+   "status": "PASS",
+   "detail": "f6dbf48cb70f6264"
+  },
+  {
+   "check": "C6_pin_version",
+   "status": "PASS",
+   "detail": "codex-cli 0.163.0-alpha.10.2"
+  },
+  {
+   "check": "C7_pool_PLAN",
+   "status": "PASS",
+   "detail": "rank1=openai-codex/gpt-6.1-sol role=DEFAULT/首選"
+  },
+  {
+   "check": "C7_pool_EXECUTE",
+   "status": "PASS",
+   "detail": "rank1=opencode-go/deepseek-v4.1-flash role=DEFAULT/首選"
+  },
+  {
+   "check": "C7_pool_VERIFY_SECURITY",
+   "status": "PASS",
+   "detail": "rank1=openai-codex/gpt-6.1-sol role=DEFAULT/首選"
+  },
+  {
+   "check": "C8_profile_binding",
+   "status": "PASS",
+   "detail": "openai-codex/gpt-6.1-sol"
+  },
+  {
+   "check": "C9_agents_epoch",
+   "status": "PASS",
+   "detail": "epoch heading present"
+  },
+  {
+   "check": "C10_assignment_epoch",
+   "status": "PASS",
+   "detail": "24/24"
+  },
+  {
+   "check": "C11_sod_declared",
+   "status": "PASS",
+   "detail": "SOD006-C4"
+  },
+  {
+   "check": "C15_crossfield_arm_A",
+   "status": "PASS",
+   "detail": "sod='openai-codex / gpt-6.1-sol (primary Codex CLI checker)' chain=openai-codex/gpt-6.1-sol"
+  },
+  {
+   "check": "C16_probe_not_auto",
+   "status": "PASS",
+   "detail": "[]"
+  },
+  {
+   "check": "C12_pytest",
+   "status": "PASS",
+   "detail": [
+    "3 passed, 90 subtests passed in 8.24s"
+   ]
+  },
+  {
+   "check": "C13_openspec_files",
+   "status": "PASS",
+   "detail": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\openspec\\changes\\far-lane-remediation-20261021"
+  },
+  {
+   "check": "C14_kanban_board",
+   "status": "PASS",
+   "detail": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\far-remediation-20261021\\kanban.db"
+  }
+ ]
+}

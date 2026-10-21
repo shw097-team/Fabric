@@ -1,0 +1,6 @@
+fitgap_id	subject	gap_class	fit_assessment	integration_cost_estimate	reuse_adapter_option
+FG-01	RQ06 byte-exact 10/6 + loader parity	CONFORMANCE	PARTIAL_FIT: byte-exact leg met; the loader-parity leg lacks a pinned trusted observation	low	reuse the round C1-C6 harness
+FG-02	RQ08 reference threshold	CONFORMANCE	FIT: kept as a warning, no hard gate invented	none	n/a
+FG-03	EIA-R6-04 counterexamples on main	REGRESSION	PARTIAL_FIT until the two-hunk adaptation lands	low	reuse the R8 probe runner as the negative control
+FG-04	EIA-R6-03 checker write-root isolation	ISOLATION	NOT_FIT_LOCALLY: one Windows identity cannot separate maker from checker	medium (second identity)	reuse the proven deny-ACE mechanism on a governed OUT root
+FG-05	skill candidate losslessness	CONTENT_INTEGRITY	FIT after the successor restore	low	reuse the guarded-apply mechanism (preimage + receipt + rollback drill)

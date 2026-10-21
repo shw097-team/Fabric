@@ -1,0 +1,125 @@
+I’ll verify the frozen tree, run independent probes, and fetch assets into scratch.
+
+
+The identities match. I’ll run protected tests and independent mutations.
+
+
+All four mutations fail as expected; downloaded bytes match.
+
+
+Network checks pass; the full regression suite is still running.
+
+
+The 44 affected tests pass; interim hashes show no changes.
+
+
+The full suite is unusually slow; I’ll diagnose without changing it.
+
+
+An existing test requests repository-local temp files; the guard blocked it. I’ll redirect that temp directory to scratch and rerun.
+
+
+The full suite fails: 14 failures and 74 errors. The frozen tree remains unchanged.
+
+
+The child interpreter lacks dependencies. I’ll rerun with an explicit interpreter; repository writes remain blocked.
+
+
+CHECKER_VERDICT
+checker_lane: VERIFY_SECURITY
+checker_model: openai-codex/gpt-6.1-sol (observed launcher arm and CLI model flag; backend identity not independently attested)
+maker_model: opencode-go/deepseek-v4.1-flash
+subject_commit: 5defc64f1177a1d6f32502c5479c65cf9a001858
+subject_tree: df8e6b3c03368531de94f44d1dc0a2dd1abd987c
+guard_root_status_before: CLEAN
+guard_root_status_after: CLEAN
+
+claim_results:
+  C1 PASS:
+    HEAD and tree exactly match the specified subject; branch matches.
+    Immediate-parent diff contains exactly:
+      docs/install/README.md
+      tests/test_r6_doc_identity_guard.py
+    diff --check produced no output, exit 0.
+    diff --name-only d3bd5456afbff21a8c8837994a49f57be3e1b97e..HEAD -- .github produced no output, exit 0.
+
+  C2 PASS:
+    Final explicit-interpreter run exited 0:
+      Ran 9 tests in 0.128s
+      OK
+    Inventory independently inspected: 5 real-document test methods, 4 mutation methods; 0 skipped.
+
+  C3 PASS:
+    My scratch probe independently checked all four defect classes against the original document: all passed.
+    Each mutation was written into its own scratch copy, leaving the repository untouched.
+    i. Replaced the preview.4 target inside the advanced version-pin bullet with the independently peeled preview.3 target. Assertion: pin target equals the peeled preview.4 Git tag target. Result: expected AssertionError; candidate guard also rejected it.
+    ii. Changed the fenced bash --mount-pack generation to preview.4 while --release-id remained preview.3. Assertion: both generations are equal. Result: expected AssertionError; candidate guard also rejected it.
+    iii. Added dist/mount/checker-nonexistent-v0.1.1-preview.99. Assertion: every cited mount path exists in HEAD’s tree. Result: expected AssertionError; candidate guard also rejected it.
+    iv. Deleted “## States that are NOT the same” while retaining its links. Assertion: every in-page fragment resolves to an existing heading. Result: expected AssertionError for states-that-are-not-the-same; candidate guard also rejected it.
+    No required mutation escaped detection. Probe exit: 0.
+
+  C4 PARTIAL:
+    Affected suites exited 0:
+      Ran 44 tests in 1.222s
+      OK
+    Affected-suite skipped count: 0.
+    Final whole-suite run used the explicit Python 3.12.14 environment with dependencies importable. Exit: 1.
+      Ran 626 tests in 179.659s
+      FAILED (errors=2, skipped=4)
+    Both errors were mandatory frozen-root write protection blocking existing tests:
+      test_every_module_compiles: explicit .pyc.tmp creation/removal inside src.
+      TqaepDesignTime.setUpClass: writing .hgk/artifacts/tqaep_design_tmp/pi.json.
+    Therefore, whole-suite no-regression acceptance is NOT established. These errors do not demonstrate a candidate-introduced regression.
+
+  C5 PASS:
+    Independently downloaded ZIP and SHA256SUMS: HTTP 200.
+    ZIP size: 68,357 bytes.
+    ZIP sha256: 545e359a5ca6abc7bcbbaa2316f8e062244ad4a132ae1ae839bc9a8e17d95d75
+    Digest matches both the stated value and downloaded SHA256SUMS.
+    Stdlib zipfile inspection: 56 members; 8 SKILL.md files.
+    Single root: pipd-ls-sp-public-skills
+    Root manifest: pipd-ls-sp-public-skills/plugin.json
+    Manifest name: pipd-ls-sp-public-skills
+    Escaping member paths: NONE.
+    Member names mentioning MCP/apps/hooks, case-insensitively: NONE.
+    ZIP CRC check: no failing member.
+
+  C6 PASS:
+    Independently downloaded fallback: HTTP 200; 42,145 bytes.
+    sha256: c88ddc49cfe5fb59fe1a713fdde4cfd6a06ed54cc5831885130e053ce990c2af
+    Own header:
+      release_id: v0.1.1-preview.3
+      release_commit: cbf69756d7fc90fc1cdfb3a45a1cc42cc603cb0a
+    Byte-for-byte equal to docs/install/PIPD_WEB_FALLBACK.md.
+    The maker’s claim of earlier provenance served by the preview.4 release is confirmed.
+
+  C7 PASS:
+    The added note is a list bullet under existing “### Hashes”, within “## Advanced and recovery”; not a new top-level section.
+    It explicitly requires a future release and rejects in-place repair. Both bounds satisfied.
+
+adversarial_findings:
+  - Existing suite is not intrinsically read-only: tests/test_tooling_executes.py:52 explicitly compiles repository-local bytecode; tests/test_tqaep_design_positive.py:59 rewrites repository fixtures. The guard blocked both. These test files are unchanged from the specified base.
+  - tests/test_s0_contracts.py:73 requests repository-local temporary directories. Scratch-only tempfile redirection allowed those checks without repository writes.
+  - Procedural caveat: preliminary attempts inherited system TMPDIR despite TEMP/TMP being set to scratch; their automatically cleaned test temporaries were outside designated scratch. Final execution forced scratch routing. Strict scratch-only compliance throughout the entire turn is therefore not claimed.
+
+command_receipts:
+  git rev-parse HEAD / HEAD^{tree} -> each exit 0 -> exact subject identities above.
+  git diff --name-only HEAD^ HEAD -> exit 0 -> exactly the two specified paths.
+  git diff --check HEAD^ HEAD -> exit 0 -> EMPTY.
+  git diff --name-only <base>..HEAD -- .github -> exit 0 -> EMPTY.
+  python -m unittest tests.test_r6_doc_identity_guard -v -> exit 0 -> Ran 9 tests; OK.
+  python -m unittest tests.test_s4r2m_docs_route tests.test_r5r3_install_route_identity tests.test_s4ext_release_provenance tests.test_r6_doc_identity_guard -v -> exit 0 -> Ran 44 tests; OK.
+  python -m unittest discover -s tests -t . -> exit 1 -> Ran 626 tests; FAILED (errors=2, skipped=4).
+  Final Python executable: C:/Projects/Agent_Workspace/HG-KSEOS/.venv/Scripts/python.exe.
+  Scratch probe.py -> exit 0 -> four baseline passes; four expected assertion failures; four candidate-guard rejections.
+  Scratch assets.py -> exit 0 -> HTTP 200 for all three assets; ZIP digest confirmed; fallback byte_equal=True.
+  Final byte-manifest comparison -> exit 0 -> 2,127 files; changed=[].
+  Final git status --porcelain -> exit 0 -> EMPTY.
+  All Python invocations disabled bytecode writes. PYTEST_ADDOPTS=-p no:cacheprovider was set; unittest itself has no pytest cache-provider plugin.
+  Superseded dependency-incomplete full run: exit 1; Ran 617 tests; FAILED (failures=14, errors=74, skipped=6). Two earlier protected attempts were interrupted and excluded from acceptance evidence.
+  Evidence directory: C:/Users/user/AppData/Local/Temp/hgk-r17-checker/
+
+checker_id: PIPD-S4-R6-CLOSEOUT-20261016-FAR-R17-VERIFY_SECURITY-5defc64f
+verdict: PARTIAL
+claim_ceiling: Independently establishes C1–C3 and C5–C7, affected-suite success, and unchanged frozen-root bytes. Network measurements replace the prior release-download NOT_RUN. The whole suite was executed, but cannot be certified green under the mandatory no-write boundary. No remote write or repository modification was performed. This is not unconditional closeout acceptance, a complete no-regression finding, or certification of host installation/runtime behavior.
+HGK_LANE_NONCE_OK

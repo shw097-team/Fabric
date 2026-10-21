@@ -1,0 +1,7 @@
+schema: LOGICAL_FAR_EXPERIMENT_PLAN_V1
+experiments:
+  - id: E-01
+    what: 以既有 RUNNERS/run_mutations.py driver 重跑 M01..M18
+    pass_condition: M04/M06/M16 由 ACCEPT 變為 REJECT，且原 7 個 detected 維持 REJECT
+    executed_by: Codex CLI EXECUTE lane (bounded writer)
+    verified_by: Codex CLI VERIFY/SECURITY lane (independent)

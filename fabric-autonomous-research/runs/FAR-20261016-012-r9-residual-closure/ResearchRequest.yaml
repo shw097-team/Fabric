@@ -1,0 +1,21 @@
+schema: LOGICAL_FAR_RESEARCH_REQUEST_V1
+run_id: FAR-20261016-012-r9-residual-closure
+workorder_ref:
+  id: R9-0-FAR-RESIDUAL-CLOSURE
+  hgk_project: CNV-R9-FARCLOSURE
+  workorders: [WO-TS-FARCLOSURE-01, WO-TS-FARCLOSURE-02, WO-TS-FARCLOSURE-03, WO-TS-FARCLOSURE-04, WO-TS-FARCLOSURE-05, WO-TS-FARCLOSURE-06]
+  digest: sha256 of _handover/CNV-PIPD-LS-SP-20261015-R9/hgk_admission_r9.py is recorded in R9_LEDGER.json
+decision_question: >-
+  For every residual item, gap and owner-decision item of mission CNV-PIPD-LS-SP-20261015, under the current
+  Fabric governance contract and the PKG/EIA authority: what is the best engineering decision (low friction,
+  high feasibility, high engineering necessity, not over-engineered), which parts must be EXECUTED now and which
+  are one-action owner items, and how is the executed part independently re-checkable.
+owner: human owner (shw097-team)
+task_class: RESEARCH_LITERATURE_REPO
+source_requirements: [pkg_authority, prompt_brief, external_review, product_repo, control_plane_repo, skill_library, hgk_machine_truth, far_prior_runs]
+source_classes: [OFFICIAL_DOC, LOCAL_GOVERNED_CORPUS, GIT_REPOSITORY, DATASET, EXPERIMENT_INPUT]
+freshness_requirement: as-of 2026-10-16 (Asia/Taipei)
+budget_ref: local only; no external spend; 3 read-only workers
+security_boundary_ref: read-only research workers; no credential material read; no network fetch; no git write
+expected_decision_output: a per-residual decision with an executed/proposed split, CandidateResearch, ProposedEvolution
+claim_ceiling: local/candidate-only; not an acceptance; not a Gate PASS; not authority

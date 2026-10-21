@@ -1,0 +1,18 @@
+schema: LOGICAL_FAR_CANDIDATE_RESEARCH_V1
+run_id: FAR-20261011-008-redundant-clone-disposal
+terminal: CANDIDATE_DECISION
+status: CANDIDATE_ONLY_NOT_AUTHORITY
+recommendation:
+  action: DELETE
+  target: C:/Projects/Agent_Workspace/PIPD-r7-release
+  necessity: HIGH
+  resistance: LOW
+  upstream_conformance: CONFORMS
+  reversibility: RECOVERABLE_FROM_TWO_SITES
+  command_if_authorised: rm -rf "C:/Projects/Agent_Workspace/PIPD-r7-release"
+  executed: false
+  why_not_executed: >-
+    the operator asked this question as a research-and-propose item; no execution authorisation was given
+    for it (unlike the companion question, which carried an explicit authorisation grant)
+recommendation_confidence: HIGH
+nonclaims: [no_remote_deletion, no_credential_used, no_execution_performed]

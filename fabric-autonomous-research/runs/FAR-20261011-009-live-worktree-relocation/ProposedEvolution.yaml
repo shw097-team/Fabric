@@ -1,0 +1,16 @@
+schema: LOGICAL_FAR_PROPOSED_EVOLUTION_V1
+status: CANDIDATE_ONLY
+proposals:
+  - id: PE-WORKSPACE-01
+    change: >-
+      Record a workspace convention: live round worktrees may sit beside the product repo while the round
+      is open; consolidation under <product>/worktrees/ happens at round close-out, as one declared
+      migration step with an old-to-new map.
+    rationale: keeps the workspace tidier than permanent siblings at root, without churning paths bound into an open acceptance window
+    route: HGK Governed Evolution (owner gate) — NOT self-applied
+  - id: PE-WORKSPACE-02
+    change: >-
+      Do not give a long-lived Codex lane a persistent working directory that is also a worktree destined
+      to be relocated; or accept that the sandbox service will pin it until it exits.
+    rationale: documented cause of the lock, so the next operator does not re-diagnose it
+    route: HGK Governed Evolution (owner gate) — NOT self-applied

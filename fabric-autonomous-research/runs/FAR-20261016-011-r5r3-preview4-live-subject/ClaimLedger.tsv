@@ -1,0 +1,8 @@
+claim_id	claim	confidence	evidence_ref
+CL-01	在 main@dba4b19 上 D1/D2/TYPE5 的 22 個驗收邊界案例全數符合宣告期望	HIGH	raw/edge_probe.json summary PASS 22/22
+CL-02	已發布 wheel（tag 目標 cc6c1930）與 main 僅在無空白句界一例分歧（R5R2 PR #13 之後才進 main）	HIGH	raw/edge_probe_wheel.json 21/22，唯一 MISMATCH=D2-NO-SPACE
+CL-03	7 個 served assets 的 SHA256 與 released SHA256SUMS 六筆全數一致	HIGH	raw/served_assets.json sha256sums.all_match=true
+CL-04	私人 Plugin ZIP：單一 root、8 個 SKILL.md、CRC 全通過、無路徑穿越、無 .hgk/secret 成員	HIGH	selfcheck S7 PASS
+CL-05	R5 裁決所要求的『ZIP 可下載＋可驗 SHA』在使用者路徑上原先不成立：README 指向已被取代的 68,355/2f9ae0 evidence-branch ZIP、install 文件指向不存在的 RELEASE_TUPLE asset、RELEASE_TUPLE 無 preview.4 條目	HIGH	本輪 RAW + 修補後測試 test_r5r3_install_route_identity
+CL-06	release/main 漂移的處置權屬 Release Owner；任何 agent 不得自行切新 tag 或移動既有 tag	HIGH	指揮薄 machine header: github_merge_tag_release=SEPARATE_HUMAN_RELEASE_APPROVAL_REQUIRED
+CL-07	HG-KSEOS check_drift 的 DRIFT_VALUE(codex_sha256) 是 registry 投影期望過時，不是二進位不符：config 值等於實測 E98C516F…	HIGH	raw/gstack_readback.json + 實測 sha256

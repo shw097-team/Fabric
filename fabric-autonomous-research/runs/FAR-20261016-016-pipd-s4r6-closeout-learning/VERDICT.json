@@ -1,0 +1,65 @@
+{
+ "schema": "FAR-RUN-VERDICT/1",
+ "run_id": "FAR-20261016-016-pipd-s4r6-closeout-learning",
+ "task_class": "RESEARCH_LITERATURE_REPO",
+ "decision": "NATIVE_WITH_SELECTED_ARIS",
+ "reason_code": "FAR_ROUTE_NATIVE_ARIS",
+ "route_evidence": {
+  "registry": "C:/Projects/Agent_Workspace/HG-KSEOS/src/hg_kseos/named_methods.py registry_snapshot()",
+  "active_selected_methods": 8,
+  "flows_routed": "recorded per flow in _handover/PIPD-S4-R6-CLOSEOUT-20261016/route_check.json",
+  "negative_control": "an unrelated flow routes to NATIVE with no provider - the router discriminates"
+ },
+ "swarm": {
+  "mode": "LANE_CHAIN_PLUS_INDEPENDENT_CHECKER",
+  "canonical_parallel_writers": 1,
+  "board": "pipd-s4r6-closeout-20261016",
+  "cards": 8,
+  "writer_card_closed_with": "evidence string + structured metadata per gate",
+  "checker": "VERIFY_SECURITY lane, rank 2, openai-codex/gpt-6.1-sol"
+ },
+ "executed_this_round": {
+  "G0_compile": "PROMPT_COMPILE_PASS on lint/activation/acceptance/compile (exit 0) - the envelope's own PROMPT_COMPILE_BLOCKED did not hold here",
+  "G1_doc_repair": "candidate 552bbde073806e254f84e95039f05c9767608aa1 / tree a95579bf8c1bc77550d1044d12b2de7ed2028ae5, 2 files, +71/-19, git diff --check clean",
+  "G2_regression": "affected subset 92 passed/18 skipped (exit 0); local full suite 621 passed/20 skipped/62 subtests (exit 0) - explicitly NOT the CI denominators",
+  "G3_push": "branch pushed to shw097-team/PIPD-LS-SP; remote head == local head at each step; no main push, no tag, no release, no merge",
+  "G4_checker": "independent verdict PARTIAL on 552bbde; C1..C7 PASS; checker's own NOT_RUNs recorded, not papered over",
+  "G5_release_readback": "all seven assets match the frozen metadata; served ZIP downloaded and sha256 recomputed to 545e359a..; archive audit 56 entries / 8 SKILL.md / single root / no traversal",
+  "G6_packet": "S4_R6_CLOSEOUT_RETURN committed at 3e1bc6d429a5e0ca4c6551808340db5ff872ccde; 21 files; 20/20 SHA256SUMS entries verified against committed blobs in a fresh fetch",
+  "G7_self_evolution": "SELF_EVOLUTION_R6.md/.json + FAR run + one skill reference written"
+ },
+ "release_state_unchanged": {
+  "main": "d3bd5456afbff21a8c8837994a49f57be3e1b97e",
+  "tag_v0.1.1-preview.4": "0618d73c725da0d8c3280f99ef369d13741b5197 (unchanged)",
+  "next_release_created": false,
+  "merge_performed": false
+ },
+ "open_owner_items": [
+  "O-1 merge the candidate branch into main",
+  "O-2 merge PR #17 (verified 1-file provenance readback, non-draft)",
+  "O-3 ratify S4_PREVIEW_MVP_PHASE = TEMP_CLOSED",
+  "O-4 run the private-host same-id UPDATE smoke (and 1 POS / 1 source-less NACK / 1 security NEG)",
+  "O-5 decide whether to issue a new tag to distribute the 11 post-tag main commits",
+  "control-plane: the VERIFY_SECURITY pool still ranks the writer's own model first - a registry defect this run worked around but did not (and must not) fix"
+ ],
+ "owner_ready": [
+  "MERGE_CANDIDATE_BRANCH (2 commits, docs + packet, both verified)",
+  "MERGE_PR17 (verified, mergeable clean, 1 file, +14/-0)",
+  "RATIFY_TEMP_CLOSED",
+  "PRIVATE_HOST_UPDATE_SMOKE (route now documented; needs a human account)",
+  "NEW_TAG_IF_NEW_MAIN_FEATURES_ARE_ADVERTISED",
+  "REPAIR_THE_VERIFY_SECURITY_POOL_ORDER"
+ ],
+ "out_of_scope_this_round": [
+  "release/tag",
+  "merge",
+  "host install or update",
+  "public plugin directory publication",
+  "production promotion",
+  ".hgk migration",
+  "four-host UAT",
+  "MCP/apps/hooks surfaces",
+  "PR #14/#15 CNV lanes"
+ ],
+ "claim_ceiling": "Round product: a candidate documentation repair on a controlled branch, an evidence packet verifiable by fresh fetch, and a bounded engineering recommendation. Every EXECUTED item is a local measurement or a prepared artefact. No host acceptance, no merge, no release, no production claim. TEMP_CLOSED is a recommendation pending an owner signature, never a self-granted pass."
+}

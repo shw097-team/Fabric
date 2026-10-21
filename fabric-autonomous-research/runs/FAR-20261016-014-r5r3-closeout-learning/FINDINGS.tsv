@@ -1,0 +1,9 @@
+id	finding	class	evidence	status
+F1	The served preview.4 plugin ZIP is the byte-exact deterministic output of frozen commit cc6c193	PROVENANCE	2 builds at cc6c193 -> 68357 B / 545e359a...; equals the served asset	MEASURED
+F2	The previously host-accepted ZIP is reproducible at its own commit 062d84ae	PROVENANCE	rebuild -> 68355 B / 2f9ae010...	MEASURED
+F3	Build nondeterminism is excluded as a cause of the host refusal	CAUSE-EXCLUSION	F1+F2: both packages are deterministic products of their commits	MEASURED
+F4	Manifest location/fields are excluded: the two packages share every member except 2 provenance metadata files	CAUSE-EXCLUSION	member-by-member diff	MEASURED
+F5	TT-03's DRIFT_VALUE does not reproduce on either live surface	TICKET	declared codex_sha256 == actual binary; check_drift = 0 rows (epoch 21)	NOT_REPRODUCED
+F6	check_sod(PLAN, VERIFY_SECURITY) is a live collision (both gpt-6.1-sol)	CANONICAL	lane_policy.check_sod output	OPEN_OWNER
+F7	The lane brief's remote-write marker scan is a SUBSTRING scan, so an ordinary word can refuse a dispatch	CONTROL-PLANE	brief containing 'published' refused with ERR_LANE_REMOTE_WRITE_NOT_AUTHORIZED	OPEN_OWNER
+F8	The released assets predate later repairs (main-only)	RELEASE-COVERAGE	file digest comparison	OPEN_OWNER

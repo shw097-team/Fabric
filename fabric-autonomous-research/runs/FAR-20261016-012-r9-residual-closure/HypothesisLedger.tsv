@@ -1,0 +1,7 @@
+hypothesis_id	text	basis_source_ids	status	testability
+H-01	the two failing tests are caused by the port, not present on main	SRC-09	CONFIRMED	executed: 2 clean-main passes vs 2 hardened-tree failures
+H-02	derive_frozen_context crashes because a PI risk_guard arrives as a string where a mapping is assumed	SRC-09	CONFIRMED	executed: code path cli.py:175-176 -> validate.py:434
+H-03	the legal-link test fails because validate_bundle fails closed with no frozen context although the bundle carries the endpoints	SRC-09	CONFIRMED	executed: guard at validate.py:398 + the two tests passing after adaptation
+H-04	the served arm of a nonce-failed lane turn is unrecoverable	SRC-08	REFUTED	executed: attempts[] carries rank/provider/model
+H-05	the canonical registry drifts from its own projections	SRC-10	REFUTED	executed: check_drift -> []
+H-06	the blocked slim candidate is repairable by restoring live reference files	SRC-13	CONFIRMED_WITH_LIMIT	executed: C1-C6 PASS only after ONE further file was restored (R9-F7)

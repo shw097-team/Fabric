@@ -1,0 +1,34 @@
+schema: LOGICAL_FAR_RESEARCH_PLAN_V1
+run_id: FAR-20261016-012-r9-residual-closure
+subquestions:
+  - SQ1 what does each governing clause require of each residual
+  - SQ2 what are the technical facts behind the blocking failures
+  - SQ3 which lane arm actually served each completed turn
+  - SQ4 does the canonical registry agree with the owner mandate
+  - SQ5 can the blocked skill candidate be repaired without weakening it
+  - SQ6 what is the correct denominator and measure for the skill-size question
+claim_classes: [GOVERNANCE, REGRESSION, DEFECT, ROUTING, ATTRIBUTION, CONFORMANCE, CONTENT_INTEGRITY, TOOLING]
+source_classes: [OFFICIAL_DOC, LOCAL_GOVERNED_CORPUS, GIT_REPOSITORY, DATASET, EXPERIMENT_INPUT]
+query_strategy:
+  - local text and byte-interval search of the governing documents for the clause tokens
+  - direct code reading of the failing paths, then execution of the named tests and the mutation probes
+  - receipt and attempts[] reading for attribution
+  - the repository's own policy API for drift and SoD
+candidate_methods_providers: [fabric-autoresearch-native]
+challenge_trigger: required=true for this task_class
+experiment_trigger: required=true (two experiments were required to settle SQ1/SQ5)
+stop_criteria: [every residual has a decision, every executed claim re-derived by the orchestrator, every owner item written as one action]
+abstain_criteria: [a claim cannot be re-derived from artifacts, or a gate requires a human authority]
+budget_allocation: {research_workers: 3, orchestrator_remeasurements: all decisive, wall_clock: bounded by the round}
+route:
+  reason_code: FAR_ROUTE_NATIVE_ARIS
+  primary: fabric-autoresearch-native
+  challenger: aris
+  challenger_method: research-review
+  router_source: governance/FAR_CAPABILITY_MATRIX.yaml (task_class RESEARCH_LITERATURE_REPO -> NATIVE_WITH_SELECTED_ARIS)
+swarm:
+  mode: DEFAULT_ON
+  split: SOURCE_FAMILY / HYPOTHESIS / EXPERIMENT
+  lanes: 3 read-only workers
+  canonical_parallel_writers: 0
+  worker_write_roots: _handover/CNV-PIPD-LS-SP-20261015-R9/FAR/

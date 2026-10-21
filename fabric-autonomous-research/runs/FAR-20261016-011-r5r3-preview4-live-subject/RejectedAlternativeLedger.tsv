@@ -1,0 +1,6 @@
+id	alternative	reason_rejected
+RA-01	對 main 重新實作 D1/D2/TYPE5（重工）	裁決明示已完成；TS-00 要求 delta-only，重工會產生無效的重複驗收
+RA-02	自行建立 preview.5 tag/release 以消除 release/main 漂移	tag/release 屬 REL，需 Owner 批准；agent 自簽即越權
+RA-03	把 README 的歷史 R5Y 段落整段刪除	削弱歷史證據鏈；改為加註 superseded 並保留
+RA-04	以 lane 名稱或模型名稱主張 checker 獨立性	AGENTS.md AO 條款：獨立性需 receipt + 檔案層拒絕證據
+RA-05	為讓 GSTACK drift 轉綠而直接編輯 registry 期望值	registry 屬 canonical 控制面，需 WorkOrder 且會與其他投影綁定耦合

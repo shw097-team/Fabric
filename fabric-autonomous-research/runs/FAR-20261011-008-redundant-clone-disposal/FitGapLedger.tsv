@@ -1,0 +1,5 @@
+criterion	requirement	observed	fit
+low_resistance	removal should be a single local operation with no dependency	clean tree, no registered worktree, no spine binding	FIT
+upstream_conformance	decisions should follow the canonical sources, not invent a local one	canonical = PIPD (local) + GitHub (upstream); the clone is neither	FIT
+engineering_necessity	execute only what is necessary	85M of duplicate data with 0 unique content	FIT (necessity is HIGH in the removal direction)
+reversibility	an irreversible action needs a preservation site	two independent sites exist	FIT

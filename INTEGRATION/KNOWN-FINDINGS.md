@@ -1,7 +1,7 @@
 # Known findings ledger
 
 Every finding raised by an independent checker in this session's rounds, with its **current** status.
-Three values only: `RESOLVED` (a named artifact closes it), `PARTIAL` (remaining gap stated),
+Four values only: `RESOLVED` (a named artifact closes it), `PARTIAL` (remaining gap stated),
 `OWNER` (cannot be closed by engineering alone), `WITHDRAWN` (the finding no longer applies).
 
 | # | finding | status | evidence / remaining gap |
@@ -26,5 +26,10 @@ Three values only: `RESOLVED` (a named artifact closes it), `PARTIAL` (remaining
 | K-18 | this round's lane failures (12 timeouts, 2 nonce-less dispatches, 1 contaminated verdict, 1 empty answer) | `PARTIAL` | none repaired; the timeout class was root-caused and the lane budget raised, and every failure is retained in the round record |
 | K-19 | the guarded apply path has only ever run against fixtures | `PARTIAL` | no real write was executed; the subject stays candidate-only |
 | K-20 | the round's return packet was first pushed to a repository the owner had not named for it | `RESOLVED` | `EVIDENCE/SKILL-CONVERGENCE-20261014/PUBLICATION-RECORD.md` section A: the packet was republished byte-identically to this repository's branch `evidence/skill-convergence-20261014-full-packet` and the other repository's branch was deleted (its `main` never moved); the deleted tip is recoverable from this branch |
+
+| K-21 | the lane declaration surfaces disagreed (8 surfaces, >=4 contradictions) and the routing files had no commit lineage | `RESOLVED` | `EVIDENCE/FAR-LANE-REMEDIATION-20261021/`: registry epoch 24, `check_drift` empty, owner-chain test green (3 passed / 90 subtests), self-check GATE_PASS 20/20; the four routing files are now tracked (HG-KSEOS commit `c442f07`) |
+| K-22 | `check_drift()` could not see a cross-field contradiction inside one declaration file (`sod.verify_security_arm_A` vs `lane_chains.VERIFY_SECURITY[0]`) | `RESOLVED` | `EVIDENCE/FAR-LANE-REMEDIATION-20261021/implementation/selfcheck_epoch24.py` check `C15_crossfield_arm_A`; the field now restates the chain and the check is a named gate |
+| K-23 | a PROBE arm inserted for a lane measurement could be picked by an unpinned dispatch and read as a policy default | `RESOLVED` | `EVIDENCE/FAR-LANE-REMEDIATION-20261021/implementation/lane-route-slots.candidate.json`: the measured `opencode-go/minimax-m3.1-flash-free` arm is labelled `PROBE/探測` with `automatic_selection: false`; check `C16_probe_not_auto` |
+| K-24 | the independent acceptance lane for this change-set could not return a verdict (upstream `HTTP 400 Model is unavailable` on the `openai-codex/gpt-6.1-sol` arm; provider quota 31% weekly; credential unexpired) | `PARTIAL` | the failing attempt is retained verbatim in `EVIDENCE/FAR-LANE-REMEDIATION-20261021/lane_receipts/AO_verdict2.json`; **no acceptance is claimed and no WorkOrder result was recorded**; re-run the AO lane when the upstream arm serves |
 
 Nothing here is an acceptance. Presence of a row in this table is not a pass.

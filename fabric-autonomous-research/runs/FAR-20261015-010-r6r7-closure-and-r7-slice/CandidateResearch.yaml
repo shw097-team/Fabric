@@ -1,0 +1,104 @@
+schema: LOGICAL_FAR_CANDIDATE_RESEARCH_V1
+claim_level: LOCAL
+{
+  "run_id": "FAR-20261015-010-r6r7-closure-and-r7-slice",
+  "route": {
+    "task_class": "RESEARCH_LITERATURE_REPO",
+    "decision": "NATIVE_WITH_SELECTED_ARIS",
+    "reason_code": "FAR_ROUTE_NATIVE_ARIS",
+    "primary": "fabric-autoresearch-native",
+    "challenger": "aris",
+    "providers_eligible": [
+      "native",
+      "prime"
+    ],
+    "block_reason": null,
+    "degrade_note": null,
+    "methods": [
+      "research-lit",
+      "novelty-check",
+      "research-review"
+    ],
+    "challenger_method": "research-review"
+  },
+  "adjudication": {
+    "verdict": "PARTIAL",
+    "q1_unclosed_items": {
+      "P0_engineer_now": [
+        {
+          "item": "R7-02 validator hardening: M04 (ProfileBinding ASSURED->LITE), M06 (domain oracle expected 999), M16 (trace atom digest mismatch) 必須 REJECT",
+          "why": "三個實跑反例目前被 ACCEPT；這些漏拒會使後續所有獨立驗收建立於假綠之上（EIA §4.1 HIGH、§7 P0）",
+          "cost": "低（bound validator 加三類 predicate + 以既有 driver 重跑 M01..M18）",
+          "risk_if_skipped": "假綠、gate 誤放行"
+        },
+        {
+          "item": "R7-03 checker SoD: candidate root 於驗證期間不可寫；verifier/temp 置於隔離 write root，並以實際 write-denial 為證據",
+          "why": "R6 attempt 3 實測 checker 可寫 candidate root；EIA §4.2 明示 lane/模型名稱不構成 least-privilege",
+          "cost": "中（runner 層 write-root 約束 + denial fixture）",
+          "risk_if_skipped": "證據污染、INDEPENDENT_PASS 不可成立"
+        }
+      ],
+      "owner_human_gate": [
+        {
+          "item": "Fresh G1（declared 0.20.0 vs observed 0.21.5 重認證）",
+          "gate": "Human Owner"
+        },
+        {
+          "item": "DOC-05 effect Admission、AO verdict、Release",
+          "gate": "AO / Release Owner"
+        }
+      ],
+      "denominator_sequenced": [
+        {
+          "item": "221 cases / G-A..G-H / AUD-24 / 18 PI-10 PD-64-129 trace",
+          "approach": "先出適用性簽核（applicable vs lawful N/A），再對 applicable 抽樣真跑，最後才全量；不對未簽核分母跑測試"
+        },
+        {
+          "item": "checker/dispatcher 通道（nonce、timeout partial stdout+stderr、long-prompt file/stdin）",
+          "approach": "與 R7-04 合併成單一 ChangeSet"
+        }
+      ],
+      "documentation_fix": [
+        {
+          "item": "20 條 KP *-R04 極性缺陷",
+          "owner": "KP Policy Owner",
+          "note": "先隔離自動匯入，已在本輪 contract 以 QUARANTINE 記錄"
+        },
+        {
+          "item": "source #6 active vs historical",
+          "owner": "PIPD Source Owner"
+        },
+        {
+          "item": "94>60 refs",
+          "note": "維持 soft warning，不得升硬門（ACC-RQ08）"
+        }
+      ],
+      "tooling_defects_recorded": [
+        {
+          "item": "HGK taskspec id = project_id 末段 → 跨專案 UNIQUE 碰撞；workorder 准入讀 ambient cwd 的 git HEAD",
+          "owner": "HGK Lifecycle Owner"
+        },
+        {
+          "item": "dispatcher ERR_NO_ARM_EMITTED_NONCE（nonce 走 agent_message 通道）",
+          "owner": "HGK Lane Owner"
+        }
+      ],
+      "no_action_recorded": [
+        "8 個 NOT_RUN mutations 維持 NOT_RUN",
+        "R6 失敗 receipts 與 checker 暫態寫入事件維持原樣記錄"
+      ]
+    },
+    "q2_start_r7": {
+      "decision": "YES — 以有界 slice 開跑",
+      "slice": "R7-0 = R7-02 + R7-03（P0 兩項）",
+      "not_this_round": "R7-01/04/05/06/07/08/09 立 TaskSpec/Issue，不本輪執行",
+      "why": "唯二會使後續驗收失去意義的路徑；其餘項目成本高且不改變本輪結論，一次全做即過度工程（EIA §7 N/A）"
+    },
+    "q3_publish_workspace_files": {
+      "decision": "YES — 以新前綴發布，不回寫已合併封存",
+      "shape": "新分支 + Draft PR，prefix EVIDENCE/CNV-PIPD-LS-SP-20261015-R7/，內含 R6R7 closure 三收據（讀回、合併結算、M3 核准＋final-head 掃描）、FAR 研究產物、R7-0 的 writer/checker 證據",
+      "why": "外部驗收官的驗收輸入必須存在於 REPO 內且可重現；PR 留言易失且非版本化",
+      "authority": "需 Owner 對新 prefix 的單一授權（本次訊息已授權執行；紀錄為 Owner 授權）"
+    }
+  }
+}

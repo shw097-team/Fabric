@@ -1,0 +1,22 @@
+schema: LOGICAL_FAR_CANDIDATE_RESEARCH_V1
+run_id: FAR-20261011-009-live-worktree-relocation
+terminal: CANDIDATE_DECISION
+status: CANDIDATE_ONLY_NOT_AUTHORITY
+recommendation:
+  action: DEFER
+  target: C:/Projects/Agent_Workspace/PIPD-postrelease-wt
+  move_to: C:/Projects/Agent_Workspace/PIPD/worktrees/postrelease-wt
+  necessity: LOW
+  resistance: NOT_CHEAP
+  upstream_conformance: DOES_NOT_CONFORM
+  trigger: ROUND_CLOSE_OR_HOLDER_EXIT
+  executed: true
+  executed_form: >-
+    the deferral was materialised as an intentional, documented state (trigger + command + rationale)
+    in workspace-migration-20261011.json and the round handover; NO directory was moved, no process was
+    killed
+recommendation_confidence: MEDIUM_HIGH
+alternative_if_owner_overrides:
+  action: MOVE_NOW
+  prerequisite: release the directory-node lock (close the holder) — not performed here
+nonclaims: [no_holder_identified_with_certainty, no_process_killed, no_relocation_performed]

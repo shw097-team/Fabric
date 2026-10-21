@@ -1,0 +1,41 @@
+{
+ "workorder_id": "FAR-WO-20261011-009",
+ "run_id": "FAR-20261011-009-live-worktree-relocation",
+ "task_class": "LIVE_GOVERNED_ARTEFACT_RELOCATION_DECISION",
+ "primary": "session main loop (hermes agent runtime)",
+ "challenger": "NOT_RUN",
+ "provider_identity_digest": "provider not recorded by the runtime for the main loop; disclosed as NOT_RUN rather than asserted",
+ "terminal": "CANDIDATE_DECISION",
+ "open_questions": [
+  "OQ1",
+  "OQ2"
+ ],
+ "usage": {
+  "web_fetches": 0,
+  "spine_reads": 1,
+  "local_measurements": 8,
+  "provider_lane_calls": 0
+ },
+ "tri_source_coverage": {
+  "memory": "COUNTED",
+  "knowledge": "COUNTED",
+  "web": "DECLARED_ABSENT"
+ },
+ "nonclaims": [
+  "candidate result, not authority",
+  "no relocation performed",
+  "no process killed",
+  "independent challenge lane NOT_RUN"
+ ],
+ "verdict": "DEFER_TO_ROUND_CLOSE (executed as a documented intentional deferral)",
+ "source_denominator_digest": "1336666879993dca46df8191c89f44ea00b0fe321c0634a09c1587bbd7996b6c",
+ "claim_ledger_digest": "30546f43bad44ab8b9493dd3886b9166848da7bf45eda310ae4d0df6118844b9",
+ "candidate_digest": "e1d3edc27bdd06f76edef9036d9413b2fe04d9294a83c49f9909ecd6260a0876",
+ "synthesis_digest": "664878f2e35bc8d56fc36a4e35f66bf88b1c107f00684ec773af615ba93561a6",
+ "md_hygiene": {
+  "literal_None_in_synthesis": false,
+  "note": "no nested-field read bug; no literal None emitted"
+ },
+ "artifact_count": 21,
+ "generated_utc": "2026-10-11T15:25:00Z"
+}

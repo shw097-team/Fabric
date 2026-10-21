@@ -1,0 +1,41 @@
+{
+ "schema": "FAR-SELF-EVOLUTION-DELTA/1",
+ "run_id": "FAR-20261016-017-s4r6-residual-closure",
+ "skill_updates": [
+  {
+   "skill": "hgk-governed-execution",
+   "change": "before the first push of a round branch, extract the target repository's own governed write-set classifier (the ALLOWED/DENIED regexes and the declared BASE) and run it against `git diff --name-only BASE...HEAD`. Reproducing a red gate locally is cheaper than discovering it from a check-run, and it means the reviewer learns the round's scope from the round."
+  },
+  {
+   "skill": "hgk-governed-execution",
+   "change": "keep the round's evidence packet on a dedicated evidence branch, not on the product branch: a governed write set should equal the product change. When an allowance genuinely must widen for a file the work order names, do it as ONE named line plus a disclosure, never a prefix."
+  },
+  {
+   "skill": "hgk-lifecycle-admission",
+   "change": "before filing or fixing a control-plane inconsistency, read the declaration that created it (`declared_by`, registry `status`). A pool ordering recorded as OWNER_ORDERED_IN_FORCE is owner policy: obtain the arm you need by identity and record the divergence; do not edit the plane."
+  },
+  {
+   "skill": "adversarial-verification-rounds",
+   "change": "classify every checker NOT_RUN as subject-property vs harness-capability, and close the harness ones inside the contract (escalated sandbox + guard root) before accepting a bounded verdict. Also re-run a new guard against the PRE-REPAIR tree: mutation cases only prove the check can fail, not that it would have caught the defect."
+  }
+ ],
+ "new_round_assets": [
+  "far-r17/run_lane.py (parameterised lane runner: lane, brief, out, logdir, cwd, rank, arm + extra flags; the brief is passed as argv so quoting cannot corrupt it)",
+  "tests/test_r6_doc_identity_guard.py (9 tests: 5 real-document checks + 4 paired mutations; auto-wired by the existing ci suite)",
+  "far-r17/ (FAR-017 run: DECISION_QUESTION, METHOD, FINDINGS 14 rows, VERDICT with a ranked action set, RESIDUAL_UNIVERSE 37 rows, DEFECT_DOSSIER, SESSION_CLOSEOUT_AND_HANDOVER)"
+ ],
+ "openspec_delta": "pipd-r17-install-doc-identity-guard (3 ADDED requirements, 4 scenarios, validate --strict valid)",
+ "far_continuity": {
+  "extends": ["FAR-20261016-014-r5r3-closeout-learning", "FAR-20261016-016-pipd-s4r6-closeout-learning"],
+  "prior_open_items_now_resolved": [
+   "lane marker-scan semantics -> satisfied by naming the delivery WorkOrder in the brief (round 016) and now also used for the escalated dispatch",
+   "canonical SoD route repair -> the collision is confirmed as OWNER_ORDERED_IN_FORCE; the round pins the arm by identity instead of editing the plane",
+   "checker capability gap -> closed this round by an escalated sandbox bounded by a guard root"
+  ],
+  "still_open": [
+   "the lane pool's default VERIFY arm remains the writer's model until an owner order reverses it",
+   "UL-01: the canonical dispatcher still lacks the R10 nonce/per-turn-receipt repairs",
+   "RS-03/RS-04/RS-05: unticked or dead-premise records in the governance tree"
+  ]
+ }
+}

@@ -1,0 +1,21 @@
+schema: LOGICAL_FAR_RESEARCH_REQUEST_V1
+run_id: FAR-20261011-009-live-worktree-relocation
+generated_utc: "2026-10-11T15:20:00Z"
+fields:
+  workorder_ref:
+    id: FAR-WO-20261011-009
+    digest: "PENDING_HGK_ADMISSION_READ_ONLY_RESEARCH"
+  decision_question: >-
+    Once the file lock on C:/Projects/Agent_Workspace/PIPD-postrelease-wt clears, should that worktree be
+    relocated into C:/Projects/Agent_Workspace/PIPD/worktrees/ — judged by low resistance, conformity with
+    upstream PIPD, and high engineering necessity?
+  owner: WORKSPACE_OWNER (granted execution authority for this question)
+  task_class: LIVE_GOVERNED_ARTEFACT_RELOCATION_DECISION
+  source_requirements:
+    - memory: HGK Shared Spine taskspec/WorkOrder rows that bind absolute paths (read-only)
+    - knowledge: live git + filesystem probes on the worktree; the round's evidence tree; the acceptance artifact
+    - web: none required (no external question) — declared absent rather than padded
+  freshness_requirement: LIVE_MEASUREMENT_REQUIRED
+  budget_ref: LOCAL_READ_ONLY; no provider lane dispatched
+  security_boundary_ref: SEC-SRC-01..08; no credential read; no process killed
+  expected_decision_output: MOVE_NOW / DEFER_TO_ROUND_CLOSE / LEAVE_PERMANENTLY, with the executed form if moved

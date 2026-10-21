@@ -1,0 +1,8 @@
+alternative_id	alternative	rejection_reason	evidence_refs
+RA-01	relax the hardened TraceLink check so the legal-link test passes	reopens the hole the R7-0 hardening closed; the fix must supply the binding, not delete the check	CL-03
+RA-02	rewrite the published R8 commit to correct the attribution errors	would invalidate the independent receipts bound to those bytes	DG-02
+RA-03	edit the canonical registry without a WorkOrder	a control-plane mutation needs owner scope + WorkOrder + DOC05 admission	CL-08
+RA-04	create a second Windows identity to separate maker and checker	not available to the agent; owner decision	FG-04
+RA-05	manufacture the 221 acceptance-case results or a Fresh G1 certification	fabrication; human gates stay with the owner	CL-08
+RA-06	re-admit the R9 project under the original id after the taskspec collision	plan() re-derives the same colliding ids	R9-F1
+RA-07	delete the 21 canonical-only files during the apply to match the slim design exactly	C6 forbids a deliberate deletion and the retained files cost nothing the round needs	CL-09

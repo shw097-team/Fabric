@@ -1,0 +1,6 @@
+claim_id	claim	class	evidence	counterevidence_probe	outcome	confidence
+CL1	Deleting C:/Projects/Agent_Workspace/PIPD-r7-release destroys no commit that is not recoverable	REVERSIBILITY	S4,S5,S8	searched for a ref-target present only here (Q3), and for reachability of the clone-only branch tip (Q4)	ZERO_RELEVANT_COUNTEREVIDENCE_HIT	HIGH
+CL2	It destroys no uncommitted work	UNIQUENESS	S3 (clean, no stashes, no untracked)	status --porcelain and stash list both empty	ZERO_RELEVANT_COUNTEREVIDENCE_HIT	HIGH
+CL3	It reclaims approximately 85 MB	COST	S6	du re-run	ZERO_RELEVANT_COUNTEREVIDENCE_HIT	HIGH
+CL4	It conforms to upstream practice	UPSTREAM_CONFORMANCE	S3,S1	no PIPD/Fabric/skill requirement binding the clone	ZERO_RELEVANT_COUNTEREVIDENCE_HIT	MEDIUM_HIGH
+CL5	Recreating an equivalent clone is cheap	REVERSIBILITY	S3,S8	clone source is a local path, so no network or credential is needed	ZERO_RELEVANT_COUNTEREVIDENCE_HIT	HIGH

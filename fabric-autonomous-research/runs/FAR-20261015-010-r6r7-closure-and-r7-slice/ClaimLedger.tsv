@@ -1,0 +1,8 @@
+claim_id	claim	confidence	evidence_ref
+CL-01	M04/M06/M16 的反例不是測試資料問題，而是 bound validator 缺少三類 predicate（profile assurance 綁定、oracle expected 綁定、trace digest 重算）	HIGH	R6_DELIVERY/RUNNERS/probe_mutations.py:84-175 皆以 report['verdict']=='FAIL' 判定；三個未偵測案例的 tamper 不在 validator 檢核面
+CL-02	這三類漏拒會讓後續任何「獨立驗收」在假綠基礎上成立，因此優先序高於 221 live 全跑	HIGH	EIA §4.1 HIGH 級局部反例；EIA §7 將 M04/M06/M16 列為 P0（下次正式安全/Runtime Admission 前）
+CL-03	checker 可寫 candidate root 是權限防線失效而非模型選擇問題	HIGH	EIA §4.2 明示『模型／lane 名稱 ≠ filesystem least-privilege』；R6 attempt 3 實測寫入
+CL-04	已合併的 R6 封存必須保持 byte-stable，新紀錄不得回寫既有 prefix	MEDIUM	R6R7_POST_COMMIT_READBACK.json 已把 581 blob id 綁定在 main；回寫會使既有外部讀回失效
+CL-05	三個 workspace-only 收據若只存在 PR 留言，外部驗收官的驗收輸入不可重現	MEDIUM	指揮薄 §9 要求「最後的 HEAD/SHA/驗證結果存外部 PR receipt／comment 或 separate signed evidence」；檔案化可重現性更高
+CL-06	221 live 全跑在本輪屬於過度工程：在適用性未簽核前全跑會產生假 PASS/假 FAIL	MEDIUM	EIA §5「不適用者須以已核定的理由…聲明 N/A」
+CL-07	Fresh G1／DOC-05／AO 是人力授權閘門，任何自動化模型都不能代替	HIGH	EIA §9 M3 與 §10 分層裁決；KP01 authority

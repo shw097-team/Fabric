@@ -1,0 +1,302 @@
+I’ll verify the frozen checkout read-only, using external scratch space.
+
+
+The amendment is stage-c-only. I’ll independently classify paths, then run guarded tests.
+
+
+Both ranges pass classification; all adversarial misses are refused. `unittest` has no `-p no:cacheprovider` option, so I’ll use the exact commands with bytecode disabled.
+
+
+Tests pass, but `TMPDIR` overrides scratch. I’ll correct it and rerun.
+
+
+lane: `VERIFY_SECURITY` / `VERIFY_ONLY`
+model: Not exposed by this runtime; no specific model identity asserted.
+
+subject_commit: `127ec1ca97c71d0437f5b149a6e7d540d0cb3bba`
+subject_tree: `62eef9d8059d307ae373de63519a37551fa14854`
+
+guard_root_status_before:
+```text
+<empty stdout>
+exit_code=0
+```
+
+guard_root_status_after:
+```text
+<empty stdout>
+exit_code=0
+```
+
+**C1 — PASS**
+
+```text
+git rev-parse HEAD
+127ec1ca97c71d0437f5b149a6e7d540d0cb3bba
+
+git rev-parse HEAD^{tree}
+62eef9d8059d307ae373de63519a37551fa14854
+
+git branch --show-current
+fix/s4r6-closeout-doc-identity-and-update-route-20261016
+
+git diff --name-only d3bd5456afbff21a8c8837994a49f57be3e1b97e..HEAD
+.github/workflows/public-plugin-verify.yml
+docs/USER_GUIDE.md
+docs/install/README.md
+tests/test_r6_doc_identity_guard.py
+
+git diff --name-only HEAD^ HEAD
+.github/workflows/public-plugin-verify.yml
+
+git diff --check
+<empty stdout>
+exit_code=0
+
+git diff --check d3bd5456afbff21a8c8837994a49f57be3e1b97e HEAD
+<empty stdout>
+exit_code=0
+```
+
+The amendment matches the commit message: one exact-path alternative, corresponding plant-list changes, and explanatory comments. Its parent diff is confined to stage-c.
+
+**C2 — PASS**
+
+Verbatim stage-c declarations:
+
+```bash
+ALLOWED='^(src/pipd_ls_sp/|schemas/|tests/|fixtures/|pyproject\.toml$|tools/build_dist\.py$|dist/|README\.md$|docs/install/|docs/USER_GUIDE\.md$|docs/RELEASE_TUPLE\.json$|PREVIEW_NOTES_v0\.1\.1-preview\.4\.md$|\.github/workflows/public-plugin-verify\.yml$)'
+DENIED='^(skills/|packaging/public-plugin/)'
+REFUSED_PLANTS='skills/pipd-core/SKILL.md packaging/public-plugin/plugin.json src/other_package/thing.py tools/build_public_plugin.py'
+ALLOWED_PLANTS='src/pipd_ls_sp/requirements.py schemas/ClaimCeiling.schema.json tests/test_claim_ceiling_shape.py fixtures/REQ-NEG-PHRASES/source.txt dist/pipd_ls_sp-0.1.1a4-py3-none-any.whl README.md docs/install/README.md docs/RELEASE_TUPLE.json docs/USER_GUIDE.md'
+```
+
+Verbatim amendment comment blocks:
+
+```text
+              # KNOWN LIMIT, stated so a reader does not mistake this arm for a boundary it cannot be:
+              # an arm that must allow `src/` cannot also refuse it, and any branch may set STAGE
+              # itself. So this arm's real control is the review of its own diff - the ALLOWED set must
+              # not be widened to cover a path the round's WorkOrder does not grant. An independent
+              # challenge of this amendment recorded exactly that, and it is carried as an open item.
+              # AMENDMENT R5R3-20261016 (named, reviewed in the same pull request that needs it, and
+              # not presented as a pre-existing gate): docs/RELEASE_TUPLE.json is added to this arm.
+              # Reason measured on main: docs/install/README.md already tells a reader that the
+              # preview.4 identities live in the v0.1.1-preview.4 entry of docs/RELEASE_TUPLE.json,
+              # while that entry did not exist - the documented route pointed at nothing. One file is
+              # added, not a prefix, and the arm still refuses skills/ and packaging/public-plugin/.
+              # AMENDMENT S4-R6-20261016 (named, reviewed in the same pull request that needs it, and
+              # not presented as a pre-existing gate): docs/USER_GUIDE.md is added to this arm.
+              # Reason: this round's WorkOrder names that file (the install SSOT and the user guide
+              # both carried a version-identity confusion), and the reviewer-facing fix cannot be
+              # delivered from one of them alone. It is ONE file, not a prefix, and it is the only
+              # path this round adds: the packet the round also produces is deliberately NOT granted
+              # here and does not ride on the product branch, because a round's own receipts inside a
+              # governed product write set is the exemption this arm exists to refuse.
+```
+
+Independent extraction/comparison:
+
+```text
+ALLOWED_ADDED: ['docs/USER_GUIDE\\.md$']
+ALLOWED_REMOVED: []
+stage-a_UNCHANGED: True
+stage-b_UNCHANGED: True
+```
+
+Stage-b already contains the identical `docs/USER_GUIDE\.md$` alternative; there is no difference in that alternative’s spelling or anchoring. The complete stage-b and stage-c allowlists remain stage-specific, not identical.
+
+Plant evaluation:
+
+```text
+REFUSED_PLANTS: skills/pipd-core/SKILL.md FROZEN REGEX_MATCH=False
+REFUSED_PLANTS: packaging/public-plugin/plugin.json FROZEN REGEX_MATCH=False
+REFUSED_PLANTS: src/other_package/thing.py OUTSIDE_ALLOWED_SET REGEX_MATCH=False
+REFUSED_PLANTS: tools/build_public_plugin.py OUTSIDE_ALLOWED_SET REGEX_MATCH=False
+ALLOWED_PLANTS: src/pipd_ls_sp/requirements.py ALLOWED REGEX_MATCH=True
+ALLOWED_PLANTS: schemas/ClaimCeiling.schema.json ALLOWED REGEX_MATCH=True
+ALLOWED_PLANTS: tests/test_claim_ceiling_shape.py ALLOWED REGEX_MATCH=True
+ALLOWED_PLANTS: fixtures/REQ-NEG-PHRASES/source.txt ALLOWED REGEX_MATCH=True
+ALLOWED_PLANTS: dist/pipd_ls_sp-0.1.1a4-py3-none-any.whl ALLOWED REGEX_MATCH=True
+ALLOWED_PLANTS: README.md ALLOWED REGEX_MATCH=True
+ALLOWED_PLANTS: docs/install/README.md ALLOWED REGEX_MATCH=True
+ALLOWED_PLANTS: docs/RELEASE_TUPLE.json ALLOWED REGEX_MATCH=True
+ALLOWED_PLANTS: docs/USER_GUIDE.md ALLOWED REGEX_MATCH=True
+ADVERSARIAL: S4_R6_CLOSEOUT_RETURN/ OUTSIDE_ALLOWED_SET
+ADVERSARIAL: S4_R6_CLOSEOUT_RETURN/receipt.json OUTSIDE_ALLOWED_SET
+ADVERSARIAL: S4_R6_CLOSEOUT_RETURN/a/b.txt OUTSIDE_ALLOWED_SET
+```
+
+The evidence directory is still refused through absence from `ALLOWED`; it is not silently accepted or excluded.
+
+**C3 — PASS**
+
+Extracted directly from the workflow, without executing its classifier or importing repository helpers:
+
+```text
+STAGE_C_BASE_SHA: f4021aeff9c016cfb14f17e68a0c570ed4e825c5
+EXCLUDED_PREFIXES='^\.hgk/'
+```
+
+`ALLOWED` and `DENIED` are reproduced under C2. Independent classification applied traversal refusal, exclusion, denial, then positive allowance, in that order.
+
+```text
+git merge-base --is-ancestor f4021aeff9c016cfb14f17e68a0c570ed4e825c5 HEAD
+<empty stdout>
+exit_code=0
+
+RANGE_RESULT: f4021aeff9c016cfb14f17e68a0c570ed4e825c5...HEAD TOTAL=27 {'ALLOWED': 27} PASS
+RANGE_RESULT: f4021aeff9c016cfb14f17e68a0c570ed4e825c5...d3bd5456afbff21a8c8837994a49f57be3e1b97e TOTAL=25 {'ALLOWED': 25} PASS
+```
+
+Both ranges have zero excluded paths, frozen-path violations, traversal violations, or paths that would produce `UPGRADE_WROTE_OUTSIDE_ALLOWED_SET`. The amended arm covers both the frozen branch and the supplied round-start main commit.
+
+**C4 — PASS**
+
+```text
+git diff --stat 5defc64f1177a1d6f32502c5479c65cf9a001858 127ec1ca97c71d0437f5b149a6e7d540d0cb3bba -- docs/install/README.md tests/test_r6_doc_identity_guard.py
+<empty stdout>
+exit_code=0
+```
+
+Those two paths are byte-identical between the previously verified sibling and this subject. This establishes content equivalence, not a fresh claim about any unexamined earlier dispatch evidence.
+
+**C5 — PASS**
+
+```text
+x/docs/USER_GUIDE.md REFUSED
+docs/USER_GUIDE.md ACCEPTED
+docs/USER_GUIDE.md.bak REFUSED
+docs/USER_GUIDEB.md REFUSED
+docs/user_guide.md REFUSED
+```
+
+Method: the independent stdin Python probe extracted stage-c’s quoted `ALLOWED` from the workflow, compiled it with case-sensitive Python `re`, and evaluated `re.search(allowed, path)` without flags.
+
+Reproduction core:
+
+```python
+text = Path(".github/workflows/public-plugin-verify.yml").read_text(encoding="utf-8")
+body = re.search(
+    r"(?m)^            stage-c\)\n(.*?)^              ;;", text, re.S
+).group(1)
+allowed = re.search(r"ALLOWED='([^']*)'", body).group(1)
+print(bool(re.search(allowed, path)))
+```
+
+The outer `^` prevents the nested-path match; the alternative’s `$` prevents suffix extensions; `\.` requires a literal dot; case-sensitive matching rejects the case variant. No tested miss was accepted.
+
+**C6 — PASS**
+
+Acceptance reruns used the specified interpreter from the repository root:
+
+```text
+sys.executable=C:\Projects\Agent_Workspace\HG-KSEOS\.venv\Scripts\python.exe
+TEMP=C:/Users/user/AppData/Local/Temp/hgk-r17-checker-final
+TMP=C:/Users/user/AppData/Local/Temp/hgk-r17-checker-final
+TMPDIR=C:/Users/user/AppData/Local/Temp/hgk-r17-checker-final
+tempfile=C:\Users\user\AppData\Local\Temp\hgk-r17-checker-final
+dont_write_bytecode=True
+```
+
+Focused command:
+
+```text
+Ran 9 tests in 0.133s
+
+OK
+FOCUSED_UNITTEST_EXIT=0
+```
+
+Combined command:
+
+```text
+Ran 44 tests in 1.196s
+
+OK
+COMBINED_UNITTEST_EXIT=0
+```
+
+Boundary qualifications:
+- The first runs also passed, but an inherited `TMPDIR` directed `tempfile` to the parent Temp directory. Those runs are **excluded from acceptance evidence**; the results above are corrected reruns with all three temp variables set.
+- `-p no:cacheprovider` is a pytest option, not a valid option for these `unittest` commands. The exact requested unittest commands ran without it; `PYTEST_ADDOPTS=-p no:cacheprovider` was set, but no pytest run is claimed.
+- Whole discovery: **NOT_RUN**, as instructed. No root-writing test is included in the acceptance evidence.
+
+**adversarial_findings**
+- No amendment-induced overmatch found among the required probes.
+- The addition is one exact-file alternative, not a prefix.
+- All refused and allowed plants agree with the amended regex.
+- Round receipts remain outside the allowed set.
+- Existing disclosed limitation remains: stage selection and allowlist edits rely on review; this pass does not establish a tamper-proof policy boundary.
+
+**command_receipts**
+
+All repository commands used the stated repository as their working directory or explicit `git -C` target.
+
+```text
+git -C C:/Projects/Agent_Workspace/PIPD-S4R6-wt status --porcelain
+exit=0; before, after tests, and final; stdout empty each time
+
+git rev-parse HEAD
+exit=0
+
+git rev-parse HEAD^{tree}
+exit=0
+
+git branch --show-current
+exit=0
+
+git diff --name-only d3bd5456afbff21a8c8837994a49f57be3e1b97e..HEAD
+exit=0
+
+git diff --name-only HEAD^ HEAD
+exit=0
+
+git diff --check
+exit=0
+
+git diff --check d3bd5456afbff21a8c8837994a49f57be3e1b97e HEAD
+exit=0
+
+git show -1 --format=fuller --stat
+exit=0
+
+git diff HEAD^ HEAD -- .github/workflows/public-plugin-verify.yml
+exit=0
+
+git show HEAD^:.github/workflows/public-plugin-verify.yml
+exit=0
+
+git merge-base --is-ancestor f4021aeff9c016cfb14f17e68a0c570ed4e825c5 HEAD
+exit=0
+
+git diff --name-only f4021aeff9c016cfb14f17e68a0c570ed4e825c5...HEAD
+exit=0
+
+git diff --name-only f4021aeff9c016cfb14f17e68a0c570ed4e825c5...d3bd5456afbff21a8c8837994a49f57be3e1b97e
+exit=0
+
+git diff --stat 5defc64f1177a1d6f32502c5479c65cf9a001858 127ec1ca97c71d0437f5b149a6e7d540d0cb3bba -- docs/install/README.md tests/test_r6_doc_identity_guard.py
+exit=0
+
+git diff d3bd5456afbff21a8c8837994a49f57be3e1b97e HEAD -- docs/USER_GUIDE.md docs/install/README.md
+exit=0
+
+C:/Projects/Agent_Workspace/HG-KSEOS/.venv/Scripts/python.exe -
+exit=0; independent extraction/classification probe supplied through stdin
+
+C:/Projects/Agent_Workspace/HG-KSEOS/.venv/Scripts/python.exe -m unittest tests.test_r6_doc_identity_guard -v
+exit=0; corrected acceptance rerun: 9 tests, OK
+
+C:/Projects/Agent_Workspace/HG-KSEOS/.venv/Scripts/python.exe -m unittest tests.test_s4r2m_docs_route tests.test_r5r3_install_route_identity tests.test_s4ext_release_provenance tests.test_r6_doc_identity_guard
+exit=0; corrected acceptance rerun: 44 tests, OK
+```
+
+Preparation errors, not acceptance evidence: two scratch-only `apply_patch` attempts failed before creating their proposed files; the first patch exit was not captured, the second was `1`. Both subsequent attempts to invoke the nonexistent scratch script exited `2`. The successful independent probe instead ran entirely through stdin. No repository patch was attempted.
+
+checker_id: `WO-TS-CLOSEOUT-04 / FAR-R17 / independent-final-checker`
+verdict: **PASS**
+
+claim_ceiling: This verdict establishes C1–C6 for the frozen commit using the reported independent checks and corrected scoped test reruns, but does not establish whole-suite success, hosted-CI success, host qualification, release validity, publication authorization, or strict scratch-directory compliance for the excluded initial runs.
+
+HGK_LANE_NONCE_OK

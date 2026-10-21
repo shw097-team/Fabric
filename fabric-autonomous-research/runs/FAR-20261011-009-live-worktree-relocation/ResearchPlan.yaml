@@ -1,0 +1,11 @@
+schema: LOGICAL_FAR_RESEARCH_PLAN_V1
+run_id: FAR-20261011-009-live-worktree-relocation
+subquestions:
+  - SQ1: What is actually holding the lock — content, or the directory itself?
+  - SQ2: What does this worktree hold that nothing else holds?
+  - SQ3: Which recorded artefacts bind its absolute path, and what breaks if it moves?
+  - SQ4: Does upstream PIPD require worktrees to live inside the repository?
+  - SQ5: What is the necessity of the move, measured against the cost of getting past the lock?
+claim_classes: [LOCK_CAUSE, UNIQUENESS, PATH_BINDING, UPSTREAM_CONFORMANCE, NECESSITY_VS_RESISTANCE]
+method: R2 tri-source retrieval -> R3 extraction -> R4 analysis -> R5 self-adversarial challenge
+independent_challenge_lane: NOT_RUN (see R5 disclosure)

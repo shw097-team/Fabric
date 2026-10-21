@@ -1,0 +1,429 @@
+{
+  "schema": "FAR-VERDICT/1",
+  "run_id": "FAR-20261016-022-unmerged-candidate-merge-ruling",
+  "round": "PIPD-UNMERGED-CANDIDATES-20261016",
+  "origin_main": "d3bd5456afbff21a8c8837994a49f57be3e1b97e",
+  "universe": {
+    "unmerged_branches": 21,
+    "open_prs": {
+      "18": "ready",
+      "17": "ready",
+      "15": "draft",
+      "14": "draft"
+    }
+  },
+  "ruling_summary": {
+    "MERGE_NOW": [
+      "fix/s4r6-closeout-doc-identity-and-update-route-20261016 (PR #18)",
+      "docs/r5r3-asset-reproducibility-readback (PR #17)",
+      "docs/repo-state-and-handover-refresh-20261016 (本回合產出)"
+    ],
+    "MERGE_NOW_count": 3,
+    "EVIDENCE_ONLY_count": 9,
+    "DO_NOT_MERGE_count": 8,
+    "SUPERSEDED_count": 0,
+    "NOT_RECOMMENDED_count": 1
+  },
+  "merge_now_detail": {
+    "fix/s4r6-closeout-doc-identity-and-update-route-20261016": {
+      "as": "PR #18",
+      "why": "外部報告 §0 明示 MERGE_APPROVED_SCOPE_ONLY；4 檔（docs/tests/.github）±4 commit；相對現行 main 無衝突；PR 上 CI 已通過（635 OK）",
+      "necessity": "main 的安裝文件身份與更新路徑目前是錯的；不併則對外文件繼續失真",
+      "risk": "併後 main 才首次擁有 doc-identity guard，須確認併後全套測試綠"
+    },
+    "docs/r5r3-asset-reproducibility-readback": {
+      "as": "PR #17",
+      "why": "外部報告 §0 明示 MERGE_APPROVED_SCOPE_ONLY；單檔 readback；無衝突",
+      "necessity": "把 .4 資產的可重製性回證歸位到 main；不影響任何程式路徑",
+      "risk": "無（單檔 docs）"
+    },
+    "docs/repo-state-and-handover-refresh-20261016": {
+      "as": "本 SESSION 產出（無 PR）",
+      "why": "3 檔 docs-only（README + ADR-0008/0009）；無衝突；本回合已具：對照組（guard 7/4 在 main 上同樣紅 ⇒ 變更中性）＋自 origin 位元獨立複驗 PASS",
+      "necessity": "首頁現況節停留在 2026-10-14 且車道模型過期；不併則外部團隊讀到過期現況",
+      "risk": "與 PR #18 同改 docs 家族（不同檔），須以 G2 證明互不破壞"
+    }
+  },
+  "classified": {
+    "DO_NOT_MERGE": [
+      "chore/s4post-verification-harness",
+      "feat/s4post-triple-upgrade-20261012",
+      "feat/s4post-triple-upgrade-20261012-r2",
+      "feat/s4r3-stage-b-distribution-20261013",
+      "feat/s4r5z-evidence-readme-20261014",
+      "fix/s4-external-challenge-20261012-r1-provenance-trace",
+      "r5-s4-readme",
+      "r5z-evidence-return-20261014"
+    ],
+    "EVIDENCE_ONLY": [
+      "evidence/cnv-pipd-ls-sp-20261015-r6",
+      "evidence/cnv-r7-0-validator-hardening-20261015",
+      "r5-s4-evidence",
+      "r5r-evidence-return-20261014",
+      "r5r3-closeout-evidence-20261016",
+      "r5r3-evidence-return-20261016",
+      "r6-closeout-evidence-20261016",
+      "repo-hygiene-evidence-20261016",
+      "s4-final-closeout-evidence-20261016"
+    ],
+    "MERGE_NOW": [
+      "docs/r5r3-asset-reproducibility-readback",
+      "docs/repo-state-and-handover-refresh-20261016",
+      "fix/s4r6-closeout-doc-identity-and-update-route-20261016"
+    ],
+    "NOT_RECOMMENDED": [
+      "fix/s4post-far-adjudication-20261012"
+    ]
+  },
+  "branch_rulings": [
+    {
+      "branch": "evidence/cnv-pipd-ls-sp-20261015-r6",
+      "ahead": 4,
+      "adds_files": 567,
+      "adds_stat": "567 files changed, 65305 insertions(+)",
+      "top_dirs": [
+        "EVIDENCE"
+      ],
+      "merge_conflict_with_main": false,
+      "ruling": "EVIDENCE_ONLY"
+    },
+    {
+      "branch": "r5z-evidence-return-20261014",
+      "ahead": 16,
+      "adds_files": 368,
+      "adds_stat": "368 files changed, 38169 insertions(+)",
+      "top_dirs": [
+        ".hgk",
+        "PIPD_S4_R4_EVIDENCE_RETURN",
+        "PIPD_S4_R5Y_GPT_PLUGIN_EVIDENCE_RETURN",
+        "PIPD_S4_R5Z_SESSION_CONFORMANCE_RETURN",
+        "PIPD_S4_R6_FAR_AND_ALIGNMENT_RETURN",
+        "PIPD_S4_R7_RETURN",
+        "README.md"
+      ],
+      "merge_conflict_with_main": true,
+      "ruling": "DO_NOT_MERGE"
+    },
+    {
+      "branch": "feat/s4r5z-evidence-readme-20261014",
+      "ahead": 2,
+      "adds_files": 208,
+      "adds_stat": "208 files changed, 24819 insertions(+)",
+      "top_dirs": [
+        ".hgk",
+        "PIPD_S4_R4_EVIDENCE_RETURN",
+        "PIPD_S4_R5Y_GPT_PLUGIN_EVIDENCE_RETURN",
+        "README.md"
+      ],
+      "merge_conflict_with_main": true,
+      "ruling": "DO_NOT_MERGE"
+    },
+    {
+      "branch": "fix/s4-external-challenge-20261012-r1-provenance-trace",
+      "ahead": 11,
+      "adds_files": 174,
+      "adds_stat": "174 files changed, 70806 insertions(+), 68 deletions(-)",
+      "top_dirs": [
+        ".hgk",
+        "README.md",
+        "dist",
+        "docs",
+        "examples",
+        "openspec",
+        "schemas",
+        "src",
+        "tests",
+        "tools"
+      ],
+      "merge_conflict_with_main": true,
+      "ruling": "DO_NOT_MERGE"
+    },
+    {
+      "branch": "repo-hygiene-evidence-20261016",
+      "ahead": 23,
+      "adds_files": 144,
+      "adds_stat": "144 files changed, 12741 insertions(+), 19 deletions(-)",
+      "top_dirs": [
+        "EVIDENCE_BRANCH_README.md",
+        "PIPD_REPO_HYGIENE_AND_HANDOVER_RETURN",
+        "S4_FINAL_PR18_EXECUTION_RETURN",
+        "S4_R6_CLOSEOUT_RETURN",
+        "docs",
+        "far-r17",
+        "openspec",
+        "tests"
+      ],
+      "merge_conflict_with_main": false,
+      "ruling": "EVIDENCE_ONLY"
+    },
+    {
+      "branch": "s4-final-closeout-evidence-20261016",
+      "ahead": 15,
+      "adds_files": 128,
+      "adds_stat": "128 files changed, 11819 insertions(+), 19 deletions(-)",
+      "top_dirs": [
+        "EVIDENCE_BRANCH_README.md",
+        "S4_FINAL_PR18_EXECUTION_RETURN",
+        "S4_R6_CLOSEOUT_RETURN",
+        "docs",
+        "far-r17",
+        "openspec",
+        "tests"
+      ],
+      "merge_conflict_with_main": false,
+      "ruling": "EVIDENCE_ONLY"
+    },
+    {
+      "branch": "r6-closeout-evidence-20261016",
+      "ahead": 11,
+      "adds_files": 114,
+      "adds_stat": "114 files changed, 10515 insertions(+), 19 deletions(-)",
+      "top_dirs": [
+        "EVIDENCE_BRANCH_README.md",
+        "S4_R6_CLOSEOUT_RETURN",
+        "docs",
+        "far-r17",
+        "openspec",
+        "tests"
+      ],
+      "merge_conflict_with_main": false,
+      "ruling": "EVIDENCE_ONLY"
+    },
+    {
+      "branch": "r5r3-closeout-evidence-20261016",
+      "ahead": 7,
+      "adds_files": 112,
+      "adds_stat": "112 files changed, 8227 insertions(+), 3 deletions(-)",
+      "top_dirs": [
+        ".gitattributes",
+        "R5R3_PREVIEW4_CLOSEOUT_20261016"
+      ],
+      "merge_conflict_with_main": false,
+      "ruling": "EVIDENCE_ONLY"
+    },
+    {
+      "branch": "r5r-evidence-return-20261014",
+      "ahead": 9,
+      "adds_files": 85,
+      "adds_stat": "85 files changed, 9228 insertions(+)",
+      "top_dirs": [
+        "PIPD_S4_R5R_PREVIEW4_EVIDENCE_RETURN",
+        "PIPD_S4_R5S_PREVIEW4_VERIFY_CLOSE"
+      ],
+      "merge_conflict_with_main": false,
+      "ruling": "EVIDENCE_ONLY"
+    },
+    {
+      "branch": "r5r3-evidence-return-20261016",
+      "ahead": 13,
+      "adds_files": 80,
+      "adds_stat": "80 files changed, 9665 insertions(+)",
+      "top_dirs": [
+        "R5R3_PREVIEW4_EVIDENCE_RETURN",
+        "openspec"
+      ],
+      "merge_conflict_with_main": false,
+      "ruling": "EVIDENCE_ONLY"
+    },
+    {
+      "branch": "chore/s4post-verification-harness",
+      "ahead": 18,
+      "adds_files": 76,
+      "adds_stat": "76 files changed, 9930 insertions(+), 292 deletions(-)",
+      "top_dirs": [
+        ".github",
+        ".hgk",
+        "README.md",
+        "openspec",
+        "packaging"
+      ],
+      "merge_conflict_with_main": true,
+      "ruling": "DO_NOT_MERGE"
+    },
+    {
+      "branch": "feat/s4post-triple-upgrade-20261012-r2",
+      "ahead": 17,
+      "adds_files": 76,
+      "adds_stat": "76 files changed, 9930 insertions(+), 292 deletions(-)",
+      "top_dirs": [
+        ".github",
+        ".hgk",
+        "README.md",
+        "openspec",
+        "packaging"
+      ],
+      "merge_conflict_with_main": true,
+      "ruling": "DO_NOT_MERGE"
+    },
+    {
+      "branch": "feat/s4r3-stage-b-distribution-20261013",
+      "ahead": 17,
+      "adds_files": 47,
+      "adds_stat": "47 files changed, 8389 insertions(+), 13 deletions(-)",
+      "top_dirs": [
+        ".github",
+        ".hgk",
+        "README.md",
+        "docs"
+      ],
+      "merge_conflict_with_main": true,
+      "ruling": "DO_NOT_MERGE"
+    },
+    {
+      "branch": "fix/s4post-far-adjudication-20261012",
+      "ahead": 3,
+      "adds_files": 17,
+      "adds_stat": "17 files changed, 47980 insertions(+), 41 deletions(-)",
+      "top_dirs": [
+        ".hgk",
+        "docs",
+        "tests",
+        "tools"
+      ],
+      "merge_conflict_with_main": false,
+      "ruling": "NOT_RECOMMENDED"
+    },
+    {
+      "branch": "evidence/cnv-r7-0-validator-hardening-20261015",
+      "ahead": 1,
+      "adds_files": 16,
+      "adds_stat": "16 files changed, 2848 insertions(+)",
+      "top_dirs": [
+        "evidence"
+      ],
+      "merge_conflict_with_main": false,
+      "ruling": "EVIDENCE_ONLY"
+    },
+    {
+      "branch": "feat/s4post-triple-upgrade-20261012",
+      "ahead": 1,
+      "adds_files": 7,
+      "adds_stat": "7 files changed, 1398 insertions(+)",
+      "top_dirs": [
+        ".hgk",
+        "packaging",
+        "tools"
+      ],
+      "merge_conflict_with_main": true,
+      "ruling": "DO_NOT_MERGE"
+    },
+    {
+      "branch": "fix/s4r6-closeout-doc-identity-and-update-route-20261016",
+      "ahead": 4,
+      "adds_files": 4,
+      "adds_stat": "4 files changed, 465 insertions(+), 23 deletions(-)",
+      "top_dirs": [
+        ".github",
+        "docs",
+        "tests"
+      ],
+      "merge_conflict_with_main": false,
+      "ruling": "MERGE_NOW"
+    },
+    {
+      "branch": "docs/repo-state-and-handover-refresh-20261016",
+      "ahead": 1,
+      "adds_files": 3,
+      "adds_stat": "3 files changed, 119 insertions(+), 10 deletions(-)",
+      "top_dirs": [
+        "README.md",
+        "docs"
+      ],
+      "merge_conflict_with_main": false,
+      "ruling": "MERGE_NOW"
+    },
+    {
+      "branch": "r5-s4-evidence",
+      "ahead": 1,
+      "adds_files": 2,
+      "adds_stat": "2 files changed, 145 insertions(+)",
+      "top_dirs": [
+        ".hgk"
+      ],
+      "merge_conflict_with_main": false,
+      "ruling": "EVIDENCE_ONLY"
+    },
+    {
+      "branch": "docs/r5r3-asset-reproducibility-readback",
+      "ahead": 1,
+      "adds_files": 1,
+      "adds_stat": "1 file changed, 14 insertions(+)",
+      "top_dirs": [
+        "docs"
+      ],
+      "merge_conflict_with_main": false,
+      "ruling": "MERGE_NOW"
+    },
+    {
+      "branch": "r5-s4-readme",
+      "ahead": 1,
+      "adds_files": 1,
+      "adds_stat": "1 file changed, 217 insertions(+), 71 deletions(-)",
+      "top_dirs": [
+        "README.md"
+      ],
+      "merge_conflict_with_main": true,
+      "ruling": "DO_NOT_MERGE"
+    }
+  ],
+  "execution_plan": [
+    {
+      "step": "M0",
+      "what": "admission + GSTACK route + OpenSpec + KANBAN"
+    },
+    {
+      "step": "M1",
+      "what": "scratch worktree at origin/main；依序 --no-ff 合併 #18 → #17 → docs 候選",
+      "guard": "每步 merge-tree 無衝突；不使用 force"
+    },
+    {
+      "step": "M2",
+      "what": "G1 併後全套測試 + G2 PR #18 guard 在併後 main 上跑",
+      "guard": "紅即不推，回退重評"
+    },
+    {
+      "step": "M3",
+      "what": "G3 逐位元確認 .4 tag／資產、src/、schemas/ 未被本回合改動",
+      "guard": "讀遠端 API/tag 物件比對"
+    },
+    {
+      "step": "M4",
+      "what": "單一 push origin HEAD:refs/heads/main",
+      "guard": "禁 force；推後遠端回讀尖端＋PR 狀態"
+    },
+    {
+      "step": "M5",
+      "what": "證據包 + 自 origin 位元獨立複驗 + push 證據分支"
+    },
+    {
+      "step": "M6",
+      "what": "VERIFY 車道（CODEX CLI）獨立複驗併後狀態"
+    },
+    {
+      "step": "M7",
+      "what": "FAR learning + skill + memory + Owner 交還包"
+    }
+  ],
+  "explicitly_not_done": [
+    "tag／release／資產替換（`.4` 保持 immutable）",
+    "刪除任何遠端分支",
+    "關閉 PR #14/#15",
+    "改動 registry／lane POOL",
+    "重構任何已併入內容",
+    "把證據分支併入 main"
+  ],
+  "authorization": {
+    "owner_gate": "merge_tag_release: OWNER_GATE_ONLY（指揮薄 §0）",
+    "how_lifted": "用戶令逐字：「用戶授權同意這些裁決建議，並且你必須直接執行FAR提出的最佳工程裁決建議+執行方案」",
+    "scope": "僅限本裁決列為 MERGE_NOW 的 3 條；不含 tag／release",
+    "conflicts_with": "《S4 最終獨立驗收報告》§0「需一般人類合併操作與新 merge commit 讀回」→ 由 Owner 明示覆寫，本回合揭露，不以「外部已接受」描述"
+  },
+  "claim_ceiling": {
+    "MERGED_INTO_MAIN": "PENDING_EXECUTION_THEN_VERIFIABLE",
+    "OWNER_MERGED_HUMAN_OPERATION": "OVERRIDDEN_BY_OWNER",
+    "S4_FULL_PASS": "NOT_GRANTED",
+    "PRODUCTION": "NOT_GRANTED",
+    "NEW_RELEASE": "NOT_GRANTED"
+  },
+  "rollback": "main 併後尖端可由 Owner `git revert -m 1 <tip>` 或 `git reset --hard` 至 d3bd5456（若尚未有人基於新 main 工作）；三個候選分支本身未被刪除，內容隨時可再取。"
+}

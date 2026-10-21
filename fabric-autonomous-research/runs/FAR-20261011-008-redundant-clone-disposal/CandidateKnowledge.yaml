@@ -1,0 +1,7 @@
+schema: LOGICAL_FAR_CANDIDATE_KNOWLEDGE_V1
+status: CANDIDATE_ONLY
+durable_reusable_finding: >-
+  A local git clone is redundant when, for every ref it carries, the target object exists in the parent
+  repository AND the clone's working tree is clean. Reachability of a clone-only *branch name* proves
+  nothing; the discriminating test is whether the *commit* is reachable from a live ref in the parent
+  (git branch -a --contains <sha>).

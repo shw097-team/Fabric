@@ -1,0 +1,11 @@
+schema: LOGICAL_FAR_RESEARCH_REQUEST_V1
+run_id: FAR-20261016-011-r5r3-preview4-live-subject
+workorder_ref: {id: R5-R3-preview4-live-closeout, digest: see ROUND_PLAN.md, note: delta-only round}
+decision_question: >- delta-only 重驗後尚存哪些偏離、哪些屬人力閘門、是否需要為 R5R2 精修切新 immutable release
+owner: human owner (shw097-team)
+task_class: RESEARCH_LITERATURE_REPO
+source_requirements: ["pkg_authority", "prompt_brief", "external_review", "repo_evidence", "hgk_machine_truth"]
+freshness_requirement: as-of 2026-10-16 (Asia/Taipei)
+budget_ref: local, no external spend
+security_boundary_ref: read-only; no credential material read; downloaded release bytes never executed beyond static inspection
+expected_decision_output: CandidateResearch + ProposedEvolution for the owner

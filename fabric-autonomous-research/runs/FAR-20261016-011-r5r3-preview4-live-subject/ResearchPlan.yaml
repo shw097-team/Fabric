@@ -1,0 +1,11 @@
+schema: LOGICAL_FAR_RESEARCH_PLAN_V1
+subquestions: ["delta-only 下還剩哪些真缺陷", "是否需要新 immutable release", "哪些屬人力閘門"]
+claim_classes: ["engineering_necessity", "authority_gate", "denominator_sequencing", "reproducibility"]
+source_classes: ["pkg_authority", "prompt_brief", "external_review", "repo_evidence", "hgk_machine_truth"]
+query_strategy: ["唯讀定位 live 主體與 served bytes", "以實跑取代引用報告", "以 HGK machine truth 驗證 lane/GSTACK"]
+candidate_methods_providers: ["fabric-autoresearch-native", "aris"]
+challenge_trigger: ["challenge_required=True → 對每個結論提出對立論證並記錄處置（DisagreementLedger）"]
+experiment_trigger: ["不需要新世界效應實驗；以 probe_edges / 全套測試 / served-byte 重算為實驗面"]
+stop_criteria: ["三題皆有可執行結論且每項有成本/風險與最小修補"]
+abstain_criteria: ["若 served bytes 不可下載則對 CL-03/CL-04 宣告 ABSTAIN"]
+budget_allocation: {"read_only_sources": 7, "lane_runs": "writer 1 + checker 1"}

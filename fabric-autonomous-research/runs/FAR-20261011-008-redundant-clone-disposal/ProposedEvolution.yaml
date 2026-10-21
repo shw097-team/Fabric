@@ -1,0 +1,10 @@
+schema: LOGICAL_FAR_PROPOSED_EVOLUTION_V1
+status: CANDIDATE_ONLY
+proposals:
+  - id: PE-HYGIENE-01
+    change: >-
+      Before recommending deletion of any redundant clone, run the three-probe uniqueness test
+      (all ref targets present in parent; clean tree/no stashes; clone-only branch tip reachable from a
+      parent ref) and record the raw outputs as evidence.
+    rationale: separates a measured disposal decision from a guess
+    route: HGK Governed Evolution (owner gate) — NOT self-applied
