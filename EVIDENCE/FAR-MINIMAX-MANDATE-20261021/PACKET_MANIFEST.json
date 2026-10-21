@@ -1,18 +1,18 @@
 {
   "schema": "HGK-EVIDENCE-PACKET/1",
   "packet": "FAR-MINIMAX-MANDATE-20261021",
-  "generated_utc": "2026-10-21T07:15:06.271232Z",
+  "generated_utc": "2026-10-21T07:33:35.658742Z",
   "control_plane": "HG-KSEOS",
   "owner_order": "2026-10-21: PLAN, EXECUTE (Codex CLI) and VERIFY/SECURITY (Codex CLI) all on opencode-go/minimax-m3.1-flash-free (MiniMax M3.1 Flash, OPENCODE GO)",
   "registry_epoch": 25,
   "claim_ceiling": "CANDIDATE_ONLY. The evidence below shows that the binding was measured and independently re-derived on this machine. It is NOT an acceptance, NOT a release, NOT a merge, and NOT a promotion. No upstream provider state, no external acceptance and no release action is claimed.",
   "secret_scan": {
-    "files_scanned": 58,
+    "files_scanned": 63,
     "findings": [],
     "note": "The GitHub PAT (C:/Projects/Agent_Workspace/API KEY/GITHUB-REPO_SHW097-4.txt), the OAuth account metadata and the relay credential are OUTSIDE this packet and appear in it only as [REDACTED]."
   },
-  "file_count": 58,
-  "total_bytes": 914399,
+  "file_count": 63,
+  "total_bytes": 1175909,
   "files": [
     {
       "path": "admission/admission_summary.json",
@@ -63,6 +63,11 @@
       "path": "ao_evidence_bundle.json",
       "sha256": "8b1c02e45fc4fff6550a30235b8fbb6504ee8b3683bfa44a4d70af4e715fafb7",
       "bytes": 30944
+    },
+    {
+      "path": "AO_FINAL2_PROMPT.md",
+      "sha256": "a55ee7bf3e8a3ebeb94785ee9632c271731f66f5cfaaf936a267ada79612eaa7",
+      "bytes": 8658
     },
     {
       "path": "AO_FINAL_PROMPT.md",
@@ -131,8 +136,8 @@
     },
     {
       "path": "FAR-RULING-REPORT.md",
-      "sha256": "c4d48f01d1033be437df390bd925ef7074d6a6d2106549b03b0b3998e3defc1a",
-      "bytes": 26561
+      "sha256": "be4aa3674279011e1db487463bec29dc2792162a4080ea1e0c57395229fd9b4d",
+      "bytes": 28224
     },
     {
       "path": "governed-config/AGENTS.md",
@@ -146,8 +151,8 @@
     },
     {
       "path": "governed-config/lane-routing-registry.yaml",
-      "sha256": "9e98985875ddc30d2b8bd01a31ad1358f2acbfa2169817a2769954b8961b24d7",
-      "bytes": 38928
+      "sha256": "3b59cb9026e46c345ac7e19565f21f9bd8d7a269335100b474125ede7e67b3c0",
+      "bytes": 38956
     },
     {
       "path": "governed-config/model-lane-assignment.json",
@@ -200,6 +205,16 @@
       "bytes": 5658
     },
     {
+      "path": "probes/AO_FINAL_receipt.json",
+      "sha256": "a021461e3ec1d810dfbc17fe7af0880f4f5164c8b77c12b24cb4bb46c609f649",
+      "bytes": 5736
+    },
+    {
+      "path": "probes/attempt-21612-1792566884-1-stdout.txt",
+      "sha256": "e5bb0409cefb91da485c831ad62156b262f6dd7c222d5c7790a15b617f4153d4",
+      "bytes": 230575
+    },
+    {
       "path": "PUBLISH-BRANCH-INCIDENT.md",
       "sha256": "09d2fb5910f9a4289edc830d8e326069c0acf69e03f7387c3e88e061aaa1dfd1",
       "bytes": 3545
@@ -211,13 +226,13 @@
     },
     {
       "path": "README.md",
-      "sha256": "a71df5d9ff250886ee608b04c2d6623c9dd75f935ac4838426e9fa0a4d937ee1",
-      "bytes": 7819
+      "sha256": "03b9d1c8080c32907ec20ee3e4a6e6f67aafe9889ad9acc21a145c5f5c1bfa1d",
+      "bytes": 9679
     },
     {
       "path": "registry_route_sync.json",
-      "sha256": "72ff5ccf858a1830e6f91543cb3b5c27414f0438a6e67e9636bf8a4e66ed4553",
-      "bytes": 1458
+      "sha256": "5a2b7cf65292469f175ccd34e586a4f7e7ee74a29302ff63b56b09cd7dc35751",
+      "bytes": 2261
     },
     {
       "path": "research/KNOWLEDGE-BASE-CROSSCHECK.md",
@@ -261,8 +276,8 @@
     },
     {
       "path": "scripts/apply_registry_route_sync.py",
-      "sha256": "068260bdefca599633f50dd62ccd8e507548f095cfffc3c90f1cd130980918b8",
-      "bytes": 12128
+      "sha256": "8e92a7bb126c9dd40fd83fae66cdcaab22dd3d367faa2db53da7aa29758e44ce",
+      "bytes": 13298
     },
     {
       "path": "scripts/build_openspec_unchecked_index.py",
@@ -285,9 +300,19 @@
       "bytes": 8838
     },
     {
+      "path": "SELF-REVIEW.json",
+      "sha256": "2b9210d26295e857e0871b5556bc2047e2f93b663ed3abb37c060145536efcff",
+      "bytes": 5932
+    },
+    {
+      "path": "SELF-REVIEW.md",
+      "sha256": "69b2539d30596fbfd7f707d1bc96a544be5956aba63b5d2389a413981ef025ea",
+      "bytes": 4797
+    },
+    {
       "path": "SUBJECT-COMMIT.txt",
-      "sha256": "9b11bee21d40c7eb5e86972b5bd6474a867e204f7659106707240755ca562c1c",
-      "bytes": 318
+      "sha256": "2df5e8f0949cd57bce55d65a13af18ad45e64beecb3b7ed7f518eac9d7b35038",
+      "bytes": 606
     },
     {
       "path": "VAR-DISPOSITION-INDEX.md",

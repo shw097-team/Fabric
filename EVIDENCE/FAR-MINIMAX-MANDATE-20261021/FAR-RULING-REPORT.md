@@ -358,6 +358,33 @@ fabric-autonomous-research/runs/FAR-20261021-024-fallback-chain-reorder/
 | `tests/test_lane_dispatch_ao_guard.py` | `_text_stub` 同上改為讀 argv；`_stub_env` 預設還原為 hermetic fixture 臂 | 同上 |
 | `tests/test_lane_dispatch_ao_guard.py` | C1 與 I3 的斷言改為**從 pool 推導**而非硬編模型 | 同上 |
 
+### 獨立 AO 抓到並修好的第二層缺陷（route-level auth posture）
+
+第一次 route sync 修的是 `arms[]`、`fallbacks[]`、`canonical_identity`、`selected_arm_identity`、
+`admission_status`/`admission_evidence`。**獨立 AO 在 check 4 又抓到一層**：
+
+```
+PLAN            route.auth='openai_oauth' != pool.rank1.auth='env_ref:OPENCODE_GO_API_KEY'
+PLAN            route.oauth=True         != pool.rank1.oauth=False
+PLAN            route.reasoning_effort='medium' != pool.rank1.reasoning_effort=None
+VERIFY_SECURITY （同樣三項）
+```
+
+**成因**：route row 在**頂層**還帶了一份自己的 auth posture（`auth`／`oauth`／`reasoning_effort`），
+它不在 `arms[]` 裡，所以第一次同步沒有覆蓋到。
+
+**為什麼這是真實缺陷而不是雜訊**：它會讓外部驗收者讀到「MiniMax 臂是 OAuth 臂」——
+而實際上它是 key-auth 臂（`env_ref:OPENCODE_GO_API_KEY`）。這直接影響「這個臂怎麼取得憑證」
+的判讀，屬於治理事實而非格式問題。
+
+**已修**：sync 腳本現在也從 pool 同步 route-level posture（6 個欄位），修後
+`drift = 0`、重跑 **0 變更（冪等）**、目標測試套件 `141 passed / 90 subtests`。
+
+> **這是本回合「獨立驗收有價值」的直接證據**：第一次的自我驗收（drift gate + 測試）都通過，
+> 但獨立 AO 從**提交位元組**出發重推，找到了自我驗收結構上不可能找到的第二層缺陷。
+> 這也是為什麼 AO 必須跑在**不同的平面**（提交位元組 + 不同的檢查清單），
+> 而不能只是把主執行者的結論再跑一遍。
+
 ### 本回合的最終測量（隔離 detached worktree，live 工作樹全程未被修改）
 
 | 腿 | 結果 |

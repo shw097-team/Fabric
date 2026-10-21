@@ -1,4 +1,8 @@
-HG-KSEOS subject commit: a1bd583
-message: FAR-MINIMAX-MANDATE-20261021: bind all three lanes to MiniMax M3.1 Flash (epoch 25)
-branch: the HG-KSEOS control plane's working branch (no remote push this round - Fabric carries the evidence)
+HG-KSEOS subject commits:
+  a1bd583  FAR-MINIMAX-MANDATE-20261021: bind all three lanes to MiniMax M3.1 Flash (epoch 25)
+  1cbb9d2  FAR-MINIMAX-MANDATE-20261021: sync the route-level auth posture with the pool
+           (found by the independent AO, which re-derived from the COMMITTED tree;
+            the round's own drift gate could not see it)
 published-to: this evidence packet on branch pub/far-minimax-mandate-20261021
+note: the packet's governed-config/ is at 1cbb9d2; the earlier registry copy is in the
+      git history of this branch and differs by exactly the 6 auth-posture fields.

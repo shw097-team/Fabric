@@ -17,5 +17,15 @@
  },
  "script": "var/FAR-MINIMAX-MANDATE-20261021/apply_registry_route_sync.py",
  "claim_ceiling": "candidate-only. This shows the registry now agrees with the pool and with the measured admission receipts. It is not an acceptance and not a release.",
- "idempotent_recheck": "the dry-run above reports 0 further changes"
+ "idempotent_recheck": "the dry-run above reports 0 further changes",
+ "second_pass_found_by_independent_ao": {
+  "what": "the route row's TOP-LEVEL auth posture (auth / oauth / reasoning_effort) was a second copy of the arm posture, and it was not covered by the first sync. PLAN and VERIFY_SECURITY still advertised auth='openai_oauth', oauth=true, reasoning_effort='medium' while the pool's rank-1 arm is env_ref:OPENCODE_GO_API_KEY / oauth=false / no effort.",
+  "found_by": "independent acceptance officer (VERIFY_SECURITY lane, MiniMax via Codex CLI), check 4, against the COMMITTED tree",
+  "fixed_by": "apply_registry_route_sync.py now also syncs the route-level auth posture from the pool",
+  "fields_fixed": 6,
+  "post_fix_drift": 0,
+  "idempotent": true,
+  "targeted_suite_after_fix": "141 passed, 90 subtests passed"
+ },
+ "applied_changes_total": 21
 }

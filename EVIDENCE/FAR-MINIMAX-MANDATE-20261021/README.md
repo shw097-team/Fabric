@@ -136,3 +136,34 @@ AO 的作業前提是**從提交位元組重新推導**（`git archive a1bd583`�
 
 **殘留裁決（等業主確認，未執行）**：460 個 OpenSpec 未勾項、120 個歷史 `var/` 目錄、
 2 筆 TT ledger OPEN —— 全部只建立索引，**0 tick、0 刪除、0 關閉**。
+
+### 獨立 AO 找到的第二層缺陷（已修）
+
+第一輪 AO（`probes/attempt-21612-1792566884-1-stdout.txt`，230KB）在 check 4 找到真實缺陷：
+route row 的**頂層** auth posture（`auth` / `oauth` / `reasoning_effort`）是 arm posture 的**第二份副本**，
+不在 `arms[]` 裡，所以第一次同步沒有覆蓋到：
+
+```
+PLAN            route.auth='openai_oauth' != pool.rank1.auth='env_ref:OPENCODE_GO_API_KEY'
+PLAN            route.oauth=True         != pool.rank1.oauth=False
+PLAN            route.reasoning_effort='medium' != pool.rank1.reasoning_effort=None
+VERIFY_SECURITY （同樣三項）
+```
+
+這是治理事實而非格式問題——它會讓外部驗收者誤判 MiniMax 臂是 OAuth 臂（實際是 key-auth 臂）。
+已修於 HG-KSEOS `1cbb9d2`；修後 `drift = 0`、重跑 0 變更（冪等）、目標套件 `141 passed / 90 subtests`。
+
+**這是「獨立驗收有價值」的直接證據**：本回合自己的自檢測（drift gate + 測試）全程綠，
+獨立 AO 仍從**提交位元組**出發重推，找到內部閘門結構上不可能找到的第二層缺陷。
+
+### 自我研究（`SELF-REVIEW.md` / `SELF-REVIEW.json`）
+
+回顧「這一回合的缺陷是怎麼被找到的」：4 個已修缺陷中，1 個由獨立 AO 找到、2 個由人工跨欄位稽核找到、
+1 個由自動化測試套件找到。**活下來的都是自檢測結構上不可能看到的**——
+一個事實存兩份，以及一個把「今天 rank-1 是誰」寫死的測試。
+
+誠實的解讀：**綠的 drift gate 加綠的目標測試套件，不是跨欄位一致性的證據**。
+它只證明了閘門自己負責的範圍被滿足了。
+
+最高價值的下一步：把 registry-vs-pool 的比對**接進 `check_drift`**，
+把「記得去跑的腳本」變成「繞不掉的閘門」。

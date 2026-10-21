@@ -105,6 +105,8 @@ def sync_route(route: dict[str, Any], pool_lane: dict[str, Any]) -> list[str]:
 
     head = entries[0]
     rest = entries[1:]
+    # the pool is authoritative for the auth posture too; a pool entry may omit it, in which
+    # case the existing registry value is kept (see arm_from_pool_entry)
 
     # --- head arm -----------------------------------------------------------
     head_model = head["model"]
@@ -121,6 +123,22 @@ def sync_route(route: dict[str, Any], pool_lane: dict[str, Any]) -> list[str]:
     if route.get("model") != head_model:
         changes.append(f"model {route.get('model')!r} -> {head_model!r}")
         route["model"] = head_model
+
+    # --- route-level auth posture -------------------------------------------
+    # The route row also carries its own auth posture at the TOP level, next to provider/model.
+    # That copy was NOT covered by the arms[] rewrite, so after a re-binding to a key-auth arm
+    # the route could still advertise `auth: openai_oauth, oauth: true, reasoning_effort: medium`
+    # while the pool's rank-1 arm is `env_ref:OPENCODE_GO_API_KEY, oauth: false`.  An independent
+    # acceptance officer caught exactly this.  The route-level posture must follow the pool.
+    for key, want in (("auth", head.get("auth")),
+                      ("oauth", bool(head.get("oauth", False))),
+                      ("reasoning_effort", head.get("reasoning_effort"))):
+        if key not in route:
+            continue
+        have = route.get(key)
+        if have != want:
+            changes.append(f"{key} {have!r} -> {want!r} (route-level posture must follow the pool)")
+            route[key] = want
 
     # --- arms[] -------------------------------------------------------------
     new_arms: list[dict[str, Any]] = []

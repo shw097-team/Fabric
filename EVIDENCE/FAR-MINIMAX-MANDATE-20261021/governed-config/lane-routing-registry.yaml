@@ -65,9 +65,9 @@ routes:
   provider: opencode-go
   model: minimax-m3.1-flash-free
   canonical_identity: minimax-m3.1-flash-free
-  auth: openai_oauth
-  oauth: true
-  reasoning_effort: medium
+  auth: env_ref:OPENCODE_GO_API_KEY
+  oauth: false
+  reasoning_effort: null
   selection_authority: owner-order-20261021-minimax-mandate-plan-execute-verify-all-minimax
   arms:
   - arm: primary
@@ -261,10 +261,10 @@ routes:
   engine: codex-cli
   provider: opencode-go
   model: minimax-m3.1-flash-free
-  reasoning_effort: medium
+  reasoning_effort: null
   canonical_identity: minimax-m3.1-flash-free
-  auth: openai_oauth
-  oauth: true
+  auth: env_ref:OPENCODE_GO_API_KEY
+  oauth: false
   selection_authority: owner-order-20261021-minimax-mandate-plan-execute-verify-all-minimax
   selected_arm: A
   selected_arm_identity: minimax-m3.1-flash-free

@@ -1,0 +1,64 @@
+{
+ "artifact": "self-review of the round's defect-discovery chain",
+ "round": "FAR-MINIMAX-MANDATE-20261021",
+ "question": "which detection surfaces actually found the defects, and what does that imply for where future detection effort belongs",
+ "defects_found": [
+  {
+   "id": "D1",
+   "defect": "the registry's route rows (fallbacks/arms/canonical_identity/selected_arm_identity/admission_status/admission_evidence) still advertised superseded models while the pool and the assignment said minimax-m3.1-flash-free",
+   "found_by": "manual cross-field audit of registry routes vs pool",
+   "found_by_class": "manual_audit",
+   "why_the_automated_gates_missed_it": "check_drift compares the registry's PROJECTIONS against the live sites. It never compares the registry's own route rows against the pool. A registry that is internally consistent with a stale pool projection still passes.",
+   "fix": "apply_registry_route_sync.py rebuilds those fields from the pool (15 fields)",
+   "residual_gap": "the sync is a separate script, NOT wired into check_drift. A future pool re-binding that forgets to run it would reproduce D1 silently. Closing this means adding a registry-vs-pool projection to the drift checker itself."
+  },
+  {
+   "id": "D2",
+   "defect": "the route row's TOP-LEVEL auth posture (auth/oauth/reasoning_effort) is a second copy of the arm posture, outside arms[], and was still openai_oauth/true/medium while the pool's rank-1 arm is env_ref:OPENCODE_GO_API_KEY/false/none",
+   "found_by": "independent acceptance officer, check 4, against the COMMITTED tree",
+   "found_by_class": "independent_ao",
+   "why_the_automated_gates_missed_it": "D1's fix only covered the fields D1's audit had looked at. A second copy of the same fact in a different part of the same record is invisible to any checker that was written against the first copy's location.",
+   "fix": "the sync script also derives the route-level posture from the pool (6 fields)",
+   "residual_gap": "the deeper class is 'a fact stored in two places'. The general fix is to make the registry route row DERIVED rather than edited, so there is only one copy. The sync script is a partial mitigation, not the structural fix."
+  },
+  {
+   "id": "D3",
+   "defect": "test stubs hard-coded the canonical pool's rank-1 model, so any re-binding broke 26 tests for a reason unrelated to the behaviour under test",
+   "found_by": "the full-suite AFTER run of the isolated comparison",
+   "found_by_class": "automated_test_suite",
+   "why_the_automated_gates_missed_it": "it was the test suite itself that was wrong, so no gate over the suite could report it.",
+   "fix": "the stub derives its provider/model from the --model the dispatcher passes it: the dispatched arm IS the reported arm. tests/fixtures/ was also brought under version control.",
+   "residual_gap": "none known for this class - the coupling is removed, not worked around."
+  },
+  {
+   "id": "D4",
+   "defect": "tests/fixtures/ was untracked while 17 tests referenced it, so a clean checkout could not rebuild the suite and the BEFORE/AFTER comparison's absolute counts were meaningless (26 failures in BOTH legs for an unrelated reason)",
+   "found_by": "reading the BEFORE/AFTER comparison output and asking why 26 lane tests failed in the baseline",
+   "found_by_class": "manual_audit_of_automated_output",
+   "why_the_automated_gates_missed_it": "a failure that appears in BOTH legs cancels out of the difference, so the comparison reported 'no new failures' while the absolute numbers were off by 26.",
+   "fix": "the fixture is now tracked and is carried into both legs of the comparison",
+   "residual_gap": "the comparison reports counts but does not warn when a large fraction of failures is common to both legs. A 'baseline is unhealthy' signal would surface this class automatically."
+  }
+ ],
+ "quantified_outcome": {
+  "before_full_suite": "8 failed, 436 passed, 90 subtests passed in 85.45s (0:01:25)",
+  "after_full_suite": "8 failed, 436 passed, 90 subtests passed in 88.28s (0:01:28)",
+  "new_failures_introduced": 0,
+  "registry_fields_rebuilt": 21,
+  "defects_found_and_fixed": 4,
+  "defects_found_by_class": {
+   "manual_audit": 2,
+   "independent_ao": 1,
+   "automated_test_suite": 1,
+   "manual_audit_of_automated_output": 0
+  }
+ },
+ "conclusion": "The defect classes that survived the round's own self-verification were exactly the ones the self-verification structurally could not see: a fact stored in two places (D1, D2) and a test that encodes 'which model is rank-1 today' (D3). Every one of them was found by either a human-style cross-field audit or by an independent agent working from a different starting artifact. The honest reading is that a green drift gate plus a green targeted suite is NOT evidence of cross-field agreement; it only proves the gates' own scope is satisfied.",
+ "recommended_next_round": [
+  "Wire the registry-vs-pool comparison INTO check_drift, so D1 cannot recur silently. This is the highest-value single change: it converts a script that must be remembered into a gate that cannot be skipped.",
+  "Make the registry route row DERIVED from the pool (generated, not edited) so a fact has one copy. This removes the whole D1/D2 class rather than fixing instance after instance.",
+  "Add a 'baseline is unhealthy' signal to the isolated comparison: if the BEFORE leg fails a large fraction of the same file, say so, instead of letting a common-mode failure cancel out.",
+  "Keep the AO on the committed tree with its own checklist. It found D2 that no internal gate could. That is the cheapest defect-finding surface in the whole round."
+ ],
+ "claim_ceiling": "This is a retrospective of what the round's own surfaces found. It is not an acceptance and it does not claim the defect list is complete - D2 was the second layer of the same record, so a third layer may exist."
+}
