@@ -1,6 +1,6 @@
 schema: LOGICAL_FAR_RESEARCH_HANDOFF_V1
 run_id: FAR-20261021-023-sbl-r7-residual-closure
-captured_at_utc: "2026-10-21T05:40:00+00:00"
+captured_at_utc: "2026-10-21T06:44:58.986871+00:00"
 decision: NATIVE_WITH_SELECTED_ARIS
 reason_code: FAR_ROUTE_NATIVE_ARIS
 claim_ceiling: local/candidate-only; not an acceptance; not a Gate PASS; not authority
@@ -163,8 +163,23 @@ open_decisions_for_owner:
 
 independent_verification:
   lane: VERIFY_SECURITY
-  arm: openai-codex/gpt-6.1-sol (medium, OpenAI OAuth)
-  transport_model: gpt-6.1-sol   # the BARE id; the qualified id is rejected by the relay with HTTP 400
+  arm: opencode-go/minimax-m3.1-flash-free   # owner order 2026-10-21 (mid-round); was openai-codex/gpt-6.1-sol
+  transport_model: opencode-go/minimax-m3.1-flash-free
+  arm_history:
+    round1: >-
+      openai-codex/gpt-6.1-sol (medium, OpenAI OAuth), transport_model gpt-6.1-sol (the BARE id; the
+      qualified id is rejected by the relay with HTTP 400). That round ran 392 s and produced a valid
+      usage receipt and a byte-exact transcript, but the provider quota was exhausted before it could
+      produce a verdict, so the dispatcher recorded ERR_NO_ARM_EMITTED_NONCE (ok=false). It is classified
+      INCOMPLETE_ROUND_PROVIDER_QUOTA: preserved, not counted, not rounded up to a FAIL or a PASS.
+      Its two substantive findings (F8, F9) were repaired in candidate commit 59d2138.
+    round2: >-
+      opencode-go/minimax-m3.1-flash-free, nonce R7CHK-NC-20261021-A2, the arm the owner selected.
+  planner_checker_overlap: >-
+    The owner order makes the planner and the checker the same identity. The dispatcher enforces no
+    maker==checker REFUSE rule (D1), so this is a recorded overlap rather than a blocked one, and the
+    checker no longer provides model-axis independence from the planner. An independent reviewer must
+    weigh that when reading any verdict produced under this binding.
   mechanism: >-
     HG-KSEOS scripts/hgk-lane-dispatch.py with a non-empty --nonce, --require-arm, and --guard-subject
     over the product trees. The nonce must appear in an ASSISTANT message; a prompt that does not

@@ -1,7 +1,7 @@
 {
  "schema": "LOGICAL_FAR_RESEARCH_RUN_RECEIPT_V1",
  "run_id": "FAR-20261021-023-sbl-r7-residual-closure",
- "captured_at_utc": "2026-10-21T05:46:01.609449+00:00",
+ "captured_at_utc": "2026-10-21T06:41:45.355292+00:00",
  "task_class": "RESEARCH_LITERATURE_REPO",
  "route": {
   "decision": "NATIVE_WITH_SELECTED_ARIS",
@@ -20,12 +20,21 @@
   "base_head": "3d06f3da83488219a3dcdf608c937b8c5285810c"
  },
  "lane_mandate_observed": {
-  "PLAN": "openai-codex/gpt-6.1-sol",
-  "EXECUTE": "opencode-go/deepseek-v4.1-flash",
-  "VERIFY_SECURITY": "openai-codex/gpt-6.1-sol",
-  "note": "the interactive session model (minimax-m3.1-flash-free / opencode-go) is a DIFFERENT plane and is not a lane binding"
+  "PLAN": "opencode-go/minimax-m3.1-flash-free (owner order 2026-10-21, mid-round) - MEASURED on the CANONICAL pool: served_arm==required_arm, nonce_present=true, usage HTTP 200, exit 0",
+  "EXECUTE": "opencode-go/deepseek-v4.1-flash (UNCHANGED by the owner order; confirmed by the owner) - usage HTTP 200",
+  "VERIFY_SECURITY": "opencode-go/minimax-m3.1-flash-free (owner order 2026-10-21, mid-round) - MEASURED on the CANONICAL pool: served_arm==required_arm, nonce_present=true, usage HTTP 200, exit 0",
+  "session_plane_note": "this session runs minimax-m3.1-flash-free/opencode-go; that is the SESSION plane, NOT a lane binding. The coincidence that the session model now equals two lane models does NOT make the session a lane receipt: every lane claim is proved by its own dispatch receipt with its own nonce and usage row.",
+  "planner_checker_overlap": "the planner and the checker are now the SAME identity, a direct consequence of the owner order. The dispatcher enforces no maker==checker REFUSE rule (D1), so this is a RECORDED OVERLAP, not a blocked one, and the checker no longer provides model-axis independence from the planner. Recorded in the pool's identity_overlaps_recorded_not_enforced and in the R7 status."
  },
- "lane_probe_evidence": "HG-KSEOS/var/R7-LANES/probe2_{PLAN,EXECUTE,VERIFY_SECURITY}.json (ok=true, nonce_present=true, usage status 200)",
+ "lane_probe_evidence": {
+  "canonical_pool": [
+   "HG-KSEOS/var/R7-LANES/probe_canonical_PLAN_minimax.json",
+   "HG-KSEOS/var/R7-LANES/probe_canonical_VERIFY_minimax.json",
+   "HG-KSEOS/var/R7-LANES/probe_canonical_VERIFY_minimax2.json"
+  ],
+  "carried_in_sbl_evidence": "SBL/_governance/round-20261021-r7/40_VERIFY/lane_rebind_minimax/",
+  "rebind_commit": "HG-KSEOS 3f81b4b7d32da0f9eaae01c7ecd05728206f33d9 (local only: HG-KSEOS has no git remote)"
+ },
  "artifacts": {
   "CandidateResearch.yaml": {
    "bytes": 10080,
@@ -169,6 +178,34 @@
   }
  },
  "raw_evidence_dir": "raw_worker_artifacts/",
- "claim_ceiling": "LOCAL / CANDIDATE-ONLY; not an acceptance; not a Gate PASS; not authority; full DOC-00..13 closure NOT claimed",
- "note_copy_in_sbl": "a copy of this run is committed under SBL/_governance/round-20261021-r7/20_FAR/far-20261021-023/"
+ "claim_ceiling": "LOCAL / CANDIDATE-ONLY; not an acceptance; not a Gate PASS; not authority; full DOC-00..13 closure NOT claimed; NO independent checker verdict on record for the R7 candidate yet; the planner and the checker are the same identity",
+ "note_copy_in_sbl": "a copy of this run is committed under SBL/_governance/round-20261021-r7/20_FAR/far-20261021-023/",
+ "independent_verification": {
+  "round1": {
+   "arm": "openai-codex/gpt-6.1-sol (medium)",
+   "nonce": "R7CHK-NC-20261021-A1",
+   "classification": "INCOMPLETE_ROUND_PROVIDER_QUOTA",
+   "is_a_verdict": false,
+   "measured": {
+    "seconds": 392.58,
+    "exit": 1,
+    "nonce_present": true,
+    "usage_status": 200,
+    "usage_receipt_ok": true,
+    "stdout_sha256": "80397dbb1c0f79124d9229ae406ee4eafb5d278762b7383944d6f76b8a17bf65"
+   },
+   "findings": [
+    "F8 (source-text tests that could not fail)",
+    "F9 (ambient-interpreter coupling)"
+   ],
+   "repair": "candidate commit 59d2138; re-measured 202 passed / 2 skipped, mutation probe green"
+  },
+  "round2": {
+   "arm": "opencode-go/minimax-m3.1-flash-free",
+   "nonce": "R7CHK-NC-20261021-A2",
+   "status": "RUNNING at the time this receipt was captured",
+   "verdict": null
+  },
+  "spine_state": "WO-TS-req-hgk-prj-sbl-pipdls-r7-farclo = ROLLED_BACK (a PASS recorded before any verdict was withdrawn with the typed rollback API)"
+ }
 }

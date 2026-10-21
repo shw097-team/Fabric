@@ -61,3 +61,38 @@ question is answered with the measurement that settles it.
     # the lane probes
     python HG-KSEOS/scripts/hgk-lane-dispatch.py --lane PLAN --prompt "<brief including the nonce>" \
         --nonce <token> --require-arm openai-codex/gpt-6.1-sol --json-out <receipt>
+
+
+## M9 — Classify a lane exit before classifying the candidate
+A dispatch that ends `exit=1` is not a FAIL until the cause is classified. The R7 round produced all
+three shapes in one day:
+
+  * `ERR_SLOT_POOL_MALFORMED` — the artifact the resolver reads was corrupt (merge-conflict markers in
+    a JSON pool). Cause: a concurrent writer. Classification: **environment**, and a governance incident
+    in its own right, because a governance artifact that does not parse cannot govern anything.
+  * `ERR_LANE_REQUIRED_ARM_ABSENT` — the required arm was not in the pool. Classification: **declaration
+    gap**; the fix is the pool, not the retry.
+  * `ERR_NO_ARM_EMITTED_NONCE` with a valid usage receipt — the provider failed the turn. Classification:
+    **incomplete round**. Preserve the bytes, count nothing, re-run.
+
+The rule: a receipt is classified by its cause, and only a cause in the *product* may become a product
+verdict. Everything else becomes a recorded deviation, a re-run, or a control-plane defect to file.
+
+## M10 — Measure the canonical artifact, never a bounded stand-in
+A lane probe against a hand-built pool proves the ARM is reachable. It does not prove the BINDING is
+what the next dispatch will use. The R7 rebind was measured twice:
+
+  * against a bounded probe pool → proved `opencode-go/minimax-m3.1-flash-free` was serviceable;
+  * against the CANONICAL `config/lane-route-slots.candidate.json` → proved the pool file itself now
+    selects that arm at rank 1 for PLAN and VERIFY_SECURITY.
+
+Only the second measurement is a binding proof. The gap between the two is where a governance system
+fails: a declaration that was measured in a laboratory and never in production is a wish.
+
+## M11 — A conflict between two variants of a binding is a question, not a merge
+When two in-flight variants of the same binding disagree, the correct action is to ask the owner which
+one governs, then restore that one over the working tree and DROP the other — never merge them, never
+pick silently. The R7 case: a concurrent process had rebound the EXECUTE lane to the same model as
+PLAN and VERIFY, while the owner had named only two of the three lanes. The variants differed on exactly
+one field, and that field was a model identity for the code-writing lane. It was asked, answered, and
+recorded.
