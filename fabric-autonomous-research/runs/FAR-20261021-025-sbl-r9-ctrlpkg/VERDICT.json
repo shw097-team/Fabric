@@ -1,0 +1,42 @@
+{
+  "schema": "FAR-VERDICT/1",
+  "run_id": "FAR-20261021-025-sbl-r9-ctrlpkg",
+  "captured_at_utc": "2026-10-21T14:15:57.090354+00:00",
+  "ruling": "Execute the mechanically closable subset under pre-authorisation; refuse the rest by name.",
+  "answers_to_the_four_questions": {
+    "residuals": "16-item denominator from R8, re-adjudicated. 2 closed this round with proof (contract mis-binding, control-package traceability). 5 carried with typed blockers and named owners. The blocker-grade residual is unchanged: no independent acceptance.",
+    "installation": "Five separable achievements; three hold (package, standalone bootstrap, adapter files), two do not (effective host installation, native integration). FABRIC has no target and none was invented.",
+    "sp_integration": "NOT INTEGRATED. The dispatcher binds models, not SPs. Design set as two thin adapters at existing seams; not implemented, because it needs its own admitted change.",
+    "control_package": "Executable in principle as a phased programme, not closeable this round. Denominator declared UNKNOWN by the package itself. Phase plan and a 10-engineer-day stop-loss recorded; no percentage claimed."
+  },
+  "convergent_finding": "Every gate in this programme certified presence, not correspondence.",
+  "executed": [
+    {
+      "item": "contract mis-binding",
+      "proof": "4->0 mismatches, 34 edges unchanged, 4 compiler stages PASS, digest matches receipt, regression test shown failing first",
+      "candidate": "c2cb068"
+    },
+    {
+      "item": "control-package traceability",
+      "proof": "14 digests pinned, rollup 01b972c8..., 3 distinguishable negative controls, 6 portable tests",
+      "candidate": "32d971d"
+    }
+  ],
+  "self_check": {
+    "verdict": "R9_SELF_CHECK_PASS",
+    "passed": 10,
+    "total": 10
+  },
+  "hgk": {
+    "requirement": "REQ-HGK-PRJ-SBL-PIPDLS-R9-CTRLPKG",
+    "requirement_state": "FROZEN",
+    "taskspec_state": "ADMITTED",
+    "workorder_state": "FAILED",
+    "acceptance_verdict": "FAIL",
+    "evidence_rows": 6,
+    "why_fail": "no independent acceptance was obtained; HGK accepts only PASS or FAIL and the honest mapping of no-verdict is FAIL"
+  },
+  "claim_ceiling": "CANDIDATE_ONLY. Two verified corrections. No acceptance, no native integration, no host installation, no full-contract closure, no completion percentage.",
+  "next_best_action": "R9-02 with an authorised writable scratch root. Everything else is either blocked on an owner decision or subordinate to having an independent verdict at all.",
+  "concurrent_write_disclosure": "A parallel writer created FAR-20261021-024-fallback-chain-reorder during sealing; this run was renumbered 024->025 so two runs cannot share a number. Their run was neither modified nor staged."
+}

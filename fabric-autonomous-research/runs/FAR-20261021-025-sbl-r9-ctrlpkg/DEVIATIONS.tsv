@@ -1,0 +1,10 @@
+id	severity	deviation	disposition
+DEV-R9-01	high	Full DOC-00..13 execution is not achieved. 4 of 4 research questions answered; 2 of 7 work items closed.	ACCEPTED_AND_DISCLOSED. The package's own denominator is UNKNOWN, so no closing criterion exists to be met this round.
+DEV-R9-02	high	No independent acceptance. R7 remains INCONCLUSIVE / NOT ACCEPTED, mapped to HGK FAIL.	CARRIED. R9-02 blocked as capability: needs an authorised writable scratch root.
+DEV-R9-03	high	No Hermes Runtime/Orchestration Plane permit. A binding record is producible; a permit is not.	CARRIED. R9-04 blocked as capability: issuer authority required.
+DEV-R9-04	medium	HG-KSEOS cannot be reproduced from a clean checkout (3 untracked test files).	CARRIED. R9-05 blocked as needs_input: test owner must land them.
+DEV-R9-05	medium	_repo_head() defect remains. Writing to lifecycle.py mid-round would misattribute concurrent breakage.	CARRIED. R9-06 blocked; needs a clean-baseline round.
+DEV-R9-06	medium	PLAN and VERIFY share one model; no model diversity in review, and model SoD is not principal SoD.	DISCLOSED. Not fixable without a lane mandate change from the owner.
+DEV-R9-07	low	My own brief mis-stated the source path as SBL/src; it does not exist.	CORRECTED_IN_RECORD. Real sources under _sbl_release_011rc1 match the installed wheel.
+DEV-R9-08	low	One of four worker outputs (SP integration) was never written to disk by the harness.	DISCLOSED in FAR-R9-RULING.json research.raw_outputs_gap. Its findings are carried; its raw text is not archived.
+DEV-R9-09	low	Concurrent writer created FAR-20261021-024-fallback-chain-reorder while this run was being sealed; two runs briefly shared number 024.	RENUMBERED to 025 and disclosed. Their run was not touched, not staged, not modified.

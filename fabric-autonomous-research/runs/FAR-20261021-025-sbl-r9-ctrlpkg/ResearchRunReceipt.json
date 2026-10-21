@@ -1,0 +1,59 @@
+{
+  "schema": "ResearchRunReceipt/1",
+  "run_id": "FAR-20261021-025-sbl-r9-ctrlpkg",
+  "created_at_utc": "2026-10-21T14:16:03.594157+00:00",
+  "resume_iterations": 1,
+  "trigger_keys": [
+    "worker-batch-complete:deleg_97d0947f",
+    "self-check:R9_SELF_CHECK_PASS",
+    "hgk:ACC-REQ-HGK-PRJ-SBL-PIPDLS-R9-CTRLPKG=FAIL"
+  ],
+  "artifacts": [
+    {
+      "file": "DEVIATIONS.tsv",
+      "bytes": 1772,
+      "sha256": "fe40e81370d5f849cb2ce4ca993f5f2ccf5791ad629a2792b418eacab7215cbc"
+    },
+    {
+      "file": "FINDINGS.tsv",
+      "bytes": 3288,
+      "sha256": "e67869fb1a18d8afb8fe235d26fb7a2be7a403fbd300d0f87e227783378ec9df"
+    },
+    {
+      "file": "LEARNING.md",
+      "bytes": 2954,
+      "sha256": "2648e6b1936b7abdd76a002b651e2708a7efe40d7b3c56dd0d51191e89c7432a"
+    },
+    {
+      "file": "METHOD.md",
+      "bytes": 1896,
+      "sha256": "4824483b733e611c33c23d2069db6669d7bb20b224b1ca70e2a1f6b7e5bd0279"
+    },
+    {
+      "file": "VERDICT.json",
+      "bytes": 2764,
+      "sha256": "805c473d1d828043a4dff226d9dbacf0ff55546406222a8d1e9e5da7608ccf15"
+    }
+  ],
+  "artifact_count": 5,
+  "digest_verification": "recomputed from disk at seal time",
+  "research_model": {
+    "name": "gpt-6.1-sol",
+    "provider": "openai-codex",
+    "arm_rank": 1,
+    "workers": 4
+  },
+  "execution_lanes": {
+    "PLAN": "gpt-6.1-sol@rank1",
+    "EXECUTE": "opencode-go/minimax-m3.1-flash-free@rank1",
+    "VERIFY_SECURITY": "gpt-6.1-sol@rank1"
+  },
+  "learning_range": "L25-L36",
+  "related": {
+    "sbl_evidence_branch": "evidence/r7-20261021-c7 @ fccad0f",
+    "sbl_candidate": "candidate/r9-20261021-ctrlpkg @ 32d971d",
+    "hgk_requirement": "REQ-HGK-PRJ-SBL-PIPDLS-R9-CTRLPKG"
+  },
+  "claim_ceiling": "CANDIDATE_ONLY; no acceptance obtained",
+  "renumber_note": "originally drafted as 024; renumbered to 025 to avoid a collision with a concurrent writer's run"
+}
