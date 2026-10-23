@@ -1,0 +1,76 @@
+{
+  "schema": "FABRIC-W3-OWNER-ATTESTED-AUTHORIZATION/1",
+  "admission_id": "W3-SWOF-R153-01",
+  "revision": 1,
+  "previous_record_sha256": null,
+  "authorization_kind": "OWNER_ATTESTED_RUNTIME_RECORDED",
+  "issuer_claimed_principal_id": "P-OWNER-SHW097",
+  "issuer_claimed_role": "SWOF_DOMAIN_OWNER",
+  "authority_basis": "OWNER_CHAT_SELF_ATTESTATION",
+  "source_conversation_id": "20261023_092340_6ca205",
+  "source_message_index": "user turn 2026-10-23 (authorising C19 W3, C21 FDA+host path, C05/M1 clause, C24 deferral)",
+  "source_message_sha256": "79ec390b25f777061b5343a40eb1fb052ed00dcef71b281cb10c7de3ddeb238a",
+  "exact_authorization_excerpt": "我是SWOF Domain Owner，授權C19 需 SWOF Domain Owner 的 W3。",
+  "scope_confirmation_receipt_ref": null,
+  "subject": {
+    "candidate_sha256": null,
+    "environment_sha256": null,
+    "abi_sha256": null
+  },
+  "subject_binding_note": "the owner authorised the W3 CLASS, not a frozen candidate sha/environment/ABI triple; per the FAR design this record therefore stays PENDING_SCOPE_CONFIRMATION and confers no effect",
+  "authorized_operations": [
+    "issue the W3 Domain Owner Native Admission for the SBL/SWOF first governed change"
+  ],
+  "explicitly_forbidden_operations": [
+    "agent-signed admission",
+    "writing the SWOF repo without a W3 record",
+    "claiming W3 for any subject other than the frozen one"
+  ],
+  "permitted_effects": [],
+  "rollback_conditions": [
+    "revoke on supersession by a cryptographically signed admission"
+  ],
+  "recorded_by_runtime_identity": "P-HERMES-ORCH",
+  "recorded_at": "2026-10-23T03:58:39Z",
+  "not_before": null,
+  "expires_at": "2026-11-05T00:00:00Z",
+  "signature": null,
+  "signature_status": "NOT_CRYPTOGRAPHICALLY_SIGNED",
+  "status": "PENDING_SCOPE_CONFIRMATION",
+  "policy_basis": "Fabric SOD_POLICY.yaml principal_separation (P-OWNER-SHW097 is the registry trust root); no clause requires a cryptographic owner signature for an admission authorization class",
+  "supersedes_authorization_refs": [
+    "_governance/round-20261022-r15_2/SWOF_SHADOW_AUTHORIZATION_R15_3.json"
+  ],
+  "superseded_by": null,
+  "supersession_receipt_ref": null,
+  "revocation_receipt_ref": null,
+  "claim_ceiling": "OWNER_ATTESTED_W3_AUTHORIZATION_RECORDED__NO_EFFECT_UNTIL_SCOPE_CONFIRMED",
+  "what_unblocks_activation": "one owner message binding the frozen triple (candidate sha256, environment sha256, abi sha256), or written confirmation that the R15.3 candidate head is the intended subject",
+  "not_a_native_admission": "This record is an owner authority trace. It is NOT a Native Admission, confers no effect, and may not be read as W3 by any consumer.",
+  "kb_conditions_to_satisfy_before_activation": [
+    {
+      "condition": "Mode must be resolved through DOC-11 and the SWOF Native ModeGate, not through this record",
+      "cite": "SBL_PIPD-LS-PKG_DOC-13.md#715"
+    },
+    {
+      "condition": "PREW3_SHADOW needs a Native W2 frozen readset, exact hashes and a zero-write workspace",
+      "cite": "SBL_PIPD-LS-PKG_DOC-13.md#720"
+    },
+    {
+      "condition": "Loop C needs Owner-provided frozen corpus/plan ABI/schema checksums and a SWOFShadowResult with readset_hash, expected_vs_observed, mismatch, unknown, zero_write",
+      "cite": "SBL_PIPD-LS-PKG_DOC-13.md#723"
+    },
+    {
+      "condition": "REQ->Receiver->EffectIntent->RAW expectation mapping and rollback feasibility must be examined and returned to DOC-11/SWOF Owner",
+      "cite": "SBL_PIPD-LS-PKG_DOC-13.md#723"
+    },
+    {
+      "condition": "The native stage version is unresolved pending a signed Binding; do not invent one",
+      "cite": "SBL_PIPD-LS-PKG_DOC-05.md#6080"
+    }
+  ],
+  "kb_audit": {
+    "audited_by": "PLAN lane gpt-6.1-sol, receipt receipts/dispatch/PLAN__FAR_KB_AUDIT.json",
+    "verdict": "VALID_AS_INERT_PENDING_RECORD_NOT_NATIVE_ADMISSION"
+  }
+}

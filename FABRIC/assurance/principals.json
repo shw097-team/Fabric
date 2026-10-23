@@ -1,0 +1,100 @@
+{
+  "schema": "FABRIC-PRINCIPAL-REGISTRY/1",
+  "snapshot_id": "PR-2026-10-23-R153",
+  "note": "Owner-attested snapshot. A principal is a controlling party, not a session, alias, role label or model name.",
+  "trust_roots": [
+    {
+      "principal_id": "P-OWNER-SHW097",
+      "role": "registry_trust_root",
+      "attested_by": "owner directive 2026-10-23"
+    }
+  ],
+  "principals": [
+    {
+      "principal_id": "P-OWNER-SHW097",
+      "controller_id": "C-HUMAN-OWNER",
+      "aliases": [
+        "owner",
+        "shw097",
+        "SWOF Domain Owner"
+      ],
+      "attestation": {
+        "attestor_principal_id": "P-OWNER-SHW097",
+        "source_receipt_ref": "PRINCIPAL_REQUESTS/INDEX.json",
+        "attested_at": "2026-10-23T00:00:00Z",
+        "expires_at": "2027-10-23T00:00:00Z",
+        "revoked": false
+      }
+    },
+    {
+      "principal_id": "P-HERMES-ORCH",
+      "controller_id": "C-RUNTIME-HERMES",
+      "aliases": [
+        "hermes",
+        "orchestrator",
+        "SBL-Commander session",
+        "deepseek-v4.1-flash"
+      ],
+      "attestation": {
+        "attestor_principal_id": "P-OWNER-SHW097",
+        "source_receipt_ref": "PRINCIPAL_REQUESTS/INDEX.json",
+        "attested_at": "2026-10-23T00:00:00Z",
+        "expires_at": "2027-10-23T00:00:00Z",
+        "revoked": false
+      }
+    },
+    {
+      "principal_id": "P-CODEX-PLAN",
+      "controller_id": "C-LANE-PLAN",
+      "aliases": [
+        "PLAN lane",
+        "gpt-6.1-sol"
+      ],
+      "attestation": {
+        "attestor_principal_id": "P-OWNER-SHW097",
+        "source_receipt_ref": "PRINCIPAL_REQUESTS/INDEX.json",
+        "attested_at": "2026-10-23T00:00:00Z",
+        "expires_at": "2027-10-23T00:00:00Z",
+        "revoked": false
+      }
+    },
+    {
+      "principal_id": "P-CODEX-VERIFY",
+      "controller_id": "C-LANE-VERIFY",
+      "aliases": [
+        "VERIFY lane",
+        "checker",
+        "gpt-6.1-sol-checker"
+      ],
+      "attestation": {
+        "attestor_principal_id": "P-OWNER-SHW097",
+        "source_receipt_ref": "PRINCIPAL_REQUESTS/INDEX.json",
+        "attested_at": "2026-10-23T00:00:00Z",
+        "expires_at": "2027-10-23T00:00:00Z",
+        "revoked": false
+      }
+    }
+  ],
+  "grants": [
+    {
+      "grant_id": "G-ORCH-MAKER-01",
+      "principal_id": "P-HERMES-ORCH",
+      "role": "maker",
+      "authority_principal_id": "P-OWNER-SHW097",
+      "delegation_parent_grant_id": null,
+      "valid_from": "2026-10-23T00:00:00Z",
+      "expires_at": "2027-10-23T00:00:00Z",
+      "revoked": false
+    },
+    {
+      "grant_id": "G-VERIFY-CHECKER-01",
+      "principal_id": "P-CODEX-VERIFY",
+      "role": "final_checker",
+      "authority_principal_id": "P-OWNER-SHW097",
+      "delegation_parent_grant_id": null,
+      "valid_from": "2026-10-23T00:00:00Z",
+      "expires_at": "2027-10-23T00:00:00Z",
+      "revoked": false
+    }
+  ]
+}

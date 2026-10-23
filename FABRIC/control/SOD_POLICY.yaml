@@ -19,3 +19,43 @@ bootstrap_exception:
   stage: RP002-STAGE-FABRIC
   checker: EXTERNAL_BOOTSTRAP_META_CHECKER
   reason: future_acceptance_officer_not_yet_qualified
+
+# --- principal separation (R15.3, owner-authorised) -----------------------------------------------------------
+# Named-but-unenforced identity fields made every external acceptance officer return NOT_ESTABLISHED: the schema
+# asked for independent_checker_identity without saying how a principal is identified, how incompatibility is
+# checked, or when a verdict is inadmissible. This section adds the missing enforcement semantics only; it does not
+# claim the checker is competent or independent in intent.
+principal_separation:
+  schema: FABRIC-PRINCIPAL-SEPARATION/1
+  enforcement: mandatory_fail_closed
+  principal_registry: assurance/principals.json
+  registry_trust: locally_pinned_owner_attested_snapshot
+  registry_pin: assurance/principals.pinned.sha256
+  enforcement_reference: tools/check_principal_separation.py
+  kb_basis: ["SBL_PIPD-LS-PKG_DOC-07.md#3254 independent_checker_ref",
+             "SBL_PIPD-LS-PKG_DOC-07.md#3394 release_promotion requires the checker ref",
+             "SBL_PIPD-LS-PKG_DOC-12.md#1824 D12-06 release decision"]
+  canonical_checker_field: independent_checker_ref
+  identity_key: principal_id
+  identity_semantics: one_stable_id_per_attested_controller_not_per_alias_session_role_or_model
+  required_roles:
+    producer_identity: maker
+    independent_checker_identity: final_checker
+  subject_binding: [candidate_sha256, environment_sha256, abi_sha256]
+  principal_record_required: [principal_id, controller_id, aliases, grants, attestation]
+  grant_required: [grant_id, role, subject, authority_principal_id, delegation_parent_grant_id,
+                   valid_from, expires_at, revoked]
+  attestation_required: [attestor_principal_id, source_receipt_ref, source_receipt_sha256,
+                         registry_snapshot_sha256, attested_at, expires_at, revoked]
+  delegation_rule: reject_if_checker_grant_ancestry_contains_any_producer_principal_or_controller
+  resolution_rule: reject_missing_ambiguous_duplicate_or_conflicting_identity_records
+  ancestry_rule: reject_missing_parent_cycle_or_untrusted_root
+  binding_rule: verdict_and_all_grants_must_match_exact_frozen_subject
+  duplicate_key_rule: reject_duplicate_json_or_yaml_keys
+  admissibility:
+    predicate: all_principal_separation_predicates_true
+    failure: INADMISSIBLE
+    acceptance_effect: NOT_ESTABLISHED
+    success: IDENTITY_SEPARATION_ADMISSIBLE
+    success_is_not_acceptance: true
+  claim_ceiling: "The two identities are distinct and attested; checker competence and independence in intent are not established."
