@@ -19,18 +19,37 @@ import os
 import sys
 from pathlib import Path
 
-def _fabric_root() -> Path:
-    relative = Path('rp002/RP002_CHANGE_CLASS_ROUTER.yaml')
-    override = os.environ.get('FABRIC_ROOT')
+ROUTER_RELPATH = Path("rp002") / "RP002_CHANGE_CLASS_ROUTER.yaml"
+
+
+def _fabric_root(start: Path | None = None) -> Path:
+    """Locate the Fabric root that actually contains ``rp002/RP002_CHANGE_CLASS_ROUTER.yaml``.
+
+    REC07: the previous constant was ``Path(r"C:\\Projects\\Agent_Workspace\\Fabric")``, one level above
+    the real root, so ``load_router()`` raised FileNotFoundError on this host and the consumer could
+    not read the active policy at all.  A hardcoded absolute path also cannot survive a different
+    checkout location.  Walk up from this file, then honour FABRIC_ROOT if an operator overrides it.
+    """
+    override = os.environ.get("FABRIC_ROOT")
     if override:
+        # An explicit override is AUTHORITATIVE: if it does not hold the route file, that is an
+        # operator error and must fail closed. Falling through to an ancestor would silently read a
+        # different Fabric tree than the one the operator named.
         chosen = Path(override)
-        if not (chosen / relative).is_file():
-            raise FileNotFoundError('FABRIC_ROOT does not contain the canonical router')
+        if not (chosen / ROUTER_RELPATH).is_file():
+            raise FileNotFoundError(
+                f"FABRIC_ROOT={override} does not contain {ROUTER_RELPATH.as_posix()}"
+            )
         return chosen
-    for parent in Path(__file__).resolve().parents:
-        if (parent / relative).is_file():
-            return parent
-    raise FileNotFoundError('Fabric canonical router root not found')
+    here = Path(start or __file__).resolve()
+    candidates = [here.parent, *here.parents]
+    for candidate in candidates:
+        if (candidate / ROUTER_RELPATH).is_file():
+            return candidate
+    raise FileNotFoundError(
+        "Fabric root not found: no ancestor of "
+        f"{here} (and no FABRIC_ROOT) contains {ROUTER_RELPATH.as_posix()}"
+    )
 
 
 FAB = _fabric_root()
