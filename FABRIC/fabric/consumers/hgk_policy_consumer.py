@@ -86,13 +86,34 @@ def route_event(change_class: str) -> dict:
 
 
 def apply_preapproved(config_path) -> dict:
-    """CONFIG_PREAPPROVED canary: orchestrator apply + smoke + readback."""
-    from pathlib import Path
+    """Inspect a configuration snapshot. This function performs no apply/load.
+
+    A real owning-stack activation and consumer ACK require their native route;
+    a local hash must never satisfy that effectful acceptance condition.
+    """
+    import yaml
     config_path = config_path if isinstance(config_path, Path) else Path(config_path)
     raw = config_path.read_bytes()
+    class UniqueLoader(yaml.SafeLoader):
+        def construct_mapping(self, node, deep=False):
+            mapping = {}
+            for key_node, value_node in node.value:
+                key = self.construct_object(key_node, deep=deep)
+                if key in mapping:
+                    raise ValueError('DUPLICATE_CONFIG_KEY')
+                mapping[key] = self.construct_object(value_node, deep=deep)
+            return mapping
+    try:
+        config = yaml.load(raw.decode('utf-8'), Loader=UniqueLoader)
+    except (yaml.YAMLError, UnicodeError, TypeError) as error:
+        raise ValueError('CONFIG_PARSE_REFUSED') from error
+    if not isinstance(config, dict) or not config:
+        raise ValueError('CONFIG_NONEMPTY_MAPPING_REQUIRED')
     sha = __import__("hashlib").sha256(raw).hexdigest()
-    return {"applied": str(config_path), "bytes": len(raw), "sha256": sha,
-            "smoke": "config parsed", "readback": "raw bytes verified"}
+    return {"applied": False, "loaded": False, "consumer_ack": False,
+            "native_acceptance": False, "status": "INSPECTED_NOT_APPLIED",
+            "path": str(config_path), "bytes": len(raw), "sha256": sha,
+            "smoke": "config parsed", "readback": "SNAPSHOT_HASH_ONLY"}
 
 
 if __name__ == "__main__":
