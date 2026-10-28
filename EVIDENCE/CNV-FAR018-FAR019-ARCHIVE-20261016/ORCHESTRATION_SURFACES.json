@@ -1,0 +1,141 @@
+{
+ "schema": "CNV-ARCHIVE/ORCHESTRATION-SURFACES/1",
+ "generated_utc": "2026-10-16T14:06:14.307991+00:00",
+ "openspec": {
+  "change": "hgk-cnv-far018-far019-archive",
+  "dir": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\openspec\\changes\\hgk-cnv-far018-far019-archive",
+  "attempts": [
+   {
+    "argv": [
+     "openspec",
+     "validate",
+     "hgk-cnv-far018-far019-archive",
+     "--strict"
+    ],
+    "exit": null,
+    "error": "FileNotFoundError: [WinError 2] 系統找不到指定的檔案。"
+   },
+   {
+    "argv": [
+     "npx",
+     "--no-install",
+     "openspec",
+     "validate",
+     "hgk-cnv-far018-far019-archive",
+     "--strict"
+    ],
+    "exit": null,
+    "error": "FileNotFoundError: [WinError 2] 系統找不到指定的檔案。"
+   }
+  ],
+  "verdict": "NOT_VALIDATED",
+  "artifacts": [
+   "proposal.md",
+   "specs\\archive-evidence-merge\\spec.md",
+   "tasks.md"
+  ]
+ },
+ "gstack": {
+  "schema": "CNV-ARCHIVE/ROUTE-CHECK/1",
+  "generated_utc": "2026-10-16T14:06:14.307991+00:00",
+  "registry": {
+   "snapshot_ok": true,
+   "n_methods": 9,
+   "route_ARCHIVE": {
+    "flow": "RESEARCH_LITERATURE_REPO",
+    "route": "NATIVE",
+    "reason_code": null
+   },
+   "route_NEGATIVE_CONTROL": {
+    "flow": "PURE_QA_CHAT",
+    "route": "GSTACK",
+    "reason_code": null
+   }
+  },
+  "lane_pools": {
+   "PLAN": {
+    "engine": "hermes",
+    "transport": "hermes_provider_client",
+    "pool": [
+     {
+      "rank": 1,
+      "arm": "opencode-go/glm-5.3-flash"
+     },
+     {
+      "rank": 2,
+      "arm": "openai-codex/gpt-6.1-sol"
+     },
+     {
+      "rank": 3,
+      "arm": "opencode-go/deepseek-v4.1-flash"
+     },
+     {
+      "rank": 4,
+      "arm": "opencode-go/mimo-v2.6-pro"
+     },
+     {
+      "rank": 5,
+      "arm": "nvidia/z-ai/glm-5.3-flash"
+     },
+     {
+      "rank": 6,
+      "arm": "nvidia/deepseek-ai/deepseek-v4.1-flash"
+     }
+    ]
+   },
+   "EXECUTE": {
+    "engine": "codex-cli",
+    "transport": "opencodex relay 10101 via the isolated lane home (codex -> 10100 front-door port -> 10101); the openai-codex entry additionally has a human-home transport",
+    "pool": [
+     {
+      "rank": 1,
+      "arm": "opencode-go/deepseek-v4.1-flash"
+     },
+     {
+      "rank": 2,
+      "arm": "openai-codex/gpt-6-luna"
+     },
+     {
+      "rank": 3,
+      "arm": "nvidia/deepseek-ai/deepseek-v4.1-flash"
+     }
+    ]
+   },
+   "VERIFY_SECURITY": {
+    "engine": "codex-cli",
+    "transport": "same as EXECUTE",
+    "pool": [
+     {
+      "rank": 1,
+      "arm": "opencode-go/deepseek-v4.1-flash"
+     },
+     {
+      "rank": 2,
+      "arm": "openai-codex/gpt-6.1-sol"
+     },
+     {
+      "rank": 3,
+      "arm": "opencode-go/glm-5.3-flash"
+     },
+     {
+      "rank": 4,
+      "arm": "nvidia/deepseek-ai/deepseek-v4.1-flash"
+     }
+    ]
+   }
+  },
+  "entry_map_present": true,
+  "skill_md_sha256": "c679f4541f2e00ecc2fb3b83e8881c1fc9ab9aebbbad6f4aa33508950dbb02c1",
+  "reference_md_count": 109
+ },
+ "kanban": {
+  "board": "cnv-archive-far018-019",
+  "cards": 18,
+  "histogram": {
+   "done": 5,
+   "running": 9,
+   "blocked": 4
+  },
+  "cli_calls": 71
+ }
+}
