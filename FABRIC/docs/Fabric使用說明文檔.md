@@ -9,6 +9,23 @@ authority_note: operational projection; normative truth lives in Master/Stage co
 
 # Fabric 使用說明文檔
 
+> **B1 closure 2026-10-28（本節為本次新增，原文以下保留不動）**
+>
+> 本棧在 FHS-MSC B1（PKG_00～08）的角色、驗證方式與證據位置，已整合進
+> `docs/FHS-B1_使用說明文檔.md`（跨棧單一入口）。要五分鐘驗證請看該文件 §2；
+> 要看本棧專屬狀態請看本節 §B1。
+> claim ceiling：**本地已升格基線 `B1-LOCAL-2026-10-28`**，但 `release: NOT_RUN`、repo `main` 未合併、無第三方驗收。
+
+## B1 狀態快照（2026-10-28，實測）
+
+| 項目 | 值 |
+|---|---|
+| 閘門 | `G-A 6/6 PASS`、`GWO ALL_THREE_PASS`、`G-B PASS`、`gates_conjunction PASS`、`mission_complete true` |
+| native 路徑 | 245 筆 `native_admission`（1 首發 ＋ 244 案 corpus）、735 nonce、245 lease、`case_fail 0` |
+| 簽章 | registry rev10（`d7019575…`）、宣告 `9fb04a82…`、裁決 `a587491e…`、升格收據 `5a19f3cd…`，全部 `VERIFIED` |
+| 回推點 | `var/B1-PIPD-PKG-20261027/SNAPSHOTS/B1_PRE_PROMOTION_20261028/`（逐檔 sha256） |
+| 證據索引 | PR 分支 `b1/closure-20261028` 的 `b1_closure_20261028/EVIDENCE_INDEX.md` |
+
 > 本文是 RP-002 v2.0 的 **operator-facing projection**（操作投影），不是 authority / policy source / requirement source。
 > 權威真相（normative truth）以 Master/Stage contracts 與 current machine truth 為準：`Fabric\rp002\RP002_STAGE_CROSSWALK.yaml`（master sha256 `3bc4ad6c…`）、`Fabric\rp002\RP002_GATE_CATALOG.yaml`、`Fabric\rp002\RP002_EXECUTION_GRAPH.yaml`，以及 `Fabric\stage\RP002-STAGE-HGK\` 下已封存的 seal / handoff / gate receipts。
 > **Current status**: Stage-2 externally accepted（`Fabric\stage\RP002-STAGE-HGK\EXTERNAL_ACCEPTANCE_RECEIPT_STAGE2.yaml`，`external_verdict: PASS_CHALLENGE`、`external_meta_acceptance: GRANTED`）。Next gate = `SQP1`（NOT_AUTHORIZED）。本文件不宣稱 Stage-3 / SQP1 已執行，也不宣稱 production / live / remote。
@@ -332,3 +349,20 @@ $env:PYTHONPATH='C:\Projects\Agent_Workspace\HG-KSEOS\src'
 | PROMPT_COMPILE_PASS | Prompt Compiler 對單一 contract 的編譯通過（≠ RUNTIME_READY ≠ EXTERNAL_ACCEPTANCE） |
 
 > 本附錄僅為查閱便利；定義衝突時以 contracts / machine truth 為準。
+
+## B1 專節：Fabric 在 B1 期間的真實角色
+
+- Fabric 在本輪是**消費端**：`fabric/consumers/hgk_policy_consumer.py`（約 134 行）讀 policy／contract。
+- **沒有 activator**：`control/PROMOTION_POLICY.yaml` 明文 `auto_promotion_from_agent_output: false`，
+  `ACCEPTANCE_POLICY.yaml` 明文 `maker_final_pass: false`。因此「Fabric 通過」不能被引用為促升依據。
+- GWO-FABRIC 的證據是 **consumer 讀回**（`GWO_FABRIC_EVIDENCE.json`），不是 promotion receipt。
+- 驗證：
+
+```bash
+python fabric/consumers/hgk_policy_consumer.py --help   # 只讀；不簽章、不寫入
+```
+
+## B1 專節：不要誤用
+
+- 不要用 Fabric 的 acceptance policy 當成「已促升」；促升需要 owner 簽 `PROMOTION_RECEIPT`。
+- 不要期待 Fabric 產生 PASS：它只提供契約與政策，判定在 HGK 的 gates 與 owner 裁決。
