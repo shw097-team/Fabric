@@ -1,0 +1,75 @@
+{
+ "schema": "GWO-FABRIC-Evidence@1",
+ "gwo": "GWO-FABRIC",
+ "raws": [
+  {
+   "raw_id": "RAW-FAB-STAGE",
+   "event": "STAGE",
+   "subject_sha": "2e2e6b4020af8e89f1233e2415a9ef80d331c68d40fb77d514c23df474d93950",
+   "policy_epoch": 9,
+   "stage_dir": "C:\\Projects\\Agent_Workspace\\var\\B1-PIPD-PKG-20261027\\fabric_local\\stage",
+   "active_pointer_present": false,
+   "at": "2026-10-28T10:30:52"
+  },
+  {
+   "raw_id": "RAW-FAB-RECEIPT",
+   "event": "ACCEPTANCE",
+   "receipt_id": "ACC-B1-1793154652258",
+   "receipt_verified": true,
+   "checker_principal": "ACCEPT-AUTH-B1-fba9736912406ef9",
+   "checker_pid": 20012,
+   "maker_pid": 21316,
+   "maker_is_checker": false,
+   "subject_sha": "2e2e6b4020af8e89f1233e2415a9ef80d331c68d40fb77d514c23df474d93950",
+   "policy_epoch": 9
+  },
+  {
+   "raw_id": "RAW-FAB-LOADED",
+   "event": "LOADED",
+   "pointer": "C:\\Projects\\Agent_Workspace\\var\\B1-PIPD-PKG-20261027\\fabric_local\\active\\ACTIVE_POINTER.json",
+   "subject_sha": "2e2e6b4020af8e89f1233e2415a9ef80d331c68d40fb77d514c23df474d93950",
+   "policy_epoch": 9,
+   "readback_matches": true,
+   "receipt_id": "ACC-B1-1793154652258"
+  },
+  {
+   "raw_id": "RAW-FAB-CONSUMER",
+   "event": "CONSUMER",
+   "consumer_pid": 13200,
+   "consumer_is_new_process": true,
+   "subject_sha": "2e2e6b4020af8e89f1233e2415a9ef80d331c68d40fb77d514c23df474d93950",
+   "policy_epoch": 9,
+   "matches_frozen": true
+  }
+ ],
+ "raw_count": 4,
+ "negatives": [
+  {
+   "name": "wrong_subject_sha",
+   "code": "REFUSED_SUBJECT_DIGEST_MISMATCH"
+  },
+  {
+   "name": "wrong_epoch",
+   "code": "REFUSED_EPOCH_MISMATCH"
+  },
+  {
+   "name": "no_receipt",
+   "code": "REFUSED_PROMOTION_NO_ACCEPTANCE"
+  }
+ ],
+ "same_subject_sha": true,
+ "distinct_events": true,
+ "promotion_receipt": {
+  "schema": "FABRIC-PROMOTION-RECEIPT/1",
+  "stage_id": "RP002-STAGE-FABRIC",
+  "acceptance_receipt_ref": "ACC-B1-1793154652258",
+  "subject_before": null,
+  "subject_after": "2e2e6b4020af8e89f1233e2415a9ef80d331c68d40fb77d514c23df474d93950",
+  "promotion_authority": "ACCEPT-AUTH-B1-fba9736912406ef9",
+  "rollback_target": "fabric_local/active/ACTIVE_POINTER.prev.json",
+  "auto_promotion": false,
+  "policy_epoch": 9
+ },
+ "verdict": "PASS",
+ "claim_ceiling": "fabric_local activation on the same OS user; acceptance signed by an enrolled ACCEPT-AUTH key in a separate process (maker ≠ checker), not by a human"
+}

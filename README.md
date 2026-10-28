@@ -70,3 +70,17 @@ check under [`EVIDENCE/SKILL-CONVERGENCE-20261014/`](EVIDENCE/SKILL-CONVERGENCE-
 to the local revision, adds the round's rows to [`INTEGRATION/KNOWN-FINDINGS.md`](INTEGRATION/KNOWN-FINDINGS.md), and changes
 no contract. Each publication is preserved in history and records its own scope, its hygiene result and its open owner
 decisions.
+
+
+## B1 closure 2026-10-28
+
+`b1_closure_20261028/` is the evidence index for the FHS-MSC B1 bootstrap-repair round (PKG_00~08) on the Fabric side.
+
+- `b1_closure_20261028/EVIDENCE_INDEX.md` — question → file#line → the command that reproduces it
+- `b1_closure_20261028/MANIFEST.json` — per-file bytes + sha256 (the packet is verifiable offline)
+- `b1_closure_20261028/HANDOVER.md` — ten-point orientation for an external reviewer
+
+Claim ceiling (measured, not asserted): `mission_complete true` under `b1_closure_20261028/evidence/GATES.json`
+means the gate conjunction passed, no residual blocker remained, and every blocking declaration was
+owner-ruled. It does **not** mean release (`release: NOT_RUN`), promotion, or third-party acceptance.
+Databases, raw lane output, the owner key envelope and credentials are excluded by design.
