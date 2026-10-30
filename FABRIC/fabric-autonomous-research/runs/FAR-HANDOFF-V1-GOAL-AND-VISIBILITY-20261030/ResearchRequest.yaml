@@ -1,0 +1,17 @@
+schema: RESEARCH-REQUEST/1
+run_id: FAR-HANDOFF-V1-GOAL-AND-VISIBILITY-20261030
+requested_at: "2026-10-30T23:12:00+08:00"
+owner: "全系統唯一 Owner & Issuer"
+task_class: RESEARCH_GENERAL
+route: native + selected ARIS
+reason_code_expected: FAR_ROUTE_NATIVE_DEFAULT
+decision_questions:
+  - "Why does todo_list + /goal keep being closed, and how is opening it forced rather than promised?"
+  - "Why was a task reported running that the owner could not see, and how does a running task become visible at a glance?"
+scope_in:
+  - todo_list semantics (merge=false replaces the list); /goal as a desktop command I cannot invoke
+  - the VERIFY dispatch for WP-FHS-11 23:04:07-23:07:25 and its receipt
+  - the status surfaces available to a human (queue files, kanban board, transcript)
+scope_out:
+  - model behaviour as the explanation
+stopping_rule: "stop when each claim resolves to a file path, a receipt field, or a measured process fact"

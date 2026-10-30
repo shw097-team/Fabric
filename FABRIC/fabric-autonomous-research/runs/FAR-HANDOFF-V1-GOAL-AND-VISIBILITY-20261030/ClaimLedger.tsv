@@ -1,0 +1,9 @@
+claim_id	claim	confidence	evidence_ref	falsifier
+G-01	todo_list is a session object; merge=false replaces the whole list, which is how items were lost twice.	HIGH	ResearchSynthesis.md#1; the two merge=false calls in this session	An item surviving a replace call
+G-02	The goal cannot be set by the assistant: `hermes goal` is not a command, `/goal` is desktop-only.	HIGH	`hermes goal --help` -> "'goal' is not a `hermes` command"	A CLI subcommand that sets the goal
+G-03	No gate, cron or hook ever checked that a goal or todo existed.	HIGH	ResearchSynthesis.md#1; repo grep for do-not-stop / goal checks -> 0	Such a check existing
+G-04	A live VERIFY dispatch ran 23:04:07-23:07:25 and was voided by the maker's own edits to scripts/.	HIGH	WP-FHS-11-verify_security-20230304-*.json -> ok:false, code ERR_CHECKER_MUTATED_SUBJECT, changed=2	-
+G-05	The officer produced FAIL / NOT_RUN / HOST_SP_MATRIX_INCOMPLETE; no candidate archives or lifecycle cells exist.	HIGH	officer/verdict.json (archived as verdict.VOIDED-...json)	Any of the three archives existing
+G-06	The status surface reported running:0 while a dispatch was live, because text=True decoding raised on cp950.	HIGH	UnicodeDecodeError traceback at byte 0xaa; before/after counts 0 -> 1	-
+G-07	The driver looked only at <queue>/verdict.json, so a verdict written elsewhere left the unit permanently "next".	HIGH	work_queue.py phase() before/after (BRIEF_READY -> AWAITING_RECORD)	-
+G-08	Deriving GOAL.json/TODO.md/STATUS.md from the control plane makes them impossible to drift from it.	MEDIUM	ops_status.py; GOAL.json derived_from field	The files disagreeing with work_queue after a tick

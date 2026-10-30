@@ -1,0 +1,5 @@
+id	subject	side_a	side_b	resolution	status
+Y-01	why the todo closes	'the assistant closes it'	'the runtime discards it and merge=false overwrites it'	side_b: verified by mechanism, and it is the same defect as the queue in a different place	RESOLVED
+Y-02	was a task running when I said so	'yes, VERIFY in flight'	'no, the owner sees nothing'	both: running at 23:04, ended 23:07 voided, nothing after -- my report was true then and stale by the time it was read	RESOLVED
+Y-03	should the loop retry WP-FHS-11	'retry: the verdict was voided'	'do not retry: the officer said NOT_RUN with a named first_fail'	side_b: settled FAIL with the officer's reason; retry would be the repeat-block pattern	RESOLVED
+Y-04	is a kanban card enough for visibility	'yes, the board shows it'	'no, a card can be stale like any artefact'	partially: card plus STATUS.md plus cron refresh; measured running:1 -> card created	OPEN (needs a stale-card rule)
