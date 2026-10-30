@@ -1,0 +1,10 @@
+claim_id	claim	status	evidence
+C-01	The three-lane mechanism existed since 2026-10-21	supported	git log -S"--lane EXECUTE" -- scripts -> 051d574
+C-02	My continuation driver (one day old) wired only PLAN and VERIFY	supported	42016f7; plan_prompt+verify_prompt; 0 hits for --lane EXECUTE in C:/wg/queue
+C-03	B1/SKELETON trees contain no scheduler, queue or driver	supported	137 executable files scanned; only Hermes kanban reader copies
+C-04	B1 code WAS promoted into the delivery repo	supported	b1_closure_20261028/ (30 files: hgk-lane-dispatch.py, lane-routing-registry.yaml, native_admission.py)
+C-05	native_admission.py was rebuilt as issue_grant.py instead of reused	supported	b1 native_admission.py 22,646 B; HG-KSEOS has no such file; issue_grant.py 241 lines
+C-06	The 15-minute cron was paused since 00:24:11 while turns described it as running	supported	cronjob list: state=paused, paused_at=00:24:11
+C-07	Parallel dispatch is real	measured	three lanes in flight at 01:21:30 (WP-17, WP-11, WP-20); receipts 01:21:26 / 01:21:29
+C-08	The wrong place is now unwritable	supported	closed_paths_gate -> CLOSED_PATH exit 3; icacls deny; write probe -> PermissionError
+C-09	The delivery forbids a second scheduler	supported	11_WORKPACKAGES_AND_DAG.md and REPAIR_CLOSURE_REPORT.md, 36 files mention it

@@ -1,0 +1,11 @@
+run_id: FAR-HANDOFF-V1-LOOP-REUSE-AND-CLOCK-20261031
+questions:
+  - If a three-lane loop already existed for B1 and SKELETON_SPINE, why did this session produce its "first" loop-authored implementation on 2026-10-31 01:01?
+  - Was anything rebuilt that already existed (B1 / SKELETON_SPINE), on this host or in the repos?
+  - What exactly is "the wrong place", what in it is worth promoting, and how is it closed so no agent writes there again?
+  - Is a 15-minute cron an appropriate clock for this delivery, and what is the efficient design?
+inputs:
+  - the delivery package 11_WORKPACKAGES_AND_DAG.md, REPAIR_CLOSURE_REPORT.md, 00_INDEX_AND_DECISION.md, 12_VERIFICATION_AND_DELIVERY.md
+  - delivery repo b1_closure_20261028/ (30 files) and deliveries/SKELETON_SPINE_r2_revision2.zip
+  - local trees B1 (141 files) and SKELETON_SPINE (291 files)
+  - HG-KSEOS git history for lane runtime and continuation driver

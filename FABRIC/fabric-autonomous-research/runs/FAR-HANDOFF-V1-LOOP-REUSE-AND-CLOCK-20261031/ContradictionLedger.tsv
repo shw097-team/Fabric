@@ -1,0 +1,5 @@
+id	contradiction	resolution
+X-01	"first time the loop produced an implementation" vs "the loop was built for B1"	both true of different objects: the lane runtime existed; the driver I wrote yesterday did not use its EXECUTE arm
+X-02	"rescued B1/SKELETON" vs "0 of 432 files found in a repo"	promotion was as a closure package and a zip, not as loose files; the originals stayed in a writable non-repo tree
+X-03	"the cron pushes every 15 minutes" vs "nothing ran"	it was paused at 00:24:11 and pausing was silent; STATUS never printed the clock
+X-04	parallel dispatch vs the delivery's "no second scheduler"	compatible only if the supervisor holds no queue and no cadence policy; it now reads the DAG projection and dispatches through the lane runtime

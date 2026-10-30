@@ -1,0 +1,18 @@
+run_id: FAR-HANDOFF-V1-LOOP-REUSE-AND-CLOCK-20261031
+findings:
+  why_late: the lane runtime had EXECUTE since 2026-10-21; the continuation driver written 2026-10-30 wired two of three lanes
+  duplication: native_admission.py (B1) rebuilt as issue_grant.py; work_queue duplicates part of the kanban role
+  promotion: B1 -> b1_closure_20261028/ ; SKELETON -> deliveries/SKELETON_SPINE_r2_revision2.zip ; both verified present in the delivery repo
+  clock: cron was paused since 00:24:11 and was the wrong instrument anyway; supervisor reacts in 5 s, 3 lanes in parallel
+implemented:
+  - config/closed_paths.yaml + closed_paths_gate.py (CLOSED_PATH exit 3) wired into continuation_driver before dispatch
+  - icacls deny-write on B1 and SKELETON_SPINE; write probe refused; CLOSED.md documents promotion and undo
+  - lane_supervisor.py (no queue, no cadence, DAG readiness, 3 in flight) + lane_watchdog.py (3-min liveness only)
+  - supervisor refreshes STATUS; STATUS prints GOAL and SUPERVISOR liveness
+  - per-unit dispatch_alive so independent units may run together but one unit may not run twice
+verified:
+  - three lanes in flight simultaneously at 01:21:30
+  - STATUS RUNNING with two EXECUTE lanes and a fresh as_of
+  - store: closed path refuses a real write (PermissionError)
+open:
+  - OD-AB1 admission authority consolidation
