@@ -1,0 +1,43 @@
+{
+  "run_id": "FAR-HANDOFF-V1-VISIBILITY-CAPABILITY-20261030",
+  "completed_at": "2026-10-31T00:11:56",
+  "artifacts": [
+    "ClaimLedger.tsv",
+    "ContradictionLedger.tsv",
+    "OpenQuestionLedger.tsv",
+    "ResearchHandoff.yaml",
+    "ResearchRequest.yaml",
+    "ResearchSynthesis.md",
+    "ResearchRunReceipt.json"
+  ],
+  "measured": {
+    "wp20_matrix": {
+      "cells": 192,
+      "raw": 144,
+      "nofit": 48,
+      "foreign": 0,
+      "verdict": "ALL_CELLS_ACCOUNTED"
+    },
+    "claude_code_install": {
+      "attempted": true,
+      "installed": false,
+      "blocking": "npm global install produced no output under my invocation; registry reachable (PONG 363ms)",
+      "follow_up": "retry with cmd-level redirection in a visible session"
+    },
+    "windows": {
+      "hidden_by_construction": [
+        "dispatch",
+        "driver",
+        "ops_status",
+        "stall_monitor",
+        "review_lock",
+        "host_matrix"
+      ],
+      "measured_check": "MainWindowHandle==0"
+    }
+  },
+  "authoring": {
+    "synthesis": "assistant (EXECUTE arm)",
+    "note": "lane rule: PLAN authors briefs; this FAR synthesis is platform work and is labelled as assistant-authored rather than attributed to a lane"
+  }
+}

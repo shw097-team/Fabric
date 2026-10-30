@@ -1,0 +1,8 @@
+claim_id	claim	status	evidence
+C-01	A dispatch reported as running was alive when the report was written	supported	pid 7284 alive 23:48:16; brief landed 23:50:23; receipt ok:true 323.72s
+C-02	The same report was false 15 minutes later with nothing marking the change	supported	STATUS.json generated 23:52:06 lists pid 7284 as live 8.0 min; process gone by 23:59:41
+C-03	The projection carried no expiry of its own	supported	pre-fix STATUS.json had generated_at only, no as_of/stale_after/alive recheck
+C-04	Console windows are produced by console children of a console-less parent	supported	Win32 rule; measured MainWindowHandle 0 when CREATE_NO_WINDOW is passed
+C-05	The 96-window burst came from the matrix probe run from an interpreter without the wrapper	supported	probe-all invoked `cmd /c <host> --version` 96 times at ~23:47; winproc was not installed in that interpreter
+C-06	None of the three blocks requires the acceptance standard to change	supported	WP-17 needs a native grant via the existing owner envelope; WP-20 needs two CLIs installed; WP-11 needs nine lifecycle cells
+C-07	Normalising a seam as an anchor is what made WP-17 look like a policy conflict	supported	AO verdict 23:41: "Explicit conformance-only grant cannot satisfy original OPS/Issuer native admission"

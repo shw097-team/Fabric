@@ -1,0 +1,19 @@
+run_id: FAR-HANDOFF-V1-VISIBILITY-CAPABILITY-20261030
+rulings:
+  OD-Z1: a projection must carry its own expiry; stale reads STALE, never RUNNING
+  OD-Z2: console-hiding belongs to the entry point, not the call site; count what was hidden
+  OD-Z3: acquire capability instead of redefining sufficiency
+executed_this_run:
+  - scripts/winproc.py + install() at every headless entry (dispatch, driver, ops_status, stall_monitor, review_lock, host_matrix)
+  - cron wrapper re-exec under pythonw.exe (HGK_HIDDEN guard)
+  - ops_status --fresh + as_of/stale_after contract
+  - occupant_install.py (WP-17 lifecycle, 3 negatives, rollback)
+  - host_matrix.py (192 cells from the delivery, foreign-evidence refusal, ACCOUNTED vs EVIDENCED)
+capability_acquisition:
+  npm: 11.17.0 / node v24.19.0 present
+  claude_code: launch recorded, result pending at report time (see ResearchRunReceipt.json)
+  deepseek_harness: no local binary; candidate npm package to be decided after claude result
+next:
+  - if claude-code installs: re-run host_matrix probe-all, expect RAW 144 / NOFIT 48
+  - route the WP-17 grant through the owner envelope, then re-dispatch the AO sitting
+  - build WP-11 nine lifecycle cells

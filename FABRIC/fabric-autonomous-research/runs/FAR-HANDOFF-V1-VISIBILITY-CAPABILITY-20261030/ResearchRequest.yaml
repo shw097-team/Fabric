@@ -1,0 +1,29 @@
+run_id: FAR-HANDOFF-V1-VISIBILITY-CAPABILITY-20261030
+created_at: 2026-10-30T23:58:00+08:00
+governance: Fabric (contract) / SBL (product engineering entry) / HG-KSEOS (authority, state, acceptance)
+delivery: FHS-MSC_PIPD-LS-PKG_2026-10-30_HANDOFF-PATCH-v1
+manual: fabric-autonomous-research_使用說明手冊_v2026.08.13-r1-2.md
+lanes:
+  PLAN: gpt-6.1-sol (openai-codex, medium)
+  EXECUTE: deepseek-v4.1-flash (opencode-go via Codex CLI)
+  VERIFY: gpt-6.1-sol (openai-codex via Codex CLI)
+questions:
+  - id: Q1
+    text: >
+      A dispatch was reported as running (pid 6224 / 7284, WP-FHS-20 PLAN). The owner's goal list showed the item
+      blocked and nothing running. Was the report false, and what class of defect produces a "running" that is
+      indistinguishable from a lie?
+  - id: Q2
+    text: >
+      Empty console windows keep appearing on the owner's desktop while work runs. Is this normal, what actually
+      spawns them, and can the whole tree be made background-only?
+  - id: Q3
+    text: >
+      Four work packages (10, 12, 13, 11) are blocked. Is the "provide a second Windows account / change the
+      acceptance standard" framing a real dilemma, or a mis-framing that hides an executable third path?
+constraints:
+  - must_not_change_the_standard (no PASS by substitution, no UNKNOWN for FAIL)
+  - native_e2e_closed_loop
+  - unattended_high_automation
+  - not_over_governed, not_over_engineered
+priority_order: [delivery_alignment, native_e2e_closed_loop, unattended_operation, necessity, minimal_governance, low_friction]
