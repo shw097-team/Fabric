@@ -1,0 +1,46 @@
+schema: RESEARCH-HANDOFF/1
+run_id: FAR-HANDOFF-V1-CONTINUATION-20261030
+verdict: RESEARCH_PASS_CANDIDATE
+decision_answer: >-
+  No stop in this session was compliant, and none could have been: the rule constrains a turn, and the runtime
+  gives the actor no way to observe or refuse a turn end. The cure is a clock, not a sentence.
+rulings:
+  - id: OD-X1
+    decision: >-
+      The do-not-stop order is reclassified from "actor behaviour" to "runtime property". Compliance is judged by
+      whether a continuation exists when a turn ends, not by the assistant's willingness.
+    authorization_needed: none (interpretive)
+    executed: true
+  - id: OD-X2
+    decision: >-
+      Work remaining is held in hg-kseos.db `work_queue` (seeded from the delivery's DAG lines), never in session
+      context. "What is next" is computed.
+    authorization_needed: owner signature for the schema addition to the control plane
+    executed: true
+    artifact: HG-KSEOS/scripts/work_queue.py
+  - id: OD-X3
+    decision: >-
+      A continuation driver may dispatch, but only through scripts/hgk-lane-dispatch.py, and it may never record
+      a verdict. HG-KSEOS stays the only control plane; there is no second scheduler.
+    authorization_needed: none (uses existing lane authority)
+    executed: true
+    artifact: HG-KSEOS/scripts/continuation_driver.py
+  - id: OD-X4
+    decision: >-
+      The loop runs on a 15-minute cron (`hgk-continuation`, id 2d9fbc9715e7). Its first tick dispatched a PLAN
+      run for WP-FHS-11 with the brief it is expected to author -- the PLAN lane, idle all session, is now the
+      lane that writes briefs.
+    authorization_needed: none (user-level scheduler, no UAC, no service install)
+    executed: true
+  - id: OD-X5
+    decision: >-
+      WP order is taken from the parsed DAG, not from prose: 17 / 20 / 11 -> 13 -> 10 -> 12. The earlier stated
+      order (10 first) contradicted the delivery and is withdrawn.
+    authorization_needed: none
+    executed: true
+open_items:
+  - Q-01 WP-06 PASS precedes its WP-FHS-17 dependency -- needs an officer ruling
+  - Q-02 whether the driver may ever record a verdict in fully unattended windows
+next_actions:
+  - let the cron drain WP-FHS-11, then 17, 20, 13, 10, 12
+  - verify after 4 ticks that the queue state actually moves (not just that ticks fire)

@@ -1,0 +1,8 @@
+claim_id	claim	confidence	evidence_ref	falsifier
+C-01	A turn ends when the actor stops emitting tool calls; nothing is invoked at that moment, so no gate can refuse a stop.	HIGH	ResearchSynthesis.md#1; round_close_gate.py (runs only when invoked)	A hook observed at turn end that runs a gate
+C-02	The deployment had no continuation primitive: 0 cron jobs in profile hgk-governed before this run.	HIGH	hermes cron list -> 'No scheduled jobs'; ResearchSynthesis.md#1	A dispatch that resumed after a turn with no job and no user message
+C-03	Remaining work lived in session context and todo_list; after compaction the WP order came out contradicting the delivery DAG.	HIGH	work_queue.py docstring; git log of this session's stated order	An order reconstructed from prose that matches the DAG every time
+C-04	All five prior FAR runs diagnosed artefacts, none diagnosed the actor.	HIGH	table in ResearchSynthesis.md#2; run line counts 102/147/131/139/121	A prior run whose subject is the actor's turn policy
+C-05	Opt-in gates invoked by the policed actor are the same defect one level up.	MEDIUM	LANE-USAGE-AUDIT '5 prose homes, 0 enforcement points'	A case where an opt-in gate changed the actor's behaviour without a scheduler
+C-06	The loop can be moved out of the turn: cron -> driver -> queue -> dispatch through hgk-lane-dispatch.py only.	HIGH	driver.log at 22:48:25 (spawn PLAN, pid 7396); live process with nonce NONCE-WP-FHS-11-AUTO-20261030224825	The cron firing without any dispatch appearing
+C-07	The first detached launch was unobservable because its output was discarded; the process check used wmic, which does not exist on this host.	HIGH	WinError 2 from wmic; empty queue dir after first tick	-

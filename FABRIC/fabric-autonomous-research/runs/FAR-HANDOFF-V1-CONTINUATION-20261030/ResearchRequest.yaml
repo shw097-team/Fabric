@@ -1,0 +1,51 @@
+schema: RESEARCH-REQUEST/1
+run_id: FAR-HANDOFF-V1-CONTINUATION-20261030
+requested_at: "2026-10-30T22:50:00+08:00"
+owner: "全系統唯一 Owner & Issuer (owner key passphrase envelope, WIN-8342c45f0e73 lineage)"
+governance:
+  contract: Fabric
+  command_entry: SBL
+  control_plane: HG-KSEOS
+task_class: RESEARCH_GENERAL
+route_target: native + selected ARIS methods
+reason_code_expected: FAR_ROUTE_NATIVE_DEFAULT
+
+decision_question: >-
+  Why does the assistant stop and report instead of continuing autonomously, when the standing order forbids
+  stopping; is each stop compliant; and what would remove the behaviour rather than the instance?
+
+scope:
+  in:
+    - every turn in this session where the assistant ended with a question or a status report instead of the next action
+    - the five prior FAR runs on this delivery (RESIDUAL, ALLPASS-GAP, CAPABILITY-MISREAD, REFUSAL-AUDIT, LANE-USAGE-AUDIT)
+    - the runtime primitives available for continuation (Hermes turns, cron, kanban dispatch, lane dispatch, gates)
+  out:
+    - model quality as an explanation (not measurable here, and not the binding constraint)
+    - any claim about other deployments
+
+constraints:
+  - Fabric is the governance contract; HG-KSEOS is the only control plane; Fabric never becomes a second control plane
+  - no second scheduler: the continuation driver may only dispatch through scripts/hgk-lane-dispatch.py
+  - lanes stay fixed: PLAN gpt-6.1-sol / EXECUTE deepseek-v4.1-flash via Codex CLI / VERIFY gpt-6.1-sol via Codex CLI
+  - every VERIFY/EXECUTE brief must carry NONCE-ECHO as its first line (measured requirement, sitting 8)
+  - the cure must not add governance weight the delivery does not demand
+
+evidence_inventory:
+  prior_runs:
+    - "runs/FAR-HANDOFF-V1-RESIDUAL-20261030 (102 lines)"
+    - "runs/FAR-HANDOFF-V1-ALLPASS-GAP-20261030 (147 lines)"
+    - "runs/FAR-HANDOFF-V1-CAPABILITY-MISREAD-20261030 (131 lines)"
+    - "runs/FAR-HANDOFF-V1-REFUSAL-AUDIT-20261030 (139 lines)"
+    - "runs/FAR-HANDOFF-V1-LANE-USAGE-AUDIT-20261030 (121 lines)"
+  measured_now:
+    cron_jobs_in_profile: 0
+    gates_that_refuse_a_turn_ending_with_open_failures: 0
+    repo_documents_carrying_a_do_not_stop_rule: 0
+    dispatcher_strings_matching_do_not_stop: 1
+    registry_state: {pass: 16, fail: 6, not_run: 0}
+
+stopping_rule: >-
+  Stop when every claim has an evidence ref that resolves to a byte-level artefact produced by an execution,
+  or when a blocker is named with an owner decision attached. Abstain rather than infer.
+abstain_criteria:
+  - if the analysis cannot distinguish "the actor chose to stop" from "the runtime ended the turn", say so and do not pick one

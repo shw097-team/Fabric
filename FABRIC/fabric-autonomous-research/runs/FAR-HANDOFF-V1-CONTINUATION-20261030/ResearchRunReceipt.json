@@ -1,0 +1,26 @@
+{
+  "schema": "RESEARCH-RUN-RECEIPT/1",
+  "run_id": "FAR-HANDOFF-V1-CONTINUATION-20261030",
+  "route": "native + selected ARIS",
+  "reason_code": "FAR_ROUTE_NATIVE_DEFAULT",
+  "started_at": "2026-10-30T22:45:00+08:00",
+  "finished_at": "2026-10-30T22:50:35",
+  "artifacts": [
+    "ClaimLedger.tsv",
+    "ContradictionLedger.tsv",
+    "OpenQuestionLedger.tsv",
+    "ResearchRequest.yaml",
+    "ResearchSynthesis.md"
+  ],
+  "measured": {
+    "cron_jobs_before": 0,
+    "cron_jobs_after": 1,
+    "cron_job_id": "2d9fbc9715e7",
+    "driver_ticks": 2,
+    "dispatches_started": 1,
+    "dispatch_lane": "PLAN",
+    "dispatch_nonce": "NONCE-WP-FHS-11-AUTO-20261030224825"
+  },
+  "claim_ceiling": "the loop is LIVE (one real dispatch observed); it is not yet proven to drain the queue",
+  "handoff": "ResearchHandoff.yaml"
+}
