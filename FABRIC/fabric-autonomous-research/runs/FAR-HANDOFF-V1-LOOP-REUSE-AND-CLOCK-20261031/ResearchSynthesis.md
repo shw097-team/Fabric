@@ -112,3 +112,22 @@ dispatches on WP-FHS-11 at once. Fixed by single ownership of the pid file and b
 dies between spawn and receipt can be started twice; the receipt's nonce makes the duplicate identifiable, and the
 cure is the same as everywhere else in this project — the second dispatch refuses when it finds a live lock for the
 unit.
+
+## 7. Correction, same night: the supervisor was retired
+
+A long-lived supervisor created a new defect class every time it was touched: three copies of itself (pid file written
+by two owners), two dispatches of the same unit (01:21 and 01:31), and a unit wedged "in flight" for 28 minutes by a
+receipt from a process that had died at 01:07.
+
+Replaced by fan-out **inside the tick**: `continuation_driver.py --parallel 3` asks the DAG projection which units are
+ready, skips any unit that already owns a lane, starts each remaining unit as a detached child, and exits. No daemon,
+no pid file, no second clock — the cron tick (3 min) tops up whatever finished.
+
+Measured at 01:37:45, one tick while two units were already running:
+
+```
+{"verdict": "PARALLEL_TICK", "dispatched": [{"wp": "WP-FHS-20", "phase": "AWAITING_RECORD", "pid": 18492}]}
+lanes in flight: WP-FHS-11, WP-FHS-17, WP-FHS-20
+```
+
+`lane_supervisor.py` and `lane_watchdog.py` remain in the tree as history; nothing calls them.
