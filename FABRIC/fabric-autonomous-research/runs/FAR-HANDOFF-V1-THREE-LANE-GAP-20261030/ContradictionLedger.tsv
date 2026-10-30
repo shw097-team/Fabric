@@ -1,0 +1,6 @@
+id	contradiction	resolution
+X-01	"I will not stop" (every turn) vs "it stopped" (every observation)	both true: the assistant turn ended; the machine had no third verb. A promise cannot add an actuator
+X-02	FAIL must be settled to prevent blind retry vs FAIL must be answered	not a contradiction once EXECUTE exists: settle after EXECUTE rounds are exhausted, not before
+X-03	"routing is fine" vs "routing is the root cause"	resolved by separating routing (three lanes, correct) from the continuation graph (two edges)
+X-04	archiving receipts is honest vs archiving broke the gate	both: preserve history in attempts/ AND teach the phase to handle NO_ATTEMPT
+X-05	the wrapper exists twice vs the job runs one copy	resolved by identifying which path the cron job resolves (profile scripts) and treating the other as inert

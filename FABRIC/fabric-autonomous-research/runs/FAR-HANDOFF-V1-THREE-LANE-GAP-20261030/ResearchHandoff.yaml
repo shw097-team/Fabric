@@ -1,0 +1,18 @@
+run_id: FAR-HANDOFF-V1-THREE-LANE-GAP-20261030
+root_cause: the continuation graph carried two of the mandate's three lanes, so no actuator existed for implementation work
+  and every FAIL became terminal; the only remaining actor was the session assistant, whose turn boundary is a stop
+not_defects:
+  hermes_routing: verified by receipts (PLAN 323.72s, VERIFY 163.65s, EXECUTE dispatched 00:51:27)
+  hgk_lane_routing: registry epoch 34 declares all three chains correctly
+implemented:
+  - execute_prompt + EXECUTE_READY/REVERIFY phases (MAX_EXECUTE_ROUNDS=3, HALTED_EXECUTE)
+  - NO_ATTEMPT with no verdict -> re-dispatch instead of parking
+  - ops_status prints GOAL status; wrapper resumes a paused goal and logs it
+  - .gitignore for config/issuer/issuer.key and the nonce ledger
+  - relay_daemon.py (start/status/hide); the on-screen window hidden via ShowWindow, IsWindowVisible=False, health 200
+verified:
+  - drive a real EXECUTE dispatch: pid 11032, lane EXECUTE, phase EXECUTE_READY
+  - relay: health 200, visible_windows []
+next:
+  - let the EXECUTE lane answer the officer, then VERIFY re-judges automatically
+  - if three EXECUTE rounds fail, HALTED_EXECUTE demands a ruling rather than looping

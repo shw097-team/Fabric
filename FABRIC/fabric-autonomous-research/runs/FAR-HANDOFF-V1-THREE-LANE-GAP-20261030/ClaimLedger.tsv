@@ -1,0 +1,9 @@
+claim_id	claim	status	evidence
+C-01	The driver could dispatch only PLAN and VERIFY before this run	supported	plan_prompt + verify_prompt present; no execute_prompt; 0 occurrences of --lane EXECUTE in C:/wg/queue
+C-02	Therefore implementation work had no actuator in the loop	supported	every FAIL required an assistant turn; queue drained to 6 FAIL with no lane able to answer
+C-03	Six prior FAR runs studied artefacts and rules, never the actuator set	supported	the six run syntheses each name outputs or rules; none names a missing verb
+C-04	Hermes routing is not the defect	supported	PLAN 323.72s gpt-6.1-sol rank1; VERIFY 163.65s LANE_SERVED_AS_CLAIMED; EXECUTE dispatched 00:51:27
+C-05	HG-KSEOS lane routing is not the defect	supported	registry epoch 34 declares all three chains; gate refuses mismatches
+C-06	The defect is the continuation graph (two of three edges)	supported	driver source; fix implemented and exercised
+C-07	The archived receipts created a NO_ATTEMPT park	supported	gate output at 00:48: {"verdict": "NO_ATTEMPT", "problems": ["receipt carries no attempt"]}
+C-08	The goal was paused while three turns reported progress	supported	state_meta goal:20261030_134733_756c82 status=paused; now active, shown by ops_status
