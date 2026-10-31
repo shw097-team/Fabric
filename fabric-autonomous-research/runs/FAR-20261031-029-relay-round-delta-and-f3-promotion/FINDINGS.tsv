@@ -1,0 +1,9 @@
+id	finding	evidence_ref	confidence	class
+F-1	F3 was not wired into the dispatcher: no console_window_events_delta was emitted, so the promotion criterion was unmeasurable	grep -c console_window = 0 before the fix	HIGH	gap
+F-2	Relay was down (RELAY_DOWN, 10101 not listening; 10102 is the unrelated Codex Desktop router); start brings health 200 with zero visible windows	evidence/round_close_good.json + relay_daemon status	HIGH	operational
+F-3	Relay supervision is not a repair path: 1369 checks, 947 BLOCKED / 422 HEALTHY	var/far-lane-sod-003/evidence/relay-supervisor.receipts.jsonl	HIGH	structural
+F-4	First measured EXECUTE attempt served at rank 1 with delta 0	evidence/exec_delta1_receipt.json	HIGH	measurement
+F-5	Rollout identity built the impossible pair openai-codex + opencode-go/mimo-v2.6-flash, refusing a turn that served the required arm	evidence/verify_delta1_receipt_REFUSED.json	HIGH	defect-false-red
+F-6	lane_evidence_gate reported silent_substitution for the same arm because it compared raw strings	evidence/lane_gate_provider_swap.json (negative) + verify_delta1b receipt	HIGH	defect-false-red
+F-7	TT-EXECUTE-TRANSPORT-MISSING-SESSION-001 was the last refusal; its close criterion was met by F-4	round_close_gate before/after	HIGH	state
+F-8	After F3 promotion the gate refuses delta>0 (ERR_CONSOLE_WINDOW_EMITTED) and a null delta (ERR_CONSOLE_WINDOW_UNMEASURED)	evidence/round_close_negative.json	HIGH	gate

@@ -1,0 +1,217 @@
+{
+  "schema": "HGK-LANE-RESOLUTION/1",
+  "lane": "VERIFY_SECURITY",
+  "role": "checker",
+  "role_binding_source": null,
+  "engine": "codex-cli",
+  "codex_executable": "C:\\Users\\user\\AppData\\Local\\OpenAI\\Codex\\bin\\22cfb1d302613eae\\codex.exe",
+  "codex_home": "C:\\Users\\user\\.codex",
+  "relay_base": "http://127.0.0.1:10101/v1",
+  "codex_home_is_declared_lane_home": false,
+  "human_home_transport_acknowledged": true,
+  "skipped_arms": [],
+  "transport": "opencodex relay via per-invocation -c openai_base_url (no config mutation)",
+  "transport_target": "http://127.0.0.1:10101/v1",
+  "front_door_port": null,
+  "front_door_note": "the lane-scoped pool door (10103 VERIFY_SECURITY / 10105 EXECUTE) carries the hop and ledgers every decision; the sealed single-model 10100 door is unchanged and unused; None here means direct to the relay on 10101",
+  "sandbox": "read-only",
+  "sandbox_by_role_default": "read-only",
+  "sandbox_escalation_authorised": false,
+  "cwd": "C:/wg/queue",
+  "side_effect_note": "no write access granted by the sandbox mode",
+  "receipt_binding": "usage rows appended after this attempt started (byte offset bound)",
+  "pool": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\lane-route-slots.candidate.json",
+  "candidates_considered": [
+    1
+  ],
+  "mode": "pinned_primary",
+  "unguarded_escalation_acknowledged": false,
+  "inject_429_first": false,
+  "identity_gate": {
+    "state": "enforced",
+    "lane_home": "C:\\Users\\user\\.codex",
+    "relay_home": "C:\\Users\\user\\.opencodex",
+    "arms": [
+      {
+        "rank": 1,
+        "provider": "opencode-go",
+        "model": "mimo-v2.6-flash",
+        "requirement": "none",
+        "ok": true,
+        "detail": "key-auth arm: no human-attended identity"
+      },
+      {
+        "rank": 2,
+        "provider": "openai-codex",
+        "model": "gpt-6.1-sol",
+        "requirement": "relay_pool",
+        "ok": true,
+        "detail": "non-empty refreshable credential present in codex-accounts.json"
+      },
+      {
+        "rank": 3,
+        "provider": "opencode-go",
+        "model": "deepseek-v4.1-flash",
+        "requirement": "none",
+        "ok": true,
+        "detail": "key-auth arm: no human-attended identity"
+      },
+      {
+        "rank": 4,
+        "provider": "opencode-go",
+        "model": "glm-5.3-flash",
+        "requirement": "none",
+        "ok": true,
+        "detail": "key-auth arm: no human-attended identity"
+      },
+      {
+        "rank": 5,
+        "provider": "nvidia",
+        "model": "deepseek-ai/deepseek-v4.1-flash",
+        "requirement": "none",
+        "ok": true,
+        "detail": "key-auth arm: no human-attended identity"
+      }
+    ],
+    "degraded": false,
+    "required_arm": "opencode-go/mimo-v2.6-flash"
+  },
+  "authorization": {
+    "checked": false
+  },
+  "subject_mutation": {
+    "state": "not_guarded"
+  },
+  "attempt_log_dir": "C:/wg/probe/verify_delta1_receipt.json.logs",
+  "output_dir_policy": {
+    "mode": "explicit-path",
+    "derived": null,
+    "existing": false
+  },
+  "repair_precondition": {
+    "checked": false
+  },
+  "remote_write_precheck": {
+    "mode": "DETECTION_ONLY",
+    "ran": false
+  },
+  "attempts": [
+    {
+      "rank": 1,
+      "provider": "openai-codex",
+      "model": "opencode-go/mimo-v2.6-flash",
+      "transport_model": "opencode-go/mimo-v2.6-flash",
+      "sandbox": "read-only",
+      "reasoning_effort": null,
+      "exit": 0,
+      "timed_out": false,
+      "seconds": 14.3,
+      "nonce_present": true,
+      "nonce_present_raw_stdout": true,
+      "nonce_present_anywhere": true,
+      "nonce_in_agent_message": true,
+      "producer": {
+        "script_sha256": "6263972088dfdb969a8489033ef63bc7b560fadf3e769477c505ea5cf06e936e",
+        "git_head": "6583cafe76e94d7f32382852b90b168261eec8ce",
+        "schema": "HGK-LANE-DISPATCH-PRODUCER/1"
+      },
+      "nonce_source": "item.completed/agent_message",
+      "usage_rows_after_offset": 2,
+      "usage_offset": 3784014,
+      "usage_provider": "opencode-go",
+      "usage_model": "mimo-v2.6-flash",
+      "usage_status": 200,
+      "usage_receipt_ok": true,
+      "usage_receipt_reason": "",
+      "usage_ledger_rewritten": false,
+      "usage_rows_shape_invalid": 0,
+      "usage_rows_undecodable": 0,
+      "carrier_lines_undecodable": 0,
+      "carrier_lines_surrogate": 0,
+      "credential_posture": {
+        "verdict": "INCONCLUSIVE",
+        "decision": "WARN_CONTINUE",
+        "reason": "helper-only verdict (no child env asserted): helper_resolution_reset=PASS; helper_non_interactive=UNKNOWN",
+        "prompt_capable_helper": null,
+        "origin": null,
+        "git_terminal_prompt": "0"
+      },
+      "attempt_log_dir": "C:/wg/probe/verify_delta1_receipt.json.logs",
+      "stdout_byte_exact": true,
+      "stdout_path": "C:\\wg\\probe\\verify_delta1_receipt.json.logs\\attempt-13788-1793443779-1-stdout.txt",
+      "stdout_bytes": 1645,
+      "stdout_sha256": "31ccaae4dc2360d6f74b9e4364a2864545535c1ad3e3fd714d90ec8e138b835f",
+      "stderr_byte_exact": true,
+      "stderr_path": "C:\\wg\\probe\\verify_delta1_receipt.json.logs\\attempt-13788-1793443779-1-stderr.txt",
+      "stderr_bytes": 170,
+      "stderr_sha256": "1ea6ab290c7f01cdc2b0bff7b36bdc833a50dc8eae9885c13e1cc18f1fca4df8",
+      "stdout_tail": "else:\\r\\n\\r\\nNONCE-ECHO: VERIFYDELTA20261031A\\r\\nVERIFYDELTA_OK\\r\\n\",\"exit_code\":0,\"status\":\"completed\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_3\",\"type\":\"agent_message\",\"text\":\"NONCE-ECHO: VERIFYDELTA20261031A\\nVERIFYDELTA_OK\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":25916,\"cached_input_tokens\":13824,\"cache_write_input_tokens\":0,\"output_tokens\":224,\"reasoning_output_tokens\":111}}\n",
+      "stderr_tail": "Reading additional input from stdin...\n2026-10-31T10:49:40.930944Z ERROR codex_api::endpoint::responses_websocket: failed to connect to Responses WebSocket stage=Unknown\n",
+      "console_window_events_delta": 0,
+      "console_window_ledger": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\console-window-events.jsonl",
+      "console_window_owners": [],
+      "identity_source": "codex-rollout",
+      "identity_rollout": "C:\\Users\\user\\.codex\\sessions\\2026\\10\\31\\rollout-2026-10-31T18-49-40-01a19194-589d-7880-849f-47b3ae7bff34.jsonl",
+      "identity_note": "served arm read from the codex rollout written for this run and cwd"
+    }
+  ],
+  "used_rank": 1,
+  "used_transport_model": "opencode-go/mimo-v2.6-flash",
+  "used_seconds": 14.3,
+  "generated_utc": "2026-10-31T10:49:54.946619+00:00",
+  "assignment_posture": {
+    "enforced": false,
+    "posture": {
+      "ok": true,
+      "arms": [
+        "opencode-go/mimo-v2.6-flash"
+      ],
+      "revision": 39,
+      "role": "VERIFY_SECURITY",
+      "authority": "owner-order-20261031-verify-checker-mimo-v26-flash",
+      "shape": "role",
+      "primary_arms": [
+        "opencode-go/mimo-v2.6-flash"
+      ],
+      "fallback_arms": [],
+      "declared_fallbacks": [],
+      "fallbacks_declared": false,
+      "alternates_are_operator_selectable": false
+    },
+    "arms_outside_assignment": []
+  },
+  "producer": {
+    "script_sha256": "6263972088dfdb969a8489033ef63bc7b560fadf3e769477c505ea5cf06e936e",
+    "git_head": "6583cafe76e94d7f32382852b90b168261eec8ce",
+    "schema": "HGK-LANE-DISPATCH-PRODUCER/1"
+  },
+  "comparison_policy": "compare two receipts ONLY when producer.script_sha256 is equal; tools/compare_lane_receipts.py refuses otherwise (TT-R20-9)",
+  "selection_filter": {
+    "required_arm": "opencode-go/mimo-v2.6-flash",
+    "candidates_before": [
+      "opencode-go/mimo-v2.6-flash",
+      "openai-codex/gpt-6.1-sol",
+      "opencode-go/deepseek-v4.1-flash",
+      "opencode-go/glm-5.3-flash",
+      "nvidia/deepseek-ai/deepseek-v4.1-flash"
+    ],
+    "candidates_after": [
+      "opencode-go/mimo-v2.6-flash"
+    ],
+    "why": "selection constrained by --require-arm (alias-equivalent), not only judged after the call"
+  },
+  "served_arm_assigned": false,
+  "claim_ceiling": "a pass here proves the Codex-CLI lane served this turn through the relay with a matching usage receipt; it is not an acceptance of any subject",
+  "ok": false,
+  "identity_source": "codex-rollout",
+  "completion_evidence": {
+    "checked": false
+  },
+  "usage_receipt_ok": true,
+  "usage_rows_shape_invalid": 0,
+  "usage_rows_undecodable": 0,
+  "required_arm": "opencode-go/mimo-v2.6-flash",
+  "served_arm_raw": "openai-codex/opencode-go/mimo-v2.6-flash",
+  "served_arm": "openai-codex/opencode-go/mimo-v2.6-flash",
+  "code": "ERR_REQUIRED_ARM_NOT_SERVED"
+}
