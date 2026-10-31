@@ -1,0 +1,46 @@
+{
+  "schema": "HGK-LANE-RESOLUTION/1",
+  "ok": false,
+  "lane": "PLAN",
+  "code": "ERR_DURABLE_GATE_NO_GO",
+  "detail": {
+    "transport": {
+      "verdict": "RELAY_DOWN",
+      "url": "http://127.0.0.1:10101/healthz",
+      "detail": "URLError: <urlopen error [WinError 10061] �L�k�s�u�A�]���ؼйq���ڵ��s�u�C>",
+      "fix": "ocx start --port 10101 (or restore the user-level startup entry)",
+      "why_it_matters": "a lane turn that starts here reports a credential failure that is really a dead transport"
+    },
+    "gates": {
+      "schema": "IR-GATE-PREFLIGHT/1",
+      "verdict": "GO",
+      "policy": {
+        "verdict": "POLICY_COMMITTED",
+        "repo": "C:\\Projects\\Agent_Workspace\\HG-KSEOS",
+        "head": "b5dde8c",
+        "policy_files": [
+          "config/model-lane-assignment.json",
+          "config/lane-routing-registry.yaml",
+          "config/hermes-codex-lane.json",
+          "config/active-policy.json"
+        ]
+      },
+      "subject": {
+        "verdict": "COMMITTED",
+        "path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\recurrence-ledger.json",
+        "repo": "C:/Projects/Agent_Workspace/HG-KSEOS",
+        "head": "b5dde8c",
+        "tracked_files": 1,
+        "dirty_entries": 0,
+        "rule": "IR-4: a round may only claim progress on a subject that has a commit",
+        "effect": "ok"
+      },
+      "meaning": "both gates passed"
+    }
+  },
+  "generated_utc": "2026-10-31T00:01:36.635929+00:00",
+  "say": "refused before spawn: the policy or the subject is not in the durable layer",
+  "gate": "NO_GO",
+  "codex_home": "C:\\Users\\user\\.codex",
+  "codex_home_is_declared_lane_home": false
+}
