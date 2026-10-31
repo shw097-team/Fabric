@@ -1,0 +1,23 @@
+schema: FAR.RESEARCH_HANDOFF/1
+run: FAR-20261031-031
+handoff_to: owner (shw097) and the next governed session on HG-KSEOS
+verdict: RESEARCH_PASS_CANDIDATE
+deliverables:
+  report: ResearchSynthesis.md
+  ledgers: [ClaimLedger.tsv, DisagreementLedger.tsv, ResearchSourceDenominator.tsv]
+  evidence: evidence/
+open_owner_decisions: 15   # D-1 .. D-15, see ResearchSynthesis.md §6
+blocking_today:
+  - D-1 r18/r19 lineage vs main
+  - D-3 VERIFY arm (mimo now, gpt-6.1-sol needs revision 40)
+  - D-10 /c/wg/queue has no remote
+first_three_actions:
+  - Phase 0: long-path extraction, re-verify 909/909, scoreboard divergence gate
+  - Phase 1: re-bind WP-FHS-10 to B1 GATES.json + checker_receipt_codex_r7.json (97496bbb…)
+  - Phase 2: WP-FHS-11 writeset -> issue_grant(HOST_INSTALL) -> install -> fresh-load -> VERIFY(mimo, delta=0)
+lane_rule_for_next_session: always pass --identity-source codex-rollout; VERIFY with --require-arm opencode-go/mimo-v2.6-flash
+nonclaims:
+  - no package was promoted
+  - no permit was issued
+  - no PR was merged
+  - no native effect ran

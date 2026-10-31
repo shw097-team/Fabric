@@ -1,0 +1,22 @@
+{
+ "file": "C:/Projects/Agent_Workspace/HG-KSEOS/config/lane-routing-registry.yaml",
+ "epoch": 39,
+ "contract_epoch": 34,
+ "revision": 39,
+ "model_lane_assignment_revision": 39,
+ "working_tree": "clean (0 entries) — the 4 policy files P16 found dirty at 190df33 are now committed",
+ "bindings": {
+  "PLAN": [
+   "openai-codex/gpt-6.1-sol"
+  ],
+  "EXECUTE": [
+   "opencode-go/deepseek-v4.1-flash"
+  ],
+  "VERIFY_SECURITY": [
+   "opencode-go/mimo-v2.6-flash"
+  ]
+ },
+ "verify_alternates_operator_selectable": false,
+ "history": "rev33 held all three lanes on deepseek (owner-ordered SOD006-C7); rev39 restored PLAN to gpt-6.1-sol and bound VERIFY to mimo-v2.6-flash by owner order 2026-10-31",
+ "consequence": "--require-arm openai-codex/gpt-6.1-sol on VERIFY_SECURITY is refused before spawn (ERR_ARM_NOT_IN_ASSIGNMENT)"
+}

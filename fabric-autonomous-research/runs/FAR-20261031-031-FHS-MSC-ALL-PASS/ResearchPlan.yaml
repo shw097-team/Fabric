@@ -1,0 +1,35 @@
+schema: FAR.RESEARCH_PLAN/1
+run: FAR-20261031-031
+subquestions:
+  S1: is the delivered package actually complete (bytes and digests)?
+  S2: which of the 22 work packages are not PASS, and why, from the control plane rather than from prose?
+  S3: can the three mandated lanes actually serve today, and what is the failure class when they do not?
+  S4: which items need an owner/issuer instrument, and what is the smallest instrument that unblocks each?
+  S5: which detected candidates are promotable to operative use, and which unmerged branches can reach main?
+claim_classes:
+  - MEASURED_FACT        # recomputed this run
+  - PRIOR_RECEIPT        # exists in a named file; re-verified by digest where cheap
+  - OWNER_ORDER          # declared by the owner; recorded, not verified
+  - UNMEASURABLE         # recorded as NOT_MEASURED with the reason
+sources:
+  primary:
+    - C:/wg/pkg (canonical unpacked delivery) + SHA256_PAYLOAD_MANIFEST.json
+    - HG-KSEOS/var/shared-spine/hg-kseos.db (work_queue, acceptances)
+    - HG-KSEOS/config/lane-routing-registry.yaml, config/model-lane-assignment.json
+    - HG-KSEOS/var/FHS-HANDOFF-EXEC-20261030/receipts/*.json (P1..P17)
+    - HG-KSEOS/ops/session-20261031/HANDOFF.md, IMPLEMENTATION_INDEX.md
+    - GitHub API pulls?state=all for the four repositories
+  secondary:
+    - the owner-supplied folder copy (treated as a lossy instance, measured, never as the subject)
+    - FHS-B1 / Fabric / HG-KSEOS / SBL usage documents (projections, not authority)
+  excluded_as_evidence:
+    - FINAL_HANDOFF.md statements later refuted by measurement (PR #7 state, evidence-archive shortfall)
+    - P10 (withdrawn by its own successor P11)
+methods:
+  - recompute digests rather than trust the manifest's own claim
+  - query the control plane DB read-only for the scoreboard
+  - dispatch real lane probes with a nonce, then read the attempt ledger to separate model failure from predicate failure
+  - merge-tree / merge-base for mergeability, GitHub API for PR state
+stop_and_abstain:
+  - abstain from any native/release claim
+  - abstain from recommending implementation of effect runners whose inputs do not exist

@@ -1,0 +1,57 @@
+schema: FAR.CANDIDATE_RESEARCH/1
+candidate_id: FAR-20261031-031-C1
+status: CANDIDATE
+claim_ceiling: MEASURED_RESEARCH_AND_ENGINEERING_VERDICT
+headline: >-
+  The handoff package is complete (909/909) and the three mandated lanes all serve; what remains is
+  six HOST_OP packages that need a per-package writeset -> permit -> install -> fresh-load -> independent
+  verify chain, one evidence re-binding (WP-FHS-10), one lineage decision (r18/r19 vs main), and one
+  scoreboard authority decision.
+recommendations:
+  - id: V1
+    text: work_queue is the only WP scoreboard authority; the other three become projections with a divergence gate
+    requires_owner: false
+  - id: V2
+    text: re-bind WP-FHS-10 to the existing B1 signed evidence instead of re-running native
+    requires_owner: false
+  - id: V3
+    text: run one repeatable HOST_OP chain (writeset -> permit -> install -> fresh-load -> verify), WP-FHS-11 first
+    requires_owner: false
+  - id: V4
+    text: default identity_source to codex-rollout and give the no-usage-row case a named fail-closed error
+    requires_owner: false
+  - id: V5
+    text: keep VERIFY on mimo (rev 39) unless the owner issues revision 40 for gpt-6.1-sol
+    requires_owner: true
+    owner: shw097
+  - id: V6
+    text: repair the delivery layer (long-path extraction, directory name, PACKAGE_READBACK.json), then re-verify 909/909
+    requires_owner: false
+  - id: V7
+    text: one named graft merge of r18 into main, then a single root
+    requires_owner: true
+    owner: shw097
+  - id: V8
+    text: move ir1_policy_gate to round start as a blocking condition
+    requires_owner: false
+  - id: V9
+    text: give /c/wg/queue a remote; it is the only execution evidence for 22 packages
+    requires_owner: true
+    owner: shw097
+promotable_candidates:
+  - P-1 codex-rollout as lane identity source (3/3 lanes measured)
+  - P-2 durable_import.py vacuous-pass guards (positive 911/911, negative exit 6)
+  - P-3 R21-CANON-c0542636 (signed, 7 packages, to 2026-11-14)
+  - P-4 WP-FHS-17 reproduce.ps1 (218 artefacts, REPRODUCED)
+  - P-5 B1 GATES.json + checker receipt as WP-10 evidence
+  - P-6 F3 console-window gate (already blocking)
+  - P-7 FAR-028/029/030 root-cause reports (pushed)
+  - P-8 PIPD PR #20 oracle compat API (CI not green yet)
+rejected_candidates:
+  - P10 'no independent arm' (withdrawn by P11, refuted by measurement)
+  - implementing the 8 effect runners whose inputs do not exist
+  - any use of claim_ceiling as if it were signed content
+not_claimed:
+  - any WP state change
+  - independent acceptance completed (only lane serviceability measured)
+  - native admission, release, production

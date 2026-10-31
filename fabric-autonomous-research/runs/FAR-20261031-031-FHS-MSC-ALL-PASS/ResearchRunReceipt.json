@@ -1,0 +1,137 @@
+{
+ "schema": "FAR.RESEARCH_RUN_RECEIPT/1",
+ "run": "FAR-20261031-031-FHS-MSC-ALL-PASS",
+ "generated_utc": "2026-10-31T12:36:59+00:00",
+ "governance": {
+  "contract": "Fabric",
+  "control_plane": "HG-KSEOS",
+  "runtime": "canonical Hermes",
+  "product_entry": "SBL / FHS-MSC"
+ },
+ "verdict": "RESEARCH_PASS_CANDIDATE",
+ "claim_ceiling": "MEASURED_RESEARCH_AND_ENGINEERING_VERDICT",
+ "gates": {
+  "Q0_source_bound": "PASS",
+  "Q1_denominator": "PASS (17 sources, 0 MISSING)",
+  "Q2_claim_ledger": "PASS (19 claims, 1 INFERENCE flagged)",
+  "Q3_disagreement": "PASS (8 entries, 2 open by decision/owner)",
+  "Q4_nonclaims": "PASS",
+  "Q5_no_native_claim": "PASS",
+  "Q6_reproducible": "PASS (appendix A commands)",
+  "Q7_experiment": "N/A_NOT_SELECTED_WITH_REASON (no experiment product; lane probes are admission probes, not experiments)"
+ },
+ "lanes_used": {
+  "PLAN": "openai-codex/gpt-6.1-sol",
+  "EXECUTE": "opencode-go/deepseek-v4.1-flash (tool execution of this session)",
+  "VERIFY": "not dispatched as an acceptance turn — this is a research product, not an acceptance"
+ },
+ "artefacts": {
+  "CandidateResearch.yaml": {
+   "bytes": 2703,
+   "sha256": "29c8c54a9aa863b965e444dd505dbd8988a8e6259e585995c1f40d0c0ec7dc52"
+  },
+  "ClaimLedger.tsv": {
+   "bytes": 2885,
+   "sha256": "85cf7c28d3bf466c241ff0b45cb495c6a9378cd6e7af4ed428f368365c19d971"
+  },
+  "DisagreementLedger.tsv": {
+   "bytes": 1524,
+   "sha256": "e09f837234c3835bdbc29f3f38330300af3c783f13e8ed539bf0b9c238b0b6be"
+  },
+  "ResearchHandoff.yaml": {
+   "bytes": 1088,
+   "sha256": "1ded26206b1bb9e68be80b3c03f0a51994b6f2d79d7a66943c465f5e7f6c6df3"
+  },
+  "ResearchPlan.yaml": {
+   "bytes": 2184,
+   "sha256": "225c53c74758ffeef2ebe699d00ff51edba32d494aa0954c8cc8656be52d8981"
+  },
+  "ResearchRequest.yaml": {
+   "bytes": 1757,
+   "sha256": "a3c3cb60f6b014a64f0e023f8834e53a76c45b6de583808bc289b5a4ca0e9868"
+  },
+  "ResearchSourceDenominator.tsv": {
+   "bytes": 1745,
+   "sha256": "6eae79287c806a9cfda8a52485d09b6b5f3f013155e2a01a7239688b769097dc"
+  },
+  "ResearchSynthesis.md": {
+   "bytes": 37675,
+   "sha256": "bc9890ba4b88b1dadc29e9732fa6f6ac154630ec43d4531c6768451e595e8e2d"
+  },
+  "evidence/github_pr_state.json": {
+   "bytes": 4496,
+   "sha256": "efd33c223f89f5ce3f406e72d439048f2a1a310f977583f9b0a53e3e07bb64d9"
+  },
+  "evidence/instance_loss_measurement.json": {
+   "bytes": 1476,
+   "sha256": "b3a69f7eb89ad6e1c5b012be8b52bbb18c62c50e82ff2dccd822f67b4a0316e4"
+  },
+  "evidence/lane_dispatch_exec.json": {
+   "bytes": 16916,
+   "sha256": "c517962d49636a2d9fd6bb40f17d78998102e078282c11210ebb0e8f2a4702b9"
+  },
+  "evidence/lane_dispatch_exec2.json": {
+   "bytes": 8432,
+   "sha256": "5bc1a327b768c6615ce3f7ddc13ce0f58cba34747ead6b8db5c59364154c1648"
+  },
+  "evidence/lane_dispatch_exec2.json.attempts.ndjson": {
+   "bytes": 2690,
+   "sha256": "c31d2843b38d798ce1553ff65abb4b6577bedc811cff17f206d5f80ac127a9cf"
+  },
+  "evidence/lane_dispatch_plan.json": {
+   "bytes": 7683,
+   "sha256": "5bf7db25aec30010aa7f4042ae58dd8c72cec7d76f463c15064c3c69e5ad37ff"
+  },
+  "evidence/lane_dispatch_plan.json.attempts.ndjson": {
+   "bytes": 2688,
+   "sha256": "0a5991431738e0a0e846707d260e89cdc2e140568686e706e1cf0a92d539ae17"
+  },
+  "evidence/lane_dispatch_verify.json": {
+   "bytes": 1029,
+   "sha256": "e4ee3ab45ccd01c56920d52482f3b66ffd878f90d072832f5906166662a7b522"
+  },
+  "evidence/lane_dispatch_verify2.json": {
+   "bytes": 7780,
+   "sha256": "133d86e27757ad73bdf601c102622a2f8441088dd773bc60047902fcdf4657be"
+  },
+  "evidence/lane_dispatch_verify2.json.attempts.ndjson": {
+   "bytes": 2723,
+   "sha256": "2990eb9793a72f1db1af8af3ce7ccdba4440f5425963f33a447f4a60cb57b11b"
+  },
+  "evidence/lane_dispatch_verify_mimo.json": {
+   "bytes": 977,
+   "sha256": "d91af9e243d50ddcf079eaec3b5ecc40a389f0f3d7c427b5890817eb934e2bb6"
+  },
+  "evidence/lane_dispatch_verify_sol.json": {
+   "bytes": 7397,
+   "sha256": "6ee21c295ce3add07bb3123b0fba1c06f68309e54751e8ee62e4297a089206ab"
+  },
+  "evidence/lane_dispatch_verify_sol.json.attempts.ndjson": {
+   "bytes": 2713,
+   "sha256": "8e48fafdd2e2897235f33fff32a885afb5cfbc10123921b438d3f509617d408e"
+  },
+  "evidence/lane_policy_state.json": {
+   "bytes": 844,
+   "sha256": "d2b58fc85bad79fb4bd2645b8fe8755a88d31ffe614796b80375e0dc570b952f"
+  },
+  "evidence/lane_preflight_gpt61.json": {
+   "bytes": 4420,
+   "sha256": "fe264b9485b7256efe5cce1711e69063059bf9de1d318aed89d49ee5b51795bc"
+  },
+  "evidence/merge_matrix.json": {
+   "bytes": 1551,
+   "sha256": "92aee56d4d05880ab2e69ca51e0895123b0afe350af13756a37ca30da81c8c93"
+  },
+  "evidence/package_integrity.json": {
+   "bytes": 140,
+   "sha256": "3e59c3e2d480652ee42e76be63795ba0d74ae9104b1744cec91e02eed7b976ac"
+  },
+  "evidence/wp_scoreboard_control_plane.json": {
+   "bytes": 4018,
+   "sha256": "1a7068f0d0ddb657d1e7ae22c20b2308c2eca2c0b383e8c0ebc13819a666bf1f"
+  }
+ },
+ "counts": {
+  "artefacts": 26
+ }
+}

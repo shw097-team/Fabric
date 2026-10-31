@@ -1,0 +1,196 @@
+{
+ "measured_at": "2026-10-31T12:35Z",
+ "method": "GET https://api.github.com/repos/shw097-team/<repo>/pulls?state=all (per-PR detail for mergeable/mergeable_state)",
+ "merged": [
+  {
+   "repo": "HG-KSEOS",
+   "pr": 7,
+   "base": "main",
+   "head": "fhs-msc-handoff-patch-v1-exec-20261030",
+   "merge_sha": "1e98abf71b",
+   "merged_at": "2026-10-30T11:39:16Z",
+   "note": "the HANDOFF-PATCH-v1 execution round IS merged to main; FINAL_HANDOFF.md still says 'open, no merge' — stale"
+  },
+  {
+   "repo": "HG-KSEOS",
+   "pr": 6,
+   "base": "main",
+   "head": "publish/r20-subset",
+   "merged_at": "2026-10-30T11:38:41Z"
+  },
+  {
+   "repo": "HG-KSEOS",
+   "pr": 4,
+   "base": "main",
+   "head": "candidate/r18-openspec-only",
+   "merged_at": "2026-10-30T11:38:34Z"
+  },
+  {
+   "repo": "HG-KSEOS",
+   "pr": 3,
+   "base": "main",
+   "head": "b1/closure-20261028",
+   "merged_at": "2026-10-28T07:27:09Z"
+  },
+  {
+   "repo": "Fabric",
+   "pr": 19,
+   "head": "b1/closure-20261028",
+   "merged": true
+  },
+  {
+   "repo": "SBL",
+   "pr": 14,
+   "head": "b1/closure-20261028",
+   "merged": true
+  },
+  {
+   "repo": "PIPD-LS-SP",
+   "pr": 21,
+   "head": "b1/closure-20261028",
+   "merged": true
+  },
+  {
+   "repo": "PIPD-LS-SP",
+   "pr": 18,
+   "head": "fix/s4r6-closeout-doc-identity-and-update-rout",
+   "merged": true
+  },
+  {
+   "repo": "PIPD-LS-SP",
+   "pr": 17,
+   "head": "docs/r5r3-asset-reproducibility-readback",
+   "merged": true
+  }
+ ],
+ "open": [
+  {
+   "repo": "HG-KSEOS",
+   "pr": 1,
+   "head": "codex/b1-r5-native-admission-20261027",
+   "mergeable": true,
+   "mergeable_state": "clean",
+   "files": 10,
+   "delta": "+1153/-19"
+  },
+  {
+   "repo": "HG-KSEOS",
+   "pr": 2,
+   "head": "codex/b1-r6-artifact-scope-20261027",
+   "mergeable": true,
+   "mergeable_state": "clean",
+   "files": 2,
+   "delta": "+65/-5"
+  },
+  {
+   "repo": "HG-KSEOS",
+   "pr": 5,
+   "head": "candidate/r19-fhs-implementation",
+   "base": "candidate/r18-fhs-skeleton-spine-20261029",
+   "mergeable": null,
+   "mergeable_state": "unknown",
+   "commits": 27,
+   "files": 185,
+   "note": "base is r18, and r18 shares no ancestry with main (merge-base NONE) — not a main-merge candidate until the lineage decision is taken"
+  },
+  {
+   "repo": "Fabric",
+   "pr": 18,
+   "head": "codex/b1-r5-consumer-readback-20261027",
+   "mergeable": true,
+   "mergeable_state": "clean"
+  },
+  {
+   "repo": "Fabric",
+   "pr": 17,
+   "head": "evidence/cnv-owner-decision-main-landing-20261016",
+   "mergeable": true,
+   "mergeable_state": "clean"
+  },
+  {
+   "repo": "Fabric",
+   "pr": 16,
+   "head": "homepage/cnv-hygiene-readme-closure-20261016",
+   "mergeable": false,
+   "mergeable_state": "dirty"
+  },
+  {
+   "repo": "Fabric",
+   "pr": 15,
+   "head": "evidence/cnv-far018-far019-archive",
+   "mergeable": true,
+   "mergeable_state": "clean"
+  },
+  {
+   "repo": "SBL",
+   "pr": 13,
+   "head": "codex/b1-r5-todo-atomic-save-20261027",
+   "mergeable": true,
+   "mergeable_state": "clean"
+  },
+  {
+   "repo": "SBL",
+   "pr": 12,
+   "head": "fhs-msc/local-remote-recon-20261026-f454r00",
+   "mergeable": true,
+   "mergeable_state": "clean"
+  },
+  {
+   "repo": "SBL",
+   "pr": 11,
+   "head": "r17-s207-evidence-20261024",
+   "mergeable": true,
+   "mergeable_state": "clean"
+  },
+  {
+   "repo": "SBL",
+   "pr": 10,
+   "head": "evidence/r17-session-handoff-20261024",
+   "mergeable": true,
+   "mergeable_state": "clean"
+  },
+  {
+   "repo": "SBL",
+   "pr": 9,
+   "head": "evidence/r17-rec08-20261024",
+   "mergeable": true,
+   "mergeable_state": "clean"
+  },
+  {
+   "repo": "PIPD-LS-SP",
+   "pr": 20,
+   "head": "codex/b1-r5-oracle-compat-main-20261027",
+   "mergeable": true,
+   "mergeable_state": "unstable",
+   "note": "mergeable but commit status not green"
+  },
+  {
+   "repo": "PIPD-LS-SP",
+   "pr": 19,
+   "head": "docs/r8-4-front-page-limitations-truthfulness-20261023",
+   "mergeable": true,
+   "mergeable_state": "unstable"
+  },
+  {
+   "repo": "PIPD-LS-SP",
+   "pr": 15,
+   "head": "evidence/cnv-r7-0-validator-hardening-20261015",
+   "mergeable": true,
+   "mergeable_state": "clean"
+  },
+  {
+   "repo": "PIPD-LS-SP",
+   "pr": 14,
+   "head": "evidence/cnv-pipd-ls-sp-20261015-r6",
+   "mergeable": true,
+   "mergeable_state": "clean"
+  }
+ ],
+ "counts": {
+  "open": 16,
+  "clean": 12,
+  "dirty": 1,
+  "unstable": 2,
+  "unknown": 1
+ }
+}

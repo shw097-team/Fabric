@@ -1,0 +1,63 @@
+{
+ "method": "git merge-tree --write-tree --name-only origin/main <branch>; git merge-base origin/main <branch>",
+ "rows": [
+  {
+   "repo": "HG-KSEOS",
+   "branch": "b1/closure-20261028",
+   "result": "CLEAN",
+   "tree": "24e2be12"
+  },
+  {
+   "repo": "HG-KSEOS",
+   "branch": "candidate/r18-openspec-only",
+   "result": "CLEAN",
+   "tree": "d33e6ba3"
+  },
+  {
+   "repo": "HG-KSEOS",
+   "branch": "candidate/r18-fhs-skeleton-spine-20261029",
+   "result": "UNRELATED_HISTORIES",
+   "merge_base": null,
+   "commits_ahead": 264,
+   "commits_behind": 83,
+   "note": "this branch carries the whole 2026-10-31 session (287c8df, 7e093ef) and is not an ancestor-related line to main; nothing on it can reach main by a normal merge"
+  },
+  {
+   "repo": "HG-KSEOS",
+   "branch": "candidate/r19-fhs-implementation",
+   "result": "UNRELATED_HISTORIES",
+   "merge_base": null
+  },
+  {
+   "repo": "Fabric",
+   "branch": "b1/closure-20261028",
+   "result": "CLEAN",
+   "tree": "25cafce2"
+  },
+  {
+   "repo": "Fabric",
+   "branch": "pub/far-minimax-mandate-20261021",
+   "result": "CLEAN",
+   "tree": "a2cbf199"
+  },
+  {
+   "repo": "SBL",
+   "branch": "b1/closure-20261028",
+   "result": "CLEAN",
+   "tree": "79321db5"
+  },
+  {
+   "repo": "SBL",
+   "branch": "candidate/r14-ts15-kinds",
+   "result": "CONFLICT",
+   "file": "evidence/security/SECRET_SCAN.json",
+   "tree": "d3723228"
+  },
+  {
+   "repo": "PIPD-LS-SP",
+   "branch": "b1/closure-20261029",
+   "result": "CLEAN",
+   "tree": "ead090e3"
+  }
+ ]
+}

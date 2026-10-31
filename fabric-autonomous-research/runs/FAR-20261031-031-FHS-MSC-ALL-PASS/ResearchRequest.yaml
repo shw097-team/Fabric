@@ -1,0 +1,36 @@
+schema: FAR.RESEARCH_REQUEST/1
+request_id: FAR-20261031-031
+title: FHS-MSC_PIPD-LS-PKG_2026-10-30_HANDOFF-PATCH-v1 — residual items and the ALL-PASS path
+decision_question: >-
+  Which items of FHS-MSC_PIPD-LS-PKG_2026-10-30_HANDOFF-PATCH-v1 are not actually complete/PASS,
+  how are the residual / gap / blocked / unclosed items closed, which items need an owner or issuer
+  decision, which detected candidates may be promoted, and which unmerged branches may merge to main?
+owner: shw097 (Human Policy Owner)
+requester: owner, session 2026-10-31 (desktop, HG-KSEOS governed profile)
+task_class: RESEARCH_GENERAL
+route: FAR_ROUTE_NATIVE_DEFAULT
+governance:
+  contract: Fabric
+  product_entry: SBL / FHS-MSC
+  control_plane: HG-KSEOS (sole)
+  runtime: canonical Hermes (governed orchestration plane)
+lanes_requested:
+  PLAN: openai-codex/gpt-6.1-sol
+  EXECUTE: opencode-go/deepseek-v4.1-flash
+  VERIFY: openai-codex/gpt-6.1-sol
+lanes_measured_as_served:
+  PLAN: openai-codex/gpt-6.1-sol
+  EXECUTE: opencode-go/deepseek-v4.1-flash
+  VERIFY: opencode-go/mimo-v2.6-flash   # revision 39 assignment; gpt-6.1-sol refused under --require-arm
+boundaries:
+  - read-only with respect to the frozen subject (228 MB / 917 files); nothing written inside it
+  - no WorkOrder create, no permit issue, no native effect, no merge, no tag, no release
+  - no model substitution, no silent fallback, no credential capture
+budget:
+  wall_clock_minutes: 60
+  model_turns_max: 8
+  tokens_max: 200000
+stop_conditions:
+  - any check that cannot be executed is recorded NOT_RUN with a reason, never PASS
+  - a claim repeated by an earlier summary is not evidence
+  - contradiction between two scoreboards is reported, not resolved by preference

@@ -1,0 +1,17 @@
+{
+  "schema": "HGK-LANE-RESOLUTION/1",
+  "ok": false,
+  "lane": "VERIFY_SECURITY",
+  "code": "ERR_SEALED_HOME_OAUTH_TRANSPORT",
+  "detail": "--relay-base https://chatgpt.com/backend-api/codex needs an OAuth login, but C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\codex-hermes holds no auth.json (sealed / key-auth home)",
+  "generated_utc": "2026-10-31T12:25:52.117513+00:00",
+  "transport_posture": {
+    "relay_base": "https://chatgpt.com/backend-api/codex",
+    "home_has_auth_json": false,
+    "home_is_declared_lane_home": true
+  },
+  "next_command": "--codex-home C:\\Users\\user\\.codex --allow-human-home-transport --relay-base https://chatgpt.com/backend-api/codex",
+  "say": "refusing before any spawn: sealed home + OAuth relay is the 401-after-a-full-call combination; use the owner's login home with --allow-human-home-transport",
+  "codex_home": "C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\codex-hermes",
+  "codex_home_is_declared_lane_home": true
+}

@@ -1,0 +1,20 @@
+claim_id	claim	class	verdict	evidence	nonclaim
+C-01	The delivered package is byte-complete: 909/909 rows match	MEASURED_FACT	PASS	SRC-01,SRC-02,SRC-03	nothing about native or release
+C-02	The owner-supplied folder copy is lossy: 415/909 rows absent (398 >=260 chars, 17 renamed dir)	MEASURED_FACT	PASS	SRC-04	not a defect of the package
+C-03	22 WPs stand at 16 PASS / 3 FAIL / 3 NOT_RUN in the control plane	MEASURED_FACT	PASS	SRC-05	the other three scoreboards disagree (C-04)
+C-04	Four mutually inconsistent scoreboards exist for the same 22 packages	MEASURED_FACT	PASS	SRC-05,SRC-17,SRC-16	no claim which is right beyond V1's ruling
+C-05	All six non-PASS packages are HOST_OP and were refused with REFUSAL-20261030-NO-HOST-CAPABILITY	MEASURED_FACT	PASS	SRC-06	not proof that host capability is absent
+C-06	WP-FHS-10's oracle evidence already exists and verifies (GATES.json + checker receipt sha 97496bbb…)	MEASURED_FACT	PASS	SRC-08,SRC-09	binding gap, not a capability gap
+C-07	R21-CANON-c0542636 is signed and permits HOST_INSTALL for 7 packages until 2026-11-14	PRIOR_RECEIPT	PASS	SRC-16	release still denied
+C-08	No per-package permit, writeset or occupant install exists yet (var/permits, var/R21-NATIVE-EXEC absent)	MEASURED_FACT	PASS	direct filesystem check	none
+C-09	PLAN gpt-6.1-sol serves: required==served, nonce echoed	MEASURED_FACT	PASS	SRC-13	requires human-home transport
+C-10	EXECUTE deepseek-v4.1-flash serves when identity_source=codex-rollout and the prompt echoes the nonce	MEASURED_FACT	PASS	SRC-13	served in 1.85 s; usage receipt ok
+C-11	VERIFY mimo-v2.6-flash serves with required==served	MEASURED_FACT	PASS	SRC-13	model-axis independence from EXECUTE only
+C-12	VERIFY gpt-6.1-sol serves by rank but is refused under --require-arm (ERR_ARM_NOT_IN_ASSIGNMENT)	MEASURED_FACT	PASS	SRC-11,SRC-13	needs revision 40 for an evidence-grade receipt
+C-13	The lane failure class was predicate/identity-source, not arm unavailability	MEASURED_FACT	PASS	SRC-13	does not excuse the earlier rounds' conclusions, it refutes them
+C-14	Lane policy is clean at epoch 39 / revision 39 after P16 found it 5 revisions dirty	MEASURED_FACT	PASS	SRC-10	none
+C-15	PR #7 (the HANDOFF execution round) is merged to main at 1e98abf71b	MEASURED_FACT	PASS	SRC-14	FINAL_HANDOFF.md says otherwise (stale)
+C-16	The four B1 closure PRs are merged	MEASURED_FACT	PASS	SRC-14	FHS-B1 §7 says otherwise (stale)
+C-17	12 of 16 open PRs are clean-mergeable; 1 dirty, 2 unstable, 1 unknown	MEASURED_FACT	PASS	SRC-14	mergeability is not approval
+C-18	candidate/r18 and candidate/r19 share no ancestry with main (merge-base NONE)	MEASURED_FACT	PASS	SRC-15	not a judgement about content quality
+C-19	ALL PASS is reachable for the 22-package target without new external actors except four owner acts (D-1, D-3, D-8, D-10)	INFERENCE	PARTIAL	§6,§10	the inference is not an acceptance

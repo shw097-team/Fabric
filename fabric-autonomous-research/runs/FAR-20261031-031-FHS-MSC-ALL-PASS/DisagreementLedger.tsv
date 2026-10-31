@@ -1,0 +1,9 @@
+id	contested_claim	source_a	source_b	resolution	state
+DSC-01	"no independent arm exists; INDEPENDENT_ACCEPTED is unreachable"	P10_LANE_AVAILABILITY	P11 + this run's probes	P11 withdraws P10; this run re-measures three lanes serving; claim rejected	RESOLVED_AGAINST_A
+DSC-02	"PR #7 open, no merge"	FINAL_HANDOFF.md §1	GitHub API (merged 2026-10-30T11:39Z)	API wins; the document is stale	RESOLVED_AGAINST_A
+DSC-03	"four B1 PRs await owner signature before merge"	FHS-B1 使用說明 §7	GitHub API (all merged)	API wins	RESOLVED_AGAINST_A
+DSC-04	"EVIDENCE archive is 4,801 B short"	FINAL_HANDOFF.md §1	P12/P15 (byte-exact reproduction)	withdrawn by the author; this run accepts the withdrawal	RESOLVED_AGAINST_A
+DSC-05	"22 packages: 2 DONE/12 PARTIAL/7 PARKED/1 HOLD" vs "16 PASS/3 FAIL/3 NOT_RUN"	TERMINAL_STATE.json	work_queue	not resolvable by evidence alone: they count different predicates; V1 rules work_queue authoritative	OPEN_BY_DECISION
+DSC-06	"defensible 22/22, stop_condition_met"	HANDOFF.md §2	work_queue	defensible != passing; no package state changes on the strength of it	RESOLVED_AGAINST_A
+DSC-07	"VERIFY must be gpt-6.1-sol (owner instruction)"	this session's instruction	revision 39 (VERIFY=mimo)	both are owner acts; the later instrument governs until revised; recorded as D-3	OPEN_OWNER
+DSC-08	"415 rows missing means the package is damaged"	naive reading of the folder	this run's path-length measurement	attributed to MAX_PATH + rename, package verified 909/909 elsewhere	RESOLVED_AGAINST_A

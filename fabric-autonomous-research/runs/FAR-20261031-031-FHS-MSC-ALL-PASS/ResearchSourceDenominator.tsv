@@ -1,0 +1,18 @@
+source_id	class	locator	bytes_or_rows	digest_or_state	used_for
+SRC-01	DELIVERY	C:/wg/pkg/SHA256_PAYLOAD_MANIFEST.json	909 rows	manifest itself	S1 denominator
+SRC-02	DELIVERY	C:/wg/pkg/01_SUBSTANTIVE_BODY/*.md	17 books	17/17 sha match	S1
+SRC-03	DELIVERY	C:/wg/pkg/01_SUBSTANTIVE_BODY/SBL_DOC00_13_INTEGRATED_READER_UPGRADES/	14 books	14/14 present	S1
+SRC-04	INSTANCE	知識庫/…/FHS-MSC_PIPD-LS-PKG_2026-10-30_HANDOFF-PATCH-v1	917 files / 228 MB	415/909 rows missing	S1 loss measurement
+SRC-05	CONTROL_PLANE	HG-KSEOS/var/shared-spine/hg-kseos.db#work_queue	22 rows	16 PASS / 3 FAIL / 3 NOT_RUN	S2
+SRC-06	CONTROL_PLANE	HG-KSEOS/var/shared-spine/hg-kseos.db#acceptances	955 rows	6 named refusals	S2
+SRC-07	RECEIPT	HG-KSEOS/var/FHS-HANDOFF-EXEC-20261030/receipts/	28 receipts	P1..P17	S1,S3
+SRC-08	RECEIPT	HG-KSEOS/var/B1-PIPD-PKG-20261027/artifacts/GATES.json	1 file	G-A 6/6, G-B 3/3, GWO ALL_THREE_PASS, mission_complete true	S2 WP-10
+SRC-09	RECEIPT	…/pipd-run/artifacts/checker_receipt_codex_r7.json	1 file	sha256 97496bbb… (recomputed)	S2 WP-10
+SRC-10	POLICY	HG-KSEOS/config/lane-routing-registry.yaml	epoch 39 / rev 39	clean tree	S3
+SRC-11	POLICY	HG-KSEOS/config/model-lane-assignment.json	rev 39	VERIFY=mimo only	S3,S4
+SRC-12	LIVE	127.0.0.1:10101/healthz	ocx 2.11.0 pid 8432	ok	S3
+SRC-13	LIVE	5 dispatch probes + 1 preflight	6 receipts	see evidence/	S3
+SRC-14	REMOTE	GitHub API pulls (4 repos)	36 PRs	16 open / 12 clean	S5
+SRC-15	REMOTE	git merge-tree / merge-base (9 branches)	9 rows	2 unrelated, 1 conflict	S5
+SRC-16	HANDOFF	HG-KSEOS/ops/session-20261031/HANDOFF.md	89 lines	R21 signed, permit is the open edge	S4
+SRC-17	RECEIPT	…/receipts/TERMINAL_STATE.json	22 rows	2 DONE/12 PARTIAL/7 PARKED/1 HOLD	S2 divergence

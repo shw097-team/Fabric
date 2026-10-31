@@ -1,0 +1,180 @@
+{
+  "schema": "HGK-LANE-RESOLUTION/1",
+  "lane": "VERIFY_SECURITY",
+  "role": "checker",
+  "role_binding_source": null,
+  "engine": "codex-cli",
+  "codex_executable": "C:\\Users\\user\\AppData\\Local\\OpenAI\\Codex\\bin\\22cfb1d302613eae\\codex.exe",
+  "codex_home": "C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\codex-hermes",
+  "relay_base": "http://127.0.0.1:10101/v1",
+  "codex_home_is_declared_lane_home": true,
+  "human_home_transport_acknowledged": false,
+  "skipped_arms": [],
+  "transport": "opencodex relay via per-invocation -c openai_base_url (no config mutation)",
+  "transport_target": "http://127.0.0.1:10101/v1",
+  "front_door_port": null,
+  "front_door_note": "the lane-scoped pool door (10103 VERIFY_SECURITY / 10105 EXECUTE) carries the hop and ledgers every decision; the sealed single-model 10100 door is unchanged and unused; None here means direct to the relay on 10101",
+  "sandbox": "read-only",
+  "sandbox_by_role_default": "read-only",
+  "sandbox_escalation_authorised": false,
+  "cwd": "C:\\Projects\\Agent_Workspace\\HG-KSEOS",
+  "side_effect_note": "no write access granted by the sandbox mode",
+  "receipt_binding": "usage rows appended after this attempt started (byte offset bound)",
+  "pool": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\lane-route-slots.candidate.json",
+  "candidates_considered": [
+    1
+  ],
+  "mode": "forced_rank",
+  "unguarded_escalation_acknowledged": false,
+  "inject_429_first": false,
+  "identity_gate": {
+    "state": "enforced",
+    "lane_home": "C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\codex-hermes",
+    "relay_home": "C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\opencodex-hermes",
+    "arms": [
+      {
+        "rank": 1,
+        "provider": "opencode-go",
+        "model": "mimo-v2.6-flash",
+        "requirement": "none",
+        "ok": true,
+        "detail": "key-auth arm: no human-attended identity"
+      }
+    ],
+    "degraded": false,
+    "required_arm": "opencode-go/mimo-v2.6-flash"
+  },
+  "authorization": {
+    "checked": false
+  },
+  "subject_mutation": {
+    "state": "not_guarded"
+  },
+  "attempt_log_dir": "/c/tmp/laneprobe/dispatch_verify2.json.logs",
+  "output_dir_policy": {
+    "mode": "explicit-path",
+    "derived": null,
+    "existing": false
+  },
+  "repair_precondition": {
+    "checked": false
+  },
+  "remote_write_precheck": {
+    "mode": "DETECTION_ONLY",
+    "ran": false
+  },
+  "attempts": [
+    {
+      "rank": 1,
+      "provider": "opencode-go",
+      "model": "mimo-v2.6-flash",
+      "transport_model": "opencode-go/mimo-v2.6-flash",
+      "sandbox": "read-only",
+      "reasoning_effort": null,
+      "exit": 0,
+      "timed_out": false,
+      "seconds": 5.67,
+      "nonce_present": true,
+      "nonce_present_raw_stdout": true,
+      "nonce_present_anywhere": true,
+      "nonce_in_agent_message": true,
+      "producer": {
+        "script_sha256": "307bd8850bb085ae39ce5871c59cec47c735860b1fa4b11f19daebf789261ef8",
+        "git_head": "7e093ef5667e9ed0e56a2b52dcb475991264860e",
+        "schema": "HGK-LANE-DISPATCH-PRODUCER/1"
+      },
+      "nonce_source": "item.completed/agent_message",
+      "usage_rows_after_offset": 0,
+      "usage_offset": 36046236,
+      "usage_provider": null,
+      "usage_model": null,
+      "usage_status": null,
+      "usage_receipt_ok": true,
+      "usage_receipt_reason": "no usage row was appended after the attempt offset",
+      "usage_ledger_rewritten": false,
+      "usage_rows_shape_invalid": 0,
+      "usage_rows_undecodable": 0,
+      "carrier_lines_undecodable": 0,
+      "carrier_lines_surrogate": 0,
+      "credential_posture": {
+        "verdict": "INCONCLUSIVE",
+        "decision": "WARN_CONTINUE",
+        "reason": "helper-only verdict (no child env asserted): helper_resolution_reset=PASS; helper_non_interactive=UNKNOWN",
+        "prompt_capable_helper": null,
+        "origin": null,
+        "git_terminal_prompt": "0"
+      },
+      "attempt_log_dir": "/c/tmp/laneprobe/dispatch_verify2.json.logs",
+      "stdout_byte_exact": true,
+      "stdout_path": "\\c\\tmp\\laneprobe\\dispatch_verify2.json.logs\\attempt-21788-1793449645-1-stdout.txt",
+      "stdout_bytes": 584,
+      "stdout_sha256": "dc857b7ad022716890c9bc3567e17cacccb7d758785a9372d88f8cea8ed8c9f7",
+      "stderr_byte_exact": true,
+      "stderr_path": "\\c\\tmp\\laneprobe\\dispatch_verify2.json.logs\\attempt-21788-1793449645-1-stderr.txt",
+      "stderr_bytes": 170,
+      "stderr_sha256": "9a21f321652ff7e5bc061510200128487d8556ee60b304c555252111ad90ecdb",
+      "stdout_tail": "mo-v2.6-flash` not found. Defaulting to fallback metadata; this can degrade performance and cause issues.\"}}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_1\",\"type\":\"agent_message\",\"text\":\"NONCE-VERIFY-20261031-R2\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":14469,\"cached_input_tokens\":14400,\"cache_write_input_tokens\":0,\"output_tokens\":22,\"reasoning_output_tokens\":5}}\n",
+      "stderr_tail": "Reading additional input from stdin...\n2026-10-31T12:27:27.502653Z ERROR codex_api::endpoint::responses_websocket: failed to connect to Responses WebSocket stage=Unknown\n",
+      "console_window_events_delta": 0,
+      "console_window_ledger": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\console-window-events.jsonl",
+      "console_window_owners": [],
+      "identity_source": "codex-rollout",
+      "identity_rollout": "C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\codex-hermes\\sessions\\2026\\10\\31\\rollout-2026-10-31T20-27-27-01a191ed-dd07-7051-acf8-453ab43bd6fe.jsonl",
+      "identity_note": "served arm read from the codex rollout written for this run and cwd"
+    }
+  ],
+  "used_rank": 1,
+  "used_transport_model": "opencode-go/mimo-v2.6-flash",
+  "used_seconds": 5.67,
+  "generated_utc": "2026-10-31T12:27:33.101971+00:00",
+  "assignment_posture": {
+    "enforced": false,
+    "posture": {
+      "ok": true,
+      "arms": [
+        "opencode-go/mimo-v2.6-flash"
+      ],
+      "revision": 39,
+      "role": "VERIFY_SECURITY",
+      "authority": "owner-order-20261031-verify-checker-mimo-v26-flash",
+      "shape": "role",
+      "primary_arms": [
+        "opencode-go/mimo-v2.6-flash"
+      ],
+      "fallback_arms": [],
+      "declared_fallbacks": [],
+      "fallbacks_declared": false,
+      "alternates_are_operator_selectable": false
+    },
+    "arms_outside_assignment": []
+  },
+  "producer": {
+    "script_sha256": "307bd8850bb085ae39ce5871c59cec47c735860b1fa4b11f19daebf789261ef8",
+    "git_head": "7e093ef5667e9ed0e56a2b52dcb475991264860e",
+    "schema": "HGK-LANE-DISPATCH-PRODUCER/1"
+  },
+  "comparison_policy": "compare two receipts ONLY when producer.script_sha256 is equal; tools/compare_lane_receipts.py refuses otherwise (TT-R20-9)",
+  "selection_filter": {
+    "required_arm": "opencode-go/mimo-v2.6-flash",
+    "candidates_before": [
+      "opencode-go/mimo-v2.6-flash"
+    ],
+    "candidates_after": [
+      "opencode-go/mimo-v2.6-flash"
+    ],
+    "why": "selection constrained by --require-arm (alias-equivalent), not only judged after the call"
+  },
+  "served_arm_assigned": true,
+  "claim_ceiling": "a pass here proves the Codex-CLI lane served this turn through the relay with a matching usage receipt; it is not an acceptance of any subject",
+  "ok": true,
+  "identity_source": "codex-rollout",
+  "completion_evidence": {
+    "checked": false
+  },
+  "usage_receipt_ok": true,
+  "usage_rows_shape_invalid": 0,
+  "usage_rows_undecodable": 0,
+  "required_arm": "opencode-go/mimo-v2.6-flash",
+  "served_arm_raw": "opencode-go/mimo-v2.6-flash",
+  "served_arm": "opencode-go/mimo-v2.6-flash"
+}
