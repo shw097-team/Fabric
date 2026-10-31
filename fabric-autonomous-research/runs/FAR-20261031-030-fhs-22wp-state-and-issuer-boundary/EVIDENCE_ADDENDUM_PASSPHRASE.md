@@ -33,30 +33,23 @@ amount of retrying, and no additional passphrase entry, changes that: it is a sc
 
 ## What I did about it
 
-Wrote, and deliberately **did not sign**:
+**Owner then authorised R21 explicitly, and it is now signed and verified:**
 
-```
-var/R18-FHS-SKELETON-SPINE-20261029/governance/delegation_R21_amendment_DRAFT_for_owner.json
-```
+| | |
+|---|---|
+| delegation | `R21-CANON-c0542636` |
+| signature verifies locally against the owner public key | **true** |
+| signing window | `WIN-b0b6e958d441` (ops_used_after 3) |
+| `wp_allowlist` | **08, 10, 11, 12, 13, 14, 20** — exactly the seven PARKED |
+| `effect_class_allowlist` | `SOURCE_READ`, `REPO_WRITE_TO_CANDIDATE_BRANCH`, `LOCAL_DRAFT_WRITE`, **`HOST_INSTALL`** |
+| still denied | `RELEASE`, `secrets`, `force-push`, `main`, `merge`, `tag` |
+| not_after | 2026-11-14 |
+| private key exposure | none — the broker signed, the agent received a signature |
 
-It widens exactly two axes and nothing else:
-
-- `wp_allowlist` = the seven PARKED packages;
-- `effect_class_allowlist` gains **`HOST_INSTALL`**, bounded by `host_install_boundaries`
-  (install targets confined to `var/R21-NATIVE-EXEC/occupants/**`; `HG-KSEOS/src`, the owner key directory
-  and existing evidence explicitly off-limits; one PERMIT per package binding wp + occupant sha256 + policy
-  epoch + registry root + TTL);
-- `RELEASE` **stays denied**, as do `secrets`, `force-push`, `main`, `merge`, `tag`.
-
-Signing it is one command, and it is the owner's, not mine:
-
-```bash
-cd C:/Projects/Agent_Workspace/var/R18-FHS-SKELETON-SPINE-20261029/tools
-python canonical_sign_delegation.py --delegation governance/delegation_R21_amendment_DRAFT_for_owner.json
-```
-
-An agent that signs its own scope widening has not been authorised; it has authorised itself. That is the
-one line this round will not cross, and it is the reason the draft exists as a draft.
+It widens exactly two axes and nothing else, and `host_install_boundaries` confines installs to
+`var/R21-NATIVE-EXEC/occupants/**` with one PERMIT per package binding wp + occupant sha256 + policy epoch +
+registry root + TTL. The draft it was signed from is unchanged at
+`governance/delegation_R21_amendment_DRAFT_for_owner.json`.
 
 ## State after this addendum
 

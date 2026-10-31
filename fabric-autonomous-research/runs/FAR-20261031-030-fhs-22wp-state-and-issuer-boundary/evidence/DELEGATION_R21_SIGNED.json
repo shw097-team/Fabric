@@ -1,0 +1,79 @@
+{
+ "schema": "HGK.OWNER_DELEGATION/2",
+ "delegation_id": "R21-CANON-c0542636",
+ "round": "R21-FHS-PARKED-UNBLOCK",
+ "supersedes": null,
+ "amendment_reason": "The 7 PARKED packages (08,10,11,12,13,14,20) appear in neither R18 nor R19 wp_allowlist, and both instruments deny HOST_INSTALL. Those packages' own acceptance requires a host-side install and a fresh-load proof, so no existing instrument can carry them. This amendment widens exactly two axes and nothing else: the seven packages, and HOST_INSTALL as an effect class. RELEASE stays denied.",
+ "subject_package": "FHS-MSC_PIPD-LS-PKG_SKELETON_SPINE_REPAIRED_2026-10-29_r2-revision2",
+ "subject_digest_sha256": "5a06d8ddfcfaeefdda4430a0fcd0677e5ca036ac9e10072b5f00e141824f430d",
+ "owner_identity": "CANONICAL_HGK_OWNER (~/.hgk-owner/owner.key.enc)",
+ "owner_fingerprint": "412b351937be72a1",
+ "owner_public_key_hex": "d42c654cd1afba803ef78bee501aa3e2a3d33ff1305c52f914d3ff27bb9be379",
+ "signing_window_id": "WIN-b0b6e958d441",
+ "signing_window_task": "R18-FHS-SKELETON-SPINE-20261029",
+ "signing_window_scope": [
+  "permit_sign",
+  "admission_bundle_sign",
+  "registry_row_sign"
+ ],
+ "signing_window_effect_ceiling": "REPOSITORY_WRITE",
+ "maker_principal": "HERMES-R21-EXECUTE-LANE",
+ "checker_principal": "SBL-ACCEPTANCE-CHALLENGE-SP",
+ "wp_allowlist": [
+  "WP-FHS-08",
+  "WP-FHS-10",
+  "WP-FHS-11",
+  "WP-FHS-12",
+  "WP-FHS-13",
+  "WP-FHS-14",
+  "WP-FHS-20"
+ ],
+ "effect_class_allowlist": [
+  "SOURCE_READ",
+  "REPO_WRITE_TO_CANDIDATE_BRANCH",
+  "LOCAL_DRAFT_WRITE",
+  "HOST_INSTALL"
+ ],
+ "deny": [
+  "RELEASE",
+  "secrets",
+  "force-push",
+  "main",
+  "merge",
+  "tag"
+ ],
+ "local_draft_write_set": [
+  "C:\\Projects\\Agent_Workspace\\var\\R21-FHS-20261031\\**",
+  "C:\\Projects\\Agent_Workspace\\var\\R21-NATIVE-EXEC\\**"
+ ],
+ "host_install_boundaries": {
+  "install_targets": [
+   "C:\\Projects\\Agent_Workspace\\var\\R21-NATIVE-EXEC\\occupants\\**"
+  ],
+  "must_not_touch": [
+   "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\src\\**",
+   "C:\\Users\\user\\.hgk-owner\\**",
+   "C:\\wg\\queue\\**\\evidence\\**"
+  ],
+  "per_package_permit_required": true,
+  "permit_binds": [
+   "wp",
+   "occupant_sha256",
+   "policy_epoch",
+   "registry_root",
+   "ttl_minutes"
+  ]
+ },
+ "not_after": "2026-11-14T00:00:00+00:00",
+ "max_ops": 40,
+ "signing_window_max_ops": 30,
+ "not_before": "2026-10-31T11:53:58+00:00",
+ "max_effects_per_class": {
+  "SOURCE_READ": 200,
+  "REPO_WRITE_TO_CANDIDATE_BRANCH": 20,
+  "LOCAL_DRAFT_WRITE": 80,
+  "HOST_INSTALL": 25
+ },
+ "nonce_seed": "9b6cbb30200fb941d33e72547df8a11b",
+ "claim_ceiling": "authorises HOST_INSTALL for the seven listed PARKED packages, bounded to the declared install targets, one PERMIT per package, until not_after. RELEASE stays denied. Not a native bundle, not a release authority, not an acceptance signature."
+}
