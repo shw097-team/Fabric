@@ -1,0 +1,202 @@
+{
+  "schema": "HGK-LANE-RESOLUTION/1",
+  "lane": "EXECUTE",
+  "role": "writer",
+  "role_binding_source": null,
+  "engine": "codex-cli",
+  "codex_executable": "C:\\Users\\user\\AppData\\Local\\OpenAI\\Codex\\bin\\22cfb1d302613eae\\codex.exe",
+  "codex_home": "C:\\Users\\user\\.codex",
+  "relay_base": "https://chatgpt.com/backend-api/codex",
+  "codex_home_is_declared_lane_home": false,
+  "human_home_transport_acknowledged": true,
+  "skipped_arms": [],
+  "transport": "opencodex relay via per-invocation -c openai_base_url (no config mutation)",
+  "transport_target": "https://chatgpt.com/backend-api/codex",
+  "front_door_port": null,
+  "front_door_note": "the lane-scoped pool door (10103 VERIFY_SECURITY / 10105 EXECUTE) carries the hop and ledgers every decision; the sealed single-model 10100 door is unchanged and unused; None here means direct to the relay on 10101",
+  "sandbox": "danger-full-access",
+  "sandbox_by_role_default": "danger-full-access",
+  "sandbox_escalation_authorised": false,
+  "cwd": "C:\\Projects\\Agent_Workspace\\HG-KSEOS",
+  "side_effect_note": "danger-full-access has NO sandbox root: any absolute path is writable, so a read-only subject must be a frozen copy checked afterwards by digest",
+  "receipt_binding": "usage rows appended after this attempt started (byte offset bound)",
+  "pool": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\lane-route-slots.candidate.json",
+  "candidates_considered": [
+    1
+  ],
+  "mode": "pinned_primary",
+  "unguarded_escalation_acknowledged": false,
+  "inject_429_first": false,
+  "identity_gate": {
+    "state": "enforced",
+    "lane_home": "C:\\Users\\user\\.codex",
+    "relay_home": "C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\opencodex-hermes",
+    "arms": [
+      {
+        "rank": 1,
+        "provider": "opencode-go",
+        "model": "deepseek-v4.1-flash",
+        "requirement": "none",
+        "ok": true,
+        "detail": "key-auth arm: no human-attended identity"
+      },
+      {
+        "rank": 2,
+        "provider": "opencode-go",
+        "model": "mimo-v2.6-flash",
+        "requirement": "none",
+        "ok": true,
+        "detail": "key-auth arm: no human-attended identity"
+      },
+      {
+        "rank": 3,
+        "provider": "openai-codex",
+        "model": "gpt-6-luna",
+        "requirement": "relay_pool",
+        "ok": true,
+        "detail": "non-empty refreshable credential present in codex-accounts.json"
+      },
+      {
+        "rank": 4,
+        "provider": "nvidia",
+        "model": "deepseek-ai/deepseek-v4.1-flash",
+        "requirement": "none",
+        "ok": true,
+        "detail": "key-auth arm: no human-attended identity"
+      }
+    ],
+    "degraded": false,
+    "required_arm": "opencode-go/deepseek-v4.1-flash"
+  },
+  "authorization": {
+    "checked": false
+  },
+  "subject_mutation": {
+    "state": "not_guarded"
+  },
+  "attempt_log_dir": "C:/Projects/Agent_Workspace/var/FHS-ALLPASS-20261031/receipts/EXECUTE_reqarm.json.logs",
+  "output_dir_policy": {
+    "mode": "explicit-path",
+    "derived": null,
+    "existing": false
+  },
+  "repair_precondition": {
+    "checked": false
+  },
+  "remote_write_precheck": {
+    "mode": "DETECTION_ONLY",
+    "ran": false
+  },
+  "attempts": [
+    {
+      "rank": 1,
+      "provider": "opencode-go",
+      "model": "deepseek-v4.1-flash",
+      "transport_model": "opencode-go/deepseek-v4.1-flash",
+      "sandbox": "danger-full-access",
+      "reasoning_effort": null,
+      "exit": 1,
+      "timed_out": false,
+      "seconds": 2.84,
+      "nonce_present": false,
+      "nonce_present_raw_stdout": false,
+      "nonce_present_anywhere": false,
+      "nonce_in_agent_message": false,
+      "producer": {
+        "script_sha256": "788501ddb11b12a5423dce35a618492ced6c036e71468a8bf0b9ec36b0a1f23a",
+        "git_head": "cf66c0d64ba244ca44ab6cd090f6dd6a04f533e9",
+        "schema": "HGK-LANE-DISPATCH-PRODUCER/1"
+      },
+      "nonce_source": "item.completed/agent_message",
+      "usage_rows_after_offset": 0,
+      "usage_offset": 36046236,
+      "usage_provider": null,
+      "usage_model": null,
+      "usage_status": null,
+      "usage_receipt_ok": false,
+      "usage_receipt_reason": "no usage row was appended after the attempt offset",
+      "usage_ledger_rewritten": false,
+      "usage_rows_shape_invalid": 0,
+      "usage_rows_undecodable": 0,
+      "carrier_lines_undecodable": 0,
+      "carrier_lines_surrogate": 0,
+      "credential_posture": {
+        "verdict": "INCONCLUSIVE",
+        "decision": "WARN_CONTINUE",
+        "reason": "helper-only verdict (no child env asserted): helper_resolution_reset=PASS; helper_non_interactive=UNKNOWN",
+        "prompt_capable_helper": null,
+        "origin": null,
+        "git_terminal_prompt": "0"
+      },
+      "attempt_log_dir": "C:/Projects/Agent_Workspace/var/FHS-ALLPASS-20261031/receipts/EXECUTE_reqarm.json.logs",
+      "stdout_byte_exact": true,
+      "stdout_path": "C:\\Projects\\Agent_Workspace\\var\\FHS-ALLPASS-20261031\\receipts\\EXECUTE_reqarm.json.logs\\attempt-21468-1793453381-1-stdout.txt",
+      "stdout_bytes": 599,
+      "stdout_sha256": "2071c98cd34e1da5de0cd4fabaa65573ed2134215ec08d836f7ca836d60f453a",
+      "stderr_byte_exact": true,
+      "stderr_path": "C:\\Projects\\Agent_Workspace\\var\\FHS-ALLPASS-20261031\\receipts\\EXECUTE_reqarm.json.logs\\attempt-21468-1793453381-1-stderr.txt",
+      "stderr_bytes": 39,
+      "stderr_sha256": "1aa26269eb1cc57f86b235a03cda53c004edb5b1e9fc99d4da4f00843293d721",
+      "stdout_tail": "sh` not found. Defaulting to fallback metadata; this can degrade performance and cause issues.\"}}\n{\"type\":\"turn.started\"}\n{\"type\":\"error\",\"message\":\"The 'opencode-go/deepseek-v4.1-flash' model is not supported when using Codex with a ChatGPT account.\"}\n{\"type\":\"turn.failed\",\"error\":{\"message\":\"The 'opencode-go/deepseek-v4.1-flash' model is not supported when using Codex with a ChatGPT account.\"}}\n",
+      "stderr_tail": "Reading additional input from stdin...\n",
+      "console_window_events_delta": 0,
+      "console_window_ledger": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\console-window-events.jsonl",
+      "console_window_owners": []
+    }
+  ],
+  "used_rank": null,
+  "used_transport_model": null,
+  "used_seconds": null,
+  "generated_utc": "2026-10-31T13:29:45.400865+00:00",
+  "assignment_posture": {
+    "enforced": false,
+    "posture": {
+      "ok": true,
+      "arms": [
+        "opencode-go/deepseek-v4.1-flash"
+      ],
+      "revision": 41,
+      "role": "EXECUTE",
+      "authority": "owner-order-20261022-r14-plan-gpt61sol-execute-minimax",
+      "shape": "role",
+      "primary_arms": [
+        "opencode-go/deepseek-v4.1-flash"
+      ],
+      "fallback_arms": [],
+      "declared_fallbacks": [],
+      "fallbacks_declared": false,
+      "alternates_are_operator_selectable": false
+    },
+    "arms_outside_assignment": []
+  },
+  "producer": {
+    "script_sha256": "788501ddb11b12a5423dce35a618492ced6c036e71468a8bf0b9ec36b0a1f23a",
+    "git_head": "cf66c0d64ba244ca44ab6cd090f6dd6a04f533e9",
+    "schema": "HGK-LANE-DISPATCH-PRODUCER/1"
+  },
+  "comparison_policy": "compare two receipts ONLY when producer.script_sha256 is equal; tools/compare_lane_receipts.py refuses otherwise (TT-R20-9)",
+  "selection_filter": {
+    "required_arm": "opencode-go/deepseek-v4.1-flash",
+    "candidates_before": [
+      "opencode-go/deepseek-v4.1-flash",
+      "opencode-go/mimo-v2.6-flash",
+      "openai-codex/gpt-6-luna",
+      "nvidia/deepseek-ai/deepseek-v4.1-flash"
+    ],
+    "candidates_after": [
+      "opencode-go/deepseek-v4.1-flash"
+    ],
+    "why": "selection constrained by --require-arm (alias-equivalent), not only judged after the call"
+  },
+  "served_arm_assigned": null,
+  "claim_ceiling": "a pass here proves the Codex-CLI lane served this turn through the relay with a matching usage receipt; it is not an acceptance of any subject",
+  "ok": false,
+  "identity_source": "codex-rollout",
+  "completion_evidence": {
+    "checked": false
+  },
+  "usage_receipt_ok": false,
+  "usage_rows_shape_invalid": 0,
+  "usage_rows_undecodable": 0,
+  "code": "ERR_LANE_ALL_ROUTES_EXHAUSTED"
+}

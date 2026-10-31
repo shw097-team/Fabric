@@ -1,0 +1,79 @@
+{
+ "schema": "FAR.CANDIDATE_RESEARCH/2",
+ "run_id": "FAR-20261031-032-FHS-MSC-ALLPASS-EXECUTION",
+ "predecessor": "FAR-20261031-031-FHS-MSC-ALL-PASS",
+ "subject": "FHS-MSC_PIPD-LS-PKG_2026-10-30_HANDOFF-PATCH-v1",
+ "kind": "EXECUTION_ROUND",
+ "measured_at": "2026-10-31T21:31:25+0800",
+ "lanes": {
+  "PLAN": {
+   "arm": "openai-codex/gpt-6.1-sol",
+   "rank": 1,
+   "required_equals_served": true,
+   "nonce_echoed": true,
+   "seconds": 5.51
+  },
+  "EXECUTE": {
+   "arm": "opencode-go/deepseek-v4.1-flash",
+   "rank": 1,
+   "required_equals_served": null,
+   "nonce_echoed": true,
+   "seconds": 3.89,
+   "pin_defect": "D-16: --require-arm hands the qualified id to the Codex CLI; codex rejects it under a ChatGPT account"
+  },
+  "VERIFY": {
+   "arm": "openai-codex/gpt-6.1-sol",
+   "rank": 1,
+   "required_equals_served": true,
+   "nonce_echoed": true,
+   "seconds": 4.37
+  },
+  "OFFICER": {
+   "arm": "openai-codex/gpt-6.1-sol",
+   "rank": 1,
+   "ok": true,
+   "nonce_echoed": true,
+   "seconds": 154.54,
+   "verdict": "FAIL"
+  }
+ },
+ "work_queue": {
+  "PASS": 17,
+  "FAIL": 3,
+  "NOT_RUN": 2,
+  "total": 22,
+  "delta": {
+   "WP-FHS-10": "FAIL->PASS (EVT-32277089ea9c024b)",
+   "WP-FHS-17": "NOT_RUN->FAIL (EVT-682dba95f5c16e25, officer could not run the subject tree)"
+  }
+ },
+ "claim_ceiling": "bounded WP-local receiver chain measured end to end; NOT native admission; no release, no promotion",
+ "defects_fixed": [
+  "F1",
+  "F2",
+  "F3",
+  "F4",
+  "F5",
+  "F6",
+  "F7",
+  "F8",
+  "F9",
+  "D-13",
+  "D-14",
+  "D-15"
+ ],
+ "defects_open": [
+  "D-16",
+  "native admission",
+  "WP-11",
+  "WP-12",
+  "WP-13",
+  "WP-20"
+ ],
+ "repos": {
+  "HG-KSEOS": [
+   "candidate/r18-fhs-skeleton-spine-20261029@534a436",
+   "lane/epoch-40-identity-source-20261031"
+  ]
+ }
+}
