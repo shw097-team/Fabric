@@ -35,8 +35,8 @@
    "qualified": 0,
    "missing_static": 146
   },
-  "wp12": "empty directory",
-  "wp13": "empty directory",
+  "wp12": "no directory exists at C:/wg/queue/WP-FHS-12",
+  "wp13": "no directory exists at C:/wg/queue/WP-FHS-13",
   "wp20": {
    "cells": 192,
    "qualified": 0,
@@ -53,5 +53,8 @@
   "PLAN_reqarm.json",
   "VERIFY_gate.json",
   "VERIFY_reqarm.json"
+ ],
+ "corrections": [
+  "wp12/wp13 are absent, not empty (measured: ls -A -> no such directory)"
  ]
 }

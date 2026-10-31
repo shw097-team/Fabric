@@ -10,7 +10,7 @@ Subject：`FHS-MSC_PIPD-LS-PKG_2026-10-30_HANDOFF-PATCH-v1`
 
 ## 0. 三句話
 
-1. **四個 HOST_OP 不是「同一條鏈」。** 實測分母：`WP-FHS-11` 需 9 個原生 cell + 146 個靜態檔；`WP-FHS-20` 需 192 個 cell × 8 Kind；`WP-FHS-12`、`WP-FHS-13` 目錄**完全空白**（連 brief 都沒有）。把它們當成「把 WP-17 腳本再跑四次」是錯的，這是本報告最重要的一條。
+1. **四個 HOST_OP 不是「同一條鏈」。** 實測分母：`WP-FHS-11` 需 9 個原生 cell + 146 個靜態檔；`WP-FHS-20` 需 192 個 cell × 8 Kind；`WP-FHS-12`、`WP-FHS-13` 在 `C:/wg/queue/` 下**根本沒有目錄**（不是空目錄：無 brief、無 candidate、無 receipt、無任何檔）。把它們當成「把 WP-17 腳本再跑四次」是錯的，這是本報告最重要的一條。
 2. **四個包所點名的原服務，在四個 repo 裡都不存在為程式。** 我對 `HG-KSEOS`／`SBL`／`PIPD-LS-SP` 做了 `host_loader|host_reader|toolautoselect|technologyadmission` 的全庫掃描，命中全部是文件／corpus 引用，**零個實作**。所以「native admission 未動」不是怠惰，是**被點名的對象不在這台機器上**——這是一個必須由 owner 裁決的事實，不是工程進度問題。
 3. **九項裡有三項本輪已經關掉並留下證據**（pin 遺失、門禁不落痕、失敗折疊進凍結碼），四項有明確可執行裁決但需動路由／政策（D-16、oracle nonce 契約、C4 身份綁定、記分板投影），兩項需 owner 簽章（native 天花板、C4 安全要求）。
 
@@ -21,8 +21,8 @@ Subject：`FHS-MSC_PIPD-LS-PKG_2026-10-30_HANDOFF-PATCH-v1`
 | # | 項目 | 實測狀態（本輪） | 可自解？ |
 |---|---|---|---|
 | 1 | WP-11 | `verdict FAIL`，`first_fail HOST_SP_MATRIX_INCOMPLETE`，`required_cells 9`／`qualified 0`，`missing_required_static_files 146`，`execution_status NOT_RUN` | 需原 Portable SP packager + Host Loader |
-| 2 | WP-12 | 目錄空（無 brief／無 candidate／無 receipt） | 需先立 brief；依賴 WP-10+WP-11 |
-| 3 | WP-13 | 目錄空 | 依賴 WP-16+**WP-17**（17 現為 FAIL） |
+| 2 | WP-12 | **目錄不存在**：`C:/wg/queue/WP-FHS-12` 無此目錄 | 需先立 brief；依賴 WP-10+WP-11 |
+| 3 | WP-13 | **目錄不存在**：`C:/wg/queue/WP-FHS-13` 無此目錄 | 依賴 WP-16+**WP-17**（17 現為 FAIL） |
 | 4 | WP-20 | 192 cell、`qualified 0`、`NoFit 0`、`NOT_RUN 192`、Kind 交付 1/8、原 Host Reader 0/4、provider token mapping 0/192 | 需 4 個原 Host Reader |
 | 5 | Native admission | 被點名的原 Host Installer／Loader／Registry **不在任何 repo** | 需 owner 裁決 |
 | 6 | D-16 EXECUTE 固定路徑 | `ERR_LANE_ALL_ROUTES_EXHAUSTED`，`required_arm null`，診斷 `ERR_ARM_PIN_UNROUTABLE` | **是**（本輪已加診斷，路由修正待做） |
@@ -66,7 +66,7 @@ grep -rliE "host[_ -]?loader|host[_ -]?reader|toolautoselect|technologyadmission
 **理由**：`WP-17` 已證明 bounded 鏈可在一棵 WP 樹裡完整量測（`INSTALLED→HOST_LOADED→INVOKED→FUNCTIONALLY_QUALIFIED`，15/15 負測），代價是 8 個缺陷與一次驗收員 FAIL。四包各自複製這個代價，但 **WP-20 的 192 cell 不是「複製」，是 192 次**。
 
 **否決的替代**：
-- 「四包一起跑」→ 會被 WP-20 拖死，且 12/13 連 brief 都沒有。
+- 「四包一起跑」→ 會被 WP-20 拖死；12/13 連目錄都不存在，等於從零開始。
 - 「用 WP-17 的 receiver 直接當四包的 receiver」→ 拒絕。WP-17 的 receiver 綁 CAP-BOOT 的單一 occupant；WP-20 是 8 Kind × 3 Mode × 4 Host × 2 的矩陣，不是一個 occupant。
 - 「先做 native」→ 對象不存在（§2）。
 
