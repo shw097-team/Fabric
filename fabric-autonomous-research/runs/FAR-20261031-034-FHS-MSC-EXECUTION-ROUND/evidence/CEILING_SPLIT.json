@@ -1,0 +1,65 @@
+{
+ "schema": "HGK-CEILING-SPLIT/1",
+ "round": "FHS-ALLPASS-20261031",
+ "ruling": "R-1 of FAR-20261031-033",
+ "measured_at": "2026-10-31T22:26:02+0800",
+ "principle": "One verdict per package hides which ceiling was measured. Each HOST_OP package carries two ceilings: bounded (what a WP-local receiver can prove) and native (what only the original Producer/Consumer can prove). A package may be bounded-DELIVERED and native-NOT_CLOSABLE; the reverse is impossible. Neither is ever relabelled as the other.",
+ "packages": {
+  "WP-FHS-11": {
+   "bounded": {
+    "state": "NOT_DELIVERED",
+    "measured": "9 required cells, 0 qualified; 1342 files present, no EVIDENCE_GAP.md",
+    "next": "deliver the 9-cell bounded dogfood matrix against the WP-17 template"
+   },
+   "native": {
+    "state": "NOT_CLOSABLE_ON_THIS_HOST",
+    "refusal": "ABSENT-01",
+    "absent_object": "original Portable SP packager / Host Loader + original Skill Reader"
+   }
+  },
+  "WP-FHS-12": {
+   "bounded": {
+    "state": "NOT_STARTED",
+    "measured": "no directory at C:/wg/queue/WP-FHS-12 -- not an empty directory, absent",
+    "next": "立 brief first; there is no candidate, no writeset and no receipt to inherit"
+   },
+   "native": {
+    "state": "NOT_CLOSABLE_ON_THIS_HOST",
+    "refusal": "ABSENT-02",
+    "absent_object": "original Hermes normal-entry Owner / normal Profile + ToolAutoSelect Reader"
+   }
+  },
+  "WP-FHS-13": {
+   "bounded": {
+    "state": "NOT_STARTED",
+    "measured": "no directory at C:/wg/queue/WP-FHS-13 -- absent, not empty",
+    "next": "立 brief first; the HotSwap parity fixture does not exist"
+   },
+   "native": {
+    "state": "NOT_CLOSABLE_ON_THIS_HOST",
+    "refusal": "ABSENT-03",
+    "absent_object": "original TechnologyAdmission / Host capability Owner + original Host Loader"
+   }
+  },
+  "WP-FHS-20": {
+   "bounded": {
+    "state": "PARTIAL",
+    "measured": "1 of 8 Kind rows built; 192 cells outstanding; EVIDENCE_GAP.md open",
+    "next": "the remaining 7 Kind rows are mechanical but each needs its own reader fixture"
+   },
+   "native": {
+    "state": "NOT_CLOSABLE_ON_THIS_HOST",
+    "refusal": "ABSENT-04",
+    "absent_object": "four original Host Readers (0 of 4 available)"
+   }
+  }
+ },
+ "order": [
+  "WP-FHS-11",
+  "WP-FHS-13",
+  "WP-FHS-12",
+  "WP-FHS-20"
+ ],
+ "order_reason": "WP-11 first because its 9-cell matrix is the template the other three reuse; WP-13 next because HotSwap is a smaller surface than a full Kind matrix; WP-12 needs a brief that does not exist; WP-20 last because 192 cells is the only item whose cost scales with the whole product.",
+ "what_this_does_not_do": "It does not change any work_queue verdict. The four packages stay FAIL/NOT_RUN."
+}

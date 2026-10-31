@@ -1,0 +1,53 @@
+{
+ "schema": "HGK-LANE-ACCEPTANCE/1",
+ "round": "FHS-ALLPASS-20261031",
+ "measured_at": "2026-10-31T22:25:48+0800",
+ "authority": "config/lane-routing-registry.yaml epoch 40",
+ "contract": "one round seed, one nonce per sitting (R-4); transport is a property of the arm's provider (R-3)",
+ "lanes": {
+  "PLAN": {
+   "receipt": "PLAN_reqarm2.json",
+   "arm_required": "openai-codex/gpt-6.1-sol",
+   "arm_served": "openai-codex/gpt-6.1-sol",
+   "required_equals_served": true,
+   "required_arm_satisfied_field": true,
+   "rank": 1,
+   "child_exit": 0,
+   "nonce_echoed": true,
+   "seconds": 12.05,
+   "transport": "OAuth upstream + --codex-home C:/Users/user/.codex --allow-human-home-transport",
+   "ok": true,
+   "code": null
+  },
+  "EXECUTE": {
+   "receipt": "EXECUTE_pin3.json",
+   "arm_required": "opencode-go/deepseek-v4.1-flash",
+   "arm_served": "opencode-go/deepseek-v4.1-flash",
+   "required_equals_served": true,
+   "required_arm_satisfied_field": true,
+   "rank": 1,
+   "child_exit": 0,
+   "nonce_echoed": true,
+   "seconds": 2.7,
+   "transport": "default loopback relay http://127.0.0.1:10101/v1 (no --relay-base): the OAuth upstream refuses a non-OpenAI model under a ChatGPT account",
+   "ok": true,
+   "code": null
+  },
+  "VERIFY_SECURITY": {
+   "receipt": "VERIFY_a2.json",
+   "arm_required": "openai-codex/gpt-6.1-sol",
+   "arm_served": "openai-codex/gpt-6.1-sol",
+   "required_equals_served": true,
+   "required_arm_satisfied_field": true,
+   "rank": 1,
+   "child_exit": 0,
+   "nonce_echoed": true,
+   "seconds": 6.11,
+   "transport": "OAuth upstream, as PLAN",
+   "ok": true,
+   "code": null
+  }
+ },
+ "verdict": "ALL_THREE_LANES_SERVE_AND_PIN",
+ "what_this_does_not_mean": "It does not mean any model agreed with anything, and it does not mean any subject passed. Lane acceptance and subject acceptance are separate claims."
+}

@@ -1,0 +1,48 @@
+{
+ "schema": "HGK-OFFICER-VERDICT/1",
+ "wp": "WP-FHS-17",
+ "round": "FHS-ALLPASS-20261031",
+ "sitting": "G",
+ "nonce": "NONCE-VERIFY-LANEACC-20261031-G",
+ "verdict": "PASS",
+ "ceiling": "bounded WP-local receiver chain — NOT native admission, NOT canonical acceptance, NOT promotion",
+ "measured": {
+  "install": "INSTALLED",
+  "load": "LOADED_AND_INVOKED",
+  "consumer": "CONSUMER_ACK",
+  "negatives_all_refused": true,
+  "install_receipt_is_from_this_run": true,
+  "run_started": "2026-10-31T14:25:20Z",
+  "install_receipt": "2026-10-31T14:25:29.101966Z"
+ },
+ "clauses": {
+  "native_host_admission": "OPEN",
+  "original_consumer_is_not_wp_local": "OPEN",
+  "cap_boot_abi_resolution": "OPEN",
+  "officer_could_execute_subject": "CLOSED",
+  "stage_root_vs_install_root": "OPEN",
+  "rollout_identity_binding": "OPEN"
+ },
+ "issuer": {
+  "key_id": "135455ca00280c39",
+  "issued_outside_sandbox": true,
+  "objects": [
+   "admission",
+   "grant-issue",
+   "regrant-issue"
+  ],
+  "why": "DPAPI unwrap is unavailable inside the codex sandbox; the owner signed, the subject consumed"
+ },
+ "independence": {
+  "record_verified_byte_identical_before_and_after": true,
+  "record_files_before": 481,
+  "record_files_after": 481,
+  "record_changed": [],
+  "record_removed": [],
+  "workspace": "a verified copy, so the checker could execute the chain without mutating the record"
+ },
+ "receipt": "receipts/VERIFY_officer_G.json",
+ "checked_by": "VERIFY_SECURITY Independent Acceptance Officer (gpt-6.1-sol, medium), sitting G",
+ "recorded_at": "2026-10-31T22:30:27+0800",
+ "what_this_does_not_mean": "It does not mean the package is native-admitted. Five of six clauses stay OPEN and EVIDENCE_GAP.md still lists them. It means the bounded chain installs, loads, invokes, acks and refuses all 15 negatives for the reasons under test, and that an independent checker ran it in a verified copy without touching the record."
+}
