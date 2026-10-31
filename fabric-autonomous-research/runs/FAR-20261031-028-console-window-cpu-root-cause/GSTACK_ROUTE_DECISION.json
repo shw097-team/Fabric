@@ -1,0 +1,18 @@
+{
+ "schema": "GSTACK-ROUTE-DECISION/1",
+ "round": "FAR-20261031-028-console-window-cpu-root-cause",
+ "flow": "root_cause_analysis",
+ "registry_state": "ACTIVE_SELECTED",
+ "method": "FAR (fabric-autonomous-research) + deterministic RCA (measure/attribute/eliminate/verify)",
+ "alternatives_not_selected": [
+  {
+   "method": "llm_vote_consensus",
+   "reason": "NOT_SELECTED_WITH_REASON: a vote cannot observe a window; only an instrument can"
+  },
+  {
+   "method": "log_grep_only",
+   "reason": "NOT_SELECTED_WITH_REASON: the driver log has no window events; the 20 ms watcher is the only sensor"
+  }
+ ],
+ "evidence_ceiling": "MEASURED_LOCAL attribution; INCONCLUSIVE reproduction"
+}

@@ -1,0 +1,8 @@
+id	finding	evidence_ref	confidence	class
+RC-1	Console-subsystem child of a consoleless process gets a new visible console; Windows Terminal is the default host	evidence/console-window-events.jsonl	HIGH	mechanism
+RC-2	Lane fan-out relaunched already-halted units every ~8-10s; each relaunch paid full spawn cost	driver.log 517 churn records / 48 tick_refused	HIGH	multiplier
+RC-3	Orphan PRE_ATTEMPT launch markers counted as spent execute rounds (6 of 6 receipts had no attempts[])	WP-FHS-11/17/20 receipts; rounds 6 -> 0	HIGH	multiplier
+RC-4	detach launches PowerShell -> WMI Win32_Process.Create: one console program per launch and silent success for dead children	evidence/probe_legacy_consoleless_root.json; detach error code 9	HIGH	multiplier
+RC-5	Two owner scheduled tasks STATE=Running supervise every 5 min / RestartOnFailure 3x1min	Get-ScheduledTask: HGK-OpenCodex-Sealed-10101, Codex Desktop Router	HIGH	independent
+RC-6	CPU load is process churn not inference: pwsh/WMI startup per launch, 229 live processes, second Hermes instance ~2.6%	CPU samples 7-32%; top consumers	MEDIUM	amplifier
+RC-7	Synthetic positive control did not fire: legacy consoleless root produced 0 observable windows at 1.5s sampling	evidence/probe_legacy_consoleless_root.json	HIGH	measurement-ceiling
