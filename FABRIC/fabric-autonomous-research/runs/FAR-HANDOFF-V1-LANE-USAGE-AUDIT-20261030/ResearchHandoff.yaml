@@ -1,0 +1,13 @@
+schema: FAR-RESEARCH-HANDOFF/1
+run_id: FAR-HANDOFF-V1-LANE-USAGE-AUDIT-20261030
+next_actor: agent for OD-S/OD-T/OD-U/OD-W; owner for OD-V
+lanes_used:
+  - {lane: PLAN, receipt: evidence/LANE-PLAN-FIRST-DISPATCH-20261030/plan_receipt.json, gate: LANE_SERVED_AS_CLAIMED, asked: gpt-6.1-sol, served: gpt-6.1-sol}
+assistant_authoring: this synthesis was written by the session model (EXECUTE lane's arm); that is the very defect it reports, and it is recorded rather than hidden
+rulings:
+  - {id: OD-R, kind: DECIDE_DONE, text: a lane claim needs a gate-passing receipt}
+  - {id: OD-S, kind: DECIDE, text: add lanes_used[] to the round receipt}
+  - {id: OD-T, kind: DECIDE, text: AGENTS.md states the session model is the EXECUTE model; PLAN must be dispatched}
+  - {id: OD-U, kind: DECIDE, text: one work package per brief}
+  - {id: OD-V, kind: DECIDE_OWNER, text: pin delegation to the VERIFY model, or accept single-model sub-agents}
+  - {id: OD-W, kind: DECIDE, text: PLAN lane drafts FAR synthesis; the assistant assembles}

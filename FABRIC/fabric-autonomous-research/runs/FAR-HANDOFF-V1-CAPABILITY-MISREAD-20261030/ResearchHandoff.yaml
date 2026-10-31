@@ -1,0 +1,10 @@
+schema: FAR-RESEARCH-HANDOFF/1
+run_id: FAR-HANDOFF-V1-CAPABILITY-MISREAD-20261030
+next_actor: agent for N1..N3 and N5; owner for OD-J, OD-K; agent then builds OD-L
+rulings_required:
+  - {id: OD-H, kind: DECIDE_AGENT, text: withdraw the blanket refusal, reclassify the ten as schedule}
+  - {id: OD-I, kind: DECIDE, text: open 02/03/04/08 as one round, the other six as a second}
+  - {id: OD-J, kind: DECIDE_FABRIC_OWNER, text: add a policy epoch object, or define WP-02 Active as the stack manifest}
+  - {id: OD-K, kind: DECIDE_DELIVERY_OWNER, text: enumerate the Host set for WP-11 and the cell schema for WP-20}
+  - {id: OD-L, kind: DECIDE_THEN_BUILD, text: obligations table plus round-closure gate}
+first_command_after_od_i: run WP-03/04/08 as one owner-envelope round through native_admission

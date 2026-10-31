@@ -1,0 +1,38 @@
+schema: FAR-CANDIDATE-RESEARCH/1
+run_id: FAR-HANDOFF-V1-ALLPASS-GAP-20261030
+candidates:
+  - id: CR-1
+    name: close the bookkeeping first (closure declaration, receipt grades)
+    support: [G-05, G-03]
+    falsifier: an artefact exists but no registry row does
+    verdict: RECOMMENDED
+  - id: CR-2
+    name: make the dispatcher refuse a served model that differs from the requested one
+    support: [G-04]
+    falsifier: a substitution is shown to be intentional and documented per run
+    verdict: RECOMMENDED
+  - id: CR-3
+    name: bind every promotability claim to the oracle text it satisfies
+    support: [G-08]
+    falsifier: a claim passes the check and is still found to miss its oracle
+    verdict: RECOMMENDED
+  - id: CR-4
+    name: adopt 0 UNKNOWN as the success criterion
+    support: [G-02, G-07, G-10]
+    falsifier: a NOT_RUN row is shown to be indistinguishable from a refusal under the new criterion
+    verdict: RECOMMENDED
+  - id: CR-5
+    name: build the ten host bindings this quarter
+    support: [G-07]
+    falsifier: none available here; the cost is real and the benefit is a product decision
+    verdict: OWNER
+  - id: CR-6
+    name: write PASS rows for the ten host packages so the delivery reads ALL PASS
+    support: []
+    falsifier: n/a
+    verdict: REJECTED
+  - id: CR-7
+    name: rebase the orphan branches onto main to force the merges
+    support: []
+    falsifier: n/a
+    verdict: REJECTED

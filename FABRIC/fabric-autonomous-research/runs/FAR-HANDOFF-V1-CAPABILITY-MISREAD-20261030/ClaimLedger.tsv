@@ -1,0 +1,8 @@
+claim_id	question	claim	status	evidence	source
+M-01	MQ-1	the delivery's EffectClass HOST_OP is defined as "OPS ECP + Host Owner/Issuer + nonce/TTL/epoch", an authority requirement, not a requirement for different hardware	MEASURED	line 56 and line 88 of 11_WORKPACKAGES_AND_DAG.md read verbatim	delivery
+M-02	MQ-2	the Fabric policy consumer named by WP-FHS-02 exists and answers: 9 router rows loaded, route_event returns ROUTE_OK for five change classes	MEASURED	run in this session: fabric.consumers.hgk_policy_consumer, head fffcb98b	R2-B
+M-03	MQ-2	the HGK issuer, spine and provider registry named by WP-FHS-03/04/08 exist as source in this workspace	MEASURED	src/hg_kseos/native_admission.py 32007 B, spine.py 32194 B, providers.py 6884 B	R2-B
+M-04	MQ-2	the three GWO domains WP-FHS-10 names are three local repositories, not three machines	MEASURED	Fabric, HG-KSEOS and SBL all present with .git	R2-B
+M-05	MQ-3	WP-FHS-02 requires an Active-layer hash in the same scope, and Fabric carries no policy epoch object; the nearest object in force is the stack manifest	MEASURED	no POLICY_EPOCH in Fabric; HGK_STACK_MANIFEST.yaml present	delivery+Fabric
+M-06	MQ-1	the previous refusal was wrong for at least WP-FHS-02: five of its six layers were demonstrated with a real consumer ACK in this run	MEASURED	evidence/WP-FHS-02-POLICY-CONSUMER/POLICY_CONSUMER_CHAIN.json	this run
+M-07	MQ-1	no refused package was refused because of hardware; each names a service, an issuer or a matrix that exists or can be built on this host	DERIVED	per-package re-reading	ledger

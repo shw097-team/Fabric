@@ -1,0 +1,33 @@
+{
+ "schema": "FAR-RESEARCH-RUN-RECEIPT/1",
+ "run_id": "FAR-HANDOFF-V1-LANE-USAGE-AUDIT-20261030",
+ "channels_used": [
+  "R2-A receipts and logs",
+  "R2-B registry/config",
+  "R2-C a live PLAN dispatch"
+ ],
+ "lanes_used": [
+  {
+   "lane": "PLAN",
+   "asked": "gpt-6.1-sol",
+   "served": "gpt-6.1-sol",
+   "rank": 1,
+   "seconds": 55.51,
+   "gate": "LANE_SERVED_AS_CLAIMED",
+   "first_time": true
+  }
+ ],
+ "claims": {
+  "total": 10,
+  "measured": 9,
+  "derived": 1,
+  "unsupported": 0
+ },
+ "headline": "the PLAN lane had never been dispatched; the session model is the EXECUTE model, so research was executed in the execution lane and nothing recorded it",
+ "cures_built": [
+  "scripts/lane_evidence_gate.py",
+  "tests/test_lane_evidence_gate.py",
+  "evidence/LANE-PLAN-FIRST-DISPATCH-20261030/"
+ ],
+ "ceiling": "ADVISORY for the analysis; binding for OD-R, which is a gate"
+}

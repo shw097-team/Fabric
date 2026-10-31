@@ -1,0 +1,13 @@
+schema: FAR-RESEARCH-REQUEST/1
+run_id: FAR-HANDOFF-V1-REFUSAL-AUDIT-20261030
+requested_by: owner, on the previous run's admission that ten refusals rested on a misreading
+created_at: 2026-10-30T21:45:00+08:00
+subject: the error itself — not the delivery, not the packages, but how a false refusal was produced, blessed and reported
+question: >-
+  which layer produced the misread: the model, the delivery text, Fabric/HG-KSEOS, FAR, or the owner's
+  instruction — and what makes its recurrence impossible rather than merely unlikely
+lanes:
+  PLAN: {provider: openai-codex, model: gpt-6.1-sol, reasoning: medium}
+  EXECUTE: {provider: opencode-go, model: deepseek-v4.1-flash, transport: codex-cli}
+  VERIFY: {provider: openai-codex, model: gpt-6.1-sol, transport: codex-cli}
+constraints: [aligned_with_delivery, native_e2e_autonomy, unattended_high_automation, no_over_governance]

@@ -1,0 +1,9 @@
+channel	kind	locator	status	measurement
+R2-B	registry	hg-kseos.db acceptances	OK	946 rows: FAIL 5 / NOT_RUN 931 / PASS 8 / PASS_BY_INDEPENDENT_LANE 2
+R2-B	registry	ACC-WP-FHS-00..21	OK	22 rows all NOT_RUN
+R2-A	filesystem	ORIGINAL_22_WP_DAG.json	OK	22 nodes / 36 depends_on edges / tiers L3:10 L1:5 L0:4 L2:2 L4:1
+R2-A	filesystem	02_FIRST_WORK	OK	24 atoms / 24 req_ids / 3 SPECs / 48 fixtures / KnownAnswer ask=false
+R2-A	filesystem	harness receipts P2B,P2D	OK	34/1 shipped; 35/0 repaired
+R2-A	filesystem	native checker grep	MISSING	no CheckerReceipt/PublisherReceipt/NativeChecker anywhere
+R2-C	github	pulls 1,2,4,5,6,7	OK	6 open, all mergeable clean; #7 file sets computed
+R2-C	github	release fhs-msc-deliveries-20261030	OK	3 assets, digests re-verified by download

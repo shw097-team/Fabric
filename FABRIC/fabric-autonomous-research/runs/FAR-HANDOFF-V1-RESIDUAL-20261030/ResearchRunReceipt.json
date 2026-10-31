@@ -1,0 +1,32 @@
+{
+ "schema": "FAR-RESEARCH-RUN-RECEIPT/1",
+ "run_id": "FAR-HANDOFF-V1-RESIDUAL-20261030",
+ "subject": "FHS-MSC_PIPD-LS-PKG_2026-10-30_HANDOFF-PATCH-v1",
+ "channels_used": [
+  "R2-A filesystem",
+  "R2-B registry sqlite",
+  "R2-C GitHub API"
+ ],
+ "claims": {
+  "total": 12,
+  "measured": 11,
+  "derived": 1,
+  "unsupported": 0
+ },
+ "hgk_mutation": "NONE - research run, not a durable mutation; no WorkOrder opened, no acceptance row written for the run itself",
+ "kanban": "not opened: research run, coordination not required",
+ "swarm": "single-reasoner synthesis; independent re-derivation is the AO phase of the execution plan",
+ "artifacts": [
+  "ResearchRequest.yaml",
+  "ResearchPlan.yaml",
+  "ResearchSourceDenominator.tsv",
+  "ClaimLedger.tsv",
+  "CandidateResearch.yaml",
+  "ResearchSynthesis.md",
+  "RejectedAlternativeLedger.tsv",
+  "OpenQuestionLedger.tsv",
+  "ContradictionLedger.tsv",
+  "ResearchHandoff.yaml"
+ ],
+ "ceiling": "ADVISORY - the synthesis proposes rulings; only the owner's signature (OD-A) or a lane acceptance (OD-B) makes any of it binding"
+}

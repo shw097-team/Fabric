@@ -1,0 +1,32 @@
+schema: FAR-RESEARCH-REQUEST/1
+run_id: FAR-HANDOFF-V1-RESIDUAL-20261030
+requested_by: owner (Fabric / SBL / HG-KSEOS standing mandate)
+created_at: 2026-10-30T19:20:00+08:00
+subject: FHS-MSC_PIPD-LS-PKG_2026-10-30_HANDOFF-PATCH-v1
+governance:
+  contract: Fabric
+  command_entry: SBL
+  control_plane: HG-KSEOS
+lanes:
+  PLAN: {provider: openai-codex, model: gpt-6.1-sol, reasoning: medium}
+  EXECUTE: {provider: opencode-go, model: deepseek-v4.1-flash, transport: codex-cli}
+  VERIFY: {provider: openai-codex, model: gpt-6.1-sol, transport: codex-cli}
+questions:
+  - id: FQ-1
+    text: Which items of HANDOFF-PATCH-v1 are not actually PASS, and why is each not PASS?
+  - id: FQ-2
+    text: What is required, item by item, to reach ALL PASS?
+  - id: FQ-3
+    text: How are the residuals / gaps / blocks / open items closed?
+  - id: FQ-4
+    text: Which items need owner / issuer decision or signature, and which are merely mislabelled?
+  - id: FQ-5
+    text: Which already-checked candidates may be promoted, and which branches may merge to main?
+  - id: FQ-6
+    text: What is the cheapest order that leaves every closure in a layer that cannot silently revert?
+constraints:
+  - aligned_with_delivery
+  - native_e2e_autonomy
+  - unattended_high_automation
+  - no_over_governance
+  - no_over_engineering

@@ -1,0 +1,14 @@
+schema: FAR-RESEARCH-PLAN/1
+run_id: FAR-HANDOFF-V1-REFUSAL-AUDIT-20261030
+method: reconstruct the chain that produced the ten refusals, from the artefacts that survive
+channels:
+  - id: R2-A-provenance
+    target: the text of each refusal as it was written and as it was registered
+    method: read REFUSAL_RECORD_20261030.json and the code that generated it; compare each reason with the work package's own Done line
+  - id: R2-B-toolchain
+    target: every gate in the plane that could have caught it
+    method: enumerate gates by what they falsify; identify which class of claim has no gate
+  - id: R2-C-precedent
+    target: the previous two errors of this round
+    method: compare the shape of the F-15 error and the WP-15 oracle error against this one
+stopping_rule: the analysis is done when every claim names the artefact that produced it, and the cure is demonstrated rather than described

@@ -1,0 +1,13 @@
+channel	kind	locator	status	measurement
+R2-A	registry	hg-kseos.db acceptances	OK	ACC-WP-FHS-00..21 = PASS 12 / FAIL 10 / NOT_RUN 0
+R2-A	registry	hg-kseos.db all acceptances	OK	FAIL 15 / NOT_RUN 909 / PASS 20 / PASS_BY_INDEPENDENT_LANE 2
+R2-B	git	origin/main	d3c2eec16c	delivery present; 157+ files under fhs_msc_handoff_20261030/
+R2-B	git	HG-KSEOS worktree	DIRTY	9 entries; scripts/ = 1 modified + 2 untracked
+R2-B	file	deliveries/CLOSURE_DECLARATION.json	MISSING	OD-E was ruled, no artefact exists
+R2-B	file	03_HANDOFF_EVIDENCE/QA_TOOLS/check_first_work.py	OK	34/1 run in place, pinned interpreter
+R2-B	file	repo r4/tools/check_first_work.py	OK	35/0 run in place, same interpreter
+R2-C	receipt	C:/wg/r26/wpA.json	MISSING	dispatch exit 124, no receipt written
+R2-C	receipt	C:/wg/r26/wpB.json	OK	exit 0; requested deepseek-v4.1-flash, attempt reports mimo-v2.6-flash
+R2-C	receipt	C:/wg/r26/wpC.json	MISSING	dispatch exit 124, no receipt written
+R2-C	officer	verdict.json / verdict_o2.json	OK	O1 O3 O4 O5 O6 PASS; O2 FAIL then PASS
+R2-C	github	pulls 1 2 5	OK	#5 open base candidate/r18 185 files; #1 #2 draft, merge-base with main empty

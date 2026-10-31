@@ -1,0 +1,36 @@
+{
+ "schema": "FAR-RESEARCH-RUN-RECEIPT/1",
+ "run_id": "FAR-HANDOFF-V1-ALLPASS-GAP-20261030",
+ "subject": "FHS-MSC_PIPD-LS-PKG_2026-10-30_HANDOFF-PATCH-v1 (second order)",
+ "channels_used": [
+  "R2-A control plane sqlite",
+  "R2-B repository git+files",
+  "R2-C dispatch receipts and officer verdicts"
+ ],
+ "claims": {
+  "total": 12,
+  "measured": 9,
+  "derived": 3,
+  "unsupported": 0
+ },
+ "defects_named": [
+  "F-A stopping rule accepts wrong-oracle claims",
+  "F-B FAR terminates in a handover not a row",
+  "F-C the officer's claim set was written by the maker",
+  "F-D lane receipt does not compare requested with served"
+ ],
+ "hgk_mutation": "NONE — research run; the closure declaration and receipt grades it recommends are P1, not this run",
+ "ceiling": "ADVISORY except where a ruling changes a row",
+ "artifacts": [
+  "ResearchRequest.yaml",
+  "ResearchPlan.yaml",
+  "ResearchSourceDenominator.tsv",
+  "ClaimLedger.tsv",
+  "ContradictionLedger.tsv",
+  "OpenQuestionLedger.tsv",
+  "RejectedAlternativeLedger.tsv",
+  "CandidateResearch.yaml",
+  "ResearchSynthesis.md",
+  "ResearchHandoff.yaml"
+ ]
+}

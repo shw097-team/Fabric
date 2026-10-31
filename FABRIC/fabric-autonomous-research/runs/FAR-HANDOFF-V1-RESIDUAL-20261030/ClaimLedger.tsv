@@ -1,0 +1,13 @@
+claim_id	question	claim	status	evidence	source
+C-01	FQ-1	22 work-package acceptances exist and none is granted	MEASURED	sqlite acceptances: ACC-WP-FHS-00..21 all NOT_RUN; requirements R18-WP-FHS-00..21 present	registry
+C-02	FQ-1	the delivery denominator is 931 NOT_RUN vs 8 PASS and 2 PASS_BY_INDEPENDENT_LANE	MEASURED	select verdict,count(*) -> FAIL 5 / NOT_RUN 931 / PASS 8 / PASS_BY_INDEPENDENT_LANE 2	registry
+C-03	FQ-2	12 of the 22 work packages are closable from a lane; 10 need host capability	MEASURED	tiers L0 4 + L1 5 + L2 2 = 11 plus WP-15 counted in L0; L3 10; L4 1; typed edges 36; indegree-0 only WP-FHS-00	delivery DAG
+C-04	FQ-5	WP-FHS-15 is promotable today	MEASURED	3 SPEC files; 24 functional atoms with 24 unique req_ids; 48 POS/NEG fixtures; KnownAnswer ask=false; ExecutionHandoff present	02_FIRST_WORK
+C-05	FQ-1	first work harness is 34/1 as shipped and 35/0 only after a loader change	MEASURED	shipped run pass 34 fail 1 EXISTING_5_AFFECTED_TESTS; repaired run 35/0 after moving sys.path.insert	P2B/P2D receipts
+C-06	FQ-1	native checker is absent, so no claim may call itself native	MEASURED	grep -rl 'CheckerReceipt|PublisherReceipt|NativeChecker' src tools scripts config -> empty	repo
+C-07	FQ-2	the 22-WP DAG declares closure {00,01,15} while typed edges give {00,15}	MEASURED	ORIGINAL_22_WP_DAG.json: 22 nodes, 0 top-level edges, 36 depends_on edges	delivery
+C-08	FQ-5	PR 7 merges cleanly against every other open PR	MEASURED	files 119; intersection with #6,#5,#4,#2,#1 = 0 in all five cases; mergeable=true	github API
+C-09	FQ-5	PR 5 must follow PR 6	MEASURED	#5 base = candidate/r18; #5∩#6 = 79 files; #6∩#7 = 0	github API
+C-10	FQ-3	three of the five FAIL rows are historical lineage, two are superseded	MEASURED	FAIL rows: R7-FARCLO-2, R9-CTRLPKG, R10-HANDOVER, ACC-DURABILITY-SKELETON/HANDOFF; the last two carry -V2 PASS	registry
+C-11	FQ-4	only one item in this round needs a signature	DERIVED	merge authorization to protected main; promotion, refusals and pinning are registry records	synthesis
+C-12	FQ-6	scripts/ remains uncommitted, so subject=scripts is refused by IR-4	MEASURED	git status scripts: 1 modified + 2 untracked; dispatcher exit 4 twice	repo

@@ -1,0 +1,38 @@
+schema: FAR-CANDIDATE-RESEARCH/1
+run_id: FAR-HANDOFF-V1-RESIDUAL-20261030
+candidates:
+  - id: CR-1
+    name: close the twelve lane-closable work packages before touching host-level ones
+    support: [C-01, C-03]
+    falsifier: any of the five L1 packages produces an artefact the AO rejects
+    verdict: RECOMMENDED
+  - id: CR-2
+    name: promote WP-FHS-15 now on machine-countable evidence
+    support: [C-04]
+    falsifier: a recount gives fewer than 24 atoms or fewer than 3 SPECs
+    verdict: RECOMMENDED
+  - id: CR-3
+    name: refuse the ten L3 packages by name with an expiry
+    support: [C-03, C-06]
+    falsifier: a host binding for wake lease / issuer / worker cursor is shown to exist
+    verdict: RECOMMENDED
+  - id: CR-4
+    name: merge in the measured order (#7 -> #4 -> #6 -> #1 -> #2 -> #5 rebase)
+    support: [C-08, C-09]
+    falsifier: a re-run of the intersection shows any overlap with #7
+    verdict: RECOMMENDED
+  - id: CR-5
+    name: repair the DAG closure by declaring {00,15}
+    support: [C-07]
+    falsifier: evidence shows WP-01 emits a closure-level artefact rather than a dependency
+    verdict: RECOMMENDED
+  - id: CR-6
+    name: keep calling acceptance native
+    support: [C-06]
+    falsifier: none - the four native preconditions are absent
+    verdict: REJECTED
+  - id: CR-7
+    name: add edges so the previously declared closure becomes true
+    support: [C-07]
+    falsifier: n/a
+    verdict: REJECTED

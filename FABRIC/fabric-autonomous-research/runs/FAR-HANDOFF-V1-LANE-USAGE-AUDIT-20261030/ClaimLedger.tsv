@@ -1,0 +1,11 @@
+claim_id	claim	status	evidence	source
+L-01	across every prior round the PLAN lane was invoked zero times	MEASURED	grep -rl -- '--lane PLAN' C:/wg -> NONE; grep for lane PLAN in receipts -> NONE	filesystem
+L-02	the dispatcher does support PLAN: --lane choices include PLAN and a PLAN run completed in 55.51 s	MEASURED	plan_receipt.json: lane PLAN, rank 1, gpt-6.1-sol, ok, usage_receipt_ok	R2-C
+L-03	the session model is opencode-go/deepseek-v4.1-flash, which is the EXECUTE lane's rank-1 arm, so every research turn so far was EXECUTE-model work	MEASURED	session environment header; lane-routing-registry role bindings	both
+L-04	the EXECUTE receipt of batch B asked for deepseek-v4.1-flash and was served by mimo-v2.6-flash with ok true	MEASURED	lane_evidence_gate on wpB.json -> silent_substitution	R2-C
+L-05	no receipt carries a lanes_used field; round receipts record channels, not lanes	MEASURED	ResearchRunReceipt.json files in all three runs: channels_used only	run files
+L-06	sub-agents inherit the parent model because config.yaml has no delegation block, so "multi sub-agent" was never multi-model	MEASURED	config.yaml: delegation absent (profile hgk-governed)	config
+L-07	EXECUTE and VERIFY leave checked artefacts while PLAN leaves prose, so a missing PLAN lane is invisible to every gate	DERIVED	gate inventory: ir_gate/ir1/ir4/acceptance_default/recurrence_gate inspect artefacts and rows, none inspects lane use	HG-KSEOS/scripts
+L-08	the two EXECUTE batches that timed out at 1500 s make dispatch the costly path and in-session writing the cheap one	MEASURED	wpA/wpC dispatch exit 124, no receipt written	R2-C
+L-09	the mandate lives in five homes (owner prompt, AGENTS.md, memory, skill, dispatcher flags) and is enforced in none	MEASURED	grep for lane mandate in each; no gate consumes it	all
+L-10	the PLAN lane's own ruling names the smallest cure: a fail-closed PLAN-receipt precondition bound to the round id and to required_arm == served_arm	MEASURED	PLAN_RULING.json smallest_mechanism	PLAN lane

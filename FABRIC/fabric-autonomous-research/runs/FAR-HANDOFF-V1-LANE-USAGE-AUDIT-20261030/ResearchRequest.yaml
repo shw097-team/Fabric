@@ -1,0 +1,13 @@
+schema: FAR-RESEARCH-REQUEST/1
+run_id: FAR-HANDOFF-V1-LANE-USAGE-AUDIT-20261030
+requested_by: owner, on a mandate that has been repeated and not obeyed
+created_at: 2026-10-30T22:10:00+08:00
+subject: why the three-lane mandate is restated every round and executed in one lane
+question: >-
+  is it routing, structure, a Hermes version defect, or the repairs being scattered — and what makes the
+  next round unable to skip the lanes again
+lanes:
+  PLAN: {provider: openai-codex, model: gpt-6.1-sol, reasoning: medium}
+  EXECUTE: {provider: opencode-go, model: deepseek-v4.1-flash, transport: codex-cli}
+  VERIFY: {provider: openai-codex, model: gpt-6.1-sol, transport: codex-cli}
+note: the PLAN lane was dispatched for the first time to write this run's ruling; see LANE_EVIDENCE.json

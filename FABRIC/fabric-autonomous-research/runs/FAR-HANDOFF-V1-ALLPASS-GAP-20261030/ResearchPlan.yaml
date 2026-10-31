@@ -1,0 +1,20 @@
+schema: FAR-RESEARCH-PLAN/1
+run_id: FAR-HANDOFF-V1-ALLPASS-GAP-20261030
+created_at: 2026-10-30T20:15:00+08:00
+channels:
+  - id: R2-A-control-plane
+    target: the registry itself (acceptances, requirements, evidence) read from hg-kseos.db
+    method: sqlite read; verdict counts and row-level listing; no carried numbers
+  - id: R2-B-repository
+    target: main, the delivery branch, worktrees, dirty state, artefacts on disk
+    method: git rev-parse/ls-tree/status/cat-file and file digests
+  - id: R2-C-run-records
+    target: the lane dispatch receipts of this round (wpA/wpB/wpC json and attempt logs) and the officer verdicts
+    method: json read; compare requested model against the model the attempt reports
+stopping_rule: >-
+  stop when every question has a claim whose evidence is a command output in this run, AND every claim that
+  asserts promotability quotes the acceptance oracle it claims to satisfy
+anti_vacuity:
+  - a claim without a command is UNSUPPORTED, not a finding
+  - a claim that a work package may be promoted must name the oracle text and show each clause discharged
+  - counts are recomputed in this run

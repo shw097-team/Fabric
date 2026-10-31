@@ -1,0 +1,10 @@
+schema: FAR-RESEARCH-HANDOFF/1
+run_id: FAR-HANDOFF-V1-RESIDUAL-20261030
+next_actor: owner (OD-A) then EXECUTE lane (P1..P3)
+decisions_required:
+  - {id: OD-A, kind: SIGN, text: authorise the merge batch #7 -> #4 -> #6 -> #1 -> #2, then #5 rebase}
+  - {id: OD-B, kind: DECIDE_RECORD, text: promote WP-FHS-15; count-check 05/07/16 then promote}
+  - {id: OD-C, kind: RECORD, text: refuse the ten L3 packages and WP-14 by name, expiry 2026-12-31}
+  - {id: OD-D, kind: DECIDE, text: pin python 3.11.17 for the harness and add a preflight import}
+  - {id: OD-E, kind: DECIDE_RECORD, text: declare the closure as {00,15}}
+first_command_after_od_a: git -C HG-KSEOS merge --no-ff origin/fhs-msc-handoff-patch-v1-exec-20261030

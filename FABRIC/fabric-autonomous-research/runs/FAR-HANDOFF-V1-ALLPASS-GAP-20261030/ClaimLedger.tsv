@@ -1,0 +1,14 @@
+claim_id	question	claim	status	evidence	source
+G-01	GQ-1	all 22 work-package acceptances carry a verdict: 12 PASS, 10 FAIL
+	MEASURED	sqlite: select verdict,count(*) ... where acceptance_id like 'ACC-WP-FHS-%' -> PASS 12 / FAIL 10	registry
+G-02	GQ-1	nine hundred and nine acceptances outside this delivery remain NOT_RUN	MEASURED	sqlite: FAIL 15 / NOT_RUN 909 / PASS 20 / PASS_BY_INDEPENDENT_LANE 2	registry
+G-03	GQ-1	of the twelve grants, five rest on a clean receipt or a mechanical recomputation and seven rest only on the officer's re-derivation	MEASURED	batch A and C dispatch exit 124 with no wpA/wpC receipt; batch B requested deepseek and reports mimo; 00/06/14/18/19 mechanical	C:/wg/r26
+G-04	GQ-1	the lane asked for deepseek-v4.1-flash and the attempt reports mimo-v2.6-flash, with ok true and usage receipt ok	MEASURED	wpB.json used_transport_model vs attempts[0].model	receipts
+G-05	GQ-1	the closure decision OD-E was ruled and never recorded; no CLOSURE_DECLARATION artefact exists	MEASURED	test -e deliveries/CLOSURE_DECLARATION.json -> absent	repo
+G-06	GQ-1	F-15 is repaired in the repository copy (35/0) but the shipped package still measures 34/1 because the package is read-only and unmodified	MEASURED	two in-place runs, same interpreter, same tree	repo+package
+G-07	GQ-2	the previous round could not reach ALL PASS because ten work packages require host capability that does not exist here, and no native checker exists	DERIVED	refusal reasons reference wake lease, issuer principal, worker cursor, hot swap, occupant slots; grep for a checker receipt type is empty	ledger
+G-08	GQ-2	FAR is defective in one specific way: its stopping rule accepts a claim that is measurable but bound to the wrong oracle	DERIVED+MEASURED	predecessor claim C-04 called WP-15 promotable on atom counts while the oracle demands 24 hashed documents and an 18-stage plan; the delivered SPECs carry a 3-node dag	predecessor run
+G-09	GQ-2	FAR terminates in a handover, not in a row; a decision that changes no row can be reported as done	MEASURED	predecessor handoff lists OD-B..OD-E as decisions_required; no registry row traces any of them except the grants written afterwards by hand	run files
+G-10	GQ-4	the previous round left residuals because the unit of closure was the round, not the row	MEASURED	909 NOT_RUN rows survive a round that reported complete	registry
+G-11	GQ-5	two branches cannot be merged without rewriting history: their merge-base with main is empty	MEASURED	git merge-base origin/main tb1 -> empty; roots a2389c13 vs f6dfb1e5	git
+G-12	GQ-3	every remaining item has exactly one lawful closing mechanism	DERIVED	six mechanisms cover all of them: record, repair and re-measure, obtain capability, re-publish from main, refuse with expiry, supersede	ledger

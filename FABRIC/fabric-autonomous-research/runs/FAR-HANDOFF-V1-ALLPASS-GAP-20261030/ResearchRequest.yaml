@@ -1,0 +1,30 @@
+schema: FAR-RESEARCH-REQUEST/1
+run_id: FAR-HANDOFF-V1-ALLPASS-GAP-20261030
+requested_by: owner (Fabric / SBL / HG-KSEOS standing mandate)
+created_at: 2026-10-30T20:15:00+08:00
+subject: FHS-MSC_PIPD-LS-PKG_2026-10-30_HANDOFF-PATCH-v1, second-order
+predecessor: FAR-HANDOFF-V1-RESIDUAL-20261030
+why_a_second_order_run: >-
+  the predecessor produced rulings, and twelve work packages were then closed against them. The owner now
+  asks why the delivery is still not ALL PASS, and whether the research method itself is at fault. A first
+  order run cannot answer that: it would ask the delivery again instead of asking the run.
+questions:
+  - id: GQ-1
+    text: which items are still not actually complete or PASS
+  - id: GQ-2
+    text: why did a round that was explicitly told to use FAR still not reach ALL PASS, and is FAR defective
+  - id: GQ-3
+    text: how does each residual, gap, block and open item close
+  - id: GQ-4
+    text: why did the previous round leave residuals when it was told to research every block with FAR
+  - id: GQ-5
+    text: which items need owner / issuer decision or signature, which candidates promote, which branches merge
+lanes:
+  PLAN: {provider: openai-codex, model: gpt-6.1-sol, reasoning: medium}
+  EXECUTE: {provider: opencode-go, model: deepseek-v4.1-flash, transport: codex-cli}
+  VERIFY: {provider: openai-codex, model: gpt-6.1-sol, transport: codex-cli}
+constraints:
+  - aligned_with_delivery
+  - native_e2e_autonomy
+  - unattended_high_automation
+  - think_outside_the_previous_frame

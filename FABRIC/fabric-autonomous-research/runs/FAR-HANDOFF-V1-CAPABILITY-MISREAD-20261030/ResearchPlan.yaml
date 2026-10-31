@@ -1,0 +1,15 @@
+schema: FAR-RESEARCH-PLAN/1
+run_id: FAR-HANDOFF-V1-CAPABILITY-MISREAD-20261030
+channels:
+  - id: R2-A-delivery-text
+    target: 01_FHS-MSC_PIPD-LS-PKG_BODY/11_WORKPACKAGES_AND_DAG.md, lines 51..380
+    method: read each refused work package's EffectClass, Done and EvidenceExpectation verbatim
+  - id: R2-B-original-services
+    target: the services the delivery names as producers and consumers
+    method: file existence, then execute them; an importable consumer that answers is not a missing host
+  - id: R2-C-run
+    target: this host's toolchain, interpreter, repos
+    method: measured runs only
+stopping_rule: >-
+  every refused package must be re-classified against the text, and every "not present" claim must name the
+  object that is absent rather than the machine it would run on

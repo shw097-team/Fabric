@@ -1,0 +1,17 @@
+schema: FAR-RESEARCH-PLAN/1
+run_id: FAR-HANDOFF-V1-RESIDUAL-20261030
+created_at: 2026-10-30T19:20:00+08:00
+channels:
+  - id: R2-A-filesystem
+    target: delivery tree, archive contents, tool sources, test outputs
+    method: measured commands only; no remembered values
+  - id: R2-B-control-plane
+    target: HG-KSEOS registry (acceptances, requirements, evidence) read from var/shared-spine/hg-kseos.db
+    method: sqlite read; verdict counts and row-level listing
+  - id: R2-C-remote
+    target: GitHub API (PR set, per-PR file lists, mergeability, release assets)
+    method: authenticated REST read; path-set intersection computed in code
+stopping_rule: stop when every question has a claim whose evidence is a command output in this run
+anti_vacuity:
+  - a claim without a command is recorded as UNSUPPORTED, not as a finding
+  - counts are recomputed, never carried from a previous round's prose

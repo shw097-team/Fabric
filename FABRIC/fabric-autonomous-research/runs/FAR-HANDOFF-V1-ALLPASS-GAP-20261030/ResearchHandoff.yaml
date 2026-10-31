@@ -1,0 +1,13 @@
+schema: FAR-RESEARCH-HANDOFF/1
+run_id: FAR-HANDOFF-V1-ALLPASS-GAP-20261030
+next_actor: agent for P1, P2, P3, P5; owner for P4
+decisions_required:
+  - {id: OD-C, kind: DECIDE, text: accept the seven grade-B receipts, on condition that the dispatcher stops allowing a silent substitution}
+  - {id: OD-D, kind: DECIDE, text: ship the patched harness beside the read-only package instead of editing the package}
+  - {id: OD-E, kind: RECORD, text: declare closure {00,15} and write the artefact this time}
+  - {id: OD-F, kind: DECIDE_OWNER, text: build the ten host bindings or make the refusals permanent}
+  - {id: OD-G, kind: DECIDE_OWNER, text: adopt 0 UNKNOWN as the delivery success criterion instead of ALL PASS}
+binding_rule: >-
+  a decision is not made until a row changed; every ruling must name the acceptance_id or requirement_id it
+  writes and the before/after verdict
+first_command_after_od_e: write deliveries/CLOSURE_DECLARATION.json and register it
