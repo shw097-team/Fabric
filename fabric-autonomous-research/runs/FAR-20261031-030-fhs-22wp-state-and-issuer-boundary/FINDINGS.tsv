@@ -1,0 +1,8 @@
+id	finding	evidence_ref	confidence	class
+G-1	22/22 defensible but only 2 DONE (12 PARTIAL / 7 PARKED / 1 HOLD): defensible is not pass	var/R18-.../receipts/TERMINAL_STATE.json	HIGH	state
+G-2	The 7 PARKED share one owner (Bound-artifact original owner + HG-KSEOS Issuer) and one missing artefact (Issuer PERMIT)	TERMINAL_STATE.json owner column	HIGH	authority
+G-3	Permit chain: owner window -> delegation bound to that window -> 3 signed kinds + lease_generation -> NativeAdmission.authorize	R18 RESUME_HERE.md; src/hg_kseos/native_admission.py	HIGH	mechanism
+G-4	The delegation signer refuses a window whose task is not R18-FHS-SKELETON-SPINE-20261029 (ERR_WINDOW_FOR_OTHER_TASK)	tools/canonical_sign_delegation.py refusal, measured	HIGH	boundary
+G-5	Re-issuing the delegation is an owner passphrase act; an agent doing it for itself converts owner authority into agent authority	f0_trace.py forbids issue_permit in consumers; delegation carries the owner window id	HIGH	boundary
+G-6	No PERMIT producer exists in any live tree (7 matches, all under var/**/scratch/)	repo-wide search	HIGH	boundary
+G-7	owner_window.py could not close a window whose signing service died, and open refused a new one: an owner lockout of up to the TTL with no recovery path	measured: close -> URLError 10061; open -> WINDOW_ALREADY_OPEN	HIGH	defect

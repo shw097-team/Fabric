@@ -1,0 +1,172 @@
+{
+ "schema": "R18.TERMINAL_STATE/3",
+ "wps": [
+  {
+   "wp": "WP-FHS-00",
+   "status": "DONE",
+   "evidence_exists": true,
+   "owner": null,
+   "defensible": true
+  },
+  {
+   "wp": "WP-FHS-01",
+   "status": "DONE",
+   "evidence_exists": true,
+   "owner": null,
+   "defensible": true
+  },
+  {
+   "wp": "WP-FHS-02",
+   "status": "PARTIAL",
+   "evidence_exists": true,
+   "owner": "Fabric policy owner + HG-KSEOS Issuer",
+   "defensible": true
+  },
+  {
+   "wp": "WP-FHS-03",
+   "status": "PARTIAL",
+   "evidence_exists": true,
+   "owner": "HG-KSEOS Issuer",
+   "defensible": true
+  },
+  {
+   "wp": "WP-FHS-04",
+   "status": "PARTIAL",
+   "evidence_exists": true,
+   "owner": "HG-KSEOS runtime owner",
+   "defensible": true
+  },
+  {
+   "wp": "WP-FHS-05",
+   "status": "HOLD",
+   "evidence_exists": true,
+   "owner": "PIPD Writer",
+   "defensible": true
+  },
+  {
+   "wp": "WP-FHS-06",
+   "status": "PARTIAL",
+   "evidence_exists": true,
+   "owner": "R18 delivery lane (this round)",
+   "defensible": true
+  },
+  {
+   "wp": "WP-FHS-07",
+   "status": "PARTIAL",
+   "evidence_exists": true,
+   "owner": "session owning scripts/hgk-lane-dispatch.py",
+   "defensible": true
+  },
+  {
+   "wp": "WP-FHS-08",
+   "status": "PARKED",
+   "evidence_exists": true,
+   "owner": "Bound-artifact original owner + HG-KSEOS Issuer",
+   "defensible": true
+  },
+  {
+   "wp": "WP-FHS-09",
+   "status": "PARTIAL",
+   "evidence_exists": true,
+   "owner": "native execution evidence",
+   "defensible": true
+  },
+  {
+   "wp": "WP-FHS-10",
+   "status": "PARKED",
+   "evidence_exists": true,
+   "owner": "Bound-artifact original owner + HG-KSEOS Issuer",
+   "defensible": true
+  },
+  {
+   "wp": "WP-FHS-11",
+   "status": "PARKED",
+   "evidence_exists": true,
+   "owner": "Bound-artifact original owner + HG-KSEOS Issuer",
+   "defensible": true
+  },
+  {
+   "wp": "WP-FHS-12",
+   "status": "PARKED",
+   "evidence_exists": true,
+   "owner": "Bound-artifact original owner + HG-KSEOS Issuer",
+   "defensible": true
+  },
+  {
+   "wp": "WP-FHS-13",
+   "status": "PARKED",
+   "evidence_exists": true,
+   "owner": "Bound-artifact original owner + HG-KSEOS Issuer",
+   "defensible": true
+  },
+  {
+   "wp": "WP-FHS-14",
+   "status": "PARKED",
+   "evidence_exists": true,
+   "owner": "Bound-artifact original owner + HG-KSEOS Issuer",
+   "defensible": true
+  },
+  {
+   "wp": "WP-FHS-15",
+   "status": "PARTIAL",
+   "evidence_exists": true,
+   "owner": "plugin author",
+   "defensible": true
+  },
+  {
+   "wp": "WP-FHS-16",
+   "status": "PARTIAL",
+   "evidence_exists": true,
+   "owner": "plugin author",
+   "defensible": true
+  },
+  {
+   "wp": "WP-FHS-17",
+   "status": "PARTIAL",
+   "evidence_exists": true,
+   "owner": "host owner",
+   "defensible": true
+  },
+  {
+   "wp": "WP-FHS-18",
+   "status": "PARTIAL",
+   "evidence_exists": true,
+   "owner": "package author",
+   "defensible": true
+  },
+  {
+   "wp": "WP-FHS-19",
+   "status": "PARTIAL",
+   "evidence_exists": true,
+   "owner": "package author",
+   "defensible": true
+  },
+  {
+   "wp": "WP-FHS-20",
+   "status": "PARKED",
+   "evidence_exists": true,
+   "owner": "Bound-artifact original owner + HG-KSEOS Issuer",
+   "defensible": true
+  },
+  {
+   "wp": "WP-FHS-21",
+   "status": "PARTIAL",
+   "evidence_exists": true,
+   "owner": "HG-KSEOS Issuer",
+   "defensible": true
+  }
+ ],
+ "summary": {
+  "total": 22,
+  "defensible": 22,
+  "not_defensible": [],
+  "by_status": {
+   "DONE": 2,
+   "PARKED": 7,
+   "HOLD": 1,
+   "PARTIAL": 12
+  }
+ },
+ "stop_condition_met": true,
+ "claim_ceiling": "every non-DONE row has a named owner, next_legal_action, resume_predicate and existing receipts. Not an acceptance, not native, not a release"
+}
