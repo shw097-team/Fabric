@@ -1,0 +1,226 @@
+{
+  "schema": "HGK-LANE-RESOLUTION/1",
+  "lane": "VERIFY_SECURITY",
+  "role": "checker",
+  "role_binding_source": null,
+  "engine": "codex-cli",
+  "codex_executable": "C:\\Users\\user\\AppData\\Local\\OpenAI\\Codex\\bin\\22cfb1d302613eae\\codex.exe",
+  "codex_home": "C:\\Users\\user\\.codex",
+  "relay_base": "https://chatgpt.com/backend-api/codex",
+  "codex_home_is_declared_lane_home": false,
+  "human_home_transport_acknowledged": true,
+  "skipped_arms": [],
+  "transport": "opencodex relay via per-invocation -c openai_base_url (no config mutation)",
+  "transport_target": "https://chatgpt.com/backend-api/codex",
+  "front_door_port": null,
+  "front_door_note": "the lane-scoped pool door (10103 VERIFY_SECURITY / 10105 EXECUTE) carries the hop and ledgers every decision; the sealed single-model 10100 door is unchanged and unused; None here means direct to the relay on 10101",
+  "sandbox": "read-only",
+  "sandbox_by_role_default": "read-only",
+  "sandbox_escalation_authorised": false,
+  "cwd": "C:\\Projects\\Agent_Workspace\\HG-KSEOS",
+  "side_effect_note": "no write access granted by the sandbox mode",
+  "receipt_binding": "usage rows appended after this attempt started (byte offset bound)",
+  "pool": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\lane-route-slots.candidate.json",
+  "candidates_considered": [
+    1
+  ],
+  "mode": "pinned_primary",
+  "unguarded_escalation_acknowledged": false,
+  "inject_429_first": false,
+  "identity_gate": {
+    "state": "enforced",
+    "lane_home": "C:\\Users\\user\\.codex",
+    "relay_home": "C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\opencodex-hermes",
+    "arms": [
+      {
+        "rank": 1,
+        "provider": "openai-codex",
+        "model": "gpt-6.1-sol",
+        "requirement": "relay_pool",
+        "ok": true,
+        "detail": "non-empty refreshable credential present in codex-accounts.json"
+      },
+      {
+        "rank": 2,
+        "provider": "opencode-go",
+        "model": "mimo-v2.6-flash",
+        "requirement": "none",
+        "ok": true,
+        "detail": "key-auth arm: no human-attended identity"
+      },
+      {
+        "rank": 3,
+        "provider": "opencode-go",
+        "model": "deepseek-v4.1-flash",
+        "requirement": "none",
+        "ok": true,
+        "detail": "key-auth arm: no human-attended identity"
+      },
+      {
+        "rank": 4,
+        "provider": "opencode-go",
+        "model": "glm-5.3-flash",
+        "requirement": "none",
+        "ok": true,
+        "detail": "key-auth arm: no human-attended identity"
+      },
+      {
+        "rank": 5,
+        "provider": "nvidia",
+        "model": "deepseek-ai/deepseek-v4.1-flash",
+        "requirement": "none",
+        "ok": true,
+        "detail": "key-auth arm: no human-attended identity"
+      }
+    ],
+    "degraded": false,
+    "required_arm": "openai-codex/gpt-6.1-sol"
+  },
+  "authorization": {
+    "checked": false
+  },
+  "subject_mutation": {
+    "state": "not_guarded"
+  },
+  "attempt_log_dir": "C:/Projects/Agent_Workspace/var/FHS-ALLPASS-20261031/receipts/VERIFY_gate.json.logs",
+  "output_dir_policy": {
+    "mode": "explicit-path",
+    "derived": null,
+    "existing": false
+  },
+  "repair_precondition": {
+    "checked": false
+  },
+  "remote_write_precheck": {
+    "mode": "DETECTION_ONLY",
+    "ran": false
+  },
+  "attempts": [
+    {
+      "rank": 1,
+      "provider": "openai-codex",
+      "model": "gpt-6.1-sol",
+      "transport_model": "gpt-6.1-sol",
+      "sandbox": "read-only",
+      "reasoning_effort": null,
+      "exit": 0,
+      "timed_out": false,
+      "seconds": 5.28,
+      "nonce_present": true,
+      "nonce_present_raw_stdout": true,
+      "nonce_present_anywhere": true,
+      "nonce_in_agent_message": true,
+      "producer": {
+        "script_sha256": "cd78afe3bfdd38530bedaceee6a3fdceae53d2122aefe5a7f4255ea25d44655d",
+        "git_head": "4661a48458786419905689739d89584603b2ad90",
+        "schema": "HGK-LANE-DISPATCH-PRODUCER/1"
+      },
+      "nonce_source": "item.completed/agent_message",
+      "usage_rows_after_offset": 0,
+      "usage_offset": 36046236,
+      "usage_provider": null,
+      "usage_model": null,
+      "usage_status": null,
+      "usage_receipt_ok": true,
+      "usage_receipt_reason": "no usage row was appended after the attempt offset",
+      "usage_ledger_rewritten": false,
+      "usage_rows_shape_invalid": 0,
+      "usage_rows_undecodable": 0,
+      "carrier_lines_undecodable": 0,
+      "carrier_lines_surrogate": 0,
+      "credential_posture": {
+        "verdict": "INCONCLUSIVE",
+        "decision": "WARN_CONTINUE",
+        "reason": "helper-only verdict (no child env asserted): helper_resolution_reset=PASS; helper_non_interactive=UNKNOWN",
+        "prompt_capable_helper": null,
+        "origin": null,
+        "git_terminal_prompt": "0"
+      },
+      "attempt_log_dir": "C:/Projects/Agent_Workspace/var/FHS-ALLPASS-20261031/receipts/VERIFY_gate.json.logs",
+      "stdout_byte_exact": true,
+      "stdout_path": "C:\\Projects\\Agent_Workspace\\var\\FHS-ALLPASS-20261031\\receipts\\VERIFY_gate.json.logs\\attempt-5860-1793454228-1-stdout.txt",
+      "stdout_bytes": 370,
+      "stdout_sha256": "e5e435ba40d1e166393f491b02470484dae8a6d8e9a0dc7a3b3be9e5eb793eac",
+      "stderr_byte_exact": true,
+      "stderr_path": "C:\\Projects\\Agent_Workspace\\var\\FHS-ALLPASS-20261031\\receipts\\VERIFY_gate.json.logs\\attempt-5860-1793454228-1-stderr.txt",
+      "stderr_bytes": 39,
+      "stderr_sha256": "1aa26269eb1cc57f86b235a03cda53c004edb5b1e9fc99d4da4f00843293d721",
+      "stdout_tail": "{\"type\":\"thread.started\",\"thread_id\":\"01a19233-c8fa-7d92-bb02-131100640c03\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"agent_message\",\"text\":\"NONCE-VERIFY-GATE-20261031\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":22144,\"cached_input_tokens\":13184,\"cache_write_input_tokens\":0,\"output_tokens\":14,\"reasoning_output_tokens\":0}}\n",
+      "stderr_tail": "Reading additional input from stdin...\n",
+      "console_window_events_delta": 0,
+      "console_window_ledger": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\console-window-events.jsonl",
+      "console_window_owners": [],
+      "identity_source": "codex-rollout",
+      "identity_rollout": "C:\\Users\\user\\.codex\\sessions\\2026\\10\\31\\rollout-2026-10-31T21-43-49-01a19233-c8fa-7d92-bb02-131100640c03.jsonl",
+      "identity_note": "served arm read from the codex rollout written for this run and cwd"
+    }
+  ],
+  "used_rank": 1,
+  "used_transport_model": "gpt-6.1-sol",
+  "used_seconds": 5.28,
+  "generated_utc": "2026-10-31T13:43:55.024165+00:00",
+  "assignment_posture": {
+    "enforced": false,
+    "posture": {
+      "ok": true,
+      "arms": [
+        "gpt-6.1-sol",
+        "openai-codex/gpt-6.1-sol"
+      ],
+      "revision": 41,
+      "role": "VERIFY_SECURITY",
+      "authority": "owner-order-20261031-allpass-verify-sol",
+      "shape": "role",
+      "primary_arms": [
+        "gpt-6.1-sol",
+        "openai-codex/gpt-6.1-sol"
+      ],
+      "fallback_arms": [],
+      "declared_fallbacks": [],
+      "fallbacks_declared": false,
+      "alternates_are_operator_selectable": false
+    },
+    "arms_outside_assignment": []
+  },
+  "producer": {
+    "script_sha256": "cd78afe3bfdd38530bedaceee6a3fdceae53d2122aefe5a7f4255ea25d44655d",
+    "git_head": "4661a48458786419905689739d89584603b2ad90",
+    "schema": "HGK-LANE-DISPATCH-PRODUCER/1"
+  },
+  "comparison_policy": "compare two receipts ONLY when producer.script_sha256 is equal; tools/compare_lane_receipts.py refuses otherwise (TT-R20-9)",
+  "selection_filter": {
+    "required_arm": "openai-codex/gpt-6.1-sol",
+    "candidates_before": [
+      "openai-codex/gpt-6.1-sol",
+      "opencode-go/mimo-v2.6-flash",
+      "opencode-go/deepseek-v4.1-flash",
+      "opencode-go/glm-5.3-flash",
+      "nvidia/deepseek-ai/deepseek-v4.1-flash"
+    ],
+    "candidates_after": [
+      "openai-codex/gpt-6.1-sol"
+    ],
+    "why": "selection constrained by --require-arm (alias-equivalent), not only judged after the call"
+  },
+  "served_arm_assigned": true,
+  "claim_ceiling": "a pass here proves the Codex-CLI lane served this turn through the relay with a matching usage receipt; it is not an acceptance of any subject",
+  "ok": true,
+  "identity_source": "codex-rollout",
+  "durable_gates": {
+    "verdict": "GO",
+    "subject": "config/lane-routing-registry.yaml",
+    "tool": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\scripts\\ir_gate.py",
+    "detail": {}
+  },
+  "completion_evidence": {
+    "checked": false
+  },
+  "usage_receipt_ok": true,
+  "usage_rows_shape_invalid": 0,
+  "usage_rows_undecodable": 0,
+  "required_arm": "openai-codex/gpt-6.1-sol",
+  "required_arm_satisfied": true,
+  "required_arm_note": "no arm served; the pin is recorded, not satisfied",
+  "served_arm_raw": "openai-codex/gpt-6.1-sol",
+  "served_arm": "openai-codex/gpt-6.1-sol"
+}

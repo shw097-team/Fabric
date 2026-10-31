@@ -1,0 +1,57 @@
+{
+ "schema": "FAR.CANDIDATE_RESEARCH/2",
+ "run_id": "FAR-20261031-033-FHS-MSC-RESIDUAL-RULINGS",
+ "predecessors": [
+  "FAR-20261031-031-FHS-MSC-ALL-PASS",
+  "FAR-20261031-032-FHS-MSC-ALLPASS-EXECUTION"
+ ],
+ "kind": "RESIDUAL_RULINGS",
+ "items": 9,
+ "closed_this_run": [
+  "pin recorded on failure",
+  "durable-gate GO recorded on receipt",
+  "failure cause named outside the frozen code"
+ ],
+ "rulings": [
+  "R-1 split bounded/native ceiling per package",
+  "R-2 absent-object records (owner sign)",
+  "R-3 pin is filter+assertion, never model injection",
+  "R-4 per-sitting nonce from a round seed",
+  "R-5 WP-17 has no EVIDENCE_GAP.md (corrected)",
+  "R-6 C4 rollout binding as SEC requirement (owner sign)",
+  "R-7 projections rendered from authority, never hand-edited",
+  "R-8 receipts must not infer from absence (done)",
+  "R-9 guard-subject is a digest anchor"
+ ],
+ "measured": {
+  "work_queue": {
+   "total": 22,
+   "PASS": 17,
+   "FAIL": 5,
+   "NOT_RUN": 0
+  },
+  "wp11": {
+   "required_cells": 9,
+   "qualified": 0,
+   "missing_static": 146
+  },
+  "wp12": "empty directory",
+  "wp13": "empty directory",
+  "wp20": {
+   "cells": 192,
+   "qualified": 0,
+   "kinds": "1/8",
+   "original_readers": "0/4"
+  },
+  "original_services_present": false
+ },
+ "claim_ceiling": "rulings and executable plan only; no PASS moved; native admission still absent",
+ "evidence": [
+  "ABSENT_SERVICES_SCAN.json",
+  "EXECUTE_pin2.json",
+  "EXECUTE_reqarm.json",
+  "PLAN_reqarm.json",
+  "VERIFY_gate.json",
+  "VERIFY_reqarm.json"
+ ]
+}
