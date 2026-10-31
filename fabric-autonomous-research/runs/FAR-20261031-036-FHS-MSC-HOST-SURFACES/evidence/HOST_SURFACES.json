@@ -1,0 +1,37 @@
+{
+ "measured_at": "2026-10-31T23:01:46+0800",
+ "why": "The four hosts do not share one loader surface. Treating WP-11's nine cells as nine identical operations fails on the Claude Code three, and that failure reads like 'the host is unsupported'.",
+ "hosts": {
+  "hermes": {
+   "surface": "profiles/<profile>/skills/<name>/SKILL.md",
+   "count_now": 56,
+   "evidence": "cell 1 measured: install/register/load/trigger/unload"
+  },
+  "codex": {
+   "surface": "~/.codex/skills/<name>/",
+   "count_now": 2,
+   "existing": [
+    "mem0",
+    "security-threat-model"
+   ],
+   "extra": "codex plugin"
+  },
+  "claude_code": {
+   "surface": "~/.claude/agents/<name>.md (+ --agents)",
+   "count_now": 5,
+   "existing": [
+    "ocx-gpt-5-4-mini",
+    "ocx-gpt-5-5",
+    "ocx-gpt-5-6-luna",
+    "ocx-gpt-5-6-sol",
+    "ocx-gpt-5-6-terra"
+   ],
+   "note": "AGENT surface, not a skill surface: the cell must install an agent, not a SKILL.md"
+  },
+  "chatgpt": {
+   "surface": null,
+   "note": "web/API-only per 01_PRODUCT_AUTHORITY_SPINE.md:47"
+  }
+ },
+ "consequence": "9 cells = 3 host contracts x 3 SP, not 9 repetitions."
+}

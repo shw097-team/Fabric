@@ -1,0 +1,39 @@
+{
+ "schema": "SBL-HOST-EFFECTIVE-LOAD-RECEIPT/1",
+ "cell_id": "WP-FHS-11.HERMES.SP1",
+ "wp": "WP-FHS-11",
+ "host": "hermes",
+ "host_version": "Hermes Agent v0.22.5 (2026.9.24) stable local bf0203a794a0",
+ "skill_id": "fhs-wp11-probe",
+ "manifest_sha": "c161286a1dba88c4f6dbe19930c94f01350439585785c2acf3bf7bad28ee8358",
+ "source_pin": "PIPD@995c7ad0c69a05a0c5cf6528155a62020ce31f87",
+ "issuer_principal": "owner",
+ "capabilities": [
+  "skill:register",
+  "skill:load",
+  "skill:unload"
+ ],
+ "install_dir": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\profiles\\hgk-governed\\skills\\fhs-wp11-probe",
+ "discover_ok": true,
+ "bind_ok": true,
+ "trigger_input_ref": "request the WP-11 host cell token (skill body, ## Trigger)",
+ "trigger_raw_result": "TRIGGER_TOKEN: WP11-HERMES-CELL-6062C729A05B",
+ "exit_code": 0,
+ "unload_verification": "after removing the directory, skill_view('fhs-wp11-probe') -> \"Skill 'fhs-wp11-probe' not found.\"",
+ "provider_off_parity": "NOT_MEASURED",
+ "provider_off_parity_why": "the probe is a static SKILL.md served by the host loader; turning the model provider off mid-session is not available from inside the session, so parity was not measured and is not claimed",
+ "nontrigger": {
+  "measured": "token string occurs in exactly one file in the host inventory (the installed SKILL.md) and in no other skill; the host listed 56 skills before install and 57 after",
+  "not_measured": "a fresh-session behavioural nontrigger (a different Goal producing no token)"
+ },
+ "observed_at": "2026-10-31T22:54:09+0800",
+ "candidate_hash": "6062c729a05b985d2b2fa2bb099a2305d6e9c3b9d27f3cb9f1d020f3da0f04ba",
+ "signature": null,
+ "signature_status": "PENDING_OWNER (window WIN-68f2056b1972 open, 0/40 ops used)",
+ "verdict": "PARTIAL",
+ "verdict_why": "Install, Register, Effective Load, Trigger and Uninstall were all measured on the real host. Two fields the spec lists were NOT measured (provider_off_parity, a behavioural nontrigger), so this cell is PARTIAL and WP-FHS-11 stays FAIL at 1 of 9 cells.",
+ "packager_defects_fixed_to_get_here": [
+  "secret_scan used Path.rglob over the whole repo and aborted on a broken `lib64` symlink in a stale round dir (WinError 1920) -- one dead link blocked every Portable SP pack",
+  "the same scan was repo-wide, so a credential file that is not in the include set vetoed the pack; it now scans the member set (fail-closed) and reports repo hygiene separately"
+ ]
+}
