@@ -1,0 +1,7 @@
+hypothesis_id	text	basis_source_ids	status	testability
+H1	The owner-ordered re-order (fallback1 = minimax-m3.1-flash-free, fallback2 = mimo-v2.6-flash) is executable on the live canonical Hermes config with a reversible, digest-guarded apply that touches only the fallback_providers block.	S1	S16	SUPPORTED	TESTED_BY_APPLY_RECEIPT
+H2	Both new arms can actually serve through the transport the Hermes fallback path will use for them.	S10	S13	S14	SUPPORTED	TESTED_BY_LIVE_PROBES
+H3	Re-ordering the live chain requires no change to the HGK control-plane declaration surfaces, because the registry records the live config as NON_AUTHORITATIVE and binds no pointer to its fallback_providers.	S2	SUPPORTED	TESTED_BY_DRIFT_GATE
+H4	The owner order, read literally, also re-binds the HGK registry's declared PLAN lane chain, because that chain names the same two models as the live chain's first two entries.	S2	S3	S7	PARTIALLY_SUPPORTED	TESTED_BY_AUTHORITY_ANALYSIS
+H5	After the re-order, the first SERVABLE fallback arm is mimo-v2.6-flash (not minimax-m3.1-flash-free) because the runtime skips a chain entry that resolves to the backend that just failed.	S8	S9	SUPPORTED	TESTED_BY_PREDICATE_MEASUREMENT
+H6	The two new ids are routable but absent from the curated static provider catalog, which is a material regression for the chain.	S10	REJECTED	TESTED_BY_CATALOG_QUERY (deepseek-v4.1-flash, already in the live chain, is likewise absent; absence is the provider's live-first norm, not a new risk)

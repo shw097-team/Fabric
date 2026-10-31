@@ -1,0 +1,40 @@
+schema: LOGICAL_FAR_CANDIDATE_RESEARCH_V1
+run_ref: FAR-20261021-024-fallback-chain-reorder
+decision_question: >-
+  What is the current main-model fallback chain of the canonical Hermes runtime plane under the
+  HG-KSEOS control plane, which declaration surfaces declare it, and what is the exact, reversible
+  execution plan to re-order it to fallback1 = MiniMax M3.1 Flash (OPENCODE GO) and
+  fallback2 = MiMo-V2.6-Flash, so the live runtime chain and the HGK control-plane declaration agree
+  and every arm in the new chain is proven servable?
+disposition: >-
+  EXECUTABLE. The owner order is executable as specified on the live canonical Hermes
+  fallback_providers chain - both target ids are in the provider's live model list, both serve a
+  real completion through the provider AND through the Hermes client, the per-arm api_mode is
+  derived correctly by Hermes itself, the apply is a single anchored block replacement with a
+  full-digest pre-image guard and a verified rollback, and the HGK control-plane declaration
+  surfaces are INDEPENDENT of this chain by design (the registry binds no pointer to it and records
+  it as NON_AUTHORITATIVE), so the change does not create a declaration drift. ONE QUALIFYING
+  RESIDUAL is carried - while the canonical primary remains minimax-m3.1-flash-free, the runtime's
+  same-backend skip refuses fallback[0] as the backend that just failed, so the first SERVABLE arm
+  is mimo-v2.6-flash until the primary is not MiniMax. The chain ORDER is exactly as ordered.
+evidence_digests:
+  live_canonical_hermes_config_before: c9308966e45ef49d10087e08ec612a66d46c328b4b054e33894f53a6a1c889a5
+  hgk_lane_routing_registry: 98f1d92aa3144339f64d2fc6d57f16c8f62f5135c89c471203f816f19270b7c9
+  hgk_model_lane_assignment: b1ec1b8bbea360d15f329ba6633b1327dd8c33cc969e67d9cd2cca3c4b9b15d0
+  hgk_lane_route_slots_pool: b44f416fecab4496b1c7ff795cb57590d098a829c596c2339630b4ed2acf901f
+  hgk_hermes_codex_lane_binding: c2aa55684cff091c849c40566b53f304970d23bbe2b52d1ab8967d073cf93478
+  hgk_hermes_binding: 4e32dcc609d46fb6010b202455ef3de4eef873d3829049b21895fee1fbf119b6
+  hgk_agents_md: a1727fcd000fce69c073c96c3b8bf0a61b68652679b03c137c1d042768c1cb59
+confidence: >-
+  HIGH for the configuration and servability facts (every one re-measured, three workers
+  concordant); MEDIUM for the residual's lifetime (it depends on a primary the owner may change).
+limits:
+  - "No actual failover EVENT was observed; the chain was never triggered by a live primary failure."
+  - "The arm-skip finding is a property of the CURRENT primary. It is measured, not projected."
+  - "The HGK registry's lane chains were deliberately NOT re-bound; their agreement with the new live chain is therefore not asserted by this run."
+  - "Provider rate-limit behaviour under sustained fallback load was not measured."
+  - "The curated static provider catalogue does not list either new id (as is also true of deepseek-v4.1-flash, already in the live chain); this run measures routability, not catalogue curation."
+owner_action_required:
+  - "OQ2: decide whether the canonical primary stays on minimax-m3.1-flash-free (which keeps the same-backend skip active for fallback[0]) or moves, which restores fallback[0] as the first servable arm."
+  - "OQ1: order a lane-chain rebind round if the HGK registry's declared PLAN chain is also to name the new fallback identities."
+status: CANDIDATE_ONLY

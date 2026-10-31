@@ -1,0 +1,77 @@
+schema: LOGICAL_FAR_RESEARCH_PLAN_V1
+run_id: FAR-20261021-024-fallback-chain-reorder
+route:
+  task_class: RESEARCH_LITERATURE_REPO
+  decision: NATIVE_WITH_SELECTED_ARIS
+  reason_code: FAR_ROUTE_NATIVE_ARIS
+  primary: fabric-autoresearch-native
+  challenger: aris
+  challenger_method: research-review
+  methods: [research-lit, novelty-check, research-review]
+  route_binding: >-
+    Copied VERBATIM from governance/FAR_CAPABILITY_MATRIX.yaml classes.RESEARCH_LITERATURE_REPO
+    and resolved by far_router.route('RESEARCH_LITERATURE_REPO', {challenge_required: True}).
+    Output: {"decision": "NATIVE_WITH_SELECTED_ARIS", "reason_code": "FAR_ROUTE_NATIVE_ARIS",
+    "primary": "fabric-autoresearch-native", "challenger": "aris", "challenger_method": "research-review",
+    "methods": ["research-lit", "novelty-check", "research-review"]}. No reason code was invented.
+  swarm: >-
+    DEFAULT-ON per the matrix (hermes-swarm provider state ACTIVE_DEFAULT): the SOURCE_FAMILY /
+    HYPOTHESIS / EXPERIMENT split runs as parallel read-only research workers with
+    canonical_parallel_writers = 0 and merge_collision = RESEARCH_DISPUTE_OPEN (no majority vote).
+subquestions:
+  - id: SQ1
+    text: What is the exact current main-model fallback chain in the live canonical Hermes config, byte-for-byte?
+    source_class: LOCAL_GOVERNED_CORPUS
+  - id: SQ2
+    text: Which HGK control-plane surfaces declare a main-model fallback order, and do they agree with the live chain?
+    source_class: LOCAL_GOVERNED_CORPUS
+  - id: SQ3
+    text: Which Hermes runtime code paths consume fallback_providers, and what determines whether a chain entry can actually serve?
+    source_class: GIT_REPOSITORY
+  - id: SQ4
+    text: Are minimax-m3.1-flash-free and mimo-v2.6-flash real, servable ids on the opencode-go provider through the transport Hermes will actually use?
+    source_class: EXPERIMENT_INPUT
+  - id: SQ5
+    text: What is the reversible, drift-checked execution plan that makes the live chain and the HGK declaration agree?
+    source_class: LOCAL_GOVERNED_CORPUS
+claim_classes: [fact_candidate, constraint, method, known_failure, unknown]
+source_classes: [LOCAL_GOVERNED_CORPUS, GIT_REPOSITORY, OFFICIAL_DOC, EXPERIMENT_INPUT]
+query_strategy:
+  - Read the live config; digest it; never trust a summary of it.
+  - Read the registry and its source pin; resolve the registry projections to the live sites.
+  - Read the Hermes runtime fallback path and the backend-identity skip predicate as CODE, then MEASURE the predicate on the live values.
+  - Probe the provider's live model list, then probe each candidate arm with a real completion, then probe through the Hermes client itself.
+candidate_methods_providers:
+  - fabric-autoresearch-native (primary)
+  - hermes-swarm (parallel read-only workers)
+  - aris (challenger, research-review method)
+challenge_trigger:
+  - The two candidate arms are NOT both trivially safe: one of them is the same model as the live primary.
+  - The registry declares its own chain separately from the live config; a silent divergence between them is the failure mode to attack.
+experiment_trigger:
+  - Any claim that an arm "can serve" must be backed by a real completion through the same client path the runtime uses.
+stop_criteria:
+  - Both candidate ids confirmed in the provider's live model list.
+  - Both candidate arms answer a real completion (direct provider AND Hermes client path).
+  - The registry's declared chain and the live chain are compared field by field.
+  - A rollback path is exercised, not merely described.
+abstain_criteria:
+  - If either candidate id is absent from the live provider model list, or fails its probe, it is NOT proposed as a chain arm.
+  - No claim about the actual failover EVENT is made unless the failover is observed in a live log.
+budget_allocation:
+  parallel_readonly_workers: 3
+  provider_probe_calls: 4
+  canonical_writers: 0
+swarm_dispatch_record:
+  delegation_id: deleg_96784120
+  workers:
+    - {id: sa-0-2cc471ae, split: SOURCE_FAMILY, status: completed, duration_s: 265.17}
+    - {id: sa-1-1c16780e, split: CODE_PATH, status: completed}
+    - {id: sa-2-4b473db2, split: EXPERIMENT, status: completed, duration_s: 158.81}
+  canonical_parallel_writers: 0
+  merge_collision: RESEARCH_DISPUTE_OPEN
+  disagreement_outcome: >-
+    NO DISAGREEMENT. All three workers independently reproduced the orchestrator's own
+    measurements (same-backend skip for the primary-equal arm, anthropic_messages for
+    minimax / chat_completions for mimo, both arms servable). Worker summaries were
+    reconciled against raw probes, not accepted as authority.

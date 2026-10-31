@@ -1,0 +1,67 @@
+schema: FAR-ResearchPlan/1
+run_id: FAR-20261022-027-sbl-hgk-degradation-rca
+request: ResearchRequest.yaml
+route:
+  lookup_source: Fabric/FABRIC/fabric-autonomous-research/governance/FAR_CAPABILITY_MATRIX.yaml
+  task_class: RESEARCH_LITERATURE_REPO
+  decision: NATIVE_WITH_SELECTED_ARIS
+  reason_code: FAR_ROUTE_NATIVE_ARIS
+  methods: [research-lit, novelty-check, research-review]
+  routed_by_module: Fabric/FABRIC/fabric-autonomous-research/far_router.py::route
+  route_receipt: ROUTE_DECISION.json
+  disagreed_class:
+    task_class: RESEARCH_ADVERSARIAL_CHALLENGE
+    decision: NATIVE_NO_CHALLENGE
+    reason_code: FAR_ROUTE_NATIVE_DEFAULT
+    note: >
+      The adversarial-challenge class routes to NATIVE_NO_CHALLENGE, so the ARIS challenge method is NOT
+      selected for adversarial review in this stack. Disclosed rather than worked around; this round's
+      adversarial half is carried by the independent VERIFY_SECURITY CODEX lane instead.
+swarm:
+  enabled: true
+  mode: parallel read-only research workers
+  canonical_parallel_writers: 0
+  workers:
+    - id: W1
+      subject: SBL x Fabric governance-contract integration
+      write_root: evidence/W1_fabric_integration.md
+    - id: W2
+      subject: SBL pinned base vs current HG-KSEOS base (drift)
+      write_root: evidence/W2_base_drift.md
+    - id: W3
+      subject: seven capability surfaces, measured
+      write_root: evidence/W3_capability_probe.md
+    - id: W4
+      subject: measured performance delta SBL&HGK vs HGK-only
+      write_root: evidence/W4_performance_delta.md
+  dispute_rule: a disagreement between workers is RESEARCH_DISPUTE_OPEN, never a majority vote
+lifecycle:
+  R0_intake: OWNER_MANDATE.txt + ResearchRequest.yaml (this file's sibling)
+  R1_plan: this file
+  R2_sources: evidence/SourceSnapshotLedger.tsv (worker locators)
+  R3_extraction: evidence/W*.md + FINDINGS.tsv
+  R4_analysis: synthesis authored by the EXECUTE lane (CODEX CLI, minimax)
+  R5_challenge: VERIFY_SECURITY lane (CODEX CLI, deepseek-v4.1-flash) + Independent Acceptance Officer
+  R6_synthesis: ResearchSynthesis.md
+  R7_candidate: CandidateResearch.yaml
+  R8_handoff: ResearchHandoff.yaml + ProposedEvolution.yaml
+execution_lanes:
+  PLAN: hermes-session/opencode-go/deepseek-v4.1-flash
+  EXECUTE: codex-cli/opencode-go/minimax-m3.1-flash-free@EXECUTE-rank1
+  VERIFY_SECURITY: codex-cli/opencode-go/deepseek-v4.1-flash@VERIFY_SECURITY-rank4
+  AO: fresh-context Hermes subagent (no tool access to the writer's transcript)
+gates:
+  - id: G1
+    rule: every causal claim carries a locator a checker can open
+  - id: G2
+    rule: capability answers are measured states, not declarations
+  - id: G3
+    rule: claim ceiling present and not exceeded
+  - id: G4
+    rule: writer and checker are different lanes AND different entry points (HGK SoD)
+self_governance:
+  self_detect: findings are re-derived from disk by the VERIFY lane, not trusted from the maker
+  self_repair: only the round's own artifacts may be repaired; product trees stay untouched
+  self_accept: NOT permitted to self-issue; the AO verdict is recorded and the HGK acceptance stays NOT_RUN
+  self_evolution: ProposedEvolution.yaml + LEARNING.md, candidate-only, no promotion
+claim_ceiling: CANDIDATE_ONLY

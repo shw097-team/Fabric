@@ -1,0 +1,34 @@
+{
+ "brownfield-root-cause-review": {
+  "flow": "brownfield-root-cause-review",
+  "provider": "openspec",
+  "state": "CERTIFIED_ACTIVE_BROWNFIELD",
+  "fallback": "hgk_native_prw",
+  "final_authority": true,
+  "route": "OPENSPEC"
+ },
+ "qa-review": {
+  "flow": "qa-review",
+  "provider": "gstack.review",
+  "state": "CERTIFIED",
+  "fallback": "hgk_native_review",
+  "final_authority": true,
+  "route": "GSTACK"
+ },
+ "retro": {
+  "flow": "retro",
+  "provider": "gstack.retro",
+  "state": "CERTIFIED",
+  "fallback": "hgk_native_retro",
+  "final_authority": true,
+  "route": "GSTACK"
+ },
+ "ship": {
+  "flow": "ship",
+  "provider": null,
+  "state": null,
+  "fallback": null,
+  "final_authority": true,
+  "route": "NATIVE"
+ }
+}

@@ -1,0 +1,53 @@
+schema: FAR-ResearchRequest/1
+run_id: FAR-20261022-027-sbl-hgk-degradation-rca
+created_at_utc: "2026-10-22T02:20:00Z"
+requested_by: owner mandate 2026-10-22 (frozen verbatim in OWNER_MANDATE.txt)
+round_id: ROUND-SBL-HGK-RCA-20261022
+hgk_admission:
+  requirement: REQ-HGK-PRJ-SBL-HGK-RCA-20261022
+  requirement_state: FROZEN
+  acceptance: ACC-REQ-HGK-PRJ-SBL-HGK-RCA-20261022
+  acceptance_verdict: NOT_RUN
+  taskspec: TS-req-hgk-prj-sbl-hgk-rca-20261022
+  workorder: WO-TS-REQ-HGK-PRJ-SBL-HGK-RCA-20261022-EXEC
+  project: HGK-P0
+  writable_root: C:/Projects/Agent_Workspace/Fabric/fabric-autonomous-research/runs/FAR-20261022-027-sbl-hgk-degradation-rca
+  base_head: d62635626d5d2e54fe5bba22a500a17423c85719
+task_class: RESEARCH_LITERATURE_REPO
+secondary_classes:
+  - RESEARCH_ADVERSARIAL_CHALLENGE
+question: >
+  Under the current Fabric governance contract, with HG-KSEOS as the sole control plane and the current
+  canonical Hermes bound as its governed Runtime/Orchestration Plane: why does the configuration
+  "SBL & HG-KSEOS" perform worse than "HG-KSEOS" alone? Is SBL unable to integrate completely and correctly
+  into the Fabric governance contract, or was SBL not upgraded on the CURRENT HG-KSEOS engineering base?
+  And can "SBL & HG-KSEOS" actually enable KANBAN / SWARM / GSTACK / OPENSPEC with CODEX CLI + multiple
+  SUB-AGENTs in parallel, complete the task, and run automated self-detect / self-repair / self-accept plus
+  governed self-research / self-learning / self-iteration / self-evolution?
+sub_questions:
+  - id: Q1
+    text: Does SBL CONSUME the Fabric governance contract, or only CITE it?
+  - id: Q2
+    text: Was SBL built/upgraded on the current HG-KSEOS base (3dfaebc / pool rev 18), and how large is the drift?
+  - id: Q3
+    text: Where does the measured performance delta come from (gates, duplicated planes, SoD collision, backlog)?
+  - id: Q4
+    text: Which of the seven capability surfaces are actually enabled today, measured, not declared?
+model_plan_owner_mandate:
+  PLAN_and_Commander: opencode-go/deepseek-v4.1-flash (Hermes session plane)
+  EXECUTE_and_codex_writer: opencode-go/minimax-m3.1-flash-free (CODEX CLI, EXECUTE rank 1)
+  AO_VERIFY_SECURITY_checker: opencode-go/deepseek-v4.1-flash (CODEX CLI, VERIFY_SECURITY rank 4)
+  availability_probe:
+    exec_rank1: {required: opencode-go/minimax-m3.1-flash-free, served: opencode-go/minimax-m3.1-flash-free, ok: true, seconds: 3.78, receipt: probe/exec_receipt.json}
+    verify_rank4: {required: opencode-go/deepseek-v4.1-flash, served: opencode-go/deepseek-v4.1-flash, ok: true, seconds: 2.5, receipt: probe/verify_receipt.json}
+  note: >
+    Model plan is AVAILABLE, so the owner's stop-clause does not fire. The pool's DECLARED rank-1 arms for
+    PLAN and VERIFY_SECURITY are openai-codex/gpt-6.1-sol; this round pins the owner's arms instead
+    (PLAN via the session plane, VERIFY via --force-rank 4), which the pool's own selection_semantics
+    permits ("the instructed entry replaces rank 1"). Declared-vs-served divergence is disclosed in VERDICT.
+claim_ceiling: CANDIDATE_ONLY research product. No product-code mutation, no push, no promotion, no native
+  integration claim, no acceptance by the owner, no completion percentage.
+out_of_scope:
+  - mutating HG-KSEOS, Fabric or SBL product trees
+  - promoting a candidate declaration to ACTIVE
+  - self-issuing the external acceptance

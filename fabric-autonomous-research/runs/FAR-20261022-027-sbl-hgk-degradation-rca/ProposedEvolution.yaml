@@ -1,0 +1,57 @@
+schema: FAR-ProposedEvolution/1
+run_id: FAR-20261022-027-sbl-hgk-degradation-rca
+proposals:
+  - id: EV1
+    target: HG-KSEOS/_sbl_harness_adapter/adapter.json
+    change: replace the hg_kseos version pin with a re-resolved commit/tree digest
+    why: the version has not moved in 147 of 148 commits, so >=0.1.0,<0.2.0 is a constant
+    evidence: evidence/W2_base_drift.md
+    cost: small
+    risk: an adapter load now fails when the base moves, which is the point
+    owner_decision_required: false
+    claim_ceiling: CANDIDATE_ONLY
+  - id: EV2
+    target: HG-KSEOS/_sbl_harness_adapter/adapter.json
+    change: declare hg_kseos as a real dependency or an explicit bootstrap so the adapter's recorded interpreter can import it
+    why: import hg_kseos under the recorded host.executable raises ModuleNotFoundError and pyproject declares dependencies = [], so requires_native is declaration only
+    evidence: evidence/W2_base_drift.md
+    cost: small
+    risk: a host without the package now fails at load instead of reporting an unmet requirement
+    owner_decision_required: false
+    claim_ceiling: CANDIDATE_ONLY
+  - id: EV3
+    target: Fabric/FABRIC/control/PROFILE_STACK_REGISTRATION_POLICY.yaml
+    change: record one applicability/registration disposition for SBL against the profile-stack registration policy
+    why: SBL's schema, install/registration target and evidence-packet seams are all ABSENT, so Fabric is only cited and no install target exists
+    evidence: evidence/W1_fabric_integration.md
+    cost: small
+    risk: a denial is a legitimate outcome and would close SBL's route to consuming the contract
+    owner_decision_required: true
+    claim_ceiling: CANDIDATE_ONLY
+  - id: EV4
+    target: HG-KSEOS dispatch admission and the SBL M05 self-check surface
+    change: rename self-accept to independent-lane acceptance and let the dispatcher refuse writer == checker directly
+    why: both SBL M05 and the HGK spine already refuse the same maker/checker, so the self-accept label carries a behaviour the product forbids
+    evidence: evidence/W3_capability_probe.md
+    cost: medium
+    risk: governance documents that use the old name stop matching until the vocabulary is split everywhere
+    owner_decision_required: true
+    claim_ceiling: CANDIDATE_ONLY
+  - id: EV5
+    target: HG-KSEOS kanban board-drain gate
+    change: add a gate that no new SBL board opens while the previous board still holds unclaimed ready cards
+    why: sbl-r14-full-product still holds 23 ready cards and R12/R13 keep workers ready with verifier and synthesizer todo, so the backlog is not drained
+    evidence: evidence/W3_capability_probe.md
+    cost: small
+    risk: a stalled board can now block new board creation until it is explicitly dispositioned
+    owner_decision_required: false
+    claim_ceiling: CANDIDATE_ONLY
+  - id: EV6
+    target: config/hermes.json
+    change: bind config/hermes.json to the measured live Hermes runtime version instead of the declared one
+    why: the declaration states 0.20.0 / v2026.8.3 / 3c27eb62 while the live runtime measured 0.21.5, so the config names a runtime that is not the one served
+    evidence: evidence/W3_capability_probe.md; VERDICT.json
+    cost: small
+    risk: pinning to a live measurement makes the config fail closed whenever the runtime moves
+    owner_decision_required: false
+    claim_ceiling: CANDIDATE_ONLY

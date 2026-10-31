@@ -1,0 +1,47 @@
+run_id: FAR-20261022-027-sbl-hgk-degradation-rca
+verdict_ref: VERDICT.json
+candidate_refs:
+  - ResearchSynthesis.md
+  - FINDINGS.tsv
+  - VERDICT.json
+  - DEVIATIONS.tsv
+  - ProposedEvolution.yaml
+residuals:
+  - id: RS1
+    owner: sbl-product-owner
+    one_action: "Replace the hg_kseos version pin with a commit/tree-digest pin the adapter re-resolves at load (FINDINGS row for the vacuous pin)"
+    blocked_by: none
+    claim_ceiling: CANDIDATE_ONLY
+  - id: RS2
+    owner: sbl-product-owner
+    one_action: "Declare hg_kseos as a real dependency (or an explicit bootstrap) so the adapter's recorded interpreter can import it"
+    blocked_by: none
+    claim_ceiling: CANDIDATE_ONLY
+  - id: RS3
+    owner: fabric-contract-owner
+    one_action: "Issue one applicability/registration disposition for SBL against Fabric/FABRIC/control/PROFILE_STACK_REGISTRATION_POLICY.yaml"
+    blocked_by: owner decision (no SBL install target exists)
+    claim_ceiling: CANDIDATE_ONLY
+  - id: RS4
+    owner: hgk-control-plane
+    one_action: "Re-measure HG-KSEOS conformance at the LIVE head, not at this run's measurement base 3dfaebc — the head moved to 5ae4190 (9 commits, 2 of them lane-plane) while this round ran; the missing number is the one SBL's own handover says does not exist after b22706e"
+    blocked_by: none
+    claim_ceiling: LOCAL_MEASUREMENT_ONLY
+  - id: RS5
+    owner: owner
+    one_action: "Decide whether 'self-accept' is renamed to independent-lane acceptance; the two layers already refuse writer == checker"
+    blocked_by: owner decision
+    claim_ceiling: CANDIDATE_ONLY
+  - id: RS6
+    owner: sbl-product-owner
+    one_action: "Add a board-drain gate so no new SBL board opens while the previous board still holds unclaimed ready cards (r12 5/1, r13 4/1, r14 23/8)"
+    blocked_by: none
+    claim_ceiling: CANDIDATE_ONLY
+  - id: RS7
+    owner: hgk-control-plane
+    one_action: "Bind config/hermes.json to the measured live Hermes version (live 0.21.5 vs declared 0.20.0 / v2026.8.3 / 3c27eb62)"
+    blocked_by: none
+    claim_ceiling: CANDIDATE_ONLY
+resume_command: "python C:/Projects/Agent_Workspace/HG-KSEOS/scripts/hgk-lane-dispatch.py --lane VERIFY_SECURITY --force-rank 4 --require-arm opencode-go/deepseek-v4.1-flash --sandbox read-only --cwd C:/Projects/Agent_Workspace/Fabric/fabric-autonomous-research/runs/FAR-20261022-027-sbl-hgk-degradation-rca --prompt 'Read VERIFY_BRIEF.md in the current working directory and execute it exactly.'"
+resume_command_guard_note: "copy-ready as of seal 2. The literal --force-rank token must NOT be written into any file passed to the dispatcher as --brief: the lane guard refuses a brief carrying a remote-write marker (ERR_LANE_REMOTE_WRITE_NOT_AUTHORIZED). Put it on the command line only."
+claim_ceiling: CANDIDATE_ONLY research product; not an acceptance; no promotion; no push.

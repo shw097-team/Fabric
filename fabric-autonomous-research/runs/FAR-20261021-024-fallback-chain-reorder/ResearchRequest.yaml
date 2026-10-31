@@ -1,0 +1,47 @@
+schema: LOGICAL_FAR_RESEARCH_REQUEST_V1
+run_id: FAR-20261021-024-fallback-chain-reorder
+workorder_ref:
+  id: WO-FAR-FBKREORDER-20261021
+  digest: b1ec1b8bbea360d15f329ba6633b1327dd8c33cc969e67d9cd2cca3c4b9b15d0
+  note: >-
+    The WorkOrder id is the canonical spine binding; the digest above is the
+    sha256 of the HGK source-of-routes declaration file
+    (config/model-lane-assignment.json) captured at R0, which is the artefact the
+    registry pins as its source_of_routes. The spine row itself carries no
+    content digest column.
+decision_question: >-
+  What is the current main-model fallback chain of the canonical Hermes runtime
+  plane under the HG-KSEOS control plane, which declaration surfaces declare it,
+  and what is the exact, reversible execution plan to re-order it to
+  fallback_providers[0] = MiniMax M3.1 Flash (OPENCODE GO) and
+  fallback_providers[1] = MiMo-V2.6-Flash, so that the live runtime chain and
+  the HGK control-plane declaration agree and every arm in the new chain is
+  proven servable?
+owner: hermes-orchestrator (owner order 2026-10-21, this session)
+task_class: RESEARCH_LITERATURE_REPO
+source_requirements:
+  - "Live canonical Hermes config.yaml (runtime truth of the fallback chain)"
+  - "HG-KSEOS config/lane-routing-registry.yaml (single-source lane registry)"
+  - "HG-KSEOS config/model-lane-assignment.json (registry source_of_routes)"
+  - "HG-KSEOS config/lane-route-slots.candidate.json (dispatch-time candidate pool)"
+  - "HG-KSEOS config/hermes-codex-lane.json (codex lane binding)"
+  - "HG-KSEOS config/hermes.json (Hermes binding surface)"
+  - "HG-KSEOS AGENTS.md (operator-facing lane-chain contract)"
+  - "Hermes runtime source: agent/chat_completion_helpers.py, agent/backend_identity.py, hermes_cli/models.py, hermes_cli/runtime_provider.py, hermes_cli/fallback_config.py"
+  - "Live opencode-go provider model list and completion probes"
+freshness_requirement: >-
+  Live-at-round. The canonical Hermes config is actively rewritten by the
+  desktop session (observed digest churn within the session), so every source
+  is re-digested at R0 and re-verified immediately before the apply.
+budget_ref: HGK workorder WO-FAR-FBKREORDER-20261021 (no separate budget grant)
+security_boundary_ref: >-
+  HG-KSEOS AGENTS.md (sole control plane; write only inside this repository or an
+  admitted isolated worktree; never push/merge/deploy/access secrets). The one
+  file outside the repository that this round must change is the live canonical
+  Hermes config, which is changed ONLY under the owner order recorded here, with
+  a timestamped backup sibling and a verified rollback.
+expected_decision_output: >-
+  A FAR research product: the measured current chain, the declaration-surface
+  inventory with divergences named, the servability evidence for both candidate
+  arms, the proposed execution plan (which file, which lines, what order, what
+  rollback, what probes), the residuals, and a claim ceiling of CANDIDATE_ONLY.

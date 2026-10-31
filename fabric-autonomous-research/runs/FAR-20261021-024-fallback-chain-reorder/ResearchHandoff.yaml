@@ -1,0 +1,52 @@
+schema: LOGICAL_FAR_RESEARCH_HANDOFF_V1
+run_ref: FAR-20261021-024-fallback-chain-reorder
+terminal: RESEARCH_COMPLETE_EXECUTION_AUTHORIZED
+owner: >-
+  hermes-orchestrator (owner order 2026-10-21). FAR adjudication pre-authorized by the owner - the
+  user pre-approves the FAR adjudication recommendation and the orchestrator must directly execute
+  the FAR plan.
+next_actions:
+  - id: NA1
+    action: >-
+      Apply the owner-ordered re-order to the live canonical Hermes config's fallback_providers
+      block - [0] to opencode-go/minimax-m3.1-flash-free, [1] to opencode-go/mimo-v2.6-flash,
+      [2] to opencode-go/deepseek-v4.1-flash, [3] to nvidia/deepseek-ai/deepseek-v4.1-flash,
+      [4] to openai-codex/gpt-6-luna.
+    route: var/FAR-FBKREORDER-20261021/apply_fallback_chain.py (dry-run default, --apply for the write)
+    status: EXECUTED_THIS_ROUND
+  - id: NA2
+    action: >-
+      Independent readback of the applied chain (order, yaml parse, both arms re-probed) by a lane
+      that did not make the change.
+    route: kanban G5 (t_feb6b4ca)
+    status: EXECUTED_THIS_ROUND
+  - id: NA3
+    action: >-
+      Freeze the single evidence MD and mirror it byte-identically to the HGK / Fabric / SQS
+      evidence/review roots.
+    route: kanban G6 (t_942c304d)
+    status: EXECUTED_THIS_ROUND
+durable_change_route:
+  live_hermes_config: >-
+    C:\Users\user\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\hermes\config.yaml
+    (single anchored block replacement, timestamped backup sibling, receipt at
+    var/FAR-FBKREORDER-20261021/apply_receipt.json)
+  control_plane: >-
+    HGK shared spine (var/shared-spine/hg-kseos.db) - REQ-FAR-FBKREORDER-20261021 (FROZEN) to
+    TS-FAR-FBKREORDER-20261021 (ADMITTED) to WO-FAR-FBKREORDER-20261021 (CREATED); canonical event
+    EVT-1a12e20d68ceef70.
+  far_run: >-
+    C:\Projects\Agent_Workspace\Fabric\fabric-autonomous-research\runs\FAR-20261021-024-fallback-chain-reorder
+  round_dir: C:\Projects\Agent_Workspace\HG-KSEOS\var\FAR-FBKREORDER-20261021
+open_questions:
+  - "OQ1 registry PLAN lane chain re-binding (OWNER_READY)"
+  - "OQ2 canonical primary versus the same-backend skip (OWNER_READY)"
+  - "OQ3 static provider catalogue coverage of the two new ids (OWNER_READY)"
+  - "OQ4 no observed failover event (NOT_TESTED)"
+  - "OQ5 registry identity declaration for the new ids (OWNER_READY)"
+nonclaims:
+  - "This run is a research product - it is NOT an acceptance and NOT a promotion."
+  - "No failover event was observed; servability and configuration are proven, activation is not."
+  - "No HGK lane chain, pool rank, SoD invariant or conformance test was changed."
+  - "The canonical primary was not re-pointed."
+  - "Nothing was pushed, merged, deployed, or written outside the admitted write roots."

@@ -1,0 +1,427 @@
+{
+  "schema": "FAR-VERDICT/1",
+  "run_id": "FAR-20261022-027-sbl-hgk-degradation-rca",
+  "captured_at_utc": "2026-10-22T02:38:43Z",
+  "ruling": "SBL consumes nothing of the Fabric governance contract, it only cites it, and it was not upgraded on the current HG-KSEOS base (18 commits / 278 paths behind, with a vacuous compatibility pin and an uninstalled hg_kseos dependency). The measured degradation of SBL & HG-KSEOS versus HG-KSEOS alone is an acceptance-throughput and declaration-versus-implementation deficit; a material time or money premium is NOT supported by the artefacts and is not claimed. None of the seven capability surfaces supports the owner's full 'all-on with automated self-detect / self-repair / self-accept' requirement. This is a CANDIDATE research product, not an acceptance.",
+  "mandate": {
+    "verdict": "AVAILABLE_NOT_PAUSED",
+    "stop_clause_fired": false,
+    "plan_vs_observed": {
+      "PLAN": {
+        "mandate": "opencode-go/deepseek-v4.1-flash (Hermes session plane)",
+        "observed": "opencode-go/deepseek-v4.1-flash (Hermes session plane)",
+        "status": "MATCH",
+        "locator": "ResearchPlan.yaml execution_lanes.PLAN; OWNER_MANDATE.txt"
+      },
+      "EXECUTE": {
+        "mandate": "opencode-go/minimax-m3.1-flash-free (CODEX CLI, EXECUTE rank 1)",
+        "observed": "opencode-go/minimax-m3.1-flash-free (CODEX CLI, EXECUTE rank 1)",
+        "status": "MATCH",
+        "served_seconds": 3.78,
+        "usage_receipt_ok": true,
+        "exit_code": 0,
+        "nonce_present": true,
+        "locator": "ResearchRequest.yaml:41; evidence/W3_capability_probe.md:534-561"
+      },
+      "VERIFY_SECURITY": {
+        "mandate": "opencode-go/deepseek-v4.1-flash (CODEX CLI, VERIFY_SECURITY rank 4)",
+        "observed": "opencode-go/deepseek-v4.1-flash (CODEX CLI, VERIFY_SECURITY rank 4)",
+        "status": "MATCH",
+        "served_seconds": 2.5,
+        "usage_receipt_ok": true,
+        "exit_code": 0,
+        "nonce_present": true,
+        "locator": "ResearchRequest.yaml:42; evidence/W3_capability_probe.md:564-591"
+      }
+    },
+    "declared_vs_pinned_deviation": {
+      "disclosed": true,
+      "silent_substitution": false,
+      "pool_declared_rank1": {
+        "PLAN": "openai-codex/gpt-6.1-sol",
+        "VERIFY_SECURITY": "openai-codex/gpt-6.1-sol",
+        "EXECUTE": "opencode-go/minimax-m3.1-flash-free"
+      },
+      "what_this_round_pinned": "PLAN via the Hermes session plane on opencode-go/deepseek-v4.1-flash; VERIFY_SECURITY via --force-rank 4 on opencode-go/deepseek-v4.1-flash; EXECUTE at its own declared rank 1 on opencode-go/minimax-m3.1-flash-free.",
+      "why_permitted": "The pool's own selection_semantics permits it: 'the instructed entry replaces rank 1' (ResearchRequest.yaml:43-47). The declared rank-1 arms for PLAN and VERIFY_SECURITY are openai-codex/gpt-6.1-sol (evidence/W3_capability_probe.md:307, :963).",
+      "effect_on_claims": "Lane arm choice does not change any measured capability state, root cause, or claim ceiling in this verdict. It is disclosed as a deviation from the pool's declared rank-1, not a silent substitution.",
+      "receipt_ceiling": "Both receipts bind required == served, exit 0, nonce present and usage receipt true. credential_posture is INCONCLUSIVE / WARN_CONTINUE and subject_mutation is not_guarded. These are not acceptance receipts and prove neither native execution authority nor subject verification (evidence/W3_capability_probe.md:594)."
+    }
+  },
+  "answers": {
+    "Q1": {
+      "question": "Does SBL CONSUME the Fabric governance contract, or only CITE it?",
+      "answer": "Only CITE it. SBL does not fully or correctly integrate into the Fabric governance contract.",
+      "verdict": "CITED_ONLY_AND_ABSENT",
+      "axes": {
+        "fabric_schemas": "ABSENT",
+        "fabric_install_registration_target": "ABSENT",
+        "fabric_evidence_packet_contract": "ABSENT",
+        "hgk_workorder_permit_issuance_native_seam": "CITED_ONLY"
+      },
+      "evidence": [
+        "evidence/W1_fabric_integration.md:34-37",
+        "evidence/W1_fabric_integration.md:95-108",
+        "evidence/W1_fabric_integration.md:117-122",
+        "evidence/W1_fabric_integration.md:59-67"
+      ],
+      "counter_evidence_preserved": [
+        "Genuine HGK construction WorkOrders exist (CREATED / FAILED / ROLLED_BACK history) including this round's WO-TS-REQ-HGK-PRJ-SBL-HGK-RCA-20261022-EXEC; that is real admission history, not an SBL runtime WorkOrder -> ExecutionBinding -> Permit consumer chain.",
+        "SBL's own local refusals (same maker/checker, SUMMARY_ONLY, raised ceiling, provider off) are real local invariants, not authenticated native-principal proof.",
+        "No SBL-native WorkOrder or Permit minting implementation was observed, and this round invoked no issuance or mutation API."
+      ]
+    },
+    "Q2": {
+      "question": "Was SBL built/upgraded on the current HG-KSEOS base (3dfaebc / pool rev 18), and how large is the drift?",
+      "answer": "No. SBL is 18 commits and 278 changed paths behind a base it names as current; its compatibility gate is structurally blind to that distance; its declared hg_kseos dependency is not installed in the interpreter it records; and its own handover states no conformance measurement exists after b22706e.",
+      "verdict": "NOT_UPGRADED_ON_CURRENT_BASE",
+      "measured": {
+        "current_hgk_head": "3dfaebc5c1d2ffe7d1782f3027bd25b54a557f2b",
+        "sbl_declared_base": "b22706e",
+        "commits_behind": 18,
+        "commits_behind_from_fa1ac063": 19,
+        "changed_paths": 278,
+        "changed_paths_breakdown": "260 added, 18 modified, 0 deleted",
+        "vacuous_pin": "version_range >=0.1.0,<0.2.0 against a package whose version has not moved in 147 of 148 commits",
+        "uninstalled_dependency": "import hg_kseos under the adapter's host.executable raises ModuleNotFoundError; SBL/pyproject.toml declares dependencies = []"
+      },
+      "not_a_fork_and_not_a_stale_root": "adapter hgk_root resolves to the live HG-KSEOS tree with 0 commits of resolved-root drift; no vendored hg_kseos fork exists in SBL.",
+      "evidence": [
+        "evidence/W2_base_drift.md:8-9",
+        "evidence/W2_base_drift.md:16-17",
+        "evidence/W2_base_drift.md:26-29",
+        "evidence/W2_base_drift.md:37-44",
+        "evidence/W2_base_drift.md:46-51",
+        "evidence/W2_base_drift.md:55-58"
+      ]
+    },
+    "Q3": {
+      "question": "Where does the measured performance delta come from (gates, duplicated planes, SoD collision, backlog)?",
+      "answer": "From three nameable mechanisms, not from time or money: (1) contract discontinuity - SBL consumes no Fabric contract and has no native WorkOrder -> ExecutionBinding -> Permit consumer, so it stacks an unprovable plane above HG-KSEOS; (2) the acceptance gate versus the self-accept label - every round settles on independent acceptance, SBL's own label is self-accept, and HGK forbids writer == checker, so acceptance must be sourced externally and 3/3 primary rounds did not obtain it; (3) declaration/implementation separation - the drift gate compares each surface to the file it points at and never two surfaces to each other. A material time or money premium is NOT_SUPPORTED_BY_ARTEFACTS.",
+      "verdict": "MEASURED_ACCEPTANCE_THROUGHPUT_AND_DECLARATION_GAP__COST_PREMIUM_NOT_SUPPORTED",
+      "measured": {
+        "primary_sbl_rounds_failed_workorder": "3/3",
+        "primary_sbl_rounds_acceptance": "3 FAIL",
+        "controls": "1 VERIFIED WorkOrder with acceptance NOT_RUN; 1 CREATED; 1 lifecycle state absent; no signed AO verdict for the MiniMax control",
+        "retained_attempts_sbl_vs_controls": "39 vs 15 all-role; 8 vs 5 EXECUTE-role; 0 vs 4 timeouts; 2611.06 s vs 2983.27 s partial all-role seconds",
+        "finding_rows": "44 TSV rows = 19 + 14 + 11, not 44 unique defects",
+        "backlog": "23 ready cards on sbl-r14-full-product; R10 handover 7 open; R6 scope ledger 149/149 children OPEN, 50 parents (37 OPEN, 13 PARTIAL_EVIDENCE_ONLY), 38 surfaces (21 OPEN, 12 PARTIAL_LOCAL_SCOPED, 5 NOT_ADMITTED_NO_DISPATCH)"
+      },
+      "inferred": [
+        "Repeated incomplete acceptance, poorly scoped gate assertions, writable-scratch mismatches and duplicated routing declarations plausibly consume rework.",
+        "Shared HGK mechanisms can propagate delays into SBL; additional contract/host/SP obligations plausibly enlarge the work.",
+        "These are supported mechanisms and scope differences, not measured incremental SBL cost and not a regression-introducing causal claim."
+      ],
+      "not_supported_by_artefacts": [
+        "SBL+HGK is materially slower or more expensive than HGK-only",
+        "any percentage cost premium",
+        "SBL introduced the shared failures",
+        "an apples-to-apples round failure-rate ratio",
+        "a completed SBL R11",
+        "current conformance after the R10 rebind",
+        "a full-contract completion percentage"
+      ],
+      "evidence": [
+        "evidence/W4_performance_delta.md:1-12",
+        "evidence/W4_performance_delta.md:36-41",
+        "evidence/W4_performance_delta.md:86-101",
+        "evidence/W4_performance_delta.md:52",
+        "evidence/W4_performance_delta.md:69",
+        "evidence/W4_performance_delta.md:82"
+      ]
+    },
+    "Q4": {
+      "question": "Which of the seven capability surfaces are actually enabled today, measured, not declared?",
+      "answer": "No. 'SBL & HG-KSEOS' cannot today enable KANBAN / SWARM / GSTACK / OPENSPEC with CODEX CLI plus multiple SUB-AGENTs in parallel, complete the task, and run automated self-detect / self-repair / self-accept, let alone governed self-research / self-learning / self-iteration / self-evolution. Only SWARM (graph presence only), CODEX CLI (receipt scope only) and self-detect exist at all; KANBAN, GSTACK and SUB-AGENTS are PARTIAL; OPENSPEC, self-accept and self-evolve are FAIL.",
+      "verdict": "NOT_ENABLED_AS_SPECIFIED",
+      "surfaces": {
+        "KANBAN": "PARTIAL",
+        "SWARM": "PASS",
+        "GSTACK": "PARTIAL",
+        "OPENSPEC": "FAIL",
+        "CODEX_CLI": "PASS",
+        "SUB_AGENTS": "PARTIAL",
+        "SELF_DETECT": "PASS",
+        "SELF_REPAIR": "PARTIAL",
+        "SELF_ACCEPT": "FAIL",
+        "SELF_EVOLVE": "FAIL"
+      },
+      "no_upgrade_no_softening": "No PARTIAL was raised to PASS and no FAIL was softened. W3's rule applies verbatim: PASS never implies product acceptance; PARTIAL means a measured working subset; OpenSpec failure and autonomous self-accept failure remain FAIL (evidence/W3_capability_probe.md:21).",
+      "evidence": [
+        "evidence/W3_capability_probe.md:11-21",
+        "evidence/W3_capability_probe.md:88-97",
+        "evidence/W3_capability_probe.md:231",
+        "evidence/W3_capability_probe.md:323-325",
+        "evidence/W3_capability_probe.md:409-461",
+        "evidence/W3_capability_probe.md:594",
+        "evidence/W3_capability_probe.md:1010-1013"
+      ]
+    }
+  },
+  "capability_states": {
+    "KANBAN": {
+      "state": "PARTIAL",
+      "measured": "kanban boards list exit 0; kanban --board sbl-r14-full-product stats exit 0; kanban ls exit 1 under the delegate_task subagent guard",
+      "evidence": "evidence/W3_capability_probe.md:31-84"
+    },
+    "SWARM": {
+      "state": "PASS",
+      "scope": "graph presence only",
+      "measured": "kanban swarm --help exit 0; 96 board databases, 62 graph-shaped swarm roots satisfy root->worker, every worker->verifier, verifier->synthesizer",
+      "not_exercised": "new graph creation and actual concurrent scheduling were NOT_EXERCISED (they mutate board/runtime state); a done DAG is not evidence of distinct models or independent principals",
+      "evidence": "evidence/W3_capability_probe.md:106-137; evidence/W3_capability_probe.md:231"
+    },
+    "GSTACK": {
+      "state": "PARTIAL",
+      "measured": "7 selected named methods registered; role map declares ADOPT_FULL_GSTACK_ROLE_ARCHITECTURE=true and ADOPT_FULL_GSTACK_CONTROL_PLANE=false; ship is SUPPORT_ONLY; 12 of 19 role keys lack their own method; literal role keys route 9/19 to NATIVE",
+      "not_exercised": "named method execution beyond routing was NOT_EXERCISED (it would dispatch work); the lane CLI has no flow-route / selected_route / reason_code interface",
+      "evidence": "evidence/W3_capability_probe.md:235; evidence/W3_capability_probe.md:251-269; evidence/W3_capability_probe.md:323-325"
+    },
+    "OPENSPEC": {
+      "state": "FAIL",
+      "measured": "openspec validate --all in HG-KSEOS exits 1 with Totals: 37 passed, 2 failed (39 items); failures are change/hgk-plan-plane-rebind-20261015 and change/sod-independent-verify-enforcement, both 'Change must have at least one delta. No deltas found.'; SBL side passes 1/1 but its change still reports 26/28 tasks",
+      "evidence": "evidence/W3_capability_probe.md:409-461; evidence/W3_capability_probe.md:477-528"
+    },
+    "CODEX_CLI": {
+      "state": "PASS",
+      "scope": "supplied receipt scope only",
+      "measured": "exec_receipt.json and verify_receipt.json both bind required == served, nonce present, exit 0, usage_status 200, usage_receipt_ok true",
+      "boundaries": "credential_posture INCONCLUSIVE / WARN_CONTINUE; subject_mutation not_guarded; websocket 426 diagnostics present; these are not acceptance receipts and prove neither native execution authority nor subject verification",
+      "evidence": "evidence/W3_capability_probe.md:534-594"
+    },
+    "SUB_AGENTS": {
+      "state": "PARTIAL",
+      "measured": "real archived worker outputs exist (R9: 4 workers, model gpt-6.1-sol, 3 raw outputs with bytes and sha256 read back matching) but the historical round persists only 3 of 4",
+      "boundaries": "broad census found 8046 accessible matching files but exited 2 with 965 error lines; a differently scoped rescan still exited 2 (7789 / 924 errors); some paths are access-denied, so the census is a lower bound",
+      "evidence": "evidence/W3_capability_probe.md:598-725"
+    },
+    "SELF_DETECT": {
+      "state": "PASS",
+      "scope": "detection exists, but no proven mandatory autonomous gate",
+      "measured": "R7/R9/R10 check scripts and M05 evidence verification exist; scripts exit nonzero on a failed aggregate; no mandatory production caller of self_check_r* was found in runtime/tools/CI",
+      "evidence": "evidence/W3_capability_probe.md:1010; evidence/W3_capability_probe.md:1006"
+    },
+    "SELF_REPAIR": {
+      "state": "PARTIAL",
+      "scope": "planner and refusal, not an autonomous executor",
+      "measured": "M06 BoundedRepair plans NARROW_REPAIR at 1 attempt and STOP_ESCALATE at 3; SBL_E_REPAIR_WITHOUT_EVIDENCE raised with no evidence; no runtime consumer executes NARROW_REPAIR or enforces STOP_ESCALATE",
+      "evidence": "evidence/W3_capability_probe.md:997-999; evidence/W3_capability_probe.md:1011"
+    },
+    "SELF_ACCEPT": {
+      "state": "FAIL",
+      "measured": "SBL M05 raises SBL_E_SELF_CHECK_FORBIDDEN for maker == checker; HGK spine raises InvariantViolation ERR_WORKORDER_SELF_REVIEW before opening a transaction",
+      "reconciled_reading": "Self-detect and self-repair are legitimate; self-ACCEPT must be an independent lane. Calling an autonomous, same-principal sign-off 'self-accept' would erase the SoD separation both layers enforce.",
+      "scope": "FAIL as an autonomous self-accept capability; the refusal gate itself is PASS",
+      "evidence": "evidence/W3_capability_probe.md:1001-1002; evidence/W3_capability_probe.md:1012; evidence/W3_capability_probe.md:1015-1019; evidence/W3_capability_probe.md:1023"
+    },
+    "SELF_EVOLVE": {
+      "state": "FAIL",
+      "measured": "R7 SELF_EVOLUTION_DELTA.json records seven adopted lessons with not_yet_applied empty, but no mandatory apply / validate / rollback consumer was established",
+      "scope": "FAIL for autonomous governed evolution, not an absence of the ledger",
+      "evidence": "evidence/W3_capability_probe.md:1013; evidence/W3_capability_probe.md:1034"
+    }
+  },
+  "root_cause_groups": {
+    "structural": [
+      {
+        "id": "S1",
+        "cause": "The compatibility version pin is vacuous: >=0.1.0,<0.2.0 against a package whose version has not moved in 147 of 148 commits is a constant, not a drift gate.",
+        "evidence": "evidence/W2_base_drift.md:37-44",
+        "lever": "Bind the adapter pin to an HG-KSEOS commit SHA and make a mismatch fail instead of reporting observed_version."
+      },
+      {
+        "id": "S2",
+        "cause": "The declared hg_kseos dependency is neither installed nor wired, so requires_native [WorkOrder, ExecutionBinding, Permit] is declaration only.",
+        "evidence": "evidence/W2_base_drift.md:46-51",
+        "lever": "Declare the dependency in pyproject and make the recorded host.executable able to import hg_kseos, in two separable phases."
+      },
+      {
+        "id": "S3",
+        "cause": "The Fabric governance contract is not consumed: schema, registration and evidence-packet seams are all ABSENT.",
+        "evidence": "evidence/W1_fabric_integration.md:34-36; evidence/W1_fabric_integration.md:95-108",
+        "lever": "Obtain the contract owner's applicability ruling, bind the ABI version/digest, and demonstrate a real refusal on a nonconforming input."
+      },
+      {
+        "id": "S4",
+        "cause": "The self-accept label collides with the SoD invariant: same maker/checker is refused by both SBL M05 and HGK spine.",
+        "evidence": "evidence/W3_capability_probe.md:1001-1002; evidence/W3_capability_probe.md:1015-1019",
+        "lever": "Split the vocabulary into self-detect / self-repair / independent-accept and let the dispatcher refuse writer == checker directly."
+      },
+      {
+        "id": "S5",
+        "cause": "Self-repair and self-evolution have producers but no executing consumers; the evolution ledger is not a self-applying gate.",
+        "evidence": "evidence/W3_capability_probe.md:1011; evidence/W3_capability_probe.md:1013; evidence/W3_capability_probe.md:1034",
+        "lever": "Attach a governed consumer to the repair plan and the evolution delta and make both mandatory call points."
+      },
+      {
+        "id": "S6",
+        "cause": "The drift gate is structurally blind: it compares each pin to the file it points at and never two surfaces to each other.",
+        "evidence": "evidence/W3_capability_probe.md:961-965; evidence/W3_capability_probe.md:1025-1031",
+        "lever": "Add a surface-to-surface agreement gate over the governed PLAN plane, the EXECUTE lane declaration and provider_route versus the pool rank-1."
+      }
+    ],
+    "process": [
+      {
+        "id": "P1",
+        "cause": "Acceptance throughput deficit: 3/3 primary SBL rounds recorded FAILED workorders and FAIL acceptance.",
+        "evidence": "evidence/W4_performance_delta.md:36-38; evidence/W4_performance_delta.md:88",
+        "lever": "Make obtaining the first independent verdict a hard gate condition of a round."
+      },
+      {
+        "id": "P2",
+        "cause": "The base is stale and unmeasured: 18 commits / 278 paths behind, conformance last measured before b22706e.",
+        "evidence": "evidence/W2_base_drift.md:26-29; evidence/W4_performance_delta.md:109",
+        "lever": "Re-measure conformance on the absolute and same baseline first, then rebind."
+      },
+      {
+        "id": "P3",
+        "cause": "Backlog is not drained: ready kanban cards, handover open items and a large frozen scope ledger remain OPEN.",
+        "evidence": "evidence/W3_capability_probe.md:88-97; evidence/W4_performance_delta.md:93",
+        "lever": "Schedule by backlog unit and give every one of the 38 surfaces an explicit closure condition."
+      },
+      {
+        "id": "P4",
+        "cause": "Delegation persistence is incomplete: only 3 of 4 worker raw outputs landed.",
+        "evidence": "evidence/W3_capability_probe.md:697; evidence/W3_capability_probe.md:725",
+        "lever": "Make worker raw-output landing plus sha256 readback a completion condition of dispatch."
+      },
+      {
+        "id": "P5",
+        "cause": "self_check_r* has no mandatory production caller.",
+        "evidence": "evidence/W3_capability_probe.md:1010",
+        "lever": "Wire it into an existing fail-closed gate path."
+      },
+      {
+        "id": "P6",
+        "cause": "Declaration surfaces disagree with each other: assignment epoch 29 versus registry epoch 30, and the governed PLAN plane and provider_route versus the pool rank-1.",
+        "evidence": "evidence/W3_capability_probe.md:961-963; evidence/W3_capability_probe.md:1029",
+        "lever": "Make epoch and pool the single source of truth across surfaces and assert agreement before any write."
+      },
+      {
+        "id": "P7",
+        "cause": "Read-only audit scope limits several surfaces to existence rather than execution.",
+        "evidence": "evidence/W3_capability_probe.md:231; evidence/W3_capability_probe.md:323; evidence/W3_capability_probe.md:725; evidence/W3_capability_probe.md:1006",
+        "lever": "Re-test SWARM dispatch and GSTACK named-method execution in an explicitly authorised mutation-free sandbox."
+      }
+    ],
+    "declarative": [
+      {
+        "id": "D1",
+        "cause": "SBL's own ceiling is STANDALONE_ONLY, which is materially narrower than the owner's expected full integration with self-acceptance.",
+        "evidence": "evidence/W1_fabric_integration.md:67; evidence/W2_base_drift.md:50-51",
+        "lever": "Publish a single owner-expectation versus declared-ceiling versus measured table so the gap is visible at the declaration layer."
+      },
+      {
+        "id": "D2",
+        "cause": "The candidate R9 contract and contracts/compiled-r9/ are untracked and were inspected as candidate evidence, not committed source.",
+        "evidence": "evidence/W1_fabric_integration.md:21; evidence/W1_fabric_integration.md:24",
+        "lever": "Either bring them under version control as a comparable baseline, or mark every claim that cites them as untracked-candidate."
+      },
+      {
+        "id": "D3",
+        "cause": "Fabric is described narrowly as 'the autonomous-research harness' rather than as the governance / assurance / interop / knowledge contract surface.",
+        "evidence": "evidence/W1_fabric_integration.md:339",
+        "lever": "Align the wording with the operative projection so no waiver of contract consumption is derived from a narrow description."
+      },
+      {
+        "id": "D4",
+        "cause": "Two OPENSPEC changes are declared but carry no spec delta, so openspec validate --all is a hard failure.",
+        "evidence": "evidence/W3_capability_probe.md:435; evidence/W3_capability_probe.md:456; evidence/W3_capability_probe.md:503; evidence/W3_capability_probe.md:521",
+        "lever": "Add deltas or set skip_specs: true as the tool's own message prescribes, without touching the SoD refusal semantics."
+      },
+      {
+        "id": "D5",
+        "cause": "The version declaration has not moved: pyproject 0.1.0 fixed at ec58a0b while the release tree is 0.1.1rc1 and the install ships only a pointer.",
+        "evidence": "evidence/W2_base_drift.md:38-39; evidence/W2_base_drift.md:55-57",
+        "lever": "Design any version bump together with a failable base pin, otherwise a bump changes no compatibility fact."
+      },
+      {
+        "id": "D6",
+        "cause": "The term 'self-accept' carries two meanings at once: a capability name and the behaviour HG-KSEOS forbids.",
+        "evidence": "evidence/W3_capability_probe.md:1023; evidence/W1_fabric_integration.md:197",
+        "lever": "Split the term into three separately measurable capabilities across all governance documents."
+      }
+    ]
+  },
+  "claim_ceiling": "CANDIDATE_ONLY research product. Not an acceptance, not native integration, not a host installation, not a promotion, not a full-contract closure, no completion percentage, and no claimed time or money premium for SBL & HG-KSEOS versus HG-KSEOS alone. HGK acceptance for this round stays NOT_RUN. This verdict is a research product; the owner has granted no acceptance.",
+  "next_best_action": "Ask the Fabric contract owner for the applicability ruling on SBL as a governed surface (this is the seam that decides whether SBL can ever consume the contract), then re-measure HG-KSEOS conformance on the absolute and same baseline at the current base 3dfaebc as the first action because it gates every other claim, and then obtain the first independent verdict from a VERIFY_SECURITY lane that did not make the work.",
+  "open_items": [
+    {
+      "id": "OI-01",
+      "item": "Fabric applicability ruling for SBL as a governed surface (registration / applicability disposition).",
+      "owner": "Fabric contract owner",
+      "blocked_by": "No sanctioned applicability or registration disposition exists; none was manufactured.",
+      "evidence": "evidence/W1_fabric_integration.md:35; evidence/W1_fabric_integration.md:51"
+    },
+    {
+      "id": "OI-02",
+      "item": "Conformance re-measurement for the current base (absolute plus same-baseline) after b22706e.",
+      "owner": "SBL programme / next round",
+      "blocked_by": "No conformance number exists after b22706e; running pytest would violate the read-only single-output scope of this round.",
+      "evidence": "evidence/W2_base_drift.md:16-17; evidence/W4_performance_delta.md:109"
+    },
+    {
+      "id": "OI-03",
+      "item": "The first independent verdict bound to a frozen subject, from a lane that did not make the work.",
+      "owner": "VERIFY_SECURITY lane / Independent Acceptance Officer",
+      "blocked_by": "No authorised writable isolated checker scratch root; R7 is INCONCLUSIVE and R9/R10 supply probes only.",
+      "evidence": "evidence/W4_performance_delta.md:110; evidence/W3_capability_probe.md:725"
+    },
+    {
+      "id": "OI-04",
+      "item": "A scoped Runtime/Orchestration permit from the HGK binding/permit authority, read back.",
+      "owner": "HGK binding and permit authority",
+      "blocked_by": "An availability probe or a local binding is not issuer authority.",
+      "evidence": "evidence/W4_performance_delta.md:111"
+    },
+    {
+      "id": "OI-05",
+      "item": "Clean-checkout reproducibility: owner disposition for the untracked test files and reproducible clean-checkout counts.",
+      "owner": "Owner",
+      "blocked_by": "Three test files are untracked and ignored instruments also exist.",
+      "evidence": "evidence/W4_performance_delta.md:112"
+    },
+    {
+      "id": "OI-06",
+      "item": "SP integration: admitted thin adapters at PLAN handoff and VERIFY pre-spawn with real invocation receipts.",
+      "owner": "SBL programme",
+      "blocked_by": "The dispatcher binds models, not SPs; no inspected path invokes commander_sp, external_challenge_sp or sign_verdict.",
+      "evidence": "evidence/W4_performance_delta.md:114"
+    },
+    {
+      "id": "OI-07",
+      "item": "Lifecycle _repo_head CWD / swallowed-invariant defect: a clean-baseline regression test with the project repo different from the caller CWD and no swallowed InvariantViolation.",
+      "owner": "SBL programme",
+      "blocked_by": "The R7 workaround and FAR 025 F10 establish the defect; no repair is demonstrated by reviewed successor evidence.",
+      "evidence": "evidence/W4_performance_delta.md:113"
+    },
+    {
+      "id": "OI-08",
+      "item": "Semantic denominator for DOC-00..13 before any phased full-contract execution.",
+      "owner": "SBL programme",
+      "blocked_by": "The package declares UNKNOWN / UNRESOLVED / NOT_ESTABLISHED; the recorded 10 engineer-day stop-loss is a plan, not measured effort.",
+      "evidence": "evidence/W4_performance_delta.md:115"
+    },
+    {
+      "id": "OI-09",
+      "item": "Two OPENSPEC changes carry no spec delta, so openspec validate --all exits 1.",
+      "owner": "HG-KSEOS openspec owners",
+      "blocked_by": "Neither change has a specs/ delta; one of them carries the SoD semantics and must not be edited blindly.",
+      "evidence": "evidence/W3_capability_probe.md:435; evidence/W3_capability_probe.md:456"
+    },
+    {
+      "id": "OI-10",
+      "item": "Authorisation for a mutation-free sandbox in which SWARM dispatch, GSTACK named-method execution and self_check_r* full runs can be exercised.",
+      "owner": "Owner",
+      "blocked_by": "Those probes mutate board/runtime state or write files, which this read-only round was not allowed to do.",
+      "evidence": "evidence/W3_capability_probe.md:231; evidence/W3_capability_probe.md:325; evidence/W3_capability_probe.md:1006"
+    },
+    {
+      "id": "OI-11",
+      "item": "Owner ruling on the self-accept versus SoD collision: confirm that self-ACCEPT is delegated to an independent lane.",
+      "owner": "Owner",
+      "blocked_by": "The word is used with two meanings; no owner ruling records which reading binds.",
+      "evidence": "evidence/W3_capability_probe.md:1023; evidence/W1_fabric_integration.md:197"
+    }
+  ]
+}

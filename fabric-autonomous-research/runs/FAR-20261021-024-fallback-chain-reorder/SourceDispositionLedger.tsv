@@ -1,0 +1,16 @@
+source_id	disposition	reason	authority_role	security_findings
+S1	USED_AS_RUNTIME_TRUTH	Contains the live fallback_providers list that the owner order re-orders	RUNTIME_TRUTH	NONE
+S2	USED_AS_CONTROL_PLANE_DECLARATION	Declares the lane fallback chains and the observation that the Hermes live config is NON_AUTHORITATIVE for governed HGK calls	CONTROL_PLANE_SINGLE_SOURCE	NONE
+S3	USED_AS_CONTROL_PLANE_DECLARATION	Registry source_of_routes; declares lane_chains.PLAN	REGISTRY_SOURCE_OF_ROUTES	NONE
+S4	USED_AS_CONTROL_PLANE_DECLARATION	Dispatch-time ordered_pool per lane	DISPATCH_POOL	NONE
+S5	USED_AS_CONTEXT	Declares model_fallbacks for the CODEX lane only; distinct surface from the main-agent fallback_providers	LANE_BINDING	NONE
+S6	USED_AS_CONTEXT	Declares the Hermes binding surfaces; does not carry a fallback chain	HERMES_BINDING	NONE
+S7	USED_AS_OPERATOR_CONTRACT	Carries the operator-facing lane-chain lines that must not contradict the applied change	OPERATOR_CONTRACT	NONE
+S8	USED_AS_CODE_AUTHORITY	Fallback activation path; quoted for the skip conditions	CODE	NONE
+S9	USED_AS_CODE_AUTHORITY	Same-backend skip predicate; the decisive mechanic for the residual finding	CODE	NONE
+S10	USED_AS_CODE_AUTHORITY	Per-model api_mode derivation for opencode-go family	CODE	NONE
+S11	USED_AS_CODE_AUTHORITY	Config -> agent chain wiring	CODE	NONE
+S12	USED_AS_AUTHORITY	The provider's own live model list is the authority on which ids exist	PROVIDER_AUTHORITY	NONE
+S13	USED_AS_MEASUREMENT	Real completions; served model field read back	PROVIDER	NO SECRET IN OUTPUT
+S14	USED_AS_MEASUREMENT	One-shot client probes prove the Hermes path serves both arms	CLIENT	NONE
+S15	USED_AS_CONSTRAINT	Session header is mandatory; omitting it yields HTTP 400 MissingSessionID	PROVIDER_DOC	NONE
