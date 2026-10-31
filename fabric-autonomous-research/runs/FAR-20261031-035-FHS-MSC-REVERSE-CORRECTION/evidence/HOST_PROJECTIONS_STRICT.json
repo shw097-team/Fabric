@@ -1,0 +1,164 @@
+{
+ "schema": "PIPD-HOST-PROJECTIONS-CHECK/1",
+ "surface": "host",
+ "verdict": "FAIL",
+ "host_count": "2/3",
+ "required_hosts": [
+  "host:generic-skills",
+  "host:genie-adapter",
+  "host:hgk-receiver"
+ ],
+ "rows": [
+  {
+   "host": "host:generic-skills",
+   "path": "host_generic-skills/SKILL.md",
+   "loader": "skill_projection_v1",
+   "effective_load": true,
+   "resolved": {
+    "loader": "skill_projection_v1",
+    "skill_id": "pipd-surface-projection",
+    "contract_refs": [
+     "S0:SurfaceProjectionManifest",
+     "S0:ProfileBinding",
+     "PROFILE:TRIO",
+     "ADAPTER:MAPPING"
+    ]
+   },
+   "source_ref_hashes": {
+    "S0:SurfaceProjectionManifest": "87f8057e8dac68f304ed4e9c2dd118a26c69428015769ab09d39398d34dcb57d",
+    "S0:ProfileBinding": "b559fb70bb6ceb9d491c989cb5ec031f44d15bcad5b40e75d6649aa059a93556",
+    "PROFILE:TRIO": "2631eac7f6cb2b48dba0ed6628c4d7d7e94b7843ac29353950c2d51172789070",
+    "ADAPTER:MAPPING": "ae939d979559985dfe692bf7f8638fc571d07013270fc15e734951b37b2af1ab"
+   }
+  },
+  {
+   "host": "host:hgk-receiver",
+   "path": "host_hgk-receiver/receiver-map.json",
+   "loader": "receiver_map_v1",
+   "effective_load": true,
+   "resolved": {
+    "loader": "receiver_map_v1",
+    "receivers": 3,
+    "typed_fields": 22
+   },
+   "source_ref_hashes": {
+    "S0:ExecutionHandoff": "7fa36d3e7fe6e7416111b975381a42f3f5ad46cc81d97b610f317548815bd77b",
+    "S0:ExecutionBindingRef": "7c98cebfee30d9719cb8fd2d565c44120ce8d1be5b231071c19528cae1e95f50",
+    "S0:WorkOrderCandidate": "03a8692f183f106ec7e4739b925c980ba07d68551627ca6af315fa9f9e2caf54",
+    "SEAM:S5": "5aa6aa3e4f360ab6e898e5034ec3871e731ec48137ae8af50fc2138871faf3ec",
+    "ADAPTER:MAPPING": "ae939d979559985dfe692bf7f8638fc571d07013270fc15e734951b37b2af1ab"
+   }
+  },
+  {
+   "host": "host:genie-adapter",
+   "path": "host_genie-adapter/object-crosswalk.json",
+   "loader": "object_crosswalk_v1",
+   "effective_load": false,
+   "resolved": {
+    "loader": "object_crosswalk_v1",
+    "mappings": 4,
+    "targets": [
+     "Bundle",
+     "GENIEArtifact",
+     "ProductGraph",
+     "Profile"
+    ]
+   },
+   "source_ref_hashes": {
+    "S0:GENIEProjectionRef": "22c88a0f9ec4ea4747967546f9a5ea7f19f0285be60ac42567fae2ca0b1c36ed",
+    "S0:ArtifactIdentity": "67d26f18d26307410bf0be5369949eb525d477e053ee3a7091e54b97f6d4ad4c",
+    "S0:ProfileBinding": "b559fb70bb6ceb9d491c989cb5ec031f44d15bcad5b40e75d6649aa059a93556",
+    "S0:PI-PKG": "3e797d4eac04a04fee65add1ca6cb196154490ccd848b9b1cc561f24feaefb57",
+    "S0:PD-PKG": "37291e8790e03839308a7c36125f9576d14da725a27480c9759ef5362d255541",
+    "SEAM:S6": "a2541b4b73f054d5557dcaeaca1544a3665fb9e5ddcd7264be383b59c4c39b37",
+    "ADAPTER:MAPPING": "ae939d979559985dfe692bf7f8638fc571d07013270fc15e734951b37b2af1ab"
+   }
+  }
+ ],
+ "semantic_parity": "FAIL",
+ "capability_loss": {
+  "host:generic-skills": [
+   "LOSS-GS-01"
+  ],
+  "host:hgk-receiver": [
+   "LOSS-HR-01",
+   "LOSS-HR-02"
+  ],
+  "host:genie-adapter": [
+   "LOSS-GA-01",
+   "LOSS-GA-02"
+  ]
+ },
+ "compatibility": {
+  "host:generic-skills": {
+   "mode": "FIXTURE_MOCK",
+   "fixture_kind": "compatibility",
+   "live_status": "NOT_RUN",
+   "seam_schemas": [
+    "SurfaceProjectionManifest",
+    "ProfileBinding"
+   ],
+   "seam_source": "ADAPTER:MAPPING",
+   "asserted": {
+    "itch_contract_only": true,
+    "no_live_receiver_ack": true,
+    "no_world_effect": true
+   }
+  },
+  "host:hgk-receiver": {
+   "mode": "FIXTURE_MOCK",
+   "fixture_kind": "compatibility",
+   "live_status": "NOT_RUN",
+   "seam_schemas": [
+    "ExecutionHandoff",
+    "ExecutionBindingRef",
+    "ArtifactIdentity"
+   ],
+   "seam_source": "SEAM:S5",
+   "asserted": {
+    "itch_contract_only": true,
+    "no_live_receiver_ack": true,
+    "no_world_effect": true
+   }
+  },
+  "host:genie-adapter": {
+   "mode": "FIXTURE_MOCK",
+   "fixture_kind": "compatibility",
+   "live_status": "NOT_RUN",
+   "seam_schemas": [
+    "GENIEProjectionRef",
+    "SurfaceProjectionManifest"
+   ],
+   "seam_source": "SEAM:S6",
+   "asserted": {
+    "itch_contract_only": true,
+    "no_live_receiver_ack": true,
+    "no_world_effect": true
+   }
+  }
+ },
+ "claims": {
+  "live_hgk_genie_integration": "NOT_CLAIMED",
+  "s5_s6": "NOT_AUTHORISED",
+  "adapter_checks": "FIXTURE_MOCK_ONLY",
+  "live_status": "NOT_RUN"
+ },
+ "projection_parity_sha256": "8e9d761721d2b77bed953e0141a1218178b16bff6d9c034ed4ae5f754c570f64",
+ "failures": [
+  {
+   "code": "STALE_SOURCE",
+   "mutation": "MUT-STALE-SOURCE",
+   "reason": "stale source hash for S0:PI-PKG",
+   "path": "host_genie-adapter/object-crosswalk.json"
+  },
+  {
+   "code": "NOT_DERIVED",
+   "mutation": "MUT-WEB-WRONGSET",
+   "reason": "host entry is not the derivation of the canonical sources (free-text or tampered projection)",
+   "path": "host_genie-adapter/object-crosswalk.json"
+  }
+ ],
+ "first_failing_invariant": "STALE_SOURCE: stale source hash for S0:PI-PKG",
+ "mode": "STRICT_CHECK_ONLY",
+ "candidate_head": "995c7ad0c69a05a0c5cf6528155a62020ce31f87"
+}

@@ -1,0 +1,20 @@
+{
+ "schema": "HGK-REFUSAL-RECORD/1",
+ "round": "FHS-ALLPASS-20261031",
+ "why": "ABSENT-03 rewritten after re-measurement: the admission engine exists; HotSwap does not.",
+ "refusals": [
+  {
+   "id": "ABSENT-03",
+   "wp": "WP-FHS-13",
+   "effect_class": "HOST_OP",
+   "cited_text": "WP-FHS-13｜CAP On-Demand + HotSwap — 原 TechnologyAdmission/Host capability Owner → 原 Need/Occupant/HotSwap admission ABI → 原有 Consumer 與 Host Loader。熱替代 Issuer 或以選型當 invoke → CAPABILITY_PARITY_NOT_PROVEN。",
+   "absent_object": "HotSwap implementation (the hot-replacement path itself, with POS/NEG parity on a named target root)",
+   "reproduction": "rg -l -i 'hotswap|hot_swap' --iglob '*.py' --iglob '*.ts' --iglob '*.js' --iglob '*.ps1' C:/Projects/Agent_Workspace -> 20 hits, all of them QA repair tools and officer verify scripts that MENTION the word; zero implementations. The spec 08_TECHNOLOGY_DEFAULT_HOTSWAP.md carries 81 mentions, so this is specified-but-unimplemented, not unspecified.",
+   "falsifier": "A program that takes a live occupant and a replacement candidate, performs the swap on a named target root, and demonstrates POS (new occupant serves) plus NEG (old occupant no longer serves) with parity evidence.",
+   "expiry": "2026-11-30",
+   "verdict": "NOT_IMPLEMENTED_ON_THIS_HOST",
+   "note": "TechnologyAdmission itself EXISTS (PIPD/tools/admit_technologies.py, 22 rows); only the hot-replacement path is missing.",
+   "recorded_at": "2026-10-31T22:41:32+0800"
+  }
+ ]
+}

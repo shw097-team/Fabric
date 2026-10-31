@@ -1,0 +1,42 @@
+{
+ "schema": "HGK-REFUSAL-WITHDRAWAL/1",
+ "round": "FHS-ALLPASS-20261031",
+ "why": "The four ABSENT records were written against a misreading: they looked for programs named 'host_loader'/'host_reader' and concluded the objects did not exist. The delivery names its hosts explicitly -- '四 Host：Hermes Agent、Codex、Claude Code、ChatGPT' (01_PRODUCT_AUTHORITY_SPINE.md:47) -- and three of those four are installed on this machine. The falsifier each record stated has therefore been met, and a falsifiable claim that has been falsified must be withdrawn, not kept because it was convenient.",
+ "measured": {
+  "hosts_present": {
+   "hermes": "v0.22.5",
+   "codex": "codex-cli 0.164.0",
+   "claude": "2.1.314 (Claude Code)"
+  },
+  "hosts_absent": {
+   "chatgpt": "web/API-only per spec: no OS process runner, NOT_ADMITTED for local install"
+  },
+  "packager": "PIPD/src/pipd_ls_sp/export_bundle.py (deterministic tar.gz + manifest + checksums)",
+  "host_loader": "PIPD/src/pipd_ls_sp/projection.check_host_surfaces via tools/host_projection_check.py",
+  "host_loader_self_declared_ceiling": "FIXTURE_MOCK_ONLY; live_hgk_genie_integration NOT_CLAIMED; S5_S6 NOT_AUTHORISED",
+  "admission_engine": "PIPD/tools/admit_technologies.py (22 source-designated rows)",
+  "profiles": "PIPD/src/pipd_ls_sp/profiles.py (LITE/STANDARD/ASSURED)"
+ },
+ "withdrawn": [
+  {
+   "id": "ABSENT-01",
+   "wp": "WP-FHS-11",
+   "was": "original Portable SP packager / Host Loader absent",
+   "now": "both exist; what does not exist is a LIVE host integration (the product itself declares the effective load fixture/mock and S5/S6 not authorised), and the delivered genie-adapter projection is stale"
+  },
+  {
+   "id": "ABSENT-02",
+   "wp": "WP-FHS-12",
+   "was": "original normal Profile / ToolAutoSelect Reader absent",
+   "now": "profiles.py implements LITE/STANDARD/ASSURED and Hermes is the normal-entry host; what is missing is a W18 ordinary-Goal run measured through it"
+  },
+  {
+   "id": "ABSENT-04",
+   "wp": "WP-FHS-20",
+   "was": "four original Host Readers absent",
+   "now": "three host projections exist (generic-skills / hgk-receiver / genie-adapter) and three host CLIs are installed; the fourth host is ChatGPT, which the spec itself bars from claiming a local install"
+  }
+ ],
+ "withdrawal_is_not_a_pass": "Withdrawing a refusal does not move any work_queue row. WP-FHS-11/12/13/20 stay FAIL until each host's Install -> Register -> Effective Load -> Trigger/Nontrigger -> Uninstall is measured on that host.",
+ "recorded_at": "2026-10-31T22:41:32+0800"
+}
