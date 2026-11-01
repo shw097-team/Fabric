@@ -1,9 +1,9 @@
-NONCE-ECHO: FAR-EXECUTE-85D6690B
+NONCE-ECHO: FAR-EXECUTE-2EE8A70D
 
 # EXECUTE brief
 
 Question:
-How can FAR research actually be executed through the three mandated lanes rather than written as prose by the session model? Nine FAR runs 036-044 carry no lane receipts. Identify the structural cause and the mechanism that makes the routed path the default.
+How can FAR research actually be executed through the three mandated lanes rather than written as prose by the session model? Identify the structural cause and the mechanism that makes the routed path the default.
 
 PLAN output:
 I’ll read the brief and check its requested scope against the repository’s execution rules.
@@ -26,15 +26,7 @@ For the routed path to become the default, these conditions must hold:
 
 1. **One normal research entry point.** FAR creation and continuation invoke the runner automatically.
 2. **Evidence-bound handoffs.** Each lane consumes identified inputs and produces an output bound to its run, nonce, subject, and complete dispatch receipt.
-3. **Mandatory validation before advancement.** Check the actual served attempt, canonical provider/model identity, permitted rank, agent-message nonce, usage evidence, and successful completion. Missing evidence stops the round.
-4. **Enforced publication admission.** Every publishing or downstream consumption path requires validated evidence for all three lanes. A directory or synthesis file alone remains unpublished candidate material.
-5. **Independent checking.** VERIFY runs in a separate process against frozen artifacts. Successful dispatch proves lane service; it does not prove research correctness or canonical acceptance.
-
-EXECUTE should build **one work package: complete the runner-to-admission contract**. Retain full dispatcher receipts, resolve routing through the existing canonical machinery, validate each handoff, supply artifact-based checker inputs, and connect the resulting gate to the actual publication boundary. Avoid creating another routing registry or acceptance authority.
-
-Deterministic tests should cover a complete successful chain and otherwise-valid cases with a missing lane, wrong provider/model, nonce found only in prompt text, absent usage, stale receipt, changed subject, provisional completion, subset lane selection, and direct publication bypass. An independent checker must rederive the results. Rollback must preserve failed-run evidence and leave publication closed.
-
-This response is planning content. Its PLAN-lane provenance must be established by the enclosing dispatcher’s completed receipt; the response cannot certify itself.
+3. **Mandatory validation
 
 Build exactly one work package from the plan. Keep it small enough to finish. Report what you changed and why.
 

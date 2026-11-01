@@ -1,0 +1,8 @@
+I’ll treat the linked brief as the active governed execution request. I’ll first read the brief and the repository’s governing files, then map its work package to the required lane, evidence, checker, and rollback steps before making any changes.
+The brief contains one concrete question but no PLAN content, so I’m treating its requested output as the work package rather than inventing a broader implementation. I’m now checking the lane-receipt code and its tests to identify the smallest enforceable change and any existing receipt semantics before editing.
+The receipt gate can currently be satisfied by self-declared JSON fields: its `nonce` check searches the receipt itself and any log in a path named by that receipt. That makes the question’s smallest fix concrete: bind the nonce check to an independently completed dispatch artifact, and refuse anything else. I’m reading the dispatch writer and focused tests now so the patch matches the real schema and fails closed without disrupting existing valid receipts.
+NONCE-ECHO: FAR-EXECUTE-C3C42607
+
+Change the trust anchor, not the receipt schema: the trusted loopback relay must sign each completed receipt with a private key unavailable to lane processes. The signature must cover the nonce, lane, rank, asked and served models, usage receipt, and exit status. The gate then accepts only a valid signature; unsigned receipts remain diagnostic artifacts.
+
+This is the cheapest sufficient change because it adds one signing step and one verification step while making copied or hand-edited local JSON unusable. No product files were changed; this reply is the single requested work package and answers the design question directly.

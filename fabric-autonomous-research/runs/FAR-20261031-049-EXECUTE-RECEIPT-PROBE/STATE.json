@@ -1,0 +1,31 @@
+{
+ "schema": "HGK-FAR-STATE/1",
+ "run": "FAR-20261031-049-EXECUTE-RECEIPT-PROBE",
+ "publication_status": "LANES_SERVED",
+ "lanes_required": [
+  "execute"
+ ],
+ "lanes_served": [
+  "execute"
+ ],
+ "receipts": {
+  "execute": {
+   "lane": "EXECUTE",
+   "required_arm": "opencode-go/deepseek-v4.1-flash",
+   "served_arm": "opencode-go/deepseek-v4.1-flash",
+   "nonce": "FAR-EXECUTE-C3C42607",
+   "attempted_at": "2026-11-01T09:46:15+0800",
+   "ok": true,
+   "code": null,
+   "model": "deepseek-v4.1-flash",
+   "rank": 1,
+   "exit": 0,
+   "nonce_present": true,
+   "usage_receipt_ok": true,
+   "seconds": 44.58,
+   "dispatch_receipt": "C:\\Projects\\Agent_Workspace\\Fabric\\fabric-autonomous-research\\runs\\FAR-20261031-049-EXECUTE-RECEIPT-PROBE\\_execute_dispatch.json"
+  }
+ },
+ "generated_at": "2026-11-01T09:46:15+0800",
+ "next": "write ResearchSynthesis.md; scripts/far_lane_gate.py decides whether it may be called published"
+}
