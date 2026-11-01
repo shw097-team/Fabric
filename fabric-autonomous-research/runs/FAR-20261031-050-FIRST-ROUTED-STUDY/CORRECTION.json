@@ -1,0 +1,11 @@
+{
+ "schema": "HGK-FAR-CORRECTION/1",
+ "run": "FAR-20261031-050-FIRST-ROUTED-STUDY",
+ "recorded_at": "2026-11-01T09:57:00+0800",
+ "what_i_claimed": "that the EXECUTE limit was package SIZE, proven by FAR-049 succeeding in 44.58 s with a 400-char carry, and that the 212 s wall was a brief that was too heavy",
+ "what_actually_happened": "FAR-049 ran EXECUTE FIRST, so it carried NO plan output at all -- the brief was a question, not a work package. FAR-050 ran EXECUTE AFTER PLAN with the same 400-char carry and the arm ran the full 601.92 s with nonce=False: no answer, no usage receipt",
+ "confound": "FAR-049 and FAR-050 did not test the same thing. 049 tested 'answer a question'; 050 tested 'build a work package from a plan'. The size hypothesis was never tested",
+ "revised_finding": "EXECUTE answers trivia quickly (14.46 s, 44.58 s) and stalls past 600 s on a real build brief. The distinguishing variable is not the brief's character count but whether the arm is asked to DO work in the repository",
+ "not_concluded": "that EXECUTE cannot build. One observation of a 600 s stall is not a capability fact -- by the rule this corpus adopted two rounds ago, a cell needs two observations before FAIL",
+ "next": "re-run EXECUTE with a build brief at a smaller scope (one file, one function) and a 900 s budget; if it still stalls, the finding is 'the EXECUTE arm cannot complete a build turn through this relay' and the mitigation is a different transport, not a smaller brief"
+}

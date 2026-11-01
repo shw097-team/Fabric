@@ -1,0 +1,41 @@
+Reading additional input from stdin...
+2026-11-01T01:46:46.059434Z ERROR codex_api::endpoint::responses_websocket: failed to connect to Responses WebSocket stage=Unknown
+2026-11-01T01:49:33.252248Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in C:\Projects\Agent_Workspace\HG-KSEOS\scripts\far_lane_gate.py:
+Exit 0 = VALID_RESEARCH; 3 = INVALID_RESEARCH (prints which receipt is missing or why it does not pass).
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import subprocess
+import sys
+from pathlib import Path
+
+try:  # every child of this process must be consoleless
+    import winproc as _winproc  # noqa: E402
+
+    _winproc.install()
+except Exception:
+    pass
+
+K = Path(__file__).resolve().parent.parent
+GATE = K / "scripts" / "lane_evidence_gate.py"
+CASEs = {
+    "PLAN": ("PLAN_RECEIPT.json", "openai-codex/gpt-6.1-sol"),
+    "EXECUTE": ("EXECUTE_RECEIPT.json", "opencode-go/deepseek-v4.1-flash"),
+    "VERIFY_SECURITY": ("VERIFY_RECEIPT.json", "openai-codex/gpt-6.1-sol"),
+}
+
+
+def _gate(receipt: Path, lane: str) -> dict:
+    r = subprocess.run([sys.executable, str(GATE), str(receipt), "--lane", lane],
+                       capture_output=True, text=True, timeout=300, creationflags=0x08000000)
+    out = (r.stdout or "").strip()
+    try:
+        parsed = json.loads(out.splitlines()[-1]) if out else {}
+    except json.JSONDecodeError:
+        parsed = {"raw": out[-400:]}
+    return {"exit": r.returncode, "gate": parsed}
+2026-11-01T01:50:58.287170Z ERROR codex_core::tools::router: error=apply_patch verification failed: invalid patch: multiple operations target C:\Projects\Agent_Workspace\HG-KSEOS\scripts\far_lane_gate.py
+2026-11-01T01:51:55.245725Z ERROR codex_core::tools::router: error=exec_command failed: CreateProcess { message: "Rejected(\"`\\\"C:\\\\\\\\Users\\\\\\\\user\\\\\\\\.cache\\\\\\\\codex-runtimes\\\\\\\\codex-primary-runtime\\\\\\\\dependencies\\\\\\\\native\\\\\\\\powershell\\\\\\\\pwsh.exe\\\" -Command '$ErrorActionPreference = '\\\"'Stop'\\nGet-Content -LiteralPath tests\\\\\\\\test_r13_repo_head_cwd.py -Raw\\nWrite-Output 'PYTEMP ENV'\\nGet-ChildItem Env: | Where-Object { \\\"'$_.Name -match '\\\"'\\\"'^(TMP|T…137 chars truncated…003\\\\\\\\scratch'\\nGet-Acl -LiteralPath \\\"'$p | Select-Object Owner,AccessToString\\nWrite-Output '\\\"'CREATE TEST'\\n\\\"'$probe = Join-Path $p '\\\"'pytest-probe-lifecycle'\\ntry { New-Item -ItemType Directory -Path \\\"'$probe -ErrorAction Stop | Out-Null; Write-Output '\\\"'CREATED'; Remove-Item -LiteralPath \\\"'$probe -Force } catch { Write-Output \\\"FAILED: $($_.Exception.Message)\\\"; exit 1 }\\n'` rejected: blocked by policy\")" }
+2026-11-01T01:55:26.779467Z ERROR codex_core::tools::router: error=apply_patch verification failed: invalid patch: multiple operations target C:\Projects\Agent_Workspace\HG-KSEOS\scripts\far_lane_gate.py

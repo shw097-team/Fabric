@@ -1,0 +1,40 @@
+{
+ "schema": "HGK-FAR-STATE/1",
+ "run": "FAR-20261031-050-FIRST-ROUTED-STUDY",
+ "publication_status": "UNPUBLISHED",
+ "stopped_at": "execute",
+ "receipts": {
+  "plan": {
+   "lane": "PLAN",
+   "required_arm": "openai-codex/gpt-6.1-sol",
+   "served_arm": "openai-codex/gpt-6.1-sol",
+   "nonce": "FAR-PLAN-FCD83136",
+   "attempted_at": "2026-11-01T09:46:44+0800",
+   "ok": true,
+   "code": null,
+   "model": "gpt-6.1-sol",
+   "rank": 1,
+   "exit": 0,
+   "nonce_present": true,
+   "usage_receipt_ok": true,
+   "seconds": 22.89,
+   "dispatch_receipt": "C:\\Projects\\Agent_Workspace\\Fabric\\fabric-autonomous-research\\runs\\FAR-20261031-050-FIRST-ROUTED-STUDY\\_plan_dispatch.json"
+  },
+  "execute": {
+   "lane": "EXECUTE",
+   "required_arm": "opencode-go/deepseek-v4.1-flash",
+   "served_arm": "opencode-go/deepseek-v4.1-flash",
+   "nonce": "FAR-EXECUTE-CFFE7C87",
+   "attempted_at": "2026-11-01T09:56:46+0800",
+   "ok": false,
+   "code": "ERR_LANE_ALL_ROUTES_EXHAUSTED",
+   "model": "deepseek-v4.1-flash",
+   "rank": 1,
+   "exit": "TIMEOUT",
+   "nonce_present": false,
+   "usage_receipt_ok": false,
+   "seconds": 601.92,
+   "dispatch_receipt": "C:\\Projects\\Agent_Workspace\\Fabric\\fabric-autonomous-research\\runs\\FAR-20261031-050-FIRST-ROUTED-STUDY\\_execute_dispatch.json"
+  }
+ }
+}
