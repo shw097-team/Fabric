@@ -1,0 +1,35 @@
+{
+ "schema": "HGK-FAR-STATE/1",
+ "run": "FAR-20261031-045-LANE-ROUTING-ROOT-CAUSE",
+ "publication_status": "UNPUBLISHED",
+ "why_unpublished": "EXECUTE and VERIFY_SECURITY carry no receipt; the gate this run proposes refuses it by its own rule",
+ "lane_receipts": {
+  "plan": {
+   "lane": "PLAN",
+   "required_arm": "openai-codex/gpt-6.1-sol",
+   "served_arm": "openai-codex/gpt-6.1-sol",
+   "model": "gpt-6.1-sol",
+   "rank": 1,
+   "nonce_present": true,
+   "usage_receipt_ok": true,
+   "nonce": "FAR045-PLAN-54EBB1F7",
+   "receipt": "HG-KSEOS/var/far045_plan.json"
+  },
+  "execute": {
+   "attempts": [
+    {
+     "code": "ERR_SEALED_HOME_OAUTH_TRANSPORT",
+     "cause": "openai-codex relay passed to the opencode-go arm"
+    },
+    {
+     "code": "TIMEOUT",
+     "cause": "two-file, two-defect brief in one package"
+    }
+   ]
+  },
+  "verify": {
+   "status": "NOT_DISPATCHED"
+  }
+ },
+ "generated_at": "2026-11-01T09:06:05+0800"
+}
