@@ -1,0 +1,80 @@
+{
+ "schema": "HGK-FAR-STATE/2",
+ "run": "FAR-20261031-055-RUNTIME-IDENTITY-REPAIRED",
+ "question_sha256": "a467181da559a262a511ec206fc0670e7a850a578deaa3d1004607cac559aa8f",
+ "publication_status": "LANE_DISPATCH_COMPLETE",
+ "lanes_required": [
+  "execute",
+  "plan",
+  "verify"
+ ],
+ "lanes_served": [
+  "execute",
+  "plan",
+  "verify"
+ ],
+ "receipts": {
+  "plan": {
+   "schema": "HGK-FAR-LANE-SUMMARY/2",
+   "run": "FAR-20261031-055-RUNTIME-IDENTITY-REPAIRED",
+   "lane": "PLAN",
+   "nonce": "FAR-PLAN-C1D1E840",
+   "required_arm": "openai-codex/gpt-6.1-sol",
+   "question_sha256": "a467181da559a262a511ec206fc0670e7a850a578deaa3d1004607cac559aa8f",
+   "dispatch_receipt": "_plan_dispatch.json",
+   "dispatch_receipt_sha256": "a46956c388b220d42e957fe1e077ae372bc1a959ffb5f428f1ce334f101586fb",
+   "ok": true,
+   "code": null,
+   "served_arm": "openai-codex/gpt-6.1-sol",
+   "rank": 1,
+   "exit": 0,
+   "usage_receipt_ok": true,
+   "attempted_at": "2026-11-01T11:44:11+0800",
+   "seconds": 30.62
+  },
+  "execute": {
+   "schema": "HGK-FAR-LANE-SUMMARY/2",
+   "run": "FAR-20261031-055-RUNTIME-IDENTITY-REPAIRED",
+   "lane": "EXECUTE",
+   "nonce": "FAR-EXECUTE-58C20739",
+   "required_arm": "opencode-go/deepseek-v4.1-flash",
+   "question_sha256": "a467181da559a262a511ec206fc0670e7a850a578deaa3d1004607cac559aa8f",
+   "dispatch_receipt": "_execute_dispatch.json",
+   "dispatch_receipt_sha256": "a56830c33a6fc0592eab41d68cc9152d61f66b682341202b202ac80349103543",
+   "ok": true,
+   "code": null,
+   "served_arm": "opencode-go/deepseek-v4.1-flash",
+   "rank": 1,
+   "exit": 0,
+   "usage_receipt_ok": true,
+   "attempted_at": "2026-11-01T11:44:46+0800",
+   "seconds": 34.51,
+   "deliverable": "lane_output/WORKPACKAGE.md",
+   "deliverable_sha256": "ee75869ee90c71d0cc7a7e7c28493f652c9bf899176660267a0a2d78f6719a50",
+   "deliverable_bytes": 9517
+  },
+  "verify": {
+   "schema": "HGK-FAR-LANE-SUMMARY/2",
+   "run": "FAR-20261031-055-RUNTIME-IDENTITY-REPAIRED",
+   "lane": "VERIFY_SECURITY",
+   "nonce": "FAR-VERIFY-A2AA7FBC",
+   "required_arm": "openai-codex/gpt-6.1-sol",
+   "question_sha256": "a467181da559a262a511ec206fc0670e7a850a578deaa3d1004607cac559aa8f",
+   "dispatch_receipt": "_verify_dispatch.json",
+   "dispatch_receipt_sha256": "0e8241610c208282acc0cd972c718d22dee9efc9cbcf40ae35e80794d0cb44d7",
+   "ok": true,
+   "code": null,
+   "served_arm": "openai-codex/gpt-6.1-sol",
+   "rank": 1,
+   "exit": 0,
+   "usage_receipt_ok": true,
+   "attempted_at": "2026-11-01T11:45:27+0800",
+   "seconds": 41.6,
+   "deliverable": "lane_output/WORKPACKAGE.md",
+   "deliverable_sha256": "ee75869ee90c71d0cc7a7e7c28493f652c9bf899176660267a0a2d78f6719a50",
+   "deliverable_bytes": 9517
+  }
+ },
+ "generated_at": "2026-11-01T11:45:27+0800",
+ "next": "write ResearchSynthesis.md with a Lane evidence line; scripts/far_lane_gate.py decides whether the run is publishable"
+}
