@@ -1,6 +1,16 @@
-# FHS Engineering Entry (Fabric-hosted candidate)
+# FHS Engineering Entry (Fabric-hosted, GitHub navigation deployed)
 
 **NAVIGATION_ONLY · NOT OWNER RATIFIED · NOT AN ISSUER · NOT A COMPILER · NOT A CHECKER.**
+
+## State, stated precisely
+
+| layer | state | what it means |
+|---|---|---|
+| **GitHub navigation** | `GITHUB_NAV_DEPLOYED` | this page and `repository-map.json` are versioned on Fabric `main`, reachable from the Fabric front page, and readable by an external engineer without a private workspace path |
+| **Original domain / native** | `ORIGINAL_DOMAIN / NATIVE_NOT_RATIFIED` | every route below is a **pointer**; no original owner has ratified it as a native reader, no native admission, host load, permit or acceptance has been obtained, and no write authority is granted |
+
+`source_state` remains `PROPOSED_NOT_OWNER_RATIFIED` in `repository-map.json`. Deployment of this page
+did not change that value, did not change `INTEGRATION/MANIFEST.json`, and did not add a route.
 
 This directory is a single non-authoritative engineering index. It has no repository or native write permissions. The existing Fabric `INTEGRATION/MANIFEST.json` governs the mirror and must not be silently expanded.
 
@@ -13,6 +23,10 @@ This directory is a single non-authoritative engineering index. It has no reposi
 | `cross_repo` | Each affected original repository | Make separately scoped PR candidates. Shared ChangeSet ID is not HGK WorkID | SBL, Fabric, HGK, PIPD |
 | `hermes_runtime` | **MISSING: original host source link must be resolved** | Fresh profile / PID / loaded / invoked / ActualServed from original Host Reader, not GitHub | HGK, Fabric |
 
+An unknown task class is not guessed: `repository-map.json` declares
+`unknown_route=HOLD_AFFECTED_WRITE_ONLY`, so the affected write is held while permitted source reads and
+local drafts continue.
+
 To statically validate from the Fabric repository root:
 
 ```bash
@@ -24,3 +38,6 @@ python3 -m unittest discover -s INTEGRATION/FHS/tests -v
 `STATIC_VALID_ONLY` does **not** mean GitHub merge, native acceptance, actual host load, release, or cross-repository write authority. Online HEAD comparison requires an external, operator-provided fresh expected-head snapshot and is still only GitHub-source observation.
 
 If the index is missing or stale, read each repository's original README/AGENTS or approved Source Reader. HOLD only the affected write; permitted source reads and local drafts may continue. PIPD-LS-SP remains active until a separately ratified U04 cutover.
+
+The deployment and the owner-decision record behind it are in
+[`DEPLOYMENT-AND-OWNER-DECISIONS.md`](DEPLOYMENT-AND-OWNER-DECISIONS.md).

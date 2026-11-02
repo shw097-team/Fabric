@@ -12,5 +12,10 @@ Conventions an agent must follow in this repository.
 6. **One unlock, one signature.** Owner-key operations are batched; each passphrase prompt must cover
    every signature planned in that pass.
 7. **Rollback points.** Promotion is a merge commit plus a tag; never a rewrite of history.
+8. **Cross-repository work starts at the FHS entry.** When a task spans Fabric, HG-KSEOS, SBL and/or
+   PIPD-LS-SP, read `INTEGRATION/FHS/README.md` and `INTEGRATION/FHS/repository-map.json` first, then
+   use each repository's own domain path. Single-repository tasks go straight to their domain and need
+   none of this. The entry is navigation only: reading it grants no permission, and no agent is
+   expected to preload the long-form blueprints.
 
 B1 closure scope for this repository: Fabric side: GWO-FABRIC evidence and the consumer-only readback note (no activator exists)
