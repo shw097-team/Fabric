@@ -138,8 +138,9 @@ invoked readback exists in this record, and the L1 approval does not imply one.
 `PROPOSED_NOT_OWNER_RATIFIED`, the validator still reports `original_reader_verified=false` and
 `owner_ratification_verified=false`, and no route, field, registrar, registry or queue is added.
 
-**Delivery record.** Carried by the Fabric pull request that adds this section; that pull request's thread
-holds the merge commit and the post-merge readback of `INTEGRATION/FHS/README.md` and this file on `main`.
+**Delivery record.** Carried by Fabric PR [#24](https://github.com/shw097-team/Fabric/pull/24); that pull
+request's thread holds the merge commit and the post-merge readback of `INTEGRATION/FHS/README.md` and this
+file on `main`.
 
 **Rollback.** Revert the merge commit that adds this section. L1 is a decision, revocable by the same owner
 through a later record; reverting it changes no route, no route data and no original domain.
