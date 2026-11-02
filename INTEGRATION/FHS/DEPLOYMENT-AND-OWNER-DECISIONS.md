@@ -144,3 +144,19 @@ file on `main`.
 
 **Rollback.** Revert the merge commit that adds this section. L1 is a decision, revocable by the same owner
 through a later record; reverting it changes no route, no route data and no original domain.
+
+## 8. Route change to `FHS-NAV/v2` (2026-11-03)
+
+This section is appended; §1–§7 above are the v1 deployment record and are not rewritten.
+
+| item | value |
+|---|---|
+| trigger | the U04 cutover: SBL `main` `c3083178` now hosts the canonical PIPD compiler under `integrations/pipd/` |
+| change | `repository-map.json` → `FHS-NAV/v2`; `pipd_canonical` primary `pipd` → `sbl`; `sbl_product` affected `pipd` → `fabric`; `cross_repo` affected set drops `pipd`; PIPD moves to `historical_repositories` with `role=HISTORICAL_CANONICAL_MOVED_TO_SBL`, `archived=false`, `write_authority=NONE` |
+| not changed | `effect_permission=NONE`, `source_state=PROPOSED_NOT_OWNER_RATIFIED`, `unknown_route=HOLD_AFFECTED_WRITE_ONLY`, six task classes, `INTEGRATION/MANIFEST.json`, and every original domain's authority |
+| breaking change | the operator head snapshot is now three repositories; a snapshot carrying `pipd` is refused (`EXPECTED_SNAPSHOT_REPOS`), and `fetch_main` refuses the historical repository before any network call |
+| evidence | `python3 INTEGRATION/FHS/validate_entry.py` → `STATIC_VALID_ONLY`; 30 unit tests pass; a v1 map exits 2 `FAIL_CLOSED`; an unknown task exits 3 |
+| rollback | revert the v2 merge commit; the v1 map and validator remain readable in history, and PIPD's release record was never altered |
+
+The route now names the real writer. It does **not** ratify any original domain: every route result still
+reports `original_reader_verified=false` and `owner_ratification_verified=false`.
