@@ -1,8 +1,35 @@
-# Fabric — Integrated Governance Mirror
+# Fabric — Integrated Governance Mirror & FHS Engineering Entry Host
 
 > **Fabric + FAR + the desktop-effect plane + HG-KSEOS** — integrated under one governance contract,
 > mirrored so that an **external engineer can plan a complete upgrade** of the subjects from this
 > repository alone.
+
+## FHS Engineering Entry — Start Here
+
+This repository also **hosts** the FHS Engineering Entry: one non-authoritative navigation index for
+cross-repository engineering work across the four FHS repositories. Hosting is not authority.
+
+| repository | what it owns | entry |
+|---|---|---|
+| **Fabric** (this repository) | governance contract / policy mirror | [`INTEGRATION/README.md`](INTEGRATION/README.md) |
+| **HG-KSEOS** | sole native control plane: typed lifecycle, admission, evidence ledger | [HG-KSEOS](https://github.com/shw097-team/HG-KSEOS) |
+| **SBL** | product surface (TPM skill pack) | [SBL](https://github.com/shw097-team/SBL) |
+| **PIPD-LS-SP** | compiler / CLI / U04 until a separately ratified cutover | [PIPD-LS-SP](https://github.com/shw097-team/PIPD-LS-SP) |
+
+- **Read first:** [`INTEGRATION/FHS/README.md`](INTEGRATION/FHS/README.md) — six task classes, the
+  original reader for each, and the next action.
+- **Route map:** [`INTEGRATION/FHS/repository-map.json`](INTEGRATION/FHS/repository-map.json) —
+  machine-readable routes, `source_state=PROPOSED_NOT_OWNER_RATIFIED`.
+- **Deployment record and owner decisions:**
+  [`INTEGRATION/FHS/DEPLOYMENT-AND-OWNER-DECISIONS.md`](INTEGRATION/FHS/DEPLOYMENT-AND-OWNER-DECISIONS.md).
+- **Next step for a cross-repository task:** name the task class, read the original reader it points
+  to, then open a separately scoped change in the affected repository. A shared ChangeSet ID is not
+  an HGK WorkID.
+
+**Host ≠ Authority.** The entry is `NAVIGATION_ONLY / effect_permission=NONE`. It signs no permit,
+work order or grant; it is not a queue, a policy writer, a compiler or a protected checker.
+HG-KSEOS remains the only native control plane, and every route's authority stays with its original
+domain.
 
 ## 1. Governance contract of this integration
 
@@ -40,8 +67,6 @@ and contract map, the validation plan, the rollback plan and the non-claim list 
 repository alone, without any private workspace path. The `INTEGRATION/` set exists to make that
 test passable.
 
-[FHS Engineering Entry — cross-repository navigation](INTEGRATION/FHS/README.md)
-
 ## 3. Repository layout
 
 | folder | contents |
@@ -50,7 +75,7 @@ test passable.
 | `FABRIC/` | governance contract, research and automation trees, methods and skills |
 | `FAR/` | research-product contracts, routing and retrieval |
 | `DESKTOP/` | desktop-effect plane: documentation, guards and skills (runtime state is a named, bounded exception — see the manifest) |
-| `INTEGRATION/` | the readiness set described in section 2, plus the mirror manifest |
+| `INTEGRATION/` | the readiness set described in section 2, plus the mirror manifest and the FHS navigation entry |
 | `EVIDENCE/` | assessment, hygiene and independent-check records |
 
 ## 4. Ground rules for contributors and planners
@@ -72,6 +97,10 @@ check under [`EVIDENCE/SKILL-CONVERGENCE-20261014/`](EVIDENCE/SKILL-CONVERGENCE-
 to the local revision, adds the round's rows to [`INTEGRATION/KNOWN-FINDINGS.md`](INTEGRATION/KNOWN-FINDINGS.md), and changes
 no contract. Each publication is preserved in history and records its own scope, its hygiene result and its open owner
 decisions.
+
+The FHS navigation entry under `INTEGRATION/FHS/` is a third, separate addition: it is
+`GITHUB_NAV_DEPLOYED` and changes no contract, no manifest subject and no owner decision. See
+[`INTEGRATION/FHS/DEPLOYMENT-AND-OWNER-DECISIONS.md`](INTEGRATION/FHS/DEPLOYMENT-AND-OWNER-DECISIONS.md).
 
 
 ## B1 closure 2026-10-28
