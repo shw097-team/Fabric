@@ -7,6 +7,7 @@
 | layer | state | what it means |
 |---|---|---|
 | **GitHub navigation** | `GITHUB_NAV_DEPLOYED` | this page and `repository-map.json` are versioned on Fabric `main`, reachable from the Fabric front page, and readable by an external engineer without a private workspace path |
+| **Assisted navigation use (L1)** | `NAV_ASSISTED_USE_APPROVED` | Hermes / engineering AI may use this entry as a **read-only** starting point: task-classification proposal, original-source location, affected-domain identification, and candidate planning or drafting. The static route is a suggestion — the original domain reader decides, and an unknown or mismatched task holds only the affected write. See [the L1 decision](DEPLOYMENT-AND-OWNER-DECISIONS.md#7-l1-assisted-navigation-use--nav_assisted_use_approved). `effect_permission=NONE` is unchanged. |
 | **Original domain / native** | `ORIGINAL_DOMAIN / NATIVE_NOT_RATIFIED` | every route below is a **pointer**; no original owner has ratified it as a native reader, no native admission, host load, permit or acceptance has been obtained, and no write authority is granted |
 
 `source_state` remains `PROPOSED_NOT_OWNER_RATIFIED` in `repository-map.json`. Deployment of this page
@@ -39,5 +40,5 @@ python3 -m unittest discover -s INTEGRATION/FHS/tests -v
 
 If the index is missing or stale, read each repository's original README/AGENTS or approved Source Reader. HOLD only the affected write; permitted source reads and local drafts may continue. PIPD-LS-SP remains active until a separately ratified U04 cutover.
 
-The deployment and the owner-decision record behind it are in
+The deployment and the owner-decision record behind it — including the L1 assisted-use approval — are in
 [`DEPLOYMENT-AND-OWNER-DECISIONS.md`](DEPLOYMENT-AND-OWNER-DECISIONS.md).
