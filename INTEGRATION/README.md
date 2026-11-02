@@ -10,4 +10,6 @@
 | `VALIDATION-AND-ROLLBACK.md` | the positive, negative and boundary tests, and the rollback for every class of change |
 | `NON-CLAIMS.md` | what this publication deliberately does not assert |
 
+[FHS Engineering Entry — navigation only](FHS/README.md)
+
 Generated 2026-10-13T11:50:38.128148+00:00. Capability statements here are bounded by `NON-CLAIMS.md`.

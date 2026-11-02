@@ -40,6 +40,8 @@ and contract map, the validation plan, the rollback plan and the non-claim list 
 repository alone, without any private workspace path. The `INTEGRATION/` set exists to make that
 test passable.
 
+[FHS Engineering Entry — cross-repository navigation](INTEGRATION/FHS/README.md)
+
 ## 3. Repository layout
 
 | folder | contents |

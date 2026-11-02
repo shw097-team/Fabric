@@ -1,0 +1,27 @@
+name: FHS navigation candidate checks
+on:
+  pull_request:
+  merge_group:
+    types: [checks_requested]
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  fhs-nav-static:
+    name: fhs-nav-static
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Checkout pinned official v7.0.1
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Verify Python and static route contract
+        shell: bash
+        run: |
+          python3 -V
+          python3 -c 'import sys; assert sys.version_info >= (3,11), "Python >=3.11 required"'
+          python3 INTEGRATION/FHS/validate_entry.py
+          python3 -m unittest discover -s INTEGRATION/FHS/tests -v
