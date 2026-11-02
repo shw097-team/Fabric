@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
-"""FHS-NAV/v1 r2: strict local navigation, never grants permission or writes a repo."""
+"""FHS-NAV/v2: strict local navigation, never grants permission or writes a repo.
+
+v2 retires PIPD-LS-SP as an active route target: pipd_canonical now resolves to
+SBL, and PIPD-LS-SP survives only as a non-active historical pointer that carries
+no write authority and is never fetched, routed to, or treated as a source of
+truth. The static ABI stays fail-closed on unknown fields, duplicate keys and
+wrong types.
+"""
 import argparse
 import datetime as dt
 import json
@@ -13,27 +20,32 @@ EXPECTED_REPOS = {
     "sbl": ("shw097-team/SBL", "PRODUCT_TPM"),
     "fabric": ("shw097-team/Fabric", "POLICY_FAR"),
     "hgk": ("shw097-team/HG-KSEOS", "NATIVE_CONTROL_SOURCE_EXPORT"),
-    "pipd": ("shw097-team/PIPD-LS-SP", "CANONICAL_COMPILER_PRE_CUTOVER"),
 }
-# Exact r1 public route semantics preserved; any change needs formal ABI+Owner review.
+# v2: non-active pointers only. A historical repository is never a primary or an
+# affected route target, is never HEAD-polled, and cannot carry write authority.
+EXPECTED_HISTORICAL_REPOS = {
+    "pipd": ("shw097-team/PIPD-LS-SP", "HISTORICAL_CANONICAL_MOVED_TO_SBL"),
+}
+HISTORICAL_KEYS = {"full_name", "default_branch", "role", "archived", "write_authority"}
+# v2 route semantics: the canonical compiler is SBL's; no route targets pipd.
 EXPECTED_ROUTE_DETAILS = {
-    "sbl_product": ("sbl", ("pipd",), "NAVIGATION_ONLY"),
+    "sbl_product": ("sbl", ("fabric",), "NAVIGATION_ONLY"),
     "fabric_policy": ("fabric", ("hgk",), "NAVIGATION_ONLY"),
     "hgk_admission": ("hgk", ("fabric", "sbl"), "NAVIGATION_ONLY"),
-    "pipd_canonical": ("pipd", ("sbl",), "NAVIGATION_ONLY"),
-    "cross_repo": (None, ("sbl", "fabric", "hgk", "pipd"), "SPLIT_PR_BY_ORIGINAL_DOMAIN"),
+    "pipd_canonical": ("sbl", ("fabric",), "NAVIGATION_ONLY"),
+    "cross_repo": (None, ("sbl", "fabric", "hgk"), "SPLIT_PR_BY_ORIGINAL_DOMAIN"),
     "hermes_runtime": (None, ("hgk", "fabric"), "HOST_SOURCE_READER_REQUIRED"),
 }
 # Verified public source pointers, NOT canonical host readers or proof of native load.
 NAV_READERS = {
-    "sbl_product": {"url": "https://github.com/shw097-team/SBL/blob/main/sbl_sp/plugins/tpm_sp/SKILL.md", "reader": "SBL_PRODUCT_SOURCE_READER", "next": "SBL_PRODUCT_OWNER_AND_PIPD_COMPILER_RECHECK", "host_required": False},
+    "sbl_product": {"url": "https://github.com/shw097-team/SBL/blob/main/sbl_sp/plugins/tpm_sp/SKILL.md", "reader": "SBL_PRODUCT_SOURCE_READER", "next": "SBL_PRODUCT_OWNER_AND_CANONICAL_COMPILER_BINDING_RECHECK", "host_required": False},
     "fabric_policy": {"url": "https://github.com/shw097-team/Fabric/blob/main/INTEGRATION/SOURCE-PROJECTION.md", "reader": "FABRIC_MIRROR_TO_ORIGINAL_POLICY_SOURCE_READER", "next": "ORIGINAL_FABRIC_POLICY_OWNER_SOURCE_READ", "host_required": True},
     "hgk_admission": {"url": "https://github.com/shw097-team/HG-KSEOS/blob/main/README.md", "reader": "HGK_SOURCE_EXPORT_TO_NATIVE_ISSUER_READER", "next": "HGK_ORIGINAL_OWNER_AND_ISSUER_READBACK", "host_required": True},
-    "pipd_canonical": {"url": "https://github.com/shw097-team/PIPD-LS-SP/blob/main/src/pipd_ls_sp/pipeline.py", "reader": "PIPD_ORIGINAL_COMPILER_SOURCE_READER", "next": "PIPD_OWNER_COMPILER_ABI_AND_U04_CHECK", "host_required": False},
+    "pipd_canonical": {"url": "https://github.com/shw097-team/SBL/blob/main/integrations/pipd/src/pipd_ls_sp/pipeline.py", "reader": "SBL_CANONICAL_COMPILER_SOURCE_READER", "next": "SBL_OWNER_CANONICAL_COMPILER_ABI_AND_U04_RECHECK", "host_required": False},
     "cross_repo": {"url": None, "reader": "EACH_AFFECTED_REPOSITORY_SOURCE_READER", "next": "PER_DOMAIN_SOURCE_READ_AND_SPLIT_CANDIDATE_PRS", "host_required": True},
     "hermes_runtime": {"url": None, "reader": "ORIGINAL_HERMES_HOST_PROFILE_PID_LOADER_READER", "next": "FRESH_HOST_SOURCE_LOADED_INVOKED_READBACK", "host_required": True},
 }
-MAP_KEYS = {"schema_version", "identity", "effect_permission", "unknown_route", "source_state", "repositories", "routes"}
+MAP_KEYS = {"schema_version", "identity", "effect_permission", "unknown_route", "source_state", "repositories", "historical_repositories", "routes"}
 ROUTE_KEYS = {"task_class", "primary_repo", "affected_repos", "claim"}
 MAX_BYTES = 262144
 SHA_RE = re.compile(r"[0-9a-f]{40}\Z")
@@ -58,11 +70,11 @@ def validate(d):
         return ["MAP_NOT_OBJECT"]
     if set(d) != MAP_KEYS:
         errors.append("TOP_LEVEL_FIELDS")
-    for k, v in {"schema_version": "FHS-NAV/v1", "identity": "FABRIC_HOSTED_NON_AUTHORITATIVE_INDEX", "effect_permission": "NONE", "unknown_route": "HOLD_AFFECTED_WRITE_ONLY", "source_state": "PROPOSED_NOT_OWNER_RATIFIED"}.items():
+    for k, v in {"schema_version": "FHS-NAV/v2", "identity": "FABRIC_HOSTED_NON_AUTHORITATIVE_INDEX", "effect_permission": "NONE", "unknown_route": "HOLD_AFFECTED_WRITE_ONLY", "source_state": "PROPOSED_NOT_OWNER_RATIFIED"}.items():
         if type(d.get(k)) is not str or d.get(k) != v:
             errors.append("FIELD_" + k)
     repos = d.get("repositories")
-    if type(repos) is not dict or set(repos) != set(EXPECTED_REPOS):
+    if type(repos) != dict or set(repos) != set(EXPECTED_REPOS):
         errors.append("REPO_SET")
         repos = {}
     for key, (name, domain) in EXPECTED_REPOS.items():
@@ -74,6 +86,30 @@ def validate(d):
             errors.append("REPO_TYPES_" + key)
         if (item.get("full_name"), item.get("default_branch"), item.get("domain")) != (name, "main", domain):
             errors.append("REPO_SEMANTICS_" + key)
+    hist = d.get("historical_repositories")
+    if type(hist) != dict or set(hist) != set(EXPECTED_HISTORICAL_REPOS):
+        errors.append("HISTORICAL_SET")
+        hist = {}
+    if set(hist) & set(EXPECTED_REPOS):
+        errors.append("HISTORICAL_SHADOWS_ACTIVE")
+    if set(d.get("repositories") or {}) & set(EXPECTED_HISTORICAL_REPOS):
+        errors.append("REPO_REACTIVATES_HISTORICAL")
+    hist_names = {name for name, _ in EXPECTED_HISTORICAL_REPOS.values()}
+    if any(type(item) is dict and item.get("full_name") in hist_names for item in repos.values()):
+        errors.append("ACTIVE_SHADOWS_HISTORICAL")
+    for key, (name, role) in EXPECTED_HISTORICAL_REPOS.items():
+        item = hist.get(key)
+        if type(item) is not dict or set(item) != HISTORICAL_KEYS:
+            errors.append("HISTORICAL_FIELDS_" + key)
+            continue
+        if any(type(item.get(k)) is not str for k in HISTORICAL_KEYS - {"archived"}) or type(item.get("archived")) is not bool:
+            errors.append("HISTORICAL_TYPES_" + key)
+        if (item.get("full_name"), item.get("default_branch"), item.get("role")) != (name, "main", role):
+            errors.append("HISTORICAL_SEMANTICS_" + key)
+        if item.get("archived") is not False:
+            errors.append("HISTORICAL_ACTIVE_" + key)
+        if type(item.get("write_authority")) is not str or item.get("write_authority") != "NONE":
+            errors.append("HISTORICAL_WRITE_" + key)
     routes = d.get("routes")
     if type(routes) is not list or len(routes) != len(EXPECTED_ROUTE_DETAILS):
         errors.append("ROUTE_COUNT")
@@ -99,6 +135,9 @@ def validate(d):
             errors.append("ROUTE_TYPES_" + task)
         if actual != (primary, list(affected), claim) or (primary is not None and type(actual[0]) is not str):
             errors.append("ROUTE_SEMANTIC_DRIFT_" + task)
+        targets = ([actual[0]] if type(actual[0]) is str else []) + (actual[1] if type(actual[1]) is list else [])
+        if any(target not in EXPECTED_REPOS for target in targets if type(target) is str):
+            errors.append("ROUTE_TARGET_NOT_ACTIVE_" + task)
     if seen != set(EXPECTED_ROUTE_DETAILS):
         errors.append("ROUTE_COVERAGE")
     return errors
