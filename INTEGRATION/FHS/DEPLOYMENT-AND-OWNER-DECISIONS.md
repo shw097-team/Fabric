@@ -67,14 +67,22 @@ The navigation deployment does not resolve, widen or batch any of them.
 
 ## 5. Known limits carried forward
 
-- **Historical secret scanning.** A full-history scan of this repository reports 60 findings (54
-  `generic-api-key`, 6 `curl-auth-header`). None is in the 10 paths of the navigation change, and the
-  new path is clean. A sanitized triage is being kept in the repository's issue/PR record, not in this
-  file; values are never published. History rewriting is a separate owner decision and is refused by
-  default.
-- **Branch protection.** `rulesets` reads as an empty list and `branches/main/protection` returns 403
-  with the credential available to the executing agent, so protection cannot be asserted either way.
-  It is recorded as `UNVERIFIED`, not as "unprotected".
+- **Historical secret scanning.** `gitleaks` 8.30.1 (official release, archive sha256 verified against the
+  project's published checksums) reports, across all refs, **264 commits and 66 findings over 20 distinct
+  values**; `main` alone reports **5**. All 66 are classified: 60 are false positives or non-secret values
+  (digests, git shas, prose/log text, documentation placeholders, a documented .NET `PublicKeyToken`, a
+  unit-test fixture) and 6 are **unconfirmed**, held as `SECRET_REMEDIATION_OWNER_HOLD`. No value, fragment
+  or raw report is published, no leaked credential was tested or used, and none of the navigation paths
+  carries a finding. The sanitized triage is the comment record on
+  [PR #20](https://github.com/shw097-team/Fabric/pull/20#issuecomment-6577176362). History rewriting is a
+  separate owner decision and is refused by default.
+- **Branch protection.** Measured on all four repositories: `rulesets` returns 0 rulesets and
+  `branches/main` reports `protection.enabled=false`; `branches/main/protection` returns 403 because the
+  executing credential holds no repository-administration scope (`PATCH /repos/{owner}/{repo}` →
+  `403 Resource not accessible by personal access token`). The state is recorded as
+  **`PROTECTION_ADMIN_HOLD`**, with the minimal gap list in the
+  [same PR #20 record](https://github.com/shw097-team/Fabric/pull/20#issuecomment-6577177056). Nothing was
+  changed; this is not a claim that the branches are protected.
 - **Navigation is not ratification.** `source_state` stays `PROPOSED_NOT_OWNER_RATIFIED`; the
   `hermes_runtime` route still has no resolvable public host source.
 
