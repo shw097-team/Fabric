@@ -1,0 +1,703 @@
+{
+  "source_sha": "bf0203a794a07aac3ff764972ab9087baa4e4f4e",
+  "backend_session_checks": {
+    "profile_identity": true,
+    "duplicate_create_same_session": true,
+    "wrong_provider_refused": true,
+    "resume_after_restart": true,
+    "stale_session_refused": true
+  },
+  "native_backend_smoke": "PASS",
+  "backend_scope": "new empty test Session persistence/resume; legacy large-session Gateway resume NOT_RUN",
+  "skill_load": {
+    "source_equals_shadow_copy": true,
+    "sha256": "28dd8a2a30a2597cbd2d032f3151eab7a730475bebcb7baa8740e88981d45b82",
+    "native_skill_view": true,
+    "content_loaded": true,
+    "sent_to_provider": false,
+    "plugin_consumer_used": "NOT_RUN"
+  },
+  "standalone_compatibility": {
+    "checks": {
+      "sbl_goal_atoms": true,
+      "pi_nonempty_atoms": true,
+      "pd_measured_head": true,
+      "fabric_runtime_route": true,
+      "fabric_upgrade_owner_route": true,
+      "fabric_unknown_class_refused": true,
+      "sbl_shadow_noeffect": true,
+      "missing_native_ack_refused": true,
+      "missing_repo_context_refused": true,
+      "stale_head_refused": true
+    },
+    "details": {
+      "missing_ack_error": "SBL_E_REQUIRES_NATIVE_ACK",
+      "missing_context_error": "RepoContextMissing",
+      "stale_head_error": "StaleProvider"
+    },
+    "sbl_atoms": 3,
+    "pi_atoms": 4,
+    "draft_spec_count": 3,
+    "pd_head": "01a952b67dd98ed86d22bba097643a15ec606283",
+    "native_receiver_ack": false,
+    "native_effect": false,
+    "result": "PASS",
+    "ceiling": "actual original SBL M01/M02, PIPD compiler and Fabric consumer called in standalone/read-draft mode; SPEC drafts are not owner-accepted"
+  },
+  "provider_routes": [
+    {
+      "provider": "opencode-go",
+      "requested": "deepseek-v4.1-flash",
+      "result": "HOLD",
+      "credential_refresh": "NOT_PROVISIONED; explicit access/static key only",
+      "ceiling": "real native Hermes agent request, no tools; wire response model required for actual-served claim",
+      "error_type": "ImportError",
+      "error_message": "The 'anthropic' package is required for the Anthropic provider. Install it wit<LOCAL_PATH>",
+      "wire": [],
+      "actual_served_models": [],
+      "usage_present": false
+    },
+    {
+      "provider": "openai-codex",
+      "requested": "gpt-6.1-sol",
+      "result": "HOLD",
+      "reason": "UNCHANGED_HOLD_NO_CREDENTIAL_READ_OR_REFRESH_IN_FINAL_ROUND",
+      "refresh_attempted": false
+    }
+  ],
+  "sqlite_restore": {
+    "archive_sha256": "402401984a1b8eeac9d390d0841ddd4a8deaa396c7520635f7b7edebf7463ff9",
+    "sqlite_integrity": true,
+    "counts": {
+      "sessions": 917,
+      "messages": 172887
+    },
+    "native_session_readback": true,
+    "native_messages_readback": 86,
+    "result": "PASS",
+    "ceiling": "local restored-copy SessionDB readback; no gateway resume or native acceptance"
+  },
+  "git_restore": {
+    "asset": "Fabric",
+    "expected_head": "765df6289cfb7730aa56efbd522d76df6ec9809a",
+    "restored_head": "765df6289cfb7730aa56efbd522d76df6ec9809a",
+    "head_matches": true,
+    "sample_blob_matches_restored_worktree": true,
+    "restored_status_entries": 2828,
+    "archive_sha256": "b92b4da18b502d111728dce0abfbab9323d27a5235a7511f9c9734f847fd99fe",
+    "result": "PASS",
+    "ceiling": "actual isolated Git metadata + worktree restore; not a full multi-repository or protected-key disaster-recovery claim"
+  },
+  "live_preservation": {
+    "repos": {
+      "Fabric": {
+        "head": "765df6289cfb7730aa56efbd522d76df6ec9809a",
+        "head_unchanged": true,
+        "branch": "far/far-031-fhs-msc-all-pass-20261031",
+        "staged_tracked_files": 0,
+        "unstaged_tracked_files": 2
+      },
+      "HG-KSEOS": {
+        "head": "f5474257aa7d2005937867340f4cd01b39751129",
+        "head_unchanged": true,
+        "branch": "candidate/r18-fhs-skeleton-spine-20261029",
+        "staged_tracked_files": 0,
+        "unstaged_tracked_files": 0
+      },
+      "SBL": {
+        "head": "826ca066a1c2df2976c0d402018b79e1c79a444f",
+        "head_unchanged": true,
+        "branch": "candidate/r14-ts15-kinds",
+        "staged_tracked_files": 0,
+        "unstaged_tracked_files": 0
+      },
+      "PIPD": {
+        "head": "3b48c262f4174217cb35391c6da22bc53f068755",
+        "head_unchanged": true,
+        "branch": "candidate/r21-far-20261101",
+        "staged_tracked_files": 0,
+        "unstaged_tracked_files": 3
+      }
+    },
+    "original_configs": [
+      {
+        "home_alias": "current",
+        "profile_alias": "default",
+        "unchanged": true
+      },
+      {
+        "home_alias": "current",
+        "profile_alias": "hgk-governed",
+        "unchanged": true
+      },
+      {
+        "home_alias": "current",
+        "profile_alias": "hgk-oracle-owner",
+        "unchanged": true
+      },
+      {
+        "home_alias": "recovery",
+        "profile_alias": "default",
+        "unchanged": true
+      },
+      {
+        "home_alias": "recovery",
+        "profile_alias": "hgk-governed",
+        "unchanged": true
+      }
+    ],
+    "all_original_heads_unchanged": true,
+    "all_original_configs_unchanged": true
+  },
+  "claim_ceiling": {
+    "SHADOW_QUALIFIED": "HOLD",
+    "NATIVE_E2E": "HOLD",
+    "CUTOVER_DONE": false,
+    "independent_acceptance": "NOT_RUN",
+    "DESKTOP_CORE_CHAT": "PASS_ONE_REAL_GUI_EXCHANGE",
+    "PRODUCT_DELIVERY_COMPLETE": false
+  },
+  "desktop_acceptance": {
+    "latest_build_commit": "bf0203a794a07aac3ff764972ab9087baa4e4f4e",
+    "distribution": "existing local bootstrap Desktop build; package version 0.0.0 is not a release identity",
+    "install_stamp_dirty": false,
+    "runtime_version": "0.22.5",
+    "last_observed_ui_version": "v0.22.5",
+    "launch_from_normal_desktop_shortcut": "PASS",
+    "new_chat_send_and_nonce_reply": "PASS",
+    "persisted_session_readback": [
+      {
+        "model": "deepseek-v4.1-flash",
+        "profile_name": "default",
+        "input_tokens": 15352,
+        "output_tokens": 13,
+        "api_call_count": 1,
+        "tool_call_count": 0,
+        "billing_provider": "opencode-go",
+        "billing_mode": null,
+        "messages": [
+          {
+            "role": "user",
+            "finish_reason": null
+          },
+          {
+            "role": "assistant",
+            "finish_reason": "stop",
+            "nonce_echo": true
+          }
+        ]
+      }
+    ],
+    "credential_matches_user_specified_opencode_go_file": true,
+    "historical_session_list_visible": true,
+    "historical_session_content_gui_readback": "NOT_RUN",
+    "settings_model_and_profile_choices_visible": true,
+    "actual_model_switch": "NOT_RUN",
+    "actual_profile_switch": "NOT_RUN",
+    "skills_gui_readback": "NOT_RUN",
+    "actual_served_deployment_model": "HOLD_NOT_CAPTURED",
+    "restart_acceptance": "HOLD_NOT_COMPLETED_BY_AGENT",
+    "subsequent_user_confirmation": "User confirmed taskbar icon launches old build and normal Desktop shortcut opens new build.",
+    "old_gui_launch_source": "existing old taskbar launcher; user confirmed, not a spontaneous runtime downgrade",
+    "no_shortcut_or_taskbar_changes_by_this_task": true,
+    "product_delivery_complete": false
+  },
+  "identity_convergence": {
+    "processes": [
+      {
+        "pid": 6096,
+        "parent_pid": 12688,
+        "home_alias": "old_process",
+        "profile_selector": "unset; home-root/default or multiplex selection",
+        "ports": [
+          4976
+        ],
+        "role_words": [
+          "gateway"
+        ],
+        "source_h22_reference": false
+      },
+      {
+        "pid": 12688,
+        "parent_pid": 9564,
+        "home_alias": "old_process",
+        "profile_selector": "unset; home-root/default or multiplex selection",
+        "ports": [],
+        "role_words": [
+          "gateway"
+        ],
+        "source_h22_reference": false
+      },
+      {
+        "pid": 16952,
+        "parent_pid": 1900,
+        "home_alias": "recovery_h22",
+        "profile_selector": "unset; home-root/default or multiplex selection",
+        "ports": [
+          4971,
+          4975
+        ],
+        "role_words": [
+          "gateway"
+        ],
+        "source_h22_reference": true
+      }
+    ],
+    "shadow_active_process_count": 0,
+    "state_file_identity": [
+      {
+        "database": "state.db",
+        "a": "old_process",
+        "b": "recovery_h22",
+        "same_file_id": false
+      },
+      {
+        "database": "state.db",
+        "a": "old_process",
+        "b": "shadow_fhs",
+        "same_file_id": false
+      },
+      {
+        "database": "state.db",
+        "a": "recovery_h22",
+        "b": "shadow_fhs",
+        "same_file_id": false
+      },
+      {
+        "database": "kanban.db",
+        "a": "old_process",
+        "b": "recovery_h22",
+        "same_file_id": false
+      },
+      {
+        "database": "kanban.db",
+        "a": "old_process",
+        "b": "shadow_fhs",
+        "same_file_id": null
+      },
+      {
+        "database": "kanban.db",
+        "a": "recovery_h22",
+        "b": "shadow_fhs",
+        "same_file_id": null
+      },
+      {
+        "database": "projects.db",
+        "a": "old_process",
+        "b": "recovery_h22",
+        "same_file_id": false
+      },
+      {
+        "database": "projects.db",
+        "a": "old_process",
+        "b": "shadow_fhs",
+        "same_file_id": false
+      },
+      {
+        "database": "projects.db",
+        "a": "recovery_h22",
+        "b": "shadow_fhs",
+        "same_file_id": false
+      },
+      {
+        "database": "shared-state.db",
+        "a": "old_process",
+        "b": "recovery_h22",
+        "same_file_id": false
+      },
+      {
+        "database": "shared-state.db",
+        "a": "old_process",
+        "b": "shadow_fhs",
+        "same_file_id": null
+      },
+      {
+        "database": "shared-state.db",
+        "a": "recovery_h22",
+        "b": "shadow_fhs",
+        "same_file_id": null
+      }
+    ],
+    "old_home_local_default_is_same_state_file": true,
+    "cron_cross_home_id_overlap": 3,
+    "cron_counts": {
+      "old_process": [
+        {
+          "profile": "hermes",
+          "jobs": 4,
+          "enabled": 3
+        },
+        {
+          "profile": "hgk-governed",
+          "jobs": 1,
+          "enabled": 0
+        }
+      ],
+      "local_default_alias": [
+        {
+          "profile": "hermes",
+          "jobs": 4,
+          "enabled": 3
+        },
+        {
+          "profile": "hgk-governed",
+          "jobs": 1,
+          "enabled": 0
+        }
+      ],
+      "recovery_h22": [
+        {
+          "profile": "live22",
+          "jobs": 3,
+          "enabled": 0
+        }
+      ],
+      "shadow_fhs": []
+    },
+    "dispatch_ceiling": "State-file identity is checked for named databases only; duplicated external platform polling/world effects not ruled out by this read-only observation. Recovery Cron entries are disabled in this snapshot.",
+    "live_gateway_readback": [
+      {
+        "listener_pid": 6096,
+        "port": 4976,
+        "http_status_probe": "BadStatusLine"
+      },
+      {
+        "listener_pid": 16952,
+        "port": 4971,
+        "version": "0.22.5",
+        "gateway_running": true,
+        "gateway_state": "running",
+        "gateway_pid": 16952,
+        "gateway_mode": "multiplex",
+        "active_agents": 0,
+        "active_sessions": 0
+      },
+      {
+        "listener_pid": 16952,
+        "port": 4975,
+        "http_status_probe": "BadStatusLine"
+      }
+    ]
+  },
+  "denied_path_classification": {
+    "HG-KSEOS": {
+      "total": 975,
+      "categories": {
+        "CRITICAL_OR_UNRESOLVED_RESULT": 922,
+        "PROTECTED_OWNER_DATA": 53
+      },
+      "classification_only": true,
+      "owner_disposition_required": true
+    },
+    "SBL": {
+      "total": 4,
+      "categories": {
+        "REBUILDABLE_CACHE_CANDIDATE": 1,
+        "PROTECTED_OWNER_DATA": 3
+      },
+      "classification_only": true,
+      "owner_disposition_required": true
+    }
+  },
+  "archive_readback": [
+    {
+      "asset": "critical-tracked-delta",
+      "result": "PASS",
+      "central_directory_entries": 21,
+      "sample_payload_crc_reads": 2,
+      "scope": "central directory plus representative payload CRC, not full-archive CRC or complete restore"
+    },
+    {
+      "asset": "Fabric",
+      "result": "PASS",
+      "central_directory_entries": 15508,
+      "sample_payload_crc_reads": 5,
+      "scope": "central directory plus representative payload CRC, not full-archive CRC or complete restore"
+    },
+    {
+      "asset": "current-r2",
+      "result": "PASS",
+      "central_directory_entries": 24487,
+      "sample_payload_crc_reads": 2,
+      "scope": "central directory plus representative payload CRC, not full-archive CRC or complete restore"
+    },
+    {
+      "asset": "current",
+      "result": "PASS",
+      "central_directory_entries": 24486,
+      "sample_payload_crc_reads": 2,
+      "scope": "central directory plus representative payload CRC, not full-archive CRC or complete restore"
+    },
+    {
+      "asset": "hermes-old-source",
+      "result": "PASS",
+      "central_directory_entries": 27417,
+      "sample_payload_crc_reads": 6,
+      "scope": "central directory plus representative payload CRC, not full-archive CRC or complete restore"
+    },
+    {
+      "asset": "recovery",
+      "result": "PASS",
+      "central_directory_entries": 23486,
+      "sample_payload_crc_reads": 2,
+      "scope": "central directory plus representative payload CRC, not full-archive CRC or complete restore"
+    },
+    {
+      "asset": "hermes-stable-source",
+      "result": "PASS",
+      "central_directory_entries": 23652,
+      "sample_payload_crc_reads": 6,
+      "scope": "central directory plus representative payload CRC, not full-archive CRC or complete restore"
+    },
+    {
+      "asset": "HG-KSEOS",
+      "result": "PASS",
+      "central_directory_entries": 280827,
+      "sample_payload_crc_reads": 5,
+      "scope": "central directory plus representative payload CRC, not full-archive CRC or complete restore"
+    },
+    {
+      "asset": "installation-launchers",
+      "result": "PASS",
+      "central_directory_entries": 33,
+      "sample_payload_crc_reads": 2,
+      "scope": "central directory plus representative payload CRC, not full-archive CRC or complete restore"
+    },
+    {
+      "asset": "PIPD",
+      "result": "PASS",
+      "central_directory_entries": 98063,
+      "sample_payload_crc_reads": 6,
+      "scope": "central directory plus representative payload CRC, not full-archive CRC or complete restore"
+    },
+    {
+      "asset": "SBL",
+      "result": "PASS",
+      "central_directory_entries": 218537,
+      "sample_payload_crc_reads": 5,
+      "scope": "central directory plus representative payload CRC, not full-archive CRC or complete restore"
+    }
+  ],
+  "edit_scope": {
+    "original_source_readback": [
+      {
+        "alias": "old_source",
+        "head": "f97608f178d1ffeca59860195ab7da295f7c8e5f",
+        "tracked_changed_count": 3,
+        "staged_count": 0
+      },
+      {
+        "alias": "recovery_source",
+        "head": "bf0203a794a07aac3ff764972ab9087baa4e4f4e",
+        "tracked_changed_count": 0,
+        "staged_count": 0
+      },
+      {
+        "alias": "shadow_source",
+        "head": "bf0203a794a07aac3ff764972ab9087baa4e4f4e",
+        "tracked_changed_count": 0,
+        "staged_count": 0
+      }
+    ],
+    "original_three_tracked_patch_bytes": [
+      {
+        "path": "apps/desktop/src/lib/model-status-label.test.ts",
+        "matches_captured_backup": true
+      },
+      {
+        "path": "apps/desktop/src/lib/model-status-label.ts",
+        "matches_captured_backup": true
+      },
+      {
+        "path": "hermes_cli/update_contract.py",
+        "matches_captured_backup": true
+      }
+    ],
+    "all_three_match_captured_backup": true,
+    "original_repo_heads_and_configs": {
+      "repos": {
+        "Fabric": {
+          "head": "765df6289cfb7730aa56efbd522d76df6ec9809a",
+          "head_unchanged": true,
+          "branch": "far/far-031-fhs-msc-all-pass-20261031",
+          "staged_tracked_files": 0,
+          "unstaged_tracked_files": 2
+        },
+        "HG-KSEOS": {
+          "head": "f5474257aa7d2005937867340f4cd01b39751129",
+          "head_unchanged": true,
+          "branch": "candidate/r18-fhs-skeleton-spine-20261029",
+          "staged_tracked_files": 0,
+          "unstaged_tracked_files": 0
+        },
+        "SBL": {
+          "head": "826ca066a1c2df2976c0d402018b79e1c79a444f",
+          "head_unchanged": true,
+          "branch": "candidate/r14-ts15-kinds",
+          "staged_tracked_files": 0,
+          "unstaged_tracked_files": 0
+        },
+        "PIPD": {
+          "head": "3b48c262f4174217cb35391c6da22bc53f068755",
+          "head_unchanged": true,
+          "branch": "candidate/r21-far-20261101",
+          "staged_tracked_files": 0,
+          "unstaged_tracked_files": 3
+        }
+      },
+      "original_configs": [
+        {
+          "home_alias": "current",
+          "profile_alias": "default",
+          "unchanged": true
+        },
+        {
+          "home_alias": "current",
+          "profile_alias": "hgk-governed",
+          "unchanged": true
+        },
+        {
+          "home_alias": "current",
+          "profile_alias": "hgk-oracle-owner",
+          "unchanged": true
+        },
+        {
+          "home_alias": "recovery",
+          "profile_alias": "default",
+          "unchanged": true
+        },
+        {
+          "home_alias": "recovery",
+          "profile_alias": "hgk-governed",
+          "unchanged": true
+        }
+      ],
+      "all_original_heads_unchanged": true,
+      "all_original_configs_unchanged": true
+    },
+    "task_authored_roots": [
+      "task work/ helpers and private evidence",
+      "task outputs/ deliverables",
+      "isolated Shadow state/PM dependencies",
+      "Fabric candidate clone: INTEGRATION report/index/reproducer only",
+      "task-local pinned SDK short-path junction"
+    ],
+    "authorized_original_home_auxiliary_writes": [
+      "official backup operation lock only; original config bytes verified unchanged",
+      "One explicitly requested GUI acceptance test created a new synthetic conversation in existing recovery Home; normal live activity continues."
+    ],
+    "not_claimed": "No initial binary patch freeze for all dirty files; no proof of complete DB byte invariance during normal live Gateway activity; no complete restoration of external worktrees/protected keys."
+  },
+  "H01_H22": [
+    {
+      "id": "H01",
+      "status": "HOLD",
+      "evidence_ceiling": "原生 fhs Backend 身份 PASS；GUI recovery/default PASS；Desktop→fhs 未測"
+    },
+    {
+      "id": "H02",
+      "status": "PASS",
+      "evidence_ceiling": "隔離 Backend 啟動；既有新版 Desktop 真啟動及單次對話，限此切片"
+    },
+    {
+      "id": "H03",
+      "status": "HOLD",
+      "evidence_ceiling": "原 Skill 位元同一且 native skill_view 真載入；Startup 自動觸發未測"
+    },
+    {
+      "id": "H04",
+      "status": "HOLD",
+      "evidence_ceiling": "r2 副本同 SHA；原 Reader 對本次 v2 Source 採納未綁"
+    },
+    {
+      "id": "H05",
+      "status": "HOLD",
+      "evidence_ceiling": "GUI 選用 Go model 並有 usage/回覆；服務端實際模型身份未捕捉"
+    },
+    {
+      "id": "H06",
+      "status": "HOLD",
+      "evidence_ceiling": "原三 Lane actual-served 未測"
+    },
+    {
+      "id": "H07",
+      "status": "HOLD",
+      "evidence_ceiling": "錯 Provider×Model 拒絕 PASS；GUI Go 正例 PASS；Shadow Go/OpenAI HOLD"
+    },
+    {
+      "id": "H08",
+      "status": "HOLD",
+      "evidence_ceiling": "原生 Session 建立/持久 ID PASS；原 durable Goal Queue ACK 未證"
+    },
+    {
+      "id": "H09",
+      "status": "HOLD",
+      "evidence_ceiling": "原 SBL/PIPD 真編譯 PI/PD 和三份 Draft SPEC；原 Owner/Reader ACK 未證"
+    },
+    {
+      "id": "H10",
+      "status": "HOLD",
+      "evidence_ceiling": "原 Fabric 分流正反例 PASS；Active→Loaded→Consumed/Native 准入未證"
+    },
+    {
+      "id": "H11",
+      "status": "HOLD",
+      "evidence_ceiling": "缺本次原 Owner Envelope/Permit；未自簽"
+    },
+    {
+      "id": "H12",
+      "status": "NOT_RUN",
+      "evidence_ceiling": "未執行受原 HGK Permit 管控的世界效果"
+    },
+    {
+      "id": "H13",
+      "status": "HOLD",
+      "evidence_ceiling": "新空白測試 Session Backend 重啟 Resume PASS；舊 Session/效果 Reconcile 未測"
+    },
+    {
+      "id": "H14",
+      "status": "NOT_RUN",
+      "evidence_ceiling": "多 Session 競爭與 WorkID 隔離未測"
+    },
+    {
+      "id": "H15",
+      "status": "NOT_RUN",
+      "evidence_ceiling": "真切換正式 Profile/Model 未測；設定頁選項可見而已"
+    },
+    {
+      "id": "H16",
+      "status": "HOLD",
+      "evidence_ceiling": "缺 Native ACK 拒絕 PASS；完整 Injection/YOLO 未測"
+    },
+    {
+      "id": "H17",
+      "status": "HOLD",
+      "evidence_ceiling": "無本次原 Protected Checker 收據"
+    },
+    {
+      "id": "H18",
+      "status": "HOLD",
+      "evidence_ceiling": "Skill copy/load/view PASS；Plugin ConsumerUsed 未證"
+    },
+    {
+      "id": "H19",
+      "status": "HOLD",
+      "evidence_ceiling": "Session idempotency retry 去重 PASS；原 Grant/Settlement/UNKNOWN_EFFECT 未重測"
+    },
+    {
+      "id": "H20",
+      "status": "HOLD",
+      "evidence_ceiling": "Git HEAD/blob、SQLite/Session 還原抽驗 PASS；全套回退保全未閉合"
+    },
+    {
+      "id": "H21",
+      "status": "PASS",
+      "evidence_ceiling": "受保護項 HOLD 時仍完成合法 Read/Draft SPEC/PI/PD"
+    },
+    {
+      "id": "H22",
+      "status": "HOLD",
+      "evidence_ceiling": "本次無原 Native 全鏈/Checker/actual-served 完整證據"
+    }
+  ]
+}
