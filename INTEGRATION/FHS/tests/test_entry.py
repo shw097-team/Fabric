@@ -87,7 +87,7 @@ class RouteTests(unittest.TestCase):
           ('non_string_task',lambda d:d['routes'][0].__setitem__('task_class',42),False),
           ('list_type_affected',lambda d:d['routes'][0].__setitem__('affected_repos','fabric'),False),
           ('duplicate_affected',lambda d:d['routes'][0].__setitem__('affected_repos',['fabric','fabric']),False),
-          ('false_archived',lambda d:d['historical_repositories']['pipd'].__setitem__('archived',True),False),
+          ('unarchived_historical',lambda d:d['historical_repositories']['pipd'].__setitem__('archived',False),False),
           ('authority_smuggling_field',lambda d:d['routes'][0].__setitem__('permit','GRANTED'),False),
           ('duplicate_task',lambda d:d['routes'].append(copy.deepcopy(d['routes'][0])),False),
           ('unknown_route',lambda d:d['routes'][0].__setitem__('task_class','new_task'),False),
@@ -114,7 +114,7 @@ class RouteTests(unittest.TestCase):
         e=self.base['historical_repositories']['pipd']
         self.assertEqual(e['role'],'HISTORICAL_CANONICAL_MOVED_TO_SBL')
         self.assertEqual(e['write_authority'],'NONE')
-        self.assertIs(e['archived'],False)
+        self.assertIs(e['archived'],True)
     def test_no_route_targets_historical(self):
         for r in self.base['routes']:
             self.assertNotEqual(r['primary_repo'],'pipd')
@@ -129,12 +129,12 @@ class RouteTests(unittest.TestCase):
     def test_historical_pointer_tampering_rejected(self):
         for field,value,error in (('full_name','other/repo','HISTORICAL_SEMANTICS_pipd'),
                                   ('role','ACTIVE','HISTORICAL_SEMANTICS_pipd'),
-                                  ('archived',True,'HISTORICAL_ACTIVE_pipd'),
+                                  ('archived',False,'HISTORICAL_ACTIVE_pipd'),
                                   ('write_authority','PUSH','HISTORICAL_WRITE_pipd')):
             with self.subTest(field=field):
                 d=copy.deepcopy(self.base);d['historical_repositories']['pipd'][field]=value
                 self.assertIn(error,nav.validate(d))
-        d=copy.deepcopy(self.base);d['historical_repositories']['pipd']={'full_name':'shw097-team/PIPD-LS-SP','default_branch':'main','role':'HISTORICAL_CANONICAL_MOVED_TO_SBL','archived':False}
+        d=copy.deepcopy(self.base);d['historical_repositories']['pipd']={'full_name':'shw097-team/PIPD-LS-SP','default_branch':'main','role':'HISTORICAL_CANONICAL_MOVED_TO_SBL','archived':True}
         self.assertIn('HISTORICAL_FIELDS_pipd',nav.validate(d))
         d=copy.deepcopy(self.base);d['historical_repositories']={}
         self.assertIn('HISTORICAL_SET',nav.validate(d))

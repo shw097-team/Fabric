@@ -106,7 +106,10 @@ def validate(d):
             errors.append("HISTORICAL_TYPES_" + key)
         if (item.get("full_name"), item.get("default_branch"), item.get("role")) != (name, "main", role):
             errors.append("HISTORICAL_SEMANTICS_" + key)
-        if item.get("archived") is not False:
+        # The historical repository was archived on GitHub (measured 2026-11-03). The field must stay a
+        # real bool — checked just above — and it must now be True: an unarchived historical entry is a
+        # repository that can still be written to, which is exactly what this route table forbids.
+        if item.get("archived") is not True:
             errors.append("HISTORICAL_ACTIVE_" + key)
         if type(item.get("write_authority")) is not str or item.get("write_authority") != "NONE":
             errors.append("HISTORICAL_WRITE_" + key)

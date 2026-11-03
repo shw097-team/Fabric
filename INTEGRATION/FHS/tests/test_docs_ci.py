@@ -28,7 +28,7 @@ class CIBaselineTests(unittest.TestCase):
         self.assertEqual(m['schema_version'],'FHS-NAV/v2')
         self.assertNotIn('pipd',m['repositories'])
         self.assertEqual(m['historical_repositories']['pipd']['write_authority'],'NONE')
-        self.assertIs(m['historical_repositories']['pipd']['archived'],False)
+        self.assertIs(m['historical_repositories']['pipd']['archived'],True)
         self.assertFalse(any(r['primary_repo']=='pipd' or 'pipd' in r['affected_repos'] for r in m['routes']))
         self.assertEqual(m['effect_permission'],'NONE')
         self.assertEqual(m['source_state'],'PROPOSED_NOT_OWNER_RATIFIED')
