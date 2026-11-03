@@ -37,7 +37,7 @@ local drafts continue.
 | field | value |
 |---|---|
 | role | `HISTORICAL_CANONICAL_MOVED_TO_SBL` |
-| archived | `false` — it is public and readable, and this entry does not claim it was archived |
+| archived | `true` — archived on GitHub on 2026-11-03 and read back from the API (`shw097-team/PIPD-LS-SP`); it stays public and readable, and its tags and assets are unchanged |
 | write authority | `NONE` — no route may target it, and it is never HEAD-polled |
 
 It keeps its tags, preview assets and licence as the release record of the pre-cutover line. The canonical

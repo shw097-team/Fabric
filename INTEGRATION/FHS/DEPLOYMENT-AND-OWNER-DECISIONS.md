@@ -160,3 +160,22 @@ This section is appended; §1–§7 above are the v1 deployment record and are n
 
 The route now names the real writer. It does **not** ratify any original domain: every route result still
 reports `original_reader_verified=false` and `owner_ratification_verified=false`.
+
+## 9. PIPD archive readback — `archived=true` (2026-11-03)
+
+This section is appended; §1–§8 are not rewritten. `FHS-NAV/v2` is **not** bumped to v3: only the truth
+value of one historical field changes.
+
+| item | value |
+|---|---|
+| source of truth | `GET https://api.github.com/repos/shw097-team/PIPD-LS-SP` → `"archived": true`, read back 2026-11-03 (the archive was performed by a repository admin with the Administration scope, which an earlier PAT-scoped attempt did not have) |
+| change | `repository-map.json`: `historical_repositories.pipd.archived` `false` → `true`. Nothing else in the map moves |
+| validator | `validate_entry.py` still refuses a non-bool `archived` (`HISTORICAL_TYPES_pipd`), and now refuses **`archived=false`** as `HISTORICAL_ACTIVE_pipd`; the historical repository still cannot be an active repository, a route target, an affected repository or a HEAD sample |
+| tests | `tests/test_entry.py` mutation and shape cases and `tests/test_docs_ci.py` now assert the archived state; the remaining negative cases (reactivation, shadowing, route spoofing, unknown field, unknown task) are unchanged |
+| unchanged | `effect_permission=NONE`, `source_state=PROPOSED_NOT_OWNER_RATIFIED`, `unknown_route=HOLD_AFFECTED_WRITE_ONLY`, six task classes, `pipd_canonical` → `sbl`, `write_authority=NONE`, `INTEGRATION/MANIFEST.json` |
+| evidence | `python INTEGRATION/FHS/validate_entry.py` → `STATIC_VALID_ONLY`; `python INTEGRATION/FHS/validate_entry.py --route pipd_canonical` → primary `sbl`; `python -m unittest discover -s INTEGRATION/FHS/tests`; `fhs-nav-static` on this pull request |
+| rollback | revert this merge commit; the map returns to `archived=false`, which then contradicts GitHub again — so a revert is only correct if the repository is unarchived first |
+
+The archive is a GitHub fact about a historical repository. It does **not** ratify any original domain, revive
+a writer, or change what any route may claim: every route still reports `original_reader_verified=false` and
+`owner_ratification_verified=false`.
