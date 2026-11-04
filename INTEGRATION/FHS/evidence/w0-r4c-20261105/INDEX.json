@@ -1,0 +1,579 @@
+{
+  "schema": "FHS-W0/IMPLEMENTATION_EVIDENCE_INDEX/v1",
+  "identity": "FABRIC_HOSTED_NON_AUTHORITATIVE_INDEX",
+  "effect_permission": "NONE",
+  "claim_ceiling": "AUTHOR_LOCAL_TEST_NOT_NATIVE",
+  "candidate": {
+    "zip_sha256": "f3838fb095e56ea8d636e5c52f4bd69e9d529d110569b87376c168ea35ab2a2a",
+    "body_sha256": "56d0df3db6765ee780689ea687824ca891f5a366797e04cfe6ae7c0928173f2a",
+    "body_bytes": 463034,
+    "chapters": 50
+  },
+  "work_packages": {
+    "WP-FHS-00": {
+      "status": "DONE_LOCAL",
+      "scope": "source probe, manifest two-way coverage, three-repo head drift, host probe"
+    },
+    "WP-FHS-01": {
+      "status": "DONE_LOCAL",
+      "scope": "authority classes + typed HOLDs; zero write authority, zero permit mint"
+    },
+    "WP-FHS-15": {
+      "status": "DONE_LOCAL",
+      "scope": "three heterogeneous SPECs + Goal to FUO chains"
+    },
+    "WP-FHS-16": {
+      "status": "PARTIAL",
+      "scope": "Need to Occupant matrix; 28 occupant pin holds + 2 host pin holds; no install"
+    },
+    "WP-FHS-19": {
+      "status": "PARTIAL",
+      "scope": "executable supply-chain gate; source package ships no SBOM, so WP19 DONE not claimed"
+    },
+    "WP-FHS-21": {
+      "status": "DONE_LOCAL",
+      "scope": "96 typed oracle rows, S1-S5 seams, 22/36/E26/84/25/22, W1-W4 handoff; TraceClosure AUTHOR_STATIC only"
+    }
+  },
+  "lanes": {
+    "wp00": {
+      "lane": "wp00",
+      "claim_ceiling": "AUTHOR_LOCAL_TEST",
+      "counts": {
+        "body_bytes": 463034,
+        "body_chapter_ids": 50,
+        "body_declared_chapters": 50,
+        "body_h1": 50,
+        "body_sha256": "56d0df3db6765ee780689ea687824ca891f5a366797e04cfe6ae7c0928173f2a",
+        "checks_fail": 0,
+        "checks_pass": 25,
+        "checks_total": 28,
+        "checks_warn_not_observed": 1,
+        "checks_warn_observed": 2,
+        "dirty_Fabric": 1948,
+        "dirty_HG_KSEOS": 2,
+        "dirty_SBL": 58837,
+        "dirty_total": 60787,
+        "first_fail": "NONE",
+        "manifest_bytes_mismatches": 0,
+        "manifest_closure_complete_members": 591,
+        "manifest_declared_total_field": 591,
+        "manifest_declared_unique": 591,
+        "manifest_duplicate_declarations": 0,
+        "manifest_missing": 0,
+        "manifest_present_files": 592,
+        "manifest_self_excluded": 1,
+        "manifest_sha_mismatches": 0,
+        "manifest_undeclared": 0,
+        "neg_cases": 3,
+        "probe_repro_exit_code": 0,
+        "probe_repro_matches_delivered": true,
+        "repos": 3,
+        "repos_local_aligned_with_remote": 0,
+        "repos_local_drifted_from_remote": 3,
+        "repos_remote_declaration_conflicts": 0,
+        "source31_parseable": 31,
+        "source31_resolved_on_disk": 31,
+        "source31_total": 31,
+        "source31_unparseable": 0,
+        "unittest_exit_code": 0,
+        "unittest_ok": true,
+        "unittest_tests_run": 13,
+        "upper22_matches": 23,
+        "upper22_parseable": 22,
+        "upper22_total": 22,
+        "upper22_unparseable": 0,
+        "zip_bytes": 3281542,
+        "zip_duplicate_member_names": 0,
+        "zip_members": 592,
+        "zip_members_unreadable": 0,
+        "zip_sha256": "f3838fb095e56ea8d636e5c52f4bd69e9d529d110569b87376c168ea35ab2a2a"
+      },
+      "holds": [],
+      "tests": [
+        "python source_probe.py --zip <S>.zip --source-root <S> --out out",
+        "python -m unittest discover -s tests -v",
+        "python tests/_evidence.py"
+      ]
+    },
+    "wp01": {
+      "lane": "WP-FHS-01",
+      "claim_ceiling": "AUTHOR_LOCAL_TEST",
+      "counts": {
+        "entries_total": 189,
+        "by_class": {
+          "CANONICAL_ORIGINAL": 55,
+          "GOVERNANCE_MIRROR": 21,
+          "SKILL_SIDECAR": 3,
+          "HISTORICAL_ARCHIVED": 1,
+          "AUTHOR_CANDIDATE": 109
+        },
+        "by_group": {
+          "SOURCE31": 31,
+          "ORACLE96": 96,
+          "SEAM5": 5,
+          "REPO_PINS": 37,
+          "REPO_MAP": 11,
+          "AUTHOR_ROUND": 8,
+          "SKILL_PLUGIN": 1
+        },
+        "source31_declared": 31,
+        "source31_routed": 31,
+        "entries_without_evidence_field": 0,
+        "may_authorize_write_true": 0,
+        "may_mint_permit_true": 0,
+        "holds_total": 4,
+        "holds_by_code": {
+          "AUTHORITY_MIRROR_IDENTITY_UNVERIFIED": 1,
+          "AUTHORITY_SCOPE_UNBOUND": 1,
+          "CANONICAL_COMPILER_NOT_RUN": 1,
+          "ORIGINAL_READER_CURRENTNESS_UNVERIFIED": 1
+        },
+        "rules_implemented": 9,
+        "rules_required": 6
+      },
+      "holds": [
+        "H-AUTH-R4C-001-SCOPE",
+        "H-AUTH-R4C-002-MIRROR-ID",
+        "H-AUTH-R4C-003-COMPILER",
+        "H-AUTH-R4C-004-CURRENTNESS"
+      ],
+      "tests": [
+        "python tests/make_fixtures.py",
+        "python authority_router.py --source-root \"C:/Projects/Agent_Workspace/知識庫/實作相關DOC/Fabric vNext/Semantic World OS Fabric/FHS／FHS-MSC／SBL/FHS/PIPD-LS-PKG/定案/W0/FHS_PIPD-LS-PKG_W0_R4C\" --out out",
+        "python -m unittest discover -s tests -p \"test_*.py\" -v > tests/UNITTEST_RAW.log 2>&1"
+      ]
+    },
+    "wp15": {
+      "lane": "WP-FHS-15",
+      "claim_ceiling": "AUTHOR_LOCAL_TEST",
+      "counts": {
+        "chapters": 50,
+        "work_packages": 22,
+        "edges": 36,
+        "e26": 1,
+        "design84_cards": 84,
+        "wave_split_25": 25,
+        "w0_required": 22,
+        "sources31": 31,
+        "r15_949": 949,
+        "cell192": 192,
+        "parent50": 50,
+        "child149": 149,
+        "oracle96": 96,
+        "tech485": 485,
+        "case393": 393,
+        "fuo": 13,
+        "product_requirement_ids": 11,
+        "architecture_requirement_ids": 8,
+        "program_requirement_ids": 3,
+        "domain_stages": 5,
+        "seams": 5,
+        "adr": 8,
+        "acc_plus": 9,
+        "acc_minus": 9,
+        "goal_chains": 11,
+        "counter_reconciliation_rows": 7
+      },
+      "holds": [],
+      "tests": [
+        null,
+        null,
+        null
+      ]
+    },
+    "wp16": {
+      "lane": "WP-FHS-16",
+      "claim_ceiling": "AUTHOR_LOCAL_TEST",
+      "counts": {
+        "needs_total": 30,
+        "required_true": 30,
+        "required_false": 0,
+        "selected": 0,
+        "occupant_pin_hold": 28,
+        "host_pin_hold": 2,
+        "nofit": 0,
+        "unbound": 0,
+        "install_state": {
+          "NOT_INSTALLED": 0,
+          "PIN_HOLD": 28,
+          "HOST_PIN_HOLD": 2
+        },
+        "occupant_kind": {
+          "DONOR": 4,
+          "METHOD": 11,
+          "HOST": 15,
+          "NONE": 0
+        },
+        "license_state": {
+          "LICENSE_READER_HOLD": 29,
+          "LICENSE_DECLARED_HOST_ACK_PENDING": 1
+        },
+        "windows_fit": {
+          "UNBOUND": 30
+        },
+        "with_translator": 15,
+        "unbound_field_occurrences": 30,
+        "translators": 30,
+        "translator_donor": 16,
+        "translator_method": 14,
+        "translator_is_installer_true": 0,
+        "wp16_items_total": 49,
+        "wp16_items_unselected": 19,
+        "readback_evidence_entries": 330,
+        "readback_evidence_unresolved": 0,
+        "tech485_rows_rehashed": 485,
+        "declaration_verdict": "MATCH",
+        "mismatches": 0,
+        "tests_total": 30,
+        "tests_failed": 0,
+        "tests_verdict": "OK"
+      },
+      "holds": [],
+      "tests": [
+        "python need_occupant.py --source-root \"<SOURCE_ROOT>\" --out out",
+        "python -m unittest discover -s tests -v > tests/UNITTEST_RAW.log 2>&1",
+        "python make_lane_report.py --lane-dir . --source-root \"<SOURCE_ROOT>\""
+      ]
+    },
+    "wp19": {
+      "lane": "wp19",
+      "claim_ceiling": "AUTHOR_SUPPLY_CHAIN_LOCAL",
+      "counts": {
+        "checks_implemented": 7,
+        "verdict_enum": [
+          "PASS",
+          "FAIL",
+          "HOLD",
+          "NOT_APPLICABLE"
+        ],
+        "s_tree": {
+          "files_scanned": 592,
+          "dirs_scanned": 38,
+          "bytes_scanned": 17466915,
+          "python_files": 9,
+          "dependency_manifests": [],
+          "tree_digest_sha256": "4f7c769937591557221c96b570063d7977f3d850f20195f43eb43a62cd25ff28",
+          "summary": {
+            "PASS": 2,
+            "FAIL": 1,
+            "HOLD": 3,
+            "NOT_APPLICABLE": 1,
+            "fail_codes": [
+              "SBOM_MISSING"
+            ],
+            "checks_total": 7
+          },
+          "verdicts": {
+            "LICENSE_PRESENT": "HOLD",
+            "NOTICE_PRESENT": "HOLD",
+            "SBOM_PRESENT_AND_PARSABLE": "FAIL",
+            "SBOM_COMPONENT_RECONCILE": "NOT_APPLICABLE",
+            "DEPENDENCY_DECLARED": "HOLD",
+            "SECRET_PATTERN_SCAN": "PASS",
+            "CI_ENTRY_PRESENT": "PASS"
+          },
+          "codes": {
+            "LICENSE_PRESENT": "LICENSE_ONLY_VENDORED_COPIES",
+            "NOTICE_PRESENT": "NOTICE_BASIS_ABSENT",
+            "SBOM_PRESENT_AND_PARSABLE": "SBOM_MISSING",
+            "SBOM_COMPONENT_RECONCILE": "SBOM_NOT_AVAILABLE",
+            "DEPENDENCY_DECLARED": "DEPENDENCY_MANIFEST_MISSING",
+            "SECRET_PATTERN_SCAN": "NO_SECRET_PATTERN",
+            "CI_ENTRY_PRESENT": "CI_ENTRY_DOCUMENTED_COMMAND"
+          },
+          "exit_code": 1
+        },
+        "remote_readback_tree": {
+          "files_scanned": 7,
+          "summary": {
+            "PASS": 2,
+            "FAIL": 2,
+            "HOLD": 1,
+            "NOT_APPLICABLE": 2,
+            "fail_codes": [
+              "LICENSE_MISSING",
+              "SBOM_MISSING"
+            ],
+            "checks_total": 7
+          },
+          "exit_code": 1
+        },
+        "fixtures": {
+          "pos": {
+            "files": 12,
+            "tree_digest_sha256": "32dc329b580087d91484be7392209eb301a9343883aabebbc411f44d2340486c",
+            "exit_code": 0,
+            "fail_codes": [],
+            "verdicts": {
+              "LICENSE_PRESENT": "PASS",
+              "NOTICE_PRESENT": "PASS",
+              "SBOM_PRESENT_AND_PARSABLE": "PASS",
+              "SBOM_COMPONENT_RECONCILE": "PASS",
+              "DEPENDENCY_DECLARED": "PASS",
+              "SECRET_PATTERN_SCAN": "PASS",
+              "CI_ENTRY_PRESENT": "PASS"
+            }
+          },
+          "neg_notice_missing": {
+            "files": 11,
+            "tree_digest_sha256": "5872f59990e5b282c2a4ee3d23b19250d51f2a18095906d5cfc8e2bda5e18bc0",
+            "exit_code": 1,
+            "fail_codes": [
+              "NOTICE_MISSING"
+            ],
+            "verdicts": {
+              "LICENSE_PRESENT": "PASS",
+              "NOTICE_PRESENT": "FAIL",
+              "SBOM_PRESENT_AND_PARSABLE": "PASS",
+              "SBOM_COMPONENT_RECONCILE": "PASS",
+              "DEPENDENCY_DECLARED": "PASS",
+              "SECRET_PATTERN_SCAN": "PASS",
+              "CI_ENTRY_PRESENT": "PASS"
+            }
+          },
+          "neg_sbom_mismatch": {
+            "files": 12,
+            "tree_digest_sha256": "e574409f49e0e738b03cf67f2eb36f9b11e8aabac41e6f6f9aaf80d9222a74c0",
+            "exit_code": 1,
+            "fail_codes": [
+              "SBOM_COMPONENT_MISMATCH"
+            ],
+            "verdicts": {
+              "LICENSE_PRESENT": "PASS",
+              "NOTICE_PRESENT": "PASS",
+              "SBOM_PRESENT_AND_PARSABLE": "PASS",
+              "SBOM_COMPONENT_RECONCILE": "FAIL",
+              "DEPENDENCY_DECLARED": "PASS",
+              "SECRET_PATTERN_SCAN": "PASS",
+              "CI_ENTRY_PRESENT": "PASS"
+            }
+          },
+          "neg_undeclared_dep": {
+            "files": 12,
+            "tree_digest_sha256": "771b1b6ed13a9838940757237476bded978c2dcb17e98e039cb2d47a31077081",
+            "exit_code": 1,
+            "fail_codes": [
+              "UNDECLARED_DEPENDENCY"
+            ],
+            "verdicts": {
+              "LICENSE_PRESENT": "PASS",
+              "NOTICE_PRESENT": "PASS",
+              "SBOM_PRESENT_AND_PARSABLE": "PASS",
+              "SBOM_COMPONENT_RECONCILE": "PASS",
+              "DEPENDENCY_DECLARED": "FAIL",
+              "SECRET_PATTERN_SCAN": "PASS",
+              "CI_ENTRY_PRESENT": "PASS"
+            }
+          },
+          "neg_secret": {
+            "files": 13,
+            "tree_digest_sha256": "7fda1b1a8d2382c0987e3ee9af04da045985ed39da60f158840bc6e768a97773",
+            "exit_code": 1,
+            "fail_codes": [
+              "SECRET_PATTERN_FOUND"
+            ],
+            "verdicts": {
+              "LICENSE_PRESENT": "PASS",
+              "NOTICE_PRESENT": "PASS",
+              "SBOM_PRESENT_AND_PARSABLE": "PASS",
+              "SBOM_COMPONENT_RECONCILE": "PASS",
+              "DEPENDENCY_DECLARED": "PASS",
+              "SECRET_PATTERN_SCAN": "FAIL",
+              "CI_ENTRY_PRESENT": "PASS"
+            }
+          }
+        },
+        "tests": {
+          "ran": 29,
+          "ok": true,
+          "log": "tests/UNITTEST_RAW.log"
+        }
+      },
+      "holds": [],
+      "tests": [
+        "python supply_chain_gate.py --tree \"C:/Projects/Agent_Workspace/知識庫/實作相關DOC/Fabric vNext/Semantic World OS Fabric/FHS／FHS-MSC／SBL/FHS/PIPD-LS-PKG/定案/W0/FHS_PIPD-LS-PKG_W0_R4C\" --out out/SUPPLY_CHAIN_RAW.json --mode author",
+        "python supply_chain_gate.py --tree \"C:/Projects/Agent_Workspace/var/FHS_W0_IMPLEMENTATION_20261105_0305/source_readback/remote\" --out out/REMOTE_READBACK_RAW.json --mode author",
+        "python supply_chain_gate.py --tree fixtures/pos --out out/fixture_runs/pos.json --mode author --quiet"
+      ]
+    },
+    "wp21": {
+      "lane": "WP-FHS-21",
+      "claim_ceiling": "AUTHOR_LOCAL_TEST",
+      "counts": {
+        "oracle_cases": 96,
+        "oracle_fixtures": 96,
+        "oracle_rows_expected_equal_observed": 96,
+        "oracle_base_static_pass": 96,
+        "replay_rows": 288,
+        "replay_consistent": 288,
+        "replay_inconsistent": 0,
+        "replay_fixture_sha_match": 288,
+        "wp": 22,
+        "edges": 36,
+        "cards": 84,
+        "wave_join_25": 25,
+        "w0_trace22": 22,
+        "seams": 5,
+        "seams_sealed": 5,
+        "swap_rows": 48,
+        "swap_matched": 48,
+        "trace_edges": 110,
+        "case_types": 12,
+        "oracle_types": 8,
+        "w1_w4_waves": 4,
+        "unittest_tests": 25
+      },
+      "holds": [
+        "NATIVE_NOT_RUN",
+        "ORIGINAL_READER_ACK_UNOBSERVED",
+        "H-WAVE-25",
+        "E26_UNSATISFIED",
+        "ORACLE_STATIC_ONLY"
+      ],
+      "tests": [
+        "python trace_runner.py --source-root <FHS_PIPD-LS-PKG_W0_R4C> --out ./out",
+        "python -m unittest discover -s tests -v",
+        "python - <<'PY' (sha256 of deliverables)"
+      ]
+    }
+  },
+  "gstack": {
+    "summary": {
+      "PASS": 21,
+      "FAIL": 0,
+      "HOLD": 0
+    },
+    "rows": [
+      {
+        "invariant": "I1_SOURCE_IDENTITY",
+        "verdict": "PASS"
+      },
+      {
+        "invariant": "I1_CHAPTERS",
+        "verdict": "PASS"
+      },
+      {
+        "invariant": "I2_WP22",
+        "verdict": "PASS"
+      },
+      {
+        "invariant": "I2_EDGE36",
+        "verdict": "PASS"
+      },
+      {
+        "invariant": "I2_E26",
+        "verdict": "PASS"
+      },
+      {
+        "invariant": "I3_CARD84",
+        "verdict": "PASS"
+      },
+      {
+        "invariant": "I3_WAVE25",
+        "verdict": "PASS"
+      },
+      {
+        "invariant": "I3_REQUIRED22",
+        "verdict": "PASS"
+      },
+      {
+        "invariant": "I4_ORACLE96",
+        "verdict": "PASS"
+      },
+      {
+        "invariant": "I4_REPLAY288",
+        "verdict": "PASS"
+      },
+      {
+        "invariant": "I5_SOURCE31",
+        "verdict": "PASS"
+      },
+      {
+        "invariant": "I5_UPPER22",
+        "verdict": "PASS"
+      },
+      {
+        "invariant": "I6_SEAMS",
+        "verdict": "PASS"
+      },
+      {
+        "invariant": "I7_LANE_wp00",
+        "verdict": "PASS"
+      },
+      {
+        "invariant": "I7_LANE_wp01",
+        "verdict": "PASS"
+      },
+      {
+        "invariant": "I7_LANE_wp15",
+        "verdict": "PASS"
+      },
+      {
+        "invariant": "I7_LANE_wp16",
+        "verdict": "PASS"
+      },
+      {
+        "invariant": "I7_LANE_wp19",
+        "verdict": "PASS"
+      },
+      {
+        "invariant": "I7_LANE_wp21",
+        "verdict": "PASS"
+      },
+      {
+        "invariant": "I8_NO_PROMOTION",
+        "verdict": "PASS"
+      },
+      {
+        "invariant": "I9_MANIFEST_COVERAGE",
+        "verdict": "PASS"
+      }
+    ]
+  },
+  "e2e": {
+    "goal": "讓 FHS 在 W0 邊界內把一個 intent 轉成可驗證且可回讀的三份 SPEC",
+    "chains": 11,
+    "joined": 11,
+    "missing": 0,
+    "oracle96_rows": 96,
+    "oracle96_pass": 96,
+    "trace_scope": "AUTHOR_STATIC"
+  },
+  "holds": {
+    "counts": {
+      "carried_39": 39,
+      "additional_r4c": 14,
+      "round_lane": 11,
+      "round_gate": 2,
+      "total": 64
+    },
+    "note": "Every row is OPEN. No carried hold was resolved in this round; resolving one requires the named original reader."
+  },
+  "i0_findings": [
+    {
+      "id": "I0-PAIR-STALE",
+      "state": "FAIL",
+      "detail": "BODY_ANNEX_PAIR_READBACK.json does not carry the current body/annex sha prefixes"
+    },
+    {
+      "id": "I0-HOLDS-BODY-STALE",
+      "state": "FAIL",
+      "detail": "ADDITIONAL_SCOPED_HOLDS_r4c.candidate_body_sha256 does not equal the current candidate body sha"
+    },
+    {
+      "id": "I0-MANIFEST-COVERAGE",
+      "state": "PARTIAL",
+      "detail": "declared-vs-present differs; see manifest block (WP-00 recomputes with its own tool)"
+    }
+  ],
+  "not_claimed": [
+    "PIPD_CANONICAL",
+    "HGK_ADMITTED",
+    "HOST_NATIVE_E2E",
+    "PROTECTED_CHECKER",
+    "RELEASED",
+    "WP19_DONE",
+    "TraceClosure beyond AUTHOR_STATIC"
+  ]
+}
