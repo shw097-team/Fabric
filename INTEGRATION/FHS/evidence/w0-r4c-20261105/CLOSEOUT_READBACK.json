@@ -31,8 +31,12 @@
     "all_open": true
   },
   "packs": {
-    "w0_closeout_zip_sha256": "6bbab08fd24b8f5dfb8d23ae21c4754fb655736c1cfb28dc1d5170eab93f35f7",
-    "w1_intake_zip_sha256": "0024e2b97d7fd816d0e71a490db0768c77968696e3998ae38b03bf4bc0231bae"
+    "w0_closeout_zip_sha256": "2790430bdbad188467dfb1775a8b6ec3b34dbbdd3a128eb78b799d368056b4c4",
+    "w0_members": 622,
+    "w1_intake_zip_sha256": "9cbdb193f3f6ec650d7fecf0eecdf766d12c203008a090a1a9112136aa7e827e",
+    "w1_members": 19,
+    "w0_verdict": "W0_CLOSEOUT_PENDING",
+    "w1_verdict": "W1_AUTHOR_INTAKE_PACKAGE_COMPLETE_READER_PENDING"
   },
   "claim_ceiling": "AUTHOR_LOCAL_TEST",
   "not_claimed": [
@@ -46,5 +50,31 @@
     "RELEASED",
     "W1_TYPED_RECEIVER_ACCEPTED",
     "TraceClosure beyond AUTHOR_STATIC"
-  ]
+  ],
+  "repos": {
+    "Fabric": {
+      "pr": 27,
+      "head": "97745a7b1c4a188c7645c17cc34f3758ef995be2",
+      "state": "open",
+      "merged": false,
+      "green": 1,
+      "fail": 0
+    },
+    "HG-KSEOS": {
+      "pr": 11,
+      "head": "8da3cb3c942f38799dd481c9e784fc4c69cecb5c",
+      "state": "open",
+      "merged": false,
+      "green": 0,
+      "fail": 0
+    },
+    "SBL": {
+      "pr": 41,
+      "head": "58c8653b03059bd7dfb2bf98cb6f473dca395cf1",
+      "state": "open",
+      "merged": false,
+      "green": 6,
+      "fail": 0
+    }
+  }
 }
