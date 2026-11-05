@@ -1,45 +1,10 @@
 {
-  "schema": "FHS-W0/CLOSEOUT_READBACK_INDEX/v2",
-  "decision_id": "W0-FORMAL-20261105-1040",
-  "verdict": "W0_CLOSEOUT_PENDING",
-  "w0_all_six_wp_done": false,
-  "w1_intake_verdict": "W1_AUTHOR_INTAKE_PACKAGE_COMPLETE_READER_PENDING",
-  "w1_typed_receiver_accepted": false,
-  "wp19": {
-    "after": {
-      "fail": 1,
-      "fail_codes": [
-        "UNDECLARED_DEPENDENCY"
-      ],
-      "pass": 6
-    },
-    "real_root_head": "004e88913d5c1fb57e09e8d2bf744ef1547fecbc",
-    "repairs": [
-      "metadata.component.version 0.1.0 -> 0.1.1a5",
-      "test extra declares pytest>=8,<9",
-      "SBOM reconcile scoped to runtime dependencies; extras reported, not judged; new code SBOM_COMPONENT_MISSING_RUNTIME"
-    ],
-    "original_ci_reader_ack": "NOT_OBSERVED"
-  },
-  "wp16": {
-    "consumed": 12,
-    "bound": 1,
-    "holds": 11
-  },
-  "holds": {
-    "total": 70,
-    "all_open": true
-  },
-  "packs": {
-    "w0_closeout_zip_sha256": "749208ef2df37b397bd55e68c4aa2a093f612dc05301654bb0bc82cbe55d3599",
-    "w0_members": 626,
-    "w1_intake_zip_sha256": "9cbdb193f3f6ec650d7fecf0eecdf766d12c203008a090a1a9112136aa7e827e",
-    "w1_members": 19,
-    "w0_verdict": "W0_CLOSEOUT_PENDING",
-    "w1_verdict": "W1_AUTHOR_INTAKE_PACKAGE_COMPLETE_READER_PENDING",
-    "revision": 2
-  },
   "claim_ceiling": "AUTHOR_LOCAL_TEST",
+  "decision_id": "W0-FINAL-20261105-1203",
+  "holds": {
+    "all_open": true,
+    "total": 71
+  },
   "not_claimed": [
     "W0_FULL_CLOSEOUT_ACCEPTED",
     "W0_WAVE_CLOSEOUT_ACCEPTED_WITH_DEFERRED_EFFECTS",
@@ -52,30 +17,92 @@
     "W1_TYPED_RECEIVER_ACCEPTED",
     "TraceClosure beyond AUTHOR_STATIC"
   ],
+  "packs": {
+    "revision": 3,
+    "w0_closeout_zip_sha256": "4d020b2a49ff6e81efa1bc3cdae3f8635b407478d5ad603122fe24db24896b26",
+    "w0_members": 608,
+    "w1_intake_zip_sha256": "d6e79c7335e2aaf57387f45971ca7df2cae21a8b7c78eab866bcf644dc4256cc",
+    "w1_members": 20
+  },
   "repos": {
     "Fabric": {
-      "pr": 27,
-      "head": "97745a7b1c4a188c7645c17cc34f3758ef995be2",
-      "state": "open",
-      "merged": false,
+      "fail": 0,
       "green": 1,
-      "fail": 0
+      "head": "97745a7b1c4a188c7645c17cc34f3758ef995be2",
+      "merged": false,
+      "pr": 27,
+      "state": "open"
     },
     "HG-KSEOS": {
-      "pr": 11,
-      "head": "8da3cb3c942f38799dd481c9e784fc4c69cecb5c",
-      "state": "open",
-      "merged": false,
+      "fail": 0,
       "green": 0,
-      "fail": 0
+      "head": "8da3cb3c942f38799dd481c9e784fc4c69cecb5c",
+      "merged": false,
+      "pr": 11,
+      "state": "open"
     },
     "SBL": {
-      "pr": 41,
-      "head": "58c8653b03059bd7dfb2bf98cb6f473dca395cf1",
-      "state": "open",
-      "merged": false,
+      "fail": 0,
       "green": 6,
-      "fail": 0
+      "head": "58c8653b03059bd7dfb2bf98cb6f473dca395cf1",
+      "merged": false,
+      "pr": 41,
+      "state": "open"
     }
+  },
+  "schema": "FHS-W0/CLOSEOUT_READBACK_INDEX/v2",
+  "verdict": "W0_AUTHOR_LOCAL_CLOSEOUT_ACCEPTED_WITH_SCOPED_HOLDS",
+  "w0_all_six_wp_done": false,
+  "w0_full_closeout": false,
+  "w1_intake_verdict": "W1_AUTHOR_INTAKE_PACKAGE_COMPLETE_READER_PENDING",
+  "w1_state": "W1_AUTHOR_INTAKE_PACKAGE_COMPLETE_READER_PENDING",
+  "w1_typed_receiver_accepted": false,
+  "wp16": {
+    "bound": 1,
+    "consumed": 12,
+    "deferral_state": "REQUESTED_NOT_OBSERVED",
+    "holds": 11,
+    "pin_hold": 11
+  },
+  "wp19": {
+    "after": {
+      "exit": 0,
+      "fail": 0,
+      "pass": 7
+    },
+    "negatives": [
+      {
+        "case": "NEG-NOTICE-MISSING",
+        "expected": "NOTICE_MISSING",
+        "observed": "NOTICE_MISSING",
+        "verdict": "FLIP"
+      },
+      {
+        "case": "NEG-SECRET-PATTERN",
+        "expected": "SECRET_PATTERN_FOUND",
+        "observed": "SECRET_PATTERN_FOUND",
+        "verdict": "FLIP"
+      },
+      {
+        "case": "NEG-RUNTIME-DEP-UNDECLARED",
+        "expected": "UNDECLARED_DEPENDENCY",
+        "observed": "UNDECLARED_DEPENDENCY",
+        "verdict": "FLIP"
+      },
+      {
+        "case": "NEG-SBOM-COMPONENT",
+        "expected": "SBOM_COMPONENT_MISMATCH",
+        "observed": "SBOM_COMPONENT_MISMATCH",
+        "verdict": "FLIP"
+      }
+    ],
+    "original_ci_reader_ack": "NOT_OBSERVED",
+    "real_root_head": "004e88913d5c1fb57e09e8d2bf744ef1547fecbc",
+    "repairs": [
+      "metadata.component.version 0.1.0 -> 0.1.1a5",
+      "test extra declares pytest>=8,<9",
+      "SBOM reconcile scoped to runtime dependencies; extras reported, not judged; new code SBOM_COMPONENT_MISSING_RUNTIME"
+    ],
+    "strict_control": "UNDECLARED_DEPENDENCY"
   }
 }
