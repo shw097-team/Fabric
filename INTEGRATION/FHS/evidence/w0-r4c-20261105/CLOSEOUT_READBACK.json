@@ -1,0 +1,58 @@
+{
+  "schema": "FHS-W0/CLOSEOUT_READBACK_INDEX/v1",
+  "decision_id": "W0-CLOSEOUT-20261105-0832",
+  "verdict": "W0_CLOSEOUT_PENDING",
+  "w0_all_six_wp_done": false,
+  "w1_gate": "W1_SCOPED_SOURCE_DRAFT_GO",
+  "work_packages": {
+    "WP-FHS-00": "DONE_LOCAL",
+    "WP-FHS-01": "DONE_LOCAL",
+    "WP-FHS-15": "DONE_LOCAL",
+    "WP-FHS-16": "IMPLEMENTED_WITH_SCOPED_HOLD",
+    "WP-FHS-19": "IMPLEMENTED_ENTRY_ONLY",
+    "WP-FHS-21": "DONE_LOCAL"
+  },
+  "holds": {
+    "carried": 64,
+    "new": 4,
+    "total": 68,
+    "all_open": true
+  },
+  "wp19_real_root": {
+    "head": "004e88913d5c1fb57e09e8d2bf744ef1547fecbc",
+    "checks": {
+      "checks_total": 7,
+      "PASS": 5,
+      "FAIL": 2,
+      "HOLD": 0,
+      "NOT_APPLICABLE": 0,
+      "gate_exit": 1,
+      "fail_codes": [
+        "SBOM_COMPONENT_MISMATCH",
+        "UNDECLARED_DEPENDENCY"
+      ]
+    },
+    "original_ci_reader_ack": "NOT_OBSERVED"
+  },
+  "w1_ready_set": [
+    "WP02",
+    "WP03",
+    "WP04",
+    "WP05",
+    "WP07",
+    "WP11",
+    "WP17",
+    "WP20"
+  ],
+  "claim_ceiling": "AUTHOR_LOCAL_TEST",
+  "not_claimed": [
+    "W0_ALL_SIX_WP_DONE",
+    "WP19_DONE",
+    "PIPD_CANONICAL",
+    "HGK_ADMITTED",
+    "HOST_NATIVE_E2E",
+    "PROTECTED_CHECKER",
+    "RELEASED",
+    "TraceClosure beyond AUTHOR_STATIC"
+  ]
+}
