@@ -148,6 +148,37 @@ def _consumer_ack_from_receipt(receipt: Any, *, subject: str, scope: str,
     if not isinstance(digest, str) or not _HEX64.match(digest.lower()):
         refuse(f"receipt digest is {digest!r}, not a sha256 hex digest of acknowledged bytes")
 
+    # The dict is a claim; the files are the evidence. Without this, a hand-built dict carrying the
+    # right strings (`state=OBSERVED`, `verified=true`, `reader=…`, `evidence_class=HOST_RAW`, a hex
+    # `digest`) was accepted and flipped `consumer_ack_observed`, with no bytes anywhere on disk.
+    receipt_path = receipt.get("receipt_path")
+    raw_path = receipt.get("raw_path")
+    if not isinstance(receipt_path, str) or not receipt_path.strip():
+        refuse("receipt carries no receipt_path, so the acknowledged bytes cannot be re-read")
+    if not isinstance(raw_path, str) or not raw_path.strip():
+        refuse("receipt carries no raw_path, so the acknowledged bytes cannot be re-read")
+    consumer_id = receipt.get("consumer_id")
+    if not isinstance(consumer_id, str) or not consumer_id.strip():
+        refuse("receipt carries no consumer_id, so the acknowledging principal is unbound")
+
+    import hgk_consumer_receipt as _reader  # local: keeps this module the dependency root
+
+    try:
+        reread = _reader.load_receipt(receipt_path, expected_subject=subject, expected_scope=scope,
+                                      expected_epoch=epoch, consumer_id=consumer_id,
+                                      raw_path=raw_path)
+    except _reader.HGKReceiptRefusal as exc:
+        refuse(f"re-reading {receipt_path} refused ({exc.code}): {exc}")
+    if reread.get("state") != "OBSERVED":
+        refuse(f"re-reading {receipt_path} returned {reread.get('state')!r} "
+               f"({reread.get('code') or reread.get('reason') or 'no reason given'})")
+    for key in ("digest", "receipt_sha256"):
+        claimed = str(receipt.get(key) or "").lower()
+        observed = str(reread.get(key) or "").lower()
+        if claimed != observed:
+            refuse(f"claimed {key} {claimed[:12]} does not match the bytes on disk {observed[:12]}")
+    digest = reread["digest"]
+
     return leg("consumer_ack", digest=digest.lower(), provenance=receipt["provenance"],
                reader=CONSUMER_ACK_RECEIPT_READER, scope=scope, epoch=epoch,
                observed_at=str(receipt.get("observed_at") or ""),

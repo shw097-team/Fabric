@@ -333,5 +333,82 @@ class TestNoPathToHostRawWithoutVerification(unittest.TestCase):
         self.assertFalse(record["host"]["consumer_ack_observed"])
 
 
+class TestForgedSixthLegIsRefused(unittest.TestCase):
+    """A dict is not evidence: the sixth leg must be re-derivable from bytes at binding time.
+
+    The defect these tests pin: a hand-built dict that merely *looks* like the reader's output
+    (`state=OBSERVED`, `verified=True`, `reader=…`, `evidence_class=HOST_RAW`, a 64-hex `digest`)
+    used to set `host.consumer_ack_observed=True` and let the record reach `state=BOUND`, with no
+    receipt and no acknowledged bytes existing anywhere. Every case below must refuse.
+    """
+
+    def setUp(self):
+        self._tmp = tempfile.TemporaryDirectory()
+        self.tmp = Path(self._tmp.name)
+
+    def tearDown(self):
+        self._tmp.cleanup()
+
+    def _forged(self, **over) -> dict:
+        """Exactly the shape the binding checks, written by hand, with nothing on disk."""
+        body = {
+            "state": "OBSERVED", "leg": "consumer_ack", "digest": SHA_A,
+            "provenance": hcr.PROVENANCE, "reader": hcr.READER, "scope": SCOPE, "epoch": EPOCH,
+            "observed_at": "2026-11-06T00:00:00Z", "evidence_class": "HOST_RAW",
+            "subject": SUBJECT, "consumer_id": CONSUMER_ID, "receipt_sha256": "d" * 64,
+            "raw_path": str(self.tmp / "policy.yaml"), "receipt_path": str(self.tmp / "receipt.json"),
+            "verified": True, "ack": {"ok": True},
+        }
+        body.update(over)
+        return body
+
+    def test_a_fully_populated_forgery_with_no_files_is_refused(self):
+        with self.assertRaises(pb.PolicyBindingRefusal) as ctx:
+            bind(five_legs(), self._forged())
+        self.assertIn(ctx.exception.code, REFUSAL_CODES)
+
+    def test_a_forgery_that_points_at_nonexistent_paths_is_refused(self):
+        with self.assertRaises(pb.PolicyBindingRefusal):
+            bind(five_legs(), self._forged(receipt_path=str(self.tmp / "nope.json"),
+                                           raw_path=str(self.tmp / "nope.yaml")))
+
+    def test_a_real_receipt_deleted_after_reading_is_refused(self):
+        path = write_case(self.tmp)
+        verified = hcr.load_receipt(path, expected_subject=SUBJECT, expected_scope=SCOPE,
+                                    expected_epoch=EPOCH, consumer_id=CONSUMER_ID)
+        self.assertEqual(verified["state"], "OBSERVED")
+        self.assertTrue(bind(five_legs(), verified)["host"]["consumer_ack_observed"])
+        # the same dict, after the bytes are gone, must stop substantiating anything
+        (self.tmp / "receipt.json").unlink()
+        (self.tmp / "policy.yaml").unlink()
+        with self.assertRaises(pb.PolicyBindingRefusal):
+            bind(five_legs(), verified)
+
+    def test_a_receipt_whose_bytes_were_swapped_after_the_read_is_refused(self):
+        path = write_case(self.tmp)
+        verified = hcr.load_receipt(path, expected_subject=SUBJECT, expected_scope=SCOPE,
+                                    expected_epoch=EPOCH, consumer_id=CONSUMER_ID)
+        (self.tmp / "policy.yaml").write_bytes(b"policy: somebody-elses-bytes" + b"\n")
+        with self.assertRaises(pb.PolicyBindingRefusal):
+            bind(five_legs(), verified)
+
+    def test_a_dict_pointing_at_another_subjects_receipt_is_refused(self):
+        path = write_case(self.tmp)
+        verified = hcr.load_receipt(path, expected_subject=SUBJECT, expected_scope=SCOPE,
+                                    expected_epoch=EPOCH, consumer_id=CONSUMER_ID)
+        with self.assertRaises(pb.PolicyBindingRefusal):
+            pb.build_binding(policy_ref=POLICY_REF, scope=SCOPE, epoch=EPOCH, legs=five_legs(),
+                             subject="WP-FHS-99", consumer_ack_receipt=verified)
+
+    def test_the_reader_output_with_untouched_files_still_binds(self):
+        path = write_case(self.tmp)
+        verified = hcr.load_receipt(path, expected_subject=SUBJECT, expected_scope=SCOPE,
+                                    expected_epoch=EPOCH, consumer_id=CONSUMER_ID)
+        record = bind(five_legs(), verified)
+        self.assertEqual(record["state"], "BOUND")
+        self.assertTrue(record["host"]["consumer_ack_receipt_verified"])
+        self.assertNotIn("host_policy_active", record["digests"])
+
+
 if __name__ == "__main__":
     unittest.main()
