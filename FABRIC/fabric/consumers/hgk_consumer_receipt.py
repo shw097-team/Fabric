@@ -52,10 +52,39 @@ CODES = (
     "HGK_RECEIPT_CONSUMER_MISMATCH",
     "HGK_RECEIPT_DIGEST_MISMATCH",
     "HGK_RECEIPT_MISSING_ACK",
+    "HGK_RECEIPT_NOT_ACK",
     "HGK_RECEIPT_RAW_UNREADABLE",
 )
 
 _HEX64 = re.compile(r"^[0-9a-f]{64}$")
+
+#: An ack that records a consumer *decision not to acknowledge*. A refusal, a deferral and a
+#: rejection are all real consumer positions — and none of them substantiates a positive
+#: acknowledgement, so none of them may fill the sixth leg (WP-FHS-02 / F03).
+NON_POSITIVE_ACK = frozenset({"NACK", "SCOPE_SPECIFIC_DEFERRED", "DEFERRED", "REFUSED", "REJECTED"})
+_DECISION_KEYS = ("ack", "decision", "status", "verdict", "result")
+
+
+def is_positive_ack(ack: Any) -> bool:
+    """True only for an ack that actually acknowledges.
+
+    Measured hole this closes (2026-11-06): a `NACK` or `SCOPE_SPECIFIC_DEFERRED` receipt with a
+    perfect envelope and a matching byte digest was read as `state=OBSERVED` and set
+    `host.consumer_ack_observed=True`. An envelope being intact says the receipt is authentic; it
+    never says the consumer agreed. Strings carry the decision directly; a structured ack carries
+    it in one of `_DECISION_KEYS`; anything else non-empty is treated as an acknowledgement.
+    """
+    if isinstance(ack, str):
+        return ack.strip().upper() == "ACK"
+    if isinstance(ack, dict):
+        for key in _DECISION_KEYS:
+            value = ack.get(key)
+            if isinstance(value, str) and value.strip().upper() in NON_POSITIVE_ACK:
+                return False
+        return True
+    if isinstance(ack, (list, tuple)):
+        return bool(ack) and all(is_positive_ack(item) for item in ack)
+    return bool(ack)
 
 
 class HGKReceiptRefusal(Exception):
@@ -106,12 +135,17 @@ def _resolve_raw(receipt_path: Path, body: dict[str, Any],
 
 def load_receipt(path: str | Path, *, expected_subject: str, expected_scope: str,
                  expected_epoch: int | str, consumer_id: str,
-                 raw_path: str | Path | None = None) -> dict[str, Any]:
+                 raw_path: str | Path | None = None,
+                 require_positive_ack: bool = True) -> dict[str, Any]:
     """Read and verify one `HGK_CONSUMER_RECEIPT@1` document.
 
     Returns a leg for the sixth leg on success (`state="OBSERVED"`), or a `NOT_OBSERVED` marker when
     the file is absent/unreadable. Every other failure raises `HGKReceiptRefusal` with a
     `HGK_RECEIPT_*` code; no native exception escapes on receipt content.
+
+    `require_positive_ack` defaults to True: a `NACK`/`SCOPE_SPECIFIC_DEFERRED` receipt is authentic
+    but is not an acknowledgement, so it is refused with `HGK_RECEIPT_NOT_ACK` instead of being
+    promoted into the sixth leg. Pass False only for diagnostics that must *read* a refusal.
     """
     receipt_path = Path(path)
     expected = {"subject": expected_subject, "scope": expected_scope,
@@ -162,6 +196,12 @@ def load_receipt(path: str | Path, *, expected_subject: str, expected_scope: str
         raise HGKReceiptRefusal(
             "receipt carries no ack — an unacknowledged policy is not a consumer acknowledgement",
             code="HGK_RECEIPT_MISSING_ACK")
+    if require_positive_ack and not is_positive_ack(ack):
+        raise HGKReceiptRefusal(
+            f"receipt ack is {ack!r}: an intact envelope proves the receipt is authentic, it does "
+            "not prove the consumer acknowledged the policy — NACK/DEFERRED never fills the sixth "
+            "leg (WP-FHS-02 / F03)",
+            code="HGK_RECEIPT_NOT_ACK")
 
     declared_digest = body.get("raw_sha256")
     if not isinstance(declared_digest, str) or not _HEX64.match(declared_digest.lower()):

@@ -410,5 +410,80 @@ class TestForgedSixthLegIsRefused(unittest.TestCase):
         self.assertNotIn("host_policy_active", record["digests"])
 
 
+class TestNonPositiveAckIsNeverPromoted(unittest.TestCase):
+    """F03 / WP-FHS-02: only a positive ACK substantiates the sixth leg.
+
+    Measured 2026-11-06 against Fabric main f1546ed + HG-KSEOS main a7046a3: a `NACK` and a
+    `SCOPE_SPECIFIC_DEFERRED` receipt (perfect envelope, matching byte digest, real producer) both
+    read as `state=OBSERVED` and set `host.consumer_ack_observed=True`. The envelope proves the
+    receipt is authentic; it never proves the consumer agreed.
+    """
+
+    def setUp(self):
+        self._tmp = tempfile.TemporaryDirectory()
+        self.tmp = Path(self._tmp.name)
+
+    def tearDown(self):
+        self._tmp.cleanup()
+
+    def _read(self, **over):
+        return hcr.load_receipt(write_case(self.tmp, **over), expected_subject=SUBJECT,
+                                expected_scope=SCOPE, expected_epoch=EPOCH,
+                                consumer_id=CONSUMER_ID)
+
+    def test_nack_string_is_refused(self):
+        with self.assertRaises(hcr.HGKReceiptRefusal) as ctx:
+            self._read(ack="NACK")
+        self.assertEqual(ctx.exception.code, "HGK_RECEIPT_NOT_ACK")
+
+    def test_scope_specific_deferred_string_is_refused(self):
+        with self.assertRaises(hcr.HGKReceiptRefusal) as ctx:
+            self._read(ack="SCOPE_SPECIFIC_DEFERRED")
+        self.assertEqual(ctx.exception.code, "HGK_RECEIPT_NOT_ACK")
+
+    def test_structured_nack_decision_is_refused(self):
+        with self.assertRaises(hcr.HGKReceiptRefusal) as ctx:
+            self._read(ack={"decision": "NACK", "consumer": CONSUMER_ID})
+        self.assertEqual(ctx.exception.code, "HGK_RECEIPT_NOT_ACK")
+
+    def test_lowercase_ack_still_reads_as_positive(self):
+        leg = self._read(ack="ack")
+        self.assertEqual(leg["state"], "OBSERVED")
+        self.assertTrue(hcr.is_positive_ack("ack"))
+
+    def test_diagnostics_can_still_read_a_refusal(self):
+        """Reading a NACK for diagnostics must stay possible — it just cannot fill a leg."""
+        receipt = write_case(self.tmp, ack="NACK")
+        leg = hcr.load_receipt(receipt, expected_subject=SUBJECT, expected_scope=SCOPE,
+                               expected_epoch=EPOCH, consumer_id=CONSUMER_ID,
+                               require_positive_ack=False)
+        self.assertEqual(leg["state"], "OBSERVED")
+        self.assertEqual(leg["ack"], "NACK")
+        self.assertFalse(hcr.is_positive_ack(leg["ack"]))
+
+    def test_build_binding_refuses_a_nack_receipt(self):
+        receipt = write_case(self.tmp, ack="NACK")
+        with self.assertRaises(pb.PolicyBindingRefusal) as ctx:
+            pb.build_binding(policy_ref=POLICY_REF, scope=SCOPE, epoch=EPOCH, legs=five_legs(),
+                             subject=SUBJECT,
+                             consumer_ack_receipt={"ack": "NACK", "state": "OBSERVED",
+                                                   "verified": True,
+                                                   "evidence_class": hcr.EVIDENCE_CLASS,
+                                                   "provenance": hcr.PROVENANCE,
+                                                   "reader": hcr.READER, "subject": SUBJECT,
+                                                   "scope": SCOPE, "epoch": EPOCH,
+                                                   "digest": RAW_SHA,
+                                                   "receipt_path": str(receipt),
+                                                   "raw_path": str(self.tmp / "policy.yaml"),
+                                                   "consumer_id": CONSUMER_ID})
+        self.assertEqual(ctx.exception.code, "POLICY_CONSUMER_NOT_ACK")
+
+    def test_a_nack_receipt_never_reaches_consumer_ack_observed(self):
+        for ack in ("NACK", "SCOPE_SPECIFIC_DEFERRED"):
+            with self.subTest(ack=ack):
+                with self.assertRaises(hcr.HGKReceiptRefusal):
+                    self._read(ack=ack)
+
+
 if __name__ == "__main__":
     unittest.main()

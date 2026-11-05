@@ -163,6 +163,13 @@ def _consumer_ack_from_receipt(receipt: Any, *, subject: str, scope: str,
 
     import hgk_consumer_receipt as _reader  # local: keeps this module the dependency root
 
+    # Defence in depth: the reader already refuses a non-positive ack, but this is the function that
+    # sets `host.consumer_ack_observed`, so it re-checks rather than trusting its input shape.
+    if not _reader.is_positive_ack(receipt.get("ack")):
+        refuse(f"ack is {receipt.get('ack')!r}, which is a consumer decision NOT to acknowledge; "
+               "a NACK/DEFERRED receipt is authentic but never substantiates the sixth leg",
+               code="POLICY_CONSUMER_NOT_ACK")
+
     try:
         reread = _reader.load_receipt(receipt_path, expected_subject=subject, expected_scope=scope,
                                       expected_epoch=epoch, consumer_id=consumer_id,
