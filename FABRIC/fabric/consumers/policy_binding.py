@@ -17,12 +17,21 @@ differ from the active epoch's bytes.
 Nothing here activates a policy: `state=BOUND` means the six legs are internally consistent at
 `claim_ceiling=AUTHOR_DESIGN_ONLY` (or `FIXTURE` in a unit test). The host flags
 (`loaded_on_host`, `consumer_ack_observed`) are reported as they were supplied, never inferred.
+
+The sixth leg has a typed producer: `hgk_consumer_receipt.load_receipt` reads a
+`HGK_CONSUMER_RECEIPT@1` document and re-derives the digest of the bytes it acknowledges. Passing
+that result as `consumer_ack_receipt=` is the only way `build_binding` itself puts raw evidence into
+`consumer_ack`; the default (`None`) leaves the caller-supplied leg untouched and adds
+`host_policy_active` to `not_claimed`, so a BOUND built that way still says what it does not mean.
 """
 from __future__ import annotations
 
 import hashlib
 import json
-from typing import Any
+import re
+from typing import Any, NoReturn
+
+_HEX64 = re.compile(r"^[0-9a-f]{64}$")
 
 SCHEMA = "FABRIC.PolicyLoadedConsumerACK@design"
 LEGS = ("source", "stage", "owner_approved", "active_epoch", "loaded_digest", "consumer_ack")
@@ -44,6 +53,26 @@ NON_LOADING_PROVENANCE = {"STAGED_ARTIFACT", "STAGE_MIRROR", "NAV_ASSISTED_USE_A
 # `build_binding` then refuses with WP-FHS-02.FIRST_FAIL:POLICY_NOT_LOADED. Refusing at construction
 # would swallow the W1 code behind a generic provenance error.
 LEG_PROVENANCE["loaded_digest"] |= NON_LOADING_PROVENANCE
+
+
+# The typed producer for the sixth leg. Kept as values (not an import) so this module stays the
+# dependency root; `tests/test_hgk_consumer_receipt.py` asserts these agree with the reader module.
+CONSUMER_ACK_RECEIPT_SCHEMA = "HGK_CONSUMER_RECEIPT@1"
+CONSUMER_ACK_RECEIPT_PROVENANCE = "HGK_CONSUMER_RECEIPT"
+CONSUMER_ACK_RECEIPT_READER = "hgk-consumer-receipt-reader"
+CONSUMER_ACK_RECEIPT_EVIDENCE_CLASS = "HOST_RAW"
+
+# `state=BOUND` is a claim about design consistency, never about a running host. Both wordings below
+# land in `not_claimed`; the difference is only whether raw consumer evidence was supplied.
+HOST_POLICY_ACTIVE_NOT_CLAIMED = {
+    "no_receipt": ("host_policy_active: BOUND means the six legs are internally consistent at "
+                   "claim_ceiling=AUTHOR_DESIGN_ONLY; no HGK_CONSUMER_RECEIPT@1 was supplied, so "
+                   "consumer_ack is caller-supplied evidence and host policy activation is not "
+                   "claimed"),
+    "receipt": ("host_policy_active: a verified HGK_CONSUMER_RECEIPT@1 shows the consumer "
+                "acknowledged the loaded bytes; it does not show the host policy is active, "
+                "effective, or in force"),
+}
 
 
 class PolicyBindingRefusal(Exception):
@@ -81,10 +110,67 @@ def _order(legs: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return sorted(legs, key=lambda item: index[item["leg"]])
 
 
+def _consumer_ack_from_receipt(receipt: Any, *, subject: str, scope: str,
+                               epoch: int | str) -> dict[str, Any]:
+    """Turn a verified `HGK_CONSUMER_RECEIPT@1` read into the sixth leg, or refuse.
+
+    The receipt is re-checked here rather than trusted, because a caller can build any dict: a
+    hand-typed `evidence_class` string must not be able to raise `consumer_ack_observed`. Any
+    failure refuses with an existing code — there is no soft pass and no partially-bound record.
+    """
+    def refuse(why: str, code: str = "POLICY_LEG_PROVENANCE_INVALID") -> NoReturn:
+        raise PolicyBindingRefusal(
+            f"consumer_ack receipt cannot substantiate the sixth leg: {why}", code=code)
+
+    if not isinstance(receipt, dict):
+        refuse(f"receipt is a {type(receipt).__name__}, not a verified receipt")
+    if receipt.get("state") != "OBSERVED":
+        refuse(f"receipt state is {receipt.get('state')!r} "
+               f"({receipt.get('code') or receipt.get('reason') or 'no reason given'}): "
+               "an unobserved receipt is not evidence")
+    if receipt.get("verified") is not True:
+        refuse("receipt carries no reader verification marker")
+    if receipt.get("evidence_class") != CONSUMER_ACK_RECEIPT_EVIDENCE_CLASS:
+        refuse(f"receipt evidence_class is {receipt.get('evidence_class')!r}; only "
+               f"{CONSUMER_ACK_RECEIPT_EVIDENCE_CLASS} may set consumer_ack_observed")
+    if receipt.get("provenance") != CONSUMER_ACK_RECEIPT_PROVENANCE:
+        refuse(f"receipt provenance is {receipt.get('provenance')!r}")
+    if receipt.get("reader") != CONSUMER_ACK_RECEIPT_READER:
+        refuse(f"receipt reader is {receipt.get('reader')!r}, "
+               f"expected {CONSUMER_ACK_RECEIPT_READER!r}")
+    if receipt.get("subject") != subject:
+        refuse(f"receipt subject is {receipt.get('subject')!r}, binding subject is {subject!r}",
+               code="POLICY_SIGNER_OR_EPOCH_DENY")
+    if receipt.get("scope") != scope or str(receipt.get("epoch")) != str(epoch):
+        refuse(f"receipt claims scope/epoch {receipt.get('scope')!r}/{receipt.get('epoch')!r}, "
+               f"binding is {scope!r}/{epoch!r}", code="POLICY_SIGNER_OR_EPOCH_DENY")
+    digest = receipt.get("digest")
+    if not isinstance(digest, str) or not _HEX64.match(digest.lower()):
+        refuse(f"receipt digest is {digest!r}, not a sha256 hex digest of acknowledged bytes")
+
+    return leg("consumer_ack", digest=digest.lower(), provenance=receipt["provenance"],
+               reader=CONSUMER_ACK_RECEIPT_READER, scope=scope, epoch=epoch,
+               observed_at=str(receipt.get("observed_at") or ""),
+               evidence_class=CONSUMER_ACK_RECEIPT_EVIDENCE_CLASS,
+               note=("read from HGK_CONSUMER_RECEIPT@1; digest re-derived from the acknowledged "
+                     f"bytes (receipt {str(receipt.get('receipt_sha256') or '')[:12]})"))
+
+
 def build_binding(*, policy_ref: str, scope: str, epoch: int | str,
-                  legs: list[dict[str, Any]], subject: str = "WP-FHS-02") -> dict[str, Any]:
-    """Assemble the six-leg record, refusing every collapse the W1 NEG list names."""
+                  legs: list[dict[str, Any]], subject: str = "WP-FHS-02",
+                  consumer_ack_receipt: dict[str, Any] | None = None) -> dict[str, Any]:
+    """Assemble the six-leg record, refusing every collapse the W1 NEG list names.
+
+    `consumer_ack_receipt` is optional. `None` keeps the previous behaviour exactly (the caller's
+    sixth leg is used as supplied). A dict from `hgk_consumer_receipt.load_receipt` replaces the
+    sixth leg with raw evidence; anything that fails verification refuses, so a receipt can never
+    loosen a binding.
+    """
     by_leg = {item["leg"]: item for item in legs}
+    if consumer_ack_receipt is not None:
+        by_leg["consumer_ack"] = _consumer_ack_from_receipt(
+            consumer_ack_receipt, subject=subject, scope=scope, epoch=epoch)
+        legs = list(by_leg.values())
     missing = [name for name in LEGS if name not in by_leg]
     if missing:
         raise PolicyBindingRefusal("missing legs: " + ", ".join(missing),
@@ -116,6 +202,7 @@ def build_binding(*, policy_ref: str, scope: str, epoch: int | str,
             "staged bytes differ from the source bytes without a recorded re-issue",
             code="POLICY_SOURCE_STAGE_DRIFT")
 
+    from_receipt = consumer_ack_receipt is not None
     record = {
         "schema": SCHEMA,
         "subject": subject,
@@ -130,8 +217,11 @@ def build_binding(*, policy_ref: str, scope: str, epoch: int | str,
         "host": {"loaded_on_host": loaded["provenance"] in {"HOST_LOAD_RAW", "CONSUMER_LOAD_RECEIPT"}
                  and loaded.get("evidence_class") == "HOST_RAW",
                  "consumer_ack_observed": by_leg["consumer_ack"].get("evidence_class") == "HOST_RAW",
-                 "loaded_digest_reader": loaded["reader"]},
-        "not_claimed": ["policy effective", "consumer consumption", "release"],
+                 "loaded_digest_reader": loaded["reader"],
+                 "consumer_ack_reader": by_leg["consumer_ack"]["reader"],
+                 "consumer_ack_receipt_verified": bool(from_receipt)},
+        "not_claimed": ["policy effective", "consumer consumption", "release",
+                        HOST_POLICY_ACTIVE_NOT_CLAIMED["receipt" if from_receipt else "no_receipt"]],
         "note": ("legs are separate records on purpose: a stage/mirror/nav document cannot "
                  "substantiate loaded_digest or consumer_ack"),
     }
