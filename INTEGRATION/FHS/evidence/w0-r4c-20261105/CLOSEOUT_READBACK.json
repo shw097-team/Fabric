@@ -1,58 +1,50 @@
 {
-  "schema": "FHS-W0/CLOSEOUT_READBACK_INDEX/v1",
-  "decision_id": "W0-CLOSEOUT-20261105-0832",
+  "schema": "FHS-W0/CLOSEOUT_READBACK_INDEX/v2",
+  "decision_id": "W0-FORMAL-20261105-1040",
   "verdict": "W0_CLOSEOUT_PENDING",
   "w0_all_six_wp_done": false,
-  "w1_gate": "W1_SCOPED_SOURCE_DRAFT_GO",
-  "work_packages": {
-    "WP-FHS-00": "DONE_LOCAL",
-    "WP-FHS-01": "DONE_LOCAL",
-    "WP-FHS-15": "DONE_LOCAL",
-    "WP-FHS-16": "IMPLEMENTED_WITH_SCOPED_HOLD",
-    "WP-FHS-19": "IMPLEMENTED_ENTRY_ONLY",
-    "WP-FHS-21": "DONE_LOCAL"
-  },
-  "holds": {
-    "carried": 64,
-    "new": 4,
-    "total": 68,
-    "all_open": true
-  },
-  "wp19_real_root": {
-    "head": "004e88913d5c1fb57e09e8d2bf744ef1547fecbc",
-    "checks": {
-      "checks_total": 7,
-      "PASS": 5,
-      "FAIL": 2,
-      "HOLD": 0,
-      "NOT_APPLICABLE": 0,
-      "gate_exit": 1,
+  "w1_intake_verdict": "W1_AUTHOR_INTAKE_PACKAGE_COMPLETE_READER_PENDING",
+  "w1_typed_receiver_accepted": false,
+  "wp19": {
+    "after": {
+      "fail": 1,
       "fail_codes": [
-        "SBOM_COMPONENT_MISMATCH",
         "UNDECLARED_DEPENDENCY"
-      ]
+      ],
+      "pass": 6
     },
+    "real_root_head": "004e88913d5c1fb57e09e8d2bf744ef1547fecbc",
+    "repairs": [
+      "metadata.component.version 0.1.0 -> 0.1.1a5",
+      "test extra declares pytest>=8,<9",
+      "SBOM reconcile scoped to runtime dependencies; extras reported, not judged; new code SBOM_COMPONENT_MISSING_RUNTIME"
+    ],
     "original_ci_reader_ack": "NOT_OBSERVED"
   },
-  "w1_ready_set": [
-    "WP02",
-    "WP03",
-    "WP04",
-    "WP05",
-    "WP07",
-    "WP11",
-    "WP17",
-    "WP20"
-  ],
+  "wp16": {
+    "consumed": 12,
+    "bound": 1,
+    "holds": 11
+  },
+  "holds": {
+    "total": 70,
+    "all_open": true
+  },
+  "packs": {
+    "w0_closeout_zip_sha256": "6bbab08fd24b8f5dfb8d23ae21c4754fb655736c1cfb28dc1d5170eab93f35f7",
+    "w1_intake_zip_sha256": "0024e2b97d7fd816d0e71a490db0768c77968696e3998ae38b03bf4bc0231bae"
+  },
   "claim_ceiling": "AUTHOR_LOCAL_TEST",
   "not_claimed": [
-    "W0_ALL_SIX_WP_DONE",
+    "W0_FULL_CLOSEOUT_ACCEPTED",
+    "W0_WAVE_CLOSEOUT_ACCEPTED_WITH_DEFERRED_EFFECTS",
     "WP19_DONE",
     "PIPD_CANONICAL",
     "HGK_ADMITTED",
     "HOST_NATIVE_E2E",
     "PROTECTED_CHECKER",
     "RELEASED",
+    "W1_TYPED_RECEIVER_ACCEPTED",
     "TraceClosure beyond AUTHOR_STATIC"
   ]
 }
