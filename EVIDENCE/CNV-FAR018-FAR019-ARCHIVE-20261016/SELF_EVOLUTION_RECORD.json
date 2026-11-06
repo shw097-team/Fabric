@@ -1,0 +1,77 @@
+{
+  "schema": "CNV-ARCHIVE-SELF-EVOLUTION/1",
+  "task_id": "CNV-FAR018-FAR019-ARCHIVE-20261016",
+  "mission_id": "CNV-PIPD-LS-SP-20261015",
+  "generated_utc": "2026-10-16T00:00:00Z",
+  "claim_ceiling": "LOCAL — this record is a round-level learning artifact, not an acceptance, approval or Gate",
+  "governed_by": [
+    "HG-KSEOS (normative/control plane: admission, WorkOrder, Spine, release gate)",
+    "Fabric (policy / assurance / knowledge contract surface)",
+    "Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md v2.0.0 (upper blueprint control package)",
+    "EIA-FABRIC-FAR018-FAR019-ARCHIVE-20261016 (external independent engineering acceptance report)"
+  ],
+  "what_was_learned": [
+    {
+      "id": "SE-1",
+      "lesson": "An unmerged pull request already exposes merge_commit_sha, and it is a PREVIEW commit that is not on main; recording it as a merge is a false success.",
+      "measured_on": "PR #14 during the transient mergeable=null window: REST reported merged=false with merge_commit_sha=c3ac660a while main was 603cb0cb and did not contain it",
+      "landed_in": "hgk-governed-execution/references/round-self-critique-and-lineage-gates.md :: ## 10 (first bullet)",
+      "next_round_action": "Gate every merge claim on `merged: true` AND on a fresh read of main's tip, never on merge_commit_sha alone."
+    },
+    {
+      "id": "SE-2",
+      "lesson": "mergeable: null / mergeable_state: unknown is GitHub's post-merge recomputation window, not a conflict; the correct behaviour is to HOLD, then merge on a later settle-and-reread run, and never blind-retry the write.",
+      "measured_on": "after #12 merged, #13 and #14 both read mergeable=null; both then merged cleanly once two surfaces agreed (REST mergeable=true and GraphQL MERGEABLE/CLEAN)",
+      "landed_in": "same reference :: ## 10 (second bullet)",
+      "next_round_action": "Keep the merge idempotent (rerun reads back instead of re-merging) and confirm mergeability on a second surface before writing."
+    },
+    {
+      "id": "SE-3",
+      "lesson": "A multi-stage evidence pack must parent to the branch TIP and use the TIP's tree as base_tree, or the later commit silently drops every file the earlier stage added.",
+      "measured_on": "publisher patched before the first write: parents=[main_sha] with main's tree was the exact shape that deleted a previous round's .md files mid-pack",
+      "landed_in": "same reference :: ## 10 (fourth bullet)",
+      "next_round_action": "Bind parent and base_tree to the same commit object in every publishing stage."
+    },
+    {
+      "id": "SE-4",
+      "lesson": "A self-check must be able to FAIL for the artifact's reason and not for the harness's. Three of this round's twelve checks failed on harness bugs (a double JSON parse, a null subscript behind .get(k, default), and a vacuous all() over an empty list) while the merged pull requests were correct throughout.",
+      "measured_on": "C02/C04/C12 FAIL -> PASS after fixing the checks, with live evidence unchanged (main bcd91043, prefixes 33/55/83)",
+      "landed_in": "same reference :: ## 10 (final two bullets)",
+      "next_round_action": "Treat a FAIL as a claim about the check first, fix the check, and re-derive the artifact state from the remote; never adjust evidence to satisfy a probe."
+    },
+    {
+      "id": "SE-5",
+      "lesson": "An injected-mutation harness is what keeps a self-check honest: it must run in the SAME invocation as the checks, and a mutation whose exception is swallowed will be reported as 'undetected' when the real cause is the harness.",
+      "measured_on": "16/16 mutations detected only after the mutation row started carrying the exception text",
+      "landed_in": "same reference :: ## 10 (fifth bullet) and the existing ## 5 (negative-control rule)",
+      "next_round_action": "Refuse the round's self-check verdict whenever the control reports any undetected mutation, and never swallow the mutation's exception."
+    },
+    {
+      "id": "SE-6",
+      "lesson": "Contract fields bound to acceptance edges cannot be renamed by a follow-on round without inventing an acceptance edge; the honest move is to keep the bound identifier and disclose the lineage in the round's errata.",
+      "measured_on": "PL-009 deliverable/journey edge errors in the first lint run of this round's C0-C9 contract",
+      "landed_in": "ERRATA_AND_FINDINGS.md :: ER-A2",
+      "next_round_action": "When reusing a compiler-clean contract, list every carried identifier and state what it now names."
+    }
+  ],
+  "iteration_effects_this_round": [
+    "The publisher was corrected BEFORE any remote write (parent/base_tree), so the multi-stage loss was prevented rather than repaired.",
+    "The A08 verdict rule was corrected after it scored a fully merged round as PARTIAL; the first receipt already said PARTIAL and that defect is disclosed rather than overwritten silently.",
+    "The secrets scanner proved non-vacuity with a positive control firing six rule families and a clean control firing none, so its 0 findings are a measurement and not an absence of measurement."
+  ],
+  "explicitly_not_learned_or_claimed": [
+    "Nothing here asserts validation of the archival scripts stored inside the three prefixes; they were archived, never executed.",
+    "Nothing here upgrades the deferred findings (TS-VAL-01, TS-CHECKER-01, TS-G1-01, the remaining owner items) or the eight runtime gates.",
+    "No cross-model independence is claimed: EXECUTE and VERIFY ran the same model, so model-axis SoD remains ABSENT."
+  ],
+  "artifact_disclosure": {
+    "self_referential_receipts": "This commit cannot contain its own publish/readback receipt: PUBLISH_RECEIPT_ARCHIVE.json, REMOTE_READBACK_ARCHIVE.json and PACK_INDEX.json are excluded from the archived tree by design (an index or receipt that describes a commit cannot be inside it). Their digests and the final per-blob readback live in the round directory and in the pull-request body.",
+    "readback": "every file that IS in the tree was verified byte-exact against the remote git blob identity sha1(\"blob <len>\\0\" + bytes)"
+  },
+  "next_round_pointers": {
+    "TS-VAL-01": "promote the exact R7-R9 validator diff in the canonical PIPD repository, with the M04/M06/M16 negative cases, one lawful positive, and the two rehash negatives (N1/N2)",
+    "TS-CHECKER-01": "non-liftable checker boundary on a separate OS identity (write denied; self-lift denied)",
+    "TS-G1-01": "fresh G1 certificate at runtime freeze: effective binary path+version+sha, route epoch, served arms, nonce/usage, timeout negative",
+    "owner_items": "the owner batches beyond B0, signed by the responsible owners and never by the maker"
+  }
+}

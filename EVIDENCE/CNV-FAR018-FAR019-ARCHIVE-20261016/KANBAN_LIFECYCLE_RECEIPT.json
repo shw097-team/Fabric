@@ -1,0 +1,1113 @@
+{
+ "schema": "CNV-ARCHIVE/KANBAN-LIFECYCLE/1",
+ "board": "cnv-archive-far018-019",
+ "generated_utc": "2026-10-16T14:06:14.307991+00:00",
+ "cards_created": 18,
+ "board_state_histogram": {
+  "done": 5,
+  "running": 9,
+  "blocked": 4
+ },
+ "call_count": 71,
+ "board_readback": [
+  {
+   "id": "t_63158c6d",
+   "title": "A0 A0 source register A00 (20/20 knowledge base, per",
+   "status": "done"
+  },
+  {
+   "id": "t_68d14512",
+   "title": "A1 A1 CAPC C0-C9 contract lint/activation/acceptance",
+   "status": "done"
+  },
+  {
+   "id": "t_a7ed13e1",
+   "title": "A2 A2 HGK typed admission of this archive round (own",
+   "status": "done"
+  },
+  {
+   "id": "t_7cfd4264",
+   "title": "A3 A3 GitHub freeze: per-PR head/prefix/modes + Q03/",
+   "status": "done"
+  },
+  {
+   "id": "t_8cc793f2",
+   "title": "A4 A4 OpenSpec change hgk-cnv-far018-far019-archive ",
+   "status": "done"
+  },
+  {
+   "id": "t_b5de7642",
+   "title": "A5 A5 trusted scoped secrets scan with positive and ",
+   "status": "running"
+  },
+  {
+   "id": "t_d54b1154",
+   "title": "A6 A6 bounded maintainer approval batch naming three",
+   "status": "running"
+  },
+  {
+   "id": "t_2ff72331",
+   "title": "A7 A7 PR12 out of draft then merged at approved head",
+   "status": "running"
+  },
+  {
+   "id": "t_7046a638",
+   "title": "A8 A8 PR13 merged at approved head",
+   "status": "running"
+  },
+  {
+   "id": "t_92b874fb",
+   "title": "A9 A9 PR14 merged at approved head",
+   "status": "running"
+  },
+  {
+   "id": "t_265a6917",
+   "title": "A10 A10 main readback of the three prefixes + rollba",
+   "status": "running"
+  },
+  {
+   "id": "t_2a9ee1b4",
+   "title": "A11 A11 evidence_return_pack per PR + 12/12 finding ",
+   "status": "running"
+  },
+  {
+   "id": "t_aeded7bd",
+   "title": "A12 A12 single evidence MD + handover + self-check w",
+   "status": "running"
+  },
+  {
+   "id": "t_8c8c59bd",
+   "title": "A13 A13 governed self-evolution record (skill lesson",
+   "status": "running"
+  },
+  {
+   "id": "t_2bace81c",
+   "title": "OG1 OG-OWNER: TS-VAL-01 PIPD validator canonical pro",
+   "status": "blocked"
+  },
+  {
+   "id": "t_4a85d871",
+   "title": "OG2 OG-OWNER: TS-CHECKER-01 non-liftable checker bou",
+   "status": "blocked"
+  },
+  {
+   "id": "t_ba13c8f7",
+   "title": "OG3 OG-OWNER: TS-G1-01 fresh G1 certificate at runti",
+   "status": "blocked"
+  },
+  {
+   "id": "t_52934043",
+   "title": "OG4 OG-OWNER: the remaining 60-owner-item batches be",
+   "status": "blocked"
+  }
+ ],
+ "calls": [
+  {
+   "argv": [
+    "boards",
+    "create",
+    "cnv-archive-far018-019"
+   ],
+   "exit": 0,
+   "stdout": "Board 'cnv-archive-far018-019' created.\n  Display name: Cnv Archive Far018 019\n  DB path:      C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\cnv-archive-far018-019\\kanban.db\n  Use `hermes kanban boards switch cnv-archive-far018-019` to make it ",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "create",
+    "A0 A0 source register A00 (20/20 knowledge base, per-source sha256)",
+    "--idempotency-key",
+    "ARCHIVE-A0",
+    "--created-by",
+    "hgk-orchestrator",
+    "--assignee",
+    "hgk-orchestrator",
+    "--body",
+    "CNV-FAR018-FAR019-ARCHIVE gate card; evidence under _handover/CNV-FAR018-FAR019-ARCHIVE-20261016/"
+   ],
+   "exit": 0,
+   "stdout": "Created t_63158c6d  (ready, assignee=hgk-orchestrator)",
+   "stderr": "⚠  No gateway is running — the task will sit in 'ready' until you start it. Run:\n    hermes gateway start\nThe gateway hosts an embedded dispatcher (tick interval 60s by default); your task will be pic"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "create",
+    "A1 A1 CAPC C0-C9 contract lint/activation/acceptance/compile PROMPT_COMPILE_PASS",
+    "--idempotency-key",
+    "ARCHIVE-A1",
+    "--created-by",
+    "hgk-orchestrator",
+    "--assignee",
+    "hgk-orchestrator",
+    "--body",
+    "CNV-FAR018-FAR019-ARCHIVE gate card; evidence under _handover/CNV-FAR018-FAR019-ARCHIVE-20261016/"
+   ],
+   "exit": 0,
+   "stdout": "Created t_68d14512  (ready, assignee=hgk-orchestrator)",
+   "stderr": "⚠  No gateway is running — the task will sit in 'ready' until you start it. Run:\n    hermes gateway start\nThe gateway hosts an embedded dispatcher (tick interval 60s by default); your task will be pic"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "create",
+    "A2 A2 HGK typed admission of this archive round (own project id)",
+    "--idempotency-key",
+    "ARCHIVE-A2",
+    "--created-by",
+    "hgk-orchestrator",
+    "--assignee",
+    "hgk-orchestrator",
+    "--body",
+    "CNV-FAR018-FAR019-ARCHIVE gate card; evidence under _handover/CNV-FAR018-FAR019-ARCHIVE-20261016/"
+   ],
+   "exit": 0,
+   "stdout": "Created t_a7ed13e1  (ready, assignee=hgk-orchestrator)",
+   "stderr": "⚠  No gateway is running — the task will sit in 'ready' until you start it. Run:\n    hermes gateway start\nThe gateway hosts an embedded dispatcher (tick interval 60s by default); your task will be pic"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "create",
+    "A3 A3 GitHub freeze: per-PR head/prefix/modes + Q03/Q04",
+    "--idempotency-key",
+    "ARCHIVE-A3",
+    "--created-by",
+    "hgk-orchestrator",
+    "--assignee",
+    "hgk-orchestrator",
+    "--body",
+    "CNV-FAR018-FAR019-ARCHIVE gate card; evidence under _handover/CNV-FAR018-FAR019-ARCHIVE-20261016/"
+   ],
+   "exit": 0,
+   "stdout": "Created t_7cfd4264  (ready, assignee=hgk-orchestrator)",
+   "stderr": "⚠  No gateway is running — the task will sit in 'ready' until you start it. Run:\n    hermes gateway start\nThe gateway hosts an embedded dispatcher (tick interval 60s by default); your task will be pic"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "create",
+    "A4 A4 OpenSpec change hgk-cnv-far018-far019-archive strict-valid",
+    "--idempotency-key",
+    "ARCHIVE-A4",
+    "--created-by",
+    "hgk-orchestrator",
+    "--assignee",
+    "hgk-orchestrator",
+    "--body",
+    "CNV-FAR018-FAR019-ARCHIVE gate card; evidence under _handover/CNV-FAR018-FAR019-ARCHIVE-20261016/"
+   ],
+   "exit": 0,
+   "stdout": "Created t_8cc793f2  (ready, assignee=hgk-orchestrator)",
+   "stderr": "⚠  No gateway is running — the task will sit in 'ready' until you start it. Run:\n    hermes gateway start\nThe gateway hosts an embedded dispatcher (tick interval 60s by default); your task will be pic"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "create",
+    "A5 A5 trusted scoped secrets scan with positive and clean control",
+    "--idempotency-key",
+    "ARCHIVE-A5",
+    "--created-by",
+    "hgk-orchestrator",
+    "--assignee",
+    "hgk-orchestrator",
+    "--body",
+    "CNV-FAR018-FAR019-ARCHIVE gate card; evidence under _handover/CNV-FAR018-FAR019-ARCHIVE-20261016/"
+   ],
+   "exit": 0,
+   "stdout": "Created t_b5de7642  (ready, assignee=hgk-orchestrator)",
+   "stderr": "⚠  No gateway is running — the task will sit in 'ready' until you start it. Run:\n    hermes gateway start\nThe gateway hosts an embedded dispatcher (tick interval 60s by default); your task will be pic"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "create",
+    "A6 A6 bounded maintainer approval batch naming three frozen heads",
+    "--idempotency-key",
+    "ARCHIVE-A6",
+    "--created-by",
+    "hgk-orchestrator",
+    "--assignee",
+    "hgk-orchestrator",
+    "--body",
+    "CNV-FAR018-FAR019-ARCHIVE gate card; evidence under _handover/CNV-FAR018-FAR019-ARCHIVE-20261016/"
+   ],
+   "exit": 0,
+   "stdout": "Created t_d54b1154  (ready, assignee=hgk-orchestrator)",
+   "stderr": "⚠  No gateway is running — the task will sit in 'ready' until you start it. Run:\n    hermes gateway start\nThe gateway hosts an embedded dispatcher (tick interval 60s by default); your task will be pic"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "create",
+    "A7 A7 PR12 out of draft then merged at approved head",
+    "--idempotency-key",
+    "ARCHIVE-A7",
+    "--created-by",
+    "hgk-orchestrator",
+    "--assignee",
+    "hgk-orchestrator",
+    "--body",
+    "CNV-FAR018-FAR019-ARCHIVE gate card; evidence under _handover/CNV-FAR018-FAR019-ARCHIVE-20261016/"
+   ],
+   "exit": 0,
+   "stdout": "Created t_2ff72331  (ready, assignee=hgk-orchestrator)",
+   "stderr": "⚠  No gateway is running — the task will sit in 'ready' until you start it. Run:\n    hermes gateway start\nThe gateway hosts an embedded dispatcher (tick interval 60s by default); your task will be pic"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "create",
+    "A8 A8 PR13 merged at approved head",
+    "--idempotency-key",
+    "ARCHIVE-A8",
+    "--created-by",
+    "hgk-orchestrator",
+    "--assignee",
+    "hgk-orchestrator",
+    "--body",
+    "CNV-FAR018-FAR019-ARCHIVE gate card; evidence under _handover/CNV-FAR018-FAR019-ARCHIVE-20261016/"
+   ],
+   "exit": 0,
+   "stdout": "Created t_7046a638  (ready, assignee=hgk-orchestrator)",
+   "stderr": "⚠  No gateway is running — the task will sit in 'ready' until you start it. Run:\n    hermes gateway start\nThe gateway hosts an embedded dispatcher (tick interval 60s by default); your task will be pic"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "create",
+    "A9 A9 PR14 merged at approved head",
+    "--idempotency-key",
+    "ARCHIVE-A9",
+    "--created-by",
+    "hgk-orchestrator",
+    "--assignee",
+    "hgk-orchestrator",
+    "--body",
+    "CNV-FAR018-FAR019-ARCHIVE gate card; evidence under _handover/CNV-FAR018-FAR019-ARCHIVE-20261016/"
+   ],
+   "exit": 0,
+   "stdout": "Created t_92b874fb  (ready, assignee=hgk-orchestrator)",
+   "stderr": "⚠  No gateway is running — the task will sit in 'ready' until you start it. Run:\n    hermes gateway start\nThe gateway hosts an embedded dispatcher (tick interval 60s by default); your task will be pic"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "create",
+    "A10 A10 main readback of the three prefixes + rollback pointers",
+    "--idempotency-key",
+    "ARCHIVE-A10",
+    "--created-by",
+    "hgk-orchestrator",
+    "--assignee",
+    "hgk-orchestrator",
+    "--body",
+    "CNV-FAR018-FAR019-ARCHIVE gate card; evidence under _handover/CNV-FAR018-FAR019-ARCHIVE-20261016/"
+   ],
+   "exit": 0,
+   "stdout": "Created t_265a6917  (ready, assignee=hgk-orchestrator)",
+   "stderr": "⚠  No gateway is running — the task will sit in 'ready' until you start it. Run:\n    hermes gateway start\nThe gateway hosts an embedded dispatcher (tick interval 60s by default); your task will be pic"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "create",
+    "A11 A11 evidence_return_pack per PR + 12/12 finding dispositions",
+    "--idempotency-key",
+    "ARCHIVE-A11",
+    "--created-by",
+    "hgk-orchestrator",
+    "--assignee",
+    "hgk-orchestrator",
+    "--body",
+    "CNV-FAR018-FAR019-ARCHIVE gate card; evidence under _handover/CNV-FAR018-FAR019-ARCHIVE-20261016/"
+   ],
+   "exit": 0,
+   "stdout": "Created t_2a9ee1b4  (ready, assignee=hgk-orchestrator)",
+   "stderr": "⚠  No gateway is running — the task will sit in 'ready' until you start it. Run:\n    hermes gateway start\nThe gateway hosts an embedded dispatcher (tick interval 60s by default); your task will be pic"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "create",
+    "A12 A12 single evidence MD + handover + self-check with injected mutations",
+    "--idempotency-key",
+    "ARCHIVE-A12",
+    "--created-by",
+    "hgk-orchestrator",
+    "--assignee",
+    "hgk-orchestrator",
+    "--body",
+    "CNV-FAR018-FAR019-ARCHIVE gate card; evidence under _handover/CNV-FAR018-FAR019-ARCHIVE-20261016/"
+   ],
+   "exit": 0,
+   "stdout": "Created t_aeded7bd  (ready, assignee=hgk-orchestrator)",
+   "stderr": "⚠  No gateway is running — the task will sit in 'ready' until you start it. Run:\n    hermes gateway start\nThe gateway hosts an embedded dispatcher (tick interval 60s by default); your task will be pic"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "create",
+    "A13 A13 governed self-evolution record (skill lessons landed)",
+    "--idempotency-key",
+    "ARCHIVE-A13",
+    "--created-by",
+    "hgk-orchestrator",
+    "--assignee",
+    "hgk-orchestrator",
+    "--body",
+    "CNV-FAR018-FAR019-ARCHIVE gate card; evidence under _handover/CNV-FAR018-FAR019-ARCHIVE-20261016/"
+   ],
+   "exit": 0,
+   "stdout": "Created t_8c8c59bd  (ready, assignee=hgk-orchestrator)",
+   "stderr": "⚠  No gateway is running — the task will sit in 'ready' until you start it. Run:\n    hermes gateway start\nThe gateway hosts an embedded dispatcher (tick interval 60s by default); your task will be pic"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "create",
+    "OG1 OG-OWNER: TS-VAL-01 PIPD validator canonical promotion (separate changeset)",
+    "--idempotency-key",
+    "ARCHIVE-OG1",
+    "--created-by",
+    "hgk-orchestrator",
+    "--assignee",
+    "hgk-orchestrator",
+    "--body",
+    "CNV-FAR018-FAR019-ARCHIVE gate card; evidence under _handover/CNV-FAR018-FAR019-ARCHIVE-20261016/"
+   ],
+   "exit": 0,
+   "stdout": "Created t_2bace81c  (ready, assignee=hgk-orchestrator)",
+   "stderr": "⚠  No gateway is running — the task will sit in 'ready' until you start it. Run:\n    hermes gateway start\nThe gateway hosts an embedded dispatcher (tick interval 60s by default); your task will be pic"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "create",
+    "OG2 OG-OWNER: TS-CHECKER-01 non-liftable checker boundary (second OS identity)",
+    "--idempotency-key",
+    "ARCHIVE-OG2",
+    "--created-by",
+    "hgk-orchestrator",
+    "--assignee",
+    "hgk-orchestrator",
+    "--body",
+    "CNV-FAR018-FAR019-ARCHIVE gate card; evidence under _handover/CNV-FAR018-FAR019-ARCHIVE-20261016/"
+   ],
+   "exit": 0,
+   "stdout": "Created t_4a85d871  (ready, assignee=hgk-orchestrator)",
+   "stderr": "⚠  No gateway is running — the task will sit in 'ready' until you start it. Run:\n    hermes gateway start\nThe gateway hosts an embedded dispatcher (tick interval 60s by default); your task will be pic"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "create",
+    "OG3 OG-OWNER: TS-G1-01 fresh G1 certificate at runtime freeze",
+    "--idempotency-key",
+    "ARCHIVE-OG3",
+    "--created-by",
+    "hgk-orchestrator",
+    "--assignee",
+    "hgk-orchestrator",
+    "--body",
+    "CNV-FAR018-FAR019-ARCHIVE gate card; evidence under _handover/CNV-FAR018-FAR019-ARCHIVE-20261016/"
+   ],
+   "exit": 0,
+   "stdout": "Created t_ba13c8f7  (ready, assignee=hgk-orchestrator)",
+   "stderr": "⚠  No gateway is running — the task will sit in 'ready' until you start it. Run:\n    hermes gateway start\nThe gateway hosts an embedded dispatcher (tick interval 60s by default); your task will be pic"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "create",
+    "OG4 OG-OWNER: the remaining 60-owner-item batches beyond B0",
+    "--idempotency-key",
+    "ARCHIVE-OG4",
+    "--created-by",
+    "hgk-orchestrator",
+    "--assignee",
+    "hgk-orchestrator",
+    "--body",
+    "CNV-FAR018-FAR019-ARCHIVE gate card; evidence under _handover/CNV-FAR018-FAR019-ARCHIVE-20261016/"
+   ],
+   "exit": 0,
+   "stdout": "Created t_52934043  (ready, assignee=hgk-orchestrator)",
+   "stderr": "⚠  No gateway is running — the task will sit in 'ready' until you start it. Run:\n    hermes gateway start\nThe gateway hosts an embedded dispatcher (tick interval 60s by default); your task will be pic"
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "ls",
+    "--json"
+   ],
+   "exit": 0,
+   "stdout": "[\n  {\n    \"id\": \"t_63158c6d\",\n    \"title\": \"A0 A0 source register A00 (20/20 knowledge base, per-source sha256)\",\n    \"body\": \"CNV-FAR018-FAR019-ARCHIVE gate card; evidence under _handover/CNV-FAR018-FAR019-ARCHIVE-20261016/\",\n    \"assignee\": \"hgk-orchestrator\",\n    \"status\": \"ready\",\n    \"priority\"",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "claim",
+    "t_63158c6d",
+    "--ttl",
+    "1800"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_63158c6d\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\cnv-archive-far018-019\\workspaces\\t_63158c6d",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "heartbeat",
+    "t_63158c6d"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_63158c6d",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "comment",
+    "t_63158c6d",
+    "verified: artifact on disk in the round root",
+    "--author",
+    "hgk-orchestrator"
+   ],
+   "exit": 0,
+   "stdout": "Comment added to t_63158c6d",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "complete",
+    "t_63158c6d",
+    "--result",
+    "done with raw receipt",
+    "--metadata",
+    "{\"evidence\": \"round root receipts\"}"
+   ],
+   "exit": 0,
+   "stdout": "Completed t_63158c6d",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "claim",
+    "t_68d14512",
+    "--ttl",
+    "1800"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_68d14512\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\cnv-archive-far018-019\\workspaces\\t_68d14512",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "heartbeat",
+    "t_68d14512"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_68d14512",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "comment",
+    "t_68d14512",
+    "verified: artifact on disk in the round root",
+    "--author",
+    "hgk-orchestrator"
+   ],
+   "exit": 0,
+   "stdout": "Comment added to t_68d14512",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "complete",
+    "t_68d14512",
+    "--result",
+    "done with raw receipt",
+    "--metadata",
+    "{\"evidence\": \"round root receipts\"}"
+   ],
+   "exit": 0,
+   "stdout": "Completed t_68d14512",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "claim",
+    "t_a7ed13e1",
+    "--ttl",
+    "1800"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_a7ed13e1\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\cnv-archive-far018-019\\workspaces\\t_a7ed13e1",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "heartbeat",
+    "t_a7ed13e1"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_a7ed13e1",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "comment",
+    "t_a7ed13e1",
+    "verified: artifact on disk in the round root",
+    "--author",
+    "hgk-orchestrator"
+   ],
+   "exit": 0,
+   "stdout": "Comment added to t_a7ed13e1",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "complete",
+    "t_a7ed13e1",
+    "--result",
+    "done with raw receipt",
+    "--metadata",
+    "{\"evidence\": \"round root receipts\"}"
+   ],
+   "exit": 0,
+   "stdout": "Completed t_a7ed13e1",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "claim",
+    "t_7cfd4264",
+    "--ttl",
+    "1800"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_7cfd4264\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\cnv-archive-far018-019\\workspaces\\t_7cfd4264",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "heartbeat",
+    "t_7cfd4264"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_7cfd4264",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "comment",
+    "t_7cfd4264",
+    "verified: artifact on disk in the round root",
+    "--author",
+    "hgk-orchestrator"
+   ],
+   "exit": 0,
+   "stdout": "Comment added to t_7cfd4264",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "complete",
+    "t_7cfd4264",
+    "--result",
+    "done with raw receipt",
+    "--metadata",
+    "{\"evidence\": \"round root receipts\"}"
+   ],
+   "exit": 0,
+   "stdout": "Completed t_7cfd4264",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "claim",
+    "t_8cc793f2",
+    "--ttl",
+    "1800"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_8cc793f2\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\cnv-archive-far018-019\\workspaces\\t_8cc793f2",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "heartbeat",
+    "t_8cc793f2"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_8cc793f2",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "comment",
+    "t_8cc793f2",
+    "verified: artifact on disk in the round root",
+    "--author",
+    "hgk-orchestrator"
+   ],
+   "exit": 0,
+   "stdout": "Comment added to t_8cc793f2",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "complete",
+    "t_8cc793f2",
+    "--result",
+    "done with raw receipt",
+    "--metadata",
+    "{\"evidence\": \"round root receipts\"}"
+   ],
+   "exit": 0,
+   "stdout": "Completed t_8cc793f2",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "claim",
+    "t_b5de7642",
+    "--ttl",
+    "1800"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_b5de7642\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\cnv-archive-far018-019\\workspaces\\t_b5de7642",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "heartbeat",
+    "t_b5de7642"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_b5de7642",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "claim",
+    "t_d54b1154",
+    "--ttl",
+    "1800"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_d54b1154\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\cnv-archive-far018-019\\workspaces\\t_d54b1154",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "heartbeat",
+    "t_d54b1154"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_d54b1154",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "claim",
+    "t_2ff72331",
+    "--ttl",
+    "1800"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_2ff72331\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\cnv-archive-far018-019\\workspaces\\t_2ff72331",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "heartbeat",
+    "t_2ff72331"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_2ff72331",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "claim",
+    "t_7046a638",
+    "--ttl",
+    "1800"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_7046a638\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\cnv-archive-far018-019\\workspaces\\t_7046a638",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "heartbeat",
+    "t_7046a638"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_7046a638",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "claim",
+    "t_92b874fb",
+    "--ttl",
+    "1800"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_92b874fb\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\cnv-archive-far018-019\\workspaces\\t_92b874fb",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "heartbeat",
+    "t_92b874fb"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_92b874fb",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "claim",
+    "t_265a6917",
+    "--ttl",
+    "1800"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_265a6917\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\cnv-archive-far018-019\\workspaces\\t_265a6917",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "heartbeat",
+    "t_265a6917"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_265a6917",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "claim",
+    "t_2a9ee1b4",
+    "--ttl",
+    "1800"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_2a9ee1b4\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\cnv-archive-far018-019\\workspaces\\t_2a9ee1b4",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "heartbeat",
+    "t_2a9ee1b4"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_2a9ee1b4",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "claim",
+    "t_aeded7bd",
+    "--ttl",
+    "1800"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_aeded7bd\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\cnv-archive-far018-019\\workspaces\\t_aeded7bd",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "heartbeat",
+    "t_aeded7bd"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_aeded7bd",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "claim",
+    "t_8c8c59bd",
+    "--ttl",
+    "1800"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_8c8c59bd\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\cnv-archive-far018-019\\workspaces\\t_8c8c59bd",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "heartbeat",
+    "t_8c8c59bd"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_8c8c59bd",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "claim",
+    "t_2bace81c",
+    "--ttl",
+    "1800"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_2bace81c\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\cnv-archive-far018-019\\workspaces\\t_2bace81c",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "heartbeat",
+    "t_2bace81c"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_2bace81c",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "block",
+    "t_2bace81c",
+    "assertion only the owner can make; carried as a single action",
+    "--kind",
+    "needs_input"
+   ],
+   "exit": 0,
+   "stdout": "Blocked t_2bace81c: assertion only the owner can make; carried as a single action",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "claim",
+    "t_4a85d871",
+    "--ttl",
+    "1800"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_4a85d871\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\cnv-archive-far018-019\\workspaces\\t_4a85d871",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "heartbeat",
+    "t_4a85d871"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_4a85d871",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "block",
+    "t_4a85d871",
+    "assertion only the owner can make; carried as a single action",
+    "--kind",
+    "needs_input"
+   ],
+   "exit": 0,
+   "stdout": "Blocked t_4a85d871: assertion only the owner can make; carried as a single action",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "claim",
+    "t_ba13c8f7",
+    "--ttl",
+    "1800"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_ba13c8f7\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\cnv-archive-far018-019\\workspaces\\t_ba13c8f7",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "heartbeat",
+    "t_ba13c8f7"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_ba13c8f7",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "block",
+    "t_ba13c8f7",
+    "assertion only the owner can make; carried as a single action",
+    "--kind",
+    "needs_input"
+   ],
+   "exit": 0,
+   "stdout": "Blocked t_ba13c8f7: assertion only the owner can make; carried as a single action",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "claim",
+    "t_52934043",
+    "--ttl",
+    "1800"
+   ],
+   "exit": 0,
+   "stdout": "Claimed t_52934043\nWorkspace: C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\kanban\\boards\\cnv-archive-far018-019\\workspaces\\t_52934043",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "heartbeat",
+    "t_52934043"
+   ],
+   "exit": 0,
+   "stdout": "Heartbeat recorded for t_52934043",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "block",
+    "t_52934043",
+    "assertion only the owner can make; carried as a single action",
+    "--kind",
+    "needs_input"
+   ],
+   "exit": 0,
+   "stdout": "Blocked t_52934043: assertion only the owner can make; carried as a single action",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "--board",
+    "cnv-archive-far018-019",
+    "ls",
+    "--json"
+   ],
+   "exit": 0,
+   "stdout": "[\n  {\n    \"id\": \"t_63158c6d\",\n    \"title\": \"A0 A0 source register A00 (20/20 knowledge base, per-source sha256)\",\n    \"body\": \"CNV-FAR018-FAR019-ARCHIVE gate card; evidence under _handover/CNV-FAR018-FAR019-ARCHIVE-20261016/\",\n    \"assignee\": \"hgk-orchestrator\",\n    \"status\": \"done\",\n    \"priority\":",
+   "stderr": ""
+  }
+ ]
+}
