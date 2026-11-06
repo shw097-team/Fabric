@@ -1,0 +1,42 @@
+{
+ "schema": "CNV-OWNER-DECISION/SELF-EVOLUTION/2",
+ "round": "CNV-OWNER-DECISION-MAIN-LANDING-20261016",
+ "lessons": [
+  {
+   "id": "L9",
+   "lesson": "A required-arm flag is a demand, not a preference: without pinning the rank the gate can admit the arm and a different one can still serve, and the honest failure is a non-zero exit rather than a silent substitution. Pin the rank whenever the owner names a model.",
+   "applied_to": "two lanes re-dispatched with force-rank 2 and the mandated arm; both then served it"
+  },
+  {
+   "id": "L10",
+   "lesson": "Freeze facts, not summaries. A checker handed only an inventory of paths cannot establish additivity or head binding; the first verdict said so, and the second cleared those checks only after the contents and the branch tips were supplied.",
+   "applied_to": "PR_FACTS2.json plus the repair note; V2 and V4 moved from unverifiable to clear"
+  },
+  {
+   "id": "L11",
+   "lesson": "A gate you write binds you. This round's own repair note said to hold the merges if a published artefact carried a credential-shaped string, and the checker held on exactly that. Writing a narrow gate and then ignoring it would be worse than never writing one.",
+   "applied_to": "both merges held and recorded in MERGE_DECISION.json"
+  },
+  {
+   "id": "L12",
+   "lesson": "Weigh a finding by its context, not its shape. The flagged strings are a scanner's synthetic positive controls, which exist to prove the scanner works; that is a disclosure to make, not an undetected credential. Publishing the disclosure is the correct handling.",
+   "applied_to": "ER-2-5 and the V6 finding as published"
+  },
+  {
+   "id": "L13",
+   "lesson": "Read-only lanes cannot deliver files. A verdict that only exists in stdout is still a verdict; transcribe it mechanically with the stream hash and say so.",
+   "applied_to": "PLAN notes and both VERIFY verdicts"
+  },
+  {
+   "id": "L14",
+   "lesson": "Line endings are part of the change. A CFRL copy of an LF file turns a two-line insertion into a whole-file rewrite that no reviewer can read; the opcode check is what proves additivity.",
+   "applied_to": "the homepage repair: +149/-72 became +77/-0"
+  }
+ ],
+ "artifact_disclosure": {
+  "same_model_axis": "now AVAILABLE for this round: the checker ran gpt-6.1-sol while the writer ran deepseek-v4.1-flash, on different providers",
+  "not_executed": "the two merges recommended by the ruling",
+  "subagent_batch": "three verification leaves were dispatched for this round and had not returned when the pack was published; no sub-agent claim is relied on in this pack"
+ },
+ "claim_ceiling": "CANDIDATE_ONLY"
+}

@@ -1,0 +1,232 @@
+{
+ "schema": "CNV-OWNER-DECISION/SURFACES/1",
+ "round": "CNV-OWNER-DECISION-MAIN-LANDING-20261016",
+ "board": "cnv-owner-decision-main-landing",
+ "change": "hgk-cnv-owner-decision-main-landing",
+ "admission": {
+  "project_id": "CNV-OWNER-DECISION-LANDING",
+  "probe": {
+   "db": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\var\\shared-spine\\hg-kseos.db",
+   "db_error": null,
+   "taskspec_columns": [
+    "taskspec_id",
+    "requirement_id",
+    "objective",
+    "owner",
+    "writable_root",
+    "permissions_json",
+    "tests_json",
+    "rollback_pointer",
+    "evidence_plan",
+    "state",
+    "version",
+    "created_at",
+    "updated_at"
+   ],
+   "taken_projects": [
+    "PIPD-REPO-HYGIENE-HANDOVER",
+    "PIPD-S4-FINAL-PR18",
+    "PIPD-S4R6-CLOSEOUT",
+    "PIPD-S4R6-R18",
+    "SKILL-CONVERGENCE-20261014",
+    "SQS-THC-PUBLICATION-20261015"
+   ],
+   "taken_segments": [
+    "verify",
+    "w1",
+    "w2",
+    "w3",
+    "w4",
+    "w5",
+    "w6",
+    "w7",
+    "w8",
+    "watchdog",
+    "wiring",
+    "wording"
+   ],
+   "chosen": "CNV-OWNER-DECISION-LANDING"
+  },
+  "sources": 15,
+  "missing": [],
+  "inventory": [
+   {
+    "id": "SRC-FAR-RULING-2",
+    "bytes": 14442,
+    "sha256": "2644743ea8ebfc2ab2fb8675568258e380f5f55c7e92d2aa3fda334145765a7a"
+   },
+   {
+    "id": "SRC-FAR-STUDY-2",
+    "bytes": 6470,
+    "sha256": "38008e79f1be29808e6b92304564e90c5047780f2458ccf4d766d4ec0ada70a0"
+   },
+   {
+    "id": "SRC-HOMEPAGE-REPAIR",
+    "bytes": 1007,
+    "sha256": "7ddb3c5f8f1e9d0ee2443cc3e9e4b680489725185bfd30c41a311b9597661764"
+   },
+   {
+    "id": "SRC-RC1-UNIVERSE",
+    "bytes": 698810,
+    "sha256": "bee1643356b313221c7ffc3167c38fd7522205fc3e24d2b4146147983af43362"
+   },
+   {
+    "id": "SRC-RC2-DOSSIER",
+    "bytes": 5649,
+    "sha256": "7c565c40dc1d263bb98e2393b22ca9d37d5209e2b7736907fbaf729150b5d16d"
+   },
+   {
+    "id": "SRC-PKG",
+    "bytes": 2689181,
+    "sha256": "96d9d564286743e17550ccef15b9952347901eb77168f930376938893cff9c3f"
+   },
+   {
+    "id": "SRC-EIA-ARCHIVE",
+    "bytes": 34930,
+    "sha256": "1ba34b6fb79b490069d932adace647ef636a3e700142736d777f2961e7aa49e7"
+   },
+   {
+    "id": "SRC-HGK-AGENTS",
+    "bytes": 14055,
+    "sha256": "7f7246d34be112bb465b48dadaef6163e466e16e5e705fc58acee04b3809a613"
+   },
+   {
+    "id": "SRC-FABRIC-CONTROL-SOD",
+    "bytes": 873,
+    "sha256": "45a2caad808f0bcb2a3542df8ea4378bbcbf8dbe8860be6061ec473f86d3705c"
+   },
+   {
+    "id": "SRC-FABRIC-CONTROL-RELEASE",
+    "bytes": 607,
+    "sha256": "f1d9b4afbb7e1fa3c406af554c4ae2ae85a178210c881c2247de8718d9bbc271"
+   },
+   {
+    "id": "SRC-SKILL-HGK",
+    "bytes": 21896,
+    "sha256": "c679f4541f2e00ecc2fb3b83e8881c1fc9ab9aebbbad6f4aa33508950dbb02c1"
+   },
+   {
+    "id": "SRC-LANE-REGISTRY",
+    "bytes": 47224,
+    "sha256": "02481992df124ca4f83b655b4583fc2053ecebbbb3125702ab28e39d0c35ea70"
+   },
+   {
+    "id": "SRC-PREV-APPLY",
+    "bytes": 17059,
+    "sha256": "4643aa87f9467a84cca92c8b75951c2038adb3208cc26fffafd48cb6cbbab54e"
+   },
+   {
+    "id": "SRC-PREV-SELFCHECK",
+    "bytes": 2889,
+    "sha256": "a6c0a8bef355c00d21df6db8e5aa96c13cb48497e29b2545615fb18bde6950e3"
+   },
+   {
+    "id": "SRC-PREV-CLOSURE",
+    "bytes": 4961,
+    "sha256": "9fe5bcf49bb1a5c53e699304176d40d3182463da3271cdd193a33e30f6866c99"
+   }
+  ],
+  "steps": [
+   {
+    "step": "start",
+    "result": "CREATED",
+    "state": "PROJECT_CREATED"
+   },
+   {
+    "step": "intake",
+    "status": "READY",
+    "source_count": 15,
+    "blocking_missing": []
+   }
+  ],
+  "plan": {
+   "task_count": 5
+  },
+  "workorders": {
+   "project_id": "CNV-OWNER-DECISION-LANDING",
+   "workorders": [
+    "WO-TS-LANDING-01",
+    "WO-TS-LANDING-02",
+    "WO-TS-LANDING-03",
+    "WO-TS-LANDING-04",
+    "WO-TS-LANDING-05"
+   ],
+   "count": 5
+  },
+  "final_state": "WORKORDERS_ADMITTED",
+  "verdict": "ADMISSION_OK",
+  "checkpoint": "CK-LANDING-86F7DD4F"
+ },
+ "openspec": {
+  "rc": 1,
+  "out": "/bin/bash: line 1: cd: /c/Projects/Agent_Workspace/HG-KSEOS: No such file or directory",
+  "residual_unchecked": [],
+  "strict_valid": false,
+  "strict_valid_second_attempt": true,
+  "second_attempt_note": "the first attempt failed because a login shell received an MSYS-style path; re-run with the native path the change validates strictly",
+  "validated_with": "cd <native path> && openspec validate hgk-cnv-owner-decision-main-landing --strict"
+ },
+ "gstack": {
+  "positive": {
+   "flow": "owner_decision_main_landing",
+   "provider": null,
+   "state": null,
+   "fallback": null,
+   "final_authority": true,
+   "route": "NATIVE"
+  },
+  "negative_control": {
+   "flow": "pure_qa_chat",
+   "provider": "gstack.qa",
+   "state": "CERTIFIED",
+   "fallback": "hgk_native_qa",
+   "final_authority": true,
+   "route": "GSTACK"
+  },
+  "verdict": "GSTACK_MEASURED_WITH_NEGATIVE_CONTROL"
+ },
+ "skills": {
+  "skill_files": 72,
+  "entry_maps": 1,
+  "entry_map_paths": [
+   "skills\\software-development\\hgk-governed-execution\\entry_map.json"
+  ],
+  "reference_files": 307
+ },
+ "kanban": {
+  "calls": [],
+  "create": {
+   "rc": 0,
+   "out": "-decision-main-landing\\kanban.db\n  Use `hermes kanban boards switch cnv-owner-decision-main-landing` to make it current."
+  },
+  "swarm": {
+   "rc": 0,
+   "out": "{\n  \"root_id\": \"t_71075154\",\n  \"worker_ids\": [\n    \"t_0fa294ad\",\n    \"t_b067d486\",\n    \"t_c6e0e13f\"\n  ],\n  \"verifier_id\": \"t_a16e2e93\",\n  \"synthesizer_id\": \"t_c70b1c80\"\n}"
+  },
+  "cards": {
+   "K01": "t_f7948af7",
+   "K02": "t_2394689f",
+   "K03": "t_28e8a6e5",
+   "K04": "t_2392d7fb",
+   "K05": "t_833eb581",
+   "K06": "t_5218741a",
+   "K07": "t_7d9e7034",
+   "K08": "t_7e1534a9",
+   "K09": "t_45b21ca8",
+   "K10": "t_44304934",
+   "K11": "t_075fd113",
+   "K12": "t_ccbceb3d",
+   "K13": "t_f32e5776",
+   "OG1": "t_7e8baead",
+   "OG2": "t_5956974f",
+   "OG3": "t_ff3b9c3f"
+  },
+  "histogram": {
+   "done": 8,
+   "ready": 9,
+   "blocked": 3,
+   "todo": 2
+  },
+  "listed": 22
+ }
+}
