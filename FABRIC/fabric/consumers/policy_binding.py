@@ -42,6 +42,29 @@ public API:
    `POLICY_LOADED_PROVENANCE_NOT_A_LOAD_RECEIPT`.
 
 No refusal code was removed or renamed; the four codes above are additive.
+
+D-24 (2026-11-07) closes the three defects that survived D-17, all of them on the *first two* legs —
+the only legs whose evidence is a file and which had no reader:
+
+1. `leg("source", digest=<64 hex>, …)` accepted **any** digest. A fabricated 64-hex string with no
+   artifact anywhere on disk substantiated the first leg. `source` and `stage` (and `active_epoch`)
+   now name an artifact (`artifact=`), the registered reader opens it and re-derives its sha256, and
+   `build_binding` re-reads it, so a digest with no artifact is refused
+   (`POLICY_SOURCE_UNREADABLE` / `POLICY_SOURCE_DIGEST_MISMATCH` / the stage and epoch codes below);
+2. `reader` was free text: `reader="TOTALLY-MADE-UP-READER"` was accepted and `separate_readers`
+   counted distinct *strings*. `reader` must now be a key of `policy_leg_readers.READERS`, a reader
+   for another leg is refused (`POLICY_LEG_READER_MISMATCH`), and `separate_readers` counts the
+   readers that actually ran — a leg that was typed by hand counts for nothing;
+3. `build_binding` required `stage.digest == source.digest`, so a real YAML->JSON stage was refused
+   as `POLICY_SOURCE_STAGE_DRIFT` and the only passing shape was typing the source digest as the
+   stage digest — a false pass asserting the staged bytes *are* the source bytes. A stage is now a
+   `FABRIC_POLICY_STAGE@1` document with a producer block `{source_sha256, transform,
+   stage_sha256}`; drift means "the stage declares a different source than the source leg's
+   *verified* digest", which a YAML->JSON stage passes and a stage produced from other bytes does not.
+
+The stage leg's digest is therefore the digest of the staged bytes and normally differs from the
+source digest — that difference is the transform, not drift. No refusal code was removed or renamed;
+`POLICY_SOURCE_STAGE_DRIFT` keeps its name and moves to the only comparison that can mean it.
 """
 from __future__ import annotations
 
@@ -50,6 +73,8 @@ import json
 import re
 from pathlib import Path
 from typing import Any, NoReturn
+
+from policy_leg_readers import READERS, LegReaderRefusal
 
 _HEX64 = re.compile(r"^[0-9a-f]{64}$")
 
@@ -108,6 +133,31 @@ D17_REFUSAL_CODES = (
     "POLICY_OWNER_APPROVAL_UNSUBSTANTIATED",
 )
 
+# D-24. The legs whose evidence is a file this module must open. A leg in this set cannot be built
+# from a digest alone: `artifact=` is required, the reader re-derives the digest from the bytes, and
+# `build_binding` re-reads the file so a hand-built dict cannot skip the reader.
+ARTIFACT_LEGS = ("source", "stage", "active_epoch")
+
+#: Which "there is no readable artifact" code each artifact leg raises. A digest with no artifact is
+#: not a digest with unknown provenance — nothing was read, so nothing is substantiated.
+ARTIFACT_UNREADABLE = {
+    "source": "POLICY_SOURCE_UNREADABLE",
+    "stage": "POLICY_STAGE_UNREADABLE",
+    "active_epoch": "POLICY_EPOCH_UNREADABLE",
+}
+
+# Refusals added for D-24. Additive; every D-17 and pre-D-17 code is still emitted unchanged.
+D24_REFUSAL_CODES = (
+    "POLICY_LEG_READER_UNKNOWN",
+    "POLICY_LEG_READER_MISMATCH",
+    "POLICY_SOURCE_UNREADABLE",
+    "POLICY_SOURCE_DIGEST_MISMATCH",
+    "POLICY_STAGE_UNREADABLE",
+    "POLICY_STAGE_DIGEST_MISMATCH",
+    "POLICY_EPOCH_UNREADABLE",
+    "POLICY_EPOCH_DIGEST_MISMATCH",
+)
+
 # `state=BOUND` is a claim about design consistency, never about a running host. Both wordings below
 # land in `not_claimed`; the difference is only whether raw consumer evidence was supplied.
 HOST_POLICY_ACTIVE_NOT_CLAIMED = {
@@ -146,9 +196,62 @@ def _sha(body: Any) -> str:
                                      ensure_ascii=False).encode()).hexdigest()
 
 
+def _registered_reader(kind: str, reader: Any) -> Any:
+    """Resolve `reader` to a registry entry that may substantiate `kind`, or refuse.
+
+    D-24, defect 2: `reader` used to be free text, so `reader="TOTALLY-MADE-UP-READER"` built a leg
+    and `separate_readers` counted the string. A reader is now a key of
+    `policy_leg_readers.READERS`, and it may only substantiate the leg it actually reads — a stage
+    reader cannot make a source leg, or the six legs are not separate records.
+    """
+    entry = READERS.get(reader) if isinstance(reader, str) else None
+    if entry is None:
+        raise PolicyBindingRefusal(
+            f"leg {kind} names reader {reader!r}, which is not one of this module's readers "
+            f"{sorted(READERS)}: a name is not a reader",
+            code="POLICY_LEG_READER_UNKNOWN")
+    if entry.leg != kind:
+        raise PolicyBindingRefusal(
+            f"leg {kind} names reader {entry.name!r}, which reads the {entry.leg!r} leg; one "
+            "reader substantiating two legs is the collapse this module exists to prevent",
+            code="POLICY_LEG_READER_MISMATCH")
+    return entry
+
+
+def _read_artifact(kind: str, entry: Any, artifact: Any, *, expected_digest: str,
+                   expected_source_sha256: str | None = None) -> dict[str, Any]:
+    """Run the registered reader over `artifact`, mapping its refusal onto a binding refusal."""
+    if artifact is None or (isinstance(artifact, str) and not artifact.strip()):
+        raise PolicyBindingRefusal(
+            f"leg {kind} carries no artifact path, so its digest {str(expected_digest)[:12]} has "
+            "no bytes behind it; pass artifact=<path> (a fabricated digest is not evidence)",
+            code=ARTIFACT_UNREADABLE[kind])
+    if not isinstance(artifact, (str, Path)):
+        raise PolicyBindingRefusal(
+            f"leg {kind} artifact is a {type(artifact).__name__}, not a path",
+            code=ARTIFACT_UNREADABLE[kind])
+    try:
+        if kind == "stage":
+            return entry.read(artifact, expected_digest=expected_digest,
+                              expected_source_sha256=expected_source_sha256)
+        return entry.read(artifact, expected_digest=expected_digest)
+    except LegReaderRefusal as exc:
+        raise PolicyBindingRefusal(
+            f"leg {kind} artifact {artifact} refused ({exc.code}): {exc}", code=exc.code) from None
+
+
 def leg(kind: str, *, digest: str, provenance: str, reader: str, scope: str, epoch: int | str,
-        observed_at: str = "", evidence_class: str = "FIXTURE", note: str = "") -> dict[str, Any]:
-    """One leg. Refuses an unknown leg name or a provenance its reader could not have produced."""
+        observed_at: str = "", evidence_class: str = "FIXTURE", note: str = "",
+        artifact: str | Path | None = None) -> dict[str, Any]:
+    """One leg. Refuses an unknown leg, a provenance its reader could not produce, a reader that is
+    not registered for this leg, and — for the artifact legs — a digest that is not the sha256 of the
+    bytes at `artifact`.
+
+    D-24: `source`, `stage` and `active_epoch` are read, not typed. The reader opens the file and the
+    digest recorded on the leg is the one it re-derived; a digest with no artifact is refused with
+    that leg's `*_UNREADABLE` code, and a digest that disagrees with the bytes with its
+    `*_DIGEST_MISMATCH` code.
+    """
     if kind not in LEGS:
         raise PolicyBindingRefusal(f"unknown leg: {kind}", code="POLICY_LEG_UNKNOWN")
     if not str(digest or "").strip():
@@ -157,9 +260,22 @@ def leg(kind: str, *, digest: str, provenance: str, reader: str, scope: str, epo
         raise PolicyBindingRefusal(
             f"leg {kind} cannot be substantiated by provenance {provenance!r}; "
             f"allowed: {sorted(LEG_PROVENANCE[kind])}", code="POLICY_LEG_PROVENANCE_INVALID")
-    return {"leg": kind, "digest": digest, "provenance": provenance, "reader": reader,
+    entry = _registered_reader(kind, reader)
+
+    item = {"leg": kind, "digest": digest, "provenance": provenance, "reader": entry.name,
             "scope": scope, "epoch": epoch, "observed_at": observed_at,
-            "evidence_class": evidence_class, "note": note}
+            "evidence_class": evidence_class, "note": note, "reader_verified": False}
+    if kind in ARTIFACT_LEGS:
+        observed = _read_artifact(kind, entry, artifact, expected_digest=str(digest))
+        item.update(artifact=observed["artifact"], artifact_sha256=observed["artifact_sha256"],
+                    artifact_bytes=observed["artifact_bytes"], reader_verified=True,
+                    digest=observed["digest"])
+        if kind == "stage":
+            item.update(source_sha256=observed["source_sha256"], transform=observed["transform"],
+                        stage_sha256=observed["stage_sha256"], stage_bytes=observed["stage_bytes"])
+        if not item["note"]:
+            item["note"] = observed["note"]
+    return item
 
 
 def _order(legs: list[dict[str, Any]]) -> list[dict[str, Any]]:
@@ -248,7 +364,12 @@ def _consumer_ack_from_receipt(receipt: Any, *, subject: str, scope: str,
                observed_at=str(receipt.get("observed_at") or ""),
                evidence_class=CONSUMER_ACK_RECEIPT_EVIDENCE_CLASS,
                note=("read from HGK_CONSUMER_RECEIPT@1; digest re-derived from the acknowledged "
-                     f"bytes (receipt {str(receipt.get('receipt_sha256') or '')[:12]})"))
+                     f"bytes (receipt {str(receipt.get('receipt_sha256') or '')[:12]})")) | {
+        # This reader ran (the receipt was re-opened and re-hashed), so the leg may count as a
+        # verified reader. `build_binding` still derives the count from the receipt flags, not from
+        # this field, so a hand-built dict cannot inflate it.
+        "reader_verified": True,
+    }
 
 
 def _loaded_from_receipt(receipt: Any, *, scope: str, epoch: int | str) -> dict[str, Any]:
@@ -324,7 +445,9 @@ def _loaded_from_receipt(receipt: Any, *, scope: str, epoch: int | str) -> dict[
                evidence_class=reread["evidence_class"],
                note=("read from HOST_LOAD_RECEIPT@1; digest re-derived from the policy bytes and the "
                      f"producer/process block validated (pid {reread['process'].get('pid')}, "
-                     f"receipt {str(reread.get('receipt_sha256') or '')[:12]})"))
+                     f"receipt {str(reread.get('receipt_sha256') or '')[:12]})")) | {
+        "reader_verified": True,
+    }
 
 
 def _owner_from_receipt(receipt: Any, *, scope: str, epoch: int | str,
@@ -413,7 +536,32 @@ def _owner_from_receipt(receipt: Any, *, scope: str, epoch: int | str,
         "key_trusted": bool(reread["key_trusted"]),
         "principal": reread["principal"],
         "expires_at": reread["expires_at"],
+        "reader_verified": True,
     }
+
+
+def _verify_artifact_leg(item: dict[str, Any], *, source_digest: str) -> dict[str, Any]:
+    """Re-read one artifact leg's file and re-derive its digest, or refuse.
+
+    D-24: `leg()` refuses a fabricated digest, but `build_binding` takes a list of dicts, so a caller
+    can assemble a leg by hand. The file is therefore opened again here, for the same reason the
+    load/owner/ack receipts are re-opened: a dict is a claim, the bytes are the evidence. Drift is
+    checked here too — the stage's declared `source_sha256` against the source leg's *verified*
+    digest — because this is the only place both legs are in hand.
+    """
+    kind = item["leg"]
+    entry = _registered_reader(kind, item.get("reader"))
+    observed = _read_artifact(kind, entry, item.get("artifact"),
+                              expected_digest=str(item.get("digest") or ""),
+                              expected_source_sha256=(source_digest if kind == "stage" else None))
+    if kind == "stage":
+        declared = item.get("source_sha256")
+        if declared is not None and str(declared).strip().lower() != observed["source_sha256"]:
+            raise PolicyBindingRefusal(
+                f"stage leg declares it was produced from source {str(declared)[:12]} but "
+                f"{item.get('artifact')} declares {observed['source_sha256'][:12]}: the leg and the "
+                "artifact disagree about their origin", code="POLICY_SOURCE_STAGE_DRIFT")
+    return observed
 
 
 def build_binding(*, policy_ref: str, scope: str, epoch: int | str,
@@ -438,8 +586,18 @@ def build_binding(*, policy_ref: str, scope: str, epoch: int | str,
     `POLICY_OWNER_DIRECTIVE@1` or the dict `owner_approval_receipt.read_owner_receipt` returned for
     one. `owner_reader_sid` / `owner_trusted_key_ids` are passed to that reader so a self-signed
     approval is refused and, when the caller owns a key registry, the named key is pinned.
+
+    D-24: `source`, `stage` and `active_epoch` legs carry the `artifact` path their registered reader
+    opened, and this function re-opens it, so a hand-built leg dict with a plausible digest and no
+    file is refused rather than bound. `separate_readers` counts the readers that ran — the three
+    artifact readers plus whichever receipts were supplied — never the `reader` strings on legs the
+    caller typed.
     """
-    by_leg = {item["leg"]: item for item in legs}
+    by_leg = {item.get("leg"): item for item in legs}
+    unknown = [str(item.get("leg")) for item in legs if item.get("leg") not in LEGS]
+    if unknown:
+        raise PolicyBindingRefusal("unknown legs: " + ", ".join(sorted(set(unknown))),
+                                   code="POLICY_LEG_UNKNOWN")
     from_receipt = consumer_ack_receipt is not None
     if from_receipt:
         by_leg["consumer_ack"] = _consumer_ack_from_receipt(
@@ -467,6 +625,11 @@ def build_binding(*, policy_ref: str, scope: str, epoch: int | str,
         raise PolicyBindingRefusal(
             "legs claim a different scope/epoch than the binding: " + ", ".join(sorted(foreign)),
             code="POLICY_SIGNER_OR_EPOCH_DENY")
+
+    # D-24, defect 2: a reader is a registered callable, and every leg — typed or read — must name
+    # one. A hand-built dict cannot smuggle `reader="TOTALLY-MADE-UP-READER"` past `leg()`.
+    for item in legs:
+        _registered_reader(item["leg"], item.get("reader"))
 
     loaded = by_leg["loaded_digest"]
     if loaded["provenance"] in NON_LOADING_PROVENANCE:
@@ -526,10 +689,26 @@ def build_binding(*, policy_ref: str, scope: str, epoch: int | str,
             "the owner approved different bytes than the source leg "
             f"({str(owner['digest'])[:12]} != {str(by_leg['source']['digest'])[:12]})",
             code="OWNER_RECEIPT_DIGEST_MISMATCH")
-    if by_leg["stage"]["digest"] != by_leg["source"]["digest"]:
-        raise PolicyBindingRefusal(
-            "staged bytes differ from the source bytes without a recorded re-issue",
-            code="POLICY_SOURCE_STAGE_DRIFT")
+    # D-24: the first three legs name an artifact, and the file is opened again here so a hand-built
+    # dict cannot skip the reader `leg()` would have run. This replaces the old
+    # `stage.digest == source.digest` rule, which refused a real YAML->JSON stage and passed only
+    # when the caller typed the source digest as the stage digest — a false pass.
+    stage_observed: dict[str, Any] = {}
+    for name in ARTIFACT_LEGS:
+        observed = _verify_artifact_leg(by_leg[name], source_digest=by_leg["source"]["digest"])
+        if name == "stage":
+            stage_observed = observed
+
+    # D-24, defect 2: count readers that ran, not strings that were typed. An artifact leg counts
+    # because its file was just re-read; a receipt leg counts because `build_binding` itself opened
+    # the receipt. A caller-supplied leg counts for nothing, however plausible its `reader` value.
+    verified_readers = {by_leg[name]["reader"] for name in ARTIFACT_LEGS}
+    if from_load_receipt:
+        verified_readers.add(loaded["reader"])
+    if from_receipt:
+        verified_readers.add(ack["reader"])
+    if from_owner_receipt:
+        verified_readers.add(owner["reader"])
 
     record = {
         "schema": SCHEMA,
@@ -539,7 +718,16 @@ def build_binding(*, policy_ref: str, scope: str, epoch: int | str,
         "epoch": epoch,
         "legs": _order(legs),
         "digests": {name: by_leg[name]["digest"] for name in LEGS},
-        "separate_readers": len({item["reader"] for item in legs}),
+        "separate_readers": len(verified_readers),
+        "verified_readers": sorted(verified_readers),
+        "stage": {
+            "transform": stage_observed.get("transform"),
+            "source_sha256": stage_observed.get("source_sha256"),
+            "stage_sha256": stage_observed.get("stage_sha256"),
+            "note": ("the stage leg's digest is the staged bytes, not the source bytes; "
+                     "source_sha256 is what the stage declares it was produced from and is checked "
+                     "against the source leg's re-derived digest"),
+        },
         "state": "BOUND",
         "claim_ceiling": "AUTHOR_DESIGN_ONLY",
         "host": {"loaded_on_host": bool(from_load_receipt)
