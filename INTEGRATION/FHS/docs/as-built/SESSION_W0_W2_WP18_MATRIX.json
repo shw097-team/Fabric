@@ -1,0 +1,176 @@
+{
+ "schema": "FHS.SessionWP18Matrix/1",
+ "generated_at": "2026-11-07T23:10:08+0800",
+ "waves": {
+  "W0": [
+   {
+    "wp": "WP-FHS-00",
+    "state": "TESTED",
+    "summary": "source lock re-verified on this machine: control doc 5739a682 (70,517 B), W0 r5 60b0c36e (475,265 B), W1 r3 936a8bcb (868,138 B), W2 r5 647ee559 (430,128 B), CURRENT_READER_MAP d6a8fe98 (2,339 B) - all five match the control table",
+    "not_done": "L0/L1/L2 are not present under the knowledge-base path used here, so those three are NOT_OBSERVED, not verified",
+    "ev": [
+     "out/R1_PRERUN_CHECKS.json"
+    ]
+   },
+   {
+    "wp": "WP-FHS-01",
+    "state": "NOT_RUN",
+    "summary": "no new measurement this session; the nine-context profile and the independent twelve-risk sidecar remain author-side",
+    "not_done": "no AuthorityConflictLedger / QuestionLedger decision was taken",
+    "ev": []
+   },
+   {
+    "wp": "WP-FHS-15",
+    "state": "NOT_RUN",
+    "summary": "the three SPECs were not re-issued; nothing this session changes their source binding",
+    "not_done": "TPM/PIPD intake not exercised",
+    "ev": []
+   },
+   {
+    "wp": "WP-FHS-16",
+    "state": "NOT_RUN",
+    "summary": "Donor24/Method25 unchanged",
+    "not_done": "no host-fit consumption happened",
+    "ev": []
+   },
+   {
+    "wp": "WP-FHS-19",
+    "state": "TESTED",
+    "summary": "SBL main CI was already green (4 jobs) and PR #48/#49 were merged into it; the supply-chain layer is unchanged by this round",
+    "not_done": "merging a PR is not a re-run of the supply-chain job; the layer stays APPLICABLE_DONE_AT_CI_LAYER",
+    "ev": [
+     "out/REPO_WIRING_R4.json"
+    ]
+   },
+   {
+    "wp": "WP-FHS-21",
+    "state": "TESTED",
+    "summary": "the declared GJ02 runner separates a defective checkout from a fixed one on identical oracle bytes (RED observed 0.03 forbidden / exit 1; GREEN observed 0.02 expect / exit 0; runner c4e447ba, oracle 33170cc1)",
+    "not_done": "this is oracle discrimination, not a DEV effect, and the RED is not yet bound to a WorkID/ExactWriteSet",
+    "ev": [
+     "out/GJ02_ORACLE_RED_GREEN.json"
+    ]
+   }
+  ],
+  "W1": [
+   {
+    "wp": "WP-FHS-02",
+    "state": "IMPLEMENTED",
+    "summary": "the Fabric policy binding now has real readers: source/stage open an artifact and recompute its digest; the epoch leg binds only through a pinned-key signed FABRIC_ACTIVE_EPOCH@1; a receipt cannot satisfy source/stage and an artifact cannot satisfy active_epoch (POLICY_LEG_EVIDENCE_MISMATCH)",
+    "not_done": "no FABRIC_ACTIVE_EPOCH@1 has been signed by a Policy Owner, no Host has loaded a policy, no HGK consumer receipt has been produced for GJ02, and the pin is a caller-supplied registry - BOUND is not policy-effective",
+    "ev": [
+     "out/D24_SCOPED_PR.json",
+     "out/D24_INTEGRATION.json"
+    ]
+   },
+   {
+    "wp": "WP-FHS-03",
+    "state": "HOLD",
+    "summary": "R1 is prepared and frozen (ceremony a9194d05, preflight 7/7, registry 3254714b rev13, 31/31, signing-capability challenge with a passing negative control); the fixture mechanics are 10/10 and the admission permit POS/NEG is 6/6",
+    "not_done": "rev14 does not exist: only the OWNER can run --reissue-issuer. No permit has been minted for GJ02.",
+    "ev": [
+     "out/R1_PRERUN_CHECKS.json"
+    ]
+   },
+   {
+    "wp": "WP-FHS-04",
+    "state": "IMPLEMENTED",
+    "summary": "patches 0001-0007 deployed to the runtime root; the live store migrated additively (121 -> 132 objects at schema_version 32); a v99 store is now refused before any DDL; restart produced PID 15180 loading the patched tree; cross-restart row counts reconcile (sessions 363/363, leases 1/1, receipts 78/78)",
+    "not_done": "T2 is NOT_VERIFIED: the only wake observed came from a work item the maker created, which the ruling forbids as evidence. Two scheduler defects were found and only worked around (D-26 script path outside HERMES_HOME/scripts, D-27 tick reading the 1.2 GB root store instead of the profile store).",
+    "ev": [
+     "out/P3_MAINTENANCE_WINDOW.json",
+     "out/P3_POST_RESTART_ACCEPTANCE.json",
+     "out/R5_RULING_AND_WIRING.json"
+    ]
+   },
+   {
+    "wp": "WP-FHS-05",
+    "state": "TESTED",
+    "summary": "the merged SBL binds a real RepoContext from live git probes (head 70757870, index e9981083, dirty false, untracked 0), checks writable_scope as a subset of the authorised set, and refuses a missing root with RepoContextMissing",
+    "not_done": "PI -> PD -> DEV ECP is blocked: pipeline.intake requires a clause-bound source locator and no GJ02 case source exists in the SBL tree",
+    "ev": [
+     "out/R5_RULING_AND_WIRING.json",
+     "out/FIRSTFAIL_GJ02_CASE_SOURCE.json"
+    ]
+   },
+   {
+    "wp": "WP-FHS-07",
+    "state": "ORIGINAL_ACK",
+    "summary": "HG-KSEOS #15 (PLAN ACK bound to a reader receipt) is merged into main at acd9196f",
+    "not_done": "a merge is not a PLAN reader acceptance; no PLAN A/B/C acceptance was performed against the merged code this session",
+    "ev": [
+     "out/REPO_WIRING_R4.json"
+    ]
+   },
+   {
+    "wp": "WP-FHS-11",
+    "state": "NOT_RUN",
+    "summary": "the three SPs remain loaded/invoked/non-trigger in the target profile; nothing this session changed that",
+    "not_done": "ConsumerUsed / Remove semantics not measured",
+    "ev": []
+   },
+   {
+    "wp": "WP-FHS-17",
+    "state": "HOLD",
+    "summary": "the rev-13 registry still verifies (OwnerRowLeaf@2, 31/31, rows_unverified []), and the deployed build still verifies it after restart",
+    "not_done": "the two CAP needs (sp.host.load, python.dist:pyyaml) are not qualified, and rev14 cannot exist before the OWNER's ceremony",
+    "ev": [
+     "out/P3_POST_RESTART_ACCEPTANCE.json"
+    ]
+   },
+   {
+    "wp": "WP-FHS-20",
+    "state": "NOT_RUN",
+    "summary": "the 192-cell identities are untouched; the missing prose row and the OFF/UNBOUND_OWNER_CONFLICT distinction remain open",
+    "not_done": "no source-owner prose repair, and no token was promoted",
+    "ev": []
+   }
+  ],
+  "W2": [
+   {
+    "wp": "WP-FHS-06",
+    "state": "HOLD",
+    "summary": "every pre-state is measured (RepoContext, RED/GREEN oracle pair, write-set package at HEAD 7075787 with preimage 56bc6977 -> postimage 7d8ceafa) but no DEV effect was executed",
+    "not_done": "two hard blocks: no Issuer Permit (rev14 absent) and no DEV ECP (no clause-bound GJ02 case source). No world write was attempted, so nothing can be misreported as a DEV.",
+    "ev": [
+     "out/GJ02_ORACLE_RED_GREEN.json",
+     "out/FIRSTFAIL_GJ02_CASE_SOURCE.json"
+    ]
+   },
+   {
+    "wp": "WP-FHS-08",
+    "state": "NOT_RUN",
+    "summary": "no crash window was run; there is no DEV effect to make durable",
+    "not_done": "requires WP06 first; the resume path exists and was exercised only on synthetic items",
+    "ev": []
+   },
+   {
+    "wp": "WP-FHS-09",
+    "state": "NOT_RUN",
+    "summary": "no independent protected checker verdict exists",
+    "not_done": "no frozen candidate to check, and the checker principal separation remains a requirement, not a measurement",
+    "ev": []
+   },
+   {
+    "wp": "WP-FHS-18",
+    "state": "NOT_RUN",
+    "summary": "no incident occurred, so no FAR was required and no N/A was granted by an original reader",
+    "not_done": "an FAR N/A must come from the original FAR reader, not from the absence of evidence",
+    "ev": []
+   }
+  ]
+ },
+ "totals": {
+  "wps": 18,
+  "original_ack": 0,
+  "terminal": "W0_W1_W2_ALL_APPLICABLE_ORIGINAL_WP_DONE=false",
+  "note": "22 WP / 36 DAG edges preserved; this matrix covers the 18 main-responsibility WPs only"
+ },
+ "defects": {
+  "count": 27,
+  "open_code_fixes": [
+   "D-26 scheduler script path",
+   "D-27 tick store default"
+  ]
+ }
+}
