@@ -90,6 +90,11 @@ LOAD_RECEIPT_PROVENANCE = "HOST_LOAD_RAW"
 LOAD_RECEIPT_READER = "host-load-receipt-reader"
 LOAD_RECEIPT_EVIDENCE_CLASS = "HOST_RAW"
 
+# The typed producer for the third leg (D-17, hole 4). Same rule: values, not an import.
+OWNER_RECEIPT_SCHEMAS = ("OWNER_APPROVAL_RECEIPT@1", "POLICY_OWNER_DIRECTIVE@1")
+OWNER_RECEIPT_READER = "owner-receipt-reader"
+OWNER_RECEIPT_EVIDENCE_CLASS = "HOST_RAW"
+
 # The only provenances that describe a policy *loaded on a host*. Membership is enforced in
 # `build_binding`, not only in `leg()`, because a caller can build the dict by hand.
 LOADED_PROVENANCE = frozenset({LOAD_RECEIPT_PROVENANCE, "CONSUMER_LOAD_RECEIPT"})
@@ -100,6 +105,7 @@ D17_REFUSAL_CODES = (
     "POLICY_LOAD_UNSUBSTANTIATED",
     "POLICY_CONSUMER_ACK_UNSUBSTANTIATED",
     "POLICY_CONSUMER_ACK_DIGEST_MISMATCH",
+    "POLICY_OWNER_APPROVAL_UNSUBSTANTIATED",
 )
 
 # `state=BOUND` is a claim about design consistency, never about a running host. Both wordings below
@@ -112,6 +118,17 @@ HOST_POLICY_ACTIVE_NOT_CLAIMED = {
     "receipt": ("host_policy_active: a verified HGK_CONSUMER_RECEIPT@1 shows the consumer "
                 "acknowledged the loaded bytes; it does not show the host policy is active, "
                 "effective, or in force"),
+}
+
+# D-17 hole 4. `owner_approved` now has a reader, and what that reader did — and did not — establish
+# has to be said on the record, because a verified signature is easily mistaken for an owner act.
+OWNER_APPROVAL_NOT_CLAIMED = {
+    "no_receipt": ("owner_approval: no OWNER_APPROVAL_RECEIPT@1 was supplied, so owner_approved is "
+                   "caller-supplied evidence and the authenticity of the approval is not claimed"),
+    "receipt": ("owner_approval: a detached signature verified against the key the document names, "
+                "over the bytes this reader re-hashed; that the key belongs to the Policy Owner is "
+                "NOT established by the document (pin trusted_key_ids or read the key registry), "
+                "and a FIXTURE key proves reachability only"),
 }
 
 
@@ -289,8 +306,10 @@ def _loaded_from_receipt(receipt: Any, *, scope: str, epoch: int | str) -> dict[
         raise PolicyBindingRefusal(
             f"load receipt {path} refused ({exc.code}): {exc}", code=exc.code) from None
     if reread.get("state") != "OBSERVED":
+        # Propagate the reader's own "no receipt / unreadable" code rather than a generic one.
         refuse(f"re-reading {path} returned {reread.get('state')!r} "
-               f"({reread.get('code') or reread.get('reason') or 'no reason given'})")
+               f"({reread.get('code') or reread.get('reason') or 'no reason given'})",
+               code=str(reread.get("code") or "POLICY_LEG_PROVENANCE_INVALID"))
     if isinstance(receipt, dict):
         for key in ("digest", "receipt_sha256"):
             claimed = str(receipt.get(key) or "").lower()
@@ -308,10 +327,102 @@ def _loaded_from_receipt(receipt: Any, *, scope: str, epoch: int | str) -> dict[
                      f"receipt {str(reread.get('receipt_sha256') or '')[:12]})"))
 
 
+def _owner_from_receipt(receipt: Any, *, scope: str, epoch: int | str,
+                        source_digest: str | None,
+                        reader_sid: str | None = None,
+                        trusted_key_ids: Any = None) -> dict[str, Any]:
+    """Turn a verified owner approval into the third leg, or refuse.
+
+    D-17, hole 4: `LEG_PROVENANCE["owner_approved"]` named two provenances and the module read
+    neither, so a caller-typed label plus the source digest satisfied the leg. This accepts only a
+    path to an `OWNER_APPROVAL_RECEIPT@1` / `POLICY_OWNER_DIRECTIVE@1` or the dict the reader
+    returned for one, re-reads the document, and requires the approved digest to be the source
+    digest this binding is about.
+    """
+    def refuse(why: str, code: str = "POLICY_LEG_PROVENANCE_INVALID") -> NoReturn:
+        raise PolicyBindingRefusal(
+            f"owner_approved receipt cannot substantiate the third leg: {why}", code=code)
+
+    if isinstance(receipt, (str, Path)):
+        path: Any = receipt
+        policy_path = None
+    elif isinstance(receipt, dict):
+        path = receipt.get("receipt_path")
+        if not isinstance(path, str) or not path.strip():
+            refuse("a caller-supplied dict with no receipt_path cannot be re-read; pass the "
+                   "receipt path or the result of owner_approval_receipt.read_owner_receipt(...)")
+        if receipt.get("state") != "OBSERVED":
+            refuse(f"receipt state is {receipt.get('state')!r}: an unobserved approval is not "
+                   "evidence")
+        if receipt.get("verified") is not True:
+            refuse("receipt carries no reader verification marker")
+        if receipt.get("leg") != "owner_approved":
+            refuse(f"receipt leg is {receipt.get('leg')!r}, expected 'owner_approved'")
+        if receipt.get("provenance") not in {"OWNER_APPROVAL_RECEIPT", "POLICY_OWNER_DIRECTIVE"}:
+            refuse(f"receipt provenance is {receipt.get('provenance')!r}")
+        if receipt.get("reader") != OWNER_RECEIPT_READER:
+            refuse(f"receipt reader is {receipt.get('reader')!r}, "
+                   f"expected {OWNER_RECEIPT_READER!r}")
+        if receipt.get("evidence_class") != OWNER_RECEIPT_EVIDENCE_CLASS:
+            refuse(f"receipt evidence_class is {receipt.get('evidence_class')!r}")
+        if not isinstance(receipt.get("digest"), str) or not _HEX64.match(
+                str(receipt.get("digest")).lower()):
+            refuse(f"receipt digest is {receipt.get('digest')!r}, not a sha256 hex digest")
+        policy_path = receipt.get("policy_path")
+    else:
+        refuse(f"receipt is a {type(receipt).__name__}, not a path and not a verified receipt")
+
+    import owner_approval_receipt as _reader  # local: keeps this module the dependency root
+
+    try:
+        reread = _reader.read_owner_receipt(path, expected_scope=scope, expected_epoch=epoch,
+                                            policy_path=policy_path, reader_sid=reader_sid,
+                                            trusted_key_ids=trusted_key_ids)
+    except _reader.OwnerReceiptRefusal as exc:
+        raise PolicyBindingRefusal(
+            f"owner approval {path} refused ({exc.code}): {exc}", code=exc.code) from None
+    if reread.get("state") != "OBSERVED":
+        # Propagate "no receipt / unreadable" rather than a generic provenance error.
+        refuse(f"re-reading {path} returned {reread.get('state')!r} "
+               f"({reread.get('code') or reread.get('reason') or 'no reason given'})",
+               code=str(reread.get("code") or "POLICY_LEG_PROVENANCE_INVALID"))
+    if isinstance(receipt, dict):
+        for key in ("digest", "receipt_sha256"):
+            claimed = str(receipt.get(key) or "").lower()
+            observed = str(reread.get(key) or "").lower()
+            if claimed != observed:
+                refuse(f"claimed {key} {claimed[:12]} does not match the bytes on disk "
+                       f"{observed[:12]}")
+    if source_digest is not None and str(reread["digest"]).lower() != str(source_digest).lower():
+        raise PolicyBindingRefusal(
+            "the owner approved different bytes than the policy this binding is about "
+            f"({str(reread['digest'])[:12]} != {str(source_digest)[:12]})",
+            code="OWNER_RECEIPT_DIGEST_MISMATCH")
+
+    return leg("owner_approved", digest=str(reread["digest"]).lower(),
+               provenance=reread["provenance"], reader=OWNER_RECEIPT_READER, scope=scope,
+               epoch=epoch, observed_at=str(reread.get("observed_at") or ""),
+               evidence_class=OWNER_RECEIPT_EVIDENCE_CLASS,
+               note=(f"read from {reread['provenance']}@1; signature verified against key_id "
+                     f"{reread['key_id']!r} (key_trusted={reread['key_trusted']}), principal "
+                     f"{reread['principal']['sid']}/{reread['principal']['role']}, expires "
+                     f"{reread['expires_at']}")) | {
+        # Carried on the leg so the record can state what was and was not established about the
+        # signing key. `key_trusted` is True only when the caller pinned the key_id itself.
+        "key_id": reread["key_id"],
+        "key_trusted": bool(reread["key_trusted"]),
+        "principal": reread["principal"],
+        "expires_at": reread["expires_at"],
+    }
+
+
 def build_binding(*, policy_ref: str, scope: str, epoch: int | str,
                   legs: list[dict[str, Any]], subject: str = "WP-FHS-02",
                   consumer_ack_receipt: dict[str, Any] | None = None,
-                  load_receipt: Any | None = None) -> dict[str, Any]:
+                  load_receipt: Any | None = None,
+                  owner_receipt: Any | None = None,
+                  owner_reader_sid: str | None = None,
+                  owner_trusted_key_ids: Any = None) -> dict[str, Any]:
     """Assemble the six-leg record, refusing every collapse the W1 NEG list names.
 
     `consumer_ack_receipt` is optional. `None` keeps the previous behaviour exactly (the caller's
@@ -322,6 +433,11 @@ def build_binding(*, policy_ref: str, scope: str, epoch: int | str,
     `load_receipt` is the D-17 addition and works the same way for the fifth leg: a path to a
     `HOST_LOAD_RECEIPT@1` or the dict `host_load_receipt.read_load_receipt` returned for one. A leg
     that claims `HOST_RAW` without a receipt is refused instead of being reported as a host load.
+
+    `owner_receipt` does the same for the third leg: a path to an `OWNER_APPROVAL_RECEIPT@1` /
+    `POLICY_OWNER_DIRECTIVE@1` or the dict `owner_approval_receipt.read_owner_receipt` returned for
+    one. `owner_reader_sid` / `owner_trusted_key_ids` are passed to that reader so a self-signed
+    approval is refused and, when the caller owns a key registry, the named key is pinned.
     """
     by_leg = {item["leg"]: item for item in legs}
     from_receipt = consumer_ack_receipt is not None
@@ -332,6 +448,13 @@ def build_binding(*, policy_ref: str, scope: str, epoch: int | str,
     from_load_receipt = load_receipt is not None
     if from_load_receipt:
         by_leg["loaded_digest"] = _loaded_from_receipt(load_receipt, scope=scope, epoch=epoch)
+        legs = list(by_leg.values())
+    from_owner_receipt = owner_receipt is not None
+    if from_owner_receipt:
+        by_leg["owner_approved"] = _owner_from_receipt(
+            owner_receipt, scope=scope, epoch=epoch,
+            source_digest=(by_leg["source"]["digest"] if "source" in by_leg else None),
+            reader_sid=owner_reader_sid, trusted_key_ids=owner_trusted_key_ids)
         legs = list(by_leg.values())
     missing = [name for name in LEGS if name not in by_leg]
     if missing:
@@ -389,6 +512,20 @@ def build_binding(*, policy_ref: str, scope: str, epoch: int | str,
             f"({str(ack['digest'])[:12]} != {str(loaded['digest'])[:12]}): an ACK of another "
             "document does not substantiate this binding",
             code="POLICY_CONSUMER_ACK_DIGEST_MISMATCH")
+    # D-17, hole 4: `owner_approved` had no reader either, so a caller-typed label plus the source
+    # digest was the only thing the leg required. A HOST_RAW claim now needs the receipt.
+    owner = by_leg["owner_approved"]
+    if not from_owner_receipt and owner.get("evidence_class") == "HOST_RAW":
+        raise PolicyBindingRefusal(
+            "owner_approved claims evidence_class=HOST_RAW but no OWNER_APPROVAL_RECEIPT@1 was "
+            "supplied; a caller-typed approval is not an owner approval (pass owner_receipt="
+            "<path|reader result>)",
+            code="POLICY_OWNER_APPROVAL_UNSUBSTANTIATED")
+    if from_owner_receipt and str(owner["digest"]).lower() != str(by_leg["source"]["digest"]).lower():
+        raise PolicyBindingRefusal(
+            "the owner approved different bytes than the source leg "
+            f"({str(owner['digest'])[:12]} != {str(by_leg['source']['digest'])[:12]})",
+            code="OWNER_RECEIPT_DIGEST_MISMATCH")
     if by_leg["stage"]["digest"] != by_leg["source"]["digest"]:
         raise PolicyBindingRefusal(
             "staged bytes differ from the source bytes without a recorded re-issue",
@@ -413,9 +550,13 @@ def build_binding(*, policy_ref: str, scope: str, epoch: int | str,
                  "loaded_digest_reader": loaded["reader"],
                  "consumer_ack_reader": ack["reader"],
                  "load_receipt_verified": bool(from_load_receipt),
+                 "owner_approval_verified": bool(from_owner_receipt),
+                 "owner_key_trusted": bool(from_owner_receipt and owner.get("key_trusted")),
                  "consumer_ack_receipt_verified": bool(from_receipt)},
         "not_claimed": ["policy effective", "consumer consumption", "release",
-                        HOST_POLICY_ACTIVE_NOT_CLAIMED["receipt" if from_receipt else "no_receipt"]],
+                        HOST_POLICY_ACTIVE_NOT_CLAIMED["receipt" if from_receipt else "no_receipt"],
+                        OWNER_APPROVAL_NOT_CLAIMED["receipt" if from_owner_receipt
+                                                   else "no_receipt"]],
         "note": ("legs are separate records on purpose: a stage/mirror/nav document cannot "
                  "substantiate loaded_digest or consumer_ack"),
     }
