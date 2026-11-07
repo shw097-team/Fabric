@@ -2342,7 +2342,7 @@ SEAM_CONTRACTS.json、seam_fixtures/ 與 SEAMS_AND_REPO_READBACK.md 為 S1–S5 
 > **ArtifactID**：`FHS_PIPD-LS-PKG_W0_r6_ASBUILT@2026-11-07`  
 > **Parent／Supersedes**：`FHS_PIPD-LS-PKG_W0_r5.md` @ `60b0c36e1bde6d0be1127461aa87a6bbb91dd69d6a31875d216ad8ddc88dbf0b`（475,265 bytes）  
 > **本版 SHA256**：見同目錄 `*_REVISION_MANIFEST.json`（本檔不記錄自身 digest，避免自我指涉）  
-> **產生時間**：2026-11-07T23:10:08+0800  
+> **產生時間**：2026-11-07T23:41:56+0800  
 > **性質**：As-Built 追加章節。母本正文逐位元保留，未改寫、未摘要、未刪除任何 OriginalID／NEG／SourceSHA／Reader；本章只補本輪**實作與驗收差額**。  
 > **ClaimCeiling**：`DOCUMENT_RECONCILIATION_COMPLETE_WITH_SCOPED_HOLDS`。本章不授權任何世界效果，也不代表原域 Reader ACK。
 

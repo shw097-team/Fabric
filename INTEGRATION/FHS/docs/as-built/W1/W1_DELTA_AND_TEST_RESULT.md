@@ -1,7 +1,7 @@
 # W1 As-Built delta and test results
 
 - parent `FHS_PIPD-LS-PKG_W1_r3.md` @ `936a8bcb62e16cd205ac8e5799e802293916bbb9de6e5ba8260ea3e1dd013cbf` (868,138 B)
-- candidate `FHS_PIPD-LS-PKG_W1_r4.md` @ `09e93f2d2249965983a6260620c89771029f5c1b491683aa380cf0716fc9efdd` (876,523 B)
+- candidate `FHS_PIPD-LS-PKG_W1_r4.md` @ `c7e33e40b0149dd4867eca1fb6a81f981e9100cf27070e7dc7249151b7258f1b` (876,684 B)
 - append-only: the parent body is byte-identical up to the appended chapter
 
 ## WP states
@@ -10,7 +10,7 @@
 - `WP-FHS-03` HOLD
 - `WP-FHS-04` IMPLEMENTED
 - `WP-FHS-05` TESTED
-- `WP-FHS-07` ORIGINAL_ACK
+- `WP-FHS-07` IMPLEMENTED
 - `WP-FHS-11` NOT_RUN
 - `WP-FHS-17` HOLD
 - `WP-FHS-20` NOT_RUN

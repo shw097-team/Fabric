@@ -1,6 +1,6 @@
 # FHS W0-W2 As-Built writeback — start here
 
-Generated 2026-11-07T23:10:08+0800. This directory is the local delivery; the GitHub side is a docs-only,
+Generated 2026-11-07T23:41:56+0800. This directory is the local delivery; the GitHub side is a docs-only,
 non-authoritative candidate PR in Fabric.
 
 ## Read in this order

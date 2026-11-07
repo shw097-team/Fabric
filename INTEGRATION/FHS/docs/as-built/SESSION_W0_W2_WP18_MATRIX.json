@@ -1,6 +1,6 @@
 {
  "schema": "FHS.SessionWP18Matrix/1",
- "generated_at": "2026-11-07T23:10:08+0800",
+ "generated_at": "2026-11-07T23:41:56+0800",
  "waves": {
   "W0": [
    {
@@ -95,9 +95,9 @@
    },
    {
     "wp": "WP-FHS-07",
-    "state": "ORIGINAL_ACK",
-    "summary": "HG-KSEOS #15 (PLAN ACK bound to a reader receipt) is merged into main at acd9196f",
-    "not_done": "a merge is not a PLAN reader acceptance; no PLAN A/B/C acceptance was performed against the merged code this session",
+    "state": "IMPLEMENTED",
+    "summary": "MERGED_ONLY_NOT_ACKED: HG-KSEOS #15 (PLAN ACK bound to a reader receipt) is merged into main at acd9196f. A merge is not a PLAN reader acceptance - calling this ORIGINAL_ACK would have been a false claim and it is corrected here.",
+    "not_done": "no PLAN A/B/C acceptance was performed against the merged code this session; the original Commander PLAN reader has issued nothing",
     "ev": [
      "out/REPO_WIRING_R4.json"
     ]

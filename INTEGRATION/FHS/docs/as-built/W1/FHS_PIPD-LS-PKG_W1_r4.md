@@ -5510,7 +5510,7 @@ Hermes v0.22.5、OpenSpec v1.16.0 的官方 release/License 已讀回；gstack `
 > **ArtifactID**：`FHS_PIPD-LS-PKG_W1_r4_ASBUILT@2026-11-07`  
 > **Parent／Supersedes**：`FHS_PIPD-LS-PKG_W1_r3.md` @ `936a8bcb62e16cd205ac8e5799e802293916bbb9de6e5ba8260ea3e1dd013cbf`（868,138 bytes）  
 > **本版 SHA256**：見同目錄 `*_REVISION_MANIFEST.json`（本檔不記錄自身 digest，避免自我指涉）  
-> **產生時間**：2026-11-07T23:10:08+0800  
+> **產生時間**：2026-11-07T23:41:56+0800  
 > **性質**：As-Built 追加章節。母本正文逐位元保留，未改寫、未摘要、未刪除任何 OriginalID／NEG／SourceSHA／Reader；本章只補本輪**實作與驗收差額**。  
 > **ClaimCeiling**：`DOCUMENT_RECONCILIATION_COMPLETE_WITH_SCOPED_HOLDS`。本章不授權任何世界效果，也不代表原域 Reader ACK。
 
@@ -5534,7 +5534,7 @@ Hermes v0.22.5、OpenSpec v1.16.0 的官方 release/License 已讀回；gstack `
 | `WP-FHS-03` | `HOLD` | R1 is prepared and frozen (ceremony a9194d05, preflight 7/7, registry 3254714b rev13, 31/31, signing-capability challenge with a passing negative control); the fixture mechanics are 10/10 and the admission permit POS/NEG is 6/6 | rev14 does not exist: only the OWNER can run --reissue-issuer. No permit has been minted for GJ02. |
 | `WP-FHS-04` | `IMPLEMENTED` | patches 0001-0007 deployed to the runtime root; the live store migrated additively (121 -> 132 objects at schema_version 32); a v99 store is now refused before any DDL; restart produced PID 15180 loading the patched tree; cross-restart row counts reconcile (sessions 363/363, leases 1/1, receipts 78/78) | T2 is NOT_VERIFIED: the only wake observed came from a work item the maker created, which the ruling forbids as evidence. Two scheduler defects were found and only worked around (D-26 script path outside HERMES_HOME/scripts, D-27 tick reading the 1.2 GB root store instead of the profile store). |
 | `WP-FHS-05` | `TESTED` | the merged SBL binds a real RepoContext from live git probes (head 70757870, index e9981083, dirty false, untracked 0), checks writable_scope as a subset of the authorised set, and refuses a missing root with RepoContextMissing | PI -> PD -> DEV ECP is blocked: pipeline.intake requires a clause-bound source locator and no GJ02 case source exists in the SBL tree |
-| `WP-FHS-07` | `ORIGINAL_ACK` | HG-KSEOS #15 (PLAN ACK bound to a reader receipt) is merged into main at acd9196f | a merge is not a PLAN reader acceptance; no PLAN A/B/C acceptance was performed against the merged code this session |
+| `WP-FHS-07` | `IMPLEMENTED` | MERGED_ONLY_NOT_ACKED: HG-KSEOS #15 (PLAN ACK bound to a reader receipt) is merged into main at acd9196f. A merge is not a PLAN reader acceptance - calling this ORIGINAL_ACK would have been a false claim and it is corrected here. | no PLAN A/B/C acceptance was performed against the merged code this session; the original Commander PLAN reader has issued nothing |
 | `WP-FHS-11` | `NOT_RUN` | the three SPs remain loaded/invoked/non-trigger in the target profile; nothing this session changed that | ConsumerUsed / Remove semantics not measured |
 | `WP-FHS-17` | `HOLD` | the rev-13 registry still verifies (OwnerRowLeaf@2, 31/31, rows_unverified []), and the deployed build still verifies it after restart | the two CAP needs (sp.host.load, python.dist:pyyaml) are not qualified, and rev14 cannot exist before the OWNER's ceremony |
 | `WP-FHS-20` | `NOT_RUN` | the 192-cell identities are untouched; the missing prose row and the OFF/UNBOUND_OWNER_CONFLICT distinction remain open | no source-owner prose repair, and no token was promoted |

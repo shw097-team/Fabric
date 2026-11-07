@@ -2402,7 +2402,7 @@ gstack 本次 VERSION=1.96.0.0、LICENSE=MIT；當期安裝文件明列 Claude C
 > **ArtifactID**：`FHS_PIPD-LS-PKG_W2_r6_ASBUILT@2026-11-07`  
 > **Parent／Supersedes**：`FHS_PIPD-LS-PKG_W2_r5.md` @ `647ee5598d6344f4c7540974d67182a55b0205a8e25bb46b8cc08c97ee206729`（430,128 bytes）  
 > **本版 SHA256**：見同目錄 `*_REVISION_MANIFEST.json`（本檔不記錄自身 digest，避免自我指涉）  
-> **產生時間**：2026-11-07T23:10:08+0800  
+> **產生時間**：2026-11-07T23:41:56+0800  
 > **性質**：As-Built 追加章節。母本正文逐位元保留，未改寫、未摘要、未刪除任何 OriginalID／NEG／SourceSHA／Reader；本章只補本輪**實作與驗收差額**。  
 > **ClaimCeiling**：`DOCUMENT_RECONCILIATION_COMPLETE_WITH_SCOPED_HOLDS`。本章不授權任何世界效果，也不代表原域 Reader ACK。
 

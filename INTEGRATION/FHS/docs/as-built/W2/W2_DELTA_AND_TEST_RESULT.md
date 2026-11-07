@@ -1,7 +1,7 @@
 # W2 As-Built delta and test results
 
 - parent `FHS_PIPD-LS-PKG_W2_r5.md` @ `647ee5598d6344f4c7540974d67182a55b0205a8e25bb46b8cc08c97ee206729` (430,128 B)
-- candidate `FHS_PIPD-LS-PKG_W2_r6.md` @ `4accaf1dde727aa44682a276422cc7b01e4f4aa65d4be65dc3c43b3c9f7de7b5` (435,780 B)
+- candidate `FHS_PIPD-LS-PKG_W2_r6.md` @ `a325e2a3d59de1b69e0b16ee5e66b75e7e4c80501bf12bdffbf464c88c69770a` (435,780 B)
 - append-only: the parent body is byte-identical up to the appended chapter
 
 ## WP states
