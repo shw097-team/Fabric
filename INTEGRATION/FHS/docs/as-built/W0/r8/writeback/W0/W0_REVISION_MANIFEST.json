@@ -1,0 +1,97 @@
+{
+ "schema": "FHS.RevisionManifest/2",
+ "wave": "W0",
+ "generated_at": "2026-11-08T03:02:59+0800",
+ "artifact_id": "FHS_PIPD-LS-PKG_W0_r8_VERIFY@2026-11-08",
+ "version": "r8",
+ "subject": "FHS_PIPD-LS-PKG_W0",
+ "file": "FHS_PIPD-LS-PKG_W0_r8.md",
+ "sha256": "ccd545b5c7b4eecbf62bcd23e650a91d7832bfefe62f08ce2e589a58df087e22",
+ "bytes": 539712,
+ "parent": {
+  "file": "FHS_PIPD-LS-PKG_W0_r7.md",
+  "path": "C:\\Projects\\Agent_Workspace\\FHS_W0_R6_20261108\\writeback\\W0\\FHS_PIPD-LS-PKG_W0_r7.md",
+  "sha256": "264787b065fbca6a8e728054fd3abdb6133883bbeb87710ddf5e880071f61845",
+  "bytes": 492290,
+  "resolved_from_knowledge_base_path": false,
+  "note": "the canonical reading path serves a DIFFERENT r6 copy (9f9eb261..., same 481,212 bytes, 4 differing timestamp bytes); the copy this chain uses is the round's own writeback, which is what r7's declaration names"
+ },
+ "preservation": {
+  "claim": "parent bytes are preserved as the exact file prefix",
+  "prefix_bytes": 492290,
+  "prefix_byte_identical": true,
+  "appended_bytes": 47422,
+  "verification": "python tools/verify_revision_chain2.py out/REVISION_CHAIN.json"
+ },
+ "supersedes": "264787b065fbca6a8e728054fd3abdb6133883bbeb87710ddf5e880071f61845",
+ "affected_scope": {
+  "wps": [
+   "00",
+   "01",
+   "15",
+   "16",
+   "19",
+   "21"
+  ],
+  "change_kind": "verification_appendix_only"
+ },
+ "original_writer_ref": "FHS L3 author (unchanged; this chapter is a candidate append)",
+ "consumer_ref": "original wave readers; not yet accepted",
+ "claim_ceiling": "DOCUMENT_RECONCILIATION_COMPLETE_WITH_SCOPED_HOLDS",
+ "original_ack_count": 0,
+ "new_findings": [
+  "V-01",
+  "V-02",
+  "V-03",
+  "V-04",
+  "V-05",
+  "V-06",
+  "V-07"
+ ],
+ "gate": {
+  "checks_total": 16,
+  "checks_pass": 16,
+  "verdict": "PASS",
+  "evidence": "out/GATE_R8_OBJECT.json",
+  "added_check": "G10-DOC-PARENT-CLAIM"
+ },
+ "corrections_to_predecessor": [
+  {
+   "id": "V-02",
+   "field": "WP15 similarity maximum",
+   "predecessor": "0.0755",
+   "measured": "primary token-3gram 0.1208; max over six methods 0.2063",
+   "why": "0.0755 is the sentence-shingle sub-metric, not the maximum"
+  },
+  {
+   "id": "V-03",
+   "field": "name collisions",
+   "predecessor": "17 same-basename different-digest collisions inside the 31-source set",
+   "measured": "0 collisions inside the set; 17 source files have a same-name copy elsewhere whose digest differs"
+  },
+  {
+   "id": "V-04",
+   "field": "U0 partition unit",
+   "predecessor": "111,331 segments",
+   "measured": "111,331 line records (per-line rule) or 24,003 blocks (block rule), same 22,281,767 bytes"
+  },
+  {
+   "id": "V-05",
+   "field": "published manifest digests",
+   "predecessor": "82 entries declared",
+   "measured": "71 reconcile inside their payload; 11 describe Fabric-mirror files with different bytes"
+  },
+  {
+   "id": "V-06",
+   "field": "licence absence",
+   "predecessor": "Fabric and HG-KSEOS have no licence files",
+   "measured": "root level: true; Fabric has 5 licence/notice files below root"
+  },
+  {
+   "id": "V-07",
+   "field": "WP-00 source lock line comparison",
+   "predecessor": "31/31 bytes, lines and sha256 all match",
+   "measured": "31/31 bytes and sha256 match; the lock's own line counter reports 31 mismatches because it adds one segment per file (111,362 vs 111,331); verdict ignores that field"
+  }
+ ]
+}
