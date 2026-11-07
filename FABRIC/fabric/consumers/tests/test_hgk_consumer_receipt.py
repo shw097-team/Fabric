@@ -71,15 +71,21 @@ def write_case(directory: Path, *, raw: bytes = RAW_BYTES, **over) -> Path:
 
 
 def five_legs() -> list[dict]:
-    """The five legs the receipt does NOT substantiate (deliberately without consumer_ack)."""
+    """The five legs the receipt does NOT substantiate (deliberately without consumer_ack).
+
+    `active_epoch`/`loaded_digest` carry the *acknowledged* digest rather than a placeholder: D-17
+    made the sixth leg's digest bind to the loaded policy bytes, so a receipt for `RAW_BYTES` can
+    only substantiate a binding of `RAW_BYTES`. That is the rule these fixtures now exercise.
+    """
     spec = {
         "source": dict(digest=SHA_A, provenance="FABRIC_POLICY_SOURCE", reader="fabric-policy-repo"),
         "stage": dict(digest=SHA_A, provenance="STAGED_ARTIFACT", reader="fabric-stage-reader"),
         "owner_approved": dict(digest=SHA_A, provenance="OWNER_APPROVAL_RECEIPT",
                                reader="owner-receipt-reader"),
-        "active_epoch": dict(digest=SHA_A, provenance="ACTIVE_POLICY_POINTER",
+        "active_epoch": dict(digest=RAW_SHA, provenance="ACTIVE_POLICY_POINTER",
                              reader="fabric-active-pointer"),
-        "loaded_digest": dict(digest=SHA_A, provenance="HOST_LOAD_RAW", reader="hgk-policy-consumer"),
+        "loaded_digest": dict(digest=RAW_SHA, provenance="HOST_LOAD_RAW",
+                              reader="hgk-policy-consumer"),
     }
     return [pb.leg(name, scope=SCOPE, epoch=EPOCH, evidence_class="FIXTURE",
                    observed_at="2026-11-05T00:00:00Z", **kw)
