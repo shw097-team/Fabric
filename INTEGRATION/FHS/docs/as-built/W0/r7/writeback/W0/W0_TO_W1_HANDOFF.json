@@ -1,0 +1,283 @@
+{
+ "schema": "FHS.WaveHandoff/1",
+ "from": "W0",
+ "to": "W1",
+ "generated_at": "2026-11-08T01:13:23+08:00",
+ "transferable": [
+  "a byte-exact structural partition of all 31 sources (111,331 segments, 31/31 tiling) that W1 can consume instead of re-parsing",
+  "84 design IDs with locators and dispositions, and the 22 W0_REQUIRED subset with CH anchors",
+  "three source-bound SPEC drafts with 52/52 verified spans, ready for an original-domain reader to accept or refuse",
+  "49 donor/method slots with licence state made explicit, 19 of them held because no licence is stated",
+  "the per-repository licence/NOTICE/SBOM/dependency/CI inventory including three absent surfaces",
+  "a 134-row executable oracle plan (AC15/Oracle96/H4/SEAM) with a checker that refuses non-discriminating rows"
+ ],
+ "not_transferable": [
+  "any claim of original-domain acceptance: 0 receipts",
+  "policy effectiveness, dev effect, recovery, checker verdict",
+  "any statement that a slot is approved for adoption"
+ ],
+ "holds": [
+  {
+   "wp": "WP-FHS-00",
+   "hold": "SOURCE_CURRENTNESS still unowned: a matching digest is not an Owner currentness readback",
+   "owner": "original domain reader / owner",
+   "resolution": "HOLD"
+  },
+  {
+   "wp": "WP-FHS-01",
+   "hold": "NAME_COLLISION_DIFFERENT_DIGEST",
+   "owner": "original domain reader / owner",
+   "resolution": "HOLD"
+  },
+  {
+   "wp": "WP-FHS-01",
+   "hold": "ORACLE_ENUM_ABSENT",
+   "owner": "original domain reader / owner",
+   "resolution": "HOLD"
+  },
+  {
+   "wp": "WP-FHS-01",
+   "hold": "MARKUP_FENCE_UNBALANCED",
+   "owner": "original domain reader / owner",
+   "resolution": "HOLD"
+  },
+  {
+   "wp": "WP-FHS-01",
+   "hold": "SOURCE_CURRENTNESS_UNOWNED",
+   "owner": "original domain reader / owner",
+   "resolution": "HOLD"
+  },
+  {
+   "wp": "WP-FHS-01",
+   "hold": "SEMANTIC_CLOSURE_UNOWNED",
+   "owner": "original domain reader / owner",
+   "resolution": "HOLD"
+  },
+  {
+   "wp": "WP-FHS-15",
+   "hold": "H-WP15-STAGE-ENUMERATION-GAP",
+   "owner": "original domain reader / owner",
+   "resolution": "HOLD"
+  },
+  {
+   "wp": "WP-FHS-15",
+   "hold": "H-WP15-P-ORIGINAL-PRODUCT-READER",
+   "owner": "original domain reader / owner",
+   "resolution": "HOLD"
+  },
+  {
+   "wp": "WP-FHS-15",
+   "hold": "H-WP15-P-SEMANTIC-OWNER",
+   "owner": "original domain reader / owner",
+   "resolution": "HOLD"
+  },
+  {
+   "wp": "WP-FHS-15",
+   "hold": "H-WP15-A-ORIGINAL-ARCH-READER",
+   "owner": "original domain reader / owner",
+   "resolution": "HOLD"
+  },
+  {
+   "wp": "WP-FHS-15",
+   "hold": "H-WP15-A-HOST-RAW",
+   "owner": "original domain reader / owner",
+   "resolution": "HOLD"
+  },
+  {
+   "wp": "WP-FHS-15",
+   "hold": "H-WP15-G-ORIGINAL-PROGRAM-READER",
+   "owner": "original domain reader / owner",
+   "resolution": "HOLD"
+  },
+  {
+   "wp": "WP-FHS-15",
+   "hold": "H-WP15-G-CR-DOC04-STATE-MAP",
+   "owner": "original domain reader / owner",
+   "resolution": "HOLD"
+  },
+  {
+   "wp": "WP-FHS-15",
+   "hold": "H-WP15-ORIGINAL-DOMAIN-OWNER",
+   "owner": "original domain reader / owner",
+   "resolution": "HOLD"
+  },
+  {
+   "wp": "WP-FHS-16",
+   "hold": {
+    "id": "H-LICENCE-NOT-STATED",
+    "detail": "19 筆處置為 HOLD 的槽，唯一阻擋條件是來源未載 SPDX；licence 一旦具名即可重評，不需重做投影。",
+    "affected": [
+     "SLOT-OS-01",
+     "SLOT-OS-02",
+     "SLOT-OS-03",
+     "SLOT-OS-04",
+     "SLOT-SP-01",
+     "SLOT-SP-02",
+     "SLOT-SP-03",
+     "SLOT-SP-04",
+     "METHOD-06",
+     "METHOD-07",
+     "METHOD-08",
+     "METHOD-09",
+     "METHOD-15",
+     "METHOD-16",
+     "METHOD-19",
+     "METHOD-20",
+     "METHOD-21",
+     "METHOD-22",
+     "METHOD-24"
+    ]
+   },
+   "owner": "original domain reader / owner",
+   "resolution": "HOLD"
+  },
+  {
+   "wp": "WP-FHS-16",
+   "hold": {
+    "id": "H-LICENSE-FILE-DIGEST",
+    "detail": "8 筆記為 MIT（SLOT-MP-01..04、METHOD-02..05）係 DOC-04 研究表觀測，未讀 upstream LICENSE／NOTICE 檔 digest，leaf／transitive 未核。",
+    "affected": [
+     "SLOT-MP-01",
+     "SLOT-MP-02",
+     "SLOT-MP-03",
+     "SLOT-MP-04",
+     "METHOD-02",
+     "METHOD-03",
+     "METHOD-04",
+     "METHOD-05"
+    ]
+   },
+   "owner": "original domain reader / owner",
+   "resolution": "HOLD"
+  },
+  {
+   "wp": "WP-FHS-16",
+   "hold": {
+    "id": "H-HOST-QUALIFICATION",
+    "detail": "全部 49 筆 host_qualification=NOT_OBSERVED；Host/Pack 綁定取自 BODY-08，但 install/load/invoke/effective-load 皆未執行。",
+    "affected": [
+     "ALL"
+    ]
+   },
+   "owner": "original domain reader / owner",
+   "resolution": "HOLD"
+  },
+  {
+   "wp": "WP-FHS-16",
+   "hold": {
+    "id": "H-OWNER-ACK",
+    "detail": "原 Reader／Owner ACK 未觀測（ORIGINAL_READER_ACK_UNOBSERVED）；本 lane 不得代簽，也不得把來源讀回當 ratification。",
+    "affected": [
+     "ALL"
+    ]
+   },
+   "owner": "original domain reader / owner",
+   "resolution": "HOLD"
+  },
+  {
+   "wp": "WP-FHS-16",
+   "hold": {
+    "id": "H-W3-HANDOFF",
+    "detail": "CH-24／CH-25 主波為 W3；本輪只做 W0 作者端投影，未改寫 W3 專屬規格或 Native 權威。",
+    "affected": [
+     "CH-24",
+     "CH-25"
+    ]
+   },
+   "owner": "original domain reader / owner",
+   "resolution": "HOLD"
+  },
+  {
+   "wp": "WP-FHS-16",
+   "hold": {
+    "id": "H-NO-HOST-PACK-BINDING",
+    "detail": "SLOT-GS-01..04、SLOT-GT-01..04、METHOD-01、METHOD-11、METHOD-13、METHOD-14、METHOD-17、METHOD-18、METHOD-24 在 BODY-08 無 Host/Pack 綁定；其 host_fit 為明確的「無綁定」陳述，不是推定值。",
+    "affected": [
+     "SLOT-GS-01..04",
+     "SLOT-GT-01..04",
+     "METHOD-01",
+     "METHOD-11",
+     "METHOD-13",
+     "METHOD-14",
+     "METHOD-17",
+     "METHOD-18",
+     "METHOD-24"
+    ]
+   },
+   "owner": "original domain reader / owner",
+   "resolution": "HOLD"
+  },
+  {
+   "wp": "WP-FHS-19",
+   "hold": "HOLD_ORIGINAL_CI_READER",
+   "owner": "original domain reader / owner",
+   "resolution": "HOLD"
+  },
+  {
+   "wp": "WP-FHS-19",
+   "hold": "HOLD_SUPPLY_CHAIN_ATTESTATION",
+   "owner": "original domain reader / owner",
+   "resolution": "HOLD"
+  },
+  {
+   "wp": "WP-FHS-19",
+   "hold": "HOLD_LICENCE_DETERMINATION",
+   "owner": "original domain reader / owner",
+   "resolution": "HOLD"
+  },
+  {
+   "wp": "WP-FHS-19",
+   "hold": "HOLD_YAML_SEMANTICS",
+   "owner": "original domain reader / owner",
+   "resolution": "HOLD"
+  },
+  {
+   "wp": "WP-FHS-19",
+   "hold": "HOLD_SBOM_RECONCILIATION",
+   "owner": "original domain reader / owner",
+   "resolution": "HOLD"
+  },
+  {
+   "wp": "WP-FHS-21",
+   "hold": "ORACLE_RUNNER_BIND_HOLD",
+   "owner": "original domain reader / owner",
+   "resolution": "HOLD"
+  },
+  {
+   "wp": "WP-FHS-21",
+   "hold": "ORIGINAL_READER_ACK_UNOBSERVED",
+   "owner": "original domain reader / owner",
+   "resolution": "HOLD"
+  },
+  {
+   "wp": "WP-FHS-21",
+   "hold": "H4_SEAM_W0_ABSENCE",
+   "owner": "original domain reader / owner",
+   "resolution": "HOLD"
+  },
+  {
+   "wp": "WP-FHS-21",
+   "hold": "EDGE_ACK_AUTHORITY_HOLD",
+   "owner": "original domain reader / owner",
+   "resolution": "HOLD"
+  },
+  {
+   "wp": "WP-FHS-21",
+   "hold": "AC_E12_DUAL_CODE",
+   "owner": "original domain reader / owner",
+   "resolution": "HOLD"
+  },
+  {
+   "wp": "WP-FHS-21",
+   "hold": "NEGATIVE_CONTROL_SCOPE",
+   "owner": "original domain reader / owner",
+   "resolution": "HOLD"
+  },
+  {
+   "wp": "WP-FHS-21",
+   "hold": "HUMAN_JUDGE_WORLDRAW_NOT_OBSERVED",
+   "owner": "original domain reader / owner",
+   "resolution": "HOLD"
+  }
+ ]
+}
