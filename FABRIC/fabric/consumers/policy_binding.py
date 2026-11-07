@@ -42,6 +42,15 @@ public API:
    `POLICY_LOADED_PROVENANCE_NOT_A_LOAD_RECEIPT`.
 
 No refusal code was removed or renamed; the four codes above are additive.
+
+D-24 (2026-11-07) closes the same collapse on the **fourth** leg. `FABRIC_ACTIVE_EPOCH` had zero
+occurrences in the repository: `LEG_PROVENANCE["active_epoch"]` named `ACTIVE_POLICY_POINTER` and
+`EPOCH_PROMOTION_RECEIPT` and no function opened either, so the leg was whatever label the caller
+typed. `epoch_receipt=` now routes the leg through `fabric_active_epoch.read_epoch_receipt` (a signed
+`FABRIC_ACTIVE_EPOCH@1` whose policy digest is re-derived from disk); a leg that claims a reader —
+`provenance="FABRIC_ACTIVE_EPOCH"` — or any evidence class other than `FIXTURE`, with no receipt, is
+refused with `POLICY_EPOCH_UNSUBSTANTIATED`. A `FIXTURE`-labelled pointer still records a design
+intent, and the record says so in `not_claimed` and reports `host.active_epoch_verified=False`.
 """
 from __future__ import annotations
 
@@ -61,7 +70,7 @@ LEG_PROVENANCE = {
     "source": {"FABRIC_POLICY_SOURCE", "FABRIC_POLICY_REPO_BLOB"},
     "stage": {"STAGED_ARTIFACT", "STAGE_MIRROR"},
     "owner_approved": {"OWNER_APPROVAL_RECEIPT", "POLICY_OWNER_DIRECTIVE"},
-    "active_epoch": {"ACTIVE_POLICY_POINTER", "EPOCH_PROMOTION_RECEIPT"},
+    "active_epoch": {"ACTIVE_POLICY_POINTER", "EPOCH_PROMOTION_RECEIPT", "FABRIC_ACTIVE_EPOCH"},
     "loaded_digest": {"HOST_LOAD_RAW", "CONSUMER_LOAD_RECEIPT"},
     "consumer_ack": {"HGK_CONSUMER_RECEIPT", "HGK_CONSUMER_TRACE"},
 }
@@ -95,6 +104,17 @@ OWNER_RECEIPT_SCHEMAS = ("OWNER_APPROVAL_RECEIPT@1", "POLICY_OWNER_DIRECTIVE@1")
 OWNER_RECEIPT_READER = "owner-receipt-reader"
 OWNER_RECEIPT_EVIDENCE_CLASS = "HOST_RAW"
 
+# The typed producer for the fourth leg (D-24). Same rule: values, not an import.
+EPOCH_RECEIPT_SCHEMA = "FABRIC_ACTIVE_EPOCH@1"
+EPOCH_RECEIPT_PROVENANCE = "FABRIC_ACTIVE_EPOCH"
+EPOCH_RECEIPT_READER = "fabric-active-epoch-reader"
+EPOCH_RECEIPT_EVIDENCE_CLASS = "HOST_RAW"
+# Provenances that are only a *label*: they name an intent, and no function in the repository reads
+# anything for them. They may carry a FIXTURE design leg and nothing stronger.
+EPOCH_LABEL_PROVENANCE = frozenset({"ACTIVE_POLICY_POINTER", "EPOCH_PROMOTION_RECEIPT"})
+#: The only evidence class a label-only fourth leg may carry. `HOST_RAW` is a claim about a host.
+EPOCH_DESIGN_EVIDENCE_CLASS = "FIXTURE"
+
 # The only provenances that describe a policy *loaded on a host*. Membership is enforced in
 # `build_binding`, not only in `leg()`, because a caller can build the dict by hand.
 LOADED_PROVENANCE = frozenset({LOAD_RECEIPT_PROVENANCE, "CONSUMER_LOAD_RECEIPT"})
@@ -106,6 +126,13 @@ D17_REFUSAL_CODES = (
     "POLICY_CONSUMER_ACK_UNSUBSTANTIATED",
     "POLICY_CONSUMER_ACK_DIGEST_MISMATCH",
     "POLICY_OWNER_APPROVAL_UNSUBSTANTIATED",
+)
+
+# Refusal added for D-24 (the fourth leg). Additive, like the D-17 codes.
+D24_REFUSAL_CODES = (
+    "POLICY_EPOCH_UNSUBSTANTIATED",
+    "POLICY_EPOCH_KEY_UNPINNED",
+    "POLICY_OWNER_KEY_UNPINNED",
 )
 
 # `state=BOUND` is a claim about design consistency, never about a running host. Both wordings below
@@ -125,10 +152,23 @@ HOST_POLICY_ACTIVE_NOT_CLAIMED = {
 OWNER_APPROVAL_NOT_CLAIMED = {
     "no_receipt": ("owner_approval: no OWNER_APPROVAL_RECEIPT@1 was supplied, so owner_approved is "
                    "caller-supplied evidence and the authenticity of the approval is not claimed"),
-    "receipt": ("owner_approval: a detached signature verified against the key the document names, "
-                "over the bytes this reader re-hashed; that the key belongs to the Policy Owner is "
-                "NOT established by the document (pin trusted_key_ids or read the key registry), "
-                "and a FIXTURE key proves reachability only"),
+    "receipt": ("owner_approval: a detached signature verified over the bytes this reader "
+                "re-hashed, against a key_id pinned in the caller's registry; that the registry "
+                "entry really belongs to the Policy Owner is NOT established by this binding, and "
+                "a FIXTURE key proves reachability only"),
+}
+
+
+# D-24. The fourth leg now has a reader, and what it established has to be said on the record: a
+# signed epoch declaration is a key holder's claim about a digest, never a host activation.
+ACTIVE_EPOCH_NOT_CLAIMED = {
+    "no_receipt": ("active_epoch: no FABRIC_ACTIVE_EPOCH@1 was supplied, so active_epoch is a "
+                   "caller-typed label at evidence_class=FIXTURE and the active epoch is NOT "
+                   "claimed (pass epoch_receipt=<path|reader result>)"),
+    "receipt": ("active_epoch: a verified FABRIC_ACTIVE_EPOCH@1, signed by a key_id pinned in the "
+                "caller's registry, shows that key holder declared this digest the active epoch "
+                "for this scope; it does not show a host loaded it, that the epoch is in force, or "
+                "that the registry entry belongs to the Policy Owner"),
 }
 
 
@@ -398,6 +438,18 @@ def _owner_from_receipt(receipt: Any, *, scope: str, epoch: int | str,
             "the owner approved different bytes than the policy this binding is about "
             f"({str(reread['digest'])[:12]} != {str(source_digest)[:12]})",
             code="OWNER_RECEIPT_DIGEST_MISMATCH")
+    # Owner ruling (2026-11-07): the owner signature must verify against a key the caller already
+    # trusts. A document that carries its own public key proves only that *someone* signed it, so
+    # there is no "trust the embedded key" path into the third leg: pin the key id or refuse. This
+    # sits after the reader's own checks on purpose, so its specific refusal still reaches the
+    # operator unchanged.
+    if trusted_key_ids is None or reread.get("key_trusted") is not True:
+        raise PolicyBindingRefusal(
+            "the owner approval's signature was not verified against a pinned key: an "
+            "OWNER_APPROVAL_RECEIPT@1 names its own public key, and a signature that verifies "
+            "against a key the document chose proves only that someone signed it — pass "
+            "owner_trusted_key_ids=<registry> so the key is pinned",
+            code="POLICY_OWNER_KEY_UNPINNED")
 
     return leg("owner_approved", digest=str(reread["digest"]).lower(),
                provenance=reread["provenance"], reader=OWNER_RECEIPT_READER, scope=scope,
@@ -416,13 +468,108 @@ def _owner_from_receipt(receipt: Any, *, scope: str, epoch: int | str,
     }
 
 
+def _epoch_from_receipt(receipt: Any, *, scope: str, epoch: int | str,
+                        source_digest: str | None,
+                        previous_epoch: int | None = None,
+                        trusted_key_ids: Any = None) -> dict[str, Any]:
+    """Turn a verified `FABRIC_ACTIVE_EPOCH@1` read into the fourth leg, or refuse.
+
+    D-24: the fourth leg named two provenances and the module read neither, so `active_epoch` was a
+    label the caller typed and its only other constraint was digest equality with a digest the same
+    caller supplied. This accepts only a path to a `FABRIC_ACTIVE_EPOCH@1` or the dict
+    `fabric_active_epoch.read_epoch_receipt` returned for one, re-reads the document, and requires
+    the declared policy digest to be the source digest this binding is about.
+    """
+    def refuse(why: str, code: str = "POLICY_LEG_PROVENANCE_INVALID") -> NoReturn:
+        raise PolicyBindingRefusal(
+            f"active_epoch receipt cannot substantiate the fourth leg: {why}", code=code)
+
+
+    if isinstance(receipt, (str, Path)):
+        path: Any = receipt
+        policy_path = None
+    elif isinstance(receipt, dict):
+        path = receipt.get("receipt_path")
+        if not isinstance(path, str) or not path.strip():
+            refuse("a caller-supplied dict with no receipt_path cannot be re-read; pass the "
+                   "receipt path or the result of fabric_active_epoch.read_epoch_receipt(...)")
+        if receipt.get("state") != "OBSERVED":
+            refuse(f"receipt state is {receipt.get('state')!r}: an unread declaration is not "
+                   "evidence")
+        if receipt.get("verified") is not True:
+            refuse("receipt carries no reader verification marker")
+        if receipt.get("leg") != "active_epoch":
+            refuse(f"receipt leg is {receipt.get('leg')!r}, expected 'active_epoch'")
+        if receipt.get("provenance") != EPOCH_RECEIPT_PROVENANCE:
+            refuse(f"receipt provenance is {receipt.get('provenance')!r}")
+        if receipt.get("reader") != EPOCH_RECEIPT_READER:
+            refuse(f"receipt reader is {receipt.get('reader')!r}, "
+                   f"expected {EPOCH_RECEIPT_READER!r}")
+        if receipt.get("evidence_class") != EPOCH_RECEIPT_EVIDENCE_CLASS:
+            refuse(f"receipt evidence_class is {receipt.get('evidence_class')!r}")
+        if not isinstance(receipt.get("digest"), str) or not _HEX64.match(
+                str(receipt.get("digest")).lower()):
+            refuse(f"receipt digest is {receipt.get('digest')!r}, not a sha256 hex digest")
+        policy_path = receipt.get("policy_path")
+    else:
+        refuse(f"receipt is a {type(receipt).__name__}, not a path and not a verified receipt")
+
+    import fabric_active_epoch as _reader  # local: keeps this module the dependency root
+
+    try:
+        reread = _reader.read_epoch_receipt(
+            path, expected_scope=scope, expected_epoch=epoch, previous_epoch=previous_epoch,
+            policy_path=policy_path, expected_policy_sha256=source_digest,
+            trusted_key_ids=trusted_key_ids)
+    except _reader.EpochReceiptRefusal as exc:
+        # The reader's own code is the honest one: "expired" is not "bad provenance".
+        raise PolicyBindingRefusal(
+            f"active epoch {path} refused ({exc.code}): {exc}", code=exc.code) from None
+    if reread.get("state") != "OBSERVED":
+        refuse(f"re-reading {path} returned {reread.get('state')!r} "
+               f"({reread.get('code') or reread.get('reason') or 'no reason given'})",
+               code=str(reread.get("code") or "POLICY_LEG_PROVENANCE_INVALID"))
+    if isinstance(receipt, dict):
+        for key in ("digest", "receipt_sha256"):
+            claimed = str(receipt.get(key) or "").lower()
+            observed = str(reread.get(key) or "").lower()
+            if claimed != observed:
+                refuse(f"claimed {key} {claimed[:12]} does not match the bytes on disk "
+                       f"{observed[:12]}")
+    # Same rule as the owner leg: the epoch document names its own key, so the leg requires the
+    # caller to pin the key id rather than trusting whatever public key travelled with the file.
+    if trusted_key_ids is None or reread.get("key_trusted") is not True:
+        raise PolicyBindingRefusal(
+            "the epoch declaration's signature was not verified against a pinned key: a "
+            "FABRIC_ACTIVE_EPOCH@1 names its own public key, so a signature over it proves only "
+            "that someone signed it — pass epoch_trusted_key_ids=<registry> so the key is pinned",
+            code="POLICY_EPOCH_KEY_UNPINNED")
+
+    return leg("active_epoch", digest=str(reread["digest"]).lower(),
+               provenance=reread["provenance"], reader=EPOCH_RECEIPT_READER, scope=scope,
+               epoch=epoch, observed_at=str(reread.get("observed_at") or ""),
+               evidence_class=EPOCH_RECEIPT_EVIDENCE_CLASS,
+               note=("read from FABRIC_ACTIVE_EPOCH@1; signature verified over the canonical body "
+                     f"and the declared policy digest re-derived (key_id {reread['key_id']!r}, "
+                     f"key_trusted={reread['key_trusted']}, previous_epoch "
+                     f"{reread['previous_epoch']!r}, expires {reread['expires_at']})")) | {
+        "key_id": reread["key_id"],
+        "key_trusted": bool(reread["key_trusted"]),
+        "previous_epoch": reread["previous_epoch"],
+        "expires_at": reread["expires_at"],
+    }
+
+
 def build_binding(*, policy_ref: str, scope: str, epoch: int | str,
                   legs: list[dict[str, Any]], subject: str = "WP-FHS-02",
                   consumer_ack_receipt: dict[str, Any] | None = None,
                   load_receipt: Any | None = None,
                   owner_receipt: Any | None = None,
                   owner_reader_sid: str | None = None,
-                  owner_trusted_key_ids: Any = None) -> dict[str, Any]:
+                  owner_trusted_key_ids: Any = None,
+                  epoch_receipt: Any | None = None,
+                  epoch_previous: int | None = None,
+                  epoch_trusted_key_ids: Any = None) -> dict[str, Any]:
     """Assemble the six-leg record, refusing every collapse the W1 NEG list names.
 
     `consumer_ack_receipt` is optional. `None` keeps the previous behaviour exactly (the caller's
@@ -438,6 +585,16 @@ def build_binding(*, policy_ref: str, scope: str, epoch: int | str,
     `POLICY_OWNER_DIRECTIVE@1` or the dict `owner_approval_receipt.read_owner_receipt` returned for
     one. `owner_reader_sid` / `owner_trusted_key_ids` are passed to that reader so a self-signed
     approval is refused and, when the caller owns a key registry, the named key is pinned.
+
+    `epoch_receipt` is the D-24 addition and does the same for the fourth leg: a path to a
+    `FABRIC_ACTIVE_EPOCH@1` or the dict `fabric_active_epoch.read_epoch_receipt` returned for one.
+    The receipt's declared policy digest must be the source leg's digest, and its epoch must be the
+    binding's epoch (and strictly greater than `epoch_previous` when that is supplied).
+    `epoch_trusted_key_ids` pins the signing key and is required whenever an epoch receipt is
+    supplied (`POLICY_EPOCH_KEY_UNPINNED` otherwise); `owner_trusted_key_ids` is required the same
+    way for an owner receipt (`POLICY_OWNER_KEY_UNPINNED`). Without a receipt, a fourth leg that
+    claims `provenance=FABRIC_ACTIVE_EPOCH` or any evidence class other than `FIXTURE` is refused
+    with `POLICY_EPOCH_UNSUBSTANTIATED`: a label alone no longer substantiates the leg.
     """
     by_leg = {item["leg"]: item for item in legs}
     from_receipt = consumer_ack_receipt is not None
@@ -455,6 +612,13 @@ def build_binding(*, policy_ref: str, scope: str, epoch: int | str,
             owner_receipt, scope=scope, epoch=epoch,
             source_digest=(by_leg["source"]["digest"] if "source" in by_leg else None),
             reader_sid=owner_reader_sid, trusted_key_ids=owner_trusted_key_ids)
+        legs = list(by_leg.values())
+    from_epoch_receipt = epoch_receipt is not None
+    if from_epoch_receipt:
+        by_leg["active_epoch"] = _epoch_from_receipt(
+            epoch_receipt, scope=scope, epoch=epoch,
+            source_digest=(by_leg["source"]["digest"] if "source" in by_leg else None),
+            previous_epoch=epoch_previous, trusted_key_ids=epoch_trusted_key_ids)
         legs = list(by_leg.values())
     missing = [name for name in LEGS if name not in by_leg]
     if missing:
@@ -485,6 +649,22 @@ def build_binding(*, policy_ref: str, scope: str, epoch: int | str,
             "not the policy loaded on this host",
             code="POLICY_LOADED_PROVENANCE_NOT_A_LOAD_RECEIPT")
     active = by_leg["active_epoch"]
+    # D-24, the fourth leg: `leg()` accepted the two pointer labels and nothing ever opened an
+    # artifact for them, so the leg was the caller's word. A label may now carry only a FIXTURE
+    # design leg; anything that claims a reader or a host needs a signed FABRIC_ACTIVE_EPOCH@1.
+    if not from_epoch_receipt:
+        if active["provenance"] not in EPOCH_LABEL_PROVENANCE:
+            raise PolicyBindingRefusal(
+                f"active_epoch claims provenance {active['provenance']!r}, which only "
+                "fabric-active-epoch-reader produces, but no FABRIC_ACTIVE_EPOCH@1 was supplied: a "
+                "caller-typed reader name is not an epoch declaration",
+                code="POLICY_EPOCH_UNSUBSTANTIATED")
+        if active.get("evidence_class") != EPOCH_DESIGN_EVIDENCE_CLASS:
+            raise PolicyBindingRefusal(
+                f"active_epoch claims evidence_class={active.get('evidence_class')!r} but no "
+                "FABRIC_ACTIVE_EPOCH@1 was supplied; a caller-typed label is not an epoch "
+                "declaration (pass epoch_receipt=<path|reader result>)",
+                code="POLICY_EPOCH_UNSUBSTANTIATED")
     if loaded["digest"] != active["digest"]:
         raise PolicyBindingRefusal(
             "loaded bytes differ from the active epoch bytes "
@@ -550,13 +730,18 @@ def build_binding(*, policy_ref: str, scope: str, epoch: int | str,
                  "loaded_digest_reader": loaded["reader"],
                  "consumer_ack_reader": ack["reader"],
                  "load_receipt_verified": bool(from_load_receipt),
+                 "active_epoch_verified": bool(from_epoch_receipt),
+                 "active_epoch_reader": active["reader"],
+                 "epoch_key_trusted": bool(from_epoch_receipt and active.get("key_trusted")),
                  "owner_approval_verified": bool(from_owner_receipt),
                  "owner_key_trusted": bool(from_owner_receipt and owner.get("key_trusted")),
                  "consumer_ack_receipt_verified": bool(from_receipt)},
         "not_claimed": ["policy effective", "consumer consumption", "release",
                         HOST_POLICY_ACTIVE_NOT_CLAIMED["receipt" if from_receipt else "no_receipt"],
                         OWNER_APPROVAL_NOT_CLAIMED["receipt" if from_owner_receipt
-                                                   else "no_receipt"]],
+                                                   else "no_receipt"],
+                        ACTIVE_EPOCH_NOT_CLAIMED["receipt" if from_epoch_receipt
+                                                 else "no_receipt"]],
         "note": ("legs are separate records on purpose: a stage/mirror/nav document cannot "
                  "substantiate loaded_digest or consumer_ack"),
     }
