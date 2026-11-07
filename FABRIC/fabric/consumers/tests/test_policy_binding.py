@@ -47,17 +47,25 @@ class TestPolicyBindingPositive(unittest.TestCase):
         self.assertFalse(rec["host"]["loaded_on_host"])
         self.assertFalse(rec["host"]["consumer_ack_observed"])
 
-    def test_host_raw_load_is_reported_as_observed(self):
-        legs = []
-        for item in six():
-            if item["leg"] == "loaded_digest":
-                item = dict(item, evidence_class="HOST_RAW")
-            if item["leg"] == "consumer_ack":
-                item = dict(item, evidence_class="HOST_RAW")
-            legs.append(item)
-        rec = pb.build_binding(policy_ref="policy/fhs-w1.yaml", scope=SCOPE, epoch=EPOCH, legs=legs)
-        self.assertTrue(rec["host"]["loaded_on_host"])
-        self.assertTrue(rec["host"]["consumer_ack_observed"])
+    def test_host_raw_claim_without_a_receipt_is_refused(self):
+        """D-17: `HOST_RAW` is a claim about a host artifact, so it needs one.
+
+        Before the patch this test asserted the opposite — that a caller-typed
+        `evidence_class="HOST_RAW"` on the fifth and sixth legs flipped `loaded_on_host` and
+        `consumer_ack_observed` to True with no receipt in existence. That is the defect D-17
+        repairs; the raws are in `inc5/out/D17_REPAIR.md`.
+        """
+        legs = [dict(item, evidence_class="HOST_RAW") if item["leg"] == "loaded_digest" else item
+                for item in six()]
+        with self.assertRaises(pb.PolicyBindingRefusal) as ctx:
+            pb.build_binding(policy_ref="policy/fhs-w1.yaml", scope=SCOPE, epoch=EPOCH, legs=legs)
+        self.assertEqual(ctx.exception.code, "POLICY_LOAD_UNSUBSTANTIATED")
+
+        legs = [dict(item, evidence_class="HOST_RAW") if item["leg"] == "consumer_ack" else item
+                for item in six()]
+        with self.assertRaises(pb.PolicyBindingRefusal) as ctx:
+            pb.build_binding(policy_ref="policy/fhs-w1.yaml", scope=SCOPE, epoch=EPOCH, legs=legs)
+        self.assertEqual(ctx.exception.code, "POLICY_CONSUMER_ACK_UNSUBSTANTIATED")
 
     def test_binding_digest_is_replay_stable(self):
         a = pb.build_binding(policy_ref="p", scope=SCOPE, epoch=EPOCH, legs=six())
