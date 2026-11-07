@@ -29,6 +29,7 @@ sys.path.insert(0, str(HERE))
 
 import fabric_active_epoch as fe  # noqa: E402
 import policy_binding as pb  # noqa: E402
+import policy_leg_readers as lr  # noqa: E402
 
 SUBJECT = "WP-FHS-02"
 SCOPE = "fhs-w1/w2-prep"
@@ -39,6 +40,32 @@ POLICY_BYTES = b"rp002:\n  classes: 9\n  epoch: 11\n  legs: six\n"
 POLICY_SHA = hashlib.sha256(POLICY_BYTES).hexdigest()
 OTHER_BYTES = b"rp002:\n  classes: 9\n  epoch: 12\n  legs: six\n"
 OTHER_SHA = hashlib.sha256(OTHER_BYTES).hexdigest()
+
+#: The second leg is a real YAML->JSON stage of POLICY_BYTES: its digest is *not* POLICY_SHA, which is
+#: the whole point of the leg (lane A's rule). The fourth leg's *label* is a real
+#: `ACTIVE_POLICY_POINTER@1` artifact, so it too is read rather than typed.
+STAGE_PAYLOAD = {"rp002": {"classes": 9, "epoch": 11, "legs": "six"}}
+STAGE_BYTES = lr.canonical_bytes(STAGE_PAYLOAD)
+STAGE_SHA = hashlib.sha256(STAGE_BYTES).hexdigest()
+
+#: Set by `_Base.setUp`; `six_legs()` reads the artifact legs from it.
+FIXTURE_ROOT: Path | None = None
+
+
+def write_leg_fixtures(root: Path) -> None:
+    """Write the three artifact legs' files and point `six_legs()` at them."""
+    global FIXTURE_ROOT
+    FIXTURE_ROOT = root
+    (root / "policy.yaml").write_bytes(POLICY_BYTES)
+    (root / "stage.json").write_text(json.dumps({
+        "schema": lr.SCHEMA_STAGE,
+        "producer": {"source_sha256": POLICY_SHA, "transform": "yaml->json",
+                     "stage_sha256": STAGE_SHA},
+        "payload": STAGE_PAYLOAD}, indent=1), encoding="utf-8")
+    (root / "epoch-pointer.json").write_text(json.dumps({
+        "schema": lr.SCHEMA_EPOCH, "scope": SCOPE, "epoch": EPOCH,
+        "digest": POLICY_SHA, "policy_path": "policy.yaml"}), encoding="utf-8")
+
 
 FIXTURE_KEY_ID = "FIXTURE-EPOCH-KEY-D24-NOT-A-REAL-KEY"
 FIXTURE_SEED = hashlib.sha256(b"D24 FIXTURE EPOCH KEY - NOT A REAL KEY").digest()
@@ -126,18 +153,26 @@ def epoch_document(raw: bytes = POLICY_BYTES, *, policy_name: str = "policy.yaml
 def six_legs(digest: str = POLICY_SHA, *, active_digest: str | None = None,
              active_provenance: str = "ACTIVE_POLICY_POINTER",
              active_evidence: str = "FIXTURE") -> list[dict]:
-    """Six legs, the fourth one a caller-typed label unless a receipt replaces it."""
+    """Six legs: source/stage/fourth read from real artifacts, the rest caller-typed.
+
+    The fourth leg is a `FIXTURE` `ACTIVE_POLICY_POINTER@1` design label — a pointer is not an epoch
+    claim, so `host.active_epoch_verified` stays False unless `epoch_receipt=` replaces the leg with a
+    verified signed declaration. Its digest is re-derived from the artifact, so `active_digest=` is
+    only a *claim* about the pointer and is checked against it by the reader.
+    """
     spec = {
-        "source": dict(digest=digest, provenance="FABRIC_POLICY_SOURCE", reader="fabric-policy-repo"),
-        "stage": dict(digest=digest, provenance="STAGED_ARTIFACT", reader="fabric-stage-reader"),
+        "source": dict(digest=POLICY_SHA, provenance="FABRIC_POLICY_SOURCE",
+                       reader=lr.READER_SOURCE, artifact=FIXTURE_ROOT / "policy.yaml"),
+        "stage": dict(digest=STAGE_SHA, provenance="STAGED_ARTIFACT",
+                      reader=lr.READER_STAGE, artifact=FIXTURE_ROOT / "stage.json"),
         "owner_approved": dict(digest=digest, provenance="OWNER_APPROVAL_RECEIPT",
-                               reader="owner-receipt-reader"),
+                               reader=lr.READER_OWNER),
         "active_epoch": dict(digest=active_digest or digest, provenance=active_provenance,
-                             reader="fabric-active-pointer"),
+                             reader=lr.READER_EPOCH, artifact=FIXTURE_ROOT / "epoch-pointer.json"),
         "loaded_digest": dict(digest=digest, provenance="HOST_LOAD_RAW",
-                              reader="host-load-receipt-reader"),
+                              reader=lr.READER_LOAD),
         "consumer_ack": dict(digest=digest, provenance="HGK_CONSUMER_RECEIPT",
-                             reader="hgk-consumer-receipt-reader"),
+                             reader=lr.READER_ACK),
     }
     legs = []
     for name, kw in spec.items():
@@ -158,7 +193,7 @@ class _Base(unittest.TestCase):
             self.skipTest("`cryptography` (Ed25519) is not installed on this host")
         self._tmp = tempfile.TemporaryDirectory()
         self.tmp = Path(self._tmp.name)
-        (self.tmp / "policy.yaml").write_bytes(POLICY_BYTES)
+        write_leg_fixtures(self.tmp)
         (self.tmp / "other.yaml").write_bytes(OTHER_BYTES)
         self.key_file = self.tmp / "epoch-key.hex"
         from cryptography.hazmat.primitives import serialization
@@ -222,6 +257,11 @@ class TestEpochReaderPositive(_Base):
         self.assertEqual(epoch_leg["provenance"], fe.PROVENANCE)
         self.assertEqual(epoch_leg["reader"], fe.READER)
         self.assertEqual(epoch_leg["digest"], POLICY_SHA)
+        # the leg says which kind of evidence substantiated it, and the record names the reader
+        self.assertEqual(epoch_leg["substantiated_by"], "receipt")
+        self.assertEqual(epoch_leg["epoch_evidence"], "signed_receipt")
+        self.assertEqual(record["host"]["active_epoch_evidence"], "signed_receipt")
+        self.assertEqual(record["host"]["epoch_receipt_path"], str(path))
         caveat = [s for s in record["not_claimed"] if s.startswith("active_epoch")]
         self.assertTrue(caveat)
         self.assertIn("does not show a host loaded it", caveat[0])
@@ -235,13 +275,27 @@ class TestEpochReaderPositive(_Base):
         self.assertEqual(record["legs"][3]["provenance"], fe.PROVENANCE)
 
     def test_the_receipt_digest_replaces_a_caller_typed_digest(self):
-        """The caller's fourth-leg digest is not trusted: the reader re-derives it from disk."""
+        """The caller's fourth-leg digest is not trusted: the reader re-derives it from disk.
+
+        The fourth leg's dict is patched by hand here on purpose. `leg()` already refuses a digest
+        that is not the pointer artifact's, so a hand-built dict is the only way to present a typed
+        digest to `build_binding` — and that bypass is exactly what this test covers.
+        """
         path = self.produce()
-        record = bind(six_legs(active_digest=OTHER_SHA), epoch_receipt=path,
-                      epoch_previous=PREVIOUS, epoch_trusted_key_ids={FIXTURE_KEY_ID})
+        legs = [dict(item) for item in six_legs()]
+        legs[3] = dict(legs[3], digest=OTHER_SHA)
+        record = bind(legs, epoch_receipt=path, epoch_previous=PREVIOUS,
+                      epoch_trusted_key_ids={FIXTURE_KEY_ID})
         self.assertEqual(record["state"], "BOUND")
         self.assertEqual(record["legs"][3]["digest"], POLICY_SHA)
         self.assertEqual(record["digests"]["active_epoch"], POLICY_SHA)
+        self.assertEqual(record["legs"][3]["substantiated_by"], "receipt")
+
+    def test_typing_a_fourth_leg_digest_with_no_bytes_behind_it_is_refused(self):
+        """The same caller-typed digest, without the receipt, has no artifact to stand on."""
+        with self.assertRaises(pb.PolicyBindingRefusal) as ctx:
+            six_legs(active_digest=OTHER_SHA)
+        self.assertEqual(ctx.exception.code, "POLICY_EPOCH_DIGEST_MISMATCH")
 
 
 class TestEpochReaderNegative(_Base):
@@ -404,6 +458,13 @@ class TestTheLabelAloneIsNoLongerEnough(_Base):
         self.assertIn("NOT claimed", caveat[0])
         self.assertEqual(record["legs"][3]["provenance"], "ACTIVE_POLICY_POINTER")
         self.assertEqual(record["legs"][3]["evidence_class"], "FIXTURE")
+        # A pointer is a design label, never host evidence: the leg and the record both say so, and
+        # the pointer reader is not the signed one.
+        self.assertEqual(record["legs"][3]["epoch_evidence"], "pointer_design_only")
+        self.assertEqual(record["legs"][3]["reader"], lr.READER_EPOCH)
+        self.assertEqual(record["host"]["active_epoch_evidence"], "pointer_design_only")
+        self.assertIsNone(record["host"]["epoch_receipt_path"])
+        self.assertEqual(record["claim_ceiling"], "AUTHOR_DESIGN_ONLY")
 
     def test_an_unpinned_epoch_receipt_is_refused_by_the_binding(self):
         """No trust-the-embedded-key path: the leg needs a pinned key id."""

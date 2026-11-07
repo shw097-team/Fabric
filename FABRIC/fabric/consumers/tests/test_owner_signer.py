@@ -29,12 +29,35 @@ sys.path.insert(0, str(HERE))
 import owner_approval_receipt as own  # noqa: E402
 import owner_approval_signer as signer  # noqa: E402
 import policy_binding as pb  # noqa: E402
+import policy_leg_readers as lr  # noqa: E402
 
 SUBJECT = "WP-FHS-02"
 SCOPE = "fhs-w1/w2-prep"
 EPOCH = 11
 POLICY_BYTES = b"rp002:\n  classes: 9\n  epoch: 11\n  legs: six\n"
 POLICY_SHA = hashlib.sha256(POLICY_BYTES).hexdigest()
+
+#: D-24: the first two legs and the fourth leg's label are read from real artifacts, so this fixture
+#: carries a YAML->JSON stage and an `ACTIVE_POLICY_POINTER@1` alongside the policy bytes.
+STAGE_PAYLOAD = {"rp002": {"classes": 9, "epoch": 11, "legs": "six"}}
+STAGE_BYTES = lr.canonical_bytes(STAGE_PAYLOAD)
+STAGE_SHA = hashlib.sha256(STAGE_BYTES).hexdigest()
+FIXTURE_ROOT: Path | None = None
+
+
+def write_leg_fixtures(root: Path) -> None:
+    """Write the artifact legs' files and point `six_legs()` at them."""
+    global FIXTURE_ROOT
+    FIXTURE_ROOT = root
+    (root / "policy.yaml").write_bytes(POLICY_BYTES)
+    (root / "stage.json").write_text(json.dumps({
+        "schema": lr.SCHEMA_STAGE,
+        "producer": {"source_sha256": POLICY_SHA, "transform": "yaml->json",
+                     "stage_sha256": STAGE_SHA},
+        "payload": STAGE_PAYLOAD}, indent=1), encoding="utf-8")
+    (root / "epoch.json").write_text(json.dumps({
+        "schema": lr.SCHEMA_EPOCH, "scope": SCOPE, "epoch": EPOCH,
+        "digest": POLICY_SHA, "policy_path": "policy.yaml"}), encoding="utf-8")
 
 FIXTURE_OWNER_SID = "S-1-5-21-1111111111-2222222222-3333333333-1001-FIXTURE-OWNER"
 FIXTURE_READER_SID = "S-1-5-21-4444444444-5555555555-6666666666-1002-FIXTURE-READER"
@@ -66,16 +89,18 @@ def fixture_public_b64() -> str:
 
 def six_legs(digest: str = POLICY_SHA) -> list[dict]:
     spec = {
-        "source": dict(digest=digest, provenance="FABRIC_POLICY_SOURCE", reader="fabric-policy-repo"),
-        "stage": dict(digest=digest, provenance="STAGED_ARTIFACT", reader="fabric-stage-reader"),
+        "source": dict(digest=POLICY_SHA, provenance="FABRIC_POLICY_SOURCE",
+                       reader=lr.READER_SOURCE, artifact=FIXTURE_ROOT / "policy.yaml"),
+        "stage": dict(digest=STAGE_SHA, provenance="STAGED_ARTIFACT",
+                      reader=lr.READER_STAGE, artifact=FIXTURE_ROOT / "stage.json"),
         "owner_approved": dict(digest=digest, provenance="OWNER_APPROVAL_RECEIPT",
-                               reader="owner-receipt-reader"),
+                               reader=lr.READER_OWNER),
         "active_epoch": dict(digest=digest, provenance="ACTIVE_POLICY_POINTER",
-                             reader="fabric-active-pointer"),
+                             reader=lr.READER_EPOCH, artifact=FIXTURE_ROOT / "epoch.json"),
         "loaded_digest": dict(digest=digest, provenance="HOST_LOAD_RAW",
-                              reader="host-load-receipt-reader"),
+                              reader=lr.READER_LOAD),
         "consumer_ack": dict(digest=digest, provenance="HGK_CONSUMER_RECEIPT",
-                             reader="hgk-consumer-receipt-reader"),
+                             reader=lr.READER_ACK),
     }
     return [pb.leg(name, scope=SCOPE, epoch=EPOCH, evidence_class="FIXTURE",
                    observed_at="2026-11-07T00:00:00Z", **kw) for name, kw in spec.items()]
@@ -92,8 +117,8 @@ class _Base(unittest.TestCase):
             self.skipTest("`cryptography` (Ed25519) is not installed on this host")
         self._tmp = tempfile.TemporaryDirectory()
         self.tmp = Path(self._tmp.name)
+        write_leg_fixtures(self.tmp)
         self.policy = self.tmp / "policy.yaml"
-        self.policy.write_bytes(POLICY_BYTES)
         self.key_file = self.tmp / "owner-key.hex"
         from cryptography.hazmat.primitives import serialization
         self.key_file.write_text(fixture_key().private_bytes(
