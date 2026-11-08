@@ -1,0 +1,33 @@
+{
+ "schema": "FHS.W0.MirrorProvenance/3",
+ "generated_at": "2026-11-08T14:35:21+08:00",
+ "subject": {
+  "doc": "FHS_PIPD-LS-PKG_W0_r12.md",
+  "bytes": 582469,
+  "sha256": "139ff440136543731c1401b17b03ff56e886f80b7dcc08b5fb83892032744c46"
+ },
+ "expected_entry_set": [
+  "FHS_PIPD-LS-PKG_W0_r12.md",
+  "R12_REPAIR_REPORT.md",
+  "MIRROR_STATUS.md"
+ ],
+ "files": [
+  {
+   "path": "FHS_PIPD-LS-PKG_W0_r12.md",
+   "sha256": "139ff440136543731c1401b17b03ff56e886f80b7dcc08b5fb83892032744c46",
+   "bytes": 582469
+  },
+  {
+   "path": "R12_REPAIR_REPORT.md",
+   "sha256": "a52a8bce91370fcb933bdd10f50ce424eea200cbffe2a1ca9ae7ea36fccfd1f8",
+   "bytes": 7880
+  },
+  {
+   "path": "MIRROR_STATUS.md",
+   "sha256": "e94bee81604b2391b64324ed9d59acdc0d318cd996c0a32c2261a300f977ffff",
+   "bytes": 544
+  }
+ ],
+ "bit_exact": true,
+ "why_no_normalisation": "Fabric has no LF-clean invariant, so normalising here would change the subject; SBL carries the normalised copy with both digests"
+}
