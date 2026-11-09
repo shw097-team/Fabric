@@ -1,0 +1,43 @@
+{
+ "schema": "FHS.W0.MirrorProvenance/3",
+ "generated_at": "2026-11-09T15:02:10+08:00",
+ "subject": {
+  "doc": "FHS_PIPD-LS-PKG_W0_r24.md"
+ },
+ "expected_entry_set": [
+  "FHS_PIPD-LS-PKG_W0_r24.md",
+  "FHS_ORIGINAL_ACK.json",
+  "GATE_R20.json",
+  "HANDOVER_R24.md",
+  "MIRROR_STATUS.md"
+ ],
+ "files": [
+  {
+   "path": "FHS_PIPD-LS-PKG_W0_r24.md",
+   "sha256": "16b5ee71bb435d8aaef99e6d0cf431d791ca612d4a55806a376b6f370c3c82f9",
+   "bytes": 648906
+  },
+  {
+   "path": "FHS_ORIGINAL_ACK.json",
+   "sha256": "d0e1c6a07f9d7e1204387fe121cf65da16bc31a77ec91b09bb4245d1299b2206",
+   "bytes": 5372
+  },
+  {
+   "path": "GATE_R20.json",
+   "sha256": "635e8648674a93607d0ac86c0ff3ae2ab69a9703d5fbbc18344c32dac7374b7f",
+   "bytes": 5801
+  },
+  {
+   "path": "HANDOVER_R24.md",
+   "sha256": "b9ec3205a0b6d6f17145599a315a22ed182e73daf7552a7e7b386cb582911747",
+   "bytes": 4720
+  },
+  {
+   "path": "MIRROR_STATUS.md",
+   "sha256": "2ccee1e313eb6e67eae97aada3ce8c0e0e86e87506d967c93630f35019db373c",
+   "bytes": 670
+  }
+ ],
+ "bit_exact": true,
+ "why_no_normalisation": "Fabric has no LF-clean invariant, so normalising here would change the subject; SBL carries the normalised copy with both digests"
+}
