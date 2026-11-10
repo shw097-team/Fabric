@@ -1,0 +1,51 @@
+schema: FAR-RESEARCH-HANDOFF/1
+run_id: FAR-W0-R27-UNBLOCK-20261111
+next_actor: "owner for OD-2/OD-3/OD-4; HGK owner for OD-1/OD-5/OD-6/OD-7; nobody for OD-8 until its preconditions land"
+status: RESEARCH_PASS_CANDIDATE
+decisions_required:
+  - id: OD-1
+    kind: DECIDE_OWNER
+    text: "declare lane fallbacks in the epoch-41 assignment so the nine menu slots become assignable (B5); the dispatcher already supports fallbacks, so this is a data alignment, not a capability"
+    success_predicate: "a pinned-slot probe on each of the five previously refused slots no longer returns ERR_ARM_NOT_IN_ASSIGNMENT"
+  - id: OD-2
+    kind: AUTHORISE
+    text: "merge Fabric PR #54 (mirror admission, mergeable_state=clean, fhs-nav-static=success, additive only)"
+    rollback: "revert the merge commit; the manifest change is one added key"
+  - id: OD-3
+    kind: AUTHORISE
+    text: "merge SBL PR #66 once its five checks are green; two currently fail and at least one failure was this round's own .sh files, fixed in 6243062"
+    success_predicate: "check-runs on the head sha: gate, test(ubuntu), test(windows), supply-chain, pipd-compat all success"
+  - id: OD-4
+    kind: SIGN
+    text: "sign the r27 owner semantic acceptance in the already-open owner window (state=OPEN, max_ops 40, scope includes owner_semantic_accept); this also closes FINDING_R26-06_TZ_UNQUALIFIED because the new signature carries +08:00"
+    instrument: "HG-KSEOS/ops/session-20261031/tools/owner_window.py (owner key passphrase envelope)"
+  - id: OD-5
+    kind: DECIDE_OWNER
+    text: "authorise the dispatcher fixture migration and, separately, decide whether a recorded non-dispatchable SYNTHETIC_ARM binding class may exist; the PLAN lane showed the guard does not require an issuer signature on a binding, so no second issuer is implied"
+  - id: OD-6
+    kind: DECIDE_OWNER
+    text: "rule that session_id/process_id become hard requirements from r28; do not re-sign r26/r27 votes that lack them"
+  - id: OD-7
+    kind: DECIDE_OWNER
+    text: "rule what W0 closure consumes: payload-profile gate green plus the historical full-profile record (GATE_R26.json 21/22, G16b reporting-open) plus this round's G24 falsification"
+  - id: OD-8
+    kind: AUTHORISE_BLOCKED
+    text: "merge HG-KSEOS PR #16 only after OD-1 and the PoolSelectionTests.MANDATE migration; today it is draft with 0 checks and 3 remaining fatal drift findings"
+  - id: OD-9
+    kind: DECIDE_OWNER
+    text: "NATIVE_SIGNED / PASS_CHALLENGE / RELEASE: a dedicated release window exists (DEDICATED_KINDS, TTL<=1h, max_ops<=4) but a signature is not Publisher admission; granting these requires the original consumer's acceptance, not a research verdict"
+promotion_recommendations:
+  - {item: "Fabric PR #54", verdict: MERGE_NOW, why: "clean, additive, negatives fire"}
+  - {item: "SBL PR #66", verdict: MERGE_AFTER_CI_GREEN, why: "the red is this round's own evidence invariant violation, already fixed"}
+  - {item: "HG-KSEOS PR #16", verdict: DO_NOT_MERGE_YET, why: "draft, no CI, 3 fatal drift, one invalidated test"}
+  - {item: "fhs_entry_guard.py", verdict: PROMOTE_TO_PRACTICE, why: "blocks a fresh process with 0 spawn in a measured negative"}
+  - {item: "verify_public_bundle.py", verdict: PROMOTE_TO_PRACTICE, why: "7/7 real Ed25519 verification, 6/6 mutation refusals"}
+  - {item: "r27 append-only document", verdict: PROMOTE_TO_CANDIDATE, why: "prefix byte-identical to r26, CH27 corrections carry their findings"}
+not_claimed:
+  - "any merge, signature, release or host effect"
+  - "that the 31 source volumes exist on this host; they do not"
+  - "that a container sandbox unblocks B9; untested here"
+  - "that the PLAN lane's REAL_BLOCK vocabulary and the maker's closing language are the same judgement; both are recorded"
+binding_rule: >-
+  a decision is not made until its own artefact changes: a merge commit, a signed receipt, or a registry
+  edit with a re-generated projection. Research prose changes nothing.

@@ -1,0 +1,9 @@
+id	alternative	tested_by	why_rejected_or_accepted	verdict
+RA-01	merge the epoch-41 branch wholesale into main	H0 DAG forensic	roots differ (merge-base exit 1); a merge would be an unrelated-histories graft	REJECTED
+RA-02	run the full profile by finding the 31 sources	bounded filesystem search	the round roots were disposed in the 2026-11-10 cleanup; not present under C:/Projects/Agent_Workspace or D:/Hermes-Recovery at depth 4	REJECTED_NOT_FOUND
+RA-03	declare full-profile 22/22 as a W0 close condition	EVIDENCE_SCOPE profile split	the contract already runs payload in CI and full in the author round; importing full as a close condition is stricter than the design	REJECTED_OVER_READ
+RA-04	grant the guard's 122 test failures a bypass so CI goes green	blast-radius analysis	a bypass converts a governance refusal into an unproven claim; the same code fires everywhere, so the fix is fixture migration	REJECTED
+RA-05	use an independent lane as a substitute for the missing corpus	lane receipts this round	a lane proves routing and refusal, not the presence of 31 documents; substituting would be a category error	REJECTED
+RA-06	owner-passphrase envelope as the authorisation instrument for the pending signatures	owner_window.py / owner_vault.py inspection	ACCEPTED for owner_semantic_accept and original_reader_ack; it cannot cover release/policy_authority (FORBIDDEN_KINDS)	ACCEPTED_SCOPED
+RA-07	issuer grant bound to a writeset as the mechanical cross-session entry	issue_grant.py inspection	ACCEPTED as a complement: making binding_id a precondition of the grant turns the entry from advisory to credential-gated without a second router	ACCEPTED_SCOPED
+RA-08	local container sandbox to give the checker an executable python	VERIFY lane failure (spawn ENOENT)	not yet tested on this host; a container cannot see C:/ paths without a mount, and the lane already reaches the artifacts through node	OPEN_ALTERNATIVE
