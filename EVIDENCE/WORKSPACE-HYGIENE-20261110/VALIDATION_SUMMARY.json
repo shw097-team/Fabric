@@ -1,0 +1,220 @@
+{
+ "artifact": "FHS-WORKSPACE-HYGIENE-VALIDATION-20261110",
+ "schema": "FHS-WORKSPACE-HYGIENE/v1",
+ "status": "CANDIDATE_LOCAL_MEASURED",
+ "claim_ceiling": {
+  "candidate_pr": true,
+  "merged": false,
+  "ci_verified": false,
+  "native_reader_result": false,
+  "hgk_admission": false,
+  "release": false,
+  "note": "local measurement of one workspace-hygiene round; a pushed branch is not a merge and not a PASS"
+ },
+ "control_package": {
+  "id": "FHS-WORKSPACE-HYGIENE-THIN-CONTROL-20261110",
+  "version": "r1",
+  "sha256": "19ff3edf3dc13f1912e479a2174a6cd85020f65f570f0e76b4ae02ae5c32aade"
+ },
+ "runtime": {
+  "code_version": "0.23.0",
+  "code_sha": "786a3156d1db06bd9fc014c014cea4c8023653fd",
+  "code_root_tag": "v0.23.0-1-g786a3156d1"
+ },
+ "runtime_identity_drift": {
+  "document_states": "0.23.3",
+  "measured": "0.23.0",
+  "resolution": "MEASURED_WINS"
+ },
+ "volume": {
+  "root_and_archive_same_device": true,
+  "reparse_points_in_path": false,
+  "same_volume_move_frees_capacity": false,
+  "workspace_free_bytes_before": 39140323328,
+  "workspace_free_bytes_after": 39118602240
+ },
+ "inventory": {
+  "files": 1177773,
+  "bytes": 63843951588,
+  "pre_move_workspace_bytes": 67053031185,
+  "acl_refused_paths": 3739
+ },
+ "post_move": {
+  "workspace_files": 335974,
+  "workspace_bytes": 19405055871,
+  "archive_files": 841799,
+  "archive_bytes": 44438895717,
+  "identity_exact": 124,
+  "identity_first_pass_differences": 16,
+  "identity_rederived_equal_under_premove_semantics": 13,
+  "identity_destination_superset": {
+   "SBL/_handover": {
+    "pre": 335291,
+    "actual": 351057,
+    "extra": 15766,
+    "missing": 0,
+    "extra_top_groups": [
+     [
+      "CNV-PIPD-LS-SP-20261015-R7/R7_CHECKER_ATTEMPT2/checkproduct",
+      11192
+     ],
+     [
+      "CNV-PIPD-LS-SP-20261015-R7/R7_CHECKER_ATTEMPT2/INPUTS",
+      4171
+     ],
+     [
+      "CNV-PIPD-LS-SP-20261015-R7/R7_CHECKER_ATTEMPT2/pre",
+      321
+     ],
+     [
+      "CNV-PIPD-LS-SP-20261015-R7/R7_CHECKER/pre",
+      82
+     ]
+    ],
+    "missing_sample": []
+   },
+   "var": {
+    "pre": 285889,
+    "actual": 285901,
+    "extra": 12,
+    "missing": 0,
+    "extra_top_groups": [
+     [
+      "B1-PIPD-PKG-20261027/candidate_impl/PIPD_BASE",
+      12
+     ]
+    ],
+    "missing_sample": []
+   },
+   "wg": {
+    "pre": 37162,
+    "actual": 37168,
+    "extra": 6,
+    "missing": 0,
+    "extra_top_groups": [
+     [
+      "evidence/FHS-RCA-20261031-R1/03_REPRO",
+      3
+     ],
+     [
+      "evidence/FHS-RCA-FINAL-R2-20261031/02_EXPERIMENT",
+      3
+     ]
+    ],
+    "missing_sample": []
+   }
+  },
+  "identity_claim": "the archive holds at least every entry the pre-move inventory recorded, and no tree is smaller than its pre-move measurement"
+ },
+ "moves": {
+  "operations": 140,
+  "succeeded": 140,
+  "failed": 0,
+  "files": 1166383,
+  "bytes": 47413837843,
+  "copy_zip_tar_used": false
+ },
+ "cleanup": {
+  "class": "REGENERABLE_CLEANUP",
+  "targets": 1530,
+  "files": 14644,
+  "bytes": 229632883,
+  "status": {
+   "DELETED": 1529,
+   "HOLD:5": 1
+  },
+  "guard": "untracked __pycache__/.pytest_cache only; no .venv, no node_modules, no tracked path"
+ },
+ "dispositions": {
+  "ACTIVE_LOCKED": {
+   "items": 3,
+   "files": 1041239,
+   "bytes": 40789583737
+  },
+  "CURRENT_KEEP": {
+   "items": 7,
+   "files": 1241,
+   "bytes": 37521151
+  },
+  "HOLD_IN_PLACE": {
+   "items": 3,
+   "files": 3837,
+   "bytes": 132498359
+  },
+  "ARCHIVE_ELIGIBLE": {
+   "items": 140,
+   "files": 1157724,
+   "bytes": 46604975563
+  },
+  "UNCLASSIFIED_EXPORTABLE": {
+   "items": 4,
+   "files": 8663,
+   "bytes": 808875697
+  }
+ },
+ "moved_by_class": {
+  "ARCHIVE_ELIGIBLE": {
+   "items": 136,
+   "bytes": 46604962146
+  },
+  "UNCLASSIFIED_EXPORTABLE": {
+   "items": 4,
+   "bytes": 808875697
+  }
+ },
+ "plan_vs_move_note": "the disposition histogram counts classified candidates; reclassified-in-place items (git-tracked/modified files) are not moved, so moved_by_class is the authoritative count of what reached the archive",
+ "holds": [
+  {
+   "tree": "hgkrcpt",
+   "reason": "receipt store (3,702 files, 2 .pem) - Reader/receipt originals; consumer proof not available this round"
+  },
+  {
+   "tree": "_handover",
+   "reason": "ROOT-level handover with receipts/snapshot; consumer proof not available this round"
+  },
+  {
+   "tree": "verdict",
+   "reason": "empty dir, no content to move (0 files)"
+  },
+  {
+   "tree": "SBL/PIPD",
+   "reason": "nested canonical-writer clone with own worktrees; 8 tracked refs"
+  },
+  {
+   "tree": "HG-KSEOS/var/shared-spine",
+   "reason": "live Shared Spine registry database"
+  },
+  {
+   "tree": "HG-KSEOS/var/backups",
+   "reason": "rollback/pre-image database material"
+  },
+  {
+   "tree": "HG-KSEOS/var/far-lane-sod-003",
+   "reason": "4.6 GiB, 8 tracked refs"
+  },
+  {
+   "tree": "3,739 ACL-refused paths",
+   "reason": "not readable, not provably movable"
+  }
+ ],
+ "git_state_unchanged": {
+  "Fabric": {
+   "head": "765df6289cfb7730aa56efbd522d76df6ec9809a",
+   "status_lines_before": 6,
+   "status_lines_after": 6
+  },
+  "HG-KSEOS": {
+   "head": "86f40ec114f19bbd35314e376da4d0bed9805b22",
+   "status_lines_before": 4,
+   "status_lines_after": 4
+  },
+  "SBL": {
+   "head": "826ca066a1c2df2976c0d402018b79e1c79a444f",
+   "status_lines_before": 49,
+   "status_lines_after": 13,
+   "note": "49 -> 13 because 36 untracked entries were archived; zero new deletions"
+  }
+ },
+ "user_next_step": "move the archive directory from the workspace volume to the external volume yourself; keep no copy on the workspace volume",
+ "generated_at": "2026-11-10T18:00:05"
+}
