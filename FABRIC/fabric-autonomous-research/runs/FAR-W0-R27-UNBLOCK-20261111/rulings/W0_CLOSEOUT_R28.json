@@ -21,19 +21,13 @@
   }
  },
  "closed_by_this_round": [
-  "OD-1 fallbacks declared",
   "OD-2 Fabric #54 merged",
   "OD-3 SBL #66 merged",
   "OD-6 session/process identity from r28",
-  "OD-7 W0 acceptance = payload profile"
+  "OD-7 W0 acceptance = payload profile",
+  "U1 closed as ALREADY_BUILT (3LM menu 9/9, projection clean, three binds)"
  ],
  "named_holds": [
-  {
-   "id": "H-1",
-   "what": "owner semantic acceptance for r27",
-   "why": "needs one passphrase entry in the owner window (OPEN, ops_used 0)",
-   "who": "OWNER"
-  },
   {
    "id": "H-2",
    "what": "122 dispatcher tests fail-closed",
@@ -59,5 +53,18 @@
    "who": "LANE + OWNER"
   }
  ],
- "claim_ceiling": "PAYLOAD_PASS_AND_TWO_MERGES. Not: FULL_W0_CLOSEOUT, NATIVE_SIGNED, INDEPENDENT_PASS_CHALLENGE, RELEASE_GRANTED."
+ "claim_ceiling": "PAYLOAD_PASS_AND_TWO_MERGES. Not: FULL_W0_CLOSEOUT, NATIVE_SIGNED, INDEPENDENT_PASS_CHALLENGE, RELEASE_GRANTED.",
+ "u1_reclassified": {
+  "was": "OD-1: declare fallback arms on HG-KSEOS main (hand-picked set)",
+  "now": "ALREADY_BUILT — no data change; OD-1 v1/v2 WITHDRAWN (HG-KSEOS PR #17 closed, branch net-zero at 527f187)",
+  "evidence": {
+   "menu": "fhs_3lm.py --menu: policy_epoch 41 IN_FORCE, slot_count 9, admitted_count 9, all_admitted true",
+   "projection": "lane_assignment_resync.py on the in-force clone: changes 0",
+   "stale_base": "the same tool on an origin/main worktree (rev 35, registry_epoch 34) shows 5 changes, all automatic_selection ordering, no provider/model change",
+   "binds": "PLAN primary gpt-6.1-sol (same_arm_lanes false); EXECUTE deepseek (false); VERIFY gpt-6.1-sol (true, recorded not refused; sod_mandated false)"
+  },
+  "b5_reclassified": "MISMEASURED_AGAINST_STALE_MAIN — the refusals were ERR_ARM_NOT_IN_ASSIGNMENT from a rev-35 assignment, not a control-plane defect",
+  "sod": "not a failing predicate: the menu declares identity_overlaps_recorded_not_enforced (SOD006-C4), and 3LM records same_arm_lanes without refusing",
+  "doc": "out/U1_3LM_INVESTIGATION.md"
+ }
 }
