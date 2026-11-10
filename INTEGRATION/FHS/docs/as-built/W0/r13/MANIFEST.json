@@ -1,0 +1,41 @@
+{
+ "schema": "FHS.W0.PayloadManifest/3",
+ "generated_at": "2026-11-09T08:09:02+08:00",
+ "payload_root": "fabric/INTEGRATION/FHS/docs/as-built/W0/r13",
+ "digest_scope": "every digest below resolves inside this payload and nowhere else",
+ "expected_entry_set": [
+  "FHS_PIPD-LS-PKG_W0_r13.md",
+  "R13_REPAIR_REPORT.md",
+  "MIRROR_STATUS.md"
+ ],
+ "expected_entry_set_note": "G18 refuses a manifest whose files[] is empty, whose key is absent, or whose entries differ from this list — an absent or narrowed manifest cannot pass by declaring nothing",
+ "files": [
+  {
+   "path": "FHS_PIPD-LS-PKG_W0_r13.md",
+   "sha256": "60ba757b809058bb48af3d67caea9b39cbe21ee51751c86e6628911e8ba1c514",
+   "bytes": 592369,
+   "measured_from": "writeback/W0/FHS_PIPD-LS-PKG_W0_r13.md",
+   "sha256_as_measured": "60ba757b809058bb48af3d67caea9b39cbe21ee51751c86e6628911e8ba1c514",
+   "bytes_as_measured": 592369,
+   "normalised": false
+  },
+  {
+   "path": "R13_REPAIR_REPORT.md",
+   "sha256": "8d56fd78347e1078d96eaf9eadfb48257dbe1a8e1da3a6f22ac827290d7399bc",
+   "bytes": 749,
+   "measured_from": "out/FHS_W0_R13_REPAIR_REPORT_2026-11-08.md",
+   "sha256_as_measured": "8d56fd78347e1078d96eaf9eadfb48257dbe1a8e1da3a6f22ac827290d7399bc",
+   "bytes_as_measured": 749,
+   "normalised": false
+  },
+  {
+   "path": "MIRROR_STATUS.md",
+   "sha256": "84061273dbaff576a4cd34ed12b70c97475581463a9d37acc2ee7f954ee84216",
+   "bytes": 544,
+   "measured_from": "__generated__",
+   "sha256_as_measured": "84061273dbaff576a4cd34ed12b70c97475581463a9d37acc2ee7f954ee84216",
+   "bytes_as_measured": 544,
+   "normalised": false
+  }
+ ]
+}
