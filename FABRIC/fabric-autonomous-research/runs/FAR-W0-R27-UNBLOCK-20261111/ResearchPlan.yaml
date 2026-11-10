@@ -1,0 +1,63 @@
+schema: FAR-RESEARCH-PLAN/1
+run_id: FAR-W0-R27-UNBLOCK-20261111
+created_at: 2026-11-11T02:30:00+08:00
+authored_by: "PLAN lane reading (openai-codex/gpt-6.1-sol, read-only receipt) reconciled by the run owner"
+channels:
+  - id: R2-A-run-records
+    target: "the r27 round report, its acceptance rerun JSON, and the external challenge that set the bar"
+    method: "file read; every number re-derived in this run rather than carried"
+  - id: R2-B-round-history
+    target: "FHS_W0_R13_ACCEPTANCE_20261108: HANDOVER_R19..R26, SELF_ERRORS.md, out/GATE_R*.json"
+    method: "file read; look for a prior solution to the same obstacle before proposing a new one"
+  - id: R2-C-control-plane-and-instruments
+    target: "HGK registry/pool/assignment, dispatcher, guard, owner_window/owner_vault/issue_grant/owner_delegation"
+    method: "source read; capability vs permission separated"
+  - id: R2-D-built-retrieval
+    target: "far_retrieval.run_retrieval_stage (the FAR tri-source stage)"
+    method: "built tool executed; RetrievalLedger.json + CrossReferenceLedger.tsv written"
+  - id: R2-E-remote-state
+    target: "GitHub API pull state and check-runs for the three candidate PRs"
+    method: "live API read; no carried verdicts"
+subquestions:
+  - "Q-a: for each residual item, is the block real, an over-read, a misread, already built, or an alternative-instrument case"
+  - "Q-b: does the upstream intent actually require the item to be true now, for a single-owner single-machine unattended system"
+  - "Q-c: did an earlier W0 round already solve it, and with which instrument"
+  - "Q-d: which decisions are executable today, with which signing/grant instrument"
+  - "Q-e: which candidates promote and which branches merge, in what order and with what rollback"
+claim_classes:
+  - MEASURED_STATE
+  - CAPABILITY_VS_PERMISSION
+  - PRIOR_ROUND_PRECEDENT
+  - PROMOTABILITY
+source_classes:
+  - run-record
+  - external-review
+  - round-history
+  - control-plane
+  - code
+  - payload
+  - remote
+  - experiment
+  - retrieval
+query_strategy:
+  - "search the history for the same obstacle before proposing a mechanism"
+  - "prefer an instrument that already exists over a new one"
+  - "distinguish a status declaration from a block"
+candidate_methods_providers:
+  - "FAR R1-R8 with PLAN/EXECUTE/VERIFY lanes; PLAN and VERIFY on openai-codex/gpt-6.1-sol, EXECUTE on opencode-go/deepseek-v4.1-flash"
+challenge_trigger:
+  - "when a residual item's verdict differs between the maker synthesis and the PLAN lane"
+  - "when a claim asserts promotability"
+experiment_trigger:
+  - "when a block is asserted to be environmental (B4): run the gate and read the verdict"
+stop_criteria:
+  - "every B-item has a verdict with a command or a quoted record"
+  - "every proposed unblock names its success predicate as a runnable check"
+  - "every disagreement between readers is recorded, not averaged"
+abstain_criteria:
+  - "no corpus and no path to it -> record NOT_REACHABLE rather than reconstruct from memory"
+  - "an instrument exists but its consumer does not -> record capability, withhold authority"
+budget_allocation:
+  lanes: {PLAN: 1, VERIFY: 1}
+  retrieval_calls: 1
+  gate_runs: 2

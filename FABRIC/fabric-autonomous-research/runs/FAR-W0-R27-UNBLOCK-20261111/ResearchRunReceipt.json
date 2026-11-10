@@ -1,0 +1,67 @@
+{
+ "schema": "FAR-RESEARCH-RUN-RECEIPT/1",
+ "run_id": "FAR-W0-R27-UNBLOCK-20261111",
+ "subject": "FHS PIPD-LS-PKG W0 residual items — block adjudication and unblock plan",
+ "lanes": {
+  "PLAN": {
+   "required": "openai-codex/gpt-6.1-sol",
+   "served": "openai-codex/gpt-6.1-sol",
+   "receipt": "lanes/far-runs/PLAN/FARW0R27PLAN-20261111T011922",
+   "ok": true
+  },
+  "EXECUTE": {
+   "required": "opencode-go/deepseek-v4.1-flash",
+   "served": "opencode-go/deepseek-v4.1-flash (session arm; artifacts written in this session, no Codex-CLI turn)",
+   "ok": "NOT_DISPATCHED"
+  },
+  "VERIFY": {
+   "required": "openai-codex/gpt-6.1-sol",
+   "served": "openai-codex/gpt-6.1-sol",
+   "receipt": "lanes/far-runs/VERIFY_SECURITY/FARW0R27VERIFY-20261111T012510",
+   "ok": false,
+   "code": "ERR_CHECKER_MUTATED_SUBJECT",
+   "note": "verdict voided by subject mutation; findings kept as advisory in VERIFY_LANE_REVIEW_VOID.md"
+  }
+ },
+ "channels_used": [
+  "R2-A run records",
+  "R2-B round history",
+  "R2-C control plane + instruments",
+  "R2-D far_retrieval stage",
+  "R2-E GitHub API"
+ ],
+ "claims": {
+  "total": 22,
+  "measured": 18,
+  "derived": 4,
+  "unsupported": 0
+ },
+ "headline_corrections": [
+  "B4: the 31 sources EXIST and all 31 sha256 match; staged corpus makes G11+G13 green (pass 16/22 -> 17/22)",
+  "B3: a dedicated release window exists (DEDICATED_KINDS) — capability, not Publisher admission",
+  "B6: the guard does not require an issuer signature on a binding, so fixtures need no second issuer",
+  "B8: 126 legacy properties are a substantive gap, not a by-design exemption"
+ ],
+ "hgk_mutation": "NONE — research run; no registry row, no receipt, no merge changed",
+ "ceiling": "ADVISORY — a decision is not made until its own artefact changes",
+ "artifacts": [
+  "CandidateResearch.yaml",
+  "ClaimLedger.tsv",
+  "ContradictionLedger.tsv",
+  "CrossReferenceLedger.tsv",
+  "OpenQuestionLedger.tsv",
+  "PLAN_LANE_VERDICT.md",
+  "RUN_CORRECTIONS.json",
+  "RejectedAlternativeLedger.tsv",
+  "ResearchHandoff.yaml",
+  "ResearchPlan.yaml",
+  "ResearchRequest.yaml",
+  "ResearchRunReceipt.json",
+  "ResearchSourceDenominator.tsv",
+  "ResearchSynthesis.md",
+  "RetrievalLedger.json",
+  "VERIFY_LANE_REVIEW_VOID.md",
+  "_PLAN_BRIEF.md",
+  "_VERIFY_BRIEF.md"
+ ]
+}

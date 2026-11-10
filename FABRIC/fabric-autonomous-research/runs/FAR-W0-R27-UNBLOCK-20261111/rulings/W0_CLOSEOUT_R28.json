@@ -1,0 +1,70 @@
+{
+ "schema": "FHS.W0.CLOSEOUT/1",
+ "at_utc": "2026-11-11T02:40:00Z",
+ "revision": "r28",
+ "merged_under_owner_authority": {
+  "fabric_54": {
+   "sha": "a6f1fa897052cb4a3bcba316e774721d3d4fe62b",
+   "what": "r26 governance mirror admitted for navigation"
+  },
+  "sbl_66": {
+   "sha": "a6003c3da3dd6a39d2ee692b2ffcf7ae4062e466",
+   "what": "postrepair acceptance payload, five checks green"
+  }
+ },
+ "landed_not_yet_merged": {
+  "hg_kseos_r28_assignment_fallbacks": {
+   "commits": [
+    "c3e9f70",
+    "c1a85b1"
+   ]
+  }
+ },
+ "closed_by_this_round": [
+  "OD-2 Fabric #54 merged",
+  "OD-3 SBL #66 merged",
+  "OD-6 session/process identity from r28",
+  "OD-7 W0 acceptance = payload profile",
+  "U1 closed as ALREADY_BUILT (3LM menu 9/9, projection clean, three binds)"
+ ],
+ "named_holds": [
+  {
+   "id": "H-2",
+   "what": "122 dispatcher tests fail-closed",
+   "why": "synthetic arm binding issuance class not yet ruled; guard is working as designed",
+   "who": "OWNER governance"
+  },
+  {
+   "id": "H-3",
+   "what": "126 legacy properties without candidate binding",
+   "why": "needs a versioned equivalence rule with the original Reader",
+   "who": "OWNER + original Reader"
+  },
+  {
+   "id": "H-4",
+   "what": "full profile 3 path items (G16a/b, G19, G24)",
+   "why": "relocations, not semantics",
+   "who": "anyone, mechanical"
+  },
+  {
+   "id": "H-5",
+   "what": "HG-KSEOS #16 (epoch-41)",
+   "why": "draft; needs PoolSelectionTests.MANDATE migration + 3 drift dispositions",
+   "who": "LANE + OWNER"
+  }
+ ],
+ "claim_ceiling": "PAYLOAD_PASS_AND_TWO_MERGES. Not: FULL_W0_CLOSEOUT, NATIVE_SIGNED, INDEPENDENT_PASS_CHALLENGE, RELEASE_GRANTED.",
+ "u1_reclassified": {
+  "was": "OD-1: declare fallback arms on HG-KSEOS main (hand-picked set)",
+  "now": "ALREADY_BUILT — no data change; OD-1 v1/v2 WITHDRAWN (HG-KSEOS PR #17 closed, branch net-zero at 527f187)",
+  "evidence": {
+   "menu": "fhs_3lm.py --menu: policy_epoch 41 IN_FORCE, slot_count 9, admitted_count 9, all_admitted true",
+   "projection": "lane_assignment_resync.py on the in-force clone: changes 0",
+   "stale_base": "the same tool on an origin/main worktree (rev 35, registry_epoch 34) shows 5 changes, all automatic_selection ordering, no provider/model change",
+   "binds": "PLAN primary gpt-6.1-sol (same_arm_lanes false); EXECUTE deepseek (false); VERIFY gpt-6.1-sol (true, recorded not refused; sod_mandated false)"
+  },
+  "b5_reclassified": "MISMEASURED_AGAINST_STALE_MAIN — the refusals were ERR_ARM_NOT_IN_ASSIGNMENT from a rev-35 assignment, not a control-plane defect",
+  "sod": "not a failing predicate: the menu declares identity_overlaps_recorded_not_enforced (SOD006-C4), and 3LM records same_arm_lanes without refusing",
+  "doc": "out/U1_3LM_INVESTIGATION.md"
+ }
+}

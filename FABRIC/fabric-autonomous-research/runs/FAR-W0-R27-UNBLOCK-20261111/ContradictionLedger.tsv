@@ -1,0 +1,5 @@
+id	contradiction	between	resolution	status
+X-01	the r27 report says the full profile 'cannot run' while the round's own GATE_R26.json records a full run with 22 checks	C-07 vs C-08	both are true for different trees: the profile runs, the repaired payload has never been the subject of a full run	RESOLVED_BY_SCOPE
+X-02	HGK main is 'red at baseline' (22 fatal) while PR #16 is described as the repair that fixes the registry	L4 baseline vs PR claim	the port reduces fatal findings 22 -> 3; it does not make main green, and one test it invalidates is a further failure	UNRESOLVED_RECORDED
+X-03	the epoch-41 pool admits nine menu slots while the dispatcher assigns only one arm per lane	pool/lane_chains vs assignment reader	pool membership and assignment are different objects; a slot can be admitted and still unassignable	OPEN_DEFECT
+X-04	the owner window is OPEN and could sign an acceptance, while the run holds NATIVE_SIGNED	window capability vs claim ceiling	capability is not permission: the window's ALLOWED_KINDS cover owner_semantic_accept, FORBIDDEN_KINDS still exclude release/policy authority	RESOLVED_BY_CONTRACT
