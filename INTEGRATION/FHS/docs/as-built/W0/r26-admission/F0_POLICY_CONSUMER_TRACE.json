@@ -1,0 +1,194 @@
+{
+ "schema": "RP002-F0-POLICY-CONSUMER-TRACE/1",
+ "trace_id": "F0-FABRIC-R26-MIRROR-NAV-001",
+ "gate": "F0",
+ "generated_at": "2026-11-11T00:08:51+08:00",
+ "subject": "FHS W0 r26 governance mirror as admitted into the Fabric navigation surface",
+ "policy_artifact": "INTEGRATION/FHS/docs/as-built/W0/r26/FHS_PIPD-LS-PKG_W0_r26.md",
+ "sha256": "0ea05544499478859856f28da0c510bf0fb9b30109ecb577c00a907b435d3e0f",
+ "bytes": 668540,
+ "digest_provenance": "re-hashed from the mirrored file itself inside this worktree during this round; the value in INTEGRATION/MANIFEST.json and the value in r26/MANIFEST.json agree, and neither was used as the source of the other",
+ "source": {
+  "repository": "shw097-team/SBL",
+  "commit": "1cb8abb0ef118bdd80b08961fd9ca54c657881b9"
+ },
+ "consumer": "FHS-NAV/v2 navigation surface — INTEGRATION/FHS/repository-map.json read through INTEGRATION/MANIFEST.json subject_admissions[]",
+ "consumer_sha256": "b09be3587c477b87d9f1b499bd03511270de82918652a96bd46b58ba311cffb6",
+ "consumer_effect_permission": "NONE",
+ "admission_record_sha256": "df40f22456abc9b440ca007cd01cb13e58c41a19db16f3771fe0fe9a4ea8906e",
+ "decision": "ADMIT_MIRROR_FOR_NAVIGATION",
+ "effect_permission": "NONE",
+ "admission_state": "ADMITTED_FOR_NAVIGATION_ONLY",
+ "claim_ceiling": "MIRROR_ADMITTED_FOR_NAVIGATION_WITH_BOUND_DIGEST_ONLY",
+ "evidence": {
+  "admission_record": "INTEGRATION/MANIFEST.json#subject_admissions[0]",
+  "reader": "INTEGRATION/FHS/tools/validate_manifest_admission.py",
+  "reader_sha256": "3bebf0ab7bd0634d7d213128b4aa7a8311766d16bf0f8e8a6582122a26b4455a",
+  "tests": "INTEGRATION/FHS/tests/test_manifest_admission.py",
+  "test_runs": [
+   {
+    "cmd": " C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe -m pytest INTEGRATION/FHS/tests -q",
+    "exit": 0,
+    "log": "logs/08_pytest.txt",
+    "log_sha256": "4f16476ed601b21a8fd96c23b1bcf971c9de4bf01a9a2f7d03f2a68f6453ff38"
+   },
+   {
+    "cmd": " C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe -m unittest discover -s INTEGRATION/FHS/tests -v",
+    "exit": 0,
+    "log": "logs/10_unittest_discover.txt",
+    "log_sha256": "27f7ffdc1076a481c6cc5160a59878c833b4f151f73107accb2e261ad20f777c"
+   }
+  ],
+  "runs": {
+   "POS_VALIDATE": {
+    "cmd": " C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe INTEGRATION/FHS/tools/validate_manifest_admission.py --baseline C:/Projects/Agent_Workspace/FHS_W0_R26_POSTREPAIR_20261110/evidence/L6/scratch/MANIFEST_baseline_3b47550.json",
+    "exit": 0,
+    "observed_code": "OK",
+    "status": "PASS",
+    "errors": [],
+    "log": "logs/01_positive_validate.txt",
+    "log_sha256": "59dad38de8da77a8994965168d9da1d6a312ae600b9c16fd227b6fceebcadaa9"
+   },
+   "NEG-F1": {
+    "cmd": " C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe INTEGRATION/FHS/tools/validate_manifest_admission.py --candidate-entry C:/Projects/Agent_Workspace/FHS_W0_R26_POSTREPAIR_20261110/evidence/L6/scratch/NEG_F1_candidate_digest_mismatch.json",
+    "exit": 2,
+    "observed_code": "MIRROR_DIGEST_MISMATCH",
+    "status": "REFUSED",
+    "errors": [
+     "MIRROR_DIGEST_MISMATCH"
+    ],
+    "log": "logs/02_neg_f1_digest_mismatch.txt",
+    "log_sha256": "e9f88dcb1d6d74cb192d610e93a24514153259738ea134c549ae95d5eba4fc08"
+   },
+   "NEG-F2": {
+    "cmd": " C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe INTEGRATION/FHS/tools/validate_manifest_admission.py --candidate-entry C:/Projects/Agent_Workspace/FHS_W0_R26_POSTREPAIR_20261110/evidence/L6/scratch/NEG_F2_candidate_effect_write.json",
+    "exit": 2,
+    "observed_code": "EFFECT_PERMISSION_ESCALATION",
+    "status": "REFUSED",
+    "errors": [
+     "EFFECT_PERMISSION_ESCALATION"
+    ],
+    "log": "logs/03_neg_f2_effect_escalation.txt",
+    "log_sha256": "7c9ce9a492290413e864cbe5c76c3b42a0e06af1b8aabf50eb2e52d33af56230"
+   },
+   "NEG-F3": {
+    "cmd": " C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe INTEGRATION/FHS/tools/validate_manifest_admission.py --candidate-entry C:/Projects/Agent_Workspace/FHS_W0_R26_POSTREPAIR_20261110/evidence/L6/scratch/NEG_F3_candidate_claim_escalation.json",
+    "exit": 2,
+    "observed_code": "ADMISSION_STATE_PERMISSION_MISMATCH",
+    "status": "REFUSED",
+    "errors": [
+     "ADMISSION_STATE_PERMISSION_MISMATCH",
+     "CLAIM_CEILING_ESCALATION"
+    ],
+    "log": "logs/04_neg_f3_claim_ceiling.txt",
+    "log_sha256": "c867a59151b6074b6789c20ebe0089e22663beba29e086704125fcbf86b27b54"
+   },
+   "CONTROL_POS_ENTRY": {
+    "cmd": " C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe INTEGRATION/FHS/tools/validate_manifest_admission.py --candidate-entry C:/Projects/Agent_Workspace/FHS_W0_R26_POSTREPAIR_20261110/evidence/L6/scratch/POS_candidate_admitted_entry.json",
+    "exit": 0,
+    "observed_code": "OK",
+    "status": "PASS",
+    "errors": [],
+    "log": "logs/05_control_admitted_entry.txt",
+    "log_sha256": "14e128d2044a71511a3701d09246f5580783242e0c4c9b66db2d9d89cf73aec3"
+   },
+   "NEG-F4": {
+    "cmd": " C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe INTEGRATION/FHS/tools/validate_manifest_admission.py --manifest C:/Projects/Agent_Workspace/FHS_W0_R26_POSTREPAIR_20261110/evidence/L6/scratch/NEG_F4_manifest_rewrites_existing_entry.json --baseline C:/Projects/Agent_Workspace/FHS_W0_R26_POSTREPAIR_20261110/evidence/L6/scratch/MANIFEST_baseline_3b47550.json",
+    "exit": 2,
+    "observed_code": "ADDITIVE_ONLY_VIOLATION",
+    "status": "REFUSED",
+    "errors": [
+     "ADDITIVE_ONLY_VIOLATION"
+    ],
+    "log": "logs/06_neg_f4_additive_only.txt",
+    "log_sha256": "57c00b7e5b074080a42c22ab5e27f02a1525db68e937da2665a2bbf3debb2b18"
+   }
+  },
+  "reproduce": "cd <repo> && python INTEGRATION/FHS/tools/validate_manifest_admission.py --baseline <pre-change MANIFEST.json>"
+ },
+ "chain": [
+  {
+   "step": 1,
+   "element": "frozen policy artifact (the mirrored subject)",
+   "artifact": "INTEGRATION/FHS/docs/as-built/W0/r26/FHS_PIPD-LS-PKG_W0_r26.md",
+   "sha256": "0ea05544499478859856f28da0c510bf0fb9b30109ecb577c00a907b435d3e0f",
+   "evidence": "668540 bytes; digest re-derived from these bytes in this round"
+  },
+  {
+   "step": 2,
+   "element": "consuming surface",
+   "artifact": "INTEGRATION/FHS/repository-map.json (FHS-NAV/v2)",
+   "sha256": "b09be3587c477b87d9f1b499bd03511270de82918652a96bd46b58ba311cffb6",
+   "evidence": "effect_permission=NONE; source_state=PROPOSED_NOT_OWNER_RATIFIED; unknown_route=HOLD_AFFECTED_WRITE_ONLY"
+  },
+  {
+   "step": 3,
+   "element": "admission decision",
+   "artifact": "INTEGRATION/MANIFEST.json#subject_admissions[0]",
+   "sha256": "0ea05544499478859856f28da0c510bf0fb9b30109ecb577c00a907b435d3e0f",
+   "evidence": "admission_state=ADMITTED_FOR_NAVIGATION_ONLY; effect_permission=NONE; claim_ceiling=MIRROR_ADMITTED_FOR_NAVIGATION_WITH_BOUND_DIGEST_ONLY"
+  },
+  {
+   "step": 4,
+   "element": "reader consumed the artifact and the record",
+   "artifact": "INTEGRATION/FHS/tools/validate_manifest_admission.py",
+   "sha256": "3bebf0ab7bd0634d7d213128b4aa7a8311766d16bf0f8e8a6582122a26b4455a",
+   "evidence": " C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe INTEGRATION/FHS/tools/validate_manifest_admission.py --baseline C:/Projects/Agent_Workspace/FHS_W0_R26_POSTREPAIR_20261110/evidence/L6/scratch/MANIFEST_baseline_3b47550.json -> exit 0, code OK, log logs/01_positive_validate.txt sha256 59dad38de8da77a8994965168d9da1d6a312ae600b9c16fd227b6fceebcadaa9"
+  },
+  {
+   "step": 5,
+   "element": "refusals executed by the same reader",
+   "artifact": "candidate entries fed to the same code path",
+   "evidence": "NEG-F1: exit 2, code MIRROR_DIGEST_MISMATCH (log logs/02_neg_f1_digest_mismatch.txt sha256 e9f88dcb1d6d74cb192d610e93a24514153259738ea134c549ae95d5eba4fc08); NEG-F2: exit 2, code EFFECT_PERMISSION_ESCALATION (log logs/03_neg_f2_effect_escalation.txt sha256 7c9ce9a492290413e864cbe5c76c3b42a0e06af1b8aabf50eb2e52d33af56230); NEG-F4: exit 2, code ADDITIVE_ONLY_VIOLATION (log logs/06_neg_f4_additive_only.txt sha256 57c00b7e5b074080a42c22ab5e27f02a1525db68e937da2665a2bbf3debb2b18)"
+  },
+  {
+   "step": 6,
+   "element": "evidence",
+   "artifact": "captured stdout + exit status per run",
+   "evidence": "every code above is printed by the validator and stored beside its command line; the control run accepted an unmodified entry, so no refusal is a blanket refusal"
+  }
+ ],
+ "negatives": [
+  {
+   "id": "NEG-F1",
+   "expected_ok": false,
+   "exit": 2,
+   "observed_code": "MIRROR_DIGEST_MISMATCH",
+   "log": "logs/02_neg_f1_digest_mismatch.txt",
+   "log_sha256": "e9f88dcb1d6d74cb192d610e93a24514153259738ea134c549ae95d5eba4fc08"
+  },
+  {
+   "id": "NEG-F2",
+   "expected_ok": false,
+   "exit": 2,
+   "observed_code": "EFFECT_PERMISSION_ESCALATION",
+   "log": "logs/03_neg_f2_effect_escalation.txt",
+   "log_sha256": "7c9ce9a492290413e864cbe5c76c3b42a0e06af1b8aabf50eb2e52d33af56230"
+  },
+  {
+   "id": "NEG-F3",
+   "expected_ok": false,
+   "exit": 2,
+   "observed_code": "ADMISSION_STATE_PERMISSION_MISMATCH",
+   "log": "logs/04_neg_f3_claim_ceiling.txt",
+   "log_sha256": "c867a59151b6074b6789c20ebe0089e22663beba29e086704125fcbf86b27b54"
+  },
+  {
+   "id": "NEG-F4",
+   "expected_ok": false,
+   "exit": 2,
+   "observed_code": "ADDITIVE_ONLY_VIOLATION",
+   "log": "logs/06_neg_f4_additive_only.txt",
+   "log_sha256": "57c00b7e5b074080a42c22ab5e27f02a1525db68e937da2665a2bbf3debb2b18"
+  }
+ ],
+ "not_claimed": [
+  "NOT_OWNER_RATIFIED",
+  "NOT_EXTERNALLY_ACCEPTED",
+  "NOT_LOADED_AS_POLICY",
+  "NO_WRITE_AUTHORITY",
+  "NO_LIVE_WORLD_EFFECT",
+  "SOURCE_COMMIT_NOT_REMOTE_VERIFIED_THIS_ROUND"
+ ],
+ "yaml_presence_alone": "NOT_ACCEPTED"
+}
