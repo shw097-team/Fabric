@@ -1,0 +1,19 @@
+{
+ "schema": "FHS.HoldResume/1",
+ "wave": "W2",
+ "held": [
+  {
+   "id": "H-W2-1",
+   "what": "first lawful DEV",
+   "why": "blocked by H-W1-2 and H-W1-4 together",
+   "resume": "permit + DEV ECP + ACK@2 + References, then one reversible RED->patch->GREEN with WorldRaw"
+  },
+  {
+   "id": "H-W2-2",
+   "what": "three crash windows / independent checker / FAR",
+   "why": "all three are downstream of a real DEV effect",
+   "resume": "after H-W2-1, then each window with its own world-reader count, then a different technical SID checker"
+  }
+ ],
+ "note": "a HOLD is scoped to its named operation; other lawful work in the wave continues"
+}

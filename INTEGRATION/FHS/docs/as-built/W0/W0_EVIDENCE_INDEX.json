@@ -1,0 +1,67 @@
+{
+ "schema": "FHS.EvidenceIndex/1",
+ "wave": "W0",
+ "generated_at": "2026-11-07T23:41:56+0800",
+ "entries": [
+  {
+   "ref": "out/REPO_WIRING_R4.json",
+   "sha256": "098020c935a963d3c79fa687c80af7234007edc5362d38d4b3ffe848b23d6612",
+   "why": "the four merges (Fabric #32/#33, SBL #48, HG-KSEOS #15) with merge shas and reader runs on the merged code"
+  },
+  {
+   "ref": "out/D24_SCOPED_PR.json",
+   "sha256": "bdd082666253d1adb77325022be8a77966fc82db725eb6153110587d875e8bcb",
+   "why": "Fabric #34 scope, before/after matrix, refusal codes and honest limits"
+  },
+  {
+   "ref": "out/D24_INTEGRATION.json",
+   "sha256": "0546c6d232fd700e47ac785a7132757033c62d56f874e66e41050586a99bf19b",
+   "why": "the two D-24 lanes and their merge"
+  },
+  {
+   "ref": "out/GJ02_ORACLE_RED_GREEN.json",
+   "sha256": "6bddca21543be99c36403d03f910f39619554295b1bd67a15a8dcad16f62d1e1",
+   "why": "the same runner separating RED from GREEN with identical oracle bytes"
+  },
+  {
+   "ref": "out/FIRSTFAIL_GJ02_CASE_SOURCE.json",
+   "sha256": "9c8a6d3e58db46878270fd72e2b16337d63fdfacd917b1667b36147cf84f7e1d",
+   "why": "why DEV ECP cannot be produced (no clause-bound GJ02 case source)"
+  },
+  {
+   "ref": "out/P3_MAINTENANCE_WINDOW.json",
+   "sha256": "3799177b77d47ba57fda6834ced87cee734d3a7b87012f48a718a0af8cf43b09",
+   "why": "deploy 0001-0007, additive migration, schema-99 refusal, rollback drill"
+  },
+  {
+   "ref": "out/P3_POST_RESTART_ACCEPTANCE.json",
+   "sha256": "63e61382fc1841fb7272445144b48b07dd17fe95d4a40df229bb06157a195cae",
+   "why": "new gateway PID, loaded-tree proof, cross-restart data integrity"
+  },
+  {
+   "ref": "out/T1_CHILDWORKITEMS.json",
+   "sha256": "deb374ed94f9e59e69267c19066cb548af5573a18727584246ebf1209f6754a1",
+   "why": "two child work items dispatched and collected with reader-level results"
+  },
+  {
+   "ref": "out/R5_RULING_AND_WIRING.json",
+   "sha256": "72344550853e35205e87238eb5a6cd9f71ae93689952ffff9bbbd6186b554d5c",
+   "why": "T2 reclassification, scheduler defects, SBL RepoContext POS/NEG"
+  },
+  {
+   "ref": "out/R1_PRERUN_CHECKS.json",
+   "sha256": "129933cf5a322580b1231cf7c21240daca1602b78a73ce269372fb54c02da2db",
+   "why": "R1 preflight 7/7, ceremony pin, signing-capability challenge"
+  },
+  {
+   "ref": "out/OWNER_RULING_D24.json",
+   "sha256": "0a780c56b6885a63e0bfa2bbe0ede29988aed1260a2dddcbb35b67a449ab5ae4",
+   "why": "scope map for the D-24 lanes and the Host Load receipt acceptance"
+  }
+ ],
+ "reproduce": [
+  "run each tool named in the ref",
+  "sha256sum <ref>",
+  "compare with the recorded digest"
+ ]
+}
