@@ -1,0 +1,38 @@
+{
+ "schema": "FHS-W1-R2-REPO-CREATE/1",
+ "owner": "shw097-team",
+ "name": "FHS_vNEXT",
+ "steps": [
+  {
+   "step": "create",
+   "endpoint": "/orgs/shw097-team/repos",
+   "http": 201,
+   "full_name": "shw097-team/FHS_vNEXT",
+   "detail": null
+  },
+  {
+   "step": "protect_main",
+   "http": 403,
+   "applied": {
+    "force_push": false,
+    "deletion": false,
+    "pr_required": true,
+    "approving_reviews": 0,
+    "linear_history": true
+   },
+   "detail": {
+    "message": "Resource not accessible by personal access token",
+    "documentation_url": "https://docs.github.com/rest/branches/branch-protection#update-branch-protection",
+    "status": "403"
+   }
+  }
+ ],
+ "account_type": "Organization",
+ "repo": {
+  "full_name": "shw097-team/FHS_vNEXT",
+  "private": true,
+  "default_branch": "main",
+  "visibility": "private"
+ },
+ "head": "828bfca4665f661ee1cedba7733636b020828842"
+}

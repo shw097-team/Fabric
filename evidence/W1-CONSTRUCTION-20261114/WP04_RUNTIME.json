@@ -1,0 +1,325 @@
+{
+ "schema": "FHS-W1-R2-WP04-RUNTIME/1",
+ "generated_at": "2026-11-14T20:16:43.260321+08:00",
+ "work_id": "W1R2-b840e9285cbc407d",
+ "cursor": {
+  "round": "W1_R2_CONSTRUCTION_20261114",
+  "baseline_sha256": "5cb9ebc5a768ecdfde0441a327ee22b501b6b0a9a615feb81fbffef5c356701a",
+  "resume_rule": "re-run build/*.py in CARDS order; a card is DONE when all its receipts exist"
+ },
+ "kanban": {
+  "cards": [
+   {
+    "card": "K01",
+    "title": "P0 三角色掛載與來源身份",
+    "state": "DONE",
+    "evidence": [
+     {
+      "file": "P0_SOURCE_IDENTITY.json",
+      "bytes": 10738,
+      "sha256": "0a14d68d69748fa7e56f775c1a3095c2cee6babf7729b30fe18e6457cf8473fb"
+     },
+     {
+      "file": "P0_BLUEPRINT_INDEX.json",
+      "bytes": 198068,
+      "sha256": "e7fb8ce1d0b8b5c49279b38fc8c70be54b87eda05c67a261780ad9d84ccefa59"
+     }
+    ],
+    "missing": []
+   },
+   {
+    "card": "K02",
+    "title": "P1 FSH-3L&M 車道平面（menu / bind / assert）",
+    "state": "DONE",
+    "evidence": [
+     {
+      "file": "3LM_MENU_LIVE.json",
+      "bytes": 3074,
+      "sha256": "a7a99a1e9e5e9c2257138e9a7489b33508edbbaec1de3320f0b714b82786199c"
+     },
+     {
+      "file": "3LM_ASSERT_PLAN_opt1.json",
+      "bytes": 181,
+      "sha256": "2385747e334c5d78aaa71f739a59e70e4738faa8f36eeb546973aa8093115e49"
+     },
+     {
+      "file": "3LM_ASSERT_EXECUTE_primary.json",
+      "bytes": 181,
+      "sha256": "2385747e334c5d78aaa71f739a59e70e4738faa8f36eeb546973aa8093115e49"
+     },
+     {
+      "file": "3LM_ASSERT_VERIFY_opt1.json",
+      "bytes": 181,
+      "sha256": "2385747e334c5d78aaa71f739a59e70e4738faa8f36eeb546973aa8093115e49"
+     }
+    ],
+    "missing": []
+   },
+   {
+    "card": "K03",
+    "title": "WP-FHS-05 PIPD 13 verbs 全鏈與決定性",
+    "state": "DONE",
+    "evidence": [
+     {
+      "file": "WP05_PIPD_CHAIN.json",
+      "bytes": 35302,
+      "sha256": "a055af547d4c5b17c37cb8ae85b90122f48baad4ad5999d6c689a58402c43233"
+     },
+     {
+      "file": "WP05_BUNDLE4.json",
+      "bytes": 1721,
+      "sha256": "9896a38747282252a0399b9b311cf40174876631ae53b94e75828280050cf2cf"
+     }
+    ],
+    "missing": []
+   },
+   {
+    "card": "K04",
+    "title": "WP-FHS-02 Fabric Policy Consumer（唯讀觀測＋拒收）",
+    "state": "DONE",
+    "evidence": [
+     {
+      "file": "WP02_WP03_READONLY.json",
+      "bytes": 16828,
+      "sha256": "7089c93e2a95eb06954863476ed42583f683189a27594be2c75759622bad97dd"
+     },
+     {
+      "file": "FABRIC_ENTRY_UNITTEST.txt",
+      "bytes": 16853,
+      "sha256": "752cb0cbb76b3f26ac4b02e0e104652d4a163e23accbaca86a6669435167f389"
+     }
+    ],
+    "missing": []
+   },
+   {
+    "card": "K05",
+    "title": "WP-FHS-03 HGK Registry/Issuer 觀測＋spine 14 案",
+    "state": "DONE",
+    "evidence": [
+     {
+      "file": "WP03_HGK_SPINE.json",
+      "bytes": 3844,
+      "sha256": "5421d7749e9496f10bace28a62a7429b126eafb28e87c08db81bae7f3f934c3a"
+     },
+     {
+      "file": "WP02_WP03_READONLY.json",
+      "bytes": 16828,
+      "sha256": "7089c93e2a95eb06954863476ed42583f683189a27594be2c75759622bad97dd"
+     }
+    ],
+    "missing": []
+   },
+   {
+    "card": "K06",
+    "title": "WP-FHS-20 宿主 Kind 矩陣（EXECUTE 車道 bounded writer）",
+    "state": "DONE",
+    "evidence": [
+     {
+      "file": "LANE_EXEC_WP20_R3.json",
+      "bytes": 7578,
+      "sha256": "ce9a3f3d3c017b0ee9bfbeea514ad63ce82a8cb198d486c437b2a5c360e63e30"
+     },
+     {
+      "file": "LANE_EXEC_WP20_R4.json",
+      "bytes": 7572,
+      "sha256": "ce2ed20001939edd72f914268d28f4b6d1ecbd008ef8315443b3f910a2394430"
+     },
+     {
+      "file": "WP20_MATRIX_UNATTRIBUTED.json",
+      "bytes": 79051,
+      "sha256": "eb641e8adef91b7135c76be227d5547c4e5b538440688f4c9b2e1dce7f457209"
+     }
+    ],
+    "missing": []
+   },
+   {
+    "card": "K07",
+    "title": "WP-FHS-20 ModeGate39 設計矩陣（含宣告集合 SHA 複現）",
+    "state": "DONE",
+    "evidence": [
+     {
+      "file": "WP20_MODEGATE39.json",
+      "bytes": 16323,
+      "sha256": "29bcdb5ad6ee57e04b47eec54231d2b1ac3701e3624df7beaad0a9719724e348"
+     },
+     {
+      "file": "WP20_MODEGATE39.md",
+      "bytes": 5454,
+      "sha256": "b69a4745b4c12bf9aa21e5ca5102763b816f277a3944c4ecfc2c15dae2928e5e"
+     }
+    ],
+    "missing": []
+   },
+   {
+    "card": "K08",
+    "title": "WP-FHS-17 485 五集合逐鍵清冊與 exact-key digest",
+    "state": "DONE",
+    "evidence": [
+     {
+      "file": "WP17_485_LEDGER.json",
+      "bytes": 104045,
+      "sha256": "3a16f2659288329b7b924f18904c4dc844c021c5923bb0ab30cbf1de4965f313"
+     },
+     {
+      "file": "WP17_485_LEDGER.md",
+      "bytes": 10775,
+      "sha256": "ec2dbc26ad5468bfc0ad55132f6cffb5d64db190cb84636d37355c4e5a2f016b"
+     }
+    ],
+    "missing": []
+   },
+   {
+    "card": "K09",
+    "title": "WP-FHS-11 宿主鏈 Installed→Consumed 實測",
+    "state": "DONE",
+    "evidence": [
+     {
+      "file": "WP11_HOST_DOGFOOD.json",
+      "bytes": 18405,
+      "sha256": "ad9aba08af3172352515109766893b057cb0a1ec8039f518ba51e39adfcbae9d"
+     },
+     {
+      "file": "WP11_HOST_DOGFOOD.md",
+      "bytes": 2605,
+      "sha256": "c1a61e10de265607fcdd3173077b68cfaca27e69801610de3bd4366559ce12e1"
+     }
+    ],
+    "missing": []
+   },
+   {
+    "card": "K10",
+    "title": "WP-FHS-07 Commander Guide A/B/C",
+    "state": "DONE",
+    "evidence": [
+     {
+      "file": "WP07_COMMANDER_ABC.json",
+      "bytes": 2217,
+      "sha256": "871631d92d4517f950191020726710deef31c56797dd461b1af13092dfe373f4"
+     }
+    ],
+    "missing": []
+   },
+   {
+    "card": "K11",
+    "title": "WP-FHS-04 原生 Kanban／GSTACK／SWARM 帳",
+    "state": "PARTIAL",
+    "evidence": [
+     {
+      "file": "WP04_RUNTIME.json",
+      "bytes": 8132,
+      "sha256": "78f0674077e641f76b9b77378856eb4742bd9a8a33bd296f9f8766ddd69a528d"
+     }
+    ],
+    "missing": [
+     "KANBAN_W1_R2.md",
+     "GSTACK_W1_R2.md"
+    ]
+   },
+   {
+    "card": "K12",
+    "title": "凍結 rubric 驗收挑戰（VERIFY/SECURITY 車道）",
+    "state": "PARTIAL",
+    "evidence": [
+     {
+      "file": "ACCEPTANCE_EVAL.json",
+      "bytes": 11390,
+      "sha256": "caa13271cb077165fff3391c092eda128a78512eae14821a99ceb752bf9e536d"
+     },
+     {
+      "file": "LANE_VERIFY.json",
+      "bytes": 7469,
+      "sha256": "64fe1f2050c68195da55e47e651881158ce4d4be0890114c14048a5965053d10"
+     }
+    ],
+    "missing": [
+     "ACCEPTANCE_CONTRACT_FROZEN.json"
+    ]
+   }
+  ],
+  "done": 10,
+  "partial": 2,
+  "pending": 0,
+  "total": 12
+ },
+ "gstack": {
+  "cli_present": false,
+  "cli_note": "gstack CLI is ABSENT on this host (0 hits); this file records the same stacking semantics",
+  "units": [
+   {
+    "unit": "S1",
+    "subject": "來源身份與上游索引",
+    "depends": "-",
+    "evidence": "P0_SOURCE_IDENTITY.json"
+   },
+   {
+    "unit": "S2",
+    "subject": "車道平面 menu/bind/assert",
+    "depends": "S1",
+    "evidence": "3LM_*.json"
+   },
+   {
+    "unit": "S3",
+    "subject": "WP-05 編譯鏈與 bundle",
+    "depends": "S1",
+    "evidence": "WP05_*.json"
+   },
+   {
+    "unit": "S4",
+    "subject": "WP-02/03 唯讀觀測",
+    "depends": "S1",
+    "evidence": "WP02_WP03_READONLY.json, WP03_HGK_SPINE.json"
+   },
+   {
+    "unit": "S5",
+    "subject": "WP-20 矩陣與 39 格設計",
+    "depends": "S3",
+    "evidence": "WP20_MODEGATE39.json, LANE_EXEC_*.json"
+   },
+   {
+    "unit": "S6",
+    "subject": "WP-17 485 清冊",
+    "depends": "S1",
+    "evidence": "WP17_485_LEDGER.json"
+   },
+   {
+    "unit": "S7",
+    "subject": "WP-11 宿主鏈",
+    "depends": "S2",
+    "evidence": "WP11_HOST_DOGFOOD.json"
+   },
+   {
+    "unit": "S8",
+    "subject": "WP-07 三 Guide",
+    "depends": "S3",
+    "evidence": "WP07_COMMANDER_ABC.json"
+   },
+   {
+    "unit": "S9",
+    "subject": "凍結 rubric 驗收",
+    "depends": "S3-S8",
+    "evidence": "ACCEPTANCE_EVAL.json, LANE_VERIFY.json"
+   }
+  ]
+ },
+ "swarm": {
+  "delegation_id": "deleg_26ea8670",
+  "children": [
+   {
+    "subagent_id": "sa-0-7ed0f1af",
+    "goal": "WP-17 485 ledger",
+    "output": "WP17_485_LEDGER.json"
+   },
+   {
+    "subagent_id": "sa-1-9ff2e14f",
+    "goal": "WP-11 host dogfood",
+    "output": "WP11_HOST_DOGFOOD.json"
+   },
+   {
+    "subagent_id": "sa-2-a6426b5b",
+    "goal": "WP-07 commander A/B/C",
+    "output": "WP07_COMMANDER_ABC.json"
+   }
+  ],
+  "note": "children are self-reports; each output file is re-read and its own figures re-derived before use"
+ }
+}

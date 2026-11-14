@@ -1,0 +1,529 @@
+{
+ "schema": "FHS-W1-R2-WP02-WP03-READONLY/1",
+ "fabric": {
+  "entry_files": {
+   "AGENTS.md": {
+    "bytes": 1066,
+    "sha256": "ad7b0b97614ff931d1d5802bba1cad2f12551b13645a39632aceaddeb3bd136b"
+   },
+   "DEPLOYMENT-AND-OWNER-DECISIONS.md": {
+    "bytes": 13566,
+    "sha256": "518b27edf1dbe8ad433be45b911b64414de22f7bc343d71a6914ad334810750d"
+   },
+   "premerge_security.sh": {
+    "bytes": 670,
+    "sha256": "bff66bd31a6eb8fb701b3f9075a53a131e4a40f0cb72bb417039b8be147eb16e"
+   },
+   "README.md": {
+    "bytes": 5463,
+    "sha256": "3c1c2b0ae20f0028876720a6734a44aa58dcdf39247d50aaa0c1420198e34069"
+   },
+   "repository-map.json": {
+    "bytes": 1558,
+    "sha256": "373120f50433677205e9127f613006dcb50f0aa5317482f15640859d2c80b377"
+   },
+   "validate_entry.py": {
+    "bytes": 13486,
+    "sha256": "80393a995f9ff2ba168e0d79d048696dc10f67ec5846fdc427740f5d178e6e4e"
+   }
+  },
+  "repository_map_sha256": "373120f50433677205e9127f613006dcb50f0aa5317482f15640859d2c80b377",
+  "declared": {
+   "schema_version": "FHS-NAV/v2",
+   "identity": "FABRIC_HOSTED_NON_AUTHORITATIVE_INDEX",
+   "effect_permission": "NONE",
+   "unknown_route": "HOLD_AFFECTED_WRITE_ONLY",
+   "source_state": "PROPOSED_NOT_OWNER_RATIFIED",
+   "repositories": [
+    "fabric",
+    "hgk",
+    "sbl"
+   ],
+   "historical": {
+    "pipd": "NONE"
+   },
+   "routes": [
+    "sbl_product",
+    "fabric_policy",
+    "hgk_admission",
+    "pipd_canonical",
+    "cross_repo",
+    "hermes_runtime"
+   ]
+  },
+  "invariants": {
+   "effect_permission_is_NONE": true,
+   "unknown_route_holds_write_only": true,
+   "source_state_not_ratified": true,
+   "historical_write_authority_NONE": true,
+   "route_count": 6
+  },
+  "route_runs": {
+   "sbl_product": {
+    "exit": 0,
+    "status": "NAVIGATION_CANDIDATE_ONLY",
+    "claim_ceiling": "NAVIGATION_ONLY",
+    "reason": null,
+    "original_reader_verified": false
+   },
+   "fabric_policy": {
+    "exit": 0,
+    "status": "NAVIGATION_CANDIDATE_ONLY",
+    "claim_ceiling": "NAVIGATION_ONLY",
+    "reason": null,
+    "original_reader_verified": false
+   },
+   "hgk_admission": {
+    "exit": 0,
+    "status": "NAVIGATION_CANDIDATE_ONLY",
+    "claim_ceiling": "NAVIGATION_ONLY",
+    "reason": null,
+    "original_reader_verified": false
+   },
+   "pipd_canonical": {
+    "exit": 0,
+    "status": "NAVIGATION_CANDIDATE_ONLY",
+    "claim_ceiling": "NAVIGATION_ONLY",
+    "reason": null,
+    "original_reader_verified": false
+   },
+   "cross_repo": {
+    "exit": 0,
+    "status": "NAVIGATION_CANDIDATE_ONLY",
+    "claim_ceiling": "NAVIGATION_ONLY",
+    "reason": null,
+    "original_reader_verified": false
+   },
+   "hermes_runtime": {
+    "exit": 0,
+    "status": "NAVIGATION_CANDIDATE_ONLY",
+    "claim_ceiling": "NAVIGATION_ONLY",
+    "reason": null,
+    "original_reader_verified": false
+   },
+   "not_a_real_task_class": {
+    "exit": 3,
+    "status": "HOLD_AFFECTED_WRITE",
+    "claim_ceiling": "NAVIGATION_ONLY",
+    "reason": "UNKNOWN_TASK",
+    "original_reader_verified": null
+   }
+  },
+  "no_arg_run": {
+   "argv": [
+    "<HOST_HOME>/AppData/Local/hermes/cache/scratch/fhs_next/venv311/Scripts/python.exe",
+    "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\Fabric\\INTEGRATION\\FHS\\validate_entry.py"
+   ],
+   "exit": 0,
+   "parsed": {
+    "claim_ceiling": "NAVIGATION_ONLY",
+    "status": "STATIC_VALID_ONLY"
+   },
+   "stdout_head": "{\"claim_ceiling\": \"NAVIGATION_ONLY\", \"status\": \"STATIC_VALID_ONLY\"}\n",
+   "stderr_head": ""
+  },
+  "unittest": {
+   "argv": [
+    "<HOST_HOME>/AppData/Local/hermes/cache/scratch/fhs_next/venv311/Scripts/python.exe",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\Fabric\\INTEGRATION\\FHS\\tests",
+    "-v"
+   ],
+   "exit": 1,
+   "parsed": null,
+   "stdout_head": "",
+   "stderr_head": "test_expected_readonly_workflow (test_docs_ci.CIBaselineTests.test_expected_readonly_workflow) ... ok\ntest_historical_pointer_documented (test_docs_ci.CIBaselineTests.test_historical_pointer_documented) ... ok\ntest_reader_link_no_guess (test_docs_ci.CIBaselineTests.test_reader_link_no_guess) ... ok\n"
+  },
+  "consumer_abi": {
+   "candidates": [
+    {
+     "path": "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\Fabric\\FABRIC\\fabric\\consumers\\hgk_policy_consumer.py",
+     "exists": false
+    },
+    {
+     "path": "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\Fabric\\consumers\\hgk_policy_consumer.py",
+     "exists": false
+    },
+    {
+     "path": "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\Fabric\\FABRIC\\consumers\\hgk_policy_consumer.py",
+     "exists": false
+    }
+   ],
+   "resolved": null
+  },
+  "integration_manifest": {
+   "sha256": "d04bcc2bc6ab4b75f6da903667d288ad0fb9621e8742d8c85c7ce47274de4784",
+   "schema": "FABRIC-INTEGRATION-MIRROR/3",
+   "claim_ceiling": "MIRROR_OF_GOVERNED_ARTIFACTS_FOR_EXTERNAL_ACCEPTANCE_ONLY",
+   "round_evidence": [
+    "EVIDENCE/SKILL-CONVERGENCE-20261014/"
+   ]
+  }
+ },
+ "hgk": {
+  "files": {
+   "registry": {
+    "path": "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\HG-KSEOS\\config.live\\lane-routing-registry.yaml",
+    "exists": true,
+    "sha256": "3583f71bc35ab63470cff42e2821937383869a6667413b35218f4dfc960d3d05",
+    "bytes": 45026
+   },
+   "pool": {
+    "path": "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\HG-KSEOS\\config.live\\lane-route-slots.candidate.json",
+    "exists": true,
+    "sha256": "7a164911bf89d080106b5ddafbb71084a46b7ce2c20f737c772fce7ec6e40217",
+    "bytes": 43520
+   },
+   "assignment": {
+    "path": "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\HG-KSEOS\\config.live\\model-lane-assignment.json",
+    "exists": true,
+    "sha256": "3a4e9b2ed4a20f304ef568ffb4600fb46ab48edbe0eaf06c03edc0f9b2a0fd9c",
+    "bytes": 61601
+   },
+   "lane_declaration": {
+    "path": "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\HG-KSEOS\\config\\hermes-codex-lane.json",
+    "exists": true,
+    "sha256": "1aab074c171a0be73b6941a1a50d58ac916efc302d38437d0f00b129813d4c3c",
+    "bytes": 15152
+   },
+   "live_overlay": {
+    "path": "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\HG-KSEOS\\config.live\\hermes-codex-lane.live.json",
+    "exists": true,
+    "sha256": "6002efa4f07c3e28a5dd04ceebdac71afa78dc5ecb9c462535f1e729cc77b6a6",
+    "bytes": 1221
+   },
+   "active_policy": {
+    "path": "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\HG-KSEOS\\config\\active-policy.json",
+    "exists": true,
+    "sha256": "c5d239056aca4db3e479388d1a755f2d5fa7ec490fa87f762fd1ac33e5b2be9f",
+    "bytes": 1223
+   }
+  },
+  "epoch_fields": {
+   "registry.epoch": "41",
+   "registry.contract_epoch": "41",
+   "pool.revision": 37,
+   "pool.epoch": 41,
+   "assignment.revision": 44,
+   "assignment.registry_epoch": 41
+  },
+  "pool_lanes": {
+   "PLAN": [
+    {
+     "rank": 1,
+     "provider": "openai-codex",
+     "model": "gpt-6.1-sol",
+     "automatic": true
+    },
+    {
+     "rank": 2,
+     "provider": "opencode-go",
+     "model": "deepseek-v4.1-flash",
+     "automatic": false
+    },
+    {
+     "rank": 3,
+     "provider": "opencode-go",
+     "model": "mimo-v2.6-flash",
+     "automatic": false
+    },
+    {
+     "rank": 4,
+     "provider": "nvidia",
+     "model": "deepseek-ai/deepseek-v4.1-flash",
+     "automatic": false
+    }
+   ],
+   "EXECUTE": [
+    {
+     "rank": 1,
+     "provider": "opencode-go",
+     "model": "deepseek-v4.1-flash",
+     "automatic": true
+    },
+    {
+     "rank": 2,
+     "provider": "opencode-go",
+     "model": "mimo-v2.6-flash",
+     "automatic": false
+    },
+    {
+     "rank": 3,
+     "provider": "openai-codex",
+     "model": "gpt-6-luna",
+     "automatic": false
+    },
+    {
+     "rank": 4,
+     "provider": "nvidia",
+     "model": "deepseek-ai/deepseek-v4.1-flash",
+     "automatic": false
+    }
+   ],
+   "VERIFY_SECURITY": [
+    {
+     "rank": 1,
+     "provider": "openai-codex",
+     "model": "gpt-6.1-sol",
+     "automatic": true
+    },
+    {
+     "rank": 2,
+     "provider": "opencode-go",
+     "model": "mimo-v2.6-flash",
+     "automatic": false
+    },
+    {
+     "rank": 3,
+     "provider": "opencode-go",
+     "model": "deepseek-v4.1-flash",
+     "automatic": false
+    },
+    {
+     "rank": 4,
+     "provider": "nvidia",
+     "model": "deepseek-ai/deepseek-v4.1-flash",
+     "automatic": false
+    }
+   ]
+  },
+  "assignment_lanes": {
+   "PLAN": {
+    "assigned": "openai-codex/gpt-6.1-sol",
+    "arms": [
+     "openai-codex/gpt-6.1-sol",
+     "opencode-go/deepseek-v4.1-flash",
+     "opencode-go/mimo-v2.6-flash",
+     "nvidia/deepseek-ai/deepseek-v4.1-flash"
+    ]
+   },
+   "EXECUTE": {
+    "assigned": "opencode-go/deepseek-v4.1-flash",
+    "arms": [
+     "opencode-go/deepseek-v4.1-flash",
+     "opencode-go/mimo-v2.6-flash",
+     "openai-codex/gpt-6-luna",
+     "nvidia/deepseek-ai/deepseek-v4.1-flash"
+    ]
+   },
+   "VERIFY_SECURITY": {
+    "assigned": "openai-codex/gpt-6.1-sol",
+    "arms": [
+     "openai-codex/gpt-6.1-sol",
+     "opencode-go/mimo-v2.6-flash",
+     "opencode-go/deepseek-v4.1-flash",
+     "nvidia/deepseek-ai/deepseek-v4.1-flash"
+    ]
+   }
+  },
+  "guard_epoch41": {
+   "argv": [
+    "<HOST_HOME>/AppData/Local/hermes/cache/scratch/fhs_next/venv311/Scripts/python.exe",
+    "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\HG-KSEOS\\scripts\\hgk-lane-guard.py",
+    "--lane",
+    "VERIFY_SECURITY",
+    "--maker-engine",
+    "opencode-go",
+    "--maker-model",
+    "opencode-go/deepseek-v4.1-flash",
+    "--target-engine",
+    "opencode-go",
+    "--target-model",
+    "deepseek-v4.1-flash",
+    "--expected-epoch",
+    "41"
+   ],
+   "exit": 2,
+   "parsed": {
+    "admission_status": "UNPROVEN",
+    "checks": [
+     {
+      "code": "ERR_LANE_SOD_VIOLATION",
+      "detail": "SOD_VIOLATION maker_model=deepseek-v4.1-flash == checker_model=deepseek-v4.1-flash; no OWNER_ORDERED_IN_FORCE declared_conflicts entry lists EXECUTE/VERIFY_SECURITY",
+      "id": "sod_distinct_model",
+      "ok": false
+     },
+     {
+      "code": null,
+      "detail": "recorded=3a4e9b2ed4a20f304ef568ffb4600fb46ab48edbe0eaf06c03edc0f9b2a0fd9c live=3a4e9b2ed4a20f304ef568ffb4600fb46ab48edbe0eaf06c03edc0f9b2a0fd9c",
+      "id": "source_digest",
+      "ok": true
+     },
+     {
+      "code": "ERR_LANE_NOT_ADMITTED",
+      "detail": "status=UNPROVEN",
+      "id": "arm_admitted",
+      "ok": false
+     },
+     {
+      "code": "ERR_LANE_STALE_EPOCH",
+      "detail": "--expected-epoch=41 live_epoch=44",
+      "id": "expected_epoch_assertion",
+      "ok": false
+     },
+     {
+      "code": "ERR_LANE_STALE_EPOCH",
+      "detail": "registry_epoch=41 live_epoch=44",
+      "id": "epoch_current",
+      "ok": false
+     }
+    ],
+    "claim_ceiling": "CANDIDATE_ONLY",
+    "decision": "REFUSE",
+    "epoch": 41,
+    "errors": [
+     "ERR_LANE_SOD_VIOLATION"
+    ],
+    "exit_code": 2,
+    "lane": "VERIFY_SECURITY",
+    "live_epoch": 44,
+    "maker": {
+     "engine": "opencode-go",
+     "model": "opencode-go/deepseek-v4.1-flash"
+    },
+    "schema": "HGK-LANE-GUARD/1",
+    "status": "REFUSE",
+    "target": {
+     "engine": "opencode-go",
+     "model": "deepseek-v4.1-flash",
+     "provider": null
+    }
+   },
+   "stdout_head": "{\n  \"admission_status\": \"UNPROVEN\",\n  \"checks\": [\n    {\n      \"code\": \"ERR_LANE_SOD_VIOLATION\",\n      \"detail\": \"SOD_VIOLATION maker_model=deepseek-v4.1-flash == checker_model=deepseek-v4.1-flash; no OWNER_ORDERED_IN_FORCE declared_conflicts entry lists EXECUTE/VERIFY_SECURITY\",\n      \"id\": \"sod_distinct_model\",\n      \"ok\": false\n    },\n    {\n      \"code\": null,\n      \"detail\": \"recorded=3a4e9b2ed",
+   "stderr_head": ""
+  },
+  "guard_epoch_missing": {
+   "argv": [
+    "<HOST_HOME>/AppData/Local/hermes/cache/scratch/fhs_next/venv311/Scripts/python.exe",
+    "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\HG-KSEOS\\scripts\\hgk-lane-guard.py",
+    "--lane",
+    "VERIFY_SECURITY",
+    "--maker-engine",
+    "opencode-go",
+    "--maker-model",
+    "opencode-go/deepseek-v4.1-flash",
+    "--target-engine",
+    "opencode-go",
+    "--target-model",
+    "deepseek-v4.1-flash"
+   ],
+   "exit": 2,
+   "parsed": {
+    "admission_status": "UNPROVEN",
+    "checks": [
+     {
+      "code": "ERR_LANE_SOD_VIOLATION",
+      "detail": "SOD_VIOLATION maker_model=deepseek-v4.1-flash == checker_model=deepseek-v4.1-flash; no OWNER_ORDERED_IN_FORCE declared_conflicts entry lists EXECUTE/VERIFY_SECURITY",
+      "id": "sod_distinct_model",
+      "ok": false
+     },
+     {
+      "code": null,
+      "detail": "recorded=3a4e9b2ed4a20f304ef568ffb4600fb46ab48edbe0eaf06c03edc0f9b2a0fd9c live=3a4e9b2ed4a20f304ef568ffb4600fb46ab48edbe0eaf06c03edc0f9b2a0fd9c",
+      "id": "source_digest",
+      "ok": true
+     },
+     {
+      "code": "ERR_LANE_NOT_ADMITTED",
+      "detail": "status=UNPROVEN",
+      "id": "arm_admitted",
+      "ok": false
+     },
+     {
+      "code": "ERR_LANE_STALE_EPOCH",
+      "detail": "registry_epoch=41 live_epoch=44",
+      "id": "epoch_current",
+      "ok": false
+     }
+    ],
+    "claim_ceiling": "CANDIDATE_ONLY",
+    "decision": "REFUSE",
+    "epoch": 41,
+    "errors": [
+     "ERR_LANE_SOD_VIOLATION"
+    ],
+    "exit_code": 2,
+    "lane": "VERIFY_SECURITY",
+    "live_epoch": 44,
+    "maker": {
+     "engine": "opencode-go",
+     "model": "opencode-go/deepseek-v4.1-flash"
+    },
+    "schema": "HGK-LANE-GUARD/1",
+    "status": "REFUSE",
+    "target": {
+     "engine": "opencode-go",
+     "model": "deepseek-v4.1-flash",
+     "provider": null
+    }
+   },
+   "stdout_head": "{\n  \"admission_status\": \"UNPROVEN\",\n  \"checks\": [\n    {\n      \"code\": \"ERR_LANE_SOD_VIOLATION\",\n      \"detail\": \"SOD_VIOLATION maker_model=deepseek-v4.1-flash == checker_model=deepseek-v4.1-flash; no OWNER_ORDERED_IN_FORCE declared_conflicts entry lists EXECUTE/VERIFY_SECURITY\",\n      \"id\": \"sod_distinct_model\",\n      \"ok\": false\n    },\n    {\n      \"code\": null,\n      \"detail\": \"recorded=3a4e9b2ed",
+   "stderr_head": ""
+  },
+  "lane_pin_check": {
+   "argv": [
+    "<HOST_HOME>/AppData/Local/hermes/cache/scratch/fhs_next/venv311/Scripts/python.exe",
+    "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\ops\\tools\\lane_pin.py",
+    "--check"
+   ],
+   "exit": 0,
+   "parsed": {
+    "schema": "FHS_NEXT.LanePin/1",
+    "source": "overlay",
+    "declaration": "HG-KSEOS/config.live/hermes-codex-lane.live.json",
+    "executable": "<HOST_HOME>/AppData/Local/OpenAI/Codex/bin/9e1da79431da526b/codex.exe",
+    "version": "0.167.0-alpha.4.1",
+    "sha256": "83f5c2dd2ac2902e0d96ba5d8ccdd27d513f57df4a9ab73e06a5a518028e9a2f",
+    "origin_sha256": "1aab074c171a0be73b6941a1a50d58ac916efc302d38437d0f00b129813d4c3c",
+    "binary_exists": true,
+    "actual_sha256": "83f5c2dd2ac2902e0d96ba5d8ccdd27d513f57df4a9ab73e06a5a518028e9a2f",
+    "digest_match": true,
+    "reported_version": "codex-cli 0.167.0-alpha.4.1",
+    "sidecars": {
+     "codex.exe": true,
+     "codex-code-mode-host.exe": true,
+     "codex-command-runner.exe": true,
+     "codex-windows-sandbox-setup.exe": true
+    },
+    "sidecars_complete": true,
+    "code": null
+   },
+   "stdout_head": "{\n \"schema\": \"FHS_NEXT.LanePin/1\",\n \"source\": \"overlay\",\n \"declaration\": \"HG-KSEOS/config.live/hermes-codex-lane.live.json\",\n \"executable\": \"<HOST_HOME>/AppData/Local/OpenAI/Codex/bin/9e1da79431da526b/codex.exe\",\n \"version\": \"0.167.0-alpha.4.1\",\n \"sha256\": \"83f5c2dd2ac2902e0d96ba5d8ccdd27d513f57df4a9ab73e06a5a518028e9a2f\",\n \"origin_sha256\": \"1aab074c171a0be73b6941a1a50d58ac916efc302d38437d0f00b1",
+   "stderr_head": ""
+  },
+  "lane_policy_validate": {
+   "argv": [
+    "<HOST_HOME>/AppData/Local/hermes/cache/scratch/fhs_next/venv311/Scripts/python.exe",
+    "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\HG-KSEOS\\scripts\\hgk-lane-policy.py",
+    "validate"
+   ],
+   "exit": 0,
+   "parsed": {
+    "checked_sites": 87,
+    "claim_ceiling": "CANDIDATE_ONLY",
+    "debt": [],
+    "epoch": 41,
+    "fatal": false,
+    "fatal_errors": [],
+    "findings": [],
+    "registry_path": "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\HG-KSEOS\\config\\lane-routing-registry.yaml",
+    "registry_sha256": "3583f71bc35ab63470cff42e2821937383869a6667413b35218f4dfc960d3d05",
+    "schema": "HGK-LANE-DRIFT/1",
+    "status": "CANDIDATE"
+   },
+   "stdout_head": "{\n  \"checked_sites\": 87,\n  \"claim_ceiling\": \"CANDIDATE_ONLY\",\n  \"debt\": [],\n  \"epoch\": 41,\n  \"fatal\": false,\n  \"fatal_errors\": [],\n  \"findings\": [],\n  \"registry_path\": \"C:\\\\Projects\\\\Agent_Workspace\\\\FHS_NEXT\\\\HG-KSEOS\\\\config\\\\lane-routing-registry.yaml\",\n  \"registry_sha256\": \"3583f71bc35ab63470cff42e2821937383869a6667413b35218f4dfc960d3d05\",\n  \"schema\": \"HGK-LANE-DRIFT/1\",\n  \"status\": \"CANDIDATE",
+   "stderr_head": ""
+  },
+  "lane_declaration": {
+   "provider": "opencode-go",
+   "model": "deepseek-v4.1-flash",
+   "transport_model": null,
+   "admission_status": null,
+   "claim_ceiling": null
+  },
+  "admission_note": "admission_status is quoted from the declaration; this round issues nothing"
+ }
+}

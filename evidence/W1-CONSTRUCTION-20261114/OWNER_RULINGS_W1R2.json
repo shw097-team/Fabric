@@ -1,0 +1,123 @@
+{
+ "schema": "FHS-W1-R2-OWNER-RULINGS/1",
+ "date": "2026-11-14",
+ "authority": "Owner (user), supreme for this work",
+ "rulings": [
+  {
+   "id": "OD-W1R2-1",
+   "subject": "VERIFY_SECURITY 同模型不構成缺口",
+   "owner_text": "用戶最高授權，這項規定根本超級違規…設計原意從來沒有規定必須一定要使用不同模型，此項不可列為缺口或阻斷向！",
+   "ruling": "maker 與 checker 同模型不是設計要求；SoD 的實質是 process／path／write-set／證據分離。assignment revision 44 只列 gpt-6.1-sol 這件事是設定與 mandate 的落差，記錄即可，不得列為缺口、不得作為 PASS 阻斷。",
+   "effect_on_record": [
+    "RC-9 由 GAP 降級為 RECORDED_SETTING_DIVERGENCE（保留事實與 dispatcher 原話，不改寫）",
+    "open_owner_decisions 中的 assignment 裁決項移除（已由本裁定結案）",
+    "三份 VERIFY 判決不再被描述為「不合規作業」；它們是 owner 指定臂上、以 process/path 分離產生的挑戰紀錄"
+   ],
+   "still_true": "guard 仍會回 ERR_LANE_SOD_VIOLATION；這是原域設定的行為，照實記錄，不視為本輪缺失"
+  },
+  {
+   "id": "OD-W1R2-2",
+   "subject": "藍圖自身的可複現性問題屬證據稽核瑕疵",
+   "owner_text": "藍圖作者就是GPT WORK阿，而且也有可能是藍圖有問題啊，因為藍圖沒有經過可執行性的驗證，必須以後續的可執行PLP為主，如果只是單純證據稽核，你不可將此列為缺口，必須視為是證據稽核瑕疵，不可視為PASS阻斷！",
+   "ruling": "39 格宣告集合 SHA 不可複現、485 逐鍵清冊未由原 Tech Registry 提供，兩者皆為「證據稽核瑕疵」（EVIDENCE_AUDIT_DEFECT），不是 W1 缺口，也不是 PASS 阻斷；可執行 PLP 為準。",
+   "effect_on_record": [
+    "H-20-SET-SHA 改列 EVIDENCE_AUDIT_DEFECT，附註「以可執行 PLP 為準、不阻斷」",
+    "H-485-KEYS 的殘餘部分改列 EVIDENCE_AUDIT_DEFECT；已由 L2 具名列提供 485/485 逐鍵與 digest，稽核價值保留",
+    "不得以這兩項作為拒收 W1 的理由"
+   ]
+  },
+  {
+   "id": "OD-W1R2-3",
+   "subject": "匯入白名單與 mirror 測試範圍依上游藍圖共識裁決",
+   "owner_text": "這部分必須依照上游藍圖的規劃共識進行裁決！",
+   "ruling": "依 L2:L6211／L1:L7194 的 `R4-ENG.4`（白名單 source-only import、原 Repo SHA 對得上；NEG＝拷貝 db/key/raw 或 blanket copy）：`INTEGRATION/FHS/docs/as-built/**` 屬 evidence，不在 source-only 範圍。因此正確解是**縮 Fabric 該測試的範圍（原域側）**，不是擴白名單匯入證據，也不是由 W1 改 origin。",
+   "effect_on_record": [
+    "H-02-MIRROR-PATH 的處置由「Owner 決定擴白名單或縮測試」改為「依 R4-ENG.4 定案：縮測試範圍，原域側處理」",
+    "本輪不擴白名單、不改 origin、不匯入 evidence"
+   ],
+   "citation": [
+    "FHS_vNEXT_PLP_全波次藍圖.md:L6211",
+    "FHS_vNEXT_PLP_藍圖.md:L7194"
+   ]
+  },
+  {
+   "id": "OD-W1R2-4",
+   "subject": "缺的兩項交付要直接補做，且控制包範圍不等於 W1 全範圍",
+   "owner_text": "為何不直接對相關缺口進行完整實作和修補?",
+   "ruling": "L2 §04 W1 的五項交付是「必交」，控制包限制的是 effect（不得 install／admit／release），不是交付物本身。因此 W1RepoEntry／SourceImportMap／ABI joins 與每 Host 安裝／載入／調用／卸載方案必須以 LOCAL_DRAFT 成文交付，不得列為缺口了事。",
+   "effect_on_record": [
+    "新增 deliverables/W1_REPO_ENTRY_2026-11-14.md（含 SourceImportMap join 與 ABI joins）",
+    "新增 deliverables/WP11_HOST_PLAN_2026-11-14.md（四宿主 × 三 SP × 五階段）",
+    "報告 §1 的「本輪實際」對這兩項改為 DONE（設計態），不是 PARTIAL"
+   ]
+  },
+  {
+   "id": "OD-W1R2-5",
+   "subject": "H-ORIGINAL-ACK 不成立；唯一合法儀器是 W0 已建成的 FHS_ORIGINAL_ACK",
+   "owner_text": "為啥會有「H-ORIGINAL-ACK」?這合乎上游藍圖的規範嗎?我記得只有W0已建成可複用的「FHS_ORIGINAL_ACK」不是嗎?",
+   "measured": "FHS_NEXT/_references/FHS_ORIGINAL_ACK.readonly.json（schema FHS.W0.FhsOriginalAck/3、count 6/6）載明 traditional_definition_status = NOT_APPLICABLE_BY_DESIGN（由 L1 18.3 HIST-01 與 23.4 退役，實測歷史 0/6，僅作量測不作合規狀態）、separation_level = PROCESS_LANE_EVIDENCE_SEPARATION_ONLY、model_sharing_exception 明載 owner 禁止強制 SoD 或模型種類；其 subject 是 W0 r26 交付文件（668,540 bytes / 0ea05544…），不是 W1。",
+   "ruling": "`H-ORIGINAL-ACK`（要求原 Domain Reader 同 scope 簽署）複活了已退役的傳統 ACK，不屬上游藍圖規範 → 撤回。W1 若要取得同級承認，唯一路徑是把同一個 `FHS_ORIGINAL_ACK` 儀器套用到 W1 的 subject（含三車道收據與 owner 授權窗），不得另立第二種 ACK。",
+   "effect_on_record": [
+    "H-ORIGINAL-ACK 由 HOLD 改為 RETRACTED_NOT_BLUEPRINT_COMPLIANT",
+    "報告 §9 該列改寫並引用 FHS_ORIGINAL_ACK/3 的欄位",
+    "若 owner 決定對 W1 套用該儀器，需開 owner 金鑰窗（這是真正的 owner-key consumer）"
+   ]
+  },
+  {
+   "id": "OD-W1R2-6",
+   "subject": "Owner 親設的 Repo 狀態是最高裁決，不受藍圖條文阻擋",
+   "owner_text": "GitHub REPO是用戶親設創立的，其狀態代表最高裁決，憑什麼要被藍圖所限制用戶親設的最高裁決和意願?憑什麼用戶的最高裁決和親設和相關規畫不符，就要被阻擋、阻斷、HOLD?",
+   "ruling": "Owner 親設的 repo 狀態即最高裁決。藍圖（含 §D.2 的分支保護、可見性、CI 條款）是規劃文件，不得用來把 owner 的實際作為標成缺口、HOLD 或阻斷。若規劃與實際不一致，以實際為準，並把差異記為『規劃待更新』而非『實作不合規』。",
+   "effect_on_record": [
+    "H-REPO-PROTECT 由『缺口／HOLD』改為 REPO_STATE_IS_OWNER_DECISION（僅記錄現況：main 目前未啟用保護，因 owner 決定其狀態；不列為缺口、不阻斷）",
+    "報告 §9 該列改寫，不再寫『待解除』",
+    "今後凡 owner 親設之 repo／帳號／可見性狀態，一律不進缺口清單"
+   ]
+  },
+  {
+   "id": "OD-W1R2-7",
+   "subject": "『例外』的定義：輪次資料夾外且在兩個允許根內，不算例外",
+   "owner_text": "「例外指輪次資料夾外、而兩個允許根內不算例外」全部解決！",
+   "ruling": "F7 的例外分母改為：寫入位置在兩個允許根（`FHS_NEXT`、`FHS_NEXT_Workspace`）之外。落在允許根內但在輪次資料夾外的檔（lane bindings、`FHS_NEXT/_local` 的 tree-tool 輸出）不是例外，只是分區紀錄。",
+   "effect_on_record": [
+    "WRITE_MANIFEST 改以 zone 分類（round／allowed_root／outside_allowed_roots）",
+    "唯一例外類別＝relay 憑證池（AppData，2 檔）",
+    "F7 的判定改讀 zone，不再數『類別數』"
+   ]
+  },
+  {
+   "id": "OD-W1R2-8",
+   "subject": "補跑 §E.2 N-09",
+   "owner_text": "你必須把「§E.2 的 N-09 UNSAFE_DESTINATION 這輪沒實測」…全部解決！",
+   "ruling": "N-09 必須實測，不得以推論代替。",
+   "effect_on_record": [
+    "新增 build/wp05_n09.py 並實跑三種形態＋一個 dry-run 控制組",
+    "收據 out/WP05_N09_UNSAFE_DESTINATION.json（4/4 PASS）",
+    "§E.2 十六案自此全數有本輪實測"
+   ]
+  },
+  {
+   "id": "OD-W1R2-9",
+   "subject": "六個 reader receipts 由 Owner 親簽",
+   "owner_text": "你開口令視窗，由用戶親簽",
+   "ruling": "六個 reader receipts 由 owner 以 `original_reader_ack` 種類親簽；maker 不代簽。視窗 scope 需含 `original_reader_ack`，一次口令授權本批全部簽署（沿用『一次解鎖、批次簽署』原則）。",
+   "effect_on_record": [
+    "開窗 scope = original_reader_ack,owner_semantic_accept",
+    "六份 body 由 maker 起草、由 owner 的鍵簽署",
+    "簽完後 FHS_ORIGINAL_ACK(W1) 由 1/7 轉為 7/7，並逐份記 payload sha256"
+   ]
+  },
+  {
+   "id": "OD-W1R2-10",
+   "subject": "manifest 與樹的一致性：volatile 檔案以規則排除，可重算者全數納入",
+   "owner_text": "（由 2026-11-14 預授權『通過即升格』之執行需要而立的技術裁定；非新增要求）",
+   "ruling": "WRITE_MANIFEST 必須帶 generated_at，並以明文規則排除 volatile 檔（每輪重生的 review 簡報、manifest 之後才寫出的 review 收據、manifest 自身）；其餘每一檔以 sha256+bytes 納入。並提供 build/manifest_check.py 唯讀重算，drift 必須為 0。",
+   "effect_on_record": [
+    "manifest 增 generated_at_utc 與 volatile_excluded 規則",
+    "新增 build/manifest_check.py（唯讀，exit 0 = 零 drift）",
+    "R8 派車前必須 manifest_check 回 0"
+   ]
+  }
+ ],
+ "consequence": "本輪 open items 僅剩：原域 ACK（H-ORIGINAL-ACK，需原 Reader）、Repo 建立授權（H-REPO-CREATE）、以及兩項證據稽核瑕疵的通報（不阻斷）。"
+}

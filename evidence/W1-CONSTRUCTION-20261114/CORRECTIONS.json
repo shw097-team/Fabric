@@ -1,0 +1,340 @@
+{
+ "schema": "FHS-W1-R2-CORRECTIONS/1",
+ "why": "The acceptance-challenge lane (VERIFY_SECURITY, deepseek-v4.1-flash, read-only, nonce-attributed) returned VERDICT: REJECT on two criteria. Both findings are kept here as corrections beside the original claim; the original wording is not edited away, because a silent repair is indistinguishable from a check that never bit.",
+ "review_history": [
+  {
+   "round": "R1",
+   "dispatch": "out/LANE_VERIFY.json",
+   "nonce": "W1R2-VERIFY-4c81fe",
+   "attribution": "nonce_in_agent_message=true, usage_receipt_ok=true, exit 0, 533 s, sandbox read-only",
+   "verdict": "REJECT",
+   "failed": [
+    "G2",
+    "G3"
+   ],
+   "backlog": [
+    "LANE_EVIDENCE.json omits the 371 s R2 receipt despite the separate receipt",
+    "the Fabric worktree is behind origin HEAD on the r26 mirror",
+    "OCG_KEY_PROBE.json reports HTTP 403 rather than api_key_expired"
+   ]
+  },
+  {
+   "round": "R2",
+   "dispatch": "out/LANE_VERIFY_R2.json",
+   "nonce": "W1R2-VERIFY-d92a37",
+   "attribution": "nonce_in_agent_message=true, usage_receipt_ok=true, exit 0, 457 s, sandbox read-only, usage rows 77",
+   "verdict": "REJECT",
+   "failed": [
+    "G7"
+   ],
+   "backlog": [
+    "none"
+   ],
+   "note": "G1-G6, G8 PASS; RC-1 and RC-2 accepted as corrected by the reviewer"
+  },
+  {
+   "round": "R3",
+   "dispatch": "out/LANE_VERIFY_R3.json",
+   "nonce": "W1R2-VERIFY-6f30bd",
+   "attribution": "nonce_in_agent_message=true, usage_receipt_ok=true, exit 0, 344 s, sandbox read-only, usage rows 43",
+   "verdict": "REJECT",
+   "failed": [
+    "G7"
+   ],
+   "backlog": [
+    "none"
+   ],
+   "note": "G1-G6 and G8 PASS. G7 rejects a proxy clause: the manifest now declares three outside-round classes / eight members, while the brief had said exactly two. The substance the criterion exists for — no undisclosed write and no effect — holds and is what the manifest records."
+  },
+  {
+   "round": "R4",
+   "dispatch": "out/LANE_VERIFY_R4.json",
+   "nonce": "W1R2-VERIFY-R4-8b25da",
+   "attribution": "nonce_in_agent_message=true, usage_receipt_ok=true, exit 0, 426 s, sandbox read-only, usage rows 49",
+   "verdict": "REJECT",
+   "failed": [
+    "G2",
+    "G6",
+    "G7"
+   ],
+   "backlog": [
+    "none"
+   ],
+   "note": "G1/G3/G4/G5/G8 PASS; the three findings are record-keeping discrepancies (two counts and one stale wording), not new defects of the work"
+  },
+  {
+   "round": "R5",
+   "dispatch": "out/LANE_VERIFY_R5.json",
+   "nonce": "W1R2-VERIFY-R5-4c07e9",
+   "attribution": "nonce_in_agent_message=true, exit 0, 259 s, read-only, usage rows 43",
+   "verdict": "REJECT",
+   "failed": [
+    "G7"
+   ],
+   "note": "G1-G6 and G8 PASS (G2 now 8 steps/6 codes, G6 8 caveats); G7 failed because the manifest still listed 'origin repo write' and 'repo creation' under effects_not_performed while PR #60 and the new repo exist"
+  },
+  {
+   "round": "R6",
+   "dispatch": "out/LANE_VERIFY_R6.json",
+   "nonce": "W1R2-VERIFY-R6-91d3af",
+   "attribution": "nonce_in_agent_message=true, exit 0, 210 s, read-only, usage rows 32",
+   "verdict": "REJECT",
+   "failed": [
+    "G7"
+   ],
+   "note": "G1-G6 and G8 PASS; G7 failed on a derivation bug: the manifest printed repository=null because the readback nests the name under repo.full_name while the code read a top-level key"
+  },
+  {
+   "round": "R7",
+   "dispatch": "out/LANE_VERIFY_R7.json",
+   "nonce": "W1R2-VERIFY-R7-3ee815",
+   "attribution": "nonce_in_agent_message=true, exit 0, 254 s, read-only, usage rows 43",
+   "verdict": "REJECT",
+   "failed": [
+    "G7"
+   ],
+   "note": "G1-G6 and G8 PASS; G7 failed on self-referential drift: the manifest hashed the per-round brief and the review receipts that are written after it, so by review time four entries and the brief's size differed"
+  },
+  {
+   "round": "R8",
+   "dispatch": "out/LANE_VERIFY_R8.json",
+   "nonce": "W1R2-VERIFY-R8-b57c02",
+   "attribution": "nonce_in_agent_message=true, exit 0, 146 s, read-only, usage rows 22",
+   "verdict": "REJECT",
+   "failed": [
+    "G7"
+   ],
+   "note": "G1-G6 and G8 PASS; G7 failed on 4 drifts: two round files were edited AFTER the manifest was generated (this corrections file and the brief generator), and the two relay credential files are unreadable from a read-only review sandbox"
+  },
+  {
+   "round": "R9",
+   "dispatch": "out/LANE_VERIFY_R9.json",
+   "nonce": "W1R2-VERIFY-R9-a14f6c",
+   "attribution": "nonce_in_agent_message=true, exit 0, 225 s, read-only, usage rows 27",
+   "verdict": "REJECT",
+   "failed": [
+    "G7"
+   ],
+   "note": "G1-G6 and G8 PASS; all 416 readable declared hashes matched with zero drift, but the tree held 415 nonvolatile files against 410 declarations — the dispatch writes logs/ and lane receipts after the manifest"
+  },
+  {
+   "round": "R10",
+   "dispatch": "out/LANE_VERIFY_R10.json",
+   "nonce": "W1R2-VERIFY-R10-6d92b4",
+   "attribution": "nonce_in_agent_message=true, exit 0, 156 s, read-only, usage rows 27",
+   "verdict": "APPROVE_RELEASE_CANDIDATE",
+   "failed": [],
+   "note": "all eight PASS. G7: 344 round / 6 inside-allowed-root / 2 outside-allowed-roots, required effect declarations, 95 documented exclusions, readbacks agree, manifest drift 0"
+  }
+ ],
+ "corrections": [
+  {
+   "id": "RC-1",
+   "raised_by": "G2 (FAIL)",
+   "earlier_claim": "the round recorded seven typed refusals",
+   "measured": "eight refusal steps with a typed code: INTAKE_INVALID, PROFILE_VETO, REPO_CONTEXT_MISSING, GIT_PROBE_FAILED (effect-ECP with registry), GIT_PROBE_FAILED (same shape re-run), TQ_SOD (maker==checker), TQ_SOD (distinct checker without receipt), INPUT_SHAPE_INVALID",
+   "why_it_happened": "the brief counted distinct refusal KINDS while the receipt counts refusal STEPS; two GIT_PROBE_FAILED steps are the same kind",
+   "fix": "report and handoff now state eight steps and name the two shapes; the registry-count remains 7 kinds and is stated as such",
+   "evidence": "out/WP05_PIPD_CHAIN.json"
+  },
+  {
+   "id": "RC-2",
+   "raised_by": "G3 (FAIL)",
+   "earlier_claim": "the mirror document named by the Fabric admission test is absent at origin HEAD too, so the entry has an origin defect",
+   "measured": "origin main a6f1fa89 HAS the file (668,540 bytes, blob dfa7f0e6…); this tree does not, and provenance/SOURCE_IMPORT_MAP.json never declared it (policy SOURCE_ONLY_WHITELIST)",
+   "why_it_happened": "the first check ran `git ls-tree` against the local clone at 765df62, which predates the mirror in that path; a stale local tree was read as origin state",
+   "fix": "verdict replaced by ORIGIN_HAS_FILE_IMPORT_LACKS_IT; the HOLD becomes an owner decision (extend the import whitelist or narrow the test), not a Fabric defect claim",
+   "evidence": "out/ORIGIN_PATH_CHECK.json"
+  },
+  {
+   "id": "RC-3",
+   "raised_by": "BACKLOG item 1",
+   "earlier_claim": "LANE_EVIDENCE.json listed three EXECUTE receipts",
+   "measured": "four exist; the R2 receipt (371 s, served, no nonce) was outside the enumeration list",
+   "fix": "the enumeration now covers R2, R3, R4 and the two VERIFY dispatches",
+   "evidence": "out/LANE_EVIDENCE.json"
+  },
+  {
+   "id": "RC-4",
+   "raised_by": "BACKLOG item 3",
+   "earlier_claim": "OCG_KEY_PROBE.json records the credential verdicts",
+   "measured": "that probe used urllib without the provider's required user-agent, so every credential answered HTTP 403 with an empty error code; the credential verdicts actually come from the separate curl probe (401 api_key_expired for 7776004 / pool keys, 429 usage-limit for shw0968, 200 for shw097)",
+   "fix": "OCG_KEY_PROBE.json is retained as a negative example of a non-oracle probe and is not cited as a credential verdict; the cited evidence is the curl result recorded in the report's lane section",
+   "evidence": "out/OCG_KEY_PROBE.json (labelled NON_ORACLE), report §7"
+  },
+  {
+   "id": "RC-5",
+   "raised_by": "G7 (FAIL, R2)",
+   "earlier_claim": "the round wrote exactly two artefacts outside the round folder (lane bindings and the relay key pool)",
+   "measured": "a third existed: FHS_NEXT/_local/W1_R2_CONSTRUCTION_POINTER.md. It WAS disclosed in out/WRITE_MANIFEST.json (added before the run), so it was not an undisclosed write — the defect was the brief's count of two",
+   "why_it_happened": "the navigation pointer was added after the brief was drafted and the criterion's wording was not re-derived from the manifest",
+   "fix": "the pointer (a non-evidence convenience) was withdrawn; out/WITHDRAWN_NAVIGATION_POINTER.md keeps its bytes and the reason; the tree now carries exactly the two exceptions the criterion names",
+   "evidence": "out/WITHDRAWN_NAVIGATION_POINTER.md, out/WRITE_MANIFEST.json"
+  },
+  {
+   "id": "RC-6",
+   "raised_by": "self-check (ops/selfcheck.py POS-01), not by the review lane",
+   "earlier_claim": "the imported trees are byte-identical to the map (433 files)",
+   "measured": "after the lane dispatches, HG-KSEOS/config/hermes-codex-lane.json had grown 15,340 -> 15,526 bytes (CRLF added by the tooling; 186 lines), sha 8c21a805… instead of ba357dcc…; selfcheck POS-01 FAIL, 15/16",
+   "why_it_happened": "the lane host tooling rewrote the imported declaration while a dispatch ran; the round had not re-run POS-01 after dispatching",
+   "fix": "restored byte-identically from the map's declared source clone (sha ba357dcc…, 15,340 bytes) and re-ran selfcheck: 16/16 PASS; the hygiene pass also removed __pycache__ residue from HG-KSEOS/scripts and HG-KSEOS/src",
+   "evidence": "_local/W0_TEST_READBACK.json (POS-01 PASS after restore), _local/W0_R1_TREE_HYGIENE.json"
+  },
+  {
+   "id": "RC-7",
+   "raised_by": "self-check (write manifest completeness)",
+   "earlier_claim": "exactly two outside-round exception classes exist",
+   "measured": "running the tree's own selfcheck/hygiene wrote two more files into FHS_NEXT/_local (their own output paths), so a third class exists: tree-tool outputs",
+   "fix": "the write manifest now registers three classes (lane bindings, relay credential pool, tree-tool outputs) and lists every member; no write is undisclosed",
+   "evidence": "out/WRITE_MANIFEST.json"
+  },
+  {
+   "id": "RC-8",
+   "raised_by": "G7 (FAIL, R3)",
+   "earlier_claim": "the round wrote exactly two outside-round exception classes",
+   "measured": "three classes / eight members: 4 lane bindings, 2 relay credential files, 2 tree-tool outputs (selfcheck and hygiene readbacks in FHS_NEXT/_local)",
+   "why_it_happened": "the count was my proxy for 'nothing outside is undisclosed'. Running the tree's own selfcheck and hygiene passes added two outputs in paths the tree's tools own, so the proxy went stale while the property it stood for held",
+   "fix": "the manifest now lists all three classes and every member; no write is undisclosed. The frozen criterion is NOT edited — the round records that this criterion's count clause is invalidated by its own hygiene work and that its substance (no undisclosed write, no effect) is met",
+   "evidence": "out/WRITE_MANIFEST.json, _local/W0_TEST_READBACK.json, _local/W0_R1_TREE_HYGIENE.json"
+  },
+  {
+   "id": "RC-9",
+   "raised_by": "dispatcher stderr on the R1 VERIFY receipt (WARN_LANE_SERVED_UNASSIGNED_ARM), re-measured",
+   "earlier_claim": "the three VERIFY rounds were nonce-attributed review turns on the mandated arm",
+   "measured": "the arm they served (opencode-go/deepseek-v4.1-flash) is NOT in the VERIFY_SECURITY assignment revision 44, which grants only ['gpt-6.1-sol','openai-codex/gpt-6.1-sol']; the dispatcher warned SERVED_UNASSIGNED_ARM and a control run with --require-assigned-arms refused with ERR_NO_ASSIGNED_ARM (exit 4, before any model call)",
+   "why_it_happened": "--force-rank resolves against the pool, so it outranks the assignment; the owner's 2026-11-14 task mandates deepseek for the checker while the assignment file (authority owner-order-20261022-r14) still grants gpt-6.1-sol, and the round used the pool to satisfy the mandate without recording the split",
+   "fix": "every receipt now carries arm_in_assignment / assignment_arms / assignment_revision; the three verdicts are recorded as challenge records produced on an owner-mandated arm that the assignment does not grant — not as assignment-compliant operation and never as acceptance; the refusing control run is kept in out/LANE_VERIFY_ASSIGNED_ARMS_NEG.json；owner 裁定（OD-W1R2-1）：同模型非缺口、不得作為 PASS 阻斷，故本項保留為事實紀錄，不再列為缺口",
+   "evidence": "out/LANE_VERIFY_ASSIGNED_ARMS_NEG.json, out/LANE_EVIDENCE.json",
+   "owner_ruling": "OD-W1R2-1",
+   "reclassified_to": "RECORDED_SETTING_DIVERGENCE_NOT_A_GAP"
+  },
+  {
+   "id": "RC-10",
+   "raised_by": "owner challenge (H-ORIGINAL-ACK 的合法性)",
+   "earlier_claim": "13 主責章 body 與 Raw 未經原 Domain Reader 接受，故列 H-ORIGINAL-ACK（解除條件＝原 Domain Reader 同 scope 簽署）",
+   "measured": "FHS_ORIGINAL_ACK/3 明載傳統的 per-domain reader ACK 為 NOT_APPLICABLE_BY_DESIGN（L1 18.3 HIST-01、23.4 退役；實測 0/6 僅為量測），且該儀器本身以 PROCESS_LANE_EVIDENCE_SEPARATION_ONLY 與 owner 指定模型共用運作；它的 subject 是 W0 r26，不是 W1",
+   "why_it_happened": "我照抄了施工正文 §E.4 的 HOLD 字面，沒有先查 W0 已建成儀器對「傳統 ACK」的退役裁定",
+   "fix": "H-ORIGINAL-ACK 撤回（RETRACTED_NOT_BLUEPRINT_COMPLIANT）；若 owner 要 W1 取得同級承認，改以同一 FHS_ORIGINAL_ACK 儀器套用於 W1 subject（需 owner 金鑰窗授權）",
+   "evidence": "_references/FHS_ORIGINAL_ACK.readonly.json、docs/OWNER_RULINGS_W1R2.json OD-W1R2-5"
+  },
+  {
+   "id": "RC-11",
+   "raised_by": "G2 (FAIL, R4)",
+   "earlier_claim": "eight refusal steps over seven distinct codes",
+   "measured": "eight steps over SIX distinct codes: GIT_PROBE_FAILED, INPUT_SHAPE_INVALID, INTAKE_INVALID, PROFILE_VETO, REPO_CONTEXT_MISSING, TQ_SOD (the first and last each appear twice)",
+   "why_it_happened": "the 'seven' was counted by hand from an earlier draft that also carried the two GIT_PROBE_FAILED shapes as separate kinds",
+   "fix": "report now computes the distinct-code set from the receipt at build time and states '8 steps / 6 codes' with the reason",
+   "evidence": "out/WP05_PIPD_CHAIN.json"
+  },
+  {
+   "id": "RC-12",
+   "raised_by": "G6 (FAIL, R4)",
+   "earlier_claim": "six caveats in the 485 ledger, one truncated disposition",
+   "measured": "the ledger carries EIGHT caveat entries, and the truncation entry names FIVE dispositions cut mid-token in the blueprint itself (L10607, L10628, L10649, L11216 …)",
+   "why_it_happened": "I quoted an early摘要 of the ledger instead of reading its gaps array",
+   "fix": "report counts the caveats from the ledger at build time (8) and states the five truncated rows",
+   "evidence": "out/WP17_485_LEDGER.json"
+  },
+  {
+   "id": "RC-13",
+   "raised_by": "G7 (FAIL, R4)",
+   "earlier_claim": "the write manifest recorded 373 round files and the round made no origin-repo write",
+   "measured": "the manifest at review time recorded 390 round files (the round kept producing receipts after the number was typed into the brief), and the round DID write outside itself: an evidence branch + draft PR #60 on Fabric (owner-instructed) and the creation of shw097-team/FHS_vNEXT (owner-authorised). No origin repository's `main` was written.",
+   "why_it_happened": "the brief carried a hand-typed count, and the phrase 'no origin-repo write' conflated 'main untouched' with 'no write at all'",
+   "fix": "report states the precise form: origin `main` untouched; one evidence branch + draft PR; one new private repo created on owner order. The counts in any future brief must be generated from the artefacts at dispatch time, not typed",
+   "evidence": "out/WRITE_MANIFEST.json, out/PUSH_READBACK.json, out/REPO_CREATE_READBACK.json"
+  },
+  {
+   "id": "RC-14",
+   "raised_by": "G7 (FAIL, R5)",
+   "earlier_claim": "the write manifest's effects_not_performed listed 'origin repo write' and 'repo creation' as not performed",
+   "measured": "an evidence branch + draft PR #60 exists on Fabric and shw097-team/FHS_vNEXT was created; the exclusions were false as written",
+   "why_it_happened": "the effect list was typed as a blanket claim instead of being derived from the readbacks",
+   "fix": "WRITE_MANIFEST now carries effect_boundary, whose not_performed and performed_and_where are read from PUSH_READBACK.json and REPO_CREATE_READBACK.json at build time; the generated VERIFY brief prints that block verbatim",
+   "evidence": "out/WRITE_MANIFEST.json, out/PUSH_READBACK.json, out/REPO_CREATE_READBACK.json"
+  },
+  {
+   "id": "RC-15",
+   "raised_by": "G7 (FAIL, R6)",
+   "earlier_claim": "effect_boundary.performed_and_where listed repository creation with repo=null",
+   "measured": "out/REPO_CREATE_READBACK.json carries the created repository as repo.full_name = shw097-team/FHS_vNEXT (and in steps[0].full_name, http 201); the derivation read a key that does not exist",
+   "why_it_happened": "the readback schema nests the repo block; the code assumed a flat key, and a null slipped through",
+   "fix": "derivation now reads repo.full_name, falls back to the 201 step, carries private/default_branch/head and the protection attempt; a null action/repo/receipt now raises instead of being written",
+   "evidence": "out/WRITE_MANIFEST.json, out/REPO_CREATE_READBACK.json"
+  },
+  {
+   "id": "RC-16",
+   "raised_by": "G7 (FAIL, R7)",
+   "earlier_claim": "the manifest and the tree agree family-wide",
+   "measured": "four manifest entries and the brief's size disagreed at review time, because the manifest hashed files that are regenerated during or after manifest generation (the brief, the review receipts, the manifest itself, the run's own stdout capture)",
+   "why_it_happened": "no distinction between frozen artefacts and per-round volatile ones; a self-referential hash set cannot be consistent",
+   "fix": "manifest now carries generated_at_utc and a declared volatile_excluded rule; every other file is hashed; build/manifest_check.py is read-only and recomputes all hashes (413 checked, 19 volatile excluded, drift 0 before dispatch)",
+   "evidence": "out/WRITE_MANIFEST.json, out/_manifest_check.txt"
+  },
+  {
+   "id": "RC-17",
+   "raised_by": "G7 (FAIL, R8)",
+   "earlier_claim": "the manifest was generated last before dispatch",
+   "measured": "it was not: docs/CORRECTIONS.json and build/gen_verify_brief.py were edited after it, so two hashes were stale at review time",
+   "why_it_happened": "the corrections for a round were written after dispatching that round, which by definition mutates an already-frozen manifest",
+   "fix": "the round order is now fixed and enforced: write every file (corrections, rulings, report inputs) → rebuild deliverables → generate manifest → manifest_check must return drift 0 → generate brief → dispatch. Nothing is edited after the manifest.",
+   "evidence": "build/manifest_check.py output captured into out/MANIFEST_CHECK.txt before dispatch"
+  },
+  {
+   "id": "RC-18",
+   "raised_by": "G7 (FAIL, R8)",
+   "earlier_claim": "every manifest hash is recomputable by any reader",
+   "measured": "the two relay credential files live in AppData and are not readable from a read-only review sandbox (PermissionError), so a reviewer's recomputation must report them as unreadable — which I had scored as drift",
+   "why_it_happened": "the manifest did not distinguish 'hash I can verify' from 'declared file a reviewer cannot open'",
+   "fix": "those entries now carry reader_visibility=RESTRICTED_CREDENTIAL_POOL plus a note; manifest_check lists them under unreadable_declared instead of drift, and the brief states that they are declared, not counted",
+   "evidence": "out/WRITE_MANIFEST.json, build/manifest_check.py"
+  },
+  {
+   "id": "RC-19",
+   "raised_by": "G7 (FAIL, R9)",
+   "earlier_claim": "the volatile-exclusion rule covered everything written after the manifest",
+   "measured": "it did not: the dispatch writes logs/*.txt, logs/attempts/*.txt and out/LANE_VERIFY_R*.attempts.ndjson after the manifest, so five files were neither declared nor excluded",
+   "why_it_happened": "the rule was written for the brief only, not for the run-time tail that the dispatch itself produces",
+   "fix": "volatile rule widened to lane_cwd/ (whole), logs/ (whole) and the lane receipts the dispatch writes; the manifest now also self-audits — files present but neither declared nor excluded must be 0 — and refuses to be considered complete otherwise",
+   "evidence": "out/WRITE_MANIFEST.json, out/MANIFEST_CHECK.txt"
+  },
+  {
+   "id": "RC-20",
+   "raised_by": "post-approval audit (build/post_approval_delta.py)",
+   "earlier_claim": "nothing changes after the approval",
+   "measured": "two hashed files changed after R10 approved: docs/CORRECTIONS.json (this append) and build/manifest_check.py (relative-path normalisation in the audit)",
+   "why_it_happened": "the approval record itself must be written somewhere, and the audit needed a path fix to run at all",
+   "fix": "both are declared by name in out/POST_APPROVAL_DELTA.json with their reasons; the delta record fails on any third, undeclared change; every one of the 352 approved files is re-hashed and must be identical",
+   "evidence": "out/POST_APPROVAL_DELTA.json, out/WRITE_MANIFEST_APPROVED.json"
+  }
+ ],
+ "not_corrected": [
+  {
+   "item": "the entry's admission tests still fail in this tree (5 failures + 5 errors of 51)",
+   "reason": "that is a fact about a whitelist import, not a defect to repair here; repairing it would mean importing a path the map does not declare"
+  }
+ ],
+ "review_rounds": 3,
+ "final_state": {
+  "review_verdict_last": "APPROVE_RELEASE_CANDIDATE (R10)",
+  "criteria_substance_met": "G1-G8 全部 PASS",
+  "why_stopping": "R10 approved; no further round is needed",
+  "handover": "owner pre-authorised promotion on approval: merge evidence PR into Fabric main, promote the delivered set into FHS_NEXT, publish to the product repo",
+  "post_approval_rule": "after APPROVE only append-only records may change (this file, the R10 receipt and its verdict); every file that was declared in WRITE_MANIFEST_APPROVED.json must still hash identically — out/POST_APPROVAL_DELTA.json proves it"
+ },
+ "open_owner_decisions": [
+  {
+   "item": "H-20-SET-SHA / H-485-KEYS 殘餘",
+   "detail": "owner 裁定（OD-W1R2-2）：屬證據稽核瑕疵，不阻斷；以可執行 PLP 為準",
+   "status": "ADJUDICATED_NOT_A_BLOCKER",
+   "reference": "docs/OWNER_RULINGS_W1R2.json OD-W1R2-2"
+  },
+  {
+   "item": "Fabric mirror 測試範圍",
+   "detail": "owner 裁定（OD-W1R2-3）：依 L2:L6211 / L1:L7194 的 R4-ENG.4 白名單共識，縮測試範圍（原域側），不擴白名單",
+   "status": "ADJUDICATED",
+   "reference": "docs/OWNER_RULINGS_W1R2.json OD-W1R2-3"
+  }
+ ],
+ "owner_rulings_file": "docs/OWNER_RULINGS_W1R2.json"
+}

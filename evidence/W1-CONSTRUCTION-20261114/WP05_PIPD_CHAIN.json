@@ -1,0 +1,1057 @@
+{
+ "schema": "FHS-W1-R2-WP05-PIPD-CHAIN/1",
+ "at": "2026-11-14T19:38:44.269503+08:00",
+ "subject": {
+  "wp": "WP-FHS-05",
+  "effect_class": "LOCAL_DRAFT_WRITE",
+  "isolated_root": "C:\\Projects\\Agent_Workspace\\FHS_NEXT_Workspace\\W1_R2_CONSTRUCTION_20261114\\sbx\\wp05",
+  "task_source": "<WORKSPACE>/知識庫/實作相關DOC/FHS／FHS-MSC／SBL/FHS/FHS_NEXT/實作/W1/FHS_vNEXT_PLP_W1_實質正文_施工定案版_2026-11-14_r1.md",
+  "task_source_sha256": "5cb9ebc5a768ecdfde0441a327ee22b501b6b0a9a615feb81fbffef5c356701a"
+ },
+ "steps": [
+  {
+   "step": "cli-help",
+   "argv": [
+    "--help"
+   ],
+   "exit": 0,
+   "verdict": null,
+   "code": null,
+   "note": "13-verb inventory from the CLI itself",
+   "out_bytes": 431,
+   "stderr_head": "",
+   "files": {},
+   "stdout_head": "usage: pipd [-h] [--root ROOT]\n            {init,intake,profile,compile-pi,bind-pd,compile-ecp,compile-tqaep,validate,doctor,project,export,diff,repair}\n            ...\n\nPIPD-LS-SP compiler CLI 0.1.1a5 (13 commands)\n\npositional arguments:\n  {init,intake,profile,compile-pi,bind-pd,compile-ecp,compile-tqaep,validate,doctor,project,export,diff,repair}\n\noptions:\n  -h, --help            show this help message and exit\n  --root ROOT\n"
+  },
+  {
+   "step": "init",
+   "argv": [
+    "init"
+   ],
+   "exit": 0,
+   "verdict": "PASS",
+   "code": null,
+   "note": "workspace materialisation in the isolated root",
+   "out_bytes": 567,
+   "stderr_head": "",
+   "files": {},
+   "stdout_head": "{\n \"contract_families\": 19,\n \"created\": [\n  \"docs\",\n  \"schemas\",\n  \"src\",\n  \"tests\",\n  \"dist\"\n ],\n \"root\": \"C:\\\\Projects\\\\Agent_Workspace\\\\FHS_NEXT_Workspace\\\\W1_R2_CONSTRUCTION_20261114\\\\sbx\\\\wp05\\\\chain\",\n \"schema_source\": {\n  \"mode\": \"SOURCE\",\n  \"path\": \"C:\\\\Projects\\\\Agent_Workspace\\\\FHS_NEXT\\\\SBL\\\\integrations\\\\pipd\\\\schemas\",\n  \"tried\": [\n   \"C:\\\\Projects\\\\Agent_Workspace\\\\FHS_NEXT_Workspace\\\\W1_R2_CONSTRUCTION_20261114\\\\sbx\\\\wp05\\\\chain\\\\schemas\",\n   \"C:\\\\Projects\\\\Agent_Workspace\\\\FHS_NE"
+  },
+  {
+   "step": "intake-baseline-body-NEG",
+   "argv": [
+    "intake",
+    "--goal",
+    "compile a strict PI for the W1 construction round",
+    "--source",
+    "<WORKSPACE>/知識庫/實作相關DOC/FHS／FHS-MSC／SBL/FHS/FHS_NEXT/實作/W1/FHS_vNEXT_PLP_W1_實質正文_施工定案版_2026-11-14_r1.md",
+    "--constraint",
+    "read-only source",
+    "--non-goal",
+    "native admission"
+   ],
+   "exit": 2,
+   "verdict": "FAIL",
+   "code": "INTAKE_INVALID",
+   "note": "NEG: the construction baseline body trips the distributive-grammar refusal",
+   "out_bytes": 127,
+   "stderr_head": "",
+   "files": {},
+   "stdout_head": "{\n \"code\": \"INTAKE_INVALID\",\n \"message\": \"ambiguous compound: explicit subjects and predicates required\",\n \"verdict\": \"FAIL\"\n}\n"
+  },
+  {
+   "step": "intake",
+   "argv": [
+    "intake",
+    "--goal",
+    "compile a strict PI for the W1 construction round",
+    "--source",
+    "C:\\Projects\\Agent_Workspace\\FHS_NEXT_Workspace\\W1_R2_CONSTRUCTION_20261114\\sbx\\wp05\\source\\goal_card.md",
+    "--constraint",
+    "read-only source; isolation root sbx/wp05",
+    "--non-goal",
+    "native admission / release"
+   ],
+   "exit": 0,
+   "verdict": null,
+   "code": null,
+   "note": "POS: goal card carries the intent; the baseline body stays the cited authority",
+   "out_bytes": 13960,
+   "stderr_head": "",
+   "files": {},
+   "stdout_head": "{\n \"atoms\": [\n  {\n   \"acceptance_cue\": \"MUST: # W1 construction goal card (machine-intakable source)\",\n   \"axis\": \"knowledge\",\n   \"owner\": \"PIPD-EC\",\n   \"req_id\": \"REQ-d40528244ab12a2c217d\",\n   \"risk_guard\": {\n    \"failure_condition\": \"violate MUST: # W1 construction goal card (machine-intakable source)\",\n    \"negative_fixture\": \"fixtures/REQ-d40528244ab12a2c217d/negative\",\n    \"oracle\": {\n     \"expected\": \"required\",\n     \"id\": \"ORACLE-REQ-d40528244ab12a2c217d\",\n     \"predicate\": \"# W1 construc"
+  },
+  {
+   "step": "profile",
+   "argv": [
+    "profile",
+    "--profile",
+    "STANDARD"
+   ],
+   "exit": 0,
+   "verdict": null,
+   "code": null,
+   "note": "profile name enumeration",
+   "out_bytes": 333,
+   "stderr_head": "",
+   "files": {},
+   "stdout_head": "{\n \"artifact_depth\": \"L3_INTEGRATION_RUNTIME\",\n \"assurance\": [\n  \"deterministic_validator\",\n  \"negative_security\"\n ],\n \"axes\": [\n  \"intent\"\n ],\n \"canonical_truth\": \"single\",\n \"escalated\": false,\n \"escalation_reason\": null,\n \"profile\": \"STANDARD\",\n \"requested_profile\": \"STANDARD\",\n \"risk_assessment\": \"NOT_ASSESSED\",\n \"vetoes\": []\n}\n"
+  },
+  {
+   "step": "profile-path-NEG",
+   "argv": [
+    "profile",
+    "--profile",
+    "<WORKSPACE>/知識庫/實作相關DOC/FHS／FHS-MSC／SBL/FHS/FHS_NEXT/實作/W1/FHS_vNEXT_PLP_W1_實質正文_施工定案版_2026-11-14_r1.md"
+   ],
+   "exit": 2,
+   "verdict": "FAIL",
+   "code": "PROFILE_VETO",
+   "note": "NEG: a path is not a profile name",
+   "out_bytes": 201,
+   "stderr_head": "",
+   "files": {},
+   "stdout_head": "{\n \"code\": \"PROFILE_VETO\",\n \"message\": \"unknown profile '<WORKSPACE>/知識庫/實作相關DOC/FHS／FHS-MSC／SBL/FHS/FHS_NEXT/實作/W1/FHS_vNEXT_PLP_W1_實質正文_施工定案版_2026-11-14_r1.md'\",\n \"verdict\": \"FAIL\"\n}\n"
+  },
+  {
+   "step": "compile-pi",
+   "argv": [
+    "compile-pi",
+    "--intent",
+    "intent.card.json",
+    "--profile",
+    "STANDARD"
+   ],
+   "exit": 0,
+   "verdict": null,
+   "code": null,
+   "note": "strict PI",
+   "out_bytes": 26754,
+   "stderr_head": "",
+   "files": {},
+   "stdout_head": "{\n \"_profile_meta\": {\n  \"artifact_depth\": \"L3_INTEGRATION_RUNTIME\",\n  \"assurance\": [\n   \"deterministic_validator\",\n   \"negative_security\"\n  ],\n  \"axes\": [\n   \"intent\",\n   \"knowledge\",\n   \"trust_boundary\"\n  ],\n  \"canonical_truth\": \"single\",\n  \"escalated\": false,\n  \"escalation_reason\": null,\n  \"profile\": \"STANDARD\",\n  \"requested_profile\": \"STANDARD\",\n  \"risk_assessment\": \"NOT_ASSESSED\",\n  \"vetoes\": []\n },\n \"acceptance\": {\n  \"mode\": \"bound\",\n  \"oracle_source\": \"DOC-03 DOMAIN_ORACLES\"\n },\n \"content_"
+  },
+  {
+   "step": "compile-pi-determinism",
+   "argv": [
+    "compile-pi",
+    "--intent",
+    "intent.card.json",
+    "--profile",
+    "STANDARD"
+   ],
+   "exit": 0,
+   "verdict": null,
+   "code": null,
+   "note": "second compile of the same inputs",
+   "out_bytes": 26754,
+   "stderr_head": "",
+   "files": {},
+   "stdout_head": "{\n \"_profile_meta\": {\n  \"artifact_depth\": \"L3_INTEGRATION_RUNTIME\",\n  \"assurance\": [\n   \"deterministic_validator\",\n   \"negative_security\"\n  ],\n  \"axes\": [\n   \"intent\",\n   \"knowledge\",\n   \"trust_boundary\"\n  ],\n  \"canonical_truth\": \"single\",\n  \"escalated\": false,\n  \"escalation_reason\": null,\n  \"profile\": \"STANDARD\",\n  \"requested_profile\": \"STANDARD\",\n  \"risk_assessment\": \"NOT_ASSESSED\",\n  \"vetoes\": []\n },\n \"acceptance\": {\n  \"mode\": \"bound\",\n  \"oracle_source\": \"DOC-03 DOMAIN_ORACLES\"\n },\n \"content_"
+  },
+  {
+   "step": "bind-pd",
+   "argv": [
+    "bind-pd",
+    "--pi",
+    "pi.json",
+    "--repo-root",
+    "<WORKSPACE>/FHS/SBL"
+   ],
+   "exit": 0,
+   "verdict": null,
+   "code": null,
+   "note": "late binding against a real git RepoContext",
+   "out_bytes": 3819,
+   "stderr_head": "",
+   "files": {},
+   "stdout_head": "{\n \"RepoContext\": {\n  \"acl\": {\n   \"acl_state\": \"UNVERIFIED\",\n   \"files\": [],\n   \"observed_count\": 0,\n   \"platform\": \"nt\",\n   \"principals\": [],\n   \"raw_sha256\": null,\n   \"reason\": \"no file inside write_scope to observe (ACL not probed)\",\n   \"state\": \"UNVERIFIED\",\n   \"tool\": \"icacls\",\n   \"unverified_count\": 0\n  },\n  \"branch\": \"candidate/r14-ts15-kinds\",\n  \"caller_claims\": {\n   \"branch\": {\n    \"matches_host\": true,\n    \"value\": \"candidate/r14-ts15-kinds\",\n    \"verified\": true\n   },\n   \"currentness\""
+  },
+  {
+   "step": "bind-pd-nongit-NEG",
+   "argv": [
+    "bind-pd",
+    "--pi",
+    "pi.json",
+    "--repo-root",
+    "<WORKSPACE>/FHS_NEXT"
+   ],
+   "exit": 2,
+   "verdict": "FAIL",
+   "code": "REPO_CONTEXT_MISSING",
+   "note": "NEG N-06: non-git root",
+   "out_bytes": 299,
+   "stderr_head": "",
+   "files": {},
+   "stdout_head": "{\n \"code\": \"REPO_CONTEXT_MISSING\",\n \"message\": \"RepoContext root is not a resolved git toplevel: C:\\\\Projects\\\\Agent_Workspace\\\\FHS_NEXT (probe='filesystem'; git_root: git rev-parse --show-toplevel failed: fatal: not a git repository (or any of the parent directories): .git)\",\n \"verdict\": \"FAIL\"\n}\n"
+  },
+  {
+   "step": "bind-pd-fakehead-NEG",
+   "argv": [
+    "bind-pd",
+    "--pi",
+    "pi.json",
+    "--repo-root",
+    "<WORKSPACE>/FHS/SBL",
+    "--head",
+    "0000000000000000000000000000000000000000"
+   ],
+   "exit": 0,
+   "verdict": null,
+   "code": null,
+   "note": "NEG N-04: caller-asserted HEAD that is not the host HEAD",
+   "out_bytes": 3820,
+   "stderr_head": "",
+   "files": {},
+   "stdout_head": "{\n \"RepoContext\": {\n  \"acl\": {\n   \"acl_state\": \"UNVERIFIED\",\n   \"files\": [],\n   \"observed_count\": 0,\n   \"platform\": \"nt\",\n   \"principals\": [],\n   \"raw_sha256\": null,\n   \"reason\": \"no file inside write_scope to observe (ACL not probed)\",\n   \"state\": \"UNVERIFIED\",\n   \"tool\": \"icacls\",\n   \"unverified_count\": 0\n  },\n  \"branch\": \"candidate/r14-ts15-kinds\",\n  \"caller_claims\": {\n   \"branch\": {\n    \"matches_host\": true,\n    \"value\": \"candidate/r14-ts15-kinds\",\n    \"verified\": true\n   },\n   \"currentness\""
+  },
+  {
+   "step": "compile-ecp",
+   "argv": [
+    "compile-ecp",
+    "--pd",
+    "pd.json",
+    "--pi",
+    "pi.json"
+   ],
+   "exit": 0,
+   "verdict": null,
+   "code": null,
+   "note": "ECP derived without executing an effect",
+   "out_bytes": 576,
+   "stderr_head": "",
+   "files": {},
+   "stdout_head": "{\n \"content_hash\": \"7bac9ac66fcd95073e9e2cddaed29d05a37ece11774249fe591ab3e83ab5f94e\",\n \"effect_intent\": \"apply bounded edits inside the writable scope\",\n \"idempotency\": {\n  \"guarantee\": \"at_most_once\",\n  \"key\": \"IDEM-f2f8c65e16b543cc\"\n },\n \"permission\": {\n  \"scope\": \"src/**\",\n  \"token_required\": true\n },\n \"readback\": {\n  \"kind\": \"residue_scan\",\n  \"required\": true\n },\n \"retries\": {\n  \"backoff\": \"none\",\n  \"max\": 1\n },\n \"rollback\": {\n  \"pointer\": \"baseline_commit\",\n  \"required\": true\n },\n \"schema_"
+  },
+  {
+   "step": "compile-ecp-determinism",
+   "argv": [
+    "compile-ecp",
+    "--pd",
+    "pd.json",
+    "--pi",
+    "pi.json"
+   ],
+   "exit": 0,
+   "verdict": null,
+   "code": null,
+   "note": "second ECP compile",
+   "out_bytes": 576,
+   "stderr_head": "",
+   "files": {},
+   "stdout_head": "{\n \"content_hash\": \"7bac9ac66fcd95073e9e2cddaed29d05a37ece11774249fe591ab3e83ab5f94e\",\n \"effect_intent\": \"apply bounded edits inside the writable scope\",\n \"idempotency\": {\n  \"guarantee\": \"at_most_once\",\n  \"key\": \"IDEM-f2f8c65e16b543cc\"\n },\n \"permission\": {\n  \"scope\": \"src/**\",\n  \"token_required\": true\n },\n \"readback\": {\n  \"kind\": \"residue_scan\",\n  \"required\": true\n },\n \"retries\": {\n  \"backoff\": \"none\",\n  \"max\": 1\n },\n \"rollback\": {\n  \"pointer\": \"baseline_commit\",\n  \"required\": true\n },\n \"schema_"
+  },
+  {
+   "step": "compile-ecp-effect-NEG",
+   "argv": [
+    "compile-ecp",
+    "--pd",
+    "pd.json",
+    "--pi",
+    "pi.json",
+    "--effect-intent",
+    "effect_intent.json"
+   ],
+   "exit": 2,
+   "verdict": "FAIL",
+   "code": "GIT_PROBE_FAILED",
+   "note": "NEG N-07: effect ECP needs the canonical owner-ratified registry",
+   "out_bytes": 129,
+   "stderr_head": "",
+   "files": {},
+   "stdout_head": "{\n \"code\": \"GIT_PROBE_FAILED\",\n \"message\": \"canonical operation registry is not trusted: GIT_PROBE_FAILED\",\n \"verdict\": \"FAIL\"\n}\n"
+  },
+  {
+   "step": "compile-ecp-effect-noreg-NEG",
+   "argv": [
+    "compile-ecp",
+    "--pd",
+    "pd.json",
+    "--pi",
+    "pi.json",
+    "--effect-intent",
+    "effect_intent.json"
+   ],
+   "exit": 2,
+   "verdict": "FAIL",
+   "code": "GIT_PROBE_FAILED",
+   "note": "second shape of the same refusal (registry absent)",
+   "out_bytes": 129,
+   "stderr_head": "",
+   "files": {},
+   "stdout_head": "{\n \"code\": \"GIT_PROBE_FAILED\",\n \"message\": \"canonical operation registry is not trusted: GIT_PROBE_FAILED\",\n \"verdict\": \"FAIL\"\n}\n"
+  },
+  {
+   "step": "compile-tqaep-sod-NEG",
+   "argv": [
+    "compile-tqaep",
+    "--pi",
+    "pi.json",
+    "--ecp",
+    "ecp.json",
+    "--maker",
+    "w1-r2-commander",
+    "--checker",
+    "w1-r2-commander"
+   ],
+   "exit": 2,
+   "verdict": "FAIL",
+   "code": "TQ_SOD",
+   "note": "NEG N-08: maker == checker",
+   "out_bytes": 129,
+   "stderr_head": "",
+   "files": {},
+   "stdout_head": "{\n \"code\": \"TQ_SOD\",\n \"message\": \"maker must not be the independent checker (case/whitespace-insensitive)\",\n \"verdict\": \"FAIL\"\n}\n"
+  },
+  {
+   "step": "compile-tqaep-forged-NEG",
+   "argv": [
+    "compile-tqaep",
+    "--pi",
+    "pi.json",
+    "--ecp",
+    "ecp.json",
+    "--maker",
+    "w1-r2-commander",
+    "--checker",
+    "protected-checker-x",
+    "--checker-receipt",
+    "fake_receipt.json"
+   ],
+   "exit": 0,
+   "verdict": null,
+   "code": null,
+   "note": "NEG N-03: a forged receipt string must not lift the ceiling",
+   "out_bytes": 8244,
+   "stderr_head": "",
+   "files": {},
+   "stdout_head": "{\n \"acceptance\": [\n  {\n   \"case\": \"TQAEP_DESIGN_CANDIDATE\",\n   \"checker_execution_receipt\": \"fake_receipt.json\",\n   \"checker_identity\": \"protected-checker-x\",\n   \"claim_ceiling\": \"TQAEP_DESIGNED\",\n   \"design_time_status\": \"DISTINCT_CHECKER_IDENTITY_RECORDED\",\n   \"distinct\": true,\n   \"independent_acceptance\": \"NOT_GRANTED\",\n   \"independent_proof_requires\": \"S5_LIVE_RUNTIME_CHECKER\",\n   \"maker_identity\": \"w1-r2-commander\",\n   \"note\": \"design-time candidate only: the checker receipt is a recorded s"
+  },
+  {
+   "step": "compile-tqaep",
+   "argv": [
+    "compile-tqaep",
+    "--pi",
+    "pi.json",
+    "--ecp",
+    "ecp.json",
+    "--maker",
+    "w1-r2-commander",
+    "--checker",
+    "protected-checker-x"
+   ],
+   "exit": 2,
+   "verdict": "FAIL",
+   "code": "TQ_SOD",
+   "note": "TQAEP design artefact (ceiling designed, not granted)",
+   "out_bytes": 161,
+   "stderr_head": "",
+   "files": {},
+   "stdout_head": "{\n \"code\": \"TQ_SOD\",\n \"message\": \"an independent checker must supply a checker_execution_receipt; a maker cannot self-attest independence\",\n \"verdict\": \"FAIL\"\n}\n"
+  },
+  {
+   "step": "validate-bundle4",
+   "argv": [
+    "validate",
+    "--bundle",
+    "bundle4.json"
+   ],
+   "exit": 0,
+   "verdict": "PASS",
+   "code": null,
+   "note": "POS N-01: four-object bundle",
+   "out_bytes": 552,
+   "stderr_head": "",
+   "files": {},
+   "stdout_head": "{\n \"checked\": 3,\n \"closure\": \"FULL\",\n \"complete\": false,\n \"findings\": [],\n \"missing\": [\n  \"TQAEP\"\n ],\n \"required\": [\n  \"PI-PKG\",\n  \"PD-PKG\",\n  \"ECP\",\n  \"TQAEP\"\n ],\n \"schema_source\": {\n  \"mode\": \"SOURCE\",\n  \"path\": \"C:\\\\Projects\\\\Agent_Workspace\\\\FHS_NEXT\\\\SBL\\\\integrations\\\\pipd\\\\schemas\",\n  \"tried\": [\n   \"C:\\\\Projects\\\\Agent_Workspace\\\\FHS_NEXT_Workspace\\\\W1_R2_CONSTRUCTION_20261114\\\\sbx\\\\wp05\\\\chain\\\\schemas\",\n   \"C:\\\\Projects\\\\Agent_Workspace\\\\FHS_NEXT\\\\SBL\\\\integrations\\\\pipd\\\\schemas\"\n  ]\n "
+  },
+  {
+   "step": "validate-pi-as-bundle-NEG",
+   "argv": [
+    "validate",
+    "--bundle",
+    "pi.json"
+   ],
+   "exit": 2,
+   "verdict": "FAIL",
+   "code": "INPUT_SHAPE_INVALID",
+   "note": "NEG N-02: a bare PI is not a bundle",
+   "out_bytes": 245,
+   "stderr_head": "",
+   "files": {},
+   "stdout_head": "{\n \"code\": \"INPUT_SHAPE_INVALID\",\n \"message\": \"FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\\\\\Projects\\\\\\\\Agent_Workspace\\\\\\\\FHS_NEXT\\\\\\\\SBL\\\\\\\\integrations\\\\\\\\pipd\\\\\\\\schemas\\\\\\\\_profile_meta.schema.json'\",\n \"verdict\": \"FAIL\"\n}\n"
+  },
+  {
+   "step": "validate-bundle1-incomplete-NEG",
+   "argv": [
+    "validate",
+    "--bundle",
+    "bundle1.json"
+   ],
+   "exit": 0,
+   "verdict": "PASS",
+   "code": null,
+   "note": "NEG: complete=false is not PASS",
+   "out_bytes": 573,
+   "stderr_head": "",
+   "files": {},
+   "stdout_head": "{\n \"checked\": 1,\n \"closure\": \"FULL\",\n \"complete\": false,\n \"findings\": [],\n \"missing\": [\n  \"PD-PKG\",\n  \"ECP\",\n  \"TQAEP\"\n ],\n \"required\": [\n  \"PI-PKG\",\n  \"PD-PKG\",\n  \"ECP\",\n  \"TQAEP\"\n ],\n \"schema_source\": {\n  \"mode\": \"SOURCE\",\n  \"path\": \"C:\\\\Projects\\\\Agent_Workspace\\\\FHS_NEXT\\\\SBL\\\\integrations\\\\pipd\\\\schemas\",\n  \"tried\": [\n   \"C:\\\\Projects\\\\Agent_Workspace\\\\FHS_NEXT_Workspace\\\\W1_R2_CONSTRUCTION_20261114\\\\sbx\\\\wp05\\\\chain\\\\schemas\",\n   \"C:\\\\Projects\\\\Agent_Workspace\\\\FHS_NEXT\\\\SBL\\\\integrations\\"
+  },
+  {
+   "step": "doctor",
+   "argv": [
+    "doctor"
+   ],
+   "exit": 1,
+   "verdict": "FAIL",
+   "code": null,
+   "note": "workspace-local schema resolution; exit code recorded as-is",
+   "out_bytes": 598,
+   "stderr_head": "",
+   "files": {},
+   "stdout_head": "{\n \"families\": 19,\n \"findings\": [\n  \"workspace-local: registry not loadable at C:\\\\Projects\\\\Agent_Workspace\\\\FHS_NEXT_Workspace\\\\W1_R2_CONSTRUCTION_20261114\\\\sbx\\\\wp05\\\\chain\\\\schemas: registry missing: C:\\\\Projects\\\\Agent_Workspace\\\\FHS_NEXT_Workspace\\\\W1_R2_CONSTRUCTION_20261114\\\\sbx\\\\wp05\\\\chain\\\\schemas\\\\registry.json\"\n ],\n \"schema_source\": {\n  \"mode\": \"SOURCE\",\n  \"path\": \"C:\\\\Projects\\\\Agent_Workspace\\\\FHS_NEXT\\\\SBL\\\\integrations\\\\pipd\\\\schemas\",\n  \"tried\": [\n   \"C:\\\\Projects\\\\Agent_Worksp"
+  }
+ ],
+ "verbs_advertised": [
+  "init",
+  "intake",
+  "profile",
+  "compile-pi",
+  "bind-pd",
+  "compile-ecp",
+  "compile-tqaep",
+  "validate",
+  "doctor",
+  "project",
+  "export",
+  "diff",
+  "repair"
+ ],
+ "_parsed": {
+  "init": {
+   "contract_families": 19,
+   "created": [
+    "docs",
+    "schemas",
+    "src",
+    "tests",
+    "dist"
+   ],
+   "root": "C:\\Projects\\Agent_Workspace\\FHS_NEXT_Workspace\\W1_R2_CONSTRUCTION_20261114\\sbx\\wp05\\chain",
+   "schema_source": {
+    "mode": "SOURCE",
+    "path": "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\SBL\\integrations\\pipd\\schemas",
+    "tried": [
+     "C:\\Projects\\Agent_Workspace\\FHS_NEXT_Workspace\\W1_R2_CONSTRUCTION_20261114\\sbx\\wp05\\chain\\schemas",
+     "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\SBL\\integrations\\pipd\\schemas"
+    ]
+   },
+   "verdict": "PASS"
+  },
+  "intake-baseline-body-NEG": {
+   "code": "INTAKE_INVALID",
+   "message": "ambiguous compound: explicit subjects and predicates required",
+   "verdict": "FAIL"
+  },
+  "intake": {
+   "_keys": [
+    "atoms",
+    "constraints",
+    "content_hash",
+    "goal",
+    "non_goals",
+    "schema_version",
+    "sources",
+    "subject_id"
+   ]
+  },
+  "profile": {
+   "artifact_depth": "L3_INTEGRATION_RUNTIME",
+   "assurance": [
+    "deterministic_validator",
+    "negative_security"
+   ],
+   "axes": [
+    "intent"
+   ],
+   "canonical_truth": "single",
+   "escalated": false,
+   "escalation_reason": null,
+   "profile": "STANDARD",
+   "requested_profile": "STANDARD",
+   "risk_assessment": "NOT_ASSESSED",
+   "vetoes": []
+  },
+  "profile-path-NEG": {
+   "code": "PROFILE_VETO",
+   "message": "unknown profile '<WORKSPACE>/知識庫/實作相關DOC/FHS／FHS-MSC／SBL/FHS/FHS_NEXT/實作/W1/FHS_vNEXT_PLP_W1_實質正文_施工定案版_2026-11-14_r1.md'",
+   "verdict": "FAIL"
+  },
+  "compile-pi": {
+   "_keys": [
+    "_profile_meta",
+    "acceptance",
+    "content_hash",
+    "schema_version",
+    "stable_semantic_contract",
+    "subject_id",
+    "trace",
+    "version"
+   ]
+  },
+  "compile-pi-determinism": {
+   "_keys": [
+    "_profile_meta",
+    "acceptance",
+    "content_hash",
+    "schema_version",
+    "stable_semantic_contract",
+    "subject_id",
+    "trace",
+    "version"
+   ]
+  },
+  "bind-pd": {
+   "RepoContext": {
+    "acl": {
+     "acl_state": "UNVERIFIED",
+     "files": [],
+     "observed_count": 0,
+     "platform": "nt",
+     "principals": [],
+     "raw_sha256": null,
+     "reason": "no file inside write_scope to observe (ACL not probed)",
+     "state": "UNVERIFIED",
+     "tool": "icacls",
+     "unverified_count": 0
+    },
+    "branch": "candidate/r14-ts15-kinds",
+    "caller_claims": {
+     "branch": {
+      "matches_host": true,
+      "value": "candidate/r14-ts15-kinds",
+      "verified": true
+     },
+     "currentness": {
+      "matches_host": true,
+      "value": "FRESH",
+      "verified": true
+     },
+     "currentness_epoch": {
+      "matches_host": true,
+      "value": "1a6c012b7c5bad9fbe77c7a28d11e4c45a17ea78a437fe2fe5766fe82acfc504",
+      "verified": true
+     },
+     "dirty": {
+      "matches_host": true,
+      "value": true,
+      "verified": true
+     },
+     "head": {
+      "matches_host": true,
+      "value": "826ca066a1c2df2976c0d402018b79e1c79a444f",
+      "verified": true
+     },
+     "manifest_sha256": {
+      "matches_host": true,
+      "value": "3854b33487632e284d84137ea179934925d1914ff8373e0fcda7ad7ca752a337",
+      "verified": true
+     },
+     "tracked_files": {
+      "matches_host": true,
+      "value": 457,
+      "verified": true
+     },
+     "writable_scope": {
+      "matches_host": true,
+      "value": "src/**",
+      "verified": false
+     }
+    },
+    "capabilities": {
+     "acl": "UNVERIFIED",
+     "git_root": "PRESENT",
+     "index": "PRESENT",
+     "index_digest": "PRESENT",
+     "preimage_bytes": "OPTIONAL_CAPTURE",
+     "preimage_capture": "NOT_REQUESTED",
+     "staged_changes": "PRESENT",
+     "untracked": "PRESENT"
+    },
+    "currentness_epoch": "1a6c012b7c5bad9fbe77c7a28d11e4c45a17ea78a437fe2fe5766fe82acfc504",
+    "degraded": false,
+    "degraded_reason": null,
+    "dirty": true,
+    "dirty_tracked": [
+     " M contracts/compiled/thin-prompt.md",
+     " M evidence/compiler/acceptance.stdout.txt",
+     " M evidence/compiler/activation.stdout.txt",
+     " M evidence/compiler/lint.stdout.txt"
+    ],
+    "git_root": "C:\\Projects\\Agent_Workspace\\FHS\\SBL",
+    "git_root_resolved": true,
+    "head": "826ca066a1c2df2976c0d402018b79e1c79a444f",
+    "index_digest": "b2c2f101e421e0719d57e342b63eb7847fe0ddd752e3154380299b4e2e8311e5",
+    "manifest_sha256": "3854b33487632e284d84137ea179934925d1914ff8373e0fcda7ad7ca752a337",
+    "probe": "git",
+    "readiness": "PREDEV_READY",
+    "root": "C:\\Projects\\Agent_Workspace\\FHS\\SBL",
+    "staged_changes": [],
+    "tracked_files": 457,
+    "untracked": [
+     "PIPD/",
+     "SBL-install/",
+     "_sbl_r4/",
+     "_sbl_r9_candidate/",
+     "_sbl_release_011rc1/",
+     "_sbl_src_mirror/"
+    ],
+    "untracked_count": 6
+   },
+   "content_hash": "b65a2b6dedb71d7e83277d3214ab2fc5cf80225bf3ad6a5e6126fd37d73b1eec",
+   "currentness": {
+    "acl_state": "UNVERIFIED",
+    "claims_verified": [
+     "branch",
+     "currentness",
+     "currentness_epoch",
+     "dirty",
+     "head",
+     "manifest_sha256",
+     "tracked_files"
+    ],
+    "derived_from": "git-probes at bind time",
+    "epoch": "1a6c012b7c5bad9fbe77c7a28d11e4c45a17ea78a437fe2fe5766fe82acfc504",
+    "repo_identity_verified": true,
+    "state": "FRESH"
+   },
+   "evidence_completeness": {
+    "acl_state": "UNVERIFIED",
+    "capability_keys": [
+     "acl",
+     "git_root",
+     "index",
+     "index_digest",
+     "preimage_bytes",
+     "preimage_capture",
+     "staged_changes",
+     "untracked"
+    ],
+    "git_root_resolved": true,
+    "index_digest_present": true,
+    "probe_version": "repo_context.probe@2",
+    "untracked_observed": true
+   },
+   "late_bound_construction_binding": {
+    "binding_scope": "affected_only",
+    "bound_at": "PD",
+    "writable_scope": "src/**",
+    "writable_scope_check": {
+     "authorized": [
+      "src/**",
+      "tests/**",
+      "tools/**",
+      "fixtures/**"
+     ],
+     "findings": [],
+     "requested": [
+      "src/**"
+     ],
+     "subset": true,
+     "verdict": "PASS"
+    }
+   },
+   "schema_version": "PD-PKG@1",
+   "subject_id": "PD-b65a2b6dedb71d7e",
+   "version": "1"
+  },
+  "bind-pd-nongit-NEG": {
+   "code": "REPO_CONTEXT_MISSING",
+   "message": "RepoContext root is not a resolved git toplevel: C:\\Projects\\Agent_Workspace\\FHS_NEXT (probe='filesystem'; git_root: git rev-parse --show-toplevel failed: fatal: not a git repository (or any of the parent directories): .git)",
+   "verdict": "FAIL"
+  },
+  "bind-pd-fakehead-NEG": {
+   "RepoContext": {
+    "acl": {
+     "acl_state": "UNVERIFIED",
+     "files": [],
+     "observed_count": 0,
+     "platform": "nt",
+     "principals": [],
+     "raw_sha256": null,
+     "reason": "no file inside write_scope to observe (ACL not probed)",
+     "state": "UNVERIFIED",
+     "tool": "icacls",
+     "unverified_count": 0
+    },
+    "branch": "candidate/r14-ts15-kinds",
+    "caller_claims": {
+     "branch": {
+      "matches_host": true,
+      "value": "candidate/r14-ts15-kinds",
+      "verified": true
+     },
+     "currentness": {
+      "matches_host": true,
+      "value": "FRESH",
+      "verified": true
+     },
+     "currentness_epoch": {
+      "matches_host": true,
+      "value": "1a6c012b7c5bad9fbe77c7a28d11e4c45a17ea78a437fe2fe5766fe82acfc504",
+      "verified": true
+     },
+     "dirty": {
+      "matches_host": true,
+      "value": true,
+      "verified": true
+     },
+     "head": {
+      "matches_host": false,
+      "value": "0000000000000000000000000000000000000000",
+      "verified": true
+     },
+     "manifest_sha256": {
+      "matches_host": true,
+      "value": "3854b33487632e284d84137ea179934925d1914ff8373e0fcda7ad7ca752a337",
+      "verified": true
+     },
+     "tracked_files": {
+      "matches_host": true,
+      "value": 457,
+      "verified": true
+     },
+     "writable_scope": {
+      "matches_host": true,
+      "value": "src/**",
+      "verified": false
+     }
+    },
+    "capabilities": {
+     "acl": "UNVERIFIED",
+     "git_root": "PRESENT",
+     "index": "PRESENT",
+     "index_digest": "PRESENT",
+     "preimage_bytes": "OPTIONAL_CAPTURE",
+     "preimage_capture": "NOT_REQUESTED",
+     "staged_changes": "PRESENT",
+     "untracked": "PRESENT"
+    },
+    "currentness_epoch": "1a6c012b7c5bad9fbe77c7a28d11e4c45a17ea78a437fe2fe5766fe82acfc504",
+    "degraded": false,
+    "degraded_reason": null,
+    "dirty": true,
+    "dirty_tracked": [
+     " M contracts/compiled/thin-prompt.md",
+     " M evidence/compiler/acceptance.stdout.txt",
+     " M evidence/compiler/activation.stdout.txt",
+     " M evidence/compiler/lint.stdout.txt"
+    ],
+    "git_root": "C:\\Projects\\Agent_Workspace\\FHS\\SBL",
+    "git_root_resolved": true,
+    "head": "826ca066a1c2df2976c0d402018b79e1c79a444f",
+    "index_digest": "b2c2f101e421e0719d57e342b63eb7847fe0ddd752e3154380299b4e2e8311e5",
+    "manifest_sha256": "3854b33487632e284d84137ea179934925d1914ff8373e0fcda7ad7ca752a337",
+    "probe": "git",
+    "readiness": "PREDEV_READY",
+    "root": "C:\\Projects\\Agent_Workspace\\FHS\\SBL",
+    "staged_changes": [],
+    "tracked_files": 457,
+    "untracked": [
+     "PIPD/",
+     "SBL-install/",
+     "_sbl_r4/",
+     "_sbl_r9_candidate/",
+     "_sbl_release_011rc1/",
+     "_sbl_src_mirror/"
+    ],
+    "untracked_count": 6
+   },
+   "content_hash": "eefa8cff471c7aa17472905e2f5fb4aea09b26927840ebdbe9d610b9077fbfb7",
+   "currentness": {
+    "acl_state": "UNVERIFIED",
+    "claims_verified": [
+     "branch",
+     "currentness",
+     "currentness_epoch",
+     "dirty",
+     "head",
+     "manifest_sha256",
+     "tracked_files"
+    ],
+    "derived_from": "git-probes at bind time",
+    "epoch": "1a6c012b7c5bad9fbe77c7a28d11e4c45a17ea78a437fe2fe5766fe82acfc504",
+    "repo_identity_verified": true,
+    "state": "FRESH"
+   },
+   "evidence_completeness": {
+    "acl_state": "UNVERIFIED",
+    "capability_keys": [
+     "acl",
+     "git_root",
+     "index",
+     "index_digest",
+     "preimage_bytes",
+     "preimage_capture",
+     "staged_changes",
+     "untracked"
+    ],
+    "git_root_resolved": true,
+    "index_digest_present": true,
+    "probe_version": "repo_context.probe@2",
+    "untracked_observed": true
+   },
+   "late_bound_construction_binding": {
+    "binding_scope": "affected_only",
+    "bound_at": "PD",
+    "writable_scope": "src/**",
+    "writable_scope_check": {
+     "authorized": [
+      "src/**",
+      "tests/**",
+      "tools/**",
+      "fixtures/**"
+     ],
+     "findings": [],
+     "requested": [
+      "src/**"
+     ],
+     "subset": true,
+     "verdict": "PASS"
+    }
+   },
+   "schema_version": "PD-PKG@1",
+   "subject_id": "PD-eefa8cff471c7aa1",
+   "version": "1"
+  },
+  "compile-ecp": {
+   "content_hash": "7bac9ac66fcd95073e9e2cddaed29d05a37ece11774249fe591ab3e83ab5f94e",
+   "effect_intent": "apply bounded edits inside the writable scope",
+   "idempotency": {
+    "guarantee": "at_most_once",
+    "key": "IDEM-f2f8c65e16b543cc"
+   },
+   "permission": {
+    "scope": "src/**",
+    "token_required": true
+   },
+   "readback": {
+    "kind": "residue_scan",
+    "required": true
+   },
+   "retries": {
+    "backoff": "none",
+    "max": 1
+   },
+   "rollback": {
+    "pointer": "baseline_commit",
+    "required": true
+   },
+   "schema_version": "ECP@1",
+   "subject_id": "ECP-7bac9ac66fcd9507",
+   "version": "1"
+  },
+  "compile-ecp-determinism": {
+   "content_hash": "7bac9ac66fcd95073e9e2cddaed29d05a37ece11774249fe591ab3e83ab5f94e",
+   "effect_intent": "apply bounded edits inside the writable scope",
+   "idempotency": {
+    "guarantee": "at_most_once",
+    "key": "IDEM-f2f8c65e16b543cc"
+   },
+   "permission": {
+    "scope": "src/**",
+    "token_required": true
+   },
+   "readback": {
+    "kind": "residue_scan",
+    "required": true
+   },
+   "retries": {
+    "backoff": "none",
+    "max": 1
+   },
+   "rollback": {
+    "pointer": "baseline_commit",
+    "required": true
+   },
+   "schema_version": "ECP@1",
+   "subject_id": "ECP-7bac9ac66fcd9507",
+   "version": "1"
+  },
+  "compile-ecp-effect-NEG": {
+   "code": "GIT_PROBE_FAILED",
+   "message": "canonical operation registry is not trusted: GIT_PROBE_FAILED",
+   "verdict": "FAIL"
+  },
+  "compile-ecp-effect-noreg-NEG": {
+   "code": "GIT_PROBE_FAILED",
+   "message": "canonical operation registry is not trusted: GIT_PROBE_FAILED",
+   "verdict": "FAIL"
+  },
+  "compile-tqaep-sod-NEG": {
+   "code": "TQ_SOD",
+   "message": "maker must not be the independent checker (case/whitespace-insensitive)",
+   "verdict": "FAIL"
+  },
+  "compile-tqaep-forged-NEG": {
+   "_keys": [
+    "acceptance",
+    "content_hash",
+    "fixtures",
+    "oracles",
+    "requalification",
+    "schema_version",
+    "subject_id",
+    "tests",
+    "version"
+   ]
+  },
+  "compile-tqaep": {
+   "code": "TQ_SOD",
+   "message": "an independent checker must supply a checker_execution_receipt; a maker cannot self-attest independence",
+   "verdict": "FAIL"
+  },
+  "validate-bundle4": {
+   "checked": 3,
+   "closure": "FULL",
+   "complete": false,
+   "findings": [],
+   "missing": [
+    "TQAEP"
+   ],
+   "required": [
+    "PI-PKG",
+    "PD-PKG",
+    "ECP",
+    "TQAEP"
+   ],
+   "schema_source": {
+    "mode": "SOURCE",
+    "path": "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\SBL\\integrations\\pipd\\schemas",
+    "tried": [
+     "C:\\Projects\\Agent_Workspace\\FHS_NEXT_Workspace\\W1_R2_CONSTRUCTION_20261114\\sbx\\wp05\\chain\\schemas",
+     "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\SBL\\integrations\\pipd\\schemas"
+    ]
+   },
+   "scope": "PARTIAL_BUNDLE",
+   "verdict": "PASS"
+  },
+  "validate-pi-as-bundle-NEG": {
+   "code": "INPUT_SHAPE_INVALID",
+   "message": "FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Projects\\\\Agent_Workspace\\\\FHS_NEXT\\\\SBL\\\\integrations\\\\pipd\\\\schemas\\\\_profile_meta.schema.json'",
+   "verdict": "FAIL"
+  },
+  "validate-bundle1-incomplete-NEG": {
+   "checked": 1,
+   "closure": "FULL",
+   "complete": false,
+   "findings": [],
+   "missing": [
+    "PD-PKG",
+    "ECP",
+    "TQAEP"
+   ],
+   "required": [
+    "PI-PKG",
+    "PD-PKG",
+    "ECP",
+    "TQAEP"
+   ],
+   "schema_source": {
+    "mode": "SOURCE",
+    "path": "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\SBL\\integrations\\pipd\\schemas",
+    "tried": [
+     "C:\\Projects\\Agent_Workspace\\FHS_NEXT_Workspace\\W1_R2_CONSTRUCTION_20261114\\sbx\\wp05\\chain\\schemas",
+     "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\SBL\\integrations\\pipd\\schemas"
+    ]
+   },
+   "scope": "PARTIAL_BUNDLE",
+   "verdict": "PASS"
+  },
+  "doctor": {
+   "families": 19,
+   "findings": [
+    "workspace-local: registry not loadable at C:\\Projects\\Agent_Workspace\\FHS_NEXT_Workspace\\W1_R2_CONSTRUCTION_20261114\\sbx\\wp05\\chain\\schemas: registry missing: C:\\Projects\\Agent_Workspace\\FHS_NEXT_Workspace\\W1_R2_CONSTRUCTION_20261114\\sbx\\wp05\\chain\\schemas\\registry.json"
+   ],
+   "schema_source": {
+    "mode": "SOURCE",
+    "path": "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\SBL\\integrations\\pipd\\schemas",
+    "tried": [
+     "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\SBL\\integrations\\pipd\\schemas"
+    ]
+   },
+   "skill_drift": [],
+   "verdict": "FAIL"
+  }
+ },
+ "pi_deterministic": true,
+ "ecp_deterministic": true,
+ "tqaep_fields": {
+  "claim_ceiling": null,
+  "independent_acceptance": null,
+  "independent_proof_requires": null
+ },
+ "validate_bundle4": {
+  "checked": 3,
+  "closure": "FULL",
+  "complete": false,
+  "findings": [],
+  "missing": [
+   "TQAEP"
+  ],
+  "required": [
+   "PI-PKG",
+   "PD-PKG",
+   "ECP",
+   "TQAEP"
+  ],
+  "schema_source": {
+   "mode": "SOURCE",
+   "path": "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\SBL\\integrations\\pipd\\schemas",
+   "tried": [
+    "C:\\Projects\\Agent_Workspace\\FHS_NEXT_Workspace\\W1_R2_CONSTRUCTION_20261114\\sbx\\wp05\\chain\\schemas",
+    "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\SBL\\integrations\\pipd\\schemas"
+   ]
+  },
+  "scope": "PARTIAL_BUNDLE",
+  "verdict": "PASS"
+ },
+ "isolated_root_manifest": {
+  "bundle1.json": {
+   "bytes": 28860,
+   "sha256": "5f0df47a2101774d08c3dfbaa142d1285befa9f5bc37d84db7a8d0de41750d9b"
+  },
+  "bundle4.json": {
+   "bytes": 33455,
+   "sha256": "23af6b7f9b7c2149d30fc0c4d3e5dbc0edcdc9604880c613b614437f6b190a07"
+  },
+  "ecp.json": {
+   "bytes": 576,
+   "sha256": "364caf823370182b7c38119c14475cae23b3a714b17510680f16a9137885c514"
+  },
+  "effect_intent.json": {
+   "bytes": 110,
+   "sha256": "f358c0c2773fcaa1f0313ddcd82b41f2d9d06cabfd2aa4e78704dd0795adf5f9"
+  },
+  "fake_receipt.json": {
+   "bytes": 164,
+   "sha256": "3791801785924c95279faff6eee283e11a3b7d3b32342a4ad6c8b3b5d033df27"
+  },
+  "intent.card.json": {
+   "bytes": 15380,
+   "sha256": "be3d36f4ca8abc4f89432ce0e17eb229b89dd804a755a3186be87da82d702c92"
+  },
+  "pd.json": {
+   "bytes": 3819,
+   "sha256": "453ffa535cf4d18201153bf692ed7d30a326bcb0c745fc8ca07255b4ed9426af"
+  },
+  "pi.json": {
+   "bytes": 28070,
+   "sha256": "f73cd52d9ba00c6162ebbf6155e20a89b3a7542c8e2fc877e78193b80338921d"
+  },
+  "profile.json": {
+   "bytes": 333,
+   "sha256": "80fba1f4216a176e67492f57986aae5153a5a0a5fc1927f447015d7d84412a11"
+  }
+ }
+}

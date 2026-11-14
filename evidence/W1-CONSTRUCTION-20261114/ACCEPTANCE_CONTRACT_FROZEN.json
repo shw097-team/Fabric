@@ -1,0 +1,71 @@
+{
+ "schema": "FHS-W1-R2-ACCEPTANCE-CONTRACT-FROZEN/1",
+ "frozen_at": "2026-11-14",
+ "frozen_by": "W1_R2 commander, before the acceptance-challenge dispatch (a rubric written after the review is a rationalisation, not a contract)",
+ "subject": "FHS vNEXT PLP W1 施工輪 R2 — the 8 W1 work packages executed to the extent the control package allows",
+ "owner_goal": "完整實際執行 W1 施工定案版：可施工的 8 WP 要真的跑過並留下可重跑的命令與退出碼；不可施工的 effect 要停在其具名 FirstFail 與 HOLD，不得以文件代替效果，也不得把同模型 checker 的結論升格為獨立驗收。",
+ "criteria": [
+  {
+   "id": "F1",
+   "name": "來源身份可複現",
+   "measure": "P0_SOURCE_IDENTITY.json：KB body 與交付 body 的 sha256 相同；任務書 sha256 = 85c2bf8f…；r10 為不同位元組",
+   "pass_condition": "identity.kb_body_equals_delivery == true 且 identity.task_brief_sha_matches_baseline_claim == true 且 identity.repair_r10_is_distinct_revision == true",
+   "evidence": "out/P0_SOURCE_IDENTITY.json"
+  },
+  {
+   "id": "F2",
+   "name": "WP-05 編譯鏈與決定性",
+   "measure": "WP05_PIPD_CHAIN.json 的 pi_deterministic / ecp_deterministic；WP05_BUNDLE4.json 的四物件 bundle 四個數字",
+   "pass_condition": "pi_deterministic==true 且 ecp_deterministic==true 且 bundle4 的 checked==4、complete==true、closure=='FULL'、findings==[]，且至少 6 個 typed refusal 步驟（exit!=0 且 code 非空）",
+   "evidence": "out/WP05_PIPD_CHAIN.json, out/WP05_BUNDLE4.json"
+  },
+  {
+   "id": "F3",
+   "name": "WP-02 Fabric 入口：四項不變量與未知路由拒收",
+   "measure": "WP02_WP03_READONLY.json：fabric.invariants 四項、六條已宣告路由與一條未知路由的 exit、consumer ABI 是否存在",
+   "pass_condition": "四項 invariants 全 true 且六條路由 exit==0 且 unknown 路由 exit==3 且 consumer_abi.resolved 有明確值（null 亦可，但必須與 HOLD 記錄一致）",
+   "evidence": "out/WP02_WP03_READONLY.json, out/FABRIC_ENTRY_UNITTEST.txt"
+  },
+  {
+   "id": "F4",
+   "name": "WP-03 HGK 平面：五個 epoch 欄位＋guard 具名拒絕＋spine 14 案",
+   "measure": "WP02_WP03_READONLY.json 的 epoch_fields 與 guard_epoch41；WP03_HGK_SPINE.json 的 passed/total",
+   "pass_condition": "epoch_fields 六欄皆非 null 且 guard decision=='REFUSE' 且拒絕含 ERR_LANE_SOD_VIOLATION、ERR_LANE_NOT_ADMITTED 兩碼 且 spine passed==total==14",
+   "evidence": "out/WP02_WP03_READONLY.json, out/WP03_HGK_SPINE.json"
+  },
+  {
+   "id": "F5",
+   "name": "WP-20 矩陣與 ModeGate39 設計矩陣",
+   "measure": "WP20_MODEGATE39.json 的 counts 與 digest_verdict；宿主矩陣 JSON 的 12 格與每格 probe 數",
+   "pass_condition": "ModeGate39 rows==39、per_mode 三模式各 13、shadow_deny_ids == ['PREW3_SHADOW__G07','PREW3_SHADOW__G08','PREW3_SHADOW__G11','PREW3_SHADOW__G12']、digest_verdict 有明確值；宿主矩陣 cells==12 且每格 evidence 至少 1 筆",
+   "evidence": "out/WP20_MODEGATE39.json, out/WP20_MATRIX.json"
+  },
+  {
+   "id": "F6",
+   "name": "WP-17 485 五集合逐鍵清冊不得湊數",
+   "measure": "WP17_485_LEDGER.json：每集合 declared/named 與 digest、totals.delta、gaps 是否列出",
+   "pass_condition": "每個集合 named <= declared（不得補齊造假）；每列有 line 與 name；exact_key_sha256 每集合在場；totals 與 gaps 有明確值（delta 非 0 時 gaps 必須非空）",
+   "evidence": "out/WP17_485_LEDGER.json"
+  },
+  {
+   "id": "F7",
+   "name": "效果邊界：本輪不得執行 HOST_OP",
+   "measure": "本輪寫入清單（out/WRITE_MANIFEST.json）；是否有任何路徑落在 FHS_NEXT_Workspace 之外且非事先揭露",
+   "pass_condition": "所有本輪產物在 FHS_NEXT_Workspace 之下；唯二例外是已揭露的 relay 憑證新增（config.json.bak 備份在場）與 ops/lanes/bindings 的 lane binding；無任何 install/uninstall/native 准入動作",
+   "evidence": "out/WRITE_MANIFEST.json, out/CHANGE_MANIFEST.json"
+  },
+  {
+   "id": "F8",
+   "name": "車道收據誠實",
+   "measure": "LANE_EXEC_*.json 與 LANE_VERIFY*.json 的 ok / code / served arm / nonce 欄位",
+   "pass_condition": "每個收據的 served arm 都要能被具名（attempts[0].model == opencode-go/deepseek-v4.1-flash）；未達成的要保留其 typed code；不得把 timeout 或未回 nonce 的回合寫成已驗收",
+   "evidence": "out/LANE_EXEC_WP20_R3.json, out/LANE_EXEC_WP20_R4.json, out/LANE_VERIFY.json"
+  }
+ ],
+ "out_of_scope": [
+  "原生准入、Independent 驗收、Release（本輪無此權，維持 NOT_RUN）",
+  "13 主責章 body 的原域接受（H-ORIGINAL-ACK）",
+  "485 全鍵由原 Tech Registry 的ratification（本輪只交 L2 具名列）",
+  "新 FHS_vNEXT Repo 建立（H-REPO-CREATE）"
+ ]
+}

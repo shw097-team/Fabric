@@ -1,0 +1,129 @@
+{
+ "schema": "FHS.W1.FhsOriginalAck.W1R2/2",
+ "label": "FHS_ORIGINAL_ACK(W1_R2)",
+ "count": "7/7",
+ "subject": {
+  "baseline": "FHS_vNEXT_PLP_W1_實質正文_施工定案版_2026-11-14_r1.md",
+  "baseline_sha256": "5cb9ebc5a768ecdfde0441a327ee22b501b6b0a9a615feb81fbffef5c356701a",
+  "amended": "deliverables/FHS_vNEXT_PLP_W1_實質正文_施工定案版_2026-11-14_r2_AMENDED.md",
+  "round": "W1_R2_CONSTRUCTION_20261114",
+  "work_id": "W1R2-b840e9285cbc407d"
+ },
+ "components": {
+  "reader_receipts": [
+   {
+    "id": "R1",
+    "kind": "original_reader_ack",
+    "state": "SIGNED",
+    "receipt": "out/READER_ACK_R1.signed.json",
+    "body": "out/READER_ACK_R1.body.json",
+    "body_sha256": "da61511b1c5c152d14581d23615fa34dbd069bead86f2aaa9ac121a930cef5a4",
+    "payload_sha256": "da61511b1c5c152d14581d23615fa34dbd069bead86f2aaa9ac121a930cef5a4",
+    "signature_verified": true,
+    "window_id": "WIN-6397278ec28a"
+   },
+   {
+    "id": "R2",
+    "kind": "original_reader_ack",
+    "state": "SIGNED",
+    "receipt": "out/READER_ACK_R2.signed.json",
+    "body": "out/READER_ACK_R2.body.json",
+    "body_sha256": "e81454b3d059bfe6e527091919bd53887c0cede1bb9e546a1b00d92c1bb30fb1",
+    "payload_sha256": "e81454b3d059bfe6e527091919bd53887c0cede1bb9e546a1b00d92c1bb30fb1",
+    "signature_verified": true,
+    "window_id": "WIN-6397278ec28a"
+   },
+   {
+    "id": "R3",
+    "kind": "original_reader_ack",
+    "state": "SIGNED",
+    "receipt": "out/READER_ACK_R3.signed.json",
+    "body": "out/READER_ACK_R3.body.json",
+    "body_sha256": "69ee336c571349e3a77cd4cec2dca8d010400f2c9737cdde93d485e7a732dafa",
+    "payload_sha256": "69ee336c571349e3a77cd4cec2dca8d010400f2c9737cdde93d485e7a732dafa",
+    "signature_verified": true,
+    "window_id": "WIN-6397278ec28a"
+   },
+   {
+    "id": "R4",
+    "kind": "original_reader_ack",
+    "state": "SIGNED",
+    "receipt": "out/READER_ACK_R4.signed.json",
+    "body": "out/READER_ACK_R4.body.json",
+    "body_sha256": "2301d67b438067478e7c7f4a1789587857be1026d70ca3e3ac98c3137af28f58",
+    "payload_sha256": "2301d67b438067478e7c7f4a1789587857be1026d70ca3e3ac98c3137af28f58",
+    "signature_verified": true,
+    "window_id": "WIN-6397278ec28a"
+   },
+   {
+    "id": "R5",
+    "kind": "original_reader_ack",
+    "state": "SIGNED",
+    "receipt": "out/READER_ACK_R5.signed.json",
+    "body": "out/READER_ACK_R5.body.json",
+    "body_sha256": "4d6852633cb84a7c4185f6ff26432b3f9c5b1372156199f1e53a17eecf7c2813",
+    "payload_sha256": "4d6852633cb84a7c4185f6ff26432b3f9c5b1372156199f1e53a17eecf7c2813",
+    "signature_verified": true,
+    "window_id": "WIN-6397278ec28a"
+   },
+   {
+    "id": "R6",
+    "kind": "original_reader_ack",
+    "state": "SIGNED",
+    "receipt": "out/READER_ACK_R6.signed.json",
+    "body": "out/READER_ACK_R6.body.json",
+    "body_sha256": "5dbcb5712282d6faa0851d87b076ac72fb1c2e5eaf48d08590540465130a86e7",
+    "payload_sha256": "5dbcb5712282d6faa0851d87b076ac72fb1c2e5eaf48d08590540465130a86e7",
+    "signature_verified": true,
+    "window_id": "WIN-6397278ec28a"
+   }
+  ],
+  "owner_semantic_accept": {
+   "id": "OWNER",
+   "kind": "owner_semantic_accept",
+   "state": "SIGNED",
+   "receipt": "out/OWNER_SEMANTIC_ACCEPT_W1R2.signed.json",
+   "payload_sha256": "2b6a9ad6671c18a6bf529926c77ae57bd27afa7c1dca6e403f594cf319e52b23",
+   "signature_verified": true,
+   "window_id": "WIN-22058723e313"
+  }
+ },
+ "windows": [
+  {
+   "window_id": "WIN-22058723e313",
+   "scope": [
+    "owner_semantic_accept"
+   ],
+   "ops_used": 1,
+   "task": "FHS-W1-R2-20261114"
+  },
+  {
+   "window_id": "WIN-6397278ec28a",
+   "scope": [
+    "original_reader_ack",
+    "owner_semantic_accept"
+   ],
+   "ops_used": 6,
+   "task": "FHS-W1-R2-READERACK-20261114",
+   "refusals": 0
+  }
+ ],
+ "separation_level": "PROCESS_LANE_EVIDENCE_SEPARATION_ONLY",
+ "model_sharing": "owner-specified (OD-W1R2-1); not a gap",
+ "supersedes": {
+  "file": "out/W1_ORIGINAL_ACK_PARTIAL.json",
+  "count": "1/7",
+  "why": "owner ruled (OD-W1R2-9) that the six reader receipts are to be signed by the owner; they now are, and the earlier partial record is kept as history"
+ },
+ "not_claimed": [
+  "INDEPENDENT_PASS",
+  "NATIVE_SIGNED",
+  "RELEASE_GRANTED",
+  "任何 host effect 已執行"
+ ],
+ "compare_w0": {
+  "instrument": "_references/FHS_ORIGINAL_ACK.readonly.json",
+  "count": "6/6",
+  "note": "same instrument, W0 subject; W1 now carries 7 components because this round's report is a separate subject from the six reader slices"
+ }
+}

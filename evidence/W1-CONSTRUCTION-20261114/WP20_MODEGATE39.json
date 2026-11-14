@@ -1,0 +1,476 @@
+{
+ "schema": "FHS-W1-R2-WP20-MODEGATE39/1",
+ "source": {
+  "path": "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\FHS／FHS-MSC／SBL\\FHS\\FHS_NEXT\\藍圖\\FHS_vNEXT_PLP_全波次藍圖.md",
+  "sha256": "a6077aa208aa9cbcb2d37572e13be73de14125cd3f5881b3fa6320e34814c39b",
+  "section_line": 3747
+ },
+ "counts": {
+  "rows": 39,
+  "declared": 39,
+  "per_mode": {
+   "STANDALONE": 13,
+   "PREW3_SHADOW": 13,
+   "SWOF_CONNECTED": 13
+  },
+  "gates": 13,
+  "per_gate_min": 3,
+  "per_gate_max": 3,
+  "policies": {
+   "R": 14,
+   "C": 17,
+   "N": 4,
+   "F": 4
+  }
+ },
+ "declared_set_sha256": "36495506128623dbb2a95fe48e85e4dc252688b11450d9c81efbf264816bde90",
+ "digest_methods": {
+  "sorted_join_newline": "43aa844dc104fccbf6ab4dd9ee5fdde6d53d441042727144d3288ee6ed82505c",
+  "sorted_join_comma": "0ed1b9bffb47ed12872ee22482890f09d024f4986e4222a302deb70750fa2934",
+  "sorted_join_pipe": "fe15a71e0ec805dbd028c4a7e969181a95efde8138b2c49ca44fef324fce547b",
+  "sorted_join_empty": "f1f3508b444532def920c4c986ac0cd30ab337279157b9483a9af47fbbdb610d",
+  "source_order_join_newline": "75fcc301d1dd3e7fc7af3ec4c1c4752d931b9a1342fbcdc2fae2ba9539fe7c66",
+  "source_order_join_pipe": "93d965c0f3ca1f4a6bea5ff9b103223234fb7437a0eb0f7820b50218698c590d",
+  "json_sorted_compact": "368871d0beb9dfe0ce470f6597c2a4ce0fda5a62498cb591fcd213efbd0e99f3",
+  "json_source_compact": "6275ae36de722ec6e718a2b5df784487384ef72b1b25e64849c51711e266d9fc"
+ },
+ "digest_match_method": null,
+ "digest_verdict": "DECLARED_SHA_NOT_REPRODUCED",
+ "shadow_deny_ids": [
+  "PREW3_SHADOW__G07",
+  "PREW3_SHADOW__G08",
+  "PREW3_SHADOW__G11",
+  "PREW3_SHADOW__G12"
+ ],
+ "rows": [
+  {
+   "exact_id": "STANDALONE__G00",
+   "alias": "G00×STANDALONE",
+   "policy": "R",
+   "mode_local_trigger": "TRUE (source-bound; enforce even if no action requested)",
+   "design_ref": "WP-FHS-20／E34,E35／W1",
+   "deliverable": "W1_定案:ModeGate39:STANDALONE__G00",
+   "native_owner": "PIPD Authority Source Owner",
+   "design_ack": "HOLD_NOT_OBSERVED",
+   "line": 3765
+  },
+  {
+   "exact_id": "STANDALONE__G01",
+   "alias": "G01×STANDALONE",
+   "policy": "R",
+   "mode_local_trigger": "TRUE (source-bound; enforce even if no action requested)",
+   "design_ref": "WP-FHS-20／E34,E35／W1",
+   "deliverable": "W1_定案:ModeGate39:STANDALONE__G01",
+   "native_owner": "PIPD Canonical PI/PD Owner",
+   "design_ack": "HOLD_NOT_OBSERVED",
+   "line": 3766
+  },
+  {
+   "exact_id": "STANDALONE__G02",
+   "alias": "G02×STANDALONE",
+   "policy": "C",
+   "mode_local_trigger": "host_claimed AND sp_host=standalone",
+   "design_ref": "WP-FHS-20／E34,E35／W1",
+   "deliverable": "W1_定案:ModeGate39:STANDALONE__G02",
+   "native_owner": "SBL Host / SP Owner",
+   "design_ack": "HOLD_NOT_OBSERVED",
+   "line": 3767
+  },
+  {
+   "exact_id": "STANDALONE__G03",
+   "alias": "G03×STANDALONE",
+   "policy": "C",
+   "mode_local_trigger": "local_commander_native_compile_requested",
+   "design_ref": "WP-FHS-20／E34,E35／W1",
+   "deliverable": "W1_定案:ModeGate39:STANDALONE__G03",
+   "native_owner": "Commander / CAPC Native Owner",
+   "design_ack": "HOLD_NOT_OBSERVED",
+   "line": 3768
+  },
+  {
+   "exact_id": "STANDALONE__G04",
+   "alias": "G04×STANDALONE",
+   "policy": "N",
+   "mode_local_trigger": "NOT_APPLICABLE_OWNER_REASON_REQUIRED",
+   "design_ref": "WP-FHS-20／E34,E35／W1",
+   "deliverable": "W1_定案:ModeGate39:STANDALONE__G04",
+   "native_owner": "HGK RepoContext/Receiver Owner",
+   "design_ack": "HOLD_NOT_OBSERVED",
+   "line": 3769
+  },
+  {
+   "exact_id": "STANDALONE__G05",
+   "alias": "G05×STANDALONE",
+   "policy": "C",
+   "mode_local_trigger": "independent_assurance_claimed",
+   "design_ref": "WP-FHS-20／E34,E35／W1",
+   "deliverable": "W1_定案:ModeGate39:STANDALONE__G05",
+   "native_owner": "Independent Qualified Checker Owner",
+   "design_ack": "HOLD_NOT_OBSERVED",
+   "line": 3770
+  },
+  {
+   "exact_id": "STANDALONE__G06",
+   "alias": "G06×STANDALONE",
+   "policy": "R",
+   "mode_local_trigger": "TRUE (source-bound; enforce even if no action requested)",
+   "design_ref": "WP-FHS-20／E34,E35／W1",
+   "deliverable": "W1_定案:ModeGate39:STANDALONE__G06",
+   "native_owner": "Runner and Evidence Native Owner",
+   "design_ack": "HOLD_NOT_OBSERVED",
+   "line": 3771
+  },
+  {
+   "exact_id": "STANDALONE__G07",
+   "alias": "G07×STANDALONE",
+   "policy": "C",
+   "mode_local_trigger": "local_effect_requested",
+   "design_ref": "WP-FHS-20／E34,E35／W1",
+   "deliverable": "W1_定案:ModeGate39:STANDALONE__G07",
+   "native_owner": "HGK/Fabric Native Permission Owner",
+   "design_ack": "HOLD_NOT_OBSERVED",
+   "line": 3772
+  },
+  {
+   "exact_id": "STANDALONE__G08",
+   "alias": "G08×STANDALONE",
+   "policy": "C",
+   "mode_local_trigger": "local_repair_authorized",
+   "design_ref": "WP-FHS-20／E34,E35／W1",
+   "deliverable": "W1_定案:ModeGate39:STANDALONE__G08",
+   "native_owner": "Commander / HGK Repair Owner",
+   "design_ack": "HOLD_NOT_OBSERVED",
+   "line": 3773
+  },
+  {
+   "exact_id": "STANDALONE__G09",
+   "alias": "G09×STANDALONE",
+   "policy": "N",
+   "mode_local_trigger": "NOT_APPLICABLE_OWNER_REASON_REQUIRED",
+   "design_ref": "WP-FHS-20／E34,E35／W1",
+   "deliverable": "W1_定案:ModeGate39:STANDALONE__G09",
+   "native_owner": "SWOF W2 Readset / Wave Owner",
+   "design_ack": "HOLD_NOT_OBSERVED",
+   "line": 3774
+  },
+  {
+   "exact_id": "STANDALONE__G10",
+   "alias": "G10×STANDALONE",
+   "policy": "C",
+   "mode_local_trigger": "local_dogfood_claimed",
+   "design_ref": "WP-FHS-20／E34,E35／W1",
+   "deliverable": "W1_定案:ModeGate39:STANDALONE__G10",
+   "native_owner": "Product Evolution / Evaluation Owner",
+   "design_ack": "HOLD_NOT_OBSERVED",
+   "line": 3775
+  },
+  {
+   "exact_id": "STANDALONE__G11",
+   "alias": "G11×STANDALONE",
+   "policy": "C",
+   "mode_local_trigger": "standalone_oss_distribution_requested",
+   "design_ref": "WP-FHS-20／E34,E35／W1",
+   "deliverable": "W1_定案:ModeGate39:STANDALONE__G11",
+   "native_owner": "OSS Release / Security Owner",
+   "design_ack": "HOLD_NOT_OBSERVED",
+   "line": 3776
+  },
+  {
+   "exact_id": "STANDALONE__G12",
+   "alias": "G12×STANDALONE",
+   "policy": "N",
+   "mode_local_trigger": "NOT_APPLICABLE_OWNER_REASON_REQUIRED",
+   "design_ref": "WP-FHS-20／E34,E35／W1",
+   "deliverable": "W1_定案:ModeGate39:STANDALONE__G12",
+   "native_owner": "SWOF Native W3 Wave Owner",
+   "design_ack": "HOLD_NOT_OBSERVED",
+   "line": 3777
+  },
+  {
+   "exact_id": "PREW3_SHADOW__G00",
+   "alias": "G00×PREW3_SHADOW",
+   "policy": "R",
+   "mode_local_trigger": "TRUE (source-bound; enforce even if no action requested)",
+   "design_ref": "WP-FHS-20／E34,E35／W1",
+   "deliverable": "W1_定案:ModeGate39:PREW3_SHADOW__G00",
+   "native_owner": "PIPD Authority Source Owner",
+   "design_ack": "HOLD_NOT_OBSERVED",
+   "line": 3778
+  },
+  {
+   "exact_id": "PREW3_SHADOW__G01",
+   "alias": "G01×PREW3_SHADOW",
+   "policy": "R",
+   "mode_local_trigger": "TRUE (source-bound; enforce even if no action requested)",
+   "design_ref": "WP-FHS-20／E34,E35／W1",
+   "deliverable": "W1_定案:ModeGate39:PREW3_SHADOW__G01",
+   "native_owner": "PIPD Canonical PI/PD Owner",
+   "design_ack": "HOLD_NOT_OBSERVED",
+   "line": 3779
+  },
+  {
+   "exact_id": "PREW3_SHADOW__G02",
+   "alias": "G02×PREW3_SHADOW",
+   "policy": "C",
+   "mode_local_trigger": "shadow_host_effective_load_claimed",
+   "design_ref": "WP-FHS-20／E34,E35／W1",
+   "deliverable": "W1_定案:ModeGate39:PREW3_SHADOW__G02",
+   "native_owner": "SBL Host / SP Owner",
+   "design_ack": "HOLD_NOT_OBSERVED",
+   "line": 3780
+  },
+  {
+   "exact_id": "PREW3_SHADOW__G03",
+   "alias": "G03×PREW3_SHADOW",
+   "policy": "C",
+   "mode_local_trigger": "shadow_contract_compile_claimed",
+   "design_ref": "WP-FHS-20／E34,E35／W1",
+   "deliverable": "W1_定案:ModeGate39:PREW3_SHADOW__G03",
+   "native_owner": "Commander / CAPC Native Owner",
+   "design_ack": "HOLD_NOT_OBSERVED",
+   "line": 3781
+  },
+  {
+   "exact_id": "PREW3_SHADOW__G04",
+   "alias": "G04×PREW3_SHADOW",
+   "policy": "N",
+   "mode_local_trigger": "NOT_APPLICABLE_OWNER_REASON_REQUIRED",
+   "design_ref": "WP-FHS-20／E34,E35／W1",
+   "deliverable": "W1_定案:ModeGate39:PREW3_SHADOW__G04",
+   "native_owner": "HGK RepoContext/Receiver Owner",
+   "design_ack": "HOLD_NOT_OBSERVED",
+   "line": 3782
+  },
+  {
+   "exact_id": "PREW3_SHADOW__G05",
+   "alias": "G05×PREW3_SHADOW",
+   "policy": "C",
+   "mode_local_trigger": "independent_shadow_analysis_claimed",
+   "design_ref": "WP-FHS-20／E34,E35／W1",
+   "deliverable": "W1_定案:ModeGate39:PREW3_SHADOW__G05",
+   "native_owner": "Independent Qualified Checker Owner",
+   "design_ack": "HOLD_NOT_OBSERVED",
+   "line": 3783
+  },
+  {
+   "exact_id": "PREW3_SHADOW__G06",
+   "alias": "G06×PREW3_SHADOW",
+   "policy": "C",
+   "mode_local_trigger": "read_only_runner_evidence_replayed",
+   "design_ref": "WP-FHS-20／E34,E35／W1",
+   "deliverable": "W1_定案:ModeGate39:PREW3_SHADOW__G06",
+   "native_owner": "Runner and Evidence Native Owner",
+   "design_ack": "HOLD_NOT_OBSERVED",
+   "line": 3784
+  },
+  {
+   "exact_id": "PREW3_SHADOW__G07",
+   "alias": "G07×PREW3_SHADOW",
+   "policy": "F",
+   "mode_local_trigger": "DENY_ON_ANY_EFFECT_INTENT",
+   "design_ref": "WP-FHS-20／E34,E35／W1",
+   "deliverable": "W1_定案:ModeGate39:PREW3_SHADOW__G07",
+   "native_owner": "HGK/Fabric Native Permission Owner",
+   "design_ack": "HOLD_NOT_OBSERVED",
+   "line": 3785
+  },
+  {
+   "exact_id": "PREW3_SHADOW__G08",
+   "alias": "G08×PREW3_SHADOW",
+   "policy": "F",
+   "mode_local_trigger": "DENY_ON_ANY_EFFECT_INTENT",
+   "design_ref": "WP-FHS-20／E34,E35／W1",
+   "deliverable": "W1_定案:ModeGate39:PREW3_SHADOW__G08",
+   "native_owner": "Commander / HGK Repair Owner",
+   "design_ack": "HOLD_NOT_OBSERVED",
+   "line": 3786
+  },
+  {
+   "exact_id": "PREW3_SHADOW__G09",
+   "alias": "G09×PREW3_SHADOW",
+   "policy": "R",
+   "mode_local_trigger": "TRUE (source-bound; enforce even if no action requested)",
+   "design_ref": "WP-FHS-20／E34,E35／W1",
+   "deliverable": "W1_定案:ModeGate39:PREW3_SHADOW__G09",
+   "native_owner": "SWOF W2 Readset / Wave Owner",
+   "design_ack": "HOLD_NOT_OBSERVED",
+   "line": 3787
+  },
+  {
+   "exact_id": "PREW3_SHADOW__G10",
+   "alias": "G10×PREW3_SHADOW",
+   "policy": "C",
+   "mode_local_trigger": "read_only_holdout_analysis_requested",
+   "design_ref": "WP-FHS-20／E34,E35／W1",
+   "deliverable": "W1_定案:ModeGate39:PREW3_SHADOW__G10",
+   "native_owner": "Product Evolution / Evaluation Owner",
+   "design_ack": "HOLD_NOT_OBSERVED",
+   "line": 3788
+  },
+  {
+   "exact_id": "PREW3_SHADOW__G11",
+   "alias": "G11×PREW3_SHADOW",
+   "policy": "F",
+   "mode_local_trigger": "DENY_ON_ANY_EFFECT_INTENT",
+   "design_ref": "WP-FHS-20／E34,E35／W1",
+   "deliverable": "W1_定案:ModeGate39:PREW3_SHADOW__G11",
+   "native_owner": "OSS Release / Security Owner",
+   "design_ack": "HOLD_NOT_OBSERVED",
+   "line": 3789
+  },
+  {
+   "exact_id": "PREW3_SHADOW__G12",
+   "alias": "G12×PREW3_SHADOW",
+   "policy": "F",
+   "mode_local_trigger": "DENY_ON_ANY_EFFECT_INTENT",
+   "design_ref": "WP-FHS-20／E34,E35／W1",
+   "deliverable": "W1_定案:ModeGate39:PREW3_SHADOW__G12",
+   "native_owner": "SWOF Native W3 Wave Owner",
+   "design_ack": "HOLD_NOT_OBSERVED",
+   "line": 3790
+  },
+  {
+   "exact_id": "SWOF_CONNECTED__G00",
+   "alias": "G00×SWOF_CONNECTED",
+   "policy": "R",
+   "mode_local_trigger": "TRUE (source-bound; enforce even if no action requested)",
+   "design_ref": "WP-FHS-20／E34,E35／W1",
+   "deliverable": "W1_定案:ModeGate39:SWOF_CONNECTED__G00",
+   "native_owner": "PIPD Authority Source Owner",
+   "design_ack": "HOLD_NOT_OBSERVED",
+   "line": 3791
+  },
+  {
+   "exact_id": "SWOF_CONNECTED__G01",
+   "alias": "G01×SWOF_CONNECTED",
+   "policy": "R",
+   "mode_local_trigger": "TRUE (source-bound; enforce even if no action requested)",
+   "design_ref": "WP-FHS-20／E34,E35／W1",
+   "deliverable": "W1_定案:ModeGate39:SWOF_CONNECTED__G01",
+   "native_owner": "PIPD Canonical PI/PD Owner",
+   "design_ack": "HOLD_NOT_OBSERVED",
+   "line": 3792
+  },
+  {
+   "exact_id": "SWOF_CONNECTED__G02",
+   "alias": "G02×SWOF_CONNECTED",
+   "policy": "C",
+   "mode_local_trigger": "connected_sp_host_claimed",
+   "design_ref": "WP-FHS-20／E34,E35／W1",
+   "deliverable": "W1_定案:ModeGate39:SWOF_CONNECTED__G02",
+   "native_owner": "SBL Host / SP Owner",
+   "design_ack": "HOLD_NOT_OBSERVED",
+   "line": 3793
+  },
+  {
+   "exact_id": "SWOF_CONNECTED__G03",
+   "alias": "G03×SWOF_CONNECTED",
+   "policy": "R",
+   "mode_local_trigger": "TRUE (source-bound; enforce even if no action requested)",
+   "design_ref": "WP-FHS-20／E34,E35／W1",
+   "deliverable": "W1_定案:ModeGate39:SWOF_CONNECTED__G03",
+   "native_owner": "Commander / CAPC Native Owner",
+   "design_ack": "HOLD_NOT_OBSERVED",
+   "line": 3794
+  },
+  {
+   "exact_id": "SWOF_CONNECTED__G04",
+   "alias": "G04×SWOF_CONNECTED",
+   "policy": "R",
+   "mode_local_trigger": "TRUE (source-bound; enforce even if no action requested)",
+   "design_ref": "WP-FHS-20／E34,E35／W1",
+   "deliverable": "W1_定案:ModeGate39:SWOF_CONNECTED__G04",
+   "native_owner": "HGK RepoContext/Receiver Owner",
+   "design_ack": "HOLD_NOT_OBSERVED",
+   "line": 3795
+  },
+  {
+   "exact_id": "SWOF_CONNECTED__G05",
+   "alias": "G05×SWOF_CONNECTED",
+   "policy": "R",
+   "mode_local_trigger": "TRUE (source-bound; enforce even if no action requested)",
+   "design_ref": "WP-FHS-20／E34,E35／W1",
+   "deliverable": "W1_定案:ModeGate39:SWOF_CONNECTED__G05",
+   "native_owner": "Independent Qualified Checker Owner",
+   "design_ack": "HOLD_NOT_OBSERVED",
+   "line": 3796
+  },
+  {
+   "exact_id": "SWOF_CONNECTED__G06",
+   "alias": "G06×SWOF_CONNECTED",
+   "policy": "R",
+   "mode_local_trigger": "TRUE (source-bound; enforce even if no action requested)",
+   "design_ref": "WP-FHS-20／E34,E35／W1",
+   "deliverable": "W1_定案:ModeGate39:SWOF_CONNECTED__G06",
+   "native_owner": "Runner and Evidence Native Owner",
+   "design_ack": "HOLD_NOT_OBSERVED",
+   "line": 3797
+  },
+  {
+   "exact_id": "SWOF_CONNECTED__G07",
+   "alias": "G07×SWOF_CONNECTED",
+   "policy": "R",
+   "mode_local_trigger": "TRUE (source-bound; enforce even if no action requested)",
+   "design_ref": "WP-FHS-20／E34,E35／W1",
+   "deliverable": "W1_定案:ModeGate39:SWOF_CONNECTED__G07",
+   "native_owner": "HGK/Fabric Native Permission Owner",
+   "design_ack": "HOLD_NOT_OBSERVED",
+   "line": 3798
+  },
+  {
+   "exact_id": "SWOF_CONNECTED__G08",
+   "alias": "G08×SWOF_CONNECTED",
+   "policy": "C",
+   "mode_local_trigger": "w3_repair_workorder_approved",
+   "design_ref": "WP-FHS-20／E34,E35／W1",
+   "deliverable": "W1_定案:ModeGate39:SWOF_CONNECTED__G08",
+   "native_owner": "Commander / HGK Repair Owner",
+   "design_ack": "HOLD_NOT_OBSERVED",
+   "line": 3799
+  },
+  {
+   "exact_id": "SWOF_CONNECTED__G09",
+   "alias": "G09×SWOF_CONNECTED",
+   "policy": "C",
+   "mode_local_trigger": "connected_scope_or_readset_delta_detected",
+   "design_ref": "WP-FHS-20／E34,E35／W1",
+   "deliverable": "W1_定案:ModeGate39:SWOF_CONNECTED__G09",
+   "native_owner": "SWOF W2 Readset / Wave Owner",
+   "design_ack": "HOLD_NOT_OBSERVED",
+   "line": 3800
+  },
+  {
+   "exact_id": "SWOF_CONNECTED__G10",
+   "alias": "G10×SWOF_CONNECTED",
+   "policy": "C",
+   "mode_local_trigger": "connected_controlled_evolution_requested",
+   "design_ref": "WP-FHS-20／E34,E35／W1",
+   "deliverable": "W1_定案:ModeGate39:SWOF_CONNECTED__G10",
+   "native_owner": "Product Evolution / Evaluation Owner",
+   "design_ack": "HOLD_NOT_OBSERVED",
+   "line": 3801
+  },
+  {
+   "exact_id": "SWOF_CONNECTED__G11",
+   "alias": "G11×SWOF_CONNECTED",
+   "policy": "C",
+   "mode_local_trigger": "connected_release_scope_authorized",
+   "design_ref": "WP-FHS-20／E34,E35／W1",
+   "deliverable": "W1_定案:ModeGate39:SWOF_CONNECTED__G11",
+   "native_owner": "OSS Release / Security Owner",
+   "design_ack": "HOLD_NOT_OBSERVED",
+   "line": 3802
+  },
+  {
+   "exact_id": "SWOF_CONNECTED__G12",
+   "alias": "G12×SWOF_CONNECTED",
+   "policy": "R",
+   "mode_local_trigger": "TRUE (source-bound; enforce even if no action requested)",
+   "design_ref": "WP-FHS-20／E34,E35／W1",
+   "deliverable": "W1_定案:ModeGate39:SWOF_CONNECTED__G12",
+   "native_owner": "SWOF Native W3 Wave Owner",
+   "design_ack": "HOLD_NOT_OBSERVED",
+   "line": 3803
+  }
+ ]
+}
