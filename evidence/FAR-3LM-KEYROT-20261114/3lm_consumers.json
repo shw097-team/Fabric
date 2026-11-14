@@ -1,0 +1,33 @@
+{
+  "schema": "FHS-3LM-CONSUMERS/1",
+  "note": "車道憑證的消費清單。新增 consumer 時只加一筆，rotate 命令自動涵蓋；這是本程序唯一的長期維護面。",
+  "credential": {
+    "role": "3LM lane provider key (OPENCODE_GO_API_KEY)",
+    "current_pointer": "<WORKSPACE>/API KEY/shw097_OPENCODEGO_KEY.txt",
+    "env_name_in_consumer": "OPENCODE_GO_API_KEY",
+    "must_never": ["appear in argv", "appear in logs", "appear in receipts", "be committed"]
+  },
+  "consumers": [
+    {
+      "label": "desktop-model-router",
+      "file": "<HOST_HOME>/.codex/desktop-model-router/start-router.ps1",
+      "pattern": "\\$credentialPath\\s*=\\s*'([^']+)'",
+      "restart": "重新啟動 router（或重啟 Codex 桌面 App），使新的 $env:OPENCODE_GO_API_KEY 生效",
+      "restart_required": true
+    },
+    {
+      "label": "hgk-host-readback",
+      "file": "<WORKSPACE>/FHS_NEXT/ops/r1_host_readback.py",
+      "pattern": "keyf\\s*=\\s*pathlib\\.Path\\(r\"([^\"]+)\"\\)",
+      "restart": "下一次執行即生效（無常駐程序）",
+      "restart_required": false
+    }
+  ],
+  "probe": {
+    "why": "provider /v1/models 對有效與無效 key 都回 403，不能當判準（2026-11-14 實測）",
+    "command": ["codex", "exec", "-c", "model_provider=opencode_go", "-m", "deepseek-v4.1-flash",
+                "-s", "read-only", "--skip-git-repo-check", "Reply with exactly: CHECKER_OK"],
+    "expect_stdout_contains": "CHECKER_OK",
+    "key_passed_via": "environment only"
+  }
+}
