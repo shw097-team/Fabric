@@ -1,0 +1,112 @@
+{
+ "schema": "FHS-W1-R2-WP03-HGK-SPINE/1",
+ "at": "2026-11-14T19:42:14.341019+08:00",
+ "database": "<WORKSPACE>/FHS_NEXT_Workspace/W1_R2_CONSTRUCTION_20261114/sbx/hgk\\spine.db",
+ "cases": [
+  {
+   "case": "S1a lease acquire A",
+   "expect": "ok",
+   "result": "OK",
+   "value": null,
+   "pass": true
+  },
+  {
+   "case": "S1b second writer refused",
+   "expect": "ERR_DUAL_WRITER",
+   "result": "LeaseConflict",
+   "error": "ERR_DUAL_WRITER:ACC-W1-1:writer-A",
+   "pass": true
+  },
+  {
+   "case": "S2 release with wrong token refused",
+   "expect": "ERR_LEASE_RELEASE_AUTH",
+   "result": "LeaseConflict",
+   "error": "ERR_LEASE_RELEASE_AUTH:ACC-W1-1",
+   "pass": true
+  },
+  {
+   "case": "S3 resolve PASS (first write)",
+   "expect": "ok",
+   "result": "OK",
+   "value": "{'event_id': 'EVT-7dd4ae0fe447e0ab', 'resulting_version': 1, 'to_state': 'PASS', 'from_state': 'NOT_RUN', 'evidence_ref': 'EVD-1', 'idempotent_replay': False}",
+   "pass": true
+  },
+  {
+   "case": "S4 ACK-loss replay same key",
+   "expect": "ok",
+   "result": "OK",
+   "value": "{'event_id': 'EVT-7dd4ae0fe447e0ab', 'resulting_version': 1, 'to_state': 'PASS', 'from_state': 'NOT_RUN', 'evidence_ref': 'EVD-1', 'idempotent_replay': True}",
+   "pass": true
+  },
+  {
+   "case": "S5 same key reused on another subject refused",
+   "expect": "ERR_IDEMPOTENCY_KEY_REUSED_FOR_OTHER_SUBJECT",
+   "result": "InvariantViolation",
+   "error": "ERR_IDEMPOTENCY_KEY_REUSED_FOR_OTHER_SUBJECT:K-ACK-1:acceptance:ACC-W1-1",
+   "pass": true
+  },
+  {
+   "case": "S6 terminal verdict cannot move twice",
+   "expect": "ERR_ACCEPTANCE_ILLEGAL_TRANSITION",
+   "result": "InvariantViolation",
+   "error": "ERR_ACCEPTANCE_ILLEGAL_TRANSITION:PASS->FAIL",
+   "pass": true
+  },
+  {
+   "case": "S7 unregistered evidence refused",
+   "expect": "ERR_ACCEPTANCE_EVIDENCE_UNKNOWN",
+   "result": "InvariantViolation",
+   "error": "ERR_ACCEPTANCE_EVIDENCE_UNKNOWN:EVD-NOT-THERE",
+   "pass": true
+  },
+  {
+   "case": "S8 foreign-producer evidence ACCEPTED (disclosed limitation)",
+   "expect": "ok",
+   "result": "OK",
+   "value": "{'event_id': 'EVT-6e1476c2ac8b2fbd', 'resulting_version': 1, 'to_state': 'PASS', 'from_state': 'NOT_RUN', 'evidence_ref': 'EVD-FOREIGN', 'idempotent_replay': False}",
+   "pass": true
+  },
+  {
+   "case": "S9 expired lease refused",
+   "expect": "ERR_LEASE_EXPIRED",
+   "result": "LeaseConflict",
+   "error": "ERR_LEASE_EXPIRED:ACC-W1-3",
+   "pass": true
+  },
+  {
+   "case": "S10 backup_database",
+   "expect": "ok",
+   "result": "OK",
+   "value": "{'created_at': '2026-11-14T11:42:14.534958Z', 'source': 'C:\\\\Projects\\\\Agent_Workspace\\\\FHS_NEXT_Workspace\\\\W1_R2_CONSTRUCTION_20261114\\\\sbx\\\\hgk\\\\spine.db', 'backup': 'C:\\\\Projects\\\\Agent_Workspace\\\\FHS_NEXT_Workspace\\\\W1_R2_CONSTRUCTION_20261114\\\\sbx\\\\hgk\\\\backups\\\\hg-kseos-20261114T114214.517924Z",
+   "pass": true
+  },
+  {
+   "case": "S11 restore refuses to overwrite live DB",
+   "expect": "ERR_RESTORE_TARGET_EXISTS",
+   "result": "InvariantViolation",
+   "error": "ERR_RESTORE_TARGET_EXISTS",
+   "pass": true
+  },
+  {
+   "case": "S12 tampered backup refused",
+   "expect": "ERR_BACKUP_DIGEST_MISMATCH",
+   "result": "InvariantViolation",
+   "error": "ERR_BACKUP_DIGEST_MISMATCH",
+   "pass": true
+  },
+  {
+   "case": "S13 clean restore into new target",
+   "expect": "ok",
+   "result": "OK",
+   "value": "{'backup': 'C:\\\\Projects\\\\Agent_Workspace\\\\FHS_NEXT_Workspace\\\\W1_R2_CONSTRUCTION_20261114\\\\sbx\\\\hgk\\\\backups\\\\hg-kseos-20261114T114214.517924Z.db', 'restored': 'C:\\\\Projects\\\\Agent_Workspace\\\\FHS_NEXT_Workspace\\\\W1_R2_CONSTRUCTION_20261114\\\\sbx\\\\hgk\\\\restored.db', 'sha256': 'e743f47b0df9576b837d966",
+   "pass": true
+  }
+ ],
+ "snapshot": {
+  "schema_version": "3",
+  "counts": 18,
+  "open_blocking_tt": 0
+ },
+ "passed": 14,
+ "total": 14
+}

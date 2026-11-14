@@ -1,0 +1,178 @@
+{
+ "schema": "FHS-W1-R2-LANE-EVIDENCE/1",
+ "routing_note": "direct relay on 10101 with role-default sandbox, per the receipts of the closed W0 rounds (W0_R7 LANE_*.json: ok=true, relay_base 127.0.0.1:10101, sandbox danger-full-access/read-only, no front door). Two deviations were tried and withdrawn: a lane-scoped front door (start refused: ERR_EXEC_FRONTDOOR_DECLARATION_INVALID) and a workspace-write sandbox (owner ruling: do not use the sandbox route).",
+ "sod": {
+  "maker_model": "deepseek-v4.1-flash",
+  "checker_model": "deepseek-v4.1-flash",
+  "status": "OPEN_OWNER_ORDERED",
+  "basis": "the owner's task fixes the same model for writer and checker; the origin guard refuses it (ERR_LANE_SOD_VIOLATION) and that refusal is kept in the record; separation is by process, path and write-set"
+ },
+ "receipts": [
+  {
+   "receipt": "LANE_EXEC_WP20.json",
+   "lane": "EXECUTE",
+   "state": "REFUSED",
+   "ok": false,
+   "code": "ERR_LANE_ALL_ROUTES_EXHAUSTED",
+   "served_model": "deepseek-v4.1-flash",
+   "provider": "opencode-go",
+   "transport_model": "opencode-go/deepseek-v4.1-flash",
+   "exit": 1,
+   "timed_out": false,
+   "seconds": 23.26,
+   "nonce_in_agent_message": false,
+   "usage_receipt_ok": false,
+   "usage_rows_after_offset": 26,
+   "sandbox": "danger-full-access",
+   "relay_base": "http://127.0.0.1:10101/v1",
+   "front_door_port": null,
+   "selection_filter": {
+    "required_arm": "opencode-go/deepseek-v4.1-flash",
+    "candidates_before": [
+     "opencode-go/deepseek-v4.1-flash"
+    ],
+    "candidates_after": [
+     "opencode-go/deepseek-v4.1-flash"
+    ],
+    "why": "selection constrained by --require-arm (alias-equivalent), not only judged after the call"
+   }
+  },
+  {
+   "receipt": "LANE_EXEC_WP20_R2.json",
+   "lane": "EXECUTE",
+   "state": "SERVED_UNATTRIBUTED_NO_NONCE",
+   "ok": false,
+   "code": "ERR_NO_ARM_EMITTED_NONCE",
+   "served_model": "deepseek-v4.1-flash",
+   "provider": "opencode-go",
+   "transport_model": "opencode-go/deepseek-v4.1-flash",
+   "exit": 0,
+   "timed_out": false,
+   "seconds": 371.35,
+   "nonce_in_agent_message": false,
+   "usage_receipt_ok": true,
+   "usage_rows_after_offset": 41,
+   "sandbox": "workspace-write",
+   "relay_base": "http://127.0.0.1:10101/v1",
+   "front_door_port": null,
+   "selection_filter": {
+    "required_arm": "opencode-go/deepseek-v4.1-flash",
+    "candidates_before": [
+     "opencode-go/deepseek-v4.1-flash"
+    ],
+    "candidates_after": [
+     "opencode-go/deepseek-v4.1-flash"
+    ],
+    "why": "selection constrained by --require-arm (alias-equivalent), not only judged after the call"
+   }
+  },
+  {
+   "receipt": "LANE_EXEC_WP20_R3.json",
+   "lane": "EXECUTE",
+   "state": "SERVED_UNATTRIBUTED_NO_NONCE",
+   "ok": false,
+   "code": "ERR_NO_ARM_EMITTED_NONCE",
+   "served_model": "deepseek-v4.1-flash",
+   "provider": "opencode-go",
+   "transport_model": "opencode-go/deepseek-v4.1-flash",
+   "exit": 0,
+   "timed_out": false,
+   "seconds": 177.18,
+   "nonce_in_agent_message": false,
+   "usage_receipt_ok": true,
+   "usage_rows_after_offset": 19,
+   "sandbox": "danger-full-access",
+   "relay_base": "http://127.0.0.1:10101/v1",
+   "front_door_port": null,
+   "selection_filter": {
+    "required_arm": null,
+    "candidates_before": [
+     "opencode-go/deepseek-v4.1-flash"
+    ],
+    "candidates_after": null,
+    "why": null
+   }
+  },
+  {
+   "receipt": "LANE_EXEC_WP20_R4.json",
+   "lane": "EXECUTE",
+   "state": "TIMEOUT_NOT_ACCEPTED",
+   "ok": false,
+   "code": "ERR_LANE_ALL_ROUTES_EXHAUSTED",
+   "served_model": "deepseek-v4.1-flash",
+   "provider": "opencode-go",
+   "transport_model": "opencode-go/deepseek-v4.1-flash",
+   "exit": "TIMEOUT",
+   "timed_out": true,
+   "seconds": 420.04,
+   "nonce_in_agent_message": false,
+   "usage_receipt_ok": false,
+   "usage_rows_after_offset": 39,
+   "sandbox": "danger-full-access",
+   "relay_base": "http://127.0.0.1:10101/v1",
+   "front_door_port": null,
+   "selection_filter": {
+    "required_arm": null,
+    "candidates_before": [
+     "opencode-go/deepseek-v4.1-flash"
+    ],
+    "candidates_after": null,
+    "why": null
+   }
+  },
+  {
+   "receipt": "LANE_VERIFY.json",
+   "lane": "VERIFY_SECURITY",
+   "state": "SERVED",
+   "ok": true,
+   "code": null,
+   "served_model": "deepseek-v4.1-flash",
+   "provider": "opencode-go",
+   "transport_model": "opencode-go/deepseek-v4.1-flash",
+   "exit": 0,
+   "timed_out": false,
+   "seconds": 533.45,
+   "nonce_in_agent_message": true,
+   "usage_receipt_ok": true,
+   "usage_rows_after_offset": 52,
+   "sandbox": "read-only",
+   "relay_base": "http://127.0.0.1:10101/v1",
+   "front_door_port": null,
+   "selection_filter": {
+    "required_arm": null,
+    "candidates_before": [
+     "opencode-go/deepseek-v4.1-flash"
+    ],
+    "candidates_after": null,
+    "why": null
+   }
+  },
+  {
+   "receipt": "LANE_VERIFY_R2.json",
+   "lane": "VERIFY_SECURITY",
+   "state": "SERVED",
+   "ok": true,
+   "code": null,
+   "served_model": "deepseek-v4.1-flash",
+   "provider": "opencode-go",
+   "transport_model": "opencode-go/deepseek-v4.1-flash",
+   "exit": 0,
+   "timed_out": false,
+   "seconds": 457.5,
+   "nonce_in_agent_message": true,
+   "usage_receipt_ok": true,
+   "usage_rows_after_offset": 77,
+   "sandbox": "read-only",
+   "relay_base": "http://127.0.0.1:10101/v1",
+   "front_door_port": null,
+   "selection_filter": {
+    "required_arm": null,
+    "candidates_before": [
+     "opencode-go/deepseek-v4.1-flash"
+    ],
+    "candidates_after": null,
+    "why": null
+   }
+  }
+ ]
+}

@@ -1,0 +1,290 @@
+{
+ "schema": "FHS-W1-R2-WP11-HOST-DOGFOOD/1",
+ "generated_local": "2026-11-14 19:58:50",
+ "round": "W1_R2_CONSTRUCTION_20261114",
+ "claim_class": "LOCAL_CHECK",
+ "host": {
+  "os": "Windows 11 (MSYS_NT-10.0-26200; cmd ver 10.0.26200.9711)",
+  "home": "C:\\Users\\user",
+  "hermes_home": "C:\\Users\\user\\AppData\\Local\\hermes",
+  "hermes_profiles": [
+   {
+    "name": "fhs_next",
+    "path": "C:\\Users\\user\\AppData\\Local\\hermes\\profiles\\fhs_next",
+    "skills_dir": "C:\\Users\\user\\AppData\\Local\\hermes\\profiles\\fhs_next\\skills",
+    "skill_count": 45,
+    "sessions_dir": "C:\\Users\\user\\AppData\\Local\\hermes\\profiles\\fhs_next\\sessions",
+    "sessions_bytes": 0,
+    "sessions_files": 0,
+    "sessions_last_mtime": null,
+    "last_mtime": "2026-11-14 19:58:48",
+    "last_mtime_source": "newest file within depth<=3 of the profile dir: C:\\Users\\user\\AppData\\Local\\hermes\\profiles\\fhs_next\\state.db-wal",
+    "files_walked_depth3": 493,
+    "projects_db_bytes": 45056
+   },
+   {
+    "name": "hgk-governed",
+    "path": "C:\\Users\\user\\AppData\\Local\\hermes\\profiles\\hgk-governed",
+    "skills_dir": "C:\\Users\\user\\AppData\\Local\\hermes\\profiles\\hgk-governed\\skills",
+    "skill_count": 48,
+    "sessions_dir": "C:\\Users\\user\\AppData\\Local\\hermes\\profiles\\hgk-governed\\sessions",
+    "sessions_bytes": 0,
+    "sessions_files": 0,
+    "sessions_last_mtime": null,
+    "last_mtime": "2026-11-14 19:58:28",
+    "last_mtime_source": "newest file within depth<=3 of the profile dir: C:\\Users\\user\\AppData\\Local\\hermes\\profiles\\hgk-governed\\cron\\ticker_last_success",
+    "files_walked_depth3": 640,
+    "projects_db_bytes": 45056
+   },
+   {
+    "name": "default",
+    "path": "C:\\Users\\user\\AppData\\Local\\hermes",
+    "skills_dir": "C:\\Users\\user\\AppData\\Local\\hermes\\skills",
+    "skill_count": 90,
+    "sessions_dir": "C:\\Users\\user\\AppData\\Local\\hermes\\sessions",
+    "sessions_bytes": 86152,
+    "sessions_files": 1,
+    "sessions_last_mtime": "2026-11-10 00:45:37",
+    "last_mtime": "2026-11-10 00:45:37",
+    "last_mtime_source": "sessions dir newest mtime (root profile is the hermes home itself)",
+    "note": "implicit root profile, no profiles/default directory, listed in gateway served_profiles"
+   }
+  ],
+  "active_profile_marker": "no active_profile file exists (probe: active_profile* absent under hermes home and profiles/); active profile is proved by (a) this session writing under C:\\Users\\user\\AppData\\Local\\hermes\\profiles\\fhs_next, (b) gateway_state.json served_profiles=['default', 'fhs_next', 'hgk-governed'], (c) gateway code_version=0.23.1 code_sha=3b4215785882",
+  "gateway": {
+   "pid": 15844,
+   "state": "running",
+   "code_version": "0.23.1",
+   "code_sha_12": "3b4215785882",
+   "served_profiles": [
+    "default",
+    "fhs_next",
+    "hgk-governed"
+   ],
+   "process_probe": "Id=15844 ProcessName=python StartTime=2026-11-13 17:40:45"
+  }
+ },
+ "codex": {
+  "binaries": [
+   {
+    "path": "C:\\Users\\user\\AppData\\Local\\OpenAI\\Codex\\bin\\9e1da79431da526b\\codex.exe",
+    "bytes": 373698352,
+    "sha256_12": "83f5c2dd2ac2",
+    "mtime": "2026-11-12 00:42:54"
+   }
+  ],
+  "hash_dirs_without_codex_exe": [
+   {
+    "dir": "C:\\Users\\user\\AppData\\Local\\OpenAI\\Codex\\bin\\fc32aa0651e37f32",
+    "exe_present": false,
+    "contents": [
+     "rg.exe"
+    ]
+   }
+  ],
+  "lane_home": "C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\codex-hermes",
+  "lane_home_exists": true,
+  "lane_home_config": "C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\codex-hermes\\config.toml",
+  "lane_home_config_bytes": 2934,
+  "lane_home_config_sha256": "56e5a406d2cba9ca28b4d6dfb0612f4641f6ac4a888fdbc0eb16bb016708d78d",
+  "lane_home_config_mtime": "2026-10-30 14:20:30",
+  "relay_home": "C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\opencodex-hermes",
+  "relay_home_config_sha256": "d02b6eb0f8f952be859f70a755fd528c07804bfa0a8fe704304aa7ebf802e9ef"
+ },
+ "measured_skill": {
+  "path": "C:\\Users\\user\\AppData\\Local\\hermes\\profiles\\fhs_next\\skills\\fhs\\SKILL.md",
+  "bytes": 91332,
+  "chars": 90714,
+  "sha256_12": "40b5148355ed",
+  "md5": "d6d6d80533a4f1aebb0a382d82284edf",
+  "mtime": "2026-11-14 19:09:30"
+ },
+ "stages": {
+  "Installed": {
+   "state": "OBSERVED",
+   "evidence": [
+    "path_exists C:\\Users\\user\\AppData\\Local\\hermes\\profiles\\fhs_next\\skills\\fhs\\SKILL.md -> True, 91332 bytes, sha256_12=40b5148355ed, mtime=2026-11-14 19:09:30",
+    "file_read C:\\Users\\user\\AppData\\Local\\hermes\\installs\\0d1790b230609f8c\\bootstrap\\fhs_next.json -> bootstrappedAt=2026-11-11T15:50:08+0800 identity=3b421578588243f920886e6fe79a6faa87ea026e results={'adopt_blessed_checkout': {'ok': True, 'skipped': 'already-stamped'}, 'migrate_config': {'ok': True, 'skipped': 'up-to-date'}, 'state_db_guard': {'ok': True}, 'drop_live_plugin_catalog': {'ok': True}, 'expose_cli': {'ok': True, 'path': 'present', 'written': ['hermes.exe', 'hermes-acp.exe']}}",
+    "path_exists C:\\Users\\user\\AppData\\Local\\hermes\\installs\\0d1790b230609f8c -> True",
+    "dir_list C:\\Users\\user\\AppData\\Local\\hermes\\profiles -> on-disk profile dirs ['fhs_next', 'hgk-governed']; the root profile 'default' has no profiles/default directory (hermes home itself), so the served set is ['default', 'fhs_next', 'hgk-governed']",
+    "path_exists C:\\Users\\user\\AppData\\Local\\OpenAI\\Codex\\bin\\9e1da79431da526b\\codex.exe -> True, bytes=373698352"
+   ],
+   "probe_class": "path_exists + file_read + dir_list"
+  },
+  "Loaded": {
+   "state": "OBSERVED",
+   "evidence": [
+    "file_read C:\\Users\\user\\AppData\\Local\\hermes\\profiles\\fhs_next\\.skills_prompt_snapshot.json -> version=5, skill_entries=45, manifest_rows=55, entry=fhs-w0-source-bound-work rel=fhs/SKILL.md category=fhs",
+    "stat_compare loader manifest row for fhs/SKILL.md [mtime_ns=1794654570809592100, size=91332] vs on-disk stat [mtime_ns=1794654570809592100, size=91332] -> size_match=True, mtime_ns_match=True",
+    "digest_check loader manifest field[4]=5a5f7d2b5a5b15e289c75159effd16a8 vs md5(file bytes)=d6d6d80533a4f1aebb0a382d82284edf -> equal=False; also not md5 under LF-normalised or frontmatter-stripped variants, so that field is treated as a loader fingerprint of unresolved algorithm and NO content-digest equality is claimed",
+    "file_read C:\\Users\\user\\AppData\\Local\\hermes\\gateway_state.json -> gateway_state=running, pid=15844, served_profiles=['default', 'fhs_next', 'hgk-governed'], code_version=0.23.1, session_store={'status': 'ok'}",
+    "process_probe Get-Process -Id 15844 -> Id=15844 ProcessName=python StartTime=2026-11-13 17:40:45"
+   ],
+   "probe_class": "loader index entry (path + mtime_ns + size) + live gateway process"
+  },
+  "Invoked": {
+   "state": "OBSERVED",
+   "evidence": [
+    "log_line C:\\Users\\user\\AppData\\Local\\hermes\\profiles\\fhs_next\\logs\\agent.log -> tool skill_view completed (0.11s, 92456 chars)",
+    "log_line_attribution session=20261114_194456_1afc3c: skill_view returned 92456 chars vs on-disk 90714 chars (+1742 wrapper: JSON envelope + linked_files) -> same artefact",
+    "repeat_probe this session invoked skill_view('fhs-w0-source-bound-work') and received the SKILL.md body (content in transcript) -> tool executed, not merely listed"
+   ],
+   "probe_class": "tool_executor log line + repeat invocation"
+  },
+  "Consumed": {
+   "state": "OBSERVED",
+   "evidence": [
+    "log_line C:\\Users\\user\\AppData\\Local\\hermes\\profiles\\fhs_next\\logs\\agent.log -> after that skill_view the same session logged 63 API calls on model=deepseek-v4.1-flash provider=opencode-go (count as of this run; the session is still live). first by time: API call #2: model=deepseek-v4.1-flash provider=opencode-go in=36957 out=394 total=37351 latency=4.8s cache=1920/36957 (5%) id=chatcmpl-RqdskBrYex8wHtroIisV0uh7",
+    "log_line latest by time in this run: API call #64: model=deepseek-v4.1-flash provider=opencode-go in=147083 out=342 total=147425 latency=5.9s cache=146304/147083 (99%) id=gw-a0285b2d36c2-22bea0a",
+    "file_read C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\opencodex-hermes\\usage.jsonl window ['2026-11-14 19:45:01', '2026-11-14 19:55:01'] -> 26 rows, by model {'deepseek-v4.1-flash': 26} (model_switch=False); clean rows (status 200, single attempt, empty recoveryKinds, usage present) = 25; exceptions = [{\"t\": \"19:48:40\", \"status\": 499, \"attempts\": 1, \"in\": null}]; inputTokens [9977, 123852]",
+    "inference_note relay inputTokens (9977..123852) and agent.log in= counts are different counters; no row-by-row identity is claimed"
+   ],
+   "probe_class": "billed API calls after the load + relay usage rows",
+   "scope": "bytes consumed by served model turns; whether the model obeyed the skill's clauses is NOT_MEASURED"
+  },
+  "Uninstalled": {
+   "state": "NOT_PROBED",
+   "reason": "live host: nothing was uninstalled and nothing deleted. Removing the skill or profile under measurement would destroy the chain and the running gateway (pid 15844, served_profiles=['default', 'fhs_next', 'hgk-governed']); an uninstall effect needs an owner decision on a disposable profile, which this round may not create."
+  }
+ },
+ "portable_sp": {
+  "TPM": {
+   "markers": [
+    "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\SBL\\sbl_sp\\plugins\\tpm_sp\\SKILL.md",
+    "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\SBL\\sbl_sp\\plugins\\tpm_sp\\pre_v2\\private-overlay\\.codex-plugin\\plugin.json",
+    "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\SBL\\sbl_sp\\plugins\\tpm_sp\\pre_v2\\private-overlay\\skills",
+    "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\SBL\\sbl_sp\\plugins\\tpm_sp\\pre_v2\\private-overlay\\skills\\pipd-assurance-tqaep",
+    "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\SBL\\sbl_sp\\plugins\\tpm_sp\\pre_v2\\private-overlay\\skills\\pipd-authority-source",
+    "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\SBL\\sbl_sp\\plugins\\tpm_sp\\pre_v2\\private-overlay\\skills\\pipd-execution-contract",
+    "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\SBL\\sbl_sp\\plugins\\tpm_sp\\pre_v2\\private-overlay\\skills\\pipd-package-project",
+    "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\SBL\\sbl_sp\\plugins\\tpm_sp\\pre_v2\\private-overlay\\skills\\pipd-pd-bind",
+    "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\SBL\\sbl_sp\\plugins\\tpm_sp\\pre_v2\\private-overlay\\skills\\pipd-pi-compile"
+   ],
+   "state": "PRESENT_IN_TREE",
+   "artefact_kind": "portable plugin package + skill",
+   "measured": {
+    "skill_md_bytes": 2172,
+    "skill_md_sha256_12": "98f1745c3aee",
+    "plugin_name": "sbl-tpm-sp",
+    "plugin_version": "0.3.0-rc.1",
+    "plugin_description": "Source-bound Portable TPM: three roles, 18 stage drafts, integrated PIPD planning readers and exact offline corpus. Private candidate; Host unqualified.",
+    "skills_in_overlay": [
+     "pipd-assurance-tqaep",
+     "pipd-authority-source",
+     "pipd-execution-contract",
+     "pipd-package-project",
+     "pipd-pd-bind",
+     "pipd-pi-compile",
+     "pipd-profile-tailor",
+     "pipd-route-intake",
+     "tpm-handoff",
+     "tpm-product-plan",
+     "tpm-program-plan",
+     "tpm-setup",
+     "tpm-sp",
+     "tpm-system-plan"
+    ]
+   },
+   "installed_into_hermes_plugins": false,
+   "note": "present as source package under SBL/sbl_sp/plugins; no Hermes profile plugins dir carries it, so Installed (host) is NOT claimed for this SP"
+  },
+  "Commander": {
+   "markers": [
+    "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\HG-KSEOS\\tests\\test_sp_identity_commander_plan.py",
+    "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\roots\\subjects\\hgk-main_acd9196fcd\\tests\\test_sp_identity_commander_plan.py",
+    "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\roots\\subjects\\hgk-local_6c9fc73377\\tests\\test_sp_identity_commander_plan.py",
+    "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\roots\\subjects\\hgk-worktree_a7046a3695\\tests\\test_sp_identity_commander_plan.py",
+    "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\roots\\subjects\\hgk-main_acd9196fcd\\fhs_msc_handoff_20261030\\docs\\05_COMMANDER_GUIDE_AND_NATIVE_PLAN.md",
+    "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\roots\\legacy_declared\\fhs_w1_work_final\\FHS_W1_Work_Final\\sources\\05_COMMANDER_GUIDE_AND_NATIVE_PLAN(3).md"
+   ],
+   "state": "NOT_OBSERVED",
+   "artefact_kind_required": "portable SP skill/plugin package (SKILL.md + plugin.json)",
+   "traces_found": {
+    "blueprint_chapter": "spec/FHS_PIPD-LS-PKG_W0_20261112_r8.md:1430 CH-34 Portable Commander Guide A／B／C",
+    "origin_doc": [
+     "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\roots\\subjects\\hgk-main_acd9196fcd\\fhs_msc_handoff_20261030\\docs\\05_COMMANDER_GUIDE_AND_NATIVE_PLAN.md",
+     "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\roots\\legacy_declared\\fhs_w1_work_final\\FHS_W1_Work_Final\\sources\\05_COMMANDER_GUIDE_AND_NATIVE_PLAN(3).md",
+     "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\roots\\legacy_declared\\worktrees\\r4-hgk\\fhs_msc_handoff_20261030\\docs\\05_COMMANDER_GUIDE_AND_NATIVE_PLAN.md",
+     "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\roots\\subjects\\hgk-worktree_a7046a3695\\fhs_msc_handoff_20261030\\docs\\05_COMMANDER_GUIDE_AND_NATIVE_PLAN.md"
+    ],
+    "profile_fixture_dir": "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\HG-KSEOS\\profiles\\construction-commander",
+    "ledger_row": [
+     {
+      "set": "Native20",
+      "id": "LANE.PLAN.COMMANDER",
+      "name": "Native SBL Commander／Guide Skill",
+      "line": 6347
+     }
+    ]
+   },
+   "searched": [
+    "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\SBL",
+    "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\skills",
+    "C:\\Users\\user\\AppData\\Local\\hermes\\profiles\\fhs_next\\skills",
+    "C:\\Users\\user\\AppData\\Local\\hermes\\profiles\\hgk-governed\\skills",
+    "C:\\Users\\user\\AppData\\Local\\hermes\\skills"
+   ],
+   "why": "no directory or file matching *commander* under SBL/, skills/, or any Hermes skills dir; only a blueprint chapter, origin docs and a profile fixture dir were found"
+  },
+  "Challenge": {
+   "markers": [
+    "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\PIPD\\.hgk\\far\\FAR-PIPD-LICENSE-001\\LaneE_Challenge.json",
+    "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\PIPD\\.hgk\\rounds\\R2-FAR-RCA-20261009\\far\\LaneE_Challenge.json",
+    "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\PIPD\\.hgk\\ao\\pub\\PUBLICATION_SUBJECT_ATTESTATION_R5P_POSTCHALLENGE.json",
+    "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\PIPD\\.hgk\\rounds\\R2-FAR-RCA-20261009\\far\\lanes\\LANE_C_challenge.lane.json",
+    "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\roots\\subjects\\hgk-main_acd9196fcd\\fhs_msc_handoff_20261030\\docs\\07_ACCEPTANCE_CHALLENGE.md",
+    "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\roots\\legacy_declared\\fhs_w1_work_final\\FHS_W1_Work_Final\\sources\\07_ACCEPTANCE_CHALLENGE(4).md"
+   ],
+   "state": "NOT_OBSERVED",
+   "artefact_kind_required": "portable SP skill/plugin package (SKILL.md + plugin.json)",
+   "traces_found": {
+    "blueprint_chapter": "spec/FHS_PIPD-LS-PKG_W0_20261112_r8.md:1366 CH-31 Acceptance Challenge 15 edges",
+    "origin_doc": [
+     "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\roots\\subjects\\hgk-main_acd9196fcd\\fhs_msc_handoff_20261030\\docs\\07_ACCEPTANCE_CHALLENGE.md",
+     "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\roots\\legacy_declared\\fhs_w1_work_final\\FHS_W1_Work_Final\\sources\\07_ACCEPTANCE_CHALLENGE(4).md",
+     "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\roots\\legacy_declared\\worktrees\\r4-hgk\\fhs_msc_handoff_20261030\\docs\\07_ACCEPTANCE_CHALLENGE.md",
+     "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\roots\\subjects\\hgk-worktree_a7046a3695\\fhs_msc_handoff_20261030\\docs\\07_ACCEPTANCE_CHALLENGE.md"
+    ],
+    "ledger_row": [
+     {
+      "set": "Native20",
+      "id": "LANE.VERIFY.CHALLENGE",
+      "name": "SBL External Challenge＋Protected Checker",
+      "line": 6389
+     }
+    ]
+   },
+   "searched": [
+    "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\SBL",
+    "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\skills",
+    "C:\\Users\\user\\AppData\\Local\\hermes\\profiles\\fhs_next\\skills",
+    "C:\\Users\\user\\AppData\\Local\\hermes\\profiles\\hgk-governed\\skills",
+    "C:\\Users\\user\\AppData\\Local\\hermes\\skills"
+   ],
+   "why": "no directory or file matching *challenge* under SBL/, skills/, or any Hermes skills dir; only a blueprint chapter, an origin doc and a lane id in the 485 ledger"
+  }
+ },
+ "model_plane": {
+  "selected": "opencode-go/deepseek-v4.1-flash",
+  "selected_evidence": "profiles/fhs_next/config.yaml model.provider=opencode-go + agent.log API calls model=deepseek-v4.1-flash provider=opencode-go; runtime header of this session agrees",
+  "actual_served": {
+   "observed": true,
+   "evidence": "C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\opencodex-hermes\\usage.jsonl rows ['2026-11-14 19:45:01', '2026-11-14 19:55:01']: 26 rows, every row selected model=deepseek-v4.1-flash provider=opencode-go reason=explicit-provider-namespace (model_switch=False); 25 clean rows (status 200, single attempt, empty recoveryKinds, usage reported, inputTokens 9977..123852); exceptions=[{\"t\": \"19:48:40\", \"status\": 499, \"attempts\": 1, \"in\": null}]; agent.log agent.log carries per-call response ids with in/out accounting on the same model",
+   "exceptions_reading": "a 499 row is a client-closed request with no usage, not a model switch; no row has more than one attempt or a non-empty recoveryKinds, so no fallback to another arm happened in the window",
+   "caveat": "relay inputTokens and agent.log in= are different counters; served identity is observed, per-call token identity between the two surfaces is not claimed"
+  },
+  "fallback_observed": false,
+  "window_rows": 26,
+  "clean_rows": 25,
+  "exception_count": 1
+ },
+ "not_measured": [
+  "whether the model obeyed the skill's clauses (Consumed is measured at byte/token level only)",
+  "content-digest equality between the loader manifest field[4] and the skill file (algorithm unresolved; Loaded rests on indexed path + mtime_ns + size)",
+  "codex CLI invocation on this host (no codex exec was run this round)",
+  "install/uninstall of the sbl-tpm-sp package into a Hermes profile (no plugin install performed)",
+  "native admission / independent acceptance / release (outside this wave and this host's authority)",
+  "portable Commander and Challenge SP packages (absent, see portable_sp)",
+  "second codex hash dir fc32aa0651e37f32 contains only rg.exe, not a codex binary; the CLI version behind it is unmeasured"
+ ]
+}

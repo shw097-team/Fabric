@@ -1,0 +1,134 @@
+{
+ "schema": "FHS-W1-R2-CORRECTIONS/1",
+ "why": "The acceptance-challenge lane (VERIFY_SECURITY, deepseek-v4.1-flash, read-only, nonce-attributed) returned VERDICT: REJECT on two criteria. Both findings are kept here as corrections beside the original claim; the original wording is not edited away, because a silent repair is indistinguishable from a check that never bit.",
+ "review_history": [
+  {
+   "round": "R1",
+   "dispatch": "out/LANE_VERIFY.json",
+   "nonce": "W1R2-VERIFY-4c81fe",
+   "attribution": "nonce_in_agent_message=true, usage_receipt_ok=true, exit 0, 533 s, sandbox read-only",
+   "verdict": "REJECT",
+   "failed": [
+    "G2",
+    "G3"
+   ],
+   "backlog": [
+    "LANE_EVIDENCE.json omits the 371 s R2 receipt despite the separate receipt",
+    "the Fabric worktree is behind origin HEAD on the r26 mirror",
+    "OCG_KEY_PROBE.json reports HTTP 403 rather than api_key_expired"
+   ]
+  },
+  {
+   "round": "R2",
+   "dispatch": "out/LANE_VERIFY_R2.json",
+   "nonce": "W1R2-VERIFY-d92a37",
+   "attribution": "nonce_in_agent_message=true, usage_receipt_ok=true, exit 0, 457 s, sandbox read-only, usage rows 77",
+   "verdict": "REJECT",
+   "failed": [
+    "G7"
+   ],
+   "backlog": [
+    "none"
+   ],
+   "note": "G1-G6, G8 PASS; RC-1 and RC-2 accepted as corrected by the reviewer"
+  },
+  {
+   "round": "R3",
+   "dispatch": "out/LANE_VERIFY_R3.json",
+   "nonce": "W1R2-VERIFY-6f30bd",
+   "attribution": "nonce_in_agent_message=true, usage_receipt_ok=true, exit 0, 344 s, sandbox read-only, usage rows 43",
+   "verdict": "REJECT",
+   "failed": [
+    "G7"
+   ],
+   "backlog": [
+    "none"
+   ],
+   "note": "G1-G6 and G8 PASS. G7 rejects a proxy clause: the manifest now declares three outside-round classes / eight members, while the brief had said exactly two. The substance the criterion exists for — no undisclosed write and no effect — holds and is what the manifest records."
+  }
+ ],
+ "corrections": [
+  {
+   "id": "RC-1",
+   "raised_by": "G2 (FAIL)",
+   "earlier_claim": "the round recorded seven typed refusals",
+   "measured": "eight refusal steps with a typed code: INTAKE_INVALID, PROFILE_VETO, REPO_CONTEXT_MISSING, GIT_PROBE_FAILED (effect-ECP with registry), GIT_PROBE_FAILED (same shape re-run), TQ_SOD (maker==checker), TQ_SOD (distinct checker without receipt), INPUT_SHAPE_INVALID",
+   "why_it_happened": "the brief counted distinct refusal KINDS while the receipt counts refusal STEPS; two GIT_PROBE_FAILED steps are the same kind",
+   "fix": "report and handoff now state eight steps and name the two shapes; the registry-count remains 7 kinds and is stated as such",
+   "evidence": "out/WP05_PIPD_CHAIN.json"
+  },
+  {
+   "id": "RC-2",
+   "raised_by": "G3 (FAIL)",
+   "earlier_claim": "the mirror document named by the Fabric admission test is absent at origin HEAD too, so the entry has an origin defect",
+   "measured": "origin main a6f1fa89 HAS the file (668,540 bytes, blob dfa7f0e6…); this tree does not, and provenance/SOURCE_IMPORT_MAP.json never declared it (policy SOURCE_ONLY_WHITELIST)",
+   "why_it_happened": "the first check ran `git ls-tree` against the local clone at 765df62, which predates the mirror in that path; a stale local tree was read as origin state",
+   "fix": "verdict replaced by ORIGIN_HAS_FILE_IMPORT_LACKS_IT; the HOLD becomes an owner decision (extend the import whitelist or narrow the test), not a Fabric defect claim",
+   "evidence": "out/ORIGIN_PATH_CHECK.json"
+  },
+  {
+   "id": "RC-3",
+   "raised_by": "BACKLOG item 1",
+   "earlier_claim": "LANE_EVIDENCE.json listed three EXECUTE receipts",
+   "measured": "four exist; the R2 receipt (371 s, served, no nonce) was outside the enumeration list",
+   "fix": "the enumeration now covers R2, R3, R4 and the two VERIFY dispatches",
+   "evidence": "out/LANE_EVIDENCE.json"
+  },
+  {
+   "id": "RC-4",
+   "raised_by": "BACKLOG item 3",
+   "earlier_claim": "OCG_KEY_PROBE.json records the credential verdicts",
+   "measured": "that probe used urllib without the provider's required user-agent, so every credential answered HTTP 403 with an empty error code; the credential verdicts actually come from the separate curl probe (401 api_key_expired for 7776004 / pool keys, 429 usage-limit for shw0968, 200 for shw097)",
+   "fix": "OCG_KEY_PROBE.json is retained as a negative example of a non-oracle probe and is not cited as a credential verdict; the cited evidence is the curl result recorded in the report's lane section",
+   "evidence": "out/OCG_KEY_PROBE.json (labelled NON_ORACLE), report §7"
+  },
+  {
+   "id": "RC-5",
+   "raised_by": "G7 (FAIL, R2)",
+   "earlier_claim": "the round wrote exactly two artefacts outside the round folder (lane bindings and the relay key pool)",
+   "measured": "a third existed: FHS_NEXT/_local/W1_R2_CONSTRUCTION_POINTER.md. It WAS disclosed in out/WRITE_MANIFEST.json (added before the run), so it was not an undisclosed write — the defect was the brief's count of two",
+   "why_it_happened": "the navigation pointer was added after the brief was drafted and the criterion's wording was not re-derived from the manifest",
+   "fix": "the pointer (a non-evidence convenience) was withdrawn; out/WITHDRAWN_NAVIGATION_POINTER.md keeps its bytes and the reason; the tree now carries exactly the two exceptions the criterion names",
+   "evidence": "out/WITHDRAWN_NAVIGATION_POINTER.md, out/WRITE_MANIFEST.json"
+  },
+  {
+   "id": "RC-6",
+   "raised_by": "self-check (ops/selfcheck.py POS-01), not by the review lane",
+   "earlier_claim": "the imported trees are byte-identical to the map (433 files)",
+   "measured": "after the lane dispatches, HG-KSEOS/config/hermes-codex-lane.json had grown 15,340 -> 15,526 bytes (CRLF added by the tooling; 186 lines), sha 8c21a805… instead of ba357dcc…; selfcheck POS-01 FAIL, 15/16",
+   "why_it_happened": "the lane host tooling rewrote the imported declaration while a dispatch ran; the round had not re-run POS-01 after dispatching",
+   "fix": "restored byte-identically from the map's declared source clone (sha ba357dcc…, 15,340 bytes) and re-ran selfcheck: 16/16 PASS; the hygiene pass also removed __pycache__ residue from HG-KSEOS/scripts and HG-KSEOS/src",
+   "evidence": "_local/W0_TEST_READBACK.json (POS-01 PASS after restore), _local/W0_R1_TREE_HYGIENE.json"
+  },
+  {
+   "id": "RC-7",
+   "raised_by": "self-check (write manifest completeness)",
+   "earlier_claim": "exactly two outside-round exception classes exist",
+   "measured": "running the tree's own selfcheck/hygiene wrote two more files into FHS_NEXT/_local (their own output paths), so a third class exists: tree-tool outputs",
+   "fix": "the write manifest now registers three classes (lane bindings, relay credential pool, tree-tool outputs) and lists every member; no write is undisclosed",
+   "evidence": "out/WRITE_MANIFEST.json"
+  },
+  {
+   "id": "RC-8",
+   "raised_by": "G7 (FAIL, R3)",
+   "earlier_claim": "the round wrote exactly two outside-round exception classes",
+   "measured": "three classes / eight members: 4 lane bindings, 2 relay credential files, 2 tree-tool outputs (selfcheck and hygiene readbacks in FHS_NEXT/_local)",
+   "why_it_happened": "the count was my proxy for 'nothing outside is undisclosed'. Running the tree's own selfcheck and hygiene passes added two outputs in paths the tree's tools own, so the proxy went stale while the property it stood for held",
+   "fix": "the manifest now lists all three classes and every member; no write is undisclosed. The frozen criterion is NOT edited — the round records that this criterion's count clause is invalidated by its own hygiene work and that its substance (no undisclosed write, no effect) is met",
+   "evidence": "out/WRITE_MANIFEST.json, _local/W0_TEST_READBACK.json, _local/W0_R1_TREE_HYGIENE.json"
+  }
+ ],
+ "not_corrected": [
+  {
+   "item": "the entry's admission tests still fail in this tree (5 failures + 5 errors of 51)",
+   "reason": "that is a fact about a whitelist import, not a defect to repair here; repairing it would mean importing a path the map does not declare"
+  }
+ ],
+ "review_rounds": 3,
+ "final_state": {
+  "criteria_substance_met": "G1-G6, G8 PASS in R3; G7's substantive property (no undisclosed outside write, no HOST_OP effect) holds with all 8 outside files disclosed in 3 classes",
+  "review_verdict_last": "REJECT (G7 proxy clause only)",
+  "why_stopping": "three attributed review rounds with each finding repaired; the remaining item is a proxy clause, and re-running the rubric a fourth time would be an open-ended loop rather than convergence",
+  "handover": "owner may accept or ask for the proxy clause to be restated; the round does not self-grant acceptance"
+ }
+}

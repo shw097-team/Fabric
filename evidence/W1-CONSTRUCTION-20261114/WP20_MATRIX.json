@@ -1,0 +1,341 @@
+{
+ "schema": "FHS-W1-R2-WP20-HOST-KIND-MATRIX/2",
+ "rule": "PRESENT requires a loadable unit (SKILL.md | plugin.json | manifest.json) under the host's own root whose path contains the kind token",
+ "host_presence": {
+  "Hermes": true,
+  "Codex": true,
+  "ClaudeCode": true,
+  "ChatGPT": true
+ },
+ "cells": [
+  {
+   "host": "Hermes",
+   "kind": "TPM",
+   "status": "NOT_INSTALLED",
+   "installation_claim": "NOT_OBSERVED",
+   "matched": null,
+   "evidence": [
+    {
+     "probe": "loadable_unit_walk",
+     "root": "<HOST_HOME>/AppData/Local/hermes",
+     "units_found": 482,
+     "kind_hits": 0,
+     "exists": false
+    },
+    {
+     "probe": "loadable_unit_walk",
+     "root": "<HOST_HOME>/AppData/Local/hermes/profiles",
+     "units_found": 482,
+     "kind_hits": 0,
+     "exists": false
+    }
+   ]
+  },
+  {
+   "host": "Hermes",
+   "kind": "Commander",
+   "status": "NOT_INSTALLED",
+   "installation_claim": "NOT_OBSERVED",
+   "matched": null,
+   "evidence": [
+    {
+     "probe": "loadable_unit_walk",
+     "root": "<HOST_HOME>/AppData/Local/hermes",
+     "units_found": 482,
+     "kind_hits": 0,
+     "exists": false
+    },
+    {
+     "probe": "loadable_unit_walk",
+     "root": "<HOST_HOME>/AppData/Local/hermes/profiles",
+     "units_found": 482,
+     "kind_hits": 0,
+     "exists": false
+    }
+   ]
+  },
+  {
+   "host": "Hermes",
+   "kind": "Challenge",
+   "status": "NOT_INSTALLED",
+   "installation_claim": "NOT_OBSERVED",
+   "matched": null,
+   "evidence": [
+    {
+     "probe": "loadable_unit_walk",
+     "root": "<HOST_HOME>/AppData/Local/hermes",
+     "units_found": 482,
+     "kind_hits": 0,
+     "exists": false
+    },
+    {
+     "probe": "loadable_unit_walk",
+     "root": "<HOST_HOME>/AppData/Local/hermes/profiles",
+     "units_found": 482,
+     "kind_hits": 0,
+     "exists": false
+    }
+   ]
+  },
+  {
+   "host": "Codex",
+   "kind": "TPM",
+   "status": "PRESENT",
+   "installation_claim": "INSTALLED",
+   "matched": "<HOST_HOME>/.codex/.tmp/plugins/plugins/build-macos-apps/skills/swiftpm-macos",
+   "evidence": [
+    {
+     "probe": "loadable_unit_walk",
+     "root": "<HOST_HOME>/.codex",
+     "units_found": 1231,
+     "kind_hits": 4,
+     "exists": true
+    },
+    {
+     "probe": "loadable_unit_walk",
+     "root": "<HOST_HOME>/AppData/Local/OpenAI/Codex",
+     "units_found": 1231,
+     "kind_hits": 4,
+     "exists": true
+    },
+    {
+     "probe": "loadable_unit_walk",
+     "root": "<HOST_HOME>/AppData/Local/HG-KSEOS/codex-hermes",
+     "units_found": 1231,
+     "kind_hits": 4,
+     "exists": true
+    }
+   ]
+  },
+  {
+   "host": "Codex",
+   "kind": "Commander",
+   "status": "NOT_INSTALLED",
+   "installation_claim": "NOT_OBSERVED",
+   "matched": null,
+   "evidence": [
+    {
+     "probe": "loadable_unit_walk",
+     "root": "<HOST_HOME>/.codex",
+     "units_found": 1231,
+     "kind_hits": 0,
+     "exists": false
+    },
+    {
+     "probe": "loadable_unit_walk",
+     "root": "<HOST_HOME>/AppData/Local/OpenAI/Codex",
+     "units_found": 1231,
+     "kind_hits": 0,
+     "exists": false
+    },
+    {
+     "probe": "loadable_unit_walk",
+     "root": "<HOST_HOME>/AppData/Local/HG-KSEOS/codex-hermes",
+     "units_found": 1231,
+     "kind_hits": 0,
+     "exists": false
+    }
+   ]
+  },
+  {
+   "host": "Codex",
+   "kind": "Challenge",
+   "status": "NOT_INSTALLED",
+   "installation_claim": "NOT_OBSERVED",
+   "matched": null,
+   "evidence": [
+    {
+     "probe": "loadable_unit_walk",
+     "root": "<HOST_HOME>/.codex",
+     "units_found": 1231,
+     "kind_hits": 0,
+     "exists": false
+    },
+    {
+     "probe": "loadable_unit_walk",
+     "root": "<HOST_HOME>/AppData/Local/OpenAI/Codex",
+     "units_found": 1231,
+     "kind_hits": 0,
+     "exists": false
+    },
+    {
+     "probe": "loadable_unit_walk",
+     "root": "<HOST_HOME>/AppData/Local/HG-KSEOS/codex-hermes",
+     "units_found": 1231,
+     "kind_hits": 0,
+     "exists": false
+    }
+   ]
+  },
+  {
+   "host": "ClaudeCode",
+   "kind": "TPM",
+   "status": "NOT_INSTALLED",
+   "installation_claim": "NOT_OBSERVED",
+   "matched": null,
+   "evidence": [
+    {
+     "probe": "loadable_unit_walk",
+     "root": "<HOST_HOME>/.claude",
+     "units_found": 0,
+     "kind_hits": 0,
+     "exists": false
+    },
+    {
+     "probe": "loadable_unit_walk",
+     "root": "<HOST_HOME>/AppData/Roaming/Claude",
+     "units_found": 0,
+     "kind_hits": 0,
+     "exists": false
+    },
+    {
+     "probe": "loadable_unit_walk",
+     "root": "<HOST_HOME>/AppData/Local/AnthropicClaude",
+     "units_found": 0,
+     "kind_hits": 0,
+     "exists": false
+    }
+   ]
+  },
+  {
+   "host": "ClaudeCode",
+   "kind": "Commander",
+   "status": "NOT_INSTALLED",
+   "installation_claim": "NOT_OBSERVED",
+   "matched": null,
+   "evidence": [
+    {
+     "probe": "loadable_unit_walk",
+     "root": "<HOST_HOME>/.claude",
+     "units_found": 0,
+     "kind_hits": 0,
+     "exists": false
+    },
+    {
+     "probe": "loadable_unit_walk",
+     "root": "<HOST_HOME>/AppData/Roaming/Claude",
+     "units_found": 0,
+     "kind_hits": 0,
+     "exists": false
+    },
+    {
+     "probe": "loadable_unit_walk",
+     "root": "<HOST_HOME>/AppData/Local/AnthropicClaude",
+     "units_found": 0,
+     "kind_hits": 0,
+     "exists": false
+    }
+   ]
+  },
+  {
+   "host": "ClaudeCode",
+   "kind": "Challenge",
+   "status": "NOT_INSTALLED",
+   "installation_claim": "NOT_OBSERVED",
+   "matched": null,
+   "evidence": [
+    {
+     "probe": "loadable_unit_walk",
+     "root": "<HOST_HOME>/.claude",
+     "units_found": 0,
+     "kind_hits": 0,
+     "exists": false
+    },
+    {
+     "probe": "loadable_unit_walk",
+     "root": "<HOST_HOME>/AppData/Roaming/Claude",
+     "units_found": 0,
+     "kind_hits": 0,
+     "exists": false
+    },
+    {
+     "probe": "loadable_unit_walk",
+     "root": "<HOST_HOME>/AppData/Local/AnthropicClaude",
+     "units_found": 0,
+     "kind_hits": 0,
+     "exists": false
+    }
+   ]
+  },
+  {
+   "host": "ChatGPT",
+   "kind": "TPM",
+   "status": "NOT_INSTALLED",
+   "installation_claim": "NOT_OBSERVED",
+   "matched": null,
+   "evidence": [
+    {
+     "probe": "loadable_unit_walk",
+     "root": "<HOST_HOME>/AppData/Local/Packages",
+     "units_found": 276,
+     "kind_hits": 0,
+     "exists": false
+    },
+    {
+     "probe": "loadable_unit_walk",
+     "root": "<HOST_HOME>/AppData/Local/Programs",
+     "units_found": 276,
+     "kind_hits": 0,
+     "exists": false
+    }
+   ]
+  },
+  {
+   "host": "ChatGPT",
+   "kind": "Commander",
+   "status": "NOT_INSTALLED",
+   "installation_claim": "NOT_OBSERVED",
+   "matched": null,
+   "evidence": [
+    {
+     "probe": "loadable_unit_walk",
+     "root": "<HOST_HOME>/AppData/Local/Packages",
+     "units_found": 276,
+     "kind_hits": 0,
+     "exists": false
+    },
+    {
+     "probe": "loadable_unit_walk",
+     "root": "<HOST_HOME>/AppData/Local/Programs",
+     "units_found": 276,
+     "kind_hits": 0,
+     "exists": false
+    }
+   ]
+  },
+  {
+   "host": "ChatGPT",
+   "kind": "Challenge",
+   "status": "NOT_INSTALLED",
+   "installation_claim": "NOT_OBSERVED",
+   "matched": null,
+   "evidence": [
+    {
+     "probe": "loadable_unit_walk",
+     "root": "<HOST_HOME>/AppData/Local/Packages",
+     "units_found": 276,
+     "kind_hits": 0,
+     "exists": false
+    },
+    {
+     "probe": "loadable_unit_walk",
+     "root": "<HOST_HOME>/AppData/Local/Programs",
+     "units_found": 276,
+     "kind_hits": 0,
+     "exists": false
+    }
+   ]
+  }
+ ],
+ "counts": {
+  "cells": 12,
+  "PRESENT": 1,
+  "NOT_INSTALLED": 11,
+  "NOT_PROBED": 0
+ },
+ "lane_artefact": {
+  "file": "out/WP20_MATRIX_LANE_CANDIDATE.json",
+  "state": "CANDIDATE_MATCH_ONLY",
+  "reason": "the lane's rule accepts any path containing the token, including a desktop source file and a cached markdown"
+ }
+}

@@ -1,0 +1,60 @@
+{
+ "schema": "FHS-W1-R2-WP05-BUNDLE4/1",
+ "steps": [
+  {
+   "step": "compile-tqaep-forged",
+   "exit": 0,
+   "stdout_head": "{\n \"acceptance\": [\n  {\n   \"case\": \"TQAEP_DESIGN_CANDIDATE\",\n   \"checker_execution_receipt\": \"fake_receipt.json\",\n   \"checker_identity\": \"protected-checker-x\",\n   \"claim_ceiling\": \"TQAEP_DESIGNED\",\n   \"design_time_status\": \"DISTINCT_CHECKER_IDENTITY_RECORDED\",\n   \"distinct\": true,\n   \"independent_acc"
+  },
+  {
+   "step": "compile-tqaep-self-NEG",
+   "exit": 2,
+   "stdout_head": "{\n \"code\": \"TQ_SOD\",\n \"message\": \"maker must not be the independent checker (case/whitespace-insensitive)\",\n \"verdict\": \"FAIL\"\n}\n"
+  },
+  {
+   "step": "validate-bundle4",
+   "exit": 0,
+   "checked": 4,
+   "closure": "FULL",
+   "complete": true,
+   "findings": [],
+   "scope": "FOUR_OBJECT",
+   "verdict": "PASS",
+   "missing": []
+  }
+ ],
+ "tqaep_acceptance": {
+  "claim_ceiling": "TQAEP_DESIGNED",
+  "independent_acceptance": "NOT_GRANTED",
+  "independent_proof_requires": "S5_LIVE_RUNTIME_CHECKER"
+ },
+ "tqaep_acceptance_keys": [
+  "case",
+  "checker_execution_receipt",
+  "checker_identity",
+  "claim_ceiling",
+  "design_time_status",
+  "distinct",
+  "independent_acceptance",
+  "independent_proof_requires",
+  "maker_identity",
+  "note"
+ ],
+ "bundle_members": [
+  "ECP",
+  "PD-PKG",
+  "PI-PKG",
+  "TQAEP"
+ ],
+ "bundle4_sha256": "e3df1e10de5ccd55def928ca6a7f63ef99af6512746369327bf6e4bf75e595b9",
+ "pd_head": {
+  "head": "826ca066a1c2df2976c0d402018b79e1c79a444f",
+  "branch": "candidate/r14-ts15-kinds",
+  "caller_head_claim": {
+   "matches_host": true,
+   "value": "826ca066a1c2df2976c0d402018b79e1c79a444f",
+   "verified": true
+  },
+  "currentness": null
+ }
+}

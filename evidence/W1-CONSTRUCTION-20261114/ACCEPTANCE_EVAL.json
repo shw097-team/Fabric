@@ -1,0 +1,355 @@
+{
+ "schema": "FHS-W1-R2-ACCEPTANCE-EVAL/1",
+ "contract": "docs/ACCEPTANCE_CONTRACT_FROZEN.json",
+ "criteria": [
+  {
+   "id": "F1",
+   "name": "來源身份可複現",
+   "pass": true,
+   "code": "OK",
+   "measured": {
+    "kb_body_equals_delivery": true,
+    "kb_appx_equals_delivery": true,
+    "task_brief_sha_matches_baseline_claim": true,
+    "repair_r10_is_distinct_revision": true
+   },
+   "evidence": "out/P0_SOURCE_IDENTITY.json"
+  },
+  {
+   "id": "F2",
+   "name": "WP-05 編譯鏈與決定性",
+   "pass": true,
+   "code": "OK",
+   "measured": {
+    "pi_deterministic": true,
+    "ecp_deterministic": true,
+    "bundle4": {
+     "checked": 4,
+     "closure": "FULL",
+     "complete": true,
+     "findings": [],
+     "scope": "FOUR_OBJECT"
+    },
+    "typed_refusals": 8,
+    "refusal_codes": [
+     "GIT_PROBE_FAILED",
+     "INPUT_SHAPE_INVALID",
+     "INTAKE_INVALID",
+     "PROFILE_VETO",
+     "REPO_CONTEXT_MISSING",
+     "TQ_SOD"
+    ]
+   },
+   "evidence": "out/WP05_PIPD_CHAIN.json, out/WP05_BUNDLE4.json"
+  },
+  {
+   "id": "F3",
+   "name": "WP-02 Fabric 入口：四項不變量與未知路由拒收",
+   "pass": true,
+   "code": "OK",
+   "measured": {
+    "invariants": {
+     "effect_permission_is_NONE": true,
+     "unknown_route_holds_write_only": true,
+     "source_state_not_ratified": true,
+     "historical_write_authority_NONE": true,
+     "route_count": 6
+    },
+    "known_exits": {
+     "sbl_product": 0,
+     "fabric_policy": 0,
+     "hgk_admission": 0,
+     "pipd_canonical": 0,
+     "cross_repo": 0,
+     "hermes_runtime": 0
+    },
+    "unknown_exit": 3,
+    "consumer_abi_resolved": null
+   },
+   "evidence": "out/WP02_WP03_READONLY.json, out/FABRIC_ENTRY_UNITTEST.txt"
+  },
+  {
+   "id": "F4",
+   "name": "WP-03 HGK 平面：五個 epoch 欄位＋guard 具名拒絕＋spine 14 案",
+   "pass": true,
+   "code": "OK",
+   "measured": {
+    "epoch_fields": {
+     "registry.epoch": "41",
+     "registry.contract_epoch": "41",
+     "pool.revision": 37,
+     "pool.epoch": 41,
+     "assignment.revision": 44,
+     "assignment.registry_epoch": 41
+    },
+    "guard_decision": "REFUSE",
+    "guard_codes": [
+     "ERR_LANE_NOT_ADMITTED",
+     "ERR_LANE_SOD_VIOLATION",
+     "ERR_LANE_STALE_EPOCH"
+    ],
+    "spine": "14/14"
+   },
+   "evidence": "out/WP02_WP03_READONLY.json, out/WP03_HGK_SPINE.json"
+  },
+  {
+   "id": "F5",
+   "name": "WP-20 矩陣與 ModeGate39 設計矩陣",
+   "pass": true,
+   "code": "OK",
+   "measured": {
+    "modgate_rows": 39,
+    "per_mode": {
+     "STANDALONE": 13,
+     "PREW3_SHADOW": 13,
+     "SWOF_CONNECTED": 13
+    },
+    "digest_verdict": "DECLARED_SHA_NOT_REPRODUCED",
+    "matrix_cells": 12,
+    "matrix_present": 1
+   },
+   "evidence": "out/WP20_MODEGATE39.json, out/WP20_MATRIX.json"
+  },
+  {
+   "id": "F6",
+   "name": "WP-17 485 五集合逐鍵清冊不得湊數",
+   "pass": true,
+   "code": "OK",
+   "measured": {
+    "per_set": {
+     "Native20": {
+      "declared": 20,
+      "named": 20
+     },
+     "Default30": {
+      "declared": 30,
+      "named": 30
+     },
+     "Donor24": {
+      "declared": 24,
+      "named": 24
+     },
+     "Method25": {
+      "declared": 25,
+      "named": 25
+     },
+     "TECH386": {
+      "declared": 386,
+      "named": 386
+     }
+    },
+    "totals": {
+     "declared": 485,
+     "named": 485,
+     "delta": 0
+    },
+    "gaps": [
+     "count check: declared == named on all five sets (delta 0 each); total 485 named for 485 declared. No set is short of its declared count, and no set carries extra unnamed rows — every declared slot has exactly one H3 heading in the source. This is the only place the count question is answered; the entries below are shape caveats, not shortfalls.",
+     "Donor24: 6 Need name(s) repeat across slots (e.g. Fission-AI OpenSpec x4, GitHub Spec Kit x4, mattpocock skills x4, GSD x4) — per L6228 `同名工具可以滿足多Need，但不可刪原槽`, so these are distinct slots, not duplicates to collapse",
+     "Method25: 1 Need name(s) repeat across slots (e.g. mattpocock skills x4) — per L6228 `同名工具可以滿足多Need，但不可刪原槽`, so these are distinct slots, not duplicates to collapse",
+     "TECH386: 19 slot id(s) carry a bare number instead of the set's prefixed form (L8833 `TECH386:341` .. L9211 `TECH386:359`); id preserved verbatim",
+     "TECH386: 38 Need name(s) repeat across slots (e.g. mattpocock skills x3, Fission-AI OpenSpec x3, GitHub Spec Kit x5, obra Superpowers x5) — per L6228 `同名工具可以滿足多Need，但不可刪原槽`, so these are distinct slots, not duplicates to collapse",
+     "cross-set id reuse: 30 id suffix(es) appear under two set prefixes (colliding rows: Default30=30, TECH386=30); e.g. `Default30:P0-TOOL-001` and `TECH386:P0-TOOL-001` are different keys over the same underlying id. Keys stay unique (485/485), but distinct id suffixes are only 455: any de-duplication by id suffix would report 455 slots instead of 485.",
+     "118 row(s) present the source's inline `upstream=…; disposition=…` form in the disposition field instead of one token (72 of them contain `disposition=`); first: L10597 `TECH386:P0-TOOL-001`. These are recorded verbatim, so the field is comparable by prefix only.",
+     "5 of those disposition values are cut mid-token in the blueprint itself — L10607 reads `disposition=DEFAULT_ENABLED_AFTER_Q；` and L10628 reads `disposition=DEFAULT_ENABLED_AFTER_QUALIFICA；` (`TECH386:P0-TOOL-001` / `TECH386:P0-TOOL-002`). The missing tail is not reconstructed here."
+    ],
+    "combined_digest": "b3cf9d40c8d710da932e4f964d27cd9ef0d2e507bd4f04832ce162198f8923c0"
+   },
+   "evidence": "out/WP17_485_LEDGER.json"
+  },
+  {
+   "id": "F7",
+   "name": "效果邊界：本輪不得執行 HOST_OP",
+   "pass": true,
+   "code": "OK",
+   "measured": {
+    "files": 352,
+    "outside_undisclosed": []
+   },
+   "evidence": "out/WRITE_MANIFEST.json, out/CHANGE_MANIFEST.json"
+  },
+  {
+   "id": "F8",
+   "name": "車道收據誠實",
+   "pass": true,
+   "code": "OK",
+   "measured": {
+    "receipts": [
+     {
+      "receipt": "LANE_EXEC_WP20.json",
+      "lane": "EXECUTE",
+      "state": "REFUSED",
+      "ok": false,
+      "code": "ERR_LANE_ALL_ROUTES_EXHAUSTED",
+      "served_model": "deepseek-v4.1-flash",
+      "provider": "opencode-go",
+      "transport_model": "opencode-go/deepseek-v4.1-flash",
+      "exit": 1,
+      "timed_out": false,
+      "seconds": 23.26,
+      "nonce_in_agent_message": false,
+      "usage_receipt_ok": false,
+      "usage_rows_after_offset": 26,
+      "sandbox": "danger-full-access",
+      "relay_base": "http://127.0.0.1:10101/v1",
+      "front_door_port": null,
+      "selection_filter": {
+       "required_arm": "opencode-go/deepseek-v4.1-flash",
+       "candidates_before": [
+        "opencode-go/deepseek-v4.1-flash"
+       ],
+       "candidates_after": [
+        "opencode-go/deepseek-v4.1-flash"
+       ],
+       "why": "selection constrained by --require-arm (alias-equivalent), not only judged after the call"
+      }
+     },
+     {
+      "receipt": "LANE_EXEC_WP20_R2.json",
+      "lane": "EXECUTE",
+      "state": "SERVED_UNATTRIBUTED_NO_NONCE",
+      "ok": false,
+      "code": "ERR_NO_ARM_EMITTED_NONCE",
+      "served_model": "deepseek-v4.1-flash",
+      "provider": "opencode-go",
+      "transport_model": "opencode-go/deepseek-v4.1-flash",
+      "exit": 0,
+      "timed_out": false,
+      "seconds": 371.35,
+      "nonce_in_agent_message": false,
+      "usage_receipt_ok": true,
+      "usage_rows_after_offset": 41,
+      "sandbox": "workspace-write",
+      "relay_base": "http://127.0.0.1:10101/v1",
+      "front_door_port": null,
+      "selection_filter": {
+       "required_arm": "opencode-go/deepseek-v4.1-flash",
+       "candidates_before": [
+        "opencode-go/deepseek-v4.1-flash"
+       ],
+       "candidates_after": [
+        "opencode-go/deepseek-v4.1-flash"
+       ],
+       "why": "selection constrained by --require-arm (alias-equivalent), not only judged after the call"
+      }
+     },
+     {
+      "receipt": "LANE_EXEC_WP20_R3.json",
+      "lane": "EXECUTE",
+      "state": "SERVED_UNATTRIBUTED_NO_NONCE",
+      "ok": false,
+      "code": "ERR_NO_ARM_EMITTED_NONCE",
+      "served_model": "deepseek-v4.1-flash",
+      "provider": "opencode-go",
+      "transport_model": "opencode-go/deepseek-v4.1-flash",
+      "exit": 0,
+      "timed_out": false,
+      "seconds": 177.18,
+      "nonce_in_agent_message": false,
+      "usage_receipt_ok": true,
+      "usage_rows_after_offset": 19,
+      "sandbox": "danger-full-access",
+      "relay_base": "http://127.0.0.1:10101/v1",
+      "front_door_port": null,
+      "selection_filter": {
+       "required_arm": null,
+       "candidates_before": [
+        "opencode-go/deepseek-v4.1-flash"
+       ],
+       "candidates_after": null,
+       "why": null
+      }
+     },
+     {
+      "receipt": "LANE_EXEC_WP20_R4.json",
+      "lane": "EXECUTE",
+      "state": "TIMEOUT_NOT_ACCEPTED",
+      "ok": false,
+      "code": "ERR_LANE_ALL_ROUTES_EXHAUSTED",
+      "served_model": "deepseek-v4.1-flash",
+      "provider": "opencode-go",
+      "transport_model": "opencode-go/deepseek-v4.1-flash",
+      "exit": "TIMEOUT",
+      "timed_out": true,
+      "seconds": 420.04,
+      "nonce_in_agent_message": false,
+      "usage_receipt_ok": false,
+      "usage_rows_after_offset": 39,
+      "sandbox": "danger-full-access",
+      "relay_base": "http://127.0.0.1:10101/v1",
+      "front_door_port": null,
+      "selection_filter": {
+       "required_arm": null,
+       "candidates_before": [
+        "opencode-go/deepseek-v4.1-flash"
+       ],
+       "candidates_after": null,
+       "why": null
+      }
+     },
+     {
+      "receipt": "LANE_VERIFY.json",
+      "lane": "VERIFY_SECURITY",
+      "state": "SERVED",
+      "ok": true,
+      "code": null,
+      "served_model": "deepseek-v4.1-flash",
+      "provider": "opencode-go",
+      "transport_model": "opencode-go/deepseek-v4.1-flash",
+      "exit": 0,
+      "timed_out": false,
+      "seconds": 533.45,
+      "nonce_in_agent_message": true,
+      "usage_receipt_ok": true,
+      "usage_rows_after_offset": 52,
+      "sandbox": "read-only",
+      "relay_base": "http://127.0.0.1:10101/v1",
+      "front_door_port": null,
+      "selection_filter": {
+       "required_arm": null,
+       "candidates_before": [
+        "opencode-go/deepseek-v4.1-flash"
+       ],
+       "candidates_after": null,
+       "why": null
+      }
+     },
+     {
+      "receipt": "LANE_VERIFY_R2.json",
+      "lane": "VERIFY_SECURITY",
+      "state": "SERVED",
+      "ok": true,
+      "code": null,
+      "served_model": "deepseek-v4.1-flash",
+      "provider": "opencode-go",
+      "transport_model": "opencode-go/deepseek-v4.1-flash",
+      "exit": 0,
+      "timed_out": false,
+      "seconds": 457.5,
+      "nonce_in_agent_message": true,
+      "usage_receipt_ok": true,
+      "usage_rows_after_offset": 77,
+      "sandbox": "read-only",
+      "relay_base": "http://127.0.0.1:10101/v1",
+      "front_door_port": null,
+      "selection_filter": {
+       "required_arm": null,
+       "candidates_before": [
+        "opencode-go/deepseek-v4.1-flash"
+       ],
+       "candidates_after": null,
+       "why": null
+      }
+     }
+    ],
+    "arms": [
+     "deepseek-v4.1-flash"
+    ]
+   },
+   "evidence": "out/LANE_EXEC_WP20_R3.json, out/LANE_EXEC_WP20_R4.json, out/LANE_VERIFY.json"
+  }
+ ],
+ "passed": 8,
+ "total": 8,
+ "verdict": "PASS"
+}
