@@ -1,0 +1,15 @@
+schema: FAR-PROPOSED-EVOLUTION/1
+target: FHS_NEXT ops (credential + toolchain refresh)
+change_class: OPERATIONAL_PROCEDURE
+proposal:
+  - add ops/3lm_consumers.json (manifest, one line per consumer)
+  - add ops/rotate_3lm_key.py (dry-run default, typed failure codes, hash-only receipt)
+  - add RUNBOOKS/3LM_KEY_ROTATION.md (five steps, rollback, do-not list)
+  - extend the same script with --pin-refresh for codex binary pin, gated by explicit owner approval
+acceptance:
+  - receipt exists with secret_printed=false
+  - probe returns the fixed reply with exit 0
+  - rollback restores the previous pointer and the probe still passes
+  - no key value appears in any file, log or argv
+requires_owner_approval: [pin-refresh branch, deleting the retired key file]
+risk: LOW (no new service, no scheduler, no secret store)
