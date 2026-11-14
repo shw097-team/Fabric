@@ -1,0 +1,11 @@
+claim_id	class	statement	sources	confidence
+C1	FACT	The lane credential has exactly two consumers in FHS_NEXT: start-router.ps1 (credentialPath) and ops/r1_host_readback.py.	S01,S02	HIGH
+C2	FACT	Both consumers read a *file path*, so rotation is a path/content change, not a code change.	S01,S02	HIGH
+C3	FACT	The router substitutes ${OPENCODE_GO_API_KEY} at process start; a running router keeps the old key until restarted.	S03,S05	HIGH
+C4	FACT	A direct HTTPS probe of the provider's /v1/models returned 403 for both old and new keys, so it cannot be used as a validity test.	S04	HIGH
+C5	FACT	The conclusive validity test is a codex exec call with model_provider=opencode_go and model deepseek-v4.1-flash returning CHECKER_OK.	S05	HIGH
+C6	FACT	The 3LM dispatcher refuses to spawn when its declared codex binary pin no longer exists (ERR_LANE_PIN_IDENTITY_INVALID).	S03 + dispatch run	HIGH
+C7	CONSTRAINT	Credentials must never appear in argv, logs, evidence, commits or replies.	S06,S08	HIGH
+C8	CONSTRAINT	Fabric entry is navigation only (effect_permission=NONE); an unknown route holds only the affected write.	S07	HIGH
+C9	RECOMMENDATION	Rotation should be one command that (a) rewrites the pointer, (b) restarts the consumer, (c) runs a positive probe, (d) writes a redacted receipt.	derived	MED
+C10	RECOMMENDATION	The same command shape should cover toolchain (codex binary) pin refresh, because it fails the same way.	derived	MED

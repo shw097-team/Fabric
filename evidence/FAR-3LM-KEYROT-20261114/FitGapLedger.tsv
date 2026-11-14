@@ -1,0 +1,6 @@
+gap_id	need	existing_artifact	gap	disposition
+G1	know every credential consumer	start-router.ps1 + r1_host_readback.py (found by grep)	no declared consumer list	CLOSE: one manifest line per consumer
+G2	know whether rotation took effect	KEY_PROBE.json (ad hoc, this round)	no standard receipt	CLOSE: receipt schema
+G3	restart the consumer	manual	no step	CLOSE: documented restart step with fallback
+G4	lane toolchain pin refresh	lane config fields	no procedure; dispatcher refuses	CLOSE: same command, different target
+G5	secret hygiene during rotation	AGENTS.md rule 4	no automated check	CLOSE: post-rotation grep assert

@@ -1,0 +1,16 @@
+schema: FAR-CANDIDATE-KNOWLEDGE/1
+statements:
+  - id: K1
+    text: A credential rotation procedure is dominated by consumer discovery, not by the write itself.
+    scope: FHS_NEXT single-user single-machine
+    evidence: [C1, C2]
+  - id: K2
+    text: A provider HTTP endpoint is not a substitute for an end-to-end probe when the endpoint returns
+          403 for both valid and invalid credentials.
+    scope: opencode-go zen endpoint as observed 2026-11-14
+    evidence: [C4, C5]
+  - id: K3
+    text: Toolchain binary pins fail the same way credentials do, and both should be covered by one
+          refresh shape.
+    scope: HG-KSEOS lane config
+    evidence: [C6]

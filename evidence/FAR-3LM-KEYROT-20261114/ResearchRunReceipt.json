@@ -1,0 +1,78 @@
+{
+ "schema": "FAR-RESEARCH-RUN-RECEIPT/1",
+ "workorder_ref": "WO-FAR-3LM-KEYROT-20261114",
+ "completed_utc": "2026-11-14T11:55:26+00:00",
+ "question_class": "RESEARCH_GENERAL",
+ "sources": {
+  "first_party": 8,
+  "kb_auto_retrieved": 8,
+  "memory": 0,
+  "web": "SKIPPED_NO_ROOTS"
+ },
+ "ledgers": [
+  "CandidateKnowledge.yaml",
+  "CandidateResearch.yaml",
+  "ClaimLedger.tsv",
+  "ContradictionLedger.tsv",
+  "FitGapLedger.tsv",
+  "HypothesisLedger.tsv",
+  "OpenQuestionLedger.tsv",
+  "ProposedEvolution.yaml",
+  "QueryLedger.tsv",
+  "RejectedAlternativeLedger.tsv",
+  "ResearchHandoff.yaml",
+  "ResearchPlan.yaml",
+  "ResearchRequest.yaml",
+  "ResearchSourceDenominator.tsv",
+  "ResearchSynthesis.md"
+ ],
+ "lanes": {
+  "PLAN": "hermes-commander",
+  "EXECUTE": {
+   "state": "EXECUTE_LANE_TIMEOUT",
+   "path": "<WORKSPACE>/FHS_NEXT_Workspace/FAR_3LM_KEYROT_20261114\\out\\EXECUTE_RECEIPT.md",
+   "attempts": 2,
+   "writer_of_record": "PLAN_FALLBACK (hermes commander)"
+  },
+  "VERIFY": {
+   "state": "RUN",
+   "path": "<WORKSPACE>/FHS_NEXT_Workspace/FAR_3LM_KEYROT_20261114\\out\\VERIFY_RECEIPT.md",
+   "bytes": 3854,
+   "sha256": "4ccd418a7141aa0c487fe2af77a3b9b981254833089b17581b6daefc1608af82",
+   "tail": [
+    "",
+    "**Simplifications**",
+    "1. Build and probe the complete plan first, then apply from that immutable plan using one run ID for every backup and the receipt. This removes post-write probe-failure reconciliation and timestamp mismatch.",
+    "2. Remove `--verify-only` because the non-mutating dry-run already performs the probe plus stronger consumer checks, and reduce pin refresh to a read-only drift report with an owner-applied diff. This removes one duplicate mode and one second write/backup path without weakening approval.",
+    "",
+    "CLAIM_CEILING=LOCAL_CHECK_ONLY"
+   ]
+  },
+  "VERIFY_ROUND2": {
+   "state": "RUN",
+   "path": "<WORKSPACE>/FHS_NEXT_Workspace/FAR_3LM_KEYROT_20261114\\out\\VERIFY_RECEIPT_2.md",
+   "bytes": 1163,
+   "sha256": "659abe6ef8ae6afe51564582450de93a1cfae9f6842e2ad9887ab4c6ab8b66b9"
+  }
+ },
+ "artifacts": {
+  "ops/rotate_3lm_key.py": {
+   "exists": true,
+   "bytes": 10576,
+   "sha256": "5f52fced8942b266cf3b673de2483c6589a581f30d3b52ca53e7d1e323ad9dcc"
+  },
+  "RUNBOOKS/3LM_KEY_ROTATION.md": {
+   "exists": true,
+   "bytes": 4518,
+   "sha256": "34c63d7809cd7b66545288a58d237057b3cd955cb6f60e999997cb3354f5aadc"
+  }
+ },
+ "state": "RESEARCH_PASS_CANDIDATE",
+ "claim_ceiling": "LOCAL_CHECK",
+ "dispatcher": {
+  "state": "BLOCKED",
+  "code": "ERR_LANE_PIN_IDENTITY_INVALID",
+  "declared": "0.167.0-alpha.3.2@5449c1f0f26f1f98",
+  "installed": "0.167.0-alpha.4.1@9e1da79431da526b"
+ }
+}

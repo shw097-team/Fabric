@@ -1,0 +1,17 @@
+schema: FAR-CANDIDATE-RESEARCH/1
+workorder_ref: WO-FAR-3LM-KEYROT-20261114
+subject: 3LM lane API key rotation procedure
+status: CANDIDATE
+recommendation: >
+  Adopt a single consumer manifest plus one idempotent rotate command (dry-run default), whose
+  post-condition is a codex probe with the owner-specified model and a hash-only receipt; keep the
+  previous pointer file for rollback; treat toolchain pin refresh as the same command with a separate
+  owner-approved flag.
+confidence: MEDIUM
+evidence: [C1, C2, C3, C4, C5, C6]
+nonclaims:
+  - production rotation policy compliance
+  - provider-side key issuance or revocation
+  - native admission / independent acceptance / release
+open_questions: [OQ1, OQ2, OQ3]
+lane_status: {execute: EXECUTE_LANE_TIMEOUT, verify: RUN, dispatcher: BLOCKED_PIN_DRIFT}
