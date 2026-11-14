@@ -86,7 +86,7 @@ NATIVE_NOT_RUN / INDEPENDENT_NOT_RUN / RELEASE_NOT_GRANTED
 - 宿主鏈狀態：Installed=OBSERVED、Loaded=OBSERVED、Invoked=OBSERVED、Consumed=OBSERVED、Uninstalled=NOT_PROBED
 - Hermes profiles：fhs_next(45 skills)、hgk-governed(48 skills)、default(90 skills)
 - 三 Portable SP：TPM=PRESENT_IN_TREE、Commander=NOT_OBSERVED、Challenge=NOT_OBSERVED
-- Commander Guide A/B/C：`<WORKSPACE>/FHS_NEXT_Workspace/W1_R2_CONSTRUCTION_20261114/deliverables/WP07_COMMANDER_ABC.md`（sha256 `617d1e52b2840eb8…`，18 個 bash 區塊）
+- Commander Guide A/B/C：`<WORKSPACE>/FHS_NEXT_Workspace/W1_R2_CONSTRUCTION_20261114/deliverables/WP07_COMMANDER_ABC.md`（23947 bytes、sha256 `617d1e52b2840eb8…`、17 個 bash 區塊）
 - 原生面：Kanban DONE 10／PARTIAL 2／PENDING 0；WorkID `W1R2-b840e9285cbc407d` 可續行
 
 ## 7｜車道（3L&M）與路由修正
