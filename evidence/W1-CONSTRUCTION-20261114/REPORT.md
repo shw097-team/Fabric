@@ -154,7 +154,7 @@ NATIVE_NOT_RUN / INDEPENDENT_NOT_RUN / RELEASE_NOT_GRANTED
 | `H-17-INSTALL` | 任何 occupant 安裝皆為 `HOST_OP` | OPS ECP ＋ 原 Issuer ＋ nonce/TTL/epoch |
 | `H-20-SET-SHA` | 39 格宣告集合 SHA 無法以 8 種正規化複現 | **Owner 裁定 OD-W1R2-2：屬證據稽核瑕疵、不阻斷**；以可執行 PLP 為準，通報藍圖作者即可 |
 | ~~`H-REPO-CREATE`~~ | **已解除**：`shw097-team/FHS_vNEXT` 已建立（private、default `main`、head `828bfca4`），依 Owner 2026-11-14 明示授權 | — |
-| `H-REPO-PROTECT` | 分支保護 `PUT` 回 403（token 缺 administration 權限）→ `main` 目前未受保護 | 換具 repo administration 權限的 token，或由 Owner 在 UI 開啟保護 |
+| `H-REPO-PROTECT` | 分支保護 `PUT` 與 ruleset `POST` 皆回 403「Resource not accessible by personal access token」；實測該憑證在本 repo 是 admin，但它是 **fine-grained PAT、缺 Administration: write**，且瀏覽器無已存登入可用 | 由 Owner 在 token 設定加入 `Administration: Read and write`（本 repo 或 All repositories），或在 repo Settings → Branches 直接建立規則（約 30 秒） |
 | `H-ACK-READER` | `FHS_ORIGINAL_ACK(W1)` 現為 **1/7**：`owner_semantic_accept` 已簽（payload `2b6a9ad6…`、視窗 `WIN-22058723e313`），六個 reader receipts 未由 maker 代簽 | 由 reader 角色自行簽；或依 `FHS_ORIGINAL_ACK/3` 的 `NOT_APPLICABLE_BY_DESIGN` 維持不簽 |
 | ~~`H-ORIGINAL-ACK`~~ | **已撤回**：要求「原 Domain Reader 同 scope 簽署」複活了 W0 已退役的傳統 ACK（`FHS_ORIGINAL_ACK/3` 記 `NOT_APPLICABLE_BY_DESIGN`，L1 18.3 HIST-01／23.4） | 若 owner 要 W1 取得同級承認，改以同一 `FHS_ORIGINAL_ACK` 儀器套用於 W1 subject（需 owner 金鑰窗） |
 
@@ -171,10 +171,10 @@ NATIVE_NOT_RUN / INDEPENDENT_NOT_RUN / RELEASE_NOT_GRANTED
 | W1RepoEntry／SourceImportMap／ABI joins | **DONE（設計態）＋Repo 已建立**（`shw097-team/FHS_vNEXT`，private；內容尚未推入） | `deliverables/W1_REPO_ENTRY_2026-11-14.md`、`out/REPO_CREATE_READBACK.json` |
 | 原 Compiler response 或 HOLD | **DONE** | `out/WP05_PIPD_CHAIN.json`、`out/WP05_BUNDLE4.json`（另含 effect ECP 的 `GIT_PROBE_FAILED` HOLD） |
 | 每 Host 安裝／載入／調用／卸載方案 | **DONE（設計態）** | `deliverables/WP11_HOST_PLAN_2026-11-14.md` |
-| W1 三件 L3 受影 rebase | 由前輪 `W1_GPTWORK_20261114`／`W1_R1_ENGINEERING_20261114` 交付；本輪未重做 | `deliverables/` 前輪三檔（r1／r10） |
+| W1 三件 L3 受影 rebase | **DONE**：以 amendment sheet 重出 r2（base 位元保留、7 列修訂） | `deliverables/FHS_vNEXT_PLP_W1_實質正文_施工定案版_2026-11-14_r2_AMENDED.md` |
 | SourceImportMap 實測對帳 | **DONE** | 433 檔／3,787,417 bytes；三庫 pin `a6f1fa89`／`a6003c3d`／`696c30d7` |
 
-Owner 裁定（`docs/OWNER_RULINGS_W1R2.json`）：OD-W1R2-1 同模型非缺口；OD-W1R2-2 兩項藍圖可複現性問題屬證據稽核瑕疵、不阻斷；OD-W1R2-3 白名單依 `R4-ENG.4` 共識、由原域縮測試；OD-W1R2-4 缺的交付直接補做。
+Owner 裁定（`docs/OWNER_RULINGS_W1R2.json`）：OD-W1R2-1 同模型非缺口；OD-W1R2-2 兩項藍圖可複現性問題屬證據稽核瑕疵、不阻斷；OD-W1R2-3 白名單依 `R4-ENG.4` 共識、由原域縮測試；OD-W1R2-4 缺的交付直接補做；OD-W1R2-5 撤回 H-ORIGINAL-ACK。另依 Owner 2026-11-14 指令升級 OpenSpec 至 2.0.0（`out/OPENSPEC_UPGRADE.json`）。
 
 ## 11｜Owner 金鑰信封：本輪實際執行了什麼
 

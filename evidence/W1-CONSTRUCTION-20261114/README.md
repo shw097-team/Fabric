@@ -33,6 +33,8 @@ This folder is the de-sensitised evidence of one construction round: the 8 W1 wo
 | `REPO_CREATE_READBACK.json` | `shw097-team/FHS_vNEXT` created private on owner order; branch protection refused (403, token scope) |
 | `OWNER_ENVELOPE_EVALUATION.json` + `OWNER_SEMANTIC_ACCEPT_W1R2.signed.json` | the owner window that was opened, the one signature it produced, and the close |
 | `W1_ORIGINAL_ACK_PARTIAL.json` | the W0 ACK instrument applied to the W1 subject: 1/7 — owner片 signed, six reader receipts NOT signed by the maker |
+| `W1_BODY_r2_AMENDED.md` | the W1 construction baseline re-issued as r2: 7 numbered amendments in front of the base document's bytes, retained verbatim |
+| `OPENSPEC_UPGRADE.json` | OpenSpec upgraded to the version the blueprint names (2.0.0), and the change re-validated under it |
 
 ## Claim ceiling
 

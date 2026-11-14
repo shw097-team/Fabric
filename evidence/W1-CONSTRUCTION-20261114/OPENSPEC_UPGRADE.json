@@ -1,0 +1,23 @@
+{
+ "schema": "FHS-W1-R2-OPENSPEC-UPGRADE/1",
+ "before": {
+  "installed": "1.8.0",
+  "selected_by_blueprint": "2.0.0",
+  "state": "SELECTED_NOT_INSTALLED"
+ },
+ "action": {
+  "command": "npm install -g @fission-ai/openspec@2.0.0",
+  "package": "@fission-ai/openspec@2.0.0"
+ },
+ "after": {
+  "installed": "2.0.0",
+  "npm_ls": "@fission-ai/openspec@2.0.0"
+ },
+ "revalidation": {
+  "command": "openspec validate --strict w1-r2-construction",
+  "exit": 0,
+  "stdout": "Change 'w1-r2-construction' is valid"
+ },
+ "effect": "blueprint §D.3 的 SELECTED=2.0.0 與 INSTALLED 現已一致；本輪變更在 2.0.0 下仍 valid",
+ "note": "tool-chain change on this host; reversible by `npm install -g @fission-ai/openspec@1.8.0`"
+}
