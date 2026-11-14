@@ -1,0 +1,21 @@
+schema: FAR-RESEARCH-REQUEST/1
+workorder_ref: WO-FAR-3LM-KEYROT-20261114
+created_utc: 2026-11-14T11:18:21+00:00
+requested_by: owner (2026-11-14 ruling)
+decision_question: >
+  How should FHS define an established, reusable, low-friction procedure for rotating the 3LM
+  lane API key, so that a future rotation is fast, verifiable and does not depend on
+  rediscovering where the key is consumed?
+scope_in:
+  - credential source-of-truth and every consumer of it inside FHS_NEXT
+  - lane identity pin / toolchain rotation that shares the same failure class
+  - evidence and claim ceiling required after a rotation
+scope_out:
+  - issuing new keys at the provider (owner action)
+  - any change to Fabric / HG-KSEOS / SBL main branches
+  - storing, printing or transmitting the key value
+budget: 8 first-party sources + 8 auto-retrieved KB rows; 0 web (no allowed roots declared)
+stop_criteria:
+  - stop and abstain if a required source is MISSING and cannot be replaced by a declared locator
+  - stop if a step would require writing a secret into argv, log, evidence or commit
+owner: FHS human owner (sole issuer)
