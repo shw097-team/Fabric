@@ -1,0 +1,113 @@
+{
+ "schema": "FHS-W1R2-REVIEW-CONVERGENCE/1",
+ "rule": "OD-W1R2-11：判準閉集在派車前凍結；finding 必須可歸屬收據；失敗／缺失集合須單調不增；空集合即終止；閉集外項目一律停止並升級 owner",
+ "verify_family": [
+  {
+   "receipt": "LANE_VERIFY_R4.json",
+   "fails": [
+    "G2",
+    "G6",
+    "G7"
+   ],
+   "n_fail": 3,
+   "verdict": "REJECT",
+   "sec": 425.63
+  },
+  {
+   "receipt": "LANE_VERIFY_R5.json",
+   "fails": [
+    "G7"
+   ],
+   "n_fail": 1,
+   "verdict": "REJECT",
+   "sec": 258.96
+  },
+  {
+   "receipt": "LANE_VERIFY_R6.json",
+   "fails": [
+    "G7"
+   ],
+   "n_fail": 1,
+   "verdict": "REJECT",
+   "sec": 210.29
+  },
+  {
+   "receipt": "LANE_VERIFY_R7.json",
+   "fails": [
+    "G7"
+   ],
+   "n_fail": 1,
+   "verdict": "REJECT",
+   "sec": 253.69
+  },
+  {
+   "receipt": "LANE_VERIFY_R8.json",
+   "fails": [
+    "G7"
+   ],
+   "n_fail": 1,
+   "verdict": "REJECT",
+   "sec": 145.56
+  },
+  {
+   "receipt": "LANE_VERIFY_R9.json",
+   "fails": [
+    "G7"
+   ],
+   "n_fail": 1,
+   "verdict": "REJECT",
+   "sec": 224.84
+  },
+  {
+   "receipt": "LANE_VERIFY_R10.json",
+   "fails": [],
+   "n_fail": 0,
+   "verdict": "APPROVE_RELEASE_CANDIDATE",
+   "sec": 156.08
+  }
+ ],
+ "writeback_family": [
+  {
+   "receipt": "LANE_WRITEBACK_REVIEW.json",
+   "sustain": 6,
+   "reject": [
+    "WB-06",
+    "WB-07"
+   ],
+   "missing": "WB-09, WB-10, WB-11",
+   "verdict": "WRITEBACK_NOT_QUALIFIED",
+   "sec": 524.86
+  },
+  {
+   "receipt": "LANE_WRITEBACK_REVIEW_R2.json",
+   "sustain": 9,
+   "reject": [
+    "WB-10"
+   ],
+   "missing": "WB-10-R1, WB-12, WB-13",
+   "verdict": "WRITEBACK_NOT_QUALIFIED",
+   "sec": 410.78
+  },
+  {
+   "receipt": "LANE_WRITEBACK_REVIEW_R3.json",
+   "sustain": 12,
+   "reject": [],
+   "missing": "none",
+   "verdict": "WRITEBACK_QUALIFIED",
+   "sec": 181.34
+  }
+ ],
+ "verify_monotone": true,
+ "terminated": {
+  "verify": "R10 (0 fail, APPROVE)",
+  "writeback": "R3 (MISSING none, WRITEBACK_QUALIFIED)"
+ },
+ "expansion_events": [
+  {
+   "family": "writeback",
+   "where": "R2",
+   "what": "missing 由 {WB-09,10,11} 換成 {WB-10-R1,12,13}",
+   "assessment": "集合數量未增（3→3）但項目全換；全部落在 10 條 owner 裁定的閉集內且可歸屬收據，故屬閉集內補齊而非發散；新規則要求派車前一次列完閉集，未來不得再以逐輪發現方式擴張"
+  }
+ ]
+}
