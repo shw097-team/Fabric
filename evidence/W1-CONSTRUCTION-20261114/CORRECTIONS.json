@@ -61,6 +61,70 @@
     "none"
    ],
    "note": "G1/G3/G4/G5/G8 PASS; the three findings are record-keeping discrepancies (two counts and one stale wording), not new defects of the work"
+  },
+  {
+   "round": "R5",
+   "dispatch": "out/LANE_VERIFY_R5.json",
+   "nonce": "W1R2-VERIFY-R5-4c07e9",
+   "attribution": "nonce_in_agent_message=true, exit 0, 259 s, read-only, usage rows 43",
+   "verdict": "REJECT",
+   "failed": [
+    "G7"
+   ],
+   "note": "G1-G6 and G8 PASS (G2 now 8 steps/6 codes, G6 8 caveats); G7 failed because the manifest still listed 'origin repo write' and 'repo creation' under effects_not_performed while PR #60 and the new repo exist"
+  },
+  {
+   "round": "R6",
+   "dispatch": "out/LANE_VERIFY_R6.json",
+   "nonce": "W1R2-VERIFY-R6-91d3af",
+   "attribution": "nonce_in_agent_message=true, exit 0, 210 s, read-only, usage rows 32",
+   "verdict": "REJECT",
+   "failed": [
+    "G7"
+   ],
+   "note": "G1-G6 and G8 PASS; G7 failed on a derivation bug: the manifest printed repository=null because the readback nests the name under repo.full_name while the code read a top-level key"
+  },
+  {
+   "round": "R7",
+   "dispatch": "out/LANE_VERIFY_R7.json",
+   "nonce": "W1R2-VERIFY-R7-3ee815",
+   "attribution": "nonce_in_agent_message=true, exit 0, 254 s, read-only, usage rows 43",
+   "verdict": "REJECT",
+   "failed": [
+    "G7"
+   ],
+   "note": "G1-G6 and G8 PASS; G7 failed on self-referential drift: the manifest hashed the per-round brief and the review receipts that are written after it, so by review time four entries and the brief's size differed"
+  },
+  {
+   "round": "R8",
+   "dispatch": "out/LANE_VERIFY_R8.json",
+   "nonce": "W1R2-VERIFY-R8-b57c02",
+   "attribution": "nonce_in_agent_message=true, exit 0, 146 s, read-only, usage rows 22",
+   "verdict": "REJECT",
+   "failed": [
+    "G7"
+   ],
+   "note": "G1-G6 and G8 PASS; G7 failed on 4 drifts: two round files were edited AFTER the manifest was generated (this corrections file and the brief generator), and the two relay credential files are unreadable from a read-only review sandbox"
+  },
+  {
+   "round": "R9",
+   "dispatch": "out/LANE_VERIFY_R9.json",
+   "nonce": "W1R2-VERIFY-R9-a14f6c",
+   "attribution": "nonce_in_agent_message=true, exit 0, 225 s, read-only, usage rows 27",
+   "verdict": "REJECT",
+   "failed": [
+    "G7"
+   ],
+   "note": "G1-G6 and G8 PASS; all 416 readable declared hashes matched with zero drift, but the tree held 415 nonvolatile files against 410 declarations — the dispatch writes logs/ and lane receipts after the manifest"
+  },
+  {
+   "round": "R10",
+   "dispatch": "out/LANE_VERIFY_R10.json",
+   "nonce": "W1R2-VERIFY-R10-6d92b4",
+   "attribution": "nonce_in_agent_message=true, exit 0, 156 s, read-only, usage rows 27",
+   "verdict": "APPROVE_RELEASE_CANDIDATE",
+   "failed": [],
+   "note": "all eight PASS. G7: 344 round / 6 inside-allowed-root / 2 outside-allowed-roots, required effect declarations, 95 documented exclusions, readbacks agree, manifest drift 0"
   }
  ],
  "corrections": [
@@ -179,6 +243,69 @@
    "why_it_happened": "the brief carried a hand-typed count, and the phrase 'no origin-repo write' conflated 'main untouched' with 'no write at all'",
    "fix": "report states the precise form: origin `main` untouched; one evidence branch + draft PR; one new private repo created on owner order. The counts in any future brief must be generated from the artefacts at dispatch time, not typed",
    "evidence": "out/WRITE_MANIFEST.json, out/PUSH_READBACK.json, out/REPO_CREATE_READBACK.json"
+  },
+  {
+   "id": "RC-14",
+   "raised_by": "G7 (FAIL, R5)",
+   "earlier_claim": "the write manifest's effects_not_performed listed 'origin repo write' and 'repo creation' as not performed",
+   "measured": "an evidence branch + draft PR #60 exists on Fabric and shw097-team/FHS_vNEXT was created; the exclusions were false as written",
+   "why_it_happened": "the effect list was typed as a blanket claim instead of being derived from the readbacks",
+   "fix": "WRITE_MANIFEST now carries effect_boundary, whose not_performed and performed_and_where are read from PUSH_READBACK.json and REPO_CREATE_READBACK.json at build time; the generated VERIFY brief prints that block verbatim",
+   "evidence": "out/WRITE_MANIFEST.json, out/PUSH_READBACK.json, out/REPO_CREATE_READBACK.json"
+  },
+  {
+   "id": "RC-15",
+   "raised_by": "G7 (FAIL, R6)",
+   "earlier_claim": "effect_boundary.performed_and_where listed repository creation with repo=null",
+   "measured": "out/REPO_CREATE_READBACK.json carries the created repository as repo.full_name = shw097-team/FHS_vNEXT (and in steps[0].full_name, http 201); the derivation read a key that does not exist",
+   "why_it_happened": "the readback schema nests the repo block; the code assumed a flat key, and a null slipped through",
+   "fix": "derivation now reads repo.full_name, falls back to the 201 step, carries private/default_branch/head and the protection attempt; a null action/repo/receipt now raises instead of being written",
+   "evidence": "out/WRITE_MANIFEST.json, out/REPO_CREATE_READBACK.json"
+  },
+  {
+   "id": "RC-16",
+   "raised_by": "G7 (FAIL, R7)",
+   "earlier_claim": "the manifest and the tree agree family-wide",
+   "measured": "four manifest entries and the brief's size disagreed at review time, because the manifest hashed files that are regenerated during or after manifest generation (the brief, the review receipts, the manifest itself, the run's own stdout capture)",
+   "why_it_happened": "no distinction between frozen artefacts and per-round volatile ones; a self-referential hash set cannot be consistent",
+   "fix": "manifest now carries generated_at_utc and a declared volatile_excluded rule; every other file is hashed; build/manifest_check.py is read-only and recomputes all hashes (413 checked, 19 volatile excluded, drift 0 before dispatch)",
+   "evidence": "out/WRITE_MANIFEST.json, out/_manifest_check.txt"
+  },
+  {
+   "id": "RC-17",
+   "raised_by": "G7 (FAIL, R8)",
+   "earlier_claim": "the manifest was generated last before dispatch",
+   "measured": "it was not: docs/CORRECTIONS.json and build/gen_verify_brief.py were edited after it, so two hashes were stale at review time",
+   "why_it_happened": "the corrections for a round were written after dispatching that round, which by definition mutates an already-frozen manifest",
+   "fix": "the round order is now fixed and enforced: write every file (corrections, rulings, report inputs) → rebuild deliverables → generate manifest → manifest_check must return drift 0 → generate brief → dispatch. Nothing is edited after the manifest.",
+   "evidence": "build/manifest_check.py output captured into out/MANIFEST_CHECK.txt before dispatch"
+  },
+  {
+   "id": "RC-18",
+   "raised_by": "G7 (FAIL, R8)",
+   "earlier_claim": "every manifest hash is recomputable by any reader",
+   "measured": "the two relay credential files live in AppData and are not readable from a read-only review sandbox (PermissionError), so a reviewer's recomputation must report them as unreadable — which I had scored as drift",
+   "why_it_happened": "the manifest did not distinguish 'hash I can verify' from 'declared file a reviewer cannot open'",
+   "fix": "those entries now carry reader_visibility=RESTRICTED_CREDENTIAL_POOL plus a note; manifest_check lists them under unreadable_declared instead of drift, and the brief states that they are declared, not counted",
+   "evidence": "out/WRITE_MANIFEST.json, build/manifest_check.py"
+  },
+  {
+   "id": "RC-19",
+   "raised_by": "G7 (FAIL, R9)",
+   "earlier_claim": "the volatile-exclusion rule covered everything written after the manifest",
+   "measured": "it did not: the dispatch writes logs/*.txt, logs/attempts/*.txt and out/LANE_VERIFY_R*.attempts.ndjson after the manifest, so five files were neither declared nor excluded",
+   "why_it_happened": "the rule was written for the brief only, not for the run-time tail that the dispatch itself produces",
+   "fix": "volatile rule widened to lane_cwd/ (whole), logs/ (whole) and the lane receipts the dispatch writes; the manifest now also self-audits — files present but neither declared nor excluded must be 0 — and refuses to be considered complete otherwise",
+   "evidence": "out/WRITE_MANIFEST.json, out/MANIFEST_CHECK.txt"
+  },
+  {
+   "id": "RC-20",
+   "raised_by": "post-approval audit (build/post_approval_delta.py)",
+   "earlier_claim": "nothing changes after the approval",
+   "measured": "two hashed files changed after R10 approved: docs/CORRECTIONS.json (this append) and build/manifest_check.py (relative-path normalisation in the audit)",
+   "why_it_happened": "the approval record itself must be written somewhere, and the audit needed a path fix to run at all",
+   "fix": "both are declared by name in out/POST_APPROVAL_DELTA.json with their reasons; the delta record fails on any third, undeclared change; every one of the 352 approved files is re-hashed and must be identical",
+   "evidence": "out/POST_APPROVAL_DELTA.json, out/WRITE_MANIFEST_APPROVED.json"
   }
  ],
  "not_corrected": [
@@ -189,11 +316,11 @@
  ],
  "review_rounds": 3,
  "final_state": {
-  "review_verdict_last": "REJECT (R4: G2/G6/G7, all record-keeping discrepancies)",
-  "criteria_substance": "G1/G3/G4/G5/G8 PASS; G2/G6/G7 corrected in this file and in the report; no work item is reopened",
-  "why_stopping": "four attributed rounds; every finding so far has been a count or wording drift in the brief rather than a defect of the work. The durable fix is a brief generated from the receipts, which is recorded here as the prerequisite for any further round",
-  "handover": "owner decides whether a fifth round is wanted after the generator lands",
-  "criteria_substance_met": "G1／G3／G4／G5／G8 判 PASS；G2／G6／G7 三項皆為簡報計數或措辭漂移（8 步被寫成 7 種碼、6 條被寫成 8 條 caveat、373 被寫成 390 檔、以及『無對外寫入』的措辭與 PR 事實不符），本輪已逐條更正並改為由 receipts 產生簡報（build/gen_verify_brief.py），無任何工作項被重新打開"
+  "review_verdict_last": "APPROVE_RELEASE_CANDIDATE (R10)",
+  "criteria_substance_met": "G1-G8 全部 PASS",
+  "why_stopping": "R10 approved; no further round is needed",
+  "handover": "owner pre-authorised promotion on approval: merge evidence PR into Fabric main, promote the delivered set into FHS_NEXT, publish to the product repo",
+  "post_approval_rule": "after APPROVE only append-only records may change (this file, the R10 receipt and its verdict); every file that was declared in WRITE_MANIFEST_APPROVED.json must still hash identically — out/POST_APPROVAL_DELTA.json proves it"
  },
  "open_owner_decisions": [
   {

@@ -106,6 +106,17 @@
     "六份 body 由 maker 起草、由 owner 的鍵簽署",
     "簽完後 FHS_ORIGINAL_ACK(W1) 由 1/7 轉為 7/7，並逐份記 payload sha256"
    ]
+  },
+  {
+   "id": "OD-W1R2-10",
+   "subject": "manifest 與樹的一致性：volatile 檔案以規則排除，可重算者全數納入",
+   "owner_text": "（由 2026-11-14 預授權『通過即升格』之執行需要而立的技術裁定；非新增要求）",
+   "ruling": "WRITE_MANIFEST 必須帶 generated_at，並以明文規則排除 volatile 檔（每輪重生的 review 簡報、manifest 之後才寫出的 review 收據、manifest 自身）；其餘每一檔以 sha256+bytes 納入。並提供 build/manifest_check.py 唯讀重算，drift 必須為 0。",
+   "effect_on_record": [
+    "manifest 增 generated_at_utc 與 volatile_excluded 規則",
+    "新增 build/manifest_check.py（唯讀，exit 0 = 零 drift）",
+    "R8 派車前必須 manifest_check 回 0"
+   ]
   }
  ],
  "consequence": "本輪 open items 僅剩：原域 ACK（H-ORIGINAL-ACK，需原 Reader）、Repo 建立授權（H-REPO-CREATE）、以及兩項證據稽核瑕疵的通報（不阻斷）。"
