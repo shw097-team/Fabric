@@ -1,0 +1,46 @@
+{
+ "schema": "FHS-W1-R2-OWNER-ENVELOPE/1",
+ "consumer": "owner_semantic_accept over the W1_R2 construction report (owner order 2026-11-14)",
+ "window": {
+  "window_id": "WIN-22058723e313",
+  "task": "FHS-W1-R2-20261114",
+  "state": "CLOSED",
+  "scope": [
+   "owner_semantic_accept"
+  ],
+  "max_ops": 3,
+  "ops_used": 1,
+  "effect_class_ceiling": "REPOSITORY_WRITE",
+  "workspace": "C:\\Projects\\Agent_Workspace\\FHS_NEXT_Workspace\\W1_R2_CONSTRUCTION_20261114\\owner_ws",
+  "registry_used": {
+   "file": "owner_ws/admission/registry/runner-registry.json",
+   "schema": "RunnerRegistry@1",
+   "rev": 13,
+   "rows": 31,
+   "provenance": "copied from the closed W0_R7 signing window; the window reads it as host context, it authorises nothing by itself"
+  },
+  "signing_log_refusals": 0
+ },
+ "signature": {
+  "kind": "owner_semantic_accept",
+  "payload_sha256": "2b6a9ad6671c18a6bf529926c77ae57bd27afa7c1dca6e403f594cf319e52b23",
+  "signature_verified": true,
+  "receipt": "out/OWNER_SEMANTIC_ACCEPT_W1R2.signed.json",
+  "body": "out/OWNER_SEMANTIC_ACCEPT_W1R2.body.json",
+  "body_sha256": "2b6a9ad6671c18a6bf529926c77ae57bd27afa7c1dca6e403f594cf319e52b23"
+ },
+ "earlier_evaluation_was": "NOT_OPENED / N_A_WITH_REASON",
+ "why_it_changed": "the owner ruled that H-ORIGINAL-ACK (a per-domain reader signature) is not blueprint-compliant and pointed at the W0-built FHS_ORIGINAL_ACK instrument; that instrument's owner片 is an owner-key operation, so a consumer now exists",
+ "still_not_claimed": [
+  "NATIVE_SIGNED",
+  "INDEPENDENT_PASS",
+  "RELEASE_GRANTED",
+  "FHS_ORIGINAL_ACK 6/6",
+  "any per-domain reader receipt",
+  "any host effect"
+ ],
+ "report_at_signature": {
+  "path": "deliverables/W1_R2_CONSTRUCTION_REPORT_2026-11-14.md",
+  "sha256_note": "the report is rebuilt after this record so its digest moves; the signed subject is the body JSON, whose fields state the report's role and the claim ceiling"
+ }
+}

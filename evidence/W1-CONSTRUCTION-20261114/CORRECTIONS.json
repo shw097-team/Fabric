@@ -127,6 +127,15 @@
    "evidence": "out/LANE_VERIFY_ASSIGNED_ARMS_NEG.json, out/LANE_EVIDENCE.json",
    "owner_ruling": "OD-W1R2-1",
    "reclassified_to": "RECORDED_SETTING_DIVERGENCE_NOT_A_GAP"
+  },
+  {
+   "id": "RC-10",
+   "raised_by": "owner challenge (H-ORIGINAL-ACK 的合法性)",
+   "earlier_claim": "13 主責章 body 與 Raw 未經原 Domain Reader 接受，故列 H-ORIGINAL-ACK（解除條件＝原 Domain Reader 同 scope 簽署）",
+   "measured": "FHS_ORIGINAL_ACK/3 明載傳統的 per-domain reader ACK 為 NOT_APPLICABLE_BY_DESIGN（L1 18.3 HIST-01、23.4 退役；實測 0/6 僅為量測），且該儀器本身以 PROCESS_LANE_EVIDENCE_SEPARATION_ONLY 與 owner 指定模型共用運作；它的 subject 是 W0 r26，不是 W1",
+   "why_it_happened": "我照抄了施工正文 §E.4 的 HOLD 字面，沒有先查 W0 已建成儀器對「傳統 ACK」的退役裁定",
+   "fix": "H-ORIGINAL-ACK 撤回（RETRACTED_NOT_BLUEPRINT_COMPLIANT）；若 owner 要 W1 取得同級承認，改以同一 FHS_ORIGINAL_ACK 儀器套用於 W1 subject（需 owner 金鑰窗授權）",
+   "evidence": "_references/FHS_ORIGINAL_ACK.readonly.json、docs/OWNER_RULINGS_W1R2.json OD-W1R2-5"
   }
  ],
  "not_corrected": [

@@ -29,7 +29,10 @@ This folder is the de-sensitised evidence of one construction round: the 8 W1 wo
 | `LANE_STDERR_WARNINGS.json` | the dispatcher's own warnings per dispatch, including the served-arm/assignment split and three dispatch logs this round did not write |
 | `W1_REPO_ENTRY.md` | the L2 W1 deliverable `W1RepoEntry / SourceImportMap / ABI joins` (design; no repo created) |
 | `WP11_HOST_PLAN.md` | the L2 W1 deliverable `per-Host install / load / invoke / uninstall plan`, four hosts x three SPs x five stages |
-| `OWNER_RULINGS_W1R2.json` | the owner's four rulings of 2026-11-14 that reclassified RC-9 and the two audit defects and ordered the two deliverables above |
+| `OWNER_RULINGS_W1R2.json` | the owner's rulings of 2026-11-14 (same-model not a gap; blueprint reproducibility = evidence-audit defect; whitelist per R4-ENG.4; the two missing deliverables; H-ORIGINAL-ACK retracted) |
+| `REPO_CREATE_READBACK.json` | `shw097-team/FHS_vNEXT` created private on owner order; branch protection refused (403, token scope) |
+| `OWNER_ENVELOPE_EVALUATION.json` + `OWNER_SEMANTIC_ACCEPT_W1R2.signed.json` | the owner window that was opened, the one signature it produced, and the close |
+| `W1_ORIGINAL_ACK_PARTIAL.json` | the W0 ACK instrument applied to the W1 subject: 1/7 — owner片 signed, six reader receipts NOT signed by the maker |
 
 ## Claim ceiling
 

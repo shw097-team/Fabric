@@ -142,6 +142,7 @@ NATIVE_NOT_RUN / INDEPENDENT_NOT_RUN / RELEASE_NOT_GRANTED
 | RC-7 | self-check (write manifest completeness) | exactly two outside-round exception classes exist | running the tree's own selfcheck/hygiene wrote two more files into FHS_NEXT/_local (their own output paths), so a third class exists: tree-tool output | the write manifest now registers three classes (lane bindings, relay credential pool, tree-tool outputs) and lists every member; no write is undisclos |
 | RC-8 | G7 (FAIL, R3) | the round wrote exactly two outside-round exception classes | three classes / eight members: 4 lane bindings, 2 relay credential files, 2 tree-tool outputs (selfcheck and hygiene readbacks in FHS_NEXT/_local) | the manifest now lists all three classes and every member; no write is undisclosed. The frozen criterion is NOT edited — the round records that this c |
 | RC-9 | dispatcher stderr on the R1 VERIFY receipt (WARN_LANE_SERVED_UNASSIGNED_ARM), re-measured | the three VERIFY rounds were nonce-attributed review turns on the mandated arm | the arm they served (opencode-go/deepseek-v4.1-flash) is NOT in the VERIFY_SECURITY assignment revision 44, which grants only ['gpt-6.1-sol','openai-c | every receipt now carries arm_in_assignment / assignment_arms / assignment_revision; the three verdicts are recorded as challenge records produced on  |
+| RC-10 | owner challenge (H-ORIGINAL-ACK 的合法性) | 13 主責章 body 與 Raw 未經原 Domain Reader 接受，故列 H-ORIGINAL-ACK（解除條件＝原 Domain Reader 同 scope 簽署） | FHS_ORIGINAL_ACK/3 明載傳統的 per-domain reader ACK 為 NOT_APPLICABLE_BY_DESIGN（L1 18.3 HIST-01、23.4 退役；實測 0/6 僅為量測），且該儀器本身以 PROCESS_LANE_EVIDENCE_SEPARATIO | H-ORIGINAL-ACK 撤回（RETRACTED_NOT_BLUEPRINT_COMPLIANT）；若 owner 要 W1 取得同級承認，改以同一 FHS_ORIGINAL_ACK 儀器套用於 W1 subject（需 owner 金鑰窗授權） |
 
 ## 9｜HOLD（只停受影效果）
 
@@ -152,7 +153,10 @@ NATIVE_NOT_RUN / INDEPENDENT_NOT_RUN / RELEASE_NOT_GRANTED
 | `H-03-GUARD-SOD` | guard 對同模型 maker/checker 回 `ERR_LANE_SOD_VIOLATION`＋`ERR_LANE_NOT_ADMITTED` | **Owner 裁定 OD-W1R2-1：同模型不是設計要求、不列缺口、不作阻斷**；guard 的 REFUSE 屬原域設定行為，照實記錄 |
 | `H-17-INSTALL` | 任何 occupant 安裝皆為 `HOST_OP` | OPS ECP ＋ 原 Issuer ＋ nonce/TTL/epoch |
 | `H-20-SET-SHA` | 39 格宣告集合 SHA 無法以 8 種正規化複現 | **Owner 裁定 OD-W1R2-2：屬證據稽核瑕疵、不阻斷**；以可執行 PLP 為準，通報藍圖作者即可 |
-| `H-ORIGINAL-ACK` | 13 主責章 body 未經原 Reader 接受 | 原域同 scope 簽署（本輪不得自簽） |
+| ~~`H-REPO-CREATE`~~ | **已解除**：`shw097-team/FHS_vNEXT` 已建立（private、default `main`、head `828bfca4`），依 Owner 2026-11-14 明示授權 | — |
+| `H-REPO-PROTECT` | 分支保護 `PUT` 回 403（token 缺 administration 權限）→ `main` 目前未受保護 | 換具 repo administration 權限的 token，或由 Owner 在 UI 開啟保護 |
+| `H-ACK-READER` | `FHS_ORIGINAL_ACK(W1)` 現為 **1/7**：`owner_semantic_accept` 已簽（payload `2b6a9ad6…`、視窗 `WIN-22058723e313`），六個 reader receipts 未由 maker 代簽 | 由 reader 角色自行簽；或依 `FHS_ORIGINAL_ACK/3` 的 `NOT_APPLICABLE_BY_DESIGN` 維持不簽 |
+| ~~`H-ORIGINAL-ACK`~~ | **已撤回**：要求「原 Domain Reader 同 scope 簽署」複活了 W0 已退役的傳統 ACK（`FHS_ORIGINAL_ACK/3` 記 `NOT_APPLICABLE_BY_DESIGN`，L1 18.3 HIST-01／23.4） | 若 owner 要 W1 取得同級承認，改以同一 `FHS_ORIGINAL_ACK` 儀器套用於 W1 subject（需 owner 金鑰窗） |
 
 ## 10｜能主張／不能主張
 
@@ -164,7 +168,7 @@ NATIVE_NOT_RUN / INDEPENDENT_NOT_RUN / RELEASE_NOT_GRANTED
 
 | L2 §04 W1 交付 | 本輪狀態 | 產物 |
 |---|---|---|
-| W1RepoEntry／SourceImportMap／ABI joins | **DONE（設計態）** | `deliverables/W1_REPO_ENTRY_2026-11-14.md` |
+| W1RepoEntry／SourceImportMap／ABI joins | **DONE（設計態）＋Repo 已建立**（`shw097-team/FHS_vNEXT`，private；內容尚未推入） | `deliverables/W1_REPO_ENTRY_2026-11-14.md`、`out/REPO_CREATE_READBACK.json` |
 | 原 Compiler response 或 HOLD | **DONE** | `out/WP05_PIPD_CHAIN.json`、`out/WP05_BUNDLE4.json`（另含 effect ECP 的 `GIT_PROBE_FAILED` HOLD） |
 | 每 Host 安裝／載入／調用／卸載方案 | **DONE（設計態）** | `deliverables/WP11_HOST_PLAN_2026-11-14.md` |
 | W1 三件 L3 受影 rebase | 由前輪 `W1_GPTWORK_20261114`／`W1_R1_ENGINEERING_20261114` 交付；本輪未重做 | `deliverables/` 前輪三檔（r1／r10） |
@@ -172,13 +176,14 @@ NATIVE_NOT_RUN / INDEPENDENT_NOT_RUN / RELEASE_NOT_GRANTED
 
 Owner 裁定（`docs/OWNER_RULINGS_W1R2.json`）：OD-W1R2-1 同模型非缺口；OD-W1R2-2 兩項藍圖可複現性問題屬證據稽核瑕疵、不阻斷；OD-W1R2-3 白名單依 `R4-ENG.4` 共識、由原域縮測試；OD-W1R2-4 缺的交付直接補做。
 
-## 11｜Owner 金鑰信封：評估與結論
+## 11｜Owner 金鑰信封：本輪實際執行了什麼
 
 | 步驟 | 結果 |
 |---|---|
-| 機制搜尋 | `FHS_NEXT/owner_envelope/code/owner_window.py` ＋ `owner_prompt.py`（masked tkinter → ed25519 → POST /sign）；probe `ops/tools/owner_window_probe.py` |
-| 機制狀態（實測） | `open=false、usable=false、window_id=WIN-077bbb5500b1、task=FHS-W0-R7-20261114、ops 2/6、已逾期` → 機制存在但當前關閉 |
-| 本輪是否有 owner-key consumer | **沒有**：無原生准入、無 permit、無 release、無原 Reader ACK；唯一的簽署對象會是「本輪自撰 body 的 owner_semantic_accept」，那屬 maker 自簽，禁止 |
-| 結論 | `NOT_OPENED / N_A_WITH_REASON`：開窗會製造一個沒人要求的簽章能力並留下 live token |
-| 若要簽，僅剩一種 | 由 owner 親自對本報告做 `owner_semantic_accept`（owner 本人的行為，不是作者代簽） |
+| 機制 | `FHS_NEXT/owner_envelope/code/owner_window.py`（tkinter 遮罩口令 → ed25519 → `POST /sign`）；probe `ops/tools/owner_window_probe.py` |
+| 是否開窗 | **已開**：`WIN-22058723e313`、task `FHS-W1-R2-20261114`、scope `owner_semantic_accept`、max_ops 3、effect ceiling `REPOSITORY_WRITE`；preflight 先建 `owner_ws/{artifacts,admission/registry}` 並置入 host 的 `RunnerRegistry@1 rev 13` |
+| 簽了什麼 | 一次 `owner_semantic_accept`，subject 為 `out/OWNER_SEMANTIC_ACCEPT_W1R2.body.json`（2,294 bytes、payload sha256 `2b6a9ad6…`）；`signature_verified=true`、`ops_used=1`、`refusals=0` |
+| 收窗 | `owner_window.py close` → `state=CLOSED`；`SIGNING_LOG.jsonl` 有 `ALLOW` 與 `WINDOW_CLOSE` 兩列，沒有留下 live token |
+| 沒有簽的 | 六個 reader receipts（reader 角色不是 maker 的）；`FHS_ORIGINAL_ACK(W1)` 因此是 **1/7**，不得讀成 6/6 |
+| 紀錄 | `out/OWNER_ENVELOPE_EVALUATION.json`、`out/OWNER_SEMANTIC_ACCEPT_W1R2.signed.json`、`out/W1_ORIGINAL_ACK_PARTIAL.json` |
 

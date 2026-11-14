@@ -35,7 +35,10 @@
     "H-02-MIRROR-PATH 的處置由「Owner 決定擴白名單或縮測試」改為「依 R4-ENG.4 定案：縮測試範圍，原域側處理」",
     "本輪不擴白名單、不改 origin、不匯入 evidence"
    ],
-   "citation": ["FHS_vNEXT_PLP_全波次藍圖.md:L6211", "FHS_vNEXT_PLP_藍圖.md:L7194"]
+   "citation": [
+    "FHS_vNEXT_PLP_全波次藍圖.md:L6211",
+    "FHS_vNEXT_PLP_藍圖.md:L7194"
+   ]
   },
   {
    "id": "OD-W1R2-4",
@@ -46,6 +49,18 @@
     "新增 deliverables/W1_REPO_ENTRY_2026-11-14.md（含 SourceImportMap join 與 ABI joins）",
     "新增 deliverables/WP11_HOST_PLAN_2026-11-14.md（四宿主 × 三 SP × 五階段）",
     "報告 §1 的「本輪實際」對這兩項改為 DONE（設計態），不是 PARTIAL"
+   ]
+  },
+  {
+   "id": "OD-W1R2-5",
+   "subject": "H-ORIGINAL-ACK 不成立；唯一合法儀器是 W0 已建成的 FHS_ORIGINAL_ACK",
+   "owner_text": "為啥會有「H-ORIGINAL-ACK」?這合乎上游藍圖的規範嗎?我記得只有W0已建成可複用的「FHS_ORIGINAL_ACK」不是嗎?",
+   "measured": "FHS_NEXT/_references/FHS_ORIGINAL_ACK.readonly.json（schema FHS.W0.FhsOriginalAck/3、count 6/6）載明 traditional_definition_status = NOT_APPLICABLE_BY_DESIGN（由 L1 18.3 HIST-01 與 23.4 退役，實測歷史 0/6，僅作量測不作合規狀態）、separation_level = PROCESS_LANE_EVIDENCE_SEPARATION_ONLY、model_sharing_exception 明載 owner 禁止強制 SoD 或模型種類；其 subject 是 W0 r26 交付文件（668,540 bytes / 0ea05544…），不是 W1。",
+   "ruling": "`H-ORIGINAL-ACK`（要求原 Domain Reader 同 scope 簽署）複活了已退役的傳統 ACK，不屬上游藍圖規範 → 撤回。W1 若要取得同級承認，唯一路徑是把同一個 `FHS_ORIGINAL_ACK` 儀器套用到 W1 的 subject（含三車道收據與 owner 授權窗），不得另立第二種 ACK。",
+   "effect_on_record": [
+    "H-ORIGINAL-ACK 由 HOLD 改為 RETRACTED_NOT_BLUEPRINT_COMPLIANT",
+    "報告 §9 該列改寫並引用 FHS_ORIGINAL_ACK/3 的欄位",
+    "若 owner 決定對 W1 套用該儀器，需開 owner 金鑰窗（這是真正的 owner-key consumer）"
    ]
   }
  ],
