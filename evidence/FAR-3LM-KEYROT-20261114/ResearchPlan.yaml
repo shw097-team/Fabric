@@ -1,0 +1,15 @@
+schema: FAR-RESEARCH-PLAN/1
+workorder_ref: WO-FAR-3LM-KEYROT-20261114
+subquestions:
+  P1 where is the credential consumed today, and how many places must change?
+  P2 what breaks silently if a placeholder is rotated but a consumer caches it?
+  P3 what is the minimum evidence that proves a rotation actually took effect?
+  P4 which existing FHS rule already constrains the design (secrets never in argv/log/commit)?
+  P5 what is the smallest procedure that a single human on one machine can run under pressure?
+claim_classes:
+  - FACT (measured in this workspace)
+  - CONSTRAINT (from FHS rules / FAR guide)
+  - RECOMMENDATION (candidate, not acceptance)
+sources: see ResearchSourceDenominator.tsv
+stop_and_abstain: if lane identity pin stays unrefreshed, the EXECUTE/VERIFY lanes are reported as
+  dispatcher-blocked rather than silently substituted.
