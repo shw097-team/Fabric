@@ -14,6 +14,12 @@
    "state": "REFUSED",
    "ok": false,
    "code": "ERR_LANE_ALL_ROUTES_EXHAUSTED",
+   "arm_in_assignment": true,
+   "assignment_arms": [
+    "opencode-go/deepseek-v4.1-flash"
+   ],
+   "pool_listed_but_not_assigned": false,
+   "assignment_revision": 44,
    "served_model": "deepseek-v4.1-flash",
    "provider": "opencode-go",
    "transport_model": "opencode-go/deepseek-v4.1-flash",
@@ -43,6 +49,12 @@
    "state": "SERVED_UNATTRIBUTED_NO_NONCE",
    "ok": false,
    "code": "ERR_NO_ARM_EMITTED_NONCE",
+   "arm_in_assignment": true,
+   "assignment_arms": [
+    "opencode-go/deepseek-v4.1-flash"
+   ],
+   "pool_listed_but_not_assigned": false,
+   "assignment_revision": 44,
    "served_model": "deepseek-v4.1-flash",
    "provider": "opencode-go",
    "transport_model": "opencode-go/deepseek-v4.1-flash",
@@ -72,6 +84,12 @@
    "state": "SERVED_UNATTRIBUTED_NO_NONCE",
    "ok": false,
    "code": "ERR_NO_ARM_EMITTED_NONCE",
+   "arm_in_assignment": true,
+   "assignment_arms": [
+    "opencode-go/deepseek-v4.1-flash"
+   ],
+   "pool_listed_but_not_assigned": false,
+   "assignment_revision": 44,
    "served_model": "deepseek-v4.1-flash",
    "provider": "opencode-go",
    "transport_model": "opencode-go/deepseek-v4.1-flash",
@@ -99,6 +117,12 @@
    "state": "TIMEOUT_NOT_ACCEPTED",
    "ok": false,
    "code": "ERR_LANE_ALL_ROUTES_EXHAUSTED",
+   "arm_in_assignment": true,
+   "assignment_arms": [
+    "opencode-go/deepseek-v4.1-flash"
+   ],
+   "pool_listed_but_not_assigned": false,
+   "assignment_revision": 44,
    "served_model": "deepseek-v4.1-flash",
    "provider": "opencode-go",
    "transport_model": "opencode-go/deepseek-v4.1-flash",
@@ -126,6 +150,13 @@
    "state": "SERVED",
    "ok": true,
    "code": null,
+   "arm_in_assignment": false,
+   "assignment_arms": [
+    "gpt-6.1-sol",
+    "openai-codex/gpt-6.1-sol"
+   ],
+   "pool_listed_but_not_assigned": true,
+   "assignment_revision": 44,
    "served_model": "deepseek-v4.1-flash",
    "provider": "opencode-go",
    "transport_model": "opencode-go/deepseek-v4.1-flash",
@@ -153,6 +184,13 @@
    "state": "SERVED",
    "ok": true,
    "code": null,
+   "arm_in_assignment": false,
+   "assignment_arms": [
+    "gpt-6.1-sol",
+    "openai-codex/gpt-6.1-sol"
+   ],
+   "pool_listed_but_not_assigned": true,
+   "assignment_revision": 44,
    "served_model": "deepseek-v4.1-flash",
    "provider": "opencode-go",
    "transport_model": "opencode-go/deepseek-v4.1-flash",
@@ -173,6 +211,67 @@
     "candidates_after": null,
     "why": null
    }
+  },
+  {
+   "receipt": "LANE_VERIFY_R3.json",
+   "lane": "VERIFY_SECURITY",
+   "state": "SERVED",
+   "ok": true,
+   "code": null,
+   "arm_in_assignment": false,
+   "assignment_arms": [
+    "gpt-6.1-sol",
+    "openai-codex/gpt-6.1-sol"
+   ],
+   "pool_listed_but_not_assigned": true,
+   "assignment_revision": 44,
+   "served_model": "deepseek-v4.1-flash",
+   "provider": "opencode-go",
+   "transport_model": "opencode-go/deepseek-v4.1-flash",
+   "exit": 0,
+   "timed_out": false,
+   "seconds": 343.64,
+   "nonce_in_agent_message": true,
+   "usage_receipt_ok": true,
+   "usage_rows_after_offset": 43,
+   "sandbox": "read-only",
+   "relay_base": "http://127.0.0.1:10101/v1",
+   "front_door_port": null,
+   "selection_filter": {
+    "required_arm": null,
+    "candidates_before": [
+     "opencode-go/deepseek-v4.1-flash"
+    ],
+    "candidates_after": null,
+    "why": null
+   }
+  },
+  {
+   "receipt": "LANE_VERIFY_ASSIGNED_ARMS_NEG.json",
+   "lane": "VERIFY_SECURITY",
+   "state": "REFUSED",
+   "ok": false,
+   "code": "ERR_NO_ASSIGNED_ARM",
+   "arm_in_assignment": false,
+   "assignment_arms": [
+    "gpt-6.1-sol",
+    "openai-codex/gpt-6.1-sol"
+   ],
+   "pool_listed_but_not_assigned": false,
+   "assignment_revision": 44,
+   "served_model": null,
+   "provider": null,
+   "transport_model": null,
+   "exit": null,
+   "timed_out": null,
+   "seconds": null,
+   "nonce_in_agent_message": null,
+   "usage_receipt_ok": null,
+   "usage_rows_after_offset": null,
+   "sandbox": null,
+   "relay_base": null,
+   "front_door_port": null,
+   "selection_filter": null
   }
  ]
 }

@@ -116,6 +116,15 @@
    "why_it_happened": "the count was my proxy for 'nothing outside is undisclosed'. Running the tree's own selfcheck and hygiene passes added two outputs in paths the tree's tools own, so the proxy went stale while the property it stood for held",
    "fix": "the manifest now lists all three classes and every member; no write is undisclosed. The frozen criterion is NOT edited — the round records that this criterion's count clause is invalidated by its own hygiene work and that its substance (no undisclosed write, no effect) is met",
    "evidence": "out/WRITE_MANIFEST.json, _local/W0_TEST_READBACK.json, _local/W0_R1_TREE_HYGIENE.json"
+  },
+  {
+   "id": "RC-9",
+   "raised_by": "dispatcher stderr on the R1 VERIFY receipt (WARN_LANE_SERVED_UNASSIGNED_ARM), re-measured",
+   "earlier_claim": "the three VERIFY rounds were nonce-attributed review turns on the mandated arm",
+   "measured": "the arm they served (opencode-go/deepseek-v4.1-flash) is NOT in the VERIFY_SECURITY assignment revision 44, which grants only ['gpt-6.1-sol','openai-codex/gpt-6.1-sol']; the dispatcher warned SERVED_UNASSIGNED_ARM and a control run with --require-assigned-arms refused with ERR_NO_ASSIGNED_ARM (exit 4, before any model call)",
+   "why_it_happened": "--force-rank resolves against the pool, so it outranks the assignment; the owner's 2026-11-14 task mandates deepseek for the checker while the assignment file (authority owner-order-20261022-r14) still grants gpt-6.1-sol, and the round used the pool to satisfy the mandate without recording the split",
+   "fix": "every receipt now carries arm_in_assignment / assignment_arms / assignment_revision; the three verdicts are recorded as challenge records produced on an owner-mandated arm that the assignment does not grant — not as assignment-compliant operation and never as acceptance; the refusing control run is kept in out/LANE_VERIFY_ASSIGNED_ARMS_NEG.json",
+   "evidence": "out/LANE_VERIFY_ASSIGNED_ARMS_NEG.json, out/LANE_EVIDENCE.json"
   }
  ],
  "not_corrected": [
@@ -130,5 +139,12 @@
   "review_verdict_last": "REJECT (G7 proxy clause only)",
   "why_stopping": "three attributed review rounds with each finding repaired; the remaining item is a proxy clause, and re-running the rubric a fourth time would be an open-ended loop rather than convergence",
   "handover": "owner may accept or ask for the proxy clause to be restated; the round does not self-grant acceptance"
- }
+ },
+ "open_owner_decisions": [
+  {
+   "item": "VERIFY_SECURITY assignment vs owner mandate",
+   "detail": "assignment revision 44 grants gpt-6.1-sol only; the task's mandate names deepseek-v4.1-flash. Until the assignment is revised (an origin-side change in HG-KSEOS), every deepseek checker turn is SERVED_UNASSIGNED_ARM",
+   "smallest_safe_option": "owner revises the assignment for VERIFY_SECURITY (and EXECUTE if the mandate moves), or the mandate is restated to accept gpt-6.1-sol for the checker so maker/checker differ by model as well"
+  }
+ ]
 }

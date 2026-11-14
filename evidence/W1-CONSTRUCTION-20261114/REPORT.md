@@ -103,8 +103,11 @@ NATIVE_NOT_RUN / INDEPENDENT_NOT_RUN / RELEASE_NOT_GRANTED
 | `LANE_EXEC_WP20_R4.json` | TIMEOUT_NOT_ACCEPTED | deepseek-v4.1-flash | 420.04 | False |
 | `LANE_VERIFY.json` | SERVED | deepseek-v4.1-flash | 533.45 | True |
 | `LANE_VERIFY_R2.json` | SERVED | deepseek-v4.1-flash | 457.5 | True |
+| `LANE_VERIFY_R3.json` | SERVED | deepseek-v4.1-flash | 343.64 | True |
+| `LANE_VERIFY_ASSIGNED_ARMS_NEG.json` | REFUSED | None | None | None |
 
 - SoD：OPEN_OWNER_ORDERED（同一模型是 owner 指定；guard 的 `ERR_LANE_SOD_VIOLATION` 原樣保留，分離靠 process／path／write-set）
+- **臂與 assignment 的落差（已揭露）**：3 個 VERIFY 回合服務的臂是 `opencode-go/deepseek-v4.1-flash`，而 VERIFY_SECURITY assignment（revision 44）只授予 `gpt-6.1-sol`、`openai-codex/gpt-6.1-sol`；派車當下出現 `WARN_LANE_SERVED_UNASSIGNED_ARM`，而以 `--require-assigned-arms` 重跑的對照組拒派 `ERR_NO_ASSIGNED_ARM`（exit 4，未呼叫模型）。因此這三份判決是**在 owner 指定臂上產生的挑戰紀錄**，不是 assignment-compliant 的作業，也不是驗收。
 
 ## 8｜凍結 rubric 自檢結果
 
@@ -138,6 +141,7 @@ NATIVE_NOT_RUN / INDEPENDENT_NOT_RUN / RELEASE_NOT_GRANTED
 | RC-6 | self-check (ops/selfcheck.py POS-01), not by the review lane | the imported trees are byte-identical to the map (433 files) | after the lane dispatches, HG-KSEOS/config/hermes-codex-lane.json had grown 15,340 -> 15,526 bytes (CRLF added by the tooling; 186 lines), sha 8c21a80 | restored byte-identically from the map's declared source clone (sha ba357dcc…, 15,340 bytes) and re-ran selfcheck: 16/16 PASS; the hygiene pass also r |
 | RC-7 | self-check (write manifest completeness) | exactly two outside-round exception classes exist | running the tree's own selfcheck/hygiene wrote two more files into FHS_NEXT/_local (their own output paths), so a third class exists: tree-tool output | the write manifest now registers three classes (lane bindings, relay credential pool, tree-tool outputs) and lists every member; no write is undisclos |
 | RC-8 | G7 (FAIL, R3) | the round wrote exactly two outside-round exception classes | three classes / eight members: 4 lane bindings, 2 relay credential files, 2 tree-tool outputs (selfcheck and hygiene readbacks in FHS_NEXT/_local) | the manifest now lists all three classes and every member; no write is undisclosed. The frozen criterion is NOT edited — the round records that this c |
+| RC-9 | dispatcher stderr on the R1 VERIFY receipt (WARN_LANE_SERVED_UNASSIGNED_ARM), re-measured | the three VERIFY rounds were nonce-attributed review turns on the mandated arm | the arm they served (opencode-go/deepseek-v4.1-flash) is NOT in the VERIFY_SECURITY assignment revision 44, which grants only ['gpt-6.1-sol','openai-c | every receipt now carries arm_in_assignment / assignment_arms / assignment_revision; the three verdicts are recorded as challenge records produced on  |
 
 ## 9｜HOLD（只停受影效果）
 
