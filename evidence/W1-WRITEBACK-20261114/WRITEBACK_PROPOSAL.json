@@ -1,0 +1,334 @@
+{
+ "schema": "FHS-W1R2-WRITEBACK-PROPOSAL/1",
+ "round": "C:\\Projects\\Agent_Workspace\\FHS_NEXT_Workspace\\W1_R2_CONSTRUCTION_20261114",
+ "authority": "owner ruling 2026-11-14: write back as the owner-authorised author, after an independent review",
+ "layers": [
+  {
+   "layer": "L0",
+   "file": "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\FHS／FHS-MSC／SBL\\FHS\\FHS_NEXT\\藍圖\\FHS_vNEXT_總藍圖.md",
+   "sha256_before": "33e49ca22872b135534e078661df32d6a2892058c8c0efae859540943731caf0"
+  },
+  {
+   "layer": "L1",
+   "file": "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\FHS／FHS-MSC／SBL\\FHS\\FHS_NEXT\\藍圖\\FHS_vNEXT_PLP_藍圖.md",
+   "sha256_before": "bd2ab0b74f21da6b74cac2e1b1ffd2c8dcbde11daa6d22333a3c52d0675af060"
+  },
+  {
+   "layer": "L2",
+   "file": "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\FHS／FHS-MSC／SBL\\FHS\\FHS_NEXT\\藍圖\\FHS_vNEXT_PLP_全波次藍圖.md",
+   "sha256_before": "a6077aa208aa9cbcb2d37572e13be73de14125cd3f5881b3fa6320e34814c39b"
+  }
+ ],
+ "method": "APPEND_ONLY: each layer file gains a delimited annex; existing bytes are preserved as a prefix and asserted",
+ "amendment_count": 12,
+ "amendments": [
+  {
+   "id": "WB-01",
+   "layer": "L0",
+   "title": "驗收層級不可升格",
+   "claim": "施工候選驗收（`APPROVE_RELEASE_CANDIDATE`）不得被當作原域接受、原生准入或發行。",
+   "detail": "W1 R2 的第十輪驗收判 APPROVE_RELEASE_CANDIDATE，其語意僅為「證據與主張上限通過施工候選審查」。任何文件、看板或移交紀錄不得以該判決推導 `NATIVE_SIGNED`／`INDEPENDENT_PASS`／`RELEASE_GRANTED`；原域接受須由擁有該域的 owner 以自身儀式完成（PIPD 屬於 SBL、原生准入屬於 HG-KSEOS）。",
+   "evidence": [
+    {
+     "path": "out/LANE_VERIFY_R10.json",
+     "sha256": "3ea29e85585ef18916f9f2210a86f2819c48c5422926d3b6de8fc78267cc9df1"
+    },
+    {
+     "path": "out/VERIFY_VERDICT_R10.md",
+     "sha256": "4a7b6b1df4b662966621a78746d2c5f8fb0c94a5fac63324b580a44bdb5629d0"
+    },
+    {
+     "path": "out/MERGE_READBACK.json",
+     "sha256": "c77fd0c9e50a4ca3c315f32e73af432f8a95acc1593f76fbca99020f1698fb7a"
+    }
+   ],
+   "target_file": "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\FHS／FHS-MSC／SBL\\FHS\\FHS_NEXT\\藍圖\\FHS_vNEXT_總藍圖.md",
+   "target_sha256_before": "33e49ca22872b135534e078661df32d6a2892058c8c0efae859540943731caf0",
+   "not_claimed": [
+    "native admission",
+    "independent acceptance",
+    "release"
+   ]
+  },
+  {
+   "id": "WB-02",
+   "layer": "L0",
+   "title": "Owner 親設的資產狀態即最高裁決",
+   "claim": "Owner 親設的 repo／帳號／可見性狀態，不因與藍圖條文不一致而被列為缺口、HOLD 或阻斷。",
+   "detail": "藍圖（含分支保護、可見性、CI 條款）是規劃文件；與 owner 的實際作為不一致時，以實際為準，並記為「規劃待更新」。W1 R2 已據此把 `H-REPO-PROTECT` 由缺口改為現況記錄。",
+   "evidence": [
+    {
+     "path": "docs/OWNER_RULINGS_W1R2.json",
+     "sha256": "0a811339fbdb76deb1e50e46bfe62cb0f8dd17cbc0ee5b33e7b5d5ce6f272dee"
+    },
+    {
+     "path": "out/REPO_CREATE_READBACK.json",
+     "sha256": "852a7640643e2b6a45dde11ac3f771c4e97ffbd463fc1771002d52a6c22c24ae"
+    }
+   ],
+   "target_file": "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\FHS／FHS-MSC／SBL\\FHS\\FHS_NEXT\\藍圖\\FHS_vNEXT_總藍圖.md",
+   "target_sha256_before": "33e49ca22872b135534e078661df32d6a2892058c8c0efae859540943731caf0",
+   "not_claimed": [
+    "native admission",
+    "independent acceptance",
+    "release"
+   ]
+  },
+  {
+   "id": "WB-03",
+   "layer": "L0",
+   "title": "例外寫入的界線：兩個允許根",
+   "claim": "「例外」指寫入落在兩個允許根（`FHS_NEXT`、`FHS_NEXT_Workspace`）之外；允許根內、輪次資料夾外不算例外。",
+   "detail": "W1 R2 的寫入清單改以 zone 分類：輪次內 344 檔、允許根內輪次外 6 檔（lane bindings 與 tree-tool 輸出）、允許根外 2 檔（relay 憑證池與其備份）。驗收改讀 zone，不再數類別數。",
+   "evidence": [
+    {
+     "path": "out/WRITE_MANIFEST.json",
+     "sha256": "bf0131aa7942884e3eabe74f56b54c6919ff30255a860083f9d21724afac6517"
+    },
+    {
+     "path": "docs/OWNER_RULINGS_W1R2.json",
+     "sha256": "0a811339fbdb76deb1e50e46bfe62cb0f8dd17cbc0ee5b33e7b5d5ce6f272dee"
+    }
+   ],
+   "target_file": "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\FHS／FHS-MSC／SBL\\FHS\\FHS_NEXT\\藍圖\\FHS_vNEXT_總藍圖.md",
+   "target_sha256_before": "33e49ca22872b135534e078661df32d6a2892058c8c0efae859540943731caf0",
+   "not_claimed": [
+    "native admission",
+    "independent acceptance",
+    "release"
+   ]
+  },
+  {
+   "id": "WB-04",
+   "layer": "L1",
+   "title": "PIPD 拒收面需載明 UNSAFE_DESTINATION 並區分步驟與碼",
+   "claim": "PIPD 拒收面除既有具名碼外，須載明 `UNSAFE_DESTINATION`；統計時必須區分「拒收步驟數」與「相異碼數」。",
+   "detail": "W1 R2 實測 8 個拒收步驟、6 種相異碼（`GIT_PROBE_FAILED`、`TQ_SOD` 各兩種呼叫形狀），並以三種越界形態（絕對路徑、`../` 穿越、`--allow-root` 根擴大）驗證 `UNSAFE_DESTINATION` 皆 exit 2 且不落地，另有根內 dry-run 控制組 exit 0。",
+   "evidence": [
+    {
+     "path": "out/WP05_PIPD_CHAIN.json",
+     "sha256": "a055af547d4c5b17c37cb8ae85b90122f48baad4ad5999d6c689a58402c43233"
+    },
+    {
+     "path": "out/WP05_N09_UNSAFE_DESTINATION.json",
+     "sha256": "cd477d55717c76716c8a9068084ef113af2eebff4abf45b091305685267c565d"
+    }
+   ],
+   "target_file": "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\FHS／FHS-MSC／SBL\\FHS\\FHS_NEXT\\藍圖\\FHS_vNEXT_PLP_藍圖.md",
+   "target_sha256_before": "bd2ab0b74f21da6b74cac2e1b1ffd2c8dcbde11daa6d22333a3c52d0675af060",
+   "not_claimed": [
+    "native admission",
+    "independent acceptance",
+    "release"
+   ]
+  },
+  {
+   "id": "WB-05",
+   "layer": "L1",
+   "title": "TQAEP 與 bundle 的驗收讀法",
+   "claim": "無 checker 回執時 compile-tqaep 應回 `TQ_SOD`；bundle 驗收必須讀 `complete`／`scope`，不得只看 `verdict`。",
+   "detail": "W1 R2 實測：不完整 bundle 仍回 `verdict=PASS` 但 `scope=PARTIAL_BUNDLE`、`complete=false`；四物件齊備後為 `checked=4`、`closure=FULL`、`complete=true`、`findings=[]`。驗收條款須以 `complete` 為準。",
+   "evidence": [
+    {
+     "path": "out/WP05_PIPD_CHAIN.json",
+     "sha256": "a055af547d4c5b17c37cb8ae85b90122f48baad4ad5999d6c689a58402c43233"
+    },
+    {
+     "path": "out/WP05_BUNDLE4.json",
+     "sha256": "9896a38747282252a0399b9b311cf40174876631ae53b94e75828280050cf2cf"
+    }
+   ],
+   "target_file": "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\FHS／FHS-MSC／SBL\\FHS\\FHS_NEXT\\藍圖\\FHS_vNEXT_PLP_藍圖.md",
+   "target_sha256_before": "bd2ab0b74f21da6b74cac2e1b1ffd2c8dcbde11daa6d22333a3c52d0675af060",
+   "not_claimed": [
+    "native admission",
+    "independent acceptance",
+    "release"
+   ]
+  },
+  {
+   "id": "WB-07",
+   "layer": "L2",
+   "title": "藍圖自身可複現性問題屬證據稽核瑕疵，且屬驗收門的判準",
+   "claim": "藍圖條文若自身不可複現（例：宣告集合 SHA 無法以任何正規化複現、逐鍵清冊未由原 registry 提供），記為 `EVIDENCE_AUDIT_DEFECT`，不列為下游施工缺口、不作 PASS 阻斷。",
+   "detail": "W1 R2 以八種正規化都無法複現 ModeGate39 宣告集合 SHA `36495506…bde90`；485 逐鍵清冊只有具名列、原 Tech Registry 未提供。兩者皆改列證據稽核瑕疵，判準回到可執行的 PLP。",
+   "evidence": [
+    {
+     "path": "out/WP20_MODEGATE39.json",
+     "sha256": "29bcdb5ad6ee57e04b47eec54231d2b1ac3701e3624df7beaad0a9719724e348"
+    },
+    {
+     "path": "out/WP17_485_LEDGER.json",
+     "sha256": "3a16f2659288329b7b924f18904c4dc844c021c5923bb0ab30cbf1de4965f313"
+    },
+    {
+     "path": "docs/OWNER_RULINGS_W1R2.json",
+     "sha256": "0a811339fbdb76deb1e50e46bfe62cb0f8dd17cbc0ee5b33e7b5d5ce6f272dee"
+    }
+   ],
+   "target_file": "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\FHS／FHS-MSC／SBL\\FHS\\FHS_NEXT\\藍圖\\FHS_vNEXT_PLP_全波次藍圖.md",
+   "target_sha256_before": "a6077aa208aa9cbcb2d37572e13be73de14125cd3f5881b3fa6320e34814c39b",
+   "not_claimed": [
+    "native admission",
+    "independent acceptance",
+    "release"
+   ]
+  },
+  {
+   "id": "WB-09",
+   "layer": "L0",
+   "title": "職責分離的實質是程序與證據分離，不是模型不同",
+   "claim": "SoD（職責分離）以 process／path／write-set／證據四項分離為實質；執行者與審查者使用同一個模型家族，不構成缺口，也不得作為阻斷 PASS 的理由。",
+   "detail": "W1 R2 的十輪審查皆由獨立進程、唯讀沙箱、不同工作目錄、nonce 歸屬完成，其分離為程序與證據分離；assignment revision 44 只列單一 arm 屬設定落差，已記為 `RECORDED_SETTING_DIVERGENCE` 而非缺口（OD-W1R2-1）。",
+   "evidence": [
+    {
+     "path": "docs/OWNER_RULINGS_W1R2.json",
+     "sha256": "0a811339fbdb76deb1e50e46bfe62cb0f8dd17cbc0ee5b33e7b5d5ce6f272dee"
+    },
+    {
+     "path": "out/LANE_VERIFY_R10.json",
+     "sha256": "3ea29e85585ef18916f9f2210a86f2819c48c5422926d3b6de8fc78267cc9df1"
+    }
+   ],
+   "target_file": "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\FHS／FHS-MSC／SBL\\FHS\\FHS_NEXT\\藍圖\\FHS_vNEXT_總藍圖.md",
+   "target_sha256_before": "33e49ca22872b135534e078661df32d6a2892058c8c0efae859540943731caf0",
+   "not_claimed": [
+    "native admission",
+    "independent acceptance",
+    "release"
+   ]
+  },
+  {
+   "id": "WB-10-R1",
+   "layer": "L1",
+   "title": "as-built 證據不入 source-only 匯入；入口測試範圍依上游共識",
+   "claim": "as-built 證據（`INTEGRATION/FHS/docs/as-built/**`）不納入 source-only 匯入；Fabric 入口測試的範圍依上游共識，限定在 mirror 可解析者，並如實記錄 `MIRROR_PATH_MISSING`。下游不得自行擴白名單或縮測試以求 PASS。",
+   "detail": "W1 R2 量測：mirror 檔在 origin `main` 存在（668,540 bytes、blob `dfa7f0e6…`），本樹匯入未取，判定 `ORIGIN_HAS_FILE_IMPORT_LACKS_IT`；入口 51 tests 中 5 fail／5 error 全為 `MIRROR_PATH_MISSING`，如實保留（OD-W1R2-3）。本條**不**主張對所有下游白名單或測試範圍變更的一律禁止。",
+   "evidence": [
+    {
+     "path": "out/ORIGIN_PATH_CHECK.json",
+     "sha256": "1dd179a252e317ad621a2deee88fd642a7d8eb3a1f8e4efcd9066062cff1db6d"
+    },
+    {
+     "path": "docs/OWNER_RULINGS_W1R2.json",
+     "sha256": "0a811339fbdb76deb1e50e46bfe62cb0f8dd17cbc0ee5b33e7b5d5ce6f272dee"
+    }
+   ],
+   "target_file": "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\FHS／FHS-MSC／SBL\\FHS\\FHS_NEXT\\藍圖\\FHS_vNEXT_PLP_藍圖.md",
+   "target_sha256_before": "bd2ab0b74f21da6b74cac2e1b1ffd2c8dcbde11daa6d22333a3c52d0675af060",
+   "not_claimed": [
+    "native admission",
+    "independent acceptance",
+    "release"
+   ]
+  },
+  {
+   "id": "WB-12",
+   "layer": "L2",
+   "title": "W1 五項成文交付與每 Host 方案屬 LOCAL_DRAFT",
+   "claim": "W1 的五項成文交付（施工報告、HANDOFF、RepoEntry／SourceImportMap／ABI joins、每 Host 安裝／載入／調用／卸載方案、結案）在效果未執行前，一律以 `LOCAL_DRAFT` 身分存在，不得標為已實施。",
+   "detail": "W1 R2 已把五項補齊成文並標明設計態：`W1_REPO_ENTRY_2026-11-14.md` 與 `WP11_HOST_PLAN_2026-11-14.md` 明載install／load／invoke／uninstall 的設計與未執行狀態；host effect 全部停在具名邊界（OD-W1R2-4）。",
+   "evidence": [
+    {
+     "path": "deliverables/W1_REPO_ENTRY_2026-11-14.md",
+     "sha256": "9997fadf59aa96cdb2cb850487a4b916d8d9451cba0c31478007a26eb5ffbdfe"
+    },
+    {
+     "path": "deliverables/WP11_HOST_PLAN_2026-11-14.md",
+     "sha256": "163aeed7bcdd56189e022f7e8e62c35e61b3e2ebcd73c98b298b1ab4ae6f3a76"
+    },
+    {
+     "path": "docs/OWNER_RULINGS_W1R2.json",
+     "sha256": "0a811339fbdb76deb1e50e46bfe62cb0f8dd17cbc0ee5b33e7b5d5ce6f272dee"
+    }
+   ],
+   "target_file": "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\FHS／FHS-MSC／SBL\\FHS\\FHS_NEXT\\藍圖\\FHS_vNEXT_PLP_全波次藍圖.md",
+   "target_sha256_before": "a6077aa208aa9cbcb2d37572e13be73de14125cd3f5881b3fa6320e34814c39b",
+   "not_claimed": [
+    "native admission",
+    "independent acceptance",
+    "release"
+   ]
+  },
+  {
+   "id": "WB-13",
+   "layer": "L2",
+   "title": "寫入清單的必備欄位與零漂移檢查",
+   "claim": "寫入清單必須帶 `generated_at`、以明文規則排除 volatile 檔（每輪重生者與清單之後才寫出者），其餘每一檔以 sha256＋bytes 納入，並由唯讀檢查回報 drift 為 0；任一未達者，驗收不得通過。",
+   "detail": "W1 R2 的十輪驗收中，R8／R9 正是因清單哈希了每輪重生的簡報與派車日誌而無法一致；改為規則化排除後，R10 以 344／6／2 分區、95 個具名排除、drift 0 通過（OD-W1R2-10、RC-16／RC-19）。",
+   "evidence": [
+    {
+     "path": "out/WRITE_MANIFEST.json",
+     "sha256": "bf0131aa7942884e3eabe74f56b54c6919ff30255a860083f9d21724afac6517"
+    },
+    {
+     "path": "out/MANIFEST_CHECK.txt",
+     "sha256": "6ff341ab5acde7b65f045534a978a7ea9f1e973a3d4d1767244aa7775ce57dca"
+    },
+    {
+     "path": "docs/OWNER_RULINGS_W1R2.json",
+     "sha256": "0a811339fbdb76deb1e50e46bfe62cb0f8dd17cbc0ee5b33e7b5d5ce6f272dee"
+    }
+   ],
+   "target_file": "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\FHS／FHS-MSC／SBL\\FHS\\FHS_NEXT\\藍圖\\FHS_vNEXT_PLP_全波次藍圖.md",
+   "target_sha256_before": "a6077aa208aa9cbcb2d37572e13be73de14125cd3f5881b3fa6320e34814c39b",
+   "not_claimed": [
+    "native admission",
+    "independent acceptance",
+    "release"
+   ]
+  },
+  {
+   "id": "WB-11",
+   "layer": "L2",
+   "title": "Reader receipts 的必要性與簽署權",
+   "claim": "reader receipts 若依 `NOT_APPLICABLE_BY_DESIGN` 判定為不需要，則不以補簽作為過件條件；凡需簽署者，一律由 owner 親簽，製造者不得代簽，且簽署窗一次口令授權該批全部簽署。",
+   "detail": "W1 R2 的六份 reader receipts 由 owner 於第二個金鑰窗親簽（`WIN-6397278ec28a`，ops 6、refusals 0），加 owner 語意接受一片，共 `FHS_ORIGINAL_ACK(W1)` = 7/7；先前 1/7 的部分紀錄保留為 superseded（OD-W1R2-5、OD-W1R2-9）。",
+   "evidence": [
+    {
+     "path": "out/W1_ORIGINAL_ACK.json",
+     "sha256": "31e5f2233922972bb584c742dd1b9639b7c0b3fe24e88428e184b274285b1c33"
+    },
+    {
+     "path": "docs/OWNER_RULINGS_W1R2.json",
+     "sha256": "0a811339fbdb76deb1e50e46bfe62cb0f8dd17cbc0ee5b33e7b5d5ce6f272dee"
+    }
+   ],
+   "target_file": "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\FHS／FHS-MSC／SBL\\FHS\\FHS_NEXT\\藍圖\\FHS_vNEXT_PLP_全波次藍圖.md",
+   "target_sha256_before": "a6077aa208aa9cbcb2d37572e13be73de14125cd3f5881b3fa6320e34814c39b",
+   "not_claimed": [
+    "native admission",
+    "independent acceptance",
+    "release"
+   ]
+  },
+  {
+   "id": "WB-08",
+   "layer": "L2",
+   "title": "跨波移交的閉環條件",
+   "claim": "W1 移交在接收方（W2 角色）簽收前，狀態為「已遞交、未接收」，不得記為移交完成。",
+   "detail": "W1 R2 已把 HANDOFF、交付包、指標與 ACK 7/7 遞交並併入 Fabric `main`（`14e3d497`）與產品 repo；但沒有任何接收方 ACK，故移交閉環未成立。此條把「遞交」與「接收」寫成兩個可驗證狀態。",
+   "evidence": [
+    {
+     "path": "out/MERGE_READBACK.json",
+     "sha256": "c77fd0c9e50a4ca3c315f32e73af432f8a95acc1593f76fbca99020f1698fb7a"
+    },
+    {
+     "path": "out/W1_ORIGINAL_ACK.json",
+     "sha256": "31e5f2233922972bb584c742dd1b9639b7c0b3fe24e88428e184b274285b1c33"
+    },
+    {
+     "path": "deliverables/W1_HANDOFF_2026-11-14.md",
+     "sha256": "92045c7506a44103731213053898f55873151144c39ea28bb1dd5f8afcaeaa60"
+    }
+   ],
+   "target_file": "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\FHS／FHS-MSC／SBL\\FHS\\FHS_NEXT\\藍圖\\FHS_vNEXT_PLP_全波次藍圖.md",
+   "target_sha256_before": "a6077aa208aa9cbcb2d37572e13be73de14125cd3f5881b3fa6320e34814c39b",
+   "not_claimed": [
+    "native admission",
+    "independent acceptance",
+    "release"
+   ]
+  }
+ ]
+}
