@@ -1,0 +1,6 @@
+alt_id	alternative	reason_rejected
+A1	Secret manager / vault service	adds a second authority and a network dependency for a single-user single-machine setup; violates minimal-viable
+A2	Windows Credential Manager + code change in both consumers	code change without procedure still leaves the consumer set undiscovered
+A3	Environment variable set by setx	puts the value in a registry write path and in shell history; the file pointer already exists
+A4	Provider HTTP probe as the gate	measured 403 for valid and invalid keys (C4) — false negative
+A5	Cron job that rotates automatically	the owner issues keys; automation would need the provider credential and would create an unattended privilege
