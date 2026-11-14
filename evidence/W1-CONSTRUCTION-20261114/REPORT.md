@@ -32,7 +32,7 @@ NATIVE_NOT_RUN / INDEPENDENT_NOT_RUN / RELEASE_NOT_GRANTED
 - `compile-pi` 連跑兩次同 SHA：**true**；`compile-ecp` 連跑兩次同 SHA：**true**
 - 四物件 bundle：`checked=4`、`closure=FULL`、`complete=true`、`scope=FOUR_OBJECT`、`findings=[]`
 - bundle sha256 `e3df1e10de5ccd55…`；PD 綁到的 live HEAD `826ca066a1c2`
-- typed 拒收 8 筆：`INTAKE_INVALID`、`PROFILE_VETO`、`REPO_CONTEXT_MISSING`、`GIT_PROBE_FAILED`、`GIT_PROBE_FAILED`、`TQ_SOD`、`TQ_SOD`、`INPUT_SHAPE_INVALID`
+- typed 拒收 **8 步／6 種碼**：`GIT_PROBE_FAILED`、`INPUT_SHAPE_INVALID`、`INTAKE_INVALID`、`PROFILE_VETO`、`REPO_CONTEXT_MISSING`、`TQ_SOD`（`GIT_PROBE_FAILED` 與 `TQ_SOD` 各兩種呼叫形狀，故步數多於碼數）
 - §E.2 **N-09 `UNSAFE_DESTINATION`**：三種越界形態（絕對路徑／`../` 穿越／`--allow-root` 根擴大）皆 exit 2、目標不存在；根內 `--dry-run` 控制組 exit 0 → **4/4 PASS**
 
 ### 2.1 本輪對施工依據的三處量測更正
@@ -65,13 +65,15 @@ NATIVE_NOT_RUN / INDEPENDENT_NOT_RUN / RELEASE_NOT_GRANTED
 | TECH386 | 386/386 | `5fdd4f8f78d10edd…` |
 
 - 合計 485/485，delta 0；合併 digest `b3cf9d40c8d710da…`
-- 已記錄 caveat（節錄）：
+- 已記錄 caveat：**8 條**（節錄）：
   - count check: declared == named on all five sets (delta 0 each); total 485 named for 485 declared. No set is short of its declared count, and no set carries extra unnamed rows — every declared slot has exactly one H3 head
   - Donor24: 6 Need name(s) repeat across slots (e.g. Fission-AI OpenSpec x4, GitHub Spec Kit x4, mattpocock skills x4, GSD x4) — per L6228 `同名工具可以滿足多Need，但不可刪原槽`, so these are distinct slots, not duplicates to collapse
   - Method25: 1 Need name(s) repeat across slots (e.g. mattpocock skills x4) — per L6228 `同名工具可以滿足多Need，但不可刪原槽`, so these are distinct slots, not duplicates to collapse
   - TECH386: 19 slot id(s) carry a bare number instead of the set's prefixed form (L8833 `TECH386:341` .. L9211 `TECH386:359`); id preserved verbatim
   - TECH386: 38 Need name(s) repeat across slots (e.g. mattpocock skills x3, Fission-AI OpenSpec x3, GitHub Spec Kit x5, obra Superpowers x5) — per L6228 `同名工具可以滿足多Need，但不可刪原槽`, so these are distinct slots, not duplicates to
   - cross-set id reuse: 30 id suffix(es) appear under two set prefixes (colliding rows: Default30=30, TECH386=30); e.g. `Default30:P0-TOOL-001` and `TECH386:P0-TOOL-001` are different keys over the same underlying id. Keys s
+  - 118 row(s) present the source's inline `upstream=…; disposition=…` form in the disposition field instead of one token (72 of them contain `disposition=`); first: L10597 `TECH386:P0-TOOL-001`. These are recorded verbatim,
+  - 5 of those disposition values are cut mid-token in the blueprint itself — L10607 reads `disposition=DEFAULT_ENABLED_AFTER_Q；` and L10628 reads `disposition=DEFAULT_ENABLED_AFTER_QUALIFICA；` (`TECH386:P0-TOOL-001` / `TECH
 - 這一列不是「已安裝」：安裝是 `HOST_OP`，需 OPS ECP ＋ 原 Issuer；本輪只交逐鍵登錄與處置
 
 ## 5｜WP-FHS-20（矩陣與 39 格）
@@ -107,6 +109,7 @@ NATIVE_NOT_RUN / INDEPENDENT_NOT_RUN / RELEASE_NOT_GRANTED
 | `LANE_VERIFY_R3.json` | SERVED | deepseek-v4.1-flash | 343.64 | True |
 | `LANE_VERIFY_ASSIGNED_ARMS_NEG.json` | REFUSED | None | None | None |
 
+- 對外寫入的實話：origin 三庫的 `main` **未寫**；本輪對 Fabric 只開了證據分支＋draft PR #60（owner 指示），並依 owner 授權建立了新的 `shw097-team/FHS_vNEXT`（新 repo，不是改 origin）。任何「完全沒有對外寫入」的說法都不成立，已改寫為此句。
 - SoD：OPEN_OWNER_ORDERED（同一模型是 owner 指定；guard 的 `ERR_LANE_SOD_VIOLATION` 原樣保留，分離靠 process／path／write-set）
 - **臂與 assignment 的落差（已揭露）**：3 個 VERIFY 回合服務的臂是 `opencode-go/deepseek-v4.1-flash`，而 VERIFY_SECURITY assignment（revision 44）只授予 `gpt-6.1-sol`、`openai-codex/gpt-6.1-sol`；派車當下出現 `WARN_LANE_SERVED_UNASSIGNED_ARM`，而以 `--require-assigned-arms` 重跑的對照組拒派 `ERR_NO_ASSIGNED_ARM`（exit 4，未呼叫模型）。因此這三份判決是**在 owner 指定臂上產生的挑戰紀錄**，不是 assignment-compliant 的作業，也不是驗收。**Owner 裁定 OD-W1R2-1：同模型不是設計要求，此落差為紀錄，不列缺口、不作阻斷。**
 
@@ -127,10 +130,12 @@ NATIVE_NOT_RUN / INDEPENDENT_NOT_RUN / RELEASE_NOT_GRANTED
 - `R1`（`out/LANE_VERIFY.json`，nonce `W1R2-VERIFY-4c81fe`）：**REJECT**，未過 G2、G3；歸屬 nonce_in_agent_message=true, usage_receipt_ok=true, exit 0, 533 s, sandbox read-only
 - `R2`（`out/LANE_VERIFY_R2.json`，nonce `W1R2-VERIFY-d92a37`）：**REJECT**，未過 G7；歸屬 nonce_in_agent_message=true, usage_receipt_ok=true, exit 0, 457 s, sandbox read-only, usage rows 77
 - `R3`（`out/LANE_VERIFY_R3.json`，nonce `W1R2-VERIFY-6f30bd`）：**REJECT**，未過 G7；歸屬 nonce_in_agent_message=true, usage_receipt_ok=true, exit 0, 344 s, sandbox read-only, usage rows 43
+- `R4`（`out/LANE_VERIFY_R4.json`，nonce `W1R2-VERIFY-R4-8b25da`）：**REJECT**，未過 G2、G6、G7；歸屬 nonce_in_agent_message=true, usage_receipt_ok=true, exit 0, 426 s, sandbox read-only, usage rows 49
 
-- 三輪之後的狀態：**最後判決 REJECT (G7 proxy clause only)**（僅 G7 的代理條款）；實質要件：G1-G6, G8 PASS in R3; G7's substantive property (no undisclosed outside write, no HOST_OP effect) holds with all 8 outside files disclosed in 3 classes
-- 停止理由：three attributed review rounds with each finding repaired; the remaining item is a proxy clause, and re-running the rubric a fourth time would be an open-ended loop rather than convergence
-- 交接：owner may accept or ask for the proxy clause to be restated; the round does not self-grant acceptance
+- 四輪之後的狀態：**最後判決 REJECT (R4: G2/G6/G7, all record-keeping discrepancies)**；實質要件：G1／G3／G4／G5／G8 判 PASS；G2／G6／G7 三項皆為簡報計數或措辭漂移（8 步被寫成 7 種碼、6 條被寫成 8 條 caveat、373 被寫成 390 檔、以及『無對外寫入』的措辭與 PR 事實不符），本輪已逐條更正並改為由 receipts 產生簡報（build/gen_verify_brief.py），無任何工作項被重新打開
+- 第四輪（`W1R2-VERIFY-R4-8b25da`、426 秒、usage 49、read-only）G1／G3／G4／G5／G8 PASS，G2／G6／G7 FAIL，三項全部是簡報裡的計數與措辭漂移，不是工作項的新缺陷；已逐條入 `RC-11`／`RC-12`／`RC-13`
+- 停止理由：four attributed rounds; every finding so far has been a count or wording drift in the brief rather than a defect of the work. The durable fix is a brief generated from the receipts, which is recorded here as the prerequisite for any further round
+- 交接：owner decides whether a fifth round is wanted after the generator lands
 
 | 更正 | 由誰提出 | 原主張 | 實測 | 處置 |
 |---|---|---|---|---|
@@ -144,6 +149,9 @@ NATIVE_NOT_RUN / INDEPENDENT_NOT_RUN / RELEASE_NOT_GRANTED
 | RC-8 | G7 (FAIL, R3) | the round wrote exactly two outside-round exception classes | three classes / eight members: 4 lane bindings, 2 relay credential files, 2 tree-tool outputs (selfcheck and hygiene readbacks in FHS_NEXT/_local) | the manifest now lists all three classes and every member; no write is undisclosed. The frozen criterion is NOT edited — the round records that this c |
 | RC-9 | dispatcher stderr on the R1 VERIFY receipt (WARN_LANE_SERVED_UNASSIGNED_ARM), re-measured | the three VERIFY rounds were nonce-attributed review turns on the mandated arm | the arm they served (opencode-go/deepseek-v4.1-flash) is NOT in the VERIFY_SECURITY assignment revision 44, which grants only ['gpt-6.1-sol','openai-c | every receipt now carries arm_in_assignment / assignment_arms / assignment_revision; the three verdicts are recorded as challenge records produced on  |
 | RC-10 | owner challenge (H-ORIGINAL-ACK 的合法性) | 13 主責章 body 與 Raw 未經原 Domain Reader 接受，故列 H-ORIGINAL-ACK（解除條件＝原 Domain Reader 同 scope 簽署） | FHS_ORIGINAL_ACK/3 明載傳統的 per-domain reader ACK 為 NOT_APPLICABLE_BY_DESIGN（L1 18.3 HIST-01、23.4 退役；實測 0/6 僅為量測），且該儀器本身以 PROCESS_LANE_EVIDENCE_SEPARATIO | H-ORIGINAL-ACK 撤回（RETRACTED_NOT_BLUEPRINT_COMPLIANT）；若 owner 要 W1 取得同級承認，改以同一 FHS_ORIGINAL_ACK 儀器套用於 W1 subject（需 owner 金鑰窗授權） |
+| RC-11 | G2 (FAIL, R4) | eight refusal steps over seven distinct codes | eight steps over SIX distinct codes: GIT_PROBE_FAILED, INPUT_SHAPE_INVALID, INTAKE_INVALID, PROFILE_VETO, REPO_CONTEXT_MISSING, TQ_SOD (the first and  | report now computes the distinct-code set from the receipt at build time and states '8 steps / 6 codes' with the reason |
+| RC-12 | G6 (FAIL, R4) | six caveats in the 485 ledger, one truncated disposition | the ledger carries EIGHT caveat entries, and the truncation entry names FIVE dispositions cut mid-token in the blueprint itself (L10607, L10628, L1064 | report counts the caveats from the ledger at build time (8) and states the five truncated rows |
+| RC-13 | G7 (FAIL, R4) | the write manifest recorded 373 round files and the round made no origin-repo write | the manifest at review time recorded 390 round files (the round kept producing receipts after the number was typed into the brief), and the round DID  | report states the precise form: origin `main` untouched; one evidence branch + draft PR; one new private repo created on owner order. The counts in an |
 
 ## 9｜HOLD（只停受影效果）
 
@@ -161,7 +169,7 @@ NATIVE_NOT_RUN / INDEPENDENT_NOT_RUN / RELEASE_NOT_GRANTED
 
 ## 10｜能主張／不能主張
 
-**能主張**：來源身份可複現；WP-05 編譯鏈在本機可重跑且決定性；四物件 bundle 完整；八個 typed 拒收原樣成立（含 `GIT_PROBE_FAILED` 的兩種呼叫形狀）；Fabric 六路由與未知路由拒收實測；HGK 六個 epoch 欄位與 guard 具名拒收實測；spine 14/14；485 逐鍵清冊與 digest；39 格設計矩陣解析結果與「宣告 SHA 不可複現」的誠實記錄；宿主 12 格矩陣（嚴格規則）。
+**能主張**：來源身份可複現；WP-05 編譯鏈在本機可重跑且決定性；四物件 bundle 完整；八個 typed 拒收步驟（六種碼，`GIT_PROBE_FAILED` 與 `TQ_SOD` 各兩形）原樣成立；§E.2 N-09 三形態亦皆拒；Fabric 六路由與未知路由拒收實測；HGK 六個 epoch 欄位與 guard 具名拒收實測；spine 14/14；485 逐鍵清冊與 digest；39 格設計矩陣解析結果與「宣告 SHA 不可複現」的誠實記錄；宿主 12 格矩陣（嚴格規則）。
 
 **不能主張**：Native 准入、Independent 驗收、Release、原始域 ACK、485 已安裝、Repo 已建立、任何 host effect 已執行、任何車道回合已被 nonce 歸屬。
 
