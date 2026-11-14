@@ -25,7 +25,8 @@ This folder is the de-sensitised evidence of one construction round: the 8 W1 wo
 | `CORRECTIONS.json` | the rejected review, the two findings it raised, and what changed because of them |
 | `ACCEPTANCE_CONTRACT_FROZEN.json` | the eight-criterion rubric, frozen before the review |
 | `LANE_VERIFY_R1/R2/R3.json` + `VERIFY_VERDICT_R3.md` | all three nonce-attributed review rounds, each REJECT, with the repaired findings |
-| `WRITE_MANIFEST.json` | every file this round wrote, and the three disclosed outside-round classes |
+| `WRITE_MANIFEST.json` | every file this round wrote, the three disclosed outside-round classes, and the foreign files it did not adopt |
+| `LANE_STDERR_WARNINGS.json` | the dispatcher's own warnings per dispatch, including the served-arm/assignment split and three dispatch logs this round did not write |
 
 ## Claim ceiling
 

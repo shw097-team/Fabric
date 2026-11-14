@@ -1,0 +1,158 @@
+{
+ "schema": "FHS-W1-R2-LANE-STDERR/1",
+ "why": "the served-arm/assignment split is recorded by the dispatcher itself, not inferred here",
+ "assignment_in_force": {
+  "lane": "VERIFY_SECURITY",
+  "revision": 44,
+  "assigned": [
+   "gpt-6.1-sol",
+   "openai-codex/gpt-6.1-sol"
+  ],
+  "source": "WARN_LANE_SERVED_UNASSIGNED_ARM text + model-lane-assignment.json"
+ },
+ "dispatches": [
+  {
+   "dispatch_log": "LANE_DECISIONS.stderr.txt",
+   "warning_lines": [
+    "WARN_LANE_CREDENTIAL_POSTURE_INCONCLUSIVE: credential posture could not be decided (posture gate not found: C:\\Projects\\Agent_Workspace\\FHS_NEXT\\HG-KSEOS\\scripts\\gcm-containment\\lane_credential_posture.py); CONTINUING (a detector fault must not become a lane outage; L1 remains the structural control; INCONCLUSIVE is NOT a pass).",
+    "WARN_LANE_SERVED_UNASSIGNED_ARM: None is not in the VERIFY_SECURITY assignment (revision 44); assigned: ['gpt-6.1-sol', 'openai-codex/gpt-6.1-sol'] -- pass --require-assigned-arms to make this refuse"
+   ],
+   "served_unassigned_arm_warned": true,
+   "bytes": 533,
+   "mtime": 1794659459.4807987,
+   "mtime_iso": "2026-11-14T20:30:59",
+   "receipt_present": false,
+   "provenance": "NOT_CREATED_BY_THIS_ROUND"
+  },
+  {
+   "dispatch_log": "LANE_EXEC.stderr.txt",
+   "warning_lines": [
+    "WARN_LANE_CREDENTIAL_POSTURE_INCONCLUSIVE: credential posture could not be decided (posture gate not found: C:\\Projects\\Agent_Workspace\\FHS_NEXT\\HG-KSEOS\\scripts\\gcm-containment\\lane_credential_posture.py); CONTINUING (a detector fault must not become a lane outage; L1 remains the structural control; INCONCLUSIVE is NOT a pass)."
+   ],
+   "served_unassigned_arm_warned": false,
+   "bytes": 332,
+   "mtime": 1794658095.7689676,
+   "mtime_iso": "2026-11-14T20:08:15",
+   "receipt_present": false,
+   "provenance": "NOT_CREATED_BY_THIS_ROUND"
+  },
+  {
+   "dispatch_log": "LANE_EXEC_WP20.stderr.txt",
+   "warning_lines": [
+    "WARN_LANE_CREDENTIAL_POSTURE_INCONCLUSIVE: credential posture could not be decided (posture gate not found: C:\\Projects\\Agent_Workspace\\FHS_NEXT\\HG-KSEOS\\scripts\\gcm-containment\\lane_credential_posture.py); CONTINUING (a detector fault must not become a lane outage; L1 remains the structural control; INCONCLUSIVE is NOT a pass)."
+   ],
+   "served_unassigned_arm_warned": false,
+   "bytes": 332,
+   "mtime": 1794655696.3502576,
+   "mtime_iso": "2026-11-14T19:28:16",
+   "receipt_present": true,
+   "provenance": "THIS_ROUND"
+  },
+  {
+   "dispatch_log": "LANE_EXEC_WP20_R2.stderr.txt",
+   "warning_lines": [
+    "WARN_LANE_CREDENTIAL_POSTURE_INCONCLUSIVE: credential posture could not be decided (posture gate not found: C:\\Projects\\Agent_Workspace\\FHS_NEXT\\HG-KSEOS\\scripts\\gcm-containment\\lane_credential_posture.py); CONTINUING (a detector fault must not become a lane outage; L1 remains the structural control; INCONCLUSIVE is NOT a pass)."
+   ],
+   "served_unassigned_arm_warned": false,
+   "bytes": 332,
+   "mtime": 1794656316.9692738,
+   "mtime_iso": "2026-11-14T19:38:36",
+   "receipt_present": true,
+   "provenance": "THIS_ROUND"
+  },
+  {
+   "dispatch_log": "LANE_EXEC_WP20_R3.stderr.txt",
+   "warning_lines": [
+    "WARN_LANE_CREDENTIAL_POSTURE_INCONCLUSIVE: credential posture could not be decided (posture gate not found: C:\\Projects\\Agent_Workspace\\FHS_NEXT\\HG-KSEOS\\scripts\\gcm-containment\\lane_credential_posture.py); CONTINUING (a detector fault must not become a lane outage; L1 remains the structural control; INCONCLUSIVE is NOT a pass)."
+   ],
+   "served_unassigned_arm_warned": false,
+   "bytes": 332,
+   "mtime": 1794656451.0793457,
+   "mtime_iso": "2026-11-14T19:40:51",
+   "receipt_present": true,
+   "provenance": "THIS_ROUND"
+  },
+  {
+   "dispatch_log": "LANE_EXEC_WP20_R4.stderr.txt",
+   "warning_lines": [
+    "WARN_LANE_CREDENTIAL_POSTURE_INCONCLUSIVE: credential posture could not be decided (posture gate not found: C:\\Projects\\Agent_Workspace\\FHS_NEXT\\HG-KSEOS\\scripts\\gcm-containment\\lane_credential_posture.py); CONTINUING (a detector fault must not become a lane outage; L1 remains the structural control; INCONCLUSIVE is NOT a pass)."
+   ],
+   "served_unassigned_arm_warned": false,
+   "bytes": 332,
+   "mtime": 1794656922.4648852,
+   "mtime_iso": "2026-11-14T19:48:42",
+   "receipt_present": true,
+   "provenance": "THIS_ROUND"
+  },
+  {
+   "dispatch_log": "LANE_VERIFY.stderr.txt",
+   "warning_lines": [
+    "WARN_LANE_CREDENTIAL_POSTURE_INCONCLUSIVE: credential posture could not be decided (posture gate not found: C:\\Projects\\Agent_Workspace\\FHS_NEXT\\HG-KSEOS\\scripts\\gcm-containment\\lane_credential_posture.py); CONTINUING (a detector fault must not become a lane outage; L1 remains the structural control; INCONCLUSIVE is NOT a pass).",
+    "WARN_LANE_SERVED_UNASSIGNED_ARM: None is not in the VERIFY_SECURITY assignment (revision 44); assigned: ['gpt-6.1-sol', 'openai-codex/gpt-6.1-sol'] -- pass --require-assigned-arms to make this refuse"
+   ],
+   "served_unassigned_arm_warned": true,
+   "bytes": 533,
+   "mtime": 1794657739.186587,
+   "mtime_iso": "2026-11-14T20:02:19",
+   "receipt_present": true,
+   "provenance": "THIS_ROUND"
+  },
+  {
+   "dispatch_log": "LANE_VERIFY_ASSIGNED_ARMS_NEG.stderr.txt",
+   "warning_lines": [],
+   "served_unassigned_arm_warned": false,
+   "bytes": 0,
+   "mtime": 1794659221.724681,
+   "mtime_iso": "2026-11-14T20:27:01",
+   "receipt_present": true,
+   "provenance": "THIS_ROUND"
+  },
+  {
+   "dispatch_log": "LANE_VERIFY_PUBLISH.stderr.txt",
+   "warning_lines": [
+    "WARN_LANE_CREDENTIAL_POSTURE_INCONCLUSIVE: credential posture could not be decided (posture gate not found: C:\\Projects\\Agent_Workspace\\FHS_NEXT\\HG-KSEOS\\scripts\\gcm-containment\\lane_credential_posture.py); CONTINUING (a detector fault must not become a lane outage; L1 remains the structural control; INCONCLUSIVE is NOT a pass).",
+    "WARN_LANE_SERVED_UNASSIGNED_ARM: None is not in the VERIFY_SECURITY assignment (revision 44); assigned: ['gpt-6.1-sol', 'openai-codex/gpt-6.1-sol'] -- pass --require-assigned-arms to make this refuse"
+   ],
+   "served_unassigned_arm_warned": true,
+   "bytes": 533,
+   "mtime": 1794658349.815797,
+   "mtime_iso": "2026-11-14T20:12:29",
+   "receipt_present": false,
+   "provenance": "NOT_CREATED_BY_THIS_ROUND"
+  },
+  {
+   "dispatch_log": "LANE_VERIFY_R2.stderr.txt",
+   "warning_lines": [
+    "WARN_LANE_CREDENTIAL_POSTURE_INCONCLUSIVE: credential posture could not be decided (posture gate not found: C:\\Projects\\Agent_Workspace\\FHS_NEXT\\HG-KSEOS\\scripts\\gcm-containment\\lane_credential_posture.py); CONTINUING (a detector fault must not become a lane outage; L1 remains the structural control; INCONCLUSIVE is NOT a pass).",
+    "WARN_LANE_SERVED_UNASSIGNED_ARM: None is not in the VERIFY_SECURITY assignment (revision 44); assigned: ['gpt-6.1-sol', 'openai-codex/gpt-6.1-sol'] -- pass --require-assigned-arms to make this refuse"
+   ],
+   "served_unassigned_arm_warned": true,
+   "bytes": 533,
+   "mtime": 1794658380.3309982,
+   "mtime_iso": "2026-11-14T20:13:00",
+   "receipt_present": true,
+   "provenance": "THIS_ROUND"
+  },
+  {
+   "dispatch_log": "LANE_VERIFY_R3.stderr.txt",
+   "warning_lines": [
+    "WARN_LANE_CREDENTIAL_POSTURE_INCONCLUSIVE: credential posture could not be decided (posture gate not found: C:\\Projects\\Agent_Workspace\\FHS_NEXT\\HG-KSEOS\\scripts\\gcm-containment\\lane_credential_posture.py); CONTINUING (a detector fault must not become a lane outage; L1 remains the structural control; INCONCLUSIVE is NOT a pass).",
+    "WARN_LANE_SERVED_UNASSIGNED_ARM: None is not in the VERIFY_SECURITY assignment (revision 44); assigned: ['gpt-6.1-sol', 'openai-codex/gpt-6.1-sol'] -- pass --require-assigned-arms to make this refuse"
+   ],
+   "served_unassigned_arm_warned": true,
+   "bytes": 533,
+   "mtime": 1794658971.4002595,
+   "mtime_iso": "2026-11-14T20:22:51",
+   "receipt_present": true,
+   "provenance": "THIS_ROUND"
+  }
+ ],
+ "consequence": "VERIFY receipts carry arm_in_assignment=false in LANE_EVIDENCE.json; the verdicts are challenge records, not assignment-compliant operation, and never acceptance",
+ "control_run": {
+  "receipt": "out/LANE_VERIFY_ASSIGNED_ARMS_NEG.json",
+  "code": "ERR_NO_ASSIGNED_ARM",
+  "exit": 4
+ },
+ "concurrency_warning": "two dispatch stderr logs in this round's logs/ have no matching receipt in out/ and were not written by this round (LANE_DECISIONS, LANE_VERIFY_PUBLISH); another actor is dispatching into this round's folder. Their warnings are recorded, their results are not adopted, and the write manifest counts them as pre-existing/foreign rather than as round evidence",
+ "credential_posture_note": "the posture detector path is absent on this host, so every dispatch records INCONCLUSIVE and continues; that is a detector fault, not a pass"
+}
