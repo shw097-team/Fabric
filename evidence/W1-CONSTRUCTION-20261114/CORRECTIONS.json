@@ -45,6 +45,22 @@
     "none"
    ],
    "note": "G1-G6 and G8 PASS. G7 rejects a proxy clause: the manifest now declares three outside-round classes / eight members, while the brief had said exactly two. The substance the criterion exists for — no undisclosed write and no effect — holds and is what the manifest records."
+  },
+  {
+   "round": "R4",
+   "dispatch": "out/LANE_VERIFY_R4.json",
+   "nonce": "W1R2-VERIFY-R4-8b25da",
+   "attribution": "nonce_in_agent_message=true, usage_receipt_ok=true, exit 0, 426 s, sandbox read-only, usage rows 49",
+   "verdict": "REJECT",
+   "failed": [
+    "G2",
+    "G6",
+    "G7"
+   ],
+   "backlog": [
+    "none"
+   ],
+   "note": "G1/G3/G4/G5/G8 PASS; the three findings are record-keeping discrepancies (two counts and one stale wording), not new defects of the work"
   }
  ],
  "corrections": [
@@ -136,6 +152,33 @@
    "why_it_happened": "我照抄了施工正文 §E.4 的 HOLD 字面，沒有先查 W0 已建成儀器對「傳統 ACK」的退役裁定",
    "fix": "H-ORIGINAL-ACK 撤回（RETRACTED_NOT_BLUEPRINT_COMPLIANT）；若 owner 要 W1 取得同級承認，改以同一 FHS_ORIGINAL_ACK 儀器套用於 W1 subject（需 owner 金鑰窗授權）",
    "evidence": "_references/FHS_ORIGINAL_ACK.readonly.json、docs/OWNER_RULINGS_W1R2.json OD-W1R2-5"
+  },
+  {
+   "id": "RC-11",
+   "raised_by": "G2 (FAIL, R4)",
+   "earlier_claim": "eight refusal steps over seven distinct codes",
+   "measured": "eight steps over SIX distinct codes: GIT_PROBE_FAILED, INPUT_SHAPE_INVALID, INTAKE_INVALID, PROFILE_VETO, REPO_CONTEXT_MISSING, TQ_SOD (the first and last each appear twice)",
+   "why_it_happened": "the 'seven' was counted by hand from an earlier draft that also carried the two GIT_PROBE_FAILED shapes as separate kinds",
+   "fix": "report now computes the distinct-code set from the receipt at build time and states '8 steps / 6 codes' with the reason",
+   "evidence": "out/WP05_PIPD_CHAIN.json"
+  },
+  {
+   "id": "RC-12",
+   "raised_by": "G6 (FAIL, R4)",
+   "earlier_claim": "six caveats in the 485 ledger, one truncated disposition",
+   "measured": "the ledger carries EIGHT caveat entries, and the truncation entry names FIVE dispositions cut mid-token in the blueprint itself (L10607, L10628, L10649, L11216 …)",
+   "why_it_happened": "I quoted an early摘要 of the ledger instead of reading its gaps array",
+   "fix": "report counts the caveats from the ledger at build time (8) and states the five truncated rows",
+   "evidence": "out/WP17_485_LEDGER.json"
+  },
+  {
+   "id": "RC-13",
+   "raised_by": "G7 (FAIL, R4)",
+   "earlier_claim": "the write manifest recorded 373 round files and the round made no origin-repo write",
+   "measured": "the manifest at review time recorded 390 round files (the round kept producing receipts after the number was typed into the brief), and the round DID write outside itself: an evidence branch + draft PR #60 on Fabric (owner-instructed) and the creation of shw097-team/FHS_vNEXT (owner-authorised). No origin repository's `main` was written.",
+   "why_it_happened": "the brief carried a hand-typed count, and the phrase 'no origin-repo write' conflated 'main untouched' with 'no write at all'",
+   "fix": "report states the precise form: origin `main` untouched; one evidence branch + draft PR; one new private repo created on owner order. The counts in any future brief must be generated from the artefacts at dispatch time, not typed",
+   "evidence": "out/WRITE_MANIFEST.json, out/PUSH_READBACK.json, out/REPO_CREATE_READBACK.json"
   }
  ],
  "not_corrected": [
@@ -146,10 +189,10 @@
  ],
  "review_rounds": 3,
  "final_state": {
-  "criteria_substance_met": "G1-G6, G8 PASS in R3; G7's substantive property (no undisclosed outside write, no HOST_OP effect) holds with all 8 outside files disclosed in 3 classes",
-  "review_verdict_last": "REJECT (G7 proxy clause only)",
-  "why_stopping": "three attributed review rounds with each finding repaired; the remaining item is a proxy clause, and re-running the rubric a fourth time would be an open-ended loop rather than convergence",
-  "handover": "owner may accept or ask for the proxy clause to be restated; the round does not self-grant acceptance"
+  "review_verdict_last": "REJECT (R4: G2/G6/G7, all record-keeping discrepancies)",
+  "criteria_substance": "G1/G3/G4/G5/G8 PASS; G2/G6/G7 corrected in this file and in the report; no work item is reopened",
+  "why_stopping": "four attributed rounds; every finding so far has been a count or wording drift in the brief rather than a defect of the work. The durable fix is a brief generated from the receipts, which is recorded here as the prerequisite for any further round",
+  "handover": "owner decides whether a fifth round is wanted after the generator lands"
  },
  "open_owner_decisions": [
   {
