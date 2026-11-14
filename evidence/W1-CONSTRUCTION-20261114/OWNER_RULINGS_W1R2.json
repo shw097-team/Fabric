@@ -62,6 +62,50 @@
     "報告 §9 該列改寫並引用 FHS_ORIGINAL_ACK/3 的欄位",
     "若 owner 決定對 W1 套用該儀器，需開 owner 金鑰窗（這是真正的 owner-key consumer）"
    ]
+  },
+  {
+   "id": "OD-W1R2-6",
+   "subject": "Owner 親設的 Repo 狀態是最高裁決，不受藍圖條文阻擋",
+   "owner_text": "GitHub REPO是用戶親設創立的，其狀態代表最高裁決，憑什麼要被藍圖所限制用戶親設的最高裁決和意願?憑什麼用戶的最高裁決和親設和相關規畫不符，就要被阻擋、阻斷、HOLD?",
+   "ruling": "Owner 親設的 repo 狀態即最高裁決。藍圖（含 §D.2 的分支保護、可見性、CI 條款）是規劃文件，不得用來把 owner 的實際作為標成缺口、HOLD 或阻斷。若規劃與實際不一致，以實際為準，並把差異記為『規劃待更新』而非『實作不合規』。",
+   "effect_on_record": [
+    "H-REPO-PROTECT 由『缺口／HOLD』改為 REPO_STATE_IS_OWNER_DECISION（僅記錄現況：main 目前未啟用保護，因 owner 決定其狀態；不列為缺口、不阻斷）",
+    "報告 §9 該列改寫，不再寫『待解除』",
+    "今後凡 owner 親設之 repo／帳號／可見性狀態，一律不進缺口清單"
+   ]
+  },
+  {
+   "id": "OD-W1R2-7",
+   "subject": "『例外』的定義：輪次資料夾外且在兩個允許根內，不算例外",
+   "owner_text": "「例外指輪次資料夾外、而兩個允許根內不算例外」全部解決！",
+   "ruling": "F7 的例外分母改為：寫入位置在兩個允許根（`FHS_NEXT`、`FHS_NEXT_Workspace`）之外。落在允許根內但在輪次資料夾外的檔（lane bindings、`FHS_NEXT/_local` 的 tree-tool 輸出）不是例外，只是分區紀錄。",
+   "effect_on_record": [
+    "WRITE_MANIFEST 改以 zone 分類（round／allowed_root／outside_allowed_roots）",
+    "唯一例外類別＝relay 憑證池（AppData，2 檔）",
+    "F7 的判定改讀 zone，不再數『類別數』"
+   ]
+  },
+  {
+   "id": "OD-W1R2-8",
+   "subject": "補跑 §E.2 N-09",
+   "owner_text": "你必須把「§E.2 的 N-09 UNSAFE_DESTINATION 這輪沒實測」…全部解決！",
+   "ruling": "N-09 必須實測，不得以推論代替。",
+   "effect_on_record": [
+    "新增 build/wp05_n09.py 並實跑三種形態＋一個 dry-run 控制組",
+    "收據 out/WP05_N09_UNSAFE_DESTINATION.json（4/4 PASS）",
+    "§E.2 十六案自此全數有本輪實測"
+   ]
+  },
+  {
+   "id": "OD-W1R2-9",
+   "subject": "六個 reader receipts 由 Owner 親簽",
+   "owner_text": "你開口令視窗，由用戶親簽",
+   "ruling": "六個 reader receipts 由 owner 以 `original_reader_ack` 種類親簽；maker 不代簽。視窗 scope 需含 `original_reader_ack`，一次口令授權本批全部簽署（沿用『一次解鎖、批次簽署』原則）。",
+   "effect_on_record": [
+    "開窗 scope = original_reader_ack,owner_semantic_accept",
+    "六份 body 由 maker 起草、由 owner 的鍵簽署",
+    "簽完後 FHS_ORIGINAL_ACK(W1) 由 1/7 轉為 7/7，並逐份記 payload sha256"
+   ]
   }
  ],
  "consequence": "本輪 open items 僅剩：原域 ACK（H-ORIGINAL-ACK，需原 Reader）、Repo 建立授權（H-REPO-CREATE）、以及兩項證據稽核瑕疵的通報（不阻斷）。"

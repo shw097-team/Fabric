@@ -33,6 +33,7 @@ NATIVE_NOT_RUN / INDEPENDENT_NOT_RUN / RELEASE_NOT_GRANTED
 - 四物件 bundle：`checked=4`、`closure=FULL`、`complete=true`、`scope=FOUR_OBJECT`、`findings=[]`
 - bundle sha256 `e3df1e10de5ccd55…`；PD 綁到的 live HEAD `826ca066a1c2`
 - typed 拒收 8 筆：`INTAKE_INVALID`、`PROFILE_VETO`、`REPO_CONTEXT_MISSING`、`GIT_PROBE_FAILED`、`GIT_PROBE_FAILED`、`TQ_SOD`、`TQ_SOD`、`INPUT_SHAPE_INVALID`
+- §E.2 **N-09 `UNSAFE_DESTINATION`**：三種越界形態（絕對路徑／`../` 穿越／`--allow-root` 根擴大）皆 exit 2、目標不存在；根內 `--dry-run` 控制組 exit 0 → **4/4 PASS**
 
 ### 2.1 本輪對施工依據的三處量測更正
 
@@ -154,8 +155,8 @@ NATIVE_NOT_RUN / INDEPENDENT_NOT_RUN / RELEASE_NOT_GRANTED
 | `H-17-INSTALL` | 任何 occupant 安裝皆為 `HOST_OP` | OPS ECP ＋ 原 Issuer ＋ nonce/TTL/epoch |
 | `H-20-SET-SHA` | 39 格宣告集合 SHA 無法以 8 種正規化複現 | **Owner 裁定 OD-W1R2-2：屬證據稽核瑕疵、不阻斷**；以可執行 PLP 為準，通報藍圖作者即可 |
 | ~~`H-REPO-CREATE`~~ | **已解除**：`shw097-team/FHS_vNEXT` 已建立（private、default `main`、head `828bfca4`），依 Owner 2026-11-14 明示授權 | — |
-| `H-REPO-PROTECT` | 分支保護 `PUT` 與 ruleset `POST` 皆回 403「Resource not accessible by personal access token」；實測該憑證在本 repo 是 admin，但它是 **fine-grained PAT、缺 Administration: write**，且瀏覽器無已存登入可用 | 由 Owner 在 token 設定加入 `Administration: Read and write`（本 repo 或 All repositories），或在 repo Settings → Branches 直接建立規則（約 30 秒） |
-| `H-ACK-READER` | `FHS_ORIGINAL_ACK(W1)` 現為 **1/7**：`owner_semantic_accept` 已簽（payload `2b6a9ad6…`、視窗 `WIN-22058723e313`），六個 reader receipts 未由 maker 代簽 | 由 reader 角色自行簽；或依 `FHS_ORIGINAL_ACK/3` 的 `NOT_APPLICABLE_BY_DESIGN` 維持不簽 |
+| ~~`H-REPO-PROTECT`~~ | **不列缺口**（Owner 裁定 OD-W1R2-6：Owner 親設的 repo 狀態是最高裁決）。現況僅記錄：`main` 目前未啟用分支保護（`PUT`／ruleset 皆 403，因憑證為 fine-grained PAT 且未授予 Administration） | 若 owner 要啟用，才需調整；不由規劃文件推定應有 |
+| ~~`H-ACK-READER`~~ | **已解除（OD-W1R2-9）**：Owner 親簽六個 `original_reader_ack`（視窗 `WIN-6397278ec28a`、ops 6、refusals 0），加 owner 那一片 → **`FHS_ORIGINAL_ACK(W1)` = 7/7** | — |
 | ~~`H-ORIGINAL-ACK`~~ | **已撤回**：要求「原 Domain Reader 同 scope 簽署」複活了 W0 已退役的傳統 ACK（`FHS_ORIGINAL_ACK/3` 記 `NOT_APPLICABLE_BY_DESIGN`，L1 18.3 HIST-01／23.4） | 若 owner 要 W1 取得同級承認，改以同一 `FHS_ORIGINAL_ACK` 儀器套用於 W1 subject（需 owner 金鑰窗） |
 
 ## 10｜能主張／不能主張
@@ -185,5 +186,8 @@ Owner 裁定（`docs/OWNER_RULINGS_W1R2.json`）：OD-W1R2-1 同模型非缺口�
 | 簽了什麼 | 一次 `owner_semantic_accept`，subject 為 `out/OWNER_SEMANTIC_ACCEPT_W1R2.body.json`（2,294 bytes、payload sha256 `2b6a9ad6…`）；`signature_verified=true`、`ops_used=1`、`refusals=0` |
 | 收窗 | `owner_window.py close` → `state=CLOSED`；`SIGNING_LOG.jsonl` 有 `ALLOW` 與 `WINDOW_CLOSE` 兩列，沒有留下 live token |
 | 沒有簽的 | 六個 reader receipts（reader 角色不是 maker 的）；`FHS_ORIGINAL_ACK(W1)` 因此是 **1/7**，不得讀成 6/6 |
-| 紀錄 | `out/OWNER_ENVELOPE_EVALUATION.json`、`out/OWNER_SEMANTIC_ACCEPT_W1R2.signed.json`、`out/W1_ORIGINAL_ACK_PARTIAL.json` |
+| 第二次開窗（reader receipts） | `WIN-6397278ec28a`、scope `original_reader_ack,owner_semantic_accept`、max_ops 8、**ops_used 6、refusals 0**；六份 body 由 maker 起草、由 owner 的鍵簽署，逐份 `signature_verified=true` |
+| 收窗 | 第二次亦已 `CLOSED`；`SIGNING_LOG.jsonl` 六列 `original_reader_ack: ALLOW` ＋ 一列 `WINDOW_CLOSE` |
+| 最終 ACK | **`FHS_ORIGINAL_ACK(W1)` = 7/7**（6 reader ＋ 1 owner），`out/W1_ORIGINAL_ACK.json`；1/7 的部分紀錄保留為 superseded |
+| 紀錄 | `out/OWNER_ENVELOPE_EVALUATION.json`、`out/OWNER_SEMANTIC_ACCEPT_W1R2.signed.json`、out/READER_ACK_R*.signed.json、`out/W1_ORIGINAL_ACK.json` |
 

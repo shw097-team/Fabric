@@ -1,0 +1,67 @@
+{
+ "schema": "FHS-W1-R2-WP05-N09/1",
+ "case": "N-09",
+ "expectation": "exit 2 with UNSAFE_DESTINATION and no file created",
+ "isolated_root": "C:\\Projects\\Agent_Workspace\\FHS_NEXT_Workspace\\W1_R2_CONSTRUCTION_20261114\\sbx\\wp05\\chain",
+ "cases": [
+  {
+   "argv": [
+    "project",
+    "--out",
+    "C:\\Users\\user\\AppData\\Local\\Temp\\pipd_n09_escape"
+   ],
+   "exit": 2,
+   "code": "UNSAFE_DESTINATION",
+   "verdict": "FAIL",
+   "stdout_head": "{\n \"code\": \"UNSAFE_DESTINATION\",\n \"message\": \"refusing destination C:\\\\Users\\\\user\\\\AppData\\\\Local\\\\Temp\\\\pipd_n09_escape — it is outside every authorized root ['C:\\\\\\\\Projects\\\\\\\\Agent_Workspace\\\\\\\\FHS_NEXT_Workspace\\\\\\\\W1_R2_CONSTRUCTION_20261114\\\\\\\\sbx\\\\\\\\wp05\\\\\\\\chain\\\\\\\\dist']\",\n \"verdict\": \"FA",
+   "case": "absolute",
+   "target_existed_after": false,
+   "pass": true
+  },
+  {
+   "argv": [
+    "project",
+    "--out",
+    "../escape"
+   ],
+   "exit": 2,
+   "code": "UNSAFE_DESTINATION",
+   "verdict": "FAIL",
+   "stdout_head": "{\n \"code\": \"UNSAFE_DESTINATION\",\n \"message\": \"refusing destination C:\\\\Projects\\\\Agent_Workspace\\\\FHS_NEXT_Workspace\\\\W1_R2_CONSTRUCTION_20261114\\\\sbx\\\\wp05\\\\escape — it is outside every authorized root ['C:\\\\\\\\Projects\\\\\\\\Agent_Workspace\\\\\\\\FHS_NEXT_Workspace\\\\\\\\W1_R2_CONSTRUCTION_20261114\\\\\\\\sbx\\\\",
+   "case": "traversal",
+   "target_existed_after": false,
+   "pass": true
+  },
+  {
+   "argv": [
+    "project",
+    "--out",
+    "C:\\Users\\user\\AppData\\Local\\Temp\\pipd_n09_allowroot",
+    "--allow-root",
+    "C:/Windows"
+   ],
+   "exit": 2,
+   "code": "UNSAFE_DESTINATION",
+   "verdict": "FAIL",
+   "stdout_head": "{\n \"code\": \"UNSAFE_DESTINATION\",\n \"message\": \"refusing destination C:\\\\Users\\\\user\\\\AppData\\\\Local\\\\Temp\\\\pipd_n09_allowroot — it is outside every authorized root ['C:\\\\\\\\Windows', 'C:\\\\\\\\Projects\\\\\\\\Agent_Workspace\\\\\\\\FHS_NEXT_Workspace\\\\\\\\W1_R2_CONSTRUCTION_20261114\\\\\\\\sbx\\\\\\\\wp05\\\\\\\\chain\\\\\\\\dist",
+   "case": "allow_root_widened",
+   "target_existed_after": false,
+   "pass": true
+  },
+  {
+   "argv": [
+    "project",
+    "--dry-run"
+   ],
+   "exit": 0,
+   "code": null,
+   "verdict": "PASS",
+   "stdout_head": "{\n \"destination_safety\": {\n  \"code\": null,\n  \"reason\": \"\",\n  \"resolved\": \"C:\\\\Projects\\\\Agent_Workspace\\\\FHS_NEXT_Workspace\\\\W1_R2_CONSTRUCTION_20261114\\\\sbx\\\\wp05\\\\chain\\\\dist\\\\web\",\n  \"safe\": true\n },\n \"dry_run\": true,\n \"explain\": {\n  \"derivation\": [\n   \"dry-run: the target tree was not touched\"\n ",
+   "case": "control_dry_run_inside_root",
+   "pass": true
+  }
+ ],
+ "passed": 4,
+ "total": 4,
+ "verdict": "PASS"
+}
