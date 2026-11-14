@@ -123,8 +123,10 @@
    "earlier_claim": "the three VERIFY rounds were nonce-attributed review turns on the mandated arm",
    "measured": "the arm they served (opencode-go/deepseek-v4.1-flash) is NOT in the VERIFY_SECURITY assignment revision 44, which grants only ['gpt-6.1-sol','openai-codex/gpt-6.1-sol']; the dispatcher warned SERVED_UNASSIGNED_ARM and a control run with --require-assigned-arms refused with ERR_NO_ASSIGNED_ARM (exit 4, before any model call)",
    "why_it_happened": "--force-rank resolves against the pool, so it outranks the assignment; the owner's 2026-11-14 task mandates deepseek for the checker while the assignment file (authority owner-order-20261022-r14) still grants gpt-6.1-sol, and the round used the pool to satisfy the mandate without recording the split",
-   "fix": "every receipt now carries arm_in_assignment / assignment_arms / assignment_revision; the three verdicts are recorded as challenge records produced on an owner-mandated arm that the assignment does not grant — not as assignment-compliant operation and never as acceptance; the refusing control run is kept in out/LANE_VERIFY_ASSIGNED_ARMS_NEG.json",
-   "evidence": "out/LANE_VERIFY_ASSIGNED_ARMS_NEG.json, out/LANE_EVIDENCE.json"
+   "fix": "every receipt now carries arm_in_assignment / assignment_arms / assignment_revision; the three verdicts are recorded as challenge records produced on an owner-mandated arm that the assignment does not grant — not as assignment-compliant operation and never as acceptance; the refusing control run is kept in out/LANE_VERIFY_ASSIGNED_ARMS_NEG.json；owner 裁定（OD-W1R2-1）：同模型非缺口、不得作為 PASS 阻斷，故本項保留為事實紀錄，不再列為缺口",
+   "evidence": "out/LANE_VERIFY_ASSIGNED_ARMS_NEG.json, out/LANE_EVIDENCE.json",
+   "owner_ruling": "OD-W1R2-1",
+   "reclassified_to": "RECORDED_SETTING_DIVERGENCE_NOT_A_GAP"
   }
  ],
  "not_corrected": [
@@ -142,9 +144,17 @@
  },
  "open_owner_decisions": [
   {
-   "item": "VERIFY_SECURITY assignment vs owner mandate",
-   "detail": "assignment revision 44 grants gpt-6.1-sol only; the task's mandate names deepseek-v4.1-flash. Until the assignment is revised (an origin-side change in HG-KSEOS), every deepseek checker turn is SERVED_UNASSIGNED_ARM",
-   "smallest_safe_option": "owner revises the assignment for VERIFY_SECURITY (and EXECUTE if the mandate moves), or the mandate is restated to accept gpt-6.1-sol for the checker so maker/checker differ by model as well"
+   "item": "H-20-SET-SHA / H-485-KEYS 殘餘",
+   "detail": "owner 裁定（OD-W1R2-2）：屬證據稽核瑕疵，不阻斷；以可執行 PLP 為準",
+   "status": "ADJUDICATED_NOT_A_BLOCKER",
+   "reference": "docs/OWNER_RULINGS_W1R2.json OD-W1R2-2"
+  },
+  {
+   "item": "Fabric mirror 測試範圍",
+   "detail": "owner 裁定（OD-W1R2-3）：依 L2:L6211 / L1:L7194 的 R4-ENG.4 白名單共識，縮測試範圍（原域側），不擴白名單",
+   "status": "ADJUDICATED",
+   "reference": "docs/OWNER_RULINGS_W1R2.json OD-W1R2-3"
   }
- ]
+ ],
+ "owner_rulings_file": "docs/OWNER_RULINGS_W1R2.json"
 }

@@ -27,6 +27,9 @@ This folder is the de-sensitised evidence of one construction round: the 8 W1 wo
 | `LANE_VERIFY_R1/R2/R3.json` + `VERIFY_VERDICT_R3.md` | all three nonce-attributed review rounds, each REJECT, with the repaired findings |
 | `WRITE_MANIFEST.json` | every file this round wrote, the three disclosed outside-round classes, and the foreign files it did not adopt |
 | `LANE_STDERR_WARNINGS.json` | the dispatcher's own warnings per dispatch, including the served-arm/assignment split and three dispatch logs this round did not write |
+| `W1_REPO_ENTRY.md` | the L2 W1 deliverable `W1RepoEntry / SourceImportMap / ABI joins` (design; no repo created) |
+| `WP11_HOST_PLAN.md` | the L2 W1 deliverable `per-Host install / load / invoke / uninstall plan`, four hosts x three SPs x five stages |
+| `OWNER_RULINGS_W1R2.json` | the owner's four rulings of 2026-11-14 that reclassified RC-9 and the two audit defects and ordered the two deliverables above |
 
 ## Claim ceiling
 

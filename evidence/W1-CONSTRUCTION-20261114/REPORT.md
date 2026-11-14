@@ -22,7 +22,7 @@ NATIVE_NOT_RUN / INDEPENDENT_NOT_RUN / RELEASE_NOT_GRANTED
 | WP-FHS-04 | Hermes Durable Runtime | HOST_OP | WorkID／Kanban／GSTACK／SWARM 帳；真 lease 佈線 HOLD | `out/WP04_RUNTIME.json`、`KANBAN_W1_R2.md` |
 | WP-FHS-05 | PIPD Native Compiler | LOCAL_DRAFT_WRITE | 13 verbs 全鏈、PI/ECP 決定性、四物件 bundle 4/4 | `out/WP05_PIPD_CHAIN.json`、`out/WP05_BUNDLE4.json` |
 | WP-FHS-07 | Native PLAN Commander A/B/C | LOCAL_DRAFT_WRITE | 三份 Guide（A 唯讀／B 隔離／C 禁止） | `deliverables/WP07_COMMANDER_ABC.md`、`out/WP07_COMMANDER_ABC.json` |
-| WP-FHS-11 | Portable Host Dogfood | HOST_OP | Installed/Loaded/Invoked/Consumed 實測；Uninstalled NOT_PROBED | `out/WP11_HOST_DOGFOOD.json` |
+| WP-FHS-11 | Portable Host Dogfood | HOST_OP | Installed/Loaded/Invoked/Consumed 實測；Uninstalled NOT_PROBED；每 Host 四階段方案已成文 | `out/WP11_HOST_DOGFOOD.json`、`deliverables/WP11_HOST_PLAN_2026-11-14.md` |
 | WP-FHS-17 | CAP-BOOT Native Occupants | HOST_OP | 485 逐鍵清冊（485/485）＋digest；安裝 HOLD | `out/WP17_485_LEDGER.json` |
 | WP-FHS-20 | CLI/Agent/Host Kind Matrix | HOST_OP | 12 格矩陣（可載入單元規則）＋39 格 ModeGate 設計矩陣 | `out/WP20_MATRIX.json`、`out/WP20_MODEGATE39.json` |
 
@@ -107,7 +107,7 @@ NATIVE_NOT_RUN / INDEPENDENT_NOT_RUN / RELEASE_NOT_GRANTED
 | `LANE_VERIFY_ASSIGNED_ARMS_NEG.json` | REFUSED | None | None | None |
 
 - SoD：OPEN_OWNER_ORDERED（同一模型是 owner 指定；guard 的 `ERR_LANE_SOD_VIOLATION` 原樣保留，分離靠 process／path／write-set）
-- **臂與 assignment 的落差（已揭露）**：3 個 VERIFY 回合服務的臂是 `opencode-go/deepseek-v4.1-flash`，而 VERIFY_SECURITY assignment（revision 44）只授予 `gpt-6.1-sol`、`openai-codex/gpt-6.1-sol`；派車當下出現 `WARN_LANE_SERVED_UNASSIGNED_ARM`，而以 `--require-assigned-arms` 重跑的對照組拒派 `ERR_NO_ASSIGNED_ARM`（exit 4，未呼叫模型）。因此這三份判決是**在 owner 指定臂上產生的挑戰紀錄**，不是 assignment-compliant 的作業，也不是驗收。
+- **臂與 assignment 的落差（已揭露）**：3 個 VERIFY 回合服務的臂是 `opencode-go/deepseek-v4.1-flash`，而 VERIFY_SECURITY assignment（revision 44）只授予 `gpt-6.1-sol`、`openai-codex/gpt-6.1-sol`；派車當下出現 `WARN_LANE_SERVED_UNASSIGNED_ARM`，而以 `--require-assigned-arms` 重跑的對照組拒派 `ERR_NO_ASSIGNED_ARM`（exit 4，未呼叫模型）。因此這三份判決是**在 owner 指定臂上產生的挑戰紀錄**，不是 assignment-compliant 的作業，也不是驗收。**Owner 裁定 OD-W1R2-1：同模型不是設計要求，此落差為紀錄，不列缺口、不作阻斷。**
 
 ## 8｜凍結 rubric 自檢結果
 
@@ -148,10 +148,10 @@ NATIVE_NOT_RUN / INDEPENDENT_NOT_RUN / RELEASE_NOT_GRANTED
 | HOLD | 內容 | 解除條件 |
 |---|---|---|
 | `H-02-CONSUMER-ABI` | WP-02 指定的 `hgk_policy_consumer.py` 不在本樹 | 由 Fabric 原域提供該 consumer ABI 或更正 WP 契約路徑 |
-| `H-02-MIRROR-PATH` | 入口測試讀的 mirror 文件不在本樹（origin main 有、import 未取）→ 10 測試紅 | Owner 決定是否把 `INTEGRATION/FHS/docs/as-built/**` 納入 import 白名單，或由 Fabric 改測試範圍 |
-| `H-03-GUARD-SOD` | guard 對同模型 maker/checker 回 `ERR_LANE_SOD_VIOLATION`＋`ERR_LANE_NOT_ADMITTED` | 原域在 assignment 宣告 owner-ordered 例外，或改派不同模型 |
+| `H-02-MIRROR-PATH` | 入口測試讀的 mirror 文件不在本樹（origin main 有、import 未取）→ 10 測試紅 | 依 Owner 裁定 OD-W1R2-3：`R4-ENG.4` 是 source-only 白名單，evidence 不匯入 → 由 Fabric 原域縮測試範圍，本輪不擴白名單 |
+| `H-03-GUARD-SOD` | guard 對同模型 maker/checker 回 `ERR_LANE_SOD_VIOLATION`＋`ERR_LANE_NOT_ADMITTED` | **Owner 裁定 OD-W1R2-1：同模型不是設計要求、不列缺口、不作阻斷**；guard 的 REFUSE 屬原域設定行為，照實記錄 |
 | `H-17-INSTALL` | 任何 occupant 安裝皆為 `HOST_OP` | OPS ECP ＋ 原 Issuer ＋ nonce/TTL/epoch |
-| `H-20-SET-SHA` | 39 格宣告集合 SHA 無法以 8 種正規化複現 | 由藍圖作者說明該 SHA 的演算法 |
+| `H-20-SET-SHA` | 39 格宣告集合 SHA 無法以 8 種正規化複現 | **Owner 裁定 OD-W1R2-2：屬證據稽核瑕疵、不阻斷**；以可執行 PLP 為準，通報藍圖作者即可 |
 | `H-ORIGINAL-ACK` | 13 主責章 body 未經原 Reader 接受 | 原域同 scope 簽署（本輪不得自簽） |
 
 ## 10｜能主張／不能主張
@@ -159,6 +159,18 @@ NATIVE_NOT_RUN / INDEPENDENT_NOT_RUN / RELEASE_NOT_GRANTED
 **能主張**：來源身份可複現；WP-05 編譯鏈在本機可重跑且決定性；四物件 bundle 完整；八個 typed 拒收原樣成立（含 `GIT_PROBE_FAILED` 的兩種呼叫形狀）；Fabric 六路由與未知路由拒收實測；HGK 六個 epoch 欄位與 guard 具名拒收實測；spine 14/14；485 逐鍵清冊與 digest；39 格設計矩陣解析結果與「宣告 SHA 不可複現」的誠實記錄；宿主 12 格矩陣（嚴格規則）。
 
 **不能主張**：Native 准入、Independent 驗收、Release、原始域 ACK、485 已安裝、Repo 已建立、任何 host effect 已執行、任何車道回合已被 nonce 歸屬。
+
+## 10.5｜L2 W1 五項交付對帳（Owner 裁定 OD-W1R2-4 後補做）
+
+| L2 §04 W1 交付 | 本輪狀態 | 產物 |
+|---|---|---|
+| W1RepoEntry／SourceImportMap／ABI joins | **DONE（設計態）** | `deliverables/W1_REPO_ENTRY_2026-11-14.md` |
+| 原 Compiler response 或 HOLD | **DONE** | `out/WP05_PIPD_CHAIN.json`、`out/WP05_BUNDLE4.json`（另含 effect ECP 的 `GIT_PROBE_FAILED` HOLD） |
+| 每 Host 安裝／載入／調用／卸載方案 | **DONE（設計態）** | `deliverables/WP11_HOST_PLAN_2026-11-14.md` |
+| W1 三件 L3 受影 rebase | 由前輪 `W1_GPTWORK_20261114`／`W1_R1_ENGINEERING_20261114` 交付；本輪未重做 | `deliverables/` 前輪三檔（r1／r10） |
+| SourceImportMap 實測對帳 | **DONE** | 433 檔／3,787,417 bytes；三庫 pin `a6f1fa89`／`a6003c3d`／`696c30d7` |
+
+Owner 裁定（`docs/OWNER_RULINGS_W1R2.json`）：OD-W1R2-1 同模型非缺口；OD-W1R2-2 兩項藍圖可複現性問題屬證據稽核瑕疵、不阻斷；OD-W1R2-3 白名單依 `R4-ENG.4` 共識、由原域縮測試；OD-W1R2-4 缺的交付直接補做。
 
 ## 11｜Owner 金鑰信封：評估與結論
 
