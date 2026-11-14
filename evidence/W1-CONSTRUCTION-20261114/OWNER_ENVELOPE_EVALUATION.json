@@ -42,5 +42,30 @@
  "report_at_signature": {
   "path": "deliverables/W1_R2_CONSTRUCTION_REPORT_2026-11-14.md",
   "sha256_note": "the report is rebuilt after this record so its digest moves; the signed subject is the body JSON, whose fields state the report's role and the claim ceiling"
+ },
+ "preflight": {
+  "first_attempt": {
+   "exit": 1,
+   "log": "logs/owner_window_open.out",
+   "error": "FileNotFoundError: owner_ws/admission/registry/runner-registry.json",
+   "why": "the window reads the host's RunnerRegistry before it will open; an empty admission/registry directory is not enough",
+   "per_skill_note": "the skill's preflight says mkdir -p <ws>/artifacts <ws>/admission/registry; measured on this host that is necessary but not sufficient"
+  },
+  "resolution": {
+   "action": "copied the host registry as read-only context from the closed W0_R7 signing window",
+   "file": "owner_ws/admission/registry/runner-registry.json",
+   "schema": "RunnerRegistry@1",
+   "rev": 13,
+   "rows": 31,
+   "sha256_prefix": "3254714b05ecc434",
+   "note": "the window consumes it as host context; it authorises nothing by itself and no row of it was signed"
+  },
+  "second_attempt": {
+   "exit": 0,
+   "log": "logs/owner_window_open2.out",
+   "window_id": "WIN-22058723e313",
+   "state_after_open": "OPEN"
+  },
+  "state_file_vs_liveness": "liveness was proven by the signature itself (signature_verified=true, ops_used=1) and the close row in SIGNING_LOG.jsonl, not by the state file alone"
  }
 }
