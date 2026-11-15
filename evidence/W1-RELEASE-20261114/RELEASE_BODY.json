@@ -1,0 +1,89 @@
+{
+ "schema": "FHS.RELEASE/1",
+ "object": "FHS_vNEXT_PLP_W1",
+ "version": "r2",
+ "date": "2026-11-14",
+ "release_kind": "SPEC_SET_RELEASE",
+ "source_sha": {
+  "repo": "shw097-team/FHS_vNEXT",
+  "ref": "main",
+  "commit": "826c873228e08688166b1be916c752a633c4423d",
+  "path": "deliverables/FHS_vNEXT_PLP_W1",
+  "note": "產品 repo 的交付集 commit；與 evidence commit 分離"
+ },
+ "evidence_sha": {
+  "repo": "shw097-team/Fabric",
+  "ref": "main",
+  "commit": "75dbc725eaed9d3f6ccfcc27cfcb7a94276bf25e",
+  "paths": [
+   "evidence/W1-CONSTRUCTION-20261114 (47)",
+   "evidence/W1-WRITEBACK-20261114 (10)"
+  ]
+ },
+ "acceptance": {
+  "review_receipt": "out/LANE_VERIFY_R10.json",
+  "review_sha256": "3ea29e85585ef18916f9f2210a86f2819c48c5422926d3b6de8fc78267cc9df1",
+  "verdict": "APPROVE_RELEASE_CANDIDATE",
+  "writeback_receipt": "out/LANE_WRITEBACK_REVIEW_R3.json",
+  "writeback_sha256": "f0bfe20ac940e09cde9ee008330913c22f6b5b53c5ec0172ac7aa2a297e085f9",
+  "ack": {
+   "file": "out/W1_ORIGINAL_ACK.json",
+   "count": "7/7",
+   "sha256": "31e5f2233922972bb584c742dd1b9639b7c0b3fe24e88428e184b274285b1c33"
+  }
+ },
+ "included": [
+  {
+   "name": "FHS_vNEXT_PLP_W1_實質正文_交付版_2026-11-14_r2.md",
+   "bytes": 120834,
+   "sha256": "a704a962cdfc6a5e6e5c9ba5a5abd2d1d7231ac32208a4ac6138ba7fa02831b1"
+  },
+  {
+   "name": "FHS_vNEXT_PLP_W1_證據型附錄_交付版_2026-11-14_r2.md",
+   "bytes": 10946,
+   "sha256": "33cb26372a421984b41b129e1d18d976d44dc6ddabfe6103ac0fe5ca794aee4f"
+  },
+  {
+   "name": "FHS_vNEXT_PLP_W1_交付包_2026-11-14_r2.zip",
+   "bytes": 88513,
+   "sha256": "1b9b64316efc6b8d30ac14342a033732a958fe5f7fe575c68b8c5b7ad0a1eb37"
+  }
+ ],
+ "excluded": [
+  "任何 native admission / permit",
+  "任何原域接受",
+  "W2 規格（另為候選）",
+  "任何 host effect 已執行之主張"
+ ],
+ "rollback": {
+  "previous": {
+   "state": "OWNER_RULED_CONSTRUCTION_BASELINE",
+   "documents": [
+    {
+     "name": "FHS_vNEXT_PLP_W1_實質正文_施工定案版_2026-11-14_r1.md",
+     "sha256": "5cb9ebc5a768ecdfde0441a327ee22b501b6b0a9a615feb81fbffef5c356701a"
+    }
+   ]
+  },
+  "steps": [
+   "把 CURRENT.json 的 delivery_revision 改回 r1 並移除 r2 三件",
+   "以 verify_current.py 驗回 r1（baseline 檢查仍在）",
+   "在 Fabric 新增 revert commit（不刪歷史）"
+  ],
+  "verification": "python FHS_NEXT/deliverables/FHS_vNEXT_PLP_W1/verify_current.py 必須 exit 0"
+ },
+ "validity": {
+  "from": "2026-11-14",
+  "until": null,
+  "note": "無到期日；任一條款變更即需新版本"
+ },
+ "signer": {
+  "authority": "owner",
+  "fingerprint": "PENDING_ENVELOPE_SIGNATURE"
+ },
+ "claim_ceiling": "SOURCE_READ / LOCAL_DRAFT_WRITE / LOCAL_CHECK / AUTHOR_DESIGN + RELEASE (owner-signed)",
+ "not_claimed": [
+  "NATIVE_SIGNED",
+  "INDEPENDENT_PASS"
+ ]
+}
