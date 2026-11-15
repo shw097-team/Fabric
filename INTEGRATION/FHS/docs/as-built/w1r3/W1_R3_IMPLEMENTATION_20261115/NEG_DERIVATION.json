@@ -1,0 +1,341 @@
+{
+ "schema": "FHS_NEXT.W1R3.NEG_DERIVATION/1",
+ "cases": [
+  {
+   "wp": "WP-FHS-02",
+   "case": "navigation_as_authority",
+   "status": "WRITTEN",
+   "changed": "evidence.navigation_used_as_authority",
+   "declared_changes": 1,
+   "file": "neg_navigation_as_authority.json"
+  },
+  {
+   "wp": "WP-FHS-02",
+   "case": "digest_missing",
+   "status": "WRITTEN",
+   "changed": "evidence.digests.stage",
+   "declared_changes": 1,
+   "file": "neg_digest_missing.json"
+  },
+  {
+   "wp": "WP-FHS-02",
+   "case": "borrowed_scope",
+   "status": "WRITTEN",
+   "changed": "evidence.digests.scope",
+   "declared_changes": 1,
+   "file": "neg_borrowed_scope.json"
+  },
+  {
+   "wp": "WP-FHS-02",
+   "case": "no_consumer_ack",
+   "status": "WRITTEN",
+   "changed": "consumer.ack",
+   "declared_changes": 1,
+   "file": "neg_no_consumer_ack.json"
+  },
+  {
+   "wp": "WP-FHS-02",
+   "case": "sec_epoch_escalation",
+   "status": "WRITTEN",
+   "changed": "evidence.signer_epoch",
+   "declared_changes": 1,
+   "file": "neg_sec_epoch_escalation.json"
+  },
+  {
+   "wp": "WP-FHS-02",
+   "case": "sec_writeset_escape",
+   "status": "WRITTEN",
+   "changed": "writeset.paths[0]",
+   "declared_changes": 1,
+   "file": "neg_sec_writeset_escape.json"
+  },
+  {
+   "wp": "WP-FHS-03",
+   "case": "doc_patch_as_applied",
+   "status": "WRITTEN",
+   "changed": "evidence.guard.raw_status",
+   "declared_changes": 1,
+   "file": "neg_doc_patch_as_applied.json"
+  },
+  {
+   "wp": "WP-FHS-03",
+   "case": "borrowed_scope",
+   "status": "WRITTEN",
+   "changed": "evidence.admission.scope",
+   "declared_changes": 1,
+   "file": "neg_borrowed_scope.json"
+  },
+  {
+   "wp": "WP-FHS-03",
+   "case": "missing_sod",
+   "status": "WRITTEN",
+   "changed": "evidence.admission.sod",
+   "declared_changes": 1,
+   "file": "neg_missing_sod.json"
+  },
+  {
+   "wp": "WP-FHS-03",
+   "case": "relay_closure_absent",
+   "status": "WRITTEN",
+   "changed": "evidence.relay_direct_closure",
+   "declared_changes": 1,
+   "file": "neg_relay_closure_absent.json"
+  },
+  {
+   "wp": "WP-FHS-03",
+   "case": "sec_issuer_impersonation",
+   "status": "WRITTEN",
+   "changed": "principal.kind",
+   "declared_changes": 1,
+   "file": "neg_sec_issuer_impersonation.json"
+  },
+  {
+   "wp": "WP-FHS-03",
+   "case": "sec_nonce_reuse",
+   "status": "WRITTEN",
+   "changed": "evidence.nonce_reused",
+   "declared_changes": 1,
+   "file": "neg_sec_nonce_reuse.json"
+  },
+  {
+   "wp": "WP-FHS-04",
+   "case": "selected_as_used",
+   "status": "WRITTEN",
+   "changed": "evidence.selected.tool",
+   "declared_changes": 1,
+   "file": "neg_selected_as_used.json"
+  },
+  {
+   "wp": "WP-FHS-04",
+   "case": "borrowed_scope",
+   "status": "WRITTEN",
+   "changed": "evidence.lease.scope",
+   "declared_changes": 1,
+   "file": "neg_borrowed_scope.json"
+  },
+  {
+   "wp": "WP-FHS-04",
+   "case": "fallback_overwrites_primary",
+   "status": "WRITTEN",
+   "changed": "evidence.primary_assignment",
+   "declared_changes": 1,
+   "file": "neg_fallback_overwrites_primary.json"
+  },
+  {
+   "wp": "WP-FHS-04",
+   "case": "lease_absent",
+   "status": "WRITTEN",
+   "changed": "evidence.lease",
+   "declared_changes": 1,
+   "file": "neg_lease_absent.json"
+  },
+  {
+   "wp": "WP-FHS-04",
+   "case": "sec_cross_profile_home",
+   "status": "WRITTEN",
+   "changed": "evidence.home_shared",
+   "declared_changes": 1,
+   "file": "neg_sec_cross_profile_home.json"
+  },
+  {
+   "wp": "WP-FHS-05",
+   "case": "author_ack_as_compiler",
+   "status": "WRITTEN",
+   "changed": "evidence.compiler.payload_digest",
+   "declared_changes": 1,
+   "file": "neg_author_ack_as_compiler.json"
+  },
+  {
+   "wp": "WP-FHS-05",
+   "case": "registry_count_mismatch",
+   "status": "WRITTEN",
+   "changed": "evidence.registry.counts.cli",
+   "declared_changes": 1,
+   "file": "neg_registry_count_mismatch.json"
+  },
+  {
+   "wp": "WP-FHS-05",
+   "case": "pd_repo_context_absent",
+   "status": "WRITTEN",
+   "changed": "evidence.repo_context",
+   "declared_changes": 1,
+   "file": "neg_pd_repo_context_absent.json"
+  },
+  {
+   "wp": "WP-FHS-05",
+   "case": "borrowed_scope",
+   "status": "WRITTEN",
+   "changed": "evidence.repo_context.subject.scope",
+   "declared_changes": 1,
+   "file": "neg_borrowed_scope.json"
+  },
+  {
+   "wp": "WP-FHS-05",
+   "case": "sec_shadow_writer",
+   "status": "WRITTEN",
+   "changed": "evidence.shadow_writer",
+   "declared_changes": 1,
+   "file": "neg_sec_shadow_writer.json"
+  },
+  {
+   "wp": "WP-FHS-07",
+   "case": "guide_self_writes_plan",
+   "status": "WRITTEN",
+   "changed": "evidence.guide.self_writes_plan",
+   "declared_changes": 1,
+   "file": "neg_guide_self_writes_plan.json"
+  },
+  {
+   "wp": "WP-FHS-07",
+   "case": "stale_revision",
+   "status": "WRITTEN",
+   "changed": "evidence.cas.received_revision",
+   "declared_changes": 1,
+   "file": "neg_stale_revision.json"
+  },
+  {
+   "wp": "WP-FHS-07",
+   "case": "conflict_not_reread",
+   "status": "WRITTEN",
+   "changed": "evidence.cas.ack_state",
+   "declared_changes": 1,
+   "file": "neg_conflict_not_reread.json"
+  },
+  {
+   "wp": "WP-FHS-07",
+   "case": "borrowed_scope",
+   "status": "WRITTEN",
+   "changed": "evidence.cas.scope",
+   "declared_changes": 1,
+   "file": "neg_borrowed_scope.json"
+  },
+  {
+   "wp": "WP-FHS-07",
+   "case": "sec_cross_work_plan",
+   "status": "WRITTEN",
+   "changed": "evidence.cross_work",
+   "declared_changes": 1,
+   "file": "neg_sec_cross_work_plan.json"
+  },
+  {
+   "wp": "WP-FHS-11",
+   "case": "file_exists_as_loaded",
+   "status": "WRITTEN",
+   "changed": "evidence.stages.load.observed_digest",
+   "declared_changes": 1,
+   "file": "neg_file_exists_as_loaded.json"
+  },
+  {
+   "wp": "WP-FHS-11",
+   "case": "stage_absent",
+   "status": "WRITTEN",
+   "changed": "evidence.stages.install",
+   "declared_changes": 1,
+   "file": "neg_stage_absent.json"
+  },
+  {
+   "wp": "WP-FHS-11",
+   "case": "foreign_host_evidence",
+   "status": "WRITTEN",
+   "changed": "evidence.stages.invoke.host",
+   "declared_changes": 1,
+   "file": "neg_foreign_host_evidence.json"
+  },
+  {
+   "wp": "WP-FHS-11",
+   "case": "borrowed_scope",
+   "status": "WRITTEN",
+   "changed": "evidence.stages.use.scope",
+   "declared_changes": 1,
+   "file": "neg_borrowed_scope.json"
+  },
+  {
+   "wp": "WP-FHS-11",
+   "case": "sec_checker_impersonation",
+   "status": "WRITTEN",
+   "changed": "principal.kind",
+   "declared_changes": 1,
+   "file": "neg_sec_checker_impersonation.json"
+  },
+  {
+   "wp": "WP-FHS-17",
+   "case": "slot_set_incomplete",
+   "status": "WRITTEN",
+   "changed": "evidence.slots",
+   "declared_changes": 1,
+   "file": "neg_slot_set_incomplete.json"
+  },
+  {
+   "wp": "WP-FHS-17",
+   "case": "license_unknown",
+   "status": "WRITTEN",
+   "changed": "evidence.slots[0].license_known",
+   "declared_changes": 1,
+   "file": "neg_license_unknown.json"
+  },
+  {
+   "wp": "WP-FHS-17",
+   "case": "two_active_occupants",
+   "status": "WRITTEN",
+   "changed": "evidence.slots[0].occupants[1].active",
+   "declared_changes": 1,
+   "file": "neg_two_active_occupants.json"
+  },
+  {
+   "wp": "WP-FHS-17",
+   "case": "disposition_downgrade",
+   "status": "WRITTEN",
+   "changed": "evidence.slots[0].disposition",
+   "declared_changes": 1,
+   "file": "neg_disposition_downgrade.json"
+  },
+  {
+   "wp": "WP-FHS-17",
+   "case": "sec_install_privilege",
+   "status": "WRITTEN",
+   "changed": "writeset.effect",
+   "declared_changes": 1,
+   "file": "neg_sec_install_privilege.json"
+  },
+  {
+   "wp": "WP-FHS-20",
+   "case": "mvi_as_full_product",
+   "status": "WRITTEN",
+   "changed": "evidence.cells",
+   "declared_changes": 1,
+   "file": "neg_mvi_as_full_product.json"
+  },
+  {
+   "wp": "WP-FHS-20",
+   "case": "cell_fields_incomplete",
+   "status": "WRITTEN",
+   "changed": "evidence.cells[2].status",
+   "declared_changes": 1,
+   "file": "neg_cell_fields_incomplete.json"
+  },
+  {
+   "wp": "WP-FHS-20",
+   "case": "legacy_read_guessed",
+   "status": "WRITTEN",
+   "changed": "evidence.legacy_guessed",
+   "declared_changes": 1,
+   "file": "neg_legacy_read_guessed.json"
+  },
+  {
+   "wp": "WP-FHS-20",
+   "case": "no_cell_owner_ack",
+   "status": "WRITTEN",
+   "changed": "consumer.ack.state",
+   "declared_changes": 1,
+   "file": "neg_no_cell_owner_ack.json"
+  },
+  {
+   "wp": "WP-FHS-20",
+   "case": "sec_cross_host_receipt",
+   "status": "WRITTEN",
+   "changed": "evidence.cells[0].receipt.host",
+   "declared_changes": 1,
+   "file": "neg_sec_cross_host_receipt.json"
+  }
+ ]
+}
