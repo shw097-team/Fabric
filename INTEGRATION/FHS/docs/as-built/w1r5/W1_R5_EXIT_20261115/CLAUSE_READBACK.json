@@ -1,0 +1,504 @@
+{
+ "schema": "FHS_NEXT.W1R5.PIPD_CLAUSE_READBACK/1",
+ "body": "W1_r3_body.md",
+ "body_sha256": "5aca7b5e2bdc67d13dff95432b14d7e152f18e3d341971490b7a77c395345a6b",
+ "clauses": 34509,
+ "atoms_compiled": 48019,
+ "clauses_refused": 428,
+ "refusal_codes": {
+  "IntakeInvalid": 417,
+  "ZERO_OBLIGATION_CLAUSE": 11
+ },
+ "refusals_first_40": [
+  {
+   "span": [
+    4471,
+    4615
+   ],
+   "code": "IntakeInvalid",
+   "code_attr": "INTAKE_INVALID",
+   "message": "ambiguous compound: explicit subjects and predicates required",
+   "clause_head": "| ADR-W1-05 六效果分治 | READ/DRAFT/DEV/OPS/USER/RELEASE 各有 permission、World readback、recovery | 不用路徑推效果、不借 DEV Grant 做 OPS、不"
+  },
+  {
+   "span": [
+    6325,
+    6377
+   ],
+   "code": "IntakeInvalid",
+   "code_attr": "INTAKE_INVALID",
+   "message": "ambiguous compound: explicit subjects and predicates required",
+   "clause_head": "九列跨波移交各有接手與 Resume | 跨波 HOLD 倒寫成 W0 失敗或直接抹除 | 全 W1 |"
+  },
+  {
+   "span": [
+    6853,
+    6898
+   ],
+   "code": "IntakeInvalid",
+   "code_attr": "INTAKE_INVALID",
+   "message": "ambiguous compound: explicit subjects and predicates required",
+   "clause_head": "原 HGK／relay Owner 分別給直呼拒絕／撤銷讀回，不能以 wrapper 替代"
+  },
+  {
+   "span": [
+    7897,
+    7899
+   ],
+   "code": "ZERO_OBLIGATION_CLAUSE",
+   "message": "clause produced no obligation statement",
+   "clause_head": "**"
+  },
+  {
+   "span": [
+    10522,
+    10625
+   ],
+   "code": "IntakeInvalid",
+   "code_attr": "INTAKE_INVALID",
+   "message": "ambiguous compound: explicit subjects and predicates required",
+   "clause_head": "| P01 選型困難 | Need×Kind×Host×Effect×License→一個當期Occupant/具名NoFit，原24槽必需功能不降optional | 24槽各有功能結果與Consumer"
+  },
+  {
+   "span": [
+    11429,
+    11565
+   ],
+   "code": "IntakeInvalid",
+   "code_attr": "INTAKE_INVALID",
+   "message": "ambiguous compound: explicit subjects and predicates required",
+   "clause_head": "| P06 Host掛載失真 | Installed→Loaded→Invoked→Consumed→Uninstalled，模型另分Selected/ActualServed/Usage | 每Host×SP各有trigger/nontr"
+  },
+  {
+   "span": [
+    13451,
+    13481
+   ],
+   "code": "IntakeInvalid",
+   "code_attr": "INTAKE_INVALID",
+   "message": "ambiguous compound: explicit subjects and predicates required",
+   "clause_head": "r7原P01/P02/P07對應功能與假PASS關切全部保留"
+  },
+  {
+   "span": [
+    19792,
+    19807
+   ],
+   "code": "IntakeInvalid",
+   "code_attr": "INTAKE_INVALID",
+   "message": "ambiguous compound: explicit subjects and predicates required",
+   "clause_head": "各要求指向對應卡而不增第九WP"
+  },
+  {
+   "span": [
+    20271,
+    20331
+   ],
+   "code": "IntakeInvalid",
+   "code_attr": "INTAKE_INVALID",
+   "message": "ambiguous compound: explicit subjects and predicates required",
+   "clause_head": "來源就緒時可分別準備 WP02 Policy、WP03 HGK、WP04 Runtime、WP05 PIPD 的受影設計"
+  },
+  {
+   "span": [
+    26050,
+    26148
+   ],
+   "code": "IntakeInvalid",
+   "code_attr": "INTAKE_INVALID",
+   "message": "ambiguous compound: explicit subjects and predicates required",
+   "clause_head": "**M4 驗證/切換/回退**：原Repo Writer在隔離受權scope對七列run對應tests及SourceImportMap逐byte/完整清單NEG，再核Native接口/Host註冊"
+  },
+  {
+   "span": [
+    31410,
+    31498
+   ],
+   "code": "IntakeInvalid",
+   "code_attr": "INTAKE_INVALID",
+   "message": "ambiguous compound: explicit subjects and predicates required",
+   "clause_head": "**原測試/Owner對應**：w1_lifecycle與operation_registry由SBL PIPD Owner驗原lifecycle鏈、Effect解析/權限拒收"
+  },
+  {
+   "span": [
+    31968,
+    32011
+   ],
+   "code": "IntakeInvalid",
+   "code_attr": "INTAKE_INVALID",
+   "message": "ambiguous compound: explicit subjects and predicates required",
+   "clause_head": "本輪編製的三份 SPEC 規劃也由指定外掛 `core.plan_spec` 分別產生"
+  },
+  {
+   "span": [
+    35758,
+    35798
+   ],
+   "code": "IntakeInvalid",
+   "code_attr": "INTAKE_INVALID",
+   "message": "ambiguous compound: explicit subjects and predicates required",
+   "clause_head": "Hermes選 **v0.23.1**，固定官方tag對應code commit"
+  },
+  {
+   "span": [
+    36055,
+    36057
+   ],
+   "code": "ZERO_OBLIGATION_CLAUSE",
+   "message": "clause produced no obligation statement",
+   "clause_head": "**"
+  },
+  {
+   "span": [
+    36306,
+    36453
+   ],
+   "code": "IntakeInvalid",
+   "code_attr": "INTAKE_INVALID",
+   "message": "ambiguous compound: explicit subjects and predicates required",
+   "clause_head": "PLAN／EXECUTE／VERIFY_SECURITY分別存Requested/RequiredSet/Selected/Bound/Enabled/Spawn/PromptDelivered/ActualServed/Usage/Too"
+  },
+  {
+   "span": [
+    41163,
+    41221
+   ],
+   "code": "IntakeInvalid",
+   "code_attr": "INTAKE_INVALID",
+   "message": "ambiguous compound: explicit subjects and predicates required",
+   "clause_head": "原 `$id`／ABI/version由對應原Reader核定，未知記`ABI_BIND_HOLD`，不可假裝已註冊"
+  },
+  {
+   "span": [
+    55320,
+    55347
+   ],
+   "code": "IntakeInvalid",
+   "code_attr": "INTAKE_INVALID",
+   "message": "ambiguous compound: explicit subjects and predicates required",
+   "clause_head": "工程施工必先由對應原 Reader 轉成其實際 ABI"
+  },
+  {
+   "span": [
+    55995,
+    56069
+   ],
+   "code": "IntakeInvalid",
+   "code_attr": "INTAKE_INVALID",
+   "message": "ambiguous compound: explicit subjects and predicates required",
+   "clause_head": "各以 `FUO_NOT_DELIVERED / KNOWN_ANSWER_REASK / UNRELATED_RELEASE_GATE` 停對應路由"
+  },
+  {
+   "span": [
+    56711,
+    56781
+   ],
+   "code": "IntakeInvalid",
+   "code_attr": "INTAKE_INVALID",
+   "message": "ambiguous compound: explicit subjects and predicates required",
+   "clause_head": "最低證據分別是原 ABI / producer payload / receiver ACK-NACK / 原 Raw，而非一張總 PASS"
+  },
+  {
+   "span": [
+    58224,
+    58262
+   ],
+   "code": "IntakeInvalid",
+   "code_attr": "INTAKE_INVALID",
+   "message": "ambiguous compound: explicit subjects and predicates required",
+   "clause_head": "**讀回不變量**：effect結果只由對應World/Consumer確認"
+  },
+  {
+   "span": [
+    63361,
+    63373
+   ],
+   "code": "IntakeInvalid",
+   "code_attr": "INTAKE_INVALID",
+   "message": "ambiguous compound: explicit subjects and predicates required",
+   "clause_head": "安全反例由對應原守衛執行"
+  },
+  {
+   "span": [
+    64957,
+    64990
+   ],
+   "code": "IntakeInvalid",
+   "code_attr": "INTAKE_INVALID",
+   "message": "ambiguous compound: explicit subjects and predicates required",
+   "clause_head": "任何新證據若不是同Subject/Scope，不得解除對應HOLD"
+  },
+  {
+   "span": [
+    65388,
+    65441
+   ],
+   "code": "IntakeInvalid",
+   "code_attr": "INTAKE_INVALID",
+   "message": "ambiguous compound: explicit subjects and predicates required",
+   "clause_head": "- [CH-06｜U1 子要求逐義拆解：各有／分別／對應／若／不得](#ch-06)｜原主波保留／跨波交接"
+  },
+  {
+   "span": [
+    69861,
+    69921
+   ],
+   "code": "IntakeInvalid",
+   "code_attr": "INTAKE_INVALID",
+   "message": "ambiguous compound: explicit subjects and predicates required",
+   "clause_head": "- **Dependency／施工序**：先原Source/已知答案，後本章對應WP/36Edge的具名Receiver"
+  },
+  {
+   "span": [
+    72980,
+    73040
+   ],
+   "code": "IntakeInvalid",
+   "code_attr": "INTAKE_INVALID",
+   "message": "ambiguous compound: explicit subjects and predicates required",
+   "clause_head": "- **Dependency／施工序**：先原Source/已知答案，後本章對應WP/36Edge的具名Receiver"
+  },
+  {
+   "span": [
+    75844,
+    75866
+   ],
+   "code": "IntakeInvalid",
+   "code_attr": "INTAKE_INVALID",
+   "message": "ambiguous compound: explicit subjects and predicates required",
+   "clause_head": "- **POS**：七個痛點各有產品退出條件"
+  },
+  {
+   "span": [
+    76028,
+    76088
+   ],
+   "code": "IntakeInvalid",
+   "code_attr": "INTAKE_INVALID",
+   "message": "ambiguous compound: explicit subjects and predicates required",
+   "clause_head": "- **Dependency／施工序**：先原Source/已知答案，後本章對應WP/36Edge的具名Receiver"
+  },
+  {
+   "span": [
+    81443,
+    81503
+   ],
+   "code": "IntakeInvalid",
+   "code_attr": "INTAKE_INVALID",
+   "message": "ambiguous compound: explicit subjects and predicates required",
+   "clause_head": "- **Dependency／施工序**：先原Source/已知答案，後本章對應WP/36Edge的具名Receiver"
+  },
+  {
+   "span": [
+    111757,
+    111787
+   ],
+   "code": "IntakeInvalid",
+   "code_attr": "INTAKE_INVALID",
+   "message": "ambiguous compound: explicit subjects and predicates required",
+   "clause_head": "- **POS**：具名 Case 和原 Reader 對應"
+  },
+  {
+   "span": [
+    117186,
+    117234
+   ],
+   "code": "IntakeInvalid",
+   "code_attr": "INTAKE_INVALID",
+   "message": "ambiguous compound: explicit subjects and predicates required",
+   "clause_head": "四 Host Hermes/Codex/Claude/ChatGPT 分別判能力與 Loader"
+  },
+  {
+   "span": [
+    117494,
+    117570
+   ],
+   "code": "IntakeInvalid",
+   "code_attr": "INTAKE_INVALID",
+   "message": "ambiguous compound: explicit subjects and predicates required",
+   "clause_head": "- **Operation／Output**：獨立執行「四 Host Hermes/Codex/Claude/ChatGPT 分別判能力與 Loader"
+  },
+  {
+   "span": [
+    128358,
+    128393
+   ],
+   "code": "IntakeInvalid",
+   "code_attr": "INTAKE_INVALID",
+   "message": "ambiguous compound: explicit subjects and predicates required",
+   "clause_head": "四 Host 各有獨立 Loader/Capabilities/NEG"
+  },
+  {
+   "span": [
+    130121,
+    130156
+   ],
+   "code": "IntakeInvalid",
+   "code_attr": "INTAKE_INVALID",
+   "message": "ambiguous compound: explicit subjects and predicates required",
+   "clause_head": "四 Host 各有獨立 Loader/Capabilities/NEG"
+  },
+  {
+   "span": [
+    132645,
+    132686
+   ],
+   "code": "IntakeInvalid",
+   "code_attr": "INTAKE_INVALID",
+   "message": "ambiguous compound: explicit subjects and predicates required",
+   "clause_head": "四 Host 的 NEG trigger／uninstall/residue 各有"
+  },
+  {
+   "span": [
+    132952,
+    133021
+   ],
+   "code": "IntakeInvalid",
+   "code_attr": "INTAKE_INVALID",
+   "message": "ambiguous compound: explicit subjects and predicates required",
+   "clause_head": "- **Operation／Output**：獨立執行「四 Host 的 NEG trigger／uninstall/residue 各有"
+  },
+  {
+   "span": [
+    136918,
+    136961
+   ],
+   "code": "IntakeInvalid",
+   "code_attr": "INTAKE_INVALID",
+   "message": "ambiguous compound: explicit subjects and predicates required",
+   "clause_head": "TPM／Commander／Challenge 三 SP 各有 Portable 入口"
+  },
+  {
+   "span": [
+    137265,
+    137336
+   ],
+   "code": "IntakeInvalid",
+   "code_attr": "INTAKE_INVALID",
+   "message": "ambiguous compound: explicit subjects and predicates required",
+   "clause_head": "- **Operation／Output**：獨立執行「TPM／Commander／Challenge 三 SP 各有 Portable 入口"
+  },
+  {
+   "span": [
+    138876,
+    138912
+   ],
+   "code": "IntakeInvalid",
+   "code_attr": "INTAKE_INVALID",
+   "message": "ambiguous compound: explicit subjects and predicates required",
+   "clause_head": "- **POS**：原 Native consumer 各有獨立 Ack"
+  },
+  {
+   "span": [
+    157333,
+    157403
+   ],
+   "code": "IntakeInvalid",
+   "code_attr": "INTAKE_INVALID",
+   "message": "ambiguous compound: explicit subjects and predicates required",
+   "clause_head": "- **Operation／施工序**：DEV/OPS/USER/RELEASE分別permission及readback/recovery"
+  },
+  {
+   "span": [
+    178171,
+    178194
+   ],
+   "code": "IntakeInvalid",
+   "code_attr": "INTAKE_INVALID",
+   "message": "ambiguous compound: explicit subjects and predicates required",
+   "clause_head": "三庫修改分別由各 repo branch+PR"
+  }
+ ],
+ "atoms_first_10": [
+  {
+   "span": [
+    0,
+    39
+   ],
+   "child": 0,
+   "statement": "**FHS_vNEXT_PLP_W1｜實質正文・高保留修補施工定案版 r3**",
+   "polarity": "MUST"
+  },
+  {
+   "span": [
+    41,
+    130
+   ],
+   "child": 0,
+   "statement": "**修訂**：`W1-REPAIR-r3-2026-11-15`｜母本 `W1-FULL-AUTHOR-r9-2026-11-14`｜本件未更新 CURRENT、不是原域啟用回執",
+   "polarity": "MUST"
+  },
+  {
+   "span": [
+    132,
+    170
+   ],
+   "child": 0,
+   "statement": "**文件類別**：完整工程作者草案／`AUTHOR_DESIGN_ONLY`",
+   "polarity": "MUST"
+  },
+  {
+   "span": [
+    171,
+    203
+   ],
+   "child": 0,
+   "statement": "本件不是藍圖、不是 skeleton、不是「之後再填」的任務清單",
+   "polarity": "MUST"
+  },
+  {
+   "span": [
+    204,
+    258
+   ],
+   "child": 0,
+   "statement": "正文已給產品、架構、Program、50 章、八 WP、原義務／子義、選型、遷移、驗證、失敗",
+   "polarity": "MUST"
+  },
+  {
+   "span": [
+    204,
+    258
+   ],
+   "child": 1,
+   "statement": "恢復的具體契約",
+   "polarity": "MUST"
+  },
+  {
+   "span": [
+    259,
+    291
+   ],
+   "child": 0,
+   "statement": "缺原權限／ABI／Runner 的出口以具名 HOLD 精確界定",
+   "polarity": "MUST"
+  },
+  {
+   "span": [
+    292,
+    312
+   ],
+   "child": 0,
+   "statement": "完整作者設計不等於無條件可執行或原域核准",
+   "polarity": "MUST"
+  },
+  {
+   "span": [
+    315,
+    467
+   ],
+   "child": 0,
+   "statement": "**當期上限**：`AUTHOR_FINAL_SCOPED_WITH_HOLDS / AUTHOR_DESIGN_ONLY / LOCAL_CHECK / HOST_PENDING / NATIVE_NOT_RUN / INDEPENDENT_NOT_RUN / RELEASE_NOT_GRANTED`",
+   "polarity": "MUST"
+  },
+  {
+   "span": [
+    468,
+    514
+   ],
+   "child": 0,
+   "statement": "原CLI已對代表性fixture被實際調用",
+   "polarity": "MUST"
+  }
+ ]
+}

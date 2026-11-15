@@ -1,0 +1,252 @@
+{
+ "bomFormat": "CycloneDX",
+ "specVersion": "1.5",
+ "version": 1,
+ "metadata": {
+  "timestamp": "2026-11-15T08:56:02Z",
+  "component": {
+   "type": "application",
+   "name": "fhs-vnext-w1-candidate",
+   "version": "2026-11-15"
+  },
+  "properties": [
+   {
+    "name": "fhs:claim_ceiling",
+    "value": "AUTHOR_W1_CHECK / LOCAL_CHECK / CROSS_FAMILY_VERIFY / NOT_NATIVE / NOT_INDEPENDENT / NOT_RELEASE"
+   },
+   {
+    "name": "fhs:generation_basis",
+    "value": "owner ruling 2026-11-15: CycloneDX JSON; first-party + actual delivered/run dependencies; external non-shipped tools listed as an environment inventory"
+   },
+   {
+    "name": "fhs:lock_sources",
+    "value": "SBL/integrations/pipd/requirements.lock (resolved closure, not hash-pinned); FHS_NEXT/roots/subjects/hgk-local_6c9fc73377/uv.lock (single editable package, no hashes)"
+   },
+   {
+    "name": "fhs:reused_sbom",
+    "value": "sbom/PIPD_SBOM_REUSED.cdx.json sha256 92a6873b46186cd5d17efe8addbd482092746b0ee5e51b748c0257cef2258ca9"
+   }
+  ]
+ },
+ "components": [
+  {
+   "type": "library",
+   "name": "pipd-ls-sp",
+   "version": "0.1.1a5",
+   "bom-ref": "pkg:pypi/pipd-ls-sp@0.1.1a5",
+   "licenses": [
+    {
+     "license": {
+      "name": "Apache-2.0",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0"
+     }
+    }
+   ],
+   "hashes": [
+    {
+     "alg": "SHA-256",
+     "content": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    {
+     "alg": "SHA-256",
+     "content": "ab07de025ce64621963831d19acf3525596362a18d6c72606d0341239206ea7d"
+    }
+   ],
+   "properties": [
+    {
+     "name": "fhs:role",
+     "value": "first-party compiler that produced this candidate's four-object bundle"
+    },
+    {
+     "name": "fhs:licence_evidence",
+     "value": "SBL/integrations/pipd/LICENSE + NOTICE (reused verbatim)"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "name": "sbl",
+   "version": "source-import",
+   "bom-ref": "pkg:generic/sbl",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
+     }
+    }
+   ],
+   "hashes": [
+    {
+     "alg": "SHA-256",
+     "content": "759b0f8830b642eadfb405bd92703a4058a80b3a886f07282a27f5851a43bfc8"
+    },
+    {
+     "alg": "SHA-256",
+     "content": "3ffd9f06639e9a95b3f057b3400574d6d8c6682318375559221c46a62d81d7fc"
+    }
+   ],
+   "properties": [
+    {
+     "name": "fhs:licence_evidence",
+     "value": "SBL/LICENSE (MIT) + SBL/NOTICE (no third-party source bundled)"
+    }
+   ]
+  },
+  {
+   "type": "application",
+   "name": "fhs-vnext-w1-delivery",
+   "version": "2026-11-15",
+   "bom-ref": "pkg:generic/fhs-vnext-w1-delivery@2026-11-15",
+   "hashes": [
+    {
+     "alg": "SHA-256",
+     "content": "59fe9046cd18fa2b15ff94adb795ecfecd0014300d3eac9a9747890f6d4157a8"
+    }
+   ],
+   "properties": [
+    {
+     "name": "fhs:licence_status",
+     "value": "HOLD — Fabric/HG-KSEOS first-party licence text not yet issued by the rightsholder; must not be distributed until LICENSE/NOTICE exist"
+    },
+    {
+     "name": "fhs:sibling_evidence",
+     "value": "docs/HOLD_RECONCILIATION.json, out/pipd/*, sbom/PIPD_SBOM_REUSED.cdx.json"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "name": "attrs",
+   "version": "25.4.0",
+   "bom-ref": "pkg:pypi/attrs@25.4.0",
+   "properties": [
+    {
+     "name": "fhs:hash_status",
+     "value": "NOT_RECORDED_BY_SOURCE_LOCK"
+    },
+    {
+     "name": "fhs:hash_status_basis",
+     "value": "SBL/integrations/pipd/requirements.lock states in its own header that artifacts were NOT hash-pinned (network-off build); a hash is therefore absent, not guessed"
+    },
+    {
+     "name": "fhs:licence_status",
+     "value": "NOT_VERIFIED_NO_LICENCE_TEXT_IN_EVIDENCE"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "name": "jsonschema",
+   "version": "4.26.0",
+   "bom-ref": "pkg:pypi/jsonschema@4.26.0",
+   "properties": [
+    {
+     "name": "fhs:hash_status",
+     "value": "NOT_RECORDED_BY_SOURCE_LOCK"
+    },
+    {
+     "name": "fhs:hash_status_basis",
+     "value": "SBL/integrations/pipd/requirements.lock states in its own header that artifacts were NOT hash-pinned (network-off build); a hash is therefore absent, not guessed"
+    },
+    {
+     "name": "fhs:licence_status",
+     "value": "NOT_VERIFIED_NO_LICENCE_TEXT_IN_EVIDENCE"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "name": "jsonschema-specifications",
+   "version": "2025.9.1",
+   "bom-ref": "pkg:pypi/jsonschema-specifications@2025.9.1",
+   "properties": [
+    {
+     "name": "fhs:hash_status",
+     "value": "NOT_RECORDED_BY_SOURCE_LOCK"
+    },
+    {
+     "name": "fhs:hash_status_basis",
+     "value": "SBL/integrations/pipd/requirements.lock states in its own header that artifacts were NOT hash-pinned (network-off build); a hash is therefore absent, not guessed"
+    },
+    {
+     "name": "fhs:licence_status",
+     "value": "NOT_VERIFIED_NO_LICENCE_TEXT_IN_EVIDENCE"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "name": "referencing",
+   "version": "0.37.0",
+   "bom-ref": "pkg:pypi/referencing@0.37.0",
+   "properties": [
+    {
+     "name": "fhs:hash_status",
+     "value": "NOT_RECORDED_BY_SOURCE_LOCK"
+    },
+    {
+     "name": "fhs:hash_status_basis",
+     "value": "SBL/integrations/pipd/requirements.lock states in its own header that artifacts were NOT hash-pinned (network-off build); a hash is therefore absent, not guessed"
+    },
+    {
+     "name": "fhs:licence_status",
+     "value": "NOT_VERIFIED_NO_LICENCE_TEXT_IN_EVIDENCE"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "name": "rpds-py",
+   "version": "0.30.0",
+   "bom-ref": "pkg:pypi/rpds-py@0.30.0",
+   "properties": [
+    {
+     "name": "fhs:hash_status",
+     "value": "NOT_RECORDED_BY_SOURCE_LOCK"
+    },
+    {
+     "name": "fhs:hash_status_basis",
+     "value": "SBL/integrations/pipd/requirements.lock states in its own header that artifacts were NOT hash-pinned (network-off build); a hash is therefore absent, not guessed"
+    },
+    {
+     "name": "fhs:licence_status",
+     "value": "NOT_VERIFIED_NO_LICENCE_TEXT_IN_EVIDENCE"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "name": "typing-extensions",
+   "version": "4.15.0",
+   "bom-ref": "pkg:pypi/typing-extensions@4.15.0",
+   "properties": [
+    {
+     "name": "fhs:hash_status",
+     "value": "NOT_RECORDED_BY_SOURCE_LOCK"
+    },
+    {
+     "name": "fhs:hash_status_basis",
+     "value": "SBL/integrations/pipd/requirements.lock states in its own header that artifacts were NOT hash-pinned (network-off build); a hash is therefore absent, not guessed"
+    },
+    {
+     "name": "fhs:licence_status",
+     "value": "NOT_VERIFIED_NO_LICENCE_TEXT_IN_EVIDENCE"
+    }
+   ]
+  }
+ ],
+ "properties": [
+  {
+   "name": "fhs:environment_inventory",
+   "value": "NOT SHIPPED, listed only: codex CLI (npm global), openspec CLI, uv, CPython 3.11.9 (project venv) and 3.14.9 (Hermes host), git. No licence text was collected for these, so none is asserted here."
+  },
+  {
+   "name": "fhs:components_without_hash",
+   "value": "6"
+  },
+  {
+   "name": "fhs:licence_hold_components",
+   "value": "fhs-vnext-w1-delivery (own first-party licence pending rightsholder), attrs, jsonschema, jsonschema-specifications, referencing, rpds-py, typing-extensions"
+  }
+ ]
+}

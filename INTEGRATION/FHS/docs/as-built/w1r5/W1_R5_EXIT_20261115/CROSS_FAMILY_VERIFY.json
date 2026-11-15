@@ -1,0 +1,103 @@
+{
+ "schema": "FHS_NEXT.W1R5.CrossFamilyVerify/1",
+ "subject": {
+  "id": "W1-REPAIR-r3-2026-11-15",
+  "sha256": "5aca7b5e2bdc67d13dff95432b14d7e152f18e3d341971490b7a77c395345a6b",
+  "bytes": 2064944
+ },
+ "candidate": {
+  "id": "FHS_vNEXT_W1_交付版_2026-11-15_r5",
+  "doc_sha256": "59fe9046cd18fa2b15ff94adb795ecfecd0014300d3eac9a9747890f6d4157a8"
+ },
+ "criteria": {
+  "V1": "PASS",
+  "V2": "PASS",
+  "V3": "PASS",
+  "V4": "PASS",
+  "V5": "PASS",
+  "V6": "PASS",
+  "V7": "PASS",
+  "V8": "PASS"
+ },
+ "verdict": "APPROVE_CANDIDATE",
+ "reviewer": {
+  "model": "mimo-v2.6-flash",
+  "family": "mimo",
+  "context": "fresh, receipt-only pack, no maker reasoning",
+  "lane": "codex read-only",
+  "receipt": "logs/xfamily_mimo.log",
+  "receipt_sha256": "3a7fb930b4bd7ffbbcc3f48076c6957b84ab0069b41fbb836b0fcd2e57e5d012"
+ },
+ "maker": {
+  "model": "deepseek-v4.1-flash",
+  "family": "deepseek-flash",
+  "profile": "fhs_next"
+ },
+ "cross_family": true,
+ "sod": {
+  "checker_key_id": "ACCEPT-AUTH-B1-fba9736912406ef9",
+  "checker_public_hex": "fba9736912406ef98b2fcd4324e93179aec4024fe57b2c941fe690f7a61ceb91",
+  "derived_from_key_file": true,
+  "matches_enrollment": true,
+  "distinct_from_owner": true,
+  "distinct_from_issuer": true,
+  "may_sign_acceptance": true,
+  "may_promote": false,
+  "may_write_candidate": false,
+  "ceiling": "SAME_OS_USER_DISTINCT_KEY",
+  "guard_finding_that_motivated_this": "ERR_LANE_SOD_VIOLATION when maker_model == checker_model"
+ },
+ "receipts": {
+  "gate": {
+   "path": "out/GATE_W1R4.json",
+   "sha256": "5e94c175dbfa564231a6c217b6c037931c0968ad32525071133c3b0fb8fa6afb"
+  },
+  "pipd_clause_readback": {
+   "path": "out/pipd/CLAUSE_READBACK.json",
+   "sha256": "1ad11470da56173377a68f076c20e8d739453ac69a290b09dcd7fd54576ecc6d"
+  },
+  "pipd_case_runner": {
+   "path": "out/pipd/CASE_RUNNER_CH13.json",
+   "sha256": "42e904d478a8721f93614f7732a66bdec90436e369a5bb2865e9bb7361b1cbed"
+  },
+  "hgk_probes": {
+   "path": "out/pipd/HGK_PROBES.json",
+   "sha256": "c19cae98c477b6336fab2b23df257ec64f044be8d140e76019cd135a7321ec22"
+  },
+  "four_object_bundle": {
+   "path": "out/pipd/BUNDLE_FOUR.json",
+   "sha256": "c957ead76eb165c515020d079ab86ed032cd1f6c6d50d722915cc4e241885e2e",
+   "validate": "verdict PASS, closure FULL, complete true, findings [], scope FOUR_OBJECT"
+  },
+  "hold_reconciliation": {
+   "path": "docs/HOLD_RECONCILIATION.json",
+   "sha256": "93b69bddd663844ce1ece99a383897a83b24567123256eb35f5b4ea89e6945dd"
+  },
+  "sbom": {
+   "path": "sbom/CANDIDATE_SBOM.cdx.json",
+   "sha256": "892013a6a58da955eb0b77f0fd3860ac9e82641df430cfa39e3bdce30f7f18d8"
+  }
+ },
+ "claim_ceiling": "CROSS_FAMILY_VERIFY / AUTHOR_W1_CHECK / LOCAL_CHECK / NOT_NATIVE / NOT_INDEPENDENT / NOT_RELEASE",
+ "not_claimed": [
+  "INDEPENDENT_PASS",
+  "NATIVE_SIGNED",
+  "RELEASE_GRANTED",
+  "ORIGINAL_ACK",
+  "principal_separation_by_different_os_user"
+ ],
+ "why_not_independent_pass": "the original TQAEP contract requires a protected checker execution receipt and its own SoD ruling; a cross-family model verdict plus an enrolled acceptance key is evidence, not that contract",
+ "canonical_rule": {
+  "function": "jcs-compact",
+  "encoding": "utf-8",
+  "notes": "sorted keys, separators (',',':'), ensure_ascii=False"
+ },
+ "payload_sha256": "4a0b4070a74eed5ef7913acbb1fb0eccafc63a3f6d62d52ed76cd973e8b72cce",
+ "signature": {
+  "alg": "ed25519",
+  "signature_hex": "1109928e6ab653a834ea6442a31f5d1575b11715bf544cf7ab3edc442ef5cad5cc4b92166fb57b9020e55e2e426e9813ed78e81fe52bceddb35fe8bf32ba520e",
+  "key_id": "ACCEPT-AUTH-B1-fba9736912406ef9",
+  "verify_with": "checker_public_hex over jcs-compact(body without payload_sha256/signature)"
+ },
+ "verified_locally": true
+}

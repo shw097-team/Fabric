@@ -1,0 +1,161 @@
+{
+ "schema": "FHS_NEXT.W1R5.HOLD_RECONCILIATION/1",
+ "subject": "W1-REPAIR-r3-2026-11-15",
+ "source_of_classes": "r3 CH-48 r3 Current 表（16 類）",
+ "at_utc": "2026-11-15",
+ "claim_ceiling": "AUTHOR_W1_CHECK / LOCAL_CHECK / NOT_NATIVE / NOT_INDEPENDENT / NOT_RELEASE",
+ "counts": {
+  "PARTIAL": 8,
+  "MEASURED_NOT_CLOSED": 1,
+  "HOLD": 2,
+  "NOT_ATTEMPTED_LATER_WAVE": 3,
+  "AWAITING_OWNER": 1,
+  "OPEN_BY_CONSTRUCTION": 1
+ },
+ "rows": [
+  {
+   "class": "H-W1-FULL-SEMANTIC-COMPILE",
+   "owner": "原SBL PIPD/Product Reader",
+   "status": "PARTIAL",
+   "what_this_round_did": "以未修改的 PIPD compiler 實跑 r3 body：34,509 clauses → 48,019 atoms；428 條以原工具自己的 typed 碼拒收（417 IntakeInvalid、11 零義務）。",
+   "evidence": "out/pipd/CLAUSE_READBACK.json",
+   "residual": "428 條具名 clause 未取得原 Reader 的 accepted/rejected；不得以 48,019 冒全集。",
+   "waiver": "W-04-H-READER-PIPD"
+  },
+  {
+   "class": "H-ORIGINAL-TQAEP-EXPORT",
+   "owner": "原Protected Checker／TQAEP Reader",
+   "status": "PARTIAL",
+   "what_this_round_did": "四物件鏈已跑到 TQAEP：以跨家族 checker 收據 compile-tqaep 產出 design-time 候選；工具本身寫 independent_acceptance=NOT_GRANTED。",
+   "evidence": "out/pipd/TQAEP.json",
+   "residual": "缺原 protected checker 的 checker_execution_receipt 與 SoD 原裁決。",
+   "waiver": "—"
+  },
+  {
+   "class": "ORIGINAL_ECP_EFFECT_HOLD",
+   "owner": "原Operation Registry／HGK Issuer Owner",
+   "status": "PARTIAL",
+   "what_this_round_did": "compile-ecp 對 canonical 且 owner-ratified 的 operation registry 成功產出 ECP（PD/RepoContext 亦成立）。",
+   "evidence": "out/pipd/ECP.json",
+   "residual": "registry 內可綁 operation 有限；非本 WriteSet 的 effect 仍拒。",
+   "waiver": "—"
+  },
+  {
+   "class": "H-FABRIC-FROZEN-PAYLOAD",
+   "owner": "原Fabric frozen payload/Policy Owner",
+   "status": "MEASURED_NOT_CLOSED",
+   "what_this_round_did": "原 hgk-lane-policy validate：checked_sites=87、fatal=true；config/hermes-codex-lane.json 的 codex_version 與 codex_sha256 各一處 DRIFT_VALUE。",
+   "evidence": "out/pipd/HGK_PROBES.json",
+   "residual": "GATE_R26 frozen expected 的原 Owner 版本血緣未取得；不得由作者換 expected。",
+   "waiver": "W-01-H-ENTRY"
+  },
+  {
+   "class": "H-ENTRY",
+   "owner": "原Fabric Policy→HGK Consumer",
+   "status": "HOLD",
+   "what_this_round_did": "policy epoch 實測 41；導航仍非 approved/active/loaded/ACK；validate fatal 使 loaded 宣稱不成立。",
+   "evidence": "out/pipd/HGK_PROBES.json",
+   "residual": "缺同 scope ActiveEpoch＋LoadedDigest＋Consumer ACK。",
+   "waiver": "W-01-H-ENTRY"
+  },
+  {
+   "class": "H-GUARD-RAW-MISMATCH",
+   "owner": "原HGK Guard/Issuer Owner",
+   "status": "HOLD",
+   "what_this_round_did": "原 guard 實測：UNPROVEN／ERR_LANE_NOT_ADMITTED／ERR_LANE_STALE_EPOCH(41 vs 44)／source_digest ok；另 ERR_LANE_SOD_VIOLATION（maker 與 checker 同模型）。本輪已用跨家族 checker 消除同模型那一路。",
+   "evidence": "out/pipd/HGK_PROBES.json + out/pipd/CROSS_FAMILY_VERIFY.json",
+   "residual": "epoch 落差需原樹修補；作者不改數字。",
+   "waiver": "W-02-H-GUARD-RAW"
+  },
+  {
+   "class": "H-RETIREMENT-BOUNDARY",
+   "owner": "原relay/OS ACL Owner",
+   "status": "PARTIAL",
+   "what_this_round_did": "原 lane_arm_retirement_check：epoch 41、49 live arm sites、retired_still_live []、required_missing []、PASS。",
+   "evidence": "out/pipd/HGK_PROBES.json",
+   "residual": "arm 一致 ≠ 直呼封閉；缺原 SID／ACL／撤銷與 direct-call NEG Raw。",
+   "waiver": "W-03-H-RETIREMENT"
+  },
+  {
+   "class": "H-ORIGINAL-ABI",
+   "owner": "各S1–S5原Receiver Owner",
+   "status": "NOT_ATTEMPTED_LATER_WAVE",
+   "what_this_round_did": "本輪未取得 S1–S5 原 schema $id/version/entry pin，未執行同 scope parse。",
+   "evidence": "—",
+   "residual": "需各原 Receiver Owner 提供 schema 與拒收樣例。",
+   "waiver": "—"
+  },
+  {
+   "class": "H-HOST-SP-QUALIFICATION",
+   "owner": "各Host原Loader/SP Consumer",
+   "status": "NOT_ATTEMPTED_LATER_WAVE",
+   "what_this_round_did": "未觀測 ActualServed；本輪只在單一 Host 上跑設計時案例。",
+   "evidence": "—",
+   "residual": "需 fresh PID/profile digest 與 Selected/ActualServed/Usage 分欄。",
+   "waiver": "—"
+  },
+  {
+   "class": "H-DEV-WRITESET",
+   "owner": "目的Repo原Writer/Issuer",
+   "status": "PARTIAL",
+   "what_this_round_did": "本輪為 bind-pd 建立可讀回的本地 git top（HEAD 7e3100d6），RepoContext 成立；但非產品 repo 的受權 writeset。",
+   "evidence": "out/pipd/05_bind_pd.json",
+   "residual": "缺原 repo 受權 checkout 與 exact 前後像／DEV ECP。",
+   "waiver": "—"
+  },
+  {
+   "class": "H-485-REGISTRY-QUALIFICATION",
+   "owner": "各槽原Registry/Capability/Host Owner",
+   "status": "PARTIAL",
+   "what_this_round_did": "24 槽內容與 licence 狀態已落成可判資料；3 槽 licence 如實 HOLD。",
+   "evidence": "out/SLOTS_24_FULL.json（承 r4 輪）+ SBOM",
+   "residual": "原 Registry 接受／License／Host 資格未取得。",
+   "waiver": "S-01/S-02/S-03"
+  },
+  {
+   "class": "H-LEGACY-CELL",
+   "owner": "原SBL Product/Host Owner",
+   "status": "NOT_ATTEMPTED_LATER_WAVE",
+   "what_this_round_did": "192 Cell ON/OFF 語義未取得逐 Cell 原 Owner 裁決。",
+   "evidence": "—",
+   "residual": "需逐 Cell enum 裁決。",
+   "waiver": "—"
+  },
+  {
+   "class": "H-ORIGINAL-CASE-RUNNER",
+   "owner": "原Case/Oracle/Runner Owner",
+   "status": "PARTIAL",
+   "what_this_round_did": "以原 case_runner 綁定並執行一例：RUNNER_BOUND、四 pins 重算一致、GREEN（POS 六層、NEG 第 2 層 SOURCE_POLARITY_OR_PARENT_LOSS）。",
+   "evidence": "out/pipd/CASE_RUNNER_CH13.json",
+   "residual": "case/oracle id 為 AUTHOR.*，非原 Case Registry 核發。",
+   "waiver": "W-06-H-CASE-RUNNER"
+  },
+  {
+   "class": "H-SUPPLYCHAIN-RAW",
+   "owner": "各原License/NOTICE/SBOM Owner",
+   "status": "PARTIAL",
+   "what_this_round_did": "CycloneDX 1.5 SBOM 已生（8 components；6 個依賴無 hash 且明確標 NOT_RECORDED；PIPD 既有 SBOM 復用）；SBL MIT／PIPD Apache-2.0 原文在庫並綁入。",
+   "evidence": "sbom/CANDIDATE_SBOM.cdx.json",
+   "residual": "Fabric／HG-KSEOS 根無 LICENSE／NOTICE；未確權不得分發。",
+   "waiver": "W-05-H-SUPPLYCHAIN + S-01/S-02/S-03"
+  },
+  {
+   "class": "H-R3-ACTIVATION",
+   "owner": "本Subject有權Owner/原版本Reader",
+   "status": "AWAITING_OWNER",
+   "what_this_round_did": "本輪產出的是候選交付版，未宣稱啟用或替換現行版本。",
+   "evidence": "docs/W1_交付版_2026-11-15.md",
+   "residual": "需同 Subject/Scope 的有權版本宣告；作者不代簽。",
+   "waiver": "—"
+  },
+  {
+   "class": "H-NATIVE-INDEPENDENT-RELEASE",
+   "owner": "原HGK Issuer／Protected Checker／Publisher",
+   "status": "OPEN_BY_CONSTRUCTION",
+   "what_this_round_did": "全案維持 AUTHOR_W1_CHECK / LOCAL_CHECK / NOT_NATIVE / NOT_INDEPENDENT / NOT_RELEASE。",
+   "evidence": "docs/W1_交付版_2026-11-15.md",
+   "residual": "本輪未執行其原效果或真授權。",
+   "waiver": "—"
+  }
+ ]
+}
