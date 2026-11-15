@@ -1,0 +1,44 @@
+{
+ "schema": "FHS.W0.W1.HANDOFF/1",
+ "claim_ceiling": "AUTHOR_SIDE_WIRING_NOT_A_RECEIPT",
+ "produced_by": "Hermes 0.23.0 / hgk-governed (round FHS_HERMES_023_NATIVE_INTEGRATION_20261110)",
+ "subject": "W0 six-WP coverage → W1 intake",
+ "source_manifest": {
+  "artifact": "FHS_W0_R6_20261108/evidence/WP00/raw/SOURCE_LOCK.json",
+  "sha256": "49c65214d757f136f047833bffd5056ec807aeb6f711a5a981b47055c5f5b782",
+  "sources": 31,
+  "artifact_bytes": 22730,
+  "sources_bytes": 22281767
+ },
+ "joins": [
+  {
+   "edge": "E33",
+   "consumer": "WP-FHS-19",
+   "consumer_artifact": "FHS_W0_R6_20261108/evidence/WP19/SCAN_SUMMARY.json",
+   "binds": "source_manifest.sha256 → scan inventory input list",
+   "consumer_readback": "NOT_OBSERVED",
+   "why_not": "the release-readiness reader is a W4 consumer; W0 may hand off, not obtain its receipt"
+  },
+  {
+   "edge": "E36",
+   "consumer": "WP-FHS-21",
+   "consumer_artifact": "FHS_W0_R6_20261108/evidence/WP21/tables/ORACLE96.json",
+   "binds": "PROFILE_ORACLE_BINDING.sha256 → oracle plan families",
+   "consumer_readback": "NOT_OBSERVED",
+   "why_not": "the protected AO request reader is a W2 consumer"
+  }
+ ],
+ "intake_trial": {
+  "tool": "SBL integrations/pipd `pipd intake` (v0.1.1a5)",
+  "result": "NACK",
+  "code": "INTAKE_INVALID",
+  "clause": "01_PRODUCT_AUTHORITY_SPINE(4).md @ char 8183 (FUO-01) — '對應' without explicit multi-subject binding",
+  "exit_code": 2,
+  "raw": [
+   "evidence/INTAKE_NACK_RAW.txt",
+   "evidence/INTAKE_CONTROL_RAW.txt"
+  ],
+  "discriminating": true,
+  "control": "same binary accepts 00_INDEX_AND_DECISION(4).md with exit 0 and returns atoms"
+ }
+}
