@@ -1,0 +1,29 @@
+{
+ "schema": "FHS.OWNER_RULING/1",
+ "id": "OD-1",
+ "at_utc": "2026-11-11T02:40:00Z",
+ "authority": "owner instruction 2026-11-11: 'OWNER授權你執行FAR提出的方案，解決全部問題，並完成W0全部項目'",
+ "subject": "lane assignment declares the fallback arms it always intended",
+ "decision": "declare row-level fallbacks on HG-KSEOS main so strict selection can degrade; data only",
+ "landed": {
+  "repo": "shw097-team/HG-KSEOS",
+  "branch": "r28/assignment-fallbacks",
+  "commits": [
+   "c3e9f70",
+   "c1a85b1"
+  ]
+ },
+ "measured": {
+  "lane_assigned_arms": {
+   "PLAN": "1 -> 6",
+   "VERIFY_SECURITY": "1 -> 4",
+   "EXECUTE": "3 -> 3"
+  },
+  "suites": "15 failed / 24 passed vs base 15 failed / 25 passed (zero net regression; both assignment gate tests green)"
+ },
+ "constraints_recorded": [
+  "an arm equal to transport_model must be excluded (primary is composed as assigned pair + transport_model; TT-R20-19 refuses a row naming one arm as both)",
+  "one arm per lane must stay outside the assignment or the refusal test is unreachable: VERIFY keeps opencode-go/glm-5.3-flash, EXECUTE keeps nvidia/deepseek-ai/deepseek-v4.1-flash",
+  "the file was re-serialised by the writer, so the commit diff is whitespace-wide (1294 lines) though the semantic change is three keys per row; disclosed rather than hidden"
+ ]
+}

@@ -1,0 +1,36 @@
+schema: FAR-CANDIDATE-RESEARCH/1
+run_id: FAR-W0-R27-UNBLOCK-20261111
+subject: "FHS PIPD-LS-PKG W0 — residual items after the r27 repair round"
+candidate_status: CANDIDATE_NOT_AUTHORITY
+recommendation: >-
+  Nine residuals are not one blockage. Three are real defects (B5 assignment inconsistency, B6 un-migrated
+  fixtures, B7 strict-only process identity), one was a misread of my own making (B4: the full gate runs;
+  the correct invocation is --profile round --scope full, and the corpus is gone), one is already built and
+  only lacks adoption (B2 guard), one has a scoped instrument already open on the owner's desktop (B3 owner
+  signing window, with a dedicated release window that is capability and not Publisher admission), and the
+  rest have named closing actions. Nothing here needs a new authority, a second router, or a rewritten byte.
+confidence: HIGH
+confidence_basis:
+  - "every B-item verdict cites a command output or a quoted record, not a summary"
+  - "the full-profile question was settled by running the gate, not by reasoning about it"
+  - "the three PR states were read from the GitHub API in this run (SBL #66 two failing checks, Fabric #54 clean, HG-KEGOS #16 draft with 0 checks)"
+  - "an independent PLAN lane read the same records and corrected three of the maker's conclusions, which are recorded rather than smoothed over"
+residual_uncertainty:
+  - "W0 closure definition (payload vs full profile) is an owner ruling, not a research finding"
+  - "container-sandbox unblock for the checker is untested on this host"
+  - "whether the 126 legacy properties admit an approved equivalence rule is a source-owner decision"
+nonclaims:
+  - "no acceptance, no signature, no release, no merge performed by this research"
+  - "no claim that any other host is bound by the entry guard"
+  - "no claim that the epoch-41 configuration is in force anywhere"
+supported_by:
+  request: ResearchRequest.yaml
+  plan: ResearchPlan.yaml
+  denominator: ResearchSourceDenominator.tsv
+  claims: ClaimLedger.tsv
+  contradictions: ContradictionLedger.tsv
+  rejected: RejectedAlternativeLedger.tsv
+  open_questions: OpenQuestionLedger.tsv
+  synthesis: ResearchSynthesis.md
+  plan_lane_reading: PLAN_LANE_VERDICT.md
+  retrieval: RetrievalLedger.json

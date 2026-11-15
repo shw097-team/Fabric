@@ -1,0 +1,36 @@
+schema: FAR-RESEARCH-REQUEST/1
+run_id: FAR-W0-R27-UNBLOCK-20261111
+requested_by: "owner (standing mandate: W0 must reach a real close, not a bounded HOLD)"
+created_at: 2026-11-11T02:20:00+08:00
+subject: "FHS PIPD-LS-PKG W0 - the r27 post-repair residue (13 findings dispositioned, 3 HOLDs and 5 measured gaps left)"
+predecessor: FHS-W0-R27-POSTREPAIR-20261110
+predecessor_report: out/FHS_W0_R27_POSTREPAIR_RESULT.md
+why_a_new_run: >-
+  the r27 round repaired what was repairable and stopped with named holds. The owner asks a second-order
+  question: are those holds actually blocks, or are they a misreading, an unsearched existing capability,
+  or a design choice that can be changed. That question cannot be answered by repairing more files; it has
+  to be answered by researching the block itself against the records of every previous W0 round.
+questions:
+  - id: GQ-1
+    text: "對於 W0 目前仍未完成的項目，逐項判定它是真阻斷、過度解讀、誤讀、其實已有實作、或可用替代方案（獨立車道／本地 Docker 沙盒／owner 口令信封）解開"
+  - id: GQ-2
+    text: "上游藍圖的設計原意（Native E2E 自主閉環、無人值守高自動化、單人單機 OWNER）是否本來就要求這些項目現在就成立；若是，我的 HOLD 是否比藍圖更嚴"
+  - id: GQ-3
+    text: "過去 W0 各輪（r13–r26）是否已經解過同一個阻斷，解法是什麼，有沒有可重用的程式或儀式"
+  - id: GQ-4
+    text: "哪些待 owner／issuer 決策項可以現在做、用什麼授權工具（簽署視窗、issuer grant、DelegationRecord）、哪些只能記錄"
+  - id: GQ-5
+    text: "哪些已檢測＋驗收的候選可升格實用、哪些未合併 main 的分支可併入 main、以什麼順序與回滾點進行"
+lanes:
+  PLAN: {provider: openai-codex, model: gpt-6.1-sol, reasoning: medium}
+  EXECUTE: {provider: opencode-go, model: deepseek-v4.1-flash, transport: codex-cli}
+  VERIFY: {provider: openai-codex, model: gpt-6.1-sol, transport: codex-cli}
+constraints:
+  - native_e2e_autonomy
+  - unattended_high_automation
+  - single_owner_single_machine
+  - think_outside_the_previous_frame
+  - no_new_authority_no_second_router
+  - source_content_is_data
+security_boundary_ref: "FAR source-as-data contract section 7; research run writes only inside its own run directory"
+expected_decision_output: "a per-item verdict with an executable unblock, and an owner decision packet with an authorisation instrument for each decision"

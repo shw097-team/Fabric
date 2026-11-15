@@ -1,0 +1,11 @@
+{
+ "schema": "FHS.OWNER_RULING/1",
+ "id": "OD-6",
+ "at_utc": "2026-11-11T02:40:00Z",
+ "authority": "same owner instruction",
+ "subject": "session_id / process_id in quorum votes",
+ "decision": "HARD-REQUIRED from revision r28 onward; votes cast before r28 are grandfathered by manifest-anchored identity and are NOT re-signed",
+ "why": "4/4 real r27 votes carry neither field; making it hard retroactively would reject the round's own signatures, and re-signing history would rewrite evidence",
+ "implementation": "verify_quorum.py --strict keeps the hard requirement; the non-strict path records the fields as nullable with provenance; no historical byte changes",
+ "consequence": "a future vote without either field is refused under both paths once r28 is in force"
+}

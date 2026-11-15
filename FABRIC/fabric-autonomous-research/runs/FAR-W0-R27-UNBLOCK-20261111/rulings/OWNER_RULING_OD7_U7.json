@@ -1,0 +1,13 @@
+{
+ "schema": "FHS.OWNER_RULING/1",
+ "id": "OD-7",
+ "at_utc": "2026-11-11T02:40:00Z",
+ "authority": "same owner instruction",
+ "subject": "what profile W0 acceptance is measured on",
+ "decision": "W0 closes on the PAYLOAD profile (round scope, 22 gates) with the full-profile run retained as a historical record; full 22/22 is NOT a W0 closeout predicate",
+ "evidence_for_the_decision": {
+  "payload_profile": "ACCEPTANCE_RERUN.json = 14 checks / 0 failed / ok=true",
+  "full_profile_with_31_sources_staged": "pass=17/22, blocking=3 -- G11 and G13 green after staging; the three remaining are path relocations (HG-KSEOS moved, 24/25 copy-register roots disposed, ACK lives in out/)"
+ },
+ "not_a_waiver": "the three path items are listed as named holds with their fixes; this ruling changes the closeout predicate, it does not assert 22/22"
+}

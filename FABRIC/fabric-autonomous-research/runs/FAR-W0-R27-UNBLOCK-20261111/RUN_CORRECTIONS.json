@@ -1,0 +1,32 @@
+{
+ "schema": "FAR-RUN-CORRECTIONS/1",
+ "run_id": "FAR-W0-R27-UNBLOCK-20261111",
+ "source": "VERIFY_SECURITY lane (advisory, verdict voided by subject mutation) + PLAN lane",
+ "corrections": [
+  {
+   "claim": "C-03",
+   "was": "all 122 dispatcher test failures are FHS_ENTRY_ASSERT_REQUIRED",
+   "now": "the count 122/127 is supported, but NOT all failures are the guard: the log also records missing test directories, ERR_NATIVE_BUNDLE_REQUIRED and missing toolchain declarations",
+   "status": "CORRECTED_BY_VERIFY"
+  },
+  {
+   "claim": "C-06",
+   "was": "release/policy authority has no instrument by design",
+   "now": "a dedicated signing window exists (DEDICATED_KINDS, TTL<=1h, max_ops<=4); what it cannot do is confer Publisher admission",
+   "status": "CORRECTED_BY_PLAN_AND_VERIFY"
+  },
+  {
+   "claim": "C-01/C-15/C-16",
+   "was": "GitHub state cited as measured",
+   "now": "UNPROVEN as pinned evidence: the API snapshots were not committed as reproducible artefacts",
+   "status": "OPEN"
+  },
+  {
+   "claim": "C-02",
+   "was": "undraft after one test migration closes B1",
+   "now": "the disjoint-history measurement stands; the closure is a proposal, not a measurement",
+   "status": "RECLASSIFIED"
+  }
+ ],
+ "action": "the synthesis already carries the B3/B6/B8 corrections; C-03 must be narrowed the same way"
+}
