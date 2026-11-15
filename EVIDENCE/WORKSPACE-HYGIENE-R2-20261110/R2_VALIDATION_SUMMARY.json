@@ -1,0 +1,549 @@
+{
+ "artifact": "FHS-WORKSPACE-R2-VALIDATION-20261110",
+ "schema": "FHS-WORKSPACE-R2/v1",
+ "status": "CANDIDATE_LOCAL_MEASURED",
+ "claim_ceiling": {
+  "candidate_pr": true,
+  "merged": false,
+  "ci_verified": false,
+  "native_reader_result": false,
+  "release": false
+ },
+ "control_package": {
+  "id": "FHS-WORKSPACE-RESIDUAL-FOOTPRINT-R2-THIN-CONTROL-20261110",
+  "version": "r1",
+  "sha256": "05d048644f0e44926422b322ac21126463dad4aae1397de1a29061af7fc8c605"
+ },
+ "root_before": {
+  "files": 429668,
+  "bytes": 19405076308,
+  "free_bytes": 50588123136
+ },
+ "root_after": {
+  "files": 304623,
+  "bytes": 15141428917,
+  "identity": "ddaba48709aec99fcf0bb5237a2ecc2423fcc3b2b8ac20d3eaa52fafd356995a",
+  "free_bytes_C": 47661690880
+ },
+ "moved": {
+  "operations": 304,
+  "files": 124953,
+  "bytes": 4271581429,
+  "copy_zip_tar_used": false
+ },
+ "archive": {
+  "classified_items": 125,
+  "unclassified_items": 180,
+  "identity_match": 302,
+  "identity_superset": 2,
+  "identity_losses": 0
+ },
+ "dispositions": {
+  "KEEP_ACTIVE": {
+   "items": 7,
+   "bytes": 12011648234
+  },
+  "ARCHIVE_ELIGIBLE": {
+   "items": 125,
+   "bytes": 3889145998
+  },
+  "HOLD_WITH_REASON": {
+   "items": 75,
+   "bytes": 2387804891
+  },
+  "UNCLASSIFIED_EXPORTABLE": {
+   "items": 180,
+   "bytes": 382497288
+  }
+ },
+ "holds": [
+  {
+   "path": "HG-KSEOS/var/LANE-ENFORCEMENT-APPLY-20261015",
+   "bytes": 799838104,
+   "evidence": "laneA ref_type=CODE_REFERENCE refs=2",
+   "reason": "A tracked pytest module builds the path at import scope and copies/executes APPLY_P6/rollback.py from inside this tree - deleting it silently breaks tests/test_matrix_m18_rollback.py, and rollback.py is the shipped rollback artifact (rollback-chain member), not regenerable round prose. Needs an expl"
+  },
+  {
+   "path": "HG-KSEOS/worktrees",
+   "bytes": 592385700,
+   "evidence": "laneA ref_type=HISTORICAL_NARRATIVE (plus .gitignore ignore-rule; no CODE_REFERENCE and no FIXED_PATH_CONTRACT hit) refs=31",
+   "reason": "Deletion must not be done with rm -rf: 16 subdirs still carry .git link files and matching prunable registrations, so the governed path is 'git worktree prune/remove' first, and those recorded paths are stale pre-move roots so a prune would only drop metadata - the on-disk dirs need their own adjudi"
+  },
+  {
+   "path": "SBL/_sbl_src_mirror",
+   "bytes": 132374311,
+   "evidence": "laneB ref_type=FIXED_PATH_CONTRACT refs=23",
+   "reason": "契約以絕對路徑 + sha256 綁定此 14 份 NORMATIVE 來源,且 tracked 工具 tools/verify_source.py 以此為 FALLBACK_ROOT(15 檔 contract/code 引用);FHS 副本是該路徑唯一存活副本(舊根 Agent_Workspace/_sbl_src_mirror 已不存在),封存前必須先做路徑重綁與 digest 重驗,否則證據鏈斷裂"
+  },
+  {
+   "path": "SBL/_sbl_r4",
+   "bytes": 14617273,
+   "evidence": "laneB ref_type=HISTORICAL_NARRATIVE refs=23",
+   "reason": "引用本身是 r6 checker 敘述,但 c3v2 是指向已消失 repo(Agent_Workspace/SBL)的 orphan worktree gitlink,該候選內容無法再用 git 驗證是否已合併;搬移會毀掉唯一回復線索,需先修 gitlink 或明確裁定"
+  },
+  {
+   "path": "SBL/_sbl_release_011rc1",
+   "bytes": 1369216,
+   "evidence": "laneB ref_type=FIXED_PATH_CONTRACT refs=3",
+   "reason": "R9 裁決把此樹指名為 release 011rc1 的 wheel 對位釘源(provenance anchor,屬固定路徑宣告),且其 .git 為指向已消失 repo 的 orphan worktree 連結;兩者未解決前封存會使該裁決失去可查證對象"
+  },
+  {
+   "path": "SBL/_sbl_r9_candidate",
+   "bytes": 1508910,
+   "evidence": "laneB ref_type=HISTORICAL_NARRATIVE refs=1",
+   "reason": "唯一引用是 handover 敘述,但此樹是未合併的 R9 產品 worktree(candidate 32d971d)且 gitlink 已斷:原 repo 消失後工作樹可能是該候選內容的唯一副本,須由 owner 裁定是否已被 r14 取代"
+  },
+  {
+   "path": "SBL/SBL-install",
+   "bytes": 12418334,
+   "evidence": "laneB ref_type=CODE_REFERENCE refs=2",
+   "reason": "由 tracked 工具 gen_matrix.py 以絕對路徑引用為安裝負載與 venv 位置(程式引用而非敘述),且引用路徑仍指舊根 Agent_Workspace/SBL-install;屬可執行安裝材料,需先完成路徑重綁再談封存"
+  },
+  {
+   "path": "Fabric/Fabric-rebind-publish",
+   "bytes": 68218438,
+   "evidence": "laneB ref_type=HISTORICAL_NARRATIVE refs=1",
+   "reason": "引用僅 1 筆日誌字串且非當前分支材料,但 .git 為 orphan worktree 連結(原 repo Agent_Workspace/Fabric 已不在),無法證明其無未提交內容或唯一 commit;需先修 gitlink 才能降級為 ARCHIVE_ELIGIBLE"
+  },
+  {
+   "path": "HG-KSEOS/var/far-iao-lane-skip-20261012",
+   "bytes": 174324303,
+   "evidence": "git_refs=2 registry_refs=0",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/far-lane-sod-010-converge",
+   "bytes": 79055095,
+   "evidence": "git_refs=0 registry_refs=8",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/provider-failover-routing",
+   "bytes": 56332054,
+   "evidence": "git_refs=0 registry_refs=5",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/far-lane-sod-007",
+   "bytes": 39175559,
+   "evidence": "git_refs=4 registry_refs=10",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/a2",
+   "bytes": 34756977,
+   "evidence": "git_refs=0 registry_refs=11",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/_pristine_head",
+   "bytes": 34205023,
+   "evidence": "git_refs=0 registry_refs=0 live=False held=False wt_link=True",
+   "reason": "no reference found, but a live-mtime / open handle / worktree link blocked the move"
+  },
+  {
+   "path": "HG-KSEOS/var/a3",
+   "bytes": 33744481,
+   "evidence": "git_refs=0 registry_refs=7",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/LANE-RELIABILITY-CLOSURE-20261016",
+   "bytes": 32776492,
+   "evidence": "git_refs=9 registry_refs=0",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/releases",
+   "bytes": 26720161,
+   "evidence": "git_refs=15 registry_refs=3",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/SKILL-CONVERGENCE-20261014",
+   "bytes": 25589685,
+   "evidence": "git_refs=0 registry_refs=1",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/hgk-gcm-apply-20261013",
+   "bytes": 14016146,
+   "evidence": "git_refs=16 registry_refs=0",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/hgk-gcm-repair2-20261013",
+   "bytes": 13342977,
+   "evidence": "git_refs=12 registry_refs=0",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/hgk-gcm-repair-20261013",
+   "bytes": 12124060,
+   "evidence": "git_refs=5 registry_refs=1",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/far-lane-health-repair-20261011",
+   "bytes": 7574739,
+   "evidence": "git_refs=2 registry_refs=3",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/hgk-gcm-containment-20261013",
+   "bytes": 7426649,
+   "evidence": "git_refs=4 registry_refs=0",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/far-lane-verify-002",
+   "bytes": 6118455,
+   "evidence": "git_refs=2 registry_refs=0",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/far-hermes-incident-rca-001",
+   "bytes": 3218271,
+   "evidence": "git_refs=3 registry_refs=9",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/far-strict-declaration-20261011",
+   "bytes": 2684048,
+   "evidence": "git_refs=0 registry_refs=1",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/R15-MODEL-FALLBACK-20261023",
+   "bytes": 2655774,
+   "evidence": "git_refs=3 registry_refs=0",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/pciv",
+   "bytes": 2425760,
+   "evidence": "git_refs=0 registry_refs=4",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/B1-CONT-20261028",
+   "bytes": 1893980,
+   "evidence": "git_refs=2 registry_refs=0",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/FAR-MINIMAX-MANDATE-20261021",
+   "bytes": 1806824,
+   "evidence": "git_refs=36 registry_refs=0",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/officer-subject-F",
+   "bytes": 1769018,
+   "evidence": "git_refs=284 registry_refs=0",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/officer-subject-G",
+   "bytes": 1718411,
+   "evidence": "git_refs=254 registry_refs=0",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/quarantine",
+   "bytes": 1539404,
+   "evidence": "git_refs=3 registry_refs=0",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/R7-LANES",
+   "bytes": 1506221,
+   "evidence": "git_refs=26 registry_refs=0",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/FAR-REMEDIATION-20261021",
+   "bytes": 1411702,
+   "evidence": "git_refs=6 registry_refs=1",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/far-ao-independence-20261010",
+   "bytes": 1380698,
+   "evidence": "git_refs=1 registry_refs=12",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/ROUND-SBL-HGK-RCA-20261022",
+   "bytes": 1343088,
+   "evidence": "git_refs=1 registry_refs=0",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/lane_verify_pipd_r3.json.logs",
+   "bytes": 1328899,
+   "evidence": "git_refs=2 registry_refs=0",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/FAR-LANE-REPAIR-20261014",
+   "bytes": 1104672,
+   "evidence": "git_refs=6 registry_refs=0",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/R6-20261014-far-remediation-and-repair",
+   "bytes": 1097118,
+   "evidence": "git_refs=0 registry_refs=2",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/far-exec-identity-002",
+   "bytes": 967213,
+   "evidence": "git_refs=0 registry_refs=1",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/far",
+   "bytes": 911076,
+   "evidence": "git_refs=1 registry_refs=0",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/far-lane-sod-004",
+   "bytes": 859863,
+   "evidence": "git_refs=0 registry_refs=1",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/FAR-CLOSURE-20261021-R2",
+   "bytes": 808150,
+   "evidence": "git_refs=6 registry_refs=0",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/far-lane-sod-006",
+   "bytes": 730936,
+   "evidence": "git_refs=5 registry_refs=1",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/R14-OBLIGATIONS",
+   "bytes": 370429,
+   "evidence": "git_refs=2 registry_refs=0",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/far-lane-route-slots-012",
+   "bytes": 306922,
+   "evidence": "git_refs=8 registry_refs=2",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/far-lane-sod-005",
+   "bytes": 269783,
+   "evidence": "git_refs=0 registry_refs=1",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/FAR-RO-TOOLREFUSAL-20261014",
+   "bytes": 245412,
+   "evidence": "git_refs=6 registry_refs=0",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/lane_verify_pipd.json.logs",
+   "bytes": 211843,
+   "evidence": "git_refs=3 registry_refs=0",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/FAR-LANE-ROUTE-REBIND-20261015",
+   "bytes": 111587,
+   "evidence": "git_refs=4 registry_refs=0",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/far-doc-update-20261013",
+   "bytes": 105775,
+   "evidence": "git_refs=6 registry_refs=0",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/lane-route-001",
+   "bytes": 94891,
+   "evidence": "git_refs=12 registry_refs=7",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/lane-health-20261011",
+   "bytes": 90676,
+   "evidence": "git_refs=1 registry_refs=2",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/far-w6-nextstep-decision-20261012",
+   "bytes": 78324,
+   "evidence": "git_refs=1 registry_refs=0",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/FAR-CLOSURE-20261021",
+   "bytes": 69332,
+   "evidence": "git_refs=2 registry_refs=0",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/R10-GATE",
+   "bytes": 56194,
+   "evidence": "git_refs=1 registry_refs=2",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/S4R3X-20261013-f006-and-stageb-successor",
+   "bytes": 47672,
+   "evidence": "git_refs=0 registry_refs=1",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/d12_handoff_evidence.py",
+   "bytes": 0,
+   "evidence": "git_refs=4 registry_refs=0",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/modred",
+   "bytes": 32363,
+   "evidence": "git_refs=0 registry_refs=3",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/console-window-events.jsonl",
+   "bytes": 0,
+   "evidence": "git_refs=5 registry_refs=0",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/e09_acceptance.py",
+   "bytes": 0,
+   "evidence": "git_refs=4 registry_refs=0",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/R19-FHS-20261029",
+   "bytes": 18732,
+   "evidence": "git_refs=2 registry_refs=0",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/e11_self_acceptance.py",
+   "bytes": 0,
+   "evidence": "git_refs=22 registry_refs=0",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/u4_vertical_slices.py",
+   "bytes": 0,
+   "evidence": "git_refs=26 registry_refs=0",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/FHS-ALLPASS-20261031",
+   "bytes": 11718,
+   "evidence": "git_refs=106 registry_refs=1",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/d12_handoff_validator.py",
+   "bytes": 0,
+   "evidence": "git_refs=2 registry_refs=0",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/e12_apl05_runtime.py",
+   "bytes": 0,
+   "evidence": "git_refs=2 registry_refs=0",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/R14-LANE-SCOPE-20261022",
+   "bytes": 7640,
+   "evidence": "git_refs=1 registry_refs=0",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/autostart-archive",
+   "bytes": 1592,
+   "evidence": "git_refs=1 registry_refs=0",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/events.jsonl",
+   "bytes": 0,
+   "evidence": "git_refs=2 registry_refs=0",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "HG-KSEOS/var/issuer-probe",
+   "bytes": 1379,
+   "evidence": "git_refs=7 registry_refs=0",
+   "reason": "referenced: tracked-file references and/or live Shared Spine locator - needs owner/PIPD-style rebind before any move"
+  },
+  {
+   "path": "hgkrcpt",
+   "bytes": 120002332,
+   "evidence": "round-1 hold carried forward",
+   "reason": "receipt store with .pem material; consumer proof not established this round"
+  },
+  {
+   "path": "_handover",
+   "bytes": 12496027,
+   "evidence": "round-1 hold carried forward",
+   "reason": "ROOT-level handover packet with receipts/snapshot"
+  },
+  {
+   "path": "verdict",
+   "bytes": 0,
+   "evidence": "round-1 hold carried forward",
+   "reason": "empty directory - nothing to move"
+  }
+ ],
+ "cleanup": {
+  "bytes_removed": 0,
+  "note": "only remaining cache dir is ACL-refused"
+ },
+ "registry_locator_gap": {
+  "referenced_children": 40,
+  "by_location": {
+   "MISSING": 6,
+   "ARCHIVE_R1_C": 1,
+   "ROOT": 28,
+   "ARCHIVE_R1_G": 5
+  },
+  "note": "named gap; owner decision required, no DB write performed"
+ },
+ "git_state_unchanged": {},
+ "git": {
+  "Fabric": {
+   "head": "765df6289cfb7730aa56efbd522d76df6ec9809a",
+   "status_lines": 6,
+   "deletions": 0
+  },
+  "HG-KSEOS": {
+   "head": "86f40ec114f19bbd35314e376da4d0bed9805b22",
+   "status_lines": 4,
+   "deletions": 0
+  },
+  "SBL": {
+   "head": "826ca066a1c2df2976c0d402018b79e1c79a444f",
+   "status_lines": 13,
+   "deletions": 0
+  }
+ },
+ "independent_recount": {
+  "files": 429991,
+  "bytes": 19416470184,
+  "method": "Independent re-measure by a route NOT using Python os.walk. Primary: PowerShell 5.1 'Get-ChildItem -LiteralPath <root> -"
+ },
+ "generated_at": "2026-11-10T19:41:52"
+}
