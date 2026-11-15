@@ -1,0 +1,980 @@
+{
+ "schema": "FHS_NEXT.W1R3.GATE/1",
+ "round": "W1_R3_IMPLEMENTATION_20261115",
+ "subject": {
+  "path": "C:/Users/user/AppData/Local/hermes/profiles/fhs_next/attachments/FHS_vNEXT_PLP_W1_實質正文_修補施工定案版_2026-11-15_r3.md",
+  "sha256": "5aca7b5e2bdc67d13dff95432b14d7e152f18e3d341971490b7a77c395345a6b",
+  "bytes": 2064944,
+  "lines": 13944
+ },
+ "claim": "AUTHOR_W1_CHECK / LOCAL_CHECK / NOT_NATIVE / NOT_INDEPENDENT / NOT_RELEASE",
+ "A_work_packages": {
+  "summary": {
+   "total": 50,
+   "pass": 50,
+   "fail": 0,
+   "missing": 0,
+   "other": 0
+  },
+  "cases": [
+   {
+    "wp": "WP-FHS-02",
+    "case": "pos",
+    "expect": "ACK",
+    "got": "ACK",
+    "code": null,
+    "exit": 0,
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-02",
+    "case": "neg_navigation_as_authority",
+    "expect": "POLICY_NOT_LOADED",
+    "got": "POLICY_NOT_LOADED",
+    "layer": 1,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-02",
+    "case": "neg_digest_missing",
+    "expect": "POLICY_LOADED_ACK_MISSING",
+    "got": "POLICY_LOADED_ACK_MISSING",
+    "layer": 2,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-02",
+    "case": "neg_borrowed_scope",
+    "expect": "POLICY_LOADED_ACK_MISSING",
+    "got": "POLICY_LOADED_ACK_MISSING",
+    "layer": 2,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-02",
+    "case": "neg_no_consumer_ack",
+    "expect": "POLICY_LOADED_ACK_MISSING",
+    "got": "POLICY_LOADED_ACK_MISSING",
+    "layer": 3,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-02",
+    "case": "neg_sec_epoch_escalation",
+    "expect": "POLICY_SIGNER_OR_EPOCH_DENY",
+    "got": "POLICY_SIGNER_OR_EPOCH_DENY",
+    "layer": 4,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-02",
+    "case": "neg_sec_writeset_escape",
+    "expect": "POLICY_SIGNER_OR_EPOCH_DENY",
+    "got": "POLICY_SIGNER_OR_EPOCH_DENY",
+    "layer": 4,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-03",
+    "case": "pos",
+    "expect": "ACK",
+    "got": "ACK",
+    "code": null,
+    "exit": 0,
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-03",
+    "case": "neg_doc_patch_as_applied",
+    "expect": "GUARD_RAW_MISMATCH",
+    "got": "GUARD_RAW_MISMATCH",
+    "layer": 1,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-03",
+    "case": "neg_borrowed_scope",
+    "expect": "ISSUER_WORK_BINDING_NACK",
+    "got": "ISSUER_WORK_BINDING_NACK",
+    "layer": 3,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-03",
+    "case": "neg_missing_sod",
+    "expect": "ISSUER_WORK_BINDING_NACK",
+    "got": "ISSUER_WORK_BINDING_NACK",
+    "layer": 3,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-03",
+    "case": "neg_relay_closure_absent",
+    "expect": "RETIREMENT_BOUNDARY_UNPROVEN",
+    "got": "RETIREMENT_BOUNDARY_UNPROVEN",
+    "layer": 4,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-03",
+    "case": "neg_sec_issuer_impersonation",
+    "expect": "ISSUER_PRINCIPAL_ACL_DENY",
+    "got": "ISSUER_PRINCIPAL_ACL_DENY",
+    "layer": 5,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-03",
+    "case": "neg_sec_nonce_reuse",
+    "expect": "ISSUER_PRINCIPAL_ACL_DENY",
+    "got": "ISSUER_PRINCIPAL_ACL_DENY",
+    "layer": 5,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-04",
+    "case": "pos",
+    "expect": "ACK",
+    "got": "ACK",
+    "code": null,
+    "exit": 0,
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-04",
+    "case": "neg_selected_as_used",
+    "expect": "RUNTIME_USE_NOT_OBSERVED",
+    "got": "RUNTIME_USE_NOT_OBSERVED",
+    "layer": 1,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-04",
+    "case": "neg_borrowed_scope",
+    "expect": "ACTUAL_SERVED_NOT_OBSERVED",
+    "got": "ACTUAL_SERVED_NOT_OBSERVED",
+    "layer": 4,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-04",
+    "case": "neg_fallback_overwrites_primary",
+    "expect": "SERVED_ASSIGNMENT_OVERWRITE",
+    "got": "SERVED_ASSIGNMENT_OVERWRITE",
+    "layer": 3,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-04",
+    "case": "neg_lease_absent",
+    "expect": "ACTUAL_SERVED_NOT_OBSERVED",
+    "got": "ACTUAL_SERVED_NOT_OBSERVED",
+    "layer": 4,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-04",
+    "case": "neg_sec_cross_profile_home",
+    "expect": "CROSS_PROFILE_SECRET_DENY",
+    "got": "CROSS_PROFILE_SECRET_DENY",
+    "layer": 5,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-05",
+    "case": "pos",
+    "expect": "ACK",
+    "got": "ACK",
+    "code": null,
+    "exit": 0,
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-05",
+    "case": "neg_author_ack_as_compiler",
+    "expect": "ORIGINAL_PIPD_REPARSE_UNBOUND",
+    "got": "ORIGINAL_PIPD_REPARSE_UNBOUND",
+    "layer": 2,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-05",
+    "case": "neg_registry_count_mismatch",
+    "expect": "ORIGINAL_PIPD_REPARSE_UNBOUND",
+    "got": "ORIGINAL_PIPD_REPARSE_UNBOUND",
+    "layer": 1,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-05",
+    "case": "neg_pd_repo_context_absent",
+    "expect": "PD_REPOCONTEXT_UNBOUND",
+    "got": "PD_REPOCONTEXT_UNBOUND",
+    "layer": 3,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-05",
+    "case": "neg_borrowed_scope",
+    "expect": "PD_REPOCONTEXT_UNBOUND",
+    "got": "PD_REPOCONTEXT_UNBOUND",
+    "layer": 3,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-05",
+    "case": "neg_sec_shadow_writer",
+    "expect": "PIPD_SHADOW_WRITER_DENY",
+    "got": "PIPD_SHADOW_WRITER_DENY",
+    "layer": 5,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-07",
+    "case": "pos",
+    "expect": "ACK",
+    "got": "ACK",
+    "code": null,
+    "exit": 0,
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-07",
+    "case": "neg_guide_self_writes_plan",
+    "expect": "PLAN_RECEIVER_UNBOUND",
+    "got": "PLAN_RECEIVER_UNBOUND",
+    "layer": 1,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-07",
+    "case": "neg_stale_revision",
+    "expect": "PLAN_CAS_ACK_MISSING",
+    "got": "PLAN_CAS_ACK_MISSING",
+    "layer": 2,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-07",
+    "case": "neg_conflict_not_reread",
+    "expect": "PLAN_CAS_ACK_MISSING",
+    "got": "PLAN_CAS_ACK_MISSING",
+    "layer": 3,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-07",
+    "case": "neg_borrowed_scope",
+    "expect": "PLAN_CAS_ACK_MISSING",
+    "got": "PLAN_CAS_ACK_MISSING",
+    "layer": 2,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-07",
+    "case": "neg_sec_cross_work_plan",
+    "expect": "CROSS_WORK_PLAN_AUTH_DENY",
+    "got": "CROSS_WORK_PLAN_AUTH_DENY",
+    "layer": 4,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-11",
+    "case": "pos",
+    "expect": "ACK",
+    "got": "ACK",
+    "code": null,
+    "exit": 0,
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-11",
+    "case": "neg_file_exists_as_loaded",
+    "expect": "HOST_LOADED_UNPROVEN",
+    "got": "HOST_LOADED_UNPROVEN",
+    "layer": 2,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-11",
+    "case": "neg_stage_absent",
+    "expect": "HOST_SP_NOT_QUALIFIED",
+    "got": "HOST_SP_NOT_QUALIFIED",
+    "layer": 1,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-11",
+    "case": "neg_foreign_host_evidence",
+    "expect": "HOST_EVIDENCE_FOREIGN_NACK",
+    "got": "HOST_EVIDENCE_FOREIGN_NACK",
+    "layer": 3,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-11",
+    "case": "neg_borrowed_scope",
+    "expect": "HOST_EVIDENCE_FOREIGN_NACK",
+    "got": "HOST_EVIDENCE_FOREIGN_NACK",
+    "layer": 3,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-11",
+    "case": "neg_sec_checker_impersonation",
+    "expect": "HOST_CHECKER_IMPERSONATION_DENY",
+    "got": "HOST_CHECKER_IMPERSONATION_DENY",
+    "layer": 4,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-17",
+    "case": "pos",
+    "expect": "ACK",
+    "got": "ACK",
+    "code": null,
+    "exit": 0,
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-17",
+    "case": "neg_slot_set_incomplete",
+    "expect": "TECH_NEED_OR_LICENSE_HOLD",
+    "got": "TECH_NEED_OR_LICENSE_HOLD",
+    "layer": 1,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-17",
+    "case": "neg_license_unknown",
+    "expect": "TECH_NEED_OR_LICENSE_HOLD",
+    "got": "TECH_NEED_OR_LICENSE_HOLD",
+    "layer": 2,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-17",
+    "case": "neg_two_active_occupants",
+    "expect": "CAPABILITY_NOT_QUALIFIED",
+    "got": "CAPABILITY_NOT_QUALIFIED",
+    "layer": 3,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-17",
+    "case": "neg_disposition_downgrade",
+    "expect": "CAPABILITY_NOT_QUALIFIED",
+    "got": "CAPABILITY_NOT_QUALIFIED",
+    "layer": 4,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-17",
+    "case": "neg_sec_install_privilege",
+    "expect": "INSTALLER_PRIVILEGE_DENY",
+    "got": "INSTALLER_PRIVILEGE_DENY",
+    "layer": 5,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-20",
+    "case": "pos",
+    "expect": "ACK",
+    "got": "ACK",
+    "code": null,
+    "exit": 0,
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-20",
+    "case": "neg_mvi_as_full_product",
+    "expect": "PRODUCT_APPLICABILITY_HOLD",
+    "got": "PRODUCT_APPLICABILITY_HOLD",
+    "layer": 1,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-20",
+    "case": "neg_cell_fields_incomplete",
+    "expect": "PRODUCT_APPLICABILITY_HOLD",
+    "got": "PRODUCT_APPLICABILITY_HOLD",
+    "layer": 2,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-20",
+    "case": "neg_legacy_read_guessed",
+    "expect": "PRODUCT_APPLICABILITY_HOLD",
+    "got": "PRODUCT_APPLICABILITY_HOLD",
+    "layer": 3,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-20",
+    "case": "neg_no_cell_owner_ack",
+    "expect": "CELL_TOKEN_OWNER_ACK_MISSING",
+    "got": "CELL_TOKEN_OWNER_ACK_MISSING",
+    "layer": 4,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-20",
+    "case": "neg_sec_cross_host_receipt",
+    "expect": "CELL_RECEIPT_CROSS_HOST_DENY",
+    "got": "CELL_RECEIPT_CROSS_HOST_DENY",
+    "layer": 5,
+    "exit": 2,
+    "status": "PASS"
+   }
+  ]
+ },
+ "B_findings_evidence": {
+  "summary": {
+   "total": 18,
+   "pass": 18,
+   "fail": 0,
+   "missing": 0,
+   "other": 0
+  },
+  "cases": [
+   {
+    "unit": "F01",
+    "raw_exit": "corpus_readback.json / upstream_line_maps.json",
+    "evidence_files": 3,
+    "bytes": 190022,
+    "status": "PASS"
+   },
+   {
+    "unit": "F02",
+    "raw_exit": "static_checks.json / protected_crosswalk.json",
+    "evidence_files": 2,
+    "bytes": 786078,
+    "status": "PASS"
+   },
+   {
+    "unit": "F03",
+    "raw_exit": "static_checks.json / l2_exact_sets.json",
+    "evidence_files": 2,
+    "bytes": 183142,
+    "status": "PASS"
+   },
+   {
+    "unit": "F04",
+    "raw_exit": "pipd_intake.stdout.txt / pipd_intake_long_document.stdout.txt",
+    "evidence_files": 2,
+    "bytes": 1533,
+    "status": "PASS"
+   },
+   {
+    "unit": "F05",
+    "raw_exit": "pipd_pd*.stdout.txt / probe_runs.json",
+    "evidence_files": 4,
+    "bytes": 57960,
+    "status": "PASS"
+   },
+   {
+    "unit": "F06",
+    "raw_exit": "operation_registry_readback.json / pipd_typed_read_ecp.stdout.txt",
+    "evidence_files": 2,
+    "bytes": 4088,
+    "status": "PASS"
+   },
+   {
+    "unit": "F07",
+    "raw_exit": "pipd_validate_partial*.stdout.txt / pipd_tqaep*.stdout.txt",
+    "evidence_files": 4,
+    "bytes": 1620,
+    "status": "PASS"
+   },
+   {
+    "unit": "F08",
+    "raw_exit": "historical_record_pins.json",
+    "evidence_files": 1,
+    "bytes": 1428,
+    "status": "PASS"
+   },
+   {
+    "unit": "F09",
+    "raw_exit": "l2_exact_sets.json",
+    "evidence_files": 1,
+    "bytes": 179544,
+    "status": "PASS"
+   },
+   {
+    "unit": "F10",
+    "raw_exit": "hermes_version.stdout.txt / openspec_version.stdout.txt",
+    "evidence_files": 2,
+    "bytes": 151,
+    "status": "PASS"
+   },
+   {
+    "unit": "F11",
+    "raw_exit": "l2_exact_sets.json / static_checks.json",
+    "evidence_files": 2,
+    "bytes": 183142,
+    "status": "PASS"
+   },
+   {
+    "unit": "F12",
+    "raw_exit": "hgk_original_tests.stderr.txt / hgk_recovery_tests.stderr.txt",
+    "evidence_files": 2,
+    "bytes": 1785,
+    "status": "PASS"
+   },
+   {
+    "unit": "F13",
+    "raw_exit": "hermes_api.json / hermes_original_api.stderr.txt",
+    "evidence_files": 2,
+    "bytes": 2903,
+    "status": "PASS"
+   },
+   {
+    "unit": "F14",
+    "raw_exit": "fabric*_tests.stderr.txt / fabric_docs_ci_retest.stderr.txt",
+    "evidence_files": 3,
+    "bytes": 24988,
+    "status": "PASS"
+   },
+   {
+    "unit": "F15",
+    "raw_exit": "plugin_api.json / pipd_security_tests.xml",
+    "evidence_files": 2,
+    "bytes": 30758,
+    "status": "PASS"
+   },
+   {
+    "unit": "F16",
+    "raw_exit": "static_checks.json / w0_handoff_crosswalk.json",
+    "evidence_files": 2,
+    "bytes": 6001,
+    "status": "PASS"
+   },
+   {
+    "unit": "F17",
+    "raw_exit": "corpus_readback.json",
+    "evidence_files": 2,
+    "bytes": 187189,
+    "status": "PASS"
+   },
+   {
+    "unit": "F18",
+    "raw_exit": "readback.json / write_manifest.json / r9_to_r3.diff",
+    "evidence_files": 3,
+    "bytes": 4364390,
+    "status": "PASS"
+   }
+  ]
+ },
+ "C_journeys_code_coverage": {
+  "summary": {
+   "total": 17,
+   "pass": 17,
+   "fail": 0,
+   "missing": 0,
+   "other": 0
+  },
+  "cases": [
+   {
+    "unit": "GJ01",
+    "case": "pos",
+    "expect": "ACK",
+    "got": "ACK",
+    "code": null,
+    "exit": 0,
+    "status": "PASS"
+   },
+   {
+    "unit": "GJ01",
+    "case": "neg_known_answer_reask",
+    "expect": "KNOWN_ANSWER_REASK",
+    "got": "KNOWN_ANSWER_REASK",
+    "layer": 1,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "GJ01",
+    "case": "neg_policy_not_loaded",
+    "expect": "POLICY_NOT_LOADED",
+    "got": "POLICY_NOT_LOADED",
+    "layer": 2,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "GJ01",
+    "case": "neg_unrelated_host_gate",
+    "expect": "UNRELATED_HOST_GATE",
+    "got": "UNRELATED_HOST_GATE",
+    "layer": 3,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "GJ01",
+    "case": "neg_unrelated_release_gate",
+    "expect": "UNRELATED_RELEASE_GATE",
+    "got": "UNRELATED_RELEASE_GATE",
+    "layer": 4,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "GJ01",
+    "case": "neg_fuo_not_delivered",
+    "expect": "FUO_NOT_DELIVERED",
+    "got": "FUO_NOT_DELIVERED",
+    "layer": 5,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "GJ02",
+    "case": "pos",
+    "expect": "ACK",
+    "got": "ACK",
+    "code": null,
+    "exit": 0,
+    "status": "PASS"
+   },
+   {
+    "unit": "GJ02",
+    "case": "neg_known_answer_reask",
+    "expect": "KNOWN_ANSWER_REASK",
+    "got": "KNOWN_ANSWER_REASK",
+    "layer": 1,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "GJ02",
+    "case": "neg_second_canonical_writer",
+    "expect": "SECOND_CANONICAL_WRITER",
+    "got": "SECOND_CANONICAL_WRITER",
+    "layer": 2,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "GJ02",
+    "case": "neg_host_writeset_bind_hold",
+    "expect": "HOST_WRITESET_BIND_HOLD",
+    "got": "HOST_WRITESET_BIND_HOLD",
+    "layer": 3,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "GJ02",
+    "case": "neg_issue_write_not_observed",
+    "expect": "ISSUE_WRITE_NOT_OBSERVED",
+    "got": "ISSUE_WRITE_NOT_OBSERVED",
+    "layer": 4,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "GJ02",
+    "case": "neg_fuo_not_delivered",
+    "expect": "FUO_NOT_DELIVERED",
+    "got": "FUO_NOT_DELIVERED",
+    "layer": 5,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "GJ03",
+    "case": "pos",
+    "expect": "ACK",
+    "got": "ACK",
+    "code": null,
+    "exit": 0,
+    "status": "PASS"
+   },
+   {
+    "unit": "GJ03",
+    "case": "neg_unknown_reconcile_required",
+    "expect": "UNKNOWN_RECONCILE_REQUIRED",
+    "got": "UNKNOWN_RECONCILE_REQUIRED",
+    "layer": 1,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "GJ03",
+    "case": "neg_pd_repocontext_unbound",
+    "expect": "PD_REPOCONTEXT_UNBOUND",
+    "got": "PD_REPOCONTEXT_UNBOUND",
+    "layer": 2,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "GJ03",
+    "case": "neg_plan_cas_ack_missing",
+    "expect": "PLAN_CAS_ACK_MISSING",
+    "got": "PLAN_CAS_ACK_MISSING",
+    "layer": 3,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "GJ03",
+    "case": "neg_pd_repocontext_unbound",
+    "expect": "PD_REPOCONTEXT_UNBOUND",
+    "got": "PD_REPOCONTEXT_UNBOUND",
+    "layer": 2,
+    "exit": 2,
+    "status": "PASS"
+   }
+  ]
+ },
+ "D_effects_normative": {
+  "summary": {
+   "total": 6,
+   "pass": 6,
+   "fail": 0,
+   "missing": 0,
+   "other": 0
+  },
+  "cases": [
+   {
+    "unit": "EFFECT_READ",
+    "refusal": "權限錯誤或無法讀取卻標READ_BYTES",
+    "status": "PASS"
+   },
+   {
+    "unit": "EFFECT_DRAFT",
+    "refusal": "覆寫CURRENT、產品檔或先前r8交付",
+    "status": "PASS"
+   },
+   {
+    "unit": "EFFECT_DEV",
+    "refusal": "未probe填ABSENT、`git add -A`、reset整根",
+    "status": "PASS"
+   },
+   {
+    "unit": "EFFECT_OPS",
+    "refusal": "用DEV許可安裝、profile名冒OS隔離、git revert冒Host回復",
+    "status": "PASS"
+   },
+   {
+    "unit": "EFFECT_USER",
+    "refusal": "no-effect referral冒Issue已建、跨資料scope借Consent",
+    "status": "PASS"
+   },
+   {
+    "unit": "EFFECT_RELEASE",
+    "refusal": "ZIP/CI/gstack ship/自批PR冒受權Release",
+    "status": "PASS"
+   }
+  ]
+ },
+ "SELFTEST": {
+  "summary": {
+   "total": 8,
+   "pass": 8,
+   "fail": 0,
+   "missing": 0,
+   "other": 0
+  },
+  "cases": [
+   {
+    "wp": "WP-FHS-02",
+    "M1_evidence_emptied": {
+     "exit": 2,
+     "code": "POLICY_NOT_LOADED",
+     "bites": true
+    },
+    "M2_borrowed_scope": {
+     "exit": 2,
+     "code": "POLICY_LOADED_ACK_MISSING",
+     "bites": true
+    },
+    "M3_field_removed": {
+     "exit": 3,
+     "code": "REQUIRED_FIELD_MISSING",
+     "bites": true
+    },
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-03",
+    "M1_evidence_emptied": {
+     "exit": 2,
+     "code": "GUARD_RAW_MISMATCH",
+     "bites": true
+    },
+    "M2_borrowed_scope": {
+     "exit": 2,
+     "code": "GUARD_RAW_MISMATCH",
+     "bites": true
+    },
+    "M3_field_removed": {
+     "exit": 3,
+     "code": "REQUIRED_FIELD_MISSING",
+     "bites": true
+    },
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-04",
+    "M1_evidence_emptied": {
+     "exit": 2,
+     "code": "RUNTIME_USE_NOT_OBSERVED",
+     "bites": true
+    },
+    "M2_borrowed_scope": {
+     "exit": 2,
+     "code": "RUNTIME_USE_NOT_OBSERVED",
+     "bites": true
+    },
+    "M3_field_removed": {
+     "exit": 3,
+     "code": "REQUIRED_FIELD_MISSING",
+     "bites": true
+    },
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-05",
+    "M1_evidence_emptied": {
+     "exit": 2,
+     "code": "ORIGINAL_PIPD_REPARSE_UNBOUND",
+     "bites": true
+    },
+    "M2_borrowed_scope": {
+     "exit": 2,
+     "code": "ORIGINAL_PIPD_REPARSE_UNBOUND",
+     "bites": true
+    },
+    "M3_field_removed": {
+     "exit": 3,
+     "code": "REQUIRED_FIELD_MISSING",
+     "bites": true
+    },
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-07",
+    "M1_evidence_emptied": {
+     "exit": 2,
+     "code": "PLAN_RECEIVER_UNBOUND",
+     "bites": true
+    },
+    "M2_borrowed_scope": {
+     "exit": 2,
+     "code": "PLAN_RECEIVER_UNBOUND",
+     "bites": true
+    },
+    "M3_field_removed": {
+     "exit": 3,
+     "code": "REQUIRED_FIELD_MISSING",
+     "bites": true
+    },
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-11",
+    "M1_evidence_emptied": {
+     "exit": 2,
+     "code": "HOST_SP_NOT_QUALIFIED",
+     "bites": true
+    },
+    "M2_borrowed_scope": {
+     "exit": 2,
+     "code": "HOST_EVIDENCE_FOREIGN_NACK",
+     "bites": true
+    },
+    "M3_field_removed": {
+     "exit": 3,
+     "code": "REQUIRED_FIELD_MISSING",
+     "bites": true
+    },
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-17",
+    "M1_evidence_emptied": {
+     "exit": 2,
+     "code": "TECH_NEED_OR_LICENSE_HOLD",
+     "bites": true
+    },
+    "M2_borrowed_scope": {
+     "exit": 2,
+     "code": "CAPABILITY_NOT_QUALIFIED",
+     "bites": true
+    },
+    "M3_field_removed": {
+     "exit": 3,
+     "code": "REQUIRED_FIELD_MISSING",
+     "bites": true
+    },
+    "status": "PASS"
+   },
+   {
+    "wp": "WP-FHS-20",
+    "M1_evidence_emptied": {
+     "exit": 2,
+     "code": "PRODUCT_APPLICABILITY_HOLD",
+     "bites": true
+    },
+    "M2_borrowed_scope": {
+     "exit": 2,
+     "code": "CELL_RECEIPT_CROSS_HOST_DENY",
+     "bites": true
+    },
+    "M3_field_removed": {
+     "exit": 3,
+     "code": "REQUIRED_FIELD_MISSING",
+     "bites": true
+    },
+    "status": "PASS"
+   }
+  ]
+ },
+ "verdict": "PASS",
+ "failures": 0,
+ "missing_cases": 0
+}

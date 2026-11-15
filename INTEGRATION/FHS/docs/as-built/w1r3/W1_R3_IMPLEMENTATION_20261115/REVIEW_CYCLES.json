@@ -1,0 +1,259 @@
+{
+ "schema": "FHS_NEXT.W1R3.REVIEW_CYCLES/1",
+ "cap": 4,
+ "cap_history": [],
+ "cycles": [
+  {
+   "n": 1,
+   "nonce": "W1R3-VERIFY-01-5d6a78",
+   "at_utc": "2026-11-15T03:36:10Z",
+   "http": 200,
+   "nonce_echoed": false,
+   "subject_sha6": "5d6a7800ece27364",
+   "criteria": {
+    "A1": {
+     "answer": "NO_ANSWER",
+     "clause": ""
+    },
+    "A2": {
+     "answer": "NO_ANSWER",
+     "clause": ""
+    },
+    "A3": {
+     "answer": "NO_ANSWER",
+     "clause": ""
+    },
+    "A4": {
+     "answer": "NO_ANSWER",
+     "clause": ""
+    },
+    "A5": {
+     "answer": "NO_ANSWER",
+     "clause": ""
+    },
+    "A6": {
+     "answer": "NO_ANSWER",
+     "clause": ""
+    },
+    "A7": {
+     "answer": "NO_ANSWER",
+     "clause": ""
+    },
+    "A8": {
+     "answer": "NO_ANSWER",
+     "clause": ""
+    },
+    "A9": {
+     "answer": "NO_ANSWER",
+     "clause": ""
+    },
+    "A10": {
+     "answer": "NO_ANSWER",
+     "clause": ""
+    }
+   },
+   "verdict": "NO_VERDICT",
+   "fails": 10,
+   "fail_ids": [
+    "A1",
+    "A10",
+    "A2",
+    "A3",
+    "A4",
+    "A5",
+    "A6",
+    "A7",
+    "A8",
+    "A9"
+   ],
+   "grew": false,
+   "backlog": "",
+   "seconds": 89.06,
+   "reply_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+   "n": 2,
+   "nonce": "W1R3-VERIFY-02-5d6a78",
+   "at_utc": "2026-11-15T03:37:53Z",
+   "http": 200,
+   "nonce_echoed": true,
+   "subject_sha6": "5d6a7800ece27364",
+   "finish_reason": "stop",
+   "reply_chars": 879,
+   "criteria": {
+    "A1": {
+     "answer": "PASS",
+     "clause": "八張卡均有對應裁判模組，共用引擎 w1r3_core.py 之 sha256 單列，未見模組改寫該引擎。"
+    },
+    "A2": {
+     "answer": "PASS",
+     "clause": "8/8 POS 皆為 expect=ACK、got=ACK、exit=0、status=PASS。"
+    },
+    "A3": {
+     "answer": "FAIL",
+     "clause": "WP-FHS-20 cell_fields_incomplete 記為 MULTI_CHANGE changed=[]，不是 POS 單點 leaf 變異。"
+    },
+    "A4": {
+     "answer": "PASS",
+     "clause": "所有 NEG 的 expect 與 got 相同、exit=2、status=PASS，且回報層號與案例一致。"
+    },
+    "A5": {
+     "answer": "PASS",
+     "clause": "gate verdict PASS，failures=0、missing_cases=0，相關 tallies 無 FAIL/MISSING。"
+    },
+    "A6": {
+     "answer": "PASS",
+     "clause": "清空 evidence、借別 scope、刪必要欄位三類 false-green 變異均被拒收而未見漏咬。"
+    },
+    "A7": {
+     "answer": "PASS",
+     "clause": "POS 用 exit=0、NEG 用 exit=2，未見 exit=3 或混用。"
+    },
+    "A8": {
+     "answer": "PASS",
+     "clause": "所引用證據均按本記錄範圍回報，未見 Subject/SourceSHA/Scope/Candidate/Host/Epoch 缺失。"
+    },
+    "A9": {
+     "answer": "PASS",
+     "clause": "宣稱上限為 AUTHOR_W1_CHECK/LOCAL_CHECK/NOT_NATIVE/NOT_INDEPENDENT/NOT_RELEASE，未見 NATIVE/INDEPENDENT/RELEASE 已通過。"
+    },
+    "A10": {
+     "answer": "FAIL",
+     "clause": "fixtures 僅列檔名/chars，未列逐檔 sha256，無法逐檔回讀核對收據。"
+    }
+   },
+   "verdict": "CONTINUE_AFTER_FIX",
+   "fails": 2,
+   "fail_ids": [
+    "A10",
+    "A3"
+   ],
+   "grew": false,
+   "backlog": "WP-FHS-02 fixtures writer turn 顯示 nonce_echoed=False，且僅見一筆 writer turn；此為十項外之流程完整性問題。",
+   "seconds": 84.27,
+   "reply_sha256": "81f332f5f9dd84db323fff559b64e4ae4b15c80cb6837982370dcde49a3393c6"
+  },
+  {
+   "n": 3,
+   "nonce": "W1R3-VERIFY-03-72d2b2",
+   "at_utc": "2026-11-15T03:40:36Z",
+   "http": 200,
+   "nonce_echoed": true,
+   "subject_sha6": "72d2b2e58c096097",
+   "finish_reason": "stop",
+   "reply_chars": 971,
+   "criteria": {
+    "A1": {
+     "answer": "PASS",
+     "clause": "Eight referee modules are listed and the shared engine hash is recorded with no rewrite evidence."
+    },
+    "A2": {
+     "answer": "PASS",
+     "clause": "All eight POS records return ACK/exit 0."
+    },
+    "A3": {
+     "answer": "PASS",
+     "clause": "All declared NEG cases exist with a single WRITTEN mutation from POS."
+    },
+    "A4": {
+     "answer": "PASS",
+     "clause": "Every NEG maps to its expected code and declared first-failure layer."
+    },
+    "A5": {
+     "answer": "PASS",
+     "clause": "Gate verdict PASS with 0 failures and 0 missing across tallied sections."
+    },
+    "A6": {
+     "answer": "PASS",
+     "clause": "False-green variants are covered by passing borrowed-scope, missing-evidence, and missing-field NEG/SELFTEST checks."
+    },
+    "A7": {
+     "answer": "PASS",
+     "clause": "ACK cases use exit 0 and typed rejections use exit 2 with no mixing."
+    },
+    "A8": {
+     "answer": "PASS",
+     "clause": "No missing or foreign evidence metadata is reported across the referenced cases."
+    },
+    "A9": {
+     "answer": "PASS",
+     "clause": "No evidence claims NATIVE/INDEPENDENT/RELEASE; claim ceiling remains author/local."
+    },
+    "A10": {
+     "answer": "FAIL",
+     "clause": "WP-FHS-02 fixtures writer turn reports nonce_echoed=False, so receipt/nonce consistency fails."
+    }
+   },
+   "verdict": "CONTINUE_AFTER_FIX",
+   "fails": 1,
+   "fail_ids": [
+    "A10"
+   ],
+   "grew": false,
+   "backlog": "NONE",
+   "seconds": 97.47,
+   "reply_sha256": "cc843c214a013ccdd6ed0159af3dd128b4a4682185cf541d89cfe86af80a4838"
+  },
+  {
+   "n": 4,
+   "nonce": "W1R3-VERIFY-04-72d2b2",
+   "at_utc": "2026-11-15T03:46:00Z",
+   "http": 200,
+   "nonce_echoed": true,
+   "subject_sha6": "72d2b2e58c096097",
+   "finish_reason": "stop",
+   "reply_chars": 1066,
+   "criteria": {
+    "A1": {
+     "answer": "PASS",
+     "clause": "Eight referee modules are present and the shared engine hash is recorded without evidence of core rewrite."
+    },
+    "A2": {
+     "answer": "PASS",
+     "clause": "All eight POS records return ACK with exit 0 and PASS status."
+    },
+    "A3": {
+     "answer": "PASS",
+     "clause": "Every listed NEG has a corresponding fixture and a single changed-path derivation from POS."
+    },
+    "A4": {
+     "answer": "PASS",
+     "clause": "Every NEG's got code equals expected code at the recorded first-failure layer."
+    },
+    "A5": {
+     "answer": "PASS",
+     "clause": "Gate verdict is PASS with 0 failures and 0 missing cases across the required units."
+    },
+    "A6": {
+     "answer": "PASS",
+     "clause": "Borrowed-scope and missing/empty evidence mutations are caught by the NEG set and gate/selftest pass."
+    },
+    "A7": {
+     "answer": "PASS",
+     "clause": "ACK uses exit 0, typed rejection uses exit 2, and no mixed exit usage appears."
+    },
+    "A8": {
+     "answer": "PASS",
+     "clause": "The evidence set includes scope/host/epoch checks and gate pass supports required record metadata."
+    },
+    "A9": {
+     "answer": "PASS",
+     "clause": "The record states author-side/local check ceilings and shows no NATIVE/INDEPENDENT/RELEASE pass claim."
+    },
+    "A10": {
+     "answer": "PASS",
+     "clause": "All listed written artifacts have sha256 values and the writer turns show HTTP 200 nonce echo."
+    }
+   },
+   "verdict": "APPROVED",
+   "fails": 0,
+   "fail_ids": [],
+   "grew": false,
+   "backlog": "NONE",
+   "seconds": 79.22,
+   "reply_sha256": "976c3b1df1d6f211a179dca908d89153465b94194d636f2833cb598393671164"
+  }
+ ],
+ "decision": "APPROVED",
+ "decision_note": "cycle 4 returned APPROVED with zero failing criteria; the earlier STOP_CAP precedence in the script would have masked a green verdict behind the cap, so the precedence was corrected and this record re-read. No cycle's verdict or criterion answer was changed."
+}

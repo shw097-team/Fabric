@@ -1,0 +1,56 @@
+{
+ "schema": "FHS_NEXT.W1R3.CORRECTIONS/1",
+ "round": "W1_R3_IMPLEMENTATION_20261115",
+ "at_utc": "2026-11-15",
+ "items": [
+  {
+   "id": "RC-1",
+   "found_by": "VERIFY cycle 2 (A3)",
+   "defect": "mk_neg refused a WP-FHS-20 derivation (MULTI_CHANGE, changed=[]) but left the older neg_cell_fields_incomplete.json on disk, so the gate judged a stale artifact.",
+   "fix": "mk_neg now deletes the stale projection on any refused derivation; the gate additionally refuses any executed NEG that has no WRITTEN derivation row.",
+   "state": "FIXED_AND_RE_MEASURED"
+  },
+  {
+   "id": "RC-2",
+   "found_by": "self-check on the cycles record",
+   "defect": "the loop's decision expression tested the cap before APPROVED, so a green cycle 4 was labelled STOP_CAP.",
+   "fix": "precedence corrected to APPROVED first; the stored cycle record's decision was re-read with a decision_note. No cycle's verdict or criterion answer changed.",
+   "state": "FIXED"
+  },
+  {
+   "id": "RC-3",
+   "found_by": "evidence audit before publish",
+   "defect": "EXECUTE_RUNS_LAST.json is overwritten per dispatch, so the writer-turn receipts for WP-FHS-03/04/05/07/11/17/20 were replaced by a later single-WP rerun of WP-FHS-02. The artifacts are covered by the gate and by module/fixture digests, but their turn-level receipts are NOT recoverable, and a re-dispatch would produce different bytes that must not be presented as the same evidence.",
+   "fix": "run_subset/execute_wp now append to the runs record with history instead of overwriting; this round records the gap instead of inventing receipts.",
+   "state": "LABELLED_GAP"
+  },
+  {
+   "id": "RC-4",
+   "found_by": "section C MISSING_REFEREE",
+   "defect": "the write-guard refused build/journey_referee.py because the allowed prefixes covered only build/wp_fhs_*. The guard was right; the amendment (A-01) had not widened the WriteSet.",
+   "fix": "ALLOWED widened by exactly one path in the same edit that records amendment A-01.",
+   "state": "FIXED_BY_RECORDED_AMENDMENT"
+  },
+  {
+   "id": "RC-5",
+   "found_by": "gate A section, three borrowed_scope cases",
+   "defect": "three borrowed_scope mutations changed the scope of an evidence object that a different layer consumes, so the refusal arrived at the wrong layer with the wrong code.",
+   "fix": "mutations re-pointed at the object the declared layer reads (WP-04 lease, WP-05 repo_context.subject, WP-07 cas); each remains a single leaf change.",
+   "state": "FIXED_AND_RE_MEASURED"
+  },
+  {
+   "id": "RC-6",
+   "found_by": "section C, first run",
+   "defect": "GJ01/GJ02/GJ03 declared FirstFail codes that no work-package referee produced; the journeys were prose only, so a declared criterion was covered by nothing.",
+   "fix": "amendment A-01 adds build/journey_referee.py and GJ fixtures; section C now executes them instead of measuring name overlap.",
+   "state": "FIXED"
+  },
+  {
+   "id": "RC-7",
+   "found_by": "fixture audit",
+   "defect": "WP-FHS-02's digest chain carried no subject identity and WP-FHS-20's cell matrix had no evaluated cell, so the corresponding layers passed on an empty set (a vacuous gate).",
+   "fix": "digest chain now carries the subject identity; two cells are genuinely evaluated with scoped receipts, so both layers are exercised.",
+   "state": "FIXED"
+  }
+ ]
+}
