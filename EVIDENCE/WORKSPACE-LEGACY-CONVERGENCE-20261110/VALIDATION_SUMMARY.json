@@ -1,0 +1,141 @@
+{
+ "artifact": "FHS-ACTIVE-FOOTPRINT-CONVERGENCE-20261110",
+ "schema": "FHS-ACTIVE-FOOTPRINT/v1",
+ "status": "CANDIDATE_LOCAL_MEASURED",
+ "claim_ceiling": {
+  "candidate_pr": true,
+  "merged": false,
+  "ci_verified": false,
+  "native_reader_result": false,
+  "release": false
+ },
+ "control_package": {
+  "id": "FHS_ACTIVE_FOOTPRINT_LEGACY_CONVERGENCE_THIN_CONTROL-20261110",
+  "version": "r1",
+  "sha256": "4e682adc75e1cc652c070eaeaabdb8b7ec62d2634cd6b7a6b62df41471417fc7"
+ },
+ "root_before": {
+  "files": 304500,
+  "bytes": 15132219005,
+  "stat_failures": 135
+ },
+ "root_independent": {
+  "files": 304635,
+  "bytes": 15141458512
+ },
+ "trees": {
+  "HG-KSEOS/var/far-lane-sod-003": {
+   "files": 75819,
+   "bytes": 5089639543,
+   "alloc": 5089639543,
+   "newest": "2026-11-10T11:45:50",
+   "oldest": null
+  },
+  "HG-KSEOS/var/backups": {
+   "files": 17,
+   "bytes": 2442331243,
+   "alloc": 2442331243,
+   "newest": "2026-11-02T15:00:05",
+   "oldest": "2026-08-08T19:57:11"
+  },
+  "SBL/PIPD": {
+   "files": 111175,
+   "bytes": 3498463620,
+   "alloc": 3498463620,
+   "newest": "2026-11-03T09:34:57",
+   "oldest": "1970-01-01T08:00:01"
+  }
+ },
+ "hot_cold": {
+  "COLD_MOVE_APPROVED": {
+   "rows": 38,
+   "files": 75781,
+   "bytes": 6712422377
+  },
+  "KEEP_HOT": {
+   "rows": 18,
+   "files": 144,
+   "bytes": 826922044
+  },
+  "OWNER_HOLD": {
+   "rows": 8,
+   "files": 31,
+   "bytes": 1731976
+  }
+ },
+ "moves": {
+  "operations": 36,
+  "files": 60988,
+  "bytes": 5983294930,
+  "blocked": [
+   {
+    "path": "HG-KSEOS/var/far-lane-sod-003/scratch/tmpgpnay4lo",
+    "error": "5 存取被拒。"
+   }
+  ],
+  "copy_zip_tar_used": false
+ },
+ "pipd": {
+  "head": "3b48c262f4174217cb35391c6da22bc53f068755",
+  "branch": "candidate/r21-far-20261101",
+  "upstream": "origin/candidate/r21-far-20261101",
+  "porcelain": 241,
+  "commits_not_in_remotes": 5,
+  "head_not_in_remotes": 0,
+  "lead_over_main": 20,
+  "porcelain_breakdown": {
+   "staged": 0,
+   "unstaged": 3,
+   "untracked_dirs": 238,
+   "untracked_files": 25985
+  },
+  "decisions": {
+   "ALREADY_ABSORBED": 21,
+   "HISTORICAL_ONLY": 264,
+   "ABI_CONFLICT": 7,
+   "UNIQUE_UNRESOLVED": 3,
+   "PORT_TO_SBL": 10
+  }
+ },
+ "locators": {
+  "total": 40,
+  "distribution": {
+   "ROOT": 28,
+   "ARCHIVE_R1_C": 4,
+   "ARCHIVE_R1_G": 6,
+   "MISSING": 2
+  },
+  "decisions": {
+   "RESTORE_REQUIRED": 1,
+   "RETAIN_HISTORICAL": 10,
+   "MISSING_HOLD": 1
+  },
+  "db_write_performed": false
+ },
+ "git_after": {
+  "Fabric": {
+   "head": "765df6289cfb7730aa56efbd522d76df6ec9809a",
+   "porcelain": 6
+  },
+  "HG-KSEOS": {
+   "head": "86f40ec114f19bbd35314e376da4d0bed9805b22",
+   "porcelain": 4
+  },
+  "SBL": {
+   "head": "826ca066a1c2df2976c0d402018b79e1c79a444f",
+   "porcelain": 10
+  }
+ },
+ "volume": {
+  "c_free_at_start": 61568540672,
+  "c_free_now": 92843479040,
+  "same_volume_move_frees_nothing": true,
+  "external_swing_not_attributable": 31661056000
+ },
+ "publication": {
+  "fabric": "candidate PR",
+  "sbl": "PUBLISH_HOLD: OWNER_ABI_DECISION_REQUIRED",
+  "hgk": "PUBLISH_HOLD: NO_NATIVE_DELTA"
+ },
+ "generated_at": "2026-11-10T22:55:43"
+}
