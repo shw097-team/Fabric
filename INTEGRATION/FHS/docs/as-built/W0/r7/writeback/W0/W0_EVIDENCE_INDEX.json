@@ -1,0 +1,211 @@
+{
+ "schema": "FHS.EvidenceIndex/1",
+ "wave": "W0",
+ "generated_at": "2026-11-08T01:13:23+08:00",
+ "entries": [
+  {
+   "ref": "evidence/WP00/raw/SOURCE_LOCK.json",
+   "bytes": 22730,
+   "sha256": "49c65214d757f136f047833bffd5056ec807aeb6f711a5a981b47055c5f5b782",
+   "why": "31/31 source digests, six upper-document digests, three repo baselines"
+  },
+  {
+   "ref": "evidence/WP00/REPORT.json",
+   "bytes": 1397,
+   "sha256": "c106786532300e55cc817bf950ec42cc39b545687bc0aae0aaf8c38a66a72e75",
+   "why": "WP-00 report, if the lane wrote one"
+  },
+  {
+   "ref": "evidence/WP01/raw/U0_PARTITION.json",
+   "bytes": 42984,
+   "sha256": "427cc3d3fd5fe50175f4bc561b0c6548d1980641fab89f9631269a2ade88168e",
+   "why": "per-file partition assertions"
+  },
+  {
+   "ref": "evidence/WP01/raw/U0_INDEPENDENT_CHECK.json",
+   "bytes": 6841,
+   "sha256": "fdcfa836b7017be8e11d865e237654fb527f7577109683ba2c077e521482bef9",
+   "why": "round-level independent reconstruction check"
+  },
+  {
+   "ref": "evidence/WP01/AUTHORITY_CONFLICT_LEDGER.json",
+   "bytes": 260989,
+   "sha256": "c9160ec3086bbb5fd57958e48be73c60227f3d74148a762636a8e1afe47ae139",
+   "why": "authority conflicts with named resume predicates"
+  },
+  {
+   "ref": "evidence/WP01/PROFILE_ORACLE_BINDING.json",
+   "bytes": 56453,
+   "sha256": "6d60f80ed3c42e4497ac51cb46440e052a25e35a2d5c8cb0c5eed300fce8905f",
+   "why": "19 schema families bound to real files and spans"
+  },
+  {
+   "ref": "evidence/WP01/tables/U2_crosswalk.json",
+   "bytes": 92663,
+   "sha256": "bcce620e59daeb98824bdc438d591cdccbc4f9fb2a269aca8e2e516cb58509e9",
+   "why": "84 design IDs with locators and dispositions"
+  },
+  {
+   "ref": "evidence/WP01/tables/U3_delta.json",
+   "bytes": 6545,
+   "sha256": "33d382053b78379e41d598230b49cf61d2b95d193454ada5dfa4f76ebe9f3cf1",
+   "why": "22 W0_REQUIRED with CH anchors"
+  },
+  {
+   "ref": "evidence/WP01/tables/U4_reverse.json",
+   "bytes": 10220,
+   "sha256": "d6b62cbd131ad5ec416d520e928717895d52beea16a6c0f6ab304db86dfbfaf9",
+   "why": "reverse index CH -> design IDs"
+  },
+  {
+   "ref": "evidence/WP15/specs/product_SPEC.json",
+   "bytes": 14401,
+   "sha256": "13e64bf4e33f49071c1be739c0283bb841288e809c8ad23c53bc2b92caca76b9",
+   "why": "Product SPEC, PM role"
+  },
+  {
+   "ref": "evidence/WP15/specs/architecture_SPEC.json",
+   "bytes": 15026,
+   "sha256": "f8e5192bb8576f101d9c68ceb207a83bec1873c53337052a40c6af62c51f7146",
+   "why": "Architecture SPEC, SE role"
+  },
+  {
+   "ref": "evidence/WP15/specs/program_SPEC.json",
+   "bytes": 15599,
+   "sha256": "ae4b3a5a0c4dae3c1bf5926e30839602705a75c28757e7c2c8c896c57ecdc4ef",
+   "why": "Program SPEC, TPgM role"
+  },
+  {
+   "ref": "evidence/WP15/stages/STAGE_CONTRACTS.json",
+   "bytes": 20700,
+   "sha256": "10aeeffb23796ecd4d6087b96a3b7d87b8697a5dfb9cecac2f264bae24958377",
+   "why": "18 stage contracts"
+  },
+  {
+   "ref": "evidence/WP15/evidence/verify_spans.log",
+   "bytes": 6972,
+   "sha256": "32d2ab069a19c9baa531346a799576d770f5b277692ef82fe96d4babab328946",
+   "why": "52/52 span verification raw"
+  },
+  {
+   "ref": "evidence/WP15/evidence/spec_distinctness.log",
+   "bytes": 1889,
+   "sha256": "c341a427108660fbc620815b8945aad6cd9073943d189b555a5ee18249eaf258",
+   "why": "distinctness measurement raw"
+  },
+  {
+   "ref": "evidence/WP15/evidence/negative_controls.log",
+   "bytes": 679,
+   "sha256": "18fd9511087b19f740dd9460c7ed6202fc64512ffccf2512238f1d988127b34f",
+   "why": "tampered quote and renamed-heading controls"
+  },
+  {
+   "ref": "evidence/WP16/tables/DONOR24.json",
+   "bytes": 76729,
+   "sha256": "ae17b9fabbb791b3ba9312ab3a7947145912ca5d22e44efde8bc13718fe01b90",
+   "why": "24 donor slots, source-bound"
+  },
+  {
+   "ref": "evidence/WP16/tables/METHOD25.json",
+   "bytes": 76555,
+   "sha256": "d2be0a7a82ac68a6c7ebf3a88dcd5328fd0dfa7bacccb6c833bed5e35bdbee83",
+   "why": "25 method slots, source-bound"
+  },
+  {
+   "ref": "evidence/WP16/raw/verify_projection.log",
+   "bytes": 1258,
+   "sha256": "efc21a55480dc76ec5323a2a35d1228613c7c18c95997b6d9ebc0ccc34417afc",
+   "why": "13/13 projection checks"
+  },
+  {
+   "ref": "evidence/WP16/SUMMARY.md",
+   "bytes": 10998,
+   "sha256": "9b24e925aebd81c0079be1fe397d68b7334663bcec67351d3439651fad1088aa",
+   "why": "count reconciliation and disposition table"
+  },
+  {
+   "ref": "evidence/WP19/LICENCE_INVENTORY.json",
+   "bytes": 5759,
+   "sha256": "076230565ee15c364ddcf7e878a6700314b70cec37cdcde2c861fa068bce8204",
+   "why": "per-repo licence and NOTICE, absences recorded"
+  },
+  {
+   "ref": "evidence/WP19/SBOM_REPORT.json",
+   "bytes": 5972,
+   "sha256": "15b6f712dda82878b9311149dd0b52595d000cba737637887a3bb565cca548fc",
+   "why": "SBOM parse with measured component counts"
+  },
+  {
+   "ref": "evidence/WP19/DEPENDENCY_INVENTORY.json",
+   "bytes": 11798,
+   "sha256": "27658016e607736426567a2a4870b42afe3dceec8e92b7965172f026d2548e54",
+   "why": "declared dependencies per repository"
+  },
+  {
+   "ref": "evidence/WP19/CI_INVENTORY.json",
+   "bytes": 14970,
+   "sha256": "d15569e250e863a421420edaace21dc4cd07d33e9b4dba6b249a4550ef1fe521",
+   "why": "workflows plus live CI readback with run ids"
+  },
+  {
+   "ref": "evidence/WP19/SUMMARY.md",
+   "bytes": 5553,
+   "sha256": "664509d98749753ed221cc338663f5051e508f5290c5441ca1d5e6b0715b49d5",
+   "why": "what the scan does and does not prove"
+  },
+  {
+   "ref": "evidence/WP19/raw/sbl/api/actions_runs.json",
+   "bytes": 36755,
+   "sha256": "89bb1893a5d06c57df087f26b16dc146904668bd5491d681d2b6148dc61f5e22",
+   "why": "live CI raw for the SBL supply-chain run"
+  },
+  {
+   "ref": "evidence/WP21/tables/AC15.json",
+   "bytes": 25294,
+   "sha256": "c3b273f539908c7ff54afbce6119eddbd3220aa728c444d00aa5c4d043812e7b",
+   "why": "15 acceptance-challenge edges"
+  },
+  {
+   "ref": "evidence/WP21/tables/ORACLE96.json",
+   "bytes": 214175,
+   "sha256": "7bda8c3bec83a1f59f2f98b26c3bf87b91952a43b0aa7ea7509dcc0be25eea90",
+   "why": "96 oracle cells, complete 12x8 cross product"
+  },
+  {
+   "ref": "evidence/WP21/tables/H4.json",
+   "bytes": 18727,
+   "sha256": "ad352490881e4010867e7a27f08bde261d23735be0e80fd58b7cf0f41cff71d4",
+   "why": "12 H4 entries"
+  },
+  {
+   "ref": "evidence/WP21/tables/SEAM.json",
+   "bytes": 14424,
+   "sha256": "40bf7049271c0919880b074dc839c8f1beda6358bbf62db0fb44f18f4370eb7c",
+   "why": "11 SEAM entries"
+  },
+  {
+   "ref": "evidence/WP21/raw/checker_output.txt",
+   "bytes": 14731,
+   "sha256": "4daf210ecad4d843a069efccecf02d2ff1e187301804bc2baa9f4e1e9a92619b",
+   "why": "155/155 checker raw"
+  },
+  {
+   "ref": "evidence/WP21/raw/negative_control_output.txt",
+   "bytes": 15019,
+   "sha256": "44a8ac5aae9048c24872a31961fcab30f68b677b529608a474d8fc3dc891fe6f",
+   "why": "5/5 injected defects detected"
+  },
+  {
+   "ref": "evidence/WP21/raw/discriminate_output.txt",
+   "bytes": 1376,
+   "sha256": "ee4dd820dcb189f09edcb5ccf827ce2a46ba43cb208fb4ad0f0a23270a868b82",
+   "why": "POS passes, NEG fails, laundering refused"
+  }
+ ],
+ "reproduce": [
+  "python tools/wp00_source_lock.py --out evidence/WP00/raw/SOURCE_LOCK.json",
+  "python tools/verify_u0_partition.py --partition evidence/WP01/raw/U0_byte_partition.jsonl --sources <31-source dir> --out evidence/WP01/raw/U0_INDEPENDENT_CHECK.json",
+  "python tools/gstack_w0.py --round . --json out/GSTACK_W0.json",
+  "sha256sum <ref> and compare with the recorded digest"
+ ]
+}
