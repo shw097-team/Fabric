@@ -1,0 +1,33 @@
+{
+ "schema": "FHS-NAV/W1-R2-DELTA/1",
+ "changeset": "FHS-W1-R2-PREIMPL-20261105",
+ "identity": "FABRIC_HOSTED_NON_AUTHORITATIVE_INDEX",
+ "effect_permission": "NONE",
+ "unknown_route": "HOLD_AFFECTED_WRITE_ONLY",
+ "source_state": "PROPOSED_NOT_OWNER_RATIFIED",
+ "subject": {
+  "subject_id": "FHS-PIPD-LS-PKG-W1-AUTHOR-FINAL-20261105-R2-AFFECTED-REPAIR",
+  "candidate_body_sha256": "e40df2999fbffdb96a32a2e35cddce228abdd82080d5a5bedd415dfc938669ce",
+  "source_manifest_sha256": "06628b6b4c6ba1b0d4d9b31b795141aaf51ade4c7df8304d1af093a229227f60",
+  "scope": "FHS/PIPD-LS-PKG/W1/author-design"
+ },
+ "pointer": {
+  "sbl": "evidence/fhs-w1-r2-20261105/",
+  "hgk": "evidence/fhs-w1-r2-20261105/"
+ },
+ "delta": {
+  "w1_r2": "author-side affected repair (22 findings, 71 holds, 3 role SPECs)",
+  "route_change": "NONE",
+  "manifest_change": "NONE",
+  "mirror_subject_added": false
+ },
+ "hold": [
+  "WP19 original CI ACK",
+  "E26 -> WP14 release",
+  "typed receiver ACK",
+  "HGK permit",
+  "protected checker",
+  "publisher"
+ ],
+ "claim_ceiling": "NAVIGATION_ONLY"
+}
