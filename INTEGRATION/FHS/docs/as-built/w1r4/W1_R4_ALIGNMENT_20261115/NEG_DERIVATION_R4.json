@@ -1,0 +1,601 @@
+{
+ "schema": "FHS_NEXT.W1R4.NEG_DERIVATION/1",
+ "cases": [
+  {
+   "wp": "CH-13",
+   "case": "borrowed_scope",
+   "status": "WRITTEN",
+   "changed": "evidence.source.scope",
+   "declared_changes": 1,
+   "file": "neg_borrowed_scope.json"
+  },
+  {
+   "wp": "CH-13",
+   "case": "dropped_negation",
+   "status": "WRITTEN",
+   "changed": "evidence.atomic_requirements[1].drops_negation",
+   "declared_changes": 1,
+   "file": "neg_dropped_negation.json"
+  },
+  {
+   "wp": "CH-13",
+   "case": "parent_count_as_children",
+   "status": "WRITTEN",
+   "changed": "evidence.parent_child.claimed_children",
+   "declared_changes": 1,
+   "file": "neg_parent_count_as_children.json"
+  },
+  {
+   "wp": "CH-13",
+   "case": "taxonomy_rewrites_id",
+   "status": "WRITTEN",
+   "changed": "evidence.taxonomy.rewrites_original_id",
+   "declared_changes": 1,
+   "file": "neg_taxonomy_rewrites_id.json"
+  },
+  {
+   "wp": "CH-13",
+   "case": "veto_removes_requirement",
+   "status": "WRITTEN",
+   "changed": "evidence.profile.removes_requirement",
+   "declared_changes": 1,
+   "file": "neg_veto_removes_requirement.json"
+  },
+  {
+   "wp": "CH-13",
+   "case": "pi_domain_empty",
+   "status": "WRITTEN",
+   "changed": "evidence.pi_domains[17].semantic_input",
+   "declared_changes": 1,
+   "file": "neg_pi_domain_empty.json"
+  },
+  {
+   "wp": "CH-14",
+   "case": "borrowed_scope",
+   "status": "WRITTEN",
+   "changed": "evidence.repo.scope",
+   "declared_changes": 1,
+   "file": "neg_borrowed_scope.json"
+  },
+  {
+   "wp": "CH-14",
+   "case": "remote_main_as_head",
+   "status": "WRITTEN",
+   "changed": "evidence.repo.head_source",
+   "declared_changes": 1,
+   "file": "neg_remote_main_as_head.json"
+  },
+  {
+   "wp": "CH-14",
+   "case": "path_string_as_permission",
+   "status": "WRITTEN",
+   "changed": "writeset.paths",
+   "declared_changes": 1,
+   "file": "neg_path_string_as_permission.json"
+  },
+  {
+   "wp": "CH-14",
+   "case": "reparse_undeclared",
+   "status": "WRITTEN",
+   "changed": "evidence.paths_checked.reparse",
+   "declared_changes": 1,
+   "file": "neg_reparse_undeclared.json"
+  },
+  {
+   "wp": "CH-14",
+   "case": "dirty_autoclean",
+   "status": "WRITTEN",
+   "changed": "evidence.dirty_split",
+   "declared_changes": 1,
+   "file": "neg_dirty_autoclean.json"
+  },
+  {
+   "wp": "CH-14",
+   "case": "preimage_absent",
+   "status": "WRITTEN",
+   "changed": "evidence.late_bind.paths",
+   "declared_changes": 1,
+   "file": "neg_preimage_absent.json"
+  },
+  {
+   "wp": "CH-16",
+   "case": "borrowed_scope",
+   "status": "WRITTEN",
+   "changed": "evidence.seams[0].join.subject_id",
+   "declared_changes": 1,
+   "file": "neg_borrowed_scope.json"
+  },
+  {
+   "wp": "CH-16",
+   "case": "arrow_only",
+   "status": "WRITTEN",
+   "changed": "evidence.seams[0].field_map",
+   "declared_changes": 1,
+   "file": "neg_arrow_only.json"
+  },
+  {
+   "wp": "CH-16",
+   "case": "one_ack_for_five",
+   "status": "WRITTEN",
+   "changed": "evidence.seams[2].ack.state",
+   "declared_changes": 1,
+   "file": "neg_one_ack_for_five.json"
+  },
+  {
+   "wp": "CH-16",
+   "case": "join_key_missing",
+   "status": "WRITTEN",
+   "changed": "evidence.seams[1].join.version",
+   "declared_changes": 1,
+   "file": "neg_join_key_missing.json"
+  },
+  {
+   "wp": "CH-16",
+   "case": "timeout_guessed_ack",
+   "status": "WRITTEN",
+   "changed": "evidence.guessed_ack",
+   "declared_changes": 1,
+   "file": "neg_timeout_guessed_ack.json"
+  },
+  {
+   "wp": "CH-20",
+   "case": "borrowed_scope",
+   "status": "WRITTEN",
+   "changed": "evidence.route.scope",
+   "declared_changes": 1,
+   "file": "neg_borrowed_scope.json"
+  },
+  {
+   "wp": "CH-20",
+   "case": "second_scheduler",
+   "status": "WRITTEN",
+   "changed": "evidence.second_scheduler",
+   "declared_changes": 1,
+   "file": "neg_second_scheduler.json"
+  },
+  {
+   "wp": "CH-20",
+   "case": "lease_absent",
+   "status": "WRITTEN",
+   "changed": "evidence.lease",
+   "declared_changes": 1,
+   "file": "neg_lease_absent.json"
+  },
+  {
+   "wp": "CH-20",
+   "case": "blind_retry",
+   "status": "WRITTEN",
+   "changed": "evidence.interrupted",
+   "declared_changes": 1,
+   "file": "neg_blind_retry.json"
+  },
+  {
+   "wp": "CH-20",
+   "case": "card_done_as_world",
+   "status": "WRITTEN",
+   "changed": "evidence.card_done",
+   "declared_changes": 1,
+   "file": "neg_card_done_as_world.json"
+  },
+  {
+   "wp": "CH-20",
+   "case": "shared_home",
+   "status": "WRITTEN",
+   "changed": "evidence.home_shared",
+   "declared_changes": 1,
+   "file": "neg_shared_home.json"
+  },
+  {
+   "wp": "CH-39",
+   "case": "borrowed_scope",
+   "status": "WRITTEN",
+   "changed": "evidence.scope_evidence.scope",
+   "declared_changes": 1,
+   "file": "neg_borrowed_scope.json"
+  },
+  {
+   "wp": "CH-39",
+   "case": "shared_principal",
+   "status": "WRITTEN",
+   "changed": "evidence.principals.checker",
+   "declared_changes": 1,
+   "file": "neg_shared_principal.json"
+  },
+  {
+   "wp": "CH-39",
+   "case": "secret_in_argv",
+   "status": "WRITTEN",
+   "changed": "evidence.argv[0]",
+   "declared_changes": 1,
+   "file": "neg_secret_in_argv.json"
+  },
+  {
+   "wp": "CH-39",
+   "case": "source_expands_authority",
+   "status": "WRITTEN",
+   "changed": "evidence.source_instruction_executed",
+   "declared_changes": 1,
+   "file": "neg_source_expands_authority.json"
+  },
+  {
+   "wp": "CH-39",
+   "case": "dev_grant_for_ops",
+   "status": "WRITTEN",
+   "changed": "evidence.effects[1].permission",
+   "declared_changes": 1,
+   "file": "neg_dev_grant_for_ops.json"
+  },
+  {
+   "wp": "CH-39",
+   "case": "self_signed_independent",
+   "status": "WRITTEN",
+   "changed": "evidence.claims_independent",
+   "declared_changes": 1,
+   "file": "neg_self_signed_independent.json"
+  },
+  {
+   "wp": "SLOTS24",
+   "case": "slot_missing",
+   "status": "WRITTEN",
+   "changed": "evidence.slots",
+   "declared_changes": 1,
+   "file": "neg_slot_missing.json"
+  },
+  {
+   "wp": "SLOTS24",
+   "case": "duplicate_slot",
+   "status": "WRITTEN",
+   "changed": "evidence.slots[1].slot",
+   "declared_changes": 1,
+   "file": "neg_duplicate_slot.json"
+  },
+  {
+   "wp": "SLOTS24",
+   "case": "empty_pos",
+   "status": "WRITTEN",
+   "changed": "evidence.slots[0].pos",
+   "declared_changes": 1,
+   "file": "neg_empty_pos.json"
+  },
+  {
+   "wp": "SLOTS24",
+   "case": "licence_undeclared",
+   "status": "WRITTEN",
+   "changed": "evidence.slots[0].license_status",
+   "declared_changes": 1,
+   "file": "neg_licence_undeclared.json"
+  },
+  {
+   "wp": "SLOTS24",
+   "case": "wave_mismatch",
+   "status": "WRITTEN",
+   "changed": "evidence.slots[0].primary_wp",
+   "declared_changes": 1,
+   "file": "neg_wave_mismatch.json"
+  },
+  {
+   "wp": "SLOTS24",
+   "case": "two_active",
+   "status": "WRITTEN",
+   "changed": "evidence.slots[0].active_count",
+   "declared_changes": 1,
+   "file": "neg_two_active.json"
+  },
+  {
+   "wp": "SLOTS24",
+   "case": "install_effect",
+   "status": "WRITTEN",
+   "changed": "writeset.effect",
+   "declared_changes": 1,
+   "file": "neg_install_effect.json"
+  },
+  {
+   "wp": "VN-08",
+   "case": "vn_source_borrowed_scope",
+   "status": "WRITTEN",
+   "changed": "evidence.source.subject_id",
+   "declared_changes": 1,
+   "file": "neg_vn_source_borrowed_scope.json"
+  },
+  {
+   "wp": "VN-08",
+   "case": "vn_author_as_producer",
+   "status": "WRITTEN",
+   "changed": "evidence.producer.is_author",
+   "declared_changes": 1,
+   "file": "neg_vn_author_as_producer.json"
+  },
+  {
+   "wp": "VN-08",
+   "case": "vn_no_consumer_ack",
+   "status": "WRITTEN",
+   "changed": "consumer.ack.state",
+   "declared_changes": 1,
+   "file": "neg_vn_no_consumer_ack.json"
+  },
+  {
+   "wp": "VN-08",
+   "case": "vn_borrowed_raw",
+   "status": "WRITTEN",
+   "changed": "evidence.borrowed_from_other_candidate",
+   "declared_changes": 1,
+   "file": "neg_vn_borrowed_raw.json"
+  },
+  {
+   "wp": "VN-08",
+   "case": "vn_nav_as_issuer",
+   "status": "WRITTEN",
+   "changed": "evidence.navigation.nav_used_as_issuer",
+   "declared_changes": 1,
+   "file": "neg_vn_nav_as_issuer.json"
+  },
+  {
+   "wp": "VN-09",
+   "case": "vn_source_borrowed_scope",
+   "status": "WRITTEN",
+   "changed": "evidence.source.subject_id",
+   "declared_changes": 1,
+   "file": "neg_vn_source_borrowed_scope.json"
+  },
+  {
+   "wp": "VN-09",
+   "case": "vn_author_as_producer",
+   "status": "WRITTEN",
+   "changed": "evidence.producer.is_author",
+   "declared_changes": 1,
+   "file": "neg_vn_author_as_producer.json"
+  },
+  {
+   "wp": "VN-09",
+   "case": "vn_no_consumer_ack",
+   "status": "WRITTEN",
+   "changed": "consumer.ack.state",
+   "declared_changes": 1,
+   "file": "neg_vn_no_consumer_ack.json"
+  },
+  {
+   "wp": "VN-09",
+   "case": "vn_borrowed_raw",
+   "status": "WRITTEN",
+   "changed": "evidence.borrowed_from_other_candidate",
+   "declared_changes": 1,
+   "file": "neg_vn_borrowed_raw.json"
+  },
+  {
+   "wp": "VN-09",
+   "case": "vn_second_compiler",
+   "status": "WRITTEN",
+   "changed": "evidence.compiler.second_compiler",
+   "declared_changes": 1,
+   "file": "neg_vn_second_compiler.json"
+  },
+  {
+   "wp": "VN-10",
+   "case": "vn_source_borrowed_scope",
+   "status": "WRITTEN",
+   "changed": "evidence.source.subject_id",
+   "declared_changes": 1,
+   "file": "neg_vn_source_borrowed_scope.json"
+  },
+  {
+   "wp": "VN-10",
+   "case": "vn_author_as_producer",
+   "status": "WRITTEN",
+   "changed": "evidence.producer.is_author",
+   "declared_changes": 1,
+   "file": "neg_vn_author_as_producer.json"
+  },
+  {
+   "wp": "VN-10",
+   "case": "vn_no_consumer_ack",
+   "status": "WRITTEN",
+   "changed": "consumer.ack.state",
+   "declared_changes": 1,
+   "file": "neg_vn_no_consumer_ack.json"
+  },
+  {
+   "wp": "VN-10",
+   "case": "vn_borrowed_raw",
+   "status": "WRITTEN",
+   "changed": "evidence.borrowed_from_other_candidate",
+   "declared_changes": 1,
+   "file": "neg_vn_borrowed_raw.json"
+  },
+  {
+   "wp": "VN-10",
+   "case": "vn_seam_without_ack",
+   "status": "WRITTEN",
+   "changed": "evidence.seams[2].ack.state",
+   "declared_changes": 1,
+   "file": "neg_vn_seam_without_ack.json"
+  },
+  {
+   "wp": "VN-11",
+   "case": "vn_source_borrowed_scope",
+   "status": "WRITTEN",
+   "changed": "evidence.source.subject_id",
+   "declared_changes": 1,
+   "file": "neg_vn_source_borrowed_scope.json"
+  },
+  {
+   "wp": "VN-11",
+   "case": "vn_author_as_producer",
+   "status": "WRITTEN",
+   "changed": "evidence.producer.is_author",
+   "declared_changes": 1,
+   "file": "neg_vn_author_as_producer.json"
+  },
+  {
+   "wp": "VN-11",
+   "case": "vn_no_consumer_ack",
+   "status": "WRITTEN",
+   "changed": "consumer.ack.state",
+   "declared_changes": 1,
+   "file": "neg_vn_no_consumer_ack.json"
+  },
+  {
+   "wp": "VN-11",
+   "case": "vn_borrowed_raw",
+   "status": "WRITTEN",
+   "changed": "evidence.borrowed_from_other_candidate",
+   "declared_changes": 1,
+   "file": "neg_vn_borrowed_raw.json"
+  },
+  {
+   "wp": "VN-11",
+   "case": "vn_selected_as_served",
+   "status": "WRITTEN",
+   "changed": "evidence.runtime.actual_served_observed",
+   "declared_changes": 1,
+   "file": "neg_vn_selected_as_served.json"
+  },
+  {
+   "wp": "VN-12",
+   "case": "vn_source_borrowed_scope",
+   "status": "WRITTEN",
+   "changed": "evidence.source.subject_id",
+   "declared_changes": 1,
+   "file": "neg_vn_source_borrowed_scope.json"
+  },
+  {
+   "wp": "VN-12",
+   "case": "vn_author_as_producer",
+   "status": "WRITTEN",
+   "changed": "evidence.producer.is_author",
+   "declared_changes": 1,
+   "file": "neg_vn_author_as_producer.json"
+  },
+  {
+   "wp": "VN-12",
+   "case": "vn_no_consumer_ack",
+   "status": "WRITTEN",
+   "changed": "consumer.ack.state",
+   "declared_changes": 1,
+   "file": "neg_vn_no_consumer_ack.json"
+  },
+  {
+   "wp": "VN-12",
+   "case": "vn_borrowed_raw",
+   "status": "WRITTEN",
+   "changed": "evidence.borrowed_from_other_candidate",
+   "declared_changes": 1,
+   "file": "neg_vn_borrowed_raw.json"
+  },
+  {
+   "wp": "VN-12",
+   "case": "vn_owner_as_principal",
+   "status": "WRITTEN",
+   "changed": "evidence.principals.checker",
+   "declared_changes": 1,
+   "file": "neg_vn_owner_as_principal.json"
+  },
+  {
+   "wp": "VN-13",
+   "case": "vn_source_borrowed_scope",
+   "status": "WRITTEN",
+   "changed": "evidence.source.subject_id",
+   "declared_changes": 1,
+   "file": "neg_vn_source_borrowed_scope.json"
+  },
+  {
+   "wp": "VN-13",
+   "case": "vn_author_as_producer",
+   "status": "WRITTEN",
+   "changed": "evidence.producer.is_author",
+   "declared_changes": 1,
+   "file": "neg_vn_author_as_producer.json"
+  },
+  {
+   "wp": "VN-13",
+   "case": "vn_no_consumer_ack",
+   "status": "WRITTEN",
+   "changed": "consumer.ack.state",
+   "declared_changes": 1,
+   "file": "neg_vn_no_consumer_ack.json"
+  },
+  {
+   "wp": "VN-13",
+   "case": "vn_borrowed_raw",
+   "status": "WRITTEN",
+   "changed": "evidence.borrowed_from_other_candidate",
+   "declared_changes": 1,
+   "file": "neg_vn_borrowed_raw.json"
+  },
+  {
+   "wp": "VN-13",
+   "case": "vn_two_writesets",
+   "status": "WRITTEN",
+   "changed": "evidence.repo.writeset_paths",
+   "declared_changes": 1,
+   "file": "neg_vn_two_writesets.json"
+  },
+  {
+   "wp": "VN-14",
+   "case": "vn_source_borrowed_scope",
+   "status": "WRITTEN",
+   "changed": "evidence.source.subject_id",
+   "declared_changes": 1,
+   "file": "neg_vn_source_borrowed_scope.json"
+  },
+  {
+   "wp": "VN-14",
+   "case": "vn_author_as_producer",
+   "status": "WRITTEN",
+   "changed": "evidence.producer.is_author",
+   "declared_changes": 1,
+   "file": "neg_vn_author_as_producer.json"
+  },
+  {
+   "wp": "VN-14",
+   "case": "vn_no_consumer_ack",
+   "status": "WRITTEN",
+   "changed": "consumer.ack.state",
+   "declared_changes": 1,
+   "file": "neg_vn_no_consumer_ack.json"
+  },
+  {
+   "wp": "VN-14",
+   "case": "vn_borrowed_raw",
+   "status": "WRITTEN",
+   "changed": "evidence.borrowed_from_other_candidate",
+   "declared_changes": 1,
+   "file": "neg_vn_borrowed_raw.json"
+  },
+  {
+   "wp": "VN-14",
+   "case": "vn_duplicate_tool",
+   "status": "WRITTEN",
+   "changed": "evidence.tools.duplicate_installed",
+   "declared_changes": 1,
+   "file": "neg_vn_duplicate_tool.json"
+  },
+  {
+   "wp": "LOOP",
+   "case": "loop_checkpoint_missing",
+   "status": "WRITTEN",
+   "changed": "evidence.checkpoint.artifact_digests",
+   "expect_code": "CHECKPOINT_MISSING"
+  },
+  {
+   "wp": "LOOP",
+   "case": "loop_resume_replayed",
+   "status": "WRITTEN",
+   "changed": "evidence.resume.replayed",
+   "expect_code": "RESUME_KEY_REPLAYED"
+  },
+  {
+   "wp": "LOOP",
+   "case": "loop_watchdog_stalled",
+   "status": "WRITTEN",
+   "changed": "evidence.watchdog.evidence_delta",
+   "expect_code": "WATCHDOG_NO_PROGRESS"
+  },
+  {
+   "wp": "LOOP",
+   "case": "loop_budget_exceeded",
+   "status": "WRITTEN",
+   "changed": "evidence.budget.used_turns",
+   "expect_code": "BUDGET_EXCEEDED"
+  }
+ ]
+}

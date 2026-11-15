@@ -1,0 +1,134 @@
+{
+ "schema": "FHS_NEXT.W1R4.OwnerSemanticAccept/1",
+ "round": "W1_R4_ALIGNMENT_20261115",
+ "body": {
+  "schema": "FHS_NEXT.W1R4.OWNER_ACCEPT_BODY/1",
+  "round": "W1_R4_ALIGNMENT_20261115",
+  "subject": {
+   "id": "W1-REPAIR-r3-2026-11-15",
+   "sha256": "5aca7b5e2bdc67d13dff95432b14d7e152f18e3d341971490b7a77c395345a6b",
+   "bytes": 2064944
+  },
+  "gate": {
+   "receipt": "out/GATE_W1R4.json",
+   "sha256": "5e94c175dbfa564231a6c217b6c037931c0968ad32525071133c3b0fb8fa6afb",
+   "verdict": "PASS",
+   "segments": {
+    "A_units": {
+     "total": 142,
+     "pass": 142,
+     "fail": 0,
+     "missing": 0
+    },
+    "B_findings_exist": {
+     "total": 18,
+     "pass": 18,
+     "fail": 0,
+     "missing": 0
+    },
+    "B2_evidence_sha_recomputed": {
+     "total": 18,
+     "pass": 18,
+     "fail": 0,
+     "missing": 0
+    },
+    "C_journeys": {
+     "total": 17,
+     "pass": 17,
+     "fail": 0,
+     "missing": 0
+    },
+    "D_effects": {
+     "total": 6,
+     "pass": 6,
+     "fail": 0,
+     "missing": 0
+    },
+    "E_chapter_coverage": {
+     "total": 13,
+     "pass": 13,
+     "fail": 0,
+     "missing": 0
+    },
+    "SELFTEST": {
+     "total": 8,
+     "pass": 8,
+     "fail": 0,
+     "missing": 0
+    }
+   }
+  },
+  "review": {
+   "receipt": "out/REVIEW_CYCLES_R4.json",
+   "sha256": "eece3be9b1b42d2d418556c4b478c00dbf400639c3c44b00c75f2c32631cf3e5",
+   "cycles": [
+    {
+     "cycle": 1,
+     "fails": 6,
+     "verdict": "REVISE"
+    },
+    {
+     "cycle": 2,
+     "fails": 1,
+     "verdict": "REVISE"
+    },
+    {
+     "cycle": 3,
+     "fails": 0,
+     "verdict": "APPROVED"
+    }
+   ],
+   "final": "APPROVED"
+  },
+  "published": {
+   "fabric": {
+    "repo": "shw097-team/Fabric",
+    "pr": 65,
+    "commit": "37aa6d5584bb2810a1b316e101565fb7415d7adc",
+    "branch": "w1r4/evidence-20261115"
+   },
+   "product": {
+    "repo": "shw097-team/FHS_vNEXT",
+    "pr": 2,
+    "commit": "9e305fab73fd67e925553542ea36cd3fa1482fce",
+    "branch": "w1r4/referees-20261115"
+   }
+  },
+  "accepts": [
+   "十三個 W1 章各有一張可執行裁判且 POS 全綠",
+   "五張新章卡的 NEG 在宣告層回宣告碼",
+   "七個 VN 增量與 24 槽內容已落成案例",
+   "四件無人值守閉環契約有 POS/NEG",
+   "gate 逐檔重算 sha256"
+  ],
+  "not_claimed": [
+   "ORIGINAL_ACK",
+   "NATIVE_SIGNED",
+   "INDEPENDENT_PASS",
+   "RELEASE_GRANTED",
+   "principal_separation"
+  ]
+ },
+ "canonical_rule": {
+  "function": "jcs-compact",
+  "encoding": "utf-8",
+  "notes": "sorted keys, separators (',',':'), ensure_ascii=False"
+ },
+ "payload_sha256": "bc68490b0456bb1ce81fcd6fe63e13ffd6d9c06dde94a55196cd3465297d57b5",
+ "signature_hex": "3cc8da45dd5bebbdd5fde3791f6ad487f872960cac033662b0bd57f9f1bf28a0e39690848a2a1ef7cc5e5813bec5d11a62d9ec0f652cc782b92a8d58a40bba02",
+ "alg": "ed25519",
+ "signature_meta": {
+  "window_id": "WIN-2f2556df28dc",
+  "ops_used": 1,
+  "owner_fingerprint": "412b351937be72a1",
+  "registry_at_open": "89121f26c29d7da85123042aa7928f6986ea3213b85b91fb6d6b5358ae0b10a6"
+ },
+ "verified_locally_against": "owner_enrollment.public_hex",
+ "not_claimed": [
+  "ORIGINAL_ACK",
+  "NATIVE_SIGNED",
+  "INDEPENDENT_PASS",
+  "RELEASE_GRANTED",
+  "principal_separation"
+ ]
+}

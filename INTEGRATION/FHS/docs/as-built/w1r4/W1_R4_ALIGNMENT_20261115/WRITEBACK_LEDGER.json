@@ -1,0 +1,39 @@
+{
+ "schema": "FHS_NEXT.W1R4.WRITEBACK_LEDGER/1",
+ "at_utc": "2026-11-15T05:25:30+00:00",
+ "round": "W1_R4_ALIGNMENT_20261115",
+ "entries": [
+  {
+   "target": "L0 FHS_vNEXT_總藍圖",
+   "action": "NOT_PERFORMED_BY_DESIGN",
+   "reason": "上游原則層由 L3 原主責維護；本輪只做 W1 受影補齊，改上游會越權"
+  },
+  {
+   "target": "L1 FHS_vNEXT_PLP_藍圖",
+   "action": "NOT_PERFORMED_BY_DESIGN",
+   "reason": "同上；本輪沒有新增產品語義，只把既有章契約可執行化"
+  },
+  {
+   "target": "L2 FHS_vNEXT_PLP_全波次藍圖",
+   "action": "NOT_PERFORMED_BY_DESIGN",
+   "reason": "WP/Edge 指派不變；五章本來就是 W1，本輪是補施工不是改指派"
+  },
+  {
+   "target": "W0 交付版",
+   "action": "READ_ONLY_CITED",
+   "reason": "作為章→波指派權威依據（X01/X02），未修改"
+  },
+  {
+   "target": "W1 r3 正文",
+   "action": "ADDENDUM_IN_ROUND",
+   "reason": "r4 以同 Subject 的輪次補件記錄（docs/W1_R4_REPORT.md），不重寫 r3 bytes；r3 sha 5aca7b5e… 保持不變",
+   "r3_sha256": "5aca7b5e2bdc67d13dff95432b14d7e152f18e3d341971490b7a77c395345a6b"
+  },
+  {
+   "target": "shw097-team/FHS_vNEXT",
+   "action": "PENDING_PUBLISH",
+   "reason": "r4 的裁判、fixtures、報告、openspec 變更將以 candidate 分支＋PR 交付"
+  }
+ ],
+ "note": "本輪沒有改任何上游藍圖 bytes；所有新增都在輪次內，並準備以 PR 交付到產品庫。"
+}

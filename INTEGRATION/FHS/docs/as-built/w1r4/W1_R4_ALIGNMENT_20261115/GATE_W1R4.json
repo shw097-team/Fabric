@@ -1,0 +1,2291 @@
+{
+ "schema": "FHS_NEXT.W1R4.GATE/1",
+ "round": "W1_R4_ALIGNMENT_20261115",
+ "claim": "AUTHOR_W1_CHECK / LOCAL_CHECK / NOT_NATIVE / NOT_INDEPENDENT / NOT_RELEASE",
+ "A_units": {
+  "summary": {
+   "total": 142,
+   "pass": 142,
+   "fail": 0,
+   "missing": 0
+  },
+  "cases": [
+   {
+    "unit": "WP-FHS-02",
+    "case": "pos",
+    "expect": "ACK",
+    "got": "ACK",
+    "code": null,
+    "layer": null,
+    "exit": 0,
+    "status": "PASS"
+   },
+   {
+    "unit": "WP-FHS-02",
+    "case": "neg_navigation_as_authority",
+    "expect": "POLICY_NOT_LOADED",
+    "got": "NACK",
+    "code": "POLICY_NOT_LOADED",
+    "layer": 1,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "WP-FHS-02",
+    "case": "neg_digest_missing",
+    "expect": "POLICY_LOADED_ACK_MISSING",
+    "got": "NACK",
+    "code": "POLICY_LOADED_ACK_MISSING",
+    "layer": 2,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "WP-FHS-02",
+    "case": "neg_borrowed_scope",
+    "expect": "POLICY_LOADED_ACK_MISSING",
+    "got": "NACK",
+    "code": "POLICY_LOADED_ACK_MISSING",
+    "layer": 2,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "WP-FHS-02",
+    "case": "neg_no_consumer_ack",
+    "expect": "POLICY_LOADED_ACK_MISSING",
+    "got": "NACK",
+    "code": "POLICY_LOADED_ACK_MISSING",
+    "layer": 3,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "WP-FHS-02",
+    "case": "neg_sec_epoch_escalation",
+    "expect": "POLICY_SIGNER_OR_EPOCH_DENY",
+    "got": "NACK",
+    "code": "POLICY_SIGNER_OR_EPOCH_DENY",
+    "layer": 4,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "WP-FHS-02",
+    "case": "neg_sec_writeset_escape",
+    "expect": "POLICY_SIGNER_OR_EPOCH_DENY",
+    "got": "NACK",
+    "code": "POLICY_SIGNER_OR_EPOCH_DENY",
+    "layer": 4,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "WP-FHS-03",
+    "case": "pos",
+    "expect": "ACK",
+    "got": "ACK",
+    "code": null,
+    "layer": null,
+    "exit": 0,
+    "status": "PASS"
+   },
+   {
+    "unit": "WP-FHS-03",
+    "case": "neg_doc_patch_as_applied",
+    "expect": "GUARD_RAW_MISMATCH",
+    "got": "NACK",
+    "code": "GUARD_RAW_MISMATCH",
+    "layer": 1,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "WP-FHS-03",
+    "case": "neg_borrowed_scope",
+    "expect": "ISSUER_WORK_BINDING_NACK",
+    "got": "NACK",
+    "code": "ISSUER_WORK_BINDING_NACK",
+    "layer": 3,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "WP-FHS-03",
+    "case": "neg_missing_sod",
+    "expect": "ISSUER_WORK_BINDING_NACK",
+    "got": "NACK",
+    "code": "ISSUER_WORK_BINDING_NACK",
+    "layer": 3,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "WP-FHS-03",
+    "case": "neg_relay_closure_absent",
+    "expect": "RETIREMENT_BOUNDARY_UNPROVEN",
+    "got": "NACK",
+    "code": "RETIREMENT_BOUNDARY_UNPROVEN",
+    "layer": 4,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "WP-FHS-03",
+    "case": "neg_sec_issuer_impersonation",
+    "expect": "ISSUER_PRINCIPAL_ACL_DENY",
+    "got": "NACK",
+    "code": "ISSUER_PRINCIPAL_ACL_DENY",
+    "layer": 5,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "WP-FHS-03",
+    "case": "neg_sec_nonce_reuse",
+    "expect": "ISSUER_PRINCIPAL_ACL_DENY",
+    "got": "NACK",
+    "code": "ISSUER_PRINCIPAL_ACL_DENY",
+    "layer": 5,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "WP-FHS-04",
+    "case": "pos",
+    "expect": "ACK",
+    "got": "ACK",
+    "code": null,
+    "layer": null,
+    "exit": 0,
+    "status": "PASS"
+   },
+   {
+    "unit": "WP-FHS-04",
+    "case": "neg_selected_as_used",
+    "expect": "RUNTIME_USE_NOT_OBSERVED",
+    "got": "NACK",
+    "code": "RUNTIME_USE_NOT_OBSERVED",
+    "layer": 1,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "WP-FHS-04",
+    "case": "neg_borrowed_scope",
+    "expect": "ACTUAL_SERVED_NOT_OBSERVED",
+    "got": "NACK",
+    "code": "ACTUAL_SERVED_NOT_OBSERVED",
+    "layer": 4,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "WP-FHS-04",
+    "case": "neg_fallback_overwrites_primary",
+    "expect": "SERVED_ASSIGNMENT_OVERWRITE",
+    "got": "NACK",
+    "code": "SERVED_ASSIGNMENT_OVERWRITE",
+    "layer": 3,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "WP-FHS-04",
+    "case": "neg_lease_absent",
+    "expect": "ACTUAL_SERVED_NOT_OBSERVED",
+    "got": "NACK",
+    "code": "ACTUAL_SERVED_NOT_OBSERVED",
+    "layer": 4,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "WP-FHS-04",
+    "case": "neg_sec_cross_profile_home",
+    "expect": "CROSS_PROFILE_SECRET_DENY",
+    "got": "NACK",
+    "code": "CROSS_PROFILE_SECRET_DENY",
+    "layer": 5,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "WP-FHS-05",
+    "case": "pos",
+    "expect": "ACK",
+    "got": "ACK",
+    "code": null,
+    "layer": null,
+    "exit": 0,
+    "status": "PASS"
+   },
+   {
+    "unit": "WP-FHS-05",
+    "case": "neg_author_ack_as_compiler",
+    "expect": "ORIGINAL_PIPD_REPARSE_UNBOUND",
+    "got": "NACK",
+    "code": "ORIGINAL_PIPD_REPARSE_UNBOUND",
+    "layer": 2,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "WP-FHS-05",
+    "case": "neg_registry_count_mismatch",
+    "expect": "ORIGINAL_PIPD_REPARSE_UNBOUND",
+    "got": "NACK",
+    "code": "ORIGINAL_PIPD_REPARSE_UNBOUND",
+    "layer": 1,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "WP-FHS-05",
+    "case": "neg_pd_repo_context_absent",
+    "expect": "PD_REPOCONTEXT_UNBOUND",
+    "got": "NACK",
+    "code": "PD_REPOCONTEXT_UNBOUND",
+    "layer": 3,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "WP-FHS-05",
+    "case": "neg_borrowed_scope",
+    "expect": "PD_REPOCONTEXT_UNBOUND",
+    "got": "NACK",
+    "code": "PD_REPOCONTEXT_UNBOUND",
+    "layer": 3,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "WP-FHS-05",
+    "case": "neg_sec_shadow_writer",
+    "expect": "PIPD_SHADOW_WRITER_DENY",
+    "got": "NACK",
+    "code": "PIPD_SHADOW_WRITER_DENY",
+    "layer": 5,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "WP-FHS-07",
+    "case": "pos",
+    "expect": "ACK",
+    "got": "ACK",
+    "code": null,
+    "layer": null,
+    "exit": 0,
+    "status": "PASS"
+   },
+   {
+    "unit": "WP-FHS-07",
+    "case": "neg_guide_self_writes_plan",
+    "expect": "PLAN_RECEIVER_UNBOUND",
+    "got": "NACK",
+    "code": "PLAN_RECEIVER_UNBOUND",
+    "layer": 1,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "WP-FHS-07",
+    "case": "neg_stale_revision",
+    "expect": "PLAN_CAS_ACK_MISSING",
+    "got": "NACK",
+    "code": "PLAN_CAS_ACK_MISSING",
+    "layer": 2,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "WP-FHS-07",
+    "case": "neg_conflict_not_reread",
+    "expect": "PLAN_CAS_ACK_MISSING",
+    "got": "NACK",
+    "code": "PLAN_CAS_ACK_MISSING",
+    "layer": 3,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "WP-FHS-07",
+    "case": "neg_borrowed_scope",
+    "expect": "PLAN_CAS_ACK_MISSING",
+    "got": "NACK",
+    "code": "PLAN_CAS_ACK_MISSING",
+    "layer": 2,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "WP-FHS-07",
+    "case": "neg_sec_cross_work_plan",
+    "expect": "CROSS_WORK_PLAN_AUTH_DENY",
+    "got": "NACK",
+    "code": "CROSS_WORK_PLAN_AUTH_DENY",
+    "layer": 4,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "WP-FHS-11",
+    "case": "pos",
+    "expect": "ACK",
+    "got": "ACK",
+    "code": null,
+    "layer": null,
+    "exit": 0,
+    "status": "PASS"
+   },
+   {
+    "unit": "WP-FHS-11",
+    "case": "neg_file_exists_as_loaded",
+    "expect": "HOST_LOADED_UNPROVEN",
+    "got": "NACK",
+    "code": "HOST_LOADED_UNPROVEN",
+    "layer": 2,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "WP-FHS-11",
+    "case": "neg_stage_absent",
+    "expect": "HOST_SP_NOT_QUALIFIED",
+    "got": "NACK",
+    "code": "HOST_SP_NOT_QUALIFIED",
+    "layer": 1,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "WP-FHS-11",
+    "case": "neg_foreign_host_evidence",
+    "expect": "HOST_EVIDENCE_FOREIGN_NACK",
+    "got": "NACK",
+    "code": "HOST_EVIDENCE_FOREIGN_NACK",
+    "layer": 3,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "WP-FHS-11",
+    "case": "neg_borrowed_scope",
+    "expect": "HOST_EVIDENCE_FOREIGN_NACK",
+    "got": "NACK",
+    "code": "HOST_EVIDENCE_FOREIGN_NACK",
+    "layer": 3,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "WP-FHS-11",
+    "case": "neg_sec_checker_impersonation",
+    "expect": "HOST_CHECKER_IMPERSONATION_DENY",
+    "got": "NACK",
+    "code": "HOST_CHECKER_IMPERSONATION_DENY",
+    "layer": 4,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "WP-FHS-17",
+    "case": "pos",
+    "expect": "ACK",
+    "got": "ACK",
+    "code": null,
+    "layer": null,
+    "exit": 0,
+    "status": "PASS"
+   },
+   {
+    "unit": "WP-FHS-17",
+    "case": "neg_slot_set_incomplete",
+    "expect": "TECH_NEED_OR_LICENSE_HOLD",
+    "got": "NACK",
+    "code": "TECH_NEED_OR_LICENSE_HOLD",
+    "layer": 1,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "WP-FHS-17",
+    "case": "neg_license_unknown",
+    "expect": "TECH_NEED_OR_LICENSE_HOLD",
+    "got": "NACK",
+    "code": "TECH_NEED_OR_LICENSE_HOLD",
+    "layer": 2,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "WP-FHS-17",
+    "case": "neg_two_active_occupants",
+    "expect": "CAPABILITY_NOT_QUALIFIED",
+    "got": "NACK",
+    "code": "CAPABILITY_NOT_QUALIFIED",
+    "layer": 3,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "WP-FHS-17",
+    "case": "neg_disposition_downgrade",
+    "expect": "CAPABILITY_NOT_QUALIFIED",
+    "got": "NACK",
+    "code": "CAPABILITY_NOT_QUALIFIED",
+    "layer": 4,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "WP-FHS-17",
+    "case": "neg_sec_install_privilege",
+    "expect": "INSTALLER_PRIVILEGE_DENY",
+    "got": "NACK",
+    "code": "INSTALLER_PRIVILEGE_DENY",
+    "layer": 5,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "WP-FHS-20",
+    "case": "pos",
+    "expect": "ACK",
+    "got": "ACK",
+    "code": null,
+    "layer": null,
+    "exit": 0,
+    "status": "PASS"
+   },
+   {
+    "unit": "WP-FHS-20",
+    "case": "neg_mvi_as_full_product",
+    "expect": "PRODUCT_APPLICABILITY_HOLD",
+    "got": "NACK",
+    "code": "PRODUCT_APPLICABILITY_HOLD",
+    "layer": 1,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "WP-FHS-20",
+    "case": "neg_cell_fields_incomplete",
+    "expect": "PRODUCT_APPLICABILITY_HOLD",
+    "got": "NACK",
+    "code": "PRODUCT_APPLICABILITY_HOLD",
+    "layer": 2,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "WP-FHS-20",
+    "case": "neg_legacy_read_guessed",
+    "expect": "PRODUCT_APPLICABILITY_HOLD",
+    "got": "NACK",
+    "code": "PRODUCT_APPLICABILITY_HOLD",
+    "layer": 3,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "WP-FHS-20",
+    "case": "neg_no_cell_owner_ack",
+    "expect": "CELL_TOKEN_OWNER_ACK_MISSING",
+    "got": "NACK",
+    "code": "CELL_TOKEN_OWNER_ACK_MISSING",
+    "layer": 4,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "WP-FHS-20",
+    "case": "neg_sec_cross_host_receipt",
+    "expect": "CELL_RECEIPT_CROSS_HOST_DENY",
+    "got": "NACK",
+    "code": "CELL_RECEIPT_CROSS_HOST_DENY",
+    "layer": 5,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "CH-13",
+    "case": "pos",
+    "expect": "ACK",
+    "got": "ACK",
+    "code": null,
+    "layer": null,
+    "exit": 0,
+    "status": "PASS"
+   },
+   {
+    "unit": "CH-13",
+    "case": "neg_borrowed_scope",
+    "expect": "SOURCE_POLARITY_OR_PARENT_LOSS",
+    "got": "NACK",
+    "code": "SOURCE_POLARITY_OR_PARENT_LOSS",
+    "layer": 1,
+    "exit": 2,
+    "status": "PASS",
+    "expect_layer": 1
+   },
+   {
+    "unit": "CH-13",
+    "case": "neg_dropped_negation",
+    "expect": "SOURCE_POLARITY_OR_PARENT_LOSS",
+    "got": "NACK",
+    "code": "SOURCE_POLARITY_OR_PARENT_LOSS",
+    "layer": 2,
+    "exit": 2,
+    "status": "PASS",
+    "expect_layer": 2
+   },
+   {
+    "unit": "CH-13",
+    "case": "neg_parent_count_as_children",
+    "expect": "SOURCE_POLARITY_OR_PARENT_LOSS",
+    "got": "NACK",
+    "code": "SOURCE_POLARITY_OR_PARENT_LOSS",
+    "layer": 3,
+    "exit": 2,
+    "status": "PASS",
+    "expect_layer": 3
+   },
+   {
+    "unit": "CH-13",
+    "case": "neg_taxonomy_rewrites_id",
+    "expect": "SOURCE_POLARITY_OR_PARENT_LOSS",
+    "got": "NACK",
+    "code": "SOURCE_POLARITY_OR_PARENT_LOSS",
+    "layer": 4,
+    "exit": 2,
+    "status": "PASS",
+    "expect_layer": 4
+   },
+   {
+    "unit": "CH-13",
+    "case": "neg_veto_removes_requirement",
+    "expect": "SOURCE_POLARITY_OR_PARENT_LOSS",
+    "got": "NACK",
+    "code": "SOURCE_POLARITY_OR_PARENT_LOSS",
+    "layer": 5,
+    "exit": 2,
+    "status": "PASS",
+    "expect_layer": 5
+   },
+   {
+    "unit": "CH-13",
+    "case": "neg_pi_domain_empty",
+    "expect": "SOURCE_POLARITY_OR_PARENT_LOSS",
+    "got": "NACK",
+    "code": "SOURCE_POLARITY_OR_PARENT_LOSS",
+    "layer": 6,
+    "exit": 2,
+    "status": "PASS",
+    "expect_layer": 6
+   },
+   {
+    "unit": "CH-14",
+    "case": "pos",
+    "expect": "ACK",
+    "got": "ACK",
+    "code": null,
+    "layer": null,
+    "exit": 0,
+    "status": "PASS"
+   },
+   {
+    "unit": "CH-14",
+    "case": "neg_borrowed_scope",
+    "expect": "PD_CONTEXT_STALE_OR_UNBOUND",
+    "got": "NACK",
+    "code": "PD_CONTEXT_STALE_OR_UNBOUND",
+    "layer": 1,
+    "exit": 2,
+    "status": "PASS",
+    "expect_layer": 1
+   },
+   {
+    "unit": "CH-14",
+    "case": "neg_remote_main_as_head",
+    "expect": "PD_CONTEXT_STALE_OR_UNBOUND",
+    "got": "NACK",
+    "code": "PD_CONTEXT_STALE_OR_UNBOUND",
+    "layer": 2,
+    "exit": 2,
+    "status": "PASS",
+    "expect_layer": 2
+   },
+   {
+    "unit": "CH-14",
+    "case": "neg_path_string_as_permission",
+    "expect": "PD_CONTEXT_STALE_OR_UNBOUND",
+    "got": "NACK",
+    "code": "PD_CONTEXT_STALE_OR_UNBOUND",
+    "layer": 3,
+    "exit": 2,
+    "status": "PASS",
+    "expect_layer": 3
+   },
+   {
+    "unit": "CH-14",
+    "case": "neg_reparse_undeclared",
+    "expect": "PD_CONTEXT_STALE_OR_UNBOUND",
+    "got": "NACK",
+    "code": "PD_CONTEXT_STALE_OR_UNBOUND",
+    "layer": 4,
+    "exit": 2,
+    "status": "PASS",
+    "expect_layer": 4
+   },
+   {
+    "unit": "CH-14",
+    "case": "neg_dirty_autoclean",
+    "expect": "PD_CONTEXT_STALE_OR_UNBOUND",
+    "got": "NACK",
+    "code": "PD_CONTEXT_STALE_OR_UNBOUND",
+    "layer": 5,
+    "exit": 2,
+    "status": "PASS",
+    "expect_layer": 5
+   },
+   {
+    "unit": "CH-14",
+    "case": "neg_preimage_absent",
+    "expect": "PD_CONTEXT_STALE_OR_UNBOUND",
+    "got": "NACK",
+    "code": "PD_CONTEXT_STALE_OR_UNBOUND",
+    "layer": 6,
+    "exit": 2,
+    "status": "PASS",
+    "expect_layer": 6
+   },
+   {
+    "unit": "CH-16",
+    "case": "pos",
+    "expect": "ACK",
+    "got": "ACK",
+    "code": null,
+    "layer": null,
+    "exit": 0,
+    "status": "PASS"
+   },
+   {
+    "unit": "CH-16",
+    "case": "neg_borrowed_scope",
+    "expect": "ABI_JOIN_MISMATCH",
+    "got": "NACK",
+    "code": "ABI_JOIN_MISMATCH",
+    "layer": 2,
+    "exit": 2,
+    "status": "PASS",
+    "expect_layer": 2
+   },
+   {
+    "unit": "CH-16",
+    "case": "neg_arrow_only",
+    "expect": "ABI_JOIN_MISMATCH",
+    "got": "NACK",
+    "code": "ABI_JOIN_MISMATCH",
+    "layer": 1,
+    "exit": 2,
+    "status": "PASS",
+    "expect_layer": 1
+   },
+   {
+    "unit": "CH-16",
+    "case": "neg_one_ack_for_five",
+    "expect": "ABI_JOIN_MISMATCH",
+    "got": "NACK",
+    "code": "ABI_JOIN_MISMATCH",
+    "layer": 3,
+    "exit": 2,
+    "status": "PASS",
+    "expect_layer": 3
+   },
+   {
+    "unit": "CH-16",
+    "case": "neg_join_key_missing",
+    "expect": "ABI_JOIN_MISMATCH",
+    "got": "NACK",
+    "code": "ABI_JOIN_MISMATCH",
+    "layer": 2,
+    "exit": 2,
+    "status": "PASS",
+    "expect_layer": 2
+   },
+   {
+    "unit": "CH-16",
+    "case": "neg_timeout_guessed_ack",
+    "expect": "ABI_JOIN_MISMATCH",
+    "got": "NACK",
+    "code": "ABI_JOIN_MISMATCH",
+    "layer": 5,
+    "exit": 2,
+    "status": "PASS",
+    "expect_layer": 5
+   },
+   {
+    "unit": "CH-20",
+    "case": "pos",
+    "expect": "ACK",
+    "got": "ACK",
+    "code": null,
+    "layer": null,
+    "exit": 0,
+    "status": "PASS"
+   },
+   {
+    "unit": "CH-20",
+    "case": "neg_borrowed_scope",
+    "expect": "UNKNOWN_RECONCILE_REQUIRED",
+    "got": "NACK",
+    "code": "UNKNOWN_RECONCILE_REQUIRED",
+    "layer": 1,
+    "exit": 2,
+    "status": "PASS",
+    "expect_layer": 1
+   },
+   {
+    "unit": "CH-20",
+    "case": "neg_second_scheduler",
+    "expect": "UNKNOWN_RECONCILE_REQUIRED",
+    "got": "NACK",
+    "code": "UNKNOWN_RECONCILE_REQUIRED",
+    "layer": 2,
+    "exit": 2,
+    "status": "PASS",
+    "expect_layer": 2
+   },
+   {
+    "unit": "CH-20",
+    "case": "neg_lease_absent",
+    "expect": "UNKNOWN_RECONCILE_REQUIRED",
+    "got": "NACK",
+    "code": "UNKNOWN_RECONCILE_REQUIRED",
+    "layer": 3,
+    "exit": 2,
+    "status": "PASS",
+    "expect_layer": 3
+   },
+   {
+    "unit": "CH-20",
+    "case": "neg_blind_retry",
+    "expect": "UNKNOWN_RECONCILE_REQUIRED",
+    "got": "NACK",
+    "code": "UNKNOWN_RECONCILE_REQUIRED",
+    "layer": 4,
+    "exit": 2,
+    "status": "PASS",
+    "expect_layer": 4
+   },
+   {
+    "unit": "CH-20",
+    "case": "neg_card_done_as_world",
+    "expect": "UNKNOWN_RECONCILE_REQUIRED",
+    "got": "NACK",
+    "code": "UNKNOWN_RECONCILE_REQUIRED",
+    "layer": 5,
+    "exit": 2,
+    "status": "PASS",
+    "expect_layer": 5
+   },
+   {
+    "unit": "CH-20",
+    "case": "neg_shared_home",
+    "expect": "UNKNOWN_RECONCILE_REQUIRED",
+    "got": "NACK",
+    "code": "UNKNOWN_RECONCILE_REQUIRED",
+    "layer": 6,
+    "exit": 2,
+    "status": "PASS",
+    "expect_layer": 6
+   },
+   {
+    "unit": "CH-39",
+    "case": "pos",
+    "expect": "ACK",
+    "got": "ACK",
+    "code": null,
+    "layer": null,
+    "exit": 0,
+    "status": "PASS"
+   },
+   {
+    "unit": "CH-39",
+    "case": "neg_borrowed_scope",
+    "expect": "AUTHORITY_OR_SECRET_SCOPE_DENY",
+    "got": "NACK",
+    "code": "AUTHORITY_OR_SECRET_SCOPE_DENY",
+    "layer": 1,
+    "exit": 2,
+    "status": "PASS",
+    "expect_layer": 1
+   },
+   {
+    "unit": "CH-39",
+    "case": "neg_shared_principal",
+    "expect": "AUTHORITY_OR_SECRET_SCOPE_DENY",
+    "got": "NACK",
+    "code": "AUTHORITY_OR_SECRET_SCOPE_DENY",
+    "layer": 1,
+    "exit": 2,
+    "status": "PASS",
+    "expect_layer": 1
+   },
+   {
+    "unit": "CH-39",
+    "case": "neg_secret_in_argv",
+    "expect": "AUTHORITY_OR_SECRET_SCOPE_DENY",
+    "got": "NACK",
+    "code": "AUTHORITY_OR_SECRET_SCOPE_DENY",
+    "layer": 2,
+    "exit": 2,
+    "status": "PASS",
+    "expect_layer": 2
+   },
+   {
+    "unit": "CH-39",
+    "case": "neg_source_expands_authority",
+    "expect": "AUTHORITY_OR_SECRET_SCOPE_DENY",
+    "got": "NACK",
+    "code": "AUTHORITY_OR_SECRET_SCOPE_DENY",
+    "layer": 3,
+    "exit": 2,
+    "status": "PASS",
+    "expect_layer": 3
+   },
+   {
+    "unit": "CH-39",
+    "case": "neg_dev_grant_for_ops",
+    "expect": "AUTHORITY_OR_SECRET_SCOPE_DENY",
+    "got": "NACK",
+    "code": "AUTHORITY_OR_SECRET_SCOPE_DENY",
+    "layer": 4,
+    "exit": 2,
+    "status": "PASS",
+    "expect_layer": 4
+   },
+   {
+    "unit": "CH-39",
+    "case": "neg_self_signed_independent",
+    "expect": "AUTHORITY_OR_SECRET_SCOPE_DENY",
+    "got": "NACK",
+    "code": "AUTHORITY_OR_SECRET_SCOPE_DENY",
+    "layer": 6,
+    "exit": 2,
+    "status": "PASS",
+    "expect_layer": 6
+   },
+   {
+    "unit": "VN-08",
+    "case": "pos",
+    "expect": "ACK",
+    "got": "ACK",
+    "code": null,
+    "layer": null,
+    "exit": 0,
+    "status": "PASS"
+   },
+   {
+    "unit": "VN-08",
+    "case": "neg_vn_author_as_producer",
+    "expect": "ORIGINAL_SCOPE_NACK",
+    "got": "NACK",
+    "code": "ORIGINAL_SCOPE_NACK",
+    "layer": 2,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "VN-08",
+    "case": "neg_vn_borrowed_raw",
+    "expect": "ORIGINAL_SCOPE_NACK",
+    "got": "NACK",
+    "code": "ORIGINAL_SCOPE_NACK",
+    "layer": 5,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "VN-08",
+    "case": "neg_vn_nav_as_issuer",
+    "expect": "ORIGINAL_SCOPE_NACK",
+    "got": "NACK",
+    "code": "ORIGINAL_SCOPE_NACK",
+    "layer": 4,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "VN-08",
+    "case": "neg_vn_no_consumer_ack",
+    "expect": "ORIGINAL_SCOPE_NACK",
+    "got": "NACK",
+    "code": "ORIGINAL_SCOPE_NACK",
+    "layer": 3,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "VN-08",
+    "case": "neg_vn_source_borrowed_scope",
+    "expect": "ORIGINAL_SCOPE_NACK",
+    "got": "NACK",
+    "code": "ORIGINAL_SCOPE_NACK",
+    "layer": 1,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "VN-09",
+    "case": "pos",
+    "expect": "ACK",
+    "got": "ACK",
+    "code": null,
+    "layer": null,
+    "exit": 0,
+    "status": "PASS"
+   },
+   {
+    "unit": "VN-09",
+    "case": "neg_vn_author_as_producer",
+    "expect": "ORIGINAL_SCOPE_NACK",
+    "got": "NACK",
+    "code": "ORIGINAL_SCOPE_NACK",
+    "layer": 2,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "VN-09",
+    "case": "neg_vn_borrowed_raw",
+    "expect": "ORIGINAL_SCOPE_NACK",
+    "got": "NACK",
+    "code": "ORIGINAL_SCOPE_NACK",
+    "layer": 5,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "VN-09",
+    "case": "neg_vn_no_consumer_ack",
+    "expect": "ORIGINAL_SCOPE_NACK",
+    "got": "NACK",
+    "code": "ORIGINAL_SCOPE_NACK",
+    "layer": 3,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "VN-09",
+    "case": "neg_vn_second_compiler",
+    "expect": "ORIGINAL_SCOPE_NACK",
+    "got": "NACK",
+    "code": "ORIGINAL_SCOPE_NACK",
+    "layer": 4,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "VN-09",
+    "case": "neg_vn_source_borrowed_scope",
+    "expect": "ORIGINAL_SCOPE_NACK",
+    "got": "NACK",
+    "code": "ORIGINAL_SCOPE_NACK",
+    "layer": 1,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "VN-10",
+    "case": "pos",
+    "expect": "ACK",
+    "got": "ACK",
+    "code": null,
+    "layer": null,
+    "exit": 0,
+    "status": "PASS"
+   },
+   {
+    "unit": "VN-10",
+    "case": "neg_vn_author_as_producer",
+    "expect": "ORIGINAL_SCOPE_NACK",
+    "got": "NACK",
+    "code": "ORIGINAL_SCOPE_NACK",
+    "layer": 2,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "VN-10",
+    "case": "neg_vn_borrowed_raw",
+    "expect": "ORIGINAL_SCOPE_NACK",
+    "got": "NACK",
+    "code": "ORIGINAL_SCOPE_NACK",
+    "layer": 5,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "VN-10",
+    "case": "neg_vn_no_consumer_ack",
+    "expect": "ORIGINAL_SCOPE_NACK",
+    "got": "NACK",
+    "code": "ORIGINAL_SCOPE_NACK",
+    "layer": 3,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "VN-10",
+    "case": "neg_vn_seam_without_ack",
+    "expect": "ORIGINAL_SCOPE_NACK",
+    "got": "NACK",
+    "code": "ORIGINAL_SCOPE_NACK",
+    "layer": 4,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "VN-10",
+    "case": "neg_vn_source_borrowed_scope",
+    "expect": "ORIGINAL_SCOPE_NACK",
+    "got": "NACK",
+    "code": "ORIGINAL_SCOPE_NACK",
+    "layer": 1,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "VN-11",
+    "case": "pos",
+    "expect": "ACK",
+    "got": "ACK",
+    "code": null,
+    "layer": null,
+    "exit": 0,
+    "status": "PASS"
+   },
+   {
+    "unit": "VN-11",
+    "case": "neg_vn_author_as_producer",
+    "expect": "ORIGINAL_SCOPE_NACK",
+    "got": "NACK",
+    "code": "ORIGINAL_SCOPE_NACK",
+    "layer": 2,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "VN-11",
+    "case": "neg_vn_borrowed_raw",
+    "expect": "ORIGINAL_SCOPE_NACK",
+    "got": "NACK",
+    "code": "ORIGINAL_SCOPE_NACK",
+    "layer": 5,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "VN-11",
+    "case": "neg_vn_no_consumer_ack",
+    "expect": "ORIGINAL_SCOPE_NACK",
+    "got": "NACK",
+    "code": "ORIGINAL_SCOPE_NACK",
+    "layer": 3,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "VN-11",
+    "case": "neg_vn_selected_as_served",
+    "expect": "ORIGINAL_SCOPE_NACK",
+    "got": "NACK",
+    "code": "ORIGINAL_SCOPE_NACK",
+    "layer": 4,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "VN-11",
+    "case": "neg_vn_source_borrowed_scope",
+    "expect": "ORIGINAL_SCOPE_NACK",
+    "got": "NACK",
+    "code": "ORIGINAL_SCOPE_NACK",
+    "layer": 1,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "VN-12",
+    "case": "pos",
+    "expect": "ACK",
+    "got": "ACK",
+    "code": null,
+    "layer": null,
+    "exit": 0,
+    "status": "PASS"
+   },
+   {
+    "unit": "VN-12",
+    "case": "neg_vn_author_as_producer",
+    "expect": "ORIGINAL_SCOPE_NACK",
+    "got": "NACK",
+    "code": "ORIGINAL_SCOPE_NACK",
+    "layer": 2,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "VN-12",
+    "case": "neg_vn_borrowed_raw",
+    "expect": "ORIGINAL_SCOPE_NACK",
+    "got": "NACK",
+    "code": "ORIGINAL_SCOPE_NACK",
+    "layer": 5,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "VN-12",
+    "case": "neg_vn_no_consumer_ack",
+    "expect": "ORIGINAL_SCOPE_NACK",
+    "got": "NACK",
+    "code": "ORIGINAL_SCOPE_NACK",
+    "layer": 3,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "VN-12",
+    "case": "neg_vn_owner_as_principal",
+    "expect": "ORIGINAL_SCOPE_NACK",
+    "got": "NACK",
+    "code": "ORIGINAL_SCOPE_NACK",
+    "layer": 4,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "VN-12",
+    "case": "neg_vn_source_borrowed_scope",
+    "expect": "ORIGINAL_SCOPE_NACK",
+    "got": "NACK",
+    "code": "ORIGINAL_SCOPE_NACK",
+    "layer": 1,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "VN-13",
+    "case": "pos",
+    "expect": "ACK",
+    "got": "ACK",
+    "code": null,
+    "layer": null,
+    "exit": 0,
+    "status": "PASS"
+   },
+   {
+    "unit": "VN-13",
+    "case": "neg_vn_author_as_producer",
+    "expect": "ORIGINAL_SCOPE_NACK",
+    "got": "NACK",
+    "code": "ORIGINAL_SCOPE_NACK",
+    "layer": 2,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "VN-13",
+    "case": "neg_vn_borrowed_raw",
+    "expect": "ORIGINAL_SCOPE_NACK",
+    "got": "NACK",
+    "code": "ORIGINAL_SCOPE_NACK",
+    "layer": 5,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "VN-13",
+    "case": "neg_vn_no_consumer_ack",
+    "expect": "ORIGINAL_SCOPE_NACK",
+    "got": "NACK",
+    "code": "ORIGINAL_SCOPE_NACK",
+    "layer": 3,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "VN-13",
+    "case": "neg_vn_source_borrowed_scope",
+    "expect": "ORIGINAL_SCOPE_NACK",
+    "got": "NACK",
+    "code": "ORIGINAL_SCOPE_NACK",
+    "layer": 1,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "VN-13",
+    "case": "neg_vn_two_writesets",
+    "expect": "ORIGINAL_SCOPE_NACK",
+    "got": "NACK",
+    "code": "ORIGINAL_SCOPE_NACK",
+    "layer": 4,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "VN-14",
+    "case": "pos",
+    "expect": "ACK",
+    "got": "ACK",
+    "code": null,
+    "layer": null,
+    "exit": 0,
+    "status": "PASS"
+   },
+   {
+    "unit": "VN-14",
+    "case": "neg_vn_author_as_producer",
+    "expect": "ORIGINAL_SCOPE_NACK",
+    "got": "NACK",
+    "code": "ORIGINAL_SCOPE_NACK",
+    "layer": 2,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "VN-14",
+    "case": "neg_vn_borrowed_raw",
+    "expect": "ORIGINAL_SCOPE_NACK",
+    "got": "NACK",
+    "code": "ORIGINAL_SCOPE_NACK",
+    "layer": 5,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "VN-14",
+    "case": "neg_vn_duplicate_tool",
+    "expect": "ORIGINAL_SCOPE_NACK",
+    "got": "NACK",
+    "code": "ORIGINAL_SCOPE_NACK",
+    "layer": 4,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "VN-14",
+    "case": "neg_vn_no_consumer_ack",
+    "expect": "ORIGINAL_SCOPE_NACK",
+    "got": "NACK",
+    "code": "ORIGINAL_SCOPE_NACK",
+    "layer": 3,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "VN-14",
+    "case": "neg_vn_source_borrowed_scope",
+    "expect": "ORIGINAL_SCOPE_NACK",
+    "got": "NACK",
+    "code": "ORIGINAL_SCOPE_NACK",
+    "layer": 1,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "SLOTS24",
+    "case": "pos",
+    "expect": "ACK",
+    "got": "ACK",
+    "code": null,
+    "layer": null,
+    "exit": 0,
+    "status": "PASS"
+   },
+   {
+    "unit": "SLOTS24",
+    "case": "neg_duplicate_slot",
+    "expect": "TECH_NEED_OR_LICENSE_HOLD",
+    "got": "NACK",
+    "code": "TECH_NEED_OR_LICENSE_HOLD",
+    "layer": 0,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "SLOTS24",
+    "case": "neg_empty_pos",
+    "expect": "TECH_NEED_OR_LICENSE_HOLD",
+    "got": "NACK",
+    "code": "TECH_NEED_OR_LICENSE_HOLD",
+    "layer": 0,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "SLOTS24",
+    "case": "neg_install_effect",
+    "expect": "INSTALLER_PRIVILEGE_DENY",
+    "got": "NACK",
+    "code": "INSTALLER_PRIVILEGE_DENY",
+    "layer": 0,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "SLOTS24",
+    "case": "neg_licence_undeclared",
+    "expect": "TECH_NEED_OR_LICENSE_HOLD",
+    "got": "NACK",
+    "code": "TECH_NEED_OR_LICENSE_HOLD",
+    "layer": 0,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "SLOTS24",
+    "case": "neg_slot_missing",
+    "expect": "TECH_NEED_OR_LICENSE_HOLD",
+    "got": "NACK",
+    "code": "TECH_NEED_OR_LICENSE_HOLD",
+    "layer": 0,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "SLOTS24",
+    "case": "neg_two_active",
+    "expect": "CAPABILITY_NOT_QUALIFIED",
+    "got": "NACK",
+    "code": "CAPABILITY_NOT_QUALIFIED",
+    "layer": 0,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "SLOTS24",
+    "case": "neg_wave_mismatch",
+    "expect": "CAPABILITY_NOT_QUALIFIED",
+    "got": "NACK",
+    "code": "CAPABILITY_NOT_QUALIFIED",
+    "layer": 0,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "LOOP",
+    "case": "pos_checkpoint",
+    "expect": "ACK",
+    "got": "ACK",
+    "code": null,
+    "layer": null,
+    "exit": 0,
+    "status": "PASS"
+   },
+   {
+    "unit": "LOOP",
+    "case": "pos_resume",
+    "expect": "ACK",
+    "got": "ACK",
+    "code": null,
+    "layer": null,
+    "exit": 0,
+    "status": "PASS"
+   },
+   {
+    "unit": "LOOP",
+    "case": "pos_watchdog",
+    "expect": "ACK",
+    "got": "ACK",
+    "code": null,
+    "layer": null,
+    "exit": 0,
+    "status": "PASS"
+   },
+   {
+    "unit": "LOOP",
+    "case": "pos_budget",
+    "expect": "ACK",
+    "got": "ACK",
+    "code": null,
+    "layer": null,
+    "exit": 0,
+    "status": "PASS"
+   },
+   {
+    "unit": "LOOP",
+    "case": "loop_checkpoint_missing",
+    "expect": "CHECKPOINT_MISSING",
+    "got": "NACK",
+    "code": "CHECKPOINT_MISSING",
+    "layer": 1,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "LOOP",
+    "case": "loop_resume_replayed",
+    "expect": "RESUME_KEY_REPLAYED",
+    "got": "NACK",
+    "code": "RESUME_KEY_REPLAYED",
+    "layer": 2,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "LOOP",
+    "case": "loop_watchdog_stalled",
+    "expect": "WATCHDOG_NO_PROGRESS",
+    "got": "NACK",
+    "code": "WATCHDOG_NO_PROGRESS",
+    "layer": 3,
+    "exit": 2,
+    "status": "PASS"
+   },
+   {
+    "unit": "LOOP",
+    "case": "loop_budget_exceeded",
+    "expect": "BUDGET_EXCEEDED",
+    "got": "NACK",
+    "code": "BUDGET_EXCEEDED",
+    "layer": 4,
+    "exit": 2,
+    "status": "PASS"
+   }
+  ]
+ },
+ "B_findings_exist": {
+  "summary": {
+   "total": 18,
+   "pass": 18,
+   "fail": 0,
+   "missing": 0
+  },
+  "cases": [
+   {
+    "unit": "F01",
+    "evidence_files": 3,
+    "bytes": 190022,
+    "status": "PASS"
+   },
+   {
+    "unit": "F02",
+    "evidence_files": 2,
+    "bytes": 786078,
+    "status": "PASS"
+   },
+   {
+    "unit": "F03",
+    "evidence_files": 2,
+    "bytes": 183142,
+    "status": "PASS"
+   },
+   {
+    "unit": "F04",
+    "evidence_files": 2,
+    "bytes": 1533,
+    "status": "PASS"
+   },
+   {
+    "unit": "F05",
+    "evidence_files": 4,
+    "bytes": 57960,
+    "status": "PASS"
+   },
+   {
+    "unit": "F06",
+    "evidence_files": 2,
+    "bytes": 4088,
+    "status": "PASS"
+   },
+   {
+    "unit": "F07",
+    "evidence_files": 4,
+    "bytes": 1620,
+    "status": "PASS"
+   },
+   {
+    "unit": "F08",
+    "evidence_files": 1,
+    "bytes": 1428,
+    "status": "PASS"
+   },
+   {
+    "unit": "F09",
+    "evidence_files": 1,
+    "bytes": 179544,
+    "status": "PASS"
+   },
+   {
+    "unit": "F10",
+    "evidence_files": 2,
+    "bytes": 151,
+    "status": "PASS"
+   },
+   {
+    "unit": "F11",
+    "evidence_files": 2,
+    "bytes": 183142,
+    "status": "PASS"
+   },
+   {
+    "unit": "F12",
+    "evidence_files": 2,
+    "bytes": 1785,
+    "status": "PASS"
+   },
+   {
+    "unit": "F13",
+    "evidence_files": 2,
+    "bytes": 2903,
+    "status": "PASS"
+   },
+   {
+    "unit": "F14",
+    "evidence_files": 3,
+    "bytes": 24988,
+    "status": "PASS"
+   },
+   {
+    "unit": "F15",
+    "evidence_files": 2,
+    "bytes": 30758,
+    "status": "PASS"
+   },
+   {
+    "unit": "F16",
+    "evidence_files": 2,
+    "bytes": 6001,
+    "status": "PASS"
+   },
+   {
+    "unit": "F17",
+    "evidence_files": 2,
+    "bytes": 187189,
+    "status": "PASS"
+   },
+   {
+    "unit": "F18",
+    "evidence_files": 3,
+    "bytes": 4364390,
+    "status": "PASS"
+   }
+  ]
+ },
+ "B2_evidence_sha_recomputed": {
+  "summary": {
+   "total": 18,
+   "pass": 18,
+   "fail": 0,
+   "missing": 0
+  },
+  "cases": [
+   {
+    "unit": "F01",
+    "files": [
+     {
+      "file": "C:/Projects/Agent_Workspace/FHS_NEXT_Workspace/W1_Codex_Repair_20261115/evidence/corpus_readback.json",
+      "bytes": 93255,
+      "sha256": "6700893c253dfe0f96e43962ba1b57bed21462cb4fccff3ebbcea0d3fd8f12d8",
+      "parses": true
+     },
+     {
+      "file": "C:/Projects/Agent_Workspace/FHS_NEXT_Workspace/W1_Codex_Repair_20261115/evidence/repro/corpus_readback.json",
+      "bytes": 93934,
+      "sha256": "d89534b8d424343593c7d973acfff56ac33be60ac063459fbf10327554dac20c",
+      "parses": true
+     },
+     {
+      "file": "C:/Projects/Agent_Workspace/FHS_NEXT_Workspace/W1_Codex_Repair_20261115/evidence/upstream_line_maps.json",
+      "bytes": 2833,
+      "sha256": "034835bc7484aa07aee708d46cd86a827d6b6afaad0cad4f11b6d3aceb732b14",
+      "parses": true
+     }
+    ],
+    "status": "PASS"
+   },
+   {
+    "unit": "F02",
+    "files": [
+     {
+      "file": "C:/Projects/Agent_Workspace/FHS_NEXT_Workspace/W1_Codex_Repair_20261115/evidence/static_checks.json",
+      "bytes": 3598,
+      "sha256": "1b671305eb9d725d7a0e58efcea761d0e3a61898ba1353491f8bb9e728ea5688",
+      "parses": true
+     },
+     {
+      "file": "C:/Projects/Agent_Workspace/FHS_NEXT_Workspace/W1_Codex_Repair_20261115/evidence/protected_crosswalk.json",
+      "bytes": 782480,
+      "sha256": "711f77a49dd3b34a8bdbe27415fb033cf099a45c508dec3e9a778552c64fe10f",
+      "parses": true
+     }
+    ],
+    "status": "PASS"
+   },
+   {
+    "unit": "F03",
+    "files": [
+     {
+      "file": "C:/Projects/Agent_Workspace/FHS_NEXT_Workspace/W1_Codex_Repair_20261115/evidence/static_checks.json",
+      "bytes": 3598,
+      "sha256": "1b671305eb9d725d7a0e58efcea761d0e3a61898ba1353491f8bb9e728ea5688",
+      "parses": true
+     },
+     {
+      "file": "C:/Projects/Agent_Workspace/FHS_NEXT_Workspace/W1_Codex_Repair_20261115/evidence/l2_exact_sets.json",
+      "bytes": 179544,
+      "sha256": "9dee0d5dc54a480bf0767a52d7a8e87cea9c0431b3d202398cc9af735d41863f",
+      "parses": true
+     }
+    ],
+    "status": "PASS"
+   },
+   {
+    "unit": "F04",
+    "files": [
+     {
+      "file": "C:/Projects/Agent_Workspace/FHS_NEXT_Workspace/W1_Codex_Repair_20261115/evidence/pipd_intake.stdout.txt",
+      "bytes": 1401,
+      "sha256": "783d33dd779390e95075159f233c0e8c1fe24351930139e7f682e2c2a32a2bca"
+     },
+     {
+      "file": "C:/Projects/Agent_Workspace/FHS_NEXT_Workspace/W1_Codex_Repair_20261115/evidence/pipd_intake_long_document.stdout.txt",
+      "bytes": 132,
+      "sha256": "ad957ade4fe219a8ce6fc3aaecbaf8df008adf0c2d6dcfad91793773dd6cb356"
+     }
+    ],
+    "status": "PASS"
+   },
+   {
+    "unit": "F05",
+    "files": [
+     {
+      "file": "C:/Projects/Agent_Workspace/FHS_NEXT_Workspace/W1_Codex_Repair_20261115/evidence/pipd_pd.stdout.txt",
+      "bytes": 4073,
+      "sha256": "99c8ae344f334a6c28df7cab673114bdcd54b29a031926f45bb034fb481d45b7"
+     },
+     {
+      "file": "C:/Projects/Agent_Workspace/FHS_NEXT_Workspace/W1_Codex_Repair_20261115/evidence/pipd_pd_plain_directory.stdout.txt",
+      "bytes": 359,
+      "sha256": "8ca29a34e2f7110f4b11d06494abfd9554efeb49f7ae1970c82b54016ef76101"
+     },
+     {
+      "file": "C:/Projects/Agent_Workspace/FHS_NEXT_Workspace/W1_Codex_Repair_20261115/evidence/pipd_pd_wrong_head.stdout.txt",
+      "bytes": 4074,
+      "sha256": "b408f4ab734aafe1d064a75af31362e95a06301050705272154f563d960eef93"
+     },
+     {
+      "file": "C:/Projects/Agent_Workspace/FHS_NEXT_Workspace/W1_Codex_Repair_20261115/evidence/probe_runs.json",
+      "bytes": 49454,
+      "sha256": "1d88d415de32228e67fd21dd68ac2d6e9e54a30268a4550b8db68d53750287f5",
+      "parses": true
+     }
+    ],
+    "status": "PASS"
+   },
+   {
+    "unit": "F06",
+    "files": [
+     {
+      "file": "C:/Projects/Agent_Workspace/FHS_NEXT_Workspace/W1_Codex_Repair_20261115/evidence/operation_registry_readback.json",
+      "bytes": 1583,
+      "sha256": "f8fcdc41f2ac6576d497c445188a4469a31b23c593ba66b5792562b1276dad59",
+      "parses": true
+     },
+     {
+      "file": "C:/Projects/Agent_Workspace/FHS_NEXT_Workspace/W1_Codex_Repair_20261115/evidence/pipd_typed_read_ecp.stdout.txt",
+      "bytes": 2505,
+      "sha256": "a6a959050c6de2f5ea13164050a9c5ce55be733aeefc11f91a8f79cd10599f15"
+     }
+    ],
+    "status": "PASS"
+   },
+   {
+    "unit": "F07",
+    "files": [
+     {
+      "file": "C:/Projects/Agent_Workspace/FHS_NEXT_Workspace/W1_Codex_Repair_20261115/evidence/pipd_validate_partial.stdout.txt",
+      "bytes": 598,
+      "sha256": "92f8a2e20b1b917d4ff86ea823f4087ab38d7c6b18650edd82ac482bd14b6d59"
+     },
+     {
+      "file": "C:/Projects/Agent_Workspace/FHS_NEXT_Workspace/W1_Codex_Repair_20261115/evidence/pipd_validate_partial_require_four.stdout.txt",
+      "bytes": 722,
+      "sha256": "5113dd901a0229d8f89036fe377ea5d89223d87d7da5e7184af603b039ee5d1e"
+     },
+     {
+      "file": "C:/Projects/Agent_Workspace/FHS_NEXT_Workspace/W1_Codex_Repair_20261115/evidence/pipd_tqaep_no_receipt.stdout.txt",
+      "bytes": 166,
+      "sha256": "84309b59b5698e172685b19b31349a87e977d249248afb041d09459a24edb80d"
+     },
+     {
+      "file": "C:/Projects/Agent_Workspace/FHS_NEXT_Workspace/W1_Codex_Repair_20261115/evidence/pipd_tqaep_same_maker.stdout.txt",
+      "bytes": 134,
+      "sha256": "7c53fde6f603087da8c02bb74b304a171fc74342c9e6cdb1676e616987745c90"
+     }
+    ],
+    "status": "PASS"
+   },
+   {
+    "unit": "F08",
+    "files": [
+     {
+      "file": "C:/Projects/Agent_Workspace/FHS_NEXT_Workspace/W1_Codex_Repair_20261115/evidence/historical_record_pins.json",
+      "bytes": 1428,
+      "sha256": "e2f6da44314bc8009dbb237e2c98aa5d262e6ea2a40cce393ab64304fbd90a32",
+      "parses": true
+     }
+    ],
+    "status": "PASS"
+   },
+   {
+    "unit": "F09",
+    "files": [
+     {
+      "file": "C:/Projects/Agent_Workspace/FHS_NEXT_Workspace/W1_Codex_Repair_20261115/evidence/l2_exact_sets.json",
+      "bytes": 179544,
+      "sha256": "9dee0d5dc54a480bf0767a52d7a8e87cea9c0431b3d202398cc9af735d41863f",
+      "parses": true
+     }
+    ],
+    "status": "PASS"
+   },
+   {
+    "unit": "F10",
+    "files": [
+     {
+      "file": "C:/Projects/Agent_Workspace/FHS_NEXT_Workspace/W1_Codex_Repair_20261115/evidence/hermes_version.stdout.txt",
+      "bytes": 145,
+      "sha256": "bfba770677f4e4d4cc5284f0dabc9dba09f490a1030d07880d4641212332897e"
+     },
+     {
+      "file": "C:/Projects/Agent_Workspace/FHS_NEXT_Workspace/W1_Codex_Repair_20261115/evidence/openspec_version.stdout.txt",
+      "bytes": 6,
+      "sha256": "c28fcca53637bc88e124af1725df13cb98c69dedefd62fb3cdbe1cdb6b760624"
+     }
+    ],
+    "status": "PASS"
+   },
+   {
+    "unit": "F11",
+    "files": [
+     {
+      "file": "C:/Projects/Agent_Workspace/FHS_NEXT_Workspace/W1_Codex_Repair_20261115/evidence/l2_exact_sets.json",
+      "bytes": 179544,
+      "sha256": "9dee0d5dc54a480bf0767a52d7a8e87cea9c0431b3d202398cc9af735d41863f",
+      "parses": true
+     },
+     {
+      "file": "C:/Projects/Agent_Workspace/FHS_NEXT_Workspace/W1_Codex_Repair_20261115/evidence/static_checks.json",
+      "bytes": 3598,
+      "sha256": "1b671305eb9d725d7a0e58efcea761d0e3a61898ba1353491f8bb9e728ea5688",
+      "parses": true
+     }
+    ],
+    "status": "PASS"
+   },
+   {
+    "unit": "F12",
+    "files": [
+     {
+      "file": "C:/Projects/Agent_Workspace/FHS_NEXT_Workspace/W1_Codex_Repair_20261115/evidence/hgk_original_tests.stderr.txt",
+      "bytes": 1115,
+      "sha256": "8ba9f8130306b6754acd29b5c22e5b0c90e83b437a546013a137890e5fbe4795"
+     },
+     {
+      "file": "C:/Projects/Agent_Workspace/FHS_NEXT_Workspace/W1_Codex_Repair_20261115/evidence/hgk_recovery_tests.stderr.txt",
+      "bytes": 670,
+      "sha256": "5c6630e00ea62e6e1154ae5b049d0a46f23e35e05b8989bae3514360fbebe462"
+     }
+    ],
+    "status": "PASS"
+   },
+   {
+    "unit": "F13",
+    "files": [
+     {
+      "file": "C:/Projects/Agent_Workspace/FHS_NEXT_Workspace/W1_Codex_Repair_20261115/evidence/hermes_api.json",
+      "bytes": 2782,
+      "sha256": "f726a037042885a71903285729ccd3d3a31c0e57b53a479abeec64a65a667e16",
+      "parses": true
+     },
+     {
+      "file": "C:/Projects/Agent_Workspace/FHS_NEXT_Workspace/W1_Codex_Repair_20261115/evidence/hermes_original_api.stderr.txt",
+      "bytes": 121,
+      "sha256": "d77e2fba054ac8b8412397fcbb449d7c87633dc036d06f047b01688546cf0b31"
+     }
+    ],
+    "status": "PASS"
+   },
+   {
+    "unit": "F14",
+    "files": [
+     {
+      "file": "C:/Projects/Agent_Workspace/FHS_NEXT_Workspace/W1_Codex_Repair_20261115/evidence/fabric_complete_original_tests.stderr.txt",
+      "bytes": 7729,
+      "sha256": "b9f80de7c3507cbbfe9801b37108223ba35093c6dac42172ec17e25d5cbb3214"
+     },
+     {
+      "file": "C:/Projects/Agent_Workspace/FHS_NEXT_Workspace/W1_Codex_Repair_20261115/evidence/fabric_original_tests.stderr.txt",
+      "bytes": 16853,
+      "sha256": "775e6ad57728f4a2a72715df202c30e2e10092eea2b46da9ff732fb87dd58b67"
+     },
+     {
+      "file": "C:/Projects/Agent_Workspace/FHS_NEXT_Workspace/W1_Codex_Repair_20261115/evidence/fabric_docs_ci_retest.stderr.txt",
+      "bytes": 406,
+      "sha256": "f6f01b79f5f5764712b2367d411201a20beb640880f707f818d99a9df97377e5"
+     }
+    ],
+    "status": "PASS"
+   },
+   {
+    "unit": "F15",
+    "files": [
+     {
+      "file": "C:/Projects/Agent_Workspace/FHS_NEXT_Workspace/W1_Codex_Repair_20261115/evidence/plugin_api.json",
+      "bytes": 23846,
+      "sha256": "f6c576e75cd422c10a931b441dcb11a093d63875a8a644558178f096d5381fab",
+      "parses": true
+     },
+     {
+      "file": "C:/Projects/Agent_Workspace/FHS_NEXT_Workspace/W1_Codex_Repair_20261115/evidence/pipd_security_tests.xml",
+      "bytes": 6912,
+      "sha256": "e3bc776b2246905ef2d4fd6fa2d15dc67d7b117d31f7c82db620963065f6e234"
+     }
+    ],
+    "status": "PASS"
+   },
+   {
+    "unit": "F16",
+    "files": [
+     {
+      "file": "C:/Projects/Agent_Workspace/FHS_NEXT_Workspace/W1_Codex_Repair_20261115/evidence/static_checks.json",
+      "bytes": 3598,
+      "sha256": "1b671305eb9d725d7a0e58efcea761d0e3a61898ba1353491f8bb9e728ea5688",
+      "parses": true
+     },
+     {
+      "file": "C:/Projects/Agent_Workspace/FHS_NEXT_Workspace/W1_Codex_Repair_20261115/evidence/w0_handoff_crosswalk.json",
+      "bytes": 2403,
+      "sha256": "4d9281ab9dab3122ba9c3769ed0e632051d174d9b94e0abb56d2c192be590a0e",
+      "parses": true
+     }
+    ],
+    "status": "PASS"
+   },
+   {
+    "unit": "F17",
+    "files": [
+     {
+      "file": "C:/Projects/Agent_Workspace/FHS_NEXT_Workspace/W1_Codex_Repair_20261115/evidence/corpus_readback.json",
+      "bytes": 93255,
+      "sha256": "6700893c253dfe0f96e43962ba1b57bed21462cb4fccff3ebbcea0d3fd8f12d8",
+      "parses": true
+     },
+     {
+      "file": "C:/Projects/Agent_Workspace/FHS_NEXT_Workspace/W1_Codex_Repair_20261115/evidence/repro/corpus_readback.json",
+      "bytes": 93934,
+      "sha256": "d89534b8d424343593c7d973acfff56ac33be60ac063459fbf10327554dac20c",
+      "parses": true
+     }
+    ],
+    "status": "PASS"
+   },
+   {
+    "unit": "F18",
+    "files": [
+     {
+      "file": "C:/Projects/Agent_Workspace/FHS_NEXT_Workspace/W1_Codex_Repair_20261115/evidence/readback.json",
+      "bytes": 1506,
+      "sha256": "6bf191ea504a4e91f45c8a138a6f88e687915dcd6a35c982e9ff6042057a5631",
+      "parses": true
+     },
+     {
+      "file": "C:/Projects/Agent_Workspace/FHS_NEXT_Workspace/W1_Codex_Repair_20261115/evidence/write_manifest.json",
+      "bytes": 3661895,
+      "sha256": "e7c94827ed036c2435c88bd25093860ff85c1c7dafff6e9a71394f02ceb0ae0d",
+      "parses": true
+     },
+     {
+      "file": "C:/Projects/Agent_Workspace/FHS_NEXT_Workspace/W1_Codex_Repair_20261115/evidence/r9_to_r3.diff",
+      "bytes": 700989,
+      "sha256": "ac385b270796156e196c83f822cce8bffdf7a78027102b3765dfa14fe0dbb453"
+     }
+    ],
+    "status": "PASS"
+   }
+  ]
+ },
+ "C_journeys": {
+  "summary": {
+   "total": 17,
+   "pass": 17,
+   "fail": 0,
+   "missing": 0
+  },
+  "cases": [
+   {
+    "unit": "GJ01",
+    "case": "pos",
+    "status": "PASS"
+   },
+   {
+    "unit": "GJ01",
+    "case": "neg_known_answer_reask",
+    "status": "PASS"
+   },
+   {
+    "unit": "GJ01",
+    "case": "neg_policy_not_loaded",
+    "status": "PASS"
+   },
+   {
+    "unit": "GJ01",
+    "case": "neg_unrelated_host_gate",
+    "status": "PASS"
+   },
+   {
+    "unit": "GJ01",
+    "case": "neg_unrelated_release_gate",
+    "status": "PASS"
+   },
+   {
+    "unit": "GJ01",
+    "case": "neg_fuo_not_delivered",
+    "status": "PASS"
+   },
+   {
+    "unit": "GJ02",
+    "case": "pos",
+    "status": "PASS"
+   },
+   {
+    "unit": "GJ02",
+    "case": "neg_known_answer_reask",
+    "status": "PASS"
+   },
+   {
+    "unit": "GJ02",
+    "case": "neg_second_canonical_writer",
+    "status": "PASS"
+   },
+   {
+    "unit": "GJ02",
+    "case": "neg_host_writeset_bind_hold",
+    "status": "PASS"
+   },
+   {
+    "unit": "GJ02",
+    "case": "neg_issue_write_not_observed",
+    "status": "PASS"
+   },
+   {
+    "unit": "GJ02",
+    "case": "neg_fuo_not_delivered",
+    "status": "PASS"
+   },
+   {
+    "unit": "GJ03",
+    "case": "pos",
+    "status": "PASS"
+   },
+   {
+    "unit": "GJ03",
+    "case": "neg_unknown_reconcile_required",
+    "status": "PASS"
+   },
+   {
+    "unit": "GJ03",
+    "case": "neg_pd_repocontext_unbound",
+    "status": "PASS"
+   },
+   {
+    "unit": "GJ03",
+    "case": "neg_plan_cas_ack_missing",
+    "status": "PASS"
+   },
+   {
+    "unit": "GJ03",
+    "case": "neg_pd_repocontext_unbound",
+    "status": "PASS"
+   }
+  ]
+ },
+ "D_effects": {
+  "summary": {
+   "total": 6,
+   "pass": 6,
+   "fail": 0,
+   "missing": 0
+  },
+  "cases": [
+   {
+    "unit": "EFFECT_READ",
+    "status": "PASS"
+   },
+   {
+    "unit": "EFFECT_DRAFT",
+    "status": "PASS"
+   },
+   {
+    "unit": "EFFECT_DEV",
+    "status": "PASS"
+   },
+   {
+    "unit": "EFFECT_OPS",
+    "status": "PASS"
+   },
+   {
+    "unit": "EFFECT_USER",
+    "status": "PASS"
+   },
+   {
+    "unit": "EFFECT_RELEASE",
+    "status": "PASS"
+   }
+  ]
+ },
+ "E_chapter_coverage": {
+  "summary": {
+   "total": 13,
+   "pass": 13,
+   "fail": 0,
+   "missing": 0
+  },
+  "cases": [
+   {
+    "chapter": "CH-08",
+    "card": "WP-FHS-11",
+    "status": "PASS",
+    "reason": null
+   },
+   {
+    "chapter": "CH-12",
+    "card": "WP-FHS-05",
+    "status": "PASS",
+    "reason": null
+   },
+   {
+    "chapter": "CH-13",
+    "card": "CH-13",
+    "status": "PASS",
+    "reason": null
+   },
+   {
+    "chapter": "CH-14",
+    "card": "CH-14",
+    "status": "PASS",
+    "reason": null
+   },
+   {
+    "chapter": "CH-16",
+    "card": "CH-16",
+    "status": "PASS",
+    "reason": null
+   },
+   {
+    "chapter": "CH-17",
+    "card": "WP-FHS-02",
+    "status": "PASS",
+    "reason": null
+   },
+   {
+    "chapter": "CH-18",
+    "card": "WP-FHS-03",
+    "status": "PASS",
+    "reason": null
+   },
+   {
+    "chapter": "CH-19",
+    "card": "WP-FHS-04",
+    "status": "PASS",
+    "reason": null
+   },
+   {
+    "chapter": "CH-20",
+    "card": "CH-20",
+    "status": "PASS",
+    "reason": null
+   },
+   {
+    "chapter": "CH-22",
+    "card": "WP-FHS-17",
+    "status": "PASS",
+    "reason": null
+   },
+   {
+    "chapter": "CH-34",
+    "card": "WP-FHS-07",
+    "status": "PASS",
+    "reason": null
+   },
+   {
+    "chapter": "CH-39",
+    "card": "CH-39",
+    "status": "PASS",
+    "reason": null
+   },
+   {
+    "chapter": "CH-40",
+    "card": "WP-FHS-20",
+    "status": "PASS",
+    "reason": null
+   }
+  ]
+ },
+ "SELFTEST": {
+  "summary": {
+   "total": 8,
+   "pass": 8,
+   "fail": 0,
+   "missing": 0
+  },
+  "cases": [
+   {
+    "unit": "CH-13",
+    "M1": {
+     "exit": 2,
+     "code": "SOURCE_POLARITY_OR_PARENT_LOSS"
+    },
+    "M2": {
+     "exit": 2,
+     "code": "SOURCE_POLARITY_OR_PARENT_LOSS",
+     "mode": "BOUND"
+    },
+    "M3": {
+     "exit": 3,
+     "code": "REQUIRED_FIELD_MISSING"
+    },
+    "status": "PASS"
+   },
+   {
+    "unit": "CH-14",
+    "M1": {
+     "exit": 2,
+     "code": "PD_CONTEXT_STALE_OR_UNBOUND"
+    },
+    "M2": {
+     "exit": 2,
+     "code": "PD_CONTEXT_STALE_OR_UNBOUND",
+     "mode": "BOUND"
+    },
+    "M3": {
+     "exit": 3,
+     "code": "REQUIRED_FIELD_MISSING"
+    },
+    "status": "PASS"
+   },
+   {
+    "unit": "CH-16",
+    "M1": {
+     "exit": 2,
+     "code": "ABI_JOIN_MISMATCH"
+    },
+    "M2": {
+     "exit": 0,
+     "code": null,
+     "mode": "NOT_APPLICABLE_NO_SCOPE_BINDING"
+    },
+    "M3": {
+     "exit": 3,
+     "code": "REQUIRED_FIELD_MISSING"
+    },
+    "status": "PASS"
+   },
+   {
+    "unit": "CH-20",
+    "M1": {
+     "exit": 2,
+     "code": "UNKNOWN_RECONCILE_REQUIRED"
+    },
+    "M2": {
+     "exit": 2,
+     "code": "UNKNOWN_RECONCILE_REQUIRED",
+     "mode": "BOUND"
+    },
+    "M3": {
+     "exit": 3,
+     "code": "REQUIRED_FIELD_MISSING"
+    },
+    "status": "PASS"
+   },
+   {
+    "unit": "CH-39",
+    "M1": {
+     "exit": 2,
+     "code": "AUTHORITY_OR_SECRET_SCOPE_DENY"
+    },
+    "M2": {
+     "exit": 2,
+     "code": "AUTHORITY_OR_SECRET_SCOPE_DENY",
+     "mode": "BOUND"
+    },
+    "M3": {
+     "exit": 3,
+     "code": "REQUIRED_FIELD_MISSING"
+    },
+    "status": "PASS"
+   },
+   {
+    "unit": "VN",
+    "M1": {
+     "exit": 2,
+     "code": "ORIGINAL_SCOPE_NACK"
+    },
+    "M2": {
+     "exit": 2,
+     "code": "ORIGINAL_SCOPE_NACK",
+     "mode": "BOUND"
+    },
+    "M3": {
+     "exit": 3,
+     "code": "REQUIRED_FIELD_MISSING"
+    },
+    "status": "PASS"
+   },
+   {
+    "unit": "SLOTS24",
+    "M1": {
+     "exit": 2,
+     "code": "TECH_NEED_OR_LICENSE_HOLD"
+    },
+    "M2": {
+     "exit": 0,
+     "code": null,
+     "mode": "NOT_APPLICABLE_NO_SCOPE_BINDING"
+    },
+    "M3": {
+     "exit": 3,
+     "code": "REQUIRED_FIELD_MISSING"
+    },
+    "status": "PASS"
+   },
+   {
+    "unit": "LOOP",
+    "M1": {
+     "exit": 2,
+     "code": "CHECKPOINT_MISSING"
+    },
+    "M2": {
+     "exit": 0,
+     "code": null,
+     "mode": "NOT_APPLICABLE_NO_SCOPE_BINDING"
+    },
+    "M3": {
+     "exit": 3,
+     "code": "REQUIRED_FIELD_MISSING"
+    },
+    "status": "PASS"
+   }
+  ]
+ },
+ "failures": 0,
+ "verdict": "PASS"
+}
