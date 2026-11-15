@@ -1,0 +1,111 @@
+{
+ "schema": "FHS_NEXT.W1R5.CASE_RUNNER/1",
+ "entry": {
+  "schema": "SBL.CaseRunner.Entry@1",
+  "case_id": "AUTHOR.W1.CH-13.CASE.01",
+  "original_requirement_id": "REQ-CH13-SOURCE-POLARITY",
+  "original_oracle_id": "ORACLE-CH13-POLARITY",
+  "clause_id": "CH-13",
+  "fuo_id": "FUO-W1-R5",
+  "parent_neg": "NEG: dropped negation or borrowed parent count",
+  "raw_schema": "FHS_NEXT.W1R3.RECORD/1",
+  "evidence_expectation": "EVD-CH13-CASE-01",
+  "checker_role": "ACCEPTANCE_AUTHORITY",
+  "runner_owner": "SBL_PIPD_CASE_RUNNER",
+  "applicability": {
+   "host": "Windows-11-single-owner",
+   "profile": "STANDARD",
+   "kind": "contract-test",
+   "mode": "design-time"
+  },
+  "oracle": {
+   "path": "oracle_ch_ch13.py",
+   "sha256": "336fc7e7e820472c9262f0ce383363b5b85a341bbf9e0ff75b8cb0e6a904b35d",
+   "bytes": 3371
+  },
+  "runner": {
+   "path": "runner.py",
+   "sha256": "4c795837c7439f590975efbc8e67e7357b58d40a59d2bdbc73e451401eec8b1c",
+   "bytes": 1645,
+   "abi": "SBL.CASE_RUNNER_RUN@1"
+  },
+  "positive_fixture": {
+   "path": "pos.json",
+   "sha256": "1e547467872aed91111de94710d005891177362e995dd367ea93e88972933e00",
+   "bytes": 3180
+  },
+  "negative_fixture": {
+   "path": "neg_dropped_negation.json",
+   "sha256": "379a52b128a670e06f23216ff81ce1b92d55a115fc443d1e2010b00d25a43f8f",
+   "bytes": 3196
+  },
+  "runner_binding": "RUNNER_BOUND",
+  "claim_ceiling": "AUTHOR_SIDE_EXECUTION",
+  "runner_entry_sha256": "26493d20bdcf9fa0e84bc02f2629f9ca7c05d072360c2aa2f735088b2615197a"
+ },
+ "verify": {
+  "verified": true,
+  "digests": {
+   "oracle": "336fc7e7e820472c9262f0ce383363b5b85a341bbf9e0ff75b8cb0e6a904b35d",
+   "runner": "4c795837c7439f590975efbc8e67e7357b58d40a59d2bdbc73e451401eec8b1c",
+   "positive_fixture": "1e547467872aed91111de94710d005891177362e995dd367ea93e88972933e00",
+   "negative_fixture": "379a52b128a670e06f23216ff81ce1b92d55a115fc443d1e2010b00d25a43f8f"
+  },
+  "runner_entry_sha256": "26493d20bdcf9fa0e84bc02f2629f9ca7c05d072360c2aa2f735088b2615197a"
+ },
+ "run_pos": {
+  "schema": "SBL.CaseRunner.WorldRaw@1",
+  "case_id": "AUTHOR.W1.CH-13.CASE.01",
+  "original_oracle_id": "ORACLE-CH13-POLARITY",
+  "original_requirement_id": "REQ-CH13-SOURCE-POLARITY",
+  "runner_entry_sha256": "26493d20bdcf9fa0e84bc02f2629f9ca7c05d072360c2aa2f735088b2615197a",
+  "oracle": {
+   "path": "oracle_ch_ch13.py",
+   "sha256": "336fc7e7e820472c9262f0ce383363b5b85a341bbf9e0ff75b8cb0e6a904b35d"
+  },
+  "runner": {
+   "path": "runner.py",
+   "sha256": "4c795837c7439f590975efbc8e67e7357b58d40a59d2bdbc73e451401eec8b1c",
+   "abi": "SBL.CASE_RUNNER_RUN@1",
+   "exit": 0,
+   "elapsed_s": 0.124,
+   "stdout_sha256": "d78b15f9514a0de27a53aa983ac4371385e8d44de5df5cd0feadb0aa367bdc01",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_tail": ""
+  },
+  "observed": {
+   "verdict": "GREEN",
+   "case": "AUTHOR.W1.CH-13.CASE.01",
+   "pos": {
+    "fixture": "pos.json",
+    "observed": "ACK",
+    "layers": [
+     "source_identity_and_span",
+     "parent_child_polarity",
+     "count_is_not_denominator",
+     "taxonomy_does_not_rewrite_ids",
+     "profile_veto_adds_depth_only",
+     "pi_domains_non_empty"
+    ]
+   },
+   "negs": [
+    {
+     "fixture": "neg_dropped_negation.json",
+     "observed": "REFUSED",
+     "code": "SOURCE_POLARITY_OR_PARENT_LOSS",
+     "layer": 2,
+     "layers": [
+      "source_identity_and_span"
+     ]
+    }
+   ],
+   "oracle_sha256_note": "pinned by the entry, not re-derived here"
+  },
+  "world_state": "GREEN",
+  "subject_root": "C:\\Projects\\Agent_Workspace\\FHS_NEXT_Workspace\\W1_R5_EXIT_20261115\\cases\\CH-13",
+  "claim_ceiling": "AUTHOR_SIDE_EXECUTION",
+  "note": "this reports one process run against pinned bytes; it is not an original-runner receipt and not an independent checker verdict"
+ },
+ "run_neg_note": "POS and NEG are both executed inside the single runner invocation (one JSON verdict per the case-runner ABI)",
+ "verdict": "CASE_RUNNER_BOUND_AND_EXECUTED"
+}

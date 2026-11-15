@@ -1,0 +1,81 @@
+{
+ "schema": "FHS_NEXT.W1R5.HGK_PROBES/1",
+ "at_utc": "2026-11-15",
+ "probes": {
+  "policy_epoch": {
+   "raw": "41"
+  },
+  "policy_validate": {
+   "checked_sites": 87,
+   "fatal": true,
+   "epoch": 41,
+   "claim_ceiling": "CANDIDATE_ONLY",
+   "fatal_errors": [
+    {
+     "id": "hermes-codex-lane",
+     "path": "config/hermes-codex-lane.json",
+     "pointer": "/codex_version",
+     "expected": "0.167.0-alpha.3.2",
+     "actual": "0.165.0-alpha.1.2",
+     "code": "DRIFT_VALUE"
+    },
+    {
+     "id": "hermes-codex-lane",
+     "path": "config/hermes-codex-lane.json",
+     "pointer": "/codex_sha256",
+     "expected": "4f91ae86895ff124760d70ed1630e2354ca874765c9bb61ae524b600327efc17",
+     "actual": "0c09e45bc76433756eb2d492f6db0ce6f269967e6618f4a6ae73e2fa239694b8",
+     "code": "DRIFT_VALUE"
+    }
+   ]
+  },
+  "retirement": {
+   "schema": "HGK.LaneArmRetirement/1",
+   "epoch": 41,
+   "live_arm_sites": 49,
+   "retired": [],
+   "retired_still_live": [],
+   "required_missing": [],
+   "verdict": "PASS"
+  },
+  "guard": {
+   "admission_status": "UNPROVEN",
+   "checks": [
+    {
+     "id": "sod_distinct_model",
+     "ok": false,
+     "code": "ERR_LANE_SOD_VIOLATION",
+     "detail": "SOD_VIOLATION maker_model=deepseek-v4.1-flash == checker_model=deepseek-v4.1-flash; no sod_invariants.pairs entry for PLAN/EXECUTE"
+    },
+    {
+     "id": "source_digest",
+     "ok": true
+    },
+    {
+     "id": "arm_admitted",
+     "ok": false,
+     "code": "ERR_LANE_NOT_ADMITTED",
+     "detail": "status=UNPROVEN"
+    },
+    {
+     "id": "expected_epoch_assertion",
+     "ok": false,
+     "code": "ERR_LANE_STALE_EPOCH",
+     "detail": "--expected-epoch=41 live_epoch=44"
+    },
+    {
+     "id": "registry_epoch_vs_live",
+     "ok": false,
+     "code": "ERR_LANE_STALE_EPOCH",
+     "detail": "registry_epoch=41 live_epoch=44"
+    }
+   ]
+  }
+ },
+ "tools": {
+  "policy": "HG-KSEOS/scripts/hgk-lane-policy.py",
+  "guard": "HG-KSEOS/scripts/hgk-lane-guard.py",
+  "retirement": "HG-KSEOS/scripts/lane_arm_retirement_check.py"
+ },
+ "note": "每一項都是原 HG-KSEOS 腳本自己的輸出；driver 只呼叫與存檔，沒有重實作。"
+}
