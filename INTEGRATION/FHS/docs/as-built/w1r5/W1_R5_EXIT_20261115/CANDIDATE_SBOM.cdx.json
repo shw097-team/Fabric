@@ -3,7 +3,7 @@
  "specVersion": "1.5",
  "version": 1,
  "metadata": {
-  "timestamp": "2026-11-15T08:56:02Z",
+  "timestamp": "2026-11-15T09:06:26Z",
   "component": {
    "type": "application",
    "name": "fhs-vnext-w1-candidate",
@@ -16,7 +16,7 @@
    },
    {
     "name": "fhs:generation_basis",
-    "value": "owner ruling 2026-11-15: CycloneDX JSON; first-party + actual delivered/run dependencies; external non-shipped tools listed as an environment inventory"
+    "value": "owner ruling 2026-11-15: CycloneDX JSON; first-party + actual delivered/run dependencies; external non-shipped tools as environment inventory"
    },
    {
     "name": "fhs:lock_sources",
@@ -100,17 +100,21 @@
    "hashes": [
     {
      "alg": "SHA-256",
-     "content": "59fe9046cd18fa2b15ff94adb795ecfecd0014300d3eac9a9747890f6d4157a8"
+     "content": "17b2dd32be1f95d9c1495af0ad2f7723afcac835ca57784e34897da5afb839a9"
     }
    ],
    "properties": [
     {
-     "name": "fhs:licence_status",
-     "value": "HOLD — Fabric/HG-KSEOS first-party licence text not yet issued by the rightsholder; must not be distributed until LICENSE/NOTICE exist"
+     "name": "fhs:bytes",
+     "value": "2078589"
     },
     {
-     "name": "fhs:sibling_evidence",
-     "value": "docs/HOLD_RECONCILIATION.json, out/pipd/*, sbom/PIPD_SBOM_REUSED.cdx.json"
+     "name": "fhs:composition",
+     "value": "r3 full text verbatim (2,064,944 B) + this round's annex; r3 verified as a byte-identical substring"
+    },
+    {
+     "name": "fhs:licence_status",
+     "value": "HOLD — Fabric/HG-KSEOS first-party licence text not yet issued by the rightsholder; must not be distributed until LICENSE/NOTICE exist"
     }
    ]
   },
@@ -126,7 +130,7 @@
     },
     {
      "name": "fhs:hash_status_basis",
-     "value": "SBL/integrations/pipd/requirements.lock states in its own header that artifacts were NOT hash-pinned (network-off build); a hash is therefore absent, not guessed"
+     "value": "requirements.lock header states artifacts were NOT hash-pinned (network-off build); absent, not guessed"
     },
     {
      "name": "fhs:licence_status",
@@ -146,7 +150,7 @@
     },
     {
      "name": "fhs:hash_status_basis",
-     "value": "SBL/integrations/pipd/requirements.lock states in its own header that artifacts were NOT hash-pinned (network-off build); a hash is therefore absent, not guessed"
+     "value": "requirements.lock header states artifacts were NOT hash-pinned (network-off build); absent, not guessed"
     },
     {
      "name": "fhs:licence_status",
@@ -166,7 +170,7 @@
     },
     {
      "name": "fhs:hash_status_basis",
-     "value": "SBL/integrations/pipd/requirements.lock states in its own header that artifacts were NOT hash-pinned (network-off build); a hash is therefore absent, not guessed"
+     "value": "requirements.lock header states artifacts were NOT hash-pinned (network-off build); absent, not guessed"
     },
     {
      "name": "fhs:licence_status",
@@ -186,7 +190,7 @@
     },
     {
      "name": "fhs:hash_status_basis",
-     "value": "SBL/integrations/pipd/requirements.lock states in its own header that artifacts were NOT hash-pinned (network-off build); a hash is therefore absent, not guessed"
+     "value": "requirements.lock header states artifacts were NOT hash-pinned (network-off build); absent, not guessed"
     },
     {
      "name": "fhs:licence_status",
@@ -206,7 +210,7 @@
     },
     {
      "name": "fhs:hash_status_basis",
-     "value": "SBL/integrations/pipd/requirements.lock states in its own header that artifacts were NOT hash-pinned (network-off build); a hash is therefore absent, not guessed"
+     "value": "requirements.lock header states artifacts were NOT hash-pinned (network-off build); absent, not guessed"
     },
     {
      "name": "fhs:licence_status",
@@ -226,7 +230,7 @@
     },
     {
      "name": "fhs:hash_status_basis",
-     "value": "SBL/integrations/pipd/requirements.lock states in its own header that artifacts were NOT hash-pinned (network-off build); a hash is therefore absent, not guessed"
+     "value": "requirements.lock header states artifacts were NOT hash-pinned (network-off build); absent, not guessed"
     },
     {
      "name": "fhs:licence_status",
@@ -238,15 +242,11 @@
  "properties": [
   {
    "name": "fhs:environment_inventory",
-   "value": "NOT SHIPPED, listed only: codex CLI (npm global), openspec CLI, uv, CPython 3.11.9 (project venv) and 3.14.9 (Hermes host), git. No licence text was collected for these, so none is asserted here."
+   "value": "NOT SHIPPED: codex CLI, openspec CLI, uv, CPython 3.11.9 (project venv) and 3.14.9 (Hermes host), git — no licence text collected, none asserted"
   },
   {
    "name": "fhs:components_without_hash",
    "value": "6"
-  },
-  {
-   "name": "fhs:licence_hold_components",
-   "value": "fhs-vnext-w1-delivery (own first-party licence pending rightsholder), attrs, jsonschema, jsonschema-specifications, referencing, rpds-py, typing-extensions"
   }
  ]
 }
