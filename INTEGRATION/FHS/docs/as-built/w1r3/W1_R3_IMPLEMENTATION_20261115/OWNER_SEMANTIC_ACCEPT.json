@@ -1,0 +1,143 @@
+{
+ "schema": "FHS_NEXT.W1R3.OwnerSemanticAccept/1",
+ "round": "W1_R3_IMPLEMENTATION_20261115",
+ "body": {
+  "schema": "FHS_NEXT.W1R3.OWNER_ACCEPT_BODY/1",
+  "task": "W1_R3_IMPLEMENTATION_20261115",
+  "subject": {
+   "id": "W1-REPAIR-r3-2026-11-15",
+   "sha256": "5aca7b5e2bdc67d13dff95432b14d7e152f18e3d341971490b7a77c395345a6b"
+  },
+  "round": {
+   "path": "C:/Projects/Agent_Workspace/FHS_NEXT_Workspace/W1_R3_IMPLEMENTATION_20261115",
+   "gate": {
+    "sha256": "e93d100dfaecd829824013cccd20a4ddaf437e77afe85dc44636d9f682afb6c4",
+    "verdict": "PASS",
+    "failures": 0
+   },
+   "cycles": {
+    "sha256": "872951aff17a01cf884a0cf8555f05235908a15572e44f9a5ce86dd2a718db04",
+    "final": "APPROVED",
+    "rounds": 4,
+    "failure_path": "10>2>1>0"
+   },
+   "closeout": {
+    "sha256": "4a22d8e49a4d8c62d3fd855a0de56f594e379d82441363ddd7dcf1e985e66da1"
+   },
+   "neg_derivation": {
+    "sha256": "5c572fa9cad662eb8d96e4c2119208953ce46e6c034871d4eee56b9a5cdbf0f3",
+    "cases": 42
+   }
+  },
+  "referees": [
+   {
+    "name": "wp_fhs_02.py",
+    "sha256": "4ffdf67a8b18360357bd40858fa1a0de49825cd17f8fade69ffadb97049d5f3d"
+   },
+   {
+    "name": "wp_fhs_03.py",
+    "sha256": "0abcad8e0e88edf57d5dc5659e93d20275a8fda0abb9ce3df275bcb69e9e95ac"
+   },
+   {
+    "name": "wp_fhs_04.py",
+    "sha256": "73da8b90aa3529b35aa37333a76f6072026eaba4a05b285ea4e31689a3513121"
+   },
+   {
+    "name": "wp_fhs_05.py",
+    "sha256": "8731cdb694e3062e33d06446f28e9d26f6878deef79f4aca09c5fe144cb5b482"
+   },
+   {
+    "name": "wp_fhs_07.py",
+    "sha256": "a9d789e82e3a2419625a41d1957c78c517cffa97e1e22526412d4bca36bd456d"
+   },
+   {
+    "name": "wp_fhs_11.py",
+    "sha256": "3ee62511f6dda5616c11b38eb91c22b39f2d20b4dd7ce5b387c4713c324b8b74"
+   },
+   {
+    "name": "wp_fhs_17.py",
+    "sha256": "50757a59a4e844165534d79ced61e607ff6e232492f7ff0735a2c30e3e33e713"
+   },
+   {
+    "name": "wp_fhs_20.py",
+    "sha256": "855f95f67530d1ef03ecc8f1571d7242f24bf3a1af3c789e904697a12b8a9428"
+   },
+   {
+    "name": "journey_referee.py",
+    "sha256": "765ff19282c97b91f2b406e84c2e4403e3f22bd344bc579a40cb999821e8cf68"
+   },
+   {
+    "name": "w1r3_core.py",
+    "sha256": "0c41e0705be56e98e8657dc6cde964dc495524f6bd1fb7ae039b22fc2e8aeb20"
+   },
+   {
+    "name": "gate_w1r3.py",
+    "sha256": "1f5816a1108159fde3905cd18542f0ddb2fb783dab2f8702684ba1afc0f2ac65"
+   }
+  ],
+  "published": {
+   "fabric": {
+    "repo": "shw097-team/Fabric",
+    "branch": "w1r3/implementation-20261115",
+    "commit": "dacaf0fe8ce2d854e8bb6c9688aae4bea0e86a5f",
+    "pr": 64,
+    "readback": true
+   },
+   "product": {
+    "repo": "shw097-team/FHS_vNEXT",
+    "branch": "w1/r3-implementation-20261115",
+    "commit": "763cf66e7e9c0afaa78654f65357d2951dc85be0",
+    "pr": 1,
+    "readback": true
+   }
+  },
+  "accepts": [
+   "the eight W1 work packages (02/03/04/05/07/11/17/20) are implemented as author-side referees whose POS passes every declared layer and whose declared NEGs are refused at the declared layer with the declared code",
+   "the three user journeys GJ01/GJ02/GJ03 are implemented as a referee and their declared FirstFail codes are produced by executed cases",
+   "the round's gate (35 worklist units) is green with failures 0, missing 0, and the FALSE_GREEN mutation selftest bites 8/8"
+  ],
+  "does_not_accept": [
+   "NATIVE_SIGNED",
+   "INDEPENDENT_PASS",
+   "RELEASE_GRANTED",
+   "original-domain reader acceptance",
+   "any claim that the original Case Registry / Runner / Protected Checker has run"
+  ],
+  "holds_remain": [
+   "H-ORIGINAL-CASE-RUNNER",
+   "H-ENTRY",
+   "H-GUARD-RAW-MISMATCH",
+   "H-RETIREMENT-BOUNDARY",
+   "H-READER-PIPD",
+   "H-SUPPLYCHAIN-RAW"
+  ],
+  "claim_ceiling": "AUTHOR_W1_CHECK / LOCAL_CHECK / NOT_NATIVE / NOT_INDEPENDENT / NOT_RELEASE",
+  "window": {
+   "task_id": "W1_R3_IMPLEMENTATION_20261115",
+   "scope": "owner_semantic_accept",
+   "max_ops": 8
+  }
+ },
+ "canonical_rule": {
+  "function": "jcs-compact",
+  "encoding": "utf-8",
+  "notes": "sorted keys, separators (',',':'), ensure_ascii=False"
+ },
+ "payload_sha256": "94daac71a3d7590699f130e4bda04954e946fb4cc428dda24117ef8900ecee0a",
+ "signature_hex": "3ecff19e2a1d0e0c4ad80a0c415e40df3e36b6cabb7e45b1adf497a77eba119be9f8e83bf337d7b6dcc73a19b24b526ca55c838c52cf40acc2e9f47a7ea69006",
+ "alg": "ed25519",
+ "signature_meta": {
+  "window_id": "WIN-10bd8025d783",
+  "ops_used": 1,
+  "owner_fingerprint": "412b351937be72a1",
+  "registry_at_open": "89121f26c29d7da85123042aa7928f6986ea3213b85b91fb6d6b5358ae0b10a6"
+ },
+ "verified_locally_against": "owner_enrollment.public_hex",
+ "not_claimed": [
+  "ORIGINAL_ACK",
+  "NATIVE_SIGNED",
+  "INDEPENDENT_PASS",
+  "RELEASE_GRANTED",
+  "principal_separation"
+ ]
+}
