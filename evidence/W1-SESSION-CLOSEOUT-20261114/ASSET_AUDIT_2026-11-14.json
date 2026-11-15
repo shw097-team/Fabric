@@ -1,0 +1,220 @@
+{
+ "schema": "FHS-SESSION-ASSET-AUDIT/1",
+ "date": "2026-11-14",
+ "layer_rules": {
+  "main_use": "FHS_NEXT/deliverables/<subject>/ + 產品 repo main + Fabric main",
+  "candidate": "明示 CANDIDATE_NOT_APPROVED 且落 primary deliverables，供下一波接手",
+  "round": "FHS_NEXT_Workspace/<round>/ = 施工現場與證據，不作為對外引用來源",
+  "discardable": "只放可重建暫存；不得存放任何已過審內容"
+ },
+ "items": [
+  {
+   "item": "FHS_vNEXT_PLP_W0",
+   "primary_path": "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\deliverables\\FHS_vNEXT_PLP_W0",
+   "expected_state": [
+    "DELIVERED",
+    "DELIVERED_OWNER_SIGNED_REVIEWED",
+    "OWNER_RULED_CONSTRUCTION_BASELINE",
+    "RELEASED",
+    "W0_SCOPE_COMPLETE"
+   ],
+   "expected_layer": "main_use",
+   "findings": [],
+   "state": "W0_SCOPE_COMPLETE",
+   "documents": [
+    {
+     "name": "FHS_vNEXT_PLP_W0_2026-11-14_r9_交付版.md",
+     "present": true,
+     "sha_ok": true,
+     "bytes": 694517
+    },
+    {
+     "name": "FHS_vNEXT_PLP_W0_藍圖&skeleton.md",
+     "present": true,
+     "sha_ok": true,
+     "bytes": 3961
+    },
+    {
+     "name": "FHS_vNEXT_PLP_W0_草案.md",
+     "present": true,
+     "sha_ok": true,
+     "bytes": 3067
+    },
+    {
+     "name": "FHS_vNEXT_PLP_W0_定案.md",
+     "present": true,
+     "sha_ok": true,
+     "bytes": 5749
+    },
+    {
+     "name": "FHS_PIPD-LS-PKG_W0_vNEXT_2026-11-14_r2_實質正文.md",
+     "present": true,
+     "sha_ok": true,
+     "bytes": 31526
+    },
+    {
+     "name": "FHS_PIPD-LS-PKG_W0_vNEXT_2026-11-14_r2_證據型附錄.md",
+     "present": true,
+     "sha_ok": true,
+     "bytes": 50289
+    }
+   ],
+   "verdict": "PASS",
+   "vocabulary_note": "W0 用 `W0_SCOPE_COMPLETE`，W1 用 `RELEASED`；狀態字彙不一致但都是「已在使用的主用層」，本稽核不改寫 W0 的宣告，只記錄字彙分歧"
+  },
+  {
+   "item": "FHS_vNEXT_PLP_W1",
+   "primary_path": "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\deliverables\\FHS_vNEXT_PLP_W1",
+   "expected_state": [
+    "RELEASED"
+   ],
+   "expected_layer": "main_use",
+   "findings": [],
+   "state": "RELEASED",
+   "documents": [
+    {
+     "name": "FHS_vNEXT_PLP_W1_實質正文_交付版_2026-11-14_r2.md",
+     "present": true,
+     "sha_ok": true,
+     "bytes": 120834
+    },
+    {
+     "name": "FHS_vNEXT_PLP_W1_證據型附錄_交付版_2026-11-14_r2.md",
+     "present": true,
+     "sha_ok": true,
+     "bytes": 10946
+    },
+    {
+     "name": "FHS_vNEXT_PLP_W1_交付包_2026-11-14_r2.zip",
+     "present": true,
+     "sha_ok": true,
+     "bytes": 88513
+    }
+   ],
+   "verdict": "PASS"
+  },
+  {
+   "item": "FHS_vNEXT_PLP_W2",
+   "primary_path": "C:\\Projects\\Agent_Workspace\\FHS_NEXT\\deliverables\\FHS_vNEXT_PLP_W2",
+   "expected_state": [
+    "CANDIDATE_NOT_APPROVED"
+   ],
+   "expected_layer": "candidate",
+   "findings": [],
+   "state": "CANDIDATE_NOT_APPROVED",
+   "documents": [
+    {
+     "name": "FHS_vNEXT_PLP_W2_藍圖草案_實質正文.md",
+     "present": true,
+     "sha_ok": true,
+     "bytes": 36406
+    },
+    {
+     "name": "FHS_vNEXT_PLP_W2_候選包_2026-11-14_r1.zip",
+     "present": true,
+     "sha_ok": true,
+     "bytes": 26180
+    }
+   ],
+   "verdict": "PASS"
+  }
+ ],
+ "writeback": {
+  "layers": [
+   {
+    "layer": "L0",
+    "in_ledger": true,
+    "after_bytes": 368440,
+    "file_present": true,
+    "sha_ok": true,
+    "amendments": [
+     "WB-01",
+     "WB-02",
+     "WB-03",
+     "WB-09"
+    ]
+   },
+   {
+    "layer": "L1",
+    "in_ledger": true,
+    "after_bytes": 7259405,
+    "file_present": true,
+    "sha_ok": true,
+    "amendments": [
+     "WB-04",
+     "WB-05",
+     "WB-10-R1"
+    ]
+   },
+   {
+    "layer": "L2",
+    "in_ledger": true,
+    "after_bytes": 2763972,
+    "file_present": true,
+    "sha_ok": true,
+    "amendments": [
+     "WB-07",
+     "WB-12",
+     "WB-13",
+     "WB-11",
+     "WB-08"
+    ]
+   }
+  ],
+  "primary_tree_present": true,
+  "note": "回寫落筆位置在知識庫 FHS 文件集；此處重算 live 檔 sha 與 ledger 的 sha256_after 比對"
+ },
+ "round_deliverables": {
+  "covered_by_primary": [
+   {
+    "file": "CLOSEOUT_2026-11-14.md",
+    "via": "primary_supplementary"
+   },
+   {
+    "file": "DELIVERY_2026-11-14.json",
+    "via": "primary_supplementary"
+   },
+   {
+    "file": "FHS_vNEXT_PLP_W1_實質正文_施工定案版_2026-11-14_r2_AMENDED.md",
+    "via": "primary_renamed",
+    "note": "同內容以交付名存在主用層"
+   },
+   {
+    "file": "FHS_vNEXT_PLP_W2_藍圖草案_實質正文.md",
+    "via": "primary_direct"
+   },
+   {
+    "file": "W1_HANDOFF_2026-11-14.md",
+    "via": "primary_pack"
+   },
+   {
+    "file": "W1_R2_CONSTRUCTION_PACK_2026-11-14.zip",
+    "via": "superseded_by_signed_pack"
+   },
+   {
+    "file": "W1_R2_CONSTRUCTION_REPORT_2026-11-14.md",
+    "via": "primary_pack"
+   },
+   {
+    "file": "W1_REPO_ENTRY_2026-11-14.md",
+    "via": "primary_supplementary"
+   },
+   {
+    "file": "WP07_COMMANDER_ABC.md",
+    "via": "primary_supplementary"
+   },
+   {
+    "file": "WP11_HOST_PLAN_2026-11-14.md",
+    "via": "primary_supplementary"
+   }
+  ],
+  "only_in_round": [],
+  "note": "round 副本是施工現場原檔；對外引用以 primary＋repo 為準。only_in_round 若存在，代表只在現場、未進主用層。"
+ },
+ "summary": {
+  "items": 3,
+  "fail": 0,
+  "misfiled": []
+ },
+ "verdict": "ALL_PRIMARY"
+}
