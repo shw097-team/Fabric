@@ -1,0 +1,121 @@
+{
+ "schema": "FHS-W1R2-HYGIENE/1",
+ "date": "2026-11-14",
+ "round": "C:\\Projects\\Agent_Workspace\\FHS_NEXT_Workspace\\W1_R2_CONSTRUCTION_20261114",
+ "before": {
+  "files": 725,
+  "bytes": 53029210,
+  "manifest_sha256": "8d3267c8f1a9b92d453cd30a653435737485b9604e8b9e72c5e4e4a04a29bee2"
+ },
+ "actions": [
+  {
+   "action": "delete",
+   "path": "build\\__pycache__",
+   "reason": "build residue",
+   "was": {
+    "files": 3,
+    "bytes": 71383
+   }
+  },
+  {
+   "action": "delete",
+   "path": "out/_m.json",
+   "reason": "transient stdout capture (declared volatile in the write manifest)",
+   "was": {
+    "files": 1,
+    "bytes": 918
+   }
+  },
+  {
+   "action": "delete",
+   "path": "sbx",
+   "reason": "sandbox scratch (probe copies, mutation sandboxes); rebuildable from build/ scripts",
+   "was": {
+    "files": 215,
+    "bytes": 5236294,
+    "manifest_sha256": "285d940268606c8c80bebe6bcb6285300e905d935109b45d7817d05120c3764b"
+   },
+   "guard": "checked that no CURRENT/MANIFEST/report cites an sbx/ path as required"
+  },
+  {
+   "action": "archive",
+   "detail": [
+    {
+     "file": "LANE_EXEC.stderr.txt",
+     "bytes": 332,
+     "to": "_archive\\foreign_logs\\LANE_EXEC.stderr.txt",
+     "reason": "written by another actor; kept for the record, never adopted as evidence"
+    },
+    {
+     "file": "LANE_VERIFY_PUBLISH.stderr.txt",
+     "bytes": 533,
+     "to": "_archive\\foreign_logs\\LANE_VERIFY_PUBLISH.stderr.txt",
+     "reason": "written by another actor; kept for the record, never adopted as evidence"
+    },
+    {
+     "file": "LANE_DECISIONS.stderr.txt",
+     "bytes": 533,
+     "to": "_archive\\foreign_logs\\LANE_DECISIONS.stderr.txt",
+     "reason": "written by another actor; kept for the record, never adopted as evidence"
+    }
+   ]
+  }
+ ],
+ "kept_classes": [
+  "out/ 收據",
+  "docs/ 裁定與更正",
+  "deliverables/ 交付物",
+  "build/ 產生器",
+  "lane_cwd/ 每輪簡報",
+  "logs/ 派車原稿（證據；不對外發布）",
+  "owner_ws/ 簽章物"
+ ],
+ "referenced_tokens": [
+  "$ROUND/sbx/",
+  "$ROUND/sbx/wp05/chain/bundle4.json",
+  "$ROUND/sbx/wp07`），**唯一**授權寫入位置。",
+  "$ROUND/sbx/wp07`；要換位置只能改",
+  "${WP07_ISO_ROOT:-$ROUND/sbx/wp07}",
+  "<WORKSPACE>/FHS_NEXT_Workspace/W1_R1_ENGINEERING_20261114/sbx/hgk\\spine.db`｜**14/14**",
+  "<WORKSPACE>/FHS_NEXT_Workspace/W1_R2_CONSTRUCTION_20261114/sbx/hgk/backups/hg-kseos-20261114T114214.517924Z.db",
+  "<WORKSPACE>/FHS_NEXT_Workspace/W1_R2_CONSTRUCTION_20261114/sbx/hgk/backups/hg-kseos-20261114T114214.517924Z.manifest.json",
+  "<WORKSPACE>/FHS_NEXT_Workspace/W1_R2_CONSTRUCTION_20261114/sbx/hgk/backups/tampered.db",
+  "<WORKSPACE>/FHS_NEXT_Workspace/W1_R2_CONSTRUCTION_20261114/sbx/hgk/restored.db",
+  "<WORKSPACE>/FHS_NEXT_Workspace/W1_R2_CONSTRUCTION_20261114/sbx/hgk/spine.db",
+  "<WORKSPACE>/FHS_NEXT_Workspace/W1_R2_CONSTRUCTION_20261114/sbx/hgk\\\\spine.db",
+  "<WORKSPACE>/FHS_NEXT_Workspace/W1_R2_CONSTRUCTION_20261114/sbx/wp05/chain/bundle1.json",
+  "<WORKSPACE>/FHS_NEXT_Workspace/W1_R2_CONSTRUCTION_20261114/sbx/wp05/chain/bundle4.json",
+  "<WORKSPACE>/FHS_NEXT_Workspace/W1_R2_CONSTRUCTION_20261114/sbx/wp05/chain/ecp.json",
+  "<WORKSPACE>/FHS_NEXT_Workspace/W1_R2_CONSTRUCTION_20261114/sbx/wp05/chain/effect_intent.json",
+  "<WORKSPACE>/FHS_NEXT_Workspace/W1_R2_CONSTRUCTION_20261114/sbx/wp05/chain/fake_receipt.json",
+  "<WORKSPACE>/FHS_NEXT_Workspace/W1_R2_CONSTRUCTION_20261114/sbx/wp05/chain/intent.card.json",
+  "<WORKSPACE>/FHS_NEXT_Workspace/W1_R2_CONSTRUCTION_20261114/sbx/wp05/chain/pd.json",
+  "<WORKSPACE>/FHS_NEXT_Workspace/W1_R2_CONSTRUCTION_20261114/sbx/wp05/chain/pi.json",
+  "<WORKSPACE>/FHS_NEXT_Workspace/W1_R2_CONSTRUCTION_20261114/sbx/wp05/chain/profile.json",
+  "<WORKSPACE>/FHS_NEXT_Workspace/W1_R2_CONSTRUCTION_20261114/sbx/wp05/chain/tqaep.json",
+  "<WORKSPACE>/FHS_NEXT_Workspace/W1_R2_CONSTRUCTION_20261114/sbx/wp05/source/goal_card.md",
+  "<WORKSPACE>/FHS_NEXT_Workspace/W1_R2_CONSTRUCTION_20261114/sbx/wp17mut/BASELINE_UNTOUCHED/3LM_ASSERT_EXECUTE_primary.json",
+  "<WORKSPACE>/FHS_NEXT_Workspace/W1_R2_CONSTRUCTION_20261114/sbx/wp17mut/BASELINE_UNTOUCHED/3LM_ASSERT_PLAN_opt1.json",
+  "<WORKSPACE>/FHS_NEXT_Workspace/W1_R2_CONSTRUCTION_20261114/sbx/wp17mut/BASELINE_UNTOUCHED/3LM_ASSERT_VERIFY_opt1.json",
+  "<WORKSPACE>/FHS_NEXT_Workspace/W1_R2_CONSTRUCTION_20261114/sbx/wp17mut/BASELINE_UNTOUCHED/3LM_MENU.json",
+  "<WORKSPACE>/FHS_NEXT_Workspace/W1_R2_CONSTRUCTION_20261114/sbx/wp17mut/BASELINE_UNTOUCHED/3LM_MENU_LIVE.json",
+  "<WORKSPACE>/FHS_NEXT_Workspace/W1_R2_CONSTRUCTION_20261114/sbx/wp17mut/BASELINE_UNTOUCHED/3LM_MENU_LIVE.stderr.json",
+  "<WORKSPACE>/FHS_NEXT_Workspace/W1_R2_CONSTRUCTION_20261114/sbx/wp17mut/BASELINE_UNTOUCHED/ACCEPTANCE_EVAL.json",
+  "<WORKSPACE>/FHS_NEXT_Workspace/W1_R2_CONSTRUCTION_20261114/sbx/wp17mut/BASELINE_UNTOUCHED/DELIVERABLES_BUILD.json",
+  "<WORKSPACE>/FHS_NEXT_Workspace/W1_R2_CONSTRUCTION_20261114/sbx/wp17mut/BASELINE_UNTOUCHED/FABRIC_ENTRY_UNITTEST.txt",
+  "<WORKSPACE>/FHS_NEXT_Workspace/W1_R2_CONSTRUCTION_20261114/sbx/wp17mut/BASELINE_UNTOUCHED/LANE_EVIDENCE.json",
+  "<WORKSPACE>/FHS_NEXT_Workspace/W1_R2_CONSTRUCTION_20261114/sbx/wp17mut/BASELINE_UNTOUCHED/LANE_EXEC_WP20.json",
+  "<WORKSPACE>/FHS_NEXT_Workspace/W1_R2_CONSTRUCTION_20261114/sbx/wp17mut/BASELINE_UNTOUCHED/LANE_EXEC_WP20.json.attempts.ndjson",
+  "<WORKSPACE>/FHS_NEXT_Workspace/W1_R2_CONSTRUCTION_20261114/sbx/wp17mut/BASELINE_UNTOUCHED/LANE_EXEC_WP20_R2.json",
+  "<WORKSPACE>/FHS_NEXT_Workspace/W1_R2_CONSTRUCTION_20261114/sbx/wp17mut/BASELINE_UNTOUCHED/LANE_EXEC_WP20_R2.json.attempts.ndjson",
+  "<WORKSPACE>/FHS_NEXT_Workspace/W1_R2_CONSTRUCTION_20261114/sbx/wp17mut/BASELINE_UNTOUCHED/LANE_EXEC_WP20_R3.json",
+  "<WORKSPACE>/FHS_NEXT_Workspace/W1_R2_CONSTRUCTION_20261114/sbx/wp17mut/BASELINE_UNTOUCHED/LANE_EXEC_WP20_R3.json.attempts.ndjson",
+  "<WORKSPACE>/FHS_NEXT_Workspace/W1_R2_CONSTRUCTION_20261114/sbx/wp17mut/BASELINE_UNTOUCHED/LANE_EXEC_WP20_R4.json"
+ ],
+ "after": {
+  "files": 506,
+  "bytes": 47720615,
+  "manifest_sha256": "3d4bb58b34fc795a55d3dc1c959e63feb8fd8e7c50ee17b42881adc56b02536c"
+ },
+ "verdict": "CLEAN"
+}
