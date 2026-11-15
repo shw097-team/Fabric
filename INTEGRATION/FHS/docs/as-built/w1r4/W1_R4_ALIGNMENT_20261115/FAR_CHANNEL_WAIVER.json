@@ -1,0 +1,30 @@
+{
+ "schema": "FHS_NEXT.FAR.D7_WAIVER/1",
+ "at_utc": "2026-11-15T05:31:08+00:00",
+ "round": "W1_R4_ALIGNMENT_20261115",
+ "decision": "WAIVER_REQUESTED_NOT_SELF_GRANTED",
+ "channels": [
+  {
+   "channel": "memory (HGK SharedSpine FTS5)",
+   "measured": "UNAVAILABLE",
+   "probe": "find C:/Projects/Agent_Workspace -maxdepth 4 -name hg-kseos.db -> 0 rows; C:/Projects/Agent_Workspace/HG-KSEOS does not exist",
+   "consequence": "no memory hits can be cited for this or any FAR run on this host"
+  },
+  {
+   "channel": "knowledge base (9 roots)",
+   "measured": "DEGRADED",
+   "probe": "8 hits, all unrelated to W1 chapter assignment; roots not declared for this decision question",
+   "consequence": "KB can corroborate prose, cannot establish chapter-to-wave assignment"
+  },
+  {
+   "channel": "governed read-only web",
+   "measured": "DECLARED_NONE",
+   "probe": "no external root declared by the owner for this round; FAR ran document-only by design",
+   "consequence": "no web claim is made"
+  }
+ ],
+ "source_ceiling_for_this_round": "BLUEPRINT_DOCUMENT_SET+RECEIPT",
+ "why_acceptable": "W1 chapter assignment is an internal blueprint question; the five upstream editions are local, byte-hashed and cited per-file. External channels would not change the finding.",
+ "who_must_lift": "Fabric FAR owner (D7 assigned to that role, not to the W1 author)",
+ "residual_risk": "a FAR run on this host cannot claim memory/web corroboration until a spine DB or declared roots exist"
+}

@@ -1,0 +1,312 @@
+{
+ "schema": "FHS_NEXT.W1R4.CH_LAYER_SPEC/1",
+ "chapters": {
+  "CH-13": {
+   "title": "Authority SourceFreeze／Profile Tailoring／原 PI 的 18 領域",
+   "wp": "WP-FHS-13C",
+   "code": "SOURCE_POLARITY_OR_PARENT_LOSS",
+   "sec": "SOURCE_POLARITY_OR_PARENT_LOSS",
+   "layers": [
+    {
+     "n": 1,
+     "name": "source_identity_and_span",
+     "rule": "evidence.source must carry source_id + 64-hex sha256 + path + span; a bare id is not a source"
+    },
+    {
+     "n": 2,
+     "name": "parent_child_polarity",
+     "rule": "every atomic requirement must carry its original parent sentence and its polarity (must/shall-not); a child that dropped 不得 refuses"
+    },
+    {
+     "n": 3,
+     "name": "count_is_not_denominator",
+     "rule": "evidence.parent_child.claimed_children must equal the enumerated child list length; a parent count standing in for all children refuses"
+    },
+    {
+     "n": 4,
+     "name": "taxonomy_does_not_rewrite_ids",
+     "rule": "evidence.taxonomy only classifies; evidence.taxonomy.rewrites_original_id must be false"
+    },
+    {
+     "n": 5,
+     "name": "profile_veto_adds_depth_only",
+     "rule": "evidence.profile.veto must not remove an original requirement; evidence.profile.depth_delta must be >= 0"
+    },
+    {
+     "n": 6,
+     "name": "pi_domains_non_empty",
+     "rule": "evidence.pi_domains must enumerate all 18 domains with a non-empty semantic input each"
+    }
+   ],
+   "neg": {
+    "borrowed_scope": {
+     "code": "SOURCE_POLARITY_OR_PARENT_LOSS",
+     "layer": 1
+    },
+    "dropped_negation": {
+     "code": "SOURCE_POLARITY_OR_PARENT_LOSS",
+     "layer": 2
+    },
+    "parent_count_as_children": {
+     "code": "SOURCE_POLARITY_OR_PARENT_LOSS",
+     "layer": 3
+    },
+    "taxonomy_rewrites_id": {
+     "code": "SOURCE_POLARITY_OR_PARENT_LOSS",
+     "layer": 4
+    },
+    "veto_removes_requirement": {
+     "code": "SOURCE_POLARITY_OR_PARENT_LOSS",
+     "layer": 5
+    },
+    "pi_domain_empty": {
+     "code": "SOURCE_POLARITY_OR_PARENT_LOSS",
+     "layer": 6
+    }
+   }
+  },
+  "CH-14": {
+   "title": "PD-01..10、RepoContext Currentness、Scope 與晚綁",
+   "wp": "WP-FHS-14C",
+   "code": "PD_CONTEXT_STALE_OR_UNBOUND",
+   "layers": [
+    {
+     "n": 1,
+     "name": "real_git_top",
+     "rule": "evidence.repo.is_git_top must be true; the three workspace folders are not repositories"
+    },
+    {
+     "n": 2,
+     "name": "head_matches_local",
+     "rule": "evidence.repo.head must be a 40-hex commit and evidence.repo.head_source must not be 'remote_main'"
+    },
+    {
+     "n": 3,
+     "name": "path_scope_exact",
+     "rule": "writeset.paths must be an explicit list with a preimage digest per path; no glob and no root-wide scope"
+    },
+    {
+     "n": 4,
+     "name": "reparse_and_collision",
+     "rule": "evidence.paths_checked must report reparse/junction/hardlink/case-collision checks as false"
+    },
+    {
+     "n": 5,
+     "name": "dirty_split",
+     "rule": "when evidence.repo.dirty is true, evidence.dirty_split.own and .others must be listed separately; auto-clean is refused"
+    },
+    {
+     "n": 6,
+     "name": "late_bind_compares_preimage",
+     "rule": "evidence.late_bind must compare original PI digest, current HEAD and per-path preimage, all with the record subject identity"
+    }
+   ],
+   "neg": {
+    "borrowed_scope": {
+     "code": "PD_CONTEXT_STALE_OR_UNBOUND",
+     "layer": 1
+    },
+    "remote_main_as_head": {
+     "code": "PD_CONTEXT_STALE_OR_UNBOUND",
+     "layer": 2
+    },
+    "path_string_as_permission": {
+     "code": "PD_CONTEXT_STALE_OR_UNBOUND",
+     "layer": 3
+    },
+    "reparse_undeclared": {
+     "code": "PD_CONTEXT_STALE_OR_UNBOUND",
+     "layer": 4
+    },
+    "dirty_autoclean": {
+     "code": "PD_CONTEXT_STALE_OR_UNBOUND",
+     "layer": 5
+    },
+    "preimage_absent": {
+     "code": "PD_CONTEXT_STALE_OR_UNBOUND",
+     "layer": 6
+    }
+   }
+  },
+  "CH-16": {
+   "title": "跨庫 Typed ABI、Producer→Consumer、Same Subject 交接",
+   "wp": "WP-FHS-16C",
+   "code": "ABI_JOIN_MISMATCH",
+   "layers": [
+    {
+     "n": 1,
+     "name": "five_seams_enumerated",
+     "rule": "evidence.seams must enumerate S1..S5, each with producer, abi_id, abi_version, consumer"
+    },
+    {
+     "n": 2,
+     "name": "field_map_and_join",
+     "rule": "each seam must carry a field_map and a join over subject_id/source_sha256/candidate/version; a missing join key refuses"
+    },
+    {
+     "n": 3,
+     "name": "per_edge_ack",
+     "rule": "each seam needs its own ack with state ACK/NACK and payload_digest; one success JSON may not stand for five seams"
+    },
+    {
+     "n": 4,
+     "name": "sidecar_separated",
+     "rule": "evidence.sidecar.mixed_into_strict must be false"
+    },
+    {
+     "n": 5,
+     "name": "timeout_is_unknown",
+     "rule": "evidence.timeout_observed true with evidence.guessed_ack true refuses; a timeout is UNKNOWN, never ACK"
+    }
+   ],
+   "neg": {
+    "borrowed_scope": {
+     "code": "ABI_JOIN_MISMATCH",
+     "layer": 2
+    },
+    "arrow_only": {
+     "code": "ABI_JOIN_MISMATCH",
+     "layer": 1
+    },
+    "one_ack_for_five": {
+     "code": "ABI_JOIN_MISMATCH",
+     "layer": 3
+    },
+    "join_key_missing": {
+     "code": "ABI_JOIN_MISMATCH",
+     "layer": 2
+    },
+    "timeout_guessed_ack": {
+     "code": "ABI_JOIN_MISMATCH",
+     "layer": 5
+    }
+   }
+  },
+  "CH-20": {
+   "title": "Hermes Native Kanban／Delegation／Swarm／長任務",
+   "wp": "WP-FHS-20C",
+   "code": "UNKNOWN_RECONCILE_REQUIRED",
+   "layers": [
+    {
+     "n": 1,
+     "name": "route_trigger",
+     "rule": "evidence.route.tool must be one of direct/delegation/kanban/swarm and evidence.route.trigger must justify that choice"
+    },
+    {
+     "n": 2,
+     "name": "one_scheduler",
+     "rule": "evidence.second_scheduler must be false; a second SQLite scheduler refuses"
+    },
+    {
+     "n": 3,
+     "name": "lease_and_budget",
+     "rule": "evidence.lease must carry work_id/generation/cursor and evidence.budget must carry max_turns/max_tokens"
+    },
+    {
+     "n": 4,
+     "name": "resume_same_key",
+     "rule": "when evidence.interrupted is true, evidence.resume must reuse the same work_id/cursor and evidence.replayed must be false"
+    },
+    {
+     "n": 5,
+     "name": "card_done_is_not_world",
+     "rule": "evidence.card_done true with evidence.world_result absent refuses"
+    },
+    {
+     "n": 6,
+     "name": "no_cross_worker_credentials",
+     "rule": "evidence.home_shared must be false and no credential path may appear in writeset"
+    }
+   ],
+   "neg": {
+    "borrowed_scope": {
+     "code": "UNKNOWN_RECONCILE_REQUIRED",
+     "layer": 1
+    },
+    "second_scheduler": {
+     "code": "UNKNOWN_RECONCILE_REQUIRED",
+     "layer": 2
+    },
+    "lease_absent": {
+     "code": "UNKNOWN_RECONCILE_REQUIRED",
+     "layer": 3
+    },
+    "blind_retry": {
+     "code": "UNKNOWN_RECONCILE_REQUIRED",
+     "layer": 4
+    },
+    "card_done_as_world": {
+     "code": "UNKNOWN_RECONCILE_REQUIRED",
+     "layer": 5
+    },
+    "shared_home": {
+     "code": "UNKNOWN_RECONCILE_REQUIRED",
+     "layer": 6
+    }
+   }
+  },
+  "CH-39": {
+   "title": "安全：SoD、Process ACL、秘鑰、原授權、Consent",
+   "wp": "WP-FHS-39C",
+   "code": "AUTHORITY_OR_SECRET_SCOPE_DENY",
+   "layers": [
+    {
+     "n": 1,
+     "name": "principal_separation",
+     "rule": "evidence.principals must list maker/checker/issuer/publisher and no two protected roles may share one principal id"
+    },
+    {
+     "n": 2,
+     "name": "secrets_absent",
+     "rule": "no secret material in argv/url/log/commit/paths; evidence.secret_scan.must_be_clean must be true with a scanner digest"
+    },
+    {
+     "n": 3,
+     "name": "source_is_data",
+     "rule": "evidence.source_instruction_executed must be false; source text never expands authority"
+    },
+    {
+     "n": 4,
+     "name": "per_effect_permission",
+     "rule": "each of the six effects present must carry its own permission and preimage; a DEV grant may not serve a HOST_OPS effect"
+    },
+    {
+     "n": 5,
+     "name": "negative_keeps_raw",
+     "rule": "evidence.negative_tests must keep the raw refusal and must not modify the oracle; evidence.oracle_modified must be false"
+    },
+    {
+     "n": 6,
+     "name": "self_signed_independent_refused",
+     "rule": "evidence.claims_independent must be false; only a protected checker may issue an independent verdict"
+    }
+   ],
+   "neg": {
+    "borrowed_scope": {
+     "code": "AUTHORITY_OR_SECRET_SCOPE_DENY",
+     "layer": 1
+    },
+    "shared_principal": {
+     "code": "AUTHORITY_OR_SECRET_SCOPE_DENY",
+     "layer": 1
+    },
+    "secret_in_argv": {
+     "code": "AUTHORITY_OR_SECRET_SCOPE_DENY",
+     "layer": 2
+    },
+    "source_expands_authority": {
+     "code": "AUTHORITY_OR_SECRET_SCOPE_DENY",
+     "layer": 3
+    },
+    "dev_grant_for_ops": {
+     "code": "AUTHORITY_OR_SECRET_SCOPE_DENY",
+     "layer": 4
+    },
+    "self_signed_independent": {
+     "code": "AUTHORITY_OR_SECRET_SCOPE_DENY",
+     "layer": 6
+    }
+   }
+  }
+ }
+}

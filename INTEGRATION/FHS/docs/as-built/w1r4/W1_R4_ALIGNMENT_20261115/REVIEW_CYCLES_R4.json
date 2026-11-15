@@ -1,0 +1,77 @@
+{
+ "schema": "FHS_NEXT.W1R4.REVIEW_CYCLES/1",
+ "subject_sha256": "5aca7b5e2bdc67d13dff95432b14d7e152f18e3d341971490b7a77c395345a6b",
+ "subject_bytes": 2064944,
+ "criteria": [
+  "V1",
+  "V2",
+  "V3",
+  "V4",
+  "V5",
+  "V6",
+  "V7",
+  "V8"
+ ],
+ "cap": 6,
+ "cycles": [
+  {
+   "cycle": 1,
+   "nonce": "W1R4-VERIFY-01-5aca7b",
+   "receipt": "logs/verify_r4.log",
+   "criteria_seen": {
+    "1": "PASS",
+    "2": "FAIL",
+    "3": "FAIL",
+    "4": "FAIL",
+    "5": "FAIL",
+    "6": "FAIL",
+    "7": "PASS",
+    "8": "FAIL"
+   },
+   "fails": 6,
+   "verdict": "REVISE",
+   "disagreement_head": "V2 | chapter-specific refusal code | `got=NACK` does not evidence each declared ",
+   "grew": false
+  },
+  {
+   "cycle": 2,
+   "nonce": "W1R4-VERIFY-02-5aca7b",
+   "receipt": "logs/verify_r4_c2.log",
+   "criteria_seen": {
+    "1": "PASS",
+    "2": "PASS",
+    "3": "PASS",
+    "4": "PASS",
+    "5": "PASS",
+    "6": "PASS",
+    "7": "PASS",
+    "8": "FAIL"
+   },
+   "fails": 1,
+   "verdict": "REVISE",
+   "disagreement_head": "V8 | every NEG has a single-point derivation | 70 rows equal 29 chapter + 34 VN ",
+   "grew": false
+  },
+  {
+   "cycle": 3,
+   "nonce": "W1R4-VERIFY-03-5aca7b",
+   "receipt": "logs/verify_r4_c3.log",
+   "criteria_seen": {
+    "1": "PASS",
+    "2": "PASS",
+    "3": "PASS",
+    "4": "PASS",
+    "5": "PASS",
+    "6": "PASS",
+    "7": "PASS",
+    "8": "PASS"
+   },
+   "fails": 0,
+   "verdict": "APPROVED",
+   "disagreement_head": "NONE",
+   "grew": false
+  }
+ ],
+ "final": "APPROVED",
+ "note": "同家族模型另一 context／另一 lane 的 VERIFY，不構成 INDEPENDENT_PASS。cycle1 的 7 項失敗全部是證據包不完整（裁判未變）；cycle2 的 1 項是 LOOP 四案缺導出列；cycle3 全綠 8/8、無分歧。"
+}

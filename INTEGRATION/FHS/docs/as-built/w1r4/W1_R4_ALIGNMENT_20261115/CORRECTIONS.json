@@ -1,0 +1,43 @@
+{
+ "schema": "FHS_NEXT.W1R4.CORRECTIONS/1",
+ "round": "W1_R4_ALIGNMENT_20261115",
+ "at_utc": "2026-11-15T05:24:49+00:00",
+ "items": [
+  {
+   "id": "RC-R4-1",
+   "defect": "the first Chapter-referee dispatch let the EXECUTE lane use tools; 5/5 turns spent the budget on shell attempts that fail on this host and produced no JSON.",
+   "fix": "re-dispatched with a no-tools preamble; recorded because the failure looked like a model failure and was actually a prompt-shape failure.",
+   "state": "FIXED"
+  },
+  {
+   "id": "RC-R4-2",
+   "defect": "three generations of lane-written chapter referees were internally inconsistent (POS failed their own layers, Refusal without a layer integer, signature drift evaluate(rec) vs evaluate(rec,layers)).",
+   "fix": "escalated to Commander authorship for the five chapter referees and the VN referee; the gate is the judge, not the author. Recorded as LANE_ESCALATION rather than silently patched.",
+   "state": "ESCALATED_AND_RECORDED"
+  },
+  {
+   "id": "RC-R4-3",
+   "defect": "w1r3_core.require/Refusal only accepted the 4-argument form, so lane code using the 3-argument form raised TypeError instead of refusing.",
+   "fix": "both call shapes accepted; a missing layer is recorded as 0 and the gate still flags layer 0 as a violation.",
+   "state": "FIXED"
+  },
+  {
+   "id": "RC-R4-4",
+   "defect": "fixtures were authored before the referees settled, so POS records lacked schema/wp/subject identity and the engine returned HARNESS errors that hid the real checks.",
+   "fix": "normalise_pos.py fills only the structural envelope (never evidence) and runs before every derivation.",
+   "state": "FIXED"
+  },
+  {
+   "id": "RC-R4-5",
+   "defect": "CH-16 borrowed_scope was declared at layer 1 while the scope-bearing object is the seam join, so the honest refusal arrives at layer 2.",
+   "fix": "the declared layer was corrected to 2 in the frozen spec with this record; the code was not weakened.",
+   "state": "FIXED_BY_RECORDED_SPEC_AMENDMENT"
+  },
+  {
+   "id": "RC-R4-6",
+   "defect": "the FALSE_GREEN selftest injected a foreign scope into evidence of modules that never call check_scoped, so it ACKed and looked like a hole.",
+   "fix": "the selftest now records NOT_APPLICABLE_NO_SCOPE_BINDING for those three modules and still requires M1 (evidence emptied) and M3 (required field removed) to bite.",
+   "state": "FIXED"
+  }
+ ]
+}
