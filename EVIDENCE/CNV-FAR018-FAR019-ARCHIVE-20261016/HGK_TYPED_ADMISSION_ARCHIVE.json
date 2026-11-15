@@ -1,0 +1,135 @@
+{
+ "schema": "CNV-FAR018-FAR019-ARCHIVE-20261016/HGK-TYPED-ADMISSION/1",
+ "project_id": "CNV-ARCHIVE-THREE-PRS",
+ "project_id_probe": {
+  "db": "C:\\Projects\\Agent_Workspace\\var\\shared-spine\\hg-kseos.db",
+  "projects": [],
+  "taskspec_segments": []
+ },
+ "changeset": "CNV-FAR018-FAR019-ARCHIVE-20261016",
+ "contract_id": "CNV-FAR018-FAR019-ARCHIVE-20261016",
+ "sources_present": 11,
+ "sources_missing": [],
+ "source_inventory": [
+  {
+   "id": "SRC-CONTRACT",
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-FAR018-FAR019-ARCHIVE-20261016\\prompt-contract.json",
+   "bytes": 79140,
+   "sha256": "b9be427e4d9cb9b99a8aa3a7fbec778ee88de4ecbcdb1ebff8c2929b8411ad4d"
+  },
+  {
+   "id": "SRC-ORDER",
+   "path": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\attachments\\Fabric × Hermes × HG-KSEOS｜FAR-018／FAR-019 歸檔指揮薄 PROMPT.md",
+   "bytes": 31130,
+   "sha256": "31512122c39483520f633f32565f7d22d4c89de2900c86f6a916b246bb3fca92"
+  },
+  {
+   "id": "SRC-EIA-ARCHIVE",
+   "path": "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\HG-KSEOS\\Fabric_HG-KSEOS_Convergence\\驗收報告\\Fabric_FAR018_FAR019_Archive_Independent_Acceptance_20261016.md",
+   "bytes": 34930,
+   "sha256": "1ba34b6fb79b490069d932adace647ef636a3e700142736d777f2961e7aa49e7"
+  },
+  {
+   "id": "SRC-EIA-PRIOR-R7R11",
+   "path": "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\HG-KSEOS\\Fabric_HG-KSEOS_Convergence\\驗收報告\\Fabric_Convergence_R7_R11_Independent_Acceptance_20261016.md",
+   "bytes": 39873,
+   "sha256": "e4f9a487aa49a7f11bd90332e3aef1b660a9df80cc748fe0fef54f68191b1103"
+  },
+  {
+   "id": "SRC-PKG",
+   "path": "C:\\Projects\\Agent_Workspace\\知識庫\\實作相關DOC\\HG-KSEOS\\Fabric_HG-KSEOS_Convergence\\Fabric_HG-KSEOS_Convergence_PIPD-LS-PKG.md",
+   "bytes": 2689181,
+   "sha256": "96d9d564286743e17550ccef15b9952347901eb77168f930376938893cff9c3f"
+  },
+  {
+   "id": "SRC-A00-REGISTER",
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-FAR018-FAR019-ARCHIVE-20261016\\A00_SOURCE_REGISTER.json",
+   "bytes": 19418,
+   "sha256": "ebe40f90da77e6c66e7160ee058df0a720abb2c7454d4ca37fcaaba3fe24cc82"
+  },
+  {
+   "id": "SRC-A03-FREEZE",
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-FAR018-FAR019-ARCHIVE-20261016\\A03_GITHUB_FREEZE.json",
+   "bytes": 6554,
+   "sha256": "a546e271e19af77067cd2a04fe5ee2a75421ef091d99bb77a00ee5adcafb478d"
+  },
+  {
+   "id": "SRC-SKILL-HGK",
+   "path": "C:\\Users\\user\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\hermes\\skills\\software-development\\hgk-governed-execution\\SKILL.md",
+   "bytes": 21896,
+   "sha256": "c679f4541f2e00ecc2fb3b83e8881c1fc9ab9aebbbad6f4aa33508950dbb02c1"
+  },
+  {
+   "id": "SRC-LANE-SLOTS",
+   "path": "C:\\Projects\\Agent_Workspace\\HG-KSEOS\\config\\lane-route-slots.candidate.json",
+   "bytes": 34932,
+   "sha256": "12f6667ee50bb369457c81dcc9d99ab9d244649a38c6f34ece29d1c3e5812418"
+  },
+  {
+   "id": "SRC-PREV-LINEAGE",
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\FAR-20261019-owner-authorized-closure\\HGK_WORKORDER_RESULTS_AND_DELIVERY_019.json",
+   "bytes": 5438,
+   "sha256": "4743ea9efa48c039a5096bcde85ec82eb08ed451197b3d657c9a459da45993e1"
+  },
+  {
+   "id": "SRC-PREV-CLOSURE",
+   "path": "C:\\Projects\\Agent_Workspace\\_handover\\FAR-20261019-owner-authorized-closure\\EVIDENCE_CLOSURE_FAR-20261019.md",
+   "bytes": 811,
+   "sha256": "560689c9285ed3ffb5f8abcb278c29ddbaa33ed061c837648e50b6699472ae93"
+  }
+ ],
+ "steps": [
+  {
+   "step": "start",
+   "result": "CREATED",
+   "state": "PROJECT_CREATED"
+  },
+  {
+   "step": "intake",
+   "status": "READY",
+   "source_count": 11,
+   "blocking_missing": [],
+   "conflicts": []
+  },
+  {
+   "step": "transition",
+   "to": "INTENT_BOUND",
+   "result": "OK"
+  },
+  {
+   "step": "transition",
+   "to": "REQUIREMENTS_READY",
+   "result": "OK"
+  },
+  {
+   "step": "transition",
+   "to": "DESIGN_READY",
+   "result": "OK"
+  },
+  {
+   "step": "plan",
+   "task_count": 3,
+   "titles": [
+    "Source discovery",
+    "Acceptance and evidence",
+    "Package and delivery"
+   ]
+  },
+  {
+   "step": "admit_workorders",
+   "result": {
+    "project_id": "CNV-ARCHIVE-THREE-PRS",
+    "workorders": [
+     "WO-TS-PRS-01",
+     "WO-TS-PRS-02",
+     "WO-TS-PRS-03"
+    ],
+    "count": 3
+   }
+  }
+ ],
+ "final_state": "WORKORDERS_ADMITTED",
+ "workorders": null,
+ "verdict": "ADMISSION_OK",
+ "checkpoint": "CK-PRS-D401BF0D"
+}
