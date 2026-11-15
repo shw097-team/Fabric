@@ -36,6 +36,7 @@ sys.path.insert(0, str(HERE))
 
 import hgk_consumer_receipt as hcr  # noqa: E402
 import policy_binding as pb  # noqa: E402
+import policy_leg_readers as lr  # noqa: E402
 
 SUBJECT = "WP-FHS-02"
 SCOPE = "fhs-w1/w2-prep"
@@ -46,6 +47,37 @@ POLICY_BYTES = b"rp002:\n  classes: 9\n  epoch: 10\n  legs: six\n"
 POLICY_SHA = hashlib.sha256(POLICY_BYTES).hexdigest()
 OTHER_BYTES = b"rp002:\n  classes: 9\n  epoch: 11\n  legs: six\n"
 OTHER_SHA = hashlib.sha256(OTHER_BYTES).hexdigest()
+
+#: D-24: the second leg is a real YAML->JSON stage of POLICY_BYTES, so its digest differs from
+#: POLICY_SHA by construction. Before the patch that difference alone was refused as drift.
+STAGE_PAYLOAD = {"rp002": {"classes": 9, "epoch": 10, "legs": "six"}}
+STAGE_BYTES = lr.canonical_bytes(STAGE_PAYLOAD)
+STAGE_SHA = hashlib.sha256(STAGE_BYTES).hexdigest()
+
+#: Set by `_Base.setUp`; `five_legs()` reads the artifact legs from it.
+FIXTURE_ROOT: Path | None = None
+
+
+def stage_document(*, source_sha256: str = POLICY_SHA, transform: str = "yaml->json",
+                   payload: dict | None = None) -> dict:
+    payload = STAGE_PAYLOAD if payload is None else payload
+    return {
+        "schema": lr.SCHEMA_STAGE,
+        "producer": {"source_sha256": source_sha256, "transform": transform,
+                     "stage_sha256": hashlib.sha256(lr.canonical_bytes(payload)).hexdigest()},
+        "payload": payload,
+    }
+
+
+def write_leg_fixtures(root: Path) -> None:
+    """Write the source, stage and epoch artifacts the first three legs are read from."""
+    global FIXTURE_ROOT
+    FIXTURE_ROOT = root
+    (root / "policy.yaml").write_bytes(POLICY_BYTES)
+    (root / "stage.json").write_text(json.dumps(stage_document(), indent=1), encoding="utf-8")
+    (root / "epoch.json").write_text(json.dumps({
+        "schema": lr.SCHEMA_EPOCH, "scope": SCOPE, "epoch": EPOCH,
+        "digest": POLICY_SHA, "policy_path": "policy.yaml"}), encoding="utf-8")
 
 #: Codes that existed before D-17. None of them may disappear or be renamed.
 PRE_EXISTING_CODES = {
@@ -142,17 +174,19 @@ _DELETE = _Delete()
 def five_legs(digest: str = POLICY_SHA, *, loaded_evidence: str = "FIXTURE",
               ack_evidence: str = "FIXTURE", with_owner: bool = True) -> list[dict]:
     spec = {
-        "source": dict(digest=digest, provenance="FABRIC_POLICY_SOURCE", reader="fabric-policy-repo"),
-        "stage": dict(digest=digest, provenance="STAGED_ARTIFACT", reader="fabric-stage-reader"),
-        "active_epoch": dict(digest=digest, provenance="ACTIVE_POLICY_POINTER",
-                             reader="fabric-policy-epoch-verifier"),
+        "source": dict(digest=POLICY_SHA, provenance="FABRIC_POLICY_SOURCE",
+                       reader=lr.READER_SOURCE, artifact=FIXTURE_ROOT / "policy.yaml"),
+        "stage": dict(digest=STAGE_SHA, provenance="STAGED_ARTIFACT",
+                      reader=lr.READER_STAGE, artifact=FIXTURE_ROOT / "stage.json"),
+        "active_epoch": dict(digest=POLICY_SHA, provenance="ACTIVE_POLICY_POINTER",
+                             reader=lr.READER_EPOCH, artifact=FIXTURE_ROOT / "epoch.json"),
         "loaded_digest": dict(digest=digest, provenance="HOST_LOAD_RAW",
                               reader="host-load-receipt-reader"),
         "consumer_ack": dict(digest=digest, provenance="HGK_CONSUMER_RECEIPT",
                              reader="hgk-consumer-receipt-reader"),
     }
     if with_owner:
-        spec["owner_approved"] = dict(digest=digest, provenance="OWNER_APPROVAL_RECEIPT",
+        spec["owner_approved"] = dict(digest=POLICY_SHA, provenance="OWNER_APPROVAL_RECEIPT",
                                       reader="owner-receipt-reader")
     legs = []
     for name, kw in spec.items():
@@ -247,7 +281,7 @@ class _Base(unittest.TestCase):
     def setUp(self):
         self._tmp = tempfile.TemporaryDirectory()
         self.tmp = Path(self._tmp.name)
-        (self.tmp / "policy.yaml").write_bytes(POLICY_BYTES)
+        write_leg_fixtures(self.tmp)
 
     def tearDown(self):
         self._tmp.cleanup()
@@ -490,7 +524,12 @@ class TestPositiveControl(_Base):
         record = bind(five_legs(), consumer_ack_receipt=verified, load_receipt=load)
         self.assertEqual(record["state"], "BOUND")
         self.assertEqual(record["claim_ceiling"], "AUTHOR_DESIGN_ONLY")
-        self.assertEqual(record["separate_readers"], 6)
+        # D-24: this used to assert 6, which counted six distinct `reader` strings. Here the three
+        # artifact readers ran and two receipts were opened; `owner_approved` is still caller-typed,
+        # so it is not a verified reader. `test_policy_binding_leg_readers.py` proves the six-reader
+        # case with a real approval.
+        self.assertEqual(record["separate_readers"], 5)
+        self.assertNotIn("owner-receipt-reader", record["verified_readers"])
         self.assertTrue(record["host"]["loaded_on_host"])
         self.assertTrue(record["host"]["load_receipt_verified"])
         self.assertTrue(record["host"]["consumer_ack_observed"])
@@ -776,11 +815,19 @@ class TestSixLegRegression(_Base):
         """Spot-check that the refusals the module existed for were not replaced by D-17 codes."""
         with self.assertRaises(pb.PolicyBindingRefusal) as ctx:
             pb.leg("loaded_digest", digest=POLICY_SHA, provenance="ACTIVE_POLICY_POINTER",
-                   reader="fabric-policy-epoch-verifier", scope=SCOPE, epoch=EPOCH)
+                   reader=lr.READER_EPOCH, scope=SCOPE, epoch=EPOCH)
         self.assertEqual(ctx.exception.code, "POLICY_LEG_PROVENANCE_INVALID")
 
-        legs = [dict(item) for item in five_legs()]
-        legs = [dict(item, digest=OTHER_SHA) if item["leg"] == "stage" else item for item in legs]
+        # D-24: this used to patch the stage leg's digest to OTHER_SHA and expect
+        # POLICY_SOURCE_STAGE_DRIFT. That assertion encoded defect 3: a genuine YAML->JSON stage has
+        # a different digest from its source by construction, so the old rule refused the transform
+        # and passed only a stage whose digest was typed as the source digest. Drift now means the
+        # stage declares a *different source*, which is what this fixture does.
+        drift = self.tmp / "stage-from-other-source.json"
+        drift.write_text(json.dumps(stage_document(source_sha256=OTHER_SHA)), encoding="utf-8")
+        legs = [dict(item, artifact=str(drift), source_sha256=OTHER_SHA,
+                     digest=STAGE_SHA) if item["leg"] == "stage" else item
+                for item in five_legs()]
         with self.assertRaises(pb.PolicyBindingRefusal) as ctx:
             bind(legs)
         self.assertEqual(ctx.exception.code, "POLICY_SOURCE_STAGE_DRIFT")

@@ -25,6 +25,7 @@ sys.path.insert(0, str(HERE))
 
 import hgk_consumer_receipt as hcr  # noqa: E402
 import policy_binding as pb  # noqa: E402
+import policy_leg_readers as lr  # noqa: E402
 
 SUBJECT = "WP-FHS-02"
 SCOPE = "fhs-w1/w2-prep"
@@ -35,6 +36,44 @@ RAW_BYTES = b"policy: fhs-w1\nepoch: 10\nlegs: six\n"
 RAW_SHA = hashlib.sha256(RAW_BYTES).hexdigest()
 SHA_A = "a" * 64
 _DELETE = object()
+
+#: D-24: the first three legs are read from files, so the five-leg fixture needs real artifacts.
+#: These are written once per module by `setUpModule`; they are not the acknowledged bytes (the
+#: sixth-leg tests care about `consumer_ack`, and a source may legitimately differ from an ACK's raw
+#: file — what binds them is `loaded_digest`).
+SOURCE_BYTES = b"policy: fhs-w1\nepoch: 10\nlegs: six\n# source\n"
+SOURCE_SHA = hashlib.sha256(SOURCE_BYTES).hexdigest()
+STAGE_PAYLOAD = {"policy": "fhs-w1", "epoch": 10, "legs": "six"}
+STAGE_BYTES = lr.canonical_bytes(STAGE_PAYLOAD)
+STAGE_SHA = hashlib.sha256(STAGE_BYTES).hexdigest()
+
+FIXTURE_ROOT: Path | None = None
+_MODULE_TMP: tempfile.TemporaryDirectory | None = None
+
+
+def write_leg_fixtures(root: Path) -> None:
+    global FIXTURE_ROOT
+    FIXTURE_ROOT = root
+    (root / "source.yaml").write_bytes(SOURCE_BYTES)
+    (root / "stage.json").write_text(json.dumps({
+        "schema": lr.SCHEMA_STAGE,
+        "producer": {"source_sha256": SOURCE_SHA, "transform": "yaml->json",
+                     "stage_sha256": STAGE_SHA},
+        "payload": STAGE_PAYLOAD}, indent=1), encoding="utf-8")
+    (root / "epoch.json").write_text(json.dumps({
+        "schema": lr.SCHEMA_EPOCH, "scope": SCOPE, "epoch": EPOCH, "digest": RAW_SHA}),
+        encoding="utf-8")
+
+
+def setUpModule():
+    global _MODULE_TMP
+    _MODULE_TMP = tempfile.TemporaryDirectory()
+    write_leg_fixtures(Path(_MODULE_TMP.name))
+
+
+def tearDownModule():
+    if _MODULE_TMP is not None:
+        _MODULE_TMP.cleanup()
 
 REFUSAL_CODES = {"POLICY_LEG_PROVENANCE_INVALID", "POLICY_SIGNER_OR_EPOCH_DENY",
                  "POLICY_BINDING_INCOMPLETE", "POLICY_LEG_EMPTY",
@@ -78,14 +117,15 @@ def five_legs() -> list[dict]:
     only substantiate a binding of `RAW_BYTES`. That is the rule these fixtures now exercise.
     """
     spec = {
-        "source": dict(digest=SHA_A, provenance="FABRIC_POLICY_SOURCE", reader="fabric-policy-repo"),
-        "stage": dict(digest=SHA_A, provenance="STAGED_ARTIFACT", reader="fabric-stage-reader"),
+        "source": dict(digest=SOURCE_SHA, provenance="FABRIC_POLICY_SOURCE",
+                       reader=lr.READER_SOURCE, artifact=FIXTURE_ROOT / "source.yaml"),
+        "stage": dict(digest=STAGE_SHA, provenance="STAGED_ARTIFACT",
+                      reader=lr.READER_STAGE, artifact=FIXTURE_ROOT / "stage.json"),
         "owner_approved": dict(digest=SHA_A, provenance="OWNER_APPROVAL_RECEIPT",
-                               reader="owner-receipt-reader"),
+                               reader=lr.READER_OWNER),
         "active_epoch": dict(digest=RAW_SHA, provenance="ACTIVE_POLICY_POINTER",
-                             reader="fabric-active-pointer"),
-        "loaded_digest": dict(digest=RAW_SHA, provenance="HOST_LOAD_RAW",
-                              reader="hgk-policy-consumer"),
+                             reader=lr.READER_EPOCH, artifact=FIXTURE_ROOT / "epoch.json"),
+        "loaded_digest": dict(digest=RAW_SHA, provenance="HOST_LOAD_RAW", reader=lr.READER_LOAD),
     }
     return [pb.leg(name, scope=SCOPE, epoch=EPOCH, evidence_class="FIXTURE",
                    observed_at="2026-11-05T00:00:00Z", **kw)
@@ -93,7 +133,7 @@ def five_legs() -> list[dict]:
 
 
 def fixture_consumer_ack(**over) -> dict:
-    spec = dict(digest=SHA_A, provenance="HGK_CONSUMER_RECEIPT", reader="hgk-consumer-trace")
+    spec = dict(digest=SHA_A, provenance="HGK_CONSUMER_RECEIPT", reader=lr.READER_ACK)
     spec.update(over)
     return pb.leg("consumer_ack", scope=SCOPE, epoch=EPOCH, evidence_class="FIXTURE",
                   observed_at="2026-11-05T00:00:00Z", **spec)
@@ -137,7 +177,10 @@ class TestReceiptReaderPositive(unittest.TestCase):
         record = bind(five_legs(), receipt)
         self.assertEqual(record["state"], "BOUND")
         self.assertEqual([l["leg"] for l in record["legs"]], list(pb.LEGS))
-        self.assertEqual(record["separate_readers"], 6)
+        # D-24: this used to assert 6, which counted six distinct `reader` strings. The three
+        # artifact readers ran and the receipt reader ran; `owner_approved` and `loaded_digest` are
+        # caller-typed here, so they are not verified readers.
+        self.assertEqual(record["separate_readers"], 4)
         sixth = record["legs"][5]
         self.assertEqual(sixth["provenance"], "HGK_CONSUMER_RECEIPT")
         self.assertEqual(sixth["evidence_class"], "HOST_RAW")
@@ -158,8 +201,10 @@ class TestReceiptReaderPositive(unittest.TestCase):
         record = bind(legs, receipt)
         self.assertEqual(record["legs"][5]["reader"], hcr.READER)
         self.assertEqual(record["legs"][5]["evidence_class"], "HOST_RAW")
-        # the caller's list is not mutated in place
-        self.assertEqual(legs[5]["reader"], "hgk-consumer-trace")
+        # the caller's list is not mutated in place: its sixth leg is still the FIXTURE one it built
+        self.assertEqual(legs[5]["reader"], lr.READER_ACK)
+        self.assertEqual(legs[5]["evidence_class"], "FIXTURE")
+        self.assertIsNot(legs[5], record["legs"][5])
 
     def test_without_a_receipt_nothing_changes_but_the_not_claimed_string(self):
         record = bind(five_legs() + [fixture_consumer_ack()], None)

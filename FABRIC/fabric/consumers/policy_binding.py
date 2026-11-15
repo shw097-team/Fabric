@@ -42,6 +42,59 @@ public API:
    `POLICY_LOADED_PROVENANCE_NOT_A_LOAD_RECEIPT`.
 
 No refusal code was removed or renamed; the four codes above are additive.
+
+D-24 (2026-11-07) closes three defects that survived D-17 — all of them on the legs whose evidence
+is a *file* and which had no reader (`source`, `stage`, `active_epoch`) — and gives the fourth leg
+its typed producer:
+
+1. `leg("source", digest=<64 hex>, …)` accepted **any** digest. A fabricated 64-hex string with no
+   artifact anywhere on disk substantiated the first leg. `source` and `stage` now name an artifact
+   (`artifact=`), the registered reader opens it and re-derives its sha256, and `build_binding`
+   re-reads it, so a digest with no artifact is refused (`POLICY_SOURCE_UNREADABLE` /
+   `POLICY_SOURCE_DIGEST_MISMATCH` / the stage codes);
+2. `reader` was free text: `reader="TOTALLY-MADE-UP-READER"` was accepted and `separate_readers`
+   counted distinct *strings*. `reader` must now be a key of `policy_leg_readers.READERS`, a reader
+   for another leg is refused (`POLICY_LEG_READER_MISMATCH`), and `separate_readers` counts the
+   readers that actually ran — a leg that was typed by hand counts for nothing;
+3. `build_binding` required `stage.digest == source.digest`, so a real YAML->JSON stage was refused
+   as `POLICY_SOURCE_STAGE_DRIFT` and the only passing shape was typing the source digest as the
+   stage digest — a false pass asserting the staged bytes *are* the source bytes. A stage is now a
+   `FABRIC_POLICY_STAGE@1` document with a producer block `{source_sha256, transform,
+   stage_sha256}`; drift means "the stage declares a different source than the source leg's
+   *verified* digest", which a YAML->JSON stage passes and a stage produced from other bytes does not.
+
+The stage leg's digest is therefore the digest of the staged bytes and normally differs from the
+source digest — that difference is the transform, not drift.
+
+**One leg, one evidence kind.** The two D-24 lanes are not alternatives to be traded off; they are
+the two halves of the same rule, and the rule is that a leg is substantiated by exactly one kind of
+evidence through exactly one typed reader:
+
+* `source` and `stage` are substantiated **only** by opening a real artifact and recomputing its
+  digest (`fabric-policy-source-reader`, `fabric-policy-stage-reader`). A receipt can never fill
+  either leg: `leg()` refuses `receipt=` for them and `build_binding` refuses a leg that carries
+  receipt evidence where an artifact is required (`POLICY_LEG_EVIDENCE_MISMATCH`);
+* `active_epoch` is substantiated **only** by a Policy-Owner-signed `FABRIC_ACTIVE_EPOCH@1` whose
+  detached signature verifies against a key the caller pinned, read by
+  `fabric-active-epoch-reader` (`epoch_receipt=`, `epoch_trusted_key_ids=`). An artifact can never
+  substantiate it: the signed reader refuses `artifact=` and `build_binding` refuses a receipt leg
+  that carries one (`POLICY_LEG_EVIDENCE_MISMATCH`). A `HOST_LOAD_RECEIPT@1` that happens to carry
+  `epoch=34` is a load receipt, not an epoch declaration: `read_epoch_receipt` refuses it on schema
+  (`EPOCH_SCHEMA_MISMATCH`) and no leg is filled.
+
+Lane A's pointer reader (`fabric-policy-epoch-reader` over `ACTIVE_POLICY_POINTER@1`) stays exported
+and stays usable, but only as a **design label**: `leg()` marks such a leg
+`epoch_evidence="pointer_design_only"` and `build_binding` caps it at `evidence_class=FIXTURE` /
+`claim_ceiling=AUTHOR_DESIGN_ONLY`, reports `host.active_epoch_verified=False`, and refuses it with
+`POLICY_EPOCH_UNSUBSTANTIATED` the moment it claims a host evidence class or the signed reader's
+provenance without a receipt. A pointer is what a caller holding only a pointer can honestly show;
+it is not an epoch claim, and it never reaches host evidence.
+
+Every leg therefore records which typed reader produced it (`reader`, `provenance`) and which kind of
+evidence substantiated it (`substantiated_by="artifact"|"receipt"|"caller"`, plus
+`epoch_evidence="signed_receipt"|"pointer_design_only"` on the fourth leg). No refusal code was
+removed or renamed; the D-24 codes are additive.
+
 """
 from __future__ import annotations
 
@@ -50,6 +103,8 @@ import json
 import re
 from pathlib import Path
 from typing import Any, NoReturn
+
+from policy_leg_readers import READERS, LegReaderRefusal
 
 _HEX64 = re.compile(r"^[0-9a-f]{64}$")
 
@@ -61,7 +116,7 @@ LEG_PROVENANCE = {
     "source": {"FABRIC_POLICY_SOURCE", "FABRIC_POLICY_REPO_BLOB"},
     "stage": {"STAGED_ARTIFACT", "STAGE_MIRROR"},
     "owner_approved": {"OWNER_APPROVAL_RECEIPT", "POLICY_OWNER_DIRECTIVE"},
-    "active_epoch": {"ACTIVE_POLICY_POINTER", "EPOCH_PROMOTION_RECEIPT"},
+    "active_epoch": {"ACTIVE_POLICY_POINTER", "EPOCH_PROMOTION_RECEIPT", "FABRIC_ACTIVE_EPOCH"},
     "loaded_digest": {"HOST_LOAD_RAW", "CONSUMER_LOAD_RECEIPT"},
     "consumer_ack": {"HGK_CONSUMER_RECEIPT", "HGK_CONSUMER_TRACE"},
 }
@@ -95,6 +150,17 @@ OWNER_RECEIPT_SCHEMAS = ("OWNER_APPROVAL_RECEIPT@1", "POLICY_OWNER_DIRECTIVE@1")
 OWNER_RECEIPT_READER = "owner-receipt-reader"
 OWNER_RECEIPT_EVIDENCE_CLASS = "HOST_RAW"
 
+# The typed producer for the fourth leg (D-24). Same rule: values, not an import.
+EPOCH_RECEIPT_SCHEMA = "FABRIC_ACTIVE_EPOCH@1"
+EPOCH_RECEIPT_PROVENANCE = "FABRIC_ACTIVE_EPOCH"
+EPOCH_RECEIPT_READER = "fabric-active-epoch-reader"
+EPOCH_RECEIPT_EVIDENCE_CLASS = "HOST_RAW"
+# Provenances that are only a *label*: they name an intent, and no function in the repository reads
+# anything for them. They may carry a FIXTURE design leg and nothing stronger.
+EPOCH_LABEL_PROVENANCE = frozenset({"ACTIVE_POLICY_POINTER", "EPOCH_PROMOTION_RECEIPT"})
+#: The only evidence class a label-only fourth leg may carry. `HOST_RAW` is a claim about a host.
+EPOCH_DESIGN_EVIDENCE_CLASS = "FIXTURE"
+
 # The only provenances that describe a policy *loaded on a host*. Membership is enforced in
 # `build_binding`, not only in `leg()`, because a caller can build the dict by hand.
 LOADED_PROVENANCE = frozenset({LOAD_RECEIPT_PROVENANCE, "CONSUMER_LOAD_RECEIPT"})
@@ -107,6 +173,54 @@ D17_REFUSAL_CODES = (
     "POLICY_CONSUMER_ACK_DIGEST_MISMATCH",
     "POLICY_OWNER_APPROVAL_UNSUBSTANTIATED",
 )
+
+# D-24. The legs whose evidence is a file this module must open. A leg in this set cannot be built
+# from a digest alone: `artifact=` is required, the reader re-derives the digest from the bytes, and
+# `build_binding` re-reads the file so a hand-built dict cannot skip the reader.
+ARTIFACT_LEGS = ("source", "stage", "active_epoch")
+
+#: Which "there is no readable artifact" code each artifact leg raises. A digest with no artifact is
+#: not a digest with unknown provenance — nothing was read, so nothing is substantiated.
+ARTIFACT_UNREADABLE = {
+    "source": "POLICY_SOURCE_UNREADABLE",
+    "stage": "POLICY_STAGE_UNREADABLE",
+    "active_epoch": "POLICY_EPOCH_UNREADABLE",
+}
+
+#: The legs a signed receipt may substantiate, and the only one it may. `active_epoch` has a typed
+#: receipt reader (`fabric-active-epoch-reader`); `source`/`stage` do not, and may not: a receipt is
+#: a claim about a digest, never the bytes. Enforced in `leg()` and again in `build_binding`.
+RECEIPT_LEGS = ("active_epoch",)
+
+#: Refusal added by the merge of the two D-24 lanes: one leg, one evidence kind. A receipt offered to
+#: an artifact-only leg, or an artifact offered to the signed-receipt leg, is refused rather than
+#: silently ignored — impersonating the other kind is the collapse, not a convenience.
+POLICY_LEG_EVIDENCE_MISMATCH = "POLICY_LEG_EVIDENCE_MISMATCH"
+
+# Refusals added for D-24 on the artifact side (lane A). Additive; every D-17 and pre-D-17 code is
+# still emitted unchanged.
+D24_ARTIFACT_CODES = (
+    "POLICY_LEG_READER_UNKNOWN",
+    "POLICY_LEG_READER_MISMATCH",
+    "POLICY_SOURCE_UNREADABLE",
+    "POLICY_SOURCE_DIGEST_MISMATCH",
+    "POLICY_STAGE_UNREADABLE",
+    "POLICY_STAGE_DIGEST_MISMATCH",
+    "POLICY_EPOCH_UNREADABLE",
+    "POLICY_EPOCH_DIGEST_MISMATCH",
+)
+
+# Refusals added for D-24 on the signed-receipt / owner side (lane B). Additive, and distinct from
+# the reader codes above so the additive-code test can tell which module emits what.
+D24_RECEIPT_CODES = (
+    "POLICY_EPOCH_UNSUBSTANTIATED",
+    "POLICY_EPOCH_KEY_UNPINNED",
+    "POLICY_OWNER_KEY_UNPINNED",
+)
+
+#: The whole D-24 vocabulary. Both lanes' codes are present: the merge removed none of them.
+D24_REFUSAL_CODES = D24_ARTIFACT_CODES + D24_RECEIPT_CODES + (POLICY_LEG_EVIDENCE_MISMATCH,)
+
 
 # `state=BOUND` is a claim about design consistency, never about a running host. Both wordings below
 # land in `not_claimed`; the difference is only whether raw consumer evidence was supplied.
@@ -125,10 +239,23 @@ HOST_POLICY_ACTIVE_NOT_CLAIMED = {
 OWNER_APPROVAL_NOT_CLAIMED = {
     "no_receipt": ("owner_approval: no OWNER_APPROVAL_RECEIPT@1 was supplied, so owner_approved is "
                    "caller-supplied evidence and the authenticity of the approval is not claimed"),
-    "receipt": ("owner_approval: a detached signature verified against the key the document names, "
-                "over the bytes this reader re-hashed; that the key belongs to the Policy Owner is "
-                "NOT established by the document (pin trusted_key_ids or read the key registry), "
-                "and a FIXTURE key proves reachability only"),
+    "receipt": ("owner_approval: a detached signature verified over the bytes this reader "
+                "re-hashed, against a key_id pinned in the caller's registry; that the registry "
+                "entry really belongs to the Policy Owner is NOT established by this binding, and "
+                "a FIXTURE key proves reachability only"),
+}
+
+
+# D-24. The fourth leg now has a reader, and what it established has to be said on the record: a
+# signed epoch declaration is a key holder's claim about a digest, never a host activation.
+ACTIVE_EPOCH_NOT_CLAIMED = {
+    "no_receipt": ("active_epoch: no FABRIC_ACTIVE_EPOCH@1 was supplied, so active_epoch is a "
+                   "caller-typed label at evidence_class=FIXTURE and the active epoch is NOT "
+                   "claimed (pass epoch_receipt=<path|reader result>)"),
+    "receipt": ("active_epoch: a verified FABRIC_ACTIVE_EPOCH@1, signed by a key_id pinned in the "
+                "caller's registry, shows that key holder declared this digest the active epoch "
+                "for this scope; it does not show a host loaded it, that the epoch is in force, or "
+                "that the registry entry belongs to the Policy Owner"),
 }
 
 
@@ -146,9 +273,105 @@ def _sha(body: Any) -> str:
                                      ensure_ascii=False).encode()).hexdigest()
 
 
+def _registered_reader(kind: str, reader: Any) -> Any:
+    """Resolve `reader` to a registry entry that may substantiate `kind`, or refuse.
+
+    D-24, defect 2: `reader` used to be free text, so `reader="TOTALLY-MADE-UP-READER"` built a leg
+    and `separate_readers` counted the string. A reader is now a key of
+    `policy_leg_readers.READERS`, and it may only substantiate the leg it actually reads — a stage
+    reader cannot make a source leg, or the six legs are not separate records.
+    """
+    entry = READERS.get(reader) if isinstance(reader, str) else None
+    if entry is None:
+        raise PolicyBindingRefusal(
+            f"leg {kind} names reader {reader!r}, which is not one of this module's readers "
+            f"{sorted(READERS)}: a name is not a reader",
+            code="POLICY_LEG_READER_UNKNOWN")
+    if entry.leg != kind:
+        raise PolicyBindingRefusal(
+            f"leg {kind} names reader {entry.name!r}, which reads the {entry.leg!r} leg; one "
+            "reader substantiating two legs is the collapse this module exists to prevent",
+            code="POLICY_LEG_READER_MISMATCH")
+    return entry
+
+
+def _read_artifact(kind: str, entry: Any, artifact: Any, *, expected_digest: str,
+                   expected_source_sha256: str | None = None) -> dict[str, Any]:
+    """Run the registered reader over `artifact`, mapping its refusal onto a binding refusal."""
+    if artifact is None or (isinstance(artifact, str) and not artifact.strip()):
+        raise PolicyBindingRefusal(
+            f"leg {kind} carries no artifact path, so its digest {str(expected_digest)[:12]} has "
+            "no bytes behind it; pass artifact=<path> (a fabricated digest is not evidence)",
+            code=ARTIFACT_UNREADABLE[kind])
+    if not isinstance(artifact, (str, Path)):
+        raise PolicyBindingRefusal(
+            f"leg {kind} artifact is a {type(artifact).__name__}, not a path",
+            code=ARTIFACT_UNREADABLE[kind])
+    try:
+        if kind == "stage":
+            return entry.read(artifact, expected_digest=expected_digest,
+                              expected_source_sha256=expected_source_sha256)
+        return entry.read(artifact, expected_digest=expected_digest)
+    except LegReaderRefusal as exc:
+        raise PolicyBindingRefusal(
+            f"leg {kind} artifact {artifact} refused ({exc.code}): {exc}", code=exc.code) from None
+
+
+def _read_receipt_evidence(kind: str, entry: Any, receipt: Any, *,
+                           expected_digest: str) -> dict[str, Any]:
+    """Run a receipt-backed registered reader over `receipt`, or refuse.
+
+    One leg, one evidence kind: this is the only path by which a signed receipt may substantiate a
+    leg, and only for a leg whose registered reader declares `evidence="receipt"`. The receipt is
+    re-opened here (a dict is a claim; the file is the evidence) and its re-derived digest must be the
+    one the caller declared, so a receipt for other bytes cannot be dressed as this binding's.
+    """
+    if receipt is None or (isinstance(receipt, str) and not receipt.strip()):
+        raise PolicyBindingRefusal(
+            f"leg {kind} names the signed-receipt reader {entry.name!r} but carries no receipt: a "
+            "reader name is not a receipt (pass receipt=<path> or epoch_receipt=<path|reader result>)",
+            code="POLICY_EPOCH_UNSUBSTANTIATED")
+    path = receipt.get("receipt_path") if isinstance(receipt, dict) else receipt
+    if not isinstance(path, (str, Path)) or not str(path).strip():
+        raise PolicyBindingRefusal(
+            f"leg {kind} receipt is a {type(receipt).__name__} with no receipt_path, so the signed "
+            "document cannot be re-opened", code="POLICY_LEG_EVIDENCE_MISMATCH")
+    try:
+        observed = entry.read(path)
+    except LegReaderRefusal as exc:
+        raise PolicyBindingRefusal(
+            f"leg {kind} receipt {path} refused ({exc.code}): {exc}", code=exc.code) from None
+    if observed.get("state") != "OBSERVED":
+        raise PolicyBindingRefusal(
+            f"leg {kind} receipt {path} returned {observed.get('state')!r} "
+            f"({observed.get('code') or observed.get('reason') or 'no reason given'})",
+            code=str(observed.get("code") or "POLICY_LEG_EVIDENCE_MISMATCH"))
+    if str(observed.get("digest") or "").lower() != str(expected_digest).strip().lower():
+        raise PolicyBindingRefusal(
+            f"leg {kind} declares digest {str(expected_digest)[:12]} but the signed receipt "
+            f"{path} is about {str(observed.get('digest'))[:12]}: the declaration does not cover "
+            "these bytes", code="POLICY_EPOCH_DIGEST_MISMATCH")
+    return observed
+
+
 def leg(kind: str, *, digest: str, provenance: str, reader: str, scope: str, epoch: int | str,
-        observed_at: str = "", evidence_class: str = "FIXTURE", note: str = "") -> dict[str, Any]:
-    """One leg. Refuses an unknown leg name or a provenance its reader could not have produced."""
+        observed_at: str = "", evidence_class: str = "FIXTURE", note: str = "",
+        artifact: str | Path | None = None, receipt: Any | None = None) -> dict[str, Any]:
+    """One leg. Refuses an unknown leg, a provenance its reader could not produce, a reader that is
+    not registered for this leg, and — for the artifact legs — a digest that is not the sha256 of the
+    bytes at `artifact`.
+
+    D-24: `source`, `stage` and `active_epoch` are read, not typed. The reader opens the file and the
+    digest recorded on the leg is the one it re-derived; a digest with no artifact is refused with
+    that leg's `*_UNREADABLE` code, and a digest that disagrees with the bytes with its
+    `*_DIGEST_MISMATCH` code.
+
+    One leg, one evidence kind (OWNER ruling, 2026-11-07). The kind is decided by the registered
+    reader, never by the caller: an `evidence="artifact"` reader requires `artifact=` and refuses
+    `receipt=`, and the `evidence="receipt"` epoch reader requires `receipt=` and refuses `artifact=`.
+    Either way the mismatch is `POLICY_LEG_EVIDENCE_MISMATCH` — a receipt cannot become the source or
+    stage bytes, and an artifact cannot become a signed epoch declaration.
+    """
     if kind not in LEGS:
         raise PolicyBindingRefusal(f"unknown leg: {kind}", code="POLICY_LEG_UNKNOWN")
     if not str(digest or "").strip():
@@ -157,9 +380,49 @@ def leg(kind: str, *, digest: str, provenance: str, reader: str, scope: str, epo
         raise PolicyBindingRefusal(
             f"leg {kind} cannot be substantiated by provenance {provenance!r}; "
             f"allowed: {sorted(LEG_PROVENANCE[kind])}", code="POLICY_LEG_PROVENANCE_INVALID")
-    return {"leg": kind, "digest": digest, "provenance": provenance, "reader": reader,
+    entry = _registered_reader(kind, reader)
+
+    item = {"leg": kind, "digest": digest, "provenance": provenance, "reader": entry.name,
             "scope": scope, "epoch": epoch, "observed_at": observed_at,
-            "evidence_class": evidence_class, "note": note}
+            "evidence_class": evidence_class, "note": note, "reader_verified": False,
+            "substantiated_by": "caller"}
+    if kind in ARTIFACT_LEGS and entry.evidence == "receipt":
+        # The registry already guarantees a receipt reader is registered only for `RECEIPT_LEGS`
+        # (`POLICY_LEG_READER_MISMATCH` otherwise), so this branch is the fourth leg's alone.
+        if artifact is not None:
+            raise PolicyBindingRefusal(
+                f"leg {kind} is substantiated by a signed receipt, not by an artifact; "
+                f"artifact={artifact!r} is a second, weaker kind of evidence for the same leg — "
+                "pass receipt=<path> (an artifact cannot substantiate the epoch leg)",
+                code=POLICY_LEG_EVIDENCE_MISMATCH)
+        observed = _read_receipt_evidence(kind, entry, receipt, expected_digest=str(digest))
+        item.update(receipt_path=observed["receipt_path"],
+                    receipt_sha256=observed["receipt_sha256"], reader_verified=True,
+                    digest=str(observed["digest"]).lower(), substantiated_by="receipt",
+                    epoch_evidence="signed_receipt")
+        if not item["note"]:
+            item["note"] = observed["note"]
+        return item
+    if kind in ARTIFACT_LEGS:
+        if receipt is not None:
+            raise PolicyBindingRefusal(
+                f"leg {kind} is substantiated by the artifact reader {entry.name!r}, not by a "
+                "receipt: a receipt names a digest and cannot stand in for the bytes "
+                "(POLICY_LEG_EVIDENCE_MISMATCH)", code=POLICY_LEG_EVIDENCE_MISMATCH)
+        observed = _read_artifact(kind, entry, artifact, expected_digest=str(digest))
+        item.update(artifact=observed["artifact"], artifact_sha256=observed["artifact_sha256"],
+                    artifact_bytes=observed["artifact_bytes"], reader_verified=True,
+                    digest=observed["digest"], substantiated_by="artifact")
+        if kind == "stage":
+            item.update(source_sha256=observed["source_sha256"], transform=observed["transform"],
+                        stage_sha256=observed["stage_sha256"], stage_bytes=observed["stage_bytes"])
+        if kind == "active_epoch":
+            # The pointer reader opened a real artifact, but an `ACTIVE_POLICY_POINTER@1` is a
+            # declaration of intent: it is recorded as a design label and cannot reach host evidence.
+            item["epoch_evidence"] = "pointer_design_only"
+        if not item["note"]:
+            item["note"] = observed["note"]
+    return item
 
 
 def _order(legs: list[dict[str, Any]]) -> list[dict[str, Any]]:
@@ -248,7 +511,12 @@ def _consumer_ack_from_receipt(receipt: Any, *, subject: str, scope: str,
                observed_at=str(receipt.get("observed_at") or ""),
                evidence_class=CONSUMER_ACK_RECEIPT_EVIDENCE_CLASS,
                note=("read from HGK_CONSUMER_RECEIPT@1; digest re-derived from the acknowledged "
-                     f"bytes (receipt {str(receipt.get('receipt_sha256') or '')[:12]})"))
+                     f"bytes (receipt {str(receipt.get('receipt_sha256') or '')[:12]})")) | {
+        # This reader ran (the receipt was re-opened and re-hashed), so the leg may count as a
+        # verified reader. `build_binding` still derives the count from the receipt flags, not from
+        # this field, so a hand-built dict cannot inflate it.
+        "reader_verified": True,
+    }
 
 
 def _loaded_from_receipt(receipt: Any, *, scope: str, epoch: int | str) -> dict[str, Any]:
@@ -324,7 +592,9 @@ def _loaded_from_receipt(receipt: Any, *, scope: str, epoch: int | str) -> dict[
                evidence_class=reread["evidence_class"],
                note=("read from HOST_LOAD_RECEIPT@1; digest re-derived from the policy bytes and the "
                      f"producer/process block validated (pid {reread['process'].get('pid')}, "
-                     f"receipt {str(reread.get('receipt_sha256') or '')[:12]})"))
+                     f"receipt {str(reread.get('receipt_sha256') or '')[:12]})")) | {
+        "reader_verified": True,
+    }
 
 
 def _owner_from_receipt(receipt: Any, *, scope: str, epoch: int | str,
@@ -398,6 +668,18 @@ def _owner_from_receipt(receipt: Any, *, scope: str, epoch: int | str,
             "the owner approved different bytes than the policy this binding is about "
             f"({str(reread['digest'])[:12]} != {str(source_digest)[:12]})",
             code="OWNER_RECEIPT_DIGEST_MISMATCH")
+    # Owner ruling (2026-11-07): the owner signature must verify against a key the caller already
+    # trusts. A document that carries its own public key proves only that *someone* signed it, so
+    # there is no "trust the embedded key" path into the third leg: pin the key id or refuse. This
+    # sits after the reader's own checks on purpose, so its specific refusal still reaches the
+    # operator unchanged.
+    if trusted_key_ids is None or reread.get("key_trusted") is not True:
+        raise PolicyBindingRefusal(
+            "the owner approval's signature was not verified against a pinned key: an "
+            "OWNER_APPROVAL_RECEIPT@1 names its own public key, and a signature that verifies "
+            "against a key the document chose proves only that someone signed it — pass "
+            "owner_trusted_key_ids=<registry> so the key is pinned",
+            code="POLICY_OWNER_KEY_UNPINNED")
 
     return leg("owner_approved", digest=str(reread["digest"]).lower(),
                provenance=reread["provenance"], reader=OWNER_RECEIPT_READER, scope=scope,
@@ -413,7 +695,149 @@ def _owner_from_receipt(receipt: Any, *, scope: str, epoch: int | str,
         "key_trusted": bool(reread["key_trusted"]),
         "principal": reread["principal"],
         "expires_at": reread["expires_at"],
+        "reader_verified": True,
     }
+
+
+def _epoch_from_receipt(receipt: Any, *, scope: str, epoch: int | str,
+                        source_digest: str | None,
+                        previous_epoch: int | None = None,
+                        trusted_key_ids: Any = None) -> dict[str, Any]:
+    """Turn a verified `FABRIC_ACTIVE_EPOCH@1` read into the fourth leg, or refuse.
+
+    D-24: the fourth leg named two provenances and the module read neither, so `active_epoch` was a
+    label the caller typed and its only other constraint was digest equality with a digest the same
+    caller supplied. This accepts only a path to a `FABRIC_ACTIVE_EPOCH@1` or the dict
+    `fabric_active_epoch.read_epoch_receipt` returned for one, re-reads the document, and requires
+    the declared policy digest to be the source digest this binding is about.
+    """
+    def refuse(why: str, code: str = "POLICY_LEG_PROVENANCE_INVALID") -> NoReturn:
+        raise PolicyBindingRefusal(
+            f"active_epoch receipt cannot substantiate the fourth leg: {why}", code=code)
+
+
+    if isinstance(receipt, (str, Path)):
+        path: Any = receipt
+        policy_path = None
+    elif isinstance(receipt, dict):
+        path = receipt.get("receipt_path")
+        if not isinstance(path, str) or not path.strip():
+            refuse("a caller-supplied dict with no receipt_path cannot be re-read; pass the "
+                   "receipt path or the result of fabric_active_epoch.read_epoch_receipt(...)")
+        if receipt.get("state") != "OBSERVED":
+            refuse(f"receipt state is {receipt.get('state')!r}: an unread declaration is not "
+                   "evidence")
+        if receipt.get("verified") is not True:
+            refuse("receipt carries no reader verification marker")
+        if receipt.get("leg") != "active_epoch":
+            refuse(f"receipt leg is {receipt.get('leg')!r}, expected 'active_epoch'")
+        if receipt.get("provenance") != EPOCH_RECEIPT_PROVENANCE:
+            refuse(f"receipt provenance is {receipt.get('provenance')!r}")
+        if receipt.get("reader") != EPOCH_RECEIPT_READER:
+            refuse(f"receipt reader is {receipt.get('reader')!r}, "
+                   f"expected {EPOCH_RECEIPT_READER!r}")
+        if receipt.get("evidence_class") != EPOCH_RECEIPT_EVIDENCE_CLASS:
+            refuse(f"receipt evidence_class is {receipt.get('evidence_class')!r}")
+        if not isinstance(receipt.get("digest"), str) or not _HEX64.match(
+                str(receipt.get("digest")).lower()):
+            refuse(f"receipt digest is {receipt.get('digest')!r}, not a sha256 hex digest")
+        policy_path = receipt.get("policy_path")
+    else:
+        refuse(f"receipt is a {type(receipt).__name__}, not a path and not a verified receipt")
+
+    import fabric_active_epoch as _reader  # local: keeps this module the dependency root
+
+    try:
+        reread = _reader.read_epoch_receipt(
+            path, expected_scope=scope, expected_epoch=epoch, previous_epoch=previous_epoch,
+            policy_path=policy_path, expected_policy_sha256=source_digest,
+            trusted_key_ids=trusted_key_ids)
+    except _reader.EpochReceiptRefusal as exc:
+        # The reader's own code is the honest one: "expired" is not "bad provenance".
+        raise PolicyBindingRefusal(
+            f"active epoch {path} refused ({exc.code}): {exc}", code=exc.code) from None
+    if reread.get("state") != "OBSERVED":
+        refuse(f"re-reading {path} returned {reread.get('state')!r} "
+               f"({reread.get('code') or reread.get('reason') or 'no reason given'})",
+               code=str(reread.get("code") or "POLICY_LEG_PROVENANCE_INVALID"))
+    if isinstance(receipt, dict):
+        for key in ("digest", "receipt_sha256"):
+            claimed = str(receipt.get(key) or "").lower()
+            observed = str(reread.get(key) or "").lower()
+            if claimed != observed:
+                refuse(f"claimed {key} {claimed[:12]} does not match the bytes on disk "
+                       f"{observed[:12]}")
+    # Same rule as the owner leg: the epoch document names its own key, so the leg requires the
+    # caller to pin the key id rather than trusting whatever public key travelled with the file.
+    if trusted_key_ids is None or reread.get("key_trusted") is not True:
+        raise PolicyBindingRefusal(
+            "the epoch declaration's signature was not verified against a pinned key: a "
+            "FABRIC_ACTIVE_EPOCH@1 names its own public key, so a signature over it proves only "
+            "that someone signed it — pass epoch_trusted_key_ids=<registry> so the key is pinned",
+            code="POLICY_EPOCH_KEY_UNPINNED")
+
+    return leg("active_epoch", digest=str(reread["digest"]).lower(),
+               provenance=reread["provenance"], reader=EPOCH_RECEIPT_READER, scope=scope,
+               epoch=epoch, observed_at=str(reread.get("observed_at") or ""),
+               evidence_class=EPOCH_RECEIPT_EVIDENCE_CLASS, receipt=path,
+               note=("read from FABRIC_ACTIVE_EPOCH@1; signature verified over the canonical body "
+                     f"and the declared policy digest re-derived (key_id {reread['key_id']!r}, "
+                     f"key_trusted={reread['key_trusted']}, previous_epoch "
+                     f"{reread['previous_epoch']!r}, expires {reread['expires_at']})")) | {
+        "key_id": reread["key_id"],
+        "key_trusted": bool(reread["key_trusted"]),
+        "previous_epoch": reread["previous_epoch"],
+        "expires_at": reread["expires_at"],
+    }
+
+
+def _verify_artifact_leg(item: dict[str, Any], *, source_digest: str) -> dict[str, Any]:
+    """Re-read one artifact leg's file and re-derive its digest, or refuse.
+
+    D-24: `leg()` refuses a fabricated digest, but `build_binding` takes a list of dicts, so a caller
+    can assemble a leg by hand. The file is therefore opened again here, for the same reason the
+    load/owner/ack receipts are re-opened: a dict is a claim, the bytes are the evidence. Drift is
+    checked here too — the stage's declared `source_sha256` against the source leg's *verified*
+    digest — because this is the only place both legs are in hand.
+    """
+    kind = item["leg"]
+    entry = _registered_reader(kind, item.get("reader"))
+    observed = _read_artifact(kind, entry, item.get("artifact"),
+                              expected_digest=str(item.get("digest") or ""),
+                              expected_source_sha256=(source_digest if kind == "stage" else None))
+    if kind == "stage":
+        declared = item.get("source_sha256")
+        if declared is not None and str(declared).strip().lower() != observed["source_sha256"]:
+            raise PolicyBindingRefusal(
+                f"stage leg declares it was produced from source {str(declared)[:12]} but "
+                f"{item.get('artifact')} declares {observed['source_sha256'][:12]}: the leg and the "
+                "artifact disagree about their origin", code="POLICY_SOURCE_STAGE_DRIFT")
+    return observed
+
+
+def _verify_receipt_leg(item: dict[str, Any], *, from_epoch_receipt: bool) -> None:
+    """Refuse a fourth leg that claims receipt evidence this call did not verify.
+
+    The signed `FABRIC_ACTIVE_EPOCH@1` is verified once, in `_epoch_from_receipt`: detached signature
+    over the canonical body, declared policy digest re-derived from disk, scope/epoch, and a key id
+    the caller pinned. This is the gate that stops a *hand-built* leg from claiming that work:
+
+    * a leg carrying an `artifact` is refused (`POLICY_LEG_EVIDENCE_MISMATCH`) — an artifact cannot
+      become an epoch claim, however plausible its digest;
+    * a leg whose receipt this call did not open is refused (`POLICY_EPOCH_UNSUBSTANTIATED`) — a
+      reader name and a path are a claim, not a verification.
+    """
+    if item.get("artifact") is not None:
+        raise PolicyBindingRefusal(
+            f"active_epoch carries artifact {item.get('artifact')!r}: an artifact cannot "
+            "substantiate the epoch leg — pass epoch_receipt=<path|reader result> so a signed "
+            "FABRIC_ACTIVE_EPOCH@1 is verified", code=POLICY_LEG_EVIDENCE_MISMATCH)
+    if not from_epoch_receipt:
+        raise PolicyBindingRefusal(
+            "active_epoch names the signed-receipt reader "
+            f"{item.get('reader')!r} but no FABRIC_ACTIVE_EPOCH@1 was supplied to this call: a "
+            "reader name and a path are not a verified declaration (pass epoch_receipt=…)",
+            code="POLICY_EPOCH_UNSUBSTANTIATED")
 
 
 def build_binding(*, policy_ref: str, scope: str, epoch: int | str,
@@ -422,7 +846,10 @@ def build_binding(*, policy_ref: str, scope: str, epoch: int | str,
                   load_receipt: Any | None = None,
                   owner_receipt: Any | None = None,
                   owner_reader_sid: str | None = None,
-                  owner_trusted_key_ids: Any = None) -> dict[str, Any]:
+                  owner_trusted_key_ids: Any = None,
+                  epoch_receipt: Any | None = None,
+                  epoch_previous: int | None = None,
+                  epoch_trusted_key_ids: Any = None) -> dict[str, Any]:
     """Assemble the six-leg record, refusing every collapse the W1 NEG list names.
 
     `consumer_ack_receipt` is optional. `None` keeps the previous behaviour exactly (the caller's
@@ -438,8 +865,31 @@ def build_binding(*, policy_ref: str, scope: str, epoch: int | str,
     `POLICY_OWNER_DIRECTIVE@1` or the dict `owner_approval_receipt.read_owner_receipt` returned for
     one. `owner_reader_sid` / `owner_trusted_key_ids` are passed to that reader so a self-signed
     approval is refused and, when the caller owns a key registry, the named key is pinned.
+
+    `epoch_receipt` is the D-24 addition and does the same for the fourth leg: a path to a
+    `FABRIC_ACTIVE_EPOCH@1` or the dict `fabric_active_epoch.read_epoch_receipt` returned for one.
+    The receipt's declared policy digest must be the source leg's digest, and its epoch must be the
+    binding's epoch (and strictly greater than `epoch_previous` when that is supplied).
+    `epoch_trusted_key_ids` pins the signing key and is required whenever an epoch receipt is
+    supplied (`POLICY_EPOCH_KEY_UNPINNED` otherwise); `owner_trusted_key_ids` is required the same
+    way for an owner receipt (`POLICY_OWNER_KEY_UNPINNED`). Without a receipt, a fourth leg that
+    claims `provenance=FABRIC_ACTIVE_EPOCH` or any evidence class other than `FIXTURE` is refused
+    with `POLICY_EPOCH_UNSUBSTANTIATED`: a label alone no longer substantiates the leg.
+
+    D-24: `source`, `stage` and `active_epoch` legs are re-opened here — the artifact legs at the
+    `artifact` path their reader recorded, the fourth leg at the receipt `epoch_receipt=` opened — so
+    a hand-built leg dict with a plausible digest and no file is refused rather than bound. One leg,
+    one evidence kind: a receipt on a source/stage leg and an artifact on the epoch leg are refused
+    with `POLICY_LEG_EVIDENCE_MISMATCH`. `separate_readers` counts the readers that ran — the artifact
+    readers plus whichever receipts were supplied — never the `reader` strings on legs the caller
+    typed.
+
     """
-    by_leg = {item["leg"]: item for item in legs}
+    by_leg = {item.get("leg"): item for item in legs}
+    unknown = [str(item.get("leg")) for item in legs if item.get("leg") not in LEGS]
+    if unknown:
+        raise PolicyBindingRefusal("unknown legs: " + ", ".join(sorted(set(unknown))),
+                                   code="POLICY_LEG_UNKNOWN")
     from_receipt = consumer_ack_receipt is not None
     if from_receipt:
         by_leg["consumer_ack"] = _consumer_ack_from_receipt(
@@ -456,6 +906,13 @@ def build_binding(*, policy_ref: str, scope: str, epoch: int | str,
             source_digest=(by_leg["source"]["digest"] if "source" in by_leg else None),
             reader_sid=owner_reader_sid, trusted_key_ids=owner_trusted_key_ids)
         legs = list(by_leg.values())
+    from_epoch_receipt = epoch_receipt is not None
+    if from_epoch_receipt:
+        by_leg["active_epoch"] = _epoch_from_receipt(
+            epoch_receipt, scope=scope, epoch=epoch,
+            source_digest=(by_leg["source"]["digest"] if "source" in by_leg else None),
+            previous_epoch=epoch_previous, trusted_key_ids=epoch_trusted_key_ids)
+        legs = list(by_leg.values())
     missing = [name for name in LEGS if name not in by_leg]
     if missing:
         raise PolicyBindingRefusal("missing legs: " + ", ".join(missing),
@@ -467,6 +924,11 @@ def build_binding(*, policy_ref: str, scope: str, epoch: int | str,
         raise PolicyBindingRefusal(
             "legs claim a different scope/epoch than the binding: " + ", ".join(sorted(foreign)),
             code="POLICY_SIGNER_OR_EPOCH_DENY")
+
+    # D-24, defect 2: a reader is a registered callable, and every leg — typed or read — must name
+    # one. A hand-built dict cannot smuggle `reader="TOTALLY-MADE-UP-READER"` past `leg()`.
+    for item in legs:
+        _registered_reader(item["leg"], item.get("reader"))
 
     loaded = by_leg["loaded_digest"]
     if loaded["provenance"] in NON_LOADING_PROVENANCE:
@@ -485,6 +947,25 @@ def build_binding(*, policy_ref: str, scope: str, epoch: int | str,
             "not the policy loaded on this host",
             code="POLICY_LOADED_PROVENANCE_NOT_A_LOAD_RECEIPT")
     active = by_leg["active_epoch"]
+    # D-24, the fourth leg — one leg, one evidence kind, decided by the reader named on the leg.
+    # `leg()` accepted the two pointer labels and nothing ever opened an artifact for them, so the
+    # leg was the caller's word; now a signed-receipt leg is only evidence if *this call* opened the
+    # receipt and pinned the key, and a pointer leg may carry only a FIXTURE design label.
+    if _registered_reader("active_epoch", active.get("reader")).evidence == "receipt":
+        _verify_receipt_leg(active, from_epoch_receipt=from_epoch_receipt)
+    elif not from_epoch_receipt:
+        if active["provenance"] not in EPOCH_LABEL_PROVENANCE:
+            raise PolicyBindingRefusal(
+                f"active_epoch claims provenance {active['provenance']!r}, which only "
+                "fabric-active-epoch-reader produces, but no FABRIC_ACTIVE_EPOCH@1 was supplied: a "
+                "caller-typed reader name is not an epoch declaration",
+                code="POLICY_EPOCH_UNSUBSTANTIATED")
+        if active.get("evidence_class") != EPOCH_DESIGN_EVIDENCE_CLASS:
+            raise PolicyBindingRefusal(
+                f"active_epoch claims evidence_class={active.get('evidence_class')!r} but no "
+                "FABRIC_ACTIVE_EPOCH@1 was supplied; a caller-typed label is not an epoch "
+                "declaration (pass epoch_receipt=<path|reader result>)",
+                code="POLICY_EPOCH_UNSUBSTANTIATED")
     if loaded["digest"] != active["digest"]:
         raise PolicyBindingRefusal(
             "loaded bytes differ from the active epoch bytes "
@@ -526,10 +1007,39 @@ def build_binding(*, policy_ref: str, scope: str, epoch: int | str,
             "the owner approved different bytes than the source leg "
             f"({str(owner['digest'])[:12]} != {str(by_leg['source']['digest'])[:12]})",
             code="OWNER_RECEIPT_DIGEST_MISMATCH")
-    if by_leg["stage"]["digest"] != by_leg["source"]["digest"]:
-        raise PolicyBindingRefusal(
-            "staged bytes differ from the source bytes without a recorded re-issue",
-            code="POLICY_SOURCE_STAGE_DRIFT")
+    # D-24: the first three legs are re-opened here so a hand-built dict cannot skip the reader
+    # `leg()` would have run. This replaces the old `stage.digest == source.digest` rule, which
+    # refused a real YAML->JSON stage and passed only when the caller typed the source digest as the
+    # stage digest — a false pass. One leg, one evidence kind (OWNER ruling): the reader named on the
+    # leg decides which kind it is, and the other kind on that leg is refused rather than ignored.
+    stage_observed: dict[str, Any] = {}
+    for name in ARTIFACT_LEGS:
+        item = by_leg[name]
+        entry = _registered_reader(name, item.get("reader"))
+        if entry.evidence == "receipt":
+            _verify_receipt_leg(item, from_epoch_receipt=(name == "active_epoch"
+                                                          and from_epoch_receipt))
+            continue
+        if item.get("receipt_path") is not None or item.get("receipt_sha256") is not None:
+            raise PolicyBindingRefusal(
+                f"{name} carries receipt evidence ({item.get('receipt_path')!r}) but is "
+                f"substantiated by the artifact reader {entry.name!r}: a receipt names a digest and "
+                "cannot stand in for the bytes (pass artifact=<path>)",
+                code=POLICY_LEG_EVIDENCE_MISMATCH)
+        observed = _verify_artifact_leg(item, source_digest=by_leg["source"]["digest"])
+        if name == "stage":
+            stage_observed = observed
+
+    # D-24, defect 2: count readers that ran, not strings that were typed. An artifact leg counts
+    # because its file was just re-read; a receipt leg counts because `build_binding` itself opened
+    # the receipt. A caller-supplied leg counts for nothing, however plausible its `reader` value.
+    verified_readers = {by_leg[name]["reader"] for name in ARTIFACT_LEGS}
+    if from_load_receipt:
+        verified_readers.add(loaded["reader"])
+    if from_receipt:
+        verified_readers.add(ack["reader"])
+    if from_owner_receipt:
+        verified_readers.add(owner["reader"])
 
     record = {
         "schema": SCHEMA,
@@ -539,7 +1049,16 @@ def build_binding(*, policy_ref: str, scope: str, epoch: int | str,
         "epoch": epoch,
         "legs": _order(legs),
         "digests": {name: by_leg[name]["digest"] for name in LEGS},
-        "separate_readers": len({item["reader"] for item in legs}),
+        "separate_readers": len(verified_readers),
+        "verified_readers": sorted(verified_readers),
+        "stage": {
+            "transform": stage_observed.get("transform"),
+            "source_sha256": stage_observed.get("source_sha256"),
+            "stage_sha256": stage_observed.get("stage_sha256"),
+            "note": ("the stage leg's digest is the staged bytes, not the source bytes; "
+                     "source_sha256 is what the stage declares it was produced from and is checked "
+                     "against the source leg's re-derived digest"),
+        },
         "state": "BOUND",
         "claim_ceiling": "AUTHOR_DESIGN_ONLY",
         "host": {"loaded_on_host": bool(from_load_receipt)
@@ -550,13 +1069,22 @@ def build_binding(*, policy_ref: str, scope: str, epoch: int | str,
                  "loaded_digest_reader": loaded["reader"],
                  "consumer_ack_reader": ack["reader"],
                  "load_receipt_verified": bool(from_load_receipt),
+                 "active_epoch_verified": bool(from_epoch_receipt),
+                 "active_epoch_reader": active["reader"],
+                 # Which kind of evidence the fourth leg carries: a signed receipt is evidence a key
+                 # holder declared a digest; a pointer is a design label and never host evidence.
+                 "active_epoch_evidence": active.get("epoch_evidence"),
+                 "epoch_receipt_path": active.get("receipt_path"),
+                 "epoch_key_trusted": bool(from_epoch_receipt and active.get("key_trusted")),
                  "owner_approval_verified": bool(from_owner_receipt),
                  "owner_key_trusted": bool(from_owner_receipt and owner.get("key_trusted")),
                  "consumer_ack_receipt_verified": bool(from_receipt)},
         "not_claimed": ["policy effective", "consumer consumption", "release",
                         HOST_POLICY_ACTIVE_NOT_CLAIMED["receipt" if from_receipt else "no_receipt"],
                         OWNER_APPROVAL_NOT_CLAIMED["receipt" if from_owner_receipt
-                                                   else "no_receipt"]],
+                                                   else "no_receipt"],
+                        ACTIVE_EPOCH_NOT_CLAIMED["receipt" if from_epoch_receipt
+                                                 else "no_receipt"]],
         "note": ("legs are separate records on purpose: a stage/mirror/nav document cannot "
                  "substantiate loaded_digest or consumer_ack"),
     }
