@@ -9,6 +9,7 @@
 | `DEPENDENCY-AND-CONTRACT-MATRIX.md` | cross-subject dependencies, contracts, entry points and mutation authority |
 | `VALIDATION-AND-ROLLBACK.md` | the positive, negative and boundary tests, and the rollback for every class of change |
 | `NON-CLAIMS.md` | what this publication deliberately does not assert |
+| [`hermes-upgrade-20261102/UPGRADE_RETURN.md`](hermes-upgrade-20261102/UPGRADE_RETURN.md) | candidate Windows Desktop chat and Stable Shadow evidence, preservation gaps and H01-H22 mapping; full product acceptance and cutover remain HOLD |
 
 [FHS Engineering Entry — navigation only](FHS/README.md)
 
