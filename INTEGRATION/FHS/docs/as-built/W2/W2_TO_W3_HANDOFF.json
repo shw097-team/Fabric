@@ -1,0 +1,30 @@
+{
+ "schema": "FHS.WaveHandoff/1",
+ "from": "W2",
+ "to": "W3",
+ "transferable": [
+  "the merged repository state and its shas (Fabric ee19049c, SBL bddd2097/c381923, HGK a7046a3/acd9196f)",
+  "the deployed Host runtime (patches 0001-0007) and the migrated store at schema_version 32",
+  "the R1 preflight package and the signing-capability challenge",
+  "the GJ02 RED/GREEN oracle pair with pinned runner and oracle digests",
+  "the SBL RepoContext binding POS/NEG"
+ ],
+ "not_transferable": [
+  "any claim of original-domain acceptance: 0 receipts",
+  "policy effectiveness, dev effect, recovery, checker verdict"
+ ],
+ "holds": [
+  {
+   "id": "H-W2-1",
+   "what": "first lawful DEV",
+   "why": "blocked by H-W1-2 and H-W1-4 together",
+   "resume": "permit + DEV ECP + ACK@2 + References, then one reversible RED->patch->GREEN with WorldRaw"
+  },
+  {
+   "id": "H-W2-2",
+   "what": "three crash windows / independent checker / FAR",
+   "why": "all three are downstream of a real DEV effect",
+   "resume": "after H-W2-1, then each window with its own world-reader count, then a different technical SID checker"
+  }
+ ]
+}

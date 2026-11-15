@@ -1,0 +1,24 @@
+{
+ "schema": "FHS.WaveHandoff/1",
+ "from": "W0",
+ "to": "W1",
+ "transferable": [
+  "the merged repository state and its shas (Fabric ee19049c, SBL bddd2097/c381923, HGK a7046a3/acd9196f)",
+  "the deployed Host runtime (patches 0001-0007) and the migrated store at schema_version 32",
+  "the R1 preflight package and the signing-capability challenge",
+  "the GJ02 RED/GREEN oracle pair with pinned runner and oracle digests",
+  "the SBL RepoContext binding POS/NEG"
+ ],
+ "not_transferable": [
+  "any claim of original-domain acceptance: 0 receipts",
+  "policy effectiveness, dev effect, recovery, checker verdict"
+ ],
+ "holds": [
+  {
+   "id": "H-W0-1",
+   "what": "L0/L1/L2 source lock",
+   "why": "the three upper documents are not present under the knowledge-base path used in this session",
+   "resume": "supply L0/L1/L2 by path, then re-run the source lock check and compare with the control table"
+  }
+ ]
+}

@@ -1,0 +1,48 @@
+{
+ "schema": "FHS.WaveHandoff/1",
+ "from": "W1",
+ "to": "W2",
+ "transferable": [
+  "the merged repository state and its shas (Fabric ee19049c, SBL bddd2097/c381923, HGK a7046a3/acd9196f)",
+  "the deployed Host runtime (patches 0001-0007) and the migrated store at schema_version 32",
+  "the R1 preflight package and the signing-capability challenge",
+  "the GJ02 RED/GREEN oracle pair with pinned runner and oracle digests",
+  "the SBL RepoContext binding POS/NEG"
+ ],
+ "not_transferable": [
+  "any claim of original-domain acceptance: 0 receipts",
+  "policy effectiveness, dev effect, recovery, checker verdict"
+ ],
+ "holds": [
+  {
+   "id": "H-W1-1",
+   "what": "FABRIC_ACTIVE_EPOCH@1 signed by the Policy Owner",
+   "why": "no owner signature exists; the producer is only a candidate in Fabric #34",
+   "resume": "merge #34, then the policy owner signs an epoch receipt with a pinned key against the real policy digest"
+  },
+  {
+   "id": "H-W1-2",
+   "what": "rev14 registry / Issuer permit",
+   "why": "only the OWNER can run --reissue-issuer in a protected terminal",
+   "resume": "preflight 7/7 -> owner runs --reissue-issuer once -> original HGK reader verifies rev14, Leaf@2, new-permit POS and old-permit NEG"
+  },
+  {
+   "id": "H-W1-3",
+   "what": "T2 wake/resume",
+   "why": "the only observed wake used a maker-created due item, which the ruling excludes",
+   "resume": "a work item admitted by the original scheduler with a genuine due condition, then WakeReceipt/LeaseFence/LastGood read back"
+  },
+  {
+   "id": "H-W1-4",
+   "what": "DEV ECP",
+   "why": "no clause-bound GJ02 case source in SBL; authoring one would make the maker the author of its own requirement",
+   "resume": "original GJ02 case artifact, or an OWNER ruling that the round runner+oracle constitute the case"
+  },
+  {
+   "id": "H-W1-5",
+   "what": "CAP qualification (sp.host.load, python.dist:pyyaml)",
+   "why": "no installer/host-fit evidence this session",
+   "resume": "original CAP installer run against the GJ02 scope, then the CAP reader"
+  }
+ ]
+}
