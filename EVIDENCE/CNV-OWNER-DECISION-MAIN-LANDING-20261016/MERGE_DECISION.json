@@ -1,0 +1,34 @@
+{
+ "schema": "CNV-OWNER-DECISION/MERGE-DECISION/1",
+ "gate_declared": "cross-model verifier PASS, then a fresh live read of mergeable/mergeable_state",
+ "verifier": {
+  "lane": "VERIFY_SECURITY",
+  "required_arm": "openai-codex/gpt-6.1-sol",
+  "served_arm": "openai-codex/gpt-6.1-sol",
+  "verdict": "FAIL_WITH_FINDINGS",
+  "first_run": "V1/V3/V5 clear; V2 and V4 unverifiable; V6 observation",
+  "second_run_after_repair": "V1-V5 clear; V6 finding retained",
+  "cross_model": "writer opencode-go/deepseek-v4.1-flash vs checker openai-codex/gpt-6.1-sol"
+ },
+ "decisions": [
+  {
+   "candidate": "PR #15",
+   "decision": "HELD",
+   "reason": "the checker cleared additivity, mergeability and head-to-branch binding, but held under V6: the scanner proposed for publication contains synthetic credential-shaped positive-control fixtures",
+   "owner_action": "either accept the scanner with its fixtures disclosed, or return the pack with the fixtures redacted; a merge needs a fresh pre-merge read of mergeable state"
+  },
+  {
+   "candidate": "PR #16",
+   "decision": "HELD",
+   "reason": "the same gate applies to the round's landing act as a whole; its own checks cleared, including the repaired additive homepage diff, but the round does not merge while the gate is failed",
+   "owner_action": "merge once the gate question above is settled, after a fresh live read"
+  }
+ ],
+ "not_executed": [
+  "both merges",
+  "any write to the default branch",
+  "any change to the two candidate branches beyond the homepage line-ending repair already published in PR #16"
+ ],
+ "main_at_report_time": "bcd91043b89b69c9d2f08309e46e31898ac87d89",
+ "claim_ceiling": "candidate only; no acceptance, no release, no production effect"
+}

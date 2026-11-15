@@ -1,0 +1,146 @@
+{
+  "schema": "HGK-LANE-RESOLUTION/1",
+  "lane": "PLAN",
+  "role": "writer",
+  "role_binding_source": null,
+  "engine": "codex-cli",
+  "codex_executable": "C:/Users/user/AppData/Local/OpenAI/Codex/bin/e78bad9887fa50cf/codex.exe",
+  "codex_home": "C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\codex-hermes",
+  "relay_base": "http://127.0.0.1:10101/v1",
+  "codex_home_is_declared_lane_home": true,
+  "human_home_transport_acknowledged": false,
+  "skipped_arms": [],
+  "transport": "opencodex relay via per-invocation -c openai_base_url (no config mutation)",
+  "transport_target": "http://127.0.0.1:10101/v1",
+  "front_door_port": null,
+  "front_door_note": "the lane-scoped pool door (10103 VERIFY_SECURITY / 10105 EXECUTE) carries the hop and ledgers every decision; the sealed single-model 10100 door is unchanged and unused; None here means direct to the relay on 10101",
+  "sandbox": "read-only",
+  "sandbox_by_role_default": "read-only",
+  "sandbox_escalation_authorised": false,
+  "cwd": "C:\\Projects\\Agent_Workspace\\HG-KSEOS",
+  "side_effect_note": "no write access granted by the sandbox mode",
+  "receipt_binding": "usage rows appended after this attempt started (byte offset bound)",
+  "pool": "C:/Projects/Agent_Workspace/HG-KSEOS/config/lane-route-slots.candidate.json",
+  "candidates_considered": [
+    2
+  ],
+  "mode": "forced_rank",
+  "unguarded_escalation_acknowledged": false,
+  "inject_429_first": false,
+  "identity_gate": {
+    "state": "enforced",
+    "lane_home": "C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\codex-hermes",
+    "relay_home": "C:\\Users\\user\\AppData\\Local\\HG-KSEOS\\opencodex-hermes",
+    "arms": [
+      {
+        "rank": 2,
+        "provider": "openai-codex",
+        "model": "gpt-6.1-sol",
+        "requirement": "relay_pool",
+        "ok": true,
+        "detail": "non-empty refreshable credential present in codex-accounts.json"
+      }
+    ],
+    "degraded": false,
+    "required_arm": "openai-codex/gpt-6.1-sol"
+  },
+  "authorization": {
+    "checked": false
+  },
+  "subject_mutation": {
+    "files_before": 2,
+    "files_after": 2,
+    "added": [],
+    "removed": [],
+    "changed": [],
+    "mutated": false,
+    "mutated_known": true,
+    "inconclusive": false,
+    "verdict": "CLEAN",
+    "rule": "removed/changed => verdict void; added is recorded, not fatal; an empty side => INCONCLUSIVE (never a clean verdict from nothing)",
+    "guard_roots": [
+      "C:/Projects/Agent_Workspace/_handover/CNV-OWNER-DECISION-MAIN-LANDING-20261016/subject3"
+    ],
+    "subject_digest_sha256_before": "589e3c9aabcf250408e190e77e192cfad86add8a05f6e9cf64161308dc803dca",
+    "subject_digest_sha256_after": "589e3c9aabcf250408e190e77e192cfad86add8a05f6e9cf64161308dc803dca"
+  },
+  "attempt_log_dir": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-OWNER-DECISION-MAIN-LANDING-20261016\\lane_out_plan\\CNV-OWNER-DECISION-MAIN-LANDING-20261016\\PLAN\\attempt-2-20261016T155333Z",
+  "output_dir_policy": {
+    "mode": "derived",
+    "derived": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-OWNER-DECISION-MAIN-LANDING-20261016\\lane_out_plan\\CNV-OWNER-DECISION-MAIN-LANDING-20261016\\PLAN\\attempt-2-20261016T155333Z",
+    "attempt_number": 2,
+    "attempt_marker": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-OWNER-DECISION-MAIN-LANDING-20261016\\lane_out_plan\\CNV-OWNER-DECISION-MAIN-LANDING-20261016\\PLAN\\attempt-2-20261016T155333Z\\attempt.marker.json"
+  },
+  "repair_precondition": {
+    "checked": false
+  },
+  "remote_write_precheck": {
+    "mode": "DETECTION_ONLY",
+    "ran": true,
+    "brief": "C:/Projects/Agent_Workspace/_handover/CNV-OWNER-DECISION-MAIN-LANDING-20261016/subject3/LANE_BRIEFS.md",
+    "markers": [],
+    "publication_wo": null,
+    "would_refuse": false
+  },
+  "attempts": [
+    {
+      "rank": 2,
+      "provider": "openai-codex",
+      "model": "gpt-6.1-sol",
+      "transport_model": "gpt-6.1-sol",
+      "sandbox": "read-only",
+      "reasoning_effort": "medium",
+      "exit": 0,
+      "timed_out": false,
+      "seconds": 55.38,
+      "nonce_present": true,
+      "nonce_present_raw_stdout": true,
+      "nonce_source": "item.completed/agent_message",
+      "usage_rows_after_offset": 5,
+      "usage_offset": 28356965,
+      "usage_provider": "openai-p6a1fe3",
+      "usage_model": "gpt-6.1-sol",
+      "usage_status": 200,
+      "usage_receipt_ok": true,
+      "usage_receipt_reason": "",
+      "usage_ledger_rewritten": false,
+      "usage_rows_shape_invalid": 0,
+      "usage_rows_undecodable": 0,
+      "carrier_lines_undecodable": 0,
+      "carrier_lines_surrogate": 0,
+      "credential_posture": {
+        "verdict": "INCONCLUSIVE",
+        "decision": "WARN_CONTINUE",
+        "reason": "helper-only verdict (no child env asserted): helper_resolution_reset=PASS; helper_non_interactive=UNKNOWN",
+        "prompt_capable_helper": null,
+        "origin": null,
+        "git_terminal_prompt": "0"
+      },
+      "attempt_log_dir": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-OWNER-DECISION-MAIN-LANDING-20261016\\lane_out_plan\\CNV-OWNER-DECISION-MAIN-LANDING-20261016\\PLAN\\attempt-2-20261016T155333Z",
+      "stdout_byte_exact": true,
+      "stdout_path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-OWNER-DECISION-MAIN-LANDING-20261016\\lane_out_plan\\CNV-OWNER-DECISION-MAIN-LANDING-20261016\\PLAN\\attempt-2-20261016T155333Z\\attempt-21520-1792166013-2-stdout.txt",
+      "stdout_bytes": 83532,
+      "stdout_sha256": "b765a7b6d0f42bfadf51d2afa000bd68c7e0ed979a011a153da26210dd7ab705",
+      "stderr_byte_exact": true,
+      "stderr_path": "C:\\Projects\\Agent_Workspace\\_handover\\CNV-OWNER-DECISION-MAIN-LANDING-20261016\\lane_out_plan\\CNV-OWNER-DECISION-MAIN-LANDING-20261016\\PLAN\\attempt-2-20261016T155333Z\\attempt-21520-1792166013-2-stderr.txt",
+      "stderr_bytes": 220,
+      "stderr_sha256": "58a4b5c80b03fc909852e75a703ec9525733c32f0c06e5635bfef479af879d43",
+      "stdout_tail": " could mistake candidate evidence for operational assurance unless its wording preserves the claim ceiling.\\n- Merge receipts and independently checked resulting-tree evidence would still be needed.\\n\\nNONCE-DONE: CNVH-PLAN-3a91f2\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":108093,\"cached_input_tokens\":83584,\"cache_write_input_tokens\":0,\"output_tokens\":1544,\"reasoning_output_tokens\":239}}\n",
+      "stderr_tail": "Reading additional input from stdin...\n2026-10-16T15:53:33.608398Z ERROR codex_api::endpoint::responses_websocket: failed to connect to websocket: HTTP error: 426 Upgrade Required, url: ws://127.0.0.1:10101/v1/responses\n"
+    }
+  ],
+  "used_rank": 2,
+  "used_transport_model": "gpt-6.1-sol",
+  "used_seconds": 55.38,
+  "generated_utc": "2026-10-16T15:54:28.874046+00:00",
+  "claim_ceiling": "a pass here proves the Codex-CLI lane served this turn through the relay with a matching usage receipt; it is not an acceptance of any subject",
+  "ok": true,
+  "completion_evidence": {
+    "checked": false
+  },
+  "usage_receipt_ok": true,
+  "usage_rows_shape_invalid": 0,
+  "usage_rows_undecodable": 0,
+  "required_arm": "openai-codex/gpt-6.1-sol",
+  "served_arm": "openai-codex/gpt-6.1-sol"
+}

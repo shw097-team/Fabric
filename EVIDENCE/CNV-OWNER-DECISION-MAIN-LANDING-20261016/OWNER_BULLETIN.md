@@ -1,0 +1,53 @@
+# OWNER BULLETIN — prepared owner-supply list (round CNV-OWNER-DECISION-MAIN-LANDING-20261016)
+## What this is
+This is a preparation, not a decision.
+Nothing here is signed, accepted or closed.
+Every id below is traceable to RC1_OPEN_ITEM_UNIVERSE.json; the 28 rows are my own reading of that file.
+
+## Rows
+
+| id | what it needs, in one sentence | already prepared | only the owner can supply | smallest action |
+| --- | --- | --- | --- | --- |
+| R7-03-ISOLATE | An independent checker run under a distinct OS identity with write denial and a separate output root. | The ACL denial and cleanup mechanism is demonstrated by non-checker runs and source-confirmed. | The non-liftable second operating-system identity and the go-ahead to run under it. | Record one checker run under the named distinct identity with live write-denial evidence. |
+| R7-04-FRESH-G1 | One Fresh G1 certificate binding the effective binary hash, version, route epoch and served arm. | Route rebind and successful transport are recorded, and they are not G1. | The Fresh G1 certificate itself. | Issue one Fresh G1 certificate over the effective binary, epoch and arm. |
+| FULL-221-TQAEP-APPLICABILITY | An applicability-and-run ruling for the 221 identities and gates G-A through G-H. | The identity list and the NOT_RUN outcomes are recorded. | The mandatory/conditional/not-applicable denominator and the AO verdict. | Rule the denominator and run the applicable runners without treating NOT_RUN as a pass. |
+| SOURCE6-AUTHORITY | An active-versus-historical disposition for source #6 that keeps the unrecoverable-original-bytes caveat. | The prior historical demotion is acknowledged in the file. | The source owner's disposition decision. | Record the active-versus-historical call while retaining the bytes caveat. |
+| KP-R04-POLARITY | A reconciliation of the twenty KP R04 MUST-NOT polarity conflicts with their counterexamples. | The conflicts remain open in the named primary evidence at this read cut. | The policy owner's textual polarity reconciliation. | Record the reconciliation of the twenty conflicts with counterexamples. |
+| A1-A3-AUTHORITY-BINDING | Owner-original A1/A3 bytes attached to a trusted detached package lock with a complete AuthorityBinding. | The prerequisite set is carried forward, not newly tested. | The owner-original A1/A3 bytes and the detached verifier lock. | Attach the original A1/A3 bytes and the detached lock to a complete AuthorityBinding. |
+| VENDOR-EIGHT-STAGE-PIPELINE | The actual vendor-produced eight-stage typed pipeline receipts. | Author-side JSON projections exist and are not vendor receipts. | The vendor's own pipeline and intent-hash receipts. | Attach the vendor-generated eight-stage receipts to the canonical package. |
+| TT-PIPD-03-ORACLE-BRIDGE | A versioned DOC-03-to-DOC-07 OracleOwnerBridge mapping for TT-PIPD-03. | The two Oracle writers are named in the register. | The joint decision of the DOC03 and DOC07 Oracle Owners. | Record the versioned OracleOwnerBridge with no silent Oracle-writer substitution. |
+| DOC05-EFFECT-ADMISSION | A DOC05 effect-admission receipt bound to the current RepoContext and effect scope. | The bounded-writable-scope requirement is stated in the file. | The effect-admission receipt, the lease/write authorization and the at-most-once policy. | Record the DOC05 effect-admission receipt bound to the current RepoContext. |
+| TECH342-OWNER-DISPOSITIONS | A terminal disposition for each applicable namespace-qualified TechnologyAdmission key. | The key set and the per-key qualification needs are enumerated. | The per-technology owner's final disposition for each key. | Record one final disposition per applicable technology key with no alias collapse. |
+| EFFECT-PLANE-RAW-PROOF | Independently reviewable effect/readback/rollback evidence for each enabled capability surface. | The need for named surfaces rather than a synthetic sandbox is recorded. | The owner-authorized real effect and rollback evidence. | Attach real effect/readback/rollback evidence per enabled named surface. |
+| PUBLICATION-ALLOWLIST-CONTROLS | A frozen publication allowlist with enforced CI/CODEOWNERS/ruleset/secret-scan controls. | The control set is named as a publication prerequisite. | The maintainer and CI security owner's frozen controls and their readback. | Obtain the frozen allowlist and the enforced control readback. |
+| CANONICAL-AO-RELEASE | The independent external AO verdict and the owner terminal record via the typed path. | The typed SharedSpine resolution path is named. | The external AO verdict and the owner terminal record. | Obtain the external AO verdict and the owner terminal record through the typed resolution path. |
+| FABRIC-PR-6 | A separate maintainer authorization to merge the verified exact HEAD of PR #6 with a main readback. | The exact HEAD is verified and mergeability is clean. | The Fabric maintainer's separate authorization and merge. | Merge the verified exact HEAD of PR #6 and record the main readback. |
+| FABRIC-PR-8 | A separate maintainer authorization to merge the verified exact HEAD of PR #8 with a main readback. | The exact HEAD is verified and mergeability is clean. | The Fabric maintainer's separate authorization and merge. | Merge the verified exact HEAD of PR #8 and record the main readback. |
+| FABRIC-PR-10 | A separate maintainer authorization to merge the verified exact HEAD of PR #10 with a main readback. | The exact HEAD is verified and mergeability is clean. | The Fabric maintainer's separate authorization and merge. | Merge the verified exact HEAD of PR #10 and record the main readback. |
+| CANONICAL-CODEX-PIN | A refreshed canonical Codex executable pin pointing at the measured existing binary. | The pin is verified still stale by the current file read. | The owner-authorized refresh and the focused requalification. | Refresh the canonical pin to the measured binary and record the requalification. |
+| CHECKER-ENGINE-MISMATCH | The route owner's authoritative VERIFY_SECURITY engine decision reconciling the two declarations. | The registry-versus-dispatch conflict is recorded in the file. | The route owner's choice of authoritative checker engine. | Record the authoritative checker engine and align the declarative surfaces. |
+| SPINE-STRANDED-ATTEMPTS | An evidence-backed retirement or recovery disposition for the three stranded PLAN_READY projects. | The three stranded records are observed with no terminal transition. | The owning lifecycle authority's disposition. | Record the retirement or recovery through the owning lifecycle API. |
+| K-08 | The owner-designated read-capable independent verifier lane for digest recomputation. | The source status is preserved and no owner closure receipt was found. | The owner's designation of a read-capable verification lane. | Record the owner-designated read-capable verifier and its scoped evidence. |
+| K-09 | An owner-chosen tamper-evident pre-dispatch Oracle commitment mechanism. | The limitation that mtime is not cryptographic binding is recorded. | The owner's choice of commitment mechanism. | Record the chosen pre-dispatch commitment mechanism without treating mtime as binding. |
+| PROMOTION-RETAIN-DEFAULT | An explicit retain-by-default disposition for the 348 canonical-only files and the epoch19 snapshots. | The residual is directly observed in the peer closure. | The retention owner's explicit retain-or-delete disposition. | Record retain-by-default for the canonical-only classes without deleting them. |
+| R2-PREWRITE-GOVERNANCE-DEVIATION | A nonretroactive disposition of the pre-write admission violation. | The verified bytes and the missing pre-write compliance are recorded. | The governance owner's nonretroactive disposition. | Record the nonretroactive disposition while preserving the wrong-writer facts. |
+| CARRY-LANE-MANDATE-REBINDING-AND-D01-REVOCATION | A re-scope of the historical mandate/D01 record to the current epoch. | The applied revocation and exclusion artifacts are recorded. | The lane policy owner's reparenting decision. | Reparent the historical mandate tasks to the current epoch and record the surviving dispositions. |
+| R8-BOUNDED-PROPOSAL-DISPOSITION | An owner re-scope of the R8 prospective proposal that drops the obsolete byte-cap. | The superseded 100000-byte cap and the errata scope are recorded. | The R8/skill/publication owners' re-scope decision. | Record the re-scope retaining only the applicable EIA obligations. |
+| HISTORICAL-OPENSPEC-RETIREMENT | A historical retirement or reparenting of the four pre-mission OpenSpec records. | The records are observed as historical, not new convergence work. | The owning authority's retirement decision. | Record the retirement or reparenting; reopen only on an explicit owner reopening. |
+| FABRIC-SHARED-CHECKOUT-COORDINATION | A coordination record from the active peer checkout owner before any successor Fabric mutation. | The blocking ceiling (no shared-checkout mutation) is recorded. | The active peer checkout owner's coordination record. | Obtain the peer owner's coordination record and keep discovery read-only. |
+| CARRY-GCM-NONINTERACTIVE-DEFAULT-CONTAINMENT | A scoped disposition of the eight remaining GCM qualification and authorization rows. | L2 NON_ACTIVATED and the NOT DONE rows are recorded. | The GCM round owner's scoped disposition. | Record the scoped disposition of the eight rows without touching credentials. |
+
+## External actors
+
+- `R7-03-ISOLATE` — needs a second operating-system identity, which is not the owner.
+- `FULL-221-TQAEP-APPLICABILITY` — needs the external AO verdict, which is not the owner.
+- `VENDOR-EIGHT-STAGE-PIPELINE` — needs the vendor's own receipts, which are not the owner's.
+- `TT-PIPD-03-ORACLE-BRIDGE` — needs the joint DOC03 and DOC07 Oracle Owners, who are distinct from the owner.
+- `PUBLICATION-ALLOWLIST-CONTROLS` — needs the repository maintainer and CI security owner, who are not the owner.
+- `CANONICAL-AO-RELEASE` — needs the independent external AO, who is not the owner.
+- `FABRIC-PR-6` — needs the Fabric repository maintainer, who is another repository's owner.
+- `FABRIC-PR-8` — needs the Fabric repository maintainer, who is another repository's owner.
+- `FABRIC-PR-10` — needs the Fabric repository maintainer, who is another repository's owner.
+- `K-08` — needs a read-capable independent verifier lane, which is a party other than the owner.
+- `FABRIC-SHARED-CHECKOUT-COORDINATION` — needs the active peer checkout owner, who is not the owner.
+- `CARRY-GCM-NONINTERACTIVE-DEFAULT-CONTAINMENT` — needs the credential broker / GCM containment owner, who is not the owner.
